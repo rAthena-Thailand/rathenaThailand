@@ -11184,7 +11184,7 @@ void clif_parse_LoadEndAck(int fd,map_session_data *sd)
 		// Update the client
 		clif_goldpc_info( *sd );
 	}
-	
+
 	if( sd->guild && ( battle_config.guild_notice_changemap == 2 || guild_notice ) ){
 		clif_guild_notice(sd); // Displays at end
 	}
@@ -20094,12 +20094,7 @@ void clif_display_pinfo( map_session_data& sd ){
 		}
 
 		//1:Premium
-		if( pc_isvip( &sd ) ){
-			details_bexp[PINFO_PREMIUM] = battle_config.vip_base_exp_increase * battle_config.base_exp_rate / 100;
-			if (details_bexp[PINFO_PREMIUM] < 0)
-				details_bexp[PINFO_PREMIUM] = 0 - details_bexp[PINFO_PREMIUM];
-		} else
-			details_bexp[PINFO_PREMIUM] = 0;
+		details_bexp[PINFO_PREMIUM] = 0;
 
 		//2:Server
 		details_bexp[PINFO_SERVER] = battle_config.base_exp_rate;
@@ -20114,21 +20109,31 @@ void clif_display_pinfo( map_session_data& sd ){
 		}
 
 		//3:TPLUS
-		details_bexp[PINFO_CAFE] = 0;
+		//details_bexp[PINFO_CAFE] = 0;
+		if( pc_isvip( &sd ) ){
+			details_bexp[PINFO_CAFE] = battle_config.vip_base_exp_increase;
+			if (details_bexp[PINFO_CAFE] < 0)
+				details_bexp[PINFO_CAFE] = 0 - details_bexp[PINFO_CAFE];
+		} else
+			details_bexp[PINFO_CAFE] = 0;
 
 		/**
 		 * Drop rate
 		 */
 		//0:PCRoom
-		details_drop[PINFO_BASIC] = 0;
+		details_drop[PINFO_BASIC] = map_getmapflag( sd.bl.m, MF_BEXP );
+		if (details_drop[PINFO_BASIC] == 100 || !details_drop[PINFO_BASIC])
+			details_drop[PINFO_BASIC] = 0;
+		else {
+			if (details_drop[PINFO_BASIC] < 100) {
+				details_drop[PINFO_BASIC] = 100 - details_drop[PINFO_BASIC];
+				details_drop[PINFO_BASIC] = 0 - details_drop[PINFO_BASIC];
+			} else
+				details_drop[PINFO_BASIC] = details_drop[PINFO_BASIC] - 100;
+		}
 
 		//1:Premium
-		if( pc_isvip( &sd ) ){
-			details_drop[PINFO_PREMIUM] = (battle_config.vip_drop_increase * battle_config.item_rate_common) / 100;
-			if (details_drop[PINFO_PREMIUM] < 0)
-				details_drop[PINFO_PREMIUM] = 0 - details_drop[PINFO_PREMIUM];
-		} else
-			details_drop[PINFO_PREMIUM] = 0;
+		details_drop[PINFO_PREMIUM] = 0;
 
 		//2:Server
 		details_drop[PINFO_SERVER] = battle_config.item_rate_common;
@@ -20143,7 +20148,12 @@ void clif_display_pinfo( map_session_data& sd ){
 		}
 
 		//3:TPLUS
-		details_drop[PINFO_CAFE] = 0;
+		if( pc_isvip( &sd ) ){
+			details_drop[PINFO_CAFE] = battle_config.vip_base_exp_increase;
+			if (details_drop[PINFO_CAFE] < 0)
+				details_drop[PINFO_CAFE] = 0 - details_drop[PINFO_CAFE];
+		} else
+			details_drop[PINFO_CAFE] = 0;
 
 		/**
 		 * Penalty rate
@@ -20153,21 +20163,7 @@ void clif_display_pinfo( map_session_data& sd ){
 		details_penalty[PINFO_BASIC] = 0;
 
 		//1:Premium
-		if( pc_isvip( &sd ) ){
-			details_penalty[PINFO_PREMIUM] = battle_config.vip_exp_penalty_base;
-			if (details_penalty[PINFO_PREMIUM] == 100)
-				details_penalty[PINFO_PREMIUM] = 0;
-			else {
-				if (details_penalty[PINFO_PREMIUM] < 100) {
-					details_penalty[PINFO_PREMIUM] = 100 - details_penalty[PINFO_PREMIUM];
-					details_penalty[PINFO_PREMIUM] = 0 - details_penalty[PINFO_PREMIUM];
-				} else
-					details_penalty[PINFO_PREMIUM] = details_penalty[PINFO_PREMIUM] - 100;
-			}
-			if (battle_config.death_penalty_base > battle_config.vip_exp_penalty_base)
-				details_penalty[PINFO_PREMIUM] = battle_config.vip_exp_penalty_base - battle_config.death_penalty_base;
-		} else
-			details_penalty[PINFO_PREMIUM] = 0;
+		details_penalty[PINFO_PREMIUM] = 0;
 
 		//2:Server
 		details_penalty[PINFO_SERVER] = battle_config.death_penalty_base;
@@ -20182,7 +20178,21 @@ void clif_display_pinfo( map_session_data& sd ){
 		}
 
 		//3:TPLUS
-		details_penalty[PINFO_CAFE] = 0;
+		if( pc_isvip( &sd ) ){
+			details_penalty[PINFO_CAFE] = battle_config.vip_exp_penalty_base;
+			if (details_penalty[PINFO_CAFE] == 100)
+				details_penalty[PINFO_CAFE] = 0;
+			else {
+				if (details_penalty[PINFO_CAFE] < 100) {
+					details_penalty[PINFO_CAFE] = 100 - details_penalty[PINFO_CAFE];
+					details_penalty[PINFO_CAFE] = 0 - details_penalty[PINFO_CAFE];
+				} else
+					details_penalty[PINFO_CAFE] = details_penalty[PINFO_CAFE] - 100;
+			}
+			if (battle_config.death_penalty_base > battle_config.vip_exp_penalty_base)
+				details_penalty[PINFO_CAFE] = battle_config.vip_exp_penalty_base - battle_config.death_penalty_base;
+		} else
+			details_penalty[PINFO_CAFE] = 0;
 
 	struct PACKET_ZC_PERSONAL_INFOMATION* p = (struct PACKET_ZC_PERSONAL_INFOMATION*)packet_buffer;
 
@@ -21699,7 +21709,7 @@ void clif_parse_open_ui( int fd, map_session_data* sd ){
 }
 
 /// Response for attedance request
-/// 0AF0 <unknown>.L <data>.L
+/// 0AF0 <action>.L <data>.L
 void clif_attendence_response( map_session_data *sd, int32 data ){
 	nullpo_retv(sd);
 
@@ -21707,7 +21717,7 @@ void clif_attendence_response( map_session_data *sd, int32 data ){
 
 	WFIFOHEAD(fd,packet_len(0xAF0));
 	WFIFOW(fd,0) = 0xAF0;
-	WFIFOL(fd,2) = 0;
+	WFIFOL(fd,2) = battle_config.feature_attendance_close;
 	WFIFOL(fd,6) = data;
 	WFIFOSET(fd,packet_len(0xAF0));
 }
@@ -25225,13 +25235,22 @@ void clif_parse_dynamic_npc( int fd, map_session_data* sd ){
 		clif_dynamicnpc_result( *sd, DYNAMICNPC_RESULT_UNKNOWNNPC );
 		return;
 	}
-
-	if( npc_duplicate_npc_for_player( *nd, *sd ) != nullptr ){
-		clif_dynamicnpc_result( *sd, DYNAMICNPC_RESULT_SUCCESS );
+	
+	if( nd ){
+		if( battle_config.feature_goldpc_script ){
+			run_script( nd->u.scr.script, 0, sd->bl.id, nd->bl.id );
+			return;
+		}else{
+			if( npc_duplicate_npc_for_player( *nd, *sd ) != nullptr ){
+				clif_dynamicnpc_result( *sd, DYNAMICNPC_RESULT_SUCCESS );
+			}
+		}
 	}
+	
 #endif
 }
 
+		
 /*==========================================
  * Main client packet processing function
  *------------------------------------------*/
