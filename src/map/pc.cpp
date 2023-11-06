@@ -2290,7 +2290,7 @@ TIMER_FUNC(pc_goldpc_update){
 	}
 
 	sd->goldpc_tid = INVALID_TIMER;
-
+	
 	// Check if feature is still active
 	if( !battle_config.feature_goldpc_active ){
 		return 0;
@@ -2429,7 +2429,7 @@ void pc_reg_received(map_session_data *sd)
 	}else{
 		sd->goldpc_tid = INVALID_TIMER;
 	}
-
+	
 	// pet
 	if (sd->status.pet_id > 0)
 		intif_request_petdata(sd->status.account_id, sd->status.char_id, sd->status.pet_id);
@@ -15909,7 +15909,7 @@ void do_init_pc(void) {
 	add_timer_func_list(pc_on_expire_active, "pc_on_expire_active");
 	add_timer_func_list(pc_macro_detector_timeout, "pc_macro_detector_timeout");
 	add_timer_func_list(pc_goldpc_update, "pc_goldpc_update");
-
+	
 	add_timer(gettick() + autosave_interval, pc_autosave, 0, 0);
 
 	// 0=day, 1=night [Yor]

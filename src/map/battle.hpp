@@ -731,12 +731,15 @@ struct Battle_Config
 	int feature_stylist;
 	int feature_banking_state_enforce;
 	int instance_allow_reconnect;
-	
+
 	int feature_goldpc_active;
 	int feature_goldpc_time;
 	int feature_goldpc_max_points;
 	int feature_goldpc_vip;
-
+	int feature_goldpc_script;
+	
+	int feature_attendance_close;
+	
 #include <custom/battle_config_struct.inc>
 };
 
