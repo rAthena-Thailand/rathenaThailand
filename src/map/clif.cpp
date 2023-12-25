@@ -4,6 +4,8 @@
 
 #include "clif.hpp"
 
+#include <unordered_set>
+
 #include <cstdarg>
 #include <cstdio>
 #include <cstdlib>
@@ -11180,11 +11182,8 @@ void clif_parse_LoadEndAck(int fd,map_session_data *sd)
 			channel_mjoin(sd); //join new map
 
 		clif_pk_mode_message(sd);
-		
-		// Update the client
-		clif_goldpc_info( *sd );
 	}
-
+	
 	if( sd->guild && ( battle_config.guild_notice_changemap == 2 || guild_notice ) ){
 		clif_guild_notice(sd); // Displays at end
 	}
@@ -20094,7 +20093,12 @@ void clif_display_pinfo( map_session_data& sd ){
 		}
 
 		//1:Premium
-		details_bexp[PINFO_PREMIUM] = 0;
+		if( pc_isvip( &sd ) ){
+			details_bexp[PINFO_PREMIUM] = battle_config.vip_base_exp_increase * battle_config.base_exp_rate / 100;
+			if (details_bexp[PINFO_PREMIUM] < 0)
+				details_bexp[PINFO_PREMIUM] = 0 - details_bexp[PINFO_PREMIUM];
+		} else
+			details_bexp[PINFO_PREMIUM] = 0;
 
 		//2:Server
 		details_bexp[PINFO_SERVER] = battle_config.base_exp_rate;
@@ -20109,31 +20113,21 @@ void clif_display_pinfo( map_session_data& sd ){
 		}
 
 		//3:TPLUS
-		//details_bexp[PINFO_CAFE] = 0;
-		if( pc_isvip( &sd ) ){
-			details_bexp[PINFO_CAFE] = battle_config.vip_base_exp_increase;
-			if (details_bexp[PINFO_CAFE] < 0)
-				details_bexp[PINFO_CAFE] = 0 - details_bexp[PINFO_CAFE];
-		} else
-			details_bexp[PINFO_CAFE] = 0;
+		details_bexp[PINFO_CAFE] = 0;
 
 		/**
 		 * Drop rate
 		 */
 		//0:PCRoom
-		details_drop[PINFO_BASIC] = map_getmapflag( sd.bl.m, MF_BEXP );
-		if (details_drop[PINFO_BASIC] == 100 || !details_drop[PINFO_BASIC])
-			details_drop[PINFO_BASIC] = 0;
-		else {
-			if (details_drop[PINFO_BASIC] < 100) {
-				details_drop[PINFO_BASIC] = 100 - details_drop[PINFO_BASIC];
-				details_drop[PINFO_BASIC] = 0 - details_drop[PINFO_BASIC];
-			} else
-				details_drop[PINFO_BASIC] = details_drop[PINFO_BASIC] - 100;
-		}
+		details_drop[PINFO_BASIC] = 0;
 
 		//1:Premium
-		details_drop[PINFO_PREMIUM] = 0;
+		if( pc_isvip( &sd ) ){
+			details_drop[PINFO_PREMIUM] = (battle_config.vip_drop_increase * battle_config.item_rate_common) / 100;
+			if (details_drop[PINFO_PREMIUM] < 0)
+				details_drop[PINFO_PREMIUM] = 0 - details_drop[PINFO_PREMIUM];
+		} else
+			details_drop[PINFO_PREMIUM] = 0;
 
 		//2:Server
 		details_drop[PINFO_SERVER] = battle_config.item_rate_common;
@@ -20148,12 +20142,7 @@ void clif_display_pinfo( map_session_data& sd ){
 		}
 
 		//3:TPLUS
-		if( pc_isvip( &sd ) ){
-			details_drop[PINFO_CAFE] = battle_config.vip_base_exp_increase;
-			if (details_drop[PINFO_CAFE] < 0)
-				details_drop[PINFO_CAFE] = 0 - details_drop[PINFO_CAFE];
-		} else
-			details_drop[PINFO_CAFE] = 0;
+		details_drop[PINFO_CAFE] = 0;
 
 		/**
 		 * Penalty rate
@@ -20163,7 +20152,21 @@ void clif_display_pinfo( map_session_data& sd ){
 		details_penalty[PINFO_BASIC] = 0;
 
 		//1:Premium
-		details_penalty[PINFO_PREMIUM] = 0;
+		if( pc_isvip( &sd ) ){
+			details_penalty[PINFO_PREMIUM] = battle_config.vip_exp_penalty_base;
+			if (details_penalty[PINFO_PREMIUM] == 100)
+				details_penalty[PINFO_PREMIUM] = 0;
+			else {
+				if (details_penalty[PINFO_PREMIUM] < 100) {
+					details_penalty[PINFO_PREMIUM] = 100 - details_penalty[PINFO_PREMIUM];
+					details_penalty[PINFO_PREMIUM] = 0 - details_penalty[PINFO_PREMIUM];
+				} else
+					details_penalty[PINFO_PREMIUM] = details_penalty[PINFO_PREMIUM] - 100;
+			}
+			if (battle_config.death_penalty_base > battle_config.vip_exp_penalty_base)
+				details_penalty[PINFO_PREMIUM] = battle_config.vip_exp_penalty_base - battle_config.death_penalty_base;
+		} else
+			details_penalty[PINFO_PREMIUM] = 0;
 
 		//2:Server
 		details_penalty[PINFO_SERVER] = battle_config.death_penalty_base;
@@ -20178,21 +20181,7 @@ void clif_display_pinfo( map_session_data& sd ){
 		}
 
 		//3:TPLUS
-		if( pc_isvip( &sd ) ){
-			details_penalty[PINFO_CAFE] = battle_config.vip_exp_penalty_base;
-			if (details_penalty[PINFO_CAFE] == 100)
-				details_penalty[PINFO_CAFE] = 0;
-			else {
-				if (details_penalty[PINFO_CAFE] < 100) {
-					details_penalty[PINFO_CAFE] = 100 - details_penalty[PINFO_CAFE];
-					details_penalty[PINFO_CAFE] = 0 - details_penalty[PINFO_CAFE];
-				} else
-					details_penalty[PINFO_CAFE] = details_penalty[PINFO_CAFE] - 100;
-			}
-			if (battle_config.death_penalty_base > battle_config.vip_exp_penalty_base)
-				details_penalty[PINFO_CAFE] = battle_config.vip_exp_penalty_base - battle_config.death_penalty_base;
-		} else
-			details_penalty[PINFO_CAFE] = 0;
+		details_penalty[PINFO_CAFE] = 0;
 
 	struct PACKET_ZC_PERSONAL_INFOMATION* p = (struct PACKET_ZC_PERSONAL_INFOMATION*)packet_buffer;
 
@@ -20956,69 +20945,95 @@ void clif_merge_item_open( map_session_data& sd ){
 }
 
 /**
- * Process item merger
- * CZ 096E <size>.W { <index>.W }* (CZ_REQ_MERGE_ITEM)
+ * Process item merge request.
+ * 096E <size>.W { <index>.W }* (CZ_REQ_MERGE_ITEM)
  * @param fd
  * @param sd
  **/
-void clif_parse_merge_item_req(int fd, map_session_data* sd) {
-	struct s_packet_db *info = NULL;
-	unsigned short n = 0, indexes[MAX_INVENTORY] = { 0 }, i, j;
-	unsigned int count = 0;
-	struct item_data *id = NULL;
+void clif_parse_merge_item_req( int fd, map_session_data* sd ){
+	struct PACKET_CZ_REQ_MERGE_ITEM* p = (struct PACKET_CZ_REQ_MERGE_ITEM*)RFIFOP( fd, 0 );
 
-	nullpo_retv(sd);
-	if (!clif_session_isValid(sd))
-		return;
-	if (!(info = &packet_db[RFIFOW(fd,0)]) || info->len == 0)
-		return;
+	int count = ( p->packetLength - sizeof( *p ) ) / sizeof( p->indices[0] );
 
-	n = (RFIFOW(fd, info->pos[0]) - 4) / 2;
-
-	if (n < 2) { // No item need to be merged
-		clif_msg(sd, MERGE_ITEM_NOT_AVAILABLE);
+	// No item need to be merged
+	if( count < 2 ){
+		clif_msg( sd, MERGE_ITEM_NOT_AVAILABLE );
 		return;
 	}
 
-	for (i = 0, j = 0; i < n; i++) {
-		uint16 idx = server_index( RFIFOW( fd, info->pos[1] + i * 2 ) );
+	uint16 idx_main = server_index( p->indices[0] );
+
+	if( idx_main >= MAX_INVENTORY ){
+		return;
+	}
+
+	if( !clif_merge_item_check( sd->inventory_data[idx_main], &sd->inventory.u.items_inventory[idx_main] ) ){
+		clif_msg( sd, MERGE_ITEM_NOT_AVAILABLE );
+		return;
+	}
+
+	// Ensure each index only comes once
+	std::unordered_set<uint16> indices;
+
+	for( int i = 1; i < count; i++ ){
+		uint16 idx = server_index( p->indices[i] );
 
 		if( idx >= MAX_INVENTORY ){
 			return;
 		}
 
-		if (!clif_merge_item_check((id = sd->inventory_data[idx]), &sd->inventory.u.items_inventory[idx]))
-			continue;
-		indexes[j] = idx;
-		if (j && id->nameid != sd->inventory_data[indexes[0]]->nameid) { // Only can merge 1 kind at once
-			clif_merge_item_ack( *sd, MERGE_ITEM_FAILED_NOT_MERGE );
+		if( sd->inventory_data[idx] == nullptr ){
 			return;
 		}
-		count += sd->inventory.u.items_inventory[idx].amount;
-		j++;
+
+		// Check if it is the same item
+		if( sd->inventory_data[idx]->nameid != sd->inventory_data[idx_main]->nameid ){
+			return;
+		}
+
+		if( !clif_merge_item_check( sd->inventory_data[idx], &sd->inventory.u.items_inventory[idx] ) ){
+			clif_msg( sd, MERGE_ITEM_NOT_AVAILABLE );
+			return;
+		}
+
+		indices.insert( idx );
 	}
 
-	if (n != j || !(id = sd->inventory_data[indexes[0]])) {
-		clif_msg(sd, MERGE_ITEM_NOT_AVAILABLE);
+	if( indices.empty() ){
+		clif_msg( sd, MERGE_ITEM_NOT_AVAILABLE );
 		return;
 	}
 
-	if (count >= (id->stack.amount ? id->stack.amount : MAX_AMOUNT)) {
+	uint32 total_amount = sd->inventory.u.items_inventory[idx_main].amount;
+
+	for( uint16 idx : indices ){
+		total_amount += sd->inventory.u.items_inventory[idx].amount;
+	}
+
+	uint16 stack = sd->inventory_data[idx_main]->stack.amount;
+
+	if( stack == 0 ){
+		stack = MAX_AMOUNT;
+	}
+
+	if( total_amount >= stack ){
 		clif_merge_item_ack( *sd, MERGE_ITEM_FAILED_MAX_COUNT );
 		return;
 	}
 
 	// Merrrrge!!!!
-	for (i = 1; i < n; i++) {
-		unsigned short idx = indexes[i], amt = sd->inventory.u.items_inventory[idx].amount;
-		log_pick_pc(sd, LOG_TYPE_MERGE_ITEM, -amt, &sd->inventory.u.items_inventory[idx]);
-		memset(&sd->inventory.u.items_inventory[idx], 0, sizeof(sd->inventory.u.items_inventory[0]));
-		sd->inventory_data[idx] = NULL;
-		clif_delitem(sd, idx, amt, 0);
-	}
-	sd->inventory.u.items_inventory[indexes[0]].amount = count;
+	for( uint16 idx : indices ){
+		uint16 amount = sd->inventory.u.items_inventory[idx].amount;
 
-	clif_merge_item_ack( *sd, MERGE_ITEM_SUCCESS, indexes[0], count );
+		log_pick_pc( sd, LOG_TYPE_MERGE_ITEM, -amount, &sd->inventory.u.items_inventory[idx] );
+		memset( &sd->inventory.u.items_inventory[idx], 0, sizeof( sd->inventory.u.items_inventory[0] ) );
+		sd->inventory_data[idx] = nullptr;
+		clif_delitem( sd, idx, amount, 0 );
+	}
+
+	sd->inventory.u.items_inventory[idx_main].amount = total_amount;
+
+	clif_merge_item_ack( *sd, MERGE_ITEM_SUCCESS, idx_main, total_amount );
 }
 
 /**
@@ -21709,7 +21724,7 @@ void clif_parse_open_ui( int fd, map_session_data* sd ){
 }
 
 /// Response for attedance request
-/// 0AF0 <action>.L <data>.L
+/// 0AF0 <unknown>.L <data>.L
 void clif_attendence_response( map_session_data *sd, int32 data ){
 	nullpo_retv(sd);
 
@@ -21717,7 +21732,7 @@ void clif_attendence_response( map_session_data *sd, int32 data ){
 
 	WFIFOHEAD(fd,packet_len(0xAF0));
 	WFIFOW(fd,0) = 0xAF0;
-	WFIFOL(fd,2) = battle_config.feature_attendance_close;
+	WFIFOL(fd,2) = 0;
 	WFIFOL(fd,6) = data;
 	WFIFOSET(fd,packet_len(0xAF0));
 }
@@ -23574,11 +23589,11 @@ void clif_parse_laphine_upgrade( int fd, map_session_data* sd ){
 			item->refine = rnd_value( upgrade->resultRefineMinimum, upgrade->resultRefineMaximum );
 		}else{
 			// Otherwise it can only be upgraded until the maximum, but not downgraded
-			item->refine = rnd_value( item->refine, upgrade->resultRefineMaximum );
+			item->refine = rnd_value<uint16>( item->refine, upgrade->resultRefineMaximum );
 		}
 	}else if( upgrade->resultRefineMinimum > 0 ){
 		// No maximum has been specified, so it can be anything between minimum and MAX_REFINE
-		item->refine = rnd_value( upgrade->resultRefineMinimum, MAX_REFINE );
+		item->refine = rnd_value<uint16>( upgrade->resultRefineMinimum, MAX_REFINE );
 	}
 
 	// Log retrieving the item again -> with the new options
@@ -25178,79 +25193,6 @@ void clif_parse_partybooking_reply( int fd, map_session_data* sd ){
 #endif
 }
 
-void clif_goldpc_info( map_session_data& sd ){
-#if PACKETVER_MAIN_NUM >= 20140508 || PACKETVER_RE_NUM >= 20140508 || defined(PACKETVER_ZERO)
-	const static int32 client_max_seconds = 3600;
-
-	if( battle_config.feature_goldpc_active ){
-		struct PACKET_ZC_GOLDPCCAFE_POINT p = {};
-
-		p.packetType = HEADER_ZC_GOLDPCCAFE_POINT;
-		p.active = map_getmapflag(sd.bl.m, MF_BATTLEGROUND) ? false:true;
-		if( battle_config.feature_goldpc_vip && pc_isvip( &sd ) ){
-			p.unitPoint = 2;
-		}else{
-			p.unitPoint = 1;
-		}
-		p.point = (int32)pc_readparam( &sd, SP_GOLDPC_POINTS );
-		if( sd.goldpc_tid != INVALID_TIMER ){
-			const struct TimerData* td = get_timer( sd.goldpc_tid );
-
-			if( td != nullptr ){
-				// Get the remaining milliseconds until the next reward
-				t_tick remaining = td->tick - gettick();
-
-				// Always round up to full second
-				remaining += ( remaining % 1000 );
-
-				p.accumulatePlaySecond = (int32)( client_max_seconds - ( remaining / 1000 ) );
-			}else{
-				p.accumulatePlaySecond = 0;
-			}
-		}else{
-			p.accumulatePlaySecond = client_max_seconds;
-		}
-
-		clif_send( &p, sizeof( p ), &sd.bl, SELF );
-	}
-#endif
-}
-
-void clif_parse_dynamic_npc( int fd, map_session_data* sd ){
-#if PACKETVER_MAIN_NUM >= 20140430 || PACKETVER_RE_NUM >= 20140430 || defined(PACKETVER_ZERO)
-	struct PACKET_CZ_DYNAMICNPC_CREATE_REQUEST* p = (struct PACKET_CZ_DYNAMICNPC_CREATE_REQUEST*)RFIFOP( fd, 0 );
-
-	char npcname[NPC_NAME_LENGTH + 1];
-
-	if( strncasecmp( "GOLDPCCAFE", p->nickname, sizeof( p->nickname ) ) == 0 ){
-		safestrncpy( npcname, p->nickname, sizeof( npcname ) );
-	}else{
-		return;
-	}
-
-	struct npc_data* nd = npc_name2id( npcname );
-
-	if( nd == nullptr ){
-		ShowError( "clif_parse_dynamic_npc: Original NPC \"%s\" was not found.\n", npcname );
-		clif_dynamicnpc_result( *sd, DYNAMICNPC_RESULT_UNKNOWNNPC );
-		return;
-	}
-	
-	if( nd ){
-		if( battle_config.feature_goldpc_script ){
-			run_script( nd->u.scr.script, 0, sd->bl.id, nd->bl.id );
-			return;
-		}else{
-			if( npc_duplicate_npc_for_player( *nd, *sd ) != nullptr ){
-				clif_dynamicnpc_result( *sd, DYNAMICNPC_RESULT_SUCCESS );
-			}
-		}
-	}
-	
-#endif
-}
-
-		
 /*==========================================
  * Main client packet processing function
  *------------------------------------------*/

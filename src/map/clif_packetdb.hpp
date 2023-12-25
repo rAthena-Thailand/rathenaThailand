@@ -1916,7 +1916,7 @@
 	parseable_packet(0x0916,26,clif_parse_GuildInvite2,2);
 	parseable_packet(0x091d,41,clif_parse_PartyBookingRegisterReq,2,4,6);
 	// Merge Item
-	parseable_packet(0x096E,-1,clif_parse_merge_item_req,2,4); // CZ_REQ_MERGE_ITEM
+	parseable_packet( HEADER_CZ_REQ_MERGE_ITEM, -1, clif_parse_merge_item_req, 0 );
 	parseable_packet(0x0974,2,clif_parse_merge_item_cancel,0); // CZ_CANCEL_MERGE_ITEM
 	parseable_packet(0x0844,2,clif_parse_cashshop_open_request,0);
 	packet(0x0849,16); //clif_cashshop_result
@@ -2061,7 +2061,6 @@
 // 2013-08-07Ragexe
 #if PACKETVER >= 20130807
 	// Merge Item
-	parseable_packet(0x096E,-1,clif_parse_merge_item_req,2,4); // CZ_REQ_MERGE_ITEM
 	parseable_packet(0x0974,2,clif_parse_merge_item_cancel,0); // CZ_CANCEL_MERGE_ITEM
 	packet(0x9CD,8); // ZC_MSG_COLOR
 #endif
@@ -2111,10 +2110,6 @@
 // 2014-02-05bRagexeRE
 #if PACKETVER >= 20140205
 	packet(0x09DA,-1);
-#endif
-
-#if PACKETVER_MAIN_NUM >= 20140430 || PACKETVER_RE_NUM >= 20140430 || defined(PACKETVER_ZERO)
-	parseable_packet( HEADER_CZ_DYNAMICNPC_CREATE_REQUEST, sizeof( PACKET_CZ_DYNAMICNPC_CREATE_REQUEST ), clif_parse_dynamic_npc, 0 );
 #endif
 
 // 2014-10-08Ragexe
