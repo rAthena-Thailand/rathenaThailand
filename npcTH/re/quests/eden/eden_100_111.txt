@@ -18,84 +18,84 @@
 moc_para01,37,95,5	script	Gelkah#1	4_F_GELKA,{
 	cutin "gelca01",2;
 	if (checkweight(1201,1) == 0) {
-		mes "^FF0000-ข้อความเตือน-";
-		mes "- เดี๋ยวก่อน !! -";
-		mes "- คุณมีไอเทมมากเกินไป -";
-		mes "- ไม่สามารถรับไอเทมได้ -";
-		mes "- ลดน้ำหนักของร่างกาย -";
-		mes "- กรุณาลองใหม่อีกครั้ง -^000000";
+		mes "^FF0000-Warning Message-";
+		mes "- Wait for a minute !! -";
+		mes "- You have too many items -";
+		mes "- Not able to receive items. -";
+		mes "- Reduce the weight of body -";
+		mes "- Please try again. -^000000";
 		close2;
 		cutin "",255;
 		end;
 	}
 	mes "[Gelkah]";
 	if (!callfunc("F_HasEdenGroupMark")) {
-		mes "แสดงหลักฐานให้ฉันเห็นว่าคุณเป็นส่วนหนึ่งของ Eden Group หรือฉันไม่มีธุระอะไรกับคุณ";
-		mes "ฉันกำลังส่งคำขอไปยังนักผจญภัยระดับ Lv ^FF0000100 - 110^000000";
+		mes "Show me proof that you're part of the Eden Group or I have no business with you.";
+		mes "I'm giving requests to base level ^FF0000100 - 110^000000 adventurers.";
 	}
 	else if (BaseLevel < 100) {
-		mes "คุณไม่ใช่นักผจญภัยที่เป็นผู้ใหญ่เพียงพอ คุณควรมีอย่างน้อย Base Lv 100 ดังนั้นโดยพื้นฐานแล้วอย่างน้อยก็มีคลาสที่สาม";
+		mes "You're not a mature enough adventurer. You should be at least base level 100. So basically at least a third class.";
 		next;
 		mes "[Gelkah]";
-		mes "คำขอมาจาก ^FF0000 ที่อื่น^000000 นอกเหนือจาก Midgard";
+		mes "The request is from ^FF0000somewhere else^000000 other than Midgard.";
 	}
 	else if (BaseLevel < 111) {
 		if (para_100lv01 == 0) {
-			mes "นักผจญภัย!";
+			mes "Adventurers!";
 			emotion ET_SMILE;
 			next;
 			cutin "gelca03",2;
 			mes "[Gelkah]";
-			mes "เมื่อเร็วๆ นี้ ฉันได้รับคำขอหลายรายการจากลูกค้าที่ต้องการความช่วยเหลือจากนักผจญภัยเช่นเดียวกับคุณ";
+			mes "I've recently received several requests from clients that need the help of Adventurers just like yourself.";
 			next;
-			if (select( "ฉันชอบคำขอ!", "ภารกิจที่น่าเบื่อ... ไม่ล่ะ ขอบคุณ!" ) == 2) {
+			if (select( "I like requests!", "A boring quest... No thanks!" ) == 2) {
 				mes "[Gelkah]";
-				mes "คุณรู้ไหมว่าคำขอที่ยากกว่านั้นให้รางวัลที่ดีกว่าใช่ไหม?";
+				mes "You know that harder requests yield better rewards right?";
 				next;
 			}
 			mes "[Gelkah]";
-			mes "จริงๆ แล้ว ฉันไม่สามารถยอมรับแค่สิ่งเล็กๆ น้อยๆ นอกถนนได้ อาจารย์ของฉันเกลียดคนไม่เด็ดขาด";
+			mes "Actually, I can't just accept just any schmo off the street. My Master hates indecisive people.";
 			next;
-			if (select( "ใครเป็นเจ้านายของคุณ?", "ฉันไม่ลังเลใจ!" ) == 1) {
+			if (select( "Who's your master?", "I am not indecisive!" ) == 1) {
 				cutin "gelca03",2;
 				mes "[Gelkah]";
-				mes "คนที่ยืนอยู่ข้างฉันคืออาจารย์ของฉัน... เขากลับมาหลังจากฝึกฝนการเดินทางอันยาวนาน";
+				mes "That person standing next to me is my master... He came back after long journey of practice.";
 				next;
 				mes "[Gelkah]";
-				mes "ฉันเข้าใจว่าคุณอาจสงสัยว่าทำไม Sura ถึงต้องการ Archbishop เป็นครู...";
+				mes "I understand you might	wonder why a Sura wants an Archbishop as a teacher...";
 			}
 			else {
 				cutin "gelca03",2;
 				mes "[Gelkah]";
 				if (BaseLevel < 110)
-					mes "คุณคิดว่าคุณเป็นทหารผ่านศึกเพียงเพราะคุณกลายเป็นคลาสที่สาม...";
+					mes "You think you're a veteran just because you've become a third class...";
 				else
-					mes "ฉันรู้ว่าคุณไม่ใช่มือใหม่จริงๆ แต่อาจารย์ของฉันคิดว่าคุณไม่ต่างจากมือใหม่เลย ในความคิดของฉัน คุณคือนักผจญภัยที่ยิ่งใหญ่!";
+					mes "I know you're not exactly a novice but my Master thinks you're no different from one. In my opinion, You are a great adventurer!";
 			}
 			next;
 			mes "[Gelkah]";
-			mes "เราต้องการนักผจญภัยที่ยินดีช่วยเหลือ คุณจะช่วยเราไหม?";
+			mes "We need adventurers that are willing to help. Will you help us?";
 			next;
 			cutin "gelca01",2;
-			if (select( "โอเค ฉันจะช่วย", "ฉันไม่มีความสนใจที่จะช่วยเหลือคุณ" ) == 2) {
+			if (select( "Ok, I'll help.", "I have no interest in helping you." ) == 2) {
 				mes "[Gelkah]";
-				mes "จะรู้ได้อย่างไรโดยไม่ทำ..";
+				mes "How do you know without doing it.";
 			}
 			else {
 				mes "[Gelkah]";
-				mes "นั่นคือสิ่งที่นักผจญภัยทำ!";
+				mes "That is what an Adventurer does!";
 				next;
 				mes "[Gelkah]";
-				mes "ฉันต้องการทราบว่าคุณสามารถดำเนินการตามคำขอได้หรือไม่ ให้ฉันดู...";
+				mes "I would like to know if you are capable of doing a request. Let me see...";
 				next;
 				mes "[Gelkah]";
-				mes "รวบรวม 50 ^ff0000Brigan.^000000 เป็นการทดสอบที่ง่ายและซับซ้อน";
+				mes "Collect 50 ^ff0000Brigan.^000000 It is a simple and complicated test.";
 				next;
 				mes "[Gelkah]";
-				mes "หาได้ง่ายจากมอนสเตอร์ที่ Turtle Island หรือที่ Glastheim";
+				mes "It is easy to find from monsters at Turtle Island or at Glastheim.";
 				next;
 				mes "[Gelkah]";
-				mes "มาทำคำขอจริงหลังจากเคลียร์อันง่าย ๆ แล้ว";
+				mes "Lets do the real request after clearing the simple one.";
 				setquest 13002;// Brigan collecting
 				para_100lv01 = 1;
 				para_100lv02 += 1;
@@ -103,35 +103,35 @@ moc_para01,37,95,5	script	Gelkah#1	4_F_GELKA,{
 		}
 		else if (para_100lv01 == 1) {
 			if (countitem(7054) > 49) {// Brigan
-				mes "คุณนำ Brigans ทั้งหมดที่ฉันขอมาหรือไม่?";
+				mes "Did you bring all the Brigans I asked for?";
 				next;
 				mes "[Gelkah]";
-				mes "ฉันไม่จำเป็นต้องนับทีละคน คำขอนี้มีไว้เพื่อคัดเลือกนักผจญภัยที่ดีที่สุด";
+				mes "I do not need to count one by one. This request is for selecting the best adventurer.";
 				next;
 				mes "[Gelkah]";
-				mes "อย่าอารมณ์เสียเพราะท้ายที่สุดแล้วอาจารย์จะต้องรับผิดชอบหากนักผจญภัยได้รับบาดเจ็บในระหว่างการร้องขอ";
+				mes "Don't be upset because Master is ultimately responsible if an Adventurer gets injured during a request.";
 				next;
 				mes "[Gelkah]";
-				mes "อาจารย์ตัดสินใจว่าความปลอดภัยของนักผจญภัยเป็นสิ่งสำคัญ เนื่องจากมีคำขอใหม่จำนวนมากที่เป็นอันตราย";
+				mes "Master decided that adventurer's safety is important because lots of new requests are dangerous.";
 				next;
 				cutin "rote01",2;
 				mes "[Rohtert]";
-				mes "อืม...";
+				mes "Hmm...";
 				emotion ET_HNG, getnpcid(0, "Rohtert#12");
 				next;
 				cutin "gelca01",2;
 				mes "[Gelkah]";
-				mes "ฉันหวังว่าคุณจะไม่ได้แอบมอง การประเมินความสามารถของคุณสำหรับคำขอมาตรฐานใกล้จะเสร็จสิ้นแล้ว";
+				mes "I hope you didn't peek. The Assessment for your capability of standard requests is almost done.";
 				next;
 				mes "[Gelkah]";
-				mes "ไม่มีเวลาทำ ^ff0000ตราสัญลักษณ์ Eden Group ขั้นสูง^000000";
+				mes "No time to make ^ff0000The badge of advanced Eden Group.^000000";
 				next;
 				mes "[Gelkah]";
-				mes "^ff0000เวลาคือเงิน novice!^000000";
-				mes "ฉันคิดว่านั่นเป็นสิ่งที่อาจารย์ที่แท้จริงจะฟังดูเหมือนใช่ไหม?";
+				mes "^ff0000Time is money novice!^000000";
+				mes "I think that's what a true master would sound like right?";
 				next;
 				mes "[Gelkah]";
-				mes strcharinfo(0) +" จะสร้างรายการคำขอสำหรับคุณ ดังนั้นไปคุยกับอาจารย์ของฉันตอนนี้และแสดงความเคารพ";
+				mes strcharinfo(0) +" will make a request list for you so go talk to my Master now and show your respects.";
 				delitem 7054,50;// Brigan
 				completequest 13002;// Brigan collecting
 				para_100lv01 = 2;
@@ -139,163 +139,163 @@ moc_para01,37,95,5	script	Gelkah#1	4_F_GELKA,{
 			}
 			else {
 				cutin "gelca02",2;
-				mes "ยังไม่พบ 50 Brigan ใช่ไหม? อาจารย์บอกว่ามันเป็นงานง่ายๆ...";
+				mes "Haven't found 50 Brigan yet? Master says that it's such a simple task...";
 				next;
 				mes "[Gelkah]";
-				mes "กรุณารีบหน่อย! เราต้องการนักผจญภัยตัวจริงเพื่อทำตามคำขอนี้";
+				mes "Please hurry up! We need a real adventurer to perform the request.";
 			}
 		}
 		else if (para_100lv01 == 2)
-			mes "รอสักครู่. ฉันกำลังจัดทำรายการคำขอ ฉันแค่ไม่รู้ว่าฉันต้องมอบอันไหนให้กับคุณ ฉันเป็นคนดี";
+			mes "Wait a minute. I am making a request list. I just do not know which one I have to give to you. I am a good man.";
 		else if (para_100lv01 > 2) {
-			mes "รายการคำขอพร้อมแล้ว คุณต้องการที่จะเริ่มต้น?";
+			mes "The request list is ready. Do you want to start?";
 			next;
-			switch( select( "ภารกิจการล่า Monsters", "สอบถาม", "แสดงความมีน้ำใจผ่าน" ) ) {
+			switch( select( "Hunting Quests", "Inquire regards", "Show kindness pass" ) ) {
 				mes "[Gelkah]";
 			case 1:
-				mes "คุณไม่จำเป็นต้องรับคำขอทั้งหมดพร้อมกัน เลือกพื้นที่คำขอที่เหมาะสมกับทักษะเฉพาะของคุณ สิ่งหนึ่งที่ช่วยให้คุณสามารถดำเนินการตามคำขอและเพลิดเพลินกับการเดินทางไปพร้อมๆ กัน";
+				mes "You don't need to take all requests at once. Choose a request area that suits your particular skills. One that enables you to perform the request and enjoy the trip at the same time.";
 				next;
-				switch( select( "คำขอที่เกี่ยวข้องกับ Glastheim", "คำขอที่เกี่ยวข้องกับ Ash Vacuum", "คำขอที่เกี่ยวข้องกับ Ice Dungeon", "คำขอที่เกี่ยวข้องกับ Magma Dungeon", "คำขออื่น ๆ" ) ) {
+				switch( select( "Glastheim related request", "Ash Vacuum related request", "Ice Dungeon related request", "Magma Dungeon related request", "Other requests" ) ) {
 					mes "[Gelkah]";
 				case 1:
-					mes "นี่คือคำขอจากพื้นที่ Glastheim.";
+					mes "Here are the requests from the Glastheim area.";
 					next;
-					switch( select( "ล่า Carat", "ล่า Arclouse", "ล่า Anolian", "ล่า Sting", "ล่า Majoruros" ) ) {
+					switch( select( "Carat Hunting", "Arclouse Hunting", "Anolian Hunting", "Sting Hunting", "Majoruros Hunting" ) ) {
 						mes "[Gelkah]";
 					case 1:
 						if (checkquest(13004,PLAYTIME) == 0)
-							mes "คุณเพิ่งเสร็จสิ้นการร้องขอ สิ่งสำคัญคือคุณต้องพักผ่อนสักพัก จะมีคำขอรอคุณอยู่เสมอ";
+							mes "You just finished a request. It is important that you rest for a while. There will always be a requests waiting for you.";
 						else if (checkquest(13003,HUNTING) == 1) {
 							cutin "ฤณทตฤซตๅ",3;  //carat_card
-							mes "คำขอนี้เป็นการเคลียร์ ^0000FF30^000000 ^FF0000Carat^000000 ภายในชั้นหนึ่งของปราสาท Glastheim";
+							mes "This request is to clear ^0000FF30^000000 ^FF0000Carat^000000 inside of Glastheim castle's first floor.";
 							next;
 							cutin "gelca01",2;
 							mes "[Gelkah]";
-							mes "โปรดแจ้งให้ฉันทราบเมื่อคุณได้ดำเนินการตามคำขอเสร็จสิ้นแล้ว";
+							mes "Please inform me when you've completed the request.";
 						}
 						else if (checkquest(13003,HUNTING) == 2) {
-							mes "การไปเยี่ยมชมปราสาทเก่าแก่ที่น่ากลัวคงจะเป็นเรื่องยาก ฉันแน่ใจว่ามันจะเป็นประสบการณ์ที่ดีสำหรับฉันสักวันหนึ่ง";
+							mes "Visiting to scary old castle must be tough. I am sure it would be a good experience for me someday.";
 							callsub S_Quest,13003,13004,106000,148000;
 						}
 						else {
 							cutin "ฤณทตฤซตๅ",3;  //carat_card
-							mes "คำขอนี้มาจากพ่อค้าจาก Morocc ที่สูญเสียธุรกิจจาก monsters เหล่านี้ใน Glastheim";
+							mes "This request is from a merchant from Morocc who is somehow losing business from these monsters in Glastheim.";
 							next;
 							mes "[Gelkah]";
-							mes "Eden Group ตระหนักดีว่านี่ไม่ใช่เหตุผลที่ดี แต่คำขอก็คือคำขอ ดังนั้นช่วยเคลียร์ ^FF000030 Carat^000000 มอนสเตอร์ที่อยู่ในปราสาท Glastheim ด้วย";
+							mes "Eden Group is aware that this is not a great reason but a request is a request. So please clear ^FF000030 Carat^000000 monsters inside of Glastheim castle.";
 							callsub S_Quest,13004,13003;
 						}
 						break;
 					case 2:
 						if (checkquest(13006,PLAYTIME) == 0)
-							mes "คุณเพิ่งเสร็จสิ้นการร้องขอ กรุณาพักผ่อน จะมีการร้องขอจากคุณเสมอ";
+							mes "You just finished a request. Please take a rest. There will always be a request for you.";
 						else if (checkquest(13005,HUNTING) == 1) {
 							cutin "พฦลฉถ๓ฟ์ฝบฤซตๅ",3;  //arclouse_card
-							mes "กรุณาเคลียร์ ^FF000022 Arclouse^000000.";
+							mes "Please clear ^FF000022 Arclouse^000000.";
 							next;
 							cutin "gelca01",2;
 							mes "[Gelkah]";
-							mes "โปรดแจ้งให้ฉันทราบเมื่อคุณได้เคลียร์คำขอนี้แล้ว";
+							mes "Please inform me when you've cleared this request.";
 						}
 						else if (checkquest(13005,HUNTING) == 2) {
-							mes "คุณทำได้ดีมาก";
+							mes "You did a great job.";
 							emotion ET_BEST;
 							callsub S_Quest,13005,13006,106000,148000;
 						}
 						else {
 							cutin "พฦลฉถ๓ฟ์ฝบฤซตๅ",3;  //arclouse_card
-							mes "คุณรู้ไหมว่ามีถั่วที่ใช้เป็นอาหารที่นี่ใน Midgard? เมื่อ Arclouse ม้วนตัวจะมีลักษณะคล้ายถั่ว";
+							mes "Do you know there are beans used as food here in Midgard? When an Arclouse rolls, it resembles a bean.";
 							next;
 							mes "[Gelkah]";
-							mes "สำนักงานใหญ่ของกลุ่ม Eden ต้องการตรวจสอบ Arclouse ว่าเป็นตัวนำโชคที่เป็นไปได้";
+							mes "Eden Group Headquarters wants to investigate the Arclouse as a possible mascot.";
 							next;
 							mes "[Gelkah]";
-							mes "กรุณาเคลียร์ ^FF000022 Arclouse^000000.";
+							mes "Please clear ^FF000022 Arclouse^000000.";
 							if (callsub( S_Quest,13006,13005 ) == 0) {
 								mes "[Gelkah]";
-								mes "นั่นแย่เกินไป มันเป็นคำขอที่น่าสนใจ";
+								mes "That is too bad. It was an interesting request.";
 							}
 						}
 						break;
 					case 3:
 						if (checkquest(13008,PLAYTIME) == 0)
-							mes "คุณเพิ่งเสร็จสิ้นการร้องขอ การผจญภัยเป็นสิ่งสำคัญ แต่การพักผ่อนก็สำคัญเช่นกัน ก็จะมีคำขอรออยู่เสมอ";
+							mes "You just finished a request. Adventure is important but taking a rest is important too. There will always be a request waiting for.";
 						else if (checkquest(13007,HUNTING) == 1) {
 							cutin "พฦณ๎ธฎพศฤซตๅ",3;  //anolian_card
-							mes "พระภิกษุเดินทางไปแสวงบุญและขอความคุ้มครองจากสัตว์คล้ายจระเข้บางชนิด";
+							mes "A monk is on a pilgrimage and seeks protection against some alligator-like creatures.";
 							next;
 							mes "[Gelkah]";
-							mes "อย่างไรก็ตาม คำขอนี้คือการกำจัดชาว Anolians ในเส้นทางน้ำใต้ดินเพื่อให้มีทางแสวงบุญอย่างปลอดภัย";
+							mes "Anyways, this request is to clear out Anolians in underground waterway to make way for a safe pilgrimage.";
 							next;
 							cutin "gelca01",2;
 							mes "[Gelkah]";
-							mes "โปรดแจ้งให้ฉันทราบเมื่อคุณได้เคลียร์คำขอนี้แล้ว";
+							mes "Please inform me when you've cleared this request.";
 						}
 						else if (checkquest(13007,HUNTING) == 2) {
-							mes "คุณทำดีกับคำขอนี้";
+							mes "You fared well with this request.";
 							callsub S_Quest,13007,13008,112000,186500;
 						}
 						else {
 							cutin "พฦณ๎ธฎพศฤซตๅ",3;  //anolian_card
-							mes "Glastheim ดูเหมือนจะเป็นสถานที่ศักดิ์สิทธิ์ที่ดีไม่เพียงแต่สำหรับนักผจญภัยเท่านั้นแต่สำหรับพระภิกษุด้วย ฉันไม่รู้ว่าอะไรดึงดูดพวกเขาที่นั่นจริงๆ";
+							mes "Glastheim seems to be a good sacred place not only to adventurers but also to monks. I have no idea what really attracts them there.";
 							next;
 							mes "[Gelkah]";
-							mes "การเดินทางแสวงบุญจากอารามไปยังทางน้ำใต้ดินคือการเดินทาง คำขอคือการเคลียร์ ^FF000030 Anolian^000000 ในท่อระบายน้ำกลาสไฮม์เพื่อการแสวงบุญอย่างปลอดภัย";
+							mes "A Pilgrimage from the monastery to the underground waterway is a journey. The request is to clear ^FF000030 Anolian^000000 in the Glastheim sewer for a safe pilgrimage.";
 							callsub S_Quest,13008,13007;
 						}
 						break;
 					case 4:
 						if (checkquest(13010,PLAYTIME) == 0)
-							mes "คุณเพิ่งเสร็จสิ้นการร้องขอ การผจญภัยเป็นสิ่งสำคัญ แต่การพักผ่อนก็สำคัญเช่นกัน ก็จะมีคำขอรออยู่เสมอ";
+							mes "You just finished a request. Adventure is important but taking a rest is important too. There will always be a request waiting for.";
 						else if (checkquest(13009,HUNTING) == 1) {
 							cutin "ฝบฦรฤซตๅ",3;  //sting_card
-							mes "มีมอนสเตอร์ Sting มากมายอยู่ในทางน้ำใต้ดินและถ้ำใต้ดิน ดังนั้นจึงง่ายต่อการเคลียร์";
+							mes "There are many Sting monsters in the underground waterway and underground cave so it will be easy to clear.";
 							next;
 							mes "[Gelkah]";
-							mes "คำขอคือการเคลียร์ ^FF000030 Sting^000000 ในทางน้ำใต้ดินและถ้ำใต้ดินเพื่อการแสวงบุญที่ปลอดภัย";
+							mes "The request is to clear ^FF000030 Sting^000000 in underground waterway and underground cave for a safe pilgrimage.";
 							next;
 							cutin "gelca01",2;
 							mes "[Gelkah]";
-							mes "โปรดแจ้งให้ฉันทราบเมื่อคุณได้เคลียร์คำขอนี้แล้ว";
+							mes "Please inform me when you've cleared this request.";
 						}
 						else if (checkquest(13009,HUNTING) == 2) {
-							mes "การไปเยี่ยมชมใต้ดินที่สกปรกและมีกลิ่นเหม็นคงเป็นเรื่องยาก มันจะเป็นประสบการณ์ที่ดีสำหรับคุณ";
+							mes "Visiting to filthy and smelly underground must be tough. It would be a good experience for you.";
 							callsub S_Quest,13009,13010,112000,186500;
 						}
 						else {
 							cutin "ฝบฦรฤซตๅ",3;  //sting_card
-							mes "คุณเคยได้ยินเรื่องการจาริกแสวงบุญของพระภิกษุบ้างไหม? มีเหล็กไนจำนวนมากตามทางน้ำและถ้ำใต้ดิน จึงรบกวนพระภิกษุผู้สงบสุข";
+							mes "Have you heard about a monk's pilgrimage? There are so many Stings in the underground waterway and cave so they disturb the peaceful monks.";
 							next;
 							mes "[Gelkah]";
-							mes "พระศาสดาทรงยอมรับคำขอนี้เพราะทรงเคารพพระภิกษุเหล่านั้น คำขอคือการเคลียร์ ^FF000030 Sting^000000 มอนสเตอร์ในเส้นทางน้ำใต้ดินเพื่อการแสวงบุญอย่างปลอดภัย";
+							mes "Master accepted this request because he respects those monks. The request is to clear ^FF000030 Sting^000000 monsters in underground waterway for a safe pilgrimage.";
 							callsub S_Quest,13010,13009;
 						}
 						break;
 					case 5:
 						if (checkquest(13012,PLAYTIME) == 0)
-							mes "คุณเพิ่งเสร็จสิ้นการร้องขอ การผจญภัยเป็นสิ่งสำคัญ แต่การพักผ่อนก็สำคัญเช่นกัน การจาริกแสวงบุญจะดำเนินต่อไปดังนั้นจะมีการร้องขออีกครั้ง";
+							mes "You just finished a request. Adventure is important but taking a rest is important too. Pilgrimage will be continued so there will be another request again.";
 						else if (checkquest(13011,HUNTING) == 1) {
 							cutin "ธÞภฬภ๚ฟ์ทฮฝบฤซตๅ",3;  //majoruros_card
-							mes "อยากรู้ว่าพระภิกษุเหล่านี้ไปแสวงบุญเพราะอะไร และทำไมยังทำต่อไป... มันต้องมีสาเหตุแอบแฝงแน่ๆ";
+							mes "I wonder what the reason is behind these monk pilgrimages and why they keep doing it... There must be a hidden reason.";
 							next;
 							mes "[Gelkah]";
-							mes "ฉันเคยดูแลคำขอแต่ฉันก็กังวล คำขอคือการเคลียร์ ^FF000030 Majoruros^000000 จากชั้น 2 ของถ้ำใต้ดิน";
+							mes "I used to take care of the request but I am worried. The request is to clear ^FF000030 Majoruros^000000 from the 2nd floor of the underground cave.";
 							next;
 							cutin "gelca01",2;
 							mes "[Gelkah]";
-							mes "โปรดแจ้งให้ฉันทราบเมื่อคุณได้เคลียร์คำขอนี้แล้ว";
+							mes "Please inform me when you've cleared this request.";
 						}
 						else if (checkquest(13011,HUNTING) == 2) {
-							mes "เดินทางไปแสวงบุญนานๆคงจะเหนื่อย";
-							mes "มันจะเป็นประสบการณ์ที่ดีสำหรับคุณ";
+							mes "Visiting for a long pilgrimage must be tiring.";
+							mes "It would be a good experience for you.";
 							callsub S_Quest,13011,13012,112000,252000;
 						}
 						else {
 							cutin "ธÞภฬภ๚ฟ์ทฮฝบฤซตๅ",3;  //majoruros_card
-							mes "สถานที่แสวงบุญของพระภิกษุอยู่ที่ชั้น 2 ของถ้ำใต้ดินปราสาท Glastheim มันไม่ใช่การเดินทางที่ง่ายแต่จะเป็นประสบการณ์ที่ดี";
+							mes "The monk's pilgrimage destination is on the 2nd floor of the Glastheim castle underground cave. It is not an easy journey but will be a good experience.";
 							next;
 							mes "[Gelkah]";
-							mes "Majoururos ไม่ใช่เรื่องง่ายที่จะล่า ดังนั้นควรระวังด้วย คำขอคือการเคลียร์ ^FF000030 Majoruros^000000 ในถ้ำใต้ดินชั้นสอง";
+							mes "Majoururos is not easy to hunt so be careful. The request is to clear ^FF000030 Majoruros^000000 in the underground cave second floor.";
 							callsub S_Quest,13012,13011;
 						}
 					}

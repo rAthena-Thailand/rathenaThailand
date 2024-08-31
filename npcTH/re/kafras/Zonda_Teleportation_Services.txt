@@ -9,11 +9,11 @@
 -	script	ZondaTeleportationServices	HIDDEN_NPC,{
 	cutin "zonda_do01", 2;
 	mes "[Zonda Employee]";
-	mes "ยินดีต้อนรับ";
-	mes "ทีมงานของเราทำงานอยู่เสมอเพื่อให้เกินความคาดหมายของคุณเกี่ยวกับคุณภาพการบริการ";
-	mes "กรุณาเลือกปลายทางของคุณ";
+	mes "Welcome.";
+	mes "Our team is always working to exceed your expectations regarding quality of service.";
+	mes "Please choose your destination.";
 	next;
-	switch( select( "North Bifrost", "Eclage", "Splendide", "Midgard Expedition Camp", "Manuk", "Outskirts of Kamidal Mountain", "ยกเลิก") ) {
+	switch( select( "North Bifrost", "Eclage", "Splendide", "Midgard Expedition Camp", "Manuk", "Outskirts of Kamidal Mountain", "Cancel.") ) {
 	case 1:
 		callsub( S_Zone, "North Bifrost", 17000,850, 7213 ); // Teleport value not confirmed
 		warp "bif_fild02",160,230; // Unverified Coordinates
@@ -53,13 +53,13 @@ S_Zone:
 	if (isbegin_quest(.@quest_req) == 0) {
 		mes "[Zonda Employee]";
 		//mes getarg(0);
-		mes "คุณต้องทำภารกิจการเข้าถึงให้สำเร็จเพื่อเทเลพอร์ตไปที่ " + getarg(0) + " ก่อนที่จะใช้บริการเทเลพอร์ตของเรา";
+		mes "You must complete the access mission to teleport to " + getarg(0) + " before using our Teleportation services.";
 		close3;
 	}
 	mes "[Zonda Employee]";
-	mes getarg(0) + " ในราคา ^ff0000" + .@zeny_req + " Zenys^000000 หรือ ^ff0000" + .@item_req + " Malangdo Special Can^000000.";
+	mes getarg(0) + " is available for ^ff0000" + .@zeny_req + " Zenys^000000 or ^ff0000" + .@item_req + " Malang Sp Can^000000.";
 	next;
-	switch( select( .@zeny_req + " Zeny", .@item_req + " Malangdo Special Can", "ยกเลิก" ) ) {
+	switch( select( .@zeny_req + " Zeny", .@item_req + " Malang Sp Can", "Cancel" ) ) {
 	case 1:
 		if (Zeny < .@zeny_req)
 			break;
@@ -72,12 +72,12 @@ S_Zone:
 		return;
 	case 3:
 		mes "[Zonda Employee]";
-		mes "คุณช่วยบอกฉันเกี่ยวกับบริการด้านอื่น ๆ หน่อยได้ไหม?";
+		mes "Can you tell me about other areas of service?";
 		close3;
 	}
 	mes "[Zonda Employee]";
-	mes "ท่าน! คุณไม่มีค่าพอที่เราขอ";
-	mes "โปรดกลับมาตรวจสอบอีกครั้ง";
+	mes "Sir! You do not have enough value that we are asking for.";
+	mes "Please check back again.";
 	close3;
 }
 
