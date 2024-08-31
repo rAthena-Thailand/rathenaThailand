@@ -11537,6 +11537,10 @@ static const struct _battle_data {
 	{ "hom_delay_reset_vaporize",           &battle_config.hom_delay_reset_vaporize,        1,      0,      1,              },
 	{ "hom_delay_reset_warp",               &battle_config.hom_delay_reset_warp,            1,      0,      1,              },
 #endif
+	{ "feature.goldpc_active",              &battle_config.feature_goldpc_active,           1,      0,      1,              },
+	{ "feature.goldpc_time",                &battle_config.feature_goldpc_time,          3600,      0,   3600,              },
+	{ "feature.goldpc_max_points",          &battle_config.feature_goldpc_max_points,     300,      0,    300,              },
+	{ "feature.goldpc_vip",                 &battle_config.feature_goldpc_vip,              1,      0,      1,              },
 
 #include <custom/battle_config_init.inc>
 };

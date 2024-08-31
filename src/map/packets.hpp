@@ -175,6 +175,8 @@ struct PACKET_ZC_ACK_GUILDSTORAGE_LOG{
 	struct PACKET_ZC_ACK_GUILDSTORAGE_LOG_sub items[];
 } __attribute__((packed));
 DEFINE_PACKET_HEADER(ZC_ACK_GUILDSTORAGE_LOG, 0x9da)
+DEFINE_PACKET_HEADER(ZC_GOLDPCCAFE_POINT, 0xa15)
+DEFINE_PACKET_HEADER(CZ_DYNAMICNPC_CREATE_REQUEST, 0xa16)
 
 struct PACKET_CZ_ADVANCED_STATUS_CHANGE{
 	int16 packetType;
@@ -1160,6 +1162,24 @@ struct PACKET_ZC_EL_PAR_CHANGE {
 	uint32 value;
 } __attribute__((packed));
 DEFINE_PACKET_HEADER(ZC_EL_PAR_CHANGE, 0x81e);
+
+#if PACKETVER_MAIN_NUM >= 20140508 || PACKETVER_RE_NUM >= 20140508 || defined(PACKETVER_ZERO)
+struct PACKET_ZC_GOLDPCCAFE_POINT{
+	int16 packetType;
+	int8 active;
+	int8 unitPoint;
+	int32 point;
+	int32 accumulatePlaySecond;
+} __attribute__((packed));
+#elif PACKETVER_MAIN_NUM >= 20140430 || PACKETVER_RE_NUM >= 20140430
+	// TODO: find difference (1byte) priority low...
+#endif
+
+struct PACKET_CZ_DYNAMICNPC_CREATE_REQUEST{
+	int16 packetType;
+	char nickname[NAME_LENGTH];
+} __attribute__((packed));
+
 
 // NetBSD 5 and Solaris don't like pragma pack but accept the packed attribute
 #if !defined( sun ) && ( !defined( __NETBSD__ ) || __NetBSD_Version__ >= 600000000 )

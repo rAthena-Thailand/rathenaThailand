@@ -1458,4 +1458,6 @@ void clif_noask_sub( map_session_data& sd, map_session_data& tsd, int type );
 
 void clif_specialpopup(map_session_data& sd, int32 id);
 
+void clif_goldpc_info( map_session_data& sd );
+
 #endif /* CLIF_HPP */
