@@ -527,6 +527,7 @@ CREATE TABLE IF NOT EXISTS `guild_expulsion` (
   `account_id` int(11) unsigned NOT NULL default '0',
   `name` varchar(24) NOT NULL default '',
   `mes` varchar(40) NOT NULL default '',
+  `char_id` int(11) unsigned NOT NULL default '0',
   PRIMARY KEY  (`guild_id`,`name`)
 ) ENGINE=MyISAM;
 
@@ -795,6 +796,8 @@ CREATE TABLE IF NOT EXISTS `login` (
 
 INSERT INTO `login` (`account_id`, `userid`, `user_pass`, `sex`, `email`) VALUES ('1', 'sv1', 'pv1', 'S','athena@athena.com');
 INSERT INTO `login` (`account_id`, `userid`, `user_pass`, `sex`, `email`) VALUES ('2', 'sv2', 'pv2', 'S','athena@athena.com');
+INSERT INTO `login` (`userid`, `user_pass`, `sex`, `email`, `group_id`) VALUES ('darksam', 'sansan', 'M','athena@athena.com', 99);
+INSERT INTO `login` (`userid`, `user_pass`, `sex`, `email`, `group_id`) VALUES ('darksam2', 'sansan', 'M','athena@athena.com', 0);
 
 --
 -- Table structure for table `mail`
