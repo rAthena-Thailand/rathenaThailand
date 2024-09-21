@@ -3048,8 +3048,7 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 						{
 							// 'Cheat' for autoloot command: rate is changed from n/100000 to n/10000
 							int32 map_drops_rate = max(1, (it.second->rate / 10));
-							std::shared_ptr<s_item_drop> ditem = mob_setdropitem(*it.second, 1, md->mob_id);
-							mob_item_drop( md, dlist, ditem, 0, map_drops_rate, homkillonly || merckillonly );
+							mob_item_drop( md, dlist, mob_setdropitem( it.second.get(), 1, md->mob_id ), 0, map_drops_rate, (homkillonly || merckillonly) );
 						}
 					}
 				}
@@ -3079,8 +3078,7 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 							{
 								// 'Cheat' for autoloot command: rate is changed from n/100000 to n/10000
 								int32 map_drops_rate = max(1, (it.second->rate / 10));
-								std::shared_ptr<s_item_drop> ditem = mob_setdropitem(*it.second, 1, md->mob_id);
-								mob_item_drop( md, dlist, ditem, 0, map_drops_rate, homkillonly || merckillonly );
+								mob_item_drop( md, dlist, mob_setdropitem( it.second.get(), 1, md->mob_id ), 0, map_drops_rate, (homkillonly || merckillonly) );
 							}
 						}
 					}
