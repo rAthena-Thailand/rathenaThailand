@@ -276,8 +276,22 @@ function	script	F_KafStor	{
 		}
 	}
 	callfunc("F_CheckKafCode");	//check your storage password, if set
-	close2;
-	openstorage;
+	if (vip_status(1)){
+		next;
+		switch(select("嗷源づ学伺选:嗷源づ学 VIP")) {
+			case 1:
+				close2;
+				openstorage;
+				break;
+			case 2:
+				close2;
+				openstorage2 1,STOR_MODE_GET|STOR_MODE_PUT;
+			break;
+		}
+	}else{
+		close2;
+		openstorage;
+	}
 	cutin "", 255;
 	end;
 }
