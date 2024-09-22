@@ -1801,7 +1801,7 @@ uint8 pc_isequip(map_session_data *sd,int n)
 
 	if(item == nullptr)
 		return ITEM_EQUIP_ACK_FAIL;
-	
+
 	if (sd->sc.count && sd->sc.getSCE(SC_SPIRIT) && sd->sc.getSCE(SC_SPIRIT)->val2 == SL_SUPERNOVICE) {
 		//Spirit of Super Novice equip bonuses. [Skotlex]
 		if (sd->status.base_level >= 90 && item->equip & EQP_HELM)
@@ -2299,13 +2299,14 @@ TIMER_FUNC(pc_goldpc_update){
 	}
 
 	sd->goldpc_tid = INVALID_TIMER;
-	
+
 	// Check if feature is still active
 	if( !battle_config.feature_goldpc_active ){
 		return 0;
 	}
 
 	// TODO: add mapflag to disable?
+
 	int64 points = pc_readparam( sd, SP_GOLDPC_POINTS );
 
 	if( battle_config.feature_goldpc_vip && pc_isvip( sd ) ){
@@ -2429,7 +2430,7 @@ void pc_reg_received(map_session_data *sd)
 	// Before those clients you could send out the instance info even when the client was still loading the map, afterwards you need to send it later
 	clif_instance_info( *sd );
 #endif
-	
+
 	if( battle_config.feature_goldpc_active && pc_readreg2( sd, GOLDPC_POINT_VAR ) < battle_config.feature_goldpc_max_points && !sd->state.autotrade ){
 		sd->goldpc_tid = add_timer( gettick() + ( battle_config.feature_goldpc_time - pc_readreg2( sd, GOLDPC_SECONDS_VAR ) ) * 1000, pc_goldpc_update, sd->bl.id, (intptr_t)nullptr );
 #ifndef VIP_ENABLE
@@ -2438,6 +2439,7 @@ void pc_reg_received(map_session_data *sd)
 	}else{
 		sd->goldpc_tid = INVALID_TIMER;
 	}
+	
 	// pet
 	if (sd->status.pet_id > 0)
 		intif_request_petdata(sd->status.account_id, sd->status.char_id, sd->status.pet_id);
@@ -6172,7 +6174,7 @@ bool pc_takeitem(map_session_data *sd,struct flooritem_data *fitem)
 
 	//Display pickup animation.
 	pc_stop_attack(sd);
-	clif_takeitem(&sd->bl,&fitem->bl);
+	clif_takeitem(sd->bl,fitem->bl);
 
 	if (fitem->mob_id &&
 		(itemdb_search(fitem->item.nameid))->flag.broadcast &&
@@ -6719,7 +6721,6 @@ bool pc_steal_item(map_session_data *sd,struct block_list *bl, uint16 skill_lv)
 	t_itemid itemid;
 	double rate;
 	unsigned char flag = 0;
-	struct status_data *sd_status, *md_status;
 	struct mob_data *md;
 
 	if(!sd || !bl || bl->type!=BL_MOB)
@@ -6730,8 +6731,8 @@ bool pc_steal_item(map_session_data *sd,struct block_list *bl, uint16 skill_lv)
 	if(md->state.steal_flag == UCHAR_MAX || ( md->sc.opt1 && md->sc.opt1 != OPT1_BURNING ) ) //already stolen from / status change check
 		return false;
 
-	sd_status= status_get_status_data(&sd->bl);
-	md_status= status_get_status_data(bl);
+	status_data* sd_status = status_get_status_data(sd->bl);
+	status_data* md_status = status_get_status_data(*bl);
 
 	if (md->master_id || status_has_mode(md_status, MD_STATUSIMMUNE) || util::vector_exists(status_get_race2(&md->bl), RC2_TREASURE) ||
 		map_getmapflag(bl->m, MF_NOMOBLOOT) || // check noloot map flag [Lorky]
@@ -8279,7 +8280,7 @@ static void pc_calcexp(map_session_data *sd, t_exp *base_exp, t_exp *job_exp, st
 	int bonus = 0, vip_bonus_base = 0, vip_bonus_job = 0;
 
 	if (src) {
-		struct status_data *status = status_get_status_data(src);
+		status_data* status = status_get_status_data(*src);
 
 		if( sd->indexed_bonus.expaddrace[status->race] )
 			bonus += sd->indexed_bonus.expaddrace[status->race];
@@ -10567,7 +10568,7 @@ bool pc_setparam(map_session_data *sd,int64 type,int64 val_tmp)
 				remaining_seconds = (t_tick)max(static_cast<int>(remaining_seconds), 0);
 				// Restart the timer with the remaining time
 				sd->goldpc_tid = add_timer(gettick() + ((battle_config.feature_goldpc_time - remaining_seconds) * 1000 > 1000 ? (battle_config.feature_goldpc_time - remaining_seconds) * 1000 :  (battle_config.feature_goldpc_time * 1000)+1000), pc_goldpc_update, sd->bl.id, (intptr_t)nullptr);
-				}
+			}
 
 			// Update the client
 			clif_goldpc_info( *sd );
@@ -13046,7 +13047,7 @@ bool pc_setstand(map_session_data *sd, bool force){
 
 	status_change_end(&sd->bl, SC_TENSIONRELAX);
 	clif_status_load(&sd->bl,EFST_SIT,0);
-	clif_standing(&sd->bl); //Inform area PC is standing
+	clif_standing(sd->bl); //Inform area PC is standing
 	//Reset sitting tick.
 	sd->ssregen.tick.hp = sd->ssregen.tick.sp = 0;
 	if( pc_isdead( sd ) ){
@@ -15994,7 +15995,7 @@ void do_init_pc(void) {
 	add_timer_func_list(pc_autotrade_timer, "pc_autotrade_timer");
 	add_timer_func_list(pc_on_expire_active, "pc_on_expire_active");
 	add_timer_func_list(pc_macro_detector_timeout, "pc_macro_detector_timeout");
-	add_timer_func_list(pc_goldpc_update, "pc_goldpc_update");
+	add_timer_func_list( pc_goldpc_update, "pc_goldpc_update" );
 
 	add_timer(gettick() + autosave_interval, pc_autosave, 0, 0);
 

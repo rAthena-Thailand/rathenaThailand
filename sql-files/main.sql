@@ -291,7 +291,7 @@ CREATE TABLE IF NOT EXISTS `char` (
   KEY `party_id` (`party_id`),
   KEY `guild_id` (`guild_id`),
   KEY `online` (`online`)
-) ENGINE=MyISAM DEFAULT CHARSET=tis620 AUTO_INCREMENT=150000 ; 
+) ENGINE=MyISAM AUTO_INCREMENT=150000; 
 
 --
 -- Table structure for table `char_reg_num`
@@ -796,8 +796,6 @@ CREATE TABLE IF NOT EXISTS `login` (
 
 INSERT INTO `login` (`account_id`, `userid`, `user_pass`, `sex`, `email`) VALUES ('1', 'sv1', 'pv1', 'S','athena@athena.com');
 INSERT INTO `login` (`account_id`, `userid`, `user_pass`, `sex`, `email`) VALUES ('2', 'sv2', 'pv2', 'S','athena@athena.com');
-INSERT INTO `login` (`userid`, `user_pass`, `sex`, `email`, `group_id`) VALUES ('darksam', 'sansan', 'M','athena@athena.com', 99);
-INSERT INTO `login` (`userid`, `user_pass`, `sex`, `email`, `group_id`) VALUES ('darksam2', 'sansan', 'M','athena@athena.com', 0);
 
 --
 -- Table structure for table `mail`

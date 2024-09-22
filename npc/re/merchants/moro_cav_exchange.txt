@@ -11,88 +11,88 @@
 moro_cav,32,73,5	script	Hero Token Exchanger#1	4_F_SHADOWCHASER,{
 	disable_items;
 	mes "[Hero Token Exchanger]";
-	mes "ถ้าเจ้าได้สู้กับ Morroc";
-	mes "และเก็บ";
-	mes "Hero Tokens มาได้,";
-	mes "ข้าสามารถเปลี่ยนมันเป็นแหวนสุดพิเศษแก่เจ้าได้.";
-	mes "เจ้าต้องการดูแหวนของข้าไหม ?";
+	mes "If you fought Morocc";
+	mes "and collected";
+	mes "Hero Tokens,";
+	mes "I can exchange them with a special ring for you.";
+	mes "Do you want to take a look at my ring?";
 	while(true) {
 		next;
 		if (checkweight(2163,2) == 0) {
 			mes "[Hero Token Exchanger]";
-			mes "ของเจ้ามีของเยอะมาก";
-			mes "โปรดมาอีกครั้งหลังจากจัดการเรียบร้อบแล้ว!";
+			mes "Your pack has a lot of items,";
+			mes "Please come again after arrange it!";
 			close;
 		}
-		switch( select( "รายละเอียดแหวน", "แลกแหวน.", "จบบทสนทนา." ) ) {
+		switch( select( "Ring description", "Exchange with the ring.", "End conversation." ) ) {
 		case 1:
 			mes "[Hero Token Exchanger]";
-			mes "นี้คือ Hero Ring";
-			mes "มันอาจดู";
-			mes "ไม่น่า";
-			mes "ประทับใจ,";
+			mes "This Hero Ring";
+			mes "may not";
+			mes "look";
+			mes "impressive,";
 			next;
 			mes "[Hero Token Exchanger]";
-			mes "แต่ถ้านำมันไปหา";
+			mes "but take it to";
 			mes "Expert Enchanter Byrnes,";
-			mes "และเขาสามารถออฟ";
-			mes "ทั้ง 4 ช่องได้ครบ";
-			mes "และนำความสามารถแฝง";
-			mes "ออกมาได้ละก็.";
+			mes "and he can Enchant";
+			mes "all 4 sockets in it";
+			mes "and bring out";
+			mes "its latent abilities.";
 			next;
 			mes "[Hero Token Exchanger]";
 			mes "Hero Ring";
-			mes "จะช่วยเจ้า";
-			mes "ในการกำราบ";
-			mes "Morroc.";
-			mes "มีคำถามอะไรอีกไหม ?";
+			mes "can aid you";
+			mes "in subjugating";
+			mes "Morocc.";
+			mes "Any more questions?";
 			continue;
 		case 2:
 			mes "- Hero Ring -";
-			mes "^006400แหวนนี้สร้างมาเพื่อนักรบ^000000";
-			mes "^006400ที่ทำภารกิจปราบ Morroc..^000000";
-			mes "^006400เมื่อเอาไปออฟ,^000000";
-			mes "^006400เจ้าของจะได้รับ^000000";
-			mes "^006400พลังในการเผชิญหน้ากับ Morroc.^000000";
-			mes "^006400ประเภท: เครื่องประดับ/ป้องกัน: 0^000000";
-			mes "^006400น้ำหนัก: 20/ต้องการเลเวล: 160^000000";
-			mes "^006400ช่อง: 0/สามารถสวมใส่: ทุกอาชีพ^000000";
+			mes "^006400A ring made for warriors^000000";
+			mes "^006400on the quest to defeat Morocc..^000000";
+			mes "^006400When Enchanted,^000000";
+			mes "^006400it lends its owner^000000";
+			mes "^006400the power to confront Morocc.^000000";
+			mes "^006400Clas: Accessory/DEF: 0^000000";
+			mes "^006400Weight: 20/Required Level: 160^000000";
+			mes "^006400Slot: 0/Equip To: All Jobs^000000";
 			next;
 			mes "[Hero Token Exchanger]";
-			mes "Hero Ring ต้องการ";
+			mes "Hero Ring requires";
 			mes "30 Hero Tokens";
-			mes "สำหรับแลกเปลี่ยน.";
-			mes "เจ้าต้องการแลกไหม ?";
+			mes "for the exchange.";
+			mes "Do you want to exchange?";
 			next;
-			if (select( "กลับไปเมนูก่อนหน้า.", "แลกกับ 30 Hero Tokens." ) == 1) {
+			if (select( "Previous menu.", "Exchange 30 Hero Tokens." ) == 1) {
 				mes "[Hero Token Exchanger]";
-				mes "ลองทบทวน";
-				mes "อีกครั้ง.";
+				mes "Think";
+				mes "again.";
 				continue;
 			}
 			if (countitem(6684) < 30) {
 				mes "[Hero Token Exchanger]";
 				mes "^006400Hero Token^000000";
-				mes "จะได้จาก";
-				mes "คนที่กล้าต่อสู้กับ Morroc.";
-				mes "เจ้าไม่มี";
+				mes "is given to";
+				mes "those who bravely fought Morocc.";
+				mes "You don't have";
 				mes "30 ^006400Hero Tokens^000000,";
-				mes "ดังนั้นข้าจึงไม่สามารถช่วยเจ้าได้.";
+				mes "and therefore I can't assist you.";
 				continue;
 			}
 			mes "[Hero Token Exchanger]";
-			mes "ข้าจะแลกเปลี่ยน";
+			mes "I'll exchange";
 			mes "30 ^006400Hero Tokens^000000";
 			mes "with 1 ^006400Hero Ring^000000.";
-			mes "ไม่มีอะไรอีกใช่ไหม ?";
+			mes "Anything else?";
 			delitem 6684,30;	// TokenOfHero
 			getitem 2981,1;		// RingOfHero
 			continue;
 		case 3:
 			mes "[Hero Token Exchanger]";
-			mes "วันหนึ่ง";
-			mes "เจ้าจะค้นพบว่าตัวเจ้า";
-			mes "ต้องการแหวน Hero Ring.";
+			mes "One day";
+			mes "you'll find yourself";
+			mes "in need of Hero Ring.";
 			close;
 		}
 	}
@@ -101,26 +101,26 @@ moro_cav,32,73,5	script	Hero Token Exchanger#1	4_F_SHADOWCHASER,{
 moro_cav,34,65,5	script	Expert Enchanter Byrnes	1_M_03,{
 	disable_items;
 	mes "[Byrnes]";
-	mes "เจ้าเคยได้ยินเรื่อง Hero Ring ไหม ? เฉพาะผู้กล้าที่แท้จริงเท่านั้นที่จะได้รับแหวนที่ส่องประกาย, และข้าก็กำลังรอคนแบบนั้นอยู่.";
-	mes "มีอะไรให้ข้าทำเพื่อเจ้าไหม ?";
+	mes "Have you heard of Hero Ring? Only true heroes deserve to possess that magnificent ring, and I've been waiting for one.";
+	mes "What can I do for you?";
 	next;
-	switch( select( "ออฟ Hero Ring.", "ลบออฟออกจาก Hero Ring.", "ยกเลิก." ) ) {
+	switch( select( "Enchant Hero Ring.", "Reset Enchantments on Hero Ring.", "Cancel." ) ) {
 	case 1:
 		mes "[Byrnes]";
-		mes "ข้าสามารถออฟได้แต่แหวนเท่านั้น. แหวนอันไหนที่เจ้าต้องการออฟ ?";
+		mes "I can Enchant only equipped rings. Which one of the equipped rings do you want to Enchant?";
 		next;
 		setarray .@eqi_slot[0], EQI_ACC_L, EQI_ACC_R;
 		.@s = select( "Left", "Right" ) - 1;
 		switch( getequipid(.@eqi_slot[.@s]) ) {
 		case -1:
 			mes "[Byrnes]";
-			mes "กรุณาสวม Hero Ring ถ้าเจ้าต้องการออฟ.";
+			mes "Please equip the Hero Ring that you want to enchant.";
 			close;
 		case 2981:
 			break;
 		default:
 			mes "[Byrnes]";
-			mes "กรุณาสวม Hero Ring ด้วย. ข้าไม่สามารถออฟแหวนอันอื่นได้.";
+			mes "Please equip your Hero Ring. I can't Enchant anything else.";
 			close;
 		}
 		// custom at this point
@@ -132,7 +132,7 @@ moro_cav,34,65,5	script	Expert Enchanter Byrnes	1_M_03,{
 
 		if (.@card[0] > 0) {
 			mes "[Byrnes]";
-			mes "ออฟของ Hero Ring เต็มแล้วไม่สามารถออฟได้อีก.";
+			mes "A fully enchanted Hero Ring cannot be enchanted any further.";
 			close;
 		}
 		if (.@card[3] == 0) {
@@ -152,7 +152,7 @@ moro_cav,34,65,5	script	Expert Enchanter Byrnes	1_M_03,{
 			.@slot = 1;
 		}
 		mes "[Byrnes]";
-		mes "เลือกความสามารถที่เจ้าต้องการจะออฟลงบนช่องที่ " + .@slot + "?";
+		mes "Which ability do you want as an enchantment on slot " + .@slot + "?";
 		next;
 		.@enchant_list_size = getarraysize(.@enchant_list$);
 		for ( .@i = 0; .@i < .@enchant_list_size; ++.@i )
@@ -222,40 +222,40 @@ moro_cav,34,65,5	script	Expert Enchanter Byrnes	1_M_03,{
 		.@card[.@slot-1] = .@bonus[ rand(.@bonus_size) ];	// unknown rates
 		specialeffect2 EF_ANGEL2;
 		mes "[Byrnes]";
-		mes "การออฟสำเร็จ!";
+		mes "Enchantment completed!";
 		delequip .@eqi_slot[.@s];
 		getitem2 2981,1,1,0,0,.@card[0],.@card[1],.@card[2],.@card[3];
 		close;
 	case 2:
 		mes "[Byrnes]";
-		mes "การลบออฟออกจาก Hero Ring, ข้าต้องการ 3 Hero Tokens.";
+		mes "To reset Enchantments on your Hero Ring, I need 3 Hero Tokens.";
 		next;
 		if (countitem(6684) < 3) {
 			mes "[Byrnes]";
-			mes "เจ้ามี Hero Tokens ไม่พอ. ข้าไม่สามารถลบออฟออกจาก Hero Ring ได้.";
+			mes "You don't have enough Hero Tokens. I can't reset your Hero Ring.";
 			close;
 		}
 		mes "[Byrnes]";
-		mes "ข้าสามารถลบออฟออกจากแหวนได้. เลือกแหวนที่เจ้าต้องการลบออฟ ?";
+		mes "I can reset only equipped rings. Which one of the equipped rings do you want to reset?";
 		next;
 		setarray .@eqi_slot[0], EQI_ACC_L, EQI_ACC_R;
 		.@s = select( "Left", "Right" ) - 1;
 		switch( getequipid(.@eqi_slot[.@s]) ) {
 		case -1:
 			mes "[Byrnes]";
-			mes "เจ้าต้องสวมแหวนก่อนเสมอถ้าจะลบออฟ.";
+			mes "You first have to equip the item to reset its Enchantment status.";
 			close;
 		case 2981:
 			break;
 		default:
 			mes "[Byrnes]";
-			mes "กรุณาสวม Hero Ring ด้วย. ข้าไม่สามารถลบออฟออกจากแหวนอื่นได้.";
+			mes "Please equip your Hero Ring. I can't reset anything else.";
 			close;
 		}
 		// custom at this point
 		if (countitem(6684) < 3) {
 			mes "[Byrnes]";
-			mes "เจ้ามี Hero Tokens ไม่พอ. ข้าไม่สามารถลบออฟออกจาก Hero Ring ได้.";
+			mes "You don't have enough Hero Tokens. I can't reset your Hero Ring.";
 			close;
 		}
 		setarray .@card[0],
@@ -266,7 +266,7 @@ moro_cav,34,65,5	script	Expert Enchanter Byrnes	1_M_03,{
 
 		if (.@card[3] == 0) {
 			mes "[Byrnes]";
-			mes "แหวน Hero Ring ของเจ้าตอนนี้มันไม่มีออฟเลย.";
+			mes "Your Hero Ring is currently in a state without enchantment.";
 			close;
 		}
 
@@ -276,7 +276,7 @@ moro_cav,34,65,5	script	Expert Enchanter Byrnes	1_M_03,{
 
 		specialeffect2 EF_ANGEL2;
 		mes "[Byrnes]";
-		mes "ทำการลบเรียบร้อย.";
+		mes "Initialization completed.";
 		delitem 6684,3;
 		delequip .@eqi_slot[.@s];
 		getitem 2981,1;

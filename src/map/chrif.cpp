@@ -307,8 +307,9 @@ int chrif_save(map_session_data *sd, int flag) {
 	if (sd->premiumStorage.dirty)
 		storage_premiumStorage_save(sd);
 
-	if (flag&CSAVE_QUITTING){
+	if( flag&CSAVE_QUITTING ){
 		sd->state.storage_flag = 0; //Force close it.
+
 		if( sd->goldpc_tid != INVALID_TIMER ){
 			const struct TimerData* td = get_timer( sd->goldpc_tid );
 
@@ -331,6 +332,7 @@ int chrif_save(map_session_data *sd, int flag) {
 			sd->goldpc_tid = INVALID_TIMER;
 		}
 	}
+
 	//Saving of registry values.
 	if (sd->vars_dirty)
 		intif_saveregistry(sd);
@@ -1597,7 +1599,9 @@ void chrif_parse_ack_vipActive(int fd) {
 			clif_displaymessage(sd->fd,msg_txt(sd,438));
 		}
 	}
+	
 	clif_goldpc_info( *sd );
+	
 	// Show info if status changed
 	if (((flag&0x4) || changed) && !sd->vip.disableshowrate) {
 		clif_display_pinfo( *sd );

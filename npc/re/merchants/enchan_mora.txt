@@ -21,58 +21,58 @@
 //============================================================
 mora,88,89,5	script	Keeper of Secrets#pa082	495,{
 	if (checkweight(1201,1) == 0) {
-		mes "ช่องในกระเป๋ามีไม่พอ. ทิ้งของบางส่วนก่อนแล้วค่อยมาใหม่.";
+		mes "You have too many kinds of things with you to do that. Throw out some of them and try again.";
 		close;
 	}
 	if (MaxWeight - Weight < 1000) {
-		mes "น้ำหนักในกระเป๋าเต็ม. ลดน้ำหนักก่อนแล้วค่อยมาใหม่.";
+		mes "You are carrying too much weight to do that. Reduce the weight and try again.";
 		close;
 	}
 	disable_items;
 	if (countitem(6380) < 10) {
 		mes "[Artifice]";
-		mes "อุปกรณ์ของ Archbishops จะเน้นที่ป้องกันและสนับสนุน!";
+		mes "Relics for Archbishops are meant for defense and support!";
 		next;
 		mes "[Artifice]";
-		mes "เหมือนกับผู้พิทักษ์คนอื่น, พวกเราใช้เหรียญในการแลกเปลี่ยน, ดังนั้้นเก็บ Mora Coins ไว้!";
+		mes "Like the other Guardians, they may trade coins for their relics, so collect Mora Coins!";
 		next;
 		mes "[Artifice]";
-		mes "ถ้าเจ้าพอจะมี 10 เหรียญหรือมากกว่าให้มาหาข้า!";
+		mes "If you collect more than 10 coins then come to me to trade!";
 		close;
 	}
 	mes "[Artifice]";
-	mes "ภายใต้แสงสว่าง! เจ้าดูเหมือนพร้อมที่จะแลกเปลี่ยนแล้ว.";
+	mes "By the light! You look like you are ready to gain access to our relics.";
 	next;
 	mes "[Artifice]";
-	mes "Ring, Shoes, Shawl, Robe, Shield, หรือ Weapon.";
-	mes "เลือกมาหนึ่งอย่างจากหกอย่าง.";
+	mes "Ring, Shoes, Shawl, Robe, Shield, or Weapon.";
+	mes "Select one of the six kinds of relics to receive.";
 	next;
 	mes "[Artifice]";
-	mes "ข้าจะสุ่มให้เจ้าจากที่เจ้าเลือกมา, โดยขึ้นอยู่กับสภาพอากาศและอารมณ์ของข้า.";
+	mes "I'll randomly give you one of 2 types of the equipment, depending upon the weather and my mood.";
 	next;
 	mes "[Artifice]";
-	mes "ข้าต้องการแค่ 10 Mora Coins สำหรับของๆเจ้า!";
+	mes "All I need is 10 Mora Coins of yours to grant you a relic!";
 	next;
-	switch(select("ข้าไม่คิดว่าข้าพร้อมน่ะ.:ข้าพร้อมที่แลกด้วย Mora Coins แล้ว.:ขอแลกแหวนคืน.")) {
+	switch(select("I don't think I'm ready.:I'm ready to exchange my Mora Coins.:Exchange my Ring.")) {
 	case 1:
 		mes "[Artifice]";
-		mes "แล้วพบกันใหม่!";
+		mes "See you next time!";
 		close;
 	case 2:
 		mes "[Artifice]";
 		// What does this even mean? (custom dialogue below)
 		//mes "You influence what part are you?";
-		mes "เจ้าต้องการของแบบไหน ?";
+		mes "What kind of relic do you want?";
 		next;
-		switch(select("ข้าไม่พร้อม.:Ring:Shoes:Shawl:Robe:Shield:Weapon")) {
+		switch(select("I'm not ready.:Ring:Shoes:Shawl:Robe:Shield:Weapon")) {
 		case 1:
 			mes "[Artifice]";
-			mes "ให้แสงนำทาง.";
+			mes "Go with the light.";
 			close;
 		case 2:
 			if (countitem(2864) || countitem(2865) || countitem(2866)) {
 				mes "[Artifice]";
-				mes "เจ้าจะแลกเปลี่ยนทั้งๆที่มีแหวนอยู่แล้วไม่ได้!";
+				mes "You are already allowed access to our relics by your possession of a Ring!";
 				close;
 			}
 			if (Class == Job_Arch_Bishop || Class == Job_Arch_Bishop_T || Class == Job_Baby_Arch_Bishop) {
@@ -80,7 +80,7 @@ mora,88,89,5	script	Keeper of Secrets#pa082	495,{
 				break;
 			} else {
 				mes "[Artifice]";
-				mes "พวกเราจะแลกกับ Arch-Bishops เท่านั้น.";
+				mes "We prefer to only deal with Arch-Bishops.";
 				close;
 			}
 		case 3:
@@ -103,15 +103,15 @@ mora,88,89,5	script	Keeper of Secrets#pa082	495,{
 		delitem 6380,10; //Mora_Coin
 		getitem .@item,1;
 		mes "[Artifice]";
-		mes "เจ้าได้รับ ^aa00aa"+getitemname(.@item)+"^000000. ขอให้แสงอวยพรแก่เจ้า.";
+		mes "You have obtained ^aa00aa"+getitemname(.@item)+"^000000. May the Blessing of the Light be with you.";
 		close;
 	case 3:
 		if (Class == Job_Arch_Bishop || Class == Job_Arch_Bishop_T || Class == Job_Baby_Arch_Bishop) {
 			mes "[Artifice]";
-			mes "พวกเราแลกเปลี่ยญแหวนด้วยเหรียญสำหรับคนที่ไม่สามารถควบคุมแหวนได้.";
+			mes "We exchange rings into coins for those who cannot control the ring.";
 			next;
 			mes "[Artifice]";
-			mes "แต่ดูเหมือนว่าเจ้าจะมีพลังควบคุมแหวน ดังนั้นข้าจะแลกเปลี่ยนแหวนคืนด้วยเหรียญ.";
+			mes "It seems that you have power to control the ring so I cannot exchange it into coins.";
 			close;
 		}
 		     if (countitem(2864)) set .@item,2864; //Light_Of_Cure
@@ -119,22 +119,22 @@ mora,88,89,5	script	Keeper of Secrets#pa082	495,{
 		else if (countitem(2866)) set .@item,2866; //Ring_Of_Archbishop
 		else {
 			mes "[Artifice]";
-			mes "เจ้าจะแลกสิ่งใด?";
+			mes "Did you change something?";
 			close;
 		}
 		mes "[Artifice]";
-		mes "เจ้ามี "+getitemname(.@item)+". เจ้าอยากแลกเป็น 10 Mora Coins ไหม ?";
+		mes "You have a "+getitemname(.@item)+". Do you really want to trade it for 10 Mora Coins?";
 		next;
-		switch(select("ข้าไม่พร้อม:แลกด้วย "+getitemname(.@item))) {
+		switch(select("I'm not ready:Exchange my "+getitemname(.@item))) {
 		case 1:
 			mes "[Artifice]";
-			mes "ถ้าเจ้าเปลี่ยนใจ, กลับมาหาข้า.";
+			mes "If you change your mind, please stop by again.";
 			close;
 		case 2:
 			delitem .@item,1;
 			getitem 6380,10; //Mora_Coin
 			mes "[Artifice]";
-			mes "ข้าคิดว่าเป็นการแลกเปลี่ยนที่่ดี.";
+			mes "I think that was an even trade.";
 			close;
 		}
 	}
@@ -142,43 +142,43 @@ mora,88,89,5	script	Keeper of Secrets#pa082	495,{
 
 mora,96,74,5	script	Master of Relics#pa0829	495,{
 	if (checkweight(1201,1) == 0) {
-		mes "ช่องในกระเป๋ามีไม่พอ. ทิ้งของบางส่วนก่อนแล้วค่อยมาใหม่.";
+		mes "You have too many kinds of things with you to do that. Throw out some of them and try again.";
 		close;
 	}
 	if (MaxWeight - Weight < 1000) {
-		mes "น้ำหนักในกระเป๋าเต็ม. ลดน้ำหนักก่อนแล้วค่อยมาใหม่.";
+		mes "You are carrying too much weight to do that. Reduce the weight and try again.";
 		close;
 	}
 	disable_items;
 	mes "[Relice]";
-	mes "ข้าสามารถออฟของ Arch-Bishops ได้, โดยใช้ 2 Mora Coins ในการออฟแต่ละครั้ง.";
+	mes "I enhance Relics that holy Arch-Bishops use, it will take 2 Mora Coins and the relic to allow me to attempt to enhance it.";
 	next;
-	switch(select("ช่วยบอกรายละเอียดหน่อย.:ออฟของข้าที.")) {
+	switch(select("More details please.:Please Enhance my Relic.")) {
 	case 1:
 		mes "[Relice]";
-		mes "ในการออฟแต่ละครั้งจะใช้ 2 Mora Coins และข้าจะออฟเพียงหนึ่งออฟในของสวมใส่ให้.";
+		mes "Let me briefly explain, for 2 Mora Coins and the relic I can give you a single Enchantment on that relic.";
 		next;
 		mes "[Relice]";
-		mes "พวกข้าสามารถรีออฟได้ถ้าเจ้าไม่ชอบออฟที่ได้ไป.";
+		mes "Even though this relic was already enchanted, we will re-enchant it without checking its status.";
 		next;
 		mes "[Relice]";
-		mes "ดังนั้นเมื่อเจ้าอยากจะออฟ, ให้มาหาข้า.";
+		mes "So it you have already enchanted relic, please put it some place safe and come back.";
 		next;
 		mes "[Relice]";
-		mes "อ้า, มีอีกหนึ่งสิ่งที่ต้องบอก! ถ้ามันล้มเหลวของๆเจ้าจะหายไปตลอดกาล.";
+		mes "Ah, one more thing! It is possible I can fail though and if that happens the relic is lost forever.";
 		close;
 	case 2:
 		mes "[Relice]";
-		mes "Ok, เจ้าสามารถไปแลก Relic กับ Artifice ใหม่ได้ถ้ามันล้มเหลว.";
+		mes "Ok, you can get a new Relic from Artifice if it fails.";
 		next;
 		mes "[Relice]";
-		mes "ถ้าเจ้าเชื่อมั่นในโชคแล้ว, เจ้าเลือกของที่จะออฟเลย!";
+		mes "If you have a ritual for luck, you should use it now!";
 		next;
-		set .@select, select("รอก่อน!:Light of Cure:Seal of Cathedral:Ring of Archbishop:Shoes of Affection:Shoes of Judgement:Shawl of Affection:Shawl of Judgement:Robe of Affection:Robe of Judgement:Bible of Promise 1st Vol:Wand of Affection:Mace of Judgement");
+		set .@select, select("Wait a minute!:Light of Cure:Seal of Cathedral:Ring of Archbishop:Shoes of Affection:Shoes of Judgement:Shawl of Affection:Shawl of Judgement:Robe of Affection:Robe of Judgement:Bible of Promise 1st Vol:Wand of Affection:Mace of Judgement");
 		switch(.@select) {
 		case 1:
 			mes "[Relice]";
-			mes "แน่นอน. ขอให้พบกับแสงสว่าง.";
+			mes "Certainly. Go with the Light.";
 			close;
 		case 2:
 		case 3:
@@ -211,7 +211,7 @@ mora,96,74,5	script	Master of Relics#pa0829	495,{
 		}
 		if (countitem(6380) < 2 || countitem(.@item) == 0) {
 			mes "[Relice]";
-			mes "ต้องใช้ 2 Mora Coins ข้าถึงจะสามารถออฟได้!";
+			mes "For 2 Mora Coins I can strengthen the relic you have in many ways!";
 			close;
 		}
 		specialeffect2 EF_REPAIRWEAPON;
@@ -232,7 +232,7 @@ mora,96,74,5	script	Master of Relics#pa0829	495,{
 			else if (.@i <= 1040) setarray .@enchants[2],.@sp,.@sp; //[sp] [sp]
 			else if (.@i <= 1487) {
 				mes "[Relice]";
-				mes "บางทีมันก็ไม่ได้เป็นไปตามที่เจ้าต้องการนักหรอก. ข้าหวังว่าครั้งหน้ามันจะดีขึ้น. ถ้างั้น, good bye.";
+				mes "Sometimes things just don't work out the way you want. I hope next time things go better for you. Until then, good bye.";
 				close;
 			}
 			break;
@@ -259,7 +259,7 @@ mora,96,74,5	script	Master of Relics#pa0829	495,{
 			else if (.@i <= 1040) setarray .@enchants[1],4767,4767,4767; //Atk3 Atk3 Atk3
 			else if (.@i <= 1487) {
 				mes "[Relice]";
-				mes "บางทีมันก็ไม่ได้เป็นไปตามที่เจ้าต้องการนักหรอก. ข้าหวังว่าครั้งหน้ามันจะดีขึ้น. ถ้างั้น, good bye.";
+				mes "Sometimes things just don't work out the way you want. I hope next time things go better for you. Until then, good bye.";
 				close;
 			}
 			break;
@@ -282,7 +282,7 @@ mora,96,74,5	script	Master of Relics#pa0829	495,{
 			else if (.@i <= 1996) setarray .@enchants[2],4723,4723; //Dexterity4 Dexterity4
 			else if (.@i <= 2852) {
 				mes "[Relice]";
-				mes "บางทีมันก็ไม่ได้เป็นไปตามที่เจ้าต้องการนักหรอก. ข้าหวังว่าครั้งหน้ามันจะดีขึ้น. ถ้างั้น, good bye.";
+				mes "Sometimes things just don't work out the way you want. I hope next time things go better for you. Until then, good bye.";
 				close;
 			}
 			break;
@@ -305,14 +305,14 @@ mora,96,74,5	script	Master of Relics#pa0829	495,{
 			else if (.@i <= 1996) setarray .@enchants[2],4723,4723; //Dexterity4 Dexterity4
 			else if (.@i <= 2852) {
 				mes "[Relice]";
-				mes "บางทีมันก็ไม่ได้เป็นไปตามที่เจ้าต้องการนักหรอก. ข้าหวังว่าครั้งหน้ามันจะดีขึ้น. ถ้างั้น, good bye.";
+				mes "Sometimes things just don't work out the way you want. I hope next time things go better for you. Until then, good bye.";
 				close;
 			}
 			break;
 		}
 		getitem2 .@item,1,1,0,0,0,.@enchants[1],.@enchants[2],.@enchants[3];
 		mes "[Relice]";
-		mes "การออฟประสบความสำเร็จ, เยี่ยมไปเลย!";
+		mes "The strengthening went well, lucky you!";
 		close;
 	}
 }
@@ -321,49 +321,49 @@ mora,96,74,5	script	Master of Relics#pa0829	495,{
 //============================================================
 mora,104,76,4	script	Guardian of Artifacts#p	495,{
 	if (checkweight(1201,1) == 0) {
-		mes "ช่องในกระเป๋ามีไม่พอ. ทิ้งของบางส่วนก่อนแล้วค่อยมาใหม่.";
+		mes "You have too many kinds of things with you to do that. Throw out some of them and try again.";
 		close;
 	}
 	if (MaxWeight - Weight < 1000) {
-		mes "น้ำหนักในกระเป๋าเต็ม. ลดน้ำหนักก่อนแล้วค่อยมาใหม่.";
+		mes "You are carrying too much weight to do that. Reduce the weight and try again.";
 		close;
 	}
 	if (countitem(6380) < 10) {
 		mes "[Guardian of Artifacts]";
-		mes "งานของข้าคือปกป้องของล้ำค่าของ Warlock.";
+		mes "My job is to guard the Warlock's ancient artifacts.";
 		next;
 		mes "[Guardian of Artifacts]";
-		mes "เยี่ยม, มันไม่ได้ยิ่งใหญ่อะไรหรอก. ข้าอาจจะให้เจ้าก็ได้แลกกับ Mora Coins เล็กน้อย.";
+		mes "Well, it's not a big deal actually. I give out artifacts to those who deserve them for the price of a few Mora Coins.";
 		next;
 		mes "[Guardian of Artifacts]";
-		mes "ข้าจะแลกเปลี่ยนกับเจ้าเมื่อเจ้ามี 10 เหรียญหรือมากกว่า. แล้วพบกันใหม่.";
+		mes "You can trade with me when you have 10 or more Coins. See you later.";
 		close;
 	}
 	mes "[Guardian of Artifacts]";
-	mes "ว้าว~ ข้าเห็นว่าเจ้าพร้อมที่จะแลกของ Warlock แล้ว.";
+	mes "Wow~ I see you're ready for the Warlock's Ancient Artifacts.";
 	next;
 	mes "[Guardian of Artifacts]";
-	mes "ข้ามีให้เจ้าเลือก 4 ชนิด:";
-	mes "staffs, orbs, shoes, และ robes.";
+	mes "You can choose from four types of items:";
+	mes "staffs, orbs, shoes, and robes.";
 	next;
 	mes "[Guardian of Artifacts]";
-	mes "แต่ไอเท็มจะเปลี่ยนไปแบบวันต่อวัน, แล้วแต่อารมณ์ของข้า.";
+	mes "There are four options available for each type, but the item available will change day to day, depending on my mood.";
 	next;
 	mes "[Guardian of Artifacts]";
-	mes "เจ้าอยากจะซื้อด้วย Mora Coins ของเจ้าไหม ?";
+	mes "Do you want to buy an artifact with your Mora Coins?";
 	next;
-	if(select("ไว้โอกาสหน้า... ข้ามีสิ่งอื่นที่ต้องทำ.:ใช่, ข้าอยาก.") == 1) {
+	if(select("Maybe later... I have things to do.:Yes, I do.") == 1) {
 		mes "[Guardian of Artifacts]";
-		mes "Okay, แล้วพบกันใหม่.";
+		mes "Okay, see you later then.";
 		close;
 	}
 	mes "[Guardian of Artifacts]";
-	mes "เจ้าจะซื้อของประเภทอะไร ?";
+	mes "What type of item do you want to buy?";
 	next;
-	switch(select("ออก:Shoes:Orbs:Robes:Staves")) {
+	switch(select("Quit:Shoes:Orbs:Robes:Staves")) {
 	case 1:
 		mes "[Guardian of Artifacts]";
-		mes "Okay, แล้วพบกันใหม่.";
+		mes "Okay, see you later then.";
 		close;
  	case 2:
 		setarray .@items[0],2467,2468,2469,2470; //Golden_Rod_Shoes,Aqua_Shoes,Crimson_Shoes,Forest_Shoes
@@ -381,52 +381,52 @@ mora,104,76,4	script	Guardian of Artifacts#p	495,{
 	}
 	if (countitem(6380) < 10) {
 		mes "[Guardian of Artifacts]";
-		mes "กลับมาหาข้าเมื่อเจ้ามีเหรียญมากพอ ?";
+		mes "Would you please come back when you have enough Coins?";
 		close;
 	}
 	set .@item, .@items[rand(getarraysize(.@items))];
 	delitem 6380,10; //Mora_Coin
 	getitem .@item,1;
 	mes "[Guardian of Artifacts]";
-	mes "ข้ามี ^aa00aa"+getitemname(.@item)+"^000000 สำหรับวันนี้. หวังว่า "+((.@plural)?"ของพวกเจ้า":"ของมัน")+" จะมีประโยชน์...";
+	mes "I have ^aa00aa"+getitemname(.@item)+"^000000 available today. I hope "+((.@plural)?"they":"it")+" will come in handy...";
 	close;
 }
 
 mora,99,93,5	script	Artifact Crafter#pa0829	495,{
 	if (checkweight(1201,1) == 0) {
-		mes "ช่องในกระเป๋ามีไม่พอ. ทิ้งของบางส่วนก่อนแล้วค่อยมาใหม่.";
+		mes "You have too many kinds of things with you to do that. Throw out some of them and try again.";
 		close;
 	}
 	if (MaxWeight - Weight < 1000) {
-		mes "น้ำหนักในกระเป๋าเต็ม. ลดน้ำหนักก่อนแล้วค่อยมาใหม่.";
+		mes "You are carrying too much weight to do that. Reduce the weight and try again.";
 		close;
 	}
 	disable_items;
 	mes "[Artifact Crafter]";
-	mes "งานของข้าคือการออฟของ. ถ้าเจ้าพอจะมี Coins เหลือ, เจ้าสามารถนำมันมาออฟของกับข้าได้.";
+	mes "My job is to imbue artifacts with new power. If you have enough Coins, you can have one of the following items reinforced.";
 	next;
-	if(select("ช่วยบอกเพิ่มหน่อย.:ข้าอยากออฟของ.") == 1) {
+	if(select("Tell me more.:I want to have my item reinforced.") == 1) {
 		mes "[Artifact Crafter]";
-		mes "ข้าจะบอกให้ฟัง. ในการออฟหนึ่งครั้งใช้สอง Coins.";
+		mes "Let me explain. One reinforcement costs you two Coins.";
 		next;
 		set .@info_only,1;
 	}
 	mes "[Artifact Crafter]";
-	mes "พวกข้าสามารถรีออฟได้ถ้าเจ้าไม่ชอบออฟที่ได้ไป.";
+	mes "And, I'll work on the item whether it's been already reinforced or not.";
 	next;
 	mes "[Artifact Crafter]";
-	mes "ดังนั้นเมื่อเจ้าอยากจะออฟ, ให้มาหาข้า.";
+	mes "So if you have an artifact reinforced to your liking, put it in a safe place and come back.";
 	next;
 	mes "[Artifact Crafter]";
-	mes "มีอีกหนึ่งสิ่งที่ต้องบอก, ของสวมใส่จะหายไปถ้ามันออฟล้มเหลว.";
+	mes "And another thing, the artifact will be destroyed if the reinforcement fails. Please keep that in mind.";
 	if (.@info_only)
 		close;
 	next;
-	set .@select, select("ไว้โอกาสหน้า.:Golden Rod Staff:Aqua Staff:Crimson Staff:Forest Staff:Golden Rod Shoes:Aqua Shoes:Crimson Shoes:Forest Shoes:Golden Rod Orb:Aqua Orb:Crimson Orb:Forest Orb:Golden Rod Robe:Aqua Robe:Crimson Robe:Forest Robe");
+	set .@select, select("Maybe next time.:Golden Rod Staff:Aqua Staff:Crimson Staff:Forest Staff:Golden Rod Shoes:Aqua Shoes:Crimson Shoes:Forest Shoes:Golden Rod Orb:Aqua Orb:Crimson Orb:Forest Orb:Golden Rod Robe:Aqua Robe:Crimson Robe:Forest Robe");
 	switch(.@select) {
 	case 1:
 		mes "[Artifact Crafter]";
-		mes "แล้วแต่เลย.";
+		mes "As you wish.";
 		close;
 	case 2:
 	case 3:
@@ -460,7 +460,7 @@ mora,99,93,5	script	Artifact Crafter#pa0829	495,{
 	set .@item, .@items[(.@select-2)%4];
 	if (countitem(6380) < 2 || countitem(.@item) == 0) {
 		mes "[Artifact Crafter]";
-		mes "เจ้าไม่มี 2 Mora Coins ไปหามาซะข้าจะได้เริ่มงานสักที.";
+		mes "You have to have 2 Mora Coins and an item to be reinforced before I can do my work.";
 		close;
 	}
 	specialeffect2 EF_REPAIRWEAPON;
@@ -484,7 +484,7 @@ mora,99,93,5	script	Artifact Crafter#pa0829	495,{
 		else if (.@i <= 1992) setarray .@enchants[2],4761,4713; //Matk2 Inteligence4
 		else if (.@i <= 2847) {
 			mes "[Artifact Crafter]";
-			mes "โอ้ม่าย... มันแตก... มันเกิดขึ้นจนได้. หวังว่าครั้งหน้าจะดีกว่านี้.";
+			mes "Oh no... it broke... Well, it happens. Better luck next time.";
 			close;
 		}
 		break;
@@ -511,14 +511,14 @@ mora,99,93,5	script	Artifact Crafter#pa0829	495,{
 		else if (.@i <= 2000) setarray .@enchants[1],4722,4761,4713; //Dexterity3 Matk2 Inteligence4
 		else if (.@i <= 2858) {
 			mes "[Artifact Crafter]";
-			mes "โอ้ม่าย... มันแตก... มันเกิดขึ้นจนได้. หวังว่าครั้งหน้าจะดีกว่านี้.";
+			mes "Oh no... it broke... Well, it happens. Better luck next time.";
 			close;
 		}
 		break;
 	}
 	getitem2 .@item,1,1,0,0,0,.@enchants[1],.@enchants[2],.@enchants[3];
 	mes "[Artifact Crafter]";
-	mes "การออฟประสบความสำเร็จ.";
+	mes "Looks like my effort was successful.";
 	close;
 }
 
@@ -526,43 +526,43 @@ mora,99,93,5	script	Artifact Crafter#pa0829	495,{
 //============================================================
 mora,152,97,5	script	Guardian of Power#pa082	515,{
 	if (checkweight(1201,1) == 0) {
-		mes "ช่องในกระเป๋ามีไม่พอ. ทิ้งของบางส่วนก่อนแล้วค่อยมาใหม่.";
+		mes "Reduce the amount of items that you have in your inventory before continuing.";
 		close;
 	}
 	if (MaxWeight - Weight < 1000) {
-		mes "น้ำหนักในกระเป๋าเต็ม. ลดน้ำหนักก่อนแล้วค่อยมาใหม่.";
+		mes "You are carrying too much in your inventory.";
 		close;
 	}
 	if (countitem(6380) < 10) {
 		mes "[Guardian of Power]";
-		mes "ข้ามีของ Rune Knights, Guillotine Crosses, และ Rangers มันจะช่วยเจ้าในการทำภารกิจ.";
+		mes "I give Rune Knights, Guillotine Crosses, and Rangers ancient artifacts to help them carry out their missions.";
 		next;
 		mes "[Guardian of Power]";
-		mes "เหล่าผู้พิทักษ์จะให้ Mora Village coins แก่เจ้าเอาไว้ใช้แลกเปลี่ยน.";
+		mes "There are guardians that give Mora Village coins which you can use to exchange for these artifacts.";
 		next;
 		mes "[Guardian of Power]";
-		mes "ถ้าเจ้ามี Mora coins 10 หรือมากกว่า , ข้าถึงจะทำการแลกของกับเจ้า.";
+		mes "If you collect 10 or more Mora coins, then I can trade them for the artifacts.";
 		close;
 	}
 	mes "[Guardian of Power]";
-	mes "ข้าคิดว่าเจ้าพร้อมที่จะแลกเปลี่ยนแล้วน่ะ.";
+	mes "I think that you're ready to receive the ancient artifacts.";
 	next;
 	mes "[Guardian of Power]";
-	mes "จงเลือกให้เหมาะกับอาชีพพื้นฐานของเจ้า.";
+	mes "Based on what class you specify, there are various artifacts available.";
 	next;
 	mes "[Guardian of Power]";
-	mes "^ff0000เพราะว่ามันไม่ได้หามาง่ายๆ^000000. ดังนั้นเจ้าจะเลือกของอาชีพอะไร ?";
+	mes "^ff0000Choose carefully because these artifacts aren't easy to come by^000000. So what class do you want it for?";
 	next;
 	setarray .@jobs$[0],"Rune Knight","Guillotine Cross","Ranger";
-	set .@job, select("ยกเลิก:Rune Knight:Guillotine Cross:Ranger")-2;
+	set .@job, select("Cancel:Rune Knight:Guillotine Cross:Ranger")-2;
 	if (.@job == -1) {
 		mes "[Guardian of Power]";
-		mes "ไว้คุยกันคราวหลัง.";
+		mes "Talk to me later then.";
 		close;
 	}
 	mes "[Guardian of Power]";
 	mes .@jobs$[.@job]+"?";
-	mes "ของที่เจ้าต้องการคือชิ้นไหน ?";
+	mes "Which artifact do you want?";
 	next;
 	switch(.@job) {
 	case 0: // Rune Knight
@@ -580,51 +580,51 @@ mora,152,97,5	script	Guardian of Power#pa082	515,{
 	}
 	if (.@i == -1) {
 		mes "[Guardian of Power]";
-		mes "ไว้คุยกันคราวหลัง.";
+		mes "Talk to me later then.";
 		close;
 	}
 	if (countitem(6380) < 10) {
 		mes "[Guardian of Power]";
-		mes "ข้าบอกเจ้าเกี่ยวกับจำนวน Mora Coins แล้วใช่ไหม ?";
+		mes "Didn't I tell you to bring the correct amount of Mora Coins?";
 		close;
 	}
 	delitem 6380,10; //Mora_Coin
 	getitem .@items[.@i],1;
 	mes "[Guardian of Power]";
-	mes "ขอบคุณสำหรับ 10 Mora Coins. เอาของเจ้าไป "+.@jobs$[.@job]+" . กลับมาหาข้าเมื่อเจ้ามี Mora Coins เยอะๆ.";
+	mes "Thank you for the 10 Mora Coins. Here is your artifact for the "+.@jobs$[.@job]+" job. Come back whenever you get more Mora Coins.";
 	close;
 }
 
 mora,148,98,3	script	Artifact Researcher#new	521,{
 	if (checkweight(1201,1) == 0) {
-		mes "ช่องในกระเป๋ามีไม่พอ. ทิ้งของบางส่วนก่อนแล้วค่อยมาใหม่.";
+		mes "Reduce the amount of items that you have in your inventory before continuing.";
 		close;
 	}
 	if (MaxWeight - Weight < 1000) {
-		mes "น้ำหนักในกระเป๋าเต็ม. ลดน้ำหนักก่อนแล้วค่อยมาใหม่.";
+		mes "You are carrying too much in your inventory.";
 		close;
 	}
 	disable_items;
 	mes "[Artifact Researcher]";
-	mes "ยินดีที่ได้รู้จัก.";
-	mes "ข้าอาศัยอยู่ในโมราเพื่อศึกษาชิ้นส่วนและสมบัติโบราณ. เมื่อมีการค้นพบใหม่ๆมันทำให้ข้าตื่นเต้น.";
+	mes "Nice to meet you.";
+	mes "I'm here in Mora studying ancient relics and artifacts. The new discoveries of Adventurers has made this village very exciting for me.";
 	next;
-	switch(select("บอกมากกว่านี้ที...:ออฟของให้ข้าที.:ลบออฟออก.")) {
+	switch(select("Tell me more...:Give abilities to artifacts.:Reset Enhanced abilities.")) {
 	case 1:
 		mes "[Artifact Researcher]";
-		mes "มันเป็นสิ่งใหม่ที่ถูกค้นพบในเมืองโมรานี้, เจ้าเคยได้ยินข่าวลือหรือไม่ ?";
+		mes "New artifacts have been found here in Mora village, haven't you heard the news?";
 		next;
 		mes "[Artifact Researcher]";
-		mes "ถ้าเจ้ามีของสวมใส่พิเศษนี้, มันสามารถปลุกพลังขึ้นมาได้.";
+		mes "If you come across any of these artifacts, there are hidden powers that can be extracted from them.";
 		next;
 		mes "[Artifact Researcher]";
-		mes "เพียงแค่เจ้าจ่าย Mora Coins แก่ข้า ข้าจะออฟของให้เจ้าทันที...";
+		mes "I'm going to continue my research for these artifacts. We researchers are taking Mora Coins as payment for our services...";
 		next;
 		mes "[Artifact Researcher]";
-		mes "ข้ามีบริการพิเศษในการลบออฟออกใช้แค่เงิน 100,000 zeny และ 1 Mora Coin เท่านั้น.";
+		mes "I'm offering my services to give abilities to the artifacts for 100,000 zeny and 1 Mora Coin.";
 		next;
 		mes "[Artifact Researcher]";
-		mes "ในส่วนของการลบออฟนั้นของจะไม่มีวันเสียหาย.";
+		mes "The best part of my service is that any enhancements that you have in these artifacts will not be harmed.";
 		close;
 	case 2:
 		set @mora_enchant_select,1;
@@ -635,23 +635,23 @@ mora,148,98,3	script	Artifact Researcher#new	521,{
 	}
 	if (Zeny < 100000 || countitem(6380) == 0) {
 		mes "[Artifact Researcher]";
-		mes "การลบออฟนั้นเจ้าต้องจ่าย 100,000 zeny และ 1 Mora Coin. เข้าใจไหม ?";
+		mes "I'm not giving these services out for free pal. 100,000 zeny and 1 Mora Coin. Is that too much to ask?";
 		close;
 	}
 	mes "[Artifact Researcher]";
-	mes "Ok, เหมือนเจ้าจะพร้อมแล้ว ? ก่อนที่จะออฟ, ดูให้แน่ใจก่อนว่าเจ้าได้ใส่มันมาด้วย ?";
+	mes "Ok, so are you ready? Before I start working on this, what kind of equipment did you want me to enhance?";
 	next;
-	set .@i, select("ข้าไม่ได้ใส่มันมา:1. Weapon:2. Shoes:3. Garment:4. Armor:5. Accessory")-2;
+	set .@i, select("I'm not wearing the equipment:1. Weapon:2. Shoes:3. Garment:4. Armor:5. Accessory")-2;
 	if (.@i == -1) {
 		mes "[Artifact Researcher]";
-		mes "ไปใส่มาให้เรียบร้อย.";
+		mes "Make sure you're wearing the equipment first.";
 		close;
 	}
 	setarray .@parts[0], EQI_HAND_R, EQI_SHOES, EQI_GARMENT, EQI_ARMOR, EQI_ACC_L;
 	set .@part, .@parts[.@i];
 	if (!getequipisequiped(.@part)) {
 		mes "[Artifact Researcher]";
-		mes "แน่ใจว่าใส่มันมาถูกต้อง.";
+		mes "Make sure you're wearing the equipment first.";
 		close;
 	}
 	set .@equip_id, getequipid(.@part);
@@ -714,7 +714,7 @@ mora,148,98,3	script	Artifact Researcher#new	521,{
 	}
 	mes "[Artifact Researcher]";
 	mes "^990099"+getequipname(.@part)+"^000000??";
-	mes "ข้าพร้อมที่จะออฟแล้ว...";
+	mes "I really want to study this equipment...";
 	set @mora_equip_part,0;
 	close;
 
@@ -736,12 +736,12 @@ L_Socket:
 		if (.@equip_refine >= 9 && .@bonus_enchant > 0) {
 			if (.@enchant_type < 1 || .@enchant_type > 11 || .@bonus_enchant > 11) {
 				mes "[Artifact Researcher]";
-				mes "อืม-มมม บางอย่างมันผิดพลาด.";
+				mes "Mm-hmm something is wrong.";
 				close;
 			}
 			setarray .@enchant_type$[1],"ATK Type","Critical Type","Evasion Type","Healer Type","Spell Ability 1","Assist Ability 1","Assist Ability 2","Strength","Range Type","Physical Type","Spell Ability 2";
 			mes "[Artifact Researcher]";
-			mes "ในกรณีที่ของสวมใส่มีค่าตีบวกที่มาก. เจ้าสามารถได้รับผลประโยชน์จากสิ่งนั้นได้. เจ้าอยากจะออฟค่าไหนล่ะ ?";
+			mes "It's a considerable reinforcement to the equipment. In this case extended enhancements can be granted. Which stat do you want to enhance?";
 			next;
 			switch(select(.@enchant_type$[.@enchant_type],.@enchant_type$[.@bonus_enchant])) {
 			case 1:
@@ -754,27 +754,27 @@ L_Socket:
 		if (.@equip_card[3] == 0 && .@allowed_slot < 4) {
 			set .@slot,4;
 			mes "[Artifact Researcher]";
-			mes "พยายามเสริมความแข็งแกร่ง. ยังอยากทำต่อไหม ?";
+			mes "Attempting to strengthen the ability further. The previous enforcement won't be affected. Do you want to continue?";
 		} else if (.@equip_card[2] == 0 && .@allowed_slot < 3) {
 			set .@slot,3;
 			mes "[Artifact Researcher]";
-			mes "พยายามออฟครั้งที่สอง.";
+			mes "Attempting second enhancement. The previous enforcement won't be affected.";
 			next;
 			mes "[Artifact Researcher]";
-			mes "ข้าว่ามันมีโอกาสล้มเหลวน่ะถ้าพยายามทำต่อ. ยังอยากทำต่อไหม ?";
+			mes "I may have a chance to fail now with this attempt. Do you wish to continue?";
 		} else if (.@equip_card[1] == 0 && .@allowed_slot < 2) {
 			set .@slot,2;
 			mes "[Artifact Researcher]";
-			mes "เริ่มออฟครั้งที่สาม. ข้าจะให้ค่าที่ดีที่สุดในครั้งนี้,แต่จำไว้ ^990000มันมีโอกาสที่ของจะถูกทำลายและออฟก่อนหน้าก็จะหายไปด้วย^000000. ต่อไหม ?";
+			mes "Let's start the third enhancement. I can give the best stats at this stage but remember, ^990000there is now a chance for the artifact to be destroyed and previous enhancements will be erased^000000. Continue?";
 		} else {
 			mes "[Artifact Researcher]";
-			mes "ออฟเต็มแล้ว. เป็นไปไม่ได้ที่จะออฟเพิ่มอีก.";
+			mes "This artifact has been strengthened to the limit. Further enhancement is impossible at its current state.";
 			close;
 		}
 		next;
 		if(select("I'll come back later.:Please continue!") == 1) {
 			mes "[Artifact Researcher]";
-			mes "ถ้าเจ้าเปลี่ยนใจ, ให้กลับมาใหม่.";
+			mes "If you change your mind, please come back.";
 			close;
 		}
 		switch(.@enchant_type) {
@@ -784,7 +784,7 @@ L_Socket:
 			else if (.@slot == 2) set .@i, rand(451,750);
 			else {
 				mes "[Artifact Researcher]";
-				mes "เกิดข้อผิดพลาดบางอย่างขึ้น.";
+				mes "An unknown error has occurred.";
 				close;
 			}
 			     if (.@i < 101) set .@enchant,4700; //Strength1
@@ -811,7 +811,7 @@ L_Socket:
 			else if (.@slot == 2) set .@i, rand(381,750);
 			else {
 				mes "[Artifact Researcher]";
-				mes "เกิดข้อผิดพลาดบางอย่างขึ้น.";
+				mes "An unknown error has occurred.";
 				close;
 			}
 			     if (.@i < 101) set .@enchant,4750; //Luck1
@@ -838,7 +838,7 @@ L_Socket:
 			else if (.@slot == 2) set .@i, rand(451,800);
 			else {
 				mes "[Artifact Researcher]";
-				mes "เกิดข้อผิดพลาดบางอย่างขึ้น.";
+				mes "An unknown error has occurred.";
 				close;
 			}
 			     if (.@i < 101) set .@enchant,4859; //Evasion1
@@ -865,7 +865,7 @@ L_Socket:
 			else if (.@slot == 2) set .@i, rand(301,650);
 			else {
 				mes "[Artifact Researcher]";
-				mes "เกิดข้อผิดพลาดบางอย่างขึ้น.";
+				mes "An unknown error has occurred.";
 				close;
 			}
 			     if (.@i < 101) set .@enchant,4710; //Inteligence1
@@ -892,7 +892,7 @@ L_Socket:
 			else if (.@slot == 2) set .@i, rand(401,766);
 			else {
 				mes "[Artifact Researcher]";
-				mes "เกิดข้อผิดพลาดบางอย่างขึ้น.";
+				mes "An unknown error has occurred.";
 				close;
 			}
 			     if (.@i < 101) set .@enchant,4710; //Inteligence1
@@ -919,7 +919,7 @@ L_Socket:
 			else if (.@slot == 2) set .@i, rand(521,850);
 			else {
 				mes "[Artifact Researcher]";
-				mes "เกิดข้อผิดพลาดบางอย่างขึ้น.";
+				mes "An unknown error has occurred.";
 				close;
 			}
 			     if (.@i < 81)  set .@enchant,4792; //Def6
@@ -946,7 +946,7 @@ L_Socket:
 			else if (.@slot == 2) set .@i, rand(521,850);
 			else {
 				mes "[Artifact Researcher]";
-				mes "เกิดข้อผิดพลาดบางอย่างขึ้น.";
+				mes "An unknown error has occurred.";
 				close;
 			}
 			     if (.@i < 81)  set .@enchant,4792; //Def6
@@ -973,7 +973,7 @@ L_Socket:
 			else if (.@slot == 2) set .@i, rand(451,800);
 			else {
 				mes "[Artifact Researcher]";
-				mes "เกิดข้อผิดพลาดบางอย่างขึ้น.";
+				mes "An unknown error has occurred.";
 				close;
 			}
 			     if (.@i < 101) set .@enchant,4740; //Vitality1
@@ -1000,7 +1000,7 @@ L_Socket:
 			else if (.@slot == 2) set .@i, rand(321,750);
 			else {
 				mes "[Artifact Researcher]";
-				mes "เกิดข้อผิดพลาดบางอย่างขึ้น.";
+				mes "An unknown error has occurred.";
 				close;
 			}
 			     if (.@i < 101) set .@enchant,4750; //Luck1
@@ -1027,7 +1027,7 @@ L_Socket:
 			else if (.@slot == 2) set .@i, rand(601,930);
 			else {
 				mes "[Artifact Researcher]";
-				mes "เกิดข้อผิดพลาดบางอย่างขึ้น.";
+				mes "An unknown error has occurred.";
 				close;
 			}
 			     if (.@i < 101) set .@enchant,4791; //Def3
@@ -1054,7 +1054,7 @@ L_Socket:
 			else if (.@slot == 2) set .@i, rand(401,766);
 			else {
 				mes "[Artifact Researcher]";
-				mes "เกิดข้อผิดพลาดบางอย่างขึ้น.";
+				mes "An unknown error has occurred.";
 				close;
 			}
 			     if (.@i < 101) set .@enchant,4711; //Inteligence2
@@ -1077,7 +1077,7 @@ L_Socket:
 			break;
 		default:
 			mes "[Artifact Researcher]";
-			mes "เยี่ยมข้าเดาว่าข้าทำพลาด...";
+			mes "Well I guess I was wrong...";
 			close;
 		}
 
@@ -1102,12 +1102,12 @@ L_Socket:
 			}
 		} else {
 			mes "[Artifact Researcher]";
-			mes "ข้าคิดว่าออฟเต็มแล้วน่ะ.";
+			mes "I think there was an enhancing limit to the artifacts.";
 			close;
 		}
 		if (Zeny < 100000 || countitem(6380) == 0) {
 			mes "[Artifact Researcher]";
-			mes "ข้าจะไม่ทำให้ถ้าเจ้าไม่จ่ายค่าบริการ.";
+			mes "I'm not going to do the work unless you pay the fee.";
 			close;
 		}
 		delitem 6380,1; //Mora_Coin
@@ -1116,20 +1116,20 @@ L_Socket:
 		if (.@enchant == 9) {
 			specialeffect2 EF_SUI_EXPLOSION;
 			mes "[Artifact Researcher]";
-			mes "นี่มัน !";
- 			mes "ข้า...ข้าขอโทษด้วยมันแตกไปแล้ว.";
+			mes "This!";
+ 			mes "I... I'm sorry but the equipment has been destroyed.";
 			close;
 		}
 		if (.@enchant == 0) {
 			specialeffect2 EF_SHIELDCHARGE;
 			mes "[Artifact Researcher]";
-			mes "พลังมันไม่สมดุล, ทำให้ขั้นตอนสุดท้ายถูกทำลาย. โชคไม่ดีเลย หวังว่าครั้งหน้าจะดีกว่านี้.";
+			mes "Since the balance of power does not match, the given existing ability has been destroyed. It is unfortunate but please try again next time.";
 		} else {
 			specialeffect2 EF_REPAIRWEAPON;
 			mes "[Artifact Researcher]";
 			// Replacing original dialogue since it doesn't make sense.
 			//mes "The artifact ^990000"+.@slot+" will have the first enhancement retained.";
-			mes "การออฟ ^990000"+.@equip_name$+"^000000 ประสบความสำเร็จในช่องที่ "+.@slot+".";
+			mes "I've successfully enhanced the artifact ^990000"+.@equip_name$+"^000000 at socket "+.@slot+".";
 		}
 
 //		GetNonSlotItemSock2 .@equip_refine .@equip_id .@equip_card[0] .@equip_card[1] .@equip_card[2] .@equip_card[3]
@@ -1139,12 +1139,12 @@ L_Socket:
 	} else if (.@select == 2) {
 		if (Zeny < 100000 || countitem(6380) == 0) {
 			mes "[Artifact Researcher]";
-			mes "เจ้าต้องจ่ายค่าบริการด้วย.";
+			mes "You've got to pay if you want the services.";
 			close;
 		}
 		specialeffect2 EF_REPAIRWEAPON;
 		mes "[Artifact Researcher]";
-		mes "ลบออฟเรียบร้อย.";
+		mes "The ability to enhance remains.";
 		delitem 6380,1; //Mora_Coin
 		set Zeny, Zeny-100000;
 
@@ -1169,92 +1169,92 @@ L_Socket:
 //============================================================
 mora,124,82,4	script	Artifact Collector#blan	522,{
 	if (checkweight(1201,1) == 0) {
-		mes "ลดของในกระเป๋าก่อนเพราะที่ว่างไม่พอ.";
+		mes "Reduce the amount of items that you have in your inventory before continuing.";
 		close;
 	}
 	if (MaxWeight - Weight < 1000) {
-		mes "น้ำหนักในกระเป๋าไม่พอ.";
+		mes "You are carrying too much in your inventory.";
 		close;
 	}
 	disable_items;
 	emotion ET_DELIGHT;
-	mes "สิ่งประดิษฐ์โมรานั้นยอดเยี่ยม!";
-	mes "แต่ข้ารู้ว่าเจ้ายังต้องการอันที่ดีกว่านี้!";
+	mes "Those Mora Artifacts look so perfect!";
+	mes "But I know you want them to be even better!";
 	next;
 	mes "[Artifact Collector]";
-	mes "หวัดดีนักผจญภัย. พวกเราอาจจะเป็นเพื่อนสนิทกันก็ได้หลังจากที่ข้าจะบอกกับเจ้าเกี่ยวกับสิ่งประดิษฐ์ Empower!";
+	mes "Greetings Adventurer. We will be great friends in a moment after I tell you how to Empower your Artifacts!";
 	next;
-	switch(select("ทำมันเลย!:สิ่งประดิษฐ์ Empower ?:ไม่อ่ะ, ข้าไม่สน!")) {
+	switch(select("Let's do this!:Empower Artifacts?:Nope, not for me!")) {
 	case 1:
 		break;
 	case 2:
 		emotion ET_OK;
 		mes "[Artifact Collector]";
-		mes "เจ้าเป็นคนที่มีการตัดสินใจที่ดี.";
+		mes "You seem like a pretty good judge of character.";
 		next;
 		mes "[Artifact Collector]";
-		mes "มากกว่า 200 ปีก่อนข้าเคยทำงานเกี่ยวกับสิ่งประดิษฐ์อยู่ในเมืองโมราแห่งนี้. ด้วยความพยายามทำให้ได้สิ่งประดิษฐ์ +9 มา!";
+		mes "For over 200 years I've been working with Artifacts here in Mora. Toiling to get the perfect +9!";
 		next;
-		select("ห๊าาา... +9?!");
+		select("Gulp... +9?!");
 		emotion ET_HUK, playerattached();
 		mes "[Artifact Collector]";
-		mes "ธุรกิจของข้าเกี่ยวกับการรวบรวมของเก่าและตีบวกพวกมัน!";
+		mes "My business is collecting the old relics and refining them to their essence!";
 		next;
 		emotion ET_CRY;
 		mes "[Artifact Collector]";
-		mes "การหาสุุดยอดสิ่งประดิษฐ์คือตลอดชีวิตในการทำงานของข้า.";
-		mes "นอกจากนี้การได้เห็นความมหัศจรรย์ของมรดกในอดีตข้าก็พอใจแล้ว.";
+		mes "Finding the perfect Artifact for me to experiment on is my life's work.";
+		mes "Plus seeing the wonder of our ancestor's legacy is also gratifying.";
 		next;
-		select("ข้าได้เห็นแล้วว่ามันสนุกแค่ไหน.");
+		select("I can see how that could be fun.");
 		emotion ET_GOODBOY;
 		mes "[Artifact Collector]";
-		mes "ขอบใจเจ้าน่ะ เจ้ามนุษย์.";
+		mes "Thank you human.";
 		next;
 		mes "[Artifact Collector]";
-		mes "ข้าทำมานานตลอด 200 ปี, อยู่ๆความต้องการของสิ่งประดิษฐ์ก็หายไป, เหล่านักประดิษฐ์ไม่ต้องการค้าขายกับข้า...";
+		mes "I've been doing this for over 200 years, and honestly the readily available supply is gone, and Artificer and Artifact Crafter won't trade me anymore...";
 		next;
 		emotion ET_THINK;
 		mes "[Artifact Collector]";
-		mes "แต่บางทีมนุษย์ที่เริ่มเข้ามาเยี่ยมเยียนอาจจะเป็นหุ้นส่วนใหม่ก็ได้!";
+		mes "But maybe the Humans that are starting to visit can bring in some new stock!";
 		next;
-		select("มนุษย์... หุ้นส่วน ?");
+		select("Humans... Stock?");
 		emotion ET_QUESTION, playerattached();
 		mes "[Artifact Collector]";
-		mes "ใช่! ถ้ามนุษย์สามารถนำสิ่งประดิษฐ์ใหม่ ๆ มาให้กับข้าได้ก็สามารถทำงานให้สำเร็จได้!";
+		mes "Yes! If the humans can bring me new artifacts I can work on my ultimate achievement!";
 		next;
-		select("ความสำเร็จสูงสุด ?");
+		select("Ultimate Achievement?");
 		emotion ET_QUESTION, playerattached();
 		emotion ET_OK;
 		mes "[Artifact Collector]";
-		mes "ความพยายาม, จะพาพวกเราไปถึงเป้าหมาย...";
+		mes "Patience, we'll get to that...";
 		next;
 		mes "[Artifact Collector]";
-		mes "ข้าเป็นนักเก็บสะสมโดยการค้าขาย แต่ความสำเร็จที่ยิ่งใหญ่ที่สุดของข้าคือการเพิ่มขีดความสามารถของสิ่งประดิษฐ์บางอย่างให้มีพลังมากขึ้น!";
-		mes "ความสามารถที่ยอดเยี่ยมของข้าใช้ได้กับสิ่งประดิษฐ์ไม่กี่ประเภทเท่านั้น.";
+		mes "I am a collector, by trade, but my greatest achievement is empowering some artifacts with greater power!";
+		mes "I have only perfected my ability on a few Artifact types so far.";
 		next;
 		mes "[Artifact Collector]";
-		mes "เจ้าอาจจะเป็นคนที่ช่วยข้าได้.";
+		mes "You might just be the human to help me complete my plan.";
 		next;
 		emotion ET_OTL;
 		mes "[Artifact Collector]";
-		mes "โอ้ บางทีข้าก็ชอบในโชคชะตาที่ทำให้เรามาเจอกัน...";
+		mes "Oh how I love how fate works sometimes...";
 		next;
 		mes "[Artifact Collector]";
-		mes "+1, +2, +3, +4, +5, +6 เป็นค่าตีบวกที่อ่อนแอเกินไปไม่เหมาะกับงานของข้า.";
+		mes "+1, +2, +3, +4, +5, +6 those refinements are not strong enough to work on my craft.";
 		next;
 		emotion ET_OTL;
 		mes "[Artifact Collector]";
-		mes "แต่ +7! +7 เป็นของหายากและมันน่าจะแข็งแรงพอที่จะทำงานให้ลุล่วง.";
+		mes "But +7! +7 is rare and just barely strong enough to work in my crafting attempts.";
 		next;
-		select("ข้าอาจจะโดนปรามาสได้...");
+		select("I'm gonna be abused again...");
 		emotion ET_SCRATCH, playerattached();
 		mes "[Artifact Collector]";
-		mes "ก็ถูกของเจ้า! แต่ข้ารู้มาว่าธรรมชาติของมนุษย์ชอบช่วยเหลือเพื่อน, ข้าไม่ใช่เพื่อนเจ้ารึ...";
+		mes "Right you are! I know it is natural for you Humans to help a friend, even without the friend asking...";
 		next;
-		select("ข้าไม่แน่ใจนัก ถ้า...");
+		select("I'm not sure if...");
 		emotion ET_QUESTION, playerattached();
 		mes "[Artifact Collector]";
-		mes "งั้นเอาตามนี้เจ้ายอมที่จะช่วยข้า!  ตามหา...";
+		mes "Of course I'll accept your help!  Find me...";
 		next;
 		mes "- Golden Rod Staff -";
 		mes "- Aqua Staff -";
@@ -1263,39 +1263,39 @@ mora,124,82,4	script	Artifact Collector#blan	522,{
 		mes "- Staff of Mercy -";
 		mes "- Mace of Judgement -";
 		next;
-		select("มีอีกไหม ?");
+		select("Anything else?");
 		emotion ET_QUESTION, playerattached();
 		mes "[Artifact Collector]";
-		mes "นอกเหนือจากค่าตี +7 ก็ต้องมีออฟชั่นที่เฉพาะเจาะจงมากและต้องอยู่ในสิ่งประดิษฐ์ด้วย.";
+		mes "Well aside from the +7, there are very specific enchantments that need to be on the artifact that help catalyze the process.";
 		next;
 		mes "[Artifact Collector]";
-		mes "ถ้าค่าตี +7 หรือออฟชั่นพิเศษไม่มีมันจะทำให้ข้าทำงานไม่ได้.";
+		mes "If either the +7 or the specific enchantment is missing I can't do it.";
 		next;
-		select("ค่าตีบวกจะยังอยู่ไหม ?");
+		select("So the Refining will be preserved?");
 		emotion ET_HUK, playerattached();
 		emotion ET_FRET;
 		mes "[Artifact Collector]";
-		mes "ไม่, แต่เจ้าจะได้ของที่ดีกว่ากลับไป!";
+		mes "No, but what you'll get back is so much better!";
 		next;
 		mes "[Artifact Collector]";
-		mes "ตอนนี้เจ้ากำลังสงสัยเกี่ยวกับสิ่งประดิษฐ์ที่ข้ากำลังมองหาอยู่หรอ ?";
+		mes "By now you are wondering more about the artifacts I'm looking for?";
 		next;
 		emotion ET_QUESTION;
 		mes "[Artifact Collector]";
-		mes "ไปต่อและถามมาได้เลย!";
+		mes "Go ahead and ask!";
 		next;
 		setarray .@artifacts[0],1657,16013,2007,2008,2009,2010;
 		setarray .@empowered[0],1660,16018,2011,2012,2013,2014;
 		while(1) {
-			set .@i, select("ข้าไม่คิดว่าข้าจะสนใจ:Staff of Mercy:Mace of Judgement:Golden Rod Staff:Aqua Staff:Crimson Staff:Forest Staff")-2;
+			set .@i, select("I don't think I'm interested:Staff of Mercy:Mace of Judgement:Golden Rod Staff:Aqua Staff:Crimson Staff:Forest Staff")-2;
 			if (.@i == -1) {
 				emotion ET_QUESTION;
 				mes "[Artifact Collector]";
-				mes "Ok, วันอื่นเจ้าอาจสนใจก็ได้.";
+				mes "Ok, well maybe someday you will be.";
 				close;
 			}
 			mes "[Artifact Collector]";
-			mes getitemname(.@artifacts[.@i])+" ต้องมีค่าตี +7 หรือสูงกว่า.";
+			mes getitemname(.@artifacts[.@i])+" must of course be refined to +7 or higher for me to distill it to an enchantment.";
 			next;
 			switch(.@i) {
 			case 0:
@@ -1312,27 +1312,27 @@ mora,124,82,4	script	Artifact Collector#blan	522,{
 				break;
 			}
 			mes "[Artifact Collector]";
-			mes "และมันควรมีออฟชั่น: "+.@str$+" อยู่ด้วย.";
+			mes "It must also carry any of these enchantments: "+.@str$+" to be craftable by me.";
 			next;
-			select(getitemname(.@empowered[.@i])+" คุณสมบัติ ?");
+			select(getitemname(.@empowered[.@i])+" attributes?");
 			callsub L_ShowInfo, .@empowered[.@i];
 			mes "[Artifact Collector]";
-			mes "แต่ได้โปรดถ้าเจ้ามีสักหนึ่งอันเอามันมาให้ข้าถือว่าข้าขอร้องเจ้า.";
+			mes "But please if you do get one, please let me work on it, I'm begging you.";
 			next;
 		}
 	case 3:
 		mes "[Artifact Collector]";
-		mes "มันเป็นวันที่ดี. บาย~";
+		mes "Have yourself a great day. Bye~";
 		close;
 	}
 	emotion ET_SPARK;
 	mes "[Artifact Collector]";
-	mes "ให้ข้าดูสิ่งที่เจ้านำมาให้ข้าสิ.";
+	mes "Let me take a look at what you have brought me.";
 	next;
 	if (!getequipisequiped(EQI_HAND_R)) {
 		emotion ET_FRET;
 		mes "[Artifact Collector]";
-		mes "ข้าไม่รู้ว่าเจ้าพยายามจะทำอะไร... เจ้าไม่ได้เอามันมาด้วย.";
+		mes "I don't know what you are trying to do... I can't enhance what you don't have.";
 		close;
 	}
 	set .@equip_id, getequipid(EQI_HAND_R);
@@ -1362,50 +1362,50 @@ mora,124,82,4	script	Artifact Collector#blan	522,{
 	default:
 		emotion ET_FRET;
 		mes "[Artifact Collector]";
-		mes "อาวุธที่เจ้ามีอยู่ไม่ใช่สิ่งประดิษฐ์ที่ข้าต้องการ.";
+		mes "The weapon you have isn't one of the Artifacts I can work with.";
 		close;
 	}
 	if (.@equip_refine < 7) {
 		emotion ET_FRET;
 		mes "[Artifact Collector]";
-		mes "ข้าต้องการอาวุธที่มีค่าตีบวกอย่างน้อย +7!";
+		mes "I must insist that the refine level of the Artifact be at least +7!";
 		close;
 	}
 	if (!.@empowered) {
 		emotion ET_FRET;
 		mes "[Artifact Collector]";
-		mes "ออฟชั่นมันไม่ตรงกับที่ต้องการ ลองไปสุ่มใหม่.";
+		mes "These attributes just won't do for my research process, try re-randoming them.";
 		close;
 	}
 	emotion ET_SEXY;
 	mes "[Artifact Collector]";
-	mes "ข้ารู้สึกเสียวซ่า!";
-	mes "เจ้าได้นำของที่ข้าต้องการมา!!";
+	mes "I'm tingling with excitement!";
+	mes "You've brought me everything I need!!";
 	next;
 	emotion ET_OK;
 	mes "[Artifact Collector]";
-	mes "ถ้าเจ้าพร้อมแล้วข้าจะแสดงให้เห็นว่าข้าทำอะไรกับ +"+getequiprefinerycnt(EQI_HAND_R)+" ได้บ้าง!";
+	mes "If you are ready I am about to show you what I can do with your +" + .@equip_refine + " Artifact!";
 	next;
 	mes "[Artifact Collector]";
-	mes "ข้าจะนำ ^FF0000"+getequipname(EQI_HAND_R)+"^000000 ของเจ้าไปเปลี่ยน, เจ้าพร้อมไหม ?";
+	mes "I'm going to take your ^FF0000"+getequipname(EQI_HAND_R)+"^000000 and exchange it, are you ready?";
 	next;
-	switch(select("ม่ายยยย!:ได้, ข้าพร้อมมานานแล้ว!:อะไรจะเกิดขึ้นหลังจากนั้น?")) {
+	switch(select("NOOO!:Yes, I'm ready!:What will it be after?")) {
 	case 1:
 		emotion ET_FRET;
 		mes "[Artifact Collector]";
-		mes "เจ้าสารเลว... เจ้าให้ความหวังข้า...";
+		mes "You've got to be kidding... you got my hopes up...";
 		close;
 	case 2:
 		break;
 	case 3:
 		callsub L_ShowInfo, .@empowered;
 		mes "[Artifact Collector]";
-		mes "แน่นอนว่ามันไม่มีอะไร ?";
+		mes "Surely you want to go on?";
 		next;
-		if(select("ไม่, ข้าไม่เชื่อ.:ได้, ทำเลย!") == 1) {
+		if(select("No, I don't.:Yes, do it!") == 1) {
 			emotion ET_FRET;
 			mes "[Artifact Collector]";
-			mes "เจ้าสารเลว... เจ้าให้ความหวังข้า...";
+			mes "You've got to be kidding... you got my hopes up...";
 			close;
 		}
 		break;
@@ -1419,7 +1419,7 @@ mora,124,82,4	script	Artifact Collector#blan	522,{
 	delequip EQI_HAND_R;
 	getitem .@empowered,1;
 	mes "[Artifact Collector]";
-	mes "เรียบร้อย, เจ้าดูมีความสุข! ลาก่อนเพื่อนยาก~";
+	mes "It is perfectly done, you will be so happy! Good bye friend~";
 	close;
 
 L_ShowInfo:
@@ -1427,65 +1427,65 @@ L_ShowInfo:
 	mes getitemname(getarg(0));
 	switch(getarg(0)) {
 	case 1660: //Wand_Of_Affection2
-		mes "One handed Staff / โจมตี : 30";
-		mes "น้ำหนัก : 50 / ทุกเพศ";
-		mes "เฉพาะ Archbishop เท่านั้น";
-		mes "อาวุธเลเวล : 4 / ^ff0000ต้องการเลเวล: 130^000000";
+		mes "One handed Staff / Attack : 30";
+		mes "Weight : 50 / Any Sex";
+		mes "Archbishop only";
+		mes "Weapon Level : 4 / ^ff0000Required Level: 130^000000";
 		mes "MATK + 180, INT + 4.";
-		mes "เพิ่มโบนัส Heal 20%.";
-		mes "ถ้าสวมใส่กับ Robes, Shoes, และ Robe of Mercy จะเพิ่มโบนัส Heal อีก 45% และ ลดการใช้ SP ของ 'Heal' ลง 50.";
-		mes "เมื่อได้รับการโจมตีระยะประชิด, มีโอกาสเล็กน้อยที่จะใช้สกิล Lv.1 Silentium.";
-		mes "ลดดีเลย์การใช้สกิลลง 3 วิสำหรับสกิล Clearance, Laudaramus, และ Laudaagnus.";
+		mes "Adds 20% Heal Bonus.";
+		mes "If worn with Robes, Shoes, and Robe of Mercy Increase Heal Bonus by an additional 45% and SP consumption of 'Heal' by 50.";
+		mes "When receives close physical attack, Lv.1 Silentium will be excuted at a certain rate.";
+		mes "Recuces 3 seconds of delay after excuting Clearance, Laudaramus, and Laudaagnus skills.";
 		break;
 	case 16018: //Mace_Of_Judgement2
-		mes "Mace / โจมตี : 170";
-		mes "น้ำหนัก : 120 / ทุกเพศ";
-		mes "เฉพาะ Archbishop เท่านั้น";
-		mes "อาวุธเลเวล : 4 / ^ff0000ต้องการเลเวล: 130^000000";
+		mes "Mace / Attack : 170";
+		mes "Weight : 120 / Any Sex";
+		mes "Archbishop only";
+		mes "Weapon Level : 4 / ^ff0000Required Level: 130^000000";
 		mes "MATK + 180, STR + 2, INT + 2.";
-		mes "เมื่อโจมตีแบบกายภาพและเวทมนต์ มีโอกาสเพิ่มความแรง 40% ต่อมอสเตอร์ประเภท Demon เป็นเวลา 7 วิ.";
-		mes "ถ้าสวมใส่กับ Judgement Golves, Shoes และ Shawl, จะเพิ่มความแรงต่อประเภท Undead ขึ้น 30%.";
-		mes "เพิ่มความแรงของสกิล Adoramus ขึ้น 200%, และเพิ่มการใช้ SP ของสกิล Adoramus ขึ้น 30.";
+		mes "Physical and Magical Attacks have a chance to increase damage by 40% to Demon monsters for 7 seconds.";
+		mes "If worn with Judgement Golves, Shoes and Shawl, increase Damage against Undead by 30%.";
+		mes "Increase damage of Adoramus by 200%, and increase SP cost of Adoramus by 30.";
 		break;
 	case 2011: //Golden_Rod_Staff2
-		mes "Staff / โจมตี: 30";
-		mes "น้ำหนัก : 90 / ทุกเพศ";
-		mes "เฉพาะ Warlock เท่านั้น";
-		mes "อาวุธเลเวล : 4 / ^ff0000ต้องการเลเวล : 130^000000";
+		mes "Staff / Attack: 30";
+		mes "Weight : 90 / Any Sex";
+		mes "Warlock only";
+		mes "Weapon Level : 4 / ^ff0000Required Level : 130^000000";
 		mes "INT + 5, MATK + 270.";
-		mes "เพิ่มความแรงของสกิล Jupitel Thunder ขึ้น 30%.";
-		mes "ถ้าสวมใส่กับ Golden Robe, Golden Shoes, และ Golden Orb จะเพิ่มความแรงเวทธาตุลมขึ้น 60%.";
-		mes "ลดความแรงเวทธาตุดินลง 60% และลดกันธาตุดินลง 50%.";
+		mes "Increase Jupitel Thunder damage by 30%.";
+		mes "If worn with Golden Robe, Golden Shoes, and Golden Orb Increase Wind Magic damage by 60%.";
+		mes "Lower Earth Magic damage by 60% and resistance to Earth by 50%.";
 		break;
 	case 2012: //Aqua_Staff2
-		mes "Staff / โจมตี : 30";
-		mes "น้ำหนัก : 90 / ทุกเพศ";
-		mes "เฉพาะ Warlock เท่านั้น";
-		mes "อาวุธเลเวล : 4 / ^ff0000ต้องการเลเวล: 130^000000";
+		mes "Staff / Attack : 30";
+		mes "Weight : 90 / Any Sex";
+		mes "Warlock only";
+		mes "Weapon Level : 4 / ^ff0000Required Level: 130^000000";
 		mes "INT + 5, MATK + 270.";
-		mes "เพิ่มความแรงของสกิล Cold Bolt และ Frost Diver ขึ้น 30%.";
-		mes "ถ้าสวมใส่กับ Aqua Robe, Shoes, และ Orb จะเพิ่มความแรงเวทธาตุน้ำขึ้น 60%.";
-		mes "ลดความแรงเวทธาตุลมลง 60% และลดกันธาตุลมลง 50%.";
+		mes "Increase Cold Bolt and Frost Diver damage by 30%.";
+		mes "If worn with Aqua Robe, Shoes, and Orb Increase Water Magic damage by 60%.";
+		mes "Lower Wind Magic damage by 60% and resistance to Wind by 50%.";
 		break;
 	case 2013: //Crimson_Staff2
-		mes "Staff / โจมตี : 30";
-		mes "น้ำหนัก : 90 / ทุกเพศ";
-		mes "เฉพาะ Warlock เท่านั้น";
-		mes "อาวุธเลเวล : 4 / ^ff0000ต้องการเลเวล: 130^000000";
+		mes "Staff / Attack : 30";
+		mes "Weight : 90 / Any Sex";
+		mes "Warlock only";
+		mes "Weapon Level : 4 / ^ff0000Required Level: 130^000000";
 		mes "INT + 5, MATK + 270.";
-		mes "เพิ่มความแรงของสกิล Fire Bolt และ Fireball ขึ้น 30%.";
-		mes "ถ้าสวมใส่กับ Crimson Robe, Shoes, และ Orb จะเพิ่มความแรงเวทธาตุไฟขึ้น 60%.";
-		mes "ลดความแรงเวทธาตุน้ำลง 60% และลดกันธาตุน้ำลง 50%.";
+		mes "Increase Fire Bolt and Fireball damage by 30%.";
+		mes "If worn with Crimson Robe, Shoes, and Orb Increase Fire Magic damage by 60%.";
+		mes "Lower Water Magic damage by 60% and resistance to Water by 50%.";
 		break;
 	case 2014: //Forest_Staff2
-		mes "Staff / โจมตี : 30";
-		mes "น้ำหนัก : 90 / ทุกเพศ";
-		mes "เฉพาะ Warlock เท่านั้น";
-		mes "อาวุธเลเวล : 4 / ^ff0000ต้องการเลเวล: 130^000000";
+		mes "Staff / Attack : 30";
+		mes "Weight : 90 / Any Sex";
+		mes "Warlock only";
+		mes "Weapon Level : 4 / ^ff0000Required Level: 130^000000";
 		mes "INT + 5, MATK + 270.";
-		mes "เพิ่มความแรงของสกิล Earth Spike และ Heaven's Drive ขึ้น 30%.";
-		mes "ถ้าสวมใส่กับ Forest Robe, Shoes, และ Orb จะเพิ่มความแรงเวทธาตุดินขึ้น 60%.";
-		mes "ลดความแรงเวทธาตุไฟลง 60% และลดกันธาตุไฟลง 50%.";
+		mes "Increase Earth Spike and Heaven's Drive damage by 30%.";
+		mes "If worn with Forest Robe, Shoes, and Orb Increase Earth Magic damage by 60%.";
+		mes "Lower Fire Magic damage by 60% and resistance to Fire by 50%.";
 		break;
 	}
 	next;
@@ -1531,91 +1531,91 @@ function	script	F_Mora_Enchant	{
 mora,105,176,4	script	Master Tailor#pa0829	509,{
 	disable_items;
 	if (checkweight(1201,1) == 0) {
-		mes "เจ้ามีของเยอะเกินไป. ทิ้งบางอย่างแล้วมาลองใหม่.";
+		mes "You have too many kinds of things with you to do that. Throw out some of them and try again.";
 		close;
 	}
 	if (MaxWeight - Weight < 1000) {
-		mes "เจ้าแบกของมาหนักเกิน. ลดน้ำหนักกระเป๋าแล้วมาลองใหม่.";
+		mes "You are carrying too much weight to do that. Reduce the weight and try again.";
 		close;
 	}
 	if (countitem(6380) < 5 || countitem(15024) < 1) {
 		mes "[Master Tailor]";
-		mes "ด้วยมือของข้า, ข้าสามารถเปลี่ยน army padding เป็นงานศิลปะได้. ข้าคือ Kay ปรมาจารย์ด้านการตัดเย็บ, สร้างผลงานด้วย army paddings.";
+		mes "With my touch, I can turn a typical army padding into a piece of art. I'm Kay the Master Tailor, creating art with army paddings.";
 		next;
 		mes "[Master Tailor]";
-		mes "เยี่ยม, ข้าสามารถเปลี่ยน army padding ของเจ้าเป็นงานศิลปะได้ถ้าเจ้านำ ^ff00005 Mora Coins และ Army Padding^000000 มาให้ข้า.";
+		mes "Well, what's in a name? I can turn your army padding into a piece of art if you bring ^ff00005 Mora Coins and an Army Padding^000000.";
 		if (countitem(6380)) {
 			next;
 			mes "[Master Tailor]";
-			mes "ข้าพอมี army paddings เหลืออยู่. เจ้าอยากได้สักตัวไหม ? ราคาแค่ 1 Mora Coin. ถือว่าถูกมาก.";
+			mes "I happen to have a few army paddings in stock. Would you like to buy one? The price is 1 Mora Coin. So cheap.";
 			next;
-			switch(select("ไว้โอกาสหน้า.:ข้าจะซื้อสักตัว.")) {
+			switch(select("Maybe next time.:I'll buy one now.")) {
 	 		case 1:
 				mes "[Master Tailor]";
-				mes "Okay, ข้าเข้าใจ.";
-				mes "กลับมาหาข้าเมื่อเจ้าเปลี่ยนใจ.";
+				mes "Okay, I understand.";
+				mes "Come back for one if you change your mind.";
 				close;
 			case 2:
 				delitem 6380,1; //Mora_Coin
 				getitem 15024,1; //Army_Padding
 				mes "[Master Tailor]";
-				mes "เอามันไป.";
-				mes "มันนุ่มและใส่สบาย.";
+				mes "Here it is.";
+				mes "It's very nice and fluffy. Please come back.";
 				close;
 			}
 		}
 		close;
 	}
 	mes "[Master Tailor]";
-	mes "เจ้าอยากเพิ่มงานศิลปะบน army paddings ของเจ้าหรอ ?";
+	mes "Have you come to add art to one of your army paddings?";
 	next;
-	switch(select("ขอรายละเอียด.:ใช่, ข้าจะทำ.")) {
+	switch(select("Please tell me more.:Yes, I have.")) {
 	case 1:
 		mes "[Master Tailor]";
-		mes "โดยทั่วไป army padding ให้ความอบอุ่นไม่พอ. ผิวของเจ้าจะรู้สึกหยาบกระด้างและมันยังรู้สึกไม่สบายตัวอีกด้วย.";
+		mes "A typical army padding isn't warm enough. It feels rough on your skin and doesn't look good. And artistic value? It has next to none.";
 		next;
 		mes "[Master Tailor]";
-		mes "อย่างไรก็ตาม, ข้าจะปักด้วยเส้นด้ายกำมะหยี่, และมันจะเพิ่ม 3 options บนตัวมัน.";
+		mes "However, I'll embroider it with velvet threads, and add three options to it.";
 		next;
 		mes "[Master Tailor]";
-		mes "เพียงนำ ^8888005 Mora Coins^000000 และ Army Padding มา, แล้วพวกเราจะทำงานศิลปะด้วยกัน!";
+		mes "Bring me ^8888005 Mora Coins^000000 and an Army Padding, and we can add some art together!";
 		close;
 	case 2:
 		mes "[Master Tailor]";
-		mes "ข้าจะบอกกับเจ้าว่า - ข้าจะทำ army padding ให้เจ้า, ไม่ว่ามันจะเป็นของใหม่หรือเคยซ่อมแซมมาก่อน.";
+		mes "I'm telling you just in case - I'll do whatever I need to do with your army padding, whether it's brand-new or has been mended before.";
 		next;
 		mes "[Master Tailor]";
-		mes "ดังนั้นถ้าเจ้ามี army padding ที่เป็นตัวโปรด, เก็บมันไว้ในที่ปลอดภัยแล้วค่อยกลับมาใหม่.";
+		mes "So if you have with you an army padding mended to your liking, put it in a safe place and come back.";
 		next;
 		mes "[Master Tailor]";
-		mes "และสิ่งอื่นๆ - ถ้าข้าพลาดขึ้นมา, มันจะใช้ไม่ได้อีก... เจ้าต้องซื้อตัวใหม่.";
+		mes "And another thing - once I fail to add art to it, it becomes unusable... you'll need to buy a new one in that case.";
 		next;
-		switch(select("เข้ามา, รึว่าป๊อด ?:Okay! ทำมันเลย!!")) {
+		switch(select("Come on, what's the rush?:Okay! Let's do it!!")) {
 		case 1:
 			mes "[Master Tailor]";
-			mes "เจ้าเป็นอะไรมากเปล่า ?";
-			mes "ข้ายุ่งพออยู่แล้ว.";
+			mes "What's wrong with you?";
+			mes "The villagers keep me busy enough.";
 			close;
 		case 2:
 			if (countitem(6380) < 5 || countitem(15024) == 0) {
 				mes "[Master Tailor]";
-				mes "มันดูเหมือนเจ้าไม่มีสิ่งที่ข้าต้องการน่ะ.";
+				mes "It looks like you don't have everything you need.";
 				next;
 				mes "[Master Tailor]";
-				mes "เจ้าต้องมี 5 Mora Coins และ Army Padding มาให้ข้า.";
+				mes "You have to have 5 Mora Coins and an Army Padding with you before I can do my work.";
 				close;
 			}
 			if (callfunc("F_Mora_Enchant",15024) == 0) {
 				mes "[Master Tailor]";
-				mes "โอ้......";
-				mes "ข้าไม่อยากจะเชื่อเลย.";
+				mes "Oh......";
+				mes "I can't believe I messed up.";
 				next;
 				mes "[Master Tailor]";
-				mes "ข้าอยากอยู่คนเดียว. ไปให้พ้นซะ!";
+				mes "I want to be alone. Go away!";
 				close;
 			}
 			mes "[Master Tailor]";
-			mes "ผลงานข้ายอดเยี่ยมไปเลย.";
+			mes "My art looks great.";
 			close;
 		}
 	}
@@ -1624,69 +1624,69 @@ mora,105,176,4	script	Master Tailor#pa0829	509,{
 mora,123,177,6	script	Pendant Crafter#pa0829	509,{
 	disable_items;
 	if (checkweight(1201,1) == 0) {
-		mes "เจ้ามีของเยอะเกินไป. ทิ้งบางอย่างแล้วมาลองใหม่.";
+		mes "You have too many kinds of things with you to do that. Throw out some of them and try again.";
 		close;
 	}
 	if (MaxWeight - Weight < 1000) {
-		mes "เจ้าแบกของมาหนักเกิน. ลดน้ำหนักกระเป๋าแล้วมาลองใหม่.";
+		mes "You are carrying too much weight to do that. Reduce the weight and try again.";
 		close;
 	}
 	if (countitem(6380) < 5 || countitem(2858) == 0) {
 		mes "[Pendant Crafter]";
-		mes "งานของข้าคือการขัดหินใน Guardian's Pendant, และลงอักขระพิเศษบนตัวมัน.";
+		mes "My job is to polish the stone in a Guardian's Pendant, and then carve a symbol with special power on it.";
 		next;
 		mes "[Pendant Crafter]";
-		mes "มันจะทำให้ Guardian's Pendant มีพลังมากกว่าประดับทั่วไป.";
+		mes "The process gives the Guardian's Pendant more power than an ordinary accessory.";
 		next;
 		mes "[Pendant Crafter]";
-		mes "ถ้าเจ้าสนใจ, ข้าทำให้เจ้าได้แค่มี ^ff00005 Mora Coins^000000. และก็ Guardian's Pendant มาให้ข้า.";
+		mes "If you're interested, I can work on your pendant for ^ff00005 Mora Coins^000000. Of course you need to have a Guardian's Pendant so I can work on with you.";
 		close;
 	}
 	mes "[Pendant Crafter]";
-	mes "เจ้ามาเพื่ออัพเกรด Guardian's Pendant ใช่ไหม ?";
+	mes "Have you come to have your Guardian's Pendant upgraded?";
 	next;
-	switch(select("ขอรายละเอียด.:ใช่แล้ว.")) {
+	switch(select("Please tell me more.:Yes, I have.")) {
 	case 1:
 		mes "[Pendant Crafter]";
-		mes "งานของข้าคือการขัดหินใน Guardian's Pendant, และลงอักขระพิเศษบนตัวมัน.";
+		mes "My job is to polish the stone in a Guardian's Pendant, and then carve a symbol with special power on it.";
 		next;
 		mes "[Pendant Crafter]";
-		mes "มันจะทำให้ Guardian's Pendant มีพลังมากกว่าประดับทั่วไป.";
+		mes "The process gives the Guardian's Pendant more power than an ordinary accessory.";
 		next;
 		mes "[Pendant Crafter]";
-		mes "ถ้าเจ้าสนใจ, ข้าทำให้เจ้าได้แค่มี ^ff00005 Mora Coins^000000. และก็ Guardian's Pendant มาให้ข้า.";
+		mes "If you're interested, I can work on your pendant for ^ff00005 Mora Coins^000000. Of course you need to have a Guardian's Pendant so I can work on with you.";
 		close;
 	case 2:
 		mes "[Pendant Crafter]";
-		mes "ข้าจะบอกกับเจ้าว่า - ";
-		mes "ถ้าข้าทำการอัพเกรด Guardian's Pendant ให้เจ้า, พลังก่อนหน้านั้นจะหายไป.";
+		mes "I'm telling you just in case - ";
+		mes "If I work on a Guardian's Pendant that's been upgraded before, it loses its original power.";
 		next;
 		mes "[Pendant Crafter]";
-		mes "และที่แย่สุด, มันจะสูญเสียพลังและกลับเป็นประดับธรรมดา. แน่นอนว่า, เจ้าจะไม่สูญเสียประดับไป.";
+		mes "And worse, it can lose its power and become an ordinary pendant. Of course, stone is not as susceptible to damage as cloth, so you won't lose the pendant itself.";
 		next;
-		switch(select("เข้ามา, รึว่าป๊อด ?:Okay! ทำมันเลย!!")) {
+		switch(select("Come on, what's the rush?:Okay! Let's do it!!")) {
 		case 1:
 			mes "[Pendant Crafter]";
-			mes "มาใหม่เมื่อเจ้าหายหัวร้อน. ข้าไม่มีเวลาว่างพอหรอกน่ะ.";
+			mes "Come back when you're not in a hurry. I always have a lot of time on my hands.";
 			close;
 		case 2:
 			if (countitem(6380) < 5 || countitem(2858) == 0) {
 				mes "[Pendant Crafter]";
-				mes "มันดูเหมือนเจ้าไม่มีสิ่งที่ข้าต้องการน่ะ.";
+				mes "It looks like you don't have everything you need.";
 				next;
 				mes "[Pendant Crafter]";
-				mes "เจ้าต้องมี 5 Mora Coins และ Guardian's Pendant มาให้ข้า.";
+				mes "You must have 5 Mora Coins and a Guardian's Pendant with you before I can do my work.";
 				close;
 			}
 			if (callfunc("F_Mora_Enchant",2858) == 0) {
 				getitem 2858,1; //Pendant_Of_Guardian
 				mes "[Pendant Crafter]";
-				mes "อะไร~!!";
-				mes "มันเกิดขึ้นได้อย่างไร!!";
+				mes "What~!!";
+				mes "What on earth is wrong with it!!";
 				close;
 			}
 			mes "[Pendant Crafter]";
-			mes "ดูเหมือนว่าข้าจะทำได้!";
+			mes "Looks like I did it!";
 			close;
 		}
 	}
@@ -1695,86 +1695,86 @@ mora,123,177,6	script	Pendant Crafter#pa0829	509,{
 mora,134,166,4	script	Bulberry Westhood#pa0829	509,{
 	disable_items;
 	if (checkweight(1201,1) == 0) {
-		mes "เจ้ามีของเยอะเกินไป. ทิ้งบางอย่างแล้วมาลองใหม่.";
+		mes "You have too many kinds of things with you to do that. Throw out some of them and try again.";
 		close;
 	}
 	if (MaxWeight - Weight < 1000) {
-		mes "เจ้าแบกของมาหนักเกิน. ลดน้ำหนักกระเป๋าแล้วมาลองใหม่.";
+		mes "You are carrying too much weight to do that. Reduce the weight and try again.";
 		close;
 	}
 	if (countitem(6380) < 5 || countitem(2568) == 0) {
 		mes "[Bulberry Westhood]";
-		mes "ข้าคือ Bulberry Westhood, การเก็บรักษาผ้าคลุมจะทำให้ใช้ได้นานขึ้น.";
+		mes "I'm Bulberry Westhood, keeping the tradition of quality hoods alive.";
 		next;
 		mes "[Bulberry Westhood]";
-		mes "ข้าทำเป็นแต่ของชั้นเลิศเท่านั้น - ไม่ใช่ของทั่วไปที่หาได้จากตลาด.";
+		mes "I only handle quality items - not random scarfs from a marketplace.";
 		next;
 		mes "[Bulberry Westhood]";
-		mes "ถ้าเจ้ามีแต่ไม่รู้ว่าดีแล้วรึยัง, มาหาข้าพร้อมกับ ^ff00005 Mora Coins^000000.";
+		mes "If you have anything that you think is of high enough quality, come find me with ^ff00005 Mora Coins^000000.";
 		next;
 		mes "[Bulberry Westhood]";
-		mes "ข้าจะทำให้เป็นของชั้นเลิศด้วยมือข้าเอง.";
+		mes "I can improve its high quality with my own hands.";
 		close;
 	}
 	mes "[Bulberry Westhood]";
-	mes "ถ้าเจ้ามี Loki's Scarf 1042 Special Edition มาด้วย. ข้าจะได้เริ่มทำมันทันที ?";
+	mes "So you have a Loki's Scarf 1042 Special Edition. You really have an eye for quality. Can I start working on it right away?";
 	next;
-	switch(select("ข้าไม่ได้เอามันมาด้วย.:ได้, เริ่มเลย.")) {
+	switch(select("I don't get it.:Yes, please.")) {
 	case 1:
 		mes "[Bulberry Westhood]";
-		mes "ข้าบอกว่า, ข้าทำเป็นแต่ของชั้นเลิศเท่านั้น - ไม่ใช่ของทั่วไปที่หาได้จากตลาด.";
+		mes "Like I said, I only handle quality items - not random scarfs from a marketplace.";
 		next;
 		mes "[Bulberry Westhood]";
-		mes "Loki's Scarf นั้น. มันเป็นของ limited edition ที่สร้างโดย Loki เท่านั้น!";
+		mes "This Loki's Scarf you have is awesome. It's a limited edition product with Loki's crest on it!";
 		next;
 		mes "[Bulberry Westhood]";
-		mes "ข้าจะปลุกพลังที่ซ่อนอยู่โดยจ่ายแค่... ";
+		mes "My specialty is bringing out the hidden power at the small cost of... ";
 		mes "5 Mora Coins.";
 		next;
 		mes "[Bulberry Westhood]";
-		mes "กลับมาหาข้าเมื่อเจ้าเปลี่ยนใจ.";
+		mes "Come back if you change your mind.";
 		close;
 	case 2:
 		mes "[Bulberry Westhood]";
-		mes "ข้าจะบอกกับเจ้าว่า - ";
-		mes "ถ้าข้าทำการอัพเกรด Loki's Scarf ให้เจ้า, พลังก่อนหน้านั้นจะหายไป.";
+		mes "I'm telling you just in case - ";
+		mes "If I work on a Loki's Scarf that's been upgraded before, it loses its original power.";
 		next;
 		mes "[Bulberry Westhood]";
-		mes "และที่แย่สุด, มันจะสูญเสียพลังและกลับเป็นผ้าคลุมธรรมดา.";
+		mes "And worse, it can lose all its power becoming an ordinary scarf.";
 		next;
 		mes "[Bulberry Westhood]";
-		mes "แน่นอนว่า, Loki's Scarf เป็นของชั้นเลิศ, เจ้าจะไม่สูญเสียมันไป.";
+		mes "Of course, the Loki's Scarf is a quality item, so you won't lose the scarf itself in the process.";
 		next;
-		switch(select("ไว้โอกาสหน้า...:ข้าอยากจะทำ!")) {
+		switch(select("Maybe later, sir...:I'd like to own a quality item!")) {
 		case 1:
 			mes "[Bulberry Westhood]";
-			mes "ห๊า...!";
-			mes "เจ้าพูดว่า 'โอกาสหน้า' ทั้งๆที่มีของดีอยู่ในมือ ? เยี่ยม, แล้วแต่เจ้า.";
+			mes "Ha...!";
+			mes "You say 'later' when you can have the best quality item right away? Well, have it your own way.";
 			close;
 		case 2:
 			if (countitem(6380) < 5 || countitem(2568) == 0) {
 				mes "[Bulberry Westhood]";
-				mes "มันดูเหมือนเจ้าไม่มีสิ่งที่ข้าต้องการน่ะ.";
+				mes "It looks like you don't everything you need.";
 				next;
 				mes "[Bulberry Westhood]";
-				mes "เจ้าต้องมี 5 Mora Coins และ Loki's Scarf มาให้ข้า.";
+				mes "You must have 5 Mora Coins and a Loki's Scarf with you before you can have the best quality item.";
 				close;
 			}
 			if (callfunc("F_Mora_Enchant",2568) == 0) {
 				getitem 2568,1; //Muffler_Of_Roki
 				mes "[Bulberry Westhood]";
-				mes "อ้ากกกกก, เป็นไปไม่ได้!";
-				mes "ของข้า! Loki's Scarf ของข้า!....";
+				mes "Aaarrgghh, this is impossible!";
+				mes "My! My Loki's Scarf!....";
 				next;
 				mes "[Bulberry Westhood]";
-				mes "โอ้, ข้าขอโทษมันติดเป็นนิสัยไปแล้ว. ที่ข้าจะเศร้าไปด้วย.";
+				mes "Oh, I apologize for my disgraceful behavior. I was too upset.";
 				next;
 				mes "[Bulberry Westhood]";
-				mes "โชคยังดี, มันแค่กลับไปเป็นแบบเดิมก่อนที่ข้าจะทำ. ไม่มีอะไรเสียหาย. สภาพยังดีอยู่. โห โห้ โห้~";
+				mes "Fortunately, it's still in its original state before I started working on it. It's not torn or stretched. It's a quality item after all. Oh ho ho~";
 				close;
 			}
 			mes "[Bulberry Westhood]";
-			mes "ว้าว~ ภารกิจสำเร็จ!";
+			mes "Wow~ mission complete!";
 			close;
 		}
 	}

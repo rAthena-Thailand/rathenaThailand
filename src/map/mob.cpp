@@ -1443,7 +1443,7 @@ static int mob_ai_sub_hard_slavemob(struct mob_data *md,t_tick tick)
 
 	bl=map_id2bl(md->master_id);
 
-	if (!bl || status_isdead(bl)) {
+	if (!bl || status_isdead(*bl)) {
 		status_kill(&md->bl);
 		return 1;
 	}
@@ -1934,7 +1934,7 @@ static bool mob_ai_sub_hard(struct mob_data *md, t_tick tick)
 
 		if (pcdb_checkid(md->vd->class_))
 		{	//Give them walk act/delay to properly mimic players. [Skotlex]
-			clif_takeitem(&md->bl,tbl);
+			clif_takeitem(md->bl,*tbl);
 			md->ud.canact_tick = tick + md->status.amotion;
 			unit_set_walkdelay(&md->bl, tick, md->status.amotion, 1);
 		}
@@ -3012,6 +3012,7 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 			mapdrops = map_drop_db.find( map[md->bl.m].instance_src_map );
 		else if( !on_instance && !map_getmapflag( md->bl.m, MF_NOMAPDROPS ) )
 			mapdrops = map_drop_db.find( md->bl.m );
+		
 		for (i = 0; i < map_drop_run; i++){
 			if(i)
 			{
@@ -3019,11 +3020,10 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 				{
 					if( map_getmapflag( md->bl.m, MF_MAPDROPS) )
 						mapdrops = anymapdrops;
- 				}
+				}
 				else if( !map_getmapflag(md->bl.m, MF_NOMAPDROPS) )
 					mapdrops = anymapdrops;
 			}
-		}
 
 			if( mapdrops != nullptr ){
 				// Process map wide drops
@@ -3048,7 +3048,8 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 						{
 							// 'Cheat' for autoloot command: rate is changed from n/100000 to n/10000
 							int32 map_drops_rate = max(1, (it.second->rate / 10));
-							mob_item_drop( md, dlist, mob_setdropitem( it.second.get(), 1, md->mob_id ), 0, map_drops_rate, (homkillonly || merckillonly) );
+							std::shared_ptr<s_item_drop> ditem = mob_setdropitem(*it.second, 1, md->mob_id);
+							mob_item_drop( md, dlist, ditem, 0, map_drops_rate, homkillonly || merckillonly );
 						}
 					}
 				}
@@ -3078,7 +3079,8 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 							{
 								// 'Cheat' for autoloot command: rate is changed from n/100000 to n/10000
 								int32 map_drops_rate = max(1, (it.second->rate / 10));
-								mob_item_drop( md, dlist, mob_setdropitem( it.second.get(), 1, md->mob_id ), 0, map_drops_rate, (homkillonly || merckillonly) );
+								std::shared_ptr<s_item_drop> ditem = mob_setdropitem(*it.second, 1, md->mob_id);
+								mob_item_drop( md, dlist, ditem, 0, map_drops_rate, homkillonly || merckillonly );
 							}
 						}
 					}
@@ -4763,7 +4765,7 @@ uint64 MobDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		if (!this->asUInt16(node, "Str", stat))
 			return 0;
 
-		mob->status.str = max(1, stat);
+		mob->status.str = max(0, stat);
 	}
 
 	if (this->nodeExists(node, "Agi")) {
@@ -4772,7 +4774,7 @@ uint64 MobDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		if (!this->asUInt16(node, "Agi", stat))
 			return 0;
 
-		mob->status.agi = max(1, stat);
+		mob->status.agi = max(0, stat);
 	}
 
 	if (this->nodeExists(node, "Vit")) {
@@ -4781,7 +4783,7 @@ uint64 MobDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		if (!this->asUInt16(node, "Vit", stat))
 			return 0;
 
-		mob->status.vit = max(1, stat);
+		mob->status.vit = max(0, stat);
 	}
 
 	if (this->nodeExists(node, "Int")) {
@@ -4790,7 +4792,7 @@ uint64 MobDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		if (!this->asUInt16(node, "Int", stat))
 			return 0;
 
-		mob->status.int_ = max(1, stat);
+		mob->status.int_ = max(0, stat);
 	}
 
 	if (this->nodeExists(node, "Dex")) {
@@ -4799,7 +4801,7 @@ uint64 MobDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		if (!this->asUInt16(node, "Dex", stat))
 			return 0;
 
-		mob->status.dex = max(1, stat);
+		mob->status.dex = max(0, stat);
 	}
 
 	if (this->nodeExists(node, "Luk")) {
@@ -4808,7 +4810,7 @@ uint64 MobDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		if (!this->asUInt16(node, "Luk", stat))
 			return 0;
 
-		mob->status.luk = max(1, stat);
+		mob->status.luk = max(0, stat);
 	}
 
 	if (this->nodeExists(node, "AttackRange")) {
@@ -6663,7 +6665,7 @@ bool MapDropDatabase::parseDrop( const ryml::NodeRef& node, std::unordered_map<u
 			drop->randomopt_group = 0;
 		}
 	}
-	
+
 	//Any Map (map_drops) [Hyroshima]
 	if( this->nodeExists( node, "DirectInventory" ) )
 		drop->direct_inventory = 1;

@@ -108,7 +108,7 @@ int chat_createpcchat(map_session_data* sd, const char* title, const char* pass,
 		clif_createchat( *sd, CREATEROOM_SUCCESS );
 		clif_dispchat(cd,0);
 
-		if (status_isdead(&sd->bl))
+		if (status_isdead(sd->bl))
 			achievement_update_objective(sd, AG_CHATTING_DYING, 1, 1);
 		else
 			achievement_update_objective(sd, AG_CHATTING_CREATE, 1, 1);
@@ -276,7 +276,7 @@ int chat_changechatowner(map_session_data* sd, const char* nextownername)
 		return -1;  // name not found
 
 	// erase temporarily
-	clif_clearchat(cd,0);
+	clif_clearchat(*cd);
 
 	// set new owner
 	cd->owner = (struct block_list*) cd->usersd[i];

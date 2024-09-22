@@ -37,7 +37,6 @@
 	packet(0x0084,2);
 	parseable_packet(0x0085,5,clif_parse_WalkToXY,2);
 	parseable_packet(0x0089,7,clif_parse_ActionRequest,2,6);
-	packet(0x008a,29);
 	packet(0x008b,2);
 	parseable_packet(0x008c,-1,clif_parse_GlobalMessage,2,4);
 	packet(0x008d,-1);
@@ -48,7 +47,6 @@
 	parseable_packet(0x0096,-1,clif_parse_WisMessage,2,4,28);
 	parseable_packet(0x0099,-1,clif_parse_Broadcast,2,4);
 	parseable_packet(0x009b,5,clif_parse_ChangeDir,2,4);
-	packet(0x009c,9);
 	packet( HEADER_ZC_ITEM_ENTRY, sizeof( struct PACKET_ZC_ITEM_ENTRY ) );
 	packet(0x009e,17);
 	parseable_packet(0x009f,6,clif_parse_TakeItem,2);
@@ -70,7 +68,6 @@
 	parseable_packet(0x00bf,3,clif_parse_Emotion,2);
 	packet(0x00c0,7);
 	parseable_packet(0x00c1,2,clif_parse_HowManyConnections,0);
-	packet(0x00c2,6);
 	packet(0x00c3,8);
 	parseable_packet(0x00c5,7,clif_parse_NpcBuySellSelected,2,6);
 	packet(0x00c6,-1);
@@ -296,7 +293,6 @@
 	packet(0x01fb,56);
 	packet(0x01fc,-1);
 	parseable_packet( HEADER_CZ_REQ_ITEMREPAIR1, sizeof( struct PACKET_CZ_REQ_ITEMREPAIR1 ), clif_parse_RepairItem, 0 );
-	packet(0x01ff,10);
 	packet(0x0200,26);
 	packet(0x0201,-1);
 	parseable_packet(0x0202,26,clif_parse_FriendsListAdd,2);
@@ -996,11 +992,6 @@
 	packet(0x029b,80);
 #endif
 
-// 2007-11-13aSakexe
-#if PACKETVER >= 20071113
-	packet(0x02e1,33);
-#endif
-
 // 2007-11-20aSakexe
 #if PACKETVER >= 20071120
 	packet(0x02e2,14);
@@ -1377,7 +1368,6 @@
 // 2009-12-01aRagexeRE
 #if PACKETVER >= 20091201
 	packet(0x07fc,10);
-	//packet(0x07ff,-1);
 #endif
 
 // 2009-12-22aRagexeRE
@@ -1726,7 +1716,6 @@
 	parseable_packet(0x0998,8,clif_parse_EquipItem,2,4); // CZ_REQ_WEAR_EQUIP_V5
 	packet(0x099b,8); //maptypeproperty2
 	// New Packets
-	packet(0x08C8,34); // ZC_NOTIFY_ACT3
 	packet(0x08ff,24); // ZC_EFST_SET_ENTER
 	packet(0x0984,28); // ZC_EFST_SET_ENTER2
 	packet(0x099f,22); // ZC_SKILL_ENTRY4

@@ -22,23 +22,23 @@
 
 moc_para01,42,38,3	script	Mission [56 - 70]	857,{
 	if (!callfunc("F_HasEdenGroupMark")) {
-		mes "เพื่อให้ได้ภารกิจเหล่านี้ฉันต้องเข้าร่วมกลุ่ม Eden ก่อนฉันต้องพบ Secretary Lime Evenor และเป็นสมาชิก";
+		mes "To get these missions, I need to Join the Eden Group first. I must find Secretary Lime Evenor and become a member.";
 		close;
 	}
-	mes "นี่คือรายการการผจญภัยต่าง ๆ สำหรับนักผจญภัยระดับ 56 ~ 70";
+	mes "Here is the list of various adventures for level 56~70 adventurers.";
 	next;
-	mes "ภารกิจมากมายเช่นการล่าสัตว์ประหลาด, การส่งมอบสินค้า, การหาคน";
+	mes "Lots of missions such as a Monster Hunting, Delivery Goods, Finding People.";
 	next;
-	switch(select("หมายเลขภารกิจ 1 ~ 5: หมายเลขภารกิจ 6 ~ 10: หมายเลขภารกิจ 11 ~ 15 ")) {
+	switch(select("Mission Numbers 1~5:Mission Numbers 6~10:Mission Numbers 11~15")) {
 	case 1:
-		switch(select("ผ้าพันแผลนี้คืออะไร:ผู้ชี้ขาดที่เป็นอันตราย:นั่นไม่ใช่นางเงือก...:ประเทศของฉันเรียกฉัน!")) {
+		switch(select("What is this Bandage?:Dangerous Alligators.:That wasn't a mermaid...:My country is calling me!")) {
 			case 1: callsub L_HuntingQuest,3250,15000,5000,930,30;
 			case 2: callsub L_HuntingQuest,3251,16000,6000;
 			case 3: callsub L_HuntingQuest,3252,17000,8000;
 			case 4: callsub L_Quest,3254,18000,8000,7043,10,1056,30;
 		}
 	case 2:
-		switch(select("ตามล่าหมูป่า:เตรียมหน้าร้อน:ความแค้นของผู้หญิง:ส่วนผสมพิเศษ:ความเจ็บปวดของอาจารย์หุ่น")) {
+		switch(select("Hunt Wild Boar:Preparing the Summer:A Woman's Grudge:Special ingredients:Puppet Master's Agony")) {
 			case 1: callsub L_HuntingQuest,3255,16000,7000;
 			case 2: callsub L_Quest,3256,15000,5000,918,30;
 			case 3: callsub L_HuntingQuest,3257,17000,8000;
@@ -46,7 +46,7 @@ moc_para01,42,38,3	script	Mission [56 - 70]	857,{
 			case 5: callsub L_HuntingQuest,3259,17000,7000,1060,30;
 		}
 	case 3:
-		switch(select("น่ากลัวแมลงวัน:อันตราย Munak:ทำให้โลกสีเขียว:ไม้เท้าวิเศษ")) {
+		switch(select("Tiresome Flies:Dangerous Munak:Make the World green:Magic Wand")) {
 			case 1: callsub L_HuntingQuest,3260,16000,6000;
 			case 2: callsub L_HuntingQuest,3261,16000,7000;
 			case 3: callsub L_Quest,3262,17000,7000,1032,40;
@@ -60,17 +60,17 @@ L_Quest:
 	if (checkquest(.@quest_id) == -1) {
 		callsub L_Details, .@quest_id;
 		next;
-		mes "คุณต้องการยอมรับภารกิจนี้หรือไม่";
+		mes "Would you like to accept this mission?";
 		next;
-		if(select("ยอมรับภารกิจ: อย่ายอมรับภารกิจ") == 1) {
+		if(select("Accept the mission.:Do not accept the mission.") == 1) {
 			if (BaseLevel < 55 || BaseLevel > 70) {
-				mes "ภารกิจเหล่านี้ไม่เหมาะกับระดับข้าข้าควรมองหาภารกิจอื่น";
+				mes "These missions are not fit for my level. I should look for other missions.";
 				close;
 			}
 			setquest .@quest_id;
-			mes "ฉันยอมรับภารกิจสำเร็จแล้วฉันต้องกลับมาและยืนยันงานของฉันหลังจากเสร็จภารกิจ";
+			mes "I have successfully accepted the mission. I have to come back and confirm my work after I complete the mission.";
 			next;
-			mes "ภารกิจนี้ไม่มีเวลา จำกัด ";
+			mes "This mission doesn't have time limits.";
 		}
 		close;
 	}
@@ -81,21 +81,21 @@ L_Quest:
 			set .@items,2; //complete
 	}
 	if (checkquest(.@quest_id) < 2 && (countitem(getarg(3)) < getarg(4) || .@items == 1)) {
-		mes "คุณมีภารกิจต่อเนื่องคุณต้องการตรวจสอบรายละเอียดหรือไม่";
+		mes "You have an on-going mission. Would you like to check the details?";
 		next;
-		if(select("ตรวจสอบรายละเอียด: ยกเลิก") == 1)
+		if(select("Check the details.:Cancel.") == 1)
 			callsub L_Details, .@quest_id;
 		close;
 	} else {
-		mes "ฉันทำได้ดีมากสำหรับภารกิจฉันควรรายงานตอนนี้หรือไม่";
+		mes "I have done pretty well for the mission. Should I report it now?";
 		next;
-		if(select("รายงานภารกิจ: อย่ารายงานเลย") == 1) {
+		if(select("Report the mission.:Do not report it yet.") == 1) {
 			delitem getarg(3),getarg(4);
 			if (.@items)
 				delitem getarg(5),getarg(6);
 			getexp getarg(1),getarg(2);
 			erasequest .@quest_id;
-			mes "คุณทำภารกิจสำเร็จแล้วรับรางวัล";
+			mes "You have completed the mission. Get rewards.";
 		}
 		close;
 	}
@@ -106,17 +106,17 @@ L_HuntingQuest:
 	if (checkquest(.@quest_id) == -1) {
 		callsub L_Details, .@quest_id;
 		next;
-		mes "คุณต้องการยอมรับภารกิจนี้หรือไม่";
+		mes "Would you like to accept this mission?";
 		next;
-		if(select("ยอมรับภารกิจ: อย่ายอมรับภารกิจ") == 1) {
+		if(select("Accept the mission.:Do not accept the mission.") == 1) {
 			if (BaseLevel < 55 || BaseLevel > 70) {
-				mes "ภารกิจเหล่านี้ไม่เหมาะกับระดับข้าข้าควรมองหาภารกิจอื่น";
+				mes "These missions are not fit for my level. I should look for other missions.";
 				close;
 			}
 			setquest .@quest_id;
-			mes "ฉันยอมรับภารกิจสำเร็จแล้วฉันต้องกลับมาและยืนยันงานของฉันหลังจากเสร็จภารกิจ";
+			mes "I have successfully accepted the mission. I have to come back and confirm my work after I complete the mission.";
 			next;
-			mes "ภารกิจนี้ไม่มีเวลา จำกัด ";
+			mes "This mission doesn't have time limits.";
 		}
 		close;
 	}
@@ -127,20 +127,20 @@ L_HuntingQuest:
 			set .@items,2; //complete
 	}
 	if (checkquest(.@quest_id,HUNTING) < 2 || .@items == 1) {
-		mes "คุณมีภารกิจต่อเนื่องคุณต้องการตรวจสอบรายละเอียดหรือไม่";
+		mes "You have an on-going mission. Would you like to check the details?";
 		next;
-		if(select("ตรวจสอบรายละเอียด: ยกเลิก") == 1)
+		if(select("Check the details.:Cancel.") == 1)
 			callsub L_Details, .@quest_id;
 		close;
 	} else if (checkquest(.@quest_id,HUNTING) == 2) {
-		mes "ฉันทำได้ดีมากสำหรับภารกิจฉันควรรายงานตอนนี้หรือไม่";
+		mes "I have done pretty well for the mission. Should I report it now?";
 		next;
-		if(select("รายงานภารกิจ: อย่ารายงานเลย") == 1) {
+		if(select("Report the mission.:Do not report it yet.") == 1) {
 			if (.@items)
 				delitem getarg(3),getarg(4);
 			getexp getarg(1),getarg(2);
 			erasequest .@quest_id;
-			mes "คุณทำภารกิจสำเร็จแล้วรับรางวัล";
+			mes "You have completed the mission. Get rewards.";
 		}
 		close;
 	}
@@ -149,217 +149,217 @@ L_HuntingQuest:
 L_Details:
 	switch(getarg(0)) {
 	case 3250:
-		mes "ภารกิจนี้ได้รับมอบหมายจาก Rekenber corporation จาก Lighthalzen ด้านล่างเป็นรายละเอียด";
+		mes "This mission is assigned by the Rekenber corporation from Lighthalzen. Below are the details.";
 		next;
-		mes "Rekenber corporation กำลังจะเปิดตัวโครงการใหม่ที่ชื่อว่า 'Green Medical Center' สำหรับผลิตภัณฑ์แรกของโครงการนี้เรากำลังเตรียมผ้าพันแผลที่เป็นอยู่ที่ดี";
+		mes "Rekenber corporation is about to launch a new project called 'Green Medical Center'. For the first product of the project, we are preparing well-being Bandages.";
 		next;
-		mes "สำหรับโครงการนี้เราต้องทำการวิจัยปฏิกิริยาของสัตว์ประหลาดเมื่อมันถูกห่อด้วยผ้าพันแผลเน่า";
+		mes "Regarding the project, we need to research monster's reactions when they are wrapped with Rotten Bandages.";
 		next;
-		mes "หากคุณสนใจโปรดตามล่ามัมมี่ 30 คนและนำผ้าพันแผลเน่า 30 ตัวคุณสามารถพบพวกมันได้ใน Pyramid West of Morocc";
+		mes "If you are interested, please hunt 30 Mummies and bring 30 Rotten Bandages. You can find them in the Pyramid West of Morocc.";
 		next;
-		mes "โปรดยืนยันให้เราหลังจากที่คุณทำภารกิจเสร็จสิ้นจากนั้นเราจะให้รางวัลที่เหมาะสมแก่คุณ";
+		mes "Please confirm it to us after you complete the mission, then we will give you proper rewards.";
 		next;
-		mes "- Rekenber คอร์ปอเรชั่นหัวหน้าผู้อำนวยการ 'Julie E Delph' -";
+		mes "- Rekenber corporation chief director 'Julie E Delph' -";
 		break;
 	case 3251:
-		mes "ภารกิจนี้ได้รับมอบหมายจากสมาคมสหกรณ์ Comodo ด้านล่างนี้เป็นรายละเอียด";
+		mes "This mission is assigned by the Comodo cooperative society. Below are the details.";
 		next;
-		mes "เหล่านักล่าได้ดุร้ายในทุกวันนี้พวกมันโจมตีผู้หญิงและคนเมาเหล้าที่ออกไปเที่ยวใกล้ชายหาด";
+		mes "Alligators have gone wild these days, they attack women and drunken people who hang out near the beach.";
 		next;
-		mes "นี่เป็นสถานการณ์ที่น่าอับอายมากสำหรับพวกเราซึ่งเป็นสถานที่พักผ่อนที่วิเศษที่สุดใน Rune-Midgarts";
+		mes "This is a very shameful situation for us, the most wonderful vacation spot in Rune-Midgarts.";
 		next;
-		mes "มันจะมีประโยชน์มากถ้าเจ้าตามล่า Alligators 30 คนเพื่อกำจัดสถานการณ์นี้";
+		mes "So, it would be very helpful if you hunt 30 Alligators to clean out this situation.";
 		next;
-		mes "โปรดยืนยันให้เราหลังจากที่คุณทำภารกิจเสร็จสิ้นจากนั้นเราจะให้รางวัลที่เหมาะสมแก่คุณ";
+		mes "Please confirm it to us after you complete the mission, then we will give you proper rewards.";
 		break;
 	case 3252:
-		mes "ภารกิจนี้ได้รับมอบหมายจากลูกค้าที่ไม่รู้จักจาก Izlude";
+		mes "This mission is assigned by an unknown client from Izlude.";
 		next;
-		mes "ข้าชื่นชมชายหาดของ Izlude นับตั้งแต่ข้าเกิดมา";
+		mes "I have admired the beach of Izlude, ever since I was born.";
 		next;
-		mes "เมื่อฉันยังเด็กฉันพบสิ่งมีชีวิตลึกลับในคุกใต้ดิน Izlude ฉันไม่เคยเห็นอะไรแบบนั้นมาก่อน ... ";
+		mes "When I was young, I found a mysterious creature in the Izlude dungeon, I had never seen something like that before...";
 		next;
-		mes "ฉันคิดทันทีว่ามันคือนางเงือกฉันประหลาดใจมากฉันได้ศึกษาเกี่ยวกับนางเงือกตลอดชีวิตของฉัน";
+		mes "I instantly thought it was a mermaid. I was so supprised, I have studied about mermaids in whole my life.";
 		next;
-		mes "แต่เมื่อฉันศึกษาให้หนักขึ้นฉันพบว่าสิ่งมีชีวิตนั้นไม่ใช่นางเงือก ... ใช่มันไม่ได้สวยงามเลยเหมือนนางเงือกคนอื่น ๆ ... ";
+		mes "But, as I studied harder, I found that the creature was not a mermaid... yes, It wasn't beautiful at all like other mermaids...";
 		next;
-		mes "ในที่สุดฉันก็ตามความจริงที่ว่ามันเป็น Merman ไม่ใช่เงือก!";
+		mes "I finally tracked down the fact that it was a Merman, not a Mermaid!";
 		next;
-		mes "Merman ... ข้าเสียชีวิตไปกับการศึกษาสัตว์ประหลาดตัวนี้ดังนั้นโปรดตามล่ามนุษย์ 30 คนเพื่อทำให้ข้ารู้สึกดีขึ้น";
+		mes "Merman... I have wasted my life studying this monster! So please hunt 30 Mermans to make me feel better.";
 		next;
-		mes "โปรดยืนยันให้เราหลังจากที่คุณทำภารกิจเสร็จสิ้นจากนั้นเราจะให้รางวัลที่เหมาะสมแก่คุณ";
+		mes "Please confirm it to us after you complete the mission, then we will give you proper rewards.";
 		next;
-		mes "- Izlude 'นางเงือกในฝันที่หายไป' -";
+		mes "-- Izlude 'The Lost dream mermaid' --";
 		break;
 	case 3254:
-		mes "ภารกิจนี้ได้รับมอบหมายจากเจ้าหน้าที่ของราชอาณาจักร Rune-Midgarts";
+		mes "This mission is assigned by the government officer of the Rune-Midgarts Kingdom.";
 		next;
-		mes "เพื่อป้องกันน้ำท่วมใน Prontera เราตัดสินใจสร้างเขื่อนขนาดใหญ่เพื่อควบคุมการจ่ายน้ำ";
+		mes "To prevent a flood in Prontera, we decided to build a huge dam to regulate the water supply.";
 		next;
-		mes "แต่เราได้รับเสบียงจากเสบียงและเราจำเป็นต้องรวบรวม Fine Sand และ Grit";
+		mes "But, we are shorthanded on supplies and we need to collect Fine Sand and Grit.";
 		next;
-		mes "ดังนั้นเราต้องการขอความช่วยเหลือผู้คนโปรดนำทรายละเอียด 10 เม็ดและเม็ดกรวด 30 เม็ดเพื่อเราจะได้สร้างเขื่อน";
+		mes "So, we would like to ask for help. People, please bring us 10 Fine Sand and 30 Grit each so we can build the dam.";
 		next;
-		mes "คุณจะได้วัสดุจาก Sand Man ฉันขอให้คุณโชคดี!";
+		mes "You can get those materials from Sand Man, I wish you good luck!";
 		next;
-		mes "โปรดยืนยันให้เราหลังจากที่คุณทำภารกิจเสร็จสิ้นจากนั้นเราจะให้รางวัลที่เหมาะสมแก่คุณ";
+		mes "Please confirm it to us after you complete the mission, then we will give you proper rewards.";
 		next;
-		mes "- เจ้าหน้าที่ของราชอาณาจักร Rune-Midgarts, Dufre Kent -";
+		mes "-- Government officer of the Rune-Midgarts Kingdom, Dufre Kent --";
 		break;
 	case 3255:
-		mes "ภารกิจนี้ได้รับมอบหมายจากศาลากลาง Payon";
+		mes "This mission is assigned by the Payon town hall.";
 		next;
-		mes "สัตว์ป่ามักจะสร้างความรำคาญให้กับเกษตรกร";
+		mes "Wild animals are always annoyances to farmers.";
 		next;
-		mes "พวกมันโจมตีฟาร์มของเราและทำลายพืชผลทั้งหมด !! เราทนไม่ได้อีกแล้ว!";
+		mes "They attack our farm and ruin whole crops!! We can't stand it anymore!";
 		next;
-		mes "ดังนั้นเราต้องการขอความช่วยเหลือจากนักผจญภัยผู้กล้าหาญ";
+		mes "So, we would like to ask for the help from brave adventurers.";
 		next;
-		mes "ได้โปรดตามล่าหา 30 Savages เพื่อช่วยพืชผลของเรา!";
+		mes "Please, hunt 30 Savages to save our crops!";
 		next;
-		mes "คุณสามารถค้นหาสัตว์ประหลาดเหล่านั้นรอบเมืองและในทุ่งของเราได้";
+		mes "You can easily find those monsters around our town and field.";
 		next;
-		mes "โปรดยืนยันให้เราหลังจากที่คุณทำภารกิจเสร็จสิ้นจากนั้นเราจะให้รางวัลที่เหมาะสมแก่คุณ";
+		mes "Please confirm it to us after you complete the mission, then we will give you proper rewards.";
 		next;
-		mes "- สมาชิกศาลากลาง Payon -";
+		mes "-- Payon town hall members --";
 		break;
 	case 3256:
-		mes "ภารกิจนี้ได้รับมอบหมายจากช่างตีเหล็ก Morocc Aragham";
+		mes "This mission is assigned by the Morocc blacksmith Aragham.";
 		next;
-		mes "สวัสดี ~~~~ นักผจญภัย! นี่คือ Aragham, ช่างเหล็กที่ร้อนแรงที่สุดใน Morocc!";
+		mes "Hello~~~~, Adventurers! This is Aragham, the hottest blacksmith in Morocc!";
 		next;
-		mes "อย่างไรก็ตามข้ามีลูกชายชื่อ Aragam Junior คนน่ารักฮ่าฮ่า";
+		mes "Anyway, I have a son named Aragam Junior, the cute one. Haha.";
 		next;
-		mes "เขาจะเข้าค่ายฤดูร้อนช่วงซัมเมอร์นี้ แต่เขาไม่รู้ว่าจะว่ายน้ำอย่างไร";
+		mes "He will be attending summer camp this summer, but he doesn't know how to swim.";
 		next;
-		mes "ข้าอยากจะสอนเขา แต่อย่างที่เจ้ารู้ว่าข้าเป็นช่างตีเหล็กห่างไกลจากการว่ายน้ำ!";
+		mes "I want to teach him, but as you know I am a blacksmith, a far cry from swimming! Hehe.";
 		next;
-		mes "แต่ฉันคิดว่าถ้าฉันทำครีบว่ายน้ำมันจะดีสำหรับความมั่นใจของเขา ~!";
+		mes "But, I figured that if I make swim fins, it will be great for his confidence~!";
 		next;
-		mes "เพื่อที่จะทำมันฉันต้องการ Webfoots เหนียวๆ 30 อันจากกบ Roda เจ้าช่วยพาพวกมันมาให้ฉันได้ไหม?";
+		mes "To make it, I need 30 Sticky Webfoots from a Roda Frog. Can you bring them to me?";
 		next;
-		mes "โปรดยืนยันให้เราหลังจากที่คุณทำภารกิจเสร็จสิ้นจากนั้นเราจะให้รางวัลที่เหมาะสมแก่คุณ";
+		mes "Please confirm it to us after you complete the mission, then we will give you proper rewards.";
 		next;
-		mes "PS. อย่าเปรียบเทียบฉันกับ Hollgrehenn หรือ Antonio !!!!";
+		mes "PS. Do not compare me with Hollgrehenn or Antonio!!!!";
 		next;
-		mes "- ช่างตีเหล็กที่ร้อนแรง, Morocc blacksmith Aragham -";
+		mes "-- The hottest blacksmith, Morocc blacksmith Aragham --";
 		break;
 	case 3257:
-		mes "ภารกิจนี้ได้รับมอบหมายจากนักประดิษฐ์ Dorian จาก Izlude";
+		mes "This mission is assigned by an inventor Dorian from Izlude.";
 		next;
-		mes "คุณเคยได้ยินเรื่องที่ว่าถ้าผู้หญิงมีความเสียใจในใจของพวกเขาก็จะนำภัยพิบัติทางธรรมชาติ";
+		mes "Have you heard the story that if women have a grudge on their mind, it will bring natural disasters.";
 		next;
-		mes "ว้าว, ดังนั้นพวกคุณต้องระวังผู้หญิงที่อ่อนไหวเหล่านั้นด้วย!";
+		mes "Wow, so guys must watch out for those sensitive women! Make sure they don't have any grudges on you.";
 		next;
-		mes "ผู้หญิงสามารถนำปรากฏการณ์แปลก ๆ มาด้วยได้!";
+		mes "Women can bring strange phenomenons with them!";
 		next;
-		mes "ฉันรู้สึกทึ่งกับเรื่องราวที่ฉันพยายามพิสูจน์ว่ามันเป็นเรื่องจริง";
+		mes "I am so intrigued with that story that I'm trying to prove that it can be true.";
 		next;
-		mes "ฉันต้องทำให้ผู้หญิงอารมณ์เสีย! ฮ่าฮ่าฉันรู้ว่ามันมีความคิดอะไรใช่มั้ย";
+		mes "So I need to make women upset! Haha, I know what a mean idea, right?";
 		next;
-		mes "แต่นี่เป็นเพียงการศึกษาอย่างจริงจัง ... ดังนั้นโปรดตามล่าหาโซฮี 30 คนที่ดูเหมือนจะฟื้นจากวิญญาณที่ตกเป็นเหยื่อ";
+		mes "But this is seriously just for studying... So please hunt 30 Sohee's who seems to be revived from victimized souls.";
 		next;
-		mes "ฉันจะคอยสังเกตเรื่องนี้ต่อไป";
+		mes "So I can keep observing the case.";
 		next;
-		mes "โปรดยืนยันให้เราหลังจากที่คุณทำภารกิจเสร็จสิ้นจากนั้นเราจะให้รางวัลที่เหมาะสมแก่คุณ";
+		mes "Please confirm it to us after you complete the mission, then we will give you proper rewards.";
 		next;
-		mes "- นักประดิษฐ์ที่สง่างาม Dorian -";
+		mes "-- Elegance inventor Dorian --";
 		break;
 	case 3258:
-		mes "ภารกิจนี้ได้รับมอบหมายจาก Wallah จาก Payon";
+		mes "This mission is assigned by Wallah from Payon.";
 		next;
-		mes "สวัสดีนักผจญภัยเจ้าเป็นอย่างไรบ้างสุขภาพของเจ้าเป็นอย่างไรบ้าง";
+		mes "Hello, adventurer. How are you? How is your health?";
 		next;
-		mes "ฉันเป็นเภสัชกรและฉันมีเวลายากที่จะได้รับส่วนผสมพิเศษ";
+		mes "I am a pharmacist and I am having a hard time getting special ingredients lately.";
 		next;
-		mes "เพราะข้าเป็นเด็กผู้หญิงตัวเล็ก ๆ ข้าจะได้ของเหล่านั้นด้วยตัวเองได้อย่างไร";
+		mes "Because I am a little sensitive girl, how can I possibly get those things by myself.";
 		next;
-		mes "ได้โปรดช่วยฉันด้วยเพียงแค่นำใบมโหฬาร 40 ใบมาให้ฉันนั่นก็เพียงพอแล้วที่จะทำยาพิเศษของข้า!";
+		mes "So, please help me. Just bring 40 Huge Leafs to me, that will be enough to complete my special medicine!";
 		next;
-		mes "ได้โปรดนำมาให้โดยเร็วที่สุดผู้คนต้องการยาของฉัน";
+		mes "Please bring it as soon as possible, people need my medicine.";
 		next;
-		mes "โปรดยืนยันให้เราหลังจากที่คุณทำภารกิจเสร็จสิ้นจากนั้นเราจะให้รางวัลที่เหมาะสมแก่คุณ";
+		mes "Please confirm it to us after you complete the mission, then we will give you proper rewards.";
 		next;
-		mes "- Wallah -";
+		mes "-- Wallah --";
 		break;
 	case 3259:
-		mes "ภารกิจนี้ได้รับมอบหมายจากนายหุ่น Woonute จาก Geffen";
+		mes "This mission is assigned by puppet master Woonute from Geffen.";
 		next;
-		mes "เจ้ารู้ว่าการเป็นนายหุ่นนั้นเป็นงานยากที่จะทำให้ผู้คนพอใจ";
+		mes "You know being a puppet master is kind of a hard job to satisfy people.";
 		next;
-		mes "ผู้คนสามารถค้นหาและดูสิ่งต่าง ๆ มากมายในวันนี้";
+		mes "People can search and see so many different things on their own thesedays.";
 		next;
-		mes "ความคาดหวังของพวกเขาเริ่มสูงขึ้นฉันไม่สามารถสนองพวกเขาได้อีกต่อไป";
+		mes "Their expectations are getting high, I can't satisfy them anymore.";
 		next;
-		mes "แต่ถ้าฉันสามารถสร้างแนวความคิดของเล่นใหม่ ๆ เช่นของเล่นมีชีวิตมันจะต้องแตกหัก";
+		mes "But if I can make new toy concepts, like living toys, it will be ground breaking.";
 		next;
-		mes "ข้าได้ยินมาว่ามีตุ๊กตาที่เรียกว่า Marionettes อยู่เจ้าช่วยตามล่าข้า 30 Marionettes ให้ข้าได้ไหมและนำ Golden Hair 30 อันมาให้พวกมันซึ่งเป็นวัสดุที่ดีสำหรับของเล่นใหม่";
+		mes "I heard that there are live dolls called Marionettes. Can you hunt 30 Marionettes for me? And also bring 30 Golden Hair, those will be great materials for the new toys.";
 		next;
-		mes "โปรดยืนยันให้เราหลังจากที่คุณทำภารกิจเสร็จสิ้นจากนั้นเราจะให้รางวัลที่เหมาะสมแก่คุณ";
+		mes "Please confirm it to us after you complete the mission, then we will give you proper rewards.";
 		next;
-		mes "- Puppet Master Woonute -";
+		mes "-- Puppet Master Woonute --";
 		break;
 	case 3260:
-		mes "ภารกิจนี้ได้รับมอบหมายจากผู้ทำลายจาก Prontera";
+		mes "This mission is assigned by an exterminator from Prontera.";
 		next;
-		mes "เมื่ออากาศอุ่นขึ้นแมลงก็ทวีมากขึ้นเรื่อย ๆ มันควบคุมไม่ได้แล้ว";
+		mes "As the weather gets warmer, insects multiply more and more. It is already out of control.";
 		next;
-		mes "ผู้คนใน Prontera นอนไม่หลับเพราะแมลงในบ้านของพวกเขา";
+		mes "People in Prontera cannot sleep because of all the bugs in their house.";
 		next;
-		mes "งั้นโปรดช่วยพวกเราตามล่านักล่าแมลงวัน 30 ตัวจากนั้นแมลงวันจะลดลงอย่างช้าๆ ";
+		mes "So, please help us, hunt 30 Hunter Flies. Then the flies can be reduced slowly.";
 		next;
-		mes "โปรดยืนยันให้เราหลังจากที่คุณทำภารกิจเสร็จสิ้นจากนั้นเราจะให้รางวัลที่เหมาะสมแก่คุณ";
+		mes "Please confirm it to us after you complete the mission, then we will give you proper rewards.";
 		next;
-		mes "- ผู้ทำลายล้าง Prontera -";
+		mes "-- The Prontera exterminator --";
 		break;
 	case 3261:
-		mes "ภารกิจนี้ได้รับมอบหมายจากชีส Dongja จาก Payon";
+		mes "This mission is assigned by Cheese Dongja from Payon.";
 		next;
-		mes "เจ้าเคยได้ยินเรื่องเกี่ยวกับ Munak หรือเปล่า?";
+		mes "Have you heard about Munak?";
 		next;
-		mes "Munak สัตว์ประหลาดน่าเกลียดกำลังคุกคามผู้คนใน Payon";
+		mes "The ugly monster Munak is threatening people in Payon.";
 		next;
-		mes "ดังนั้นเราต้องการนักผจญภัยที่กล้าหาญอย่างคุณ!";
+		mes "So we need brave adventurers like you!";
 		next;
-		mes "โปรดตามล่า 30 Munaks จากนั้น Payon จะอยู่อย่างสงบ";
+		mes "Please hunt 30 Munaks then Payon will be in peace.";
 		next;
-		mes "โปรดยืนยันให้เราหลังจากที่คุณทำภารกิจเสร็จสิ้นจากนั้นเราจะให้รางวัลที่เหมาะสมแก่คุณ";
+		mes "Please confirm it to us after you complete the mission, then we will give you proper rewards.";
 		next;
 		mes "- Payon Cheese Dongja -";
 		break;
 	case 3262:
-		mes "ภารกิจนี้ได้รับมอบหมายจากตัวแทนจำหน่ายอัญมณี Ibraham จาก Morocc";
+		mes "This mission is assigned by a gem dealer, Ibraham from Morocc.";
 		next;
-		mes "ดอกไม้เล็ก ๆ ที่สวยงามในทะเลทรายที่แห้งแล้ง ... มันช่างน่าทึ่งจริง ๆ !";
+		mes "A small beautiful flower in the barren desert... What an incredible scene it would be!";
 		next;
-		mes "การปลูกดอกไม้สามารถทำให้โลกเป็นสีเขียวและมันจะสวยไปทุกที่";
+		mes "Planting flowers can make the world green and it will be so pretty everywhere.";
 		next;
-		mes "ฉันวางแผนที่จะปลูกดอกไม้ที่แข็งแรงในทะเลทราย Morocc เพื่อให้ดินดีขึ้น";
+		mes "I plan to plant strong flowers in the Morocc desert so the soil gets better.";
 		next;
-		mes "ฉันต้องการ Maneater Blossom 40 ตัวจาก Flora ฉันรู้ว่า Maneater Blossom เป็นดอกไม้ที่น่าเกลียด แต่ก็ยังเป็นต้นไม้";
+		mes "I need 40 Maneater Blossom from Flora, I know Maneater Blossom is an ugly flower, but still it is a plant.";
 		next;
-		mes "ฉันหวังว่าคุณจะสามารถตามล่า Flora และได้รับ 40 Maneater Blossoms คุณทำให้โลกเป็นสีเขียว! จงภูมิใจ!";
+		mes "I hope you can hunt Flora and get me 40 Maneater Blossoms. You are making the world green! Be proud!";
 		next;
-		mes "โปรดยืนยันให้เราหลังจากที่คุณทำภารกิจเสร็จสิ้นจากนั้นเราจะให้รางวัลที่เหมาะสมแก่คุณ";
+		mes "Please confirm it to us after you complete the mission, then we will give you proper rewards.";
 		next;
-		mes "- Morocc Ibraham -";
+		mes "-- Morocc Ibraham --";
 		break;
 	case 3263:
-		mes "ภารกิจนี้ได้รับมอบหมายจากช่างตีเหล็ก Payon Antonio";
+		mes "This mission is assigned by the Payon blacksmith Antonio.";
 		next;
-		mes "ไม้เรียววิเศษเจ้าเคยได้ยินเรื่องนี้ไหมมันเป็นไม้เรียวที่เหลือเชื่อ";
+		mes "Magic wand! Have you heard about it? It is an incredible wand!";
 		next;
-		mes "ถ้าคุณพูดคำวิเศษณ์และแกว่งไม้เรียวมันจะทำให้ความปรารถนาของคุณเป็นจริง";
+		mes "If you say the magic words and swing the wand, it will make your wishes come true.";
 		next;
-		mes "ดังนั้นฉันตัดสินใจที่จะทำด้วยตัวเองแล้วฉันจะรวยและทรงพลัง ~! ฮ่าฮ่า !!";
+		mes "So, I decided to make it by myself. Then I will be rich and powerful~! Haha!!";
 		next;
-		mes "เพื่อให้ไม้เรียวฉันต้องการวัสดุพิเศษ";
+		mes "To make the wand, I need some special materials.";
 		next;
-		mes "ได้โปรดนำ Dokebi Horns มาให้ 30 อันและ Bamboo Cut 30 อันถ้าเจ้าทำเช่นนั้นข้าจะยืมไม้เท้าวิเศษให้ข้าสักครั้งฮ่าฮ่าจัดการได้ไหม?";
+		mes "Please bring me 30 Dokebi Horns and 30 Trunks. If you do so, I will lend you my magic wand once. Haha, good deal?";
 		next;
-		mes "โปรดยืนยันให้เราหลังจากที่คุณทำภารกิจเสร็จสิ้นจากนั้นเราจะให้รางวัลที่เหมาะสมแก่คุณ";
+		mes "Please confirm it to us after you complete the mission, then we will give you proper rewards.";
 		next;
-		mes "- ช่างตีเหล็ก Payon Antonio -";
+		mes "-- Payon blacksmith Antonio --";
 		break;
 	}
 	return;

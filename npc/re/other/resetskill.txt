@@ -19,41 +19,50 @@
 //============================================================
 izlude,127,175,3	script	Hypnotist#novice	124,{
 	mes "[Hypnotist]";
-	mes "สวัสดีนักผจญภัย";
-	mes "ฉันเป็นสมาชิกของ Hypnotist";
-	mes "Academy ส่งมาที่ Izlude";
-	mes "เพื่อให้บริการ Skill Reset";
-	mes "สำหรับตัวละคร First Class ในราคาที่คุ้มค่า: ฟรี!";
+	mes "Greetings, adventurer.";
+	mes "I'm a member of the Hypnotist";
+	mes "Academy sent here to Izlude";
+	mes "to provide Skill Reset services";
+	mes "to certain First Class characters for a really good price: free!";
 	next;
 	mes "[Hypnotist]";
-	mes "ถึงแม้ว่าฉันจะเสนอให้ไม่ จำกัด ";
-	mes "รีเซ็ต stat / skill สำหรับตอนนี้ฉันมี";
-	mes "สองเงื่อนไขที่ต้องเป็น";
-	mes "เติมเต็มก่อนอื่นคุณต้องเป็น";
-	mes "ต่ำกว่า ^FF0000Base Level 50^000000.";
+	mes "Although I offer unlimited";
+	mes "stat/skill resets for now, I have";
+	mes "two conditions that must be";
+	mes "fulfilled. First, you must be";
+	mes "lower than ^FF0000Base Level 50^000000.";
 	next;
 	mes "[Hypnotist]";
-	mes "อย่างที่สองคุณต้องเป็น";
+	mes "Second, you must be a";
 	mes "^FF0000Swordman, Acolyte, Mage,";
 	mes "Thief, Archer, Merchant,";
-	mes "Taekwon Boy, หรือ Taekwon Girl,";
-	mes "Gunslinger และ Ninja^000000";
-	mes "ตัวละครอาชีพที่ต้องมีคุณสมบัติ";
-	mes "คุณมีคำถามหรือไม่?";
+	mes "Taekwon Boy, or Taekwon Girl,";
+	mes "Gunslinger and Ninja^000000";
+	mes "Job character to qualify.";
+	mes "Now, do you have any questions?";
 	next;
-	switch(select("^FF0000รีเซ็ต Stat/Skill?:รีเซ็ต stats:รีเซ็ต skills^000000:ยกเลิก")) {
+	switch(select("^FF0000Stat/Skill Reset?:Reset stats:Reset skills^000000:Cancel")) {
 	case 1:
 		mes "[Hypnotist]";
-		mes "รีเซ็ต Stat / Skill อนุญาตให้การผจญภัยแจกจ่ายคะแนนทักษะของตนอีกครั้งหากพวกเขาไม่พอใจกับทักษะปัจจุบัน";
+		mes "Stat/Skill Resets allow adventuers";
+		mes "to redistribute their Skill";
+		mes "Points if they are unhappy";
+		mes "with their current skills.";
 		next;
 		mes "[Hypnotist]";
-		mes "ก่อนที่จะดำเนินการรีเซ็ตค่าสถานะ / ทักษะคุณต้องลดน้ำหนักของสิ่งของที่บรรทุกทั้งหมดของตัวละครของคุณให้เหลือ 0";
-		mes "คุณสามารถใส่ไอเทมพิเศษใน Kafra Storage ได้";
+		mes "Before proceeding with";
+		mes "a Stat/Skill Reset, you must";
+		mes "reduce all of the weight";
+		mes "of all carried items on your";
+		mes "character to 0. You can put";
+		mes "extra items in Kafra Storage.";
 		next;
 		mes "[Hypnotist]";
-		mes "อ่า, ถอนการติดตั้ง ^FF0000รถเข็น^000000 ของคุณก่อน";
-		mes "ถ้าคุณมีอุปกรณ์";
-		mes "มิฉะนั้นการสะกดจิตจะไม่ได้ผลหรือจะย้อนกลับ... ";
+		mes "Ah, it's also important";
+		mes "to remove your ^FF0000Pushcart^000000";
+		mes "if you have one equipped.";
+		mes "Otherwise, hypnosis won't";
+		mes "work, or will backfire...";
 		close;
 	case 2:
 		set .@str$,"Stat";
@@ -61,39 +70,58 @@ izlude,127,175,3	script	Hypnotist#novice	124,{
 		if (.@str$ == "")
 			set .@str$,"Skill";
 		mes "[Hypnotist]";
-		mes "คุณแน่ใจหรือว่าต้องการดำเนินการกับบริการ ^FF0000รีเซ็ต " + .@str$ + "^000000";
+		mes "Are you sure that you";
+		mes "want to proceed with";
+		mes "my ^FF0000"+.@str$+" Reset^000000 service?";
 		next;
 		if(select("Yes:Cancel") == 1)
 			break;
 	case 4:
 		mes "[Hypnotist]";
-		mes "ขอบคุณและขอให้โชคดีกับการผจญภัยของคุณ";
-		mes "โปรดเดินทางโดยสวัสดิภาพ ~";
+		mes "Thank you, and good";
+		mes "luck on your adventures.";
+		mes "Please travel in safety~";
 		close;
 	}
 	if ((Class >= Job_Swordman && Class <= Job_Thief) || Class == Job_Taekwon || Class == Job_Gunslinger || Class == Job_Ninja) {
 		if (checkcart()) {
 			mes "[Hypnotist]";
-			mes "อ้อ! กรุณาถอดรถเข็นของคุณออกก่อนดำเนินการต่อด้วยบริการรีเซ็ต " + .@str$ + ".";
-			mes "ขอบคุณที่ร่วมมือ ~";
+			mes "Oh! Please remove your";
+			mes "Pushcart before proceeding";
+			mes "with the "+.@str$+" Reset service.";
+			mes "Thanks for cooperating~";
 			close;
 		}
 		if (Weight != 0) {
 			mes "[Hypnotist]";
-			mes "ถ้าคุณมาที่นี่เพื่อบริการรีเซ็ต " + .@str$ + " ของฉัน โปรดจำไว้ว่าคุณไม่สามารถรีเซ็ต " + .@str$ + " ของคุณได้จนกว่า ^FF0000น้ำหนักในกระเป๋าของคุณลดเหลือ 0^000000";
+			mes "If you're here for my "+.@str$;
+			mes "Reset service, please";
+			mes "remember that you can't";
+			mes "reset your "+.@str$+"s until the";
+			mes "^FF0000weight of your carried items in";
+			mes "your Inventory is reduced to 0^000000.";
 			next;
 			mes "[Hypnotist]";
-			mes "ทำไมคุณไม่วางของลงใน Kafra Storage ซะก่อนล่ะวิธีนี้คุณจะสามารถเก็บสินค้าทั้งหมดของคุณได้อย่างปลอดภัย";
+			mes "Why don't you place your";
+			mes "things into the Kafra Storage";
+			mes "for now? That way, you can";
+			mes "safely keep all of your goods.";
 			close;
 		}
 		if (BaseLevel >= 50 && (Class == Job_Taekwon || Class == Job_Gunslinger || Class == Job_Ninja)) {
 			mes "[Hypnotist]";
-			mes "ฉันขอโทษ แต่ตัวละครที่มีเลเวลพื้นฐานสูงกว่า 50 จะไม่มีสิทธิ์ได้รับบริการรีเซ็ต" +.@str$ + " ที่ฉันมีให้";
+			mes "I'm sorry, but characters";
+			mes "with Base Levels higher";
+			mes "than 50 are ineligible for the";
+			mes .@str$+" Reset service I provide.";
 			close;
 		}
 		mes "[Hypnotist]";
-		mes "ขอบคุณที่ใช้บริการ "+.@str$+" Redistribution ของฉัน";
-		mes "โอ้ขอให้โชคดีกับการเดินทางของคุณนักผจญภัย";
+		mes "Thank you for using";
+		mes "my "+.@str$+" Redistribution";
+		mes "services. Oh, and best";
+		mes "of luck to you on your";
+		mes "travels, adventurer.";
 		if (.@str$ == "Stat")
 			resetstatus;
 		else
@@ -106,14 +134,14 @@ izlude,127,175,3	script	Hypnotist#novice	124,{
 		mes "for the "+.@str$+" Reset service";
 		mes "that I provide. I can only";
 		mes "offer "+.@str$+" Resets to the";
-		mes "ฉันขอโทษ แต่ Job Class ของคุณไม่มีคุณสมบัติสำหรับบริการรีเซ็ต  "+.@str$+" ที่ฉันมีให้ฉันสามารถเสนอรีเซ็ต "+.@str$+" ให้กับอาชีพต่อไปนี้เท่านั้น... ";
+		mes "following Jobs...";
 		next;
 		mes "[Hypnotist]";
 		mes "^FF0000Swordman, Acolyte,";
 		mes "Mage, Thief, Archer,";
 		mes "Merchant, Taekwon";
 		mes "Boy, Taekwon Girl,";
-		mes "Gunslinder และ Ninja^000000.";
+		mes "Gunslinder and Ninja^000000.";
 		close;
 	}
 }

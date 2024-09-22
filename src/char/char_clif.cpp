@@ -987,7 +987,7 @@ void chclif_accessible_maps( int fd ){
 		}else{
 			p->maps[count].status = 0;
 		}
-		
+
 		mapindex_getmapname_ext( accessible_map.map, p->maps[count].map );
 
 		p->packetLength += sizeof( p->maps[0] );

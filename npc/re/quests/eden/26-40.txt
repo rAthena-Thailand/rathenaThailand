@@ -18,56 +18,56 @@
 
 moc_para01,38,38,3	script	Mission [26 - 40]	857,{
 	if (!callfunc("F_HasEdenGroupMark")) {
-		mes "คุณไม่ใช่สมาชิกที่ผ่านการรับรองคุณไม่สามารถใช้กระดานข่าว";
+		mes "You are not a qualified member. You can not use the bulletin board.";
 		close;
 	}
 	mes "[26 ~ 40 Lv. Mission Board]";
-	mes "- ภารกิจมากมายคือ -";
-	mes "- บนกระดานข่าว -";
+	mes "- Many missions are -";
+	mes "- on the bulletin board. -";
 	next;
 	if ((BaseLevel < 26) || (BaseLevel > 40)) {
-		mes "ระดับของคุณไม่ผ่านเกณฑ์คุณไม่สามารถใช้กระดานข่าว";
+		mes "Your level is not qualified. You can not use the bulletin board.";
 		close;
 	}
-	switch(select("ภารกิจล่าสัตว์:ภารกิจส่งของ:รวบรวมภารกิจ:ภารกิจ Escort")) {
+	switch(select("Hunting Mission:Delivery Mission:Gathering Mission:Escort Mission")) {
 	case 1:
 		mes "[Hunting Mission Board]";
-		mes "- รายละเอียดภารกิจการล่าสัตว์ -";
-		mes "- อยู่บนกระดาน -";
+		mes "- Hunting Mission details -";
+		mes "- are on the board. -";
 		next;
-		switch(select("ตามล่า Poison Spore:ตามล่า Smokie:ตามล่า Elder Willow(ตั้งแต่ Lv.30 ขึ้นไป):ตามล่า Coco(ตั้งแต่ Lv.35 ขึ้นไป):ตามล่า Thara Frog(ตั้งแต่ Lv.38 ขึ้นไป)")) {
-			case 1: callsub L_Quest,8266,0,"ตามล่า Poison Spore","Sponiac","Geffen","ล่า 10 Poison Spores";
-			case 2: callsub L_Quest,8267,0,"ตามล่า Smokie","Sponiac","Geffen","ล่า 10 Smokies";
-			case 3: callsub L_Quest,8268,30,"ตามล่า Elder Willow","Sponiac","Geffen","ล่า 10 Elder Willows";
-			case 4: callsub L_Quest,8269,35,"ตามล่า Coco","Sponiac","Geffen","ล่า 10 Cocos";
-			case 5: callsub L_Quest,8270,38,"ตามล่า Thara Frog","Sponiac","Geffen","ล่า 10 Thara Frogs";
+		switch(select("Hunting Poison Spore:Hunting Smokie:Hunting Elder Willow(Above Lv.30):Hunting Coco(Above Lv.35):Hunting Thara Frog(Above Lv.38)")) {
+			case 1: callsub L_Quest,8266,0,"Hunting Poison Spore","Sponiac","Geffen","Hunt 10 Poison Spores";
+			case 2: callsub L_Quest,8267,0,"Hunting Smokie","Sponiac","Geffen","Hunt 10 Smokies";
+			case 3: callsub L_Quest,8268,30,"Hunting Elder Willow","Sponiac","Geffen","Hunt 10 Elder Willows";
+			case 4: callsub L_Quest,8269,35,"Hunting Coco","Sponiac","Geffen","Hunt 10 Cocos";
+			case 5: callsub L_Quest,8270,38,"Hunting Thara Frog","Sponiac","Geffen","Hunt 10 Thara Frogs";
 		}
 	case 2:
 		mes "[Delivery Mission Board]";
-		mes "- รายละเอียดภารกิจการนำส่ง -";
-		mes "- อยู่บนกระดาน -";
+		mes "- Delivery Mission details -";
+		mes "- are on the board. -";
 		next;
-		switch(select("ส่งยาฆ่าแมลง: ส่งมอบน้ำผึ้ง: ส่งมอบผ้าห่ม(ตั้งแต่ Lv.35 ขึ้นไป)")) {
-			case 1: callsub L_Quest,8271,0,"ส่งยาฆ่าแมลง","Dieshin Man","Morocc Ruins","รับ 'ยาฆ่าแมลง' จาก Dieshin Man และส่งทางตะวันออกเฉียงใต้ของ Payon";
-			case 2: callsub L_Quest,8272,0,"ส่งมอบน้ำผึ้ง","Dieshin Man","Morocc Ruins","รับ 'Honey' จาก Dieshin Man และส่งมอบทางตะวันตกของ St. Capitolina Abbey";
-			case 3: callsub L_Quest,8273,35,"ส่งมอบผ้าห่ม","Dieshin Man","Morocc Ruins","รับผ้าห่มจาก Dieshin Man และส่งไปยังเขตทางใต้ของ Lutie";
+		switch(select("Deliver an Insecticide:Deliver Honey:Deliver Blanket(Above Lv.35)")) {
+			case 1: callsub L_Quest,8271,0,"Deliver an Insecticide","Dieshin Man","Morocc Ruins","Get an 'Insecticide' from Dieshin Man and deliver it south east of Payon";
+			case 2: callsub L_Quest,8272,0,"Deliver Honey","Dieshin Man","Morocc Ruins","Get 'Honey' from Dieshin Man and deliver it west of St. Capitolina Abbey";
+			case 3: callsub L_Quest,8273,35,"Deliver Blanket","Dieshin Man","Morocc Ruins","Get Blankets from Dieshin Man and deliver to the field south of Lutie";
 		}
 	case 3:
 		mes "[Gathering Mission Board]";
-		mes "- รวบรวมรายละเอียดภารกิจ -";
-		mes "- อยู่บนกระดาน -";
+		mes "- Gathering Mission details -";
+		mes "- are on the board. -";
 		next;
-		switch(select("รวบรวม Bones:รวบรวม Animal Skins:รวบรวม Peelings(ตั้งแต่ Lv.30 ขึ้นไป):รวบรวม Tails(ตั้งแต่ Lv.32 ขึ้นไป):รวบรวม Cookies(ตั้งแต่ Lv.35 ขึ้นไป):รวบรวม Mustaches(ตั้งแต่ Lv.35 ขึ้นไป)")) {
-			case 1: callsub L_Quest,8274,0,"รวบรวม Bones","Dashia","Payon","รวบรวม '10 Skel-Bones' และมอบให้ Dashia";
-			case 2: callsub L_Quest,8275,0,"รวบรวม Animal Skins","Dashia","Payon","รวบรวม '10 Bear's Footskins' และ '5 Animal Skins' และมอบให้ Dashia";
-			case 3: callsub L_Quest,8276,30,"รวบรวม Peelings","Dashia","Payon","รวบรวม '20 Worm Peelings' และ '20 Garlets' และมอบให้ Dashia";
-			case 4: callsub L_Quest,8277,32,"รวบรวม Tails","Dashia","Payon","รวบรวม '10 Yoyo Tails', '10 Acorns' และ '10 Raccon Leafs' และมอบให้ Dashia";
-			case 5: callsub L_Quest,8278,35,"รวบรวม Cookies","Dashia","Payon","รวบรวม '5 Well-baked Cookies' และ '1 Piece of Cake' และมอบให้ Dashia";
-			case 6: callsub L_Quest,8279,35,"รวบรวม Mustaches","Dashia","Payon","รวบรวม '5 Mole Whiskers' และ '3 Mole Claws' และมอบให้ Dashia";
+		switch(select("Gather Bones:Gather Animal Skins:Gather Peelings(Above Lv.30):Gather Tails(Above Lv.32):Gather Cookies(Above Lv.35):Gather Mustaches(Above Lv.35)")) {
+			case 1: callsub L_Quest,8274,0,"Gather Bones","Dashia","Payon","Gather '10 Skel-Bones' and give them to Dashia";
+			case 2: callsub L_Quest,8275,0,"Gather Animal Skins","Dashia","Payon","Gather '10 Bear's Footskins' and '5 Animal Skins' and give them to Dashia";
+			case 3: callsub L_Quest,8276,30,"Gather Peelings","Dashia","Payon","Gather '20 Worm Peelings' and '20 Garlets' and give them to Dashia";
+			case 4: callsub L_Quest,8277,32,"Gather Tails","Dashia","Payon","Gather '10 Yoyo Tails', '10 Acorns' and '10 Raccon Leafs' and give them to Dashia";
+			case 5: callsub L_Quest,8278,35,"Gather Cookies","Dashia","Payon","Gather '5 Well-baked Cookies' and '1 Piece of Cake' and give them to Dashia";
+			case 6: callsub L_Quest,8279,35,"Gather Mustaches","Dashia","Payon","Gather '5 Mole Whiskers' and '3 Mole Claws' and give them to Dashia";
 		}
 	case 4:
 		mes "[Escort Mission Board]";
-		mes "ขณะนี้ไม่มีภารกิจ Escort ที่ลงทะเบียนบนกระดาน";
+		mes "There are currently no Escort Missions registered on the board.";
 		close;
 	}
 	end;
@@ -75,36 +75,36 @@ L_Quest:
 	//QuestID,ReqLvl,Quest,Client,Loc,Desc
 	.@string$ = getarg(2);
 	if (BaseLevel < getarg(1,26)) {
-		mes "ระดับของคุณไม่เป็นไปตามข้อกำหนดคุณไม่สามารถทำภารกิจ " + .@string$ +" 'ได้ ";
+		mes "Your level doesn't meet the requirements. You can't take the '"+ .@string$ +"' mission.";
 		close;
 	}
 	mes "["+ .@string$ +" !!]";
-	mes "ลูกค้า : "+getarg(3);
-	mes "ที่ตั้งลูกค้า : "+getarg(4);
-	mes "ภารกิจที่ต้องทำ : "+getarg(5);
+	mes "Client : "+getarg(3);
+	mes "Client Location : "+getarg(4);
+	mes "Requested Mission : "+getarg(5);
 	mes " ";
-	mes "คุณจะยอมรับภารกิจนี้หรือไม่?";
+	mes "Will you accept this mission?";
 	next;
-	if(select("ไม่ล่ะ, ข้าไม่ต้องการรับภารกิจนี้:ใช่, ข้าต้องการรับภารกิจนี้") == 1) {
-		mes "คุณได้ปฏิเสธภารกิจ" + .@string$ + " ";
+	if(select("No, I won't accept it.:Yes, I will accept it.") == 1) {
+		mes "You have declined the "+ .@string$ +" mission.";
 		close;
 	}
-	if (checkquest(getarg(0)) > -1) mes "เจ้าได้ทำภารกิจนี้ไปแล้ว";
+	if (checkquest(getarg(0)) > -1) mes "You are already doing this mission.";
 	else {
 		setquest getarg(0);
-		mes "คุณยอมรับภารกิจ" + .@string$ + " ";
+		mes "You have accepted the "+ .@string$ +" mission.";
 	}
-	mes "คุณจะได้รับรางวัลจากลูกค้าหลังจากเสร็จภารกิจ";
+	mes "You can get a reward from the client after you finish the mission.";
 	next;
-	mes "สำหรับรายละเอียดเพิ่มเติมกรุณากด 'Alt + U' เพื่อรับข้อมูลเพิ่มเติมจาก Quest Window";
+	mes "For more details, please press 'Alt + U', to get more information from the Quest Window.";
 	close;
 }
 
 geffen,103,42,5	script	Sponiac	99,{
 	if (checkweight(1201,1) == 0 || (MaxWeight - Weight) < 3500) {
 		mes "[Sponiac]";
-		mes "ทำไมคุณต้องแบกสิ่งของมากมาย";
-		mes "คุณอยู่ในหลักสูตรฝึกอบรมหรือเปล่า?";
+		mes "Why are you carrying so many items?";
+		mes "Are you in a training course or something?";
 		close;
 	}
 	mes "[Sponiac]";
@@ -112,29 +112,29 @@ geffen,103,42,5	script	Sponiac	99,{
 	mes "Lu~ Huh?";
 	next;
 	mes "[Sponiac]";
-	mes "ว้าวเจ้าต้องเป็นผู้เริ่มต้นใช่มั้ย";
-	mes "ช่างเป็นใบหน้าที่ไร้เดียงสา! ฮ่า ~ ฮ่าฮ่าฮ่า";
+	mes "Wow, you must be a beginner, right?";
+	mes "What an innocent face! Ha~ hahaha.";
 	emotion ET_KIK;
 	next;
 	mes "[Sponiac]";
-	mes "ทำไมเจ้าไม่ล่าอะไรข้างนอกแทนที่จะเดินไปรอบ ๆ และเสียเวลาล่ะ?";
+	mes "Why don't you do some hunting outside instead of walking around and wasting your time?";
 	next;
-	if(select("ฉันกำลังจะจากไปแล้ว: ฉันมีภารกิจการล่าสัตว์แล้ว") == 1) {
+	if(select("I am about to leave now.:I've got a Hunting Mission.") == 1) {
 		mes "[Sponiac]";
-		mes "โอ้สบายดีจากนั้นไปหาร่าง";
-		mes "Bye ~ bye.";
+		mes "Oh, well. Then, go figure.";
+		mes "Bye~ bye.";
 		close;
 	}
 	mes "[Sponiac]";
-	mes "โอ้คุณมาจากกลุ่ม Eden หรือไม่";
-	mes "ภารกิจอะไรที่คุณมี";
+	mes "Oh, you are from the Eden Group?";
+	mes "What mission do you have?";
 	next;
-	switch(select("ตามล่า Poison Spore:ตามล่า Smokie:ตามล่า Elder Willow:ตามล่า Coco:ตามล่า Thara Frog")) {
-		case 1: callsub L_Quest,8266,"ตามล่า Poison Spore",1000,0,100,"คุณสามารถค้นหา Poison Spores ได้ที่ Geffen Dungeon 1F หรือทางตะวันออกเฉียงเหนือของ Prontera มีจุดอื่นอยู่แล้วแต่ฉันจะปล่อยให้คุณไปหา";
-		case 2: callsub L_Quest,8267,"ตามล่า Smokie",1000,0,100,"คุณสามารถค้นหา Smokies ตะวันออกเฉียงเหนือและตะวันตกเฉียงเหนือของ Geffen โอ้สนามตะวันออกของอโยธยาเป็นจุดที่ดีในการค้นหา";
-		case 3: callsub L_Quest,8268,"ตามล่า Elder Willow",1000,100,110,"คุณสามารถค้นหา  Elder Willow ทางตะวันออกเฉียงเหนือของ Geffen ทางตะวันออกของเพนและทางตะวันตกเฉียงใต้ของ Prontera";
-		case 4: callsub L_Quest,8269,"ตามล่า Coco",1000,200,150,"คุณสามารถหา Cocos ได้จากทางตะวันออกของ Payon ทางตะวันตกเฉียงใต้ของ Prontera และเขตตะวันออกของ Ayothaya";
-		case 5: callsub L_Quest,8270,"ตามล่า Thara Frog",1500,300,200,"คุณสามารถพบ Thara Frog ได้ในถ้ำทางตะวันออกของ Comodo หรือบนเกาะเต่า";
+	switch(select("Hunting Poison Spore:Hunting Smokie:Hunting Elder Willow:Hunting Coco:Hunting Thara Frog")) {
+		case 1: callsub L_Quest,8266,"Hunting Poison Spore",1000,0,100,"You can find Poison Spores on the Geffen Dungeon 1F or northeast of Prontera. There are other spots but I'll leave it up to you to find out.";
+		case 2: callsub L_Quest,8267,"Hunting Smokie",1000,0,100,"You can find Smokies northeast and northwest of Geffen. Oh, also the field east of Ayothaya is good spot to find them.";
+		case 3: callsub L_Quest,8268,"Hunting Elder Willow",1000,100,110,"You can find Elder Willows northeast of Geffen, east of payon and southwest of Prontera.";
+		case 4: callsub L_Quest,8269,"Hunting Coco",1000,200,150,"You can find Cocos around the east of Payon, southwest of Prontera and the field east of Ayothaya.";
+		case 5: callsub L_Quest,8270,"Hunting Thara Frog",1500,300,200,"You can find Thara Frogs in the Cave east of Comodo or on Turtle Island.";
 	}
 	end;
 L_Quest:
@@ -144,71 +144,71 @@ L_Quest:
 		if (checkquest(.@quest_id,HUNTING) == 2) {
 			mes "[Sponiac]";
 			mes getarg(1)+"!";
-			mes "ว้าวฉันไม่ได้คาดหวังว่าคุณจะทำภารกิจนี้ฉันแค่จะยอมแพ้ แต่คุณทำได้ดีมากฉันชอบมันมาก!";
+			mes "Wow, I didn't expect you would do that mission. I was just about to give up. But you did good job. I appreciate it!";
 			next;
 			mes "[Sponiac]";
-			mes "ข้าขอภารกิจและเจ้าทำได้ดีมาก";
-			mes "ฉันจะให้รางวัลตามที่สัญญาไว้";
+			mes "Well, I requested the mission and you did an excellent job.";
+			mes "I will give you a reward as I promised.";
 			next;
 			mes "[Sponiac]";
-			mes "นี่มันคือขอบคุณมากพระเจ้าอวยพรเจ้า!";
+			mes "Here it is. Thank you very much. God bless you!";
 			getitem 569,getarg(4); //Novice_Potion
 			getexp getarg(2),getarg(3);
 			erasequest .@quest_id;
 			close;
 		}
 		mes "[Sponiac]";
-		mes "โอ้เจ้าพูดถูก";
+		mes "Oh, you are right.";
 		next;
 		mes "[Sponiac]";
-		mes "แต่เจ้ายังไม่ได้ทำภารกิจเลยทำไมเจ้ามาหาฉันตอนนี้ล่ะ? เจ้ายังทำภารกิจไม่สำเร็จ!";
-		mes "ฉันจะให้รางวัลแก่คุณถ้าคุณทำภารกิจเสร็จแล้วตกลงเราเป็นคนดีหรือเปล่า?";
+		mes "But, you haven't done the mission yet. Why did you come to me now? You haven't completed the mission!";
+		mes "I will give you a reward if you complete the mission. Ok? Are we good?";
 		next;
 		mes "[Sponiac]";
 		mes getarg(5);
-		mes "คุณสามารถตรวจสอบแผนที่โลกได้โดยกดปุ่ม 'ctrl + ~'";
+		mes "You can check the world map by pressing 'ctrl + ~' key.";
 		next;
 		mes "[Sponiac]";
-		mes "ยังไงข้าจะรอเจ้าอยู่โปรดกลับมาเมื่อเจ้าเสร็จภารกิจ!";
+		mes "Anyway, I will be here waiting for you. Please come back when you finish the mission!";
 		close;
 	}
 	mes "[Sponiac]";
-	mes "Huh เจ้าแน่ใจเหรอ? มีบางอย่างผิดปกติ ... ";
+	mes "Huh? Are you sure? Something is wrong...";
 	next;
 	mes "[Sponiac]";
-	mes "มันแปลก";
-	mes "กรุณาตรวจสอบหน้าต่าง Quest ของคุณโดยกด 'alt + u'.";
+	mes "It is weird.";
+	mes "Please check your Quest Window by pressing 'alt + u'.";
 	close;
 }
 
 moc_ruins,173,55,3	script	Dieshin Man	89,{
 	if (checkweight(1201,1) == 0 || (MaxWeight - Weight) < 3500) {
 		mes "[Dieshin Man]";
-		mes "ทำไมคุณต้องแบกสิ่งของมากมาย";
-		mes "คุณอยู่ในหลักสูตรฝึกอบรมหรือเปล่า?";
+		mes "Why are you carrying so many items?";
+		mes "Are you in a training course or something?";
 		close;
 	}
 	mes "[Dieshin Man]";
-	mes "Hu hu ~~ พวกเราเป็นคนส่งของ ~";
-	mes "พวกเราเร็วกว่าเที่ยวบินใด ๆ ~!";
+	mes "Hu hu~~ we are delivery men~";
+	mes "We are faster than any flight~!";
 	next;
 	mes "[Dieshin Man]";
-	mes "ยินดีต้อนรับ ~ ยินดีต้อนรับ!"; 
-	mes "เราเป็น บริษัท จัดส่งที่เร็วที่สุด Daishin Corporation";
+	mes "Welcome~ welcome!";
+	mes "We are the fastest delivery company, Dieshin Corperation.";
 	next;
 	mes "[Dieshin Man]";
-	mes "ฉันจะช่วยคุณได้อย่างไร";
+	mes "How can I help you?";
 	next;
-	if(select("ฉันไม่ต้องการความช่วยเหลือ: ฉันมีภารกิจส่งมอบแล้ว ") == 1) {
+	if(select("I don't need help.:I've got a Delivery Mission.") == 1) {
 		mes "[Dieshin Man]";
-		mes "โอ้สบายดีจากนั้นไปหาร่างลาก่อน ~!";
+		mes "Oh, well. Then, go figure. Bye~!";
 		close;
 	}
 	mes "[Dieshin Man]";
-	mes "โอ้คุณมาจากกลุ่ม Eden หรือไม่";
-	mes "ภารกิจอะไรที่คุณมี";
+	mes "Oh, you are from the Eden Group?";
+	mes "What mission do you have?";
 	next;
-	switch(select("ส่งยาฆ่าแมลง: ส่งมอบน้ำผึ้ง: ส่งผ้าห่ม")) {
+	switch(select("Deliver an Insecticide.:Deliver Honey.:Deliver Blankets.")) {
 		case 1: callsub L_Quest,8271;
 		case 2: callsub L_Quest,8272;
 		case 3: callsub L_Quest,8273;
@@ -217,50 +217,50 @@ moc_ruins,173,55,3	script	Dieshin Man	89,{
 L_Quest:
 	if (checkquest(getarg(0)) != 1) {
 		mes "[Dieshin Man]";
-		mes "Huh เจ้าแน่ใจเหรอ? มีบางอย่างผิดปกติ ... ";
+		mes "Huh? Are you sure? Something is wrong...";
 		next;
 		mes "[Dieshin Man]";
-		mes "มันแปลก";
-		mes "กรุณาตรวจสอบหน้าต่าง Quest ของคุณโดยกด 'alt + u'.";
+		mes "It is weird.";
+		mes "Please check your Quest Window by pressing 'alt + u'.";
 		close;
 	}
 	if (countitem(6218) > 0) {
 		mes "[Dieshin Man]";
-		mes "เดี๋ยวก่อน แต่เจ้ามีกล่องส่งอยู่แล้ว";
+		mes "Wait, but you already have a delivery box.";
 		next;
 		mes "[Dieshin Man]";
-		mes "เราไม่สามารถอนุญาตให้คุณส่งมอบกล่องสองกล่องพร้อมกันดังนั้นโปรดส่งมอบให้เสร็จก่อน";
+		mes "We can't allow you to deliver two boxes at once. So, please finish your delivery first.";
 		next;
 		mes "[Dieshin Man]";
-		mes "ถ้าคุณลืมที่จะส่งมอบ, โปรดตรวจสอบ Quest Window โดยกด 'alt + u'.";
+		mes "If you forgot where to deliver, then please check Quest Window by pressing 'alt + u'.";
 		close;
 	}
 	switch(getarg(0)) {
 	case 8271:
 		mes "[Dieshin Man]";
-		mes "อ้าฮะฉันเข้าใจแล้ว!";
-		mes "ยาฆ่าแมลง? มันต้องเป็นนักสัตวศาสตร์ที่อยู่ทางตะวันออกเฉียงใต้ของเพยนที่สั่งฆ่าแมลง";
+		mes "Ah ha! I got it!";
+		mes "The insecticide? It must be the Zoologist on the southeast of Payon who ordered the Insecticide.";
 		break;
 	case 8272:
 		mes "[Dieshin Man]";
-		mes "อ้าฮะฉันเข้าใจแล้ว!";
-		mes "ที่รัก? มันต้องเป็นนักกีฏวิทยาที่อยู่ทางตะวันตกของ St. Capitolina Abbey ซึ่งอยู่ทางตะวันออกเฉียงเหนือของ Prontera ที่สั่ง Honey";
+		mes "Ah ha! I got it!";
+		mes "Honey? It must be the Entomologist at the west of St. Capitolina Abbey, wich is northeast of Prontera who ordered the Honey.";
 		break;
 	case 8273:
 		mes "[Dieshin Man]";
-		mes "โอ้ถูกต้อง!";
-		mes "ผ้าห่ม! มันต้องเป็นนักชีววิทยาในภาคใต้ของเขต Lutie ที่สั่งผ้าห่ม";
+		mes "Oh, Right!";
+		mes "The blankets! It must be the biologist in the south of Lutie field who ordered the blankets.";
 		next;
 		mes "[Dieshin Man]";
-		mes "คุณสามารถไปที่ Lutie โดยถาม Mr. Claus ทางตะวันออกเฉียงเหนือของ Al De Baran";
+		mes "You can can go to Lutie by asking Mr. Claus in the northeastern part of Al De Baran.";
 		break;
 	}
 	next;
 	mes "[Dieshin Man]";
-	mes "แรงจูงใจในการร่วมมือของ Dieshin คือการส่งมอบที่เร็วที่สุดและได้รับเครดิตดังนั้นโปรดส่งมอบทันทีโดยไม่ล่าช้า";
+	mes "Dieshin's cooperation motive is to give the fastest and credited delivery. So please deliver it now without any delay.";
 	next;
 	mes "[Dieshin Man]";
-	mes "ถ้าคุณลืมที่จะทำการจัดส่งกรุณาตรวจสอบ Quest Window โดยกด 'alt + u'.";
+	mes "If you forgot where to make the delivery, then please check the Quest Window by pressing 'alt + u'.";
 	getitem 6218,1; //Disin_Delivery_Box
 	close;
 }
@@ -268,50 +268,50 @@ L_Quest:
 pay_fild07,83,89,7	script	Zoologist	89,{
 	if (checkweight(1201,1) == 0 || (MaxWeight - Weight) < 3500) {
 		mes "[Zoologist]";
-		mes "ทำไมคุณต้องแบกสิ่งของมากมาย";
-		mes "คุณอยู่ในหลักสูตรฝึกอบรมหรือเปล่า?";
+		mes "Why are you carrying so many items?";
+		mes "Are you in a training course or something?";
 		close;
 	}
 	mes "[Zoologist]";
-	mes "เจ้าเคยได้ยินชื่อสัตว์ประหลาดชื่อ Bigfoot หรือเปล่า?";
-	mes "ดูเหมือนหมีที่มีขนสีแดงและมีแผลเป็น 'X' ที่ไหล่ของเขา";
+	mes "Have you heard of a monster named Bigfoot?";
+	mes "It looks like a bear with red fur and has a 'X' shape scar on his shoulder.";
 	next;
 	mes "[Zoologist]";
-	mes "จากการวิจัยล่าสุดแมลงวันและสัตว์ประหลาดขนาดใหญ่มีความสัมพันธ์ทางชีวภาพ";
+	mes "According to the recent research, flies and Bigfoot monsters have a symbiotic relationship.";
 	next;
 	mes "[Zoologist]";
-	mes "ฉันกำลังศึกษาเกี่ยวกับมันและพยายามที่จะพิสูจน์ทฤษฎีดังนั้นฉันวางแผนที่จะฆ่าแมลงวันรอบ ๆ บิ๊กฟุตและสังเกตปฏิกิริยาของเขา";
+	mes "I am currently studying about it and try to prove the theory. So I plan to kill the flies around Bigfoot and observe his reaction.";
 	next;
-	if(select("... ฉันไม่สนใจ: นี่คือยาฆ่าแมลง") == 1) {
+	if(select("...I am not interested.:Here is the Insecticide.") == 1) {
 		mes "[Zoologist]";
-		mes "โอ้ข้าต้องการยาฆ่าแมลงเพื่อทำการศึกษาต่อ";
+		mes "Oh, I need an Insecticide to continue the study.";
 		close;
 	}
 	if (checkquest(8271) != 1) {
 		mes "[Zoologist]";
 		mes "Huh?";
-		mes "คุณไม่ใช่คนส่งของ Dieshin เหรอ?";
+		mes "You are not Dieshin's delivery man?";
 		next;
 		mes "[Zoologist]";
-		mes "ฉันกำลังรอส่งพิเศษ";
+		mes "I am waiting for a special delivery.";
 		close;
 	}
 	if (countitem(6218) > 0) {
 		mes "[Zoologist]";
-		mes "โอ้โฮ! ใช่! อันนั้น!";
+		mes "Oh ho! Yes! That one!";
 		next;
 		mes "[Zoologist]";
-		mes "นั่นคือยาฆ่าแมลงที่ฉันสั่ง! คุณถูกส่งโดย Dieshin ใช่มั้ย";
+		mes "That is the Insecticide that I ordered! You were sent by Dieshin right?";
 		next;
 		mes "[Zoologist]";
-		mes "ข้ากำลังรอสิ่งนี้อยู่!";
-		mes "ขอมอบให้ข้า!";
+		mes "I have been waiting for this!";
+		mes "Give it to me!";
 		next;
 		mes "[Zoologist]";
-		mes "มันมาเร็วกว่าที่ข้าคิดไว้ข้าต้องการทดสอบมันทันที!";
+		mes "It arrived much faster than I thought. I want to test it right away!";
 		next;
 		mes "[Zoologist]";
-		mes "ทำได้ดีมากทำได้ดีมากขอบคุณมาก! นี่เป็นของขวัญเล็กน้อยสำหรับคุณ";
+		mes "Well done. Good Job! Thank you so much! Here is a little gift for you.";
 		delitem 6218,1; //Disin_Delivery_Box
 		erasequest 8271;
 		getitem 569,100; //Novice_Potion
@@ -319,64 +319,64 @@ pay_fild07,83,89,7	script	Zoologist	89,{
 		close;
 	}
 	mes "[Zoologist]";
-	mes "ฉันซาบซึ้งในความมีน้ำใจของคุณ";
-	mes "แต่เจ้านำอะไรมา?";
+	mes "I appreciate your kindness.";
+	mes "But, what did you bring?";
 	next;
 	mes "[Zoologist]";
-	mes "อืมฉันคิดว่า Dieshin นั้นเร็วและแม่นยำ แต่เจ้าได้นำกล่องเปล่ามาให้ฉัน";
+	mes "Hmm, I thought that Dieshin was fast and accurate, but you brought me an empty box. How disappointing.";
 	next;
 	mes "[Zoologist]";
-	mes "โปรดนำคำสั่งของฉันไปด้วย Dieshin จะให้ผลิตภัณฑ์ของฉันแก่คุณ";
+	mes "Please bring my order. Dieshin will give you my product.";
 	close;
 }
 
 prt_fild03,30,254,3	script	Entomologist	83,{
 	if (checkweight(1201,1) == 0 || (MaxWeight - Weight) < 3500) {
 		mes "[Entomologist]";
-		mes "ทำไมคุณต้องแบกสิ่งของมากมาย";
-		mes "คุณอยู่ในหลักสูตรฝึกอบรมหรือเปล่า?";
+		mes "Why are you carrying so many items?";
+		mes "Are you in a training course or something?";
 		close;
 	}
 	mes "[Entomologist]";
-	mes "เจ้าเคยได้ยินเกี่ยวกับสัตว์ประหลาดของเขาหรือเปล่า?";
-	mes "มันมีรูปร่างเหมือนแมลงที่มีผิวสีดำมันเงาและมันมีเขาหัวยักษ์ที่มันหัว";
+	mes "Have you heard about the Horn monster?";
+	mes "It's shaped like an insect with black sleek skin and it has a giant horn it's head.";
 	next;
 	mes "[Entomologist]";
-	mes "การวิจัยล่าสุดออกมาและแสดงให้เห็นว่าสัตว์ประหลาดตัวนี้สามารถทำให้เชื่องและฝึกฝนโดยฮันนี่";
+	mes "Recent research came out and showed that this monster can be tamed and trained by Honey.";
 	next;
 	mes "[Entomologist]";
-	mes "ฉันกำลังศึกษาเกี่ยวกับมันและพยายามที่จะพิสูจน์ทฤษฎีดังนั้นฉันวางแผนที่จะวางกับดักน้ำผึ้งในสถานที่ที่เขามักจะผ่านและสังเกตปฏิกิริยาของเขา";
+	mes "I am currently studying about it and trying to prove the theory. So I plan to set a Honey trap on the places he usually passes and observe his reaction.";
 	next;
-	if(select("... ฉันไม่สนใจ: นี่คือน้ำผึ้ง") == 1) {
+	if(select("...I am not interested.:Here is the Honey.") == 1) {
 		mes "[Entomologist]";
-		mes "โอ้ข้าต้องการน้ำผึ้งเพื่อศึกษาต่อ";
+		mes "Oh, I need Honey to continue the study.";
 		close;
 	}
 	if (checkquest(8272) != 1) {
 		mes "[Entomologist]";
 		mes "Huh?";
-		mes "คุณไม่ใช่คนส่งของ Dieshin เหรอ?";
+		mes "You are not Dieshin's delivery man?";
 		next;
 		mes "[Entomologist]";
-		mes "ฉันกำลังรอส่งพิเศษ";
+		mes "I am waiting for a special delivery.";
 		close;
 	}
 	if (countitem(6218) > 0) {
 		mes "[Entomologist]";
-		mes "โอ้โฮ! ใช่! อันนั้น!";
+		mes "Oh ho! Yes! That one!";
 		next;
 		mes "[Entomologist]";
-		mes "นั่นคือน้ำผึ้งที่ฉันสั่ง! คุณถูกส่งโดย Dieshin ใช่มั้ย";
+		mes "That is the Honey that I ordered! You were sent by Dieshin right?";
 		next;
 		mes "[Entomologist]";
-		mes "ข้ากำลังรอสิ่งนี้อยู่!";
-		mes "ขอมอบให้ข้า!";
+		mes "I have been waiting for this!";
+		mes "Give it to me!";
 		next;
 		mes "[Entomologist]";
-		mes "มันมาเร็วกว่าที่ข้าคิดไว้ข้าต้องการทดสอบมันทันที!";
+		mes "It arrived much faster than I thought. I want to test it right away!";
 		next;
 		mes "[Entomologist]";
-		mes "ทำได้ดีมากทำได้ดีมากขอบคุณมาก! นี่เป็นของขวัญเล็กน้อยสำหรับคุณ";
+		mes "Well done. Good Job! Thank you so much! Here is a little gift for you.";
 		delitem 6218,1; //Disin_Delivery_Box
 		erasequest 8272;
 		getitem 569,100; //Novice_Potion
@@ -384,64 +384,64 @@ prt_fild03,30,254,3	script	Entomologist	83,{
 		close;
 	}
 	mes "[Entomologist]";
-	mes "ฉันซาบซึ้งในความมีน้ำใจของคุณ";
-	mes "แต่เจ้านำอะไรมา?";
+	mes "I appreciate your kindness.";
+	mes "But, what did you bring?";
 	next;
 	mes "[Entomologist]";
-	mes "อืมฉันคิดว่า Dieshin นั้นเร็วและแม่นยำ แต่เจ้าได้นำกล่องเปล่ามาให้ฉัน";
+	mes "Hmm, I thought that Dieshin was fast and accurate, but you brought me an empty box. How disappointing.";
 	next;
 	mes "[Entomologist]";
-	mes "โปรดนำคำสั่งของฉันไปด้วย Dieshin จะให้ผลิตภัณฑ์ของฉันแก่คุณ";
+	mes "Please bring my order. Dieshin will give you my product.";
 	close;
 }
 
 xmas_fild01,92,57,3	script	Biologist	97,{
 	if (checkweight(1201,1) == 0 || (MaxWeight - Weight) < 3500) {
 		mes "[Biologist]";
-		mes "ทำไมคุณต้องแบกสิ่งของมากมาย";
-		mes "คุณอยู่ในหลักสูตรฝึกอบรมหรือเปล่า?";
+		mes "Why are you carrying so many items?";
+		mes "Are you in a training course or something?";
 		close;
 	}
 	mes "[Biologist]";
-	mes "เจ้าเคยได้ยินเกี่ยวกับสัตว์ประหลาด Marin หรือไม่";
-	mes "มันดูเหมือนหน้าปกติ แต่มันก็มีลักษณะเฉพาะ";
+	mes "Have you heard about the Marin monster?";
+	mes "It does look like the usual poring, but it has unique characteristic.";
 	next;
 	mes "[Biologist]";
-	mes "Porings ขโมยไอเทมถ้าพวกมันเห็นพวกมันบนพื้นดินอย่างไรก็ตาม Marin ไม่สนใจของที่ถูกทิ้งดังนั้นข้าจึงสงสัยว่าทำไม Marin ถึงไม่สนใจที่จะรวบรวมไอเทมถึงแม้ว่าพวกมันจะเป็นสัตว์ประเภทเดียวกับ Porings . ";
+	mes "Porings steal items if they see them on the ground. However, Marin has no interest in dropped items. So I was wondering, how come Marin doesn't pay attention to gathering items even though they are the same kind of monster as Porings.";
 	next;
 	mes "[Biologist]";
-	mes "แต่ที่นี่เย็นชา";
+	mes "But, this place is freaking cold.";
 	next;
-	if(select("... ฉันไม่สนใจ: นี่คือผ้าห่ม") == 1) {
+	if(select("...I am not interested.:Here are the blankets.") == 1) {
 		mes "[Biologist]";
-		mes "Huh อะไรก็ได้ แต่ระวัง! มันลื่นมากที่นี่";
+		mes "Huh, whatever. But be careful! It's very slippery here.";
 		close;
 	}
 	if (checkquest(8273) != 1) {
 		mes "[Biologist]";
 		mes "Huh?";
-		mes "คุณไม่ใช่คนส่งของ Dieshin เหรอ?";
+		mes "You are not Dieshin's delivery man?";
 		next;
 		mes "[Biologist]";
-		mes "ฉันกำลังรอส่งพิเศษ";
+		mes "I am waiting for a special delivery.";
 		close;
 	}
 	if (countitem(6218) > 0) {
 		mes "[Biologist]";
-		mes "โอ้โฮ! ใช่! อันนั้น!";
+		mes "Oh ho! Yes! That one!";
 		next;
 		mes "[Biologist]";
-		mes "นี่เป็นผ้าห่มที่ฉันสั่ง! คุณถูกส่งโดย Dieshin ใช่มั้ย";
+		mes "Those are the Blankets that I ordered! You were sent by Dieshin right?";
 		next;
 		mes "[Biologist]";
-		mes "ข้ากำลังรอสิ่งนี้อยู่!";
-		mes "ขอมอบให้ข้า!";
+		mes "I have been waiting for this!";
+		mes "Give it to me!";
 		next;
 		mes "[Biologist]";
-		mes "มันมาเร็วกว่าที่ข้าคิดเอาไว้ข้าต้องการทดสอบพวกมันทันที!";
+		mes "It arrived much faster than I thought. I want to test them right away!";
 		next;
 		mes "[Biologist]";
-		mes "ทำได้ดีมากทำได้ดีมากขอบคุณมาก! นี่เป็นของขวัญเล็กน้อยสำหรับคุณ";
+		mes "Well done. Good Job! Thank you so much! Here is a little gift for you.";
 		delitem 6218,1; //Disin_Delivery_Box
 		erasequest 8273;
 		getitem 569,100; //Novice_Potion
@@ -449,46 +449,46 @@ xmas_fild01,92,57,3	script	Biologist	97,{
 		close;
 	}
 	mes "[Biologist]";
-	mes "ฉันซาบซึ้งในความมีน้ำใจของคุณ";
-	mes "แต่เจ้านำอะไรมา?";
+	mes "I appreciate your kindness.";
+	mes "But, what did you bring?";
 	next;
 	mes "[Biologist]";
-	mes "อืมฉันคิดว่า Dieshin นั้นเร็วและแม่นยำ แต่เจ้าได้นำกล่องเปล่ามาให้ฉัน";
+	mes "Hmm, I thought that Dieshin was fast and accurate, but you brought me an empty box. How disappointing.";
 	next;
 	mes "[Biologist]";
-	mes "โปรดนำคำสั่งของฉันไปด้วย Dieshin จะให้ผลิตภัณฑ์ของฉันแก่คุณ";
+	mes "Please bring my order. Dieshin will give you my product.";
 	close;
 }
 
 payon,179,66,3	script	Dashia	931,{
 	if (checkweight(1201,1) == 0 || (MaxWeight - Weight) < 3500) {
 		mes "[Dashia]";
-		mes "ทำไมคุณต้องแบกสิ่งของมากมาย";
-		mes "คุณอยู่ในหลักสูตรฝึกอบรมหรือเปล่า?";
+		mes "Why are you carrying so many items?";
+		mes "Are you in a training course or something?";
 		close;
 	}
 	mes "[Dashia]";
-	mes "นี่คือบางส่วนของผม ~ นาฬิกาแตก ~!";
+	mes "Here is some hair~ a broken clock~!";
 	next;
 	mes "[Dashia]";
-	mes "นาฬิกาแตก .. ? Hu hu .. ";
+	mes "Broken clock..? Hu hu..";
 	next;
 	mes "[Dashia]";
-	mes "เฮ้ ~! Dude! คุณดูเหมือนนักผจญภัยที่ร่ำรวยมาก";
+	mes "Hey~! Dude! You look like a very rich adventurer.";
 	next;
-	if(select("ฉันเป็นนักผจญภัยที่น่าสงสาร: ฉันมีภารกิจรวบรวม") == 1) {
+	if(select("I am a poor adventurer.:I have a gathering mission.") == 1) {
 		mes "[Dashia]";
-		mes "จริงเหรออืมใช่แล้วคุณดูไม่ซับซ้อน";
+		mes "Really? Hmm, oh right. You don't look sophisticated.";
 		next;
 		mes "[Dashia]";
-		mes "คุณเป็นนักผจญภัยที่น่าสงสาร ~! ขอให้โชคดี!";
+		mes "You are a poor adventurer~! Good luck!";
 		close;
 	}
 	mes "[Dashia]";
-	mes "โอ้คุณมาจากกลุ่ม Eden หรือไม่";
-	mes "ภารกิจอะไรที่คุณมี";
+	mes "Oh, you are from the Eden Group?";
+	mes "What mission do you have?";
 	next;
-	switch(select("รวบรวม Bones:รวบรวม Animal Skin:รวบรวม Peelings:รวบรวม Tails:รวบรวม Cookies:รวบรวม Mustaches")) {
+	switch(select("Gather Bones:Gather Animal Skin:Gather Peelings:Gather Tails:Gather Cookies:Gather Mustaches")) {
 	case 1:
 		callsub L_Quest,8274;
 		if (countitem(932) > 9) {
@@ -500,17 +500,17 @@ payon,179,66,3	script	Dashia	931,{
 			close;
 		}
 		mes "[Dashia]";
-		mes "ข้าเห็นได้ว่าเจ้ามีภารกิจการชุมนุม";
-		mes "แต่ Skel-Bones อยู่ที่ไหน?";
+		mes "I can see that you have a gathering mission.";
+		mes "But, where are the Skel-Bones?";
 		next;
 		mes "[Dashia]";
-		mes "เจ้ายังไม่ได้ทำภารกิจทำไมเจ้ากลับมาที่นี่";
+		mes "You haven't done the mission yet. Why did you come back here?";
 		next;
 		mes "[Dashia]";
-		mes "คุณมี 'Skel-Bones' ไม่เพียงพอ ... คุณจะพบมันเมื่อคุณตามล่า Skeletons";
+		mes "You don't have enough 'Skel-Bones'... You can find it when you hunt Skeletons.";
 		next;
 		mes "[Dashia]";
-		mes "เพื่อหาโครงกระดูกคุณควรตรวจสอบ Payon Dungeon 1F ซึ่งตั้งอยู่ใน Archer Village ทางตอนเหนือของ Payon";
+		mes "To find Skeletons, you better check Payon Dungeon 1F, which is located in Archer Village, north of Payon.";
 		break;
 	case 2:
 		callsub L_Quest,8275;
@@ -524,18 +524,18 @@ payon,179,66,3	script	Dashia	931,{
 			close;
 		}
 		mes "[Dashia]";
-		mes "ข้าเห็นได้ว่าเจ้ามีภารกิจการชุมนุม";
-		mes "แต่, Bear's Footskins และ Animal Skins อยู่ไหน?";
+		mes "I can see that you have a gathering mission.";
+		mes "But, where is the Bear's Footskins and Animal Skins?";
 		next;
 		mes "[Dashia]";
-		mes "เจ้ายังไม่ได้ทำภารกิจทำไมเจ้ากลับมาที่นี่";
+		mes "You haven't done the mission yet. Why did you come back here?";
 		next;
 		mes "[Dashia]";
-		mes "คุณต้องนำ 10 Bear's Footskins 'และ' 5 Animal Skins!";
-		mes "คุณจะพบ Bear's Footskin จาก Bigfoot และ Animal Skin จาก Animals";
+		mes "You have to bring 10 Bear's Footskins' and '5 Animal Skins!";
+		mes "You can find Bear's Footskin from Bigfoot and Animal Skin from Animals.";
 		next;
 		mes "[Dashia]";
-		mes "บิ๊กฟุตอยู่ทางเหนือของทุ่งเกฟเฟนหรือทางตะวันออกเฉียงใต้ของทุ่งเพน";
+		mes "Bigfoot is around the north of Geffen field or the southeast of Payon field.";
 		break;
 	case 3:
 		callsub L_Quest,8276;
@@ -549,20 +549,20 @@ payon,179,66,3	script	Dashia	931,{
 			close;
 		}
 		mes "[Dashia]";
-		mes "ข้าเห็นได้ว่าเจ้ามีภารกิจการชุมนุม";
-		mes "แต่ที่ Worm Wormings และ Garlets อยู่ที่ไหน";
+		mes "I can see that you have a gathering mission.";
+		mes "But, where are the Worm Peelings and Garlets?";
 		next;
 		mes "[Dashia]";
-		mes "คุณต้องนำ '20 Worm Peelings 'และ '20 Garlets' ให้เสร็จสิ้นภารกิจ";
+		mes "You have to bring '20 Worm Peelings' and '20 Garlets' to complete the mission.";
 		next;
 		mes "[Dashia]";
-		mes "คุณสามารถรับไอเท็มเหล่านี้ได้จาก 'Piere', 'Andre', 'Deniro', 'Vitata', 'Thief Bug', 'Thief Bug หญิง' และ 'Male Thief Bug'";
+		mes "You can get those items from 'Piere', 'Andre', 'Deniro', 'Vitata', 'Thief Bug', 'Female Thief Bug' and 'Male Thief Bug'.";
 		next;
 		mes "[Dashia]";
-		mes "'Piere', 'Andre', 'Deniro' และ 'Vitata' อยู่ใน Ant Hell ซึ่งตั้งอยู่ใกล้กับป้อม Saint Darmain soutwest ของ Morocc";
+		mes "'Piere', 'Andre', 'Deniro' and 'Vitata' are in Ant Hell which is located near the Saint Darmain Fortress soutwest of Morocc.";
 		next;
 		mes "[Dashia]";
-		mes "'Thief Bug', 'Female Thief Bug' และ 'Male Thief Bug' นั้นเป็น int Prontere Culvert เพื่อไปที่นั่นคุณจะต้องเป็นอาสาสมัครของ Prontera Culvert ซึ่งเป็นการลงโทษของกองทัพ";
+		mes "'Thief Bug', 'Female Thief Bug' and 'Male Thief Bug' are int he Prontere Culvert. To get there, you need to be a volunteer of the Prontera Culvert's punitive force.";
 		break;
 	case 4:
 		callsub L_Quest,8277;
@@ -577,21 +577,21 @@ payon,179,66,3	script	Dashia	931,{
 			close;
 		}
 		mes "[Dashia]";
-		mes "ข้าเห็นได้ว่าเจ้ามีภารกิจการชุมนุม";
-		mes "แต่หางของโยโย่, ต้นโอ๊กและใบไม้แรคคูนอยู่ที่ไหน";
+		mes "I can see that you have a gathering mission.";
+		mes "But, where are the Yoyo Tails, Acorns and Raccoon Leafs?";
 		next;
 		mes "[Dashia]";
-		mes "เจ้ายังไม่ได้ทำภารกิจทำไมเจ้ากลับมาที่นี่";
-		mes "คุณต้องนำ '10 Yoyo Tails, ''10 Acorns' และ '10 Raccoon Leafs 'ให้เสร็จสิ้นภารกิจ";
+		mes "You haven't done the mission yet. Why did you come back here?";
+		mes "You have to bring '10 Yoyo Tails,' '10 Acorns' and '10 Raccoon Leafs' to complete the mission.";
 		next;
 		mes "[Dashia]";
-		mes "คุณสามารถรับ Yoyo Tails จาก 'Yoyo's', Acorn จาก 'Coco's' และ Raccoon Leaf จาก 'Smokies'";
+		mes "You can get Yoyo Tails from 'Yoyo's', Acorn from 'Coco's' and Raccoon Leaf from 'Smokies'.";
 		next;
 		mes "[Dashia]";
-		mes "คุณสามารถพบพวกมันได้อย่างง่ายดายรอบ ๆ ทุ่งนา แต่ทุ่งตะวันออกของอโยธยาเป็นจุดที่ดีที่สุดสำหรับการตามล่าสัตว์ประหลาดทั้ง 3 ตัว";
+		mes "You can find them easily around fields, but the field east of Ayothaya is the best spot for hunting all 3 monsters.";
 		next;
 		mes "[Dashia]";
-		mes "เพื่อไปที่ Ayothaya คุณควรไปที่ 'Aibakthing' ใน Alberta และชำระค่าโดยสารของเขา";
+		mes "To get to Ayothaya, you better go to 'Aibakthing' in Alberta and pay his fare.";
 		break;
 	case 5:
 		callsub L_Quest,8278;
@@ -605,19 +605,19 @@ payon,179,66,3	script	Dashia	931,{
 			close;
 		}
 		mes "[Dashia]";
-		mes "ข้าเห็นได้ว่าเจ้ามีภารกิจการชุมนุม";
-		mes "แต่คุกกี้อบดีและชิ้นเค้กอยู่ที่ไหน";
+		mes "I can see that you have a gathering mission.";
+		mes "But, where are the Well-baked Cookies and the Piece of Cake?";
 		next;
 		mes "[Dashia]";
-		mes "เจ้ายังไม่ได้ทำภารกิจทำไมเจ้ากลับมาที่นี่";
-		mes "คุณต้องนำ '5 คุกกี้แสนอร่อย' และ '1 ชิ้นส่วนของเค้ก' มาทำภารกิจให้สำเร็จ";
+		mes "You haven't done the mission yet. Why did you come back here?";
+		mes "You have to bring '5 Well-baked Cookies' and '1 Piece of Cake' to complete the mission.";
 		next;
 		mes "[Dashia]";
-		mes "คุณจะได้รับคุกกี้แสนอร่อยจาก 'คุกกี้' ที่สวมเสื้อแดงหรือเขียว";
-		mes "สำหรับการรับ Piece of Cake คุณควรมองหา 'Mystcases'";
+		mes "You can get Well-baked Cookie from 'Cookies' who wears red or green shirts.";
+		mes "For getting Piece of Cake, you should look for 'Mystcases'.";
 		next;
 		mes "[Dashia]";
-		mes "สัตว์ประหลาดทั้งสองสามารถพบได้ใน Toy Factory Warehouse หรือ Toy Monitoring Room หากต้องการไปที่นั่นให้ถามนาย Claus ในภาคตะวันออกเฉียงเหนือของ Al De Baran";
+		mes "Both monsters canbe found in the Toy Factory Warehouse or Toy Monitoring Room. To get there, ask Mr. Claus in the northeastern part of Al De Baran.";
 		break;
 	case 6:
 		callsub L_Quest,8279;
@@ -631,46 +631,46 @@ payon,179,66,3	script	Dashia	931,{
 			close;
 		}
 		mes "[Dashia]";
-		mes "ข้าเห็นได้ว่าเจ้ามีภารกิจการชุมนุม";
-		mes "แต่ Mole Whiskerss และ Mole Claws อยู่ที่ไหน?";
+		mes "I can see that you have a gathering mission.";
+		mes "But, where are the Mole Whiskerss and Mole Claws??";
 		next;
 		mes "[Dashia]";
-		mes "เจ้ายังไม่ได้ทำภารกิจทำไมเจ้ากลับมาที่นี่";
-		mes "คุณต้องนำ '5 Mole Whiskers' และ '3 Mole Claws' มาปฏิบัติภารกิจให้สำเร็จ";
+		mes "You haven't done the mission yet. Why did you come back here?";
+		mes "You have to bring '5 Mole Whiskers' and '3 Mole Claws' to complete the mission.";
 		next;
 		mes "[Dashia]";
-		mes "คุณสามารถรับไอเทมเหล่านั้นได้จาก 'Martins'";
-		mes "มาร์ตินสามารถพบได้ใน Mjolnir Dead Pit แต่ชั้นสองเป็นอันตรายดังนั้นระวัง!";
+		mes "You can get those items from 'Martins'.";
+		mes "Martins can be found in the Mjolnir Dead Pit, but the second floor is dangerous, so be careful!";
 		next;
 		mes "[Dashia]";
-		mes "เพื่อไปที่นั่นถามพนักงาน Kafra ใน Geffen พวกเขาสามารถบิดคุณได้";
+		mes "To get there, ask a Kafra Employee in Geffen, they can warp you there.";
 		break;
 	}
 	next;
 	mes "[Dashia]";
-	mes "ยังไงข้าจะรอเจ้าอยู่โปรดกลับมาเมื่อเจ้าเสร็จภารกิจ!";
+	mes "Anyway, I will be here waiting for you. Please come back when you finish the mission!";
 	close;
 L_Quest:
 	if (checkquest(getarg(0)) != 1) {
 		mes "[Dashia]";
-		mes "Huh เจ้าแน่ใจเหรอ? มีบางอย่างผิดปกติ ... ";
+		mes "Huh? Are you sure? Something is wrong...";
 		next;
 		mes "[Dashia]";
-		mes "มันแปลก";
-		mes "กรุณาตรวจสอบหน้าต่าง Quest ของคุณโดยกด 'alt + u'.";
+		mes "It is weird.";
+		mes "Please check your Quest Window by pressing 'alt + u'.";
 		close;
 	}
 	return;
 L_Reward:
 	mes "[Dashia]";
-	mes "ว้าว ~ คุณทำได้ดีมาก!";
+	mes "Wow~ you did an excellent job!";
 	next;
 	mes "[Dashia]";
-	mes "ขอบคุณมาก ๆ พระเจ้าอวยพรเจ้า!";
+	mes "Thank you very much. God bless you!";
 	emotion ET_SMILE;
 	next;
 	mes "[Dashia]";
-	mes "Ha ~! Ha ~!";
-	mes "ฉันจะให้รางวัลตามที่สัญญาไว้";
+	mes "Ha~! Ha~!";
+	mes "I will give you a reward as promised.";
 	return;
 }
