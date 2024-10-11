@@ -1923,6 +1923,8 @@
 	export_constant(SC_BATH_FOAM_A);
 	export_constant(SC_BATH_FOAM_B);
 	export_constant(SC_BATH_FOAM_C);
+	export_constant(SC_BUCHEDENOEL);
+	export_constant(SC_EP16_DEF);
 
 	/* status icons */
 	export_deprecated_constant2("SI_BLANK",-1);
@@ -4290,6 +4292,7 @@
 	export_constant(RC2_ILLUSION_LUANDA);
 	export_constant(RC2_ILLUSION_FROZEN);
 	export_constant(RC2_ILLUSION_MOONLIGHT);
+	export_constant(RC2_EP16_DEF);
 	export_constant(RC2_MAX);
 
 	/* monster ai */
