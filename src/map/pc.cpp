@@ -6003,6 +6003,7 @@ enum e_additem_result pc_additem(map_session_data *sd,struct item *item,int amou
 	if(id->flag.autoequip)
 		pc_equipitem(sd, i, id->equip);
 
+	if (id->type == IT_CHARM) status_calc_pc(sd, SCO_NONE); //dh
 	/* rental item check */
 	if( item->expire_time ) {
 		if( time(nullptr) > item->expire_time ) {
@@ -6033,6 +6034,7 @@ enum e_additem_result pc_additem(map_session_data *sd,struct item *item,int amou
  *------------------------------------------*/
 char pc_delitem(map_session_data *sd,int n,int amount,int type, short reason, e_log_pick_type log_type)
 {
+	int mem = 0;
 	nullpo_retr(1, sd);
 
 	if(n < 0 || sd->inventory.u.items_inventory[n].nameid == 0 || amount <= 0 || sd->inventory.u.items_inventory[n].amount<amount || sd->inventory_data[n] == nullptr)
@@ -6045,6 +6047,7 @@ char pc_delitem(map_session_data *sd,int n,int amount,int type, short reason, e_
 	if( sd->inventory.u.items_inventory[n].amount <= 0 ){
 		if(sd->inventory.u.items_inventory[n].equip)
 			pc_unequipitem(sd,n,2|(!(type&4) ? 1 : 0));
+		mem = sd->inventory_data[n]->type; // charms system
 		memset(&sd->inventory.u.items_inventory[n],0,sizeof(sd->inventory.u.items_inventory[0]));
 		sd->inventory_data[n] = nullptr;
 	}
@@ -6055,6 +6058,7 @@ char pc_delitem(map_session_data *sd,int n,int amount,int type, short reason, e_
 
 	pc_show_questinfo(sd);
 
+	if (mem == IT_CHARM) status_calc_pc(sd, SCO_NONE);
 	return 0;
 }
 
