@@ -35,6 +35,7 @@
 #include "pc_groups.hpp"
 #include "pet.hpp"
 #include "script.hpp"
+#include "stall.hpp"
 
 using namespace rathena;
 
@@ -9362,6 +9363,7 @@ struct view_data* status_get_viewdata(struct block_list *bl)
 		case BL_HOM: return ((TBL_HOM*)bl)->vd;
 		case BL_MER: return ((TBL_MER*)bl)->vd;
 		case BL_ELEM: return ((TBL_ELEM*)bl)->vd;
+		case BL_STALL: return &((TBL_STALL*)bl)->vd;
 	}
 	return nullptr;
 }
@@ -9534,7 +9536,7 @@ void status_set_viewdata(struct block_list *bl, int class_)
 
 /**
  * Get status change data of an object
- * @param bl: Object whose sc data to get [PC|MOB|HOM|MER|ELEM|NPC]
+ * @param bl: Object whose sc data to get [PC|MOB|HOM|MER|ELEM|NPC|STALL]
  * @return status change data structure bl->sc
  */
 status_change *status_get_sc(struct block_list *bl)
@@ -9547,13 +9549,14 @@ status_change *status_get_sc(struct block_list *bl)
 		case BL_HOM: return &((TBL_HOM*)bl)->sc;
 		case BL_MER: return &((TBL_MER*)bl)->sc;
 		case BL_ELEM: return &((TBL_ELEM*)bl)->sc;
+		case BL_STALL: return &((TBL_STALL*)bl)->sc;
 	}
 	return nullptr;
 }
 
 /**
  * Initiate (memset) the status change data of an object
- * @param bl: Object whose sc data to memset [PC|MOB|HOM|MER|ELEM|NPC]
+ * @param bl: Object whose sc data to memset [PC|MOB|HOM|MER|ELEM|NPC|STALL]
  */
 void status_change_init(struct block_list *bl)
 {

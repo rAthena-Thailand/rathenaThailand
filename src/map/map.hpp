@@ -293,12 +293,13 @@ enum bl_type : uint16{
 	BL_NPC   = 0x080,
 	BL_CHAT  = 0x100,
 	BL_ELEM  = 0x200,
+	BL_STALL = 0x400,
 
 	BL_ALL   = 0xFFF,
 };
 
 /// For common mapforeach calls. Since pets cannot be affected, they aren't included here yet.
-#define BL_CHAR (BL_PC|BL_MOB|BL_HOM|BL_MER|BL_ELEM)
+#define BL_CHAR (BL_PC|BL_MOB|BL_HOM|BL_MER|BL_ELEM|BL_STALL)
 
 /// NPC Subtype
 enum npc_subtype : uint8{
@@ -1165,6 +1166,7 @@ struct homun_data* map_id2hd(int id);
 struct s_mercenary_data* map_id2mc(int id);
 struct pet_data* map_id2pd(int id);
 struct s_elemental_data* map_id2ed(int id);
+struct s_stall_data* map_id2st(int id);
 struct chat_data* map_id2cd(int id);
 struct block_list * map_id2bl(int id);
 bool map_blid_exists( int id );
@@ -1272,6 +1274,7 @@ typedef struct pet_data         TBL_PET;
 typedef struct homun_data       TBL_HOM;
 typedef struct s_mercenary_data   TBL_MER;
 typedef struct s_elemental_data	TBL_ELEM;
+typedef struct s_stall_data	    TBL_STALL;
 
 #define BL_CAST(type_, bl) \
 	( ((bl) == (struct block_list*)nullptr || (bl)->type != (type_)) ? (T ## type_ *)nullptr : (T ## type_ *)(bl) )
@@ -1294,6 +1297,9 @@ extern char mob2_table[32];
 extern char mob_skill_table[32];
 extern char mob_skill2_table[32];
 extern char vendings_table[32];
+extern char stalls_table[32];
+extern char stalls_vending_items_table[32];
+extern char stalls_buying_items_table[32];
 extern char vending_items_table[32];
 extern char market_table[32];
 extern char partybookings_table[32];

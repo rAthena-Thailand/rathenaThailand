@@ -19151,7 +19151,30 @@ BUILDIN_FUNC(getunitdata)
 			getunitdata_sub(UNPC_DEADSIT, nd->vd.dead_sit);
 			getunitdata_sub(UNPC_GROUP_ID, nd->ud.group_id);
 			} break;
-
+		case BL_STALL: {
+			s_stall_data* sta = reinterpret_cast<s_stall_data*>( bl );
+			
+			getunitdata_sub(USTALL_VENDER, sta->vender_id);
+			getunitdata_sub(USTALL_VENDED, sta->vended_id);
+			getunitdata_sub(USTALL_TYPE, sta->type);
+			getunitdata_sub(USTALL_CLASS, sta->vd.class_);
+			getunitdata_sub(USTALL_SEX, sta->vd.sex);
+			getunitdata_sub(USTALL_MAPNAME, esc_mapname);
+			getunitdata_sub(USTALL_X, sta->bl.x);
+			getunitdata_sub(USTALL_Y, sta->bl.y);
+			getunitdata_sub(USTALL_MESSAGE, sta->message);
+			getunitdata_sub(USTALL_HAIRSTYLE, sta->vd.hair_style);
+			getunitdata_sub(USTALL_HAIRCOLOR, sta->vd.hair_color);
+			getunitdata_sub(USTALL_BODYSTYLE, sta->vd.body_style);
+			getunitdata_sub(USTALL_WEAPON, sta->vd.weapon);
+			getunitdata_sub(USTALL_SHIELD, sta->vd.shield);
+			getunitdata_sub(USTALL_HEADTOP, sta->vd.head_top);
+			getunitdata_sub(USTALL_HEADMID, sta->vd.head_mid);
+			getunitdata_sub(USTALL_HEADBOTTOM, sta->vd.head_bottom);
+			getunitdata_sub(USTALL_CLOTHCOLOR, sta->vd.cloth_color);
+			getunitdata_sub(USTALL_NAME, sta->name);
+			getunitdata_sub(USTALL_TIME, sta->expire_time);
+			}break;
 		default:
 			ShowWarning("buildin_getunitdata: Unknown object type!\n");
 			return SCRIPT_CMD_FAILURE;
@@ -27428,6 +27451,49 @@ BUILDIN_FUNC(permission_add)
 	return SCRIPT_CMD_SUCCESS;
 }
 
+BUILDIN_FUNC( open_stall ){
+	map_session_data* sd;
+	uint16 skill_id, skill_lv;
+
+	if( !script_rid2sd( sd ) ){
+		return SCRIPT_CMD_FAILURE;
+	}
+
+	if (script_isstring(st, 2)) {
+		const char *name = script_getstr(st, 2);
+
+		if (!(skill_id = skill_name2id(name))) {
+			ShowError("buildin_unitskilluseid: Invalid skill name %s passed to item bonus. Skipping.\n", name);
+			return SCRIPT_CMD_FAILURE;
+		}
+	}
+	skill_lv = script_getnum(st,3);
+
+	if( sd->itemid == 0 ){
+		ShowError( "open_stall: Called outside of an item script without item id.\n" );
+		return SCRIPT_CMD_FAILURE;
+	}
+
+    if( sd->inventory.u.items_inventory[sd->itemindex].expire_time == 0 ){
+        ShowError( "open_stall: Called from item %u, which is not a consumed delayed.\n", sd->itemid );
+        return SCRIPT_CMD_FAILURE;
+    }
+
+	if( sd->state.stall_ui_open != 0 ){
+		ShowError( "open_stall: Stall window was already open. Player %s (AID: %u, CID: %u) with item id %u.\n", sd->status.name, sd->status.account_id, sd->status.char_id, sd->itemid );
+		return SCRIPT_CMD_FAILURE;
+	}
+
+	sd->stall_expire_time = sd->inventory.u.items_inventory[sd->itemindex].expire_time;
+	sd->stallvending_level = skill_lv;
+
+	// todo check if already set
+
+	unit_skilluse_id(&sd->bl, sd->bl.id, skill_id, skill_lv);
+
+	return SCRIPT_CMD_SUCCESS;
+}
+
 #include <custom/script.inc>
 
 // declarations that were supposed to be exported from npc_chat.cpp
@@ -28197,6 +28263,8 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(permission_check, "i?"),
 	BUILDIN_DEF(permission_add, "i?"),
 	BUILDIN_DEF2(permission_add, "permission_remove", "i?"),
+	
+	BUILDIN_DEF(open_stall,"si"),
 
 #include <custom/script_def.inc>
 

@@ -423,6 +423,7 @@ public:
 		unsigned int buyingstore : 1;
 		unsigned int lesseffect : 1;
 		unsigned int vending : 1;
+		bool stall_ui_open;
 		unsigned int noks : 3; // [Zeph Kill Steal Protection]
 		unsigned int changemap : 1;
 		unsigned int callshop : 1; // flag to indicate that a script used callshop; on a shop
@@ -539,6 +540,9 @@ public:
 	uint16 cloneskill_idx, ///Stores index of copied skill by Intimidate/Plagiarism
 		reproduceskill_idx; ///Stores index of copied skill by Reproduce
 	int menuskill_id, menuskill_val, menuskill_val2;
+	
+	uint16 stallvending_level;
+	unsigned int stall_expire_time;
 
 	int invincible_timer;
 	t_tick canlog_tick;
@@ -741,8 +745,10 @@ public:
 
 	int vended_id;
 	int vender_id;
+	int stall_id;
 	int vend_num;
 	uint16 vend_skill_lv;
+	uint16 stall_skill_lv;
 	char message[MESSAGE_SIZE];
 	struct s_vending vending[MAX_VENDING];
 

@@ -43,6 +43,7 @@
 #include "pc_groups.hpp"
 #include "pet.hpp"
 #include "script.hpp"
+#include "stall.hpp"
 #include "status.hpp"
 #include "unit.hpp"
 
@@ -9300,6 +9301,30 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 					sd->state.pending_vending_ui = false;
 					clif_openvendingreq( *sd, 2+skill_lv );
 				}
+			}
+		}
+		break;
+
+	case ALL_ASSISTANT_BUYING:
+	case ALL_ASSISTANT_VENDING:
+		if(sd)
+		{	//Prevent vending of GMs with unnecessary Level to trade/drop. [Skotlex]
+			if ( !pc_can_give_items(sd) ){
+				clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
+				if(skill_id == ALL_ASSISTANT_VENDING)
+					clif_stall_ui_close(sd,100,0);
+				else
+					clif_stall_ui_close(sd,101,0);
+
+			}
+			else {
+				sd->state.prevend = 1;
+				sd->state.workinprogress = WIP_DISABLE_ALL;
+				sd->stall_skill_lv = skill_lv;
+				if(skill_id == ALL_ASSISTANT_VENDING)
+					clif_skill_nodamage(src, bl, skill_id, skill_lv, stall_ui_open(sd, skill_lv, 0) ? 0 : 1);
+				else
+					clif_skill_nodamage(src, bl, skill_id, skill_lv, stall_ui_open(sd, skill_lv, 1) ? 0 : 1);
 			}
 		}
 		break;

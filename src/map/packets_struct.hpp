@@ -6018,6 +6018,192 @@ struct PACKET_CZ_ADVENTURER_AGENCY_JOIN_RESULT {
 DEFINE_PACKET_HEADER(CZ_ADVENTURER_AGENCY_JOIN_RESULT, 0x0af8);
 #endif  // PACKETVER_MAIN_NUM >= 20191218 || PACKETVER_RE_NUM >= 20191211 || PACKETVER_ZERO_NUM >= 20191224
 
+#if PACKETVER >= 20170208
+struct STALL_VENDING_UI_OPEN_sub {
+	int16 index;
+} __attribute__((packed));
+
+struct PACKET_ZC_STALL_VENDING_UI_OPEN {
+	int16 packetType;
+	int16 PacketLength;
+	int8 slots;
+	struct STALL_VENDING_UI_OPEN_sub items[];
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_STALL_VENDING_UI_OPEN, 0x0a7e);
+
+struct PACKET_ZC_STALL_BUYING_UI_OPEN {
+	int16 packetType;
+	int8 slot;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_STALL_BUYING_UI_OPEN, 0x0a93);
+
+struct STALL_VENDING_SET_sub {
+	uint16 index;
+	uint16 count;
+	uint32 price;
+} __attribute__((packed));
+
+struct PACKET_CZ_STALL_VENDING_SET {
+	int16 packetType;
+	int16 PacketLength;
+	char storeName[MESSAGE_SIZE];
+	int16 xPos;
+	int16 yPos;
+	struct STALL_VENDING_SET_sub items[];
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(CZ_STALL_VENDING_SET, 0x0a7f);
+
+struct STALL_BUYING_SET_sub {
+	uint32 itemId;
+	uint16 count;
+	uint32 price;
+} __attribute__((packed));
+
+struct PACKET_CZ_STALL_BUYING_SET {
+	int16 packetType;
+	int16 PacketLength;
+	uint64 total_price;
+	char storeName[MESSAGE_SIZE];
+	int16 xPos;
+	int16 yPos;
+	struct STALL_BUYING_SET_sub items[];
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(CZ_STALL_BUYING_SET, 0x0a92);
+
+struct PACKET_ZC_STALL_UI_CLOSE {
+	int16 packetType;
+	int8 type;
+	int8 reason;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_STALL_UI_CLOSE, 0x0a81);
+
+struct PACKET_CZ_STALL_VENDING_CANCEL {
+	int16 packetType;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(CZ_STALL_VENDING_CANCEL, 0x0a8c);
+
+struct PACKET_CZ_STALL_BUYING_CANCEL {
+	int16 packetType;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(CZ_STALL_BUYING_CANCEL, 0x0a94);
+
+struct PACKET_CZ_STALL_CLOSE {
+	int16 packetType;
+	uint32 srcId;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(CZ_STALL_CLOSE, 0x0a80);
+
+struct PACKET_ZC_STALL_BUYING_LIST_REQUEST {
+	int16 packetType;
+	int16 PacketLength;
+	int32 unique_id;
+	int32 vender_id;
+	int8 myStall;
+	int32 expireTime;
+	uint64 total_price;
+	struct PACKET_ZC_MYITEMLIST_BUYING_STORE_sub items[];
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_STALL_BUYING_LIST_REQUEST, 0x0a91);
+#endif
+
+#if PACKETVER_MAIN_NUM >= 20191016 || PACKETVER_RE_NUM >= 20191016 || PACKETVER_ZERO_NUM >= 20191008
+struct STALL_VENDING_LIST_REQUEST_sub {
+	uint32 price;
+	uint16 amount;
+	uint16 index;
+	uint8 itemType;
+	uint32 itemId;
+	uint8 identified;
+	uint8 damaged;
+	struct EQUIPSLOTINFO slot;
+	struct ItemOptions option_data[MAX_ITEM_OPTIONS];
+	uint32 location;
+	uint16 viewSprite;
+	uint8 refine;
+	uint8 enchantgrade;
+} __attribute__((packed));
+
+struct PACKET_ZC_STALL_VENDING_LIST_REQUEST {
+	int16 packetType;
+	int16 PacketLength;
+	int32 unique_id;
+	int32 vender_id;
+	int8 myStall;
+	int32 expireTime;
+	struct STALL_VENDING_LIST_REQUEST_sub items[];
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_STALL_VENDING_LIST_REQUEST, 0x0b62);
+#elif PACKETVER >= 20170208
+struct STALL_VENDING_LIST_REQUEST_sub {
+	uint32 price;
+	uint16 amount;
+	uint16 index;
+	uint8 itemType;
+	uint32 itemId;
+	uint8 identified;
+	uint8 damaged;
+	struct EQUIPSLOTINFO slot;
+	struct ItemOptions option_data[MAX_ITEM_OPTIONS];
+	uint32 location;
+	uint16 viewSprite;
+	uint8 refine;
+} __attribute__((packed));
+
+struct PACKET_ZC_STALL_VENDING_LIST_REQUEST {
+	int16 packetType;
+	int16 PacketLength;
+	int32 unique_id;
+	int32 vender_id;
+	int8 myStall;
+	int32 expireTime;
+	struct STALL_VENDING_LIST_REQUEST_sub items[];
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_STALL_VENDING_LIST_REQUEST, 0x08ad);
+#endif
+
+#if PACKETVER_MAIN_NUM >= 20180801 || PACKETVER_RE_NUM >= 20180801 || PACKETVER_ZERO_NUM >= 20180808
+struct PACKET_ZC_STALL_CHAR_DETAILS {
+	int16 packetType;
+	int32 vender_id;
+	int32 job;
+	int16 xPos;
+	int16 yPos;
+	uint8 sex;
+	int16 head;
+	uint32 weapon;
+	uint32 shield;
+	uint16 MidAccessory; // ears
+	uint16 TopAccessory; // hat
+	uint16 BottomAccessory; // mouth
+	int16 headpalette;
+	int16 bodypalette;
+	uint16 BackAccessory;
+	char name[NAME_LENGTH];
+	int16 unknow;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_STALL_CHAR_DETAILS, 0x0b05);
+#elif PACKETVER >= 20170208
+struct PACKET_ZC_STALL_CHAR_DETAILS {
+	int16 packetType;
+	int32 vender_id;
+	int32 job;
+	int16 xPos;
+	int16 yPos;
+	uint8 sex;
+	int16 head;
+	uint32 weapon;
+	uint32 shield;
+	uint16 MidAccessory; // ears
+	uint16 TopAccessory; // hat
+	uint16 BottomAccessory; // mouth
+	int16 headpalette;
+	int16 bodypalette;
+	uint16 BackAccessory;
+	char name[NAME_LENGTH];
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_STALL_CHAR_DETAILS, 0x0a89);
+#endif
+
 #if !defined(sun) && (!defined(__NETBSD__) || __NetBSD_Version__ >= 600000000) // NetBSD 5 and Solaris don't like pragma pack but accept the packed attribute
 #pragma pack(pop)
 #endif // not NetBSD < 6 / Solaris

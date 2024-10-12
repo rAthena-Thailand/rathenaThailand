@@ -50,6 +50,7 @@
 #include "pc.hpp"
 #include "pet.hpp"
 #include "quest.hpp"
+#include "stall.hpp"
 #include "storage.hpp"
 #include "trade.hpp"
 
@@ -87,6 +88,9 @@ char mob_skill2_table[32] = "mob_skill_db2";
 #endif
 char sales_table[32] = "sales";
 char vendings_table[32] = "vendings";
+char stalls_table[32] = "stalls";
+char stalls_vending_items_table[32] = "stalls_vending_items";
+char stalls_buying_items_table[32] = "stalls_buying_items";
 char vending_items_table[32] = "vending_items";
 char market_table[32] = "market";
 char partybookings_table[32] = "party_bookings";
@@ -2245,6 +2249,11 @@ struct pet_data* map_id2pd(int id){
 struct s_elemental_data* map_id2ed(int id) {
 	struct block_list* bl = map_id2bl(id);
 	return BL_CAST(BL_ELEM, bl);
+}
+
+struct s_stall_data* map_id2st(int id) {
+	struct block_list* bl = map_id2bl(id);
+	return BL_CAST(BL_STALL, bl);
 }
 
 struct chat_data* map_id2cd(int id){
@@ -4948,6 +4957,7 @@ void MapServer::finalize(){
 	do_final_channel(); //should be called after final guild
 	do_final_vending();
 	do_final_buyingstore();
+	do_final_stall();
 	do_final_path();
 
 	map_db->destroy(map_db, map_db_final);
@@ -5325,6 +5335,7 @@ bool MapServer::initialize( int argc, char *argv[] ){
 	do_init_duel();
 	do_init_vending();
 	do_init_buyingstore();
+	do_init_stall();
 
 	npc_event_do_oninit();	// Init npcs (OnInit)
 
