@@ -5085,9 +5085,9 @@ void clif_getareachar_unit( map_session_data* sd,struct block_list *bl ){
 			struct s_stall_data* st = map_id2st(bl->id);
 			clif_stall_showunit(sd,st);
 			if(st->type == 0)
-				clif_showstallboard(&sd->bl,st->vender_id,st->message);
+				clif_showstallboard(&sd.bl,st->vender_id,st->message);
 			else
-				clif_buyingstall_entry(&sd->bl,st->vender_id,st->message);
+				clif_buyingstall_entry(&sd.bl,st->vender_id,st->message);
 		}
 		break;
 	case BL_NPC:
@@ -5624,7 +5624,7 @@ int clif_outsight(struct block_list *bl,va_list ap)
 				clif_clearunit_single( bl->id, CLR_OUTSIGHT, *tsd );
 			break;
 		case BL_STALL:
-			clif_clearunit_single(bl->id,CLR_OUTSIGHT,tsd->fd);
+			clif_clearunit_single(bl->id,CLR_OUTSIGHT, *tsd );
 			break;
 		default:
 			if((vd=status_get_viewdata(bl)) && vd->class_ != JT_INVISIBLE)
@@ -5671,9 +5671,9 @@ int clif_insight(struct block_list *bl,va_list ap)
 				struct s_stall_data* st = map_id2st(bl->id);
 				clif_stall_showunit(ssd,st);
 				if(st->type == 0)
-					clif_showstallboard(&ssd->bl,st->vender_id,st->message);
+					clif_showstallboard(&ssd.bl,st->vender_id,st->message);
 				else
-					clif_buyingstall_entry(&ssd->bl,st->vender_id,st->message);
+					clif_buyingstall_entry(&ssd.bl,st->vender_id,st->message);
 			}
 			break;
 		default:
@@ -14085,7 +14085,7 @@ void clif_parse_PurchaseReq2(int fd, map_session_data* sd){
 #if PACKETVER >= 20100105
 	const PACKET_CZ_PC_PURCHASE_ITEMLIST_FROMMC2* p = reinterpret_cast<PACKET_CZ_PC_PURCHASE_ITEMLIST_FROMMC2*>( RFIFOP( fd, 0 ) );
 
-	if(uid >= START_STALL_NUM)
+	if(p->UniqueID >= START_STALL_NUM)
 		stall_vending_purchasereq( sd, p->AID, p->UniqueID, (uint8*)p->list, ( p->packetLength - sizeof( *p ) ) / sizeof( p->list[0] ) );
 	else
 		vending_purchasereq( sd, p->AID, p->UniqueID, (uint8*)p->list, ( p->packetLength - sizeof( *p ) ) / sizeof( p->list[0] ) );
@@ -25352,16 +25352,16 @@ void clif_stall_vending_open(map_session_data *sd){
 #if PACKETVER >= 20170208
 	nullpo_retv( sd );
 
-	int fd = sd->fd;
+	int fd = sd.fd;
 
 	if( !session_isActive( fd ) ){
 		return;
 	}
 
 	// Check if a shop is already opened for this char
-	if(stall_isStallOpen(sd->status.char_id)){
+	if(stall_isStallOpen(sd.status.char_id)){
 		clif_stall_ui_close(sd,100,STALLSTORE_OK);
-		clif_displaymessage(sd->fd, "You can't open 2 stalls at the same time on a char.");
+		clif_displaymessage(sd.fd, "You can't open 2 stalls at the same time on a char.");
 		return;
 	}
 
@@ -25375,7 +25375,7 @@ void clif_stall_vending_open(map_session_data *sd){
 	int c = 0;
 
 	for( int i = 0; i < MAX_INVENTORY; i++ ){
-		if( sd->inventory.u.items_inventory[i].nameid > 0 && sd->inventory_data[i] ){
+		if( sd.inventory.u.items_inventory[i].nameid > 0 && sd.inventory_data[i] ){
 			if( !pc_can_trade_item(sd, i))
 				continue;
 
@@ -25390,12 +25390,12 @@ void clif_stall_vending_open(map_session_data *sd){
 		// Recalculate real length
 		len = c * sizeof( struct STALL_VENDING_UI_OPEN_sub ) + sizeof( struct PACKET_ZC_STALL_VENDING_UI_OPEN );
 		p->PacketLength = len;
-		p->slots = 2 + sd->stallvending_level;
+		p->slots = 2 + sd.stallvending_level;
 
 		WFIFOSET( fd, len );
 
-		sd->state.prevend = 1;
-		sd->state.stall_ui_open = 1;
+		sd.state.prevend = 1;
+		sd.state.stall_ui_open = 1;
 	} else
 		clif_stall_ui_close(sd,100,STALLSTORE_OK);
 #endif
@@ -25406,28 +25406,28 @@ void clif_stall_buying_open(map_session_data *sd){
 #if PACKETVER >= 20170208
 	nullpo_retv( sd );
 
-	int fd = sd->fd;
+	int fd = sd.fd;
 
 	if( !session_isActive( fd ) ){
 		return;
 	}
 
 	// Check if a shop is already opened for this char
-	if(stall_isStallOpen(sd->status.char_id)){
+	if(stall_isStallOpen(sd.status.char_id)){
 		clif_stall_ui_close(sd,101,STALLSTORE_OK);
-		clif_displaymessage(sd->fd, "You can't open 2 stalls at the same time on a char.");
+		clif_displaymessage(sd.fd, "You can't open 2 stalls at the same time on a char.");
 		return;
 	}
 
-	sd->state.prevend = 1;
-	sd->state.stall_ui_open = 1;
+	sd.state.prevend = 1;
+	sd.state.stall_ui_open = 1;
 
 	struct PACKET_ZC_STALL_BUYING_UI_OPEN p = {};
 
 	p.packetType = HEADER_ZC_STALL_BUYING_UI_OPEN;
-	p.slot = 2 + sd->stall_skill_lv;
+	p.slot = 2 + sd.stall_skill_lv;
 
-	clif_send( &p, sizeof( p ), &sd->bl, SELF );
+	clif_send( &p, sizeof( p ), &sd.bl, SELF );
 #endif
 }
 
@@ -25457,7 +25457,7 @@ void clif_stall_showunit(map_session_data *sd, struct s_stall_data *st){
 	nullpo_retv( sd );
 	nullpo_retv( st );
 
-	int fd = sd->fd;
+	int fd = sd.fd;
 
 	if( !session_isActive( fd ) ){
 		return;
@@ -25483,7 +25483,7 @@ void clif_stall_showunit(map_session_data *sd, struct s_stall_data *st){
 	safestrncpy(p.name, st->message, NAME_LENGTH);
 	p.unknow = 0;
 
-	clif_send( &p, sizeof( p ), &sd->bl, AREA );
+	clif_send( &p, sizeof( p ), &sd.bl, AREA );
 #endif
 }
 
@@ -25492,16 +25492,16 @@ void clif_stall_ui_close(map_session_data *sd, int type, int reason){
 #if PACKETVER >= 20170208
 	nullpo_retv( sd );
 
-	int fd = sd->fd;
+	int fd = sd.fd;
 
 	if( !session_isActive( fd ) ){
 		return;
 	}
 
 	if(reason != STALLSTORE_POSITION){
-		sd->state.prevend = 0;
-		sd->state.workinprogress = WIP_DISABLE_NONE;
-		sd->state.stall_ui_open = 0;
+		sd.state.prevend = 0;
+		sd.state.workinprogress = WIP_DISABLE_NONE;
+		sd.state.stall_ui_open = 0;
 	}
 
 	struct PACKET_ZC_STALL_UI_CLOSE p = {};
@@ -25510,7 +25510,7 @@ void clif_stall_ui_close(map_session_data *sd, int type, int reason){
 	p.type = type;
 	p.reason = reason;
 
-	clif_send( &p, sizeof( p ), &sd->bl, SELF );
+	clif_send( &p, sizeof( p ), &sd.bl, SELF );
 #endif
 }
 
@@ -25519,13 +25519,13 @@ void clif_stall_vending_list(map_session_data *sd, s_stall_data *st){
 #if PACKETVER >= 20170208
 	nullpo_retv( sd );
 
-	int fd = sd->fd;
+	int fd = sd.fd;
 
 	if( !session_isActive( fd ) ){
 		return;
 	}
 
-	sd->vended_id = st->vender_id;
+	sd.vended_id = st->vender_id;
 
 	short j = 0;
 	for(int i = 0; i < st->vend_num ; i++){
@@ -25545,7 +25545,7 @@ void clif_stall_vending_list(map_session_data *sd, s_stall_data *st){
 	p->PacketLength = len;
 	p->unique_id = st->vended_id;
 	p->vender_id = st->vender_id;
-	if(st->vended_id == sd->status.char_id)
+	if(st->vended_id == sd.status.char_id)
 		p->myStall = 1;
 	else
 		p->myStall = 0;
@@ -25582,13 +25582,13 @@ void clif_stall_buying_list(map_session_data *sd, s_stall_data *st){
 #if PACKETVER >= 20170208
 	nullpo_retv( sd );
 
-	int fd = sd->fd;
+	int fd = sd.fd;
 
 	if( !session_isActive( fd ) ){
 		return;
 	}
 
-	sd->vended_id = st->vender_id;
+	sd.vended_id = st->vender_id;
 
 	short j = 0;
 	for(int i = 0; i < st->vend_num ; i++){
@@ -25608,7 +25608,7 @@ void clif_stall_buying_list(map_session_data *sd, s_stall_data *st){
 	p->PacketLength = len;
 	p->unique_id = st->vended_id;
 	p->vender_id = st->vender_id;
-	if(st->vended_id == sd->status.char_id)
+	if(st->vended_id == sd.status.char_id)
 		p->myStall = 1;
 	else
 		p->myStall = 0;
@@ -25650,7 +25650,7 @@ void clif_parse_stall_close( int fd, map_session_data* sd ){
 #if PACKETVER >= 20170208
 	const struct PACKET_CZ_STALL_CLOSE *p = (struct PACKET_CZ_STALL_CLOSE *)RFIFOP( fd, 0 );
 
-	if(p->srcId == sd->status.char_id)
+	if(p->srcId == sd.status.char_id)
 		stall_close(sd);
 #endif
 }

@@ -20,7 +20,7 @@
 #define BUYINGSTALL_MAX_AMOUNT 9999
 #define STALL_TAX 5 // 5% as KRO (over 10 m zeny)
 
-map_session_data;
+class map_session_data;
 struct block_list;
 struct view_data;
 struct status_change;
