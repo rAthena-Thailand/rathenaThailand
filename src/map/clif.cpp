@@ -25564,7 +25564,7 @@ void clif_stall_vending_list(map_session_data *sd, s_stall_data *st){
 			p->items[slot].identified = st->items_inventory[i].identify;
 			p->items[slot].damaged = st->items_inventory[i].attribute;
 			clif_addcards( &p->items[slot].slot, &st->items_inventory[i] );
-			clif_add_random_options( p->items[slot].option_data, &st->items_inventory[i] );
+			clif_add_random_options( p->items[slot].option_data, st->items_inventory[i] );
 			p->items[slot].location = pc_equippoint_sub( sd, data );
 			p->items[slot].viewSprite = data->look;
 			p->items[slot].refine = st->items_inventory[i].refine;
