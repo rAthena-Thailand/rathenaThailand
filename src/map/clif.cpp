@@ -25549,7 +25549,7 @@ void clif_stall_vending_list(map_session_data *sd, s_stall_data *st){
 		p->myStall = 1;
 	else
 		p->myStall = 0;
-	p->expireTime = const_cast<int>((st->expire_time - time(NULL)) * 1000); //if 0 == unlimited on client..
+	p->expireTime = (st->expire_time - time(NULL)) * 1000; //if 0 == unlimited on client..
 
 	short slot = 0;
 	for(int i = 0; i < st->vend_num ; i++){
@@ -25612,7 +25612,7 @@ void clif_stall_buying_list(map_session_data *sd, s_stall_data *st){
 		p->myStall = 1;
 	else
 		p->myStall = 0;
-	p->expireTime = const_cast<int>((st->expire_time - time(NULL)) * 1000); //if 0 == unlimited on client..
+	p->expireTime = (st->expire_time - time(NULL)) * 1000; //if 0 == unlimited on client..
 
 	uint64 total_price = 0;
 	short k = 0;
