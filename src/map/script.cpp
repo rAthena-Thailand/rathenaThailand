@@ -19151,30 +19151,9 @@ BUILDIN_FUNC(getunitdata)
 			getunitdata_sub(UNPC_DEADSIT, nd->vd.dead_sit);
 			getunitdata_sub(UNPC_GROUP_ID, nd->ud.group_id);
 			} break;
-		case BL_STALL: {
-			s_stall_data* sta = reinterpret_cast<s_stall_data*>( bl );
-			
-			getunitdata_sub(USTALL_VENDER, sta->vender_id);
-			getunitdata_sub(USTALL_VENDED, sta->vended_id);
-			getunitdata_sub(USTALL_TYPE, sta->type);
-			getunitdata_sub(USTALL_CLASS, sta->vd.class_);
-			getunitdata_sub(USTALL_SEX, sta->vd.sex);
-			getunitdata_sub(USTALL_MAPNAME, esc_mapname);
-			getunitdata_sub(USTALL_X, sta->bl.x);
-			getunitdata_sub(USTALL_Y, sta->bl.y);
-			getunitdata_sub(USTALL_MESSAGE, sta->message);
-			getunitdata_sub(USTALL_HAIRSTYLE, sta->vd.hair_style);
-			getunitdata_sub(USTALL_HAIRCOLOR, sta->vd.hair_color);
-			getunitdata_sub(USTALL_BODYSTYLE, sta->vd.body_style);
-			getunitdata_sub(USTALL_WEAPON, sta->vd.weapon);
-			getunitdata_sub(USTALL_SHIELD, sta->vd.shield);
-			getunitdata_sub(USTALL_HEADTOP, sta->vd.head_top);
-			getunitdata_sub(USTALL_HEADMID, sta->vd.head_mid);
-			getunitdata_sub(USTALL_HEADBOTTOM, sta->vd.head_bottom);
-			getunitdata_sub(USTALL_CLOTHCOLOR, sta->vd.cloth_color);
-			getunitdata_sub(USTALL_NAME, sta->name);
-			getunitdata_sub(USTALL_TIME, sta->expire_time);
-			}break;
+		case BL_STALL: 
+			sta = map_id2st(bl->id);
+			break;
 		default:
 			ShowWarning("buildin_getunitdata: Unknown object type!\n");
 			return SCRIPT_CMD_FAILURE;
