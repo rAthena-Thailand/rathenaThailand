@@ -50,45 +50,45 @@
 in_moc_16,19,33,1	script	Guildsman#asn	55,{
 	if (Upper == 1) {
 		mes "[Ferocious-looking guy]";
-		mes "Hm? You....?";
-		mes "I sense that you're different than most people...";
+		mes "หืม? คุณ...?";
+		mes "ฉันรู้สึกว่าคุณแตกต่างจากคนส่วนใหญ่...";
 		next;
 		mes "[Ferocious-looking guy]";
-		mes "I've never met anyone as intimidating as you! For some reason, I don't like you. I think you should leave!";
+		mes "ฉันไม่เคยเจอใครน่ากลัวเท่าคุณเลย! ไม่รู้ทำไมฉันถึงไม่ชอบคุณ ฉันคิดว่าคุณควรออกไปซะ!";
 		close;
 	}
 	if (SkillPoint) {
 		mes "[Ferocious-looking guy]";
-		mes "You can't change your job if you have any unused skill points from the 1st job. You better go and use those up first.";
+		mes "คุณไม่สามารถเปลี่ยนอาชีพได้หากคุณมีแต้มทักษะที่ไม่ได้ใช้จากอาชีพแรก คุณควรใช้แต้มเหล่านั้นให้หมดก่อน";
 		close;
 	}
 	if (ASSIN_Q == 4) {
 		mes "[Ferocious-looking guy]";
-		mes "Oh, stop making that face. Can you really be in that much pain?";
+		mes "โอ้ หยุดทำหน้าแบบนั้นได้แล้ว คุณจะเจ็บปวดขนาดนั้นจริงเหรอ?";
 		next;
 		mes "[Ferocious-looking guy]";
-		mes "Wah wah wah, you're hurting, I can see that. Look, I'll restore HP and SP. Happy?";
+		mes "ว้า ว้า ว้า แกเจ็บนะ ฉันเห็นนะ ดูสิ ฉันจะฟื้น HP กับ SP เอง พอใจไหม?";
 		percentheal 100,100;
 		next;
 		mes "[Ferocious-looking guy]";
-		mes "Is it that hard to stay alive?";
-		mes "Why don't you try harder next time? You can't force yourself too hard to become an Assassin...";
+		mes "การจะมีชีวิตอยู่ต่อไปมันยากขนาดนั้นเลยเหรอ??";
+		mes "ทำไมคราวหน้าไม่พยายามให้หนักกว่านี้ล่ะ คุณไม่สามารถบังคับตัวเองให้กลายเป็นนักฆ่าได้...";
 		next;
-		if (select("I will become an Assassin no matter what!:Oh man, I gotta take a break.") == 1) {
+		if (select("ฉันจะกลายเป็นนักฆ่าไม่ว่าจะเกิดอะไรขึ้นก็ตาม!:โอ้โห ฉันต้องพักสักหน่อย") == 1) {
 			mes "[Ferocious-looking guy]";
-			mes "Oh...";
-			mes "Well then,";
-			mes "go for it!";
+			mes "โอ้...";
+			mes "เอาล่ะ,";
+			mes "ไปเลย!";
 			close2;
 			ASSIN_Q = 0;
 			warp "in_moc_16",19,76;
 			end;
 		}
 		mes "[Ferocious-looking guy]";
-		mes "Take a break? Oh alright, have it your way. When you feel like you're ready to become an Assassin, come back.";
+		mes "พักสักครู่ไหม? เอาล่ะ ตามใจคุณเถอะ เมื่อคุณรู้สึกว่าพร้อมที่จะเป็นนักฆ่าแล้ว ก็กลับมา";
 		next;
 		mes "[Ferocious-looking guy]";
-		mes "You'll have to walk if you want to get back to town. Oh, and don't forget to save your spawn point, alright?";
+		mes "คุณจะต้องเดินหากคุณต้องการกลับเข้าเมือง โอ้ และอย่าลืมบันทึกจุดเกิดของคุณด้วย?";
 		close2;
 		ASSIN_Q = 0;
 		ASSIN_Q2 = 0;
@@ -100,21 +100,21 @@ in_moc_16,19,33,1	script	Guildsman#asn	55,{
 	}
 	if (BaseJob == Job_Thief && countitem(1008) == 0 && ASSIN_Q > 7) {
 		mes "[Assassin Expert 'Huey']";
-		mes "Hey, what happened...? How come you didn't bring the ^006699Necklace of Oblivion^000000? You're supposed to carry that with you, so where is it?";
+		mes "เฮ้ เกิดอะไรขึ้น... ทำไมคุณไม่นำ ^006699Necklace of Oblivion^000000 มาด้วยล่ะ คุณควรจะพกติดตัวไปด้วย แล้วมันอยู่ที่ไหน?";
 		next;
 		mes "[Assassin Expert 'Huey']";
-		mes "You get better get that ^006699Necklace of Oblivion^000000 again before the guildmaster finds out! Hurry, and do your best to get it!";
+		mes "คุณควรได้รับ ^006699Necklace of Oblivion^000000 อีกครั้งก่อนที่หัวหน้ากิลด์จะรู้! รีบทำอย่างดีที่สุดเพื่อรับมันมา!";
 		next;
 		mes "[Assassin Expert 'Huey']";
-		mes "When you finally succeed in getting it, bring it to me! ^666666*Sigh...*^000000";
+		mes "เมื่อคุณได้มันมาได้สำเร็จแล้ว นำมาให้ฉันซะ! ^666666*ถอนหายใจ*^000000";
 		close;
 	}
 	if (BaseJob == Job_Thief && countitem(1008) > 0 && ASSIN_Q > 7) {
 		mes "[Assassin Expert 'Huey']";
-		mes "Well well well, you got it. Congratulations! But since it's been clearly scratched, I can't accept it. You'll never become an Assassin!";
+		mes "อืม อืม เข้าใจแล้ว ขอแสดงความยินดีด้วย! แต่เนื่องจากมันถูกขีดข่วนอย่างชัดเจน ฉันจึงรับไม่ได้ คุณจะไม่มีวันเป็นนักฆ่าได้!";
 		next;
 		mes "[Assassin Expert 'Huey']";
-		mes "Hahahah~! I'm just joking, don't take it seriously. But I do need to check this necklace with the guildmaster first.";
+		mes "ฮ่าๆๆๆ~! ล้อเล่นนะ อย่าคิดมากนะ แต่ฉันต้องเช็คสร้อยคอเส้นนี้กับหัวหน้ากิลด์ก่อน";
 		next;
 		mes "[Assassin Expert 'Huey']";
 		mes "...";
@@ -124,8 +124,8 @@ in_moc_16,19,33,1	script	Guildsman#asn	55,{
 		mes "......";
 		next;
 		mes "[Assassin Expert 'Huey']";
-		mes "Alright!";
-		mes "You've been approved!";
+		mes "ใช้ได้!";
+		mes "คุณได้รับการอนุมัติแล้ว!";
 		next;
 		delitem 1008,1; //Frozen_Heart
 		changequest 8007,8008;
@@ -133,16 +133,16 @@ in_moc_16,19,33,1	script	Guildsman#asn	55,{
 		callfunc "Job_Change",Job_Assassin;
 		callfunc "F_ClearJobVar";		// clears all job variables for the current player
 		mes "[Assassin Expert 'Huey']";
-		mes "Now! Do your best to be a great Assassin! Travel with faith and kill with dignity. Come by anytime and pay us a visit. Once again, congratulations.";
+		mes "ตอนนี้! พยายามอย่างเต็มที่เพื่อเป็นนักฆ่าผู้ยิ่งใหญ่! เดินทางด้วยศรัทธาและสังหารอย่างมีศักดิ์ศรี แวะมาเยี่ยมเราได้ตลอดเวลา ขอแสดงความยินดีอีกครั้ง";
 		close;
 	}
 	else if (countitem(1008) > 0 && BaseJob == Job_Thief && ASSIN_Q < 7) {
 		mes "[Ferocious-looking guy]";
-		mes "Eh?";
-		mes "What do you want?";
+		mes "เอ๊ะ?";
+		mes "คุณต้องการอะไร?";
 		next;
 		mes "[Ferocious-looking guy]";
-		mes "I see you're carrying a ^006699Necklace of Oblivion^000000... You want to become an Assassin, don't you? Let me check it...";
+		mes "ฉันเห็นเธอถือ ^006699Necklace of Oblivion^000000... เธออยากจะเป็นนักฆ่าใช่ไหม? ขอฉันเช็คดูก่อน...";
 		next;
 		mes "[Ferocious-looking guy]";
 		mes "...";
@@ -152,105 +152,103 @@ in_moc_16,19,33,1	script	Guildsman#asn	55,{
 		mes "......";
 		next;
 		mes "[Ferocious-looking guy]";
-		mes "Wait a second...";
-		mes "Why you no good BASTARD! THIS IS A FAKE!";
+		mes "รอก่อนนะ...";
+		mes "ทำไมแกถึงไม่ดีเลยไอ้สารเลว! นี่มันของปลอม!";
 		next;
 		mes "[Ferocious-looking guy]";
-		mes "How dare you think of trying to trick me with a fake! Are you stupid or what!? I should kill you...";
+		mes "แกกล้าคิดจะหลอกฉันด้วยของปลอมรึไง! แกโง่หรือไง!? ฉันควรจะฆ่าแกซะ...";
 		close2;
 		warp "moc_fild16",206,229;
 		end;
 	}
 	else {
 		mes "[Ferocious-looking guy]";
-		mes "What brings you here?";
-		mes "I don't think I like the way you're looking at me... Punk.";
+		mes "อะไรทำให้คุณมาที่นี่?";
+		mes "ฉันไม่คิดว่าฉันจะชอบวิธีที่เธอมองฉันเลย พั้งค์";
 		next;
 		if (BaseClass == Job_Novice) {
 			mes "[Ferocious-looking guy]";
-			mes "Hey Newbie. You should really get out of here as soon as you can. I can't guarantee your safety.";
+			mes "เฮ้ มือใหม่ คุณควรออกไปจากที่นี่ให้เร็วที่สุด ฉันไม่สามารถรับประกันความปลอดภัยของคุณได้";
 			close;
 		}
 		else if (BaseClass == Job_Swordman) {
 			mes "[Ferocious-looking guy]";
-			mes "What brings a man of the sword to this place? Why don't you try smashing stuff somewhere else, ya lunkhead.";
+			mes "อะไรทำให้ชายผู้ถือดาบมาที่นี่ ทำไมคุณไม่ลองทุบสิ่งของที่อื่นล่ะ ไอ้โง่";
 			close;
 		}
 		else if (BaseClass == Job_Mage) {
 			mes "[Ferocious-looking guy]";
-			mes "Now what would a magic user be doing here?";
+			mes "แล้วผู้ใช้เวทมนตร์จะทำอะไรที่นี่ล่ะ?";
 			next;
 			mes "[Ferocious-looking guy]";
-			mes "There's a library in Prontera and Juno where you're welcome, so why don't you make like a magic trick and disappear?";
+			mes "มีห้องสมุดอยู่ที่ Prontera และ Juno ซึ่งคุณยินดีต้อนรับ ดังนั้นทำไมคุณไม่ทำเหมือนมายากลแล้วหายตัวไปล่ะ?";
 			close;
 		}
 		else if (BaseClass == Job_Archer) {
 			mes "[Ferocious-looking guy]";
-			mes "Well well well.";
-			mes "Look at that purdy bow.";
+			mes "ดีดีดี";
+			mes "ดูธนูอันสวยงามนั่นสิ";
 			next;
 			mes "[Ferocious-looking guy]";
-			mes "There aren't many Bowmen with the gall to even come close to this place. Well, what do you think you're doin' here?!";
+			mes "ไม่ค่อยมีพวกธนูที่กล้าเข้ามาใกล้ที่นี่สักเท่าไร คุณคิดว่าคุณมาทำอะไรที่นี่?!";
 			close;
 		}
 		else if (BaseClass == Job_Acolyte) {
 			mes "[Ferocious-looking guy]";
-			mes "I thought something smelled funny. What's a servant of God doing in this place? You don't belong here.";
+			mes "ฉันคิดว่ามีบางอย่างมีกลิ่นแปลกๆ คนรับใช้ของพระเจ้ามาทำอะไรที่นี่ คุณไม่สมควรอยู่ที่นี่";
 			close;
 		}
 		else if (BaseClass == Job_Merchant) {
 			mes "[Ferocious-looking guy]";
-			mes "We don't like greedy people around these parts. You better sell your stuff somewhere else, Moneybags.";
+			mes "เราไม่ชอบคนโลภมากแถวนี้ คุณควรขายของของคุณที่อื่นดีกว่านะไอ้พวกถุงเงิน";
 			close;
 		}
 		else if (BaseJob == Job_Rogue) {
 			mes "[Ferocious-looking guy]";
-			mes "You look like you don't have a care in the world. Well, I hope you enjoy your rest while you stay here. It's okay, since the Rogue and Assassin Guilds have always gotten along pretty well.";
+			mes "คุณดูเหมือนไม่สนใจโลกเลย ฉันหวังว่าคุณจะพักผ่อนให้สนุกในขณะที่อยู่ที่นี่ ไม่เป็นไร เพราะกิลด์ Rogue และ Assassin เข้ากันได้ดีมาตลอด";
 			next;
 			mes "[Ferocious-looking guy]";
-			mes "By the way...";
-			mes "Have you ever seen";
-			mes "a girl named Markie?";
+			mes "อนึ่ง...";
+			mes "คุณเคยเห็นผู้หญิงชื่อมาร์กี้ไหม?";
 			next;
 			mes "[Ferocious-looking guy]";
-			mes "Markie...";
-			mes "We promised that we'd be together forever. ^666666*Sigh...*^000000 I don't even think she remembers that promise anymore. Then again, we were pretty young back then...";
+			mes "มาร์กี้...";
+			mes "เราเคยสัญญากันไว้ว่าจะอยู่ด้วยกันตลอดไป ^666666*ถอนหายใจ*^000000 ฉันไม่คิดว่าเธอจะจำคำสัญญานั้นได้อีกแล้ว อีกอย่าง ตอนนั้นเรายังเด็กมาก...";
 			close;
 		}
 		else if (BaseJob == Job_Assassin) {
 			mes "[Assassin Expert 'Huey']";
-			mes "Hey, I remember you~";
-			mes "Wasn't your name, umm, I remember 'cause it sounded funny to me...";
+			mes "เฮ้ ฉันจำคุณได้~";
+			mes "ไม่ใช่ชื่อของคุณเหรอ อืม ฉันจำได้ เพราะว่ามันฟังดูตลกดีสำหรับฉัน...";
 			next;
 			mes "[Assassin Expert 'Huey']";
-			mes ":+:" + strcharinfo(0) + ":+:, right? No wait, just "+ strcharinfo(0) +". Yeah, how's it goin'?";
+			mes ":+:" + strcharinfo(0) + ":+: ใช่ไหม? ไม่เป็นไร แค่ "+ strcharinfo(0) +" แค่นั้นเอง เป็นยังไงบ้าง?";
 			next;
 			mes "[Assassin Expert 'Huey']";
-			mes "Unfortunately, I don't have any requests for you at this time from the guild. Just keep focusing on your training. Till then, see ya.";
+			mes "ขออภัย ฉันไม่มีคำขอใดๆ จากกิลด์ถึงคุณในตอนนี้ คุณแค่ต้องมุ่งมั่นกับการฝึกฝนของคุณต่อไป จนกว่าจะถึงเวลานั้น เจอกันใหม่";
 			close;
 		}
 		else if (BaseJob == Job_Thief && JobLevel > 39) {
 			if (SkillPoint) {
 				mes "[Ferocious-looking guy]";
-				mes "You can't change your job if you still have unused skill points from First Job. You better use up those skill points first.";
+				mes "คุณไม่สามารถเปลี่ยนอาชีพได้หากคุณยังมีแต้มทักษะที่ไม่ได้ใช้จากงานแรก คุณควรใช้แต้มทักษะเหล่านั้นให้หมดก่อน";
 				close;
 			}
 			else {
 				mes "[Ferocious-looking guy]";
-				mes "Hmm...";
-				mes "A Thief...?";
+				mes "อืม...";
+				mes "หัวขโมย...?";
 				next;
-				mes "[Ferocious-looking guy]";
-				mes "And a well-experienced Thief since I can't seem to find my wallet. We do need people like you, you know.";
+				mes "[ผู้ชายที่ดูดุร้าย]";
+				mes "และเป็นหัวขโมยที่มากประสบการณ์ด้วย เพราะดูเหมือนฉันจะหากระเป๋าสตางค์ของตัวเองไม่เจอ เราต้องการคนอย่างนายนะ";
 				next;
-				mes "[Ferocious-looking guy]";
-				mes "So how about taking the next step and becoming an Assassin?";
+				mes "[ผู้ชายที่ดูดุร้าย]";
+				mes "แล้วถ้าเราก้าวต่อไปด้วยการเป็นนักฆ่าล่ะ?";
 				next;
-				switch(select("Yes. I've picked my last pocket.:What's the requirements?:Maybe later, I need to steal some things first.")) {
+				switch(select("ใช่ ฉันล้วงกระเป๋าใบสุดท้ายแล้ว :มีข้อกำหนดอะไรบ้าง :บางทีภายหลัง ฉันต้องขโมยของบางอย่างก่อน")) {
 				case 1:
 					mes "[Ferocious-looking guy]";
-					mes "It's been a while since I've received a guest. I'm sending";
-					mes "you to the office.";
+					mes "ฉันไม่ได้รับแขกมานานแล้ว ฉันจะส่งคุณไปที่สำนักงาน";
 					close2;
 					ASSIN_Q = 0;
 					if (checkquest(8000) != -1) {
@@ -262,28 +260,26 @@ in_moc_16,19,33,1	script	Guildsman#asn	55,{
 					end;
 				case 2:
 					mes "[Ferocious-looking guy]";
-					mes "Requirements? Well, first you need to be a Thief. Second, you need to be at least Thief job level 40.";
+					mes "คุณสมบัติ? อันดับแรก คุณต้องเป็นโจร อันดับสอง คุณต้องเป็นโจรที่ job level อย่างน้อย 40.";
 					next;
 					mes "[Ferocious-looking guy]";
-					mes "And third, you need to pass a test to become an Assassin. You got";
-					mes "all that? If you're sure of your ability as a Thief, you won't have to worry.";
+					mes "และอันดับสาม คุณต้องผ่านการทดสอบเพื่อที่จะเป็นนักฆ่า คุณได้ทั้งหมดนั้นแล้วเหรอ? ถ้าคุณมั่นใจในความสามารถของคุณในฐานะโจร คุณก็ไม่ต้องกังวล";
 					close;
 				case 3:
 					mes "[Ferocious-looking guy]";
-					mes "Hmm...";
-					mes "Alright then.";
-					mes "But come back when";
-					mes "you think you're ready.";
+					mes "อืม...";
+					mes "โอเค";
+					mes "แต่กลับมาเมื่อคุณคิดว่าคุณพร้อมแล้ว";
 					close;
 				}
 			}
 		}
 		else {
 			mes "[Ferocious-looking guy]";
-			mes "Huh. You're not qualified to become an Assassin yet. There are requirements you need to meet first, you know.";
+			mes "หืม คุณยังไม่ผ่านคุณสมบัติที่จะเป็นนักฆ่านะ มีข้อกำหนดที่คุณต้องทำตามก่อนนะ";
 			next;
 			mes "[Ferocious-looking guy]";
-			mes "Well, keep training. You need to be at least job level 40, got it? But if you're above job level 40, that will probably be even better.";
+			mes "เอาล่ะ ฝึกฝนต่อไปเถอะ คุณต้องมี job level อย่างน้อย 40 เข้าใจไหม? แต่ถ้าคุณสูงกว่า job level 40 ขึ้นไป นั่นอาจจะดีกว่าด้วยซ้ำ";
 			close;
 		}
 	}
@@ -291,62 +287,57 @@ in_moc_16,19,33,1	script	Guildsman#asn	55,{
 
 in_moc_16,25,90,1	script	Guildsman#ASN2	730,2,2,{
 	mes "[Assassin 'Khai']";
-	mes "Umm?!";
+	mes "อืมม?!";
 	emotion ET_SURPRISE;
 	next;
 	mes "[Assassin 'Khai']";
-	mes "Come closer. I prefer to talk to people face to face. It really irritates me if I have to raise my voice, just so you can hear me.";
-	mes "I feel irritated when somebody talks to me behind my back.";
+	mes "เข้ามาใกล้ๆ หน่อย ฉันชอบคุยกับคนอื่นแบบเห็นหน้ากันมากกว่า มันจะหงุดหงิดมากถ้าต้องพูดเสียงดังเพื่อให้คุณได้ยิน";
+	mes "ฉันรู้สึกหงุดหงิดเมื่อมีใครมาคุยกับฉันลับหลัง";
 	close;
 
 OnTouch_:
 	if (ASSIN_Q2 == 4) {
 		mes "[Assassin 'Khai']";
-		mes "Ehhh?";
-		mes "Didn't you just";
-		mes "pass me a minute ago?";
+		mes "เอ๊ะ?";
+		mes "นายเพิ่งแซงฉันไปเมื่อนาทีที่แล้วไม่ใช่เหรอ?";
 		next;
 		mes "[Assassin 'Khai']";
-		mes "Eh...?!";
-		mes "You failed?";
-		mes "Even on the";
-		mes "writing test?";
-		mes "Bwahahahahaha!";
+		mes "เอ๊ะ...?!";
+		mes "นายสอบตกเหรอ?";
+		mes "แม้แต่ข้อสอบเขียนด้วยซ้ำเหรอ?";
+		mes "บวาฮ่าฮ่าฮ่า!";
 		next;
 		mes "[Assassin 'Khai']";
-		mes "Well...";
-		mes "It's been a long time since";
-		mes "I've met such a big failure.";
+		mes "อืม...";
+		mes "ผ่านไปนานมากแล้วตั้งแต่";
+		mes "ฉันล้มเหลวมามากขนาดนี้";
 		next;
 		mes "[Assassin 'Khai']";
-		mes "HAH!";
-		mes "Hahahahah~!";
-		mes "Oh, you're killing me....";
+		mes "ฮ่าฮ่าฮ่าฮ่า~!";
+		mes "โอ้ นายกำลังจะฆ่าฉัน....";
 		next;
 		mes "[Assassin 'Khai']";
-		mes "Sorry for laughing, but this is hilarious! Hahaha~ So do you want me to give you some hints?";
+		mes "ขอโทษที่หัวเราะนะ แต่นี่มันตลกมากเลยนะ ฮ่าๆๆ~ แล้วคุณอยากให้ฉันบอกใบ้อะไรคุณหน่อยมั้ย?";
 		next;
-		switch(select("I beg you, give me hints.:Don't laugh at me! Now, give me hints!:...Shut up, I don't need your help!")) {
+		switch(select("ฉันขอร้องล่ะ ช่วยบอกฉันหน่อย อย่าหัวเราะเยาะฉันเลย! ตอนนี้ ช่วยบอกฉันหน่อยสิ!...เงียบไปเถอะ ฉันไม่ต้องการความช่วยเหลือจากคุณ!")) {
 		case 1:
 			mes "[Assassin 'Khai']";
-			mes "Haaahahahaha!!!";
-			mes "Well well, aren't we honest. You're not even an Assassin yet, but you're killing me, I tell you, killing me!";
-			next;
-			mes "[The Anonymous One]";
-			mes "Ho ho ho...";
+			mes "ฮ่าฮ่าฮ่าฮ่าฮ่า!!!";
+			mes "เอาจริงๆ นะ แกยังไม่ใช่นักฆ่าด้วยซ้ำ แต่แกกำลังจะฆ่าฉัน ฉันบอกเลย ฆ่าฉัน!";
 			next;
 			mes "[Assassin 'Khai']";
-			mes "Did you hear that Anonymous one?! 'I beg you, give me hints.' Hahahah!";
-			next;
-			mes "[The Anonymous One]";
-			mes "Yes.";
-			mes "This one is quite hilarious";
-			mes "in a pathetic sort of way.";
+			mes "โฮ โฮ โฮ...";
 			next;
 			mes "[Assassin 'Khai']";
-			mes "Hahahahahahah!";
-			mes "Soooooo, you wanted";
-			mes "some hints, right?";
+			mes "แกได้ยินที่นักฆ่านิรนามพูดไหม! 'ฉันขอร้องล่ะ ช่วยใบ้ให้หน่อย' ฮ่าๆๆ!";
+			next;
+			mes "[Assassin 'Khai']";
+			mes "ใช่";
+			mes "อันนี้ฮาดี แอบน่าสงสาร";
+			next;
+			mes "[Assassin 'Khai']";
+			mes "ฮ่าฮ่าฮ่าฮ่าฮ่าฮ่า!";
+			mes "งั้นแกก็อยากได้คำใบ้บ้างไม่ใช่เหรอ?";
 			next;
 			mes "[Assassin 'Khai']";
 			mes "...";
@@ -370,153 +361,150 @@ OnTouch_:
 			mes "...";
 			mes "......";
 			mes ".........";
-			mes "............";
 			mes "...............";
 			next;
 			mes "[Assassin 'Khai']";
 			mes "Nah.";
-			mes "I changed my mind!";
-			mes "I'm not gonna give you any hints after all. Hee hee hee~";
+			mes "ฉันเปลี่ยนใจแล้ว!";
+			mes "ฉันจะไม่ให้คำใบ้อะไรกับคุณอีก ฮี่ฮี่ฮี่~";
 			close;
 		case 2:
 			mes "[Assassin 'Khai']";
 			if (Sex == SEX_MALE) {
-				mes "Huh. You must have a lot of self confidence to be a Thief nowadays.";
+				mes "หืม คุณคงมีความมั่นใจในตัวเองมากเลยนะ ถึงได้เป็นโจรสมัยนี้";
 				next;
 				mes "[Assassin 'Khai']";
-				mes "Yeah yeah, I understand. Everyone messes up from time to time. Sorry for laughing at your mistakes.";
+				mes "ใช่ ใช่ ฉันเข้าใจ ทุกคนทำพลาดกันได้ในบางครั้ง ขอโทษที่หัวเราะเยาะความผิดพลาดของคุณ";
 			}
 			else
-				mes "Hmm. I like your attitude. You should keep your pride as a Thief. Sorry for laughing at your mistakes. I think you'll do better next time.";
+				mes "อืม ฉันชอบทัศนคติของคุณนะ คุณควรจะรักษาศักดิ์ศรีของตัวเองในฐานะโจรไว้ ขอโทษที่หัวเราะเยาะความผิดพลาดของคุณ ฉันคิดว่าคราวหน้าคุณจะทำได้ดีกว่านี้";
 			next;
 			mes "[Assassin 'Khai']";
-			mes "I'm not allowed to give you hints, I can tell you more about being an Assassin...";
+			mes "ฉันไม่มีสิทธิ์ให้คำใบ้กับคุณ ฉันสามารถบอกคุณเพิ่มเติมเกี่ยวกับการเป็นนักฆ่าได้...";
 			next;
 			mes "[Assassin 'Khai']";
-			mes "Above all else, we value our dignity. We're Assassins, after all and people will need us.";
+			mes "เหนือสิ่งอื่นใด เราให้คุณค่ากับศักดิ์ศรีของเรา เราเป็นนักฆ่า และผู้คนต้องการเรา";
 			next;
 			mes "[Assassin 'Khai']";
-			mes "If people are close to you in some way, they might not understand what I'm saying. We're born to be loners due to our nature.";
+			mes "หากมีคนใกล้ชิดกับคุณในทางใดทางหนึ่ง พวกเขาอาจไม่เข้าใจสิ่งที่ฉันพูด เราเกิดมาเพื่อเป็นคนโดดเดี่ยวเพราะธรรมชาติของเรา";
 			next;
 			mes "[Assassin 'Khai']";
-			mes "Imagine if a lover or a friend saw the blood on your hands. There's a chance that they might not stay with you.";
+			mes "ลองนึกภาพว่าถ้าคนรักหรือเพื่อนเห็นเลือดบนมือของคุณ มีโอกาสที่พวกเขาอาจไม่อยู่กับคุณ";
 			next;
 			mes "[Assassin 'Khai']";
-			mes "Sometimes it gets lonely but it's not that bad. At least I can do what I want to do, you know, and do things my way.";
+			mes "บางครั้งมันก็เหงา แต่ก็ไม่ได้แย่ขนาดนั้น อย่างน้อยฉันก็ได้ทำในสิ่งที่ต้องการทำ และทำในแบบของฉันเอง";
 			next;
 			mes "[Assassin 'Khai']";
-			mes "Well, that's all I can tell you for now. Does being an Assassin";
-			mes "seem depressing to you?";
+			mes "เอาล่ะ ตอนนี้ฉันบอกคุณได้แค่นี้แหละ การเป็นนักฆ่าดูน่าหดหู่ไหม";
+			mes "คุณรู้สึกแบบนั้นหรือเปล่า";
 			close;
 		case 3:
 			mes "[Assassin 'Khai']";
-			mes "...Hm.";
+			mes "...อืม";
 			next;
 			mes "[Assassin 'Khai']";
-			mes "Right, that's the spirit. Don't ever let anyone else look down";
-			mes "on you. We're Assassins...";
+			mes "ถูกต้อง นั่นคือจิตวิญญาณ อย่าให้ใครดูถูกคุณอีกเลย พวกเราเป็นนักฆ่า...";
 			next;
 			mes "[Assassin 'Khai']";
-			mes "I apologize for laughing at you earlier. I want you to remember to keep that sense of pride and dignity as an Assassin.";
+			mes "ฉันขอโทษที่หัวเราะเยาะคุณเมื่อก่อน ฉันอยากให้คุณจำไว้ว่าต้องรักษาความภาคภูมิใจและศักดิ์ศรีในฐานะนักฆ่าเอาไว้";
 			next;
 			mes "[Assassin 'Khai']";
-			mes "Along with keeping your pride,";
-			mes "I want that you respect the blood that may stain your Katar or Dagger.";
+			mes "พร้อมกับรักษาความภาคภูมิใจของคุณไว้";
+			mes "ฉันอยากให้คุณเคารพเลือดที่อาจทำให้ Katar หรือ Dagger ของคุณเปื้อน";
 			next;
-			if (select("...Got you.:...I'm confused.") == 1) {
+			if (select("...เข้าใจแล้ว.:...ฉันสับสน.") == 1) {
 				mes "[Assassin 'Khai']";
-				mes "Yeah, I can trust you now. Let me give you some important tips.";
+				mes "ใช่แล้ว ฉันไว้ใจคุณได้แล้ว ฉันจะให้คำแนะนำสำคัญๆ แก่คุณบ้าง";
 				next;
 				switch(rand(1,3)) {
 				case 1:
 					mes "[Assassin 'Khai']";
-					mes "First of all, Grimtooth is ...A skill specifically for the Katar. Therefore, it doesn't require any skills related to Dagger weapons.";
+					mes "ก่อนอื่นเลย Grimtooth คือ ... ทักษะสำหรับ Katar โดยเฉพาะ ดังนั้นจึงไม่จำเป็นต้องใช้ทักษะใดๆ ที่เกี่ยวข้องกับอาวุธ Dagger";
 					next;
 					mes "[Assassin 'Khai']";
-					mes "Double attack ...Haven't you tried it? It allows you to attack an enemy twice at a time.";
+					mes "โจมตีสองครั้ง ...คุณไม่เคยลองเหรอ? มันช่วยให้คุณโจมตีศัตรูได้สองครั้งในคราวเดียว";
 					next;
 					mes "[Assassin 'Khai']";
-					mes "Red Blood is an elemental stone, Blue Gemstone doesn't have to do the Assassin job at all!";
+					mes "Red Blood เป็นหินธาตุ อัญมณีสีน้ำเงินไม่จำเป็นต้องทำหน้าที่เป็นนักฆ่าเลย!";
 					next;
 					mes "[Assassin 'Khai']";
-					mes "Have you ever seen Mages hunt Elder willow using the Cold Bolt skill? Water overpowers Fire. Water puts Fire under control, and Wind puts water under control.";
+					mes "คุณเคยเห็นนักเวทย์ล่า Elder willow โดยใช้ทักษะ Cold Bolt ไหม? น้ำมีอำนาจเหนือไฟ น้ำควบคุมไฟ และลมควบคุมน้ำ";
 					next;
 					mes "[Assassin 'Khai']";
-					mes "As long as you stick close to the shadows, by walls and things like that, Cloaking will hide you from sight perfectly! Unless some bastard uses a certain detecting skill, you know.";
+					mes "ตราบใดที่คุณอยู่ใกล้เงา ใกล้กำแพง และอะไรทำนองนั้น การปกปิดจะช่วยซ่อนคุณจากสายตาได้อย่างสมบูรณ์แบบ! เว้นแต่ว่าไอ้สารเลวนั่นจะใช้ทักษะการตรวจจับบางอย่าง คุณก็รู้";
 					next;
 					break;
 				case 2:
 					mes "[Assassin 'Khai']";
-					mes "'Sharpened Legbone of Ghoul' possesses the Undead property.";
+					mes "'Sharpened Legbone of Ghoul' มีคุณสมบัติ Undead";
 					next;
 					mes "[Assassin 'Khai']";
-					mes "What kind of weapon have you used so far? Damascus? Gladius? Stiletto? Or Main Gauche? What is that you're carrying now?";
+					mes "คุณใช้อาวุธประเภทไหนมาบ้าง? Damascus? Gladius? Stiletto? หรือ Main Gauche? อาวุธที่คุณพกอยู่ตอนนี้คืออะไร?";
 					next;
 					mes "[Assassin 'Khai']";
-					mes "It's possible to get a slotted Katar from Desert Wolf. Well, just keep that in mind. You will need this information someday.";
+					mes "เป็นไปได้ที่จะได้รับ Katar แบบมีช่องใส่จาก Desert Wolf แต่โปรดจำไว้ คุณจะต้องการข้อมูลนี้สักวันหนึ่ง";
 					next;
 					mes "[Assassin 'Khai']";
-					mes "You can gain a slotted Jur from a buddy living in a dark and damp place under the ground. Well, I have no idea why that dude has that weapon... Maybe he needs it to dig a hole?";
+					mes "คุณสามารถได้รับ Jur แบบมีช่องใส่จากเพื่อนที่อาศัยอยู่ในที่มืดและชื้นใต้ดิน ฉันไม่รู้เลยว่าทำไมไอ้นั่นถึงมีอาวุธนั้น... บางทีมันอาจจำเป็นต้องใช้มันในการขุดหลุมก็ได้?";
 					next;
 					mes "[Assassin 'Khai']";
-					mes "And...";
-					mes "I've always wanted a frog as a pet. But it's impossible!";
+					mes "และ..."; mes "ฉันอยากเลี้ยงกบเป็นสัตว์เลี้ยงมาตลอด แต่มันเป็นไปไม่ได้!";
 					next;
 					mes "[Assassin 'Khai']";
-					mes "As far as I know, a Goblin carrying a hammer possesses the Earth property. Keep in mind that Fire overcomes the Earth property.";
+					mes "เท่าที่ฉันรู้ ก๊อบลินที่ถือค้อนจะมีคุณสมบัติดิน โปรดจำไว้ว่าไฟเอาชนะคุณสมบัติดินได้";
 					next;
 					mes "[Assassin 'Khai']";
-					mes "You know elemental weapons? The names of Blacksmiths are engraved on them usually...";
+					mes "คุณรู้จักอาวุธธาตุไหม? ชื่อของช่างตีเหล็กมักจะสลักอยู่บนอาวุธเหล่านั้น...";
 					next;
 					break;
 				case 3:
 					mes "[Assassin 'Khai']";
-					mes "Sell an Elder Willow Card to a Mage as soon as you can. They are mad about the card for some reason. Doesn't it increase the INT of a character? Hmmm...";
+					mes "ขายการ์ด Elder Willow ให้กับเมจโดยเร็วที่สุด พวกเขาคลั่งไคล้การ์ดใบนี้ด้วยเหตุผลบางอย่าง มันไม่เพิ่ม INT ของตัวละครเหรอ ฮึม...";
 					next;
 					mes "[Assassin 'Khai']";
-					mes "For us, Dodge and Attack is more important than defense. Don't ever think about wearing a helm. It's heavy, uncomfortable and will even block your sight.";
+					mes "สำหรับเรา การหลบหลีกและโจมตีสำคัญกว่าการป้องกัน อย่าคิดที่จะสวมหมวกเด็ดขาด มันหนัก ไม่สบายตัว และบังสายตาด้วยซ้ำ";
 					next;
 					mes "[Assassin 'Khai']";
-					mes "'Increase Dodge' allows you to have +3% flee rate per skill lvl.";
+					mes "'เพิ่มการหลบหลีก' ช่วยให้คุณมีอัตราการหลบหนี +3% ต่อเลเวลทักษะ";
 					next;
 					mes "[Assassin 'Khai']";
-					mes "As I have told you repeatedly: Katar class weapons (Jamadhar/Jur/Katar etc) are two-handed!";
+					mes "อย่างที่ฉันบอกคุณซ้ำแล้วซ้ำเล่า: อาวุธคลาส Katar (Jamadhar/Jur/Katar เป็นต้น) เป็นแบบสองมือ!";
 					next;
 					mes "[Assassin 'Khai']";
-					mes "City of desert... I miss my hometown, Morocc. I haven't been there for a long time. I feel like I became a Thief a few days ago. Time flies so fast...";
+					mes "เมืองแห่งทะเลทราย... ฉันคิดถึงบ้านเกิดของฉัน โมร็อกโก ฉันไม่ได้ไปที่นั่นมาเป็นเวลานานแล้ว รู้สึกเหมือนว่าฉันได้กลายเป็นโจรเมื่อไม่กี่วันก่อน เวลาผ่านไปเร็วมาก...";
 					next;
 					mes "[Assassin 'Khai']";
-					mes "Heh. I remember my Thief quest. I was so damn nervous when I broke into the farm to get Mushrooms...";
+					mes "เฮ้ ฉันจำภารกิจของโจรได้ ฉันประหม่ามากเมื่อฉันบุกเข้าไปในฟาร์มเพื่อหาเห็ด...";
 					next;
 					mes "[Assassin 'Khai']";
-					mes "Insects detect hiding/cloaking skills. Their feelers never fail to find targets.";
+					mes "แมลงตรวจจับทักษะการซ่อนตัว/ปกปิด พวกมันไม่เคยพลาดที่จะค้นหาเป้าหมาย";
 					next;
 					mes "[Assassin 'Khai']";
-					mes "I've heard that the Baphomet Jr. Card adds +3 points to Agility and +1 point on Critical Attack...";
+					mes "ฉันเคยได้ยินมาว่าการ์ด Baphomet Jr. เพิ่ม +3 คะแนนให้กับความคล่องแคล่วและ +1 คะแนนให้กับการโจมตีคริติคอล...";
 					next;
 					mes "[Assassin 'Khai']";
-					mes "Yeah, we Assassins specialize in training Agility. We can gain a bonus of 10 Agility points even before mastering job level. The problem is it won't go up anymore after that, you know.";
+					mes "ใช่แล้ว พวกเราพวกนักฆ่าเชี่ยวชาญในการฝึกฝนความคล่องแคล่ว เราสามารถได้รับโบนัส 10 คะแนนความคล่องแคล่วก่อนที่จะถึงระดับอาชีพ ปัญหาคือมันจะไม่เพิ่มขึ้นอีกหลังจากนั้นนะรู้ไหม";
 					next;
 				}
 				mes "[Assassin 'Khai']";
-				mes "^666666*Phew*^000000 That's all I can tell you, though that's a lot of hints. I don't doubt that I told you almost everything.";
+				mes "^666666*Phew*^000000 นั่นคือทั้งหมดที่ฉันบอกคุณได้ แม้ว่ามันจะเป็นคำใบ้มากมาย ฉันไม่สงสัยเลยว่าฉันบอกคุณเกือบทุกอย่างแล้ว";
 				next;
 				mes "[Assassin 'Khai']";
-				mes "Well then, go ask to take the test again with 'The Anonymous.'";
+				mes "เอาล่ะ ไปขอทำแบบทดสอบกับ 'The Anonymous' อีกครั้งสิ";
 				close2;
 				warp "in_moc_16",19,144;
 				end;
 			}
 			mes "[Assassin 'Khai']";
-			mes "^666666*Sigh...*^000000";
-			mes "How can you not understand the concept of dignity? You just showed some to me just now!";
+			mes "^666666*ถอนหายใจ...*^000000";
+			mes "ทำไมคุณถึงไม่เข้าใจแนวคิดเรื่องศักดิ์ศรี คุณเพิ่งแสดงมันให้ฉันดูเมื่อกี้!";
 			next;
 			mes "[Assassin 'Khai']";
-			mes "Oh, I get it. It wasn't pride you were showing, you were just being a jerk!";
+			mes "อ๋อ ฉันเข้าใจแล้ว มันไม่ใช่ความภาคภูมิใจที่คุณแสดงออกมา คุณแค่ทำตัวน่ารำคาญ!";
 			next;
 			mes "[Assassin 'Khai']";
-			mes "Grrrrr...";
-			mes "WARP PORTAL!";
+			mes "กรี๊ด...";
+			mes "พอร์ทัล WARP!";
 			close2;
 			warp "c_tower4",64,76;
 			end;
@@ -524,29 +512,28 @@ OnTouch_:
 	}
 	else {
 		mes "[Assassin 'Khai']";
-		mes "Oh, you must be an Assassin trainee. You are here to become";
-		mes "an Assassin, aren't you?";
+		mes "โอ้ คุณคงเป็นผู้ฝึกหัดนักฆ่าสินะ คุณมาที่นี่เพื่อที่จะเป็น";
+		mes "นักฆ่าไม่ใช่เหรอ?";
 		next;
-		if (select("Yes, I am. :...No, I'm not.") == 1) {
+		if (select("ใช่แล้ว. :...ไม่ ฉันไม่") == 1) {
 			mes "[Assassin 'Khai']";
-			mes "Okay, good. Let's fill out the application form. Please sign your name and include your job level.";
+			mes "โอเค ดีเลย กรอกใบสมัครได้เลย กรุณาลงชื่อและระบุระดับงานด้วย";
 			next;
 			mes "[Assassin 'Khai']";
-			mes "Let's see.";
-			mes "Your name is";
+			mes "มาดูกัน";
+			mes "ชื่อของคุณคือ";
 			mes "" + strcharinfo(0) + "...";
 			mes "Job level " + JobLevel + "...";
 			next;
 			if (JobLevel > 48) {
 				mes "[Assassin 'Khai']";
-				mes "Wait, Job level " + JobLevel + "?! I can see you've been training pretty hard! My bosses will like this~";
+				mes "เดี๋ยวนะ Job level " + JobLevel + "?! ฉันเห็นว่าเธอฝึกหนักมากเลยนะ เจ้านายฉันคงชอบ~";
 				next;
 				mes "[Assassin 'Khai']";
-				mes "Did you finish the form? Alright, go ahead and give it to me. Give me a second and I'll transport you to the Test Hall.";
+				mes "เธอกรอกแบบฟอร์มเสร็จแล้วเหรอ เอาล่ะ กรอกมาให้ฉันหน่อยสิ ให้ฉันรอสักครู่แล้วฉันจะพาเธอไปที่ห้องทดสอบ";
 				next;
 				mes "[Assassin 'Khai']";
-				mes "Alright then,";
-				mes "best of luck to you!";
+				mes "เอาล่ะ ขอให้โชคดีนะ!";
 				close2;
 				if (ASSIN_Q3 < 3)
 					ASSIN_Q3 = 1;
@@ -557,20 +544,16 @@ OnTouch_:
 			}
 			else if (JobLevel < 49) {
 				mes "[Assassin 'Khai']";
-				mes "Well, you passed";
-				mes "the requirements.";
-				mes "Not bad at all.";
+				mes "เอาล่ะ คุณผ่านเกณฑ์แล้ว";
+				mes "ไม่เลวเลย";
 				next;
 				mes "[Assassin 'Khai']";
-				mes "Go ahead and give";
-				mes "me the form when you're";
-				mes "done filling it out.";
-				mes "Alright, thanks.";
+				mes "เมื่อคุณกรอกแบบฟอร์มเสร็จแล้วก็ส่งแบบฟอร์มมาให้ฉันได้เลย";
+				mes "โอเค ขอบคุณ";
 				next;
 				mes "[Assassin 'Khai']";
-				mes "I'll transport you";
-				mes "to the Test Hall.";
-				mes "Best of luck~";
+				mes "ฉันจะพาคุณไปที่ห้องทดสอบ";
+				mes "ขอให้โชคดีนะ~";
 				close2;
 				if (ASSIN_Q3 < 3)
 					ASSIN_Q3 = 2;
@@ -581,9 +564,8 @@ OnTouch_:
 			}
 			else {
 				mes "[Assassin 'Khai']";
-				mes "Who the";
-				mes "hell are you?";
-				mes "...Guards!";
+				mes "แกเป็นใครวะ?";
+				mes "...ทหารยาม!";
 				close2;
 				warp "moc_fild16",206,229;
 				end;
@@ -591,13 +573,13 @@ OnTouch_:
 		}
 		else {
 			mes "[Assassin 'Khai']";
-			mes "Huh...?";
-			mes "What, are you trying to trick me or something? Don't you wanna be an Assassin?";
+			mes "ฮะ...?";
+			mes "อะไรนะ คุณกำลังพยายามหลอกฉันหรืออะไรอยู่ คุณไม่อยากเป็นนักฆ่าเหรอ?";
 			next;
-			if (select("No.:Yes, I want to be an Assassin.") == 1) {
+			if (select("ไม่:ใช่ ฉันต้องการที่จะเป็นนักฆ่า") == 1) {
 				mes "[Assassin 'Khai']";
-				mes "Eh, get outta here.";
-				mes "Stop wastin' my time...";
+				mes "เอ่อ ออกไปจากที่นี่เถอะ";
+				mes "อย่ามาทำให้ฉันเสียเวลาอีก...";
 				close2;
 				ASSIN_Q = 0;
 				ASSIN_Q2 = 0;
@@ -607,24 +589,24 @@ OnTouch_:
 			}
 			mes "[Assassin 'Khai']";
 			mes "...";
-			mes "What the hell?";
-			mes "Okay, then.";
+			mes "นี่มันอะไรกันเนี่ย?";
+			mes "โอเค งั้นก็";
 			next;
 			mes "[Assassin 'Khai']";
-			mes "Fill out the application form with your name and job level.";
+			mes "กรอกใบสมัครโดยระบุชื่อและระดับตำแหน่งของคุณ";
 			next;
 			mes "[Assassin 'Khai']";
 			mes "" + strcharinfo(0) + "?";
-			mes "That's your name?";
-			mes "It sounds funny.";
-			mes "Let's see... Job Level " + JobLevel + "...";
+			mes "นั่นคือชื่อของคุณเหรอ?";
+			mes "ฟังดูตลกดีนะ";
+			mes "มาดูกัน... Job Level " + JobLevel + "...";
 			next;
 			if (JobLevel > 48) {
 				mes "[Assassin 'Khai']";
-				mes "Ho? Job Level " + JobLevel + "?! You must have been training really hard. The bosses will like that for sure...";
+				mes "โอ้? Job Level " + JobLevel + "?! เธอต้องฝึกหนักมากแน่ๆ บอสต้องชอบแน่ๆ...";
 				next;
 				mes "[Assassin 'Khai']";
-				mes "Are you done filling out the form? Alright, give it to me so I can send you to the Test Hall. Good luck~";
+				mes "เธอกรอกแบบฟอร์มเสร็จหรือยัง? โอเค ส่งมาให้ฉัน ฉันจะได้ส่งเธอไปที่ห้องทดสอบ ขอให้โชคดี~";
 				next;
 				if (ASSIN_Q3 < 3)
 					ASSIN_Q3 = 1;
@@ -635,11 +617,11 @@ OnTouch_:
 			}
 			else if (JobLevel < 49) {
 				mes "[Assassin 'Khai']";
-				mes "Not bad. You fulfilled our requirements. Not bad at all. Now are you done filling out the form?";
+				mes "ไม่เลวเลย คุณทำตามข้อกำหนดของเราแล้ว ไม่เลวเลย ตอนนี้คุณกรอกแบบฟอร์มเสร็จหรือยัง";
 				next;
 				mes "[Assassin 'Khai']";
-				mes "Then give me the form so that I can send you to the Test Hall, alright?";
-				mes "Good luck...";
+				mes "งั้นก็ส่งแบบฟอร์มมาให้ฉัน ฉันจะได้ส่งคุณไปที่ห้องทดสอบได้";
+				mes "โชคดีนะ...";
 				next;
 				if (ASSIN_Q3 < 3)
 					ASSIN_Q3 = 2;
@@ -650,9 +632,8 @@ OnTouch_:
 			}
 			else {
 				mes "[Assassin 'Khai']";
-				mes "How the hell did";
-				mes "you get in here?";
-				mes "Get out!";
+				mes "คุณเข้ามาที่นี่ได้ยังไงวะเนี่ย?";
+				mes "ออกไปซะ!";
 				close2;
 				warp "moc_fild16",206,229;
 				end;
@@ -666,133 +647,127 @@ OnTouch_:
 	if (ASSIN_Q2 < 5) {
 		if (ASSIN_Q2 < 3) {
 			mes "[The Anonymous One]";
-			mes "Welcome, guest.";
-			mes "Mwahaha, it's useless";
-			mes "to try to find or see me...";
+			mes "ยินดีต้อนรับ แขก";
+			mes "มวาฮ่าฮ่า ไร้ประโยชน์ที่จะพยายามหาหรือพบฉัน...";
 			next;
 			mes "[The Anonymous One]";
-			mes "I am perfectly hidden!";
-			mes "To become undetectable can only be done by the greatest Assassins!";
+			mes "ฉันซ่อนตัวได้อย่างสมบูรณ์แบบ!";
+			mes "การที่ไม่มีใครรู้เห็นสามารถทำได้โดยนักฆ่าที่เก่งกาจที่สุดเท่านั้น!";
 			next;
 			mes "[The Anonymous One]";
-			mes "Aren't you scared that you can't see me? I could kill you at any time and it would be so easy...";
+			mes "คุณไม่กลัวเหรอว่าจะมองไม่เห็นฉัน? ฉันสามารถฆ่าคุณเมื่อไหร่ก็ได้ และมันง่ายมาก...";
 			next;
-			if (select("I think I crapped my pants!:You're all talk. I challenge you!") == 1) {
+			if (select("ฉันคิดว่าฉันขี้ราดกางเกง!:คุณพูดมาก ฉันท้าคุณ!") == 1) {
 				mes "[The Anonymous One]";
-				mes "Now I see that";
-				mes "you're nothing";
-				mes "but a wimp.";
+				mes "ตอนนี้ฉันรู้แล้วว่าคุณเป็นเพียงคนขี้ขลาด";
 				next;
 				mes "[The Anonymous One]";
-				mes "Bwahahahahahah!";
-				mes "Stop cowering in fear!";
-				mes "It's making me laugh!";
+				mes "บวาฮ่าฮ่าฮ่าฮ่า!";
+				mes "หยุดขยาดด้วยความกลัวได้แล้ว!";
+				mes "มันทำให้ฉันหัวเราะ!";
 				close;
 			}
 			mes "[The Anonymous One]";
-			mes "So...";
-			mes "You wish for";
-			mes "a challenge?";
-			mes "From me?!";
+			mes "แล้ว...";
+			mes "คุณต้องการความท้าทายใช่ไหม";
+			mes "จากฉันเหรอ!";
 			next;
 			mes "[The Anonymous One]";
-			mes "A river of blood follows my every footstep. I am nameless, for the sting of my blades is all anyone needs to know.";
+			mes "สายเลือดไหลตามทุกฝีก้าวของฉัน ฉันไร้ชื่อ เพราะคมดาบของฉันเป็นสิ่งเดียวที่ทุกคนต้องการรู้";
 			next;
 			mes "[The Anonymous One]";
-			mes "I am here to test your knowledge, as well as your capacity for heartlessness. Those are both necessary to become an Assassin.";
+			mes "ฉันมาที่นี่เพื่อทดสอบความรู้ของคุณ รวมถึงความสามารถในการไร้หัวใจของคุณ ทั้งสองสิ่งนี้จำเป็นต่อการเป็นนักฆ่า";
 			next;
 			mes "[The Anonymous One]";
-			mes "For your challenge, you must";
-			mes "answer my questions correctly. Very difficult questions that only an Assassin can answer.";
+			mes "สำหรับความท้าทายของคุณ คุณต้องตอบคำถามของฉันให้ถูกต้อง คำถามยากมากที่นักฆ่าเท่านั้นที่จะตอบได้";
 			next;
 			mes "[The Anonymous One]";
-			mes "Although I am heartless,";
-			mes "I am not necessarily cruel. Before we proceed, is there anything you wish to know?";
+			mes "ถึงแม้ว่าฉันจะไร้หัวใจ";
+			mes "ฉันไม่ได้โหดร้าย ก่อนที่เราจะดำเนินการต่อ มีอะไรที่คุณอยากรู้ไหม";
 			next;
 			ASSIN_Q2 = 0;
 			while(ASSIN_Q2 < 3) {
-				switch(select("...Skills?:...Stats?:Hmpf, I know it all.")) {
+				switch(select("...ทักษะ?:...สถิติ?: หืม ฉันรู้หมดเลย")) {
 				case 1:
 					mes "[The Anonymous One]";
-					mes "Skills...?";
-					mes "Although skills can have circumstantial applications, I will tell you about the basic concepts.";
+					mes "ทักษะ...?";
+					mes "แม้ว่าทักษะอาจมีการประยุกต์ใช้ตามสถานการณ์ แต่ฉันจะบอกคุณเกี่ยวกับแนวคิดพื้นฐาน";
 					next;
 					mes "[The Anonymous One]";
-					mes "First, ^3355FFKatar Mastery^000000. This skill increases the damage of Katar class weapons. The higher the skill level, the more damage is increased.";
+					mes "ก่อนอื่นเลย ^3355FFKatar Mastery^000000 ทักษะนี้จะเพิ่มความเสียหายของอาวุธคลาส Katar ยิ่งระดับทักษะสูงขึ้น ความเสียหายก็จะยิ่งเพิ่มขึ้น";
 					next;
 					mes "[The Anonymous One]";
-					mes "^3355FFLeft Hand Mastery^000000 and ^3355FFRight Hand Mastery^000000. Assassins can equip different weapons in each hand when using Dagger class weapons.";
+					mes "^3355FFLeft Hand Mastery^000000 และ ^3355FFRight Hand Mastery^000000 นักฆ่าสามารถสวมอาวุธที่แตกต่างกันในแต่ละมือได้เมื่อใช้อาวุธคลาส Dagger";
 					next;
 					mes "[The Anonymous One]";
-					mes "But it is obviously more difficult to handle 2 weapons at a time than using just one. The Left and Right Hand Mastery skills increase the damage when using two Daggers.";
+					mes "แต่เห็นได้ชัดว่าการใช้อาวุธ 2 ชิ้นในเวลาเดียวกันนั้นยากกว่าการใช้เพียงชิ้นเดียว ทักษะ Left Hand Mastery และ Right Hand Mastery จะเพิ่มความเสียหายเมื่อใช้ Dagger สองอัน";
 					next;
 					mes "[The Anonymous One]";
-					mes "However, if you don't want to use two Daggers, you won't need this skill. You will see how 'Left Hand Mastery' works as soon as you reach 'Right Hand Mastery' Level 2.";
+					mes "อย่างไรก็ตาม หากคุณไม่ต้องการใช้มีดสั้นสองเล่ม คุณจะไม่จำเป็นต้องใช้ทักษะนี้ คุณจะเห็นว่า 'Left Hand Mastery' ทำงานอย่างไรทันทีที่คุณถึง 'Right Hand Mastery' ระดับ 2";
 					next;
 					mes "[The Anonymous One]";
-					mes "^3355FFSonic Blow^000000 allows you to strike an enemy 8 times at once. This skill only works with Katar weapons because of the speed it requires.";
+					mes "^3355FFSonic Blow^000000 ช่วยให้คุณโจมตีศัตรูได้ 8 ครั้งในคราวเดียว ทักษะนี้ใช้ได้กับอาวุธ Katar เท่านั้น เนื่องจากความเร็วที่ต้องการ";
 					next;
 					mes "[The Anonymous One]";
-					mes "Of course, the damage is affected by STR and weapon damage. You'll understand how this skill works when you reach Level 4 Katar Mastery.";
+					mes "แน่นอนว่าความเสียหายนั้นได้รับผลกระทบจาก STR และความเสียหายจากอาวุธ คุณจะเข้าใจว่าทักษะนี้ทำงานอย่างไรเมื่อคุณถึงระดับ 4 Katar Mastery";
 					next;
 					mes "[The Anonymous One]";
-					mes "^3355FFGrimtooth^000000 allows you to attack enemies while hiding under the ground. As you master it, you'll be able to attack foes from a distance.";
+					mes "^3355FFGrimtooth^000000 ช่วยให้คุณโจมตีศัตรูได้ในขณะที่ซ่อนตัวอยู่ใต้ดิน เมื่อคุณเชี่ยวชาญแล้ว คุณจะสามารถโจมตีศัตรูจากระยะไกลได้";
 					next;
 					mes "[The Anonymous One]";
-					mes "Since it's a ranged attack, it can be very useful when you're surrounded by enemies.";
+					mes "เนื่องจากเป็นการโจมตีระยะไกล จึงมีประโยชน์มากเมื่อคุณถูกศัตรูล้อมรอบ";
 					next;
 					mes "[The Anonymous One]";
-					mes "Because you're required to perfectly hide yourself to use this skill, you must first learn Level 2 Cloaking before you can learn Grimtooth.";
+					mes "เนื่องจากคุณต้องซ่อนตัวอย่างสมบูรณ์แบบเพื่อใช้ทักษะนี้ คุณต้องเรียนรู้การปกปิดระดับ 2 ก่อนจึงจะเรียนรู้ Grimtooth ได้";
 					next;
 					mes "[The Anonymous One]";
-					mes "To learn ^3355FFCloaking^000000, you must learn Level 2 Hiding. Then you will be able to move while hiding if you are close to a wall.";
+					mes "หากต้องการเรียนรู้ ^3355FFCloaking^000000 คุณต้องเรียนรู้การซ่อนตัวระดับ 2 จากนั้นคุณจะสามารถเคลื่อนที่ได้ในขณะที่ซ่อนตัวหากคุณอยู่ใกล้กำแพง";
 					next;
 					mes "[The Anonymous One]";
-					mes "The ^3355FFEnchant Poison^000000 skill allows you to enchant poison on the weapon you're using. This will temporarily give the weapon the Poison property.";
+					mes "ทักษะ ^3355FFEnchant Poison^000000 ช่วยให้คุณเสกคาถาพิษบนอาวุธที่คุณกำลังใช้ ซึ่งจะทำให้อาวุธนั้นได้รับคุณสมบัติพิษชั่วคราว";
 					next;
 					mes "[The Anonymous One]";
-					mes "This will also make your attacks poison the enemy by chance. You can also use this skill to enchant the weapons of your party members...";
+					mes "นอกจากนี้ การโจมตีของคุณยังทำให้ศัตรูติดพิษโดยบังเอิญอีกด้วย คุณสามารถใช้ทักษะนี้เพื่อเสกคาถาอาวุธของสมาชิกปาร์ตี้ของคุณได้อีกด้วย...";
 					next;
 					mes "[The Anonymous One]";
-					mes "^3355FFPoison React^000000 shields the user from attacks with the Poison property, and can be used on other people as well. However, you must learn Level 3 Enchant Poison first.";
+					mes "^3355FFPoison React^000000 ปกป้องผู้ใช้จากการโจมตีด้วยคุณสมบัติพิษ และสามารถใช้กับผู้อื่นได้เช่นกัน อย่างไรก็ตาม คุณต้องเรียนรู้การเสกคาถาพิษระดับ 3 ก่อน";
 					next;
 					mes "[The Anonymous One]";
-					mes "^3355FFVenom Dust^000000 consumes a Red Gemstone to contaminate an area with poison. The duration of contamination increases with the level of this skill.";
+					mes "^3355FFVenom Dust^000000 ใช้ Red Gemstone เพื่อปนเปื้อนพิษในพื้นที่ ระยะเวลาของการปนเปื้อนจะเพิ่มขึ้นตามระดับของทักษะนี้";
 					next;
 					mes "[The Anonymous One]";
-					mes "You can learn the Venom Dust skill after you learn Level 5 Enchant Poison.";
+					mes "คุณสามารถเรียนรู้ทักษะ Venom Dust ได้หลังจากเรียนรู้ Enchant Poison เลเวล 5";
 					next;
 					mes "[The Anonymous One]";
-					mes "^3355FFVenom Splasher^000000 is a skill that, after it is used on a target, will cause it to explode when its HP is less than a certain amount after three seconds.";
+					mes "^3355FFVenom Splasher^000000 เป็นทักษะที่เมื่อใช้กับเป้าหมายแล้ว จะทำให้เป้าหมายระเบิดเมื่อ HP เหลือต่ำกว่าจำนวนหนึ่งหลังจากสามวินาที";
 					next;
 					mes "[The Anonymous One]";
-					mes "When the target explodes, the enemies in the vicinity are also damaged. This is an essential skill for Assassins. It requires Level 5 Poison React and Level 5 Venom Dust.";
+					mes "เมื่อเป้าหมายระเบิด ศัตรูในบริเวณใกล้เคียงก็จะได้รับความเสียหายด้วย นี่เป็นทักษะที่จำเป็นสำหรับนักฆ่า ต้องใช้ Poison React เลเวล 5 และ Venom Dust เลเวล 5";
 					next;
 					mes "[The Anonymous One]";
-					mes "Now...";
-					mes "That's all I have to tell you";
-					mes "about Assassin skills.";
+					mes "ตอนนี้...";
+					mes "นั่นคือทั้งหมดที่ฉันจะบอกคุณเกี่ยวกับทักษะของนักฆ่า";
 					ASSIN_Q2 = 1;
 					next;
 					break;
 				case 2:
 					mes "[The Anonymous One]";
 					mes "Hmm, Stats...";
-					mes "For Assassins, Agility, or AGI, is the most important stat.";
+					mes "สำหรับนักฆ่า ความคล่องแคล่ว หรือ AGI ถือเป็นค่าสถิติที่สำคัญที่สุด";
 					next;
 					mes "[The Anonymous One]";
-					mes "For the sake of assassination, STR is probably the second most important stat. But that is only my recommendation.";
+					mes "เพื่อการลอบสังหาร STR อาจเป็นค่าสถิติที่สำคัญที่สุดเป็นอันดับสอง แต่เป็นเพียงคำแนะนำของฉันเท่านั้น";
 					next;
 					mes "[The Anonymous One]";
-					mes "I cannot give you better advice than that in regards to Stats. You should research and see which stats suit you, and decide what kind of Assassin you want to be.";
+					mes "ฉันไม่สามารถให้คำแนะนำที่ดีไปกว่านี้เกี่ยวกับค่าสถิติได้อีกแล้ว คุณควรค้นคว้าและดูว่าค่าสถิติไหนเหมาะกับคุณ จากนั้นจึงตัดสินใจว่าคุณอยากเป็นนักฆ่าแบบไหน";
 					ASSIN_Q2 = 2;
 					next;
 					break;
 				case 3:
 					if (ASSIN_Q2 == 0) {
 						mes "[The Anonymous One]";
-						mes "Know everything do you?!";
-						mes "I'll be the judge of that!";
+						mes "คุณรู้ทุกอย่างใช่ไหม!";
+						mes "ฉันจะเป็นคนตัดสินเรื่องนั้น!";
 						next;
 					}
 					ASSIN_Q2 = 3;
@@ -800,198 +775,190 @@ OnTouch_:
 				}
 			}
 			mes "[The Anonymous One]";
-			mes "Hmpf. It is now time to test your knowledge. You are not allowed to miss more than one question.";
+			mes "เอาล่ะ ถึงเวลาทดสอบความรู้ของคุณแล้ว คุณไม่มีสิทธิ์พลาดคำถามเกินหนึ่งข้อ";
 			next;
 			mes "[The Anonymous One]";
-			mes "In other words, if you want to pass this test, you must give me 9 correct answers out of 10 questions. I won't let you know which answer you got wrong...";
+			mes "พูดอีกอย่างก็คือ หากคุณต้องการผ่านการทดสอบนี้ คุณต้องตอบคำถามให้ถูกต้อง 9 ข้อจากทั้งหมด 10 ข้อ ฉันจะไม่บอกคุณว่าคำตอบไหนที่คุณตอบผิด...";
 			next;
 			mes "[The Anonymous One]";
-			mes "Are you ready?";
-			mes "Prepare yourself!";
+			mes "คุณพร้อมหรือยัง";
+			mes "เตรียมตัวให้พร้อม!";
 		}
 		else if (ASSIN_Q2 < 5) {
 			mes "[The Anonymous One]";
-			mes "Having problems";
-			mes "passing a simple test?";
-			mes "You should have";
-			mes "known better.";
+			mes "มีปัญหาในการผ่านการทดสอบง่ายๆ หรือเปล่า";
+			mes "คุณควรจะรู้ดีกว่านี้";
 			next;
-			if (select("Help me, how do I pass?:I challenge you again!") == 1) {
+			if (select("ช่วยฉันด้วย ฉันจะผ่านได้อย่างไร:ฉันขอท้าคุณอีกครั้ง!") == 1) {
 				mes "[The Anonymous One]";
-				mes "Well, that's a damn good question. But you're banished from the Assassin Guild, so it's no concern of mine...";
+				mes "นั่นเป็นคำถามที่ดีมากเลย แต่คุณถูกเนรเทศออกจากกิลด์นักฆ่า ดังนั้นเรื่องนี้ก็ไม่ใช่เรื่องที่ฉันจะต้องกังวล...";
 				close2;
 				warp "moc_fild16",206,151;
 				end;
 			}
 			mes "[The Anonymous One]";
-			mes "So I see...";
-			mes "Now go, but do not fear. I will be by your side as you learn the outcome of your choice...";
+			mes "ดังนั้นฉันก็เห็น...";
+			mes "ไปได้แล้ว แต่ไม่ต้องกลัว ฉันจะอยู่เคียงข้างคุณในขณะที่คุณรู้ผลลัพธ์ของทางเลือกของคุณ...";
 			next;
 			mes "[The Anonymous One]";
-			mes "Now, we shall test you once more! Keep in mind, you must answer 9 questions out of 10 correctly. Remember I am doing you a favor...";
+			mes "ตอนนี้ เราจะทดสอบคุณอีกครั้ง! โปรดจำไว้ว่า คุณต้องตอบคำถามให้ถูก 9 ข้อจาก 10 ข้อ จำไว้ว่าฉันกำลังช่วยคุณอยู่...";
 			next;
 			mes "[The Anonymous One]";
-			mes "You must answer 9 questions out of 10 correctly. If you miss more than one question, you can never become an Assassin.";
+			mes "คุณต้องตอบคำถามให้ถูก 9 ข้อจาก 10 ข้อ หากคุณตอบผิดมากกว่า 1 ข้อ คุณจะไม่สามารถเป็นนักฆ่าได้";
 			next;
 			mes "[The Anonymous One]";
-			mes "Okay,";
-			mes "are you ready?";
-			mes "Good luck.";
+			mes "โอเค คุณพร้อมหรือยัง";
+			mes "โชคดีนะ";
 		}
 		next;
 		switch(rand(1,3)) {
 		case 1:
 			mes "[The Anonymous One]";
-			mes "1. Choose skill that is not required to learn Grimtooth.";
+			mes "1. เลือกทักษะที่ไม่จำเป็นสำหรับการเรียนรู้ Grimtooth";
 			next;
 			if (select("Cloaking level 2:Sonic Blow level 5:Katar Mastery level 4:Right hand Mastery level 2") == 4)
 				.@assassin_t += 10;
 			mes "[The Anonymous One]";
-			mes "2. What property does Enchant Poison possess?";
+			mes "2. Enchant Poison มีคุณสมบัติอะไรบ้าง?";
 			next;
 			if (select("Poison:Earth:Fire:Wind") == 1)
 				.@assassin_t += 10;
 			mes "[The Anonymous One]";
-			mes "3. How does Level 4 Right Hand Mastery work?";
+			mes "3. ความชำนาญมือขวาระดับ 4 ทำงานอย่างไร";
 			next;
-			if (select("Recover 80% of damage decrease:Recover 90% of damage decrease:Increase 90% of damage:Increase 108% of damage") == 2)
+			if (select("ฟื้นฟู 80% ของความเสียหายที่ลดลง: ฟื้นฟู 90% ของความเสียหายที่ลดลง: เพิ่ม 90% ของความเสียหาย: เพิ่ม 108% ของความเสียหาย") == 2)
 				.@assassin_t += 10;
 			mes "[The Anonymous One]";
-			mes "4. What is the item required for using Venom Dust?";
+			mes "4. ต้องใช้ไอเทมอะไรในการใช้ Venom Dust?";
 			next;
 			if (select("Red Blood:Blue Gemstone:Yellow Gemstone:Red Gemstone") == 4)
 				.@assassin_t += 10;
 			mes "[The Anonymous One]";
-			mes "5. Which skill can you learn when you reach Level 5 Enchant Poison?";
+			mes "5. คุณสามารถเรียนรู้ทักษะใดได้เมื่อคุณถึงระดับ 5 Enchant Poison?";
 			next;
 			if (select("Envenom:Sonic Blow:Venom Splasher:Venom Dust") == 4)
 				.@assassin_t += 10;
 			mes "[The Anonymous One]";
-			mes "6. Among the following skills, which allows you to walk while invisible?";
+			mes "6. ทักษะใดต่อไปนี้ที่ทำให้คุณเดินได้ขณะที่ล่องหน?";
 			next;
 			if (select("Hiding:Back Slide:Cloaking:Sand Attack") == 3)
 				.@assassin_t += 10;
 			mes "[The Anonymous One]";
-			mes "7. Choose the condition that is unrelated to Venom Splasher.";
+			mes "7. เลือกเงื่อนไขที่ไม่เกี่ยวข้องกับ Venom Splasher.";
 			next;
-			if (select("Poisoned target.:Red Gemstone.:Remaing HP of Target.") == 2)
+			if (select("เป้าหมายที่ติดพิษ :Red Gemstone:HP ที่เหลืออยู่ของเป้าหมาย") == 2)
 				.@assassin_t += 10;
 			mes "[The Anonymous One]";
-			mes "8. Which monster is weak to a weapon with Vadon card (adds 20% damage on Fire property monster)?";
+			mes "8. มอนสเตอร์ตัวใดที่อ่อนแอต่ออาวุธที่มีการ์ดวาดอน (เพิ่มความเสียหาย 20% ให้กับมอนสเตอร์ธาตุไฟ)?";
 			next;
 			if (select("Steel Chonchon:Deviruchi:Elder Willow:Baphomet") == 3)
 				.@assassin_t += 10;
 			mes "[The Anonymous One]";
-			mes "9. How much SP does";
-			mes "Double Attack need?";
+			mes "9. Double Attack ต้องใช้ SP เท่าไหร่?";
 			next;
-			if (select("15:It's a passive skill, so SP use is 0.:It's passive skill, so SP use is 10.:54") == 2)
+			if (select("15:เป็นทักษะติดตัว ดังนั้นการใช้ SP จึงเป็น 0:เป็นทักษะติดตัว ดังนั้นการใช้ SP คือ 10.:54") == 2)
 				.@assassin_t += 10;
 			mes "[The Anonymous One]";
-			mes "10. What is the best elemental Main Gauche weapon for hunting in Izlude dungeon?";
+			mes "10. อาวุธ Main Gauche ธาตุใดดีที่สุดสำหรับการล่าในดันเจี้ยน Izlude?";
 			next;
 			if (select("Wind Main Gauche:Ice Main Gauche:Earth Main Gauche:Fire Main Gauche") == 1)
 				.@assassin_t += 10;
 			break;
 		case 2:
 			mes "[The Anonymous One]";
-			mes "1. Which monster";
-			mes "drops a slotted Katar?";
+			mes "1. มอนสเตอร์ตัวใดที่ดรอป Katar[1]?";
 			next;
 			if (select("Thief Bug:Peco Peco:Desert Wolf:Hammer Cobolt") == 3)
 				.@assassin_t += 10;
 			mes "[The Anonymous One]";
-			mes "2. Which monster";
-			mes "drops a slotted Jur?";
+			mes "2. มอนสเตอร์ตัวใดที่ดรอป Jur[1]?";
 			next;
 			if (select("Martin:Desert Wolf:Marionette:Myst") == 1)
 				.@assassin_t += 10;
 			mes "[The Anonymous One]";
-			mes "3. Which class is allowed to craft elemental weapons?";
+			mes "3. คลาสใดได้รับอนุญาตให้ประดิษฐ์อาวุธธาตุ?";
 			next;
 			if (select("Merchant:Blacksmith:Thief:Priest") == 2)
 				.@assassin_t += 10;
 			mes "[The Anonymous One]";
-			mes "4. Choose the weapon which is not in the Katar class.";
+			mes "4. เลือกอาวุธที่ไม่อยู่ในคลาส Katar";
 			next;
 			if (select("Jamadhar:Jur:Katar:Gladius") == 4)
 				.@assassin_t += 10;
 			mes "[The Anonymous One]";
-			mes "5. What property do Izlude dungeon monsters posses?";
+			mes "5. มอนสเตอร์ดันเจี้ยน Izlude มีคุณสมบัติอะไรบ้าง?";
 			next;
 			if (select("Water:Fire:Wind:Earth") == 1)
 				.@assassin_t += 10;
 			mes "[The Anonymous One]";
-			mes "6. Which monster";
-			mes "cannot be a Cute Pet?";
+			mes "6. มอนสเตอร์ตัวใดที่ไม่สามารถเป็นสัตว์เลี้ยงน่ารักได้?";
 			next;
 			if (select("Poporing:Roda Frog:Smokie:Poison Spore") == 2)
 				.@assassin_t += 10;
 			mes "[The Anonymous One]";
-			mes "7. Choose a monster that Fire property Daggers work the best on.";
+			mes "7. เลือกมอนสเตอร์ที่ Daggers ธาตุไฟใช้งานได้ดีที่สุด";
 			next;
 			if (select("Dagger Goblin:Mace Goblin:Morning Star Goblin:Hammer Goblin") == 4)
 				.@assassin_t += 10;
 			mes "[The Anonymous One]";
-			mes "8. Choose the non-elemental Katar from the following:";
+			mes "8. เลือก Katar ที่ไม่มีธาตุจากรายการต่อไปนี้:";
 			next;
 			if (select("Katar of Raging Blaze:Katar of Dusty Thornbush:Sharpened Legbone of Ghoul:Infiltrator") == 4)
 				.@assassin_t += 10;
 			mes "[The Anonymous One]";
-			mes "9. Which is the uncommon monster?";
+			mes "9. มอนสเตอร์ที่ไม่ธรรมดาคือตัวไหน?";
 			next;
 			if (select("Poring:Mastering:Ghostring:Spore") == 3)
 				.@assassin_t += 10;
 			mes "[The Anonymous One]";
-			mes "10. Choose the monster";
-			mes "that is not Undead.";
+			mes "10. เลือกมอนสเตอร์ที่ไม่ใช่ Undead";
 			next;
 			if (select("Drake:Megalodon:Spore:Khalitzburg") == 3)
 				.@assassin_t += 10;
 			break;
 		case 3:
 			mes "[The Anonymous One]";
-			mes "1. Choose the correct amount of the maximum dodge rate increase from the 'Increase Dodge' skill when at level 10.";
+			mes "1. เลือกจำนวนการเพิ่มอัตราการหลบหลีกสูงสุดที่ถูกต้องจากทักษะ 'Increase Dodge' เมื่ออยู่ที่เลเวล 10";
 			next;
 			if (select("30:40:160:20") == 1)
 				.@assassin_t += 10;
 			mes "[The Anonymous One]";
-			mes "2. Choose a monster which detects hiding/cloaking Thieves and Assassins.";
+			mes "2. เลือกมอนสเตอร์ที่จะตรวจจับการซ่อน/การปิดบังโจรและนักฆ่า";
 			next;
 			if (select("Worm Tail:Andre:Mummy:Soldier Skeleton") == 2)
 				.@assassin_t += 10;
 			mes "[The Anonymous One]";
-			mes "3. Choose a group of weapons that cannot be used by an Assassin at once.";
+			mes "3. เลือกกลุ่มอาวุธที่นักฆ่าไม่สามารถใช้ได้ในครั้งเดียว";
 			next;
 			if (select("Main Gaughe + Gladius:Stiletto + Main Gauche:Katar + Maingauche:Hammer + Stiletto") == 3)
 				.@assassin_t += 10;
 			mes "[The Anonymous One]";
-			mes "4. Choose the town where Thieves can change their jobs.";
+			mes "4. เลือกเมืองที่พวกโจรสามารถเปลี่ยนอาชีพได้";
 			next;
 			if (select("Prontera:Lutie:Alberta:Morocc") == 4)
 				.@assassin_t += 10;
 			mes "[The Anonymous One]";
-			mes "5. Choose a card that does not affect the AGI stat.";
+			mes "5. เลือกการ์ดที่ไม่ส่งผลต่อค่า AGI";
 			next;
 			if (select("Baphomet Jr. card:Whisper Card:Female Thiefbug card:Male Thiefbug card") == 2)
 				.@assassin_t += 10;
 			mes "[The Anonymous One]";
-			mes "6. Choose the correct specialty of the Assassin class.";
+			mes "6. เลือกความเชี่ยวชาญที่ถูกต้องของคลาสนักฆ่า";
 			next;
-			if (select("Excellent singing talent:Excellent reading talent:Excellent dancing talent:Excellent dodge ability") == 4)
+			if (select("ความสามารถด้านการร้องเพลงดีเยี่ยม : ความสามารถด้านการอ่านหนังสือดีเยี่ยม : ความสามารถด้านการเต้นดีเยี่ยม : ทักษะการหลบหลีกดีเยี่ยม") == 4)
 				.@assassin_t += 10;
 			mes "[The Anonymous One]";
-			mes "7. Choose the maximum AGI bonus an Assassin can get at job level 50.";
+			mes "7. เลือกโบนัส AGI สูงสุดที่นักฆ่าจะได้รับได้ที่ Job Level 50";
 			next;
 			if (select("7:8:9:10") == 4)
 				.@assassin_t += 10;
 			mes "[The Anonymous One]";
-			mes "8. Choose the item that an Assassin cannot equip.";
+			mes "8. เลือกไอเทมที่นักฆ่าไม่สามารถสวมใส่ได้";
 			next;
 			if (select("Dagger:Helm:Boots:Brooch") == 2)
 				.@assassin_t += 10;
 			mes "[The Anonymous One]";
-			mes "9. Choose the job change item for Thief.";
+			mes "9. เลือกรายการเปลี่ยนอาชีพสำหรับ Thief";
 			next;
 			switch(select("Orange Gooey Mushroom:Red Gooey Mushroom:Orange Net Mushroom:Orange Hair Mushroom")) {
 			case 1:
@@ -1002,7 +969,7 @@ OnTouch_:
 				break;
 			}
 			mes "[The Anonymous One]";
-			mes "10. Choose a card that would typically benefit an Assassin the least.";
+			mes "10. เลือกการ์ดที่โดยทั่วไปแล้วน่าจะให้ประโยชน์กับนักฆ่าน้อยที่สุด";
 			next;
 			if (select("Whisper card:Elder Willow card:Soldier Skeleton card:Cobold card") == 2)
 				.@assassin_t += 10;
@@ -1012,36 +979,34 @@ OnTouch_:
 			next;
 			mes "[The Anonymous One]";
 			mes "Hmpf.";
-			mes "Somehow, you";
-			mes "have shown me";
-			mes "great effort.";
+			mes "ไม่ทราบว่าคุณแสดงให้ฉันเห็นถึงความพยายามอันยิ่งใหญ่ได้อย่างไร";
 			next;
 			mes "[The Anonymous One]";
-			mes "Let's see...";
-			mes "You scored";
-			mes "" + .@assassin_t + " percent...";
+			mes "มาดูกัน...";
+			mes "คุณทำคะแนนได้";
+			mes "" + .@assassin_t + " เปอร์เซ็นต์...";
 			if (.@assassin_t > 80) {
 				ASSIN_Q2 = 5;
 				changequest 8002,8003;
-				mes "Well done.";
-				mes "You pass.";
+				mes "ทำได้ดี";
+				mes "คุณผ่าน";
 				next;
 				mes "[The Anonymous One]";
-				mes "However, another test awaits you. When you go inside the next area, you will receive your instructions...";
+				mes "อย่างไรก็ตาม การทดสอบอีกครั้งกำลังรอคุณอยู่ เมื่อคุณเข้าไปในพื้นที่ถัดไป คุณจะได้รับคำแนะนำ...";
 				close;
 			}
 			else {
 				ASSIN_Q2 = 4;
-				mes "That means you fail!";
+				mes "นั่นหมายความว่าคุณล้มเหลว!";
 				next;
 				mes "[The Anonymous One]";
-				mes "How could you expect to be an Assassin with this score? Keep training and come back when you're ready.";
+				mes "คุณคาดหวังให้เป็นนักฆ่าได้อย่างไรด้วยคะแนนเท่านี้ ฝึกฝนต่อไปแล้วกลับมาเมื่อคุณพร้อม";
 				next;
 				mes "[The Anonymous One]";
-				mes "I would ask 'Khai,' the one who processed your application, for advice.";
+				mes "ฉันอยากขอคำแนะนำจาก 'Khai' คนที่ดำเนินการใบสมัครของคุณ";
 				next;
 				mes "[The Anonymous One]";
-				mes "You may also use this code: ^880000iro.ragnarokonline.com^000000. Somehow, those words are linked to a vast body of otherworldly knowledge...";
+				mes "คุณสามารถใช้รหัสนี้ได้เช่นกัน: ^880000iro.ragnarokonline.com^000000 ไม่ทราบว่าทำไมคำเหล่านั้นจึงเชื่อมโยงกับองค์ความรู้อันกว้างใหญ่ไพศาลจากต่างโลก...";
 				close2;
 				warp "in_moc_16",19,76;
 				end;
@@ -1050,39 +1015,38 @@ OnTouch_:
 		else if (ASSIN_Q2 == 4) {
 			next;
 			mes "[The Anonymous One]";
-			mes "You showed";
-			mes "great effort...";
+			mes "คุณแสดงความพยายามอย่างยิ่งใหญ่...";
 			next;
 			mes "[The Anonymous One]";
-			mes "Let's see...";
-			mes "You scored";
-			mes "" + .@assassin_t + " points...";
+			mes "มาดูกัน...";
+			mes "คุณทำคะแนนได้";
+			mes "" + .@assassin_t + " คะแนน...";
 			if (.@assassin_t > 80) {
 				ASSIN_Q2 = 5;
 				changequest 8002,8003;
 				next;
 				mes "[The Anonymous One]";
-				mes "You didn't fail this time! But you're not done just yet. You have another test ahead of you. Once you proceed, you will be informed about your next trial.";
+				mes "คุณไม่ได้ล้มเหลวในครั้งนี้! แต่คุณยังไม่จบเพียงเท่านี้ คุณมีการทดสอบอื่นรออยู่ข้างหน้า เมื่อคุณดำเนินการต่อไป คุณจะได้รับแจ้งเกี่ยวกับการทดสอบครั้งต่อไป";
 				close;
 			}
 			else {
 				ASSIN_Q2 = 4;
-				mes "You failed!";
+				mes "แกสอบตกแล้ว!";
 				next;
 				mes "[The Anonymous One]";
-				mes "You're too underqualified. How can you even think about becoming an Assassin?!";
+				mes "แกไม่มีคุณสมบัติพอเลย แกคิดจะมาเป็นนักฆ่าได้ยังไง!";
 				next;
 				mes "[The Anonymous One]";
-				mes "I'm surprised that you were even able to become a Thief. Go away, and come back only when you know what the hell you're doing.";
+				mes "ฉันแปลกใจที่แกสามารถเป็นโจรได้ แกกลับไปซะแล้วกลับมาใหม่ก็ต่อเมื่อแกรู้ว่ากำลังทำอะไรอยู่";
 				next;
 				mes "[The Anonymous One]";
-				mes "Hmpf, if you really don't have a clue, I will give you a little advice.";
+				mes "หึๆ ถ้าแกไม่มีลาดเลาจริงๆ ฉันก็จะช่วยแกหน่อย";
 				next;
 				mes "[The Anonymous One]";
-				mes "Go ask 'Khai,' the guy who takes care of your test application, maybe he will help you.";
+				mes "ไปถาม 'ไค' คนที่ดูแลใบสมัครสอบของแกสิ บางทีเขาอาจจะช่วยแกได้";
 				next;
 				mes "[The Anonymous One]";
-				mes "You may also wish to take advantage of the ancient code, ^3355FFiro.ragnarokonline.com^000000. Supposedly, those words are linked to a vast body of otherworldly knowledge...";
+				mes "คุณอาจต้องการใช้ประโยชน์จากรหัสโบราณ ^3355FFiro.ragnarokonline.com^000000 เช่นกัน เชื่อกันว่าคำเหล่านี้เชื่อมโยงกับความรู้จากโลกอื่นอันกว้างใหญ่...";
 				close2;
 				warp "in_moc_16",19,76;
 				end;
@@ -1091,7 +1055,7 @@ OnTouch_:
 	}
 	else {
 		mes "[The Anonymous One]";
-		mes "...I will keep watching you.";
+		mes "...ฉันจะคอยดูคุณต่อไป";
 		close;
 	}
 }
@@ -1102,7 +1066,7 @@ in_moc_16,21,165,2	script	Standby Room#ASNTEST	725,{
 OnInit:
 	//disablenpc "Standby Room#ASNTEST";
 	hideonnpc "Standby Room#ASNTEST";
-	waitingroom "Standby Room",10,"Standby Room#ASNTEST::OnStartArena",1;
+	waitingroom "ห้องสแตนด์บาย",10,"Standby Room#ASNTEST::OnStartArena",1;
 	enablewaitingroomevent;
 	end;
 
@@ -1130,7 +1094,7 @@ in_moc_16,21,165,2	script	Test Guide#ASN	725,4,4,{
 OnTouch_:
 	if (ASSIN_Q2 < 5) {
 		mes "[Barcardi]";
-		mes "You can't take the next trial without passing the written test first. You better speak to the Anonymous One...";
+		mes "คุณจะเข้าร่วมการทดสอบครั้งต่อไปไม่ได้หากยังไม่ผ่านการทดสอบข้อเขียนเสียก่อน คุณควรพูดคุยกับผู้ไม่ประสงค์ออกนาม...";
 		close2;
 		warp "in_moc_16",19,76;
 		end;
@@ -1138,59 +1102,55 @@ OnTouch_:
 	if (ASSIN_Q == 1 && ASSIN_Q2 == 5) {
 		mes "[Barcardi]";
 		mes "" + strcharinfo(0) + "...";
-		mes "You passed the test..?";
+		mes "คุณผ่านการทดสอบแล้ว..?";
 		next;
 		mes "[Barcardi]";
-		mes "To be honest, I want to grant you the job change without any other condition. Too many pathetic people don't even have the basic knowledge to be Assassins...";
+		mes "พูดตามตรง ฉันอยากให้คุณเปลี่ยนงานโดยไม่มีเงื่อนไขอื่นใด คนน่าสงสารมากมายไม่มีความรู้พื้นฐานในการเป็นนักฆ่าด้วยซ้ำ...";
 		next;
 		mes "[Barcardi]";
-		mes "We must keep our dignity as Assassins and be truly great! Regrettably, there are too many idiots that don't have any pride.";
+		mes "เราต้องรักษาศักดิ์ศรีของเราในฐานะนักฆ่าและเป็นคนยิ่งใหญ่อย่างแท้จริง! น่าเสียดายที่ยังมีคนโง่ๆ มากมายที่ไม่มีความภาคภูมิใจ";
 		next;
 		mes "[Barcardi]";
-		mes "All Assassins must respect the enemies they slay, the blood that they spill, and above all, maintain their sense of dignity!";
+		mes "นักฆ่าทุกคนต้องเคารพศัตรูที่พวกเขาสังหาร เลือดที่พวกเขาหลั่ง และเหนือสิ่งอื่นใด ต้องรักษาศักดิ์ศรีของพวกเขาเอาไว้!";
 		next;
 		mes "[Barcardi]";
-		mes "Alright. This next trial will test your ability to quickly find your target.";
+		mes "โอเค การทดสอบครั้งต่อไปจะทดสอบความสามารถของคุณในการค้นหาเป้าหมายอย่างรวดเร็ว";
 		next;
 		mes "[Barcardi]";
-		mes "If you're going to be an Assassin, we need to determine whether or not you can distinguish friend from foe in an instant.";
+		mes "หากคุณจะทำหน้าที่เป็นนักฆ่า เราก็ต้องกำหนดก่อนว่าคุณจะสามารถแยกแยะมิตรจากศัตรูได้ในทันทีหรือไม่";
 		next;
 		mes "[Barcardi]";
-		mes "The main goal of this test is to find and kill as many monsters named ^008800Job change target^000000 as possible.";
+		mes "เป้าหมายหลักของการทดสอบนี้คือการค้นหาและฆ่ามอนสเตอร์ที่มีชื่อว่า ^008800Job change target^000000 ให้ได้มากที่สุด";
 		next;
 		mes "[Barcardi]";
-		mes "You must kill at least";
-		mes "6 ^008800Job change target^000000 monsters. They're intermingled among similar looking monsters, so you need to be careful...";
+		mes "คุณต้องฆ่าอย่างน้อย";
+		mes "มอนสเตอร์ 6 ตัว ^008800Job change target^000000 พวกมันปะปนอยู่กับมอนสเตอร์ที่ดูคล้ายกัน ดังนั้นคุณต้องระวัง...";
 		next;
 		mes "[Barcardi]";
-		mes "If you fail, you'll have to restart this test. Go to the room above";
-		mes "me to be transported to the Test Hall.";
+		mes "หากคุณล้มเหลว คุณจะต้องเริ่มการทดสอบนี้ใหม่ ไปที่ห้องด้านบน";
+		mes "ฉันจะถูกส่งไปยังห้องทดสอบ";
 		next;
 		mes "[Barcardi]";
-		mes "Only one person is allowed to take the test at a time, so if anyone is taking the test, you'll have to wait until that person finishes.";
+		mes "อนุญาตให้ผู้เข้าสอบทำแบบทดสอบได้ครั้งละ 1 คนเท่านั้น ดังนั้นหากใครก็ตามเข้าสอบ คุณจะต้องรอจนกว่าคนนั้นจะสอบเสร็จ";
 		close;
 	}
 	else {
 		mes "[Barcardi]";
-		mes "Hey, don't be too hard";
-		mes "on yourself. Cheer up!";
+		mes "เฮ้ อย่ากดดันตัวเองมากเกินไปนะ สู้ ๆ นะ!";
 		next;
 		mes "[Barcardi]";
-		mes "Hmm, if you're exhausted, I'm willing to bring you back. Of course, if you leave, you'll have to take the job test over again. So what do you want to do?";
+		mes "อืม ถ้าคุณเหนื่อย ฉันก็ยินดีจะพาคุณกลับ แต่ถ้าคุณออกไป คุณจะต้องสอบงานใหม่อีกครั้ง แล้วคุณอยากทำอะไรล่ะ";
 		next;
-		if (select("Continue!:Quit the job change test for now.") == 1) {
+		if (select("ดำเนินการต่อ!: ออกจากการทดสอบการเปลี่ยนงานในตอนนี้") == 1) {
 			mes "[Barcardi]";
-			mes "Good choice!";
-			mes "Remember, you";
-			mes "must find and kill";
-			mes "6 ^008800Job change target^000000 monsters!";
-			mes "Good luck!";
+			mes "เลือกได้ดีมาก!";
+			mes "จำไว้ว่า คุณต้องค้นหาและฆ่า ^008800Job change target^000000 มอนสเตอร์ 6 ตัว!";
+			mes "ขอให้โชคดี!";
 			close;
 		}
 		mes "[Barcardi]";
-		mes "Alright...";
-		mes "I guess you";
-		mes "could use a break...";
+		mes "โอเค...";
+		mes "ฉันเดาว่าคุณคงต้องพักสักพัก...";
 		close2;
 		ASSIN_Q = 0;
 		ASSIN_Q2 = 0;
@@ -1266,7 +1226,7 @@ OnResetmob:
 OnMyMobDead:
 	.MyMobs--;
 	if (.MyMobs < 1) {
-		mapannounce "in_moc_16","You seem to be doing quite well. Keep it up!",bc_map;
+		mapannounce "in_moc_16","ดูเหมือนคุณจะทำได้ดีทีเดียว สู้ๆ นะ",bc_map;
 		ASSIN_Q = 3;
 		changequest 8003,8004;
 		donpcevent "timestopper#1::OnEnable";
@@ -1276,68 +1236,68 @@ OnMyMobDead:
 		stopnpctimer;
 	}
 	else {
-		mapannounce "in_moc_16","Okay, you're doing good! Hang in there, you're almost there!",bc_map;
+		mapannounce "in_moc_16","โอเค คุณทำได้ดีแล้ว! อดทนไว้ คุณเกือบจะเสร็จแล้ว!",bc_map;
 	}
 	end;
 
 OnMyMobDead2:
-	mapannounce "in_moc_16",strcharinfo(0) + "! You made a mistake! I'm bringing you back!",bc_map;
+	mapannounce "in_moc_16",strcharinfo(0) + "! คุณทำผิดแล้ว! ฉันจะพาคุณกลับมา!",bc_map;
 	ASSIN_Q = 2;
 	warp "in_moc_16",19,161;
 	donpcevent "Beholder#ASNTEST::OnReset";
 	end;
 
 OnTimer1000:
-	mapannounce "in_moc_16"," Okay, let the test begin!",bc_map;
+	mapannounce "in_moc_16"," โอเค มาเริ่มการทดสอบกันเลย!",bc_map;
 	end;
 
 OnTimer2000:
-	mapannounce "in_moc_16","As you've been told before, find and only kill monsters named 'Job change target!'",bc_map;
+	mapannounce "in_moc_16","อย่างที่คุณเคยบอกมาก่อน ให้ค้นหาและฆ่ามอนสเตอร์ที่ชื่อ 'Job change target!'",bc_map;
 	end;
 
 OnTimer3000:
-	mapannounce "in_moc_16","The purpose of this test is to examine your ability to quickly distinguish enemies from other people!",bc_map;
+	mapannounce "in_moc_16","จุดประสงค์ของการทดสอบนี้คือเพื่อตรวจสอบความสามารถของคุณในการแยกแยะศัตรูจากผู้อื่นได้อย่างรวดเร็ว!",bc_map;
 	end;
 
 OnTimer4000:
-	mapannounce "in_moc_16","You will have 3 minutes for the test! We will inform you of every minute passed.",bc_map;
+	mapannounce "in_moc_16","คุณจะมีเวลาทำแบบทดสอบ 3 นาที! เราจะแจ้งให้คุณทราบทุกนาทีที่ผ่านไป",bc_map;
 	end;
 
 OnTimer5000:
-	mapannounce "in_moc_16","Ok, now you've got exactly 3 minutes. Move! Move!",bc_map;
+	mapannounce "in_moc_16","โอเค ตอนนี้คุณมีเวลา 3 นาทีพอดี ขยับ! เคลื่อนไหว!",bc_map;
 	end;
 
 OnTimer65000:
-	mapannounce "in_moc_16","2 minutes left. As I've told you, get the 'Job change target' monsters!",bc_map;
+	mapannounce "in_moc_16","เหลือเวลาอีก 2 นาที อย่างที่ฉันบอกไปแล้ว ให้ไปหามอนสเตอร์ 'Job change target'!",bc_map;
 	end;
 
 OnTimer125000:
-	mapannounce "in_moc_16","1 minute left.",bc_map;
+	mapannounce "in_moc_16","เหลืออีก 1 นาที",bc_map;
 	end;
 
 OnTimer180000:
-	mapannounce "in_moc_16","5 seconds left...",bc_map;
+	mapannounce "in_moc_16","เหลืออีก 5 วินาที...",bc_map;
 	end;
 
 OnTimer181000:
-	mapannounce "in_moc_16","4 seconds left...",bc_map;
+	mapannounce "in_moc_16","เหลืออีก 4 วินาที...",bc_map;
 	end;
 
 OnTimer182000:
-	mapannounce "in_moc_16","3 seconds left...",bc_map;
+	mapannounce "in_moc_16","เหลืออีก 3 วินาที...",bc_map;
 	end;
 
 OnTimer183000:
-	mapannounce "in_moc_16","2 seconds left...",bc_map;
+	mapannounce "in_moc_16","เหลืออีก 2 วินาที...",bc_map;
 	end;
 
 OnTimer184000:
-	mapannounce "in_moc_16","1 second left.",bc_map;
+	mapannounce "in_moc_16","เหลืออีก 41วินาที...",bc_map;
 	end;
 
 OnTimer185000:
-	mapannounce "in_moc_16","Time's up!",bc_map;
-	mapannounce "in_moc_16","Well, good job... If you wanted to waste your time. You'll have to try again!",bc_map;
+	mapannounce "in_moc_16","หมดเวลาแล้ว!",bc_map;
+	mapannounce "in_moc_16","ทำได้ดีมาก... ถ้าคุณอยากเสียเวลา ก็ต้องลองใหม่อีกครั้ง!",bc_map;
 	//ASSIN_Q = 2;
 	end;
 
@@ -1353,7 +1313,7 @@ OnTimer187000:
 in_moc_16,68,158,0	script	01_1::SinTrap	-1,0,0,{
 OnTouch_:
 	if (getvariableofnpc(.DisableTraps,"Beholder#ASNTEST")  < 1) {
-		mapannounce "in_moc_16",strcharinfo(0) + ", you're trapped. You will be sent back.",bc_map;
+		mapannounce "in_moc_16",strcharinfo(0) + ", คุณติดกับดัก. คุณจะถูกส่งกลับ.",bc_map;
 		ASSIN_Q = 2;
 		warp "in_moc_16",19,161;
 		donpcevent "Beholder#ASNTEST::OnResetmob";
@@ -1462,7 +1422,7 @@ OnTouch_:
 	end;
 
 OnEnable:
-	mapannounce "in_moc_16","The door to the next room, at coordinates 87 137, has opened.",bc_map;
+	mapannounce "in_moc_16","ประตูห้องถัดไปที่พิกัด 87 137 ได้เปิดออกแล้ว",bc_map;
 	enablenpc "Keeper of the Door#ASN";
 	end;
 
@@ -1486,8 +1446,8 @@ OnDisable:
 	end;
 
 OnMyMobDead:
-	mapannounce "in_moc_16","Hey, what the hell was that?! I told you: No killing monsters!",bc_map;
-	mapannounce "in_moc_16","I'm bringing you back... *Sigh...*",bc_map;
+	mapannounce "in_moc_16","เฮ้ นั่นมันบ้าอะไรน่ะ! ฉันบอกคุณแล้วว่า: ไม่มีการฆ่ามอนเตอร์!",bc_map;
+	mapannounce "in_moc_16","ฉันจะพาเธอกลับมา... *เฮ้อ...*",bc_map;
 	ASSIN_Q = 3;
 	warp "in_moc_16",87,102;
 	killmonster "in_moc_16","timestopper#1::OnMyMobDead";
@@ -1500,28 +1460,27 @@ in_moc_16,89,98,1	script	Thomas#ASNTEST	118,5,1,{
 OnTouch_:
 	if (ASSIN_Q == 4) {
 		mes "[Thomas]";
-		mes "Damn...! You look like you're in a lot of pain. ^666666*Sigh*^000000 Give me a second, let me try to restore your HP and SP...";
+		mes "บ้าเอ้ย...! ดูเหมือนคุณจะเจ็บปวดมากเลยนะ ^666666*เฮ้อ*^000000 ให้เวลาฉันสักครู่ ให้ฉันพยายามฟื้นฟู HP และ SP ของคุณ...";
 		percentheal 100,100;
 		next;
 		mes "[Thomas]";
-		mes "It looks like you're having a tough time. You're either trying too hard, or not trying hard";
-		mes "enough, kid.";
+		mes "ดูเหมือนคุณจะมีช่วงเวลาที่ยากลำบาก คุณพยายามมากเกินไป หรือไม่ก็พยายามไม่มากพอ เด็กน้อย";
 		next;
-		switch(select("I'm gonna try it again!:I... I quit!")) {
+		switch(select("ฉันจะลองอีกครั้ง!:ฉัน... ฉันเลิก!")) {
 		case 1:
 			mes "[Thomas]";
-			mes "Hmm. Well, okay.";
-			mes "Good luck out there.";
+			mes "อืม โอเค";
+			mes "โชคดีนะ";
 			close;
 		case 2:
 			mes "[Thomas]";
-			mes "Huh...";
-			mes "Quit the test, eh? Well, I guess you don't wanna waste any more of our time.";
+			mes "ฮะ...";
+			mes "เลิกทดสอบเถอะ? เอาล่ะ ฉันเดาว่าคุณคงไม่อยากเสียเวลาของเราอีกต่อไปแล้ว";
 			next;
 			mes "[Thomas]";
-			mes "Oh hey, don't forget to save your respawn point in town.";
+			mes "โอ้ เฮ้ อย่าลืมบันทึกจุดเกิดใหม่ของคุณในเมืองด้วย";
 			close2;
-			mapannounce "in_moc_16",strcharinfo(0) + " got scared and quit the test...Who's Next?!",bc_map;
+			mapannounce "in_moc_16",strcharinfo(0) + " กลัวเลยออกจากการทดสอบ...คนต่อไปคือใคร?!",bc_map;
 			ASSIN_Q = 0;
 			ASSIN_Q2 = 0;
 			changequest 8004,8000;
@@ -1533,16 +1492,16 @@ OnTouch_:
 	}
 
 	mes "[Thomas]";
-	mes "Hey, I'm Thomas. I'm in charge of testing your use of the hiding skill. Think you're up to it?";
+	mes "เฮ้ ฉันชื่อโธมัส ฉันเป็นคนรับผิดชอบการทดสอบการใช้ทักษะการซ่อนตัวของคุณ คิดว่าคุณทำได้ดีไหม";
 	next;
 	mes "[Thomas]";
-	mes "Listen. In this test, you can't kill any monsters. Your goal is to reach 'Barcardi' at the opposite side of this room.";
+	mes "ฟังนะ ในการทดสอบนี้ คุณไม่สามารถฆ่าสัตว์ประหลาดตัวไหนได้เลย เป้าหมายของคุณคือไปหา 'บาร์คาร์ดี' ที่อยู่ฝั่งตรงข้ามของห้องนี้";
 	next;
 	mes "[Thomas]";
-	mes "So basically, get to the other side of this room and meet 'Barcardi' without killing a single monster. Understand?";
+	mes "สรุปก็คือ ให้ไปที่อีกฝั่งของห้องนี้แล้วพบกับ 'บาร์คาร์ดี' โดยไม่ต้องฆ่าสัตว์ประหลาดแม้แต่ตัวเดียว เข้าใจไหม";
 	next;
 	mes "[Thomas]";
-	mes "If you run away, get a nose bleed and pass out or something like that, I'll fail ya'. Enough talk. Let's see what you got.";
+	mes "ถ้าคุณวิ่งหนี เลือดกำเดาไหลและหมดสติหรืออะไรทำนองนั้น ฉันจะสอบตก พูดพอแล้ว มาดูกันว่าคุณได้อะไรมาบ้าง";
 	close2;
 	ASSIN_Q = 4;
 
@@ -1589,8 +1548,8 @@ OnTouch_:
 	donpcevent "timestopper#1::OnDisable";
 	donpcevent "Thomas#ASNTEST::OnDisable";
 	mes "[Barcardi]";
-	mes "Oh! Congratulations!";
-	mes "You may now proceed to our Guildmaster's room. Good luck!!";
+	mes "โอ้! ยินดีด้วย!";
+	mes "ตอนนี้คุณสามารถไปยังห้องของหัวหน้ากิลด์ของเราได้แล้ว โชคดี!!";
 	close2;
 	ASSIN_Q = 5;
 	changequest 8004,8005;
@@ -1607,7 +1566,7 @@ OnTouch_:
 			changequest 8005,8006;
 	}
 	else {
-		mapannounce "in_moc_16",strcharinfo(0)+" has entered 'Guildmaster's room.'",bc_map;
+		mapannounce "in_moc_16",strcharinfo(0)+" ได้เข้าสู่ 'ห้องของหัวหน้ากิลด์'",bc_map;
 		savepoint "in_moc_16",181,183,1,1;
 		donpcevent "Guildmaster#ASN1::OnCast";
 		warp "in_moc_16",167,113;
@@ -1619,20 +1578,18 @@ in_moc_16,167,110,0	script	Guildmaster#ASN1	-1,3,1,{
 OnTouch_:
 	savepoint "in_moc_16",167,110,1,1;
 	mes "[Guildmaster]";
-	mes "Welcome. ";
-	mes "This place is called the 'Guildmaster's room,' the deepest place in the Assassin guild.";
+	mes "ยินดีต้อนรับ ";
+	mes "ที่นี่เรียกว่า 'ห้องของหัวหน้ากิลด์' ซึ่งเป็นที่ลึกที่สุดในกิลด์นักฆ่า";
 	next;
 	mes "[Guildmaster]";
-	mes "I'm going to give you a simple test. Please find your way through this maze and come to me. It is this maze that protects our guild from intruders.";
+	mes "ฉันจะทดสอบคุณง่ายๆ หน่อย โปรดหาทางผ่านเขาวงกตนี้และมาหาฉัน เขาวงกตแห่งนี้จะคอยปกป้องกิลด์ของเราจากผู้บุกรุก";
 	next;
 	mes "[Guildmaster]";
-	mes "I look forward";
-	mes "to meeting you";
-	mes "at the end of maze.";
+	mes "ฉันตั้งตารอที่จะพบคุณที่ปลายเขาวงกต";
 	close;
 
 OnCast:
-	mapannounce "in_moc_16","...Next volunteer, please come in.",bc_map;
+	mapannounce "in_moc_16","...อาสาสมัครคนต่อไปกรุณาเข้ามา",bc_map;
 	end;
 }
 
@@ -1646,308 +1603,292 @@ OnTouch_:
 	if (ASSIN_Q == 7 && BaseJob == Job_Thief) {
 		ASSIN_Q = 8;
 		mes "[Guildmaster]";
-		mes "Welcome.";
-		mes "I apologize for";
-		mes "making you go";
-		mes "through the maze.";
+		mes "ยินดีต้อนรับ";
+		mes "ฉันขอโทษที่ทำให้คุณต้องผ่านเขาวงกต";
 		next;
 		mes "[Guildmaster]";
-		mes "I saw your resume just now. You're well known as a Thief with guts. Rarely do we receive potential Assassins of your stature.";
+		mes "ฉันเพิ่งเห็นประวัติของคุณเมื่อกี้ คุณเป็นที่รู้จักดีในฐานะหัวขโมยที่มีความกล้า เราไม่ค่อยได้รับนักฆ่าที่มีระดับความสามารถเหมือนคุณ";
 		next;
 		mes "[Guildmaster]";
-		mes "May I ask you some questions if you don't mind? You don't have to be nervous. Just remember: if you lie, I will kill you.";
+		mes "ฉันขอถามคุณหน่อยได้ไหม ถ้าคุณไม่รังเกียจ? คุณไม่ต้องประหม่า แค่จำไว้ว่า: ถ้าคุณโกหก ฉันจะฆ่าคุณ";
 		next;
 		mes "[Guildmaster]";
-		mes "First off, what do you think is the priority of an Assassin?";
+		mes "ก่อนอื่น คุณคิดว่าอะไรคือสิ่งสำคัญที่สุดของนักฆ่า?";
 		next;
-		switch(select("More power.:An Assassin's pride.:Endless practice.")) {
+		switch(select("พลังมากขึ้น : ความภาคภูมิใจของนักฆ่า : การฝึกฝนที่ไม่มีที่สิ้นสุด")) {
 		case 1:
 			mes "[Guildmaster]";
-			mes "More power...";
-			mes "Yes, you may think";
-			mes "of Assassins as much";
-			mes "stronger than Thieves.";
+			mes "พลังมากกว่านี้...";
+			mes "ใช่แล้ว คุณอาจจะคิดว่านักฆ่าแข็งแกร่งกว่าโจรก็ได้";
 			next;
 			mes "[Guildmaster]";
-			mes "However, for what reason do you wish for more power? To show off? Personal revenge? For what purpose will you use this power?";
+			mes "อย่างไรก็ตาม คุณต้องการพลังมากกว่านี้เพื่ออะไร? เพื่ออวดอ้าง? เพื่อแก้แค้นส่วนตัว? คุณจะใช้พลังนี้เพื่อจุดประสงค์ใด?";
 			next;
 			mes "[Guildmaster]";
-			mes "Why do you want";
-			mes "to be stronger";
-			mes "than you are now?";
+			mes "ทำไมคุณถึงอยากแข็งแกร่งกว่าที่เป็นอยู่ตอนนี้?";
 			next;
-			switch(select("Revenge...!:Money~:I want to travel.")) {
+			switch(select("แก้แค้น...!:เงิน~:ฉันอยากเดินทาง")) {
 			case 1:
 				mes "[Guildmaster]";
-				mes "Revenge...?";
-				mes "Yes, I understand. All of us hold grudges against someone else eventually.";
+				mes "การแก้แค้น...?";
+				mes "ใช่ ฉันเข้าใจ เราทุกคนต่างก็มีความแค้นเคืองต่อคนอื่นในที่สุด";
 				next;
 				mes "[Guildmaster]";
-				mes "However, keep in mind that we are not allowed to be emotionally attached. Carry out your duties without question. That is our way.";
+				mes "อย่างไรก็ตาม โปรดจำไว้ว่าเราไม่มีสิทธิ์ที่จะผูกพันทางอารมณ์ จงปฏิบัติหน้าที่ของคุณอย่างไม่มีข้อกังขา นั่นคือวิถีของเรา";
 				next;
 				mes "[Guildmaster]";
-				mes "Being an Assassin means";
-				mes "to abandon the ego.";
+				mes "การเป็นนักฆ่าหมายถึงการละทิ้งอัตตา";
 				next;
 				break;
 			case 2:
 				ASSIN_Q = 9;
 				mes "[Guildmaster]";
-				mes "Financial reasons...? I won't deny that we all need money to live. But being Assassin means living for a higher purpose.";
+				mes "เหตุผลทางการเงิน...? ฉันจะไม่ปฏิเสธว่าเราทุกคนต้องการเงินเพื่อดำรงชีวิต แต่การเป็นนักฆ่าหมายถึงการดำรงชีวิตเพื่อจุดมุ่งหมายที่ยิ่งใหญ่กว่า";
 				next;
 				mes "[Guildmaster]";
-				mes "Being an Assassin means";
-				mes "to abandon such worldly";
-				mes "attachments...";
+				mes "การเป็นนักฆ่าหมายถึงการละทิ้งความผูกพันทางโลก...";
 				next;
 				break;
 			case 3:
 				ASSIN_Q = 10;
 				mes "[Guildmaster]";
-				mes "Good idea. Traveling around the world will allow you to broaden your experiences.";
+				mes "เป็นความคิดที่ดี การเดินทางรอบโลกจะทำให้คุณได้ประสบการณ์ที่หลากหลายยิ่งขึ้น";
 				next;
 				mes "[Guildmaster]";
-				mes "Most of us tend to avoid gathering into groups though, but I'm sure you already caught that, yes?";
+				mes "พวกเราส่วนใหญ่มักจะหลีกเลี่ยงการรวมกลุ่มกัน แต่ฉันแน่ใจว่าคุณคงเข้าใจแล้วใช่ไหม";
 				next;
 				mes "[Guildmaster]";
-				mes "In a way, being an Assassin is to live life in loneliness...";
+				mes "ในทางหนึ่ง การเป็นนักฆ่าก็คือการใช้ชีวิตอย่างโดดเดี่ยว...";
 				next;
 				break;
 			}
 			break;
 		case 2:
 			mes "[Guildmaster]";
-			mes "An Assassin's pride...";
-			mes "Did other Assassins tell you that...?";
+			mes "ความภาคภูมิใจของนักฆ่า...";
+			mes "นักฆ่าคนอื่นบอกคุณไหมว่า...?";
 			next;
 			mes "[Guildmaster]";
-			mes "Pride is certainly important, but pride is worth nothing if you do not have any ability.";
+			mes "ความภาคภูมิใจนั้นสำคัญแน่นอน แต่ความภาคภูมิใจจะไม่มีค่าอะไรเลยหากคุณไม่มีความสามารถ";
 			next;
 			mes "[Guildmaster]";
-			mes "Most of the Assassins you've met before me are brethren that have shared many difficult times together.";
+			mes "นักฆ่าส่วนใหญ่ที่คุณเคยพบมาก่อนฉันเป็นพี่น้องที่ผ่านช่วงเวลาที่ยากลำบากมาด้วยกันมากมาย";
 			next;
 			mes "[Guildmaster]";
-			mes "I can understand why their pride and dignity would be so important to them. Now, for what reason do you wish to become an Assassin?";
+			mes "ฉันเข้าใจว่าทำไมความภาคภูมิใจและศักดิ์ศรีของพวกเขาจึงมีความสำคัญกับพวกเขามาก แล้วคุณอยากเป็นนักฆ่าเพราะอะไรล่ะ";
 			next;
-			switch(select("I like the solitude.:Making money being an Assassin.:They just look interesting.")) {
+			switch(select("ฉันชอบความสันโดษ:หาเงินจากการเป็นนักฆ่า:พวกมันดูน่าสนใจ")) {
 			case 1:
 				ASSIN_Q = 11;
 				mes "[Guildmaster]";
-				mes "You got the point...";
-				mes "We are lonely. We will always be alone, even amongst each other...";
+				mes "คุณเข้าใจประเด็นแล้ว...";
+				mes "พวกเราเหงา เราจะอยู่คนเดียวเสมอ แม้จะอยู่ด้วยกัน...";
 				next;
 				mes "[Guildmaster]";
-				mes "In a way, being";
-				mes "an Assassin equals";
-				mes "nothing, I would say.";
+				mes "ในทางหนึ่ง การเป็นนักฆ่าไม่ได้มีความหมายอะไรเลย ฉันว่าอย่างนั้น";
 				next;
 				mes "[Guildmaster]";
-				mes "But, as I told you before, we have comrades. I recommend having at least one comrade to back up you when you're on a mission.";
+				mes "แต่เหมือนที่ฉันบอกคุณไปก่อนหน้านี้ เรามีสหาย ฉันแนะนำว่าควรมีสหายอย่างน้อยหนึ่งคนคอยสนับสนุนคุณเมื่อคุณทำภารกิจ";
 				next;
 				break;
 			case 2:
 				ASSIN_Q = 12;
 				mes "[Guildmaster]";
-				mes "Well, I can't deny it, we do need money to make a living. But don't you think we should pursue something even more important than money?";
+				mes "ฉันปฏิเสธไม่ได้ว่าเราต้องการเงินเพื่อเลี้ยงชีพ แต่คุณไม่คิดเหรอว่าเราควรแสวงหาสิ่งที่สำคัญยิ่งกว่าเงิน";
 				next;
 				break;
 			case 3:
 				ASSIN_Q = 13;
 				mes "[Guildmaster]";
-				mes "Style and appearance is only superficial. It is sad that many people think this way...";
+				mes "สไตล์และรูปลักษณ์ภายนอกเป็นเพียงผิวเผิน เป็นเรื่องน่าเศร้าที่หลายคนคิดแบบนี้...";
 				next;
 				mes "[Guildmaster]";
-				mes "Such disgraceful Assassins that have lost their true focus are dealt with in our own manner...";
+				mes "นักฆ่าที่น่าละอายเหล่านั้นที่สูญเสียสมาธิที่แท้จริงของพวกเขาได้รับการจัดการตามแบบฉบับของเราเอง...";
 				next;
 				mes "[Guildmaster]";
-				mes "Don't forget...";
-				mes "Assassins don't toy around. We are not into a style or trend, and we never will be.";
+				mes "อย่าลืม...";
+				mes "นักฆ่าไม่เล่นๆ เราไม่สนใจสไตล์หรือกระแสใดๆ และเราจะไม่มีวันสนใจ";
 				next;
 				break;
 			}
 			break;
 		case 3:
 			mes "[Guildmaster]";
-			mes "Endless Practice...";
-			mes "I think you have what it takes. Is there a reason you want to be an Assassin?";
+			mes "ฝึกฝนอย่างไม่สิ้นสุด...";
+			mes "ฉันคิดว่าคุณมีคุณสมบัติที่จำเป็น มีเหตุผลอะไรไหมที่คุณอยากเป็นนักฆ่า?";
 			next;
 			mes "[Guildmaster]";
-			mes "Unlike the Thief class, the Assassin job doesn't allow self-indulgence. Tell me the";
-			mes "reason you train endlessly.";
+			mes "ไม่เหมือนกับคลาส Thief งานนักฆ่าไม่อนุญาตให้เอาแต่ใจตัวเอง บอกฉันมาว่าทำไมคุณถึงฝึกฝนอย่างไม่สิ้นสุด";
 			next;
-			switch(select("To broaden my skills.:It's a goal of mine.:For spiritual improvement.")) {
+			switch(select("เพื่อขยายทักษะของฉัน:นั่นคือเป้าหมายของฉัน:เพื่อการพัฒนาจิตวิญญาณ")) {
 			case 1:
 				ASSIN_Q = 14;
 				mes "[Guildmaster]";
-				mes "Learning skills comes naturally with the Assassin job. But don't think of skills as the best value of your training.";
+				mes "การเรียนรู้ทักษะนั้นเกิดขึ้นตามธรรมชาติเมื่อเป็นอาชีพนักฆ่า แต่คุณไม่ควรคิดว่าทักษะเป็นคุณค่าสูงสุดของการฝึกฝนของคุณ";
 				next;
 				mes "[Guildmaster]";
-				mes "You won't be satisfied in becoming an Assassin if you think this...";
+				mes "คุณจะไม่พอใจที่ได้เป็นนักฆ่าถ้าคุณคิดแบบนี้...";
 				next;
 				break;
 			case 2:
 				ASSIN_Q = 15;
 				mes "[Guildmaster]";
-				mes "It's a goal of yours, eh? Well, I guess you've got to have goals...";
+				mes "มันเป็นเป้าหมายของคุณใช่ไหม? ฉันเดาว่าคุณต้องมีจุดมุ่งหมาย...";
 				next;
 				mes "[Guildmaster]";
-				mes "I once knew a person who had goals. Long ago, I met someone on assignment who wanted to keep from getting killed before becoming a level 54 knight.";
+				mes "ครั้งหนึ่งฉันเคยรู้จักคนๆ หนึ่งที่ตั้งเป้าหมายไว้ เมื่อนานมาแล้ว ฉันได้พบกับคนๆ หนึ่งระหว่างทำภารกิจที่ต้องการหลีกเลี่ยงการถูกฆ่าก่อนที่จะได้เป็นอัศวินระดับ 54";
 				next;
 				mes "[Guildmaster]";
-				mes "It's to bad I had to kill him before he was level 52... ^666666*Sigh*^000000 Oh well.";
+				mes "น่าเสียดายที่ฉันต้องฆ่าเขาตั้งแต่ก่อนที่เขาจะถึงระดับ 52... ^666666*ถอนหายใจ*^000000 ช่างเถอะ";
 				next;
-				mes "I'm a bit worried about you. I hope you realize that once you become an Assassin, there's no turning back...";
+				mes "ฉันเป็นห่วงคุณนิดหน่อย ฉันหวังว่าคุณคงเข้าใจว่าเมื่อคุณได้เป็นนักฆ่าแล้ว คุณจะไม่มีทางหันหลังกลับได้...";
 				next;
 				break;
 			case 3:
 				ASSIN_Q = 16;
 				mes "[Guildmaster]";
-				mes "Good idea...";
-				mes "That is a good way to improve yourself. I've seen many people who know how to be strong physically but not in their mental state.";
+				mes "เป็นความคิดที่ดี...";
+				mes "นั่นเป็นวิธีที่ดีในการปรับปรุงตัวเอง ฉันเคยเห็นคนหลายคนที่รู้วิธีที่จะแข็งแกร่งทางร่างกายแต่ไม่รู้จักสภาพจิตใจ";
 				next;
 				mes "[Guildmaster]";
-				mes "I hope you're not a hypocrite. Spiritual discipline is the best way for you to survive.";
+				mes "ฉันหวังว่าคุณจะไม่ใช่คนหน้าไหว้หลังหลอก วินัยทางจิตวิญญาณเป็นวิธีที่ดีที่สุดในการเอาชีวิตรอดของคุณ";
 				next;
 				break;
 			}
 			break;
 		}
 		mes "[Guildmaster]";
-		mes "Sadly, there are some nit-wits who are eager to be Assassins even though they don't know anything...";
+		mes "น่าเศร้าที่คนโง่บางคนยังอยากเป็นนักฆ่าแม้ว่าพวกเขาจะไม่รู้อะไรเลยก็ตาม...";
 		next;
 		mes "[Guildmaster]";
-		mes "They cause problems and bring us disgrace. Their activities often result in horrible situations.";
+		mes "พวกเขาสร้างปัญหาและนำความเสื่อมเสียมาให้เรา การกระทำของพวกเขามักจะส่งผลให้เกิดสถานการณ์ที่เลวร้าย";
 		next;
 		mes "[Guildmaster]";
-		mes "Be careful lest you become one of them once you become an Assassin. The responsibility rests solely on your shoulders...";
+		mes "ระวังไว้ไม่งั้นคุณจะกลายเป็นหนึ่งในนั้นเมื่อคุณได้เป็นนักฆ่าแล้ว ความรับผิดชอบนั้นขึ้นอยู่กับคุณเพียงคนเดียว...";
 		next;
 		mes "[Guildmaster]";
-		mes "So if you could become an Assassin right now, what is the first thing you would do?";
+		mes "ถ้าตอนนี้คุณสามารถเป็นนักฆ่าได้ สิ่งแรกที่คุณจะทำคืออะไร?";
 		next;
-		switch(select("I would go hunt right away.:There are people waiting for me.:Check how I can help as an Assassin.")) {
+		switch(select("ฉันจะไปล่าทันที :มีคนกำลังรอฉันอยู่ :ลองดูสิว่าฉันจะช่วยในฐานะนักฆ่าได้อย่างไร")) {
 		case 1:
 			mes "[Guildmaster]";
-			mes "Hunt...";
-			mes "Is that all...?";
+			mes "ล่า...";
+			mes "แค่นั้นเองเหรอ...?";
 			next;
-			switch(select("I would level up fast.:I want to explore my Assassin skills.:I will go where I couldn't go as a Thief.")) {
+			switch(select("ฉันอยากจะเพิ่มเลเวลให้เร็ว : ฉันอยากจะสำรวจทักษะนักฆ่าของฉัน : ฉันจะไปที่ที่ฉันไม่สามารถไปได้ในฐานะหัวขโมย")) {
 			case 1:
 				.@assassin_sangdam += 10;
 				mes "[Guildmaster]";
-				mes "Don't act recklessly...";
-				mes "Being an Assassin never makes you a different person. And don't rely on chance.";
+				mes "อย่าทำอะไรโดยประมาท...";
+				mes "การเป็นนักฆ่าไม่ได้ทำให้คุณกลายเป็นคนใหม่ และอย่าพึ่งโอกาส";
 				next;
 				break;
 			case 2:
 				.@assassin_sangdam += 5;
 				mes "[Guildmaster]";
-				mes "It is good for one to examine oneself. I can understand that you will be excited by the great change in your ability.";
+				mes "การตรวจสอบตัวเองเป็นเรื่องที่ดี ฉันเข้าใจว่าคุณจะต้องตื่นเต้นกับการเปลี่ยนแปลงครั้งใหญ่ในความสามารถของคุณ";
 				next;
 				mes "[Guildmaster]";
-				mes "In the meantime, I hope you won't forget the Assassin mentality.";
+				mes "ในระหว่างนี้ ฉันหวังว่าคุณจะไม่ลืมความเป็นนักฆ่า";
 				next;
 				break;
 			case 3:
 				mes "[Guildmaster]";
-				mes "Very well...";
-				mes "Exploring places you've never seen before. But know that being an Assassin never makes you a different person.";
+				mes "ดีมาก...";
+				mes "การสำรวจสถานที่ที่คุณไม่เคยเห็นมาก่อน แต่จงรู้ไว้ว่าการเป็นนักฆ่าไม่ได้ทำให้คุณกลายเป็นคนใหม่";
 				next;
 				mes "[Guildmaster]";
-				mes "Don't force yourself too much.";
-				mes "Take your time and travel wisely.";
+				mes "อย่าฝืนตัวเองมากเกินไป";
+				mes "ใช้เวลาของคุณให้เต็มที่และเดินทางอย่างชาญฉลาด";
 				next;
 				break;
 			}
 			break;
 		case 2:
 			mes "[Guildmaster]";
-			mes "Who is waiting";
-			mes "for you, might I ask?";
+			mes "ใครกำลังรอคุณอยู่บ้าง ฉันขอถามหน่อย";
 			next;
-			switch(select("My friends.:My Guildsmen.:My lover.")) {
+			switch(select("เพื่อนของฉัน.:เพื่อนร่วมกิลด์ของฉัน.:คนรักของฉัน.")) {
 			case 1:
 				.@assassin_sangdam += 5;
 				mes "[Guildmaster]";
-				mes "I see...";
-				mes "Appreciate them for caring about you, even when you're alone.";
+				mes "ฉันเห็น...";
+				mes "ขอบคุณพวกเขาที่ห่วงใยคุณ แม้ว่าคุณจะอยู่คนเดียวก็ตาม";
 				next;
 				break;
 			case 2:
 				.@assassin_sangdam += 5;
 				mes "[Guildmaster]";
-				mes "Great...";
-				mes "Comrades for whom you would die for...";
+				mes "ยอดเยี่ยม...";
+				mes "สหายที่คุณยอมตายเพื่อ...";
 				next;
 				mes "[Guildmaster]";
-				mes "As an Assassin, find a job that you can do for them without them knowing..";
+				mes "ในฐานะนักฆ่า จงหางานที่คุณทำเพื่อพวกเขาได้โดยที่พวกเขาไม่รู้..";
 				next;
 				break;
 			case 3:
 				mes "[Guildmaster]";
-				mes "Haha, the needs of the body are sometimes hard to ignore. It's best to accept that part of human nature.";
+				mes "ฮ่าๆ ความต้องการของร่างกายบางครั้งก็ยากที่จะเพิกเฉย การยอมรับส่วนหนึ่งของธรรมชาติของมนุษย์นั้นดีที่สุด";
 				next;
 				mes "[Guildmaster]";
 				if (Sex == SEX_MALE)
-					mes "But you must never reveal to her the Assassin side of your life. No matter what it takes.";
+					mes "แต่คุณต้องไม่เปิดเผยด้านนักฆ่าในชีวิตของคุณให้เธอรู้ ไม่ว่าจะต้องทำอย่างไรก็ตาม"; 
 				else
-					mes "But you must never reveal to him the Assassin side of your life, no matter what it takes.";
+					mes "แต่คุณต้องไม่เปิดเผยด้านนักฆ่าในชีวิตของคุณให้เขาฟัง ไม่ว่าจะต้องทำอย่างไรก็ตาม";
 				next;
 				mes "[Guildmaster]";
-				mes "Love your beloved forever, even if you can't openly express it. Sometimes, life doesn't allow you to find true love more than once.";
+				mes "จงรักคนรักของคุณตลอดไป แม้ว่าคุณจะไม่สามารถแสดงมันออกมาได้อย่างเปิดเผย บางครั้ง ชีวิตไม่อนุญาตให้คุณพบกับรักแท้มากกว่าหนึ่งครั้ง";
 				next;
 				break;
 			}
 			break;
 		case 3:
 			mes "[Guildmaster]";
-			mes "That's most admirable. Is there anything that you would like to ask me about?";
+			mes "นั่นน่าชื่นชมมาก มีอะไรที่คุณอยากจะถามฉันไหม?";
 			next;
-			switch(select("Places where Assassins can level up...:Main goals as an Assassin.:Financial consulting.")) {
+			switch(select("สถานที่ที่นักฆ่าสามารถเลเวลอัพได้...:เป้าหมายหลักในฐานะนักฆ่า:คำปรึกษาทางการเงิน")) {
 			case 1:
 				.@assassin_sangdam += 5;
 				mes "[Guildmaster]";
-				mes "It all depends on your mind. Any place could be the best to level up according to your mind state.";
+				mes "ทุกอย่างขึ้นอยู่กับจิตใจของคุณ สถานที่ไหนก็ได้ที่เหมาะแก่การเพิ่มเลเวลตามสภาพจิตใจของคุณ";
 				next;
 				mes "[Guildmaster]";
-				mes "You must know how to";
-				mes "survive in any situation.";
+				mes "คุณต้องรู้วิธีเอาตัวรอดในสถานการณ์ใดๆ ก็ได้";
 				next;
 				break;
 			case 2:
 				mes "[Guildmaster]";
-				mes "There are many Assassins out there. Look to them as your trainers, and ask for their opinions.";
+				mes "มีนักฆ่ามากมายที่นั่น มองว่าพวกเขาเป็นผู้ฝึกสอนของคุณ และขอความเห็นจากพวกเขา";
 				next;
 				mes "[Guildmaster]";
-				mes "I hope you will become an excellent Assassin. And when you reach a certain level, you must guide newbies as your trainers have.";
+				mes "ฉันหวังว่าคุณจะกลายเป็นนักฆ่าที่เก่งกาจ และเมื่อคุณถึงระดับหนึ่งแล้ว คุณต้องแนะนำมือใหม่เหมือนที่ผู้ฝึกสอนของคุณทำ";
 				next;
 				break;
 			case 3:
 				.@assassin_sangdam += 10;
 				mes "[Guildmaster]";
-				mes "Oh my lord...";
-				mes "Are you planning to become an Assassin in order to make money?";
+				mes "โอ้พระเจ้า...";
+				mes "คุณกำลังวางแผนที่จะเป็นนักฆ่าเพื่อหาเงินหรือเปล่า";
 				next;
 				mes "[Guildmaster]";
-				mes "People of that nature are unwelcome. If such is your goal, you may wish to reconsider your job...";
+				mes "ผู้คนประเภทนั้นไม่เป็นที่ต้อนรับ หากเป้าหมายของคุณคือเช่นนั้น คุณอาจต้องการพิจารณาอาขีพของคุณใหม่...";
 				next;
 				break;
 			}
 			break;
 		}
 		mes "[Guildmaster]";
-		mes "It was nice to meet you. You reminded me of the good ol' days.";
+		mes "ดีใจที่ได้พบคุณ คุณทำให้ฉันนึกถึงวันเก่าๆ ที่แสนดี";
 		next;
 		mes "[Guildmaster]";
-		mes "Please give me";
-		mes "one second...";
+		mes "กรุณาให้เวลาฉันสักวินาที...";
 		next;
-		mapannounce "in_moc_16","Those involved with the testing of " + strcharinfo(0) + ", please gather before me.",bc_map;
+		mapannounce "in_moc_16","ผู้ที่เกี่ยวข้องกับการทดสอบ " + strcharinfo(0) + " โปรดมารวมตัวกันต่อหน้าฉัน",bc_map;
 		mes "[Guildmaster]";
-		mes "Those involved with the testing of " + strcharinfo(0) + ", please gather before me.";
+		mes "ผู้ที่เกี่ยวข้องกับการทดสอบ " + strcharinfo(0) + " โปรดมารวมตัวกันต่อหน้าฉัน";
 		next;
 		mes "[Guildmaster]";
-		mes "They will";
-		mes "be here soon.";
+		mes "พวกเขาจะมาถึงเร็วๆ นี้";
 		next;
 		enablenpc "[Huey]";
 		enablenpc "[Khai]";
@@ -1957,141 +1898,134 @@ OnTouch_:
 		enablenpc "[Thomas]";
 		enablenpc "[Gayle Maroubitz]";
 		mes "[The Anonymous One]";
-		mes "I am here.";
+		mes "ฉันอยู่ที่นี่";
 		next;
 		mes "[Guildmaster]";
-		mes "I would like to listen to your opinion of " + strcharinfo(0) + " for the job change test.";
+		mes "ฉันอยากฟังความคิดเห็นของคุณเกี่ยวกับ " + strcharinfo(0) + " สำหรับการทดสอบการเปลี่ยนงาน";
 		next;
 		mes "[The Anonymous One]";
 		mes "Ah yeah...";
-		mes "I think";
+		mes "ฉันคิดว่า";
 		mes ""+ strcharinfo(0) +"";
-		mes "is decent.";
+		mes "ค่อนข้างดี";
 		next;
 		mes "[Guildmaster]";
-		mes "Well...";
-		mes "The Anonymous One";
-		mes "supports you. How";
-		mes "about you, Huey?";
+		mes "ก็...";
+		mes "The Anonymous One สนับสนุนคุณ แล้วคุณล่ะ Huey?";
 		next;
 		if (ASSIN_Q3 == 1) { // player Job Level was above 48
 			mes "[Huey]";
-			mes "A rarity.";
-			mes "You can tell";
-			mes "by the job level.";
+			mes "หายาก";
+			mes "คุณสามารถบอกได้จาก job level";
 			next;
 			mes "[Huey]";
-			mes "I agree with";
-			mes "the Anonymous One.";
+			mes "ฉันเห็นด้วยกับผู้ไม่ประสงค์ออกนาม";
 		}
 		else { // player Job Level was below 48
 			mes "[Huey]";
-			mes "Although "+ strcharinfo(0) +" looks too mellow and gentle, kind of like a pussycat, "+ strcharinfo(0) +" has the stuff.";
+			mes "แม้ว่า "+ strcharinfo(0) +" จะดูอ่อนโยนและนุ่มนวลเกินไป เหมือนแมวเหมียว แต่ "+ strcharinfo(0) +" ก็มีของดีอยู่เหมือนกัน";
 			next;
 			mes "[Huey]";
-			mes "If it's alright with you, I'd like to get back to my job.";
+			mes "ถ้าคุณไม่รังเกียจ ฉันก็อยากจะกลับไปทำงาน";
 			next;
 			mes "[Guildmaster]";
-			mes "Yes...";
-			mes "That is all, Huey.";
+			mes "ใช่...";
+			mes "แค่นั้นเอง ฮิวอี้";
 		}
 		next;
 		mes "[Guildmaster]";
-		mes "So...";
-		mes "'Beholder,' what";
-		mes "is your opinion?";
+		mes "แล้ว...";
+		mes "'Beholder' คุณมีความคิดเห็นอย่างไร?";
 		next;
 		disablenpc "[Huey]";
 		mes "[Beholder]";
-		mes "Well, I don't like the course score. But, somehow the whole test was passed. I'm okay with this person.";
+		mes "ฉันไม่ชอบคะแนนของหลักสูตรเลย แต่ยังไงก็ตามฉันก็ผ่านการทดสอบทั้งหมด ฉันโอเคกับคนๆ นี้";
 		next;
 		mes "[Guildmaster]";
-		mes "Hmm...";
-		mes "It seems we are all in agreement. Good. I don't have any problem with "+ strcharinfo(0) +" as well...";
+		mes "อืม...";
+		mes "ดูเหมือนเราทุกคนจะเห็นด้วย ดี ฉันไม่มีปัญหาอะไรกับ "+ strcharinfo(0) +" เช่นกัน...";
 		next;
 		switch(ASSIN_Q) {
 		case 8:
 			mes "[Guildmaster]";
-			mes "Even though you're driven by personal revenge, I hope it will go away as you train...";
+			mes "ถึงแม้คุณจะถูกขับเคลื่อนด้วยความแค้นส่วนตัว ฉันหวังว่ามันจะหายไปเมื่อคุณฝึกฝน...";
 			next;
 			break;
 		case 9:
 			mes "[Guildmaster]";
-			mes "Even though your main concern for now is being a rich, I'm sure you'll pursue something even greater...";
+			mes "แม้ว่าตอนนี้ความกังวลหลักของคุณคือการเป็นคนรวย ฉันแน่ใจว่าคุณจะแสวงหาสิ่งที่ยิ่งใหญ่กว่านั้น...";
 			next;
 			break;
 		case 10:
 			mes "[Guildmaster]";
-			mes "Eager to travel all around the world, I hope your real identity is found in your journeys...";
+			mes "ฉันอยากเดินทางไปทั่วโลก ฉันหวังว่าตัวตนที่แท้จริงของคุณจะค้นพบได้ในการเดินทางของคุณ...";
 			next;
 			break;
 		case 11:
 			mes "[Guildmaster]";
-			mes "You seem to know a lot about Assassins. I don't think frustration from being alone will be difficult for you...";
+			mes "ดูเหมือนคุณจะรู้เรื่องนักฆ่ามาก ฉันไม่คิดว่าความหงุดหงิดจากการอยู่คนเดียวจะเป็นเรื่องยากสำหรับคุณ...";
 			next;
 			break;
 		case 12:
 			mes "[Guildmaster]";
-			mes "You have an idiocy about money, but I believe that you should be able to overcome it.";
+			mes "คุณเป็นคนโง่เขลาเรื่องเงิน แต่ฉันเชื่อว่าคุณควรจะเอาชนะมันได้";
 			next;
 			mes "[Guildmaster]";
-			mes "Although I do not trust you for now, I will give you a chance...";
+			mes "แม้ว่าตอนนี้ฉันจะไม่ไว้ใจคุณ แต่ฉันจะให้โอกาสคุณ...";
 			next;
 			break;
 		case 13:
 			mes "[Guildmaster]";
-			mes "Even though you're enamored with Assassins superficially, I believe you will realize the real value of the Assassin job sooner or later.";
+			mes "แม้ว่าคุณจะหลงใหลในนักฆ่าเพียงผิวเผิน แต่ฉันเชื่อว่าคุณจะตระหนักถึงคุณค่าที่แท้จริงของงานนักฆ่าในไม่ช้า";
 			next;
 			break;
 		case 14:
 			mes "[Guildmaster]";
-			mes "One of the rare people who seeks better skills, I hope you will realize the importance of spiritual discipline sooner or later.";
+			mes "หนึ่งในคนไม่กี่คนที่แสวงหาทักษะที่ดีกว่า ฉันหวังว่าคุณจะตระหนักถึงความสำคัญของวินัยทางจิตวิญญาณในไม่ช้า";
 			next;
 			break;
 		case 15:
 			mes "[Guildmaster]";
-			mes "Sooner or later, you will find a new goal to which you can devote yourself...";
+			mes "เร็วหรือช้า คุณจะพบกับเป้าหมายใหม่ที่คุณสามารถอุทิศตัวเองให้...";
 			next;
 			break;
 		case 16:
 			mes "[Guildmaster]";
-			mes "I know some people care only about their physical training, but";
-			mes "I believe you stand out amongst them...";
+			mes "ฉันรู้ว่าบางคนสนใจแค่การฝึกฝนร่างกายของพวกเขา แต่";
+			mes "ฉันเชื่อว่าคุณโดดเด่นท่ามกลางพวกเขา...";
 			next;
 		}
 		switch(ASSIN_Q3) {
 		case 1: // player Job Level was above 48
 			mes "[Guildmaster]";
-			mes "Well, I've said too much. Please choose a weapon as a present.";
+			mes "ฉันพูดมากเกินไปแล้ว โปรดเลือกอาวุธเป็นของขวัญ";
 			next;
 			mes "[Guildmaster]";
-			mes "You can choose a Jur, Katar, Main Gauche, or a Gladius. As a master, I love them all.";
+			mes "คุณสามารถเลือก Jur, Katar, Main Gauche หรือ Gladius ได้ ในฐานะปรมาจารย์ ฉันชอบพวกเขาทั้งหมด";
 			next;
 			switch(select("Jur:Katar:Main Gauche:Gladius")) {
 			case 1:
 				mes "[Guildmaster]";
-				mes "A Jur...";
-				mes "Good choice. There you are. I hope it will serve you well.";
+				mes "Jur...";
+				mes "เลือกได้ดีเลย หวังว่ามันจะเป็นประโยชน์กับคุณ";
 				getitem 1251,1; //Jur_
 				break;
 			case 2:
 				mes "[Guildmaster]";
-				mes "A Katar...";
-				mes "Here you are.";
-				mes "Although it's used,";
-				mes "I know it will";
-				mes "serve you well.";
+				mes "Katar...";
+				mes "นี่เธออยู่นี่";
+				mes "ถึงแม้จะใช้แล้ว ฉันก็รู้ว่ามันจะมีประโยชน์ต่อเธอ";
 				getitem 1253,1; //Katar_
 				break;
 			case 3:
 				mes "[Guildmaster]";
-				mes "I see. You want to use both hands. Here, take your Main Gauche.";
+				mes "เข้าใจแล้ว คุณต้องใช้มือทั้งสองข้าง นี่ เอา Main Gauche ของคุณไป";
 				getitem 1208,1; //Main_Gauche_
 				break;
 			case 4:
 				mes "[Guildmaster]";
-				mes "A Gladius...";
-				mes "It used to rule over the Assassin weapon market. Please take care of my gladius.";
+				mes "ดาบกลาดิอุส...";
+				mes "มันเคยครองตลาดอาวุธของนักฆ่า ช่วยดูแลดาบกลาดิอุสของฉันด้วย";
 				getitem 1220,1; //Gladius_
 			}
 			ASSIN_Q3 = 3;
@@ -2099,8 +2033,8 @@ OnTouch_:
 			break;
 		case 2: // player Job Level was below 48
 			mes "[Guildmaster]";
-			mes "Well, I talked too much.";
-			mes "Please take this first.";
+			mes "ฉันพูดมากเกินไปแล้ว";
+			mes "กรุณารับอันนี้ไปก่อน";
 			next;
 			switch(rand(1,5)) {
 			case 1:
@@ -2121,13 +2055,13 @@ OnTouch_:
 			ASSIN_Q3 = 3;
 		}
 		mes "[Guildmaster]";
-		mes "Well, I am giving you a token. Please return to the Assassin expert, the Ferocious-Looking Huey, at the entrance.";
+		mes "เอาล่ะ ฉันจะให้โทเค็นแก่คุณ โปรดส่งคืนให้กับผู้เชี่ยวชาญนักฆ่า ฮิวอี้ผู้ดูดุร้าย ที่ทางเข้า";
 		next;
 		mes "[Guildmaster]";
-		mes "Upon receiving this token, Huey will promote you to an Assassin.";
+		mes "เมื่อคุณได้รับโทเค็นนี้ ฮิวอี้จะเลื่อนตำแหน่งคุณให้เป็นนักฆ่า";
 		next;
 		mes "[Guildmaster]";
-		mes "You, " + strcharinfo(0) + ", have chosen to live as an Assassin. May you learn our ways and be an honorable example to others.";
+		mes "คุณ " + strcharinfo(0) + " เลือกที่จะใช้ชีวิตเป็นนักฆ่า ขอให้คุณเรียนรู้วิถีของเราและเป็นแบบอย่างอันมีเกียรติแก่ผู้อื่น";
 		if (checkre(0))
 			savepoint "morocc",100,100,1,1;
 		else
@@ -2137,7 +2071,7 @@ OnTouch_:
 		changequest 8006,8007;
 		next;
 		mes "[Guildmaster]";
-		mes "Okay, all of you may go back to your positions. I will send you to the entrance as well. Let's move...";
+		mes "เอาล่ะ พวกเจ้าทุกคนกลับไปประจำตำแหน่งได้แล้ว ข้าพเจ้าจะส่งพวกเจ้าไปที่ทางเข้าด้วย ไปกันเถอะ...";
 		disablenpc "[Huey]";
 		disablenpc "[Khai]";
 		disablenpc "[The Anonymous One]";
@@ -2151,11 +2085,11 @@ OnTouch_:
 	}
 	else if (ASSIN_Q == 17) {
 		mes "[Guildmaster]";
-		mes "Umm...?";
-		mes "How come you're in here...?";
+		mes "เอิ่ม...?";
+		mes "ทำไมคุณถึงเข้ามาที่นี่ได้...?";
 		next;
 		mes "[Guildmaster]";
-		mes "You already finished your test. Why don't you go try to get the ^006699Necklace of Oblivion^000000 so you can change your job?";
+		mes "คุณทำแบบทดสอบเสร็จแล้ว ทำไมคุณไม่ลองไปเอา ^006699Necklace of Oblivion^000000 เพื่อจะได้เปลี่ยนอาชีพล่ะ?";
 		close2;
 		warp "in_moc_16",17,19;
 		end;
@@ -2163,19 +2097,19 @@ OnTouch_:
 	else if (ASSIN_Q > 7 && ASSIN_Q < 17) {
 		ASSIN_Q = 7;
 		mes "[Guildmaster]";
-		mes "What the hell? You pressed 'Cancel' during the process. Do you want to change your job or what?";
+		mes "นี่มันบ้าอะไรเนี่ย คุณกด 'ยกเลิก' ระหว่างดำเนินการอยู่ คุณอยากเปลี่ยนงานหรืออะไร";
 		next;
 		mes "[Guildmaster]";
-		mes "^666666*Sigh...*^000000";
-		mes "Ok, let's start again. If you don't listen this time, you won't leave this room alive. You got me?";
+		mes "^666666*ถอนหายใจ...*^000000";
+		mes "โอเค มาเริ่มกันใหม่ ถ้าคราวนี้คุณไม่ฟัง คุณจะออกจากห้องนี้ไปอย่างมีชีวิตไม่ได้ คุณจับฉันได้เหรอ";
 		close;
 	}
 	else {
 		mes "[Guildmaster]";
-		mes "Umm? How come your in here?";
+		mes "อืม? คุณเข้ามาที่นี่ได้ยังไง?";
 		next;
 		mes "[Guildmaster]";
-		mes "You already finished your test, go give your ^006699Necklace of Oblivion^000000 to the Ferocious-looking guy so you can change your job!";
+		mes "คุณทำแบบทดสอบเสร็จแล้ว ไปเอา ^006699Necklace of Oblivion^000000 ของคุณไปให้ผู้ชายหน้าตาดุร้ายคนนั้นซะ เพื่อที่คุณจะได้เปลี่ยนอาชีพ!";
 		close2;
 		warp "in_moc_16",17,19;
 		end;
@@ -2184,68 +2118,67 @@ OnTouch_:
 
 in_moc_16,186,81,1	script	Master Assist	55,1,1,{
 	mes "[Assistent Gayle Maroubitz]";
-	mes "Sorry, but I'm not in charge of job changes. Go to the Guildmaster, as he has told you.";
+	mes "ขออภัย ฉันไม่ได้เป็นคนรับผิดชอบเรื่องการเปลี่ยนอาชีพ ไปหา Guildmaster ตามที่เขาบอกคุณ";
 	close;
 }
 
 in_moc_16,170,90,0	script	info 1	-1,{
 OnTouch_:
 	mes "[Guildmaster]";
-	mes "Huh.";
-	mes "Now, that place is blocked. You might want to check the other side.";
+	mes "ฮะ.";
+	mes "ตอนนี้สถานที่นั้นถูกปิดกั้นแล้ว คุณอาจต้องการตรวจสอบอีกด้านหนึ่ง";
 	close;
 }
 
 in_moc_16,153,85,0	script	info 2	-1,1,1,{
 OnTouch_:
 	mes "[Guildmaster]";
-	mes "You're getting warmer. You're almost there. Just, turn around a little bit.";
+	mes "คุณเริ่มอุ่นขึ้นแล้ว คุณเกือบจะถึงแล้ว แค่หันกลับมานิดหน่อย";
 	close;
 }
 
 in_moc_16,160,85,0	script	info 3	-1,1,1,{
 OnTouch_:
 	mes "[Guildmaster]";
-	mes "Hmm.";
-	mes "Now, that place";
-	mes "is blocked.";
+	mes "อืม";
+	mes "ตอนนี้สถานที่นั้นถูกบล็อคแล้ว";
 	close;
 }
 
 in_moc_16,175,89,0	script	info 4	-1,1,1,{
 OnTouch_:
 	mes "[Guildmaster]";
-	mes "Umm...";
-	mes "You're heading for my assistant. Do you still need to talk to him?";
+	mes "อืม...";
+	mes "คุณกำลังจะไปหาผู้ช่วยของฉัน คุณยังต้องการคุยกับเขาอยู่ไหม?";
 	close;
 }
 
 in_moc_16,164,88,0	script	info 5	-1,{
 OnTouch_:
 	mes "[Guildmaster]";
-	mes "Well done...";
-	mes "I can feel your steps near me.";
+	mes "ทำได้ดีมาก...";
+	mes "ฉันรู้สึกได้ถึงฝีเท้าของคุณใกล้ฉัน";
 	close;
 }
 
 in_moc_16,149,95,0	script	info 6	-1,1,1,{
 OnTouch_:
 	mes "[Guildmaster]";
-	mes "Hm? Not bad. You're almost here.";
+	mes "หืม? ไม่เลวเลย คุณใกล้จะถึงแล้ว";
 	close;
 }
 
 in_moc_16,180,101,0	script	info 7	-1,1,1,{
 OnTouch_:
 	mes "[Guildmaster]";
-	mes "I don't think you're going the right way.";
+	mes "ฉันไม่คิดว่าคุณจะไปในทางที่ถูกต้อง";
 	close;
 }
 
 in_moc_16,186,107,0	script	info 8	-1,1,1,{
 OnTouch_:
 	mes "[Guildmaster]";
-	mes "No sense of direction, eh?";
+	mes "ไม่มีทิศทางเลยใช่มั้ย?";
 	close;
 }
 
