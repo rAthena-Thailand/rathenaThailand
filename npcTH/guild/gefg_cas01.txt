@@ -21,25 +21,19 @@
 	set .@GID, GetCastleData("gefg_cas01",1);
 
 	if (.@GID == 0) {
-		mes "[ Edict of the Divine Rune-Midgarts Kingdom ]";
+		mes "[ คำสั่งของอาณาจักรรูนศักดิ์สิทธิ์-มิดการ์ทส์ ]";
 		mes " ";
-		mes "1. Follow the ordinance of The Divine Rune-Midgarts Kingdom, ";
-		mes "We declare that";
-		mes "there is no formal master of this castle.";
+		mes "1. เราประกาศว่าไม่มีผู้ปกครองอย่างเป็นทางการของปราสาทแห่งนี้";
 		mes " ";
-		mes "2. To the one who can ";
-		mes "overcome all trials";
-		mes "and destroy the Emperium,";
-		mes "the king will endow the one with";
-		mes "ownership of this castle.";
+		mes "2. สำหรับผู้ที่สามารถเอาชนะการทดลองทั้งหมดและทำลาย Emperium ได้ กษัตริย์จะมอบสิทธิ์การครอบครองปราสาทให้กับผู้นั้น";
 		close;
 	}
 	if (getcharid(2) == .@GID) {
-		mes "[ Echoing Voice ]";
-		mes "Brave ones...";
-		mes "Do you wish to return to your honorable place?";
+		mes "[เสียงสะท้อน]";
+		mes "ท่านผู้กล้า...";
+		mes "ท่านปรารถนาที่จะกลับไปยังตำแหน่งอันมีเกียรติของท่านหรือไม่?";
 		next;
-		if(select("Return to the guild castle.:Quit.") == 1) {
+		if(select("กลับสู่ปราสาทกิลด์:ออก") == 1) {
 			close2;
 			if (getcharid(2) == GetCastleData("gefg_cas01",1)) {
 				warp "gefg_cas01",197,36;
@@ -49,16 +43,11 @@
 		}
 		close;
 	}
-	mes "[ Edict of the Divine Rune-Midgarts Kingdom ]";
+	mes "[ คำสั่งของอาณาจักรรูนศักดิ์สิทธิ์-มิดการ์ทส์ ]";
 	mes " ";
-	mes "1. Follow the ordinance of The Divine Rune-Midgarts Kingdom, ";
-	mes "we approve that this place is in";
-	mes "the private prossession of ^ff0000"+GetGuildName(.@GID)+"^000000 Guild.";
+	mes "1. ปฏิบัติตามคำสั่งของอาณาจักรมิดการ์ตรูนศักดิ์สิทธิ์ เรารับรองว่าสถานที่นี้เป็นกรรมสิทธิ์ส่วนตัวของ ^ff0000"+GetGuildName(.@GID)+"^000000 Guild.";
 	mes " ";
-	mes "2. The guild Master of ^ff0000"+GetGuildName(.@GID)+"^000000 Guild is";
-	mes "^ff0000"+GetGuildMaster(.@GID)+"^000000";
-	mes "If there is anyone who objects to this,";
-	mes "prove your strength and honor with a steel blade in your hand.";
+	mes "2. หัวหน้ากิลด์ของ ^ff0000"+GetGuildName(.@GID)+"^000000 คือ ^ff0000"+GetGuildMaster(.@GID)+"^000000 หากมีผู้ใดคัดค้านเรื่องนี้ จงพิสูจน์ความแข็งแกร่งและเกียรติยศของคุณด้วยดาบเหล็กในมือของคุณ";
 	close;
 
 OnRecvCastleG01:
@@ -104,9 +93,9 @@ gefg_cas01,40,48,5	duplicate(cm)	Gnahcher#gefg_cas01	55
 //============================================================
 gefg_cas01,152,117,0	script	#lever_G01	111,{
 	mes " ";
-	mes "There's a small lever. Will you pull it?";
+	mes "มีคันโยกเล็กๆ อยู่ค่ะ ช่วยดึงหน่อยได้ไหมค่ะ";
 	next;
-	if(select("Pull.:Do not.") == 1) {
+	if(select("ดึง : อย่า.") == 1) {
 		close2;
 		warp "gefg_cas01",40,49;
 		end;
