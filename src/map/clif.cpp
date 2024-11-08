@@ -1484,23 +1484,27 @@ static void clif_set_unit_walking( struct block_list& bl, map_session_data* tsd,
 	}
 }
 
-/// Changes sprite of an NPC object (ZC_NPCSPRITE_CHANGE).
-/// 01b0 <id>.L <type>.B <value>.L
-/// type:
-///     unused
-void clif_class_change_target(struct block_list *bl,int class_,int type, enum send_target target, map_session_data *sd)
-{
-	nullpo_retv(bl);
-
-	if(!pcdb_checkid(class_))
-	{// player classes yield missing sprites
-		unsigned char buf[16];
-		WBUFW(buf,0)=0x1b0;
-		WBUFL(buf,2)=bl->id;
-		WBUFB(buf,6)=type;
-		WBUFL(buf,7)=class_;
-		clif_send(buf,packet_len(0x1b0),(sd == nullptr ? bl : &(sd->bl)),target);
+/// Changes sprite of a non player object.
+/// 01b0 <id>.L <type>.B <value>.L (ZC_NPCSPRITE_CHANGE)
+void clif_class_change( block_list& bl, int32 class_, enum send_target target, map_session_data* sd ){
+	if( pcdb_checkid( class_ ) ){
+		// player classes yield missing sprites
+		return;
 	}
+
+	PACKET_ZC_NPCSPRITE_CHANGE p = {};
+
+	p.packetType = HEADER_ZC_NPCSPRITE_CHANGE;
+	p.GID = bl.id;
+	// Unused
+	p.type = 0;
+	p.class_ = class_;
+
+	if( sd != nullptr ){
+		bl = sd->bl;
+	}
+	
+	clif_send( &p, sizeof( p ), &bl, target );
 }
 
 void clif_servantball( map_session_data& sd, struct block_list* target, enum send_target send_target ){
@@ -4653,19 +4657,16 @@ void clif_joinchatok(map_session_data& sd, chat_data& cd){
 }
 
 
-/// Notifies clients in a chat about a new member (ZC_MEMBER_NEWENTRY).
-/// 00dc <users>.W <name>.24B
-void clif_addchat(struct chat_data* cd,map_session_data *sd)
-{
-	unsigned char buf[29];
+/// Notifies clients in a chat about a new member.
+/// 00dc <users>.W <name>.24B (ZC_MEMBER_NEWENTRY)
+void clif_addchat( chat_data& cd, map_session_data& sd ){
+	PACKET_ZC_MEMBER_NEWENTRY p = {};
 
-	nullpo_retv(sd);
-	nullpo_retv(cd);
+	p.packetType = HEADER_ZC_MEMBER_NEWENTRY;
+	p.count = cd.users;
+	safestrncpy( p.name, sd.status.name, sizeof( p.name ) );
 
-	WBUFW(buf, 0) = 0xdc;
-	WBUFW(buf, 2) = cd->users;
-	safestrncpy(WBUFCP(buf, 4),sd->status.name,NAME_LENGTH);
-	clif_send(buf,packet_len(0xdc),&sd->bl,CHAT_WOS);
+	clif_send( &p, sizeof( p ), &sd.bl, CHAT_WOS );
 }
 
 
@@ -4693,24 +4694,20 @@ void clif_changechatowner(struct chat_data* cd, map_session_data* sd)
 }
 
 
-/// Notify about user leaving the chatroom (ZC_MEMBER_EXIT).
-/// 00dd <users>.W <nick>.24B <flag>.B
+/// Notify about user leaving the chatroom.
+/// 00dd <users>.W <nick>.24B <flag>.B (ZC_MEMBER_EXIT)
 /// flag:
 ///     0 = left
 ///     1 = kicked
-void clif_leavechat(struct chat_data* cd, map_session_data* sd, bool flag)
-{
-	unsigned char buf[32];
+void clif_chat_leave( chat_data& cd, map_session_data& sd, bool kicked ){
+	PACKET_ZC_MEMBER_EXIT p = {};
 
-	nullpo_retv(sd);
-	nullpo_retv(cd);
+	p.packetType = HEADER_ZC_MEMBER_EXIT;
+	p.count = cd.users - 1;
+	safestrncpy( p.name, sd.status.name, sizeof( p.name ) );
+	p.kicked = kicked;
 
-	WBUFW(buf, 0) = 0xdd;
-	WBUFW(buf, 2) = cd->users-1;
-	safestrncpy(WBUFCP(buf,4),sd->status.name,NAME_LENGTH);
-	WBUFB(buf,28) = flag;
-
-	clif_send(buf,packet_len(0xdd),&sd->bl,CHAT);
+	clif_send( &p, sizeof( p ), &sd.bl, CHAT );
 }
 
 

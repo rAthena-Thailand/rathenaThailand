@@ -2689,6 +2689,7 @@ static int battle_range_type(struct block_list *src, struct block_list *target, 
 		case SHC_SAVAGE_IMPACT: // 7 cell cast range.
 		case SHC_FATAL_SHADOW_CROW: // 9 cell cast range.
 		case MT_RUSH_QUAKE: // 9 cell cast range.
+		case MT_RUSH_STRIKE: // 7 cell cast range.
 		case ABC_UNLUCKY_RUSH: // 7 cell cast range.
 		case MH_THE_ONE_FIGHTER_RISES: // 7 cell cast range.
 		//case ABC_DEFT_STAB: // 2 cell cast range???
@@ -5944,6 +5945,26 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			if ((i = pc_checkskill_imperial_guard(sd, 3)) > 0)
 				skillratio += skillratio * i / 100;
 			break;
+		case IG_RADIANT_SPEAR:
+			skillratio += -100 + 3500 + 1150 * skill_lv;
+			skillratio += pc_checkskill(sd, IG_SPEAR_SWORD_M) * 50;
+			skillratio += 5 * sstatus->pow;	// !TODO: check POW ratio
+
+			if( sc != nullptr && sc->getSCE( SC_SPEAR_SCAR ) )
+				skillratio += 250 * skill_lv;
+
+			RE_LVL_DMOD(100);
+			break;
+		case IG_IMPERIAL_CROSS:
+			skillratio += -100 + 1650 + 1350 * skill_lv;
+			skillratio += pc_checkskill(sd, IG_SPEAR_SWORD_M) * 25;
+			skillratio += 5 * sstatus->pow;	// !TODO: check POW ratio
+
+			if( sc != nullptr && sc->getSCE( SC_SPEAR_SCAR ) )
+				skillratio += 100 + 300 * skill_lv;
+
+			RE_LVL_DMOD(100);
+			break;
 		case CD_EFFLIGO:
 			skillratio += -100 + 1650 * skill_lv + 7 * sstatus->pow;
 			skillratio += 8 * pc_checkskill( sd, CD_MACE_BOOK_M );
@@ -6041,6 +6062,23 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 		case MT_TRIPLE_LASER:
 			skillratio += -100 + 650 + 1150 * skill_lv;
 			skillratio += 12 * sstatus->pow;
+			RE_LVL_DMOD(100);
+			break;
+		case MT_RUSH_STRIKE:
+			skillratio += -100 + 3500 * skill_lv;
+			skillratio += 5 * sstatus->pow; // !TODO: check POW ratio
+			RE_LVL_DMOD(100);
+			break;
+		case MT_POWERFUL_SWING:
+			skillratio += -100 + 300 + 850 * skill_lv;
+			skillratio += 5 * sstatus->pow; // !TODO: check POW ratio
+			if (sc && sc->getSCE(SC_AXE_STOMP))
+				skillratio += 100 + 100 * skill_lv;
+			RE_LVL_DMOD(100);
+			break;
+		case MT_ENERGY_CANNONADE:
+			skillratio += -100 + 250 + 750 * skill_lv;
+			skillratio += 5 * sstatus->pow; // !TODO: check POW ratio
 			RE_LVL_DMOD(100);
 			break;
 		case ABC_ABYSS_DAGGER:
