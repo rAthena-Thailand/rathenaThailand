@@ -5352,25 +5352,23 @@ void clif_changemapcell(int fd, int16 m, int x, int y, int type, enum send_targe
 }
 
 
-/// Notifies the client about an item on floor (ZC_ITEM_ENTRY).
-/// 009d <id>.L <name id>.W <identified>.B <x>.W <y>.W <amount>.W <subX>.B <subY>.B
-void clif_getareachar_item( map_session_data* sd,struct flooritem_data* fitem ){
-	nullpo_retv( sd );
-	nullpo_retv( fitem );
+/// Notifies the client about an item on floor.
+/// 009d <id>.L <name id>.W <identified>.B <x>.W <y>.W <amount>.W <subX>.B <subY>.B (ZC_ITEM_ENTRY)
+void clif_getareachar_item( map_session_data& sd, flooritem_data& fitem ){
 
 	PACKET_ZC_ITEM_ENTRY p = {};
 
 	p.packetType = HEADER_ZC_ITEM_ENTRY;
-	p.AID = fitem->bl.id;
-	p.itemId = client_nameid( fitem->item.nameid );
-	p.identify = fitem->item.identify;
-	p.x = fitem->bl.x;
-	p.y = fitem->bl.y;
-	p.amount = fitem->item.amount;
-	p.subX = fitem->subx;
-	p.subY = fitem->suby;
+	p.AID = fitem.bl.id;
+	p.itemId = client_nameid( fitem.item.nameid );
+	p.identify = fitem.item.identify;
+	p.x = fitem.bl.x;
+	p.y = fitem.bl.y;
+	p.amount = fitem.item.amount;
+	p.subX = fitem.subx;
+	p.subY = fitem.suby;
 
-	clif_send( &p, sizeof( p ), &sd->bl, SELF );
+	clif_send( &p, sizeof( p ), &sd.bl, SELF );
 }
 
 /// Notifes client about Graffiti
@@ -5555,7 +5553,7 @@ static int clif_getareachar(struct block_list* bl,va_list ap)
 
 	switch(bl->type){
 	case BL_ITEM:
-		clif_getareachar_item(sd,(struct flooritem_data*) bl);
+		clif_getareachar_item( *sd, *reinterpret_cast<flooritem_data*>( bl ) );
 		break;
 	case BL_SKILL:
 		skill_getareachar_skillunit_visibilty_single((TBL_SKILL*)bl, &sd->bl);
@@ -5643,7 +5641,7 @@ int clif_insight(struct block_list *bl,va_list ap)
 	if (clif_session_isValid(tsd)) { //Tell tsd that bl entered into his view
 		switch(bl->type){
 		case BL_ITEM:
-			clif_getareachar_item(tsd,(struct flooritem_data*)bl);
+			clif_getareachar_item( *tsd, *reinterpret_cast<flooritem_data*>( bl ) );
 			break;
 		case BL_SKILL:
 			skill_getareachar_skillunit_visibilty_single((TBL_SKILL*)bl, &tsd->bl);
@@ -11510,20 +11508,20 @@ void clif_parse_GlobalMessage(int fd, map_session_data* sd)
 }
 
 
-/// /mm /mapmove (as @rura GM command) (CZ_MOVETO_MAP).
+/// /mm /mapmove (as @rura GM command).
 /// Request to warp to a map on given coordinates.
-/// 0140 <map name>.16B <x>.W <y>.W
-void clif_parse_MapMove(int fd, map_session_data *sd)
-{
-	char command[MAP_NAME_LENGTH_EXT+25];
-	char* map_name;
-	struct s_packet_db* info = &packet_db[RFIFOW(fd,0)];
+/// 0140 <map name>.16B <x>.W <y>.W (CZ_MOVETO_MAP)
+void clif_parse_MapMove( int fd, map_session_data* sd){
+	const PACKET_CZ_MOVETO_MAP* p = reinterpret_cast<PACKET_CZ_MOVETO_MAP*>( RFIFOP( fd, 0 ) );
 
-	map_name = RFIFOCP(fd,info->pos[0]);
-	map_name[MAP_NAME_LENGTH_EXT-1]='\0';
-	safesnprintf(command,sizeof(command),"%cmapmove %s %d %d", atcommand_symbol, map_name,
-	    RFIFOW(fd,info->pos[1]), //x
-	    RFIFOW(fd,info->pos[2])); //y
+	char map_name[MAP_NAME_LENGTH_EXT];
+
+	safestrncpy( map_name, p->map, sizeof( map_name ) );
+
+	char command[CHAT_SIZE_MAX];
+
+	safesnprintf( command, sizeof( command ),"%cmapmove %s %hu %hu", atcommand_symbol, map_name, p->x, p->y );
+
 	is_atcommand(fd, sd, command, 1);
 }
 
@@ -11935,19 +11933,24 @@ void clif_parse_WisMessage(int fd, map_session_data* sd)
 }
 
 
-/// /b /nb (CZ_BROADCAST).
+/// /b /nb.
 /// Request to broadcast a message on whole server.
-/// 0099 <packet len>.W <text>.?B 00
+/// 0099 <packet len>.W <text>.?B 00 (CZ_BROADCAST)
 void clif_parse_Broadcast(int fd, map_session_data* sd) {
-	char command[CHAT_SIZE_MAX+11];
-	struct s_packet_db* info = &packet_db[RFIFOW(fd,0)];
-	uint32 len = RFIFOW(fd,info->pos[0])-4;
-	char* msg = RFIFOCP(fd,info->pos[1]);
+	const PACKET_CZ_BROADCAST* p = reinterpret_cast<PACKET_CZ_BROADCAST*>( RFIFOP( fd, 0 ) );
 
-	// as the length varies depending on the command used, just block unreasonably long strings
-	mes_len_check(msg, len, CHAT_SIZE_MAX);
+	if( p->packetSize < sizeof( *p ) ){
+		return;
+	}
 
-	safesnprintf(command,sizeof(command),"%ckami %s", atcommand_symbol, msg);
+	char message[CHAT_SIZE_MAX];
+
+	safestrncpy( message, p->message, std::min<size_t>( sizeof( message ), p->packetSize - sizeof( *p ) + 1 ) );
+
+	char command[CHAT_SIZE_MAX];
+
+	safesnprintf( command, sizeof( command ),"%ckami %s", atcommand_symbol, message );
+	
 	is_atcommand(fd, sd, command, 1);
 }
 
@@ -12061,18 +12064,19 @@ void clif_parse_UseItem(int fd, map_session_data *sd)
 /// Request to equip an item
 /// 00a9 <index>.W <position>.W (CZ_REQ_WEAR_EQUIP).
 /// 0998 <index>.W <position>.L (CZ_REQ_WEAR_EQUIP_V5)
-void clif_parse_EquipItem(int fd,map_session_data *sd)
-{
-	int index;
-	struct s_packet_db* info = &packet_db[RFIFOW(fd,0)];
+void clif_parse_EquipItem( int fd, map_session_data* sd ){
+	const PACKET_CZ_REQ_WEAR_EQUIP* p = reinterpret_cast<PACKET_CZ_REQ_WEAR_EQUIP*>( RFIFOP( fd, 0 ) );
 
 	if(pc_isdead(sd)) {
 		clif_clearunit_area( sd->bl, CLR_DEAD );
 		return;
 	}
-	index = RFIFOW(fd,info->pos[0])-2;
-	if (index < 0 || index >= MAX_INVENTORY)
-		return; //Out of bounds check.
+	
+	uint16 index = server_index( p->index );
+
+	if( index >= MAX_INVENTORY ){
+		return;
+	}
 
 	if((sd->npc_id && !sd->npc_item_flag) || (sd->state.block_action & PCBLOCK_EQUIP)) {
 		clif_msg_color( sd, MSI_CAN_NOT_EQUIP_ITEM, color_table[COLOR_RED] );
@@ -12105,15 +12109,8 @@ void clif_parse_EquipItem(int fd,map_session_data *sd)
 	//Client doesn't send the position for ammo.
 	if(sd->inventory_data[index]->type == IT_AMMO)
 		pc_equipitem(sd,index,EQP_AMMO);
-	else {
-	int req_pos;
-
-#if PACKETVER  >= 20120925
-		req_pos = RFIFOL(fd,info->pos[1]);
-#else
-		req_pos = (int)RFIFOW(fd,info->pos[1]);
-#endif
-		pc_equipitem(sd,index,req_pos);
+	else{
+		pc_equipitem( sd, index, p->position );
 	}
 }
 
@@ -12150,18 +12147,16 @@ void clif_parse_UnequipItem(int fd,map_session_data *sd)
 }
 
 
-/// Request to start a conversation with an NPC (CZ_CONTACTNPC).
-/// 0090 <id>.L <type>.B
+/// Request to start a conversation with an NPC.
+/// 0090 <id>.L <type>.B (CZ_CONTACTNPC)
 /// type:
 ///     1 = click
-void clif_parse_NpcClicked(int fd,map_session_data *sd)
-{
+void clif_parse_NpcClicked( int fd, map_session_data* sd ){
+	const PACKET_CZ_CONTACTNPC* p = reinterpret_cast<PACKET_CZ_CONTACTNPC*>( RFIFOP( fd, 0 ) );
+	
 	if( sd == nullptr ){
 		return;
 	}
-
-	struct block_list *bl;
-	struct s_packet_db* info = &packet_db[RFIFOW(fd,0)];
 
 	if(pc_isdead(sd)) {
 		clif_clearunit_area( sd->bl, CLR_DEAD );
@@ -12178,9 +12173,11 @@ void clif_parse_NpcClicked(int fd,map_session_data *sd)
 	if( sd->state.mail_writing )
 		return;
 
-	bl = map_id2bl(RFIFOL(fd,info->pos[0]));
-	//type = RFIFOB(fd,info->pos[1]);
-	if (!bl) return;
+	block_list* bl = map_id2bl( p->AID );
+
+	if( bl == nullptr ){
+		return;
+	}
 	switch (bl->type) {
 		case BL_MOB:
 		case BL_PC:
@@ -12208,17 +12205,22 @@ void clif_parse_NpcClicked(int fd,map_session_data *sd)
 }
 
 
-/// Selection between buy/sell was made (CZ_ACK_SELECT_DEALTYPE).
-/// 00c5 <id>.L <type>.B
+/// Selection between buy/sell was made.
+/// 00c5 <id>.L <type>.B (CZ_ACK_SELECT_DEALTYPE)
 /// type:
 ///     0 = buy
 ///     1 = sell
-void clif_parse_NpcBuySellSelected(int fd,map_session_data *sd)
-{
-	struct s_packet_db* info = &packet_db[RFIFOW(fd,0)];
+void clif_parse_NpcBuySellSelected( int fd, map_session_data* sd ){
+	const PACKET_CZ_ACK_SELECT_DEALTYPE* p = reinterpret_cast<PACKET_CZ_ACK_SELECT_DEALTYPE*>( RFIFOP( fd, 0 ) );
+
+	if( sd == nullptr ){
+		return;
+	}
+	
 	if (sd->state.trading)
 		return;
-	npc_buysellsel(sd,RFIFOL(fd,info->pos[0]),RFIFOB(fd,info->pos[1]));
+	
+	npc_buysellsel( sd, p->GID, p->type );
 }
 
 
@@ -12312,28 +12314,22 @@ void clif_parse_NpcSellListSend(int fd,map_session_data *sd)
 }
 
 
-/// Chatroom creation request (CZ_CREATE_CHATROOM).
-/// 00d5 <packet len>.W <limit>.W <type>.B <passwd>.8B <title>.?B
+/// Chatroom creation request.
+/// 00d5 <packet len>.W <limit>.W <type>.B <passwd>.8B <title>.?B (CZ_CREATE_CHATROOM)
 /// type:
 ///     0 = private
 ///     1 = public
-void clif_parse_CreateChatRoom(int fd, map_session_data* sd)
-{
+void clif_parse_CreateChatRoom( int fd, map_session_data* sd){
+	const PACKET_CZ_CREATE_CHATROOM* p = reinterpret_cast<PACKET_CZ_CREATE_CHATROOM*>( RFIFOP( fd, 0 ) );
+
 	if( sd == nullptr ){
 		return;
 	}
 
-	struct s_packet_db* info = &packet_db[RFIFOW(fd,0)];
-	int len = RFIFOW(fd,info->pos[0])-15;
-	int limit = RFIFOW(fd,info->pos[1]);
-	bool pub = (RFIFOB(fd,info->pos[2]) != 0);
-	const char* password = RFIFOCP(fd,info->pos[3]); //not zero-terminated
-	const char* title = RFIFOCP(fd,info->pos[4]); // not zero-terminated
-	char s_password[CHATROOM_PASS_SIZE];
-	char s_title[CHATROOM_TITLE_SIZE];
-
-	if (sd->sc.getSCE(SC_NOCHAT) && sd->sc.getSCE(SC_NOCHAT)->val1&MANNER_NOROOM)
+	if( sd->sc.getSCE( SC_NOCHAT ) && sd->sc.getSCE( SC_NOCHAT )->val1&MANNER_NOROOM ){
 		return;
+	}
+	
 	if(battle_config.basic_skill_check && pc_checkskill(sd,NV_BASIC) < 4 && pc_checkskill(sd, SU_BASIC_SKILL) < 1) {
 		clif_skill_fail( *sd, 1, USESKILL_FAIL_LEVEL, 3 );
 		return;
@@ -12348,13 +12344,20 @@ void clif_parse_CreateChatRoom(int fd, map_session_data* sd)
 		return;
 	}
 
-	if( len <= 0 )
-		return; // invalid input
+	if( p->packetSize < sizeof( *p ) ){
+		// invalid input
+		return;
+	}
 
-	safestrncpy(s_password, password, CHATROOM_PASS_SIZE);
-	safestrncpy(s_title, title, min(len+1,CHATROOM_TITLE_SIZE)); //NOTE: assumes that safestrncpy will not access the len+1'th byte
+	char password[CHATROOM_PASS_SIZE];
 
-	chat_createpcchat(sd, s_title, s_password, limit, pub);
+	safestrncpy( password, p->password, sizeof( password ) );
+
+	char title[CHATROOM_TITLE_SIZE];
+
+	safestrncpy( title, p->title, std::min<size_t>( sizeof( title ), p->packetSize - sizeof( *p ) + 1 ) );
+
+	chat_createpcchat( sd, title, password, p->limit, p->type != 0 );
 }
 
 
