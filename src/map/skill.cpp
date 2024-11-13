@@ -5737,6 +5737,8 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 	case EM_EL_DEADLY_POISON:
 	case BO_EXPLOSIVE_POWDER:
 	case BO_MAYHEMIC_THORNS:
+	case BO_MYSTERY_POWDER:
+	case BO_DUST_EXPLOSION:
 	case NPC_WIDECRITICALWOUND:
 	case IG_SHIELD_SHOOTING:
 	case TR_METALIC_FURY:
@@ -5884,6 +5886,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 				case CD_FRAMEN:
 				case MT_POWERFUL_SWING:
 				case MT_ENERGY_CANNONADE:
+				case BO_DUST_EXPLOSION:
 				case ABC_DEFT_STAB:
 				case EM_EL_FLAMEROCK:
 				case EM_EL_AGE_OF_ICE:
@@ -5946,6 +5949,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 						sc_start( src, src, SC_RUSH_QUAKE2, 100, skill_lv, skill_get_time2( skill_id, skill_lv ) );
 					}
 					break;
+				case BO_MYSTERY_POWDER:
 				case IG_SHIELD_SHOOTING:
 				case IG_GRAND_JUDGEMENT:
 				case SHC_CROSS_SLASH:
@@ -16063,7 +16067,9 @@ int skill_unit_onplace_timer(struct skill_unit *unit, struct block_list *bl, t_t
 
 	switch (sg->unit_id) {
 		// Units that deals simple attack
-		case UNT_GRAVITATION:
+#ifndef RENEWAL
+ 		case UNT_GRAVITATION:
+#endif
 		case UNT_EARTHSTRAIN:
 		case UNT_FIREWALK:
 		case UNT_ELECTRICWALK:
@@ -16091,6 +16097,9 @@ int skill_unit_onplace_timer(struct skill_unit *unit, struct block_list *bl, t_t
 		case UNT_FLAMETRAP:
 			skill_attack(skill_get_type(sg->skill_id),ss,&unit->bl,bl,sg->skill_id,sg->skill_lv,tick,0);
 			break;
+#ifdef RENEWAL
+ 		case UNT_GRAVITATION:
+#endif
 		case UNT_GROUND_GRAVITATION:
 		case UNT_JACK_FROST_NOVA:
 			skill_attack( skill_get_type(sg->skill_id), ss, ss, bl, sg->skill_id, sg->skill_lv, tick, 0 );

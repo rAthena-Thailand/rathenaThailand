@@ -614,12 +614,6 @@ int64 battle_attr_fix(struct block_list *src, struct block_list *target, int64 d
 #else
 					damage += (int64)(damage * 50 / 100);
 #endif
-				if (tsc->getSCE(SC_MISTYFROST))
-#ifdef RENEWAL
-					ratio += 15;
-#else
-					damage += (int64)(damage * 15 / 100);
-#endif
 				break;
 			case ELE_EARTH:
 				if (tsc->getSCE(SC_WIND_INSIGNIA))
@@ -692,6 +686,10 @@ static int32 battle_calc_cardfix_debuff( status_change& tsc, int32 rh_ele ){
 		case ELE_EARTH:
 			if (tsc.getSCE(SC_CLIMAX_EARTH))
 				ele_fix += 100;
+			break;
+		case ELE_WATER:
+			if (tsc.getSCE(SC_MISTYFROST))
+				ele_fix += 15;
 			break;
 	}
 	return ele_fix;
@@ -6233,6 +6231,18 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 				skillratio += 150;
 			RE_LVL_DMOD(100);
 			break;
+		case BO_MYSTERY_POWDER:
+			skillratio += -100 + 1500 + 4000 * skill_lv;
+			skillratio += 5 * sstatus->pow;	// !TODO: check POW ratio
+			RE_LVL_DMOD(100);
+			break;
+		case BO_DUST_EXPLOSION:
+			skillratio += -100 + 450 + 600 * skill_lv;
+			skillratio += 5 * sstatus->pow;	// !TODO: check POW ratio
+			if (sc && sc->getSCE(SC_RESEARCHREPORT))
+				skillratio += 200 * skill_lv;
+			RE_LVL_DMOD(100);
+			break;
 		case TR_ROSEBLOSSOM:
 			skillratio += -100 + 200 + 2000 * skill_lv;
 
@@ -7912,7 +7922,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 	switch(skill_id) {
 		case WL_HELLINFERNO:
 			if (mflag & 2) { // ELE_DARK
-				ad.div_ = 3;
+				ad.div_ = -3;
 			}
 			break;
 		case NPC_PSYCHIC_WAVE:
@@ -8262,7 +8272,8 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						skillratio += 300 + 40 * skill_lv;
 						break;
 					case WL_SOULEXPANSION:
-						skillratio += -100 + 1000 + skill_lv * 200 + sstatus->int_ / 6; // !TODO: Confirm INT bonus
+						skillratio += -100 + 1000 + skill_lv * 200;
+						skillratio += sstatus->int_;
 						RE_LVL_DMOD(100);
 						break;
 					case WL_FROSTMISTY:
@@ -8296,7 +8307,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 					case WL_HELLINFERNO:
 						skillratio += -100 + 400 * skill_lv;
 						if (mflag & 2) // ELE_DARK
-							skillratio += 200;
+							skillratio += 200 * skill_lv;
 						RE_LVL_DMOD(100);
 						break;
 					case WL_COMET:

@@ -1937,6 +1937,8 @@
 	export_constant(SC_CONTENTS_8);
 	export_constant(SC_CONTENTS_9);
 	export_constant(SC_CONTENTS_10);
+	
+	export_constant(SC_MYSTERY_POWDER);
 
 	/* status icons */
 	export_deprecated_constant2("SI_BLANK",-1);
