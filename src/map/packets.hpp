@@ -1458,6 +1458,30 @@ struct PACKET_CZ_CREATE_CHATROOM{
 } __attribute__((packed));
 DEFINE_PACKET_HEADER(CZ_CREATE_CHATROOM, 0xd5);
 
+	int16 packetType;
+	uint16 type;
+	RANKLIST list;
+	uint32 mypoints;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_ACK_RANKING, 0x97d);
+
+struct PACKET_ZC_UPDATE_RANKING_POINT{
+	int16 packetType;
+	uint16 type;
+	uint32 points;
+	uint32 points_total;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_UPDATE_RANKING_POINT, 0x97e);
+
+struct PACKET_ZC_ACK_RANKING2{
+	int16 packetType;
+	uint16 type;
+	uint32 CIDs[10];
+	uint32 points[10];
+	uint32 mypoints;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_ACK_RANKING2, 0xaf6);
+
 // NetBSD 5 and Solaris don't like pragma pack but accept the packed attribute
 #if !defined( sun ) && ( !defined( __NETBSD__ ) || __NetBSD_Version__ >= 600000000 )
 	#pragma pack( pop )
