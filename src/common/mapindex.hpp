@@ -4,6 +4,7 @@
 #ifndef MAPINDEX_HPP
 #define MAPINDEX_HPP
 
+#include "cbasetypes.hpp"
 #include "mmo.hpp"
 
 #define MAX_MAPINDEX 2000

@@ -133,11 +133,10 @@ static void rdtsc_calibrate(){
 		t_tick t2 = __rdtsc();
 		total += (t2 - t1) / delay;
 	}
+
 	rdtsc_clock = total / calibrating_rounds;
 
 	rdtsc_begintick = __rdtsc();
-
-	RDTSC_BEGINTICK = _rdtsc();
 
 	ShowMessage(" done. (Frequency: %u Mhz)\n", (uint32)(rdtsc_clock/1000) );
 }

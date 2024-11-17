@@ -36,7 +36,7 @@ void config_setting_copy_simple(config_setting_t *parent, const config_setting_t
 		if (set == nullptr)
 			return;
 
-		if (CONFIG_TYPE_int32 == config_setting_type(src)) {
+		if (CONFIG_TYPE_INT == config_setting_type(src)) {
 			config_setting_set_int(set, config_setting_get_int(src));
 			config_setting_set_format(set, src->format);
 		} else if (CONFIG_TYPE_INT64 == config_setting_type(src)) {
@@ -58,7 +58,7 @@ void config_setting_copy_elem(config_setting_t *parent, const config_setting_t *
 
 	if (config_setting_is_aggregate(src))
 		config_setting_copy_aggregate(parent, src);
-	else if (CONFIG_TYPE_int32 == config_setting_type(src)) {
+	else if (CONFIG_TYPE_INT == config_setting_type(src)) {
 		set = config_setting_set_int_elem(parent, -1, config_setting_get_int(src));
 		config_setting_set_format(set, src->format);
 	} else if (CONFIG_TYPE_INT64 == config_setting_type(src)) {

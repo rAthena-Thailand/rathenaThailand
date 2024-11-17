@@ -6,6 +6,8 @@
 
 #include <libconfig.h>
 
+#include <common/cbasetypes.hpp>
+
 // for help with the console colors look here:
 // http://www.edoceo.com/liberum/?doc=printf-with-color
 // some code explanation (used here):

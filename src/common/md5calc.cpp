@@ -64,29 +64,24 @@ static uint32 I(uint32 X, uint32 Y, uint32 Z)
    return Y ^ (X | ~Z);
 }
 
-static uint32 Round(uint32 a, uint32 b, uint32 FGHI,
-                     uint32 k, uint32 s, uint32 i)
+static uint32 Round(uint32 a, uint32 b, uint32 FGHI, uint32 k, uint32 s, uint32 i)
 {
    return b + ROTATE_LEFT(a + FGHI + pX[k] + T[i], s);
 }
 
-static void Round1(uint32 *a, uint32 b, uint32 c,
-		uint32 d,uint32 k, uint32 s, uint32 i)
+static void Round1(uint32 *a, uint32 b, uint32 c, uint32 d,uint32 k, uint32 s, uint32 i)
 {
 	*a = Round(*a, b, F(b,c,d), k, s, i);
 }
-static void Round2(uint32 *a, uint32 b, uint32 c,
-		uint32 d,uint32 k, uint32 s, uint32 i)
+static void Round2(uint32 *a, uint32 b, uint32 c, uint32 d,uint32 k, uint32 s, uint32 i)
 {
 	*a = Round(*a, b, G(b,c,d), k, s, i);
 }
-static void Round3(uint32 *a, uint32 b, uint32 c,
-		uint32 d,uint32 k, uint32 s, uint32 i)
+static void Round3(uint32 *a, uint32 b, uint32 c, uint32 d,uint32 k, uint32 s, uint32 i)
 {
 	*a = Round(*a, b, H(b,c,d), k, s, i);
 }
-static void Round4(uint32 *a, uint32 b, uint32 c,
-		uint32 d,uint32 k, uint32 s, uint32 i)
+static void Round4(uint32 *a, uint32 b, uint32 c, uint32 d,uint32 k, uint32 s, uint32 i)
 {
 	*a = Round(*a, b, I(b,c,d), k, s, i);
 }
@@ -107,10 +102,10 @@ static void MD5_Round_Calculate(const unsigned char *block,
 
 	//Copy block(padding_message) i into X
 	for (j=0,k=0; j<64; j+=4,k++)
-		X[k] = ( (uint32 )block[j] )         // 8byte*4 -> 32byte conversion
-			| ( ((uint32 )block[j+1]) << 8 ) // A function called Decode as used in the field of RFC
-			| ( ((uint32 )block[j+2]) << 16 )
-			| ( ((uint32 )block[j+3]) << 24 );
+		X[k] = ( (uint32)block[j] )         // 8byte*4 -> 32byte conversion
+			| ( ((uint32)block[j+1]) << 8 ) // A function called Decode as used in the field of RFC
+			| ( ((uint32)block[j+2]) << 16 )
+			| ( ((uint32)block[j+3]) << 24 );
 
 
    //Round 1

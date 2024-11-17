@@ -190,7 +190,7 @@ Escape sequences for Select Character Set
 #define is_console(handle) (FILE_TYPE_CHAR==GetFileType(handle))
 
 ///////////////////////////////////////////////////////////////////////////////
-int	VFPRINTF(HANDLE handle, const char *fmt, va_list argptr)
+int32	VFPRINTF(HANDLE handle, const char *fmt, va_list argptr)
 {
 	/////////////////////////////////////////////////////////////////
 	/* XXX Two streams are being used. Disabled to avoid inconsistency [flaviojs]
@@ -401,7 +401,7 @@ int	VFPRINTF(HANDLE handle, const char *fmt, va_list argptr)
 					// The first # specifies the line number, the second # specifies the column. 
 					// The default for both is 1
 					info.dwCursorPosition.X = (numbers[numpoint])?(numbers[numpoint]>>4)*10+((numbers[numpoint]&0x0F)-1):0;
-					info.dwCursorPosition.Y = (numpoint32 && numbers[numpoint-1])?(numbers[numpoint-1]>>4)*10+((numbers[numpoint-1]&0x0F)-1):0;
+					info.dwCursorPosition.Y = (numpoint && numbers[numpoint-1])?(numbers[numpoint-1]>>4)*10+((numbers[numpoint-1]&0x0F)-1):0;
 
 					if( info.dwCursorPosition.X >= info.dwSize.X ) info.dwCursorPosition.Y = info.dwSize.X-1;
 					if( info.dwCursorPosition.Y >= info.dwSize.Y ) info.dwCursorPosition.Y = info.dwSize.Y-1;
@@ -507,7 +507,7 @@ int	VFPRINTF(HANDLE handle, const char *fmt, va_list argptr)
 	return 0;
 }
 
-int	FPRINTF(HANDLE handle, const char *fmt, ...)
+int32	FPRINTF(HANDLE handle, const char *fmt, ...)
 {
 	int32 ret;
 	va_list argptr;
@@ -528,7 +528,7 @@ int	FPRINTF(HANDLE handle, const char *fmt, ...)
 #define is_console(file) (0!=isatty(fileno(file)))
 
 //vprintf_without_ansiformats
-int	VFPRINTF(FILE *file, const char *fmt, va_list argptr)
+int32	VFPRINTF(FILE *file, const char *fmt, va_list argptr)
 {
 	char *p, *q;
 	NEWBUF(tempbuf); // temporary buffer
@@ -643,7 +643,7 @@ int	VFPRINTF(FILE *file, const char *fmt, va_list argptr)
 	FREEBUF(tempbuf);
 	return 0;
 }
-int	FPRINTF(FILE *file, const char *fmt, ...)
+int32	FPRINTF(FILE *file, const char *fmt, ...)
 {
 	int32 ret;
 	va_list argptr;

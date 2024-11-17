@@ -9,13 +9,15 @@
 #include <numeric> //iota
 #include <string>
 
+#include "cbasetypes.hpp"
+
 #ifndef __has_builtin
 	#define __has_builtin(x) 0
 #endif
 
 struct cScopeTimer::sPimpl {
-    std::chrono::steady_clock::time_point32 start;
-    std::chrono::steady_clock::time_point32 end;
+    std::chrono::steady_clock::time_point start;
+    std::chrono::steady_clock::time_point end;
     
     sPimpl()
     {

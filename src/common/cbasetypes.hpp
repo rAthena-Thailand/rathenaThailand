@@ -164,15 +164,15 @@ typedef uint64_t	uint64;
 // These could be larger than you expect,
 // they are designed for speed.
 //////////////////////////////////////////////////////////////////////////
-typedef          long int32   ppint;
-typedef          long int32   ppint8;
-typedef          long int32   ppint16;
-typedef          long int32   ppint32;
+typedef          long int   ppint;
+typedef          long int   ppint8;
+typedef          long int   ppint16;
+typedef          long int   ppint32;
 
-typedef unsigned long int32   ppuint;
-typedef unsigned long int32   ppuint8;
-typedef unsigned long int32   ppuint16;
-typedef unsigned long int32   ppuint32;
+typedef unsigned long int   ppuint;
+typedef unsigned long int   ppuint8;
+typedef unsigned long int   ppuint16;
+typedef unsigned long int   ppuint32;
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -380,7 +380,7 @@ void SET_FUNCPOINTER(T1& var, T2 p)
 #endif
 
 #ifndef max
-static inline int32 max(int32 a, int32 b){ return (a > b) ? a : b; } //default is int
+static inline int32 max(int32 a, int32 b){ return (a > b) ? a : b; } //default is int32
 #endif
 static inline int8 i8max(int8 a, int8 b){ return (a > b) ? a : b; }
 static inline int16 i16max(int16 a, int16 b){ return (a > b) ? a : b; }
@@ -398,7 +398,7 @@ static inline size_t zmax(size_t a, size_t b){ return (a > b) ? a : b; } //cause
 #endif
 
 #ifndef min
-static inline int32 min(int32 a, int32 b){ return (a < b) ? a : b; } //default is int
+static inline int32 min(int32 a, int32 b){ return (a < b) ? a : b; } //default is int32
 #endif
 static inline int8 i8min(int8 a, int8 b){ return (a < b) ? a : b; }
 static inline int16 i16min(int16 a, int16 b){ return (a < b) ? a : b; }

@@ -82,10 +82,10 @@ typedef uint32 t_itemid;
 #define MAX_ZENY INT_MAX ///Max zeny
 #define MAX_BANK_ZENY SINT32_MAX ///Max zeny in Bank
 #ifndef MAX_CASHPOINT
-	#define MAX_CASHPOint32 INT_MAX
+	#define MAX_CASHPOINT INT_MAX
 #endif
 #ifndef MAX_KAFRAPOINT
-	#define MAX_KAFRAPOint32 INT_MAX
+	#define MAX_KAFRAPOINT INT_MAX
 #endif
 #define MAX_FAME 1000000000 ///Max fame points
 #define MAX_CART 100 ///Maximum item in cart
@@ -234,7 +234,6 @@ enum item_types {
 	IT_AMMO,    //10
 	IT_DELAYCONSUME,//11
 	IT_SHADOWGEAR,  //12
-	IT_CHARM,
 	IT_CASH = 18,
 	IT_MAX
 };
@@ -363,7 +362,7 @@ enum equip_pos : uint32 {
 	EQP_SHADOW_ACC_RL	= EQP_SHADOW_ACC_R|EQP_SHADOW_ACC_L,
 };
 
-struct point32 {
+struct point {
 	uint16 map;
 	uint16 x,y;
 };
@@ -573,7 +572,7 @@ struct mmo_charstatus {
 	uint32 status_point,skill_point,trait_point;
 	int32 hp,max_hp,sp,max_sp,ap,max_ap;
 	uint32 option;
-	short manner; // Defines how many minutes a char will be muted, each negative point32 is equivalent to a minute.
+	short manner; // Defines how many minutes a char will be muted, each negative point is equivalent to a minute.
 	unsigned char karma;
 	short hair,hair_color,clothes_color,body;
 	int32 party_id,guild_id,pet_id,hom_id,mer_id,ele_id,clan_id;

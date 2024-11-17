@@ -82,8 +82,8 @@ typedef enum DBRelease {
  * Supported types of database.
  * See {@link #db_fix_options(DBType,DBOptions)} for restrictions of the
  * types of databases.
- * @param DB_int32 Uses int's for keys
- * @param DB_Uint32 Uses uint32's for keys
+ * @param DB_INT Uses int's for keys
+ * @param DB_UINT Uses uint32's for keys
  * @param DB_STRING Uses strings for keys.
  * @param DB_ISTRING Uses case insensitive strings for keys.
  * @param DB_INT64 Uses int64's for keys
@@ -139,8 +139,8 @@ typedef enum DBOptions {
 
 /**
  * Union of key types used by the database.
- * @param i Type of key for DB_int32 databases
- * @param ui Type of key for DB_Uint32 databases
+ * @param i Type of key for DB_INT databases
+ * @param ui Type of key for DB_UINT databases
  * @param str Type of key for DB_STRING and DB_ISTRING databases
  * @public
  * @see #DBType
@@ -158,8 +158,8 @@ typedef union DBKey {
 
 /**
  * Supported types of database data.
- * @param DB_DATA_int32 Uses ints for data.
- * @param DB_DATA_Uint32 Uses uint32s for data.
+ * @param DB_DATA_INT Uses int's for data.
+ * @param DB_DATA_UINT Uses uint32's for data.
  * @param DB_DATA_PTR Uses void pointers for data.
  * @public
  * @see #DBData
@@ -729,15 +729,15 @@ struct DBMap {
  *  db_custom_release  - Get the releaser that behaves as specified.         *
  *  db_alloc           - Allocate a new database.                            *
  *  db_i2key           - Manual cast from 'int' to 'DBKey'.                  *
- *  db_ui2key          - Manual cast from 'uint32' to 'DBKey'.         *
+ *  db_ui2key          - Manual cast from 'uint32' to 'DBKey'.               *
  *  db_str2key         - Manual cast from 'unsigned char *' to 'DBKey'.      *
  *  db_i642key         - Manual cast from 'int64' to 'DBKey'.                *
  *  db_ui642key        - Manual cast from 'uint64' to 'DBKey'.               *
  *  db_i2data          - Manual cast from 'int' to 'DBData'.                 *
- *  db_ui2data         - Manual cast from 'uint32' to 'DBData'.        *
+ *  db_ui2data         - Manual cast from 'uint32' to 'DBData'.              *
  *  db_ptr2data        - Manual cast from 'void*' to 'DBData'.               *
  *  db_data2i          - Gets 'int' value from 'DBData'.                     *
- *  db_data2ui         - Gets 'uint32' value from 'DBData'.            *
+ *  db_data2ui         - Gets 'uint32' value from 'DBData'.                  *
  *  db_data2ptr        - Gets 'void*' value from 'DBData'.                   *
  *  db_init            - Initializes the database system.                    *
  *  db_final           - Finalizes the database system.                      *

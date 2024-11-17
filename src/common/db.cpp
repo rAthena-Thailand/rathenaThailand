@@ -73,6 +73,7 @@
 #include <cstdio>
 #include <cstdlib>
 
+#include "cbasetypes.hpp"
 #include "ers.hpp"
 #include "malloc.hpp"
 #include "mmo.hpp"
@@ -839,14 +840,14 @@ static void db_free_unlock(DBMap_impl* db)
  *  (3) Section of protected functions used internally.                      *
  *  NOTE: the protected functions used in the database interface are in the  *
  *           next section.                                                   *
- *  db_int_cmp         - Default comparator for DB_int32 databases.            *
- *  db_uint_cmp        - Default comparator for DB_Uint32 databases.           *
+ *  db_int_cmp         - Default comparator for DB_INT databases.            *
+ *  db_uint_cmp        - Default comparator for DB_UINT databases.           *
  *  db_string_cmp      - Default comparator for DB_STRING databases.         *
  *  db_istring_cmp     - Default comparator for DB_ISTRING databases.        *
  *  db_int64_cmp       - Default comparator for DB_INT64 databases.          *
  *  db_uint64_cmp      - Default comparator for DB_UINT64 databases.         *
- *  db_int_hash        - Default hasher for DB_int32 databases.                *
- *  db_uint_hash       - Default hasher for DB_Uint32 databases.               *
+ *  db_int_hash        - Default hasher for DB_INT databases.                *
+ *  db_uint_hash       - Default hasher for DB_UINT databases.               *
  *  db_string_hash     - Default hasher for DB_STRING databases.             *
  *  db_istring_hash    - Default hasher for DB_ISTRING databases.            *
  *  db_int64_hash      - Default hasher for DB_INT64 databases.              *
@@ -858,7 +859,7 @@ static void db_free_unlock(DBMap_impl* db)
 \*****************************************************************************/
 
 /**
- * Default comparator for DB_int32 databases.
+ * Default comparator for DB_INT databases.
  * Compares key1 to key2.
  * Return 0 if equal, negative if lower and positive if higher.
  * <code>maxlen</code> is ignored.
@@ -880,7 +881,7 @@ static int32 db_int_cmp(DBKey key1, DBKey key2, unsigned short maxlen)
 }
 
 /**
- * Default comparator for DB_Uint32 databases.
+ * Default comparator for DB_UINT databases.
  * Compares key1 to key2.
  * Return 0 if equal, negative if lower and positive if higher.
  * <code>maxlen</code> is ignored.
@@ -983,8 +984,8 @@ static int32 db_uint64_cmp(DBKey key1, DBKey key2, unsigned short maxlen)
 
 
 /**
- * Default hasher for DB_int32 databases.
- * Returns the value of the key as an uint32.
+ * Default hasher for DB_INT databases.
+ * Returns the value of the key as an uint64.
  * <code>maxlen</code> is ignored.
  * @param key Key to be hashed
  * @param maxlen Maximum length of the key to hash
@@ -1001,7 +1002,7 @@ static uint64 db_int_hash(DBKey key, unsigned short maxlen)
 }
 
 /**
- * Default hasher for DB_Uint32 databases.
+ * Default hasher for DB_UINT databases.
  * Just returns the value of the key.
  * <code>maxlen</code> is ignored.
  * @param key Key to be hashed
@@ -1073,7 +1074,7 @@ static uint64 db_istring_hash(DBKey key, unsigned short maxlen)
 
 /**
  * Default hasher for DB_INT64 databases.
- * Returns the value of the key as an uint32.
+ * Returns the value of the key as an uint64.
  * <code>maxlen</code> is ignored.
  * @param key Key to be hashed
  * @param maxlen Maximum length of the key to hash
@@ -2734,7 +2735,7 @@ DBData db_i642data(int64 data)
 int32 db_data2i(DBData *data)
 {
 	DB_COUNTSTAT(db_data2i);
-	if (data && DB_DATA_int32 == data->type)
+	if (data && DB_DATA_INT == data->type)
 		return data->u.i;
 	return 0;
 }
@@ -2749,7 +2750,7 @@ int32 db_data2i(DBData *data)
 uint32 db_data2ui(DBData *data)
 {
 	DB_COUNTSTAT(db_data2ui);
-	if (data && DB_DATA_Uint32 == data->type)
+	if (data && DB_DATA_UINT == data->type)
 		return data->u.ui;
 	return 0;
 }
@@ -2810,8 +2811,8 @@ void db_final(void)
 			"allocated %u, freed %u\n",
 			stats.db_node_alloc, stats.db_node_free);
 	ShowInfo(CL_WHITE "Database types" CL_RESET ":\n"
-			"DB_int32     : allocated %10u, destroyed %10u\n"
-			"DB_Uint32    : allocated %10u, destroyed %10u\n"
+			"DB_INT     : allocated %10u, destroyed %10u\n"
+			"DB_UINT    : allocated %10u, destroyed %10u\n"
 			"DB_STRING  : allocated %10u, destroyed %10u\n"
 			"DB_ISTRING : allocated %10u, destroyed %10u\n"
 			"DB_INT64   : allocated %10u, destroyed %10u\n"
