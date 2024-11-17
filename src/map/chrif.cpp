@@ -311,7 +311,7 @@ int32 chrif_save(map_session_data *sd, int32 flag) {
 		sd->state.storage_flag = 0; //Force close it.
 		
 		if( sd->goldpc_tid != INVALID_TIMER ){
-			const struct TimerData* td = get_timer( sd->goldpc_tid );
+			const struct TimerData *td = get_timer( sd->goldpc_tid );
 
 			if( td != nullptr ){
 				// Get the remaining milliseconds until the next reward

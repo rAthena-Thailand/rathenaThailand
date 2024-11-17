@@ -25394,7 +25394,7 @@ void clif_goldpc_info( map_session_data& sd ){
 		}
 		p.point = (int32)pc_readparam( &sd, SP_GOLDPC_POINTS );
 		if( sd.goldpc_tid != INVALID_TIMER ){
-			const struct TimerData* td = get_timer( sd.goldpc_tid );
+			const struct TimerData *td = get_timer( sd.goldpc_tid );
 
 			if( td != nullptr ){
 				// Get the remaining milliseconds until the next reward
