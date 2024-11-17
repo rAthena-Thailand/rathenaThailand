@@ -4,6 +4,6 @@
 #ifndef INT_QUEST_HPP
 #define INT_QUEST_HPP
 
-int inter_quest_parse_frommap(int fd);
+int32 inter_quest_parse_frommap(int32 fd);
 
 #endif /* INT_QUEST_HPP */

@@ -12,7 +12,7 @@
  * @param buf: buffer to parse, (from console)
  * @return 1=success
  */
-int cnslif_parse(const char* buf);
+int32 cnslif_parse(const char* buf);
 
 /**
  * Initialize the module.

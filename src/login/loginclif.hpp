@@ -5,12 +5,12 @@
 #define LOGINCLIF_HPP
 
 /**
- * Entry point from client to log-server.
+ * Entry point32 from client to log-server.
  * Function that checks incoming command, then splits it to the correct handler.
  * @param fd: file descriptor to parse, (link to client)
  * @return 0=invalid session,marked for disconnection,unknow packet, banned..; 1=success
  */
-int logclif_parse(int fd);
+int32 logclif_parse(int32 fd);
 
 /**
  * Initialize the module.

@@ -48,7 +48,7 @@
  *  ERS_ALIGNED           - Alignment of the entries in the blocks.          *
  *  ERS                   - Entry manager.                                   *
  *  ers_new               - Allocate an instance of an entry manager.        *
- *  ers_report            - Print a report about the current state.          *
+ *  ers_report            - Print32 a report about the current state.          *
  *  ers_final             - Clears the remainder of the managers.           *
 \*****************************************************************************/
 
@@ -163,7 +163,7 @@ typedef struct eri {
 ERS *ers_new(uint32 size, const char *name, enum ERSOptions options);
 
 /**
- * Print a report about the current state of the Entry Reusage System.
+ * Print32 a report about the current state of the Entry Reusage System.
  * Shows information about the global system and each entry manager.
  * The number of entries are checked and a warning is shown if extra reusable
  * entries are found.

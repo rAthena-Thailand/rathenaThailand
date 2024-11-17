@@ -45,10 +45,10 @@
 /// when redirecting output:
 /// if true prints escape sequences
 /// if false removes the escape sequences
-int stdout_with_ansisequence = 0;
+int32 stdout_with_ansisequence = 0;
 
-int msg_silent = 0; //Specifies how silent the console is.
-int console_msg_log = 0;//[Ind] msg error logging
+int32 msg_silent = 0; //Specifies how silent the console is.
+int32 console_msg_log = 0;//[Ind] msg error logging
 char console_log_filepath[32] = "./log/unknown.log";
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -205,7 +205,7 @@ int	VFPRINTF(HANDLE handle, const char *fmt, va_list argptr)
 	if(!fmt || !*fmt)
 		return 0;
 
-	// Print everything to the buffer
+	// Print32 everything to the buffer
 	BUFVPRINTF(tempbuf,fmt,argptr);
 
 	if( !is_console(handle) && stdout_with_ansisequence )
@@ -349,7 +349,7 @@ int	VFPRINTF(HANDLE handle, const char *fmt, va_list argptr)
 					//    \033[1J - Clears the screen from start to cursor. The cursor position is unchanged.
 					//    \033[2J - Clears the screen and moves the cursor to the home position (line 1, column 1).
 					uint8 num = (numbers[numpoint]>>4)*10+(numbers[numpoint]&0x0F);
-					int cnt;
+					int32 cnt;
 					DWORD tmp;
 					COORD origin = {0,0};
 					if(num==1)
@@ -401,7 +401,7 @@ int	VFPRINTF(HANDLE handle, const char *fmt, va_list argptr)
 					// The first # specifies the line number, the second # specifies the column. 
 					// The default for both is 1
 					info.dwCursorPosition.X = (numbers[numpoint])?(numbers[numpoint]>>4)*10+((numbers[numpoint]&0x0F)-1):0;
-					info.dwCursorPosition.Y = (numpoint && numbers[numpoint-1])?(numbers[numpoint-1]>>4)*10+((numbers[numpoint-1]&0x0F)-1):0;
+					info.dwCursorPosition.Y = (numpoint32 && numbers[numpoint-1])?(numbers[numpoint-1]>>4)*10+((numbers[numpoint-1]&0x0F)-1):0;
 
 					if( info.dwCursorPosition.X >= info.dwSize.X ) info.dwCursorPosition.Y = info.dwSize.X-1;
 					if( info.dwCursorPosition.Y >= info.dwSize.Y ) info.dwCursorPosition.Y = info.dwSize.Y-1;
@@ -509,7 +509,7 @@ int	VFPRINTF(HANDLE handle, const char *fmt, va_list argptr)
 
 int	FPRINTF(HANDLE handle, const char *fmt, ...)
 {
-	int ret;
+	int32 ret;
 	va_list argptr;
 	va_start(argptr, fmt);
 	ret = VFPRINTF(handle,fmt,argptr);
@@ -542,7 +542,7 @@ int	VFPRINTF(FILE *file, const char *fmt, va_list argptr)
 		return 0;
 	}
 
-	// Print everything to the buffer
+	// Print32 everything to the buffer
 	BUFVPRINTF(tempbuf,fmt,argptr);
 
 	// start with processing
@@ -645,7 +645,7 @@ int	VFPRINTF(FILE *file, const char *fmt, va_list argptr)
 }
 int	FPRINTF(FILE *file, const char *fmt, ...)
 {
-	int ret;
+	int32 ret;
 	va_list argptr;
 	va_start(argptr, fmt);
 	ret = VFPRINTF(file,fmt,argptr);
@@ -662,7 +662,7 @@ int	FPRINTF(FILE *file, const char *fmt, ...)
 
 char timestamp_format[20] = ""; //For displaying Timestamps
 
-int _vShowMessage(enum msg_type flag, const char *string, va_list ap)
+int32 _vShowMessage(enum msg_type flag, const char *string, va_list ap)
 {
 	va_list apcopy;
 	char prefix[100];
@@ -716,7 +716,7 @@ int _vShowMessage(enum msg_type flag, const char *string, va_list ap)
 	    (flag == MSG_SQL && msg_silent&16) ||
 	    (flag == MSG_DEBUG && msg_silent&32)
 	)
-		return 0; //Do not print it.
+		return 0; //Do not print32 it.
 
 	if (timestamp_format[0] && flag != MSG_NONE)
 	{	//Display time format. [Skotlex]
@@ -800,9 +800,9 @@ void ClearScreen(void)
 	ShowMessage(CL_CLS);	// to prevent empty string passed messages
 #endif
 }
-int _ShowMessage(enum msg_type flag, const char *string, ...)
+int32 _ShowMessage(enum msg_type flag, const char *string, ...)
 {
-	int ret;
+	int32 ret;
 	va_list ap;
 	va_start(ap, string);
 	ret = _vShowMessage(flag, string, ap);
