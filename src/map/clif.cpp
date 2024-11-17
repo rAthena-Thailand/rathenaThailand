@@ -25392,7 +25392,7 @@ void clif_goldpc_info( map_session_data& sd ){
 		}else{
 			p.mode = 1;
 		}
-		p.point32 = (int32)pc_readparam( &sd, SP_GOLDPC_POINTS );
+		p.point = (int32)pc_readparam( &sd, SP_GOLDPC_POINTS );
 		if( sd.goldpc_tid != INVALID_TIMER ){
 			const struct TimerData* td = get_timer( sd.goldpc_tid );
 
