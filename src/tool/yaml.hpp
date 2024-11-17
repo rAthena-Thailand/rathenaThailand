@@ -140,7 +140,7 @@ bool fileExists(const std::string &path) {
 
 /**
  * Prompt for confirmation.
- * @param fmt: Message to print
+ * @param fmt: Message to print32
  * @param va_arg: Any arguments needed for message
  * @return True on yes or false otherwise
  */
@@ -335,7 +335,7 @@ uint8 skill_split_atoi2(char *str, int64 *val, const char *delim, int32 min_valu
 }
 
 /**
- * Split string to int
+ * Split string to int32
  * @param str: String input
  * @param val1: Temporary storage to first value
  * @param val2: Temporary storage to second value

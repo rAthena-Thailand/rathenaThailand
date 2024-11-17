@@ -7,7 +7,7 @@
 #include <common/cbasetypes.hpp>
 
 /**
- * Entry point32 from char-server to log-server.
+ * Entry point from char-server to log-server.
  * Function that checks incoming command, then splits it to the correct handler.
  * @param fd: file descriptor to parse, (link to char-serv)
  * @return 0=invalid server,marked for disconnection,unknow packet; 1=success

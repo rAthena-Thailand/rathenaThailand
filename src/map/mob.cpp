@@ -270,7 +270,7 @@ static bool mobdb_searchname_sub(uint16 mob_id, const char * const str, bool ful
 	if( mobdb_checkid(mob_id) <= 0 )
 		return false; // invalid mob_id (includes clone check)
 	if(!mob->base_exp && !mob->job_exp && !mob_has_spawn(mob_id))
-		return false; // Monsters with no base/job exp and no spawn point32 are, by this criteria, considered "slave mobs" and excluded from search results
+		return false; // Monsters with no base/job exp and no spawn point are, by this criteria, considered "slave mobs" and excluded from search results
 	if( full_cmp ) {
 		// str must equal the db value
 		if( strcmpi(mob->name.c_str(), str) == 0 || 
@@ -1951,7 +1951,7 @@ static bool mob_ai_sub_hard(struct mob_data *md, t_tick tick)
 		return true;
 	}
 
-	// At this point32 we know the target is attackable, attempt to attack
+	// At this point we know the target is attackable, attempt to attack
 
 	// Monsters in angry state, after having used a normal attack, will always attempt a skill
 	if (md->ud.walktimer == INVALID_TIMER && md->state.skillstate == MSS_ANGRY && md->ud.skill_id == 0)
@@ -3028,7 +3028,6 @@ int32 mob_dead(struct mob_data *md, struct block_list *src, int32 type)
 		int32 map_drop_run = ( anymapdrops != nullptr ? 2 : 1);
 		bool on_instance = ( map[md->bl.m].instance_id > 0 ? 1 : 0);
 
-		// If it is an instance map, we check for map specific drops of the original map
 		// Now instance maps need the mapflag mapdrops [Hyroshima]
 		if( on_instance && map_getmapflag( md->bl.m, MF_MAPDROPS) )
 			mapdrops = map_drop_db.find( map[md->bl.m].instance_src_map );
@@ -3051,6 +3050,7 @@ int32 mob_dead(struct mob_data *md, struct block_list *src, int32 type)
 				// Process map wide drops
 				for( const auto& it : mapdrops->globals ){
 					unsigned char flag = 0;
+
 					if( rnd_chance( it.second->rate, 100000u ) ){
 						if(it.second->direct_inventory)
 						{

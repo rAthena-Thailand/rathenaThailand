@@ -286,7 +286,7 @@ int32 chat_changechatowner(map_session_data* sd, const char* nextownername)
 	tmpsd = cd->usersd[i];
 	cd->usersd[i] = cd->usersd[0];
 	cd->usersd[0] = tmpsd;
-	
+
 	clif_chat_role( *cd, *cd->usersd[0] );
 	clif_chat_role( *cd, *cd->usersd[i] );
 

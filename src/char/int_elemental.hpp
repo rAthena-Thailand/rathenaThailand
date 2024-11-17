@@ -4,6 +4,8 @@
 #ifndef INT_ELEMENTAL_HPP
 #define INT_ELEMENTAL_HPP
 
+#include <common/cbasetypes.hpp>
+
 struct s_elemental;
 
 void inter_elemental_sql_init(void);

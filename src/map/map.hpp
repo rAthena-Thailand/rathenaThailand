@@ -725,7 +725,7 @@ struct s_drop_list {
 
 /// Union for mapflag values
 union u_mapflag_args {
-	struct point32 nosave;
+	struct point nosave;
 	struct s_drop_list nightmaredrop;
 	struct s_skill_damage skill_damage;
 	struct s_skill_duration skill_duration;
@@ -821,7 +821,7 @@ struct map_data {
 	int32 users_pvp;
 	int32 iwall_num; // Total of invisible walls in this map
 
-	struct point32 save;
+	struct point save;
 	std::vector<s_drop_list> drop_list;
 	uint32 zone; // zone number (for item/skill restrictions)
 	struct s_skill_damage damage_adjust; // Used for overall skill damage adjustment

@@ -1917,7 +1917,6 @@
 	export_constant(SC_CONTENTS_8);
 	export_constant(SC_CONTENTS_9);
 	export_constant(SC_CONTENTS_10);
-	
 	export_constant(SC_MYSTERY_POWDER);
 
 /// Do not modify code below this, until the end of the API hook, since it will be automatically generated again
@@ -4221,7 +4220,7 @@
 	export_constant(STOR_MODE_GET);
 	export_constant(STOR_MODE_PUT);
 	export_constant(STOR_MODE_ALL);
-	
+
 	/* instance enter */
 	export_constant(IE_OK);
 	export_constant(IE_NOMEMBER);

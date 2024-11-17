@@ -889,7 +889,7 @@ int32 guild_recv_info(const struct mmo_guild &sg) {
 			clif_guild_memberlist( *sd );
 		}
 
-		if (before.skill_point32 != g->guild.skill_point)
+		if (before.skill_point != g->guild.skill_point)
 			clif_guild_skillinfo( *sd ); // Submit information skills
 
 		if (guild_new) { // Send information and affiliation if unsent
@@ -1304,7 +1304,7 @@ int32 guild_member_withdraw(int32 guild_id, uint32 account_id, uint32 char_id, i
 		status_change_end(&sd->bl,SC_SOULCOLD);
 		status_change_end(&sd->bl,SC_HAWKEYES);
 		status_change_end(&sd->bl,SC_EMERGENCY_MOVE);
-		
+
 		// Send emblem update to self and people around
 		clif_guild_emblem_area(&sd->bl);
 	}
@@ -1742,7 +1742,7 @@ void guild_skillup(map_session_data* sd, uint16 skill_id) {
 
 	max = guild_skill_get_max(skill_id);
 
-	if( g->guild.skill_point32 > 0 &&
+	if( g->guild.skill_point > 0 &&
 		g->guild.skill[idx].id != 0 &&
 		g->guild.skill[idx].lv < max )
 		intif_guild_skillup(g->guild.guild_id, skill_id, sd->status.account_id, max);

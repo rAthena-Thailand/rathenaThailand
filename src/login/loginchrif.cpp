@@ -8,7 +8,7 @@
 
 #include <common/showmsg.hpp> //show notice
 #include <common/socket.hpp> //wfifo session
-#include <common/strlib.hpp> //safeprint
+#include <common/strlib.hpp> //safeprint32
 #include <common/timer.hpp> //difftick
 
 #include "account.hpp"
@@ -763,7 +763,7 @@ int32 logchrif_parse_accinfo(int32 fd) {
 }
 
 /**
- * Entry point32 from char-server to log-server.
+ * Entry point from char-server to log-server.
  * Function that checks incoming command, then splits it to the correct handler.
  * @param fd: file descriptor to parse, (link to char-serv)
  * @return 0=invalid server,marked for disconnection,unknow packet; 1=success

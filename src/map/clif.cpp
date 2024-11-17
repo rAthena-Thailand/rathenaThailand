@@ -1503,7 +1503,7 @@ void clif_class_change( block_list& bl, int32 class_, enum send_target target, m
 	if( sd != nullptr ){
 		bl = sd->bl;
 	}
-	
+
 	clif_send( &p, sizeof( p ), &bl, target );
 }
 
@@ -1882,7 +1882,7 @@ void clif_hominfo( map_session_data *sd, struct homun_data *hd, int32 flag ){
 	}
 	p.exp = static_cast<decltype(p.exp)>( std::min<decltype(hd->homunculus.exp)>( hd->homunculus.exp, std::numeric_limits<decltype(p.exp)>::max() ) );
 	p.expNext = static_cast<decltype(p.expNext)>( std::min<decltype(hd->exp_next)>( hd->exp_next, std::numeric_limits<decltype(p.expNext)>::max() ) );
-	
+
 	switch( hom_class2type( hd->homunculus.class_ ) ){
 		case HT_REG:
 		case HT_EVO:
@@ -3790,7 +3790,7 @@ void clif_updatestatus( map_session_data& sd, enum _sp type ){
 			clif_par_change( sd, SP_AP, sd.battle_status.ap );
 			break;
 		case SP_TRAITPOINT:
-			clif_par_change( sd, SP_TRAITPOINT, sd.status.trait_point32 );
+			clif_par_change( sd, SP_TRAITPOINT, sd.status.trait_point );
 			break;
 		case SP_MAXAP:
 			clif_par_change( sd, SP_MAXAP, sd.battle_status.max_ap );
@@ -4103,7 +4103,7 @@ void clif_initialstatus( map_session_data& sd ) {
 
 	packet.packetType = HEADER_ZC_STATUS;
 
-	packet.point32 = min(sd.status.status_point, INT16_MAX);
+	packet.point = min(sd.status.status_point, INT16_MAX);
 	packet.str = min(sd.status.str, UINT8_MAX);
 	packet.standardStr = pc_need_status_point( &sd, SP_STR, 1 );
 	packet.agi = min(sd.status.agi, UINT8_MAX);
@@ -4111,7 +4111,7 @@ void clif_initialstatus( map_session_data& sd ) {
 	packet.vit = min(sd.status.vit, UINT8_MAX);
 	packet.standardVit = pc_need_status_point( &sd, SP_VIT,1 );
 	packet.int_ = min(sd.status.int_, UINT8_MAX);
-	packet.standardint32 = pc_need_status_point( &sd, SP_INT,1 );
+	packet.standardInt = pc_need_status_point( &sd, SP_INT,1 );
 	packet.dex = min(sd.status.dex, UINT8_MAX);
 	packet.standardDex = pc_need_status_point( &sd, SP_DEX,1 );
 	packet.luk = min(sd.status.luk, UINT8_MAX);
@@ -5347,7 +5347,6 @@ void clif_changemapcell(int32 fd, int16 m, int32 x, int32 y, int32 type, enum se
 /// Notifies the client about an item on floor.
 /// 009d <id>.L <name id>.W <identified>.B <x>.W <y>.W <amount>.W <subX>.B <subY>.B (ZC_ITEM_ENTRY)
 void clif_getareachar_item( map_session_data& sd, flooritem_data& fitem ){
-
 	PACKET_ZC_ITEM_ENTRY p = {};
 
 	p.packetType = HEADER_ZC_ITEM_ENTRY;
@@ -6264,7 +6263,7 @@ void clif_skill_warppoint( map_session_data& sd, uint16 skill_id, uint16 skill_l
 /// @param sd Who receives the message
 /// @param type What message
 void clif_skill_memomessage( map_session_data& sd, e_ack_remember_warppoint_result result ){
-	PACKET_ZC_ACK_REMEMBER_WARPPOint32 packet{};
+	PACKET_ZC_ACK_REMEMBER_WARPPOINT packet{};
 
 	packet.packetType = HEADER_ZC_ACK_REMEMBER_WARPPOINT;
 	packet.type = static_cast<decltype(packet.type)>(result);
@@ -8771,7 +8770,7 @@ void clif_guild_basicinfo( map_session_data& sd ){
 	p.userAverageLevel = guild.average_lv;
 	p.exp = (uint32)cap_value( guild.exp, 0, MAX_GUILD_EXP );
 	p.maxExp = (uint32)cap_value( guild.next_exp, 0, MAX_GUILD_EXP );
-	p.point32 = 0; // Tax Points
+	p.point = 0; // Tax Points
 	p.honor = 0; // Honor: (left) Vulgar [-100,100] Famed (right)
 	p.virtue = 0; // Virtue: (down) Wicked [-100,100] Righteous (up)
 	p.emblemVersion = guild.emblem_id;
@@ -9040,7 +9039,7 @@ void clif_guild_skillinfo( map_session_data& sd ){
 
 	p->PacketType = HEADER_ZC_GUILD_SKILLINFO;
 	p->PacketLength = sizeof( *p );
-	p->skillPoint32 = g->guild.skill_point;
+	p->skillPoint = g->guild.skill_point;
 
 	for( size_t i = 0, c = 0; i < MAX_GUILDSKILL; i++ ){
 		if( g->guild.skill[i].id <= 0 ){
@@ -9353,7 +9352,7 @@ void clif_guild_position_selected(map_session_data& sd)
 	if( sd.guild != nullptr ){
 		const auto& g = sd.guild->guild;
 
-		if( int32 ps = guild_getposition( sd ); ps != -1 ){
+		if( int ps = guild_getposition( sd ); ps != -1 ){
 			safestrncpy( p->position, g.position[ps].name, NAME_LENGTH );
 			p->packetLength += static_cast<decltype(p->packetLength)>( NAME_LENGTH );
 		}
@@ -9364,6 +9363,7 @@ void clif_guild_position_selected(map_session_data& sd)
 	clif_name_area(&sd.bl);
 #endif
 }
+
 
 /// Displays emotion on an object (ZC_EMOTION).
 /// 00c0 <id>.L <type>.B
@@ -10820,7 +10820,7 @@ void clif_parse_LoadEndAck(int32 fd,map_session_data *sd)
 				sd->pvp_timer = add_timer(gettick()+200, pc_calc_pvprank_timer, sd->bl.id, 0);
 			sd->pvp_rank = 0;
 			sd->pvp_lastusers = 0;
-			sd->pvp_point32 = 5;
+			sd->pvp_point = 5;
 			sd->pvp_won = 0;
 			sd->pvp_lost = 0;
 		}
@@ -11943,7 +11943,7 @@ void clif_parse_Broadcast(int32 fd, map_session_data* sd) {
 	char command[CHAT_SIZE_MAX];
 
 	safesnprintf( command, sizeof( command ),"%ckami %s", atcommand_symbol, message );
-	
+
 	is_atcommand(fd, sd, command, 1);
 }
 
@@ -12064,7 +12064,7 @@ void clif_parse_EquipItem( int32 fd, map_session_data* sd ){
 		clif_clearunit_area( sd->bl, CLR_DEAD );
 		return;
 	}
-	
+
 	uint16 index = server_index( p->index );
 
 	if( index >= MAX_INVENTORY ){
@@ -12146,7 +12146,7 @@ void clif_parse_UnequipItem(int32 fd,map_session_data *sd)
 ///     1 = click
 void clif_parse_NpcClicked( int32 fd, map_session_data* sd ){
 	const PACKET_CZ_CONTACTNPC* p = reinterpret_cast<PACKET_CZ_CONTACTNPC*>( RFIFOP( fd, 0 ) );
-	
+
 	if( sd == nullptr ){
 		return;
 	}
@@ -12171,6 +12171,7 @@ void clif_parse_NpcClicked( int32 fd, map_session_data* sd ){
 	if( bl == nullptr ){
 		return;
 	}
+
 	switch (bl->type) {
 		case BL_MOB:
 		case BL_PC:
@@ -12209,10 +12210,10 @@ void clif_parse_NpcBuySellSelected( int32 fd, map_session_data* sd ){
 	if( sd == nullptr ){
 		return;
 	}
-	
+
 	if (sd->state.trading)
 		return;
-	
+
 	npc_buysellsel( sd, p->GID, p->type );
 }
 
@@ -12322,7 +12323,7 @@ void clif_parse_CreateChatRoom( int32 fd, map_session_data* sd){
 	if( sd->sc.getSCE( SC_NOCHAT ) && sd->sc.getSCE( SC_NOCHAT )->val1&MANNER_NOROOM ){
 		return;
 	}
-	
+
 	if(battle_config.basic_skill_check && pc_checkskill(sd,NV_BASIC) < 4 && pc_checkskill(sd, SU_BASIC_SKILL) < 1) {
 		clif_skill_fail( *sd, 1, USESKILL_FAIL_LEVEL, 3 );
 		return;
@@ -17056,7 +17057,7 @@ void clif_parse_Auction_buysell(int32 fd, map_session_data* sd)
 }
 
 
-/// CASH/POint32 SHOP
+/// CASH/POINT SHOP
 ///
 
 void clif_cashshop_open( map_session_data* sd, int32 tab ){
@@ -20058,7 +20059,7 @@ void clif_parse_ranklist_killer( int32 fd, map_session_data* sd ){
 ///		1: /alchemist
 ///		2: /taekwon
 ///		3: /pk
-void clif_parse_ranklist( int32 fd, map_session_data* sd ){
+void clif_parse_ranklist( int fd, map_session_data* sd ){
 #if PACKETVER_MAIN_NUM >= 20120503 || PACKETVER_RE_NUM >= 20120502
 	const PACKET_CZ_REQ_RANKING* p = reinterpret_cast<PACKET_CZ_REQ_RANKING*>( RFIFOP( fd, 0 ) );
 
@@ -20082,9 +20083,9 @@ void clif_parse_ranklist( int32 fd, map_session_data* sd ){
 /// 0224 <points>.L <total points>.L (ZC_TAEKWON_POINT)
 /// 0236 <points>.L <total points>.L (ZC_KILLER_POINT)
 /// 097e <RankingType>.W <point>.L <TotalPoint>.L (ZC_UPDATE_RANKING_POINT)
-void clif_update_rankingpoint( map_session_data& sd, e_rank rankingtype, uint32 point32 ){
+void clif_update_rankingpoint( map_session_data& sd, e_rank rankingtype, uint32 point ){
 #if PACKETVER_MAIN_NUM >= 20120503 || PACKETVER_RE_NUM >= 20120502
-	PACKET_ZC_UPDATE_RANKING_POint32 p = {};
+	PACKET_ZC_UPDATE_RANKING_POINT p = {};
 
 	p.packetType = HEADER_ZC_UPDATE_RANKING_POINT;
 	p.type = rankingtype;
@@ -20096,7 +20097,7 @@ void clif_update_rankingpoint( map_session_data& sd, e_rank rankingtype, uint32 
 	switch(rankingtype){
 		case RANK_BLACKSMITH: {
 #if PACKETVER >= 20041108
-			PACKET_ZC_BLACKSMITH_POint32 p = {};
+			PACKET_ZC_BLACKSMITH_POINT p = {};
 
 			p.packetType = HEADER_ZC_BLACKSMITH_POINT;
 			p.points = point;
@@ -20107,7 +20108,7 @@ void clif_update_rankingpoint( map_session_data& sd, e_rank rankingtype, uint32 
 			} break;
 		case RANK_ALCHEMIST: {
 #if PACKETVER >= 20041108
-			PACKET_ZC_ALCHEMIST_POint32 p = {};
+			PACKET_ZC_ALCHEMIST_POINT p = {};
 
 			p.packetType = HEADER_ZC_ALCHEMIST_POINT;
 			p.points = point;
@@ -20118,7 +20119,7 @@ void clif_update_rankingpoint( map_session_data& sd, e_rank rankingtype, uint32 
 			} break;
 		case RANK_TAEKWON: {
 #if PACKETVER >= 20050328
-			PACKET_ZC_TAEKWON_POint32 p = {};
+			PACKET_ZC_TAEKWON_POINT p = {};
 
 			p.packetType = HEADER_ZC_TAEKWON_POINT;
 			p.points = point;
@@ -20129,7 +20130,7 @@ void clif_update_rankingpoint( map_session_data& sd, e_rank rankingtype, uint32 
 			} break;
 		case RANK_KILLER: {
 #if PACKETVER >= 20050530
-			PACKET_ZC_KILLER_POint32 p = {};
+			PACKET_ZC_KILLER_POINT p = {};
 
 			p.packetType = HEADER_ZC_KILLER_POINT;
 			p.points = point;
@@ -20655,9 +20656,9 @@ void clif_roulette_open( map_session_data* sd ){
 	p.Step = (sd->roulette.claimPrize) ? sd->roulette.stage - 1 : 0;
 	p.Idx = (sd->roulette.claimPrize) ? sd->roulette.prizeIdx : -1;
 	p.AdditionItemID = sd->roulette.bonusItemID;
-	p.GoldPoint32 = sd->roulette_point.gold;
-	p.SilverPoint32 = sd->roulette_point.silver;
-	p.BronzePoint32 = sd->roulette_point.bronze;
+	p.GoldPoint = sd->roulette_point.gold;
+	p.SilverPoint = sd->roulette_point.silver;
+	p.BronzePoint = sd->roulette_point.bronze;
 
 	sd->state.roulette_open = true;
 
@@ -25382,7 +25383,7 @@ void clif_goldpc_info( map_session_data& sd ){
 	const static int32 client_max_seconds = 3600;
 
 	if( battle_config.feature_goldpc_active ){
-		struct PACKET_ZC_GOLDPCCAFE_POint32 p = {};
+		struct PACKET_ZC_GOLDPCCAFE_POINT p = {};
 
 		p.PacketType = HEADER_ZC_GOLDPCCAFE_POINT;
 		p.isActive = true;

@@ -285,7 +285,7 @@ int32 char_mmo_char_tosql(uint32 char_id, struct mmo_charstatus* p){
 		( p->save_point.x != cp->save_point.x ) || ( p->save_point.y != cp->save_point.y ) ||
 		(p->max_hp != cp->max_hp) || (p->hp != cp->hp) ||
 		(p->max_sp != cp->max_sp) || (p->sp != cp->sp) ||
-		(p->status_point32 != cp->status_point) || (p->skill_point32 != cp->skill_point) ||
+		(p->status_point != cp->status_point) || (p->skill_point != cp->skill_point) ||
 		(p->str != cp->str) || (p->agi != cp->agi) || (p->vit != cp->vit) ||
 		(p->int_ != cp->int_) || (p->dex != cp->dex) || (p->luk != cp->luk) ||
 		(p->option != cp->option) ||
@@ -297,7 +297,7 @@ int32 char_mmo_char_tosql(uint32 char_id, struct mmo_charstatus* p){
 		(p->unban_time != cp->unban_time) || (p->font != cp->font) || (p->uniqueitem_counter != cp->uniqueitem_counter) ||
 		(p->hotkey_rowshift != cp->hotkey_rowshift) || (p->clan_id != cp->clan_id ) || (p->title_id != cp->title_id) ||
 		(p->show_equip != cp->show_equip) || (p->hotkey_rowshift2 != cp->hotkey_rowshift2) ||
-		(p->max_ap != cp->max_ap) || (p->ap != cp->ap) || (p->trait_point32 != cp->trait_point) ||
+		(p->max_ap != cp->max_ap) || (p->ap != cp->ap) || (p->trait_point != cp->trait_point) ||
 		(p->pow != cp->pow) || (p->sta != cp->sta) || (p->wis != cp->wis) ||
 		(p->spl != cp->spl) || (p->con != cp->con) || (p->crt != cp->crt)
 	)
@@ -1423,9 +1423,9 @@ int32 char_make_new_char( struct char_session_data* sd, char* name_, int32 str, 
 	normalize_name(name,TRIM_CHARS);
 	Sql_EscapeStringLen(sql_handle, esc_name, name, strnlen(name, NAME_LENGTH));
 
-	memset( tmp_start_point, 0, sizeof( tmp_start_point32 ) );
+	memset( tmp_start_point, 0, sizeof( tmp_start_point ) );
 	memset(tmp_start_items, 0, MAX_STARTITEM * sizeof(struct startitem));
-	memcpy( tmp_start_point, charserv_config.start_point, sizeof( tmp_start_point32 ) );
+	memcpy( tmp_start_point, charserv_config.start_point, sizeof( tmp_start_point ) );
 	memcpy(tmp_start_items, charserv_config.start_items, MAX_STARTITEM * sizeof(struct startitem));
 
 	flag = char_check_char_name(name,esc_name);
@@ -1511,9 +1511,9 @@ int32 char_make_new_char( struct char_session_data* sd, char* name_, int32 str, 
 
 	// Check for Doram based information.
 	if (start_job == JOB_SUMMONER) { // Check for just this job for now.
-		memset( tmp_start_point, 0, sizeof( tmp_start_point32 ) );
+		memset( tmp_start_point, 0, sizeof( tmp_start_point ) );
 		memset(tmp_start_items, 0, MAX_STARTITEM * sizeof(struct startitem));
-		memcpy( tmp_start_point, charserv_config.start_point_doram, sizeof( tmp_start_point32 ) );
+		memcpy( tmp_start_point, charserv_config.start_point_doram, sizeof( tmp_start_point ) );
 		memcpy(tmp_start_items, charserv_config.start_items_doram, MAX_STARTITEM * sizeof(struct startitem));
 		start_point_idx = rnd() % charserv_config.start_point_count_doram;
 	}
@@ -1818,7 +1818,7 @@ int32 char_mmo_char_tobuf(uint8* buffer, struct mmo_charstatus* p){
 	info->effectstate = p->option;
 	info->virtue = p->karma;
 	info->honor = p->manner;
-	info->jobpoint32 = umin( p->status_point, INT16_MAX );
+	info->jobpoint = umin( p->status_point, INT16_MAX );
 	info->hp = p->hp;
 	info->maxhp = p->max_hp;
 	info->sp = min( p->sp, INT16_MAX );
@@ -1832,7 +1832,7 @@ int32 char_mmo_char_tobuf(uint8* buffer, struct mmo_charstatus* p){
 	//When the weapon is sent and your option is riding, the client crashes on login!?
 	info->weapon = p->option&(0x20|0x80000|0x100000|0x200000|0x400000|0x800000|0x1000000|0x2000000|0x4000000|0x8000000) ? 0 : p->weapon;
 	info->level = p->base_level;
-	info->sppoint32 = umin( p->skill_point, INT16_MAX );
+	info->sppoint = umin( p->skill_point, INT16_MAX );
 	info->accessory = p->head_bottom;
 	info->shield = p->shield;
 	info->accessory2 = p->head_top;
@@ -1843,7 +1843,7 @@ int32 char_mmo_char_tobuf(uint8* buffer, struct mmo_charstatus* p){
 	info->Str = (uint8)u16min( p->str, UINT8_MAX );
 	info->Agi = (uint8)u16min( p->agi, UINT8_MAX );
 	info->Vit = (uint8)u16min( p->vit, UINT8_MAX );
-	info->int32 = (uint8)u16min( p->int_, UINT8_MAX );
+	info->Int = (uint8)u16min( p->int_, UINT8_MAX );
 	info->Dex = (uint8)u16min( p->dex, UINT8_MAX );
 	info->Luk = (uint8)u16min( p->luk, UINT8_MAX );
 	info->CharNum = p->slot;
@@ -2825,11 +2825,11 @@ void char_set_defaults(){
 }
 
 /**
- * Split start_point32 configuration values.
+ * Split start_point configuration values.
  * @param w1_value: Value from w1
  * @param w2_value: Value from w2
- * @param start: Start point32 reference
- * @param count: Start point32 count reference
+ * @param start: Start point reference
+ * @param count: Start point count reference
  */
 void char_config_split_startpoint( char* w1_value, char* w2_value, struct s_point_str start_point[MAX_STARTPOINT], short* count ){
 	char *lineitem, **fields;

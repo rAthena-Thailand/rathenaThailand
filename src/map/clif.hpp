@@ -115,7 +115,7 @@ enum RECV_ROULETTE_ITEM_ACK : uint8_t {
 enum GENERATE_ROULETTE_ACK : uint8_t {
 	GENERATE_ROULETTE_SUCCESS         = 0x0,
 	GENERATE_ROULETTE_FAILED          = 0x1,
-	GENERATE_ROULETTE_NO_ENOUGH_POint32 = 0x2,
+	GENERATE_ROULETTE_NO_ENOUGH_POINT = 0x2,
 	GENERATE_ROULETTE_LOSING          = 0x3,
 };
 
@@ -454,7 +454,7 @@ enum useskill_fail_cause : uint8_t
 	USESKILL_FAIL_MADOGEAR_RIDE = 50,
 	USESKILL_FAIL_SPELLBOOK = 51,
 	USESKILL_FAIL_SPELLBOOK_DIFFICULT_SLEEP = 52,
-	USESKILL_FAIL_SPELLBOOK_PRESERVATION_POint32 = 53,
+	USESKILL_FAIL_SPELLBOOK_PRESERVATION_POINT = 53,
 	USESKILL_FAIL_SPELLBOOK_READING = 54,
 	//XXX_USESKILL_FAIL_II_FACE_PAINTS = 55,
 	//XXX_USESKILL_FAIL_II_MAKEUP_BRUSH = 56,
@@ -1341,7 +1341,7 @@ void clif_channel_msg(struct Channel *channel, const char *msg, unsigned long co
 
 #define clif_menuskill_clear(sd) (sd)->menuskill_id = (sd)->menuskill_val = (sd)->menuskill_val2 = 0;
 
-void clif_update_rankingpoint( map_session_data& sd, e_rank rankingtype, uint32 point32 );
+void clif_update_rankingpoint( map_session_data& sd, e_rank rankingtype, uint32 point );
 
 void clif_crimson_marker( map_session_data& sd, struct block_list& bl, bool remove );
 

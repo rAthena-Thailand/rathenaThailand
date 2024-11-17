@@ -514,11 +514,11 @@ static bool mmo_auth_fromsql(AccountDB_SQL* db, struct mmo_account* acc, uint32 
 	Sql_GetData(sql_handle,  2, &data, nullptr); safestrncpy(acc->pass, data, sizeof(acc->pass));
 	Sql_GetData(sql_handle,  3, &data, nullptr); acc->sex = data[0];
 	Sql_GetData(sql_handle,  4, &data, nullptr); safestrncpy(acc->email, data, sizeof(acc->email));
-	Sql_GetData(sql_handle,  5, &data, nullptr); acc->group_id = (uint32) atoi(data);
-	Sql_GetData(sql_handle,  6, &data, nullptr); acc->state = (uint32) strtoul(data, nullptr, 10);
+	Sql_GetData(sql_handle,  5, &data, nullptr); acc->group_id = (uint32)atoi(data);
+	Sql_GetData(sql_handle,  6, &data, nullptr); acc->state = (uint32)strtoul(data, nullptr, 10);
 	Sql_GetData(sql_handle,  7, &data, nullptr); acc->unban_time = atol(data);
 	Sql_GetData(sql_handle,  8, &data, nullptr); acc->expiration_time = atol(data);
-	Sql_GetData(sql_handle,  9, &data, nullptr); acc->logincount = (uint32) strtoul(data, nullptr, 10);
+	Sql_GetData(sql_handle,  9, &data, nullptr); acc->logincount = (uint32)strtoul(data, nullptr, 10);
 	Sql_GetData(sql_handle, 10, &data, nullptr); safestrncpy(acc->lastlogin, data==nullptr?"":data, sizeof(acc->lastlogin));
 	Sql_GetData(sql_handle, 11, &data, nullptr); safestrncpy(acc->last_ip, data, sizeof(acc->last_ip));
 	Sql_GetData(sql_handle, 12, &data, nullptr); safestrncpy(acc->birthdate, data==nullptr?"":data, sizeof(acc->birthdate));
@@ -726,7 +726,7 @@ void mmo_save_global_accreg(AccountDB* self, int32 fd, uint32 account_id, uint32
 			cursor += 4;
 
 			switch (RFIFOB(fd, cursor++)) {
-				// int
+				// int32
 				case 0:
 					if( SQL_ERROR == Sql_Query(sql_handle, "REPLACE INTO `%s` (`account_id`,`key`,`index`,`value`) VALUES ('%" PRIu32 "','%s','%" PRIu32 "','%" PRId64 "')", db->global_acc_reg_num_table, account_id, esc_key, index, RFIFOQ(fd, cursor)) )
 						Sql_ShowDebug(sql_handle);

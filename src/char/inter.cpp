@@ -1306,7 +1306,7 @@ int32 mapif_parse_Registry(int32 fd)
 			cursor += 4;
 
 			switch (RFIFOB(fd, cursor++)) {
-				// int
+				// int32
 				case 0:
 					inter_savereg( account_id, char_id, key.c_str(), index, RFIFOQ( fd, cursor ), nullptr, false );
 					cursor += 8;

@@ -1739,7 +1739,7 @@ int32 intif_parse_GuildBasicInfoChanged(int32 fd)
 	switch(type) {
 	case GBI_EXP:        g->guild.exp = RFIFOQ(fd,10); break;
 	case GBI_GUILDLV:    g->guild.guild_lv = RFIFOW(fd,10); break;
-	case GBI_SKILLPOINT: g->guild.skill_point32 = RFIFOL(fd,10); break;
+	case GBI_SKILLPOINT: g->guild.skill_point = RFIFOL(fd,10); break;
 	}
 
 	return 1;
@@ -3755,7 +3755,7 @@ int32 intif_parse_clan_onlinecount( int32 fd ){
 //-----------------------------------------------------------------
 
 /**
- * Communication from the inter server, Main entry point32 interface (inter<=>map) 
+ * Communication from the inter server, Main entry point interface (inter<=>map) 
  * @param fd : inter-serv link
  * @return
  *  0 (unknow packet).

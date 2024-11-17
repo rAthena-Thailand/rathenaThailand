@@ -18,13 +18,13 @@ struct s_battleground_member_data {
 	unsigned short x, y;
 	map_session_data *sd;
 	unsigned afk : 1;
-	struct point32 entry_point; ///< Battleground queue entry point
+	struct point entry_point; ///< Battleground queue entry point
 };
 
 struct s_battleground_data {
 	int32 id; ///< Battleground ID
 	std::vector<s_battleground_member_data> members; ///< List of players in battleground
-	struct point32 cemetery; ///< Respawn point32 for players who die
+	struct point cemetery; ///< Respawn point for players who die
 	std::string logout_event; ///< NPC Event to call on log out events
 	std::string die_event; ///< NPC Event to call on death events
 	std::string active_event; ///< NPC Event to call on players joining an active battleground

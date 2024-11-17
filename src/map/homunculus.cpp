@@ -514,7 +514,7 @@ int32 hom_levelup(struct homun_data *hd)
 
 	hom.level++;
 	if (!(hom.level % 3))
-		hom.skillpts++;	//1 skillpoint32 each 3 base level
+		hom.skillpts++;	//1 skillpoint each 3 base level
 
 	hom.exp -= hd->exp_next;
 	hd->exp_next = homun_exp_db.get_nextexp(hom.level);
@@ -530,7 +530,7 @@ int32 hom_levelup(struct homun_data *hd)
 	int32 growth_agi = rnd_value(min->agi, max->agi);
 	int32 growth_vit = rnd_value(min->vit, max->vit);
 	int32 growth_dex = rnd_value(min->dex, max->dex);
-	int32 growth_int32 = rnd_value(min->int_,max->int_);
+	int32 growth_int = rnd_value(min->int_,max->int_);
 	int32 growth_luk = rnd_value(min->luk, max->luk);
 
 	//Aegis discards the decimals in the stat growth values!
@@ -1750,7 +1750,7 @@ uint64 HomunculusDatabase::parseBodyNode(const ryml::NodeRef &node) {
 		}
 		if (hom->gmin.int_ > hom->gmax.int_) {
 			hom->gmin.int_ = hom->gmax.int_;
-			this->invalidWarning(node, "GrowthMinimum int32 %d is greater than GrowthMaximum int32 %d for homunculus %s, capping minimum to maximum.\n", hom->gmin.int_, hom->gmax.int_, class_name.c_str());
+			this->invalidWarning(node, "GrowthMinimum INT %d is greater than GrowthMaximum INT %d for homunculus %s, capping minimum to maximum.\n", hom->gmin.int_, hom->gmax.int_, class_name.c_str());
 		}
 		if (hom->gmin.dex > hom->gmax.dex) {
 			hom->gmin.dex = hom->gmax.dex;
@@ -1782,7 +1782,7 @@ uint64 HomunculusDatabase::parseBodyNode(const ryml::NodeRef &node) {
 		}
 		if (hom->emin.int_ > hom->emax.int_) {
 			hom->emin.int_ = hom->emax.int_;
-			this->invalidWarning(node, "EvolutionMinimum int32 %d is greater than EvolutionMaximum int32 %d for homunculus %s, capping minimum to maximum.\n", hom->emin.int_, hom->emax.int_, class_name.c_str());
+			this->invalidWarning(node, "EvolutionMinimum INT %d is greater than EvolutionMaximum INT %d for homunculus %s, capping minimum to maximum.\n", hom->emin.int_, hom->emax.int_, class_name.c_str());
 		}
 		if (hom->emin.dex > hom->emax.dex) {
 			hom->emin.dex = hom->emax.dex;

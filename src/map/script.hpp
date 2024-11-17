@@ -79,8 +79,8 @@
 
 /// Returns if the script data is a string
 #define data_isstring(data) ( (data)->type == C_STR || (data)->type == C_CONSTSTR )
-/// Returns if the script data is an int
-#define data_isint(data) ( (data)->type == C_int32 )
+/// Returns if the script data is an int32
+#define data_isint(data) ( (data)->type == C_INT )
 /// Returns if the script data is a reference
 #define data_isreference(data) ( (data)->type == C_NAME )
 /// Returns if the script data is a label
@@ -89,7 +89,7 @@
 #define data_isfunclabel(data) ( (data)->type == C_USERFUNC_POS )
 
 /// Returns if this is a reference to a constant
-#define reference_toconstant(data) ( str_data[reference_getid(data)].type == C_int32 )
+#define reference_toconstant(data) ( str_data[reference_getid(data)].type == C_INT )
 /// Returns if this a reference to a param
 #define reference_toparam(data) ( str_data[reference_getid(data)].type == C_PARAM )
 /// Returns if this a reference to a variable
@@ -113,7 +113,7 @@
 /// Composes the uid of a reference from the id and the index
 #define reference_uid(id,idx) ( (int64) ((uint64)(id) & 0xFFFFFFFF) | ((uint64)(idx) << 32) )
 
-/// Checks whether two references point32 to the same variable (or array)
+/// Checks whether two references point to the same variable (or array)
 #define is_same_reference(data1, data2) \
 	(  reference_getid(data1) == reference_getid(data2) \
 	&& ( (data1->ref == data2->ref && data1->ref == nullptr) \

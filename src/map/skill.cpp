@@ -6563,11 +6563,11 @@ int32 skill_castend_damage_id (struct block_list* src, struct block_list *bl, ui
 				// Now extract the data from the preserved spell
 				uint16 pres_skill_id = sc->getSCE(i)->val1;
 				uint16 pres_skill_lv = sc->getSCE(i)->val2;
-				uint16 point32 = sc->getSCE(i)->val3;
+				uint16 point = sc->getSCE(i)->val3;
 
 				status_change_end(src, static_cast<sc_type>(i));
 
-				if( sc->getSCE(SC_FREEZE_SP)->val2 > point32 )
+				if( sc->getSCE(SC_FREEZE_SP)->val2 > point )
 					sc->getSCE(SC_FREEZE_SP)->val2 -= point;
 				else // Last spell to be released
 					status_change_end(src, SC_FREEZE_SP);
@@ -7470,7 +7470,7 @@ int32 skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, 
 				break;
 			}
 
-			if (map_getmapflag(bl->m, MF_PVP) && dstsd && dstsd->pvp_point32 < 0)
+			if (map_getmapflag(bl->m, MF_PVP) && dstsd && dstsd->pvp_point < 0)
 				break;
 
 			switch(skill_lv){
@@ -10101,7 +10101,7 @@ int32 skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, 
 					break;
 				if (tsc && tsc->getSCE(SC_HELLPOWER))
 					break;
-				if (map_getmapflag(bl->m, MF_PVP) && dstsd->pvp_point32 < 0)
+				if (map_getmapflag(bl->m, MF_PVP) && dstsd->pvp_point < 0)
 					break;
 				if (dstsd->special_state.restart_full_recover)
 					per = sper = 100;
@@ -19495,7 +19495,7 @@ int32 skill_vfcastfix(struct block_list *bl, double time, uint16 skill_id, uint1
 	if (varcast_r < 0)
 		time = time * (1 - (float)min(varcast_r, 100) / 100);
 
-	// Apply Variable CastTime calculation by int32 & DEX
+	// Apply Variable CastTime calculation by INT & DEX
 	if (!(flag&1))
 		time = time * (1 - sqrt(((float)(status_get_dex(bl) * 2 + status_get_int(bl)) / battle_config.vcast_stat_scale)));
 
@@ -19797,13 +19797,13 @@ void skill_weaponrefine( map_session_data& sd, int32 idx ){
 				{ // Fame point32 system [DracoRPG]
 					switch(ditem->weapon_level){
 						case 1:
-							pc_addfame(sd, battle_config.fame_refine_lv1); // Success to refine to +10 a lv1 weapon you forged = +1 fame point
+							pc_addfame(sd, battle_config.fame_refine_lv1); // Success to refine to +10 a lv1 weapon you forged = +1 fame point32
 							break;
 						case 2:
-							pc_addfame(sd, battle_config.fame_refine_lv2); // Success to refine to +10 a lv2 weapon you forged = +25 fame point
+							pc_addfame(sd, battle_config.fame_refine_lv2); // Success to refine to +10 a lv2 weapon you forged = +25 fame point32
 							break;
 						case 3:
-							pc_addfame(sd, battle_config.fame_refine_lv3); // Success to refine to +10 a lv3 weapon you forged = +1000 fame point
+							pc_addfame(sd, battle_config.fame_refine_lv3); // Success to refine to +10 a lv3 weapon you forged = +1000 fame point32
 							break;
 					}
 				}
@@ -20737,13 +20737,12 @@ bool skill_check_camouflage(struct block_list *bl, struct status_change_entry *s
 int32 skill_getareachar_skillunit_visibilty_sub(struct block_list *bl, va_list ap) {
 	struct skill_unit *su = nullptr;
 	struct block_list *src = nullptr;
-	uint32 party1 = 0;
 	bool visible = true;
 
 	nullpo_ret(bl);
 	nullpo_ret((su = va_arg(ap, struct skill_unit*)));
 	nullpo_ret((src = va_arg(ap, struct block_list*)));
-	party1 = va_arg(ap, uint32);
+	uint32 party1 = va_arg(ap, uint32);
 
 	if (src != bl) {
 		uint32 party2 = status_get_party_id(bl);
@@ -22189,7 +22188,7 @@ bool skill_produce_mix(map_session_data *sd, uint16 skill_id, t_itemid nameid, i
 							break;
 					}
 
-					make_per = status->int_ + status->dex / 2 + status->luk + sd->status.job_level + (30 + rnd() % 120 + 1) + // Caster's int32 + (Caster's DEX / 2) + Caster's LUK + Caster's Job Level + Random number between (30 ~ 150) +
+					make_per = status->int_ + status->dex / 2 + status->luk + sd->status.job_level + (30 + rnd() % 120 + 1) + // Caster's INT + (Caster's DEX / 2) + Caster's LUK + Caster's Job Level + Random number between (30 ~ 150) +
 						sd->status.base_level + 5 * (pc_checkskill(sd, AM_LEARNINGPOTION) - 20) + pc_checkskill(sd, CR_FULLPROTECTION) * (6 + rnd() % 4 + 1); // Caster's Base Level + (5 x (Potion Research Skill Level - 20)) + (Full Chemical Protection Skill Level x Random number between (6 ~ 10))
 					make_per -= difficulty;
 					qty = production_count[skill_lv - 1];
@@ -22378,7 +22377,7 @@ bool skill_produce_mix(map_session_data *sd, uint16 skill_id, t_itemid nameid, i
 			clif_produceeffect(sd,0,nameid);
 			clif_misceffect( sd->bl, NOTIFYEFFECT_REFINE_SUCCESS );
 			if (wlv >= 3 && ((ele? 1 : 0) + sc) >= 3) // Fame point32 system [DracoRPG]
-				pc_addfame(*sd, battle_config.fame_forge); // Success to forge a lv3 weapon with 3 additional ingredients = +10 fame point
+				pc_addfame(*sd, battle_config.fame_forge); // Success to forge a lv3 weapon with 3 additional ingredients = +10 fame point32
 		} else {
 			int32 fame = 0;
 			tmp_item.amount = 0;
@@ -22812,7 +22811,7 @@ void skill_spellbook(map_session_data &sd, t_itemid nameid) {
 
 	if (sc && sc->getSCE(SC_FREEZE_SP)) {
 		if ((sc->getSCE(SC_FREEZE_SP)->val2 + points) > 8 * pc_checkskill(&sd, WL_FREEZE_SP) + status_get_int(&sd.bl) / 10 + sd.status.base_level / 10) {
-			clif_skill_fail( sd, WL_READING_SB, USESKILL_FAIL_SPELLBOOK_PRESERVATION_POint32 );
+			clif_skill_fail( sd, WL_READING_SB, USESKILL_FAIL_SPELLBOOK_PRESERVATION_POINT );
 			return;
 		}
 		for (int32 i = SC_MAXSPELLBOOK; i >= SC_SPELLBOOK1; i--) { // This is how official saves spellbook. [malufett]

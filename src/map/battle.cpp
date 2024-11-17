@@ -466,7 +466,7 @@ int64 battle_attr_fix(struct block_list *src, struct block_list *target, int64 d
 		return damage;
 	}
 
-	ratio = elemental_attribute_db.getAttribute(def_lv-1, atk_elem, def_type);
+	ratio = elemental_attribute_db.getAttribute(def_lv, atk_elem, def_type);
 	if (sc != nullptr && !sc->empty()) { //increase dmg by src status
 		switch(atk_elem){
 			case ELE_FIRE:
@@ -762,7 +762,7 @@ int32 battle_calc_cardfix(int32 attack_type, struct block_list *src, struct bloc
 				// On (at least) BF_MAGIC, damages are calculated consecutively and rounded down in the following order to match official damage :
 				// size, race2, ele, atk_ele, race, class
 				APPLY_CARDFIX_RE( damage, sd->indexed_bonus.magic_addsize[tstatus->size] + sd->indexed_bonus.magic_addsize[SZ_ALL] );
-				
+
 				// race2 is the same as the bonus per class ID
 				for (const auto &raceit : t_race2)
 					race2_val += sd->indexed_bonus.magic_addrace2[raceit];
@@ -1295,7 +1295,7 @@ bool battle_status_block_damage(struct block_list *src, struct block_list *targe
 			}
 			break;
 		case ELE_HOLY:
-			if( sc->getSCE( SC_IMMUNE_PROPERTY_SAint32 ) ){
+			if( sc->getSCE( SC_IMMUNE_PROPERTY_SAINT ) ){
 				damage = 0;
 				return false;
 			}
@@ -1951,23 +1951,6 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 				case HN_MEGA_SONIC_BLOW:
 				case HN_SPIRAL_PIERCE_MAX:
 					damage *= 2;
-					break;
-			}
-		}
-
-		if (sc->getSCE(SC_RULEBREAK)) {
-			switch (skill_id) {
-				case HN_METEOR_STORM_BUSTER:
-				case HN_GROUND_GRAVITATION:
-					damage += damage / 2;
-					break;
-				case HN_JUPITEL_THUNDER_STORM:
-				case HN_JACK_FROST_NOVA:
-				case HN_HELLS_DRIVE:
-					damage += damage * 70 / 100;
-					break;
-				case HN_NAPALM_VULCAN_STRIKE:
-					damage += damage * 40 / 100;
 					break;
 			}
 		}
@@ -5615,7 +5598,7 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 			}
 			break;
 		case GN_HELLS_PLANT_ATK:
-			skillratio += -100 + 100 * skill_lv + sstatus->int_ * (sd ? pc_checkskill(sd, AM_CANNIBALIZE) : 5); // !TODO: Confirm int32 and Cannibalize bonus
+			skillratio += -100 + 100 * skill_lv + sstatus->int_ * (sd ? pc_checkskill(sd, AM_CANNIBALIZE) : 5); // !TODO: Confirm INT and Cannibalize bonus
 			RE_LVL_DMOD(100);
 			break;
 		// Physical Elemantal Spirits Attack Skills
@@ -7168,7 +7151,7 @@ static void battle_calc_weapon_final_atk_modifiers(struct Damage* wd, struct blo
 		// Only affecting non-skills
 		if (!skill_id && wd->dmg_lv > ATK_BLOCK) {
 			if (sc->getSCE(SC_ENCHANTBLADE)) {
-				//[((Skill Lv x 20) + 100) x (casterBaseLevel / 150)] + casterint32 + MATK - MDEF - MDEF2
+				//[((Skill Lv x 20) + 100) x (casterBaseLevel / 150)] + casterInt + MATK - MDEF - MDEF2
 				int64 enchant_dmg = sc->getSCE(SC_ENCHANTBLADE)->val2;
 				if (sstatus->matk_max > sstatus->matk_min)
 					enchant_dmg = enchant_dmg + sstatus->matk_min + rnd() % (sstatus->matk_max - sstatus->matk_min);
@@ -8326,7 +8309,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						RE_LVL_DMOD(100);
 						break;
 					case LG_RAYOFGENESIS:
-						skillratio += -100 + 350 * skill_lv + sstatus->int_; // !TODO: What's the int32 bonus?
+						skillratio += -100 + 350 * skill_lv + sstatus->int_; // !TODO: What's the INT bonus?
 						RE_LVL_DMOD(100);
 						break;
 					case NPC_RAYOFGENESIS:
@@ -8376,7 +8359,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 							skillratio += (sd ? sd->status.job_level * 5 : 0);
 						break;
 					case SO_POISON_BUSTER:
-						skillratio += -100 + 1000 + 300 * skill_lv + sstatus->int_ / 6; // !TODO: Confirm int32 bonus
+						skillratio += -100 + 1000 + 300 * skill_lv + sstatus->int_ / 6; // !TODO: Confirm INT bonus
 						if( tsc && tsc->getSCE(SC_CLOUD_POISON) )
 							skillratio += 200 * skill_lv;
 						RE_LVL_DMOD(100);
@@ -8452,13 +8435,13 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						break;
 					case MH_ERASER_CUTTER:
 					case MH_XENO_SLASHER:
-						skillratio += -100 + 450 * skill_lv * status_get_lv(src) / 100 + sstatus->int_; // !TODO: Confirm Base Level and int32 bonus
+						skillratio += -100 + 450 * skill_lv * status_get_lv(src) / 100 + sstatus->int_; // !TODO: Confirm Base Level and INT bonus
 						break;
 					case MH_TWISTER_CUTTER:
-						skillratio += -100 + 480 * skill_lv * status_get_lv(src) / 100 + sstatus->int_; // !TODO: Confirm Base Level and int32 bonus
+						skillratio += -100 + 480 * skill_lv * status_get_lv(src) / 100 + sstatus->int_; // !TODO: Confirm Base Level and INT bonus
 						break;
 					case MH_ABSOLUTE_ZEPHYR:
-						skillratio += -100 + 1000 + 450 * skill_lv * status_get_lv(src) / 100 + sstatus->int_; // !TODO: Confirm Base Level and int32 bonus
+						skillratio += -100 + 1000 + 450 * skill_lv * status_get_lv(src) / 100 + sstatus->int_; // !TODO: Confirm Base Level and INT bonus
 						break;
 					case MH_HEILIGE_STANGE:
 						skillratio += -100 + 1500 + 250 * skill_lv * status_get_lv(src) / 150 + sstatus->vit; // !TODO: Confirm VIT bonus
@@ -8474,7 +8457,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						break;
 					case SU_CN_METEOR:
 					case SU_CN_METEOR2:
-						skillratio += 100 + 100 * skill_lv + sstatus->int_ * 5; // !TODO: Confirm int32 bonus
+						skillratio += 100 + 100 * skill_lv + sstatus->int_ * 5; // !TODO: Confirm INT bonus
 						RE_LVL_DMOD(100);
 						break;
 					case NPC_VENOMFOG:
@@ -8499,6 +8482,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 							skillratio += -100 + 1200 + 300 * skill_lv;
 						else
 							skillratio += -100 + 400 + 100 * skill_lv;
+						RE_LVL_DMOD(100);
 						break;
 					case SP_SPA:
 						skillratio += 400 + 250 * skill_lv;
@@ -8795,53 +8779,95 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 					case HN_NAPALM_VULCAN_STRIKE:
 						skillratio += -100 + 350 + 650 * skill_lv;
 						skillratio += pc_checkskill(sd, HN_SELFSTUDY_SOCERY) * 4 * skill_lv;
-						skillratio += 5 * sstatus->spl;
+						skillratio += 3 * sstatus->spl;
 						RE_LVL_DMOD(100);
+						// After RE_LVL_DMOD calculation, HN_SELFSTUDY_SOCERY amplifies the skill ratio of HN_NAPALM_VULCAN_STRIKE by (2x skill level)%
+						skillratio += skillratio * 2 * pc_checkskill(sd, HN_SELFSTUDY_SOCERY) / 100;
+						// SC_RULEBREAK increases the skill ratio after HN_SELFSTUDY_SOCERY
+						if (sc && sc->getSCE(SC_RULEBREAK))
+							skillratio += skillratio * 40 / 100;
 						break;
 					case HN_JUPITEL_THUNDER_STORM:
 						skillratio += -100 + 1800 * skill_lv;
 						skillratio += pc_checkskill(sd, HN_SELFSTUDY_SOCERY) * 3 * skill_lv;
-						skillratio += 5 * sstatus->spl;
+						skillratio += 3 * sstatus->spl;
 						RE_LVL_DMOD(100);
+						// After RE_LVL_DMOD calculation, HN_SELFSTUDY_SOCERY amplifies the skill ratio of HN_JUPITEL_THUNDER_STORM by (skill level)%
+						skillratio += skillratio * pc_checkskill(sd, HN_SELFSTUDY_SOCERY) / 100;
+						// SC_RULEBREAK increases the skill ratio after HN_SELFSTUDY_SOCERY
+						if (sc && sc->getSCE(SC_RULEBREAK))
+							skillratio += skillratio * 70 / 100;
 						break;
 					case HN_HELLS_DRIVE:
 						skillratio += -100 + 1700 + 900 * skill_lv;
 						skillratio += pc_checkskill(sd, HN_SELFSTUDY_SOCERY) * 4 * skill_lv;
-						skillratio += 5 * sstatus->spl;
+						skillratio += 3 * sstatus->spl;
 						RE_LVL_DMOD(100);
+						// After RE_LVL_DMOD calculation, HN_SELFSTUDY_SOCERY amplifies the skill ratio of HN_HELLS_DRIVE by (skill level)%
+						skillratio += skillratio * pc_checkskill(sd, HN_SELFSTUDY_SOCERY) / 100;
+						// SC_RULEBREAK increases the skill ratio after HN_SELFSTUDY_SOCERY
+						if (sc && sc->getSCE(SC_RULEBREAK))
+							skillratio += skillratio * 70 / 100;
 						break;
 					case HN_GROUND_GRAVITATION:
 						if (mflag & SKILL_ALTDMG_FLAG) {
+							// Initial damage
 							skillratio += -100 + 3000 + 1500 * skill_lv;
 							skillratio += pc_checkskill(sd, HN_SELFSTUDY_SOCERY) * 4 * skill_lv;
+							skillratio += 5 * sstatus->spl;
 							ad.div_ = -2;
 						} else {
+							// Gravitational field damage
 							skillratio += -100 + 800 + 700 * skill_lv;
 							skillratio += pc_checkskill(sd, HN_SELFSTUDY_SOCERY) * 2 * skill_lv;
+							skillratio += 2 * sstatus->spl;
 						}
-						skillratio += 5 * sstatus->spl;
 						RE_LVL_DMOD(100);
+						// After RE_LVL_DMOD calculation, HN_SELFSTUDY_SOCERY amplifies the skill ratio of HN_GROUND_GRAVITATION (gravity field damage) by (skill level)%
+						if (!(mflag & SKILL_ALTDMG_FLAG))
+							skillratio += skillratio * pc_checkskill(sd, HN_SELFSTUDY_SOCERY) / 100;
+						// SC_RULEBREAK increases the skill ratio after HN_SELFSTUDY_SOCERY
+						if (sc && sc->getSCE(SC_RULEBREAK))
+							skillratio += skillratio * 50 / 100;
 						break;
 					case HN_JACK_FROST_NOVA:
 						if (mflag & SKILL_ALTDMG_FLAG) {
+							// Initial damage
 							skillratio += -100 + 200 * skill_lv;
+							skillratio += 2 * sstatus->spl;
+							ad.div_ = 1;	// 1 hit
 						} else {
+							// Explosion damage
 							skillratio += -100 + 400 + 500 * skill_lv;
+							skillratio += 4 * sstatus->spl;
 						}
 						skillratio += pc_checkskill(sd, HN_SELFSTUDY_SOCERY) * 3 * skill_lv;
-						skillratio += 5 * sstatus->spl;
 						RE_LVL_DMOD(100);
+						// After RE_LVL_DMOD calculation, HN_SELFSTUDY_SOCERY amplifies the skill ratio of HN_JACK_FROST_NOVA (explosion damage) by (skill level)%
+						if (!(mflag & SKILL_ALTDMG_FLAG))
+							skillratio += skillratio * pc_checkskill(sd, HN_SELFSTUDY_SOCERY) / 100;
+						// SC_RULEBREAK increases the skill ratio after HN_SELFSTUDY_SOCERY
+						if (sc && sc->getSCE(SC_RULEBREAK))
+							skillratio += skillratio * 70 / 100;
 						break;
 					case HN_METEOR_STORM_BUSTER:
 						if (mflag & SKILL_ALTDMG_FLAG) {
-							skillratio += -100 + 300 + 160 * skill_lv * 2;
+							// Fall damage
+							skillratio += -100 + 300 + 320 * skill_lv;
 							ad.div_ = -3;
 						} else {
+							// Explosion damage
 							skillratio += -100 + 450 + 160 * skill_lv;
 						}
 						skillratio += pc_checkskill(sd, HN_SELFSTUDY_SOCERY) * 5 * skill_lv;
-						skillratio += 5 * sstatus->spl;
+						skillratio += 3 * sstatus->spl;
 						RE_LVL_DMOD(100);
+						// After RE_LVL_DMOD calculation, HN_SELFSTUDY_SOCERY amplifies the skill ratio of HN_METEOR_STORM_BUSTER (fall damage) by (skill level)%
+						if (mflag & SKILL_ALTDMG_FLAG)
+							skillratio += skillratio * pc_checkskill(sd, HN_SELFSTUDY_SOCERY) / 100;
+						// SC_RULEBREAK increases the skill ratio after HN_SELFSTUDY_SOCERY
+						if (sc && sc->getSCE(SC_RULEBREAK))
+							skillratio += skillratio * 50 / 100;
 						break;
 				}
 
@@ -8872,7 +8898,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 		if (sd != nullptr && sd->status.weapon == W_2HSTAFF && (i = pc_checkskill(sd, AG_TWOHANDSTAFF)) > 0) {
 			ad.damage += ad.damage * i / 100;
 		}
-		
+
 		if (has_skillratio) {
 			// S.MATK needs to be applied before the skill ratio to prevent rounding issues
 			if (sd && sstatus->smatk > 0)
@@ -9040,7 +9066,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 					if(sc->getSCE(SC_PETROLOGY_OPTION))
 						ad.damage += (6 + sstatus->int_ / 4) + max(sstatus->dex - 10, 0) / 30;
 					break;
-					
+
 				// Buff applied after def reduction and before battle_attr_fix
 				case AG_DESTRUCTIVE_HURRICANE:
 					if (sc->getSCE(SC_CLIMAX)) {

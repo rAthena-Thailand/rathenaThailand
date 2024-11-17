@@ -841,7 +841,7 @@ void set_label(int32 l,int32 pos, const char* script_pos_cur)
 {
 	int32 i;
 
-	if(str_data[l].type==C_int32 || str_data[l].type==C_PARAM || str_data[l].type==C_FUNC)
+	if(str_data[l].type==C_INT || str_data[l].type==C_PARAM || str_data[l].type==C_FUNC)
 	{	//Prevent overwriting constants values, parameters and built-in functions [Skotlex]
 		disp_error_message("set_label: invalid label name",script_pos_cur);
 		return;
@@ -1380,7 +1380,7 @@ const char* parse_simpleexpr(const char *p)
 		}
 
 #if defined(SCRIPT_CONSTANT_DEPRECATION)
-		if( str_data[l].type == C_int32 && str_data[l].deprecated ){
+		if( str_data[l].type == C_INT && str_data[l].deprecated ){
 			ShowWarning( "Usage of deprecated constant '%s'.\n", get_str(l) );
 			ShowWarning( "This constant was deprecated and could become unavailable anytime soon.\n" );
 			if (str_data[l].name)
@@ -1842,7 +1842,7 @@ const char* parse_syntax(const char* p)
 				// For (; Because the pattern of always true ;)
 				;
 			} else {
-				// Skip to the end point32 if the condition is false
+				// Skip to the end point if the condition is false
 				sprintf(label,"__FR%x_FIN",syntax.curly[pos].index);
 				add_scriptl(add_str("jump_zero"));
 				add_scriptc(C_ARG);
@@ -2018,7 +2018,7 @@ const char* parse_syntax(const char* p)
 			l=add_str(label);
 			set_label(l,script_pos,p);
 
-			// Skip to the end point32 if the condition is false
+			// Skip to the end point if the condition is false
 			sprintf(label,"__WL%x_FIN",syntax.curly[syntax.curly_count].index);
 			syntax.curly_count++;
 			add_scriptl(add_str("jump_zero"));
@@ -2129,7 +2129,7 @@ const char* parse_syntax_close_sub(const char* p,int* flag)
 			set_label(l2,script_pos,p);
 		}
 
-		// Skip to the end point32 if the condition is false
+		// Skip to the end point if the condition is false
 		p = skip_space(p);
 		p2 = skip_word(p);
 		if(p2 - p != 5 || strncasecmp(p,"while",5))
@@ -2157,7 +2157,7 @@ const char* parse_syntax_close_sub(const char* p,int* flag)
 		parse_line(label2);
 		syntax.curly_count--;
 
-		// Form label of the end point32 conditions
+		// Form label of the end point conditions
 		sprintf(label2,"__DO%x_FIN",syntax.curly[pos].index);
 		l2=add_str(label2);
 		set_label(l2,script_pos,p);
@@ -2234,7 +2234,7 @@ static void add_buildin_func(void)
 		// arg must follow the pattern: (v|s|i|r|l)*\?*\*?
 		// 'v' - value (either string or int32 or reference)
 		// 's' - string
-		// 'i' - int
+		// 'i' - int32
 		// 'r' - reference (of a variable)
 		// 'l' - label
 		// '?' - one optional parameter
@@ -2273,7 +2273,7 @@ const char* script_get_constant_str( const char* prefix, int64 value ){
 
 	for(int32 i = 0; i < str_data_size; i++ ){
 		// Check if it is a constant
-		if( str_data[i].type != C_int32 ){
+		if( str_data[i].type != C_INT ){
 			continue;
 		}
 
@@ -2314,7 +2314,7 @@ bool script_get_constant(const char* name, int64* value)
 {
 	int32 n = search_str(name);
 
-	if( n == -1 || str_data[n].type != C_int32 )
+	if( n == -1 || str_data[n].type != C_INT )
 	{// not found or not a constant
 		return false;
 	}
@@ -2344,7 +2344,7 @@ void script_set_constant_(const char* name, int64 value, const char* constant_na
 		str_data[n].deprecated = deprecated;
 		str_data[n].name = constant_name;
 	}
-	else if( str_data[n].type == C_PARAM || str_data[n].type == C_int32 )
+	else if( str_data[n].type == C_PARAM || str_data[n].type == C_INT )
 	{// existing parameter or constant
 		ShowError("script_set_constant: Attempted to overwrite existing %s '%s' (old value=%" PRId64 ", new value=%" PRId64 ").\n", ( str_data[n].type == C_PARAM ) ? "parameter" : "constant", name, str_data[n].val, value);
 	}
@@ -2850,7 +2850,7 @@ const char* get_val2_str( struct script_state* st, int64 uid, struct reg_db* ref
 
 	const char* value = "";
 
-	if( data->type == C_int32 ){
+	if( data->type == C_INT ){
 		ShowError( "get_val2_num: Invalid call. Variable %s is a numeric type.\n", reference_getname( data ) );
 	}else{
 		value = data->u.str;
@@ -2871,7 +2871,7 @@ int64 get_val2_num( struct script_state* st, int64 uid, struct reg_db* ref ){
 
 	int64 value = 0;
 
-	if( data->type == C_int32 ){
+	if( data->type == C_INT ){
 		value = data->u.num;
 	}else{
 		ShowError( "get_val2_num: Invalid call. Variable %s is not a numeric type.\n", reference_getname( data ) );
@@ -3112,7 +3112,7 @@ void script_array_update(struct reg_db *src, int64 num, bool empty)
 			}
 		} else if( !empty ) { /* new entry */
 			script_array_add_member(sa,index);
-			// we do nothing if its empty, no point32 in modifying array data for a new empty member
+			// we do nothing if its empty, no point in modifying array data for a new empty member
 		}
 	} else if ( !empty ) { // we only move to create if not empty
 		sa = ers_alloc(array_ers, struct script_array);
@@ -3376,7 +3376,7 @@ const char* conv_str(struct script_state* st, struct script_data* data)
 }
 
 /**
- * Converts the data to an int
+ * Converts the data to an int32
  * @param st
  * @param data
  * @param sd
@@ -3388,7 +3388,7 @@ int64 conv_num_(struct script_state* st, struct script_data* data, map_session_d
 	{// nothing to convert
 	}
 	else if( data_isstring(data) )
-	{// string -> int
+	{// string -> int32
 		// the result does not overflow or underflow, it is capped instead
 		// ex: 999999999999 is capped to INT_MAX (2147483647)
 		char* p = data->u.str;
@@ -5653,9 +5653,8 @@ BUILDIN_FUNC(warp)
 static int32 buildin_areawarp_sub(struct block_list *bl,va_list ap)
 {
 	int32 x2,y2,x3,y3;
-	uint32 index;
 
-	index = va_arg(ap,uint32);
+	uint32 index = va_arg(ap,uint32);
 	x2 = va_arg(ap,int);
 	y2 = va_arg(ap,int);
 	x3 = va_arg(ap,int);
@@ -5806,7 +5805,7 @@ BUILDIN_FUNC(warpparty)
 	switch (type)
 	{
 		case WARPPARTY_SAVEPOINT:
-			//"SavePoint" uses save point32 of the currently attached player
+			//"SavePoint" uses save point of the currently attached player
 			if ( !script_rid2sd(sd) )
 				return SCRIPT_CMD_FAILURE;
 			break;
@@ -5953,7 +5952,7 @@ BUILDIN_FUNC(warpguild)
 		 : 3;
 
 	if( type == 2 && !script_rid2sd(sd) )
-	{// "SavePoint" uses save point32 of the currently attached player
+	{// "SavePoint" uses save point of the currently attached player
 		return SCRIPT_CMD_SUCCESS;
 	}
 
@@ -5982,7 +5981,7 @@ BUILDIN_FUNC(warpguild)
 			if(!map_getmapflag(pl_sd->bl.m, MF_NORETURN))
 				pc_setpos( pl_sd, mapindex_name2id( pl_sd->status.save_point.map ), pl_sd->status.save_point.x, pl_sd->status.save_point.y, CLR_TELEPORT );
 		break;
-		case 2: // SavePoint
+		case 2: // SavePoint32
 			if(!map_getmapflag(pl_sd->bl.m, MF_NORETURN))
 				pc_setpos( pl_sd, mapindex_name2id( sd->status.save_point.map ),sd->status.save_point.x, sd->status.save_point.y, CLR_TELEPORT );
 		break;
@@ -9650,7 +9649,7 @@ BUILDIN_FUNC(successrefitem) {
 			sd->inventory.u.items_inventory[i].card[0] == CARD0_FORGE &&
 			sd->status.char_id == (int)MakeDWord(sd->inventory.u.items_inventory[i].card[2],sd->inventory.u.items_inventory[i].card[3]) &&
 			sd->inventory_data[i]->type == IT_WEAPON )
-		{ // Fame point32 system [DracoRPG]
+		{ // Fame point system [DracoRPG]
 			switch( sd->inventory_data[i]->weapon_level ){
 				case 1:
 					pc_addfame(*sd, battle_config.fame_refine_lv1); // Success to refine to +10 a lv1 weapon you forged = +1 fame point
@@ -10684,10 +10683,10 @@ BUILDIN_FUNC(setmadogear)
 	return SCRIPT_CMD_SUCCESS;
 }
 
-/// Sets the save point32 of the player.
+/// Sets the save point of the player.
 ///
 /// save "<map name>",<x>,<y>{,{<range x>,<range y>,}<char_id>}
-/// savepoint32 "<map name>",<x>,<y>{,{<range x>,<range y>,}<char_id>}
+/// savepoint "<map name>",<x>,<y>{,{<range x>,<range y>,}<char_id>}
 BUILDIN_FUNC(savepoint)
 {
 	int32 x, y, m, cid_pos = 5;
@@ -12818,7 +12817,7 @@ BUILDIN_FUNC(skillpointcount)
 	TBL_PC *sd;
 	if (!script_charid2sd(2,sd))
 		return SCRIPT_CMD_FAILURE;
-	script_pushint(st,sd->status.skill_point32 + pc_resetskill(sd,2));
+	script_pushint(st,sd->status.skill_point + pc_resetskill(sd,2));
 	return SCRIPT_CMD_SUCCESS;
 }
 
@@ -13122,7 +13121,7 @@ BUILDIN_FUNC(getwaitingroomstate)
 /// Players are automatically removed from the waiting room.
 /// Those waiting the longest will get warped first.
 /// The target map can be "Random" for a random position in the current map,
-/// and "SavePoint" for the savepoint32 map+position.
+/// and "SavePoint" for the savepoint map+position.
 /// The map flag noteleport of the current map is only considered when teleporting to the savepoint.
 ///
 /// The id's of the teleported players are put into the array $@warpwaitingpc[]
@@ -19594,7 +19593,7 @@ BUILDIN_FUNC(setunitdata)
 			case UNPC_INT: nd->params.int_ = (unsigned short)value; status_calc_misc(bl, &nd->status, nd->level); break;
 			case UNPC_DEX: nd->params.dex = (unsigned short)value; status_calc_misc(bl, &nd->status, nd->level); break;
 			case UNPC_LUK: nd->params.luk = (unsigned short)value; status_calc_misc(bl, &nd->status, nd->level); break;
-			case UNPC_PLUSALLSTAT: nd->stat_point32 = (uint32)value; break;
+			case UNPC_PLUSALLSTAT: nd->stat_point = (uint32)value; break;
 			case UNPC_ATKRANGE: nd->status.rhw.range = (unsigned short)value; break;
 			case UNPC_ATKMIN: nd->status.rhw.atk = (unsigned short)value; break;
 			case UNPC_ATKMAX: nd->status.rhw.atk2 = (unsigned short)value; break;
@@ -23079,8 +23078,8 @@ BUILDIN_FUNC(npcskill)
 	npc_level	= script_getnum(st, 5);
 	nd			= (struct npc_data *)map_id2bl(sd->npc_id);
 
-	if (stat_point32 > battle_config.max_third_parameter) {
-		ShowError("npcskill: stat point32 exceeded maximum of %d.\n",battle_config.max_third_parameter );
+	if (stat_point > battle_config.max_third_parameter) {
+		ShowError("npcskill: stat point exceeded maximum of %d.\n",battle_config.max_third_parameter );
 		return SCRIPT_CMD_FAILURE;
 	}
 	if (npc_level > MAX_LEVEL) {
@@ -23092,7 +23091,7 @@ BUILDIN_FUNC(npcskill)
 	}
 
 	nd->level = npc_level;
-	nd->stat_point32 = stat_point;
+	nd->stat_point = stat_point;
 
 	if (!nd->status.hp)
 		status_calc_npc(nd, SCO_FIRST);
@@ -24800,7 +24799,7 @@ BUILDIN_FUNC(openstorage2) {
 		st->state = END;
 		return SCRIPT_CMD_FAILURE;
 	}
-	
+
 	int32 stor_id = script_getnum(st, 2);
 
 	if (!storage_exists(stor_id)) {

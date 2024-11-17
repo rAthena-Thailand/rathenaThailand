@@ -4,6 +4,8 @@
 #ifndef INT_CLAN_HPP
 #define INT_CLAN_HPP
 
+#include <common/cbasetypes.hpp>
+
 int32 inter_clan_parse_frommap( int32 fd );
 int32 inter_clan_init(void);
 void inter_clan_final(void);

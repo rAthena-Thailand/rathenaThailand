@@ -55,7 +55,7 @@ int32 elemental_create(map_session_data *sd, int32 class_, uint32 lifetime) {
 	ele.mode = EL_MODE_PASSIVE; // Initial mode
 	int32 i = db->status.size+1; // summon level
 
-	//[(Caster's Max HP/ 3 ) + (Caster's int32 x 10 )+ (Caster's Job Level x 20 )] x [(Elemental Summon Level + 2) / 3]
+	//[(Caster's Max HP/ 3 ) + (Caster's INT x 10 )+ (Caster's Job Level x 20 )] x [(Elemental Summon Level + 2) / 3]
 	ele.hp = ele.max_hp = (sd->battle_status.max_hp/3 + sd->battle_status.int_*10 + sd->status.job_level*20) * ((i + 2) / 3);
 	//Caster's Max SP /4
 	ele.sp = ele.max_sp = sd->battle_status.max_sp/4;
@@ -65,13 +65,13 @@ int32 elemental_create(map_session_data *sd, int32 class_, uint32 lifetime) {
 	ele.atk2 = sd->battle_status.max_sp / (18 / i);
 	//Caster's HIT + (Caster's Base Level)
 	ele.hit = sd->battle_status.hit + sd->status.base_level;
-	//[Elemental Summon Skill Level x (Caster's int32 / 2 + Caster's DEX / 4)]
+	//[Elemental Summon Skill Level x (Caster's INT / 2 + Caster's DEX / 4)]
 	ele.matk = i * (sd->battle_status.int_ / 2 + sd->battle_status.dex / 4);
 	//150 + [Caster's DEX / 10] + [Elemental Summon Skill Level x 3 ]
 	ele.amotion = 150 + sd->battle_status.dex / 10 + i * 3;
 	//Caster's DEF + (Caster's Base Level / (5 - Elemental Summon Skill Level)
 	ele.def = sd->battle_status.def + sd->status.base_level / (5-i);
-	//Caster's MDEF + (Caster's int32 / (5 - Elemental Summon Skill Level)
+	//Caster's MDEF + (Caster's INT / (5 - Elemental Summon Skill Level)
 	ele.mdef = sd->battle_status.mdef + sd->battle_status.int_ / (5-i);
 	//Caster's FLEE + (Caster's Base Level / (5 - Elemental Summon Skill Level)
 	ele.flee = sd->battle_status.flee + sd->status.base_level / (5-i);
@@ -630,7 +630,7 @@ static int32 elemental_ai_sub_timer(s_elemental_data *ed, map_session_data *sd, 
 		}
 
 		//Attempt to attack.
-		//At this point32 we know the target is attackable, we just gotta check if the range matches.
+		//At this point we know the target is attackable, we just gotta check if the range matches.
 		if( ed->ud.target == target->id && ed->ud.attacktimer != INVALID_TIMER ) //Already locked.
 			return 1;
 

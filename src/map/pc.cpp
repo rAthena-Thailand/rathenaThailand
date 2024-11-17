@@ -1299,7 +1299,7 @@ void pc_makesavestatus(map_session_data *sd) {
 	sd->status.option = sd->sc.option&(OPTION_INVISIBLE|OPTION_CART|OPTION_FALCON|OPTION_RIDING|OPTION_DRAGON|OPTION_WUG|OPTION_WUGRIDER|OPTION_MADOGEAR);
 #endif
 
-	// Mark last point32 as not instance related by default
+	// Mark last point as not instance related by default
 	sd->status.last_point_instanceid = 0;
 
 	if (sd->sc.getSCE(SC_JAILED)) { //When Jailed, do not move last point.
@@ -1390,7 +1390,7 @@ void pc_setnewpc(map_session_data *sd, uint32 account_id, uint32 char_id, int32 
 }
 
 /**
-* Get equip point32 for an equip
+* Get equip point for an equip
 * @param sd
 * @param id
 */
@@ -1416,7 +1416,7 @@ int32 pc_equippoint_sub(map_session_data *sd,struct item_data* id){
 }
 
 /**
-* Get equip point32 for an equip
+* Get equip point for an equip
 * @param sd
 * @param n Equip index in inventory
 */
@@ -1901,10 +1901,10 @@ uint8 pc_isequip(map_session_data *sd,int32 n)
 }
 
 /**
- * Performs some special modifications to a player's last point32 location,
+ * Performs some special modifications to a player's last point location,
  * if the map has a nosave mapflag or if the map was an instance.
  * @param sd: Player data
- * @return True if the player should be returned to his savepoint32 or false if not
+ * @return True if the player should be returned to his savepoint or false if not
  */
 bool pc_lastpoint_special( map_session_data& sd ){
 	int16 mapid = map_mapname2mapid( sd.status.last_point.map );
@@ -1941,7 +1941,7 @@ bool pc_lastpoint_special( map_session_data& sd ){
 		}
 	}
 
-	// Check if the last point32 was an instance
+	// Check if the last point was an instance
 	if( sd.status.last_point_instanceid == 0 ){
 		// Nothing to do
 		return false;
@@ -2145,7 +2145,7 @@ bool pc_authok(map_session_data *sd, uint32 login_id2, time_t expiration_time, i
 	sd->vars_ok = false;
 	sd->vars_received = 0x0;
 
-	// Check if the player's last point32 requires special handling and if conditions apply to return the player to his savepoint
+	// Check if the player's last point requires special handling and if conditions apply to return the player to his savepoint
 	if( pc_lastpoint_special( *sd ) ){
 		// The player should be warped back to his savepoint
 		safestrncpy( sd->status.last_point.map, sd->status.save_point.map, sizeof( sd->status.last_point.map ) );
@@ -2317,7 +2317,7 @@ TIMER_FUNC(pc_goldpc_update){
 
 /*==========================================
  * Invoked once after the char/account/account2 registry variables are received. [Skotlex]
- * We didn't receive item information at this point32 so DO NOT attempt to do item operations here.
+ * We didn't receive item information at this point so DO NOT attempt to do item operations here.
  * See intif_parse_StorageReceived() for item operations [lighta]
  *------------------------------------------*/
 void pc_reg_received(map_session_data *sd)
@@ -2494,7 +2494,7 @@ void pc_reg_received(map_session_data *sd)
 
 static int32 pc_calc_skillpoint(map_session_data* sd)
 {
-	uint16 i, skill_point32 = 0;
+	uint16 i, skill_point = 0;
 
 	nullpo_ret(sd);
 
@@ -2507,9 +2507,9 @@ static int32 pc_calc_skillpoint(map_session_data* sd)
 				)
 			{
 				if(sd->status.skill[i].flag == SKILL_FLAG_PERMANENT)
-					skill_point32 += sd->status.skill[i].lv;
+					skill_point += sd->status.skill[i].lv;
 				else if(sd->status.skill[i].flag >= SKILL_FLAG_REPLACED_LV_0)
-					skill_point32 += (sd->status.skill[i].flag - SKILL_FLAG_REPLACED_LV_0);
+					skill_point += (sd->status.skill[i].flag - SKILL_FLAG_REPLACED_LV_0);
 			}
 		}
 	}
@@ -2727,14 +2727,14 @@ void pc_calc_skilltree(map_session_data *sd)
 		}
 	} while(flag);
 
-	if( class_ > 0 && sd->status.skill_point32 == 0 && pc_is_taekwon_ranker(sd) ) {
+	if( class_ > 0 && sd->status.skill_point == 0 && pc_is_taekwon_ranker(sd) ) {
 		uint16 skid = 0;
 
 		/* Taekwon Ranker Bonus Skill Tree
 		============================================
 		- Grant All Taekwon Tree, but only as Bonus Skills in case they drop from ranking.
 		- (c > 0) to avoid grant Novice Skill Tree in case of Skill Reset (need more logic)
-		- (sd->status.skill_point32 == 0) to wait until all skill points are assigned to avoid problems with Job Change quest. */
+		- (sd->status.skill_point == 0) to wait until all skill points are assigned to avoid problems with Job Change quest. */
 
 		std::shared_ptr<s_skill_tree> tree = skill_tree_db.find(job_id);
 
@@ -2868,7 +2868,7 @@ void pc_clean_skilltree(map_session_data *sd)
 }
 
 uint64 pc_calc_skilltree_normalize_job_sub( map_session_data *sd ){
-	int32 skill_point32 = pc_calc_skillpoint( sd );
+	int32 skill_point = pc_calc_skillpoint( sd );
 
 	if( sd->class_ & MAPID_SUMMONER ){
 		// Novice's skill points for basic skill.
@@ -2876,22 +2876,22 @@ uint64 pc_calc_skilltree_normalize_job_sub( map_session_data *sd ){
 
 		int32 summoner_skills = summoner_job->max_job_level - 1;
 
-		if( skill_point32 < summoner_skills ){
+		if( skill_point < summoner_skills ){
 			return MAPID_SUMMONER;
 		}
 
-		skill_point32 -= summoner_skills;
+		skill_point -= summoner_skills;
 	}else{
 		// Novice's skill points for basic skill.
 		std::shared_ptr<s_job_info> novice_job = job_db.find( JOB_NOVICE );
 
 		int32 novice_skills = novice_job->max_job_level - 1;
 
-		if( skill_point32 < novice_skills ){
+		if( skill_point < novice_skills ){
 			return MAPID_NOVICE;
 		}
 
-		skill_point32 -= novice_skills;
+		skill_point -= novice_skills;
 	}
 
 	// 1st Class Job LV Check
@@ -2909,11 +2909,11 @@ uint64 pc_calc_skilltree_normalize_job_sub( map_session_data *sd ){
 			pc_setglobalreg( sd, add_str( JOBCHANGE2ND_VAR ), sd->change_level_2nd );
 		}
 
-		if( class_1st > 0 && skill_point32 < ( sd->change_level_2nd - 1 ) ){
+		if( class_1st > 0 && skill_point < ( sd->change_level_2nd - 1 ) ){
 			return mapid_1st;
 		}
 
-		skill_point32 -= ( sd->change_level_2nd - 1 );
+		skill_point -= ( sd->change_level_2nd - 1 );
 	}
 
 	// 2nd Class Job LV Check
@@ -2931,11 +2931,11 @@ uint64 pc_calc_skilltree_normalize_job_sub( map_session_data *sd ){
 			pc_setglobalreg( sd, add_str( JOBCHANGE3RD_VAR ), sd->change_level_3rd );
 		}
 
-		if( class_2nd > 0 && skill_point32 < ( sd->change_level_3rd - 1 ) ){
+		if( class_2nd > 0 && skill_point < ( sd->change_level_3rd - 1 ) ){
 			return mapid_2nd;
 		}
 
-		skill_point32 -= ( sd->change_level_3rd - 1 );
+		skill_point -= ( sd->change_level_3rd - 1 );
 	}
 
 	// 3rd Class Job LV Check
@@ -2953,11 +2953,11 @@ uint64 pc_calc_skilltree_normalize_job_sub( map_session_data *sd ){
 			pc_setglobalreg( sd, add_str( JOBCHANGE4TH_VAR ), sd->change_level_4th );
 		}
 
-		if( class_3rd > 0 && skill_point32 < ( sd->change_level_4th - 1 ) ){
+		if( class_3rd > 0 && skill_point < ( sd->change_level_4th - 1 ) ){
 			return mapid_3rd;
 		}
 
-		skill_point32 -= ( sd->change_level_4th - 1 );
+		skill_point -= ( sd->change_level_4th - 1 );
 	}
 
 	return sd->class_;
@@ -5842,7 +5842,7 @@ int32 pc_getcash(map_session_data *sd, int32 cash, int32 points, e_log_pick_type
 	{
 		if( cash > MAX_CASHPOINT-sd->cashPoints )
 		{
-			ShowWarning("pc_getcash: Cash point32 overflow (cash=%d, have cash=%d, account_id=%d, char_id=%d).\n", cash, sd->cashPoints, sd->status.account_id, sd->status.char_id);
+			ShowWarning("pc_getcash: Cash point overflow (cash=%d, have cash=%d, account_id=%d, char_id=%d).\n", cash, sd->cashPoints, sd->status.account_id, sd->status.char_id);
 			cash = MAX_CASHPOINT-sd->cashPoints;
 		}
 
@@ -5862,7 +5862,7 @@ int32 pc_getcash(map_session_data *sd, int32 cash, int32 points, e_log_pick_type
 	{
 		if( points > MAX_KAFRAPOINT-sd->kafraPoints )
 		{
-			ShowWarning("pc_getcash: Kafra point32 overflow (points=%d, have points=%d, account_id=%d, char_id=%d).\n", points, sd->kafraPoints, sd->status.account_id, sd->status.char_id);
+			ShowWarning("pc_getcash: Kafra point overflow (points=%d, have points=%d, account_id=%d, char_id=%d).\n", points, sd->kafraPoints, sd->status.account_id, sd->status.char_id);
 			points = MAX_KAFRAPOINT-sd->kafraPoints;
 		}
 
@@ -5994,7 +5994,7 @@ enum e_additem_result pc_additem(map_session_data *sd,struct item *item,int32 am
 	//Auto-equip
 	if(id->flag.autoequip)
 		pc_equipitem(sd, i, id->equip);
-
+	
 	if (id->type == IT_CHARM) status_calc_pc(sd, SCO_NONE); //dh
 	/* rental item check */
 	if( item->expire_time ) {
@@ -6049,7 +6049,7 @@ char pc_delitem(map_session_data *sd,int32 n,int32 amount,int32 type, short reas
 		clif_updatestatus(*sd,SP_WEIGHT);
 
 	pc_show_questinfo(sd);
-
+	
 	if (mem == IT_CHARM) status_calc_pc(sd, SCO_NONE);
 	return 0;
 }
@@ -7138,7 +7138,7 @@ char pc_randomwarp(map_session_data *sd, clr_type type, bool ignore_mapflag)
 }
 
 /*==========================================
- * Records a memo point32 at sd's current position
+ * Records a memo point at sd's current position
  * pos - entry to replace, (-1: shift oldest entry out)
  *------------------------------------------*/
 bool pc_memo(map_session_data* sd, int32 pos)
@@ -7149,7 +7149,7 @@ bool pc_memo(map_session_data* sd, int32 pos)
 
 	// check mapflags
 	if( sd->bl.m >= 0 && (map_getmapflag(sd->bl.m, MF_NOMEMO) || map_getmapflag(sd->bl.m, MF_NOWARPTO)) && !pc_has_permission(sd, PC_PERM_WARP_ANYWHERE) ) {
-		clif_skill_teleportmessage( *sd, NOTIFY_MAPINFO_CANT_MEMO ); // "Saved point32 cannot be memorized."
+		clif_skill_teleportmessage( *sd, NOTIFY_MAPINFO_CANT_MEMO ); // "Saved point cannot be memorized."
 		return false;
 	}
 
@@ -8163,8 +8163,8 @@ int32 pc_checkbaselevelup(map_session_data *sd) {
 		if( ( !battle_config.multi_level_up || ( battle_config.multi_level_up_base > 0 && sd->status.base_level >= battle_config.multi_level_up_base ) ) && sd->status.base_exp > next-1 )
 			sd->status.base_exp = next-1;
 
-		sd->status.status_point32 += statpoint_db.pc_gets_status_point(sd->status.base_level);
-		sd->status.trait_point32 += statpoint_db.pc_gets_trait_point(sd->status.base_level);
+		sd->status.status_point += statpoint_db.pc_gets_status_point(sd->status.base_level);
+		sd->status.trait_point += statpoint_db.pc_gets_trait_point(sd->status.base_level);
 		sd->status.base_level++;
 
 		if( pc_is_maxbaselv(sd) ){
@@ -8239,7 +8239,7 @@ int32 pc_checkjoblevelup(map_session_data *sd)
 			sd->status.job_exp = next-1;
 
 		sd->status.job_level ++;
-		sd->status.skill_point32 ++;
+		sd->status.skill_point ++;
 
 		if( pc_is_maxjoblv(sd) ){
 			sd->status.job_exp = u64min(sd->status.job_exp,MAX_LEVEL_JOB_EXP);
@@ -8704,10 +8704,10 @@ uint32 PlayerStatPointDatabase::pc_gets_trait_point(uint16 level) {
 }
 
 #ifdef RENEWAL_STAT
-/// Renewal status point32 cost formula
+/// Renewal status point cost formula
 #define PC_STATUS_POINT_COST(low) (((low) < 100) ? (2 + ((low) - 1) / 10) : (16 + 4 * (((low) - 100) / 5)))
 #else
-/// Pre-Renewal status point32 cost formula
+/// Pre-Renewal status point cost formula
 #define PC_STATUS_POINT_COST(low) (( 1 + ((low) + 9) / 10 ))
 #endif
 
@@ -8807,14 +8807,14 @@ bool pc_statusup(map_session_data* sd, int32 type, int32 increase)
 
 	// set new values
 	final_value = pc_setstat(sd, type, current + increase);
-	sd->status.status_point32 -= needed_points;
+	sd->status.status_point -= needed_points;
 
 	status_calc_pc(sd,SCO_NONE);
 
 	// update increase cost indicator
 	clif_updatestatus(*sd, static_cast<_sp>( SP_USTR + type-SP_STR ) );
 
-	// update statpoint32 count
+	// update statpoint count
 	clif_updatestatus(*sd, SP_STATUSPOINT);
 
 	// update stat value
@@ -8970,14 +8970,14 @@ bool pc_traitstatusup(map_session_data* sd, int32 type, int32 increase)
 	// set new values
 	int32 final_value = pc_setstat(sd, type, current + increase);
 
-	sd->status.trait_point32 -= needed_points;
+	sd->status.trait_point -= needed_points;
 
 	status_calc_pc(sd, SCO_NONE);
 
 	// update increase cost indicator
 	clif_updatestatus(*sd, static_cast<_sp>( SP_UPOW + type - SP_POW ) );
 
-	// update statpoint32 count
+	// update statpoint count
 	clif_updatestatus(*sd, SP_TRAITPOINT);
 
 	// update stat value
@@ -9032,7 +9032,7 @@ int32 pc_traitstatusup2(map_session_data* sd, int32 type, int32 val)
 
 /*==========================================
  * Update skill_lv for player sd
- * Skill point32 allocation
+ * Skill point allocation
  *------------------------------------------*/
 void pc_skillup(map_session_data *sd,uint16 skill_id)
 {
@@ -9057,7 +9057,7 @@ void pc_skillup(map_session_data *sd,uint16 skill_id)
 		return;
 	}
 	else {
-		if( sd->status.skill_point32 > 0 &&
+		if( sd->status.skill_point > 0 &&
 			sd->status.skill[idx].id &&
 			sd->status.skill[idx].flag == SKILL_FLAG_PERMANENT && //Don't allow raising while you have granted skills. [Skotlex]
 			sd->status.skill[idx].lv < skill_tree_get_max(skill_id, sd->status.class_) )
@@ -9067,7 +9067,7 @@ void pc_skillup(map_session_data *sd,uint16 skill_id)
 			sd->status.skill_point--;
 			if( !skill_get_inf(skill_id) || pc_checkskill_summoner(sd, SUMMONER_POWER_LAND) >= 20 || pc_checkskill_summoner(sd, SUMMONER_POWER_SEA) >= 20 )
 				status_calc_pc(sd,SCO_NONE); // Only recalculate for passive skills.
-			else if( sd->status.skill_point32 == 0 && pc_is_taekwon_ranker(sd) )
+			else if( sd->status.skill_point == 0 && pc_is_taekwon_ranker(sd) )
 				pc_calc_skilltree(sd); // Required to grant all TK Ranker skills.
 			else
 				pc_check_skilltree(sd); // Check if a new skill can Lvlup
@@ -9154,7 +9154,7 @@ int32 pc_resetlvl(map_session_data* sd,int32 type)
 
 	if(type == 1){
 		sd->status.skill_point=0;
-		sd->status.trait_point32 = 0;
+		sd->status.trait_point = 0;
 		sd->status.base_level=1;
 		sd->status.job_level=1;
 		sd->status.base_exp=0;
@@ -9264,15 +9264,15 @@ int32 pc_resetstate(map_session_data* sd)
 		clif_updatestatus( *sd, SP_BASELEVEL );
 	}
 
-	sd->status.status_point32 = statpoint_db.get_table_point( sd->status.base_level );
-	sd->status.trait_point32 = statpoint_db.get_trait_table_point(sd->status.base_level);
+	sd->status.status_point = statpoint_db.get_table_point( sd->status.base_level );
+	sd->status.trait_point = statpoint_db.get_trait_table_point(sd->status.base_level);
 
 	if( ( sd->class_&JOBL_UPPER ) != 0 ){
-		sd->status.status_point32 += battle_config.transcendent_status_points;
+		sd->status.status_point += battle_config.transcendent_status_points;
 	}
 
 	if ((sd->class_&JOBL_FOURTH) != 0) {
-		sd->status.trait_point32 += battle_config.trait_points_job_change;
+		sd->status.trait_point += battle_config.trait_points_job_change;
 	}
 
 	pc_setstat(sd, SP_STR, 1);
@@ -9421,10 +9421,10 @@ int32 pc_resetskill(map_session_data* sd, int32 flag)
 			continue;
 		}
 		if( sd->status.skill[idx].flag == SKILL_FLAG_PERMANENT )
-			skill_point32 += lv;
+			skill_point += lv;
 		else
 		if( sd->status.skill[idx].flag >= SKILL_FLAG_REPLACED_LV_0 )
-			skill_point32 += (sd->status.skill[idx].flag - SKILL_FLAG_REPLACED_LV_0);
+			skill_point += (sd->status.skill[idx].flag - SKILL_FLAG_REPLACED_LV_0);
 
 		if( !(flag&2) )
 		{// reset
@@ -9433,9 +9433,9 @@ int32 pc_resetskill(map_session_data* sd, int32 flag)
 		}
 	}
 
-	if( flag&2 || !skill_point32 ) return skill_point;
+	if( flag&2 || !skill_point ) return skill_point;
 
-	sd->status.skill_point32 += skill_point;
+	sd->status.skill_point += skill_point;
 
 	if (flag&1) {
 		clif_updatestatus(*sd,SP_SKILLPOINT);
@@ -9977,7 +9977,7 @@ int32 pc_dead(map_session_data *sd,struct block_list *src)
 					if( !pc_candrop( sd, &sd->inventory.u.items_inventory[i] ) ){
 						continue;
 					}
-					
+
 					if( (type&NMDT_INVENTORY && !sd->inventory.u.items_inventory[i].equip)
 						|| (type&NMDT_EQUIP && sd->inventory.u.items_inventory[i].equip)
 						||  type == NMDT_ALL)
@@ -9988,7 +9988,7 @@ int32 pc_dead(map_session_data *sd,struct block_list *src)
 				if(eq_num > 0){
 					if(rnd()%10000 < per) {
 						int32 n = eq_n[rnd() % eq_num];
-						
+
 						if(sd->inventory.u.items_inventory[n].equip)
 							pc_unequipitem(sd,n,3);
 						pc_dropitem(sd,n,1);
@@ -10015,14 +10015,14 @@ int32 pc_dead(map_session_data *sd,struct block_list *src)
 	// pvp
 	// disable certain pvp functions on pk_mode [Valaris]
 	if( !battle_config.pk_mode && mapdata->getMapFlag(MF_PVP) && !mapdata->getMapFlag(MF_PVP_NOCALCRANK) ) {
-		sd->pvp_point32 -= 5;
+		sd->pvp_point -= 5;
 		sd->pvp_lost++;
 		if( src && src->type == BL_PC ) {
 			map_session_data *ssd = (map_session_data *)src;
 			ssd->pvp_point++;
 			ssd->pvp_won++;
 		}
-		if( sd->pvp_point32 < 0 ) {
+		if( sd->pvp_point < 0 ) {
 			sd->respawn_tid = add_timer(tick+1000, pc_respawn_timer,sd->bl.id,0);
 			return 1|8;
 		}
@@ -10292,7 +10292,6 @@ int64 pc_readparam(map_session_data* sd,int64 type)
 #endif
 		case SP_CRIT_DEF_RATE: val = sd->bonus.crit_def_rate; break;
 		case SP_ADD_ITEM_SPHEAL_RATE: val = sd->bonus.itemsphealrate2; break;
-		case SP_GOLDPC_POINTS: val = pc_readreg2( sd, GOLDPC_POINT_VAR ); break;
 		default:
 			ShowError("pc_readparam: Attempt to read unknown parameter '%lld'.\n", type);
 			return -1;
@@ -10316,8 +10315,8 @@ bool pc_setparam(map_session_data *sd,int64 type,int64 val_tmp)
 			val = pc_maxbaselv(sd);
 		if (val > sd->status.base_level) {
 			for( int32 i = 0; i < (int)( val - sd->status.base_level ); i++ ){
-				sd->status.status_point32 += statpoint_db.pc_gets_status_point( sd->status.base_level + i );
-				sd->status.trait_point32 += statpoint_db.pc_gets_trait_point( sd->status.base_level + i );
+				sd->status.status_point += statpoint_db.pc_gets_status_point( sd->status.base_level + i );
+				sd->status.trait_point += statpoint_db.pc_gets_trait_point( sd->status.base_level + i );
 			}
 		}
 		sd->status.base_level = val;
@@ -10334,7 +10333,7 @@ bool pc_setparam(map_session_data *sd,int64 type,int64 val_tmp)
 	case SP_JOBLEVEL:
 		if (val >= sd->status.job_level) {
 			if (val > pc_maxjoblv(sd)) val = pc_maxjoblv(sd);
-			sd->status.skill_point32 += val - sd->status.job_level;
+			sd->status.skill_point += val - sd->status.job_level;
 			clif_updatestatus(*sd, SP_SKILLPOINT);
 		}
 		sd->status.job_level = val;
@@ -10345,13 +10344,13 @@ bool pc_setparam(map_session_data *sd,int64 type,int64 val_tmp)
 		status_calc_pc(sd, SCO_FORCE);
 		break;
 	case SP_SKILLPOINT:
-		sd->status.skill_point32 = val;
+		sd->status.skill_point = val;
 		break;
 	case SP_STATUSPOINT:
-		sd->status.status_point32 = val;
+		sd->status.status_point = val;
 		break;
 	case SP_TRAITPOINT:
-		sd->status.trait_point32 = val;
+		sd->status.trait_point = val;
 		break;
 	case SP_ZENY:
 		if( val < 0 )
@@ -10871,21 +10870,21 @@ bool pc_jobchange(map_session_data *sd,int32 job, char upper)
 
 	// Give or reduce transcendent status points
 	if( (b_class&JOBL_UPPER) && !(previous_class&JOBL_UPPER) ){ // Change from a non t class to a t class -> give points
-		sd->status.status_point32 += battle_config.transcendent_status_points;
+		sd->status.status_point += battle_config.transcendent_status_points;
 		clif_updatestatus(*sd,SP_STATUSPOINT);
 	}else if( !(b_class&JOBL_UPPER) && (previous_class&JOBL_UPPER) ){ // Change from a t class to a non t class -> remove points
-		if( sd->status.status_point32 < battle_config.transcendent_status_points ){
+		if( sd->status.status_point < battle_config.transcendent_status_points ){
 			// The player already used his bonus points, so we have to reset his status points
 			pc_resetstate(sd);
 		}else{
-			sd->status.status_point32 -= battle_config.transcendent_status_points;
+			sd->status.status_point -= battle_config.transcendent_status_points;
 			clif_updatestatus(*sd,SP_STATUSPOINT);
 		}
 	}
 
 	// Give or reduce trait status points
 	if ((b_class & JOBL_FOURTH) && !(previous_class & JOBL_FOURTH)) {// Change to a 4th job.
-		sd->status.trait_point32 += battle_config.trait_points_job_change;
+		sd->status.trait_point += battle_config.trait_points_job_change;
 		clif_updatestatus(*sd, SP_TRAITPOINT);
 		clif_updatestatus(*sd, SP_UPOW);
 		clif_updatestatus(*sd, SP_USTA);
@@ -10894,11 +10893,11 @@ bool pc_jobchange(map_session_data *sd,int32 job, char upper)
 		clif_updatestatus(*sd, SP_UCON);
 		clif_updatestatus(*sd, SP_UCRT);
 	} else if (!(b_class & JOBL_FOURTH) && (previous_class & JOBL_FOURTH)) {// Change to a non 4th job.
-		if (sd->status.trait_point32 < battle_config.trait_points_job_change) {
+		if (sd->status.trait_point < battle_config.trait_points_job_change) {
 			// Player may have already used the trait status points. Force a reset.
 			pc_resetstate(sd);
 		} else {
-			sd->status.trait_point32 = 0;
+			sd->status.trait_point = 0;
 			clif_updatestatus(*sd, SP_TRAITPOINT);
 			clif_updatestatus(*sd, SP_UPOW);
 			clif_updatestatus(*sd, SP_USTA);
@@ -11899,7 +11898,7 @@ static int32 pc_removecombo(map_session_data *sd, item_data *data ) {
 		// It's empty, clear all the memory
 		if (sd->combos.empty()) {
 			sd->combos.clear();
-			return retval; // Return at this point32 as there are no more combos to check
+			return retval; // Return at this point as there are no more combos to check
 		}
 	}
 
@@ -12688,7 +12687,7 @@ static int32 pc_calc_pvprank_sub(struct block_list *bl,va_list ap)
 		return 0;
 	}
 
-	if( sd1->pvp_point32 > sd2->pvp_point32 )
+	if( sd1->pvp_point > sd2->pvp_point )
 		sd2->pvp_rank++;
 	return 0;
 }

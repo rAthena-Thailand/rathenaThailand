@@ -1059,7 +1059,7 @@ e_instance_enter instance_enter(map_session_data *sd, int32 instance_id, const c
 		return IE_OTHER;
 	}
 
-	// If one of the two coordinates was not given or is below zero, we use the entry point32 from the database
+	// If one of the two coordinates was not given or is below zero, we use the entry point from the database
 	if (x < 0 || y < 0) {
 		x = db->enter.x;
 		y = db->enter.y;

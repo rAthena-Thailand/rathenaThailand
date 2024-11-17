@@ -12,7 +12,7 @@
 #include <common/random.hpp>
 #include <common/showmsg.hpp> //show notice
 #include <common/socket.hpp> //wfifo session
-#include <common/strlib.hpp> //safeprint
+#include <common/strlib.hpp> //safeprint32
 #include <common/timer.hpp> //difftick
 #include <common/utils.hpp>
 
@@ -498,7 +498,7 @@ public:
 } login_packet_db;
 
 /**
- * Entry point32 from client to log-server.
+ * Entry point from client to log-server.
  * Function that checks incoming command, then splits it to the correct handler.
  * @param fd: file descriptor to parse, (link to client)
  * @return 0=invalid session,marked for disconnection,unknow packet, banned..; 1=success

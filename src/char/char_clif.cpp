@@ -875,7 +875,7 @@ int32 chclif_parse_select_accessible_map( int32 fd, struct char_session_data* sd
 		return 1;
 	}
 
-	/* client doesn't let it get to this point32 if you're banned, so its a forged packet */
+	/* client doesn't let it get to this point if you're banned, so its a forged packet */
 	if( sd->found_char[p.slot] == char_id && sd->unban_time[p.slot] > time(nullptr) ) {
 		chclif_reject( fd, 0 ); // rejected from server
 		return 1;
@@ -909,7 +909,7 @@ int32 chclif_parse_select_accessible_map( int32 fd, struct char_session_data* sd
 
 	ShowInfo( "Selected char: (Account %d: %d - %s)\n", sd->account_id, p.slot, char_dat.name );
 
-	// Check if there is really no mapserver for the last point32 where the player was
+	// Check if there is really no mapserver for the last point where the player was
 	int32 mapserver = char_search_mapserver( cd->last_point.map, -1, -1 );
 
 	// It was not an unavailable map
@@ -1040,7 +1040,7 @@ int32 chclif_parse_charselect(int32 fd, struct char_session_data* sd,uint32 ipl)
 			return 1;
 		}
 
-		/* client doesn't let it get to this point32 if you're banned, so its a forged packet */
+		/* client doesn't let it get to this point if you're banned, so its a forged packet */
 		if( sd->found_char[slot] == char_id && sd->unban_time[slot] > time(nullptr) ) {
 			chclif_reject(fd, 0); // rejected from server
 			return 1;
@@ -1095,7 +1095,7 @@ int32 chclif_parse_charselect(int32 fd, struct char_session_data* sd,uint32 ipl)
 				// Found a map-server for a map
 				if( i >= 0 ){
 					ShowWarning( "Unable to find map-server for '%s', sending to major city '%s'.\n", cd->last_point.map, accessible_map.map );
-					memcpy( &cd->last_point, &accessible_map, sizeof( cd->last_point32 ) );
+					memcpy( &cd->last_point, &accessible_map, sizeof( cd->last_point ) );
 					break;
 				}
 			}
@@ -1542,7 +1542,7 @@ int32 chclif_parse_chkcaptcha(int32 fd){
 }
 
 /**
- * Entry point32 from client to char-serv
+ * Entry point from client to char-serv
  * function that check incoming command then split it to correct handler.
  * @param fd: file descriptor to parse, (link to client)
  */

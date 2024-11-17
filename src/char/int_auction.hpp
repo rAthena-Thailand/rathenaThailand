@@ -4,6 +4,8 @@
 #ifndef INT_AUCTION_HPP
 #define INT_AUCTION_HPP
 
+#include <common/cbasetypes.hpp>
+
 int32 inter_auction_parse_frommap(int32 fd);
 
 int32 inter_auction_sql_init(void);

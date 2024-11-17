@@ -943,7 +943,7 @@ ACMD_FUNC(save)
 	nullpo_retr(-1, sd);
 
 	if( map_getmapdata(sd->bl.m)->instance_id ) {
-		clif_displaymessage(fd, msg_txt(sd,383)); // You cannot create a savepoint32 in an instance.
+		clif_displaymessage(fd, msg_txt(sd,383)); // You cannot create a savepoint in an instance.
 		return 1;
 	}
 
@@ -953,7 +953,7 @@ ACMD_FUNC(save)
 
 	chrif_save(sd, CSAVE_NORMAL);
 
-	clif_displaymessage(fd, msg_txt(sd,6)); // Your save point32 has been changed.
+	clif_displaymessage(fd, msg_txt(sd,6)); // Your save point has been changed.
 
 	return 0;
 }
@@ -1643,11 +1643,11 @@ ACMD_FUNC(baselevelup)
 			level = pc_maxbaselv(sd) - sd->status.base_level;
 		for (i = 0; i < level; i++)
 		{
-			status_point32 += statpoint_db.pc_gets_status_point(sd->status.base_level + i);
-			trait_point32 += statpoint_db.pc_gets_trait_point(sd->status.base_level + i);
+			status_point += statpoint_db.pc_gets_status_point(sd->status.base_level + i);
+			trait_point += statpoint_db.pc_gets_trait_point(sd->status.base_level + i);
 		}
-		sd->status.status_point32 += status_point;
-		sd->status.trait_point32 += trait_point;
+		sd->status.status_point += status_point;
+		sd->status.trait_point += trait_point;
 		sd->status.base_level += (uint32)level;
 		status_calc_pc(sd, SCO_FORCE);
 		status_percent_heal(&sd->bl, 100, 100);
@@ -1667,19 +1667,19 @@ ACMD_FUNC(baselevelup)
 			level = sd->status.base_level-1;
 		for (i = 0; i > -level; i--)
 		{
-			status_point32 += statpoint_db.pc_gets_status_point(sd->status.base_level + i - 1);
-			trait_point32 += statpoint_db.pc_gets_trait_point(sd->status.base_level + i - 1);
+			status_point += statpoint_db.pc_gets_status_point(sd->status.base_level + i - 1);
+			trait_point += statpoint_db.pc_gets_trait_point(sd->status.base_level + i - 1);
 		}
-		if (sd->status.status_point32 < status_point32 || sd->status.trait_point32 < trait_point)
+		if (sd->status.status_point < status_point || sd->status.trait_point < trait_point)
 			pc_resetstate(sd);
-		if (sd->status.status_point32 < status_point)
-			sd->status.status_point32 = 0;
+		if (sd->status.status_point < status_point)
+			sd->status.status_point = 0;
 		else
-			sd->status.status_point32 -= status_point;
-		if (sd->status.trait_point32 < trait_point)
-			sd->status.trait_point32 = 0;
+			sd->status.status_point -= status_point;
+		if (sd->status.trait_point < trait_point)
+			sd->status.trait_point = 0;
 		else
-			sd->status.trait_point32 -= trait_point;
+			sd->status.trait_point -= trait_point;
 		sd->status.base_level -= (uint32)level;
 		clif_displaymessage(fd, msg_txt(sd,22)); // Base level lowered.
 		status_calc_pc(sd, SCO_FORCE);
@@ -1723,7 +1723,7 @@ ACMD_FUNC(joblevelup)
 		if ((uint32)level > pc_maxjoblv(sd) || (uint32)level > pc_maxjoblv(sd) - sd->status.job_level) // fix positive overflow
 			level = pc_maxjoblv(sd) - sd->status.job_level;
 		sd->status.job_level += (uint32)level;
-		sd->status.skill_point32 += level;
+		sd->status.skill_point += level;
 		clif_misceffect( sd->bl, NOTIFYEFFECT_JOB_LEVEL_UP );
 		for (uint32 i = sd->status.job_level - level; i <= sd->status.job_level; i++)
 			achievement_update_objective(sd, AG_GOAL_LEVEL, 1, i);
@@ -1737,12 +1737,12 @@ ACMD_FUNC(joblevelup)
 		if ((uint32)level >= sd->status.job_level) // fix negative overflow
 			level = sd->status.job_level-1;
 		sd->status.job_level -= (uint32)level;
-		if (sd->status.skill_point32 < level)
+		if (sd->status.skill_point < level)
 			pc_resetskill(sd,0);	//Reset skills since we need to subtract more points.
-		if (sd->status.skill_point32 < level)
-			sd->status.skill_point32 = 0;
+		if (sd->status.skill_point < level)
+			sd->status.skill_point = 0;
 		else
-			sd->status.skill_point32 -= level;
+			sd->status.skill_point -= level;
 		clif_displaymessage(fd, msg_txt(sd,25)); // Job level lowered.
 		level *=-1;
 	}
@@ -2701,44 +2701,44 @@ ACMD_FUNC(displaystatus)
 }
 
 /*==========================================
- * @stpoint32 (Rewritten by [Yor])
+ * @stpoint (Rewritten by [Yor])
  *------------------------------------------*/
 ACMD_FUNC(statuspoint)
 {
 	int32 point;
 	uint32 new_status_point;
 
-	if (!message || !*message || (point32 = atoi(message)) == 0) {
-		clif_displaymessage(fd, msg_txt(sd,1010)); // Please enter a number (usage: @stpoint32 <number of points>).
+	if (!message || !*message || (point = atoi(message)) == 0) {
+		clif_displaymessage(fd, msg_txt(sd,1010)); // Please enter a number (usage: @stpoint <number of points>).
 		return -1;
 	}
 
-	if(point32 < 0)
+	if(point < 0)
 	{
-		if(sd->status.status_point32 < (uint32)(-point))
+		if(sd->status.status_point < (uint32)(-point))
 		{
-			new_status_point32 = 0;
+			new_status_point = 0;
 		}
 		else
 		{
-			new_status_point32 = sd->status.status_point32 + point;
+			new_status_point = sd->status.status_point + point;
 		}
 	}
-	else if(UINT_MAX - sd->status.status_point32 < (uint32)point)
+	else if(UINT_MAX - sd->status.status_point < (uint32)point)
 	{
-		new_status_point32 = UINT_MAX;
+		new_status_point = UINT_MAX;
 	}
 	else
 	{
-		new_status_point32 = sd->status.status_point32 + point;
+		new_status_point = sd->status.status_point + point;
 	}
 
-	if (new_status_point32 != sd->status.status_point) {
-		sd->status.status_point32 = new_status_point;
+	if (new_status_point != sd->status.status_point) {
+		sd->status.status_point = new_status_point;
 		clif_updatestatus(*sd, SP_STATUSPOINT);
 		clif_displaymessage(fd, msg_txt(sd,174)); // Number of status points changed.
 	} else {
-		if (point32 < 0)
+		if (point < 0)
 			clif_displaymessage(fd, msg_txt(sd,41)); // Unable to decrease the number/value.
 		else
 			clif_displaymessage(fd, msg_txt(sd,149)); // Unable to increase the number/value.
@@ -2756,38 +2756,38 @@ ACMD_FUNC(traitpoint)
 	int32 point;
 	uint32 new_trait_point;
 
-	if (!message || !*message || (point32 = atoi(message)) == 0) {
-		clif_displaymessage(fd, msg_txt(sd, 820)); // Please enter a number (usage: @trpoint32 <number of points>).
+	if (!message || !*message || (point = atoi(message)) == 0) {
+		clif_displaymessage(fd, msg_txt(sd, 820)); // Please enter a number (usage: @trpoint <number of points>).
 		return -1;
 	}
 
-	if (point32 < 0)
+	if (point < 0)
 	{
-		if (sd->status.trait_point32 < (uint32)(-point))
+		if (sd->status.trait_point < (uint32)(-point))
 		{
-			new_trait_point32 = 0;
+			new_trait_point = 0;
 		}
 		else
 		{
-			new_trait_point32 = sd->status.trait_point32 + point;
+			new_trait_point = sd->status.trait_point + point;
 		}
 	}
-	else if (UINT_MAX - sd->status.trait_point32 < (uint32)point)
+	else if (UINT_MAX - sd->status.trait_point < (uint32)point)
 	{
-		new_trait_point32 = UINT_MAX;
+		new_trait_point = UINT_MAX;
 	}
 	else
 	{
-		new_trait_point32 = sd->status.trait_point32 + point;
+		new_trait_point = sd->status.trait_point + point;
 	}
 
-	if (new_trait_point32 != sd->status.trait_point) {
-		sd->status.trait_point32 = new_trait_point;
+	if (new_trait_point != sd->status.trait_point) {
+		sd->status.trait_point = new_trait_point;
 		clif_updatestatus(*sd, SP_TRAITPOINT);
 		clif_displaymessage(fd, msg_txt(sd, 174)); // Number of status points changed.
 	}
 	else {
-		if (point32 < 0)
+		if (point < 0)
 			clif_displaymessage(fd, msg_txt(sd, 41)); // Unable to decrease the number/value.
 		else
 			clif_displaymessage(fd, msg_txt(sd, 149)); // Unable to increase the number/value.
@@ -2798,7 +2798,7 @@ ACMD_FUNC(traitpoint)
 }
 
 /*==========================================
- * @skpoint32 (Rewritten by [Yor])
+ * @skpoint (Rewritten by [Yor])
  *------------------------------------------*/
 ACMD_FUNC(skillpoint)
 {
@@ -2806,37 +2806,37 @@ ACMD_FUNC(skillpoint)
 	uint32 new_skill_point;
 	nullpo_retr(-1, sd);
 
-	if (!message || !*message || (point32 = atoi(message)) == 0) {
-		clif_displaymessage(fd, msg_txt(sd,1011)); // Please enter a number (usage: @skpoint32 <number of points>).
+	if (!message || !*message || (point = atoi(message)) == 0) {
+		clif_displaymessage(fd, msg_txt(sd,1011)); // Please enter a number (usage: @skpoint <number of points>).
 		return -1;
 	}
 
-	if(point32 < 0)
+	if(point < 0)
 	{
-		if(sd->status.skill_point32 < (uint32)(-point))
+		if(sd->status.skill_point < (uint32)(-point))
 		{
-			new_skill_point32 = 0;
+			new_skill_point = 0;
 		}
 		else
 		{
-			new_skill_point32 = sd->status.skill_point32 + point;
+			new_skill_point = sd->status.skill_point + point;
 		}
 	}
-	else if(UINT_MAX - sd->status.skill_point32 < (uint32)point)
+	else if(UINT_MAX - sd->status.skill_point < (uint32)point)
 	{
-		new_skill_point32 = UINT_MAX;
+		new_skill_point = UINT_MAX;
 	}
 	else
 	{
-		new_skill_point32 = sd->status.skill_point32 + point;
+		new_skill_point = sd->status.skill_point + point;
 	}
 
-	if (new_skill_point32 != sd->status.skill_point) {
-		sd->status.skill_point32 = new_skill_point;
+	if (new_skill_point != sd->status.skill_point) {
+		sd->status.skill_point = new_skill_point;
 		clif_updatestatus(*sd, SP_SKILLPOINT);
 		clif_displaymessage(fd, msg_txt(sd,175)); // Number of skill points changed.
 	} else {
-		if (point32 < 0)
+		if (point < 0)
 			clif_displaymessage(fd, msg_txt(sd,41)); // Unable to decrease the number/value.
 		else
 			clif_displaymessage(fd, msg_txt(sd,149)); // Unable to increase the number/value.
@@ -3701,7 +3701,7 @@ ACMD_FUNC(allskill)
 {
 	nullpo_retr(-1, sd);
 	pc_allskillup(sd); // all skills
-	sd->status.skill_point32 = 0; // 0 skill points
+	sd->status.skill_point = 0; // 0 skill points
 	clif_updatestatus(*sd, SP_SKILLPOINT); // update
 	clif_displaymessage(fd, msg_txt(sd,76)); // All skills have been added to your skill tree.
 
@@ -4332,7 +4332,7 @@ ACMD_FUNC(reload) {
 		struct s_mapiterator* iter;
 		map_session_data* pl_sd;
 		//atcommand_broadcast( fd, sd, "@broadcast", "Server is reloading scripts..." );
-		//atcommand_broadcast( fd, sd, "@broadcast", "You will feel a bit of lag at this point32 !" );
+		//atcommand_broadcast( fd, sd, "@broadcast", "You will feel a bit of lag at this point !" );
 
 		iter = mapit_getallusers();
 		for( pl_sd = (TBL_PC*)mapit_first(iter); mapit_exists(iter); pl_sd = (TBL_PC*)mapit_next(iter) ){
@@ -8253,7 +8253,7 @@ ACMD_FUNC(hominfo)
 	clif_displaymessage(fd, atcmd_output);
 
 	snprintf(atcmd_output, sizeof(atcmd_output) ,
-		msg_txt(sd,1265), // Stats: Str %d / Agi %d / Vit %d / int32 %d / Dex %d / Luk %d
+		msg_txt(sd,1265), // Stats: Str %d / Agi %d / Vit %d / Int %d / Dex %d / Luk %d
 		status->str, status->agi, status->vit,
 		status->int_, status->dex, status->luk);
 	clif_displaymessage(fd, atcmd_output);
@@ -9104,7 +9104,7 @@ ACMD_FUNC(cash)
 	int32 ret=0;
 	nullpo_retr(-1, sd);
 
-	// Since there is no cashpoint32 update packet we need to force updating like this
+	// Since there is no cashpoint update packet we need to force updating like this
 	if( sd->state.cashshop_open ){
 		clif_displaymessage(fd, msg_txt(sd, 1376)); // Please close the cashshop before using this command.
 		return -1;
@@ -9580,7 +9580,7 @@ ACMD_FUNC(stats)
 		{ "Str - %3d", 0 },
 		{ "Agi - %3d", 0 },
 		{ "Vit - %3d", 0 },
-		{ "int32 - %3d", 0 },
+		{ "Int - %3d", 0 },
 		{ "Dex - %3d", 0 },
 		{ "Luk - %3d", 0 },
 		{ "Pow - %3d", 0 },
@@ -9864,7 +9864,7 @@ ACMD_FUNC(accinfo) {
 		clif_displaymessage(fd, msg_txt(sd,1366)); // You may search partial name by making use of '%' in the search, ex. "@accinfo %Mario%" lists all characters whose name contains "Mario".
 		return -1;
 	} else if (type != 0) {
-		type = type-'0'; //make it int
+		type = type-'0'; //make it int32
 		if (type != 1) {
 			clif_displaymessage(fd, "accinfo : Unknow type specified\n");
 			return -1;
@@ -10897,11 +10897,11 @@ ACMD_FUNC(addfame)
 {
 	nullpo_retr(-1, sd);
 
-	int32 famepoint32 = 0;
+	int32 famepoint = 0;
 
 	memset(atcmd_output, '\0', sizeof(atcmd_output));
 
-	if (!message || !*message || sscanf(message, "%11d", &famepoint) < 1 || famepoint32 == 0) {
+	if (!message || !*message || sscanf(message, "%11d", &famepoint) < 1 || famepoint == 0) {
 		sprintf(atcmd_output, msg_txt(sd, 1516), command); // Usage: %s <fame points>.
 		clif_displaymessage(fd, atcmd_output);
 		return -1;

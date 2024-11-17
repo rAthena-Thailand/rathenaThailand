@@ -38,7 +38,7 @@ namespace rathena{
 extern int32 login_fd; //login file descriptor
 extern int32 char_fd; //char file descriptor
 
-#define MAX_STARTPOint32 5
+#define MAX_STARTPOINT 5
 #define MAX_STARTITEM 32
 
 enum e_char_delete {

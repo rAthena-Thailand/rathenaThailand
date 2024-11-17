@@ -4,6 +4,8 @@
 #ifndef CHAR_CNSLIF_HPP
 #define CHAR_CNSLIF_HPP
 
+#include <common/cbasetypes.hpp>
+
 int32 cnslif_parse(const char* buf);
 void do_init_chcnslif(void);
 

@@ -100,8 +100,8 @@ uint64 CashShopDatabase::parseBodyNode( const ryml::NodeRef& node ){
 			return 0;
 		}
 
-		if( price > MAX_CASHPOint32 ){
-			this->invalidWarning( it["Price"], "Price has to be lower than MAX_CASHPOINT(%d).", MAX_CASHPOint32 );
+		if( price > MAX_CASHPOINT ){
+			this->invalidWarning( it["Price"], "Price has to be lower than MAX_CASHPOINT(%d).", MAX_CASHPOINT );
 			return 0;
 		}
 

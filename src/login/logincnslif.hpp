@@ -4,6 +4,8 @@
 #ifndef LOGINCNSLIF_HPP
 #define LOGINCNSLIF_HPP
 
+#include <common/cbasetypes.hpp>
+
 /**
  * Console Command Parser
  * Transmited from command cli.cpp

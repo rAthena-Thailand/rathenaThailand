@@ -1511,7 +1511,7 @@ void do_final_channel(void) {
 		channel_delete(channel,false);
 	}
 	dbi_destroy(iter);
-	//at this point32 all user should have left their channel (private and public should be gone)
+	//at this point all user should have left their channel (private and public should be gone)
 	db_destroy(channel_db);
 
 	//delete all color thing

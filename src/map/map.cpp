@@ -1287,13 +1287,13 @@ int32 map_foreachinpath(int32 (*func)(struct block_list*,va_list),int16 m,int16 
 
 						k = ( xi - x0 ) * ( x1 - x0 ) + ( yi - y0 ) * ( y1 - y0 );
 
-						if ( k < 0 || k > len_limit ) //Since more skills use this, check for ending point32 as well.
+						if ( k < 0 || k > len_limit ) //Since more skills use this, check for ending point as well.
 							continue;
 
 						if ( k > magnitude2 && !path_search_long(nullptr, m, x0, y0, xi, yi, CELL_CHKWALL) )
-							continue; //Targets beyond the initial ending point32 need the wall check.
+							continue; //Targets beyond the initial ending point need the wall check.
 
-						//All these shifts are to increase the precision of the intersection point32 and distance considering how it's
+						//All these shifts are to increase the precision of the intersection point and distance considering how it's
 						//int32 math.
 						k  = ( k << 4 ) / magnitude2; //k will be between 1~16 instead of 0~1
 						xi <<= 4;
@@ -1324,7 +1324,7 @@ int32 map_foreachinpath(int32 (*func)(struct block_list*,va_list),int16 m,int16 
 							continue;
 
 						if ( k > magnitude2 && !path_search_long(nullptr, m, x0, y0, xi, yi, CELL_CHKWALL) )
-							continue; //Targets beyond the initial ending point32 need the wall check.
+							continue; //Targets beyond the initial ending point need the wall check.
 
 						k  = ( k << 4 ) / magnitude2; //k will be between 1~16 instead of 0~1
 						xi <<= 4;
@@ -2771,7 +2771,7 @@ int32 map_addinstancemap(int32 src_m, int32 instance_id, bool no_mapflag)
 }
 
 /*==========================================
- * Set player to save point32 when they leave
+ * Set player to save point when they leave
  *------------------------------------------*/
 static int32 map_instancemap_leave(struct block_list *bl, va_list ap)
 {
@@ -3046,7 +3046,7 @@ int32 map_mapname2ipport(unsigned short name, uint32* ip, uint16* port)
 }
 
 /*==========================================
- * Checks if both dirs point32 in the same direction.
+ * Checks if both dirs point in the same direction.
  *------------------------------------------*/
 int32 map_check_dir(int32 s_dir,int32 t_dir)
 {
@@ -4474,7 +4474,7 @@ static int32 map_mapflag_pvp_start_sub(struct block_list *bl, va_list ap)
 		sd->pvp_timer = add_timer(gettick() + 200, pc_calc_pvprank_timer, sd->bl.id, 0);
 		sd->pvp_rank = 0;
 		sd->pvp_lastusers = 0;
-		sd->pvp_point32 = 5;
+		sd->pvp_point = 5;
 		sd->pvp_won = 0;
 		sd->pvp_lost = 0;
 	}

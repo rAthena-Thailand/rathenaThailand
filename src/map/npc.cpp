@@ -2291,7 +2291,7 @@ bool npc_scriptcont(map_session_data* sd, int32 id, bool closing){
 	}
 
 	/**
-	 * WPE can get to this point32 with a progressbar; we deny it.
+	 * WPE can get to this point with a progressbar; we deny it.
 	 **/
 	if( sd->progressbar.npc_id && DIFF_TICK(sd->progressbar.timeout,gettick()) > 0 )
 		return true;
@@ -5349,10 +5349,10 @@ static const char* npc_parse_mob(char* w1, char* w2, char* w3, char* w4, const c
 		ShowError("npc_parse_mob: Invalid dataset for monster ID %d (file '%s', line '%d').\n", mob_id, filepath, strline(buffer,start-buffer));
 		return strchr(start,'\n');// skip and continue
 	}
-	
+
 	// Store filepath for possible unloading
 	strcpy( mob.filepath, filepath );
-	
+
 	//Update mob spawn lookup database
 	struct spawn_info spawn = { mapdata->index, mob.num };
 	mob_add_spawn(mob_id, spawn);
@@ -5428,7 +5428,7 @@ static const char* npc_parse_mapflag(char* w1, char* w2, char* w3, char* w4, con
 			} else if (state && sscanf(w4, "%15[^,],%6hd,%6hd", savemap, &args.nosave.x, &args.nosave.y) == 3) {
 				args.nosave.map = mapindex_name2id(savemap);
 				if (!args.nosave.map) {
-					ShowWarning("npc_parse_mapflag: Specified save point32 map '%s' for mapflag 'nosave' not found (file '%s', line '%d'), using 'SavePoint'.\n * w1=%s\n * w2=%s\n * w3=%s\n * w4=%s\n", savemap, filepath, strline(buffer,start-buffer), w1, w2, w3, w4);
+					ShowWarning("npc_parse_mapflag: Specified save point map '%s' for mapflag 'nosave' not found (file '%s', line '%d'), using 'SavePoint'.\n * w1=%s\n * w2=%s\n * w3=%s\n * w4=%s\n", savemap, filepath, strline(buffer,start-buffer), w1, w2, w3, w4);
 					args.nosave.x = -1;
 					args.nosave.y = -1;
 				}
@@ -6126,7 +6126,7 @@ bool npc_unloadfile( const char* path ) {
 	}
 
 	dbi_destroy(iter);
-	
+
 	if(npc_remove_mob_spawns( path )){
 		found = true;
 	}

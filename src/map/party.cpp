@@ -1269,7 +1269,7 @@ void party_exp_share(struct party_data* p, struct block_list* src, t_exp base_ex
 		if (job_exp)
 			job_exp = (t_exp) cap_value(job_exp * bonus/100, 0, MAX_EXP);
 		if (zeny)
-			zeny = (uint32) cap_value(zeny * bonus/100, INT_MIN, INT_MAX);
+			zeny = (uint32)cap_value(zeny * bonus/100, INT_MIN, INT_MAX);
 	}
 
 	for (i = 0; i < c; i++) {

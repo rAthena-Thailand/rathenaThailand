@@ -717,7 +717,7 @@ bool login_config_read(const char* cfgName, bool normal) {
 				login_config.vip_sys.char_increase = MAX_CHAR_VIP;
 			else
 				login_config.vip_sys.char_increase = atoi(w2);
-			if (login_config.vip_sys.char_increase > (uint32) MAX_CHARS-login_config.char_per_account) {
+			if (login_config.vip_sys.char_increase > (uint32)MAX_CHARS-login_config.char_per_account) {
 				ShowWarning("vip_char_increase too high, can only go up to %d, according to your char_per_account config %d\n",
 					MAX_CHARS-login_config.char_per_account,login_config.char_per_account);
 				login_config.vip_sys.char_increase = MAX_CHARS-login_config.char_per_account;

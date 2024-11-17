@@ -98,7 +98,7 @@ struct s_instance_db {
 	bool destroyable; ///< Destroyable flag
 	bool infinite_limit; ///< Infinite limit flag
 	bool infinite_timeout; ///< Infinite timeout limit flag
-	struct point32 enter; ///< Instance entry point
+	struct point enter; ///< Instance entry point
 	std::vector<int16> maplist; ///< Maps in instance
 };
 

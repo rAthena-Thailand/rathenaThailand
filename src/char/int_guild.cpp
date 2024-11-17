@@ -381,7 +381,7 @@ std::shared_ptr<CharGuild> inter_guild_fromsql( int32 guild_id ){
 	Sql_GetData(sql_handle,  5, &data, nullptr); g->guild.average_lv = atoi(data);
 	Sql_GetData(sql_handle,  6, &data, nullptr); g->guild.exp = strtoull(data, nullptr, 10);
 	Sql_GetData(sql_handle,  7, &data, nullptr); g->guild.next_exp = strtoull(data, nullptr, 10);
-	Sql_GetData(sql_handle,  8, &data, nullptr); g->guild.skill_point32 = atoi(data);
+	Sql_GetData(sql_handle,  8, &data, nullptr); g->guild.skill_point = atoi(data);
 	Sql_GetData(sql_handle,  9, &data, &len); memcpy(g->guild.mes1, data, zmin(len, sizeof(g->guild.mes1)));
 	Sql_GetData(sql_handle, 10, &data, &len); memcpy(g->guild.mes2, data, zmin(len, sizeof(g->guild.mes2)));
 	Sql_GetData(sql_handle, 11, &data, &len); g->guild.emblem_len = atoi(data);
@@ -921,7 +921,7 @@ int32 guild_calcinfo( std::shared_ptr<CharGuild> g ){
 		g->guild.average_lv /= c;
 
 	// Check if guild stats has change
-	if(g->guild.max_member != before.max_member || g->guild.guild_lv != before.guild_lv || g->guild.skill_point32 != before.skill_point	)
+	if(g->guild.max_member != before.max_member || g->guild.guild_lv != before.guild_lv || g->guild.skill_point != before.skill_point	)
 	{
 		g->save_flag |= GS_LEVEL;
 		mapif_guild_info(-1,g->guild);
@@ -1491,7 +1491,7 @@ int32 mapif_parse_GuildBasicInfoChange(int32 fd,int32 guild_id,int32 type,const 
 		case GBI_GUILDLV:
 			if (data_value > 0 && g->guild.guild_lv + data_value <= MAX_GUILDLEVEL) {
 				g->guild.guild_lv += data_value;
-				g->guild.skill_point32 += data_value;
+				g->guild.skill_point += data_value;
 			} else if (data_value < 0 && g->guild.guild_lv + data_value >= 1)
 				g->guild.guild_lv += data_value;
 

@@ -136,7 +136,7 @@ int32 chmapif_send_fame_list(int32 fd){
 
 /**
  * Send to map-servers the updated fame ranking lists
- *  We actually just send this one when we only need to update rankpoint32 but pos didn't change
+ *  We actually just send this one when we only need to update rankpoint but pos didn't change
  * @param type: ranking type
  * @param index: position in the ranking
  * @param fame: number of points
@@ -1106,7 +1106,7 @@ int32 chmapif_parse_updmapip(int32 fd, int32 id){
 }
 
 /**
- * Received an update of fame point32  for char_id cid
+ * Received an update of fame point  for char_id cid
  * Update the list associated and transmit the new ranking
  * @param fd: wich fd to parse from
  * @return : 0 not enough data received, 1 success
@@ -1396,7 +1396,7 @@ void chmapif_connectack(int32 fd, uint8 errCode){
 }
 
 /**
- * Entry point32 from map-server to char-server.
+ * Entry point from map-server to char-server.
  * Function that checks incoming command, then splits it to the correct handler.
  * If not found any hander here transmis packet to inter
  * @param fd: file descriptor to parse, (link to map-serv)

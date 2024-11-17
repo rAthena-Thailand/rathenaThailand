@@ -1331,7 +1331,7 @@ enum sc_type : int16 {
 
 	// Level 275 New Skills
 	SC_MYSTERY_POWDER,
-	
+
 	SC_MAX, //Automatically updated max, used in for's to check we are within bounds.
 };
 
