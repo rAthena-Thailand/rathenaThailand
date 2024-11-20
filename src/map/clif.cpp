@@ -16885,19 +16885,20 @@ void clif_Auction_close(int32 fd, unsigned char flag)
 }
 
 
-/// Request to add an auction (CZ_AUCTION_ADD).
-/// 024d <now money>.L <max money>.L <delete hour>.W
-void clif_parse_Auction_register(int32 fd, map_session_data *sd)
-{
+/// Request to add an auction.
+/// 024d <now money>.L <max money>.L <delete hour>.W (CZ_AUCTION_ADD)
+void clif_parse_Auction_register( int32 fd, map_session_data* sd ){
+#if PACKETVER >= 20050808
+	const PACKET_CZ_AUCTION_ADD* p = reinterpret_cast<PACKET_CZ_AUCTION_ADD*>( RFIFOP( fd, 0 ) );
+
 	struct auction_data auction;
-	struct s_packet_db* info = &packet_db[RFIFOW(fd,0)];
 
 	if( !battle_config.feature_auction )
 		return;
 
-	auction.price = RFIFOL(fd,info->pos[0]);
-	auction.buynow = RFIFOL(fd,info->pos[1]);
-	auction.hours = RFIFOW(fd,info->pos[2]);
+	auction.price = p->now_money;
+	auction.buynow = p->max_money;
+	auction.hours = p->hours;
 
 	// Invalid Situations...
 	if( sd->auction.amount < 1 ) {
@@ -16969,6 +16970,7 @@ void clif_parse_Auction_register(int32 fd, map_session_data *sd)
 
 		pc_payzeny(sd, zeny, LOG_TYPE_AUCTION);
 	}
+#endif
 }
 
 
@@ -16988,33 +16990,35 @@ void clif_parse_Auction_close(int32 fd, map_session_data *sd){
 }
 
 
-/// Places a bid on an auction (CZ_AUCTION_BUY).
-/// 024f <auction id>.L <money>.L
-void clif_parse_Auction_bid(int32 fd, map_session_data *sd){
-	struct s_packet_db* info = &packet_db[RFIFOW(fd,0)];
-	uint32 auction_id = RFIFOL(fd,info->pos[0]);
-	int32 bid = RFIFOL(fd,info->pos[1]);
+/// Places a bid on an auction.
+/// 024f <auction id>.L <money>.L (CZ_AUCTION_BUY)
+void clif_parse_Auction_bid( int32 fd, map_session_data* sd ){
+#if PACKETVER >= 20050718
+	const PACKET_CZ_AUCTION_BUY* p = reinterpret_cast<PACKET_CZ_AUCTION_BUY*>( RFIFOP( fd, 0 ) );
 
-	if( !pc_can_give_items(sd) ) { //They aren't supposed to give zeny [Inkfish]
-		clif_displaymessage(sd->fd, msg_txt(sd,246));
+	if( !pc_can_give_items(sd) ){
+		clif_displaymessage( sd->fd, msg_txt( sd, 246 ) ); // Your GM level doesn't authorize you to perform this action.
+		return;
+	}
+		
+	// Check if char server is down (bugreport:1138)
+	if( CheckForCharServer() ){
+		clif_Auction_message(fd, 0); // You have failed to bid into the auction
 		return;
 	}
 
-	if( bid <= 0 )
-		clif_Auction_message(fd, 0); // You have failed to bid into the auction
-	else if( bid > sd->status.zeny )
-		clif_Auction_message(fd, 8); // You do not have enough zeny
-	else if ( CheckForCharServer() ) // char server is down (bugreport:1138)
-		clif_Auction_message(fd, 0); // You have failed to bid into the auction
-	else {
-		pc_payzeny(sd, bid, LOG_TYPE_AUCTION);
-		intif_Auction_bid(sd->status.char_id, sd->status.name, auction_id, bid);
+	if( pc_payzeny( sd, p->money, LOG_TYPE_AUCTION ) != 0 ){
+		clif_Auction_message( fd, 8 ); // You do not have enough zeny
+		return;
 	}
+
+	intif_Auction_bid( sd->status.char_id, sd->status.name, p->auction_id, p->money );
+#endif
 }
 
 
-/// Auction Search (CZ_AUCTION_ITEM_SEARCH).
-/// 0251 <search type>.W <auction id>.L <search text>.24B <page number>.W
+/// Auction Search.
+/// 0251 <search type>.W <auction id>.L <search text>.24B <page number>.W (CZ_AUCTION_ITEM_SEARCH)
 /// search type:
 ///     0 = armor
 ///     1 = weapon
@@ -17023,19 +17027,20 @@ void clif_parse_Auction_bid(int32 fd, map_session_data *sd){
 ///     4 = name search
 ///     5 = auction id search
 void clif_parse_Auction_search(int32 fd, map_session_data* sd){
-	char search_text[NAME_LENGTH];
-	struct s_packet_db* info = &packet_db[RFIFOW(fd,0)];
-	short type = RFIFOW(fd,info->pos[0]);
-	int32 price = RFIFOL(fd,info->pos[1]);  // FIXME: bug #5071
-	int32 page = RFIFOW(fd,info->pos[3]);
+#if PACKETVER >= 20051107
+	const PACKET_CZ_AUCTION_ITEM_SEARCH* p = reinterpret_cast<PACKET_CZ_AUCTION_ITEM_SEARCH*>( RFIFOP( fd, 0 ) );
 
 	if( !battle_config.feature_auction )
-		return; 
+		return;
 
 	clif_parse_Auction_cancelreg(fd, sd);
 
-	safestrncpy(search_text, RFIFOCP(fd,info->pos[2]), sizeof(search_text));
-	intif_Auction_requestlist(sd->status.char_id, type, price, search_text, page);
+	char search_text[NAME_LENGTH];
+
+	safestrncpy( search_text, p->text, sizeof( search_text ) );
+
+	intif_Auction_requestlist( sd->status.char_id, p->type, p->auction_id, search_text, p->page );
+#endif
 }
 
 
@@ -17422,32 +17427,44 @@ void clif_parse_Adopt_request(int32 fd, map_session_data *sd)
 }
 
 
-/// Answer to adopt confirmation (CZ_JOIN_BABY).
-/// 01f7 <account id>.L <char id>.L <answer>.L
+/// Answer to adopt confirmation.
+/// 01f7 <account id>.L <char id>.L <answer>.L (CZ_JOIN_BABY)
 /// answer:
 ///     0 = rejected
 ///     1 = accepted
 void clif_parse_Adopt_reply(int32 fd, map_session_data *sd){
-	struct s_packet_db* info = &packet_db[RFIFOW(fd,0)];
-	int32 p1_id = RFIFOL(fd,info->pos[0]);
-	int32 p2_id = RFIFOL(fd,info->pos[1]);
-	int32 result = RFIFOL(fd,info->pos[2]);
-	map_session_data* p1_sd = map_id2sd(p1_id);
-	map_session_data* p2_sd = map_id2sd(p2_id);
+	const PACKET_CZ_JOIN_BABY* p = reinterpret_cast<PACKET_CZ_JOIN_BABY*>( RFIFOP( fd, 0 ) );
 
-	int32 pid = sd->adopt_invite;
+	// Check if the adoption was accepted
+	if( p->accepted == 0 ){
+		sd->adopt_invite = 0;
+		return;
+	}
+
+	map_session_data* father_sd = map_id2sd( p->father_AID );
+
+	// The father has to be online
+	if( father_sd == nullptr ){
+		sd->adopt_invite = 0;
+		return;
+	}
+
+	map_session_data* mother_sd = map_id2sd( p->mother_AID );
+
+	// The mother has to be online
+	if( mother_sd == nullptr ){
+		sd->adopt_invite = 0;
+		return;
+	}
+
+	if( sd->adopt_invite != father_sd->status.account_id ){
+		sd->adopt_invite = 0;
+		return;
+	}
+
 	sd->adopt_invite = 0;
 
-	if( p1_sd == nullptr || p2_sd == nullptr )
-		return; // Both players need to be online
-
-	if( pid != p1_sd->status.account_id )
-		return; // Incorrect values
-
-	if( result == 0 )
-		return; // Rejected
-
-	pc_adoption(p1_sd, p2_sd, sd);
+	pc_adoption( father_sd, mother_sd, sd );
 }
 
 
@@ -17949,13 +17966,14 @@ void clif_quest_update_objective(map_session_data *sd, struct quest *qd)
 }
 
 
-/// Request to change the state of a quest (CZ_ACTIVE_QUEST).
-/// 02b6 <quest id>.L <active>.B
-void clif_parse_questStateAck(int32 fd, map_session_data *sd)
-{
-	struct s_packet_db* info = &packet_db[RFIFOW(fd,0)];
-	quest_update_status(sd, RFIFOL(fd,info->pos[0]),
-	    RFIFOB(fd,info->pos[1])?Q_ACTIVE:Q_INACTIVE);
+/// Request to change the state of a quest.
+/// 02b6 <quest id>.L <active>.B (CZ_ACTIVE_QUEST)
+void clif_parse_questStateAck( int32 fd, map_session_data* sd ){
+#if PACKETVER >= 20070622
+	const PACKET_CZ_ACTIVE_QUEST* p = reinterpret_cast<PACKET_CZ_ACTIVE_QUEST*>( RFIFOP( fd, 0 ) );
+
+	quest_update_status( sd, p->quest_id, ( p->active != 0 ) ? Q_ACTIVE : Q_INACTIVE );
+#endif
 }
 
 
@@ -18819,8 +18837,8 @@ void clif_showdigit(map_session_data* sd, unsigned char type, int32 value)
 }
 
 
-/// Notification of the state of client command /effect (CZ_LESSEFFECT).
-/// 021d <state>.L
+/// Notification of the state of client command /effect.
+/// 021d <state>.L (CZ_LESSEFFECT)
 /// state:
 ///     0 = Full effects
 ///     1 = Reduced effects
@@ -18832,8 +18850,11 @@ void clif_showdigit(map_session_data* sd, unsigned char type, int32 value)
 ///         as the only skill unit, that is sent with 0x1c9 is
 ///         Graffiti.
 void clif_parse_LessEffect(int32 fd, map_session_data* sd){
-	int32 isLess = RFIFOL(fd,packet_db[RFIFOW(fd,0)].pos[0]);
-	sd->state.lesseffect = ( isLess != 0 );
+#if PACKETVER >= 20041115
+	const PACKET_CZ_LESSEFFECT* p = reinterpret_cast<PACKET_CZ_LESSEFFECT*>( RFIFOP( fd, 0 ) );
+
+	sd->state.lesseffect = p->state != 0;
+#endif
 }
 
 /// 07e4 <length>.w <option>.l <val>.l {<index>.w <amount>.w).4b* (CZ_ITEMLISTWIN_RES)
