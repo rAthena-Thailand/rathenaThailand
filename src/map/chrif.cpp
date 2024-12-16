@@ -307,7 +307,7 @@ int32 chrif_save(map_session_data *sd, int32 flag) {
 	if (sd->premiumStorage.dirty)
 		storage_premiumStorage_save(sd);
 
-	if( flag&CSAVE_QUITTING ){
+	if(flag&CSAVE_QUITTING){
 		sd->state.storage_flag = 0; //Force close it.
 		
 		if( sd->goldpc_tid != INVALID_TIMER ){
@@ -1781,7 +1781,7 @@ int32 chrif_parse(int32 fd) {
 			packet_len = RFIFOW(fd,2);
 		}
 
-		if ((int)RFIFOREST(fd) < packet_len)
+		if ((int32)RFIFOREST(fd) < packet_len)
 			return 0;
 
 		//ShowDebug("Received packet 0x%4x (%d bytes) from char-server (connection %d)\n", RFIFOW(fd,0), packet_len, fd);
