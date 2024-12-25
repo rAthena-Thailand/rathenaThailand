@@ -11,12 +11,20 @@
 //=	Changed set -> setarray, Improved text with F_InsertPlural
 //= 1.5 Added sc_end_class to reset related status changes [sader1992]
 //============================================================
+//1 นาที = 60 tick
+//1 ชม. =  3600 tick
+//1 วัน = 86400 tick
+//30 วัน หรือ 1 เดือน = 2592000 tick
 moc_para01,23,163,4	script	Reset Girl	124,{
-	//	 		Skills,	Stats,	Both,	Limit  ราคารีสกิล ( 5000 ), ราคารีสเตตัส ( 5000 ), ราคารีทั้งคู่ ( 9000 ), จำนวนครั้งในการรี ( 0 )
-	setarray .@Reset,	500000,	500000,	700000,	0;
+	//	 		Skills,	Stats,	Both,	Limit, DayTickTimeReset  ราคารีสกิล ( 5000 ), ราคารีสเตตัส ( 5000 ), ราคารีทั้งคู่ ( 9000 ), จำนวนครั้งในการรี ( 0 ),จำนวนวัน กี่วันถึงมารีใหม่ได้
+	setarray .@Reset,	500000,	500000,	700000,	0, 2592000;
 	mes "[Reset Girl]";
 	if(.@Reset[3] && reset_limit > .@Reset[3]) {
 		mes "ขอโทษด้วยเจ้าสามารถรีได้แค่ "+callfunc("F_InsertPlural",.@Reset[3],"ครั้ง")+" เท่านั้น.";
+		close;
+	}
+	if(gettimetick(2) <= CharDayTickTimeReset) {
+		mes "ขอโทษด้วยเจ้าสามารถรีได้อีกทีหลังวัน : ^FF3355"+ gettimestr("%Y-%m/%d %H:%M:%S",21,CharDayTickTimeReset)+" ^000000 ไปแล้ว";
 		close;
 	}
 	mes "ข้าคือ Reset Girl.";
@@ -45,5 +53,6 @@ moc_para01,23,163,4	script	Reset Girl	124,{
 	if(.@i&2) ResetStatus;
 	mes "เรียบร้อย!";
 	if(.@Reset[3]) set reset_limit,reset_limit + 1;
+	if(.@Reset[4]) set CharDayTickTimeReset,gettimetick(2)+.@Reset[4];
 	close;
 }

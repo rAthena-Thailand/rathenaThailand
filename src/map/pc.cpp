@@ -3059,9 +3059,11 @@ int32 pc_disguise(map_session_data *sd, int32 class_)
 			clif_updatestatus(*sd,SP_CARTINFO);
 		}
 		if (sd->chatID) {
-			struct chat_data* cd;
-			if ((cd = (struct chat_data*)map_id2bl(sd->chatID)) != nullptr)
-				clif_dispchat(cd,0);
+			chat_data* cd = map_id2cd( sd->chatID );
+
+			if( cd != nullptr ){
+				clif_dispchat( *cd );
+			}
 		}
 	}
 	return 1;
@@ -5994,6 +5996,7 @@ enum e_additem_result pc_additem(map_session_data *sd,struct item *item,int32 am
 		pc_equipitem(sd, i, id->equip);
 	
 	if (id->type == IT_CHARM) status_calc_pc(sd, SCO_NONE); //dh
+	
 	/* rental item check */
 	if( item->expire_time ) {
 		if( time(nullptr) > item->expire_time ) {
@@ -7051,8 +7054,7 @@ enum e_setpos pc_setpos(map_session_data* sd, unsigned short mapindex, int32 x, 
 			status_db.removeByStatusFlag(&sd->hd->bl, { SCF_REMOVEFROMHOMONWARP });
 
 		if (battle_config.hom_delay_reset_warp) {
-			sd->hd->blockskill.clear();
-			sd->hd->blockskill.shrink_to_fit();
+			skill_blockhomun_clear(*sd->hd);
 		}
 
 		sd->hd->bl.m = m;
@@ -14574,6 +14576,7 @@ static void pc_clear_log_damage_sub(uint32 char_id, struct mob_data *md)
 	if (i < DAMAGELOG_SIZE) {
 		md->dmglog[i].id = 0;
 		md->dmglog[i].dmg = 0;
+		md->dmglog[i].dmg_tanked = 0;
 		md->dmglog[i].flag = 0;
 	}
 }
