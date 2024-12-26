@@ -1,0 +1,33 @@
+//=========================================
+//= Author: munkrej#9873
+//= Description: function to select item from an egg
+//=========================================
+//= muh_eggpick(<"AEGIS_NAME">,<IDs>)
+//= 
+//= box item has to be Type: DelayConsume
+//= Example:
+//  - Id: 100717
+//    AegisName: Fluffy_Semi_Long_Box
+//    Name: Costume Fluffy Semi-long Hair
+//    Type: DelayConsume
+//    Buy: 10
+//    Weight: 100
+//    Script: |
+//      callfunc("muh_eggpick","Fluffy_Semi_Long_Box",420036,420037,420038,420039,420040,420041,420042,420043);
+//=========================================
+function	script	muh_eggpick	{
+    .@argc = getargcount();
+	.@box$ = getarg(0);
+    .@name$ = "[ " + getitemname(.@box$) + " ]";
+    mes .@name$,"คุณสามารถเลือกหนึ่งในรายการต่อไปนี้ได้:";
+    .@menu$ = "";
+    for (.@i = 1; .@i < .@argc; .@i++) {
+        mes "" + mesitemlink(getarg(.@i));
+        .@menu$ += "" + getitemname(getarg(.@i)) + ":";
+    }
+    .@s = select(.@menu$);
+	if (countitem(.@box$)>=1) delitem .@box$,1;
+    getitem (getarg(.@s)),1;
+    close;
+	return;
+}
