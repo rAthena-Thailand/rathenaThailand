@@ -9257,6 +9257,7 @@ ACMD_FUNC(cash)
 				sprintf(output, msg_txt(sd,410), ret, sd->cashPoints); // Removed %d cash points. Total %d points.
 				clif_messagecolor(&sd->bl, color_table[COLOR_LIGHT_GREEN], output, false, SELF);
 			}
+		}
 		else clif_displaymessage(fd, msg_txt(sd,41)); // Unable to decrease the number/value.
 	}
 
@@ -9294,7 +9295,6 @@ ACMD_FUNC(points){
 			clif_messagecolor(&sd->bl, color_table[COLOR_LIGHT_GREEN], output, false, SELF);
 		}
 		else clif_displaymessage(fd, msg_txt(sd,41)); // Unable to decrease the number/value.
-		}
 	}
 
 	return 0;
@@ -9999,7 +9999,7 @@ ACMD_FUNC(accinfo) {
 		clif_displaymessage(fd, msg_txt(sd,1365)); // Usage: @accinfo/@accountinfo <account_id/char name>
 		clif_displaymessage(fd, msg_txt(sd,1366)); // You may search partial name by making use of '%' in the search, ex. "@accinfo %Mario%" lists all characters whose name contains "Mario".
 		return -1;
- 	}
+	}
 
 	intif_request_accinfo( sd->fd, sd->bl.id, pc_get_group_level(sd), query);
 	return 0;
