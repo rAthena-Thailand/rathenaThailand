@@ -5293,7 +5293,8 @@ void status_calc_regen_rate(struct block_list *bl, struct regen_data *regen, sta
 		|| sc->getSCE(SC_BLEEDING)
 		|| (sc->getSCE(SC_MAGICMUSHROOM) && sc->getSCE(SC_MAGICMUSHROOM)->val3 == 1)
 		|| sc->getSCE(SC_SATURDAYNIGHTFEVER)
-		|| sc->getSCE(SC_REBOUND))
+		|| sc->getSCE(SC_REBOUND)
+		|| sc->getSCE(SC_NORECOVER_STATE))
 		regen->flag = RGN_NONE;
 
 	// No natural SP regen
@@ -12548,11 +12549,14 @@ int32 status_change_start(struct block_list* src, struct block_list* bl,enum sc_
 			val2 = 2 * val1;
 			break;
 		case SC_KI_SUL_RAMPAGE:
-			tick_time = 1000;
-			val4 = tick / tick_time;
+			tick_time = 100;
+			val4 = tick / 1000;
 			break;
 		case SC_BLESSING_OF_M_CREATURES:
 			val2 = val1 * 10;
+			break;
+		case SC_COLORS_OF_HYUN_ROK_BUFF:
+			val2 = 50;
 			break;
 
 		default:
