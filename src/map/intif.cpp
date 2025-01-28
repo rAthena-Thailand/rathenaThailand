@@ -95,7 +95,7 @@ map_session_data *inter_search_sd(uint32 account_id, uint32 char_id)
  * @param pet_name
  * @return 
  */
-int32 intif_create_pet(uint32 account_id,uint32 char_id,short pet_class,short pet_lv, t_itemid pet_egg_id, t_itemid pet_equip,short intimate,short hungry,char rename_flag,char incubate,const char *pet_name)
+int32 intif_create_pet(uint32 account_id,uint32 char_id,int16 pet_class,int16 pet_lv, t_itemid pet_egg_id, t_itemid pet_equip,int16 intimate,int16 hungry,char rename_flag,char incubate,const char *pet_name)
 {
 	if (CheckForCharServer())
 		return 0;
@@ -248,7 +248,7 @@ int32 intif_broadcast( const char* mes, size_t len, int32 type ){
  * @param fontY :
  * @return 0=not send to char-serv, 1=send to char-serv
  */
-int32 intif_broadcast2( const char* mes, size_t len, unsigned long fontColor, short fontType, short fontSize, short fontAlign, short fontY ){
+int32 intif_broadcast2( const char* mes, size_t len, unsigned long fontColor, int16 fontType, int16 fontSize, int16 fontAlign, int16 fontY ){
 	nullpo_ret(mes);
 	if (len < 2)
 		return 0;
@@ -570,7 +570,7 @@ bool intif_send_guild_storage(uint32 account_id, struct s_storage *gstor)
 		return false;
 	WFIFOHEAD(inter_fd,sizeof(struct s_storage)+12);
 	WFIFOW(inter_fd,0) = 0x3019;
-	WFIFOW(inter_fd,2) = (unsigned short)sizeof(struct s_storage)+12;
+	WFIFOW(inter_fd,2) = (uint16)sizeof(struct s_storage)+12;
 	WFIFOL(inter_fd,4) = account_id;
 	WFIFOL(inter_fd,8) = gstor->id;
 	memcpy( WFIFOP(inter_fd,12),gstor, sizeof(struct s_storage) );
@@ -1702,7 +1702,7 @@ int32 intif_parse_GuildMemberWithdraw(int32 fd)
  * @param fd : char-serv link
  * @return 1
  */
-int32 intif_parse_GuildMemberInfoShort(int32 fd)
+int32 intif_parse_GuildMemberInfoshort(int32 fd)
 {
 	guild_recv_memberinfoshort(RFIFOL(fd,2),RFIFOL(fd,6),RFIFOL(fd,10),RFIFOB(fd,14),RFIFOW(fd,15),RFIFOW(fd,17));
 	return 1;
@@ -2539,7 +2539,7 @@ int32 intif_parse_Mail_return(int32 fd)
 {
 	map_session_data *sd = map_charid2sd(RFIFOL(fd,2));
 	int32 mail_id = RFIFOL(fd,6);
-	short fail = RFIFOB(fd,10);
+	int16 fail = RFIFOB(fd,10);
 
 	if( sd == nullptr )
 	{
@@ -2700,7 +2700,7 @@ bool intif_mail_checkreceiver( map_session_data* sd, char* name ){
  * @param page : in case of huge result list display 5 entry per page, (kinda suck that we redo the request atm)
  * @return 0=error, 1=msg sent
  */
-int32 intif_Auction_requestlist(uint32 char_id, short type, int32 price, const char* searchtext, short page)
+int32 intif_Auction_requestlist(uint32 char_id, int16 type, int32 price, const char* searchtext, int16 page)
 {
 	int32 len = NAME_LENGTH + 16;
 
@@ -2727,8 +2727,8 @@ int32 intif_Auction_requestlist(uint32 char_id, short type, int32 price, const c
 static void intif_parse_Auction_results(int32 fd)
 {
 	map_session_data *sd = map_charid2sd(RFIFOL(fd,4));
-	short count = RFIFOW(fd,8);
-	short pages = RFIFOW(fd,10);
+	int16 count = RFIFOW(fd,8);
+	int16 pages = RFIFOW(fd,10);
 	uint8* data = RFIFOP(fd,12);
 
 	if( sd == nullptr )
@@ -3394,8 +3394,8 @@ void intif_parse_itembound_ack(int32 fd) {
  * @author [Cydh]
  */
 void intif_parse_itembound_store2gstorage(int32 fd) {
-	unsigned short i, failed = 0;
-	short count = RFIFOW(fd, 4), guild_id = RFIFOW(fd, 6);
+	uint16 i, failed = 0;
+	int16 count = RFIFOW(fd, 4), guild_id = RFIFOW(fd, 6);
 	struct s_storage *gstor = guild2storage(guild_id);
 
 	if (!gstor) {
@@ -3810,7 +3810,7 @@ int32 intif_parse(int32 fd)
 	case 0x3831:	intif_parse_GuildInfo(fd); break;
 	case 0x3832:	intif_parse_GuildMemberAdded(fd); break;
 	case 0x3834:	intif_parse_GuildMemberWithdraw(fd); break;
-	case 0x3835:	intif_parse_GuildMemberInfoShort(fd); break;
+	case 0x3835:	intif_parse_GuildMemberInfoshort(fd); break;
 	case 0x3836:	intif_parse_GuildBroken(fd); break;
 	case 0x3837:	intif_parse_GuildMessage(fd); break;
 	case 0x3839:	intif_parse_GuildBasicInfoChanged(fd); break;
