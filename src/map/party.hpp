@@ -37,8 +37,8 @@ struct party_data {
 
 struct party_booking_detail {
 	int16 level;
-    int16 mapid;
-    int16 job[MAX_PARTY_BOOKING_JOBS];
+	int16 mapid;
+	int16 job[MAX_PARTY_BOOKING_JOBS];
 };
 
 struct party_booking_ad_info {

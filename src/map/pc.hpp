@@ -134,8 +134,11 @@ enum e_lr_flag : uint8 {
 	LR_FLAG_SHIELD
 };
 
-#ifndef CAPTCHA_ANSWER_SIZE
-	#define CAPTCHA_ANSWER_SIZE 16
+#ifndef CAPTCHA_ANSWER_SIZE_MIN
+	#define CAPTCHA_ANSWER_SIZE_MIN 1
+#endif
+#ifndef CAPTCHA_ANSWER_SIZE_MAX
+	#define CAPTCHA_ANSWER_SIZE_MAX 16
 #endif
 #ifndef CAPTCHA_BMP_SIZE
 	#define CAPTCHA_BMP_SIZE (2 + 52 + (3 * 220 * 90)) // sizeof("BM") + sizeof(BITMAPV2INFOHEADER) + 24bits 220x90 BMP
@@ -148,7 +151,7 @@ struct s_captcha_data {
 	uint16 index;
 	uint16 image_size;
 	char image_data[CAPTCHA_BMP_SIZE];
-	char captcha_answer[CAPTCHA_ANSWER_SIZE];
+	char captcha_answer[CAPTCHA_ANSWER_SIZE_MAX];
 	script_code *bonus_script;
 
 	~s_captcha_data() {
@@ -503,8 +506,8 @@ public:
 	unsigned char head_dir; //0: Look forward. 1: Look right, 2: Look left.
 	t_tick client_tick;
 	int32 npc_id,npc_shopid; //for script follow scriptoid;   ,npcid
-	std::vector<int> npc_id_dynamic;
-	std::vector<int> areanpc, npc_ontouch_;	///< Array of OnTouch and OnTouch_ NPC ID
+	std::vector<int32> npc_id_dynamic;
+	std::vector<int32> areanpc, npc_ontouch_;	///< Array of OnTouch and OnTouch_ NPC ID
 	int32 npc_item_flag; //Marks the npc_id with which you can use items during interactions with said npc (see script command enable_itemuse)
 	int32 npc_menu; // internal variable, used in npc menu handling
 	int32 npc_amount;
@@ -731,7 +734,7 @@ public:
 	std::shared_ptr<MapGuild> guild; // [Ind] speed everything up
 	int32 guild_invite,guild_invite_account;
 	int32 guild_emblem_id,guild_alliance,guild_alliance_account;
-	int16 guild_x,guild_y; // For guildmate position display. [Skotlex] should be short [zzo]
+	int16 guild_x,guild_y; // For guildmate position display. [Skotlex]
 	int32 guildspy; // [Syrus22]
 	int32 partyspy; // [Syrus22]
 	int32 clanspy;
@@ -821,9 +824,9 @@ public:
 	} achievement_data;
 
 	// Title system
-	std::vector<int> titles;
+	std::vector<int32> titles;
 
-	std::vector<int> cloaked_npc;
+	std::vector<int32> cloaked_npc;
 
 	/* ShowEvent Data Cache flags from map */
 	std::vector<s_qi_display> qi_display;
@@ -949,7 +952,7 @@ public:
 	s_macro_detect macro_detect;
 
 	std::vector<uint32> party_booking_requests;
-	
+
 	int32 goldpc_tid;
 };
 
@@ -1761,12 +1764,12 @@ void pc_attendance_claim_reward( map_session_data* sd );
 void pc_jail(map_session_data &sd, int32 duration = INT_MAX);
 
 // Captcha Register
-void pc_macro_captcha_register(map_session_data &sd, uint16 image_size, const char captcha_answer[CAPTCHA_ANSWER_SIZE]);
+void pc_macro_captcha_register(map_session_data &sd, uint16 image_size, const char captcha_answer[CAPTCHA_ANSWER_SIZE_MAX]);
 void pc_macro_captcha_register_upload(map_session_data & sd, uint16 upload_size, const char *upload_data);
 
 // Macro Detector
 TIMER_FUNC(pc_macro_detector_timeout);
-void pc_macro_detector_process_answer(map_session_data &sd, const char captcha_answer[CAPTCHA_ANSWER_SIZE]);
+void pc_macro_detector_process_answer(map_session_data &sd, const char captcha_answer[CAPTCHA_ANSWER_SIZE_MAX]);
 void pc_macro_detector_disconnect(map_session_data &sd);
 
 // Macro Reporter

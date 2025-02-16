@@ -309,7 +309,7 @@ int32 chrif_save(map_session_data *sd, int32 flag) {
 
 	if(flag&CSAVE_QUITTING){
 		sd->state.storage_flag = 0; //Force close it.
-		
+
 		if( sd->goldpc_tid != INVALID_TIMER ){
 			const struct TimerData *td = get_timer( sd->goldpc_tid );
 
@@ -1607,9 +1607,9 @@ void chrif_parse_ack_vipActive(int32 fd) {
 			clif_displaymessage(sd->fd,msg_txt(sd,438)); // You are no longer VIP.
 		}
 	}
-	
+
 	clif_goldpc_info( *sd );
-	
+
 	// Show info if status changed
 	if (((flag&0x4) || changed) && !sd->vip.disableshowrate) {
 		clif_display_pinfo( *sd );

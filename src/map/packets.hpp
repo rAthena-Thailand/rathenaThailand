@@ -1760,7 +1760,6 @@ struct PACKET_CZ_MOVE_ITEM_FROM_CART_TO_BODY{
 	uint16 index;
 	int32 amount;
 } __attribute__((packed));
-
 DEFINE_PACKET_HEADER(CZ_MOVE_ITEM_FROM_CART_TO_BODY, 0x127);
 
 struct PACKET_CZ_SELECT_WARPPOINT{
@@ -1843,6 +1842,129 @@ struct PACKET_CZ_MOVE_ITEM_FROM_CART_TO_STORE{
 } __attribute__((packed));
 DEFINE_PACKET_HEADER(CZ_MOVE_ITEM_FROM_CART_TO_STORE, 0x129);
 
+#if PACKETVER_MAIN_NUM >= 20180307 || PACKETVER_RE_NUM >= 20180221 || PACKETVER_ZERO_NUM >= 20180328
+struct PACKET_ZC_FRIENDS_STATE{
+	int16 packetType;
+	uint32 AID;
+	uint32 CID;
+	uint8 offline;
+	char name[NAME_LENGTH];
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_FRIENDS_STATE, 0x206);
+#else
+struct PACKET_ZC_FRIENDS_STATE{
+	int16 packetType;
+	uint32 AID;
+	uint32 CID;
+	uint8 offline;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_FRIENDS_STATE, 0x206);
+#endif
+
+struct PACKET_CZ_MAKE_GROUP{
+	int16 packetType;
+	char name[NAME_LENGTH];
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(CZ_MAKE_GROUP, 0xf9);
+
+struct PACKET_CZ_MAKE_GROUP2{
+	int16 packetType;
+	char name[NAME_LENGTH];
+	uint8 item_pickup;
+	uint8 item_share;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(CZ_MAKE_GROUP2, 0x1e8);
+
+struct PACKET_CZ_GM_CHECKER{
+	int16 packetType;
+	char mapname[MAP_NAME_LENGTH_EXT];
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(CZ_GM_CHECKER, 0xc0b);
+
+struct PACKET_ZC_GM_CHECKER{
+	int16 packetType;
+	int16 result;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_GM_CHECKER, 0xc0c);
+
+struct PACKET_ZC_CONFIG_NOTIFY {
+	int16 packetType;
+	uint8 flag;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_CONFIG_NOTIFY, 0x2da);
+
+struct PACKET_ZC_CONGRATULATION {
+	int16 packetType;
+	int32 GID;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_CONGRATULATION, 0x1ea);
+
+struct PACKET_ZC_DIVORCE{
+	int16 packetType;
+	char name[NAME_LENGTH];
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_DIVORCE, 0x205);
+
+struct PACKET_ZC_EMOTION {
+	int16 packetType;
+	int32 GID;
+	uint8 type;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_EMOTION, 0xc0);
+
+struct PACKET_ZC_MSG {
+	int16 packetType;
+	uint16 msgId;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_MSG, 0x291);
+
+struct PACKET_ZC_MSG_SKILL {
+	int16 packetType;
+	uint16 skillId;
+	int32 msgId;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_MSG_SKILL, 0x7e6);
+
+struct PACKET_ZC_MSG_VALUE {
+	int16 packetType;
+	uint16 message;
+	int32 value;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_MSG_VALUE, 0x7e2);
+
+struct PACKET_ZC_NOTIFY_MANNER_POINT_GIVEN {
+	int16 packetType;
+	uint8 type;
+	char name[NAME_LENGTH];
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_NOTIFY_MANNER_POINT_GIVEN, 0x14b);
+
+struct PACKET_ZC_NOTIFY_TIME {
+	int16 packetType;
+	uint32 time;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_NOTIFY_TIME, 0x7f);
+
+struct PACKET_ZC_SETTING_WHISPER_PC {
+	int16 packetType;
+	uint8 type;
+	uint8 result;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_SETTING_WHISPER_PC, 0xd1);
+
+struct PACKET_ZC_SETTING_WHISPER_STATE {
+	int16 packetType;
+	uint8 type;
+	uint8 result;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_SETTING_WHISPER_STATE, 0xd2);
+
+struct PACKET_ZC_SKILLMSG {
+	int16 packetType;
+	int32 msgId;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_SKILLMSG, 0x215);
+
 // NetBSD 5 and Solaris don't like pragma pack but accept the packed attribute
 #if !defined( sun ) && ( !defined( __NETBSD__ ) || __NetBSD_Version__ >= 600000000 )
 	#pragma pack( pop )
@@ -1894,6 +2016,7 @@ DEFINE_PACKET_HEADER(ZC_WARPLIST, 0xabe)
 #else
 DEFINE_PACKET_HEADER(ZC_WARPLIST, 0x11c)
 #endif
+DEFINE_PACKET_HEADER(ZC_MSG_COLOR, 0x9cd);
 
 
 const int16 MAX_INVENTORY_ITEM_PACKET_NORMAL = ( ( INT16_MAX - ( sizeof( struct packet_itemlist_normal ) - ( sizeof( struct NORMALITEM_INFO ) * MAX_ITEMLIST) ) ) / sizeof( struct NORMALITEM_INFO ) );

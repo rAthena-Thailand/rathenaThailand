@@ -1702,7 +1702,7 @@ int32 intif_parse_GuildMemberWithdraw(int32 fd)
  * @param fd : char-serv link
  * @return 1
  */
-int32 intif_parse_GuildMemberInfoshort(int32 fd)
+int32 intif_parse_GuildMemberInfoShort(int32 fd)
 {
 	guild_recv_memberinfoshort(RFIFOL(fd,2),RFIFOL(fd,6),RFIFOL(fd,10),RFIFOB(fd,14),RFIFOW(fd,15),RFIFOW(fd,17));
 	return 1;
@@ -3810,7 +3810,7 @@ int32 intif_parse(int32 fd)
 	case 0x3831:	intif_parse_GuildInfo(fd); break;
 	case 0x3832:	intif_parse_GuildMemberAdded(fd); break;
 	case 0x3834:	intif_parse_GuildMemberWithdraw(fd); break;
-	case 0x3835:	intif_parse_GuildMemberInfoshort(fd); break;
+	case 0x3835:	intif_parse_GuildMemberInfoShort(fd); break;
 	case 0x3836:	intif_parse_GuildBroken(fd); break;
 	case 0x3837:	intif_parse_GuildMessage(fd); break;
 	case 0x3839:	intif_parse_GuildBasicInfoChanged(fd); break;

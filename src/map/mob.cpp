@@ -1014,25 +1014,27 @@ int32 mob_can_reach(struct mob_data *md,struct block_list *bl,int32 range)
  *------------------------------------------*/
 int32 mob_linksearch(struct block_list *bl,va_list ap)
 {
-	struct mob_data *md;
+	mob_data *md;
 	int32 mob_id;
-	struct block_list *target;
+	int32 target_id;
 	t_tick tick;
 
 	nullpo_ret(bl);
-	md=(struct mob_data *)bl;
+	md = reinterpret_cast<mob_data*>(bl);
 	mob_id = va_arg(ap, int32);
-	target = va_arg(ap, struct block_list *);
+	target_id = va_arg(ap, int32);
 	tick=va_arg(ap, t_tick);
 
-	if (md->mob_id == mob_id && status_has_mode(&md->status,MD_ASSIST) && DIFF_TICK(tick, md->last_linktime) >= MIN_MOBLINKTIME
-		&& !md->target_id)
+	// Check if mob qualifies for assistance
+	// Line of sight to the ally is already checked at this point
+	// No valid path to the target is required
+	if (md->mob_id == mob_id && status_has_mode(&md->status,MD_ASSIST)
+		&& DIFF_TICK(tick, md->last_linktime) >= MIN_MOBLINKTIME
+		&& md->target_id == 0)
 	{
 		md->last_linktime = tick;
-		if( mob_can_reach(md,target,md->db->range2) ){	// Reachability judging
-			md->target_id = target->id;
-			return 1;
-		}
+		md->target_id = target_id;
+		return 1;
 	}
 
 	return 0;
@@ -1194,6 +1196,7 @@ int32 mob_spawn (struct mob_data *md)
 	md->last_pcneartime = 0;
 	md->last_canmove = tick;
 	md->last_skillcheck = 0;
+	md->trickcasting = 0;
 
 	t_tick c = tick - MOB_MAX_DELAY;
 
@@ -1421,7 +1424,7 @@ static int32 mob_warpchase_sub(struct block_list *bl,va_list ap) {
 
 	target= va_arg(ap, struct block_list*);
 	target_nd= va_arg(ap, struct npc_data**);
-	min_distance= va_arg(ap, int*);
+	min_distance= va_arg(ap, int32*);
 
 	nd = (TBL_NPC*) bl;
 
@@ -1550,7 +1553,11 @@ int32 mob_unlocktarget(struct mob_data *md, t_tick tick)
 		md->state.skillstate = MSS_IDLE;
 		[[fallthrough]];
 	case MSS_IDLE:
-		if( md->ud.walktimer == INVALID_TIMER && md->idle_event[0] && npc_event_do_id( md->idle_event, md->bl.id ) > 0 ){
+		// When walking we want to trigger the idle skills through the walk routine so we can prevent stopping
+		// This situation happens when an immobile monster uses a skill to move
+		if (md->ud.walktimer != INVALID_TIMER)
+			break;
+		if (md->idle_event[0] && npc_event_do_id(md->idle_event, md->bl.id) > 0) {
 			md->idle_event[0] = 0;
 			break;
 		}
@@ -1974,6 +1981,9 @@ static bool mob_ai_sub_hard(struct mob_data *md, t_tick tick)
 	// Normal attack / berserk skill is only used when target is in range
 	if (battle_check_range(&md->bl, tbl, md->status.rhw.range))
 	{
+		// Make sure there is no chase target when already in attack range
+		md->ud.target_to = 0;
+
 		// Hiding is a special case because it prevents normal attacks but allows skill usage
 		// TODO: Some other states also have this behavior and should be investigated (e.g. NPC_SR_CURSEDCIRCLE)
 		if (!(md->sc.option&OPTION_HIDE)) {
@@ -2085,9 +2095,9 @@ static int32 mob_ai_sub_hard_timer(struct block_list *bl,va_list ap)
 	struct mob_data *md = (struct mob_data*)bl;
 	uint32 char_id = va_arg(ap, uint32);
 	t_tick tick = va_arg(ap, t_tick);
+	mob_add_spotted(md, char_id);
 	if (mob_ai_sub_hard(md, tick))
 	{	//Hard AI triggered.
-		mob_add_spotted(md, char_id);
 		md->last_pcneartime = tick;
 	}
 	return 0;
@@ -2156,10 +2166,12 @@ static int32 mob_ai_sub_lazy(struct mob_data *md, va_list args)
 
 	if (md->master_id) {
 		if (!mob_is_spotted(md)) {
+			if (battle_config.slave_active_with_master == 0)
+				return 0;
 			// Get mob data of master
 			mob_data* mmd = map_id2md(md->master_id);
 			// If neither master nor slave have been spotted we don't have to execute the slave AI
-			if (mmd && !mob_is_spotted(mmd))
+			if (mmd != nullptr && !mob_is_spotted(mmd))
 				return 0;
 		}
 		mob_ai_sub_hard_slavemob (md,tick);
@@ -2535,11 +2547,6 @@ void mob_log_damage(mob_data* md, block_list* src, int64 damage, int64 damage_ta
 //Call when a mob has received damage.
 void mob_damage(struct mob_data *md, struct block_list *src, int32 damage)
 {
-	// LOne WOlf explained that ANYONE can trigger the marine countdown skill. [Skotlex]
-	if( src != nullptr && md->special_state.ai == AI_SPHERE && md->dmglog.empty() ){
-		md->state.can_escape = 1;
-	}
-
 	if (src && damage > 0) { //Store total damage...
 		if ((src != &md->bl) && md->state.aggressive) //No longer aggressive, change to retaliate AI.
 			md->state.aggressive = 0;
@@ -3621,6 +3628,7 @@ void mob_heal(struct mob_data *md,uint32 heal)
 		if (md->special_state.ai == AI_ABR || md->special_state.ai == AI_BIONIC) {
 			clif_summon_hp_bar(*md);
 		}
+
 		// Must show hp bar to all char who already hit the mob.
 		for( const auto& entry : md->dmglog ){
 			map_session_data* sd = map_charid2sd( entry.id );
@@ -3964,7 +3972,7 @@ bool mob_chat_display_message(mob_data &md, uint16 msg_id) {
 /*==========================================
  * Skill use judging
  *------------------------------------------*/
-int32 mobskill_use(struct mob_data *md, t_tick tick, int32 event, int64 damage)
+bool mobskill_use(struct mob_data *md, t_tick tick, int32 event, int64 damage)
 {
 	struct block_list *fbl = nullptr; //Friend bl, which can either be a BL_PC or BL_MOB depending on the situation. [Skotlex]
 	struct block_list *bl;
@@ -4066,9 +4074,11 @@ int32 mobskill_use(struct mob_data *md, t_tick tick, int32 event, int64 damage)
 				case MSC_MASTERATTACKED:
 					flag = (md->master_id > 0 && (fbl=map_id2bl(md->master_id)) && unit_counttargeted(fbl) > 0); break;
 				case MSC_ALCHEMIST:
-					flag = (md->state.can_escape); break;
+					flag = (md->special_state.ai != AI_NONE && md->trickcasting == 0 && md->status.hp < md->status.max_hp); break;
 				case MSC_MOBNEARBYGT:
 					flag = (map_foreachinallrange(mob_count_sub, &md->bl, AREA_SIZE, BL_MOB) > c2 ); break;
+				case MSC_TRICKCASTING:
+					flag = (md->trickcasting > 0); break;
 			}
 		}
 
@@ -4142,6 +4152,9 @@ int32 mobskill_use(struct mob_data *md, t_tick tick, int32 event, int64 damage)
 					break;
 				case MST_TARGET:
 					bl = map_id2bl(md->target_id);
+					// Monsters that cannot attack put their last attacker as target
+					if (bl == nullptr && !status_has_mode(&md->status, MD_CANATTACK))
+						bl = map_id2bl(md->attacked_id);
 					break;
 				case MST_MASTER:
 					bl = &md->bl;
@@ -4193,11 +4206,11 @@ int32 mobskill_use(struct mob_data *md, t_tick tick, int32 event, int64 damage)
 		} else
 			md->skilldelay[i]=tick;
 		map_freeblock_unlock();
-		return 1;
+		return true;
 	}
 	//No skill was used.
 	md->skill_idx = -1;
-	return 0;
+	return false;
 }
 /*==========================================
  * Skill use event processing
@@ -4614,8 +4627,8 @@ s_mob_db::s_mob_db()
 	status.luk = 1;
 	status.ele_lv = 1;
 	status.speed = DEFAULT_WALK_SPEED;
-	status.adelay = cap_value(0, battle_config.monster_max_aspd * 2, 4000);
-	status.amotion = cap_value(0, battle_config.monster_max_aspd, 2000);
+	status.adelay = MAX_ASPD_NOPC;
+	status.amotion = MAX_ASPD_NOPC/AMOTION_DIVIDER_NOPC;
 	status.clientamotion = cap_value(status.amotion, 1, USHRT_MAX);
 	status.mode = static_cast<e_mode>(MONSTER_TYPE_06);
 
@@ -5028,7 +5041,7 @@ uint64 MobDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		if (!this->asUInt16(node, "AttackDelay", speed))
 			return 0;
 
-		mob->status.adelay = cap_value(speed, battle_config.monster_max_aspd * 2, 4000);
+		mob->status.adelay = cap_value(speed, MAX_ASPD_NOPC, MIN_ASPD);
 	}
 	
 	if (this->nodeExists(node, "AttackMotion")) {
@@ -5037,7 +5050,8 @@ uint64 MobDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		if (!this->asUInt16(node, "AttackMotion", speed))
 			return 0;
 
-		mob->status.amotion = cap_value(speed, battle_config.monster_max_aspd, 2000);
+		// amotion is only capped to MAX_ASPD_NOPC when receiving buffs/debuffs
+		mob->status.amotion = cap_value(speed, 1, MIN_ASPD/AMOTION_DIVIDER_NOPC);
 	}
 
 	if (this->nodeExists(node, "ClientAttackMotion")) {
@@ -6038,6 +6052,7 @@ static bool mob_parse_row_mobskilldb( char** str, size_t columns, size_t current
 		{ "mobnearbygt",       MSC_MOBNEARBYGT       },
 		{ "groundattacked",    MSC_GROUNDATTACKED    },
 		{ "damagedgt",         MSC_DAMAGEDGT         },
+		{ "trickcasting",      MSC_TRICKCASTING      },
 	}, cond2[] ={
 		{	"anybad",		-1				},
 		{	"stone",		SC_STONE		},
@@ -6722,7 +6737,7 @@ bool MapDropDatabase::parseDrop( const ryml::NodeRef& node, std::unordered_map<u
 			drop->randomopt_group = 0;
 		}
 	}
-	
+
 	//Any Map (map_drops) [Hyroshima]
 	if( this->nodeExists( node, "DirectInventory" ) )
 		drop->direct_inventory = 1;

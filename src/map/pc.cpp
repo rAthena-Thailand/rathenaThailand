@@ -1802,6 +1802,7 @@ uint8 pc_isequip(map_session_data *sd,int32 n)
 				case W_DAGGER: //All level 4 - Daggers
 				case W_1HSWORD: //All level 4 - 1H Swords
 				case W_1HAXE: //All level 4 - 1H Axes
+				case W_2HAXE: // All level 4 - 2H Axes (works, but low ASPD)
 				case W_MACE: //All level 4 - 1H Maces
 				case W_STAFF: //All level 4 - 1H Staves
 				case W_2HSTAFF: //All level 4 - 2H Staves
@@ -1828,7 +1829,7 @@ uint8 pc_isequip(map_session_data *sd,int32 n)
 		switch (item->subtype) {
 			case AMMO_ARROW:
 				if (battle_config.ammo_check_weapon && sd->status.weapon != W_BOW && sd->status.weapon != W_MUSICAL && sd->status.weapon != W_WHIP) {
-					clif_msg(sd, MSI_FAIL_NEED_EQUIPPED_BOW);
+					clif_msg( *sd, MSI_FAIL_NEED_EQUIPPED_BOW );
 					return ITEM_EQUIP_ACK_FAIL;
 				}
 				break;
@@ -1843,26 +1844,26 @@ uint8 pc_isequip(map_session_data *sd,int32 n)
 					&& sd->status.weapon != W_GRENADE
 #endif
 					) {
-					clif_msg(sd, MSI_WRONG_BULLET);
+					clif_msg( *sd, MSI_WRONG_BULLET );
 					return ITEM_EQUIP_ACK_FAIL;
 				}
 				break;
 #ifndef RENEWAL
 			case AMMO_GRENADE:
 				if (battle_config.ammo_check_weapon && sd->status.weapon != W_GRENADE) {
-					clif_msg(sd, MSI_WRONG_BULLET);
+					clif_msg( *sd, MSI_WRONG_BULLET );
 					return ITEM_EQUIP_ACK_FAIL;
 				}
 				break;
 #endif
 			case AMMO_CANNONBALL:
 				if (!pc_ismadogear(sd) && (sd->status.class_ == JOB_MECHANIC_T || sd->status.class_ == JOB_MECHANIC)) {
-					clif_msg(sd, MSI_USESKILL_FAIL_MADOGEAR); // Item can only be used when Mado Gear is mounted.
+					clif_msg( *sd, MSI_USESKILL_FAIL_MADOGEAR ); // Item can only be used when Mado Gear is mounted.
 					return ITEM_EQUIP_ACK_FAIL;
 				}
 				if (sd->state.active && !pc_iscarton(sd) && //Check if sc data is already loaded
 					(sd->status.class_ == JOB_GENETIC_T || sd->status.class_ == JOB_GENETIC)) {
-					clif_msg(sd, MSI_USESKILL_FAIL_CART); // Only available when cart is mounted.
+					clif_msg( *sd, MSI_USESKILL_FAIL_CART ); // Only available when cart is mounted.
 					return ITEM_EQUIP_ACK_FAIL;
 				}
 				break;
@@ -2427,7 +2428,7 @@ void pc_reg_received(map_session_data *sd)
 	}else{
 		sd->goldpc_tid = INVALID_TIMER;
 	}
-	
+
 	// pet
 	if (sd->status.pet_id > 0)
 		intif_request_petdata(sd->status.account_id, sd->status.char_id, sd->status.pet_id);
@@ -5996,9 +5997,9 @@ enum e_additem_result pc_additem(map_session_data *sd,struct item *item,int32 am
 	//Auto-equip
 	if(id->flag.autoequip)
 		pc_equipitem(sd, i, id->equip);
-	
+
 	if (id->type == IT_CHARM) status_calc_pc(sd, SCO_NONE); //dh
-	
+
 	/* rental item check */
 	if( item->expire_time ) {
 		if( time(nullptr) > item->expire_time ) {
@@ -6052,7 +6053,7 @@ char pc_delitem(map_session_data *sd,int32 n,int32 amount,int32 type, int16 reas
 		clif_updatestatus(*sd,SP_WEIGHT);
 
 	pc_show_questinfo(sd);
-	
+
 	if (mem == IT_CHARM) status_calc_pc(sd, SCO_NONE);
 
 	return 0;
@@ -6221,7 +6222,7 @@ bool pc_isUseitem(map_session_data *sd,int32 n)
 		return false;
 
 	if( (item->item_usage.sitting) && (pc_issit(sd) == 1) && (pc_get_group_level(sd) < item->item_usage.override) ) {
-		clif_msg(sd, MSI_CANT_USE_WHEN_SITDOWN);
+		clif_msg( *sd, MSI_CANT_USE_WHEN_SITDOWN );
 		return false; // You cannot use this item while sitting.
 	}
 
@@ -6266,7 +6267,7 @@ bool pc_isUseitem(map_session_data *sd,int32 n)
 
 			// User is not party leader
 			if( i == MAX_PARTY ){
-				clif_msg( sd, MSI_CANNOT_PARTYCALL);
+				clif_msg( *sd, MSI_CANNOT_PARTYCALL );
 				return false;
 			}
 
@@ -6274,11 +6275,11 @@ bool pc_isUseitem(map_session_data *sd,int32 n)
 
 			// No party members found on same map
 			if( i == MAX_PARTY ){
-				clif_msg( sd, MSI_NO_PARTYMEM_ON_THISMAP );
+				clif_msg( *sd, MSI_NO_PARTYMEM_ON_THISMAP );
 				return false;
 			}
 		}else{
-			clif_msg( sd, MSI_CANNOT_PARTYCALL);
+			clif_msg( *sd, MSI_CANNOT_PARTYCALL );
 			return false;
 		}
 	}
@@ -6314,14 +6315,14 @@ bool pc_isUseitem(map_session_data *sd,int32 n)
 		// Check if the player is not overweighted
 		// In Renewal the limit is 70% weight and gives the same error message
 		if (pc_is70overweight(sd)) {
-			clif_msg_color(sd, MSI_PICKUP_FAILED_ITEMCREATE, color_table[COLOR_RED]);
+			clif_msg_color( *sd, MSI_PICKUP_FAILED_ITEMCREATE, color_table[COLOR_RED] );
 			return 0;
 		}
 #else
 		// Check if the player is not overweighted
 		// In Pre-Renewal the limit is 50% weight and gives a specific error message
 		if (pc_is50overweight(sd)) {
-			clif_msg_color(sd, MSI_CANT_GET_ITEM_BECAUSE_WEIGHT, color_table[COLOR_RED]);
+			clif_msg_color( *sd, MSI_CANT_GET_ITEM_BECAUSE_WEIGHT, color_table[COLOR_RED] );
 			return 0;
 		}
 #endif
@@ -6332,9 +6333,9 @@ bool pc_isUseitem(map_session_data *sd,int32 n)
 		// TODO: Count the items the player will get and check for the actual inventory space required std::max<size_t>( count, 10 )
 		if (pc_inventoryblank(sd) <= 10) {
 #ifdef RENEWAL
-			clif_msg_color(sd, MSI_PICKUP_FAILED_ITEMCREATE, color_table[COLOR_RED]);
+			clif_msg_color( *sd, MSI_PICKUP_FAILED_ITEMCREATE, color_table[COLOR_RED] );
 #else
-			clif_msg_color(sd, MSI_CANT_GET_ITEM_BECAUSE_COUNT, color_table[COLOR_RED]);
+			clif_msg_color( *sd, MSI_CANT_GET_ITEM_BECAUSE_COUNT, color_table[COLOR_RED] );
 #endif
 			return 0;
 		}
@@ -6394,7 +6395,7 @@ int32 pc_useitem(map_session_data *sd,int32 n)
 
 		if( pc_hasprogress( sd, WIP_DISABLE_SKILLITEM ) || !sd->npc_item_flag ){
 #ifdef RENEWAL
-			clif_msg( sd, MSI_BUSY);
+			clif_msg( *sd, MSI_BUSY );
 #endif
 			return 0;
 		}
@@ -6433,7 +6434,7 @@ int32 pc_useitem(map_session_data *sd,int32 n)
 
 	/* on restricted maps the item is consumed but the effect is not used */
 	if (!pc_has_permission(sd,PC_PERM_ITEM_UNCONDITIONAL) && itemdb_isNoEquip(id,sd->bl.m)) {
-		clif_msg(sd, MSI_IMPOSSIBLE_USEITEM_AREA); // This item cannot be used within this area
+		clif_msg( *sd, MSI_IMPOSSIBLE_USEITEM_AREA ); // This item cannot be used within this area
 		if( battle_config.allow_consume_restricted_item && id->flag.delay_consume > 0 ) { //need confirmation for delayed consumption items
 			clif_useitemack(sd,n,item.amount-1,true);
 			pc_delitem(sd,n,1,1,0,LOG_TYPE_CONSUME);
@@ -6598,7 +6599,7 @@ void pc_putitemtocart(map_session_data *sd,int32 idx,int32 amount)
 		return;
 
 	if( item_data->equipSwitch ){
-		clif_msg( sd, MSI_SWAP_EQUIPITEM_UNREGISTER_FIRST );
+		clif_msg( *sd, MSI_SWAP_EQUIPITEM_UNREGISTER_FIRST );
 		return;
 	}
 
@@ -10166,7 +10167,7 @@ int64 pc_readparam(map_session_data* sd,int64 type)
 		case SP_COOKMASTERY:     val = sd->cook_mastery; break;
 		case SP_ACHIEVEMENT_LEVEL: val = sd->achievement_data.level; break;
 		case SP_CRITICAL:        val = sd->battle_status.cri/10; break;
-		case SP_ASPD:            val = (2000-sd->battle_status.amotion)/10; break;
+		case SP_ASPD:            val = (AMOTION_ZERO_ASPD-sd->battle_status.amotion)/AMOTION_INTERVAL; break;
 		case SP_BASE_ATK:
 #ifdef RENEWAL
 			val = sd->bonus.eatk;
@@ -12797,8 +12798,8 @@ bool pc_divorce(map_session_data *sd)
 			pc_delitem(p_sd, i, 1, 0, 0, LOG_TYPE_OTHER);
 	}
 
-	clif_divorced(sd, p_sd->status.name);
-	clif_divorced(p_sd, sd->status.name);
+	clif_divorced( *sd, p_sd->status.name );
+	clif_divorced( *p_sd, sd->status.name );
 
 	return true;
 }
@@ -13667,6 +13668,7 @@ uint32 JobDatabase::calc_basehp( const uint16 level, const std::shared_ptr<s_job
 		}
 	}
 #endif
+
 	if( (mapid&MAPID_BASEMASK) == MAPID_SUMMONER ){
 		base_hp += floor( ( base_hp / 2 ) + 0.5 );
 	}else if( (mapid&MAPID_UPPERMASK) == MAPID_SUPER_NOVICE ){
@@ -13882,14 +13884,18 @@ uint64 JobDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			if (this->nodeExists(node, "BaseASPD")) {
 				const ryml::NodeRef& aspdNode = node["BaseASPD"];
 				uint8 max = MAX_WEAPON_TYPE;
+				int32 def_aspd = AMOTION_ZERO_ASPD;
 
-#ifdef RENEWAL // Renewal adds an extra column for shields
+#ifdef RENEWAL
+				// Renewal adds an extra column for shields
 				max += 1;
+				// Renewal uses ASPD penalty which is amotion divided by the amotion interval
+				def_aspd /= AMOTION_INTERVAL;
 #endif
 
 				if (!exists) {
 					job->aspd_base.resize(max);
-					std::fill(job->aspd_base.begin(), job->aspd_base.end(), 2000);
+					std::fill(job->aspd_base.begin(), job->aspd_base.end(), def_aspd);
 				}
 
 				for (const auto &aspdit : aspdNode) {
@@ -13918,12 +13924,16 @@ uint64 JobDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			} else {
 				if (!exists) {
 					uint8 max = MAX_WEAPON_TYPE;
+					int32 def_aspd = AMOTION_ZERO_ASPD;
 
-#ifdef RENEWAL // Renewal adds an extra column for shields
+#ifdef RENEWAL
+					// Renewal adds an extra column for shields
 					max += 1;
+					// Renewal uses ASPD penalty which is amotion divided by the amotion interval
+					def_aspd /= AMOTION_INTERVAL;
 #endif
 					job->aspd_base.resize(max);
-					std::fill(job->aspd_base.begin(), job->aspd_base.end(), 2000);
+					std::fill(job->aspd_base.begin(), job->aspd_base.end(), def_aspd);
 				}
 			}
 
@@ -14667,7 +14677,7 @@ uint8 pc_itemcd_check(map_session_data *sd, struct item_data *id, t_tick tick, u
 	// Send reply of delay remains
 	if (sc->getSCE(id->delay.sc)) {
 		const struct TimerData *timer = get_timer(sc->getSCE(id->delay.sc)->timer);
-		clif_msg_value(sd, MSI_ITEM_REUSE_LIMIT_SECOND, (int32)(timer ? DIFF_TICK(timer->tick, tick) / 1000 : 99));
+		clif_msg_value( *sd, MSI_ITEM_REUSE_LIMIT_SECOND, (int32)(timer ? DIFF_TICK(timer->tick, tick) / 1000 : 99) );
 		return 1;
 	}
 
@@ -15613,6 +15623,7 @@ static void pc_macro_punishment(map_session_data &sd, e_macro_detect_status styp
 	if (sd.macro_detect.timer != INVALID_TIMER)
 		delete_timer(sd.macro_detect.timer, pc_macro_detector_timeout);
 
+	int32 reporter_aid = sd.macro_detect.reporter_aid;
 	// Clear the macro detect data
 	sd.macro_detect = {};
 	sd.macro_detect.timer = INVALID_TIMER;
@@ -15623,7 +15634,7 @@ static void pc_macro_punishment(map_session_data &sd, e_macro_detect_status styp
 
 	if (battle_config.macro_detection_punishment == 0) { // Ban
 		clif_macro_detector_status(sd, stype);
-		chrif_req_login_operation(sd.macro_detect.reporter_aid, sd.status.name, (duration == 0 ? CHRIF_OP_LOGIN_BLOCK : CHRIF_OP_LOGIN_BAN), duration, 0, 0);
+		chrif_req_login_operation(reporter_aid, sd.status.name, (duration == 0 ? CHRIF_OP_LOGIN_BLOCK : CHRIF_OP_LOGIN_BAN), duration, 0, 0);
 	} else { // Jail
 		// Send success to close the window without closing the client
 		clif_macro_detector_status(sd, MCD_GOOD);
@@ -15638,13 +15649,13 @@ static void pc_macro_punishment(map_session_data &sd, e_macro_detect_status styp
  * @param image_size: Captcha image size
  * @param captcha_answer: Answer to captcha
  */
-void pc_macro_captcha_register(map_session_data &sd, uint16 image_size, const char captcha_answer[CAPTCHA_ANSWER_SIZE]) {
+void pc_macro_captcha_register(map_session_data &sd, uint16 image_size, const char captcha_answer[CAPTCHA_ANSWER_SIZE_MAX]) {
 	nullpo_retv(captcha_answer);
 
 	sd.captcha_upload.cd = nullptr;
 	sd.captcha_upload.upload_size = 0;
 
-	if (strlen(captcha_answer) < 4 || image_size == 0 || image_size > CAPTCHA_BMP_SIZE) {
+	if (strlen(captcha_answer) < CAPTCHA_ANSWER_SIZE_MIN || image_size == 0 || image_size > CAPTCHA_BMP_SIZE) {
 		clif_captcha_upload_request(sd); // Notify client of failure.
 		return;
 	}
@@ -15734,7 +15745,7 @@ TIMER_FUNC(pc_macro_detector_timeout) {
  * @param sd: Player data
  * @param captcha_answer: Captcha answer entered by player
  */
-void pc_macro_detector_process_answer(map_session_data &sd, const char captcha_answer[CAPTCHA_ANSWER_SIZE]) {
+void pc_macro_detector_process_answer(map_session_data &sd, const char captcha_answer[CAPTCHA_ANSWER_SIZE_MAX]) {
 	nullpo_retv(captcha_answer);
 
 	const std::shared_ptr<s_captcha_data> cd = sd.macro_detect.cd;
@@ -15761,7 +15772,9 @@ void pc_macro_detector_process_answer(map_session_data &sd, const char captcha_a
 		pc_setreg(&sd, add_str("@captcha_retries"), battle_config.macro_detection_retry - sd.macro_detect.retry);
 
 		// Grant bonuses via script
-		run_script(cd->bonus_script, 0, sd.bl.id, fake_nd->bl.id);
+		if( cd->bonus_script != nullptr ){
+			run_script(cd->bonus_script, 0, sd.bl.id, fake_nd->bl.id);
+		}
 
 		// Notify the client
 		clif_macro_detector_status(sd, MCD_GOOD);
@@ -15943,8 +15956,8 @@ uint64 CaptchaDatabase::parseBodyNode(const ryml::NodeRef &node) {
 		if (!this->asString(node, "Answer", answer))
 			return 0;
 
-		if (answer.length() < 4 || answer.length() > CAPTCHA_ANSWER_SIZE) {
-			this->invalidWarning(node["Answer"], "The captcha answer must be between 4~%d characters, skipping...", CAPTCHA_ANSWER_SIZE);
+		if (answer.length() < CAPTCHA_ANSWER_SIZE_MIN || answer.length() > CAPTCHA_ANSWER_SIZE_MAX) {
+			this->invalidWarning(node["Answer"], "The captcha answer must be between 4~%d characters, skipping...\n", CAPTCHA_ANSWER_SIZE_MAX);
 			return 0;
 		}
 
@@ -15952,18 +15965,26 @@ uint64 CaptchaDatabase::parseBodyNode(const ryml::NodeRef &node) {
 	}
 
 	if (this->nodeExists(node, "Bonus")) {
-		std::string script;
+		if( node["Bonus"].val_is_null() ){
+			if( cd->bonus_script ){
+				script_free_code( cd->bonus_script );
+			}
 
-		if (!this->asString(node, "Bonus", script)) {
-			return 0;
-		}
-
-		if (cd->bonus_script) {
-			script_free_code(cd->bonus_script);
 			cd->bonus_script = nullptr;
-		}
+		}else{
+			std::string script;
 
-		cd->bonus_script = parse_script(script.c_str(), this->getCurrentFile().c_str(), this->getLineNumber(node["Bonus"]), SCRIPT_IGNORE_EXTERNAL_BRACKETS);
+			if (!this->asString(node, "Bonus", script)) {
+				return 0;
+			}
+
+			if (cd->bonus_script) {
+				script_free_code(cd->bonus_script);
+				cd->bonus_script = nullptr;
+			}
+
+			cd->bonus_script = parse_script(script.c_str(), this->getCurrentFile().c_str(), this->getLineNumber(node["Bonus"]), SCRIPT_IGNORE_EXTERNAL_BRACKETS);
+		}
 	} else {
 		if (!exists)
 			cd->bonus_script = parse_script("specialeffect2 EF_BLESSING; sc_start SC_BLESSING,600000,10; specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,600000,10;", "macro_script", 0, SCRIPT_IGNORE_EXTERNAL_BRACKETS);
@@ -16022,7 +16043,7 @@ void do_init_pc(void) {
 	add_timer_func_list(pc_autotrade_timer, "pc_autotrade_timer");
 	add_timer_func_list(pc_on_expire_active, "pc_on_expire_active");
 	add_timer_func_list(pc_macro_detector_timeout, "pc_macro_detector_timeout");
-	add_timer_func_list( pc_goldpc_update, "pc_goldpc_update" );
+	add_timer_func_list(pc_goldpc_update, "pc_goldpc_update");
 
 	add_timer(gettick() + autosave_interval, pc_autosave, 0, 0);
 
