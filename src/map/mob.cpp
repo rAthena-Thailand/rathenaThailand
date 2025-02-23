@@ -2072,18 +2072,6 @@ static bool mob_ai_sub_hard(struct mob_data *md, t_tick tick)
 		return true;
 	}
 
-	// Monsters can use chase skills before starting to walk
-	// So we need to change the state and check for a skill here already
-	// But only use skill if able to walk on next tick and not attempted a skill the last second
-	// Skills during movement are handled in the walktobl routine
-	if (md->ud.walktimer == INVALID_TIMER
-		&& DIFF_TICK(md->ud.canmove_tick, tick) <= MIN_MOBTHINKTIME
-		&& DIFF_TICK(tick, md->last_skillcheck) >= MOB_SKILL_INTERVAL) {
-		md->state.skillstate = md->state.aggressive ? MSS_FOLLOW : MSS_RUSH;
-		if (mobskill_use(md, tick, -1))
-			return true;
-	}
-
 	if(!unit_walktobl(&md->bl, tbl, md->status.rhw.range, 2))
 		mob_unlocktarget(md, tick);
 
@@ -6129,7 +6117,7 @@ static bool mob_parse_row_mobskilldb( char** str, size_t columns, size_t current
 	if( j < ARRAYLENGTH(state) )
 		ms->state = state[j].id;
 	else {
-		ShowError("mob_parse_row_mobskilldb: Unrecognized state '%s' in line %d\n", str[2], current);
+		ShowError("mob_parse_row_mobskilldb: Unrecognized state '%s' in line %" PRIuPTR "\n", str[2], current);
 		return false;
 	}
 
