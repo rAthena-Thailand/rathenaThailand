@@ -99,32 +99,33 @@ bool unit_update_chase(block_list& bl, t_tick tick, bool fullcheck) {
 		tbl = map_id2bl(ud->target_to);
 
 	// Reached destination, start attacking
-	if (tbl != nullptr && tbl->m == bl.m && ud->walkpath.path_pos > 0 && check_distance_bl(&bl, tbl, ud->chaserange) && status_check_visibility(&bl, tbl, false)) {
-		ud->to_x = bl.x;
-		ud->to_y = bl.y;
-		ud->target_to = 0;
-		// Aegis uses one before every attack, we should
-		// only need this one for syncing purposes.
-		clif_fixpos(bl);
+	if (tbl != nullptr && tbl->type != BL_ITEM && tbl->m == bl.m && ud->walkpath.path_pos > 0 && check_distance_bl(&bl, tbl, ud->chaserange)) {
+		// We need to make sure the walkpath is cleared here so a monster doesn't continue walking in case it unlocks its target
+		unit_stop_walking(&bl, USW_FIXPOS|USW_FORCE_STOP|USW_RELEASE_TARGET);
 		if (ud->state.attack_continue)
 			unit_attack(&bl, tbl->id, ud->state.attack_continue);
 		return true;
 	}
 	// Cancel chase
 	else if (tbl == nullptr || (fullcheck && !status_check_visibility(&bl, tbl, (bl.type == BL_MOB)))) {
-		ud->to_x = bl.x;
-		ud->to_y = bl.y;
-
-		if (tbl != nullptr && bl.type == BL_MOB) {
+		// Looted items will have no tbl but target ID is still set, that's why we need to check for the ID here
+		if (ud->target_to != 0 && bl.type == BL_MOB) {
 			mob_data& md = reinterpret_cast<mob_data&>(bl);
-			if (mob_warpchase(&md, tbl))
-				return true;
+			if (tbl != nullptr) {
+				int32 warp = mob_warpchase(&md, tbl);
+				// Do warp chase
+				if (warp == 1)
+					return true;
+				// Continue moving to warp
+				else if (warp == 2)
+					return false;
+			}
 			// Make sure monsters properly unlock their target, but still continue movement
 			mob_unlocktarget(&md, tick);
 			return false;
 		}
 
-		ud->target_to = 0;
+		unit_stop_walking(&bl, USW_FIXPOS|USW_FORCE_STOP|USW_RELEASE_TARGET);
 		return true;
 	}
 	// Update chase path
@@ -180,14 +181,9 @@ bool unit_walktoxy_nextcell(block_list& bl, bool sendMove, t_tick tick) {
 			sendMove = true;
 		}
 		if (ud->target_to != 0) {
-			int16 tx = ud->to_x;
-			int16 ty = ud->to_y;
 			// Monsters update their chase path one cell before reaching their final destination
 			if (unit_update_chase(bl, tick, (ud->walkpath.path_pos == ud->walkpath.path_len - 1)))
 				return true;
-			// Continue moving, restore to_x and to_y
-			ud->to_x = tx;
-			ud->to_y = ty;
 		}
 	}
 
@@ -719,10 +715,14 @@ static TIMER_FUNC(unit_walktoxy_timer)
 	} else if(ud->state.running) { // Keep trying to run.
 		if (!(unit_run(bl, nullptr, SC_RUN) || unit_run(bl, sd, SC_WUGDASH)) )
 			ud->state.running = 0;
-	} else if (!ud->stepaction && ud->target_to) {
-		// Update target trajectory.
-		unit_update_chase(*bl, tick, true);
-	} else { // Stopped walking. Update to_x and to_y to current location [Skotlex]
+	} else {
+		if (!ud->stepaction && ud->target_to > 0) {
+			// Update target trajectory.
+			if(unit_update_chase(*bl, tick, true))
+				return 0;
+		}
+
+		// Stopped walking. Update to_x and to_y to current location
 		ud->to_x = bl->x;
 		ud->to_y = bl->y;
 
@@ -730,13 +730,17 @@ static TIMER_FUNC(unit_walktoxy_timer)
 			&& !ud->state.ignore_cell_stack_limit
 			&& battle_config.official_cell_stack_limit > 0
 			&& map_count_oncell(bl->m, x, y, BL_CHAR|BL_NPC, 1) > battle_config.official_cell_stack_limit) {
+
 			//Walked on occupied cell, call unit_walktoxy again
-			if(ud->steptimer != INVALID_TIMER) {
+			if(unit_walktoxy(bl, x, y, 8)) {
 				//Execute step timer on next step instead
-				delete_timer(ud->steptimer, unit_step_timer);
-				ud->steptimer = INVALID_TIMER;
+				if (ud->steptimer != INVALID_TIMER) {
+					//Execute step timer on next step instead
+					delete_timer(ud->steptimer, unit_step_timer);
+					ud->steptimer = INVALID_TIMER;
+				}
+				return 1;
 			}
-			return unit_walktoxy(bl, x, y, 8);
 		}
 	}
 
@@ -807,7 +811,7 @@ int32 unit_walktoxy( struct block_list *bl, int16 x, int16 y, unsigned char flag
 	if (ud == nullptr)
 		return 0;
 
-	if ((flag&8) && !map_closest_freecell(bl->m, &x, &y, BL_CHAR|BL_NPC, 1)) //This might change x and y
+	if ((flag&8) && !map_nearby_freecell(bl->m, x, y, BL_CHAR|BL_NPC, 1)) //This might change x and y
 		return 0;
 
 	walkpath_data wpd = { 0 };
@@ -1481,70 +1485,157 @@ int32 unit_warp(struct block_list *bl,int16 m,int16 x,int16 y,clr_type type)
 }
 
 /**
+ * Calculates the exact coordinates of a bl considering the walktimer
+ * This is needed because we only update X/Y when finishing movement to the next cell
+ * Officially, however, the coordinates update when crossing the border to the next cell
+ * @param bl: Object to get the coordinates of
+ * @param tick: Tick based on which we calculate the coordinates
+ * @param x: Will be set to the exact X value of the bl
+ * @param y: Will be set to the exact Y value of the bl
+ * @param sx: Will be set to the exact subcell X value of the bl
+ * @param sy: Will be set to the exact subcell Y value of the bl
+ * @return Whether the coordinates were set (true) or retrieving them failed (false)
+ */
+bool unit_pos(block_list& bl, t_tick tick, int16 &x, int16 &y, uint8 &sx, uint8 &sy)
+{
+	unit_data* ud = unit_bl2ud(&bl);
+
+	if (ud == nullptr)
+		return false;
+
+	if (ud->walkpath.path_pos >= ud->walkpath.path_len)
+		return false;
+
+	if (ud->walktimer == INVALID_TIMER)
+		return false;
+
+	const TimerData* td = get_timer(ud->walktimer);
+
+	if (td == nullptr)
+		return false;
+
+	// Set initial coordinates
+	x = bl.x;
+	y = bl.y;
+	sx = 8;
+	sy = 8;
+
+	// Get how much percent we traversed on the timer
+	double cell_percent = 1.0 - ((double)DIFF_TICK(td->tick, gettick()) / (double)td->data);
+
+	if (cell_percent > 0.0 && cell_percent < 1.0) {
+		// Set subcell coordinates according to timer
+		// This gives a value between 8 and 39
+		sx = static_cast<uint8>(24.0 + dirx[ud->walkpath.path[ud->walkpath.path_pos]] * 16.0 * cell_percent);
+		sy = static_cast<uint8>(24.0 + diry[ud->walkpath.path[ud->walkpath.path_pos]] * 16.0 * cell_percent);
+		// 16-31 reflect sub position 0-15 on the current cell
+		// 8-15 reflect sub position 8-15 at -1 main coordinate
+		// 32-39 reflect sub position 0-7 at +1 main coordinate
+		if (sx < 16 || sy < 16 || sx > 31 || sy > 31) {
+			if (sx < 16) x--;
+			if (sy < 16) y--;
+			if (sx > 31) x++;
+			if (sy > 31) y++;
+		}
+		sx %= 16;
+		sy %= 16;
+	}
+	else if (cell_percent >= 1.0) {
+		// Assume exactly one cell moved
+		x += dirx[ud->walkpath.path[ud->walkpath.path_pos]];
+		y += diry[ud->walkpath.path[ud->walkpath.path_pos]];
+	}
+
+	return true;
+}
+
+/**
+ * Helper function to get the exact X coordinate
+ * @param bl: Object to get the X coordinate of
+ * @param tick: Tick based on which we calculate the coordinate
+ * @return The exact X coordinate
+ */
+int16 unit_getx(block_list& bl, t_tick tick) {
+	int16 x, y;
+	uint8 sx, sy;
+
+	// Get exact coordinates
+	if (unit_pos(bl, tick, x, y, sx, sy))
+		return x;
+
+	// If above failed, object is probably not moving, so just return current X
+	return bl.x;
+}
+
+/**
+ * Helper function to get the exact Y coordinate
+ * @param bl: Object to get the Y coordinate of
+ * @param tick: Tick based on which we calculate the coordinate
+ * @return The exact Y coordinate
+ */
+int16 unit_gety(block_list& bl, t_tick tick) {
+	int16 x, y;
+	uint8 sx, sy;
+
+	// Get exact coordinates
+	if (unit_pos(bl, tick, x, y, sx, sy))
+		return y;
+
+	// If above failed, object is probably not moving, so just return current Y
+	return bl.y;
+}
+
+/**
  * Updates the walkpath of a unit to end after 0.5-1.5 cells moved
  * Sends required packet for proper display on the client using subcoordinates
  * @param bl: Object to stop walking
  */
-void unit_stop_walking_soon(struct block_list& bl)
+void unit_stop_walking_soon(struct block_list& bl, t_tick tick)
 {
 	struct unit_data* ud = unit_bl2ud(&bl);
 
 	if (ud == nullptr)
 		return;
 
-	if (ud->walktimer == INVALID_TIMER)
-		return;
-
-	if (ud->walkpath.path_pos + 1 >= ud->walkpath.path_len)
-		return;
-
-	const struct TimerData* td = get_timer(ud->walktimer);
-
-	if (td == nullptr)
-		return;
-
-	// Get how much percent we traversed on the timer
-	double cell_percent = 1.0 - ((double)DIFF_TICK(td->tick, gettick()) / (double)td->data);
-
 	int16 ox = bl.x, oy = bl.y; // Remember original x and y coordinates
 	int16 path_remain = 1; // Remaining path to walk
+	bool shortened = false;
 
-	if (cell_percent > 0.0 && cell_percent < 1.0) {
-		// Set subcell coordinates according to timer
-		// This gives a value between 8 and 39
-		ud->sx = static_cast<decltype(ud->sx)>(24.0 + dirx[ud->walkpath.path[ud->walkpath.path_pos]] * 16.0 * cell_percent);
-		ud->sy = static_cast<decltype(ud->sy)>(24.0 + diry[ud->walkpath.path[ud->walkpath.path_pos]] * 16.0 * cell_percent);
-		// 16-31 reflect sub position 0-15 on the current cell
-		// 8-15 reflect sub position 8-15 at -1 main coordinate
-		// 32-39 reflect sub position 0-7 at +1 main coordinate
-		if (ud->sx < 16 || ud->sy < 16 || ud->sx > 31 || ud->sy > 31) {
+	if (ud->walkpath.path_pos + 1 >= ud->walkpath.path_len) {
+		// Less than 1 cell left to walk so no need to shorten the path
+		// Since we don't need to resend the move packet, we don't need to calculate the exact coordinates
+		path_remain = ud->walkpath.path_len - ud->walkpath.path_pos;
+	}
+	else {
+		// Set coordinates to exact coordinates
+		unit_pos(bl, tick, bl.x, bl.y, ud->sx, ud->sy);
+
+		// If x or y already changed, we need to move one more cell
+		if (ox != bl.x || oy != bl.y)
 			path_remain = 2;
-			if (ud->sx < 16) bl.x--;
-			if (ud->sy < 16) bl.y--;
-			if (ud->sx > 31) bl.x++;
-			if (ud->sy > 31) bl.y++;
+
+		// Shorten walkpath
+		if (ud->walkpath.path_pos + path_remain < ud->walkpath.path_len) {
+			ud->walkpath.path_len = ud->walkpath.path_pos + path_remain;
+			shortened = true;
 		}
-		ud->sx %= 16;
-		ud->sy %= 16;
 	}
-	else if (cell_percent >= 1.0) {
-		// Assume exactly one cell moved
-		bl.x += dirx[ud->walkpath.path[ud->walkpath.path_pos]];
-		bl.y += diry[ud->walkpath.path[ud->walkpath.path_pos]];
-		path_remain = 2;
+
+	// Make sure to_x and to_y match the walk path even if not shortened in case they were modified
+	ud->to_x = ox;
+	ud->to_y = oy;
+	for (int32 i = 0; i < path_remain; i++) {
+		ud->to_x += dirx[ud->walkpath.path[ud->walkpath.path_pos + i]];
+		ud->to_y += diry[ud->walkpath.path[ud->walkpath.path_pos + i]];
 	}
-	// Shorten walkpath
-	if (ud->walkpath.path_pos + path_remain < ud->walkpath.path_len) {
-		ud->walkpath.path_len = ud->walkpath.path_pos + path_remain;
-		ud->to_x = ox;
-		ud->to_y = oy;
-		for (int32 i = 0; i < path_remain; i++) {
-			ud->to_x += dirx[ud->walkpath.path[ud->walkpath.path_pos + i]];
-			ud->to_y += diry[ud->walkpath.path[ud->walkpath.path_pos + i]];
-		}
-		// Send movement packet with calculated coordinates and subcoordinates
+	// To prevent sending a pointless walk command
+	ud->state.change_walk_target = 0;
+
+	// Send movement packet with calculated coordinates and subcoordinates
+	// Only need to send if walkpath was shortened
+	if (shortened)
 		clif_move(*ud);
-	}
+
 	// Reset coordinates
 	bl.x = ox;
 	bl.y = oy;
@@ -1720,6 +1811,38 @@ TIMER_FUNC(unit_resume_running){
 		clif_walkok(*sd);
 
 	return 0;
+}
+
+/**
+ * Sets the delays that prevent attacks and skill usage considering the bl type
+ * Officially it just remembers the last attack time here and applies the delays during the comparison
+ * But we pre-calculate the delays instead and store them in attackabletime and canact_tick
+ * Currently these delays are only applied to PCs
+ * TODO: This function should also be called on attacks and cast begin
+ * @param bl Object to apply attack delay to
+ * @param tick Current tick
+ */
+void unit_set_attackdelay(block_list& bl, t_tick tick)
+{
+	unit_data* ud = unit_bl2ud(&bl);
+
+	if (ud == nullptr)
+		return;
+
+	switch (bl.type) {
+		case BL_PC:
+			ud->attackabletime = tick + status_get_adelay(&bl);
+			// A fixed delay is added here which is equal to the minimum attack motion you can get
+			// This ensures that at max ASPD attackabletime and canact_tick are equal
+			ud->canact_tick = tick + status_get_amotion(&bl) + (pc_maxaspd(reinterpret_cast<map_session_data*>(&bl)) / AMOTION_DIVIDER_PC);
+			break;
+		case BL_MER:
+			// TODO: Should set this, but only for ground skills
+			break;
+		default:
+			// Not applicable
+			break;
+	}
 }
 
 /**

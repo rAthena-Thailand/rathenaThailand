@@ -1532,13 +1532,7 @@ bool battle_status_block_damage(struct block_list *src, struct block_list *targe
 
 	if ((sce = sc->getSCE(SC_PARRYING)) && flag&BF_WEAPON && skill_id != WS_CARTTERMINATION && rnd() % 100 < sce->val2) {
 		clif_skill_nodamage(target, *target, LK_PARRYING, sce->val1);
-
-		if (skill_id == LK_PARRYING) {
-			unit_data *ud = unit_bl2ud(target);
-
-			if (ud != nullptr) // Delay the next attack
-				ud->attackabletime = gettick() + status_get_adelay(target);
-		}
+		unit_set_attackdelay(*target, gettick());
 		return false;
 	}
 
@@ -2862,20 +2856,24 @@ static bool is_skill_using_arrow(struct block_list *src, int32 skill_id)
 
 	map_session_data *sd = BL_CAST(BL_PC, src);
 
-	if (sd != nullptr && sd->state.arrow_atk)
-		return true;
-
-	if (sd == nullptr && skill_id != 0) {
-		if (skill_get_ammotype(skill_id) != 0)
+	if( sd != nullptr ){
+		if( sd->state.arrow_atk ){
 			return true;
+		}
+	}else{
+		if( skill_id != 0 && skill_get_ammotype( skill_id ) != AMMO_NONE ){
+			return true;
+		}
 
 		status_data* sstatus = status_get_status_data(*src);
 
-		if (sstatus->rhw.range > 3)
+		if( sstatus != nullptr && sstatus->rhw.range > 3 ){
 			return true;
+		}
 	}
 
 	switch( skill_id ) {
+		case HT_FREEZINGTRAP:
 		case HT_PHANTASMIC:
 		case GS_GROUNDDRIFT:
 		case SS_KUNAIKUSSETSU:
