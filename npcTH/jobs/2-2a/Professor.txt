@@ -1,93 +1,94 @@
-//===== rAthena Script ======================================= 
+//===== rAthena Script =======================================
 //= Advance Class jobchanger after kRO Normals.
 //===== By: ==================================================
 //= Nana
 //= finished, optimized and tested by Lupus
-//===== Current Version: ===================================== 
+//===== Current Version: =====================================
 //= 1.3
-//===== Compatible With: ===================================== 
+//===== Compatible With: =====================================
 //= rAthena Project
-//===== Description: ========================================= 
+//===== Description: =========================================
 //= Advance Class jobchanger after kRO Normals.
-//===== Additional Comments: ================================= 
+//===== Additional Comments: =================================
 //= 1.1 Made all into functions, additional checks, etc. [Lupus]
 //= 1.2 Made numbers into constants. [Vicious]
 //= 1.3 Now saves/restores all the quest skills [Lupus]
-//============================================================ 
+//============================================================
+
 
 valkyrie,53,47,3	script	Scholar#Valkyrie	743,{
-	if (ADVJOB == 0 || Upper != 1) {
-		set .@karma_d,rand(1,10);
-		if (.@karma_d > 4) {
-			mes "[Scholar]";
-			mes "Congratulations.";
-			mes "Honor to the warriors!";
-			close;
+		if (ADVJOB == 0 || Upper != 1) {
+				set .@karma_d,rand(1,10);
+				if (.@karma_d > 4) {
+						mes "[Scholar]";
+						mes "ยินดีด้วย.";
+						mes "เป็นเกียรติแก่นักรบ!";
+						close;
+				}
+				mes "[Scholar]";
+				mes "ต้องใช้เวลาตลอดชีวิต ...";
+				mes "ตลอดชีวิต";
+				mes "เพื่อรวบรวมความรู้";
+				mes "จำเป็นต้องเป็น";
+				mes "นักวิชาการ ...";
+				next;
+				mes "[Scholar]";
+				mes "มันท่วมท้น";
+				mes "ยิ่งคุณเรียนรู้มากเท่าไหร่";
+				mes "คุณค้นพบสิ่งที่มากขึ้น";
+				mes "อย่างอื่นที่คุณไม่รู้";
+				mes "ไม่มีที่สิ้นสุด";
+				mes "กระบวนการเรียนรู้ ...";
+				close;
+		}
+		else if (ADVJOB == Job_Professor && Class == Job_Mage_High && JobLevel > 39) {
+				mes "[Scholar]";
+				mes "Midgard ไม่ได้";
+				mes "มีนักวิชาการเพียงพอที่จะ";
+				mes "ช่วยนำในยุคใหม่";
+				mes "ความเจริญรุ่งเรืองที่";
+				mes "โลกต้องการคุณ ...";
+				next;
+				mes "[Scholar]";
+				mes "คุณจะใช้สิ่งนี้หรือไม่";
+				mes "ความรับผิดชอบที่ยอดเยี่ยม?";
+				mes "คุณจะให้บริการ midgard";
+				mes "ในฐานะนักวิชาการ?";
+				next;
+				if (select("ไม่: ยี่สิบ") == 1) {
+						mes "[Scholar]";
+						mes "เมื่อคุณพร้อม";
+						mes "อย่าลังเลที่จะกลับมา";
+						mes "เป็นเกียรติแก่นักรบ!";
+						close;
+				}
+				if (SkillPoint) {
+						mes "[Scholar]";
+						mes "ยังคงเป็นไปได้ที่คุณจะได้เรียนรู้ทักษะเพิ่มเติมกรุณาใช้";
+						mes "คะแนนทักษะที่เหลืออยู่ทั้งหมดของคุณก่อนกลับมาหาฉัน";
+						close;
+				}
+				jobchange Job_Professor;
+				set ADVJOB,0;
+				mes "[Scholar]";
+				mes "ยินดีด้วย!";
+				mes "ในฐานะศาสตราจารย์ฉันหวังว่า";
+				mes "ว่าคุณจะใช้";
+				mes "มีส่วนร่วมในการนำ";
+				mes "แสงแห่งความรู้";
+				mes "ที่มีความมืด";
+				close;
 		}
 		mes "[Scholar]";
-		mes "It takes a lifetime...";
-		mes "Literally a lifetime";
-		mes "to amass the knowledge";
-		mes "necessary to become";
-		mes "a Scholar...";
+		mes "Welcome";
+		mes "ถึง Valhalla";
+		mes "Hall of Honor";
 		next;
 		mes "[Scholar]";
-		mes "It's overwhelming.";
-		mes "The more you learn, the";
-		mes "more you discover what";
-		mes "else you don't know.";
-		mes "There's no end to the";
-		mes "process of learning...";
+		mes "กรุณาทำ";
+		mes "ตัวเองสบาย";
+		mes "ในขณะที่คุณอยู่ที่นี่";
+		mes "เป็นเกียรติแก่นักรบ!";
 		close;
-	}
-	else if (ADVJOB == Job_Professor && Class == Job_Mage_High && JobLevel > 39) {
-		mes "[Scholar]";
-		mes "Midgard doesn't";
-		mes "have enough Scholars to";
-		mes "help usher in a new age";
-		mes "of prosperity. The";
-		mes "world needs you...";
-		next;
-		mes "[Scholar]";
-		mes "Will you take this";
-		mes "awesome responsibility?";
-		mes "Will you serve Midgard";
-		mes "as a Scholar?";
-		next;
-		if (select("No.:Yes.") == 1) {
-			mes "[Scholar]";
-			mes "When you're ready,";
-			mes "feel free to come back.";
-			mes "Honor to the warriors!";
-			close;
-		}
-		if (SkillPoint) {
-			mes "[Scholar]";
-			mes "It is still possible for you to learn more skills. Please use";
-			mes "all of your remaining Skill Points before returning to me.";
-			close;
-		}
-		jobchange Job_Professor;
-		set ADVJOB,0;
-		mes "[Scholar]";
-		mes "Congratulations!";
-		mes "As a Professor, I hope";
-		mes "that you will take an";
-		mes "active part in bringing";
-		mes "the light of knowledge";
-		mes "where there is darkness.";
-		close;
-	}
-	mes "[Scholar]";
-	mes "Welcome";
-	mes "to Valhalla,";
-	mes "the Hall of Honor.";
-	next;
-	mes "[Scholar]";
-	mes "Please make";
-	mes "yourself comfortable";
-	mes "while you are here.";
-	mes "Honor to the warriors!";
-	close;
 }
 

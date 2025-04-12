@@ -1,139 +1,140 @@
-//===== rAthena Script ======================================= 
+//===== rAthena Script =======================================
 //= Advance Class jobchanger after kRO Normals.
 //===== By: ==================================================
 //= Nana
 //= finished, optimized and tested by Lupus
-//===== Current Version: ===================================== 
+//===== Current Version: =====================================
 //= 1.3
-//===== Compatible With: ===================================== 
+//===== Compatible With: =====================================
 //= rAthena Project
-//===== Description: ========================================= 
+//===== Description: =========================================
 //= Advance Class jobchanger after kRO Normals.
-//===== Additional Comments: ================================= 
+//===== Additional Comments: =================================
 //= 1.1 Made all into functions, additional checks, etc. [Lupus]
 //= 1.2 Made numbers into constants. [Vicious]
 //= 1.3 Now saves/restores all the quest skills [Lupus]
 //= 1.4 Creators did not get their homunculus skills [Lemongrass]
-//============================================================ 
+//============================================================
+
 
 valkyrie,53,50,3	script	Biochemist#Valkyrie	122,{
-	if (Class == Job_Creator && bioeth == 13 && getskilllv("AM_BIOETHICS") == 0) {
-		mes "[Biochemist]";
-		mes "Ah, have you come to";
-		mes "retrieve the memories";
-		mes "lost to you? Yes, you";
-		mes "must be here for the";
-		mes "secrets of life that";
-		mes "were once yours...";
-		next;
-		if (select("Yes:No") == 1) {
-			mes "[Biochemist]";
-			mes "Close your eyes and";
-			mes "put your mind at rest.";
-			mes "We will return to your";
-			mes "past to recollect the";
-			mes "fragments of your lost";
-			mes "memories.";
-			next;
-			mes "[Biochemist]";
-			mes "When you open your eyes,";
-			mes "you will clearly remember";
-			mes "the secret of life. You will";
-			mes "also remember the weight of";
-			mes "responsibility in using these";
-			mes "secrets for the right ends...";
-			next;
-			skill "AM_BIOETHICS",1,SKILL_PERM;
-			mes "[Biochemist]";
-			mes "Open your eyes...";
-			mes "Now that you have";
-			mes "remembered how to";
-			mes "create artificial life, I only";
-			mes "ask that you treat all of your";
-			mes "creations with respect.";
-			close;
+		if (Class == Job_Creator && bioeth == 13 && getskilllv("am_bioethics") == 0) {
+				mes "[นักชีวเคมี]";
+				mes "อ่าคุณมาที่";
+				mes "ดึงความทรงจำ";
+				mes "แพ้คุณ?ใช่คุณ";
+				mes "ต้องอยู่ที่นี่สำหรับไฟล์";
+				mes "ความลับของชีวิตที่";
+				mes "เคยเป็นของคุณ ...";
+				next;
+				if (select("ใช่: ไม่") == 1) {
+						mes "[นักชีวเคมี]";
+						mes "หลับตาและ";
+						mes "ทำให้จิตใจของคุณสงบลง";
+						mes "เราจะกลับไปที่ไฟล์";
+						mes "อดีตเพื่อระลึกถึง";
+						mes "ชิ้นส่วนที่หายไปของคุณ";
+						mes "ความทรงจำ";
+						next;
+						mes "[นักชีวเคมี]";
+						mes "เมื่อคุณลืมตา";
+						mes "คุณจะจดจำได้อย่างชัดเจน";
+						mes "ความลับของชีวิตคุณจะ";
+						mes "ยังจำน้ำหนักของ";
+						mes "ความรับผิดชอบในการใช้สิ่งเหล่านี้";
+						mes "ความลับสำหรับการสิ้นสุดที่ถูกต้อง ...";
+						next;
+						skill "am_bioethics",1,SKILL_PERM;
+						mes "[นักชีวเคมี]";
+						mes "ลืมตา ...";
+						mes "ตอนนี้คุณมี";
+						mes "จำวิธีการ";
+						mes "สร้างชีวิตเทียมฉันเท่านั้น";
+						mes "ขอให้คุณปฏิบัติต่อไฟล์";
+						mes "สร้างสรรค์ด้วยความเคารพ";
+						close;
+				}
+				mes "[นักชีวเคมี]";
+				mes "หากคุณต้องการ";
+				mes "เรียกคืนที่หายไปของคุณ";
+				mes "โปรดความทรงจำ";
+				mes "กลับมาหาฉัน";
+				mes "ความลับในการสร้าง";
+				mes "ชีวิตไม่ใช่เรื่องเล็ก ๆ น้อย ๆ ...";
+				close;
 		}
-		mes "[Biochemist]";
-		mes "If you wish to";
-		mes "retrieve your lost";
-		mes "memories, please";
-		mes "come back to me.";
-		mes "The secret to creating";
-		mes "life is no trifling thing...";
-		close;
-	}
-	else if (ADVJOB == 0 || Upper != 1) {
-		set .@karma_d,rand(1,10);
-		if (.@karma_d > 4) {
-			mes "[Biochemist]";
-			mes "Congratulations.";
-			mes "Honor to the warriors!";
-			close;
+		else if (ADVJOB == 0 || Upper != 1) {
+				set .@karma_d,rand(1,10);
+				if (.@karma_d > 4) {
+						mes "[นักชีวเคมี]";
+						mes "ยินดีด้วย.";
+						mes "เป็นเกียรติแก่นักรบ!";
+						close;
+				}
+				mes "[นักชีวเคมี]";
+				mes "มันแปลกที่";
+				mes "คนอย่างฉันอยู่ที่นี่";
+				mes "แต่แม้แต่คนที่มีทักษะ";
+				mes "ในทางของวิทยาศาสตร์";
+				mes "สามารถจัดการให้เป็นฮีโร่ได้";
+				next;
+				mes "[นักชีวเคมี]";
+				mes "ในกรณีนี้";
+				mes "ไม่จำเป็น";
+				mes "วิธีการที่ฉันใช้ แต่";
+				mes "จุดสิ้นสุดที่ฉันได้รับ";
+				mes "การต่อสู้ที่ทำให้ฉันได้รับ";
+				mes "สถานที่ใน Valhalla ...";
+				close;
 		}
-		mes "[Biochemist]";
-		mes "It's strange that";
-		mes "someone like me is here.";
-		mes "But even someone skilled";
-		mes "in the ways of science";
-		mes "can manage to be a hero.";
-		next;
-		mes "[Biochemist]";
-		mes "In this instance,";
-		mes "it's not necessarily";
-		mes "the means I've used, but";
-		mes "the ends for which I've";
-		mes "fought that earned me";
-		mes "a place in Valhalla...";
-		close;
-	}
-	else if (ADVJOB == Job_Creator && Class == Job_Merchant_High && JobLevel > 39) {
-		mes "[Biochemist]";
-		mes "Yes...";
-		mes "It's about time.";
-		mes "We need more geniuses";
-		mes "like you on Midgard.";
-		next;
-		mes "[Biochemist]";
-		mes "Would you like to";
-		mes "become a Biochemist?";
-		next;
-		if (select("No.:Yes.") == 1) {
-			mes "[Biochemist]";
-			mes "When you're ready,";
-			mes "feel free to come back.";
-			mes "Honor to the warriors!";
-			close;
+		else if (ADVJOB == Job_Creator && Class == Job_Merchant_High && JobLevel > 39) {
+				mes "[นักชีวเคมี]";
+				mes "ใช่...";
+				mes "มันเกี่ยวกับเวลา";
+				mes "เราต้องการอัจฉริยะมากขึ้น";
+				mes "ชอบคุณใน Midgard";
+				next;
+				mes "[นักชีวเคมี]";
+				mes "คุณต้องการที่จะ";
+				mes "เป็นนักชีวเคมี?";
+				next;
+				if (select("ไม่: ยี่สิบ") == 1) {
+						mes "[นักชีวเคมี]";
+						mes "เมื่อคุณพร้อม";
+						mes "อย่าลังเลที่จะกลับมา";
+						mes "เป็นเกียรติแก่นักรบ!";
+						close;
+				}
+				if (SkillPoint) {
+						mes "[นักชีวเคมี]";
+						mes "ยังคงเป็นไปได้ที่คุณจะได้เรียนรู้ทักษะเพิ่มเติมกรุณาใช้";
+						mes "คะแนนทักษะที่เหลืออยู่ทั้งหมดของคุณก่อนกลับมาหาฉัน";
+						close;
+				}
+				jobchange Job_Creator;
+				if (bioeth == 13)
+						skill "am_bioethics",1,SKILL_PERM;
+				set ADVJOB,0;
+				mes "[นักชีวเคมี]";
+				mes "ยินดีด้วย!";
+				mes "ในฐานะนักชีวเคมี";
+				mes "ฉันหวังว่าคุณจะใช้ไฟล์";
+				mes "ความรู้มากมายสำหรับ";
+				mes "วัตถุประสงค์ที่ถูกต้อง";
+				close;
 		}
-		if (SkillPoint) {
-			mes "[Biochemist]";
-			mes "It is still possible for you to learn more skills. Please use";
-			mes "all of your remaining Skill Points before returning to me.";
-			close;
+		else {
+				mes "[นักชีวเคมี]";
+				mes "Welcome";
+				mes "ถึง Valhalla";
+				mes "Hall of Honor";
+				next;
+				mes "[นักชีวเคมี]";
+				mes "กรุณาทำ";
+				mes "ตัวเองสบาย";
+				mes "ในขณะที่คุณอยู่ที่นี่";
+				mes "เป็นเกียรติแก่นักรบ!";
+				close;
 		}
-		jobchange Job_Creator;
-		if (bioeth == 13)
-			skill "AM_BIOETHICS",1,SKILL_PERM;
-		set ADVJOB,0;
-		mes "[Biochemist]";
-		mes "Congratulations!";
-		mes "As a Biochemist,";
-		mes "I hope you use your";
-		mes "vast knowledge for the";
-		mes "right purposes.";
-		close;
-	}
-	else {
-		mes "[Biochemist]";
-		mes "Welcome";
-		mes "to Valhalla,";
-		mes "the Hall of Honor.";
-		next;
-		mes "[Biochemist]";
-		mes "Please make";
-		mes "yourself comfortable";
-		mes "while you are here.";
-		mes "Honor to the warriors!";
-		close;
-	}
 }
 

@@ -1,83 +1,84 @@
-//===== rAthena Script ======================================= 
+//===== rAthena Script =======================================
 //= Advance Class jobchanger after kRO Normals.
 //===== By: ==================================================
 //= Nana
 //= finished, optimized and tested by Lupus
-//===== Current Version: ===================================== 
+//===== Current Version: =====================================
 //= 1.3
-//===== Compatible With: ===================================== 
+//===== Compatible With: =====================================
 //= rAthena Project
-//===== Description: ========================================= 
+//===== Description: =========================================
 //= Advance Class jobchanger after kRO Normals.
-//===== Additional Comments: ================================= 
+//===== Additional Comments: =================================
 //= 1.1 Made all into functions, additional checks, etc. [Lupus]
 //= 1.2 Made numbers into constants. [Vicious]
 //= 1.3 Now saves/restores all the quest skills [Lupus]
 //= 1.3a Corrected a Little Typo error. [Samuray22]
 //=     Thanks to Myllena.
-//============================================================ 
+//============================================================
+
 
 valkyrie,53,54,3	script	Minstrel#Valkyrie	741,{
-	if (ADVJOB == 0 || Upper != 1) {
-		set .@karma_d,rand(1,10);
-		if (.@karma_d > 4) {
-			mes "[Minstrel]";
-			mes "Congratulations.";
-			mes "Honor to the warriors!";
-			close;
+		if (ADVJOB == 0 || Upper != 1) {
+				set .@karma_d,rand(1,10);
+				if (.@karma_d > 4) {
+						mes "[minstrel]";
+						mes "ยินดีด้วย.";
+						mes "เป็นเกียรติแก่นักรบ!";
+						close;
+				}
+				mes "[minstrel]";
+				mes "คุณต้องการ";
+				mes "ร้องเพลงกับฉัน?";
+				mes "Sha la la la la ~";
+				close;
 		}
-		mes "[Minstrel]";
-		mes "Do you want to";
-		mes "sing a song with me?";
-		mes "Sha la la la la~";
-		close;
-	}
-	else if (ADVJOB == Job_Clown && Class == Job_Archer_High && JobLevel > 39) {
-		mes "[Minstrel]";
-		mes "The dreary world";
-		mes "of mortals is in need";
-		mes "of more cheerful song.";
-		mes "Will you bring it to them";
-		mes "and turn the tide in the";
-		mes "battle against evil?";
+		else if (ADVJOB == Job_Clown && Class == Job_Archer_High && JobLevel > 39) {
+				mes "[minstrel]";
+				mes "โลกที่น่าเบื่อ";
+				mes "ของมนุษย์ที่ต้องการ";
+				mes "ของเพลงร่าเริงมากขึ้น";
+				mes "คุณจะนำมันมาให้พวกเขา";
+				mes "และหมุนกระแสใน";
+				mes "ต่อสู้กับความชั่วร้าย?";
+				next;
+				mes "[minstrel]";
+				mes "คุณจะทำสิ่งนี้";
+				mes "สำหรับ Midgard ...";
+				mes "เป็นนักดนตรี?";
+				next;
+				if (select("ไม่: ยี่สิบ") == 1) {
+						mes "[minstrel]";
+						mes "เมื่อคุณพร้อม";
+						mes "อย่าลังเลที่จะกลับมา";
+						mes "เป็นเกียรติแก่นักรบ!";
+						close;
+				}
+				if (SkillPoint) {
+						mes "[minstrel]";
+						mes "ยังคงเป็นไปได้ที่คุณจะได้เรียนรู้ทักษะเพิ่มเติมกรุณาใช้";
+						mes "คะแนนทักษะที่เหลืออยู่ทั้งหมดของคุณก่อนกลับมาหาฉัน";
+						close;
+				}
+				jobchange Job_Clown;
+				set ADVJOB,0;
+				mes "[minstrel]";
+				mes "ยินดีด้วย!";
+				mes "ในฐานะนักดนตรีของคุณ";
+				mes "เพลงของคุณจะนำมา";
+				mes "หวังว่าพันธมิตรของคุณและ";
+				mes "หมดหวังกับศัตรูของคุณ";
+				close;
+		}
+		mes "[minstrel]";
+		mes "Welcome";
+		mes "ถึง Valhalla";
+		mes "Hall of Honor";
 		next;
-		mes "[Minstrel]";
-		mes "Will you do this";
-		mes "for Midgard...";
-		mes "As a Minstrel?";
-		next;
-		if (select("No.:Yes.") == 1) {
-			mes "[Minstrel]";
-			mes "When you're ready,";
-			mes "feel free to come back.";
-			mes "Honor to the warriors!";
-			close;
-		}
-		if (SkillPoint) {
-			mes "[Minstrel]";
-			mes "It is still possible for you to learn more skills. Please use";
-			mes "all of your remaining Skill Points before returning to me.";
-			close;
-		}
-		jobchange Job_Clown;
-		set ADVJOB,0;
-		mes "[Minstrel]";
-		mes "Congratulations!";
-		mes "As a Minstrel, your";
-		mes "your songs will bring";
-		mes "hope to your allies, and";
-		mes "desperation to your foes.";
+		mes "[minstrel]";
+		mes "กรุณาทำ";
+		mes "ตัวเองสบาย";
+		mes "ในขณะที่คุณอยู่ที่นี่";
+		mes "เป็นเกียรติแก่นักรบ!";
 		close;
-	}
-	mes "[Minstrel]";
-	mes "Welcome";
-	mes "to Valhalla,";
-	mes "the Hall of Honor.";
-	next;
-	mes "[Minstrel]";
-	mes "Please make";
-	mes "yourself comfortable";
-	mes "while you are here.";
-	mes "Honor to the warriors!";
-	close;
 }
