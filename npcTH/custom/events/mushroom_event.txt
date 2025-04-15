@@ -14,27 +14,27 @@
 //= 3.6a Slightly edited. [Euphy]
 //============================================================ 
 
-prontera,142,228,6	script	Find the Mushroom	1084,{
-	mes "[ Find The Mushroom ]";
+prontera,142,228,6	script	ตามหาเห็ด	1084,{
+	mes "[ ตามหาเห็ด ]";
 	if (.status == 1) {
 		.@count = mobcount( .event_map$, strnpcinfo(0) + "::OnMobKilled" );
 		if (.@count > 0) {
-			mes "There are " + .@count + " Mushrooms left in " + .event_map$ + "!";
-			mes "Find and kill the mushrooms to gain " + getitemname(.prize) + "!";
+			mes "เห็ดเหลืออยู่ " + .@count + " ต้นในแมพ " + .event_map$ + "!";
+			mes "ตามหาและกำจัดเห็ดเพื่อรับ " + getitemname(.prize) + "!";
 			close;
 		}
 		.event_map$ = "";
 		.status = 0;
-		mes "All the mushrooms are killed?";
+		mes "เห็ดทั้งหมดถูกกำจัดเหรอ?";
 	}
-	mes "There is no event at the moment!";
+	mes "ไม่มีกิจกรรมใดๆ ในขณะนี้!";
 	if (.status || getgmlevel() < .GM) close;
-	mes "Start the event?";
+	mes "เริ่มกิจกรรมแล้วเหรอ?";
 	next;
-	if (select("- No:- Yes") == 1) close;
+	if (select("- ไม่:- ใช่") == 1) close;
 	donpcevent strnpcinfo(0) + "::OnMinute10";
-	mes "[ Find The Mushroom ]";
-	mes "Event started!";
+	mes "[ ตามหาเห็ด ]";
+	mes "กิจกรรมเริ่มแล้ว!";
 	close;
 
 OnInit:
@@ -51,10 +51,10 @@ OnMinute10:	// Start time (every hour)
 	.event_map$ = .maps_list$[ rand(getarraysize(.maps_list$)) ];
 	.@label$ = strnpcinfo(0) + "::OnMobKilled";
 	killmonster .event_map$, .@label$;
-	monster .event_map$,0,0,"Please don't kill me!",1084,.@spawn, .@label$;
-	announce "Find the Mushroom : Total of " + .@spawn + " Mushrooms have been spawned in " + .event_map$ + "!",0;
+	monster .event_map$,0,0,"ขอร้องอย่าฆ่าฉันเลย!",1084,.@spawn, .@label$;
+	announce "ตามหาเห็ด : มีเห็ดทั้งหมด " + .@spawn + " ต้น(ตัว) ที่เกิดขึ้นในแมพ " + .event_map$ + "!",0;
 	sleep 2500;
-	announce "Find the Mushroom : Every Mushroom you kill will give you " + getitemname(.prize) + "!",0;
+	announce "ตามหาเห็ด : เห็ดทุกตัวที่คุณกำจัด จะทำให้คุณได้รับ " + getitemname(.prize) + "!",0;
 	end;
 
 OnMobKilled:
@@ -63,9 +63,9 @@ OnMobKilled:
 	getitem .prize, .amount;
 	.@spawn = mobcount( .event_map$, strnpcinfo(0) + "::OnMobKilled" );
 	if (.@spawn > 0)
-		announce "[ " + strcharinfo(0) + " ] has killed a Mushroom. There are now " + .@spawn + " Mushroom(s) left.",bc_map;
+		announce "[ " + strcharinfo(0) + " ] ได้กำจัดเห็ดไปแล้ว ตอนนี้เหลือเห็ดอยู่ " + .@spawn + " ต้น(ตัว)",bc_map;
 	else {
-		announce "The Find the Mushroom Event has ended. All the Mushrooms have been killed.",0;
+		announce "กิจกรรมตามหาเห็ดสิ้นสุดลงแล้ว เห็ดทั้งหมดถูกฆ่าหมดแล้ว",0;
 		.status = 0;
 		.event_map$ = "";
 	}
