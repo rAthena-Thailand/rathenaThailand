@@ -7,12 +7,12 @@
 //= 1.0 Initial release [Atemo]
 //============================================================
 
-function	script	F_mesnavi	{
+function	script	F_mesnavi_quest1	{
 		return "<NAVI>[" + getarg(0) + "]<INFO>" + getarg(1) + "," + getarg(2) + "," + getarg(3) + ",0,101,0</INFO></NAVI>";
 }
 
 // Warps
-xmas_fild01,158,246,2	script	Dimensional barrier#got1	GATE_SKYBLUE,2,2,{
+xmas_fild01,158,246,2	script	Dimensional barrier#got1a	GATE_SKYBLUE,2,2,{
 		// Fallthrough
 OnTouch:
 		warp "t_garden",116,47;
@@ -23,46 +23,40 @@ OnInit:
 		end;
 }
 
-t_garden,111,36,2	script	Dimensional Barrier#got2	GATE_SKYBLUE,2,2,{
+t_garden,111,36,2	script	Dimensional Barrier#got2b	GATE_SKYBLUE,2,2,{
 		// Fallthrough
 OnTouch:
 		warp "xmas_fild01",150,240;
 		end;
 }
 
-// t_garden,118,66,0	script	#wp01	HIDDEN_WARP_NPC,3,1,{	// (NPC name is not unique)
-t_garden,118,66,0	script	#wp01_t_garden	HIDDEN_WARP_NPC,3,1,{
+// t_garden,118,66,0	script	#wp01a	HIDDEN_WARP_NPC,3,1,{	// (NPC name is not unique)
+t_garden,118,66,0	script	#wp01_t_gardenb	HIDDEN_WARP_NPC,3,1,{
 		end;
 OnTouch:
 		specialeffect2 EF_FLOWERCAST;
 		setpcblock PCBLOCK_NPC, true;
 		sleep2 500;
 		setpcblock PCBLOCK_NPC, false;
-		if (BaseLevel < 250)
-				warp "xmas_fild01",150,240;
-		else
-				warp "t_garden",118,79;
+		warp "t_garden",118,79;
 		end;
 }
 
-// t_garden,118,72,0	script	#wp02	HIDDEN_WARP_NPC,3,1,{	// (NPC name is not unique)
-t_garden,118,72,0	script	#wp02_t_garden	HIDDEN_WARP_NPC,3,1,{
+// t_garden,118,72,0	script	#wp02a	HIDDEN_WARP_NPC,3,1,{	// (NPC name is not unique)
+t_garden,118,72,0	script	#wp02_t_gardenb	HIDDEN_WARP_NPC,3,1,{
 		end;
 OnTouch:
 		specialeffect2 EF_FLOWERCAST;
 		setpcblock PCBLOCK_NPC, true;
 		sleep2 500;
 		setpcblock PCBLOCK_NPC, false;
-		if (BaseLevel < 250)
-				warp "xmas_fild01",150,240;
-		else
-				warp "t_garden",118,61;
+		warp "t_garden",118,61;
 		end;
 }
 
 
 // Quest starter
-t_garden,116,47,0	script	#life_wp11	HIDDEN_WARP_NPC,2,2,{
+t_garden,116,47,0	script	#life_wp11a	HIDDEN_WARP_NPC,2,2,{
 		end;
 OnTouch:
 		if (BaseLevel < 250)
@@ -78,17 +72,17 @@ OnTouch:
 		end;
 }
 
-t_garden,114,49,6	script(CLOAKED)	Leticia#life	4_4JOB_LETICIA,{
+t_garden,114,49,6	script(CLOAKED)	Leticia#lifeb	4_4JOB_LETICIA,{
 		mes "^0000ffเธอไม่ได้สนใจคุณเพราะเธออธิบายบางอย่างให้ออสการ์ฟัง^000007";
 		close;
 }
 
-t_garden,118,49,3	script(CLOAKED)	Rigel#life	4_CS_RIGEL,{
+t_garden,118,49,3	script(CLOAKED)	Rigel#lifec	4_CS_RIGEL,{
 		mes "^0000ffดูเหมือนว่าพวกเขาจะเน้นไปที่เรื่องราวของออสการ์และเลติเซีย^000007";
 		close;
 }
 
-t_garden,119,46,2	script(CLOAKED)	Oscar#life	4_ED_OSCAR,{
+t_garden,119,46,2	script(CLOAKED)	Oscar#lifed	4_ED_OSCAR,{
 		if (BaseLevel < 250)
 				end;
 		if (isbegin_quest(12592) == 0) {
@@ -216,8 +210,8 @@ OnInit:
 
 
 // A. Quests to access dungeons
-// t_garden,118,91,0	script	#wp01	HIDDEN_WARP_NPC,2,2,{	// (NPC name is not unique)
-t_garden,118,91,0	script	#wp01_t_garden_1	HIDDEN_WARP_NPC,2,2,{
+// t_garden,118,91,0	script	#wp01a	HIDDEN_WARP_NPC,2,2,{	// (NPC name is not unique)
+t_garden,118,91,0	script	#wp01_t_garden_1b	HIDDEN_WARP_NPC,2,2,{
 		end;
 OnTouch:
 		if (isbegin_quest(12592) == 2) {
@@ -227,7 +221,7 @@ OnTouch:
 		end;
 }
 
-t_garden,118,91,6	script(CLOAKED)	Leticia#life2	4_4JOB_LETICIA,{
+t_garden,118,91,6	script(CLOAKED)	Leticia#life2a	4_4JOB_LETICIA,{
 		if (isbegin_quest(12593) == 1) {
 				cutin "4job_leticia_02.png",2;
 				mes "[เลติเซีย]";
@@ -289,7 +283,7 @@ OnInit:
 		end;
 }
 
-t_garden,82,92,0	script	#life_wp2	HIDDEN_WARP_NPC,3,3,{
+t_garden,82,92,0	script	#life_wp2a	HIDDEN_WARP_NPC,3,3,{
 		end;
 OnTouch:
 		switch( isbegin_quest(12595) ) {
@@ -355,8 +349,8 @@ OnInit:
 		end;
 }
 
-// t_garden,78,92,2	script(CLOAKED)	Passage of Time#1	GATE_SKYBLUE,2,2,{	// unknown OnTouch effect (NPC unreachable)
-t_garden,78,92,2	script(CLOAKED)	Passage of Time#1	GATE_SKYBLUE,{
+// t_garden,78,92,2	script(CLOAKED)	Passage of Time#1a	GATE_SKYBLUE,2,2,{	// unknown OnTouch effect (NPC unreachable)
+t_garden,78,92,2	script(CLOAKED)	Passage of Time#1b	GATE_SKYBLUE,{
 		if (isbegin_quest(12595) != 2)
 				end;
 		if (isbegin_quest(12596) != 2) {
@@ -379,7 +373,7 @@ t_garden,78,92,2	script(CLOAKED)	Passage of Time#1	GATE_SKYBLUE,{
 		end;
 }
 
-t_garden,151,92,0	script	#life_wp3	HIDDEN_WARP_NPC,3,3,{
+t_garden,151,92,0	script	#life_wp3c	HIDDEN_WARP_NPC,3,3,{
 		end;
 OnTouch:
 		switch( isbegin_quest(12596) ) {
@@ -445,8 +439,8 @@ OnInit:
 		end;
 }
 
-// t_garden,157,92,2	script(CLOAKED)	Passage of Time#2	GATE_SKYBLUE,2,2,{	// unknown OnTouch effect (NPC unreachable)
-t_garden,157,92,2	script(CLOAKED)	Passage of Time#2	GATE_SKYBLUE,{
+// t_garden,157,92,2	script(CLOAKED)	Passage of Time#2a	GATE_SKYBLUE,2,2,{	// unknown OnTouch effect (NPC unreachable)
+t_garden,157,92,2	script(CLOAKED)	Passage of Time#2b	GATE_SKYBLUE,{
 		if (isbegin_quest(12596) != 2)
 				end;
 		if (isbegin_quest(12595) != 2) {
@@ -470,7 +464,7 @@ t_garden,157,92,2	script(CLOAKED)	Passage of Time#2	GATE_SKYBLUE,{
 }
 
 
-for_dun01,100,146,2	script	Spatial coordinate probe#1	4_SYSTEM_BOX,{
+for_dun01,100,146,2	script	Spatial coordinate probe#1a	4_SYSTEM_BOX,{
 		mes "คุณอยากกลับไปที่สวนแห่งกาลเวลาไหม?";
 		next;
 		if (select( "Cancel", "Return" ) == 1)
@@ -482,19 +476,19 @@ OnInit:
 		questinfo( QTYPE_CLICKME, QMARK_YELLOW, "isbegin_quest(12595) == 2" );
 		end;
 }
-for_dun01,128,282,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#2	4_SYSTEM_BOX
-for_dun01,55,142,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#3	4_SYSTEM_BOX
-for_dun01,262,167,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#4	4_SYSTEM_BOX
-for_dun01,204,67,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#5	4_SYSTEM_BOX
-for_dun01,57,270,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#6	4_SYSTEM_BOX
-for_dun01,65,34,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#7	4_SYSTEM_BOX
-for_dun01,146,27,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#8	4_SYSTEM_BOX
-for_dun01,154,139,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#9	4_SYSTEM_BOX
-for_dun01,124,203,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#10	4_SYSTEM_BOX
-for_dun01,267,265,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#11	4_SYSTEM_BOX
+for_dun01,128,282,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#2a	4_SYSTEM_BOX
+for_dun01,55,142,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#3b	4_SYSTEM_BOX
+for_dun01,262,167,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#4c	4_SYSTEM_BOX
+for_dun01,204,67,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#5d	4_SYSTEM_BOX
+for_dun01,57,270,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#6e	4_SYSTEM_BOX
+for_dun01,65,34,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#7f	4_SYSTEM_BOX
+for_dun01,146,27,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#8g	4_SYSTEM_BOX
+for_dun01,154,139,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#9h	4_SYSTEM_BOX
+for_dun01,124,203,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#10i	4_SYSTEM_BOX
+for_dun01,267,265,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#11j	4_SYSTEM_BOX
 
 
-for_dun02,190,147,2	script	Spatial coordinate probe#12	4_SYSTEM_BOX,{
+for_dun02,190,147,2	script	Spatial coordinate probe#12b	4_SYSTEM_BOX,{
 		mes "คุณอยากกลับไปที่สวนแห่งกาลเวลาไหม?";
 		next;
 		if (select( "Cancel", "Return" ) == 1)
@@ -506,20 +500,20 @@ OnInit:
 		questinfo( QTYPE_CLICKME, QMARK_YELLOW, "isbegin_quest(12596) == 2" );
 		end;
 }
-for_dun02,143,149,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#13	4_SYSTEM_BOX
-for_dun02,276,29,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#14	4_SYSTEM_BOX
-for_dun02,106,34,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#15	4_SYSTEM_BOX
-for_dun02,216,271,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#16	4_SYSTEM_BOX
-for_dun02,64,268,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#17	4_SYSTEM_BOX
-for_dun02,18,170,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#18	4_SYSTEM_BOX
-for_dun02,16,92,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#19	4_SYSTEM_BOX
-for_dun02,29,52,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#20	4_SYSTEM_BOX
-for_dun02,276,255,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#21	4_SYSTEM_BOX
-for_dun02,283,197,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#22	4_SYSTEM_BOX
+for_dun02,143,149,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#13a	4_SYSTEM_BOX
+for_dun02,276,29,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#14b	4_SYSTEM_BOX
+for_dun02,106,34,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#15c	4_SYSTEM_BOX
+for_dun02,216,271,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#16d	4_SYSTEM_BOX
+for_dun02,64,268,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#17e	4_SYSTEM_BOX
+for_dun02,18,170,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#18f	4_SYSTEM_BOX
+for_dun02,16,92,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#19g	4_SYSTEM_BOX
+for_dun02,29,52,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#20h	4_SYSTEM_BOX
+for_dun02,276,255,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#21i	4_SYSTEM_BOX
+for_dun02,283,197,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#22j	4_SYSTEM_BOX
 
 
 // B. Event with Oscar
-t_garden,118,141,0	script	#life_wp4	HIDDEN_WARP_NPC,3,3,{
+t_garden,118,141,0	script	#life_wp4o	HIDDEN_WARP_NPC,3,3,{
 		end;
 OnTouch:
 		if (isbegin_quest(12618) == 1) {
@@ -529,8 +523,8 @@ OnTouch:
 		end;
 }
 
-// t_garden,118,142,3	script(CLOAKED)	Oscar#life2	4_ED_OSCAR,2,2,{	// unknown OnTouch effect
-t_garden,118,142,3	script(CLOAKED)	Oscar#life2	4_ED_OSCAR,{
+// t_garden,118,142,3	script(CLOAKED)	Oscar#life2f	4_ED_OSCAR,2,2,{	// unknown OnTouch effect
+t_garden,118,142,3	script(CLOAKED)	Oscar#life2k	4_ED_OSCAR,{
 		if (isbegin_quest(12618) == 1) {
 				cutin "OSCAR01.bmp",2;
 				mes "[ออสการ์]";
@@ -610,12 +604,12 @@ OnInit:
 		end;
 }
 
-t_garden,115,139,7	duplicate(dummy_cloaked_npc)	Leticia#life3	4_4JOB_LETICIA
+t_garden,115,139,7	duplicate(dummy_cloaked_npc)	Leticia#life3a	4_4JOB_LETICIA
 
 
 // C. Instances
-// t_garden,166,217,0	script	#wp11	HIDDEN_WARP_NPC,2,2,{	// (NPC name is not unique)
-t_garden,166,217,0	script	#wp11_t_garden	HIDDEN_WARP_NPC,2,2,{
+// t_garden,166,217,0	script	#wp11k	HIDDEN_WARP_NPC,2,2,{	// (NPC name is not unique)
+t_garden,166,217,0	script	#wp11_t_gardenr	HIDDEN_WARP_NPC,2,2,{
 		end;
 OnTouch:
 		if (isbegin_quest(12594) == 1) {
@@ -625,7 +619,7 @@ OnTouch:
 		end;
 }
 
-t_garden,166,217,3	script(CLOAKED)	Rigel#life2	4_CS_RIGEL,{
+t_garden,166,217,3	script(CLOAKED)	Rigel#life2b	4_CS_RIGEL,{
 		if (isbegin_quest(12594) == 1) {
 				cutin "rigel01.png",2;
 				mes "[ริเกล]";
@@ -661,21 +655,21 @@ OnInit:
 }
 
 
-// t_garden,162,222,5	script	#lank_board	4_4JOB_PHANTOMBOOK1,{
-		// mes "--- การจัดอันดับกลยุทธ์ ---";
-		// mes "อันดับที่ 1 - ไม่มี";
-		// mes "อันดับที่ 2 - ไม่มี";
-		// mes "อันดับที่ 3 - ไม่มี";
-		// mes "อันดับที่ 4 - ไม่มี";
-		// mes "อันดับที่ 5 - ไม่มี";
-		// mes "-";
-		// mes "?? บันทึกกลยุทธ์จะได้รับการอัพเดตทุกๆ 5 นาที";
-		// mes "หากการบันทึกไม่เกิดขึ้นทันที โปรดรอสักครู่แล้วตรวจสอบ";
-		// close;
-// }
+t_garden,162,222,5	script	#lank_boarda	4_4JOB_PHANTOMBOOK1,{
+		mes "--- การจัดอันดับกลยุทธ์ ---";
+		mes "อันดับที่ 1 - ไม่มี";
+		mes "อันดับที่ 2 - ไม่มี";
+		mes "อันดับที่ 3 - ไม่มี";
+		mes "อันดับที่ 4 - ไม่มี";
+		mes "อันดับที่ 5 - ไม่มี";
+		mes "-";
+		mes "?? บันทึกกลยุทธ์จะได้รับการอัพเดตทุกๆ 5 นาที";
+		mes "หากการบันทึกไม่เกิดขึ้นทันที โปรดรอสักครู่แล้วตรวจสอบ";
+		close;
+}
 
-// t_garden,166,235,0	script	#wp12	HIDDEN_WARP_NPC,3,3,{	// (NPC name is not unique)
-t_garden,166,235,0	script	#wp12_t_garden	HIDDEN_WARP_NPC,3,3,{
+// t_garden,166,235,0	script	#wp12a	HIDDEN_WARP_NPC,3,3,{	// (NPC name is not unique)
+t_garden,166,235,0	script	#wp12_t_gardenb	HIDDEN_WARP_NPC,3,3,{
 		end;
 OnTouch:
 		switch( isbegin_quest(12597) ) {
@@ -686,14 +680,14 @@ OnTouch:
 				end;
 		case 2:
 				cloakoffnpcself( "Sealing Spirit Stone#life2" );
-				cloakoffnpcself( "Dimensional Prison#1" );
-				cloakoffnpcself( "Dimensional Prison#2" );
+				cloakoffnpcself( "Dimension Prison#1" );
+				cloakoffnpcself( "Dimension Prison#2" );
 				end;
 		}
 		end;
 }
 
-t_garden,166,235,3	script(CLOAKED)	Sealing Spirit Stone#life2	HEROS_OUT_ORB,{
+t_garden,166,235,3	script(CLOAKED)	Sealing Spirit Stone#life2c	HEROS_OUT_ORB,{
 		switch( isbegin_quest(12597) ) {
 		case 0:
 				end;
@@ -978,8 +972,8 @@ OnInit:
 }
 
 
-// t_garden,158,235,2	script(CLOAKED)	Dimension Prison#1	GATE_SKYBLUE,2,2,{	// unknown OnTouch effect
-t_garden,158,235,2	script(CLOAKED)	Dimension Prison#1	GATE_SKYBLUE,{
+// t_garden,158,235,2	script(CLOAKED)	Dimension Prison#1a	GATE_SKYBLUE,2,2,{	// unknown OnTouch effect
+t_garden,158,235,2	script(CLOAKED)	Dimension Prison#1b	GATE_SKYBLUE,{
 		if (isbegin_quest(12597) != 2)
 				end;
 		if (checkweight(1201,1) == 0) {
@@ -994,8 +988,8 @@ t_garden,158,235,2	script(CLOAKED)	Dimension Prison#1	GATE_SKYBLUE,{
 						end;
 		}
 
-// t_garden,173,235,2	script(CLOAKED)	Dimension Prison#2	GATE_SKYBLUE,2,2,{	// unknown OnTouch effect
-t_garden,173,235,2	script(CLOAKED)	Dimension Prison#2	GATE_SKYBLUE,{
+// t_garden,173,235,2	script(CLOAKED)	Dimension Prison#2c	GATE_SKYBLUE,2,2,{	// unknown OnTouch effect
+t_garden,173,235,2	script(CLOAKED)	Dimension Prison#2d	GATE_SKYBLUE,{
 		if (isbegin_quest(12597) != 2)
 				end;
 		if (checkweight(1201,1) == 0) {
@@ -1009,8 +1003,8 @@ t_garden,173,235,2	script(CLOAKED)	Dimension Prison#2	GATE_SKYBLUE,{
 
 
 // Daily Quests
-// t_garden,105,118,0	script	#wp01	HIDDEN_WARP_NPC,6,5,{	// (NPC name is not unique)
-t_garden,105,118,0	script	#wp01_t_garden_2	HIDDEN_WARP_NPC,6,5,{
+// t_garden,105,118,0	script	#wp01v	HIDDEN_WARP_NPC,6,5,{	// (NPC name is not unique)
+t_garden,105,118,0	script	#wp01_t_garden_2b	HIDDEN_WARP_NPC,6,5,{
 		end;
 OnTouch:
 		.@state = isbegin_quest(12620);
@@ -1068,7 +1062,7 @@ OnTouch:
 		end;
 }
 
-t_garden,97,114,5	script(CLOAKED)	Diluvio#life2	4_EM_DILUVIO,{
+t_garden,97,114,5	script(CLOAKED)	Diluvio#life2a	4_EM_DILUVIO,{
 		if (isbegin_quest(12620) != 2)
 				end;
 		if (checkweight(1201,1) == 0) {	// Useless check ?
@@ -1111,7 +1105,7 @@ OnInit:
 		end;
 }
 
-t_garden,100,117,5	script(CLOAKED)	Terremotus#life2	4_EM_TERREMOTUS,{
+t_garden,100,117,5	script(CLOAKED)	Terremotus#life2b	4_EM_TERREMOTUS,{
 		if (isbegin_quest(12620) != 2)
 				end;
 		if (checkweight(1201,1) == 0) {
@@ -1154,7 +1148,7 @@ OnInit:
 		end;
 }
 
-t_garden,103,120,5	script(CLOAKED)	Serpens#life2	4_EM_SERPENS,{
+t_garden,103,120,5	script(CLOAKED)	Serpens#life2a	4_EM_SERPENS,{
 		if (isbegin_quest(12620) != 2)
 				end;
 		if (checkweight(1201,1) == 0) {
@@ -1197,7 +1191,7 @@ OnInit:
 		end;
 }
 
-t_garden,106,123,5	script(CLOAKED)	Procella#life2	4_EM_PROCELLA,{
+t_garden,106,123,5	script(CLOAKED)	Procella#life2b	4_EM_PROCELLA,{
 		if (isbegin_quest(12620) != 2)
 				end;
 		if (checkweight(1201,1) == 0) {
@@ -1240,7 +1234,7 @@ OnInit:
 		end;
 }
 
-t_garden,109,126,5	script(CLOAKED)	Ardor#life2	4_EM_ARDOR,{
+t_garden,109,126,5	script(CLOAKED)	Ardor#life2n	4_EM_ARDOR,{
 		if (isbegin_quest(12620) != 2)
 				end;
 		if (checkweight(1201,1) == 0) {
@@ -1279,13 +1273,13 @@ t_garden,109,126,5	script(CLOAKED)	Ardor#life2	4_EM_ARDOR,{
 		end;
 
 OnInit:
-		questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "isbegin_quest(12620) == 2 && (checkquest(12602,PLAYTIME) == -1 || checkquest(12602,PLAYTIME) == 2) && F_queststatus( HAVEQUEST,12625,12626,12627,12628 ) == 0" );
+		questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "isbegin_quest(12620) == 2 && (checkquest(12601,PLAYTIME) == -1 || checkquest(12601,PLAYTIME) == 2) && F_queststatus( HAVEQUEST,12625,12626,12627,12628 ) == 0" );
 		end;
 }
 
 
 // Uncloak quest NPC rewards and exchange/enchants NPCs
-t_garden,126,123,0	script	#v_wp01	HIDDEN_WARP_NPC,3,3,{
+t_garden,126,123,0	script	#v_wp01a	HIDDEN_WARP_NPC,3,3,{
 		end;
 OnTouch:
 		if (isbegin_quest(12620) != 2)
@@ -1296,12 +1290,12 @@ OnTouch:
 		cloakoffnpcself( "Spirit Complaint Terminal#1" );
 		end;
 }
-t_garden,130,119,0	duplicate(#v_wp01)	#v_wp02	HIDDEN_WARP_NPC,3,3
-t_garden,134,115,0	duplicate(#v_wp01)	#v_wp03	HIDDEN_WARP_NPC,4,4
+t_garden,130,119,0	duplicate(#v_wp01)	#v_wp02i	HIDDEN_WARP_NPC,3,3
+t_garden,134,115,0	duplicate(#v_wp01)	#v_wp03o	HIDDEN_WARP_NPC,4,4
 
 
 // Quest rewards
-t_garden,126,126,2	script(CLOAKED)	Spirit Complaint Terminal#1	4_VENDING_MACHINE2,{
+t_garden,126,126,2	script(CLOAKED)	Spirit Complaint Terminal#1u	4_VENDING_MACHINE2,{
 		if (isbegin_quest(12620) != 2)
 				end;
 		if (checkweight(1201,1) == 0) {
@@ -1427,7 +1421,7 @@ OnInit:
 
 
 // Exchange and enchants
-t_garden,129,123,2	script(CLOAKED)	Subspace vending machine#1	HEROS_IN_ORB_1,{
+t_garden,129,123,2	script(CLOAKED)	Subspace vending machine#1f	-1,{
 		if (isbegin_quest(12620) != 2)
 				end;
 		if (checkweight(1201,1) == 0) {
@@ -1455,7 +1449,7 @@ OnInit:
 		end;
 }
 
-t_garden,132,120,2	script(CLOAKED)	Subspace vending machine#2	HEROS_IN_ORB_2,{
+t_garden,132,120,2	script(CLOAKED)	Subspace vending machine#2h	-1,{
 		if (isbegin_quest(12620) != 2)
 				end;
 		if (checkweight(1201,1) == 0) {
@@ -1483,7 +1477,7 @@ OnInit:
 		end;
 }
 
-t_garden,135,117,2	script(CLOAKED)	Subspace vending machine#3	HEROS_IN_ORB_3,{
+t_garden,135,117,2	script(CLOAKED)	Subspace vending machine#3j	-1,{
 		if (isbegin_quest(12620) != 2)
 				end;
 		if (checkweight(1201,1) == 0) {
@@ -1512,7 +1506,7 @@ OnInit:
 		end;
 }
 
-t_garden,138,114,2	script(CLOAKED)	Subspace vending machine#4	HEROS_IN_ORB_4,{
+t_garden,138,114,2	script(CLOAKED)	Subspace vending machine#4j	-1,{
 		if (isbegin_quest(12620) != 2)
 				end;
 		if (checkweight(1201,1) == 0) {
@@ -1546,9 +1540,9 @@ OnInit:
 
 
 // Storages
--	shop	t_garden_shop	-1,501:-1
+-	shop	t_garden_shopu	-1,501:-1
 
-t_garden,156,222,2	script	Functional Vending Machine#1	4_VENDING_MACHINE2,{
+t_garden,156,222,2	script	Functional Vending Machine#1l	4_VENDING_MACHINE2,{
 		// switch( select( "Tool Dealer", "Storage 1 (100z)", "Storage 2 (100z)", "Storage 3 (100z)", "Use savepoint service" ) ) {
 		switch( select( "Tool Dealer", "Storage 1 (100z)", "", "", "Use savepoint service" ) ) {
 		case 1:
@@ -1590,6 +1584,6 @@ OnInit:
 		questinfo( QTYPE_CLICKME, QMARK_YELLOW, "isbegin_quest(12592) == 2" );
 		end;
 }
-t_garden,97,138,6	duplicate(Functional Vending Machine#1)	Functional Vending Machine#2	4_VENDING_MACHINE2
-t_garden,91,116,2	duplicate(Functional Vending Machine#1)	Functional Vending Machine#3	4_VENDING_MACHINE2
-t_garden,144,116,2	duplicate(Functional Vending Machine#1)	Functional Vending Machine#4	4_VENDING_MACHINE2
+t_garden,97,138,6	duplicate(Functional Vending Machine#1)	Functional Vending Machine#2k	4_VENDING_MACHINE2
+t_garden,91,116,2	duplicate(Functional Vending Machine#1)	Functional Vending Machine#3f	4_VENDING_MACHINE2
+t_garden,144,116,2	duplicate(Functional Vending Machine#1)	Functional Vending Machine#4w	4_VENDING_MACHINE2

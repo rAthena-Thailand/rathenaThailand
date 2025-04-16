@@ -12,71 +12,71 @@
 //============================================================
 
 glast_01,195,273,3	script	Hugin's follower#1	2_F_MAGICMASTER,{
-	mes "[Hugin's Follower]";
-	mes "I can't move between time and dimensions like master Hugin but I can pretend to.";
-	next;
-	mes "[Hugin's Follower]";
-	mes "What's causing this Glast Heim to be imbued with such a powerful dark force?";
-	next;
-	if( select( "I don't care:That is interesting, please tell me more" ) == 2 ){
-		mes "[Hugin's Follower]";
-		mes "Thanks to Hugin, I found the way to access this Old Glast Heim, which is imbued by such powerful dark forces.";
+		mes "[ผู้ติดตามฮูกิน]";
+		mes "ฉันไม่สามารถเคลื่อนที่ไปมาระหว่างเวลาและมิติได้เหมือนกับอาจารย์ฮูกิน แต่ฉันสามารถแกล้งทำเป็นทำได้";
 		next;
-		mes "[Hugin's Follower]";
-		mes "What do you say? Do you want to explore there?";
+		mes "[ผู้ติดตามฮูกิน]";
+		mes "อะไรทำให้ Glast Heim ถูกพลังแห่งความมืดอันทรงพลังครอบงำเช่นนี้?";
 		next;
-		if( select( "No exploration for me:I really want to explore!" ) == 2 ){
-			mes "[Hugin's Follower]";
-			mes "Sure, but this is not a free service! I have to get something in return. Hoho...";
-			next;
-			mes "[Hugin's Follower]";
-			mes "I can send you to two places. Which place would you like me to send you?";
-			next;
-			switch( select( "Cancel:Monastery Cemetery (Lv100~130) - 5000z:2nd floor Corridor (Over Lv140) - 10000z" ) ){
-				case 1:
-					mes "[Hugin's Follower]";
-					mes "Alright, please come back whenever you change your mind. I think you will have lots to talk with me about...";
-					close;
-				case 2:
-					.@map$ = "gl_chyard_";
-					.@x = 148;
-					.@y = 144;
-					.@zeny = 5000;
-					break;
-				case 3:
-					.@map$ = "gl_cas02_";
-					.@x = 104;
-					.@y = 31;
-					.@zeny = 10000;
-					break;
-			}
-			if( Zeny < .@zeny ){
-				mes "[Hugin's Follower]";
-				mes "What? Did you expect this service for free?";
-				close;
-			}
-			Zeny -= .@zeny;
-			warp .@map$, .@x, .@y;
-			end;
+		if( select( "I don't care:That is interesting, please tell me more" ) == 2 ){
+				mes "[ผู้ติดตามฮูกิน]";
+				mes "ด้วยความขอบคุณต่อ Hugin ฉันจึงพบวิธีเข้าถึง Glast Heim เก่าแห่งนี้ซึ่งเต็มไปด้วยพลังแห่งความมืดอันทรงพลัง";
+				next;
+				mes "[ผู้ติดตามฮูกิน]";
+				mes "ว่าไงครับ อยากไปเที่ยวที่นั่นมั้ย?";
+				next;
+				if( select( "No exploration for me:I really want to explore!" ) == 2 ){
+						mes "[ผู้ติดตามฮูกิน]";
+						mes "แน่นอน แต่ว่านี่ไม่ใช่บริการฟรีนะ! ฉันต้องได้สิ่งตอบแทนบ้าง ฮ่าๆ...";
+						next;
+						mes "[ผู้ติดตามฮูกิน]";
+						mes "ฉันส่งคุณได้สองที่ คุณอยากให้ฉันส่งคุณไปที่ไหนดี";
+						next;
+						switch( select( "Cancel:Monastery Cemetery (Lv100~130) - 5000z:2nd floor Corridor (Over Lv140) - 10000z" ) ){
+								case 1:
+										mes "[ผู้ติดตามฮูกิน]";
+										mes "เอาล่ะ โปรดกลับมาใหม่เมื่อคุณเปลี่ยนใจ ฉันคิดว่าคุณคงมีเรื่องมากมายที่จะคุยกับฉัน...";
+										close;
+								case 2:
+										.@map$ = "gl_chyard_";
+										.@x = 148;
+										.@y = 144;
+										.@zeny = 5000;
+										break;
+								case 3:
+										.@map$ = "gl_cas02_";
+										.@x = 104;
+										.@y = 31;
+										.@zeny = 10000;
+										break;
+						}
+						if( Zeny < .@zeny ){
+								mes "[ผู้ติดตามฮูกิน]";
+								mes "อะไรนะ? คุณคาดหวังว่าบริการนี้จะฟรีเหรอ?";
+								close;
+						}
+						Zeny -= .@zeny;
+						warp .@map$, .@x, .@y;
+						end;
+				}
 		}
-	}
-	mes "[Hugin's Follower]";
-	mes "Well, if you are not interested in it, never mind.";
-	close;
+		mes "[ผู้ติดตามฮูกิน]";
+		mes "ถ้าคุณไม่สนใจก็ไม่เป็นไร";
+		close;
 }
 
 gl_chyard_,148,149,4	script	Hugin's Follower#n_gh1	123,{
-	mes "[Hugin's Follower]";
-	mes "You want to return?";
-	mes "Ok, let's get out of here.";
-	next;
-	if( select( "I didn't mean to talk to you:Please get me out of here" ) == 1 ){
-		mes "[Hugin's Follower]";
-		mes "Alright, just tell me whenever you want to leave.";
-		close;
-	}
-	warp "glast_01", 210, 269;
-	end;
+		mes "[ผู้ติดตามฮูกิน]";
+		mes "คุณต้องการที่จะกลับมาใช่ไหม?";
+		mes "โอเค เราออกไปจากที่นี่กันเถอะ";
+		next;
+		if( select( "I didn't mean to talk to you:Please get me out of here" ) == 1 ){
+				mes "[ผู้ติดตามฮูกิน]";
+				mes "ตกลง บอกฉันเมื่อไหร่ก็ได้ที่คุณอยากจะไป";
+				close;
+		}
+		warp "glast_01", 210, 269;
+		end;
 }
 
 gl_cas02_,104,36,4	duplicate(Hugin's Follower#n_gh1)	Hugin's Follower#n_gh2	123

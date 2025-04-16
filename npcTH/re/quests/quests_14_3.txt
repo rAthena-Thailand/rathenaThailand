@@ -10,224 +10,224 @@
 //============================================================
 
 moro_vol,91,105,1	script	Eclage Teleporter#143_1	PORTAL,{
-	mes "[Dophe]";
-	mes "This teleporter is connected to Eclage.";
-	mes "It'll be destroyed once our operation is over, but for now it's something we cannot live without.";
-	next;
-	mes "Use the teleporter to move to Eclage.";
-	next;
-	if (select( "Move to Eclage.", "Cancel." ) == 2) {
-		mes "Do not use the teleporter.";
-		close;
-	}
-	mes "Move to Eclage.";
-	close2;
-	warp "ecl_in01",38,96;
-	end;
+		mes "[โดฟ]";
+		mes "เครื่องเทเลพอร์ตนี้เชื่อมต่อกับ Eclage";
+		mes "มันจะถูกทำลายเมื่อปฏิบัติการของเราเสร็จสิ้น แต่สำหรับตอนนี้มันเป็นบางอย่างที่เราไม่สามารถใช้ชีวิตอยู่ได้โดยปราศจากมัน";
+		next;
+		mes "ใช้เครื่องเทเลพอร์ตเพื่อเดินทางไปยังเอคลาจ";
+		next;
+		if (select( "Move to Eclage.", "Cancel." ) == 2) {
+				mes "ห้ามใช้เครื่องเทเลพอร์ต";
+				close;
+		}
+		mes "ย้ายไปที่เอคลาจ";
+		close2;
+		warp "ecl_in01",38,96;
+		end;
 }
 
 ecl_in01,38,98,1	script	Interdimensional Device#ecl	PORTAL,{
-	if (ep14_3_newerabs < 10) {
-		mes "[Eclage Guard]";
-		mes "This teleporter is connected to the recently discovered hideout of the Demon God.";
-		mes "Only those allowed to enter the hideout can use this teleporter.";
-		close;
-	}
-	mes "This teleporter is connected to the recently discovered hideout of the Demon God.";
-	mes "Do you want to use it?";
-	next;
-	if (select( "Move to the Demon God's hideout.", "Quit." ) == 2) {
-		mes "Do not use the teleporter.";
-		close;
-	}
-	mes "Use the teleporter to move to the Demon God's hideout.";
-	close2;
-	warp "moro_vol",91,102;
-	end;
+		if (ep14_3_newerabs < 10) {
+				mes "[การ์ดเอแคลจ]";
+				mes "เครื่องเทเลพอร์ตนี้เชื่อมต่อกับที่ซ่อนของเทพปีศาจที่เพิ่งค้นพบ";
+				mes "เฉพาะผู้ที่ได้รับอนุญาตให้เข้าไปในที่ซ่อนเท่านั้นจึงจะใช้เครื่องเทเลพอร์ตนี้ได้";
+				close;
+		}
+		mes "เครื่องเทเลพอร์ตนี้เชื่อมต่อกับที่ซ่อนของเทพปีศาจที่เพิ่งค้นพบ";
+		mes "คุณต้องการใช้มั้ย?";
+		next;
+		if (select( "Move to the Demon God's hideout.", "Quit." ) == 2) {
+				mes "ห้ามใช้เครื่องเทเลพอร์ต";
+				close;
+		}
+		mes "ใช้เครื่องเทเลพอร์ตเพื่อย้ายไปยังที่ซ่อนของเทพปีศาจ";
+		close2;
+		warp "moro_vol",91,102;
+		end;
 }
 
 ecl_in01,40,96,3	script	Eclage Guard#143_6	4_M_FAIRYSOLDIER,{
-	mes "[Eclage Guard]";
-	mes "How may I help you?";
-	next;
-	switch( select( "What's that teleporter?", "Why is it so crowded in here?", "Demon God's hideout?", "Goodbye." ) ) {
-	case 1:
-		mes "[Eclage Guard]";
-		mes "It's connected to the recently discovered hideout the of Demon God.";
-		mes "It's scientifically designed to send its user directly to the Dimensional Crack where his hideout is.";
+		mes "[การ์ดเอแคลจ]";
+		mes "ฉันสามารถช่วยคุณได้อย่างไร?";
 		next;
-		mes "[Eclage Guard]";
-		mes "Many a warrior already left to the hideout.";
-		mes "So long as Morocc exists, Yggdrasil is not safe. I'm going to join the Expedition.";
-		close;
-	case 2:
-		mes "[Eclage Guard]";
-		mes "It turns out Demon God ran from Morocc to hide out in our dimension.";
-		mes "He has to be dealt with, either banished back to his realm or destroyed.";
-		next;
-		mes "[Eclage Guard]";
-		mes "If you want to join the Expedition to defeat the Demon God, then use this teleporter.";
-		mes "It'll send you directly to the Expedition Camp.";
-		close;
-	case 3:
-		mes "[Eclage Guard]";
-		mes "You know the Dimensional Crack, don't you? Recently it's been revealed that the Crack is made up of dimensional passageways.";
-		mes "We can now use those passageways to explore inside the Crack.";
-		next;
-		mes "[Eclage Guard]";
-		mes "Originally the Crack was created by the Demon God to aid in his escape,";
-		mes "so it'd been thought investigating the Crack could locate him.";
-		next;
-		mes "[Eclage Guard]";
-		mes "And it was; finally his hideout has been discovered.";
-		mes "His traces and his demon soldiers are sighted mainly around the giant hill in the center.";
-		next;
-		mes "[Eclage Guard]";
-		mes "If you want more details, then you should visit the actual site.";
-		mes "Just use the teleporter over there.";
-		close;
-	case 4:
-		mes "[Eclage Guard]";
-		mes "May Yggdrasil bless you.";
-		close;
-	}
+		switch( select( "What's that teleporter?", "Why is it so crowded in here?", "Demon God's hideout?", "Goodbye." ) ) {
+		case 1:
+				mes "[การ์ดเอแคลจ]";
+				mes "มันเชื่อมต่อกับที่ซ่อนของเทพปีศาจที่เพิ่งค้นพบไม่นานนี้";
+				mes "มันได้รับการออกแบบมาทางวิทยาศาสตร์เพื่อส่งผู้ใช้ไปยังรอยแยกแห่งมิติซึ่งเป็นที่ซ่อนของเขาโดยตรง";
+				next;
+				mes "[การ์ดเอแคลจ]";
+				mes "นักรบหลายคนได้ออกจากที่ซ่อนไปแล้ว";
+				mes "ตราบใดที่โมร็อกโกยังมีอยู่ Yggdrasil ก็ไม่ปลอดภัย ฉันจะเข้าร่วมคณะสำรวจ";
+				close;
+		case 2:
+				mes "[การ์ดเอแคลจ]";
+				mes "ปรากฏว่าปีศาจเทพได้วิ่งหนีจากโมร็อคโคเพื่อมาซ่อนตัวในมิติของเรา";
+				mes "เขาจะต้องถูกจัดการ ไม่ว่าจะถูกเนรเทศกลับอาณาจักรของเขาหรือถูกทำลาย";
+				next;
+				mes "[การ์ดเอแคลจ]";
+				mes "หากคุณต้องการเข้าร่วมการสำรวจเพื่อเอาชนะเทพปีศาจให้ใช้เครื่องเทเลพอร์ตนี้";
+				mes "มันจะส่งคุณไปที่ค่ายสำรวจโดยตรง";
+				close;
+		case 3:
+				mes "[การ์ดเอแคลจ]";
+				mes "คุณรู้จักรอยร้าวในมิติใช่ไหม? เมื่อไม่นานมานี้ ได้มีการเปิดเผยว่ารอยร้าวประกอบด้วยทางเดินมิติ";
+				mes "ตอนนี้เราสามารถใช้ทางเดินเหล่านั้นเพื่อสำรวจภายในรอยแยกได้แล้ว";
+				next;
+				mes "[การ์ดเอแคลจ]";
+				mes "เดิมที Crack ถูกสร้างขึ้นโดยเทพปีศาจเพื่อช่วยในการหลบหนีของเขา";
+				mes "ดังนั้นจึงคิดว่าการสืบสวนเรื่องแคร็กอาจสามารถค้นหาเขาได้";
+				next;
+				mes "[การ์ดเอแคลจ]";
+				mes "และแล้วที่ซ่อนของเขาได้ถูกค้นพบในที่สุด";
+				mes "ร่องรอยของเขาและทหารปีศาจของเขาสามารถพบได้ส่วนใหญ่บริเวณเนินเขาขนาดยักษ์ตรงกลาง";
+				next;
+				mes "[การ์ดเอแคลจ]";
+				mes "หากคุณต้องการรายละเอียดเพิ่มเติมคุณควรเยี่ยมชมเว็บไซต์จริง";
+				mes "แค่ใช้เครื่องเทเลพอร์ตตรงนั้น";
+				close;
+		case 4:
+				mes "[การ์ดเอแคลจ]";
+				mes "ขอให้ Yggdrasil อวยพรคุณ";
+				close;
+		}
 }
 
 // Others
 ecl_in01,44,99,1	script	Combat Laphine#143_4	4_M_FAIRYSOLDIER2,{
-	mes "[Combat Laphine]";
-	mes "I'm nervous.";
-	close;
+		mes "[ต่อสู้ ลาฟิน]";
+		mes "ฉันรู้สึกกังวล.";
+		close;
 }
 
 ecl_in01,46,99,1	script	Combat Laphine#143_5	4_M_FAIRYSOLDIER2,{
-	mes "[Combat Laphine]";
-	mes "I hope I can return in one piece.";
-	close;
+		mes "[ต่อสู้ ลาฟิน]";
+		mes "ฉันหวังว่าฉันจะกลับมาได้อย่างปลอดภัย";
+		close;
 }
 
 ecl_in01,48,99,1	script	Combat Laphine#143_6	4_M_FAIRYSOLDIER2,{
-	mes "[Combat Laphine]";
-	mes "Hmm...";
-	close;
+		mes "[ต่อสู้ ลาฟิน]";
+		mes "อืม...";
+		close;
 }
 ecl_in01,44,97,1	script	Combat Laphine#143_7	4_F_FAIRYSOLDIER,{
-	mes "[Combat Laphine]";
-	mes "Shush.";
-	close;
+		mes "[ต่อสู้ ลาฟิน]";
+		mes "เงียบๆ";
+		close;
 }
 
 ecl_in01,46,97,1	script	Combat Laphine#143_8	4_F_FAIRYSOLDIER,{
-	mes "[Combat Laphine]";
-	mes "Mwa hah hah, it's time for me to shine!";
-	close;
+		mes "[ต่อสู้ ลาฟิน]";
+		mes "มวา ฮ่า ฮ่า ถึงเวลาที่ฉันจะเปล่งประกายแล้ว!";
+		close;
 }
 
 ecl_in01,48,97,1	script	Combat Laphine#143_9	4_F_FAIRYSOLDIER,{
-	mes "[Combat Laphine]";
-	mes "I must have been out of my mind when I decided to join the army. Sigh, why does the Door to Verities have to be so high up there?";
-	close;
+		mes "[ต่อสู้ ลาฟิน]";
+		mes "ฉันคงจะสติแตกตอนที่ตัดสินใจเข้าร่วมกองทัพ เฮ้อ ทำไมประตูสู่ความจริงถึงต้องอยู่สูงขนาดนั้น";
+		close;
 }
 
 ecl_in01,46,102,3	script	Commander Laphine#143_1	4_M_FAIRYSOLDIER,5,5,{
-	mes "[Commander Laphine]";
-	mes "Evil must be nipped in the butt.";
-	mes "You're unexpected visitors from the Midgard Continent.";
-	next;
-	mes "[Commander Laphine]";
-	mes "If you  are the cause doom to ourselves OR Yggdrasil, then we won't hesitate to fight you.";
-	close;
+		mes "[ผู้บังคับบัญชา ลาฟิน]";
+		mes "ความชั่วร้ายจะต้องถูกหยุดยั้งเสียที";
+		mes "คุณคือผู้มาเยือนโดยไม่ได้คาดคิดจากทวีปมิดการ์ด";
+		next;
+		mes "[ผู้บังคับบัญชา ลาฟิน]";
+		mes "หากคุณเป็นสาเหตุของความหายนะต่อตัวเราเองหรือ Yggdrasil เราก็ไม่ลังเลที่จะต่อสู้กับคุณ";
+		close;
 
 OnTouch_:
-	if (.talk == 0) {
-		.talk = 1;
-		npctalk "Commander: Soldiers, finally it's time to put your training to use!";
-		sleep 2000;
-		npctalk "Argh!", "Combat Laphine#143_4";
-		npctalk "Argh!", "Combat Laphine#143_5";
-		npctalk "Argh!", "Combat Laphine#143_6";
-		npctalk "Ah!", "Combat Laphine#143_7";
-		npctalk "Argh!", "Combat Laphine#143_8";
-		npctalk "Argh!", "Combat Laphine#143_9";
-		sleep 2000;
-		npctalk "Commander: Did someone just whimper?";
-		sleep 3000;
-		npctalk "Commander: Don't disappoint your comrades at the Splendide advance base!";
-		sleep 3000;
-		npctalk "Commander: Stay focused! We're going to finish off the Demon God!";
-		sleep 2000;
-		npctalk "Yeah, yeah.", "Combat Laphine#143_7";
-		sleep 2000;
-		npctalk "...", "Combat Laphine#143_4";
-		npctalk "Ah...", "Combat Laphine#143_5";
-		npctalk "...", "Combat Laphine#143_6";
-		npctalk "...", "Combat Laphine#143_8";
-		sleep 3000;
-		npctalk "Commander: Ah, suddenly I can't see...";
-		.talk = 0;
-	}
-	end;
+		if (.talk == 0) {
+				.talk = 1;
+				npctalk "ผู้บัญชาการ: เหล่าทหาร ในที่สุดก็ถึงเวลาที่คุณจะได้ใช้การฝึกฝนของคุณแล้ว!";
+				sleep 2000;
+				npctalk "อ๊าก!", "Combat Laphine#143_4";
+				npctalk "อ๊าก!", "Combat Laphine#143_5";
+				npctalk "อ๊าก!", "Combat Laphine#143_6";
+				npctalk "อ่าาา!", "Combat Laphine#143_7";
+				npctalk "อ๊าก!", "Combat Laphine#143_8";
+				npctalk "อ๊าก!", "Combat Laphine#143_9";
+				sleep 2000;
+				npctalk "ผู้บัญชาการ: มีใครคร่ำครวญบ้างไหม?";
+				sleep 3000;
+				npctalk "ผู้บัญชาการ: อย่าทำให้สหายของคุณผิดหวังในฐานล่วงหน้าสเปลนไดด์!";
+				sleep 3000;
+				npctalk "ผู้บัญชาการ: ตั้งสมาธิไว้! เราจะจัดการกับเทพปีศาจ!";
+				sleep 2000;
+				npctalk "ใช่ๆ ใช่ๆ.", "Combat Laphine#143_7";
+				sleep 2000;
+				npctalk "-", "Combat Laphine#143_4";
+				npctalk "อ่า...", "Combat Laphine#143_5";
+				npctalk "-", "Combat Laphine#143_6";
+				npctalk "-", "Combat Laphine#143_8";
+				sleep 3000;
+				npctalk "ผู้บังคับบัญชา: อ๋อ จู่ๆ ฉันก็มองไม่เห็น...";
+				.talk = 0;
+		}
+		end;
 }
 
 ecl_in01,37,90,3	script	Magic Scholar Lemony#14	4_F_FAIRY2,{
-	mes "[Lemony]";
-	mes "Did you read the latest issue of the Door to Verities magazine?";
-	mes "Was Avant's new teleporter really featured in it?";
-	next;
-	mes "[Armandi]";
-	mes "Yes, just the basic principles and the information relevant to the Humans.";
-	mes "I didn't quite understand it all.";
-	next;
-	mes "[Lemony]";
-	mes "I wonder if this means Avant has finally decided to pursue his interest in research activities.";
-	next;
-	mes "[Lemony]";
-	mes "Hey, Human.";
-	mes "Were you eavesdropping on us? Well, though it wasn't like we're discussing secrets.";
-	next;
-	mes "[Lemony]";
-	mes "Oh, right. Are you too going there?";
-	mes "You know, the hideout of the Demon God who created some of the Space Time Dimensional Cracks has recently been discovered.";
-	next;
-	mes "[Lemony]";
-	mes "If you're curious, then use that teleporter to the hideout over there.";
-	mes "There will be quite a spectacle to watch.";
-	mes "Oh, just so you know, you might be throwing away your life. *Giggle*";
-	next;
-	mes "[Armandi]";
-	mes "Lemony, you really need to work on improving your personality.";
-	mes "Tsk, tsk.";
-	close;
+		mes "[เลมอนนี่]";
+		mes "คุณได้อ่านนิตยสาร Door to Verities ฉบับล่าสุดแล้วหรือยัง?";
+		mes "มีเครื่องเทเลพอร์ตตัวใหม่ของ Avant อยู่ในนั้นจริงหรือ?";
+		next;
+		mes "[อาร์มันดี]";
+		mes "ใช่ เพียงหลักการพื้นฐานและข้อมูลที่เกี่ยวข้องกับมนุษย์";
+		mes "ฉันก็ไม่ค่อยเข้าใจมันทั้งหมดนัก";
+		next;
+		mes "[เลมอนนี่]";
+		mes "ฉันสงสัยว่านี่หมายความว่า Avant ได้ตัดสินใจที่จะทำตามความสนใจของเขาในการทำกิจกรรมวิจัยในที่สุดหรือไม่";
+		next;
+		mes "[เลมอนนี่]";
+		mes "เฮ้มนุษย์";
+		mes "คุณแอบฟังเราอยู่เหรอ? ไม่ใช่เรื่องที่เรากำลังคุยกันเรื่องความลับหรอก";
+		next;
+		mes "[เลมอนนี่]";
+		mes "อ๋อ ใช่แล้ว คุณก็จะไปที่นั่นเหมือนกันเหรอ?";
+		mes "คุณรู้ไหมว่าที่ซ่อนของเทพปีศาจผู้สร้างรอยแตกร้าวแห่งมิติเวลาและอวกาศนั้นเพิ่งถูกค้นพบเมื่อไม่นานนี้";
+		next;
+		mes "[เลมอนนี่]";
+		mes "หากคุณอยากรู้ก็ใช้เครื่องเทเลพอร์ตไปยังที่ซ่อนตรงนั้นได้เลย";
+		mes "จะมีสิ่งน่าสนใจให้ชมมากมาย";
+		mes "โอ้ แค่อยากให้คุณรู้ไว้ว่าคุณอาจจะกำลังทิ้งชีวิตของคุณไป *หัวเราะคิกคัก*";
+		next;
+		mes "[อาร์มันดี]";
+		mes "เลโมนี คุณต้องพยายามปรับปรุงบุคลิกภาพของคุณนะ";
+		mes "จ๊าก จ๊าก.";
+		close;
 }
 
 ecl_in01,35,89,6	script	Magic Scholar Armandi#1	4_M_FAIRYKID6,{
-	mes "[Armandi]";
-	mes "I hope the Interdimensional Device won't take a heavy toll on the world.";
-	mes "By the way, Avant never fails to amaze me.";
-	next;
-	mes "[Lemony]";
-	mes "Ack, I hate that guy.";
-	next;
-	mes "[Armandi]";
-	mes "Avant may be repulsive,";
-	mes "but he's the best at what he does.";
-	next;
-	mes "[Lemony]";
-	mes "That, I agree.";
-	mes "Only he could pull off this kind of teleporter.";
-	mes "Why is he helping the Mayor, anyway?";
-	next;
-	mes "[Armandi]";
-	mes "When I asked him, he mumbled something about repentance.";
-	mes "I can only guess it has something to do with the Mayor's birth.";
-	next;
-	mes "[Armandi]";
-	mes "I wanted to ask more, but he looked down his nose at me.";
-	mes "Sigh, it's unfair such a jerk is considered the best in magical science.";
-	next;
-	mes "[Lemony]";
-	mes "You can always study hard to beat him.";
-	close;
+		mes "[อาร์มันดี]";
+		mes "ฉันหวังว่าอุปกรณ์มิติคู่ขนานจะไม่สร้างความเสียหายหนักให้กับโลก";
+		mes "อย่างไรก็ตาม Avant ไม่เคยทำให้ฉันผิดหวังเลย";
+		next;
+		mes "[เลมอนนี่]";
+		mes "อ๊าก ฉันเกลียดผู้ชายคนนั้น";
+		next;
+		mes "[อาร์มันดี]";
+		mes "เปรี้ยวอาจจะน่ารังเกียจ";
+		mes "แต่เขาเก่งที่สุดในสิ่งที่เขาทำ";
+		next;
+		mes "[เลมอนนี่]";
+		mes "อันนั้นฉันก็เห็นด้วย";
+		mes "มีเพียงเขาเท่านั้นที่สามารถสร้างเครื่องเทเลพอร์ตแบบนี้ได้";
+		mes "เขาช่วยนายกเทศมนตรีทำไมล่ะ?";
+		next;
+		mes "[อาร์มันดี]";
+		mes "เมื่อฉันถามเขา เขาก็พึมพำอะไรบางอย่างเกี่ยวกับการกลับใจ";
+		mes "ฉันเดาได้แค่ว่ามันอาจเกี่ยวข้องกับการเกิดของนายกเทศมนตรี";
+		next;
+		mes "[อาร์มันดี]";
+		mes "ฉันอยากจะถามมากกว่านี้ แต่เขากลับมองฉันอย่างดูถูก";
+		mes "เฮ้อ มันไม่ยุติธรรมเลยที่ไอ้เวรนั่นได้รับการยกย่องว่าเก่งที่สุดในศาสตร์เวทมนตร์";
+		next;
+		mes "[เลมอนนี่]";
+		mes "คุณต้องเรียนรู้มากเสมอเพื่อจะเอาชนะเขาได้";
+		close;
 }
 
 // Placeholder (unknown scripts)
@@ -237,4 +237,3 @@ ecl_in01,35,89,6	script	Magic Scholar Armandi#1	4_M_FAIRYKID6,{
 // ecl_in01,48,67,0	script	#ecl_orb_buff	HIDDEN_WARP_NPC
 // ecl_in01,71,67,0	script	#ecl_buff_E	HIDDEN_WARP_NPC
 // ecl_in01,47,27,0	script	#mgate03	HIDDEN_WARP_NPC
-
