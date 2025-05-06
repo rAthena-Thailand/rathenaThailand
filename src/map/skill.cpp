@@ -1781,6 +1781,13 @@ int32 skill_additional_effect( struct block_list* src, struct block_list *bl, ui
 		}
 		break;
 	case TK_TURNKICK:
+		// Note: attack_type is passed as BF_WEAPON for the actual target, BF_MISC for the splash-affected mobs.
+		if (attack_type&BF_MISC) {
+			sc_start(src, bl, SC_STUN, 200, skill_lv, skill_get_time(skill_id, skill_lv));
+			clif_specialeffect(bl, EF_SPINEDBODY, AREA);
+			sc_start(src, bl, SC_NOACTION, 100, 1, skill_get_time2(skill_id, skill_lv));
+		}
+		break;
 	case MO_BALKYOUNG: //Note: attack_type is passed as BF_WEAPON for the actual target, BF_MISC for the splash-affected mobs.
 		if(attack_type&BF_MISC) //70% base stun chance...
 			sc_start(src,bl,SC_STUN,70,skill_lv,skill_get_time2(skill_id,skill_lv));
@@ -6436,7 +6443,7 @@ int32 skill_castend_damage_id (struct block_list* src, struct block_list *bl, ui
 		skill_area_temp[1] = bl->id; //NOTE: This is used in skill_castend_nodamage_id to avoid affecting the target.
 		if (skill_attack(BF_WEAPON,src,src,bl,skill_id,skill_lv,tick,flag))
 			map_foreachinallrange(skill_area_sub,bl,
-				skill_get_splash(skill_id, skill_lv),BL_CHAR,
+				skill_get_splash(skill_id, skill_lv),(skill_id==TK_TURNKICK)?BL_MOB:BL_CHAR,
 				src,skill_id,skill_lv,tick,flag|BCT_ENEMY|1,
 				skill_castend_nodamage_id);
 	}
@@ -15780,6 +15787,8 @@ static int32 skill_dance_overlap_sub(struct block_list* bl, va_list ap)
 				// Add ensemble to signal this unit is overlapping.
 				unit->val2 |= (1 << UF_ENSEMBLE);
 				skill_getareachar_skillunit_visibilty(unit, AREA);
+				// Trigger onleft event on all affected units on the cell
+				map_foreachincell(skill_unit_effect, unit->bl.m, unit->bl.x, unit->bl.y, unit->group->bl_flag, &unit->bl, gettick(), 4|8);
 			}
 		}
 		else {
@@ -15792,6 +15801,10 @@ static int32 skill_dance_overlap_sub(struct block_list* bl, va_list ap)
 				// If the unit is removed because overlap dissonance killed the caster, we need to reset it here
 				skill_dance_switch(unit, true);
 				skill_getareachar_skillunit_visibilty(unit, AREA);
+				// Trigger onplace event on all affected units on the cell
+				// Don't do this for src as that unit is to be removed
+				if (unit == target)
+					map_foreachincell(skill_unit_effect, unit->bl.m, unit->bl.x, unit->bl.y, unit->group->bl_flag, &unit->bl, gettick(), 1|8);
 			}
 		}
 	}
@@ -16689,12 +16702,21 @@ static int32 skill_unit_onplace(struct skill_unit *unit, struct block_list *bl, 
 				return 0;
 
 			if (!sc) return 0;
+
+			// Pseudo-infinite duration
+			// In case it is just started, it needs to last one interval longer than the skill unit lasts
+			// This is to ensure the skill unit is removed before the status change ends
 			if (!sce)
-				sc_start4(ss, bl,type,100,sg->skill_lv,sg->val1,sg->val2,0,sg->limit);
-			else if (sce->val4 == 1) { //Readjust timers since the effect will not last long.
+				sc_start4(ss, bl, type, 100, sg->skill_lv, sg->val1, sg->val2, 0, sg->limit + SKILLUNITTIMER_INTERVAL);
+			else if (battle_config.refresh_song == 1 && sce->val4 == 1) { //Readjust timers since the effect will not last long.
 				sce->val4 = 0; //remove the mark that we stepped out
 				delete_timer(sce->timer, status_change_timer);
-				sce->timer = add_timer(tick+sg->limit, status_change_timer, bl->id, type); //put duration back to 3min
+				sce->timer = add_timer(tick + sg->limit + SKILLUNITTIMER_INTERVAL, status_change_timer, bl->id, type);
+				// Update icon duration
+				if (battle_config.refresh_song_icon == 1) {
+					if (auto scdb = status_db.find(type); scdb != nullptr)
+						clif_status_change(bl, static_cast<int32>(scdb->icon), 1, INFINITE_TICK, 1, 0, 0);
+				}
 			}
 			break;
 
@@ -17871,14 +17893,23 @@ int32 skill_unit_onleft(uint16 skill_id, struct block_list *bl, t_tick tick)
 		case DC_DONTFORGETME:
 		case DC_FORTUNEKISS:
 		case DC_SERVICEFORYOU:
-			if (sce)
+			if (bl->type == BL_PC && sce && sce->val4 == 0)
 			{
 				delete_timer(sce->timer, status_change_timer);
 				//NOTE: It'd be nice if we could get the skill_lv for a more accurate extra time, but alas...
 				//not possible on our current implementation.
+				t_tick duration = skill_get_time2(skill_id, 1);
 				sce->val4 = 1; //Store the fact that this is a "reduced" duration effect.
-				sce->timer = add_timer(tick+skill_get_time2(skill_id,1), status_change_timer, bl->id, type);
+				sce->timer = add_timer(tick + duration, status_change_timer, bl->id, type);
+				// Update icon duration
+				if (battle_config.refresh_song_icon == 1) {
+					if (auto scdb = status_db.find(type); scdb != nullptr)
+						clif_status_change(bl, static_cast<int32>(scdb->icon), 1, duration, 1, 0, 0);
+				}
 			}
+			// Non-players don't have lingering effects
+			else if (bl->type != BL_PC)
+				status_change_end(bl, type);
 			break;
 		case PF_FOGWALL:
 			if (sce)
@@ -17912,7 +17943,7 @@ int32 skill_unit_onleft(uint16 skill_id, struct block_list *bl, t_tick tick)
  * flag values:
  * flag&1: Invoke onplace function (otherwise invoke onout)
  * flag&4: Invoke a onleft call (the unit might be scheduled for deletion)
- * flag&8: Recursive
+ * flag&8: Skip dissonance check
  *------------------------------------------*/
 static int32 skill_unit_effect(struct block_list* bl, va_list ap)
 {
@@ -17931,11 +17962,11 @@ static int32 skill_unit_effect(struct block_list* bl, va_list ap)
 	if (group == nullptr)
 		return 0;
 
-	if( !(flag&8) ) {
+	if( !(flag&8) )
 		dissonance = skill_dance_switch(unit, false);
-		//Target-type check.
-		isTarget = group->bl_flag & bl->type && battle_check_target( &unit->bl, bl, group->target_flag ) > 0;
-	}
+
+	//Target-type check.
+	isTarget = group->bl_flag & bl->type && battle_check_target(&unit->bl, bl, group->target_flag) > 0;
 
 	//Necessary in case the group is deleted after calling on_place/on_out [Skotlex]
 	skill_id = group->skill_id;
@@ -17952,11 +17983,8 @@ static int32 skill_unit_effect(struct block_list* bl, va_list ap)
 	} else if( !isTarget && flag&4 && ( group->state.song_dance&0x1 || ( group->src_id == bl->id && group->state.song_dance&0x2 ) ) )
 		skill_unit_onleft(skill_id, bl, tick);//Ensemble check to terminate it.
 
-	if( dissonance ) {
+	if( dissonance )
 		skill_dance_switch(unit, true);
-		//we placed a dissonance, let's update
-		map_foreachincell(skill_unit_effect,unit->bl.m,unit->bl.x,unit->bl.y,group->bl_flag,&unit->bl,gettick(),4|8);
-	}
 
 	return 0;
 }
