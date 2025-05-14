@@ -778,6 +778,7 @@ struct Battle_Config
 	int32 assist_range;
 	int32 open_box_weight_rate;
 	int32 major_overweight_rate;
+	int32 trade_count_stackable;
 	int32 feature_goldpc_active;
 	int32 feature_goldpc_time;
 	int32 feature_goldpc_max_points;

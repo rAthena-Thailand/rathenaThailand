@@ -12201,6 +12201,7 @@ static const struct _battle_data {
 	{ "loot_range",                         &battle_config.loot_range,                      12,     1,      MAX_WALKPATH,   },
 	{ "assist_range",                       &battle_config.assist_range,                    11,     1,      MAX_WALKPATH,   },
 	{ "major_overweight_rate",              &battle_config.major_overweight_rate,           90,     0,      100             },
+	{ "trade_count_stackable",              &battle_config.trade_count_stackable,           1,      0,      1,              },
 	{ "feature.goldpc_active",              &battle_config.feature_goldpc_active,           1,      0,      1,              },
 	{ "feature.goldpc_time",                &battle_config.feature_goldpc_time,          3600,      0,   3600,              },
 	{ "feature.goldpc_max_points",          &battle_config.feature_goldpc_max_points,     300,      0,    300,              },
