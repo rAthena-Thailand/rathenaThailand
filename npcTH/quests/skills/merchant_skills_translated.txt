@@ -1,0 +1,153 @@
+//===== rAthena Script =======================================
+//= Merchant Skills Quests
+//===== Description: =========================================
+//= [Official Conversion]
+//- NPC for skills Pushcart Decoration.
+//===== Changelogs: ==========================================
+//= 1.0 First version. [Capuche]
+//============================================================
+
+alberta,47,37,5	script	Cart Remodel Expert	4_M_REPAIR,{
+		.@max_skill_lvl = 1;
+		if (cart_remodel == 0) {
+				mes "[เจสัน]";
+				mes "รถเข็นดั้งเดิมสวยงามมาก!";
+				next;
+				mes "[เจสัน]";
+				mes "รถเข็นสีเทาทึบ";
+				next;
+				mes "[เจสัน]";
+				mes "ฉันสามารถดัดแปลงเป็นดีไซน์ใหม่น่ารักๆ ได้";
+				next;
+				switch( select( "What is Pushcart Decoration?", "Learn Pushcart Decoration", "End Dialog" ) ) {
+				case 1:
+						mes "[เจสัน]";
+						mes "ฉันอยากจะปรับปรุงรถเข็นคันนี้ใหม่ทั้งหมด";
+						next;
+						mes "[เจสัน]";
+						mes "ปรับปรุงนิดหน่อยไม่พอใช่ไหมครับ?";
+						next;
+						mes "[เจสัน]";
+						mes "ฉันจึงได้คิดค้นรูปแบบใหม่ๆ ขึ้นมา";
+						next;
+						mes "[เจสัน]";
+						mes "น่ารักสดชื่นจังเลย!";
+						close;
+				case 2:
+						if (BaseClass != Job_Merchant) {
+								mes "[เจสัน]";
+								mes "ทำไมคุณถึงอยากเรียนตกแต่งรถเข็น? อย่ามารบกวนฉัน!";
+								close;
+						}
+						if (countitem(6606) == 0) {
+								mes "[เจสัน]";
+								mes "การเรียนรู้การตกแต่งรถเข็นเป็นเรื่องยาก";
+								next;
+								mes "[เจสัน]";
+								mes "ฉันจะสอนคุณถ้าคุณนำ ^3131FFCute Cart Remodel Coupon^000000 มาให้ฉัน";
+								close;
+						}
+						mes "[เจสัน]";
+						mes "คุณได้นำคูปองตกแต่งรถเข็นสุดน่ารักมาด้วยแล้ว คุณแน่ใจว่าต้องการเรียนรู้การตกแต่งรถเข็นหรือไม่?";
+						next;
+						if (select("YES", "NO") == 2) {
+								mes "[เจสัน]";
+								mes "เปลี่ยนใจแล้วกลับมาใหม่นะ!";
+								close;
+						}
+						mes "[เจสัน]";
+						mes "โอเค! ตามฉันมาสิ";
+						next;
+						mes "[เจสัน]";
+						mes "การออกแบบนี้";
+						mes "ต้องจับรถเข็นให้ได้...";
+						next;
+						mes "[เจสัน]";
+						mes "การออกแบบนี้";
+						mes "จำเป็นต้องจับรถเข็นให้ได้";
+						mes "จากนั้นเพิ่มสิ่งนี้เข้าไป...";
+						mes "-";
+						next;
+						mes "[เจสัน]";
+						mes "คุณเป็นอัจฉริยะ! คุณได้เรียนรู้มันแล้ว!";
+						next;
+						mes "[เจสัน]";
+						mes "ตอนนี้ถึงคราวของคุณที่จะทำมันแล้ว";
+						mes "กด Alt+S เพื่อเปลี่ยนรถเข็นของคุณ!";
+						next;
+						mes "[เจสัน]";
+						mes "นี่คือรถเข็นดีไซน์น่ารักใหม่ ตอนนี้คุณเป็นส่วนหนึ่งของครอบครัวเราแล้ว...!";
+						delitem 6606,1;	// P_Cart_C
+						cart_remodel = 1;
+						skill "MC_CARTDECORATE",1,SKILL_PERM;
+						close;
+				case 3:
+						close;
+				}
+		}
+		mes "[เจสัน]";
+		mes "คุณตกแต่งรถเข็นแล้วหรือยัง?";
+		next;
+		switch( select( "Is there more to learn?", "I forgot how to decorate my pushcart" ) ) {
+		case 1:
+				if (cart_remodel == .@max_skill_lvl) {
+						mes "[เจสัน]";
+						mes "ไม่ ฉันยังคงกำลังสำรวจการออกแบบใหม่ๆ อยู่ ฉันจะสอนคุณเมื่อฉันเรียนรู้มันแล้ว";
+						close;
+				}
+				mes "[เจสัน]";
+				mes "ฉันมีอะไรจะสอน คุณอยากเรียนมั้ย?";
+				next;
+				mes "[เจสัน]";
+				mes "ฉันต้องการ ^3131FFCute Cart Remodel Coupon^000000";
+				next;
+				if (select("I want to learn", "No") == 2) {
+						mes "[เจสัน]";
+						mes "คุณสามารถกลับมาเมื่อไรก็ได้";
+						close;
+				}
+				if (countitem(6606) < 0) {
+						mes "[เจสัน]";
+						mes "คุณไม่มีคูปอง Cute Cart Remodel ใช่ไหม?";
+						close;
+				}
+				mes "[เจสัน]";
+				mes "โอเค มาเริ่มกันเลย!";
+				next;
+				mes "[เจสัน]";
+				mes "ทำแบบนี้จะดีกว่า";
+				mes "ทำแบบนี้ก็ได้นะ...";
+				next;
+				mes "[เจสัน]";
+				mes "-";
+				mes "มาทำกันเลย!";
+				next;
+				mes "[เจสัน]";
+				mes "ฉันสอนทักษะนี้ให้คุณแล้ว คุณสามารถลองทำตอนนี้ได้เลย";
+				delitem 6606,1;	// P_Cart_C
+				cart_remodel++;
+				skill "MC_CARTDECORATE", cart_remodel ,SKILL_PERM;
+				close;
+		case 2:
+				mes "[เจสัน]";
+				mes "โอ้? ให้ฉันดูหน่อย";
+				next;
+				if (BaseClass != Job_Merchant) {
+						mes "[เจสัน]";
+						mes "กรุณากลับมาใหม่อีกครั้งเมื่อสามารถใช้รถเข็นได้แล้ว!";
+						close;
+				}
+				mes "[เจสัน]";
+				mes "คุณจำไม่ได้หรือไงว่าฉันสอนคุณเรื่องอะไร?";
+				mes "ฉันได้สอนวิธีนี้ให้คุณแล้ว";
+				next;
+				mes "[เจสัน]";
+				mes "คุณลืมไปแล้วเหรอ?";
+				mes "มาย้อนรำลึกกันตอนนี้!";
+				next;
+				mes "[เจสัน]";
+				mes "ลองคิดดูดีๆ คุณจะจำมันได้อีกครั้ง";
+				skill "MC_CARTDECORATE",1,SKILL_PERM;
+				close;
+		}
+}

@@ -93,6 +93,7 @@ struct s_npc_barter_item{
 	bool stockLimited;
 	uint32 stock;
 	uint32 price;
+	int8 refine;
 	std::map<uint16, std::shared_ptr<s_npc_barter_requirement>> requirements;
 };
 
@@ -111,7 +112,7 @@ struct s_npc_barter{
 
 class BarterDatabase : public TypesafeYamlDatabase<std::string, s_npc_barter>{
 public:
-	BarterDatabase() : TypesafeYamlDatabase( "BARTER_DB", 1 ){
+	BarterDatabase() : TypesafeYamlDatabase( "BARTER_DB", 2, 1 ){
 
 	}
 
@@ -154,8 +155,7 @@ enum e_npcv_status : uint8 {
 	NPCVIEW_CLOAK     = NPCVIEW_CLOAKOFF | NPCVIEW_CLOAKON,
 };
 
-struct npc_data {
-	struct block_list bl;
+struct npc_data : public block_list {
 	struct unit_data ud; //Because they need to be able to move....
 	struct view_data vd;
 	status_change sc; //They can't have status changes, but.. they want the visual opt values.

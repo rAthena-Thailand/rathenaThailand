@@ -475,17 +475,6 @@ uint32 distance(int32 dx, int32 dy)
 }
 
 /**
- * Returns distance using the mathematical calculation for length of a line
- * @param dx: Horizontal distance
- * @param dy: Vertical distance
- * @return Mathematical distance
- */
-double distance_math(int32 dx, int32 dy)
-{
-	return std::sqrt(dx * dx + dy * dy);
-}
-
-/**
  * The client uses a circular distance instead of the square one. The circular distance
  * is only used by units sending their attack commands via the client (not monsters).
  * @param dx: Horizontal distance
@@ -498,6 +487,17 @@ bool check_distance_client(int32 dx, int32 dy, int32 distance)
 	if(distance < 0) distance = 0;
 
 	return (distance_client(dx,dy) <= distance);
+}
+
+/**
+ * Returns distance using the mathematical calculation for length of a line
+ * @param dx: Horizontal distance
+ * @param dy: Vertical distance
+ * @return Mathematical distance
+ */
+double distance_math(int32 dx, int32 dy)
+{
+	return std::sqrt(dx * dx + dy * dy);
 }
 
 /**
