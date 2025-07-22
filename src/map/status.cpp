@@ -1537,7 +1537,8 @@ int32 status_damage(struct block_list *src,struct block_list *target,int64 dhp, 
 		ap = status->ap;
 	}
 
-	if (!hp && !sp && !ap)
+	// If no damage is dealt and the damage was passive
+	if (hp == 0 && sp == 0 && ap == 0 && (flag&1))
 		return 0;
 
 	if( !status->hp )
@@ -1547,12 +1548,19 @@ int32 status_damage(struct block_list *src,struct block_list *target,int64 dhp, 
 	if (hp && battle_config.invincible_nodamage && src && sc && sc->getSCE(SC_INVINCIBLE))
 		hp = 1;
 
-	if( hp && !(flag&1) ) {
+	// If the damage is not passive
+	if (!(flag&1)) {
 		if( sc ) {
 			struct status_change_entry *sce;
 
 			for (const auto &it : status_db) {
 				sc_type type = static_cast<sc_type>(it.first);
+
+				// For non-players, Wink Charm, Voice of Siren and Deep Sleep end only when damage was dealt (e.g. Wink Charm does not end itself)
+				// For players, these status changes end even if no damage was dealt (e.g. Provoke ends them on players but not on monsters)
+				// Other status changes end even on 0 damage (e.g. Wink Charm ends Freeze)
+				if ((type == SC_WINKCHARM || type == SC_VOICEOFSIREN || type == SC_DEEPSLEEP) && target->type != BL_PC && hp == 0)
+					continue;
 
 				if (sc->getSCE(type) && it.second->flag[SCF_REMOVEONDAMAGED]) {
 					// A status change that gets broken by damage should still be considered when calculating if a status change can be applied or not (for the same attack).
@@ -3180,6 +3188,8 @@ static int32 status_get_hpbonus(struct block_list *bl, enum e_status_bonus type)
 			if (sc->getSCE(SC_ANGELUS))
 				bonus += sc->getSCE(SC_ANGELUS)->val1 * 50;
 #endif
+			if (sc->getSCE(SC_OVERCOMING_CRISIS))
+				bonus += sc->getSCE(SC_OVERCOMING_CRISIS)->val3;
 		}
 	} else if (type == STATUS_BONUS_RATE) {
 		status_change *sc = status_get_sc(bl);
@@ -5419,9 +5429,7 @@ void status_calc_regen_rate(struct block_list *bl, struct regen_data *regen, sta
 
 	// No natural SP regen
 	if (sc->getSCE(SC_DANCING) ||
-#ifdef RENEWAL
 		sc->getSCE(SC_MAXIMIZEPOWER) ||
-#endif
 #ifndef RENEWAL
 		(bl->type == BL_PC && (((TBL_PC*)bl)->class_&MAPID_UPPERMASK) == MAPID_MONK &&
 		(sc->getSCE(SC_EXTREMITYFIST) || sc->getSCE(SC_EXPLOSIONSPIRITS)) && (!sc->getSCE(SC_SPIRIT) || sc->getSCE(SC_SPIRIT)->val2 != SL_MONK)) ||
@@ -8583,6 +8591,8 @@ static int16 status_calc_patk(struct block_list *bl, status_change *sc, int32 pa
 		patk += sc->getSCE(SC_TEMPORARY_COMMUNION)->val2;
 	if (sc->getSCE(SC_BLESSING_OF_M_CREATURES) != nullptr)
 		patk += sc->getSCE(SC_BLESSING_OF_M_CREATURES)->val2;
+	if (sc->getSCE(SC_OVERCOMING_CRISIS))
+		patk += sc->getSCE(SC_OVERCOMING_CRISIS)->val2;
 
 	return (int16)cap_value(patk, 0, SHRT_MAX);
 }
@@ -8618,6 +8628,8 @@ static int16 status_calc_smatk(struct block_list *bl, status_change *sc, int32 s
 		smatk += sc->getSCE(SC_TEMPORARY_COMMUNION)->val2;
 	if (sc->getSCE(SC_BLESSING_OF_M_CREATURES) != nullptr)
 		smatk += sc->getSCE(SC_BLESSING_OF_M_CREATURES)->val2;
+	if (sc->getSCE(SC_OVERCOMING_CRISIS))
+		smatk += sc->getSCE(SC_OVERCOMING_CRISIS)->val2;
 
 	return (int16)cap_value(smatk, 0, SHRT_MAX);
 }
@@ -11200,11 +11212,6 @@ static bool status_change_start_post_delay(block_list* src, block_list* bl, sc_t
 			} else // Caster
 				val2 = 10; // After-cast delay % reduction
 			break;
-
-		case SC_CONFUSION:
-			if (!val4)
-				clif_emotion( *bl, ET_QUESTION );
-			break;
 		case SC_GRADUAL_GRAVITY:
 			val2 = 10 * val1;
 			tick_time = status_get_sc_interval(type);
@@ -13008,6 +13015,10 @@ static bool status_change_start_post_delay(block_list* src, block_list* bl, sc_t
 		case SC_WILD_WALK:
 			val2 = (1 + val1 / 2) * 25;
 			val3 = 50 + 50 * val1;
+			break;
+		case SC_OVERCOMING_CRISIS:
+			val2 = 3 * val1;
+			val3 = 15000 * val1;
 			break;
 
 		default:

@@ -1430,6 +1430,14 @@ enum sc_type : int16 {
 	SC_C_BUFF_4,
 	SC_C_BUFF_5,
 	SC_C_BUFF_6,
+	SC_CONTENTS_15,
+	SC_CONTENTS_16,
+	SC_CONTENTS_17,
+	SC_CONTENTS_18,
+	SC_CONTENTS_19,
+	SC_CONTENTS_20,
+
+	SC_OVERCOMING_CRISIS,
 
 	SC_MAX, //Automatically updated max, used in for's to check we are within bounds.
 };
@@ -2965,7 +2973,7 @@ enum e_sc_opt2 : uint16 {
 	OPT2_POISON		= 0x0001,
 	OPT2_CURSE		= 0x0002,
 	OPT2_SILENCE		= 0x0004,
-	OPT2_SIGNUMCRUCIS	= 0x0008, //Confusion
+	OPT2_CONFUSION		= 0x0008,
 	OPT2_BLIND		= 0x0010,
 	OPT2_ANGELUS		= 0x0020,
 	OPT2_BLEEDING		= 0x0040,
@@ -3510,14 +3518,6 @@ static int32 status_damage( struct block_list *src, struct block_list *target, i
 //Define for standard HP damage attacks.
 static int32 status_fix_damage( struct block_list *src, struct block_list *target, int64 hp, t_tick walkdelay, uint16 skill_id ){
 	return status_damage( src, target, hp, 0, walkdelay, 0, skill_id );
-}
-//Define for standard SP damage attacks.
-static int32 status_fix_spdamage( struct block_list *src, struct block_list *target, int64 sp, t_tick walkdelay, uint16 skill_id ){
-	return status_damage( src, target, 0, sp, walkdelay, 0, skill_id );
-}
-//Define for standard AP damage attacks.
-static int32 status_fix_apdamage( struct block_list *src, struct block_list *target, int64 ap, t_tick walkdelay, uint16 skill_id ){
-	return status_damage( src, target, 0, 0, ap, walkdelay, 0, skill_id );
 }
 //Define for standard HP/SP/AP damage triggers.
 static int32 status_zap( struct block_list* bl, int64 hp, int64 sp, int64 ap = 0 ){

@@ -2144,6 +2144,9 @@ static bool mob_ai_sub_hard(struct mob_data *md, t_tick tick)
 	{
 		int32 stop_flag = USW_FIXPOS|USW_RELEASE_TARGET;
 
+		// Source may die due to reflect damage
+		map_freeblock_lock();
+
 		// Hiding is a special case because it prevents normal attacks but allows skill usage
 		// TODO: Some other states also have this behavior and should be investigated
 		// TODO: EFST_AUTOCOUNTER, EFST_BLADESTOP, NPC_SR_CURSEDCIRCLE
@@ -2163,6 +2166,8 @@ static bool mob_ai_sub_hard(struct mob_data *md, t_tick tick)
 		// Stop and make sure there is no chase target when attack was not skipped
 		if (stop_flag != USW_NONE)
 			unit_stop_walking(md, stop_flag);
+
+		map_freeblock_unlock();
 
 		//Target still in attack range, no need to chase the target
 		return true;
@@ -2772,7 +2777,7 @@ void mob_log_damage(mob_data* md, block_list* src, int64 damage, int64 damage_ta
 //Call when a mob has received damage.
 void mob_damage(struct mob_data *md, struct block_list *src, int32 damage)
 {
-	if (src && damage > 0) { //Store total damage...
+	if (src != nullptr) { //Store total damage...
 		//Log damage
 		mob_log_damage(md, src, static_cast<int64>(damage));
 	}
@@ -5447,10 +5452,10 @@ uint64 MobDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		mob->damagetaken = damage;
 	}
 
-	if (this->nodeExists(node, "GroupID")) {
+	if (this->nodeExists(node, "GroupId")) {
 		uint16 group_id;
 
-		if (!this->asUInt16Rate(node, "GroupID", group_id))
+		if (!this->asUInt16Rate(node, "GroupId", group_id))
 			return 0;
 
 		mob->group_id = group_id;

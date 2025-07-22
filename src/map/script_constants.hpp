@@ -1981,6 +1981,13 @@
 	export_constant(SC_C_BUFF_4);
 	export_constant(SC_C_BUFF_5);
 	export_constant(SC_C_BUFF_6);
+	export_constant(SC_CONTENTS_15);
+	export_constant(SC_CONTENTS_16);
+	export_constant(SC_CONTENTS_17);
+	export_constant(SC_CONTENTS_18);
+	export_constant(SC_CONTENTS_19);
+	export_constant(SC_CONTENTS_20);
+	export_constant(SC_OVERCOMING_CRISIS);
 
 /// Do not modify code below this, until the end of the API hook, since it will be automatically generated again
 /// @APIHOOK_START(EFST_CONST)
@@ -10734,7 +10741,8 @@
 	export_constant(OPT2_POISON);
 	export_constant(OPT2_CURSE);
 	export_constant(OPT2_SILENCE);
-	export_constant(OPT2_SIGNUMCRUCIS);
+	export_deprecated_constant3("OPT2_SIGNUMCRUCIS", OPT2_CONFUSION, "OPT2_CONFUSION"); // June 2025
+	export_constant(OPT2_CONFUSION);
 	export_constant(OPT2_BLIND);
 	export_constant(OPT2_ANGELUS);
 	export_constant(OPT2_BLEEDING);
