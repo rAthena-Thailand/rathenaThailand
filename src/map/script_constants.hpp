@@ -600,7 +600,6 @@
 	export_parameter(PCDIECOUNTER_VAR, SP_PCDIECOUNTER);
 	export_parameter(COOKMASTERY_VAR, SP_COOKMASTERY);
 	export_parameter(ACHIEVEMENTLEVEL, SP_ACHIEVEMENT_LEVEL);
-	export_parameter(GOLDPC_POINT_VAR, SP_GOLDPC_POINTS);
 
 	export_constant2("bMaxHP",SP_MAXHP);
 	export_constant2("bMaxSP",SP_MAXSP);
@@ -3751,8 +3750,8 @@
 	export_constant(IT_PETARMOR);
 	export_constant(IT_AMMO);
 	export_constant(IT_DELAYCONSUME);
-	export_constant(IT_SHADOWGEAR);
 	export_constant(IT_CHARM);
+	export_constant(IT_SHADOWGEAR);
 	export_constant(IT_CASH);
 
 	/* weapon types */

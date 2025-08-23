@@ -224,7 +224,6 @@ void mvptomb_create(struct mob_data *md, char *killer, time_t time)
 	if(map_addblock(nd))
 		return;
 	status_set_viewdata(nd, nd->class_);
-	status_change_init(nd);
 	unit_dataset(nd);
 
 	mvptomb_setdelayspawn(nd);
@@ -492,7 +491,6 @@ struct mob_data* mob_spawn_dataset(struct spawn_data *data)
 	md->centerX = data->x;
 	md->centerY = data->y;
 	status_set_viewdata(md, md->mob_id);
-	status_change_init(md);
 	unit_dataset(md);
 
 	map_addiddb(md);
@@ -2815,9 +2813,11 @@ void mob_damage(struct mob_data *md, struct block_list *src, int32 damage)
  * @param mob: Monster data
  * @param base_rate: Base drop rate
  * @param drop_modifier: RENEWAL_DROP level modifier
+ * @param md: the actual monster killed
+ * @param factor: factor which is applied to all multiplicative bonuses and upper bound caps
  * @return Modified drop rate
  */
-int32 mob_getdroprate(struct block_list *src, std::shared_ptr<s_mob_db> mob, int32 base_rate, int32 drop_modifier, mob_data* md)
+int32 mob_getdroprate(struct block_list *src, std::shared_ptr<s_mob_db> mob, int32 base_rate, int32 drop_modifier, mob_data* md, int32 factor)
 {
 	int32 drop_rate = base_rate;
 
@@ -2831,9 +2831,9 @@ int32 mob_getdroprate(struct block_list *src, std::shared_ptr<s_mob_db> mob, int
 
 	if (src) {
 		if (battle_config.drops_by_luk) // Drops affected by luk as a fixed increase [Valaris]
-			drop_rate += status_get_luk(src) * battle_config.drops_by_luk / 100;
+			drop_rate += (status_get_luk(src) * battle_config.drops_by_luk / 100) * factor;
 		if (battle_config.drops_by_luk2) // Drops affected by luk as a % increase [Skotlex]
-			drop_rate += (int32)(0.5 + drop_rate * status_get_luk(src) * battle_config.drops_by_luk2 / 10000.);
+			drop_rate += (int32)(0.5 + drop_rate * status_get_luk(src) * battle_config.drops_by_luk2 / 10000.) * factor;
 
 		if (src->type == BL_PC) { // Player specific drop rate adjustments
 			map_session_data *sd = (map_session_data*)src;
@@ -2862,6 +2862,8 @@ int32 mob_getdroprate(struct block_list *src, std::shared_ptr<s_mob_db> mob, int
 			} else
 				cap = battle_config.drop_rate_cap;
 
+			cap *= factor;
+
 			drop_rate = (int32)( 0.5 + drop_rate * drop_rate_bonus / 100. );
 
 			// Now limit the drop rate to never be exceed the cap (default: 90%), unless it is originally above it already.
@@ -2876,13 +2878,13 @@ int32 mob_getdroprate(struct block_list *src, std::shared_ptr<s_mob_db> mob, int
 #endif
 
 	// Cap it to 100%
-	drop_rate = min( drop_rate, 10000 );
+	drop_rate = min( drop_rate, 10000 * factor );
 
 	// If the monster's drop rate can become 0
 	if( battle_config.drop_rate0item ){
 		drop_rate = max( drop_rate, 0 );
 	}else{
-		// If not - cap to 0.01% drop rate - as on official servers
+		// If not - cap to 0.01% or 0.001% drop rate - as on official servers
 		drop_rate = max( drop_rate, 1 );
 	}
 
@@ -3371,11 +3373,13 @@ int32 mob_dead(struct mob_data *md, struct block_list *src, int32 type)
 		int32 map_drop_run = ( anymapdrops != nullptr ? 2 : 1);
 		bool on_instance = ( map[md->m].instance_id > 0 ? 1 : 0);
 
+		// If it is an instance map, we check for map specific drops of the original map
 		// Now instance maps need the mapflag mapdrops [Hyroshima]
 		if( on_instance && map_getmapflag( md->m, MF_MAPDROPS) )
 			mapdrops = map_drop_db.find( map[md->m].instance_src_map );
 		else if( !on_instance && !map_getmapflag( md->m, MF_NOMAPDROPS ) )
 			mapdrops = map_drop_db.find( md->m );
+
 		for (i = 0; i < map_drop_run; i++){
 			if(i)
 			{
@@ -3392,7 +3396,15 @@ int32 mob_dead(struct mob_data *md, struct block_list *src, int32 type)
 				// Process map wide drops
 				for( const auto& it : mapdrops->globals ){
 					unsigned char flag = 0;
-					if( rnd_chance( it.second->rate, 100000u ) ){
+					uint32 final_rate;
+
+					if ( battle_config.enable_bonus_map_drops ) {
+						final_rate = mob_getdroprate(first_sd, md->db, it.second->rate, drop_modifier, md, 10);
+					} else {
+						final_rate = it.second->rate;
+					}
+
+					if( rnd_chance( final_rate, 100000u ) ){
 						if(it.second->direct_inventory)
 						{
 							if(!pet_create_egg(sd,it.second->nameid))
@@ -3400,6 +3412,7 @@ int32 mob_dead(struct mob_data *md, struct block_list *src, int32 type)
 								struct item item_tmp = {};
 								item_tmp.nameid=it.second->nameid;
 								item_tmp.identify=1;
+
 								if((flag=pc_additem(sd,&item_tmp,1,LOG_TYPE_SCRIPT))){
 									clif_additem(sd,0,0,flag);
 									map_addflooritem(&item_tmp,1,sd->m,sd->x,sd->y,0,0,0,0,0);
@@ -3410,7 +3423,7 @@ int32 mob_dead(struct mob_data *md, struct block_list *src, int32 type)
 						{
 							// 'Cheat' for autoloot command: rate is changed from n/100000 to n/10000
 							int32 map_drops_rate = max(1, (it.second->rate / 10));
-							std::shared_ptr<s_item_drop> ditem = mob_setdropitem( it.second, 1, md->mob_id );
+							std::shared_ptr<s_item_drop> ditem = mob_setdropitem(it.second, 1, md->mob_id);
 							mob_item_drop( md, dlist, ditem, 0, map_drops_rate, homkillonly || merckillonly );
 						}
 					}
@@ -3418,9 +3431,18 @@ int32 mob_dead(struct mob_data *md, struct block_list *src, int32 type)
 
 				// Process map drops for this specific mob
 				const auto& specific = mapdrops->specific.find( md->mob_id );
+
 				if( specific != mapdrops->specific.end() ){
 					for( const auto& it : specific->second ){
 						unsigned char flag = 0;
+						uint32 final_rate;
+
+						if ( battle_config.enable_bonus_map_drops ) {
+							final_rate = mob_getdroprate(first_sd, md->db, it.second->rate, drop_modifier, md, 10);
+						} else {
+							final_rate = it.second->rate;
+						}
+					
 						if( rnd_chance( it.second->rate, 100000u ) ){
 							if(it.second->direct_inventory)
 							{
@@ -3429,6 +3451,7 @@ int32 mob_dead(struct mob_data *md, struct block_list *src, int32 type)
 									struct item item_tmp = {};
 									item_tmp.nameid=it.second->nameid;
 									item_tmp.identify=1;
+
 									if((flag=pc_additem(sd,&item_tmp,1,LOG_TYPE_SCRIPT))){
 										clif_additem(sd,0,0,flag);
 										map_addflooritem(&item_tmp,1,sd->m,sd->x,sd->y,0,0,0,0,0);
@@ -3439,7 +3462,7 @@ int32 mob_dead(struct mob_data *md, struct block_list *src, int32 type)
 							{
 								// 'Cheat' for autoloot command: rate is changed from n/100000 to n/10000
 								int32 map_drops_rate = max(1, (it.second->rate / 10));
-								std::shared_ptr<s_item_drop> ditem = mob_setdropitem( it.second, 1, md->mob_id );
+								std::shared_ptr<s_item_drop> ditem = mob_setdropitem(it.second, 1, md->mob_id);
 								mob_item_drop( md, dlist, ditem, 0, map_drops_rate, homkillonly || merckillonly );
 							}
 						}
@@ -5714,6 +5737,10 @@ static bool mob_read_sqldb_sub(std::vector<std::string> str) {
 		node["DamageMotion"] << str[index];
 	if (!str[++index].empty())
 		node["DamageTaken"] << str[index];
+	if (!str[++index].empty())
+		node["GroupId"] << str[index];
+	if (!str[++index].empty())
+		node["Title"] << str[index];	
 	if (!str[++index].empty() && strcmp(str[index].c_str(), "06") != 0)
 		node["Ai"] << str[index];
 	if (!str[++index].empty() && strcmp(str[index].c_str(), "Normal") != 0)

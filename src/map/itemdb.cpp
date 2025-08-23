@@ -3152,8 +3152,8 @@ const char* itemdb_typename(enum item_types type)
 		case IT_PETARMOR:       return "Pet Accessory";
 		case IT_AMMO:           return "Arrow/Ammunition";
 		case IT_DELAYCONSUME:   return "Delay-Consume Usable";
-		case IT_SHADOWGEAR:     return "Shadow Equipment";
 		case IT_CHARM:			return "Charms";
+		case IT_SHADOWGEAR:     return "Shadow Equipment";
 		case IT_CASH:           return "Cash Usable";
 	}
 	return "Unknown Type";

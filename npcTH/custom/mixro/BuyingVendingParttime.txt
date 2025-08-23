@@ -1,0 +1,932 @@
+//=================================================================================================================
+//	Part Time System (Buying Store Parttime หรือ Vending Parttime)
+//=================================================================================================================
+
+alberta_in,20,21,4	script	Masha Parttime Departime	1_F_MERCHANT_01,{ //73
+	if(BaseLevel < 40){
+		mes "[Masha]";
+		mes "เจ้าต้องมี BaseLevel ระดับ 40 ขึ้นไปเจ้าถึงทำเควสนี้ได้";
+		close;
+	}
+	
+	// End Quest Expert
+	//if(checkquest(8345) == 1 && countitem(25358) >= 1){
+	//	mes "[Masha]";
+	//	mes "ใบ Parttime ที่เจ้าอยากได้";
+	//	mes "เอาเป็นอันไหนดี?";
+	//	next;
+	//	switch(select("Vending 1 Day Parttime Lv.3:Buying Store 1 Day Parttime Lv.3:ขอคิดดูก่อน")){
+	//		case 1:
+	//			completequest 8345;
+	//			erasequest 8345;
+	//			delitem 25358,1; //Retrieve Data Card
+	//			getitem 23344,10; // Vending 1 Day Parttime Lv.3
+	//			mes "[Masha]";
+	//			mes "เอาล่ะ <ITEM>Vending 1 Day Parttime Lv.3<INFO>23344</INFO></ITEM>...อยู่นี่แล้ว";
+	//			mes "วันนี้ เควสก็มีเท่านี้ ถ้าต้องการใบ Parttime อีก หลังจากนี้ 7 วัน ค่อยกลับมาใหม่นะ";
+	//			setquest 8323;
+	//			close;
+	//		case 2:
+	//			completequest 8345;
+	//			erasequest 8345;
+	//			delitem 25358,1; //Retrieve Data Card
+	//			getitem 23347,10; // Buying Store 1 Day Parttime Lv.3
+	//			mes "[Masha]";
+	//			mes "เอาล่ะ <ITEM>Buying Store 1 Day Parttime Lv.3<INFO>23347</INFO></ITEM>...อยู่นี่แล้ว";
+	//			mes "วันนี้ เควสก็มีเท่านี้ ถ้าต้องการใบ Parttime อีก หลังจากนี้ 7 วัน ค่อยกลับมาใหม่นะ";
+	//			setquest 8323;
+	//			close;
+	//		case 3:
+	//			mes "[Masha]";
+	//			mes "ข้าเองก็ต้องรีบรายงาน";
+	//			mes "รีบตัดสินใจมาเลย";
+	//			close;
+	//	}
+	//}
+	
+	if(checkquest(8323,PLAYTIME) == 0){
+		mes "[Masha]";
+		mes "เควสครั้งนี้ทำได้ดีมาก";
+		mes "ใบจ้างงาน Parttime แบบ 7 วัน กำลังจะเตรียมออกให้";
+		mes "ชีวิตประจำวันของผู้ร้องขอ ข้าต้องเคารพมันนะ";
+		next;
+		mes "[Masha]";
+		mes "เมื่อหมดเวลาทำเควส ข้าจะให้เควสเพิ่มแล้วกัน";
+		next;
+		if(select("แก้ปัญหาด้วยเงิน:เดียวไว้มาใหม่") == 1){
+			callfunc "BuyItemZeny";
+		}else{
+			mes "[Masha]";
+			mes "ขอบพระคุณมาก!";
+			mes "ฝากสมาคมของพวกเราด้วย!";
+			close;
+		}
+	}
+
+	// End Quest Beginer
+	if(questparttimebeginner == 2 && checkquest(questidbeginer) == 1){
+		mes "[Masha]";
+		mes "ไหน ได้รับใบเสร็จมาไหม? อยู่ไหน...";
+		mes "อืม ของจริง ข้าเช็คแล้ว";
+		mes "ใบ Parttime ที่เจ้าอยากได้";
+		mes "เอาเป็นอันไหนดี?";
+		next;
+		switch(select("Vending 1 Day Parttime Lv.1:Buying Store 1 Day Parttime Lv.1:ขอคิดดูก่อน")){
+			case 1:
+				if(countitem(25360) == 0){
+					mes "[Masha]";
+					mes "แล้วใบเสร็จล่ะ...อยู่ไหนหรอ!!!";
+					close;
+				}
+				delitem 25360,1; //Receipt
+				getitem 23342,10; // Vending 1 Day Parttime Lv.1
+				completequest questidbeginer;
+				erasequest questidbeginer;
+				setquest 8323;
+				set questparttimebeginner,0;
+				set questidbeginer,0;
+				mes "[Masha]";
+				mes "เอาล่ะ <ITEM>Vending 1 Day Parttime Lv.1<INFO>23342</INFO></ITEM>...อยู่นี่แล้ว";
+				mes "วันนี้ เควสก็มีเท่านี้ ถ้าต้องการใบ Parttime อีก หลังจากนี้ 7 วัน ค่อยกลับมาใหม่นะ";
+				close;
+			case 2:
+				if(countitem(25360) == 0){
+					mes "[Masha]";
+					mes "แล้วใบเสร็จล่ะ...อยู่ไหนหรอ!!!";
+					close;
+				}
+				delitem 25360,1; //Receipt
+				getitem 23345,10; // Buying Store 1 Day Parttime Lv.1
+				completequest questidbeginer;
+				erasequest questidbeginer;
+				setquest 8323;
+				set questparttimebeginner,0;
+				set questidbeginer,0;
+				mes "[Masha]";
+				mes "เอาล่ะ <ITEM>Buying Store 1 Day Parttime Lv.1<INFO>23345</INFO></ITEM>...อยู่นี่แล้ว";
+				mes "วันนี้ เควสก็มีเท่านี้ ถ้าต้องการใบ Parttime อีก หลังจากนี้ 7 วัน ค่อยกลับมาใหม่นะ";
+				close;
+			case 3:
+				mes "[Masha]";
+				mes "ข้าเองก็ต้องรีบรายงาน";
+				mes "รีบตัดสินใจมาเลย";
+				close;
+		}
+	}
+	
+	// End Quest Normal
+	if(questparttimenormal == 2){
+		// NPC Recover Box
+		if(checkquest(questidparttimenormal) == 1 && countitem(25359) >= 1){
+			mes "[Masha]";
+			mes "ไหน ได้รับใบเสร็จมาไหม? อยู่ไหน...";
+			mes "อืม ของจริง ข้าเช็คแล้ว";
+			mes "ใบ Parttime ที่เจ้าอยากได้";
+			mes "เอาเป็นอันไหนดี?";
+			next;
+			switch(select("Vending 1 Day Parttime Lv.2:Buying Store 1 Day Parttime Lv.2:ขอคิดดูก่อน")){
+				case 1:
+					if(countitem(25359) == 0){
+						mes "[Masha]";
+						mes "แล้วใบเสร็จล่ะ...อยู่ไหนหรอ!!!";
+						close;
+					}
+					delitem 25359,1;
+					getitem 23343,10; // Vending 1 Day Parttime Lv.2
+					completequest questidparttimenormal;
+					erasequest questidparttimenormal;
+					set questparttimenormal,0;
+					set questidparttimenormal,0;
+					setquest 8323;
+					mes "[Masha]";
+					mes "เอาล่ะ <ITEM>Vending 1 Day Parttime Lv.2<INFO>23343</INFO></ITEM>...อยู่นี่แล้ว";
+					mes "วันนี้ เควสก็มีเท่านี้ ถ้าต้องการใบ Parttime อีก หลังจากนี้ 7 วัน ค่อยกลับมาใหม่นะ";
+					close;
+				case 2:
+					if(countitem(25359) == 0){
+						mes "[Masha]";
+						mes "แล้วใบเสร็จล่ะ...อยู่ไหนหรอ!!!";
+						close;
+					}
+					delitem 25359,1;
+					getitem 23346,10; // Buying Store 1 Day Parttime Lv.2
+					completequest questidparttimenormal;
+					erasequest questidparttimenormal;
+					set questparttimenormal,0;
+					set questidparttimenormal,0;
+					setquest 8323;
+					mes "[Masha]";
+					mes "เอาล่ะ <ITEM>Buying Store 1 Day Parttime Lv.2<INFO>23346</INFO></ITEM>...อยู่นี่แล้ว";
+					mes "วันนี้ เควสก็มีเท่านี้ ถ้าต้องการใบ Parttime อีก หลังจากนี้ 7 วัน ค่อยกลับมาใหม่นะ";
+					close;
+				case 3:
+					mes "[Masha]";
+					mes "ข้าเองก็ต้องรีบรายงาน";
+					mes "รีบตัดสินใจมาเลย";
+					close;
+			}
+		}else{
+			mes "[Masha]";
+			mes "แล้วกล่องที่จะส่งมอบให้ไปไหนล่ะ!!!";
+			close;
+		}
+			// HuntMonster
+			if(checkquest(questidparttimenormal) == 1 && countitem(25360) >= 1){
+				mes "[Masha]";
+				mes "ไหน ได้รับใบเสร็จมาไหม? อยู่ไหน...";
+				mes "อืม ของจริง ข้าเช็คแล้ว";
+				mes "ใบ Parttime ที่เจ้าอยากได้";
+				mes "เอาเป็นอันไหนดี?";
+				next;
+				switch(select("Vending 1 Day Parttime Lv.2:Buying Store 1 Day Parttime Lv.2:ขอคิดดูก่อน")){
+					case 1:
+						delitem 25360,1; //Receipt
+						getitem 23343,10; // Vending 1 Day Parttime Lv.2
+						completequest questidparttimenormal;
+						erasequest questidparttimenormal;
+						set questparttimenormal,0;
+						set questidparttimenormal,0;
+						setquest 8323;
+						mes "[Masha]";
+						mes "เอาล่ะ <ITEM>Vending 1 Day Parttime Lv.2<INFO>23343</INFO></ITEM>...อยู่นี่แล้ว";
+						mes "วันนี้ เควสก็มีเท่านี้ ถ้าต้องการใบ Parttime อีก หลังจากนี้ 7 วัน ค่อยกลับมาใหม่นะ";
+						close;
+					case 2:
+						delitem 25360,1; //Receipt
+						getitem 23346,10; // Buying Store 1 Day Parttime Lv.2
+						completequest questidparttimenormal;
+						erasequest questidparttimenormal;
+						set questparttimenormal,0;
+						set questidparttimenormal,0;
+						setquest 8323;
+						mes "[Masha]";
+						mes "เอาล่ะ <ITEM>Buying Store 1 Day Parttime Lv.2<INFO>23346</INFO></ITEM>...อยู่นี่แล้ว";
+						mes "วันนี้ เควสก็มีเท่านี้ ถ้าต้องการใบ Parttime อีก หลังจากนี้ 7 วัน ค่อยกลับมาใหม่นะ";
+						close;
+					case 3:
+						mes "[Masha]";
+						mes "ข้าเองก็ต้องรีบรายงาน";
+						mes "รีบตัดสินใจมาเลย";
+						close;
+				}
+			}
+			mes "[Masha]";
+			mes "แล้วใบเสร็จล่ะ...อยู่ไหนหรอ!!!";
+			close;
+	}
+	
+	// End Quest Expert
+	if(questparttimeexpert == 2){
+		if(checkquest(8345) == 1 && countitem(25358) >= 1){
+				mes "[Masha]";
+				mes "ไหนการ์ดดึงข้อมูล ที่ข้าให้ไปเอามาได้รึยัง?";
+				mes "....อืมมม..ดีมากงั่นเจ้าเลือกรับรางวัลของเจ้าไป";
+				next;
+				delitem 25358,1; // Retrieve Data Card
+				switch(select("Vending 1 Day Parttime Lv.3:Buying Store 1 Day Parttime Lv.3:ขอคิดดูก่อน")){
+					case 1:
+						getitem 23344,10; // Vending 1 Day Parttime Lv.3
+						completequest 8345;
+						erasequest 8345;
+						set questparttimeexpert,0;
+						set questidparttimeexpert,0;
+						setquest 8323;
+						mes "[Masha]";
+						mes "เอาล่ะ <ITEM>Vending 1 Day Parttime Lv.3<INFO>23344</INFO></ITEM>...อยู่นี่แล้ว";
+						mes "วันนี้ เควสก็มีเท่านี้ ถ้าต้องการใบ Parttime อีก หลังจากนี้ 7 วัน ค่อยกลับมาใหม่นะ";
+						close;
+					case 2:
+						getitem 23347,10; // Buying Store 1 Day Parttime Lv.3
+						completequest 8345;
+						erasequest 8345;
+						set questparttimeexpert,0;
+						set questidparttimeexpert,0;
+						setquest 8323;
+						mes "[Masha]";
+						mes "เอาล่ะ <ITEM>Buying Store 1 Day Parttime Lv.2<INFO>23346</INFO></ITEM>...อยู่นี่แล้ว";
+						mes "วันนี้ เควสก็มีเท่านี้ ถ้าต้องการใบ Parttime อีก หลังจากนี้ 7 วัน ค่อยกลับมาใหม่นะ";
+						close;
+					case 3:
+						mes "[Masha]";
+						mes "ข้าเองก็ต้องรีบรายงาน";
+						mes "รีบตัดสินใจมาเลย";
+						close;
+				}
+		}
+			
+		//End HuntMonster
+		if(checkquest(questidparttimeexpert) == 1 && countitem(25360) >=1){
+			mes "[Masha]";
+			mes "....อืมมม..ดีมากงั่นเจ้าเลือกรับรางวัลของเจ้าไป";
+			next;
+			switch(select("Vending 1 Day Parttime Lv.3:Buying Store 1 Day Parttime Lv.3:ขอคิดดูก่อน")){
+				case 1:
+					delitem 25360,1; //Receipt
+					getitem 23344,10; // Vending 1 Day Parttime Lv.3
+					completequest questidparttimeexpert;
+					erasequest questidparttimeexpert;
+					set questparttimeexpert,0;
+					set questidparttimeexpert,0;
+					setquest 8323;
+					mes "[Masha]";
+					mes "เอาล่ะ <ITEM>Vending 1 Day Parttime Lv.3<INFO>23344</INFO></ITEM>...อยู่นี่แล้ว";
+					mes "วันนี้ เควสก็มีเท่านี้ ถ้าต้องการใบ Parttime อีก หลังจากนี้ 7 วัน ค่อยกลับมาใหม่นะ";
+					close;
+				case 2:
+					delitem 25360,1; //Receipt
+					getitem 23347,10; // Buying Store 1 Day Parttime Lv.3
+					completequest questidparttimeexpert;
+					erasequest questidparttimeexpert;
+					set questparttimeexpert,0;
+					set questidparttimeexpert,0;
+					setquest 8323;
+					mes "[Masha]";
+					mes "เอาล่ะ <ITEM>Buying Store 1 Day Parttime Lv.2<INFO>23346</INFO></ITEM>...อยู่นี่แล้ว";
+					mes "วันนี้ เควสก็มีเท่านี้ ถ้าต้องการใบ Parttime อีก หลังจากนี้ 7 วัน ค่อยกลับมาใหม่นะ";
+					close;
+				case 3:
+					mes "[Masha]";
+					mes "ข้าเองก็ต้องรีบรายงาน";
+					mes "รีบตัดสินใจมาเลย";
+					close;
+			}
+		}
+	}
+		
+	//Start Select Quest
+	mes "[Masha]";
+	mes "ยินดีต้อนรับ พวกเรา สมาคมพ่อค้าแก่ง Alberta";
+	mes "Parttime Center";
+	mes "มาหาเพราะต้องการใบ Parttime ใช่หรือไม่?";
+	next;
+	switch(select("ฟังคำอธิบาย:รับเควสพื้นฐาน(Lv.1):รับเควสทั่วไป(Lv.2):รับเควสเดียว(Lv.3):แก้ปัญหาด้วยเงิน")){
+		case 1:
+			mes "[Masha]";
+			mes "ครั้งนี้เป็นธุรกิจขนาดใหญ่ขึ้นเมื่อดำเนินการแบบนี้ แรงงานจำเป็นอย่างมาก เลยจำเป็นต้องมีนักผจญภัยคอยทำเควสให้";
+			mes "ต้องเก็บความลับเก่ง.....";
+			mes "ต้องมีความสามารถ.....";
+			mes "และมีความว่องไว.....";
+			next;
+			mes "[Masha]";
+			mes "เป็นงานที่ไม่ใช่เควสระยะยาว ทุกความต้องการและการจัดหาทั้งหมด ให้ทิ้งให้หมด ไม่เกี่ยวข้องกับ Center เลย";
+			mes "ถ้าจะหาเงินละก็ สมาคมพ่อค้าไง";
+			next;
+			mes "[Masha]";
+			mes "ที่สมาคมพ่อค่สของพวกเรา เพื่อสมาชิกของสมาคม สิทธิ์ในการตั้งร้านค้างแผงลอย พวกเจ้ารู้กันดีอยู่แล้ว สิทธิ์การตั้งร้านทั้งซื้อและขาย แน่นอน มันเป็นสิทธิ์ของสมาชิกของสมาคมเท่านั้น";
+			next;
+			mes "[Masha]";
+			mes "และเพื่อความสะดวกสะบายนี้ พวกเรา อยากให้เจ้าทำเควสลับๆ ถ้าเจ้าทำให้ได้ สิทธิ์การตั้งร้านค้างของสมาชิกสมาคมพ่อค้าเท่านั้น เจ้าจะได้รับสิทธิ์การจ้างพนักงานพาร์ทไทม์ในการตั้งร้านค้า ด้วยใบ Parttime จากพวกเราได้เลย";
+			next;
+			mes "[Masha]";
+			mes "พวกเราก็จะได้ค่านายหน้าในการจัดหาพนักงาน ส่วนผู้ร้องขอให้ทำเควสให้ก็จะได้รับสินค้าเร็วขึ้น ส่วนพวกนักผจญภัยก็จะจ้างงานพนักงานพาร์ทไทม์ ส่วนพวกพนักงานพาร์ทไทม์ ก็ได้รับเงินค่าจ้าง ฮ่าๆ เสียงของการนับเงินอยู่ทุกหนทุกแห่ง!";
+			next;
+			mes "[Masha]";
+			mes "คำขอที่พวกเราขอให้ช่วยทำเควสมากกว่าที่เจ้าคิดไว้ มันเป็นค่าจ้างที่แพงมากนะ เพื่อช่วยเหลือปกป้องชีวิตประจำวันของผู้ร้องขอ ใน 7 วัน จะสามารถทำเควสได้ 1 ครั้งเท่านั้น เป็นกฏที่เรามีนะ";
+			next;
+			mes "[Masha]";
+			mes "เพราะฉะนั้น ต้องยิ่งเก็บเป็นความลับ สำหรับคนที่ได้ถูกฝากวานให้ช่วยทำเควสให้นะ ยังไงก็ฝากตัวด้วยละ";
+			next;
+			mes "[Masha]";
+			mes "มีอะไรสงสัยเพิ่มเติมไหม?";
+			next;
+			if(select("ไม่มี:ไอเจ้าแกะนี้คืออะไร?") == 1){
+				mes "[Masha]";
+				mes"ดีมาก เอาล่ะ";
+				mes "ยังไงจะรอวันนั้น";
+				mes "วันที่มีคำขอให้ช่วยทำเควสเข้ามา";
+				close;
+			}
+			mes "[Sheep]";
+			mes "แบะ แบะ";
+			next;
+			mes "[Masha]";
+			mes "ได้รับเข้ามาใหม่ในตำแหน่งการดูแลการขนส่งอัตโนมัติ";
+			mes "ในสมาคมพ่อค้า นับเป็นสมาชิกคนใหม่ของสมาคมขนของมันมีไฟฟ้าสถิตย์ในบางครั้งระวังไว้ล่ะ";
+			mes "ถ้ามีของที่จะทำการส่งไปให้คนอื่น ถ้าแค่ให้เจ้าแกะ มันก็จะจัดการให้เองเลย";
+			next;
+			mes "[Sheep]";
+			mes "แบะ แบะ";
+			next;
+			mes "[Masha]";
+			mes "ถ้าอย่างนั้น จะรอวันที่เจ้า มารับเควสแล้วกัน";
+			next;
+			mes "[Sheep]";
+			mes "แบะ";
+			close;
+			
+		case 2:
+			// Quest Beginner
+			if(questparttimebeginner == 1){
+				mes "[Masha]";
+				mes "คุณกำลังดำเนินการทำเควสอยู่ กรุณาทำให้เสร็จก่อนค่อยมารับเควสใหม่!!";
+				close;
+			}
+			set questparttimebeginner,0;
+			mes "[Masha]";
+			mes "ถ้าจะช่วยจัดการเควสนี้";
+			mes "จะสามารถเลือกได้หนึ่งอย่าง จาก 2 อย่างนี้";
+			mes "<ITEM>Vending 1 Day Parttime Lv.1<INFO>23342</INFO></ITEM>, <ITEM>Buying Store 1 Day Parttime Lv.1<INFO>23345</INFO></ITEM>";
+			mes "ไม่ยากเกินไป ก็ประมาณส่งของธรรมดา?";
+			next;
+			if(select("ตกลง:ไม่ล่ะ") == 2){
+				mes "[Masha]";
+				mes "อยากลองทำงานในระดับอื่นบ้างงั้นรึ?";
+				mes "ก็ดีเหมือนกันนะ ลองไปคิดดูดีๆแล้วกัน";
+				close;
+			}
+			getitem 25359,1; //Slightly Old Box
+			set questparttimebeginner,1;
+			switch(rand(1,5)){
+				case 1: // Prontera
+					setquest 8324;
+					mes "[Masha]";
+					mes "ดีมาก คำขอเควสในวันนี้ก็คือ ไปที่ ^3333ff ร้านตีดาบในเมือง Prontera^000000 แล้วไปหา ^3333ff Sheep ^000000 ที่คอยดีแลงานแล้วนำ <ITEM>Slightly Old Box<INFO>25359</INFO></ITEM> กลับมาให้ข้า";
+					next;
+					mes "[Masha]";
+					mes "ถ้าทำการส่งของให้เสร็จแล้ว ทางฝั่งนั้น จะให้ใบเสร็จรับของให้กับเจ้า";
+					mes "แล้วนำใบนั้นกลับมา ข้าจะให้ใบ Parttime แก่เจ้า เอาล่ะ แล้วกลับมาหาข้าล่ะ";
+					close;
+				case 2: // Payon
+					setquest 8326;
+					mes "[Masha]";
+					mes "ดีมาก คำขอเควสในวันนี้ก็คือ ไปที่ ^3333ff ร้านตีดาบในเมือง Payon^000000 แล้วไปหา ^3333ff Sheep ^000000 ที่คอยดีแลงานแล้วนำ <ITEM>Slightly Old Box<INFO>25359</INFO></ITEM> กลับมาให้ข้า";
+					next;
+					mes "[Masha]";
+					mes "ถ้าทำการส่งของให้เสร็จแล้ว ทางฝั่งนั้น จะให้ใบเสร็จรับของให้กับเจ้า";
+					mes "แล้วนำใบนั้นกลับมา ข้าจะให้ใบ Parttime แก่เจ้า เอาล่ะ แล้วกลับมาหาข้าล่ะ";
+					close;
+				case 3: // Aldebaran
+					setquest 8330;
+					mes "[Masha]";
+					mes "ดีมาก คำขอเควสในวันนี้ก็คือ ไปที่ ^3333ff โรงแรมในเมือง Al De Baran^000000 แล้วไปหา ^3333ff Sheep ^000000 ที่คอยดีแลงานแล้วนำ <ITEM>Slightly Old Box<INFO>25359</INFO></ITEM> กลับมาให้ข้า";
+					next;
+					mes "[Masha]";
+					mes "ถ้าทำการส่งของให้เสร็จแล้ว ทางฝั่งนั้น จะให้ใบเสร็จรับของให้กับเจ้า";
+					mes "แล้วนำใบนั้นกลับมา ข้าจะให้ใบ Parttime แก่เจ้า เอาล่ะ แล้วกลับมาหาข้าล่ะ";
+					close;
+				case 4: // Comodo
+					setquest 8328;
+					mes "[Masha]";
+					mes "ดีมาก คำขอเควสในวันนี้ก็คือ ไปที่ ^3333ff ร้านขายอาวุธในเมือง Comodo^000000 แล้วไปหา ^3333ff Sheep ^000000 ที่คอยดีแลงานแล้วนำ <ITEM>Slightly Old Box<INFO>25359</INFO></ITEM> กลับมาให้ข้า";
+					next;
+					mes "[Masha]";
+					mes "ถ้าทำการส่งของให้เสร็จแล้ว ทางฝั่งนั้น จะให้ใบเสร็จรับของให้กับเจ้า";
+					mes "แล้วนำใบนั้นกลับมา ข้าจะให้ใบ Parttime แก่เจ้า เอาล่ะ แล้วกลับมาหาข้าล่ะ";
+					close;
+				case 5: // Morocc
+					setquest 8332;
+					mes "[Masha]";
+					mes "ดีมาก คำขอเควสในวันนี้ก็คือ ไปที่ ^3333ff ร้านในเมือง Morocc ^000000 แล้วไปหา ^3333ff Sheep ^000000 ที่คอยดีแลงานแล้วนำ <ITEM>Slightly Old Box<INFO>25359</INFO></ITEM> กลับมาให้ข้า";
+					next;
+					mes "[Masha]";
+					mes "ถ้าทำการส่งของให้เสร็จแล้ว ทางฝั่งนั้น จะให้ใบเสร็จรับของให้กับเจ้า";
+					mes "แล้วนำใบนั้นกลับมา ข้าจะให้ใบ Parttime แก่เจ้า เอาล่ะ แล้วกลับมาหาข้าล่ะ";
+					close;
+			}
+
+		case 3:
+			// Quest Normal
+			if(questparttimenormal == 1){
+				mes "[Masha]";
+				mes "คุณกำลังดำเนินการทำเควสอยู่ กรุณาทำให้เสร็จก่อนค่อยมารับเควสใหม่!!";
+				close;
+			}
+			mes "[Masha]";
+			mes "ถ้าจะช่วยจัดการเควสนี้";
+			mes "จะสามารถเลือกได้หนึ่งอย่าง จาก 2 อย่างนี้";
+			mes "<ITEM>Vending 1 Day Parttime Lv.2<INFO>23343</INFO></ITEM>, <ITEM>Buying Store 1 Day Parttime Lv.2<INFO>23346</INFO></ITEM>";
+			mes "ไม่ยากเกินไป ก็แค่ไปหา npc และ กำจัด Monster ตามที่กำหนด?";
+			next;
+			if(select("ตกลง:ไม่ล่ะ") == 2){
+				mes "[Masha]";
+				mes "อยากลองทำงานในระดับอื่นบ้างงั้นรึ?";
+				mes "ก็ดีเหมือนกันนะ ลองไปคิดดูดีๆแล้วกัน";
+				close;
+			}
+			set questparttimenormal,0;
+			switch(rand(1,5)){
+				case 1:
+					setquest 8334;
+					set questparttimenormal,1;
+					mes "[Masha]";
+					mes "ดีมาก คำขอเควสในวันนี้ก็คือ ไปที่ ^3333ff ่บริเวณท่อน้ำใต้ดินแห่งเมือง Prontera ชั้น 3 ^000000 ไปหา ^3333ff Mulian ^000000 คนที่กำลังทำภารกิจของเราอยู่แล้วเอาของ <ITEM>Slightly Old Box<INFO>25359</INFO></ITEM> กลับมาให้ข้า";
+					close;
+				case 2:
+					setquest 8342;
+					set questparttimenormal,1;
+					mes "[Masha]";
+					mes "ดีมาก คำขอเควสในวันนี้ก็คือ ไปที่ ^3333ff Sphinx ใต้ดิน ชั้น 3 ที่ Morocc ^000000 ไปหา ^3333ff Elbery ^000000 คนที่กำลังทำภารกิจของเราอยู่แล้วเอาของ <ITEM>Slightly Old Box<INFO>25359</INFO></ITEM> กลับมาให้ข้า";
+					close;
+				case 3:
+					set questparttimenormal,1;
+					callfunc "HuntMonster",8336,"จัดการ Bongun ที่ถ้ำ Payon ชั้น 3",1188,10,8337;
+				case 4:
+					set questparttimenormal,1;
+					callfunc "HuntMonster",8338,"จัดการ Megalith ที่ถ้ำ Rwanda ทิศเหนือ Comodo",1274,10,8339;
+				case 5:
+					set questparttimenormal,1;
+					callfunc "HuntMonster",8340,"จัดการ Rideword ที่ Clock Tower ชั้น 1 แห่งเมือง Al De Baran",1195,10,8341;
+			}
+
+		case 4:
+			// Quest Expert
+			if(questparttimeexpert == 1){
+				mes "[Masha]";
+				mes "คุณกำลังดำเนินการทำเควสอยู่ กรุณาทำให้เสร็จก่อนค่อยมารับเควสใหม่!!";
+				close;
+			}
+			mes "[Masha]";
+			mes "ถ้าจะช่วยจัดการเควสนี้";
+			mes "จะสามารถเลือกได้หนึ่งอย่าง จาก 2 อย่างนี้";
+			mes "<ITEM>Vending 1 Day Parttime Lv.3<INFO>23344</INFO></ITEM>, <ITEM>Buying Store 1 Day Parttime Lv.2<INFO>23347</INFO></ITEM>";
+			mes "ไม่ยากเกินไป ก็แค่ไปดึงเอาข้อมูลมา และ กำจัด Monster ตามที่กำหนด?";
+			next;
+			if(select("ตกลง:ไม่ล่ะ") == 2){
+				mes "[Masha]";
+				mes "อยากลองทำงานในระดับอื่นบ้างงั้นรึ?";
+				mes "ก็ดีเหมือนกันนะ ลองไปคิดดูดีๆแล้วกัน";
+				close;
+			}
+			set questparttimeexpert,0;
+			switch(rand(1,5)){
+				case 1:
+						setquest 8344; // ไปเอาข้อมูลมาจาก Biolabs
+						set questparttimeexpert,1;
+						mes "[Masha]";
+						mes "ดีมาก คำขอเควสในวันนี้ก็คือ ไปที่ ^3333ff ไปเอาข้อมูลที่บริเวณ Biolabs ชั้น 3 ^000000 ^3333ffตรวจสอบบริเวณป้ายแล้วลองใส่การ์ดดึงข้อมูลเข้าไป จะสามารถดึงข้อมูลออกมาได้^000000 คนที่กำลังทำภารกิจของเราให้ข้อมูลที่ดึงมาส่งให้กับ แกะ ข้างๆข้า เพื่อรับใบเสร็จ แลเวก็กลับมาให้ข้าอีกที";
+						close;
+				case 2:
+						set questparttimeexpert,1;
+						callfunc "HuntMonster",8346,"จัดการ Eremes Guile ที่บริเวณ Biolabs ชั้น 3",1635,3,8323;
+						end;
+					
+				case 3:
+						set questparttimeexpert,1;
+						callfunc "HuntMonster",8348,"จัดการ Cecil Demon 3 ตัว ที่บริเวณ Biolabs ชั้น 3",1638,3,8323;
+						end;
+				case 4:
+						set questparttimeexpert,1;
+						callfunc "HuntMonster",8350,"จัดการ Margaretha Sorin 3 ตัว ที่บริเวณ Biolabs ชั้น 3",1637,3,8323;
+						end;
+				case 5:
+						set questparttimeexpert,1;
+						callfunc "HuntMonster",8352,"จัดการ Kathryne Keyron 3 ตัว ที่บริเวณ Biolabs ชั้น 3",1639,3,8323;
+						end;
+			}
+
+		case 5:
+			callfunc "BuyItemZeny";
+	}
+
+OnInit:
+	questinfo QTYPE_QUEST, QMARK_YELLOW, "!isbegin_quest(8323) && !isbegin_quest(8324) && !isbegin_quest(8325) && !isbegin_quest(8326) && !isbegin_quest(8327) && !isbegin_quest(8328) && !isbegin_quest(8329) && !isbegin_quest(8330) && !isbegin_quest(8331) && !isbegin_quest(8332) && !isbegin_quest(8333) && !isbegin_quest(8334) && !isbegin_quest(8335) && !isbegin_quest(8336) && !isbegin_quest(8337) && !isbegin_quest(8338) && !isbegin_quest(8339) && !isbegin_quest(8340) && !isbegin_quest(8341) && !isbegin_quest(8342) && !isbegin_quest(8343) && !isbegin_quest(8344) && !isbegin_quest(8345) && !isbegin_quest(8346) && !isbegin_quest(8347) && !isbegin_quest(8348) && !isbegin_quest(8349) && !isbegin_quest(8350) && !isbegin_quest(8351) && !isbegin_quest(8352) && !isbegin_quest(8353) && !isbegin_quest(8354) && !isbegin_quest(8368)";
+	questinfo QTYPE_QUEST2,QMARK_YELLOW, "checkquest(8324) == 2 || checkquest(8326) == 2 || checkquest(8328) == 2 || checkquest(8330) == 2 || checkquest(8332) == 2 || checkquest(8325) == 1 || checkquest(8327) == 1 || checkquest(8329) == 1 || checkquest(8331) == 1 || checkquest(8333) == 1";
+	questinfo QTYPE_QUEST2,QMARK_YELLOW, "checkquest(8336,HUNTING) == 2 || checkquest(8338,HUNTING) == 2 || checkquest(8340,HUNTING) == 2";
+	questinfo QTYPE_QUEST2,QMARK_YELLOW, "checkquest(8346,HUNTING) == 2 || checkquest(8348,HUNTING) == 2 || checkquest(8350,HUNTING) == 2 || checkquest(8352,HUNTING) == 2";
+	end;
+}
+
+//===================================================
+//=============[ Check Status Quest ]===============
+//alberta_in,20,19,4	script	CheckQuest	4_M_OPERATION,{ //871
+//	mes "checkquest(8323,PLAYTIME) = "+checkquest(8323,PLAYTIME);
+//	mes "checkquest(8346,HUNTING) = "+checkquest(8346,HUNTING);
+//	mes "";
+//	close;
+//}
+
+//===================================================
+//=============[แกะ รับเควส Normal เสร็จแล้ว]===============
+alberta_in,20,17,4	script	Sheep#alb	4_LAM,{ //890
+	if(questparttimenormal == 1){
+		if(checkquest(8336,HUNTING) == 2){
+			completequest 8336;
+			erasequest 8336;
+			setquest 8337;
+			getitem 25360,1; // Receipt
+			set questparttimenormal,2;
+			set questidparttimenormal,8337;
+			mes "เจ้าแกะมองคุณตั้งแต่หัวจรดเท้า ด้วยสายตาแปลกประหลาด ที่บริเวณท้องของมันมีเสียงเครื่องจักรพร้อมกับปริ้นท์กระดาษใบเล็กๆออกมา";
+			next;
+			mes "[Sheep]";
+			mes "แบะ";
+			close;
+		}
+		if(checkquest(8338,HUNTING) == 2){
+			completequest 8338;
+			erasequest 8338;
+			setquest 8339;
+			getitem 25360,1; // Receipt
+			set questparttimenormal,2;
+			set questidparttimenormal,8339;
+			mes "เจ้าแกะมองคุณตั้งแต่หัวจรดเท้า ด้วยสายตาแปลกประหลาด ที่บริเวณท้องของมันมีเสียงเครื่องจักรพร้อมกับปริ้นท์กระดาษใบเล็กๆออกมา";
+			next;
+			mes "[Sheep]";
+			mes "แบะ";
+			close;
+		}
+		if(checkquest(8340,HUNTING) == 2){
+			completequest 8340;
+			erasequest 8340;
+			setquest 8341;
+			getitem 25360,1; // Receipt
+			set questparttimenormal,2;
+			set questidparttimenormal,8341;
+			mes "เจ้าแกะมองคุณตั้งแต่หัวจรดเท้า ด้วยสายตาแปลกประหลาด ที่บริเวณท้องของมันมีเสียงเครื่องจักรพร้อมกับปริ้นท์กระดาษใบเล็กๆออกมา";
+			next;
+			mes "[Sheep]";
+			mes "แบะ";
+			close;
+		}
+		mes "[Sheep]";
+		mes "แบะ แบะ";
+		next;
+		mes "เจ้าแกะนั้น";
+		mes "มองคุณตั้งแต่หัวจรดเท้า ส่งสายตาเป็นประกาย วิ้ง วิ้ง แล้วเกิดเสียงขึ้น";
+		next;
+		mes "[Sheep]";
+		mes "แบะ แบะ แบะ แบะ";
+		close;
+	}
+	
+	
+	if(questparttimeexpert == 1){
+		if(checkquest(8346,HUNTING) == 2){
+			completequest 8346;
+			erasequest 8346;
+			setquest 8347;
+			getitem 25360,1; // Receipt
+			set questparttimeexpert,2;
+			set questidparttimeexpert,8347;
+			mes "เจ้าแกะมองคุณตั้งแต่หัวจรดเท้า ด้วยสายตาแปลกประหลาด ที่บริเวณท้องของมันมีเสียงเครื่องจักรพร้อมกับปริ้นท์กระดาษใบเล็กๆออกมา";
+			next;
+			mes "[Sheep]";
+			mes "แบะ";
+			close;
+		}
+		if(checkquest(8348,HUNTING) == 2){
+			completequest 8348;
+			erasequest 8348;
+			setquest 8349;
+			getitem 25360,1; // Receipt
+			set questparttimeexpert,2;
+			set questidparttimeexpert,8349;
+			mes "เจ้าแกะมองคุณตั้งแต่หัวจรดเท้า ด้วยสายตาแปลกประหลาด ที่บริเวณท้องของมันมีเสียงเครื่องจักรพร้อมกับปริ้นท์กระดาษใบเล็กๆออกมา";
+			next;
+			mes "[Sheep]";
+			mes "แบะ";
+			close;
+		}
+		if(checkquest(8350,HUNTING) == 2){
+			completequest 8350;
+			erasequest 8350;
+			setquest 8351;
+			getitem 25360,1; // Receipt
+			set questparttimeexpert,2;
+			set questidparttimeexpert,8351;
+			mes "เจ้าแกะมองคุณตั้งแต่หัวจรดเท้า ด้วยสายตาแปลกประหลาด ที่บริเวณท้องของมันมีเสียงเครื่องจักรพร้อมกับปริ้นท์กระดาษใบเล็กๆออกมา";
+			next;
+			mes "[Sheep]";
+			mes "แบะ";
+			close;
+		}
+		if(checkquest(8352,HUNTING) == 2){
+			completequest 8352;
+			erasequest 8352;
+			setquest 8353;
+			getitem 25360,1; // Receipt
+			set questparttimeexpert,2;
+			set questidparttimeexpert,8353;
+			mes "เจ้าแกะมองคุณตั้งแต่หัวจรดเท้า ด้วยสายตาแปลกประหลาด ที่บริเวณท้องของมันมีเสียงเครื่องจักรพร้อมกับปริ้นท์กระดาษใบเล็กๆออกมา";
+			next;
+			mes "[Sheep]";
+			mes "แบะ";
+			close;
+		}
+		mes "[Sheep]";
+		mes "แบะ แบะ";
+		next;
+		mes "เจ้าแกะนั้น";
+		mes "มองคุณตั้งแต่หัวจรดเท้า ส่งสายตาเป็นประกาย วิ้ง วิ้ง แล้วเกิดเสียงขึ้น";
+		next;
+		mes "[Sheep]";
+		mes "แบะ แบะ แบะ แบะ";
+		close;
+	}
+	mes "[Sheep]";
+	mes "แบะ แบะ";
+	next;
+	mes "เจ้าแกะนั้น";
+	mes "มองคุณตั้งแต่หัวจรดเท้า ส่งสายตาเป็นประกาย วิ้ง วิ้ง แล้วเกิดเสียงขึ้น";
+	next;
+	mes "[Sheep]";
+	mes "แบะ แบะ แบะ แบะ";
+	close;
+
+OnInit:
+	// เควส หา Npc
+	questinfo QTYPE_QUEST2,QMARK_YELLOW, "checkquest(8336,HUNTING) == 2 || checkquest(8338,HUNTING) == 2 || checkquest(8340,HUNTING) == 2 || checkquest(8346,HUNTING) == 2 || checkquest(8348,HUNTING) == 2 || checkquest(8350,HUNTING) == 2 || checkquest(8352,HUNTING) == 2 || countitem(25358) >= 1";
+	end;
+}
+
+//===================================================
+//================[NPC เควส Normal ]==================
+prt_sewb3,144,181,4	script	Mulian	4_M_MONK,{ //753
+	if(questparttimenormal == 1){
+			setquest 8335;
+			completequest 8334;
+			erasequest 8334;
+			getitem 25359,1; //Slightly Old Box
+			set questparttimenormal,2;
+			set questidparttimenormal,8335;
+			mes "[Mulian]";
+			mes "เจ้าเป็นพนักงานจากสมาคมพ่อค้าใช่ไหม?";
+			mes "เอาสิ่งนี้ไป";
+			close;
+	}
+	mes "[Mulian]";
+	mes "......";
+	close;
+
+OnInit:
+	questinfo QTYPE_QUEST2,QMARK_YELLOW, "checkquest(8334) == 1";
+	end;
+}
+
+in_sphinx3,120,96,4	script	Elbery	4_M_ACROSS,{ //884
+	if(questparttimenormal == 1){
+			setquest 8343;
+			completequest 8342;
+			erasequest 8343;
+			getitem 25359,1; //Slightly Old Box
+			set questparttimenormal,2;
+			set questidparttimenormal,8343;
+			mes "[Elbery]";
+			mes "เจ้าเป็นพนักงานจากสมาคมพ่อค้าใช่ไหม?";
+			mes "เอาสิ่งนี้ไป";
+			close;
+	}
+	mes "[Elbery]";
+	mes "......";
+	close;
+
+OnInit:
+	questinfo QTYPE_QUEST2,QMARK_YELLOW, "checkquest(8342) == 1";
+	end;
+}
+
+//========================================================
+//===================[ป้ายข้อมูล Biolabs]=====================
+lhz_dun03,120,96,4	script	Sign#lhz	4_BULLETIN_BOARD2,{ //858
+	if(questparttimeexpert == 1 && checkquest(8344) == 1){
+		setquest 8345;
+		completequest 8344;
+		erasequest 8344;
+		getitem 25358,1; // Retrieve Data Card
+		set questparttimeexpert,2;
+		set questidparttimeexpert,8345;
+		mes "[Sign]";
+		mes "โหลดข้อมูลเรียบร้อย ถอดการ์ดออกไปได้แล้วส่งมอบให้ Masha";
+		close;
+	}
+	mes "[Sign]";
+	mes "......";
+	close;
+
+OnInit:
+	questinfo QTYPE_QUEST,QMARK_YELLOW, "checkquest(8344) == 1";
+	end;
+}
+
+//=================[Function ล่า Monster]===================
+// callfunc "HuntMonster",IDQuset,"DetileQuest",IDMonster,MobCount,IDQuestComple;
+function	script	HuntMonster	{
+	if(questparttimenormal == 1){
+		if(checkquest(getarg(0),HUNTING) == -1){
+			setquest getarg(0);
+			set questidparttimenormal,getarg(0);
+			mes "[Masha]";
+			mes "ดีมาก คำขอเควสในวันนี้ก็คือ ไปที่ ^3333ff" + getarg(1) + " ^000000 จำนวน" + getarg(3) + " ตัว แล้วกลับมา";
+			mes "แล้วก็คอยตรวจสอบจำนวนกับเจ้า แกะ ที่อยู่ข้างๆข้า";
+			close;
+		}
+	}
+	
+	if(questparttimeexpert == 1){
+		if(checkquest(getarg(0),HUNTING) == -1){
+			setquest getarg(0);
+			set questidparttimeexpert,getarg(0);
+			mes "[Masha]";
+			mes "ดีมาก คำขอเควสในวันนี้ก็คือ ไปที่ ^3333ff" + getarg(1) + " ^000000 จำนวน" + getarg(3) + " ตัว แล้วกลับมา";
+			mes "แล้วก็คอยตรวจสอบจำนวนกับเจ้า แกะ ที่อยู่ข้างๆข้า";
+			close;
+		}
+	}
+}
+
+//=================[Function แก้ปัญหาด้วยเงิน]===================
+// callfunc "BuyItemZeny";
+function	script	BuyItemZeny	{
+	mes "[" + strcharinfo(0) + "]";
+	mes "นอกจากเงินก็ไม่มีอย่างอื่นอีกแล้ว";
+	next;
+	mes "[Masha]";
+	mes "โอ้ว... เงินอย่างนั้นหรอ?";
+	mes "ยินดีอยู่แล้ว!!";
+	mes "สำหรับคนที่มีแค่เงินอย่างคุณ ถ้าเป็น 1 Day Parttime เมื่อไหร่ก็ตาม!";
+	mes "ข้าจะแลกเปลี่ยนให้";
+	next;
+	switch(select("ซื้อ Vending 1 Day Parttime Lv.1:ซื้อ Vending 1 Day Parttime Lv.2:ซื้อ Vending 1 Day Parttime Lv.3:ซื้อ Buying Store 1 Day Parttime Lv.1:ซื้อ Buying Store 1 Day Parttime Lv.2:ซื้อ Buying Store 1 Day Parttime Lv.3:ยกเลิกการแลกเปลี่ยน")){
+		case 1:
+			callfunc "SelectBuyItem","Vending 1 Day Parttime Lv.1",23342,50000;
+
+		case 2:
+			callfunc "SelectBuyItem","Vending 1 Day Parttime Lv.2",23343,100000;
+
+		case 3:
+			callfunc "SelectBuyItem","Vending 1 Day Parttime Lv.3",23344,200000;
+
+		case 4:
+			callfunc "SelectBuyItem","Buying Store 1 Day Parttime Lv.1",23345,50000;
+
+		case 5:
+			callfunc "SelectBuyItem","Buying Store 1 Day Parttime Lv.2",23346,100000;
+
+		case 6:
+			callfunc "SelectBuyItem","Buying Store 1 Day Parttime Lv.3",23347,200000;
+
+		case 7:
+			mes "[Masha]";
+			mes "อ้าว.. เสียดายเนาะ";
+			mes "ถ้าจำเป็นไว้มาหาใหม่อีกครั้งแล้วกัน!";
+			mes "ที่สามาคมพ่อค้าว่าจ้างงาน";
+			mes "เปิดตลอด";
+			close;
+	}
+}
+
+//=========================================================
+// callfunc "SelectBuyItem",NameItem,IDItem,Zeny;
+function	script	SelectBuyItem	{
+	mes "[Masha]";
+	mes "<ITEM>getarg(0)<INFO>getarg(1)</INFO></ITEM>";
+	mes "มั่นใจใช่หรือไม่? เป็นเงิน " + getarg(2) + " Zeny";
+	mes "โอเคสำหรับเรื่องยากที่จะขอคืนของได้ใช่ไหม~";
+	mes "จะซื้อกี่ใบดีล่ะ?";
+	mes "ซื้อได้ครั้งละ 30 อัน";
+	next;
+	input .@numcountitem;
+	if(.@numcountitem == 0){
+		mes "[Masha]";
+		mes "หืม? เลือกผิดไปหรอ?";
+		mes "ค่อยๆพูดก็ได้ พวกพนักงานพาร์ทไทม์ก็ต้องการเงื่อนไขในการจ้างงานดีๆเหมือนกันไม่ว่าเมื่อไหร่ก็ตาม.....ถ้าเป็นคนที่ทีแค่เงิน...";
+		mes "ยินดีตอนรับเสมอ";
+		mes "หึหึหึ ลองกลับไปคิดดูล่ะ";
+		close;
+	}
+	if(.@numcountitem < 0 || .@numcountitem > 30){
+		mes "[Masha]";
+		mes "เหอ การทำธุรกิจอย่างหนึ่งต้องเริ่มตั้งแต่มีบุคลิกที่เหมาะสมเลยตั้งแต่แรกแต่ถ้ามีปัญหาทางด้านการเงินขึ้นมาก็จะเป็นเรื่องใหญ่...";
+		mes "ในหนึ่งเดือน คงจะเป็นการดีถ้าจะมีการแลกเปลี่ยนประมาณแค่ 30 อัน นะ";
+		mes "ได้โปรดเลือกซื้อในจำนวนที่ต่ำกว่า 30 อัน";
+		mes "อีกครั้ง~";
+		close;
+	}
+	.@sell = .@numcountitem * getarg(2);
+	if(Zeny < .@sell){
+		mes "[Masha]";
+		mes "ถ้าต้องการสัก... 1 อัน";
+		mes "ต้องมีเงิน " + .@sell + " Zeny นะ...";
+		mes "เงินที่เจ้ามี...เหมือนจะไม่พอใช่ไหม?";
+		mes "หามาเพิ่มอีก " + (Zeny+(Zeny-getarg(2))) + " Zeny มาก็พอแล้ว";
+		mes "ข้าจะให้ของกับเจ้า";
+		next;
+		mes "[Masha]";
+		mes "เหอ มีไม่เท่าไหร่เองนิ!";
+		mes "ไปหาเงินมาเพิ่มก่อนแล้วค่อยมาใหม่~";
+		mes "ข้าจะรอ~.";
+		close;
+	}
+	getitem getarg(1),.@numcountitem; // item 1 Day Parttime
+	Zeny = Zeny-.@sell;
+	mes "[Masha]";
+	mes "ขอบคุณที่เจ้ามาใช้บริการ";
+	close;
+}
+
+//=================[Delivery (ส่งของ) Start]=======================
+// callfunc "SHEEP",IDQuestSet,IDQuestComple;
+
+function	script	SHEEP	{
+	if(questparttimebeginner == 1){
+		if(checkquest(getarg(0)) == 1 && countitem(25359) >= 1){
+			mes "[Sheep]";
+			mes "แบะ แบะ";
+			next;
+			mes "เจ้าแกะชื่นชม";
+			mes "การทำงานหนักของคุณ";
+			next;
+			mes "[Sheep]";
+			mes "แบะ แบะ";
+			next;
+			delitem 25359,1; //Slightly Old Box
+			getitem 25360,1; // Receipt
+			setquest getarg(1);
+			completequest getarg(0);
+			changequest getarg(0),getarg(1);
+			set questparttimebeginner,2;
+			set questidbeginer,getarg(1);
+			mes "ให้กล่องกับเจ้าแกะ ขนของมันม้วนกล่องเข้าไป ที่บริเวณท้องของมันมีเสียงเครื่องจักรพร้อมกับปริ้นท์กระดาษใบเล็กๆออกมา";
+			mes "ที่สมาคมพ่อค้าแห่งเมือง Alberta ถูกเขียนไว้ว่าเป็นที่ที่ให้นำไปส่ง";
+			next;
+			mes "[Sheep]";
+			mes "แบะ";
+			close;
+		}
+		mes "[Sheep]";
+		mes "แล้วกล่องที่จะส่งมอบให้ไปไหนล่ะ...เนี่ย?";
+		close;
+	}
+	mes "[Sheep]";
+	mes "แบะ แบะ";
+	next;
+	mes "เจ้าแกะนั้น";
+	mes "มองคุณตั้งแต่หัวจรดเท้า ส่งสายตาเป็นประกาย วิ้ง วิ้ง แล้วเกิดเสียงขึ้น";
+	next;
+	mes "[Sheep]";
+	mes "แบะ แบะ แบะ แบะ";
+	close;
+}
+// callfunc "SHEEP",IDQuestComple,IDQuestSet;
+prt_in,56,57,4	script	Sheep#prt	4_LAM,{ //890
+	callfunc "SHEEP",8324,8325;
+OnInit:
+	questinfo QTYPE_QUEST,QMARK_YELLOW, "checkquest(8324) == 1";
+	end;
+}
+payon,140,174,4	script	Sheep#pay	4_LAM,{ //890
+	callfunc "SHEEP",8326,8327;
+OnInit:
+	questinfo QTYPE_QUEST,QMARK_YELLOW, "checkquest(8326) == 1";
+	end;
+}
+aldeba_in,97,55,4	script	Sheep#alde	4_LAM,{ //890
+	callfunc "SHEEP",8330,8331;
+OnInit:
+	questinfo QTYPE_QUEST,QMARK_YELLOW, "checkquest(8330) == 1";
+	end;
+}
+cmd_in01,128,171,4	script	Sheep#cmd	4_LAM,{ //890
+	callfunc "SHEEP",8328,8329;
+OnInit:
+	questinfo QTYPE_QUEST,QMARK_YELLOW, "checkquest(8328) == 1";
+	end;
+}
+morocc,162,258,4	script	Sheep#mor	4_LAM,{ //890
+	callfunc "SHEEP",8332,8333;
+OnInit:
+	questinfo QTYPE_QUEST,QMARK_YELLOW, "checkquest(8332) == 1";
+	end;
+}
+
+//=================[Delivery (ส่งของ) End]=======================
