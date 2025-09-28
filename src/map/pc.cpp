@@ -2351,6 +2351,17 @@ bool pc_set_hate_mob(map_session_data *sd, int32 pos, block_list *bl)
 	return true;
 }
 
+TIMER_FUNC(pc_goldpc_update){
+	map_session_data* sd = map_id2sd( id );
+
+	if( sd == nullptr ){
+		return 0;
+	}
+
+	sd->goldpc_tid = INVALID_TIMER;
+
+	// Check if feature is still active
+	if( !battle_config.feature_goldpc_active ){
 		return 0;
 	}
 
