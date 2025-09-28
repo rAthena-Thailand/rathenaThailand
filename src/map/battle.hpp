@@ -783,6 +783,12 @@ struct Battle_Config
 	int32 major_overweight_rate;
 	int32 trade_count_stackable;
 	int32 enable_bonus_map_drops;
+	
+	int32 feature_goldpc_active;
+	int32 feature_goldpc_time;
+	int32 feature_goldpc_max_points;
+	int32 feature_goldpc_vip;
+	int32 feature_goldpc_script;
 
 #include <custom/battle_config_struct.inc>
 };
