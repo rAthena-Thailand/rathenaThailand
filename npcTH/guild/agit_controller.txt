@@ -33,15 +33,15 @@
 -	script	Agit_Event	-1,{
 	end;
 
-OnClock2100:	//start time for Tuesday and Thursday
-OnClock2300:	//end time for Tuesday and Thursday
+OnClock2100:	//start time for Wednesday
+OnClock2300:	//end time for Wednesday
 OnClock1600:	//start time for Saturday
 OnClock1800:	//end time for Saturday
 
+WEDNESDAY
 OnAgitInit:
 	// starting time checks
-	if((gettime(DT_DAYOFWEEK)==TUESDAY) && (gettime(DT_HOUR)>=21 && gettime(DT_HOUR)<23) ||
-	   (gettime(DT_DAYOFWEEK)==THURSDAY) && (gettime(DT_HOUR)>=21 && gettime(DT_HOUR)<23) ||
+	if((gettime(DT_DAYOFWEEK)==WEDNESDAY) && (gettime(DT_HOUR)>=21 && gettime(DT_HOUR)<23) ||
 	   (gettime(DT_DAYOFWEEK)==SATURDAY) && (gettime(DT_HOUR)>=16 && gettime(DT_HOUR)<18)) {
 		if (!agitcheck()) {
 			AgitStart;
@@ -51,8 +51,7 @@ OnAgitInit:
 	}
 
 	// end time checks
-	if ((gettime(DT_DAYOFWEEK)==TUESDAY) && (gettime(DT_HOUR)==23) ||
-	    (gettime(DT_DAYOFWEEK)==THURSDAY) && (gettime(DT_HOUR)==23) ||
+	if ((gettime(DT_DAYOFWEEK)==WEDNESDAY) && (gettime(DT_HOUR)==23) ||
 	    (gettime(DT_DAYOFWEEK)==SATURDAY) && (gettime(DT_HOUR)==18)) { 
 		if (agitcheck()) {
 			AgitEnd;
