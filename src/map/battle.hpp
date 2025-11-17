@@ -192,6 +192,7 @@ struct Battle_Config
 	int32 item_auto_get;
 	int32 flooritem_lifetime;
 	int32 first_attack_loot_bonus;
+	int32 mvp_to_loot_priority;
 	int32 item_first_get_time;
 	int32 item_second_get_time;
 	int32 item_third_get_time;
@@ -783,6 +784,7 @@ struct Battle_Config
 	int32 major_overweight_rate;
 	int32 trade_count_stackable;
 	int32 enable_bonus_map_drops;
+	int32 hide_cloaked_units;
 	
 	int32 feature_goldpc_active;
 	int32 feature_goldpc_time;

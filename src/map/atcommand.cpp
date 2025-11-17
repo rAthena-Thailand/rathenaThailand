@@ -1955,34 +1955,56 @@ ACMD_FUNC(model)
 }
 
 /*==========================================
- * @bodystyle [Rytech]
+ * @bodystyle
  *------------------------------------------*/
-ACMD_FUNC(bodystyle)
-{
-	int32 body_style = 0;
+ACMD_FUNC(bodystyle){
 	nullpo_retr(-1, sd);
 
-	memset(atcmd_output, '\0', sizeof(atcmd_output));
+	std::shared_ptr<s_job_info> job = job_db.find( sd->status.class_ );
 
-#if PACKETVER < 20231220
-	if ( (sd->class_ & JOBL_FOURTH) || !(sd->class_ & JOBL_THIRD) || (sd->class_ & MAPID_THIRDMASK) == MAPID_SUPER_NOVICE_E || (sd->class_ & MAPID_THIRDMASK) == MAPID_STAR_EMPEROR || (sd->class_ & MAPID_THIRDMASK) == MAPID_SOUL_REAPER) {
-		clif_displaymessage(fd, msg_txt(sd,740));	// This job has no alternate body styles.
+	if( job == nullptr || job->alternate_outfits.empty() ){
+		clif_displaymessage( fd, msg_txt( sd, 740 ) ); // This job has no alternate body styles.
 		return -1;
 	}
-#endif
+	
+	if( message == nullptr || !*message ){
+		if( const char* help = atcommand_help_string( command ); help != nullptr ){
+			clif_displaymessage( fd, help );
+		}
 
-	if (!message || !*message || sscanf(message, "%d", &body_style) < 1) {
-		sprintf(atcmd_output, msg_txt(sd,739), MIN_BODY_STYLE, MAX_BODY_STYLE);		// Please enter a body style (usage: @bodystyle <body ID: %d-%d>).
-		clif_displaymessage(fd, atcmd_output);
 		return -1;
 	}
 
-	if (body_style >= MIN_BODY_STYLE && body_style <= MAX_BODY_STYLE) {
-		pc_changelook(sd, LOOK_BODY2, body_style);
-		clif_displaymessage(fd, msg_txt(sd,36)); // Appearence changed.
-	} else {
-		clif_displaymessage(fd, msg_txt(sd,37)); // An invalid number was specified.
+	// Handle the 'off' alias to revert to the default bodystyle
+	if (!strcasecmp(message, "off")) {
+		if (sd->vd.look[LOOK_BODY2] != sd->status.class_) {
+			pc_changelook(sd, LOOK_BODY2, sd->status.class_);
+			clif_displaymessage( fd, msg_txt( sd, 1539 ) ); // Appearance changed to default.
+		} else {
+			clif_displaymessage( fd, msg_txt( sd, 1540 ) ); // Appearance is already set to default.
+		}
+
+		return 0;
+	}
+
+	uint16 body_style = 0;
+
+	if( sscanf( message, "%hu", &body_style ) < 1 ){
+		if( const char* help = atcommand_help_string( command ); help != nullptr ){
+			clif_displaymessage( fd, help );
+		}
+
 		return -1;
+	}
+
+	if( body_style != sd->status.class_ && !util::vector_exists( job->alternate_outfits, body_style ) ){
+		clif_displaymessage( fd, msg_txt( sd, 37 ) ); // An invalid number was specified.
+		return -1;
+	}
+
+	if( body_style != sd->vd.look[LOOK_BODY2] ){
+		pc_changelook( sd, LOOK_BODY2, body_style );
+		clif_displaymessage( fd, msg_txt( sd, 36 ) ); // Appearence changed.
 	}
 
 	return 0;

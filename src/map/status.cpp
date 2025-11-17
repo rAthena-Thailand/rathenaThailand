@@ -4981,7 +4981,7 @@ int32 status_calc_pc_sub(map_session_data* sd, uint8 opt)
 				clif_deleteskill(*sd, b_skill[i].id, true);
 		}
 #endif
-		clif_skillinfoblock(sd);
+		clif_skillinfoblock(*sd);
 	}
 
 	// If the skill is learned, the status is infinite.
@@ -9414,7 +9414,7 @@ void status_set_viewdata(block_list *bl, int32 class_)
 				sd->vd.look[LOOK_HAIR] = cap_value(sd->status.hair, MIN_HAIR_STYLE, MAX_HAIR_STYLE);
 				sd->vd.look[LOOK_HAIR_COLOR] = cap_value(sd->status.hair_color, MIN_HAIR_COLOR, MAX_HAIR_COLOR);
 				sd->vd.look[LOOK_CLOTHES_COLOR] = cap_value(sd->status.clothes_color, MIN_CLOTH_COLOR, MAX_CLOTH_COLOR);
-				sd->vd.look[LOOK_BODY2] = cap_value(sd->status.body, MIN_BODY_STYLE, MAX_BODY_STYLE);
+				sd->vd.look[LOOK_BODY2] = sd->status.body;
 				sd->vd.sex = sd->status.sex;
 				sd->vd.look[LOOK_ROBE] = sd->status.robe;
 
@@ -9430,8 +9430,9 @@ void status_set_viewdata(block_list *bl, int32 class_)
 					if(sd->sc.option&OPTION_OKTOBERFEST && battle_config.oktoberfest_ignorepalette)
 						sd->vd.look[LOOK_CLOTHES_COLOR] = 0;
 				}
-				if ( sd->vd.look[LOOK_BODY2] && sd->sc.option&OPTION_COSTUME)
- 					sd->vd.look[LOOK_BODY2] = 0;
+				if( sd->sc.option&OPTION_COSTUME ){
+ 					sd->vd.look[LOOK_BODY2] = class_;
+				}
 			} else if (vd)
 				memcpy(&sd->vd, vd, sizeof(struct view_data));
 			else
@@ -9449,6 +9450,7 @@ void status_set_viewdata(block_list *bl, int32 class_)
 				mob_set_dynamic_viewdata( md );
 
 				md->vd->look[LOOK_BASE] = class_;
+				md->vd->look[LOOK_BODY2] = class_;
 				md->vd->look[LOOK_HAIR] = cap_value(md->vd->look[LOOK_HAIR], MIN_HAIR_STYLE, MAX_HAIR_STYLE);
 				md->vd->look[LOOK_HAIR_COLOR] = cap_value(md->vd->look[LOOK_HAIR_COLOR], MIN_HAIR_COLOR, MAX_HAIR_COLOR);
 			}else
@@ -9480,6 +9482,7 @@ void status_set_viewdata(block_list *bl, int32 class_)
 			else if (pcdb_checkid(class_)) {
 				memset(&nd->vd, 0, sizeof(struct view_data));
 				nd->vd.look[LOOK_BASE] = class_;
+				nd->vd.look[LOOK_BODY2] = class_;
 				nd->vd.look[LOOK_HAIR] = cap_value(nd->vd.look[LOOK_HAIR], MIN_HAIR_STYLE, MAX_HAIR_STYLE);
 			} else {
 				ShowError("status_set_viewdata (NPC): Invalid view data %d\n", class_);
@@ -12119,7 +12122,7 @@ static bool status_change_start_post_delay(block_list* src, block_list* bl, sc_t
 			val3 = ((val1 * 15) + (10 * (sd?pc_checkskill(sd,CR_DEFENDER):skill_get_max(CR_DEFENDER)))) * status_get_lv(bl) / 100; // Defence added
 			break;
 		case SC_SHIELDSPELL_HP:
-			val2 = 3; // 3% HP every 3 seconds
+			val2 = 5; // 5% HP every 3 seconds
 			tick_time = status_get_sc_interval(type);
 			val4 = tick - tick_time; // Remaining time
 			break;
@@ -13013,9 +13016,7 @@ static bool status_change_start_post_delay(block_list* src, block_list* bl, sc_t
 				clif_changelook(bl,LOOK_WEAPON,0);
 				clif_changelook(bl,LOOK_SHIELD,0);
 				clif_changelook(bl,LOOK_CLOTHES_COLOR,vd->look[LOOK_CLOTHES_COLOR]);
-#if PACKETVER < 20231220
-				clif_changelook(bl,LOOK_BODY2,0);
-#endif
+				clif_changelook(bl,LOOK_BODY2,vd->look[LOOK_BODY2]);
 				break;
 			case SC_STONE:
 			case SC_STONEWAIT:
@@ -14071,7 +14072,7 @@ int32 status_change_end( block_list* bl, enum sc_type type, int32 tid ){
 			clif_changelook(bl,LOOK_WEAPON,sd->vd.look[LOOK_WEAPON]);
 			clif_changelook(bl,LOOK_SHIELD,sd->vd.look[LOOK_SHIELD]);
 			clif_changelook(bl,LOOK_CLOTHES_COLOR,cap_value(sd->status.clothes_color,0,battle_config.max_cloth_color));
-			clif_changelook(bl,LOOK_BODY2,cap_value(sd->status.body,0,MAX_BODY_STYLE));
+			clif_changelook(bl,LOOK_BODY2,sd->status.body );
 		}
 	}
 	if (calc_flag.any()) {
