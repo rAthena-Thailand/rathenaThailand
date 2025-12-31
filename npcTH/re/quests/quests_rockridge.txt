@@ -54,7 +54,9 @@ alberta,240,103,5	script	Karam Pucci#alberta	4_M_SEAMAN,3,3,{
 						mes "ร็อคริดจ์ ดินแดนแห่งทองคำและโอกาส!";
 						setquest 7790;// Rock Ridge, Land of Opportunities
 						completequest 7790;// Rock Ridge, Land of Opportunities
-						close;
+						close2;
+						warp "harboro1",70,215;
+						end;
 				}
 				mes "[คารัม ปุชชี]";
 				mes "คุณดูเหมือนนักผจญภัยที่มีความสามารถ";
@@ -1212,7 +1214,7 @@ har_in01,88,22,6	script	Ivoka Skudi#har02	4_M_EVOKASCUDI,{
 				mes "[อิโวก้า สกูดี]";
 				mes "(กระซิบ) เขาเป็นคนใจง่ายกว่าที่คิดไว้ ไปแจ้งความกับนายอำเภอกันเถอะ";
 				close2;
-				cloakonnpcself(  "Ivoka Skudi#har02" );
+				cloakonnpcself( "Ivoka Skudi#har02" );
 				end;
 		}
 		end;
@@ -1367,7 +1369,7 @@ rockrdg1,153,303,5	script	Wyatt Warp#revt03	4_M_YATTWARP,{
 				mes "[ไวแอตต์ วาร์ป]";
 				mes "เรากลับไปที่ออฟฟิศของฉันกันเถอะ";
 				close2;
-				cloakonnpcself(  "Wyatt Warp#revt03" );
+				cloakonnpcself( "Wyatt Warp#revt03" );
 				end;
 		}
 		end;
@@ -6387,7 +6389,7 @@ harboro1,156,215,5	script	Innkeeper#rockridge	1_ETC_01,{
 		}
 }
 
-harboro1,228,170,3	script	Wanderer Doram#rkrgtwn	4_DR_STELO,{
+harboro1,228,170,3	script	Wanderer Doram#rkrgtwn	4_DR_STELO,5,5,{
 		mes "[พเนจร โดราม]";
 		mes "โฮ่ๆๆ สำนักงานนายอำเภออยู่ไหนวะ เงินของฉัน เงินของฉัน";
 		next;
@@ -6621,7 +6623,7 @@ harboro1,270,252,6	script	Bank Clerk#dy	4_M_MANAGER,{
 				mes "[พนักงานธนาคาร]";
 				mes "คุณไม่มีบัญชีกับเรา แต่คุณมีบัญชีภายใต้ชื่อ" + strcharinfo(0) + "วันนี้มีอะไรให้ฉันทำเพื่อคุณอีกไหม?";
 				close2;
-				// todoUI bank
+				openbank;
 				end;
 		case 2:
 				emotion ET_SORRY;
