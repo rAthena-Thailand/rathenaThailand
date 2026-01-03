@@ -11290,7 +11290,7 @@ void clif_parse_Hotkey(int32 fd, map_session_data *sd) {
 
 /// Displays cast-like progress bar (ZC_PROGRESS).
 /// 02f0 <color>.L <time>.L
-void clif_progressbar(map_session_data * sd, unsigned long color, uint32 second)
+void clif_progressbar( const map_session_data* sd, unsigned long color, uint32 second )
 {
 	int32 fd = sd->fd;
 
