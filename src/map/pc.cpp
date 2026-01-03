@@ -755,7 +755,7 @@ int32 pc_class2idx(int32 class_) {
 * @param sd
 * @return Group ID
 */
-int32 pc_get_group_id(map_session_data *sd) {
+int32 pc_get_group_id( const map_session_data* sd ) {
 	return sd->group_id;
 }
 
@@ -763,7 +763,7 @@ int32 pc_get_group_id(map_session_data *sd) {
 * @param sd
 * @return Group Level
 */
-int32 pc_get_group_level(map_session_data *sd) {
+int32 pc_get_group_level( const map_session_data* sd ) {
 	return sd->group->level;
 }
 
@@ -1258,7 +1258,7 @@ void pc_inventory_rental_add(map_session_data *sd, uint32 seconds)
  * @param shoptype: NPC's sub type see enum npc_subtype
  * @return bool 'true' is sellable, 'false' otherwise
  */
-bool pc_can_sell_item(map_session_data *sd, struct item *item, enum npc_subtype shoptype) {
+bool pc_can_sell_item( const map_session_data* sd, const item* item, enum npc_subtype shoptype) {
 	if (sd == nullptr || item == nullptr)
 		return false;
 
@@ -1316,16 +1316,14 @@ bool pc_can_sell_item(map_session_data *sd, struct item *item, enum npc_subtype 
 /**
  * Determines if player can give / drop / trade / vend items
  */
-bool pc_can_give_items(map_session_data *sd)
-{
+bool pc_can_give_items( const map_session_data* sd ){
 	return (pc_has_permission(sd, PC_PERM_TRADE) || pc_has_permission(sd, PC_PERM_TRADE_UNCONDITIONAL));
 }
 
 /**
  * Determines if player can give / drop / trade / vend bounded items
  */
-bool pc_can_give_bounded_items(map_session_data *sd)
-{
+bool pc_can_give_bounded_items( const map_session_data* sd ){
 	return (pc_has_permission(sd, PC_PERM_TRADE_BOUNDED) || pc_has_permission(sd, PC_PERM_TRADE_UNCONDITIONAL));
 }
 
@@ -1336,7 +1334,7 @@ bool pc_can_give_bounded_items(map_session_data *sd)
  * @param index: Item inventory index
  * @return True if the item can be traded or false otherwise
  */
-bool pc_can_trade_item(map_session_data *sd, int32 index) {
+bool pc_can_trade_item( const map_session_data* sd, int32 index ) {
 	if (sd && index >= 0) {
 		return (sd->inventory.u.items_inventory[index].expire_time == 0 &&
 			(sd->inventory.u.items_inventory[index].bound == 0 || pc_can_give_bounded_items(sd)) &&
@@ -1469,7 +1467,7 @@ void pc_setnewpc(map_session_data *sd, uint32 account_id, uint32 char_id, int32 
 * @param sd
 * @param id
 */
-int32 pc_equippoint_sub(map_session_data *sd,struct item_data* id){
+int32 pc_equippoint_sub( const map_session_data* sd, const item_data* id){
 	int32 ep = 0;
 
 	nullpo_ret(sd);
@@ -1495,7 +1493,7 @@ int32 pc_equippoint_sub(map_session_data *sd,struct item_data* id){
 * @param sd
 * @param n Equip index in inventory
 */
-int32 pc_equippoint(map_session_data *sd,int32 n){
+int32 pc_equippoint( const map_session_data* sd, int32 n ){
 	nullpo_ret(sd);
 
 	return pc_equippoint_sub(sd,sd->inventory_data[n]);
@@ -1567,7 +1565,7 @@ void pc_calcweapontype(map_session_data *sd)
 * Set equip index
 * @param sd : Player
 */
-void pc_setequipindex(map_session_data *sd)
+void pc_setequipindex( map_session_data *sd )
 {
 	uint16 i;
 
@@ -1638,7 +1636,7 @@ void pc_setequipindex(map_session_data *sd)
  * @param nameid : itemid
  * @return 1:yes, 0:no
  */
-bool pc_isequipped(map_session_data *sd, t_itemid nameid)
+bool pc_isequipped( const map_session_data* sd, t_itemid nameid )
 {
 	uint8 i;
 
@@ -1677,7 +1675,7 @@ bool pc_isequipped(map_session_data *sd, t_itemid nameid)
  *         ADOPT_LEVEL_70 - Parents need to be level 70+ (client message)
  *         ADOPT_MARRIED - Cannot adopt a married person (client message)
  */
-enum adopt_responses pc_try_adopt(map_session_data *p1_sd, map_session_data *p2_sd, map_session_data *b_sd)
+enum adopt_responses pc_try_adopt( const map_session_data* p1_sd, const map_session_data* p2_sd, const map_session_data* b_sd)
 {
 	if( !p1_sd || !p2_sd || !b_sd )
 		return ADOPT_CHARACTER_NOT_FOUND;
@@ -1776,7 +1774,7 @@ bool pc_adoption(map_session_data *p1_sd, map_session_data *p2_sd, map_session_d
 	return false; // Job Change Fail
 }
 
-static bool pc_job_can_use_item( map_session_data* sd, struct item_data* item ){
+static bool pc_job_can_use_item( const map_session_data* sd, const item_data* item ){
 	nullpo_retr( false, sd );
 	nullpo_retr( false, item );
 
@@ -1809,7 +1807,7 @@ static bool pc_job_can_use_item( map_session_data* sd, struct item_data* item ){
 		[Haru] for third-classes extension
 		[Cydh] finishing :D
  *------------------------------------------*/
-static bool pc_isItemClass (map_session_data *sd, struct item_data* item) {
+static bool pc_isItemClass ( const map_session_data* sd, const item_data* item ) {
 	while (1) {
 		if (item->class_upper&ITEMJ_NORMAL && !(sd->class_&(JOBL_UPPER|JOBL_BABY|JOBL_THIRD|JOBL_FOURTH)))	//normal classes (no upper, no baby, no third, no fourth)
 			break;
@@ -1855,9 +1853,9 @@ static bool pc_isItemClass (map_session_data *sd, struct item_data* item) {
  * @param n Item index in inventory
  * @return ITEM_EQUIP_ACK_OK(0) if can be equipped, or ITEM_EQUIP_ACK_FAIL(1)/ITEM_EQUIP_ACK_FAILLEVEL(2) if can't
  *------------------------------------------------*/
-uint8 pc_isequip(map_session_data *sd,int32 n)
+uint8 pc_isequip( const map_session_data* sd, int32 n )
 {
-	struct item_data *item;
+	const item_data* item;
 
 	nullpo_retr(ITEM_EQUIP_ACK_FAIL, sd);
 
@@ -3025,7 +3023,7 @@ uint64 pc_calc_skilltree_normalize_job_sub( map_session_data *sd ){
 	return sd->class_;
 }
 
-uint64 pc_calc_skilltree_normalize_job( map_session_data *sd ){
+uint64 pc_calc_skilltree_normalize_job( map_session_data* sd ){
 	if( !battle_config.skillup_limit || pc_has_permission( sd, PC_PERM_ALL_SKILL ) ){
 		return sd->class_;
 	}
@@ -3053,7 +3051,7 @@ uint64 pc_calc_skilltree_normalize_job( map_session_data *sd ){
  * @param sd: Player data
  * @param weight: (optional) Weight to check, if 0, player's current weight is used
  */
-uint16 pc_getpercentweight(map_session_data& sd, uint32 weight)
+uint16 pc_getpercentweight(const map_session_data& sd, uint32 weight)
 {
 	if (weight == 0)
 		weight = sd.weight;
@@ -5693,7 +5691,7 @@ int32 pc_identifyall(map_session_data *sd, bool identify_item)
 /*==========================================
  * Update buying value by skills
  *------------------------------------------*/
-int32 pc_modifybuyvalue(map_session_data *sd,int32 orig_value)
+int32 pc_modifybuyvalue(const map_session_data* sd, int32 orig_value )
 {
 	int32 skill,val = orig_value,rate1 = 0,rate2 = 0;
 	if((skill=pc_checkskill(sd,MC_DISCOUNT))>0)	// merchant discount
@@ -5712,7 +5710,7 @@ int32 pc_modifybuyvalue(map_session_data *sd,int32 orig_value)
 /*==========================================
  * Update selling value by skills
  *------------------------------------------*/
-int32 pc_modifysellvalue(map_session_data *sd,int32 orig_value)
+int32 pc_modifysellvalue( const map_session_data* sd, int32 orig_value )
 {
 	int32 skill,val = orig_value,rate = 0;
 	if((skill=pc_checkskill(sd,MC_OVERCHARGE))>0)	//OverCharge
@@ -5733,7 +5731,7 @@ int32 pc_modifysellvalue(map_session_data *sd,int32 orig_value)
  * @param amount
  * @return e_chkitem_result
  *------------------------------------------*/
-char pc_checkadditem(map_session_data *sd, t_itemid nameid, int32 amount)
+char pc_checkadditem( const map_session_data* sd, t_itemid nameid, int32 amount )
 {
 	int32 i;
 	struct item_data* data;
@@ -5776,7 +5774,7 @@ char pc_checkadditem(map_session_data *sd, t_itemid nameid, int32 amount)
  * @param sd
  * @return Number of empty slots
  *------------------------------------------*/
-uint8 pc_inventoryblank(map_session_data *sd)
+uint8 pc_inventoryblank( const map_session_data* sd )
 {
 	uint16 i;
 	uint8 b;
@@ -5972,7 +5970,7 @@ int32 pc_getcash(map_session_data *sd, int32 cash, int32 points, e_log_pick_type
  * @param nameid Find this Item!
  * @return Stored index in inventory, or -1 if not found.
  **/
-int16 pc_search_inventory(map_session_data *sd, t_itemid nameid) {
+int16 pc_search_inventory( const map_session_data* sd, t_itemid nameid) {
 	int16 i;
 	nullpo_retr(-1, sd);
 
@@ -6572,7 +6570,7 @@ int32 pc_useitem(map_session_data *sd,int32 n)
 		if( sd->st->state == END ){  
 			script_free_state( sd->st );  
 			sd->st = nullptr;  
-		}  
+		}
 	}
 
 	// If an old script is present
@@ -6782,7 +6780,7 @@ bool pc_getitemfromcart(map_session_data *sd,int32 idx,int32 amount)
  * 3 Party Bound
  * 4 Character Bound
  *------------------------------------------*/
-int32 pc_bound_chk(TBL_PC *sd,enum bound_type type,int32 *idxlist)
+int32 pc_bound_chk( const map_session_data* sd,enum bound_type type,int32 *idxlist)
 {
 	int32 i = 0, j = 0;
 	for(i = 0; i < MAX_INVENTORY; i++) {
@@ -7344,9 +7342,9 @@ bool pc_memo(map_session_data* sd, int32 pos)
  * @param lv : skill lv
  * @return player skill cooldown
  */
-int32 pc_get_skillcooldown(map_session_data *sd, uint16 skill_id, uint16 skill_lv) {
+int32 pc_get_skillcooldown( const map_session_data* sd, uint16 skill_id, uint16 skill_lv ) {
 	if (skill_id == SJ_NOVAEXPLOSING) {
-		status_change *sc = status_get_sc(sd);
+		const status_change *sc = status_get_sc(sd);
 
 		if (sc && sc->getSCE(SC_DIMENSION))
 			return 0;
@@ -7370,7 +7368,7 @@ int32 pc_get_skillcooldown(map_session_data *sd, uint16 skill_id, uint16 skill_l
 /*==========================================
  * Return player sd skill_lv learned for given skill
  *------------------------------------------*/
-uint8 pc_checkskill(const map_session_data *sd, uint16 skill_id)
+uint8 pc_checkskill(const map_session_data* sd, uint16 skill_id)
 {
 	uint16 idx = 0;
 	if (sd == nullptr)
@@ -7402,7 +7400,7 @@ uint8 pc_checkskill(const map_session_data *sd, uint16 skill_id)
  * @param skill_id: Skill to lookup
  * @return Skill flag type
  */
-e_skill_flag pc_checkskill_flag(map_session_data &sd, uint16 skill_id) {
+e_skill_flag pc_checkskill_flag(const map_session_data &sd, uint16 skill_id) {
 	uint16 idx;
 
 #ifdef RENEWAL
@@ -7427,7 +7425,7 @@ e_skill_flag pc_checkskill_flag(map_session_data &sd, uint16 skill_id) {
  * @param type: Summoner Power Type
  * @return Skill points invested
  */
-uint8 pc_checkskill_summoner(map_session_data *sd, e_summoner_power_type type) {
+uint8 pc_checkskill_summoner( const map_session_data* sd, e_summoner_power_type type) {
 	if (sd == nullptr)
 		return 0;
 
@@ -7458,7 +7456,7 @@ uint8 pc_checkskill_summoner(map_session_data *sd, e_summoner_power_type type) {
  *		Flag&1 = IG_SHIELD_MASTERY
  *		Flag&2 = IG_SPEAR_SWORD_M
  */
-uint8 pc_checkskill_imperial_guard(map_session_data *sd, int16 flag)
+uint8 pc_checkskill_imperial_guard( const map_session_data* sd, int16 flag )
 {
 	nullpo_retr(0, sd);
 
@@ -7517,7 +7515,7 @@ static void pc_checkallowskill(map_session_data *sd)
  * -1 : Nothing equipped
  * idx : (this index could be used in inventory to found item_data)
  *------------------------------------------*/
-int16 pc_checkequip(map_session_data *sd,int32 pos, bool checkall)
+int16 pc_checkequip( const map_session_data* sd, int32 pos, bool checkall )
 {
 	uint8 i;
 
@@ -7545,7 +7543,7 @@ int16 pc_checkequip(map_session_data *sd,int32 pos, bool checkall)
  * @max : see pc.hpp enum equip_index for @min to ?
  * -return true,false
  *------------------------------------------*/
-bool pc_checkequip2(map_session_data *sd, t_itemid nameid, int32 min, int32 max)
+bool pc_checkequip2( const map_session_data* sd, t_itemid nameid, int32 min, int32 max )
 {
 	int32 i;
 
@@ -8613,7 +8611,7 @@ void pc_lostexp(map_session_data *sd, t_exp base_exp, t_exp job_exp) {
  * @param job_id: Player's class
  * @return Max Base Level
  */
-uint32 JobDatabase::get_maxBaseLv(uint16 job_id) {
+uint32 JobDatabase::get_maxBaseLv(uint16 job_id) const {
 	std::shared_ptr<s_job_info> job = job_db.find(job_id);
 
 	return job ? job->max_base_level : 0;
@@ -8624,7 +8622,7 @@ uint32 JobDatabase::get_maxBaseLv(uint16 job_id) {
  * @param sd Player
  * @return Max Base Level
  **/
-uint32 pc_maxbaselv(map_session_data *sd){
+uint32 pc_maxbaselv( const map_session_data* sd ){
 	return job_db.get_maxBaseLv(sd->status.class_);
 }
 
@@ -8633,7 +8631,7 @@ uint32 pc_maxbaselv(map_session_data *sd){
  * @param job_id: Player's class
  * @return Max Job Level
  */
-uint32 JobDatabase::get_maxJobLv(uint16 job_id) {
+uint32 JobDatabase::get_maxJobLv(uint16 job_id) const {
 	std::shared_ptr<s_job_info> job = job_db.find(job_id);
 
 	return job ? job->max_job_level : 0;
@@ -8644,7 +8642,7 @@ uint32 JobDatabase::get_maxJobLv(uint16 job_id) {
  * @param sd Player
  * @return Max Job Level
  **/
-uint32 pc_maxjoblv(map_session_data *sd){
+uint32 pc_maxjoblv( const map_session_data* sd ){
 	return job_db.get_maxJobLv(sd->status.class_);
 }
 
@@ -8653,7 +8651,7 @@ uint32 pc_maxjoblv(map_session_data *sd){
  * @param sd
  * @return True if reached max level
  **/
-bool pc_is_maxbaselv(map_session_data *sd) {
+bool pc_is_maxbaselv( const map_session_data* sd ) {
 	nullpo_retr(false, sd);
 	return (sd->status.base_level >= pc_maxbaselv(sd));
 }
@@ -8663,7 +8661,7 @@ bool pc_is_maxbaselv(map_session_data *sd) {
  * @param sd
  * @return True if reached max level
  **/
-bool pc_is_maxjoblv(map_session_data *sd) {
+bool pc_is_maxjoblv( const map_session_data* sd ) {
 	nullpo_retr(false, sd);
 	return (sd->status.job_level >= pc_maxjoblv(sd));
 }
@@ -8674,7 +8672,7 @@ bool pc_is_maxjoblv(map_session_data *sd) {
  * @param level: Player's level
  * @return Base EXP
  */
-t_exp JobDatabase::get_baseExp(uint16 job_id, uint32 level) {
+t_exp JobDatabase::get_baseExp(uint16 job_id, uint32 level) const {
 	std::shared_ptr<s_job_info> job = job_db.find(job_id);
 
 	return job ? job->base_exp[level - 1] : 0;
@@ -8685,7 +8683,7 @@ t_exp JobDatabase::get_baseExp(uint16 job_id, uint32 level) {
  * @param sd
  * @return Base EXP needed for next base level
  **/
-t_exp pc_nextbaseexp(map_session_data *sd){
+t_exp pc_nextbaseexp( const map_session_data* sd ){
 	nullpo_ret(sd);
 	if (sd->status.base_level == 0) // Is this something that possible?
 		return 0;
@@ -8700,7 +8698,7 @@ t_exp pc_nextbaseexp(map_session_data *sd){
  * @param level: Player's level
  * @return Job EXP
  */
-t_exp JobDatabase::get_jobExp(uint16 job_id, uint32 level) {
+t_exp JobDatabase::get_jobExp(uint16 job_id, uint32 level) const{
 	std::shared_ptr<s_job_info> job = job_db.find(job_id);
 
 	return job ? job->job_exp[level - 1] : 0;
@@ -8711,7 +8709,7 @@ t_exp JobDatabase::get_jobExp(uint16 job_id, uint32 level) {
  * @param sd
  * @return Job EXP needed for next job level
  **/
-t_exp pc_nextjobexp(map_session_data *sd){
+t_exp pc_nextjobexp( const map_session_data* sd ){
 	nullpo_ret(sd);
 	if (sd->status.job_level == 0) // Is this something that possible?
 		return 0;
@@ -8725,14 +8723,14 @@ t_exp pc_nextjobexp(map_session_data *sd){
  * @param job_id: Player's class
  * @return Max weight base
  */
-int32 JobDatabase::get_maxWeight(uint16 job_id) {
+int32 JobDatabase::get_maxWeight(uint16 job_id) const{
 	std::shared_ptr<s_job_info> job = job_db.find(job_id);
 
 	return job ? job->max_weight_base : 0;
 }
 
 /// Returns the value of the specified stat.
-int32 pc_getstat(map_session_data *sd, int32 type)
+int32 pc_getstat( const map_session_data* sd, int32 type )
 {
 	nullpo_retr(-1, sd);
 
@@ -8784,8 +8782,8 @@ int32 pc_setstat(map_session_data* sd, int32 type, int32 val)
  * @param level: Player base level.
  * @return Total number of status points at specific base level.
  */
-uint32 PlayerStatPointDatabase::get_table_point(uint16 level) {
-	std::shared_ptr<s_statpoint_entry> entry = this->find( level );
+uint32 PlayerStatPointDatabase::get_table_point( uint16 level ) const{
+	std::shared_ptr<const s_statpoint_entry> entry = this->find( level );
 
 	if( entry != nullptr ){
 		return entry->statpoints;
@@ -8800,7 +8798,7 @@ uint32 PlayerStatPointDatabase::get_table_point(uint16 level) {
  * @param table: Use table value or formula.
  * @return Status points at specific base level.
  */
-uint32 PlayerStatPointDatabase::pc_gets_status_point(uint16 level) {
+uint32 PlayerStatPointDatabase::pc_gets_status_point(uint16 level) const{
 	uint32 next_level = this->get_table_point( level + 1 );
 	uint32 current_level = this->get_table_point( level );
 
@@ -8816,8 +8814,8 @@ uint32 PlayerStatPointDatabase::pc_gets_status_point(uint16 level) {
 * @param level: Player base level.
 * @return Total number of trait points at specific base level.
 */
-uint32 PlayerStatPointDatabase::get_trait_table_point(uint16 level) {
-	std::shared_ptr<s_statpoint_entry> entry = this->find( level );
+uint32 PlayerStatPointDatabase::get_trait_table_point( uint16 level ) const{
+	std::shared_ptr<const s_statpoint_entry> entry = this->find( level );
 
 	if( entry != nullptr ){
 		return entry->traitpoints;
@@ -8832,7 +8830,7 @@ uint32 PlayerStatPointDatabase::get_trait_table_point(uint16 level) {
 * @param table: Use table value or formula.
 * @return Trait points at specific base level.
 */
-uint32 PlayerStatPointDatabase::pc_gets_trait_point(uint16 level) {
+uint32 PlayerStatPointDatabase::pc_gets_trait_point(uint16 level) const{
 	uint32 next_level = this->get_trait_table_point( level + 1 );
 	uint32 current_level = this->get_trait_table_point( level );
 
@@ -9012,7 +9010,7 @@ int32 pc_statusup2(map_session_data* sd, int32 type, int32 val)
 /// Returns the number of trait stat points needed to change the specified trait stat by val.
 /// If val is negative, returns the number of trait stat points that would be needed to
 /// raise the specified trait stat from (current value - val) to current value.
-int32 pc_need_trait_point(map_session_data* sd, int32 type, int32 val)
+int32 pc_need_trait_point( const map_session_data* sd, int32 type, int32 val )
 {
 	nullpo_retr(0, sd);
 
@@ -10242,7 +10240,7 @@ bool pc_revive_item(map_session_data *sd) {
 /*==========================================
  * script reading pc status registry
  *------------------------------------------*/
-int64 pc_readparam(map_session_data* sd,int64 type)
+int64 pc_readparam( const map_session_data* sd, int64 type )
 {
 	int64 val = 0;
 
@@ -10438,7 +10436,6 @@ int64 pc_readparam(map_session_data* sd,int64 type)
 #endif
 		case SP_CRIT_DEF_RATE: val = sd->bonus.crit_def_rate; break;
 		case SP_ADD_ITEM_SPHEAL_RATE: val = sd->bonus.itemsphealrate2; break;
-		case SP_GOLDPC_POINTS: val = pc_readreg2( sd, GOLDPC_POINT_VAR ); break;
 		default:
 			ShowError("pc_readparam: Attempt to read unknown parameter '%lld'.\n", type);
 			return -1;
@@ -11444,7 +11441,7 @@ bool pc_candrop(map_session_data *sd, struct item *item)
 /*==========================================
  * Read '@type' variables (temporary numeric char reg)
  *------------------------------------------*/
-int64 pc_readreg(map_session_data* sd, int64 reg)
+int64 pc_readreg( const map_session_data* sd, int64 reg )
 {
 	return i64db_i64get(sd->regs.vars, reg);
 }
@@ -11474,7 +11471,7 @@ bool pc_setreg(map_session_data* sd, int64 reg, int64 val)
 /*==========================================
  * Read '@type$' variables (temporary string char reg)
  *------------------------------------------*/
-char* pc_readregstr(map_session_data* sd, int64 reg)
+char* pc_readregstr( const map_session_data* sd, int64 reg )
 {
 	struct script_reg_str *p = nullptr;
 
@@ -11529,7 +11526,7 @@ bool pc_setregstr(map_session_data* sd, int64 reg, const char* str)
  * - '#type' (permanent numeric account reg)
  * - '##type' (permanent numeric account reg2)
  **/
-int64 pc_readregistry(map_session_data *sd, int64 reg)
+int64 pc_readregistry( const map_session_data* sd , int64 reg )
 {
 	struct script_reg_num *p = nullptr;
 
@@ -11552,7 +11549,7 @@ int64 pc_readregistry(map_session_data *sd, int64 reg)
  * - '#type$' (permanent str account reg)
  * - '##type$' (permanent str account reg2)
  **/
-char* pc_readregistry_str(map_session_data *sd, int64 reg)
+char* pc_readregistry_str( const map_session_data* sd, int64 reg )
 {
 	struct script_reg_str *p = nullptr;
 
@@ -11696,7 +11693,7 @@ bool pc_setregistry_str(map_session_data *sd, int64 reg, const char *val)
  * @param value
  * @return True if success, false if failed.
  **/
-bool pc_setreg2(map_session_data *sd, const char *reg, int64 val) {
+bool pc_setreg2( map_session_data* sd, const char *reg, int64 val ) {
 	char prefix = reg[0];
 
 	nullpo_retr(false, sd);
@@ -11729,7 +11726,7 @@ bool pc_setreg2(map_session_data *sd, const char *reg, int64 val) {
  * @param reg Variable name
  * @return Variable value or 0 if failed.
  **/
-int64 pc_readreg2(map_session_data *sd, const char *reg) {
+int64 pc_readreg2( const map_session_data* sd, const char *reg ) {
 	char prefix = reg[0];
 
 	nullpo_ret(sd);
@@ -12866,7 +12863,7 @@ TIMER_FUNC(pc_calc_pvprank_timer){
  *	partner_id = yes
  *	0 = no
  *------------------------------------------*/
-int32 pc_ismarried(map_session_data *sd)
+int32 pc_ismarried( const map_session_data* sd )
 {
 	if(sd == nullptr)
 		return -1;
@@ -12943,7 +12940,7 @@ bool pc_divorce(map_session_data *sd)
  * @param sd : the husband|wife session
  * @return partner session or nullptr
  */
-map_session_data *pc_get_partner(map_session_data *sd){
+map_session_data* pc_get_partner(const map_session_data* sd ){
 	if (!sd || !pc_ismarried(sd))
 		return nullptr;
 	return map_charid2sd(sd->status.partner_id);
@@ -12954,7 +12951,7 @@ map_session_data *pc_get_partner(map_session_data *sd){
  * @param sd : the baby session
  * @return father session or nullptr
  */
-map_session_data *pc_get_father (map_session_data *sd){
+map_session_data* pc_get_father( const map_session_data* sd ){
 	if (!sd || !(sd->class_&JOBL_BABY) || !sd->status.father)
 		return nullptr;
 	return map_charid2sd(sd->status.father);
@@ -12965,7 +12962,7 @@ map_session_data *pc_get_father (map_session_data *sd){
  * @param sd : the baby session
  * @return mother session or nullptr
  */
-map_session_data *pc_get_mother (map_session_data *sd){
+map_session_data* pc_get_mother( const map_session_data* sd ){
 	if (!sd || !(sd->class_&JOBL_BABY) || !sd->status.mother)
 		return nullptr;
 	return map_charid2sd(sd->status.mother);
@@ -12974,7 +12971,7 @@ map_session_data *pc_get_mother (map_session_data *sd){
 /*==========================================
  * Get sd children charid. (Need to be married)
  *------------------------------------------*/
-map_session_data *pc_get_child (map_session_data *sd)
+map_session_data* pc_get_child(const map_session_data* sd )
 {
 	if (!sd || !pc_ismarried(sd) || !sd->status.child)
 		// charid2sd returns nullptr if not found
@@ -13236,11 +13233,11 @@ bool pc_isautolooting(map_session_data *sd, t_itemid nameid)
  * @param command Command name without @/# and params
  * @param type is it atcommand or charcommand
  */
-bool pc_can_use_command( map_session_data *sd, const char *command, AtCommandType type ){
+bool pc_can_use_command( const map_session_data* sd, const char *command, AtCommandType type ){
 	return sd->group->can_use_command( command, type );
 }
 
-bool pc_has_permission( map_session_data* sd, e_pc_permission permission ){
+bool pc_has_permission( const map_session_data* sd, e_pc_permission permission ){
 	return sd->permissions.test( permission );
 }
 
@@ -13249,7 +13246,7 @@ bool pc_has_permission( map_session_data* sd, e_pc_permission permission ){
  * according to their group setting.
  * @param sd Player map session data
  */
-bool pc_should_log_commands( map_session_data *sd ){
+bool pc_should_log_commands( const map_session_data* sd ){
 	return sd->group->log_commands;
 }
 
@@ -15304,7 +15301,7 @@ void pc_cell_basilica(map_session_data *sd) {
  * @param param: Max parameter to check
  * @return max_param
  */
-uint16 pc_maxparameter(map_session_data *sd, e_params param) {
+uint16 pc_maxparameter( const map_session_data* sd, e_params param ) {
 	nullpo_retr(0, sd);
 
 	std::shared_ptr<s_job_info> job = job_db.find(pc_mapid2jobid(sd->class_,sd->status.sex));
@@ -15321,7 +15318,7 @@ uint16 pc_maxparameter(map_session_data *sd, e_params param) {
 * @param sd Player
 * @return ASPD
 */
-int16 pc_maxaspd(map_session_data *sd) {
+int16 pc_maxaspd( const map_session_data* sd ) {
 	nullpo_ret(sd);
 
 	return (( sd->class_&JOBL_THIRD) ? battle_config.max_third_aspd : (
@@ -15378,7 +15375,7 @@ int16 pc_get_itemgroup_bonus_group(map_session_data* sd, uint16 group_id, std::v
 * @param index Known index item in inventory from sd->equip_index[] to compare with specified EQI in *equip_index
 * @return True if item in same inventory index, False if doesn't
 */
-bool pc_is_same_equip_index(enum equip_index eqi, int16 *equip_index, int16 index) {
+bool pc_is_same_equip_index(enum equip_index eqi, const int16* equip_index, int16 index) {
 	if (index < 0 || index >= MAX_INVENTORY)
 		return true;
 	// Dual weapon checks
