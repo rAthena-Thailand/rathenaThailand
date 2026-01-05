@@ -4709,7 +4709,7 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, block_list *src,b
 
 	std::shared_ptr<s_skill_db> skill = skill_db.find(skill_id);
 	if (skill != nullptr && skill->impl != nullptr) {
-		skill->impl->calculateSkillRatio(wd, src, target, skill_lv, skillratio);
+		skill->impl->calculateSkillRatio(wd, src, target, skill_lv, skillratio, 0);
 	}
 
 	switch(skill_id) {
@@ -7303,7 +7303,7 @@ static void battle_calc_attack_left_right_hands(struct Damage* wd, block_list *s
 #endif
 			// If you only have a weapon in the left hand, then your main hand damage will be identical to an unarmed attack
 			if (is_attack_right_handed(src, skill_id) && wd->damage) {
-				if( (sd->class_&MAPID_BASEMASK) == MAPID_THIEF ) {
+				if( (sd->class_&MAPID_FIRSTMASK) == MAPID_THIEF ) {
 					skill = pc_checkskill(sd,AS_RIGHT);
 					ATK_RATER(wd->damage, 50 + (skill * 10))
 				}
@@ -7316,7 +7316,7 @@ static void battle_calc_attack_left_right_hands(struct Damage* wd, block_list *s
 			}
 			// Left hand damage will always be adjusted, even if you don't have a weapon in the main hand
 			if (wd->damage2) {
-				if( (sd->class_&MAPID_BASEMASK) == MAPID_THIEF) {
+				if( (sd->class_&MAPID_FIRSTMASK) == MAPID_THIEF) {
 					skill = pc_checkskill(sd,AS_LEFT);
 					ATK_RATEL(wd->damage2, 30 + (skill * 10))
 				}
@@ -8324,7 +8324,7 @@ struct Damage battle_calc_magic_attack(block_list *src,block_list *target,uint16
 	}
 
 	if (!flag.infdef) { //No need to do the math for plants
-		uint32 skillratio = 100; //Skill dmg modifiers.
+		int32 skillratio = 100; //Skill dmg modifiers.
 		if (sd != nullptr)
 			skillratio += sd->bonus.skill_ratio;
 
@@ -8434,51 +8434,22 @@ struct Damage battle_calc_magic_attack(block_list *src,block_list *target,uint16
 						ShowError("0 enemies targeted by %d:%s, divide per 0 avoided!\n", skill_id, skill_get_name(skill_id));
 				}
 
+				if (skill != nullptr && skill->impl != nullptr) {
+					skill->impl->calculateSkillRatio(&ad, src, target, skill_lv, skillratio, mflag);
+				}
+
 				switch(skill_id) {
-					case MG_NAPALMBEAT:
-						skillratio += -30 + 10 * skill_lv;
-						break;
-					case MG_FIREBALL:
-#ifdef RENEWAL
-						skillratio += 40 + 20 * skill_lv;
-#else
-						skillratio += -30 + 10 * skill_lv;
-#endif
-						if (ad.miscflag == 2) //Enemies at the edge of the area will take 75% of the damage
-							skillratio = skillratio * 3 / 4;
-						break;
-					case MG_SOULSTRIKE:
-						if (battle_check_undead(tstatus->race,tstatus->def_ele))
-							skillratio += 5 * skill_lv;
-						break;
-					case MG_FIREWALL:
-						skillratio -= 50;
-						break;
 					case MG_FIREBOLT:
 					case MG_COLDBOLT:
 					case MG_LIGHTNINGBOLT:
 						if (sc) {
-							if ((skill_id == MG_FIREBOLT && sc->getSCE(SC_FLAMETECHNIC_OPTION)) ||
-								(skill_id == MG_COLDBOLT && sc->getSCE(SC_COLD_FORCE_OPTION)) ||
-								(skill_id == MG_LIGHTNINGBOLT && sc->getSCE(SC_GRACE_BREEZE_OPTION)))
-								skillratio *= 5;
-
+							// TODO: Refactor
 							if (sc->getSCE(SC_SPELLFIST) && mflag & BF_SHORT) {
-								skillratio += (sc->getSCE(SC_SPELLFIST)->val3 * 100) + (sc->getSCE(SC_SPELLFIST)->val1 * 50 - 50) - 100; // val3 = used bolt level, val1 = used spellfist level. [Rytech]
 								ad.div_ = 1; // ad mods, to make it work similar to regular hits [Xazax]
 								ad.flag = BF_WEAPON | BF_SHORT;
 								ad.type = DMG_NORMAL;
 							}
 						}
-						break;
-					case MG_THUNDERSTORM:
-						// in Renewal Thunder Storm boost is 100% (in pre-re, 80%)
-#ifndef RENEWAL
-						skillratio -= 20;
-#endif
-						break;
-					case MG_FROSTDIVER:
-						skillratio += 10 * skill_lv;
 						break;
 					case AL_HOLYLIGHT:
 						skillratio += 25;
@@ -11657,8 +11628,8 @@ int32 battle_check_target( const block_list* src, const block_list* target, int3
 			const map_session_data* sd = static_cast<const map_session_data*>(s_bl);
 			const map_session_data* sd2 = static_cast<const map_session_data*>(t_bl);
 			if (
-				(sd->class_&MAPID_UPPERMASK) == MAPID_NOVICE ||
-				(sd2->class_&MAPID_UPPERMASK) == MAPID_NOVICE ||
+				(sd->class_&MAPID_SECONDMASK) == MAPID_NOVICE ||
+				(sd2->class_&MAPID_SECONDMASK) == MAPID_NOVICE ||
 				(int32)sd->status.base_level < battle_config.pk_min_level ||
 			  	(int32)sd2->status.base_level < battle_config.pk_min_level ||
 				(battle_config.pk_level_range && abs((int32)sd->status.base_level - (int32)sd2->status.base_level) > battle_config.pk_level_range)
