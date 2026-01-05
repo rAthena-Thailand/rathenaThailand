@@ -401,32 +401,32 @@ moc_para01,163,51,7	script	Izaac#edco	86,{
 //============================================================
 moc_para01,50,39,4	script	Eve Natalia	882,{
 	mes "[Eve Natalia]";
-	mes "So I'm in town for a while to see if I can strike up some commerce with MVP hunters!";
-	mes "I'm willing to take some MVP gear and give you these upgrade Certificates I have in exchange;";
-	mes "if things go well enough I'll open up further business opportunities!";
+	mes "ฉันแวะมาพักที่เมืองนี้สักพัก เพื่อดูว่าจะพอทำธุรกิจกับเหล่านักล่า MVP ได้บ้างไหมน่ะ!";
+	mes "ฉันยินดีจะรับอุปกรณ์ MVP บางอย่าง และแลกกับใบเซอร์อัปเกรด (Certificate) ที่ฉันมีอยู่เป็นการตอบแทนนะ";
+	mes "ถ้าทุกอย่างไปได้สวย ฉันอาจจะเปิดรับแลกของที่น่าสนใจกว่านี้อีกในอนาคตก็ได้!";
 	next;
 	mes "[Eve Natalia]";
-	mes "So do you have any of the gears I'm looking for to get some random Safe to 7 Certificates?";
+	mes "เอาล่ะ... เธอมีอุปกรณ์ชิ้นไหนที่ฉันกำลังมองหาอยู่บ้างไหม? ฉันจะแลกกับใบสุ่ม Safe to 7 Certificate ให้เลยนะ";
 	next;
-	switch(select("What gear?:Yes I am!:Never mind.")) {
+	switch(select("มีชิ้นไหนบ้าง?:มีสิ! ฉันสนใจแลก:ไว้คราวหน้าแล้วกัน")) {
 	case 1:
 		mes "[Eve Natalia]";
-		mes "Nidhoggur's Shadow Garb 4 Random Safe to 7 Certificates";
-		mes "Valkyrja's Shield 4 Random Safe to 7 Certificates";
-		mes "Valkyrian Armor 5 Random Safe to 7 Certificates";
-		mes "Diabolus Robe 5 Random Safe to 7 Certificates";
-		mes "Diabolus Armor 2 Random Safe to 7 Certificates";
-		mes "Diabolus Boots 2 Random Safe to 7 Certificates";
-		mes "Diabolus Manteau 4 Random Safe to 7 Certificates";
-		mes "Twin Edge of Naght Sieger Blue 2 Random Safe to 7 Certificates";
-		mes "Twin Edge of Naght Sieger Red 2 Random Safe to 7 Certificates";
+		mes "Nidhoggur's Shadow Garb แลกได้ 4 ใบ";
+		mes "Valkyrja's Shield แลกได้ 4 ใบ";
+		mes "Valkyrian Armor แลกได้ 5 ใบ";
+		mes "Diabolus Robe แลกได้ 5 ใบ";
+		mes "Diabolus Armor แลกได้ 2 ใบ";
+		mes "Diabolus Boots แลกได้ 2 ใบ";
+		mes "Diabolus Manteau แลกได้ 4 ใบ";
+		mes "Twin Edge of Naght Sieger Blue แลกได้ 2 ใบ";
+		mes "Twin Edge of Naght Sieger Red แลกได้ 2 ใบ";
 		close;
 	case 2:
 		mes "[Eve Natalia]";
-		mes "I'm going to ask you which piece of gear you want to trade in, please verify that the 1st one in your inventory is one you want to give up.";
-		mes "^CC0000So if it is carded, upgraded, enchanted etc, you should put it in storage before we continue.^000000";
+		mes "ฉันกำลังจะถามว่าเธอต้องการใช้ไอเทมชิ้นไหนมาแลกนะ รบกวนช่วยตรวจสอบให้แน่ใจด้วยว่าไอเทมชิ้นที่จะแลกวางอยู่ใน 'ช่องแรก' ของช่องสัมภาระ (Inventory)";
+		mes "^CC0000ถ้าไอเทมนั้นมีการใส่การ์ด, ตีบวก หรือออฟชั่นเอาไว้ แนะนำให้เอาไปเก็บในคลัง (Storage) ก่อนจะมาแลกนะจ๊ะ^000000";
 		next;
-		set .@i, select("Wait a minute:Nidhoggur's Shadow Garb 4:Valkyrja's Shield 4:Valkyrian Armor 5:Diabolus Robe 5:Diabolus Armor 2:Diabolus Boots 2:Diabolus Manteau 4:Twin Edge of Naght Sieger Blue 2:Twin Edge of Naght Sieger Red 2")-2;
+		set .@i, select("เดี๋ยวนะ ขอดูอีกที:Nidhoggur's Shadow Garb (4 ใบ):Valkyrja's Shield (4 ใบ):Valkyrian Armor (5 ใบ):Diabolus Robe (5 ใบ):Diabolus Armor (2 ใบ):Diabolus Boots (2 ใบ):Diabolus Manteau (4 ใบ):Twin Edge of Naght Sieger Blue (2 ใบ):Twin Edge of Naght Sieger Red (2 ใบ)")-2;
 		if (.@i == -1)
 			break;
 
@@ -437,30 +437,29 @@ moc_para01,50,39,4	script	Eve Natalia	882,{
 		set .@amount, .@tickets[.@i];
 
 		mes "[Eve Natalia]";
-		mes "I see you have "+countitem(.@item)+" "+getitemname(.@item)+".";
-		mes "So do you want to trade the 1st one in your inventory for ^00CC00"+.@amount+" Random Safe to 7 Certificates^000000?";
-		mes "Tell me '1' if you do, or '0' to cancel.";
+		mes "ฉันเห็นว่าเธอมี "+countitem(.@item)+" "+getitemname(.@item)+" อยู่ในตัว";
+		mes "ต้องการจะแลกไอเทมชิ้นแรกในกระเป๋า เพื่อรับ ^00CC00"+.@amount+" Random Safe to 7 Certificates^000000 ใช่ไหม?";
+		mes "พิมพ์ '1' เพื่อตกลง หรือ '0' เพื่อยกเลิก";
 		next;
 		input .@input;
 		if (.@input < 0 || .@input > 1) {
 			mes "[Eve Natalia]";
-			mes "It is a 0 or 1, it can't be that difficult.";
+			mes "แค่พิมพ์ 0 หรือ 1 เองนะ มันไม่น่าจะยากขนาดนั้นนะ?";
 			close;
 		} else if (.@input == 0) {
 			mes "[Eve Natalia]";
-			mes "It's best to be sure before trading, have a good day.";
+			mes "ตัดสินใจให้ดีก่อนแลกน่ะดีแล้วล่ะ ขอให้เป็นวันที่ดีนะ";
 			close;
 		}
 		if (countitem(.@item) == 0) {
 			mes "[Eve Natalia]";
-			mes "You don't even have 1... stop wasting my time.";
+			mes "เธอไม่มีไอเทมติดตัวมาเลยสักชิ้น... อย่ามาล้อกันเล่นสิ!";
 			close;
 		}
 		mes "[Eve Natalia]";
-		mes "Oh perfect, you get ^CC0000" + .@amount + "^000000 Safe to 7 Certificates!";
+		mes "ยอดเยี่ยมมาก! นี่คือใบ ^CC0000" + .@amount + "^000000 Safe to 7 Certificates ของเธอ!";
 		delitem .@item,1;
 		for(set .@i,0; .@i<.@amount; set .@i,.@i+1) {
-			// Note: iRO lists item 6235 as "Safe to 7 Headgear Certificate", but it's Guarantee_Armor_6Up in our database.
 			if (rand(2))
 				getitem 6230,1; //Guarantee_Weapon_7Up
 			else
@@ -471,7 +470,7 @@ moc_para01,50,39,4	script	Eve Natalia	882,{
 		break;
 	}
 	mes "[Eve Natalia]";
-	mes "Fair enough, if you have business with me in the future don't be shy!";
+	mes "เข้าใจแล้วล่ะ ถ้าวันหลังอยากร่วมธุรกิจกับฉันอีกก็ไม่ต้องเกรงใจนะ!";
 	close;
 }
 
@@ -479,86 +478,87 @@ moc_para01,50,39,4	script	Eve Natalia	882,{
 //============================================================
 moc_para01,48,184,2	script	Gum & Manual Exchanger	562,{
 	if (checkweight(1201,1) == 0 || MaxWeight - Weight < 2000) {
-		mes "You're carrying too many items right now.";
+		mes "[Trader Machine]";
+		mes "ตอนนี้คุณแบกน้ำหนักมากเกินไป กรุณาลดน้ำหนักก่อนมาใช้งาน";
 		close;	
 	}
 	mes "[Trader Machine]";
-	mes "Insert Bubble Gums and/or Battle Manuals to trade for higher efficiency Gums and Manuals.";
+	mes "ยินดีต้อนรับสู่เครื่องแลกเปลี่ยนไอเทม กรุณาใส่ Bubble Gum หรือ Battle Manual เพื่อแลกรับไอเทมที่มีประสิทธิภาพสูงกว่า";
 	next;
 	mes "[Trader Machine]";
-	mes "Exchange rate:";
+	mes "อัตราการแลกเปลี่ยน:";
 	mes "2 Bubble Gum -> 1 HE Bubble Gum";
 	mes "2 Battle Manual -> 1 HE Battle Manual";
 	mes "4 HE Battle Manual -> 1 Battle Manual X3";
 	mes "3 Thick Battle Manual -> 2 Battle Manual X3";
-	mes "What would you like to exchange for?";
+	mes "คุณต้องการแลกเปลี่ยนไอเทมชนิดไหน?";
 	next;
-	switch(select("HE Bubble Gum:HE Battle Manual:1 Battle Manual X3:2 Battle Manual X3:1 Costume Corsair:Nothing")) {
-	case 1:
-		callsub L_Exchange,12210,2,12412,1;
-		break;
-	case 2:
-		callsub L_Exchange,12208,2,12411,1;
-		break;
-	case 3:
-		callsub L_Exchange,12411,4,14545,1;
-		break;
-	case 4:
-		callsub L_Exchange,12312,3,14545,2;
-		break;
-	case 5:
-		mes "[Trader Machine]";
-		mes "I can give you 1 Battle Manual X3 for 1 Costume Corsair.";
-		next;
-		if (countitem(19619) == 0) {
+	switch(select("HE Bubble Gum:HE Battle Manual:1 Battle Manual X3:2 Battle Manual X3 (ใช้ Thick):แลก Costume Corsair:ยกเลิก")) {
+		case 1:
+			callsub L_Exchange,12210,2,12412,1;
+			break;
+		case 2:
+			callsub L_Exchange,12208,2,12411,1;
+			break;
+		case 3:
+			callsub L_Exchange,12411,4,14545,1;
+			break;
+		case 4:
+			callsub L_Exchange,12312,3,14545,2;
+			break;
+		case 5:
 			mes "[Trader Machine]";
-			mes "You don't have a Costume Corsair hat to make that trade.";
+			mes "ฉันสามารถให้ 1 Battle Manual X3 เพื่อแลกกับ 1 Costume Corsair ของคุณ";
+			next;
+			if (countitem(19619) == 0) {
+				mes "[Trader Machine]";
+				mes "คุณไม่มีไอเทม Costume Corsair สำหรับการแลกเปลี่ยนนี้";
+				close;
+			}
+			next;
+			if(select("ตกลง, แลกเลย!:ไม่ล่ะ, รอก่อน") == 2)
+				close;
+			
+			mes "[Trader Machine]";
+			mes "คุณใส่ไอเทมที่กำหนดลงในเครื่อง...";
+			next;
+			mes "[Trader Machine]";
+			mes "เครื่องทำงานเสร็จสิ้น! คุณได้รับไอเทมตอบแทนแล้ว";
+			delitem 19619,1; //C_Corsair
+			getitem 14545,1; //Battle_Manual_X3
 			close;
-		}
-		next;
-		if(select("Yes, give it to me!:No, wait not yet.") == 2)
+		case 6:
 			close;
-		// Unofficial dialogue.
-		mes "[Trader Machine]";
-		mes "You place the required items into the machine...";
-		next;
-		mes "[Trader Machine]";
-		mes "The Machine has given you an item in return!";
-		delitem 19619,1; //C_Corsair
-		getitem 14545,1; //Battle_Manual_X3
-		close;
-	case 6:
-		close;
 	}
 
 //callsub L_Exchange,<Insert Item>,<Amount>,<Return Item>,<Amount>
 L_Exchange:
 	mes "[Trader Machine]";
-	mes "How many "+getitemname(getarg(2))+" do you want?";
-	mes "I can give you up to 60.";
-	mes "Type 0 to cancel.";
+	mes "คุณต้องการรับ "+getitemname(getarg(2))+" จำนวนกี่ชิ้น?";
+	mes "ฉันสามารถแลกให้ได้สูงสุดครั้งละ 60 ชิ้น";
+	mes "(พิมพ์ 0 เพื่อยกเลิก)";
 	next;
 	input .@amount;
 	if (.@amount == 0) {
 		mes "[Trader Machine]";
-		mes "Cancelled.";
+		mes "ยกเลิกรายการแลกเปลี่ยน";
 		close;
 	} else if (.@amount < 0 || .@amount > 60) {
 		mes "[Trader Machine]";
-		mes "I said only 60 max.";
+		mes "บอกแล้วไงว่าแลกได้สูงสุดแค่ 60 ชิ้นเท่านั้น";
 		close;
 	}
 	mes "[Trader Machine]";
-	mes "That's a total of "+.@amount+" "+getitemname(getarg(2))+".";
-	mes "Is this correct?";
+	mes "รวมทั้งหมดคือ "+.@amount+" "+getitemname(getarg(2))+".";
+	mes "ข้อมูลถูกต้องใช่หรือไม่?";
 	next;
-	if(select("Yes, give them to me!:No, wait not yet.") == 2)
+	if(select("ใช่, แลกเลย!:ไม่ใช่, รอก่อน") == 2)
 		close;
 	set .@cost, getarg(1) * .@amount;
 	set .@total_amount, getarg(3) * .@amount;
 	if (countitem(getarg(0)) < .@cost) {
 		mes "[Trader Machine]";
-		mes "You don't have enough "+getitemname(getarg(0))+" to make that trade.";
+		mes "คุณมี "+getitemname(getarg(0))+" ไม่เพียงพอสำหรับแลกไอเทมจำนวนนี้";
 		close;
 	}
 	delitem getarg(0),.@cost;
@@ -571,178 +571,144 @@ L_Exchange:
 moc_para01,13,22,4	script	Merry Badger#xch	882,{
 	disable_items;
 	mes "[Merry Badger]";
-	mes "Hello there!  I'm Merry Badger and I was hired to exchange the ^00CC00Eden Merit Badges^000000!";
+	mes "สวัสดี! ฉัน Merry Badger ฉันได้รับมอบหมายให้มาดูแลการแลกเปลี่ยน ^00CC00Eden Merit Badge^000000 น่ะ!";
 	next;
 	mes "[Merry Badger]";
-	mes "I can take your Merit Badges and give you some useful stuff, or I can take some of your stuff and give you some Eden Merit Badges.";
-	mes "As I get more authorization I can offer more things to trade with you, so definitely keep me in mind when visiting the Eden Group.";
+	mes "ฉันสามารถรับ Badge ของเธอมาแลกเป็นของใช้ที่มีประโยชน์ หรือจะรับของบางอย่างจากเธอเพื่อแลกเป็น Eden Merit Badge ก็ได้นะ";
+	mes "ถ้าฉันได้รับอนุญาตมากกว่านี้ ฉันจะมีของมาให้แลกเพิ่มขึ้นอีก เพราะฉะนั้นอย่าลืมแวะมาหาฉันบ่อยๆ ที่กลุ่ม Eden ล่ะ";
 	next;
-	// switch( select( "Redeem Badges", "Trade in FOR badges", "Exchange Rates", "15 Job Manuals - 1 JM Box", "Sky Fortress Tickets", "Weekly Special" ) ) {// Sky Fortress Tickets meaningless without the instance
-	switch( select( "Redeem Badges", "Trade in FOR badges", "Exchange Rates", "15 Job Manuals - 1 JM Box", "", "Weekly Special" ) ) {
+	switch( select( "ใช้ Badge แลกของ", "นำของมาแลก Badge", "ตรวจสอบอัตราแลกเปลี่ยน", "แลก 15 Job Manual เป็น 1 JM Box", "ตั๋ว Sky Fortress", "ไอเทมพิเศษประจำสัปดาห์" ) ) {
 	case 1:
 		setarray .@menu_list$[0],
-			"4 EMB for 10 KVM Badge",
-			"4 EMB for 10 Bravery Medals",
-			"4 EMB for 10 Valor Medals", 
-			"8 EMB for 1 Reset Stone",
-			"5 EMB for Battle Manual Buff",
-			"5 EMB for Job Battle Manual Buff",
-			"10 EMB for HE Battle Manual Buff",
-			"20 EMB for 3X Battle Manual Buff",
-			"5 EMB for Bubblegum Buff", 
-			"10 EMB for HE Bubblegum Buff",
-			"",	// "5 EMB for Miracle Buff" (item doesn't exist in db)
-			"1 EMB for Yggdrasil Leaf",
-			"",	// "5 EMB for Rental Wing of Beelzebub" (item doesn't exist in db)
-			"5 EMB for Rental Halter Lead",
-			"5 EMB for 20 Blue Herbs",
-			"Token of Siegfried",
-			"Nothing Now";
+			"4 EMB แลก 10 KVM Badge",
+			"4 EMB แลก 10 Bravery Medals",
+			"4 EMB แลก 10 Valor Medals", 
+			"8 EMB แลก 1 Reset Stone",
+			"5 EMB แลก Battle Manual Buff",
+			"5 EMB แลก Job Battle Manual Buff",
+			"10 EMB แลก HE Battle Manual Buff",
+			"20 EMB แลก 3X Battle Manual Buff",
+			"5 EMB แลก Bubblegum Buff", 
+			"10 EMB แลก HE Bubblegum Buff",
+			"",	// "5 EMB for Miracle Buff"
+			"1 EMB แลก Yggdrasil Leaf",
+			"",	// "5 EMB for Rental Wing of Beelzebub"
+			"5 EMB แลก Rental Halter Lead (เช่า)",
+			"5 EMB แลก 20 Blue Herbs",
+			"รับ Token of Siegfried (VIP)",
+			"ไม่มีอะไร";
 		.@menu$ = implode( .@menu_list$, ":" );
 		while(1) {
 			mes "[Merry Badger]";
-			mes "Sure thing, I have several options currently for your Badges!";
+			mes "ได้เลย! ฉันมีตัวเลือกมากมายให้แลกสำหรับ Badge ของเธอ";
 			next;
 			switch( select(.@menu$) ) {
-			case 1:// "4 EMB for 10 KVM Badge"
-				callsub L_Exchange,4,6376,10;// KVM_Badge
-				break;
-			case 2:// "4 EMB for 10 Bravery Medals"
-				callsub L_Exchange,4,7828,10;// BF_Badge1
-				break;
-			case 3:// "4 EMB for 10 Valor Medals"
-				callsub L_Exchange,4,7829,10;// BF_Badge2
-				break;
-			case 4:// "8 EMB for 1 Reset Stone"
-				callsub L_Exchange,8,6320,1;// Premium_Reset_Stone
-				break;
-			case 5:// "5 EMB for Battle Manual Buff"
-				callsub L_Exchange,5,12208,1;// Battle_Manual
-				break;
-			case 6:// "5 EMB for Job Battle Manual Buff"
-				callsub L_Exchange,5,14592,1;// Job_Manual50
-				break;
-			case 7:// "10 EMB for HE Battle Manual Buff"
-				callsub L_Exchange,10,12411,1;// HE_Battle_Manual
-				break;
-			case 8:// "20 EMB for 3X Battle Manual Buff"
-				callsub L_Exchange,20,14545,1;// Battle_Manual_X3
-				break;
-			case 9:// "5 EMB for Bubblegum Buff"
-				callsub L_Exchange,5,12210,1;// Bubble_Gum
-				break;
-			case 10:// "10 EMB for HE Bubblegum Buff"
-				callsub L_Exchange,10,12412,1;// HE_Bubble_Gum
-				break;
-			case 11:// "5 EMB for Miracle Buff"
+			case 1: callsub L_Exchange,4,6376,10; break;
+			case 2: callsub L_Exchange,4,7828,10; break;
+			case 3: callsub L_Exchange,4,7829,10; break;
+			case 4: callsub L_Exchange,8,6320,1; break;
+			case 5: callsub L_Exchange,5,12208,1; break;
+			case 6: callsub L_Exchange,5,14592,1; break;
+			case 7: callsub L_Exchange,10,12411,1; break;
+			case 8: callsub L_Exchange,20,14545,1; break;
+			case 9: callsub L_Exchange,5,12210,1; break;
+			case 10: callsub L_Exchange,10,12412,1; break;
+			case 11:
 				.@item_id = 22819;
 				if (countitem(6495) < 5) {
 					mes "[Merry Badger]";
-					mes "You don't have enough ^00CC00Eden Merit Badges^000000. Let's start over!";
+					mes "เธอมี ^00CC00Eden Merit Badge^000000 ไม่พอนะ ลองใหม่อีกทีสิ!";
 					break;
 				}
 				mes "[Merry Badger]";
-				mes "Ok, I can give you ^ff0000" + getitemname(.@item_id) + "^000000 for ^0066CC5 of your Eden Merit Badge(s)^000000.";
-				mes "Do you want to?";
+				mes "ตกลง ฉันจะให้ ^ff0000" + getitemname(.@item_id) + "^000000 เพื่อแลกกับ ^0066CC 5 Eden Merit Badge^000000 ของเธอ";
+				mes "ต้องการแลกเลยไหม?";
 				next;
-				if (select("Yes", "No") == 2) {
+				if (select("ตกลง", "ไม่ล่ะ") == 2) {
 					mes "[Merry Badger]";
-					mes "I understand, let's see if you'd like something different!";
+					mes "เข้าใจแล้ว ลองดูอย่างอื่นแทนไหมล่ะ?";
 					break;
 				}
 				mes "[Merry Badger]";
-				mes "There you go! What else would you like?";
-				delitem 6495, 5;// Para_Logro_Badge
-				consumeitem .@item_id;
+				mes "เรียบร้อย! มีอะไรอย่างอื่นอีกไหม?";
+				delitem 6495, 5; consumeitem .@item_id;
 				break;
-			case 12:// "1 EMB for Yggdrasil Leaf"
-				callsub L_Exchange,1,610,1;// Leaf_Of_Yggdrasil
-				break;
-			case 13:// "5 EMB for Rental Wing of Beelzebub"
+			case 12: callsub L_Exchange,1,610,1; break;
+			case 13:
 				.@item_id = 14645;
 				if (countitem(6495) < 5) {
 					mes "[Merry Badger]";
-					mes "You don't have enough ^00CC00Eden Merit Badges^000000. Let's start over!";
+					mes "เธอมี ^00CC00Eden Merit Badge^000000 ไม่พอนะ!";
 					break;
 				}
 				mes "[Merry Badger]";
-				mes "Ok, I can give you ^ff0000" + getitemname(.@item_id) + "^000000 for ^0066CC5 of your Eden Merit Badge(s)^000000.";
-				mes "Do you want to?";
+				mes "ตกลง ฉันจะให้ ^ff0000" + getitemname(.@item_id) + "^000000 เพื่อแลกกับ ^0066CC 5 Eden Merit Badge^000000 ของเธอ";
 				next;
-				if (select("Yes", "No") == 2) {
+				if (select("ตกลง", "ไม่ล่ะ") == 2) {
 					mes "[Merry Badger]";
-					mes "I understand, let's see if you'd like something different!";
+					mes "รับทราบ! ลองเลือกดูใหม่อีกทีนะ";
 					break;
 				}
 				mes "[Merry Badger]";
-				mes "There you go! What else would you like?";
-				delitem 6495, 5;// Para_Logro_Badge
-				rentitem .@item_id, 604800;	// 7 days
+				mes "นี่จ๊ะ! อยากได้อะไรเพิ่มอีกไหม?";
+				delitem 6495, 5; rentitem .@item_id, 604800;
 				break;
-			case 14:// "5 EMB for Rental Halter Lead"
-				callsub L_Exchange,5,17162,1;// Boarding_Halter_Box7
-				break;
-			case 15:// "5 EMB for 20 Blue Herbs"
-				callsub L_Exchange,5,510,20;// Blue_Herb
-				break;
-			case 16:// Token of Siegfried
+			case 14: callsub L_Exchange,5,17162,1; break;
+			case 15: callsub L_Exchange,5,510,20; break;
+			case 16:
 				if (vip_status(VIP_STATUS_ACTIVE) == false) {
 					mes "[Merry Badger]";
-					mes "VIP Services offers those to any user with VIP!!";
+					mes "บริการนี้สำหรับผู้เล่น VIP เท่านั้นจ๊ะ!";
 					close;
 				}
-				// custom from here
 				.@date = gettime(DT_YYYYMMDD);
 				if (.@date <= eden_iro_token_date) {
 					mes "[Merry Badger]";
-					mes "You already got your Token today!";
+					mes "เธอรับ Token ของวันนี้ไปแล้วนะ!";
 					close;
 				}
 				mes "[Merry Badger]";
-				mes "There you go! What else would you like?";
+				mes "เรียบร้อย! นี่คือ Token ของเธอ มีอะไรให้ช่วยอีกไหม?";
 				eden_iro_token_date = .@date;
-				getitem 7621,10;// Token_Of_Siegfried
+				getitem 7621,10;
 				close;
-			case 17:// Nothing Now
+			case 17:
 				mes "[Merry Badger]";
-				mes "Wonderful!";
-				mes "I'll be here if you ever want to exchange for Eden Merit Badges!";
+				mes "เยี่ยมไปเลย!";
+				mes "ฉันจะรออยู่ตรงนี้ถ้าเธออยากจะแลก Eden Merit Badge อีกนะ!";
 				close;
 			}
 			next;
 		}
 	case 2:
 		mes "[Merry Badger]";
-		mes "I have a limited selection as of right now, but here is what I can offer to get 1 Eden Merit Badge!";
+		mes "ตอนนี้ฉันรับแลกอยู่ไม่กี่อย่างนะ แต่นี่คือสิ่งที่เธอสามารถนำมาแลกเป็น 1 Eden Merit Badge ได้!";
 		next;
-		switch( select( "Etc Items", "Equipments", "Cancel" ) ) {
+		switch( select( "ไอเทมจิปาถะ (Etc)", "อุปกรณ์สวมใส่", "ยกเลิก" ) ) {
 		case 1:
 			while(1) {
-				if (select( "5x Old Purple Box", "Nothing" ) == 2) {
+				if (select( "5x Old Purple Box", "ไม่มี" ) == 2) {
 					mes "[Merry Badger]";
-					mes "Wonderful!";
-					mes "I'll be here if you ever want to exchange for Eden Merit Badges!";
+					mes "รับทราบ! แวะมาใหม่ได้เสมอนะ";
 					close;
 				}
 				while(1) {
 					if (countitem(617) < 5) {
 						mes "[Merry Badger]";
-						mes "You don't have enough of that to get 1 Eden Merit Badge. Lets start over!";
+						mes "เธอมีของไม่พอจะแลก 1 Badge นะ ลองใหม่อีกทีสิ";
 						break;
 					}
 					mes "[Merry Badger]";
-					mes "Ok, I can give you ^CC00001 Eden Merit Badge^000000 for ^0000CC5 of your Old Purple Boxes^000000. Do you want to?";
+					mes "ตกลง ฉันจะให้ ^CC00001 Eden Merit Badge^000000 เพื่อแลกกับ ^0000CC5 Old Purple Box^000000 ของเธอ ตกลงไหม?";
 					next;
-					if (select( "Yes", "No" ) == 2) {
+					if (select( "ตกลง", "ไม่ล่ะ" ) == 2) {
 						mes "[Merry Badger]";
-						mes "I understand, lets see if you'd like something different!";
+						mes "โอเคจ๊ะ ลองดูอย่างอื่นแทนไหม?";
 						break;
-					}
-					else {
+					} else {
 						mes "[Merry Badger]";
-						mes "There you go!  What else would you like?";
-						delitem 617,5;// Old_Violet_Box
-						getitem 6495,1;// Para_Logro_Badge
+						mes "เรียบร้อย! มีอะไรอีกไหม?";
+						delitem 617,5; getitem 6495,1;
 						next;
 					}
 				}
@@ -751,184 +717,160 @@ moc_para01,13,22,4	script	Merry Badger#xch	882,{
 		case 2:
 			while(1) {
 				mes "[Merry Badger]";
-				mes "I will take the top item in your inventory! MAKE SURE YOU DONT HAVE ANY OF THESE ITEMS THAT YOU DONT WANT TO EXCHANGE.";
+				mes "ฉันจะหยิบไอเทมที่อยู่ ^FF0000ด้านบนสุด^000000 ในกระเป๋าของเธอไปนะ! ตรวจสอบให้แน่ใจว่าเธอไม่ได้พกชิ้นที่ไม่อยากแลกเอาไว้";
 				next;
-				switch( select( "Giant Faceworm Snake Skin", "Giant Faceworm Snake Skin [1]", "Nothing" ) ) {
-				case 1:
-					.@item_req = 20717;// FaceWorm_Skin
-					.@item_name$ = "Giant Faceworm Snake Skin";
-					.@amount_reward = 5;
-					break;
-				case 2:
-					.@item_req = 20718;// FaceWorm_Skin_
-					.@item_name$ = "Giant Faceworm Snake Skin [1]";
-					.@amount_reward = 7;
-					break;
+				switch( select( "Giant Faceworm Snake Skin", "Giant Faceworm Snake Skin [1]", "ไม่มี" ) ) {
+				case 1: .@item_req = 20717; .@item_name$ = "Giant Faceworm Snake Skin"; .@amount_reward = 5; break;
+				case 2: .@item_req = 20718; .@item_name$ = "Giant Faceworm Snake Skin [1]"; .@amount_reward = 7; break;
 				case 3:
 					mes "[Merry Badger]";
-					mes "Wonderful!";
-					mes "I'll be here if you ever want to exchange for Eden Merit Badges!";
-					next;
-					mes "[Merry Badger]";
-					mes "Well that is OK, if you want to see what I offer just ask!";
+					mes "เยี่ยมไปเลย! ฉันจะรออยู่ตรงนี้เผื่อเธอเปลี่ยนใจนะ";
 					close;
 				}
 				while(1) {
 					if (countitem(.@item_req) < 1) {
 						mes "[Merry Badger]";
-						mes "You don't have enough of that to get 1 Eden Merit Badge. Lets start over!";
+						mes "เธอไม่มีไอเทมชิ้นนี้มาแลกนะ ลองตรวจสอบดูใหม่สิ";
 						break;
 					}
 					mes "[Merry Badger]";
-					mes "Ok, I can give you ^ff0000" + .@amount_reward + " Eden Merit Badge^000000 for ^00ff00" + .@item_name$ + "^000000. Do you want to?";
+					mes "ตกลง ฉันจะให้ ^ff0000" + .@amount_reward + " Eden Merit Badge^000000 เพื่อแลกกับ ^00ff00" + .@item_name$ + "^000000 ตกลงไหม?";
 					next;
-					if (select( "Yes", "No" ) == 2) {
+					if (select( "ตกลง", "ไม่ล่ะ" ) == 2) {
 						mes "[Merry Badger]";
-						mes "I understand, lets see if you'd like something different!";
+						mes "รับทราบจ๊ะ ลองดูอย่างอื่นแทนนะ!";
 						break;
 					}
 					delitem .@item_req, 1;
-					getitem 6495, .@amount_reward;// Para_Logro_Badge
+					getitem 6495, .@amount_reward;
 					mes "[Merry Badger]";
-					mes "There you go! What else do you like?";
+					mes "นี่จ๊ะ! มีอะไรให้ช่วยอีกไหม?";
 					next;
 				}
 				next;
 			}
 		case 3:
 			mes "[Merry Badger]";
-			mes "Well that is OK, if you want to see what I offer just ask!";
+			mes "ไม่เป็นไรจ๊ะ ถ้าอยากรู้ว่าฉันมีอะไรให้แลกบ้างก็แวะมาถามได้ตลอดนะ!";
 			close;
 		}
 	case 3:
 		mes "[Merry Badger]";
-		mes "This is what I'll give you for your ^00CC00Eden Merit Badges^000000!";
-		mes "Ok, I have a special for 3 Merit Badge. This week I'll give you ^00CC0040 Light Granule^000000, ^00CC0040 Gun Powder^000000, ^0000CC3 Izidor^000000, ^00CC0010 Prickly Fruit^000000, ^0000CC1 Mandragora Flowerpot^000000, and ^00CC003 Elder Branch^000000.";
-		mes "^00CC002 Eden Merit Badges^000000 = ^0000CC10x KVM Badge^000000";
-		mes "^00CC002 Eden Merit Badges^000000 = ^0000CC10x Bravery Medals^000000";
-		mes "^00CC002 Eden Merit Badges^000000 = ^0000CC10x Valor Medals^000000";
-		mes "^00CC005 Eden Merit Badges^000000 = ^0000CC5x Medium Life Potion^000000";
-		mes "^00CC005 Eden Merit Badges^000000 = ^0000CC5x Life Insurance^000000";
-		mes "^00CC005 Eden Merit Badges^000000 = ^0000CC5x Token Of Siegfried^000000";
-		mes "^00CC007 Eden Merit Badges^000000 = ^0000CC1x Job Battle Manual^000000";
-		mes "^00CC008 Eden Merit Badges^000000 = ^0000CC1x Reset Stone^000000";
+		mes "นี่คือรายการของที่ฉันจะให้เพื่อแลกกับ ^00CC00Eden Merit Badge^000000 ของเธอ!";
+		mes "สัปดาห์นี้มีชุดพิเศษราคา 3 Badge: เธอจะได้รับ ^00CC0040 Light Granule, 40 Gun Powder, 3 Izidor, 10 Prickly Fruit, 1 Mandragora Flowerpot และ 3 Elder Branch^000000";
+		mes "--- อัตราแลกเปลี่ยนอื่นๆ ---";
+		mes "^00CC002 Badge^000000 = ^0000CC10x KVM Badge^000000";
+		mes "^00CC002 Badge^000000 = ^0000CC10x Bravery Medals^000000";
+		mes "^00CC002 Badge^000000 = ^0000CC10x Valor Medals^000000";
+		mes "^00CC005 Badge^000000 = ^0000CC5x Medium Life Potion^000000";
+		mes "^00CC005 Badge^000000 = ^0000CC5x Life Insurance^000000";
+		mes "^00CC005 Badge^000000 = ^0000CC5x Token Of Siegfried^000000";
+		mes "^00CC007 Badge^000000 = ^0000CC1x Job Battle Manual^000000";
+		mes "^00CC008 Badge^000000 = ^0000CC1x Reset Stone^000000";
 		next;
 		mes "[Merry Badger]";
-		mes "This is what you can give me to get ^00CC001 Eden Merit Badge^000000!";
+		mes "และนี่คือของที่เธอเอามาแลกรับ ^00CC001 Eden Merit Badge^000000 ได้:";
 		mes "^0000CC5x Old Purple Box^000000";
 		close;
 	case 4:
 		mes "[Merry Badger]";
-		mes "I was strong armed into giving this, but you are worth it!";
-		mes "Do you want to exchange 15 Job Manuals to get 1 Tradable box of 10 Job Manuals?";
-		mes "I know 15 does not equal 10, but boxes are expensive you know.";
+		mes "ฉันโดนบังคับให้ต้องรับแลกอันนี้น่ะ แต่เพื่อเธอฉันยอมได้!";
+		mes "ต้องการแลก 15 Job Manual เพื่อรับเป็น 1 กล่อง (บรรจุ 10 เล่มที่แลกเปลี่ยนได้) ไหม?";
+		mes "ฉันรู้ว่า 15 มันไม่เท่ากับ 10 หรอกนะ แต่ค่ากล่องมันแพงน่ะเข้าใจหน่อยนะ";
 		next;
 		if (countitem(14592) < 15) {
 			mes "[Merry Badger]";
-			mes "You don't have 15 or more Job Manuals to get 1 Box!";
+			mes "เธอมี Job Manual ไม่ถึง 15 เล่ม แลกกล่องไม่ได้หรอกนะ!";
 			close;
 		}
-		// custom dialogue below
-		if (select("Yes", "No") == 2) {
+		if (select("ตกลง", "ไม่ล่ะ") == 2) {
 			mes "[Merry Badger]";
-			mes "Wonderful!";
-			mes "I'll be here if you ever want to exchange for Eden Merit Badges!";
+			mes "โอเคจ๊ะ! ฉันจะรออยู่ตรงนี้นะ";
 			close;
 		}
 		mes "[Merry Badger]";
-		mes "Wonderful, what else do you want?";
-		delitem 14592,15; //Job_Manual50
-		getitem 13990,1; //Job_Manual50_Box
+		mes "เรียบร้อยจ๊ะ มีอะไรอีกไหม?";
+		delitem 14592,15; getitem 13990,1;
 		close;
 	case 5:
 		mes "[Merry Badger]";
-		mes "I don't really understand why but I have this stack of coupons to sell.";
-		mes "Do you want to exchange 25 Eden Merit Badges for 1 dungeon ticket? If you are VIP your ticket will last much longer!";
+		mes "ฉันก็ไม่รู้ว่าทำไม แต่ฉันมีคูปองพวกนี้มาขายด้วยล่ะ";
+		mes "ต้องการแลก 25 Eden Merit Badge สำหรับตั๋วดันเจี้ยน 1 ใบไหม? ถ้าเธอเป็น VIP ตั๋วนี้จะใช้ได้นานกว่าปกตินะ!";
 		next;
-		if (select( "Yes", "No" ) == 2) {
+		if (select( "ตกลง", "ไม่ล่ะ" ) == 2) {
 			mes "[Merry Badger]";
-			mes "I understand, lets see if you'd like something different!";
+			mes "รับทราบจ๊ะ ลองดูรายการอื่นแทนไหม?";
 			close;
 		}
 		if (countitem(6495) < 25) {
 			mes "[Merry Badger]";
-			mes "You don't have enough badges!";
+			mes "เธอมี Badge ไม่พอนะ!";
 			close;
 		}
 		delitem 6495,25;
 		if (vip_status(VIP_STATUS_ACTIVE))
-			getitem 17570,1;// Sky Fortress Ticket 3 Hour Box
+			getitem 17570,1; // 3 ชั่วโมง
 		else
-			getitem 17569,1;// Sky Fortress Ticket 1 Hour Box
+			getitem 17569,1; // 1 ชั่วโมง
 		mes "[Merry Badger]";
-		mes "There you go! What else would you like?";
+		mes "นี่จ๊ะ! อยากได้อะไรเพิ่มอีกไหม?";
 		close;
 	case 6:
 		while(1) {
 			mes "[Merry Badger]";
-			mes "The Weekly special is ....";
+			mes "ไอเทมพิเศษประจำสัปดาห์คือ....";
 			next;
 			mes "[Merry Badger]";
-			mes "Ok, I have a special for 3 Merit Badge or 1,000,000 zeny.  This week I'll give you ^00CC0040 Light Granule^000000, 40 Gun Powder^000000, ^0000CC3 Izidor^000000";
-			mes "^00CC0010 Prickly Fruit^000000, ^0000CC1 Mandragora Flowerpot^000000, and ^00CC003 Elder Branch^000000.";
+			mes "ชุดพิเศษราคา 3 Badge หรือ 1,000,000 Zeny: เธอจะได้รับ ^00CC0040 Light Granule, 40 Gun Powder, 3 Izidor^000000";
+			mes "^00CC0010 Prickly Fruit, 1 Mandragora Flowerpot และ 3 Elder Branch^000000";
 			next;
-			switch( select( "Badges", "Zeny", "No" ) ) {
+			switch( select( "ใช้ Badge แลก", "ใช้ Zeny แลก", "ไม่สนใจ" ) ) {
 			case 1:
 				if (countitem(6495) < 3) {
 					mes "[Merry Badger]";
-					mes "You don't have enough ^00CC00Eden Merit Badges^000000. Lets start over!";
-					next;
-					continue;
+					mes "เธอมี ^00CC00Eden Merit Badge^000000 ไม่พอจ๊ะ ลองดูใหม่นะ!";
+					next; continue;
 				}
-				delitem 6495,3; //Para_Logro_Badge
-				break;
+				delitem 6495,3; break;
 			case 2:
 				if (Zeny < 1000000) {
 					mes "[Merry Badger]";
-					mes "You don't have enough ^00CC00Zeny^000000. Lets start over!";
-					next;
-					continue;
+					mes "เธอมี ^00CC00Zeny^000000 ไม่พอนะ ไปหาเงินมาก่อนสิ!";
+					next; continue;
 				}
-				Zeny -= 1000000;
-				break;
+				Zeny -= 1000000; break;
 			case 3:
 				mes "[Merry Badger]";
-				mes "I understand, lets see if you'd like something different!";
+				mes "เข้าใจแล้วจ๊ะ ไว้แวะมาใหม่นะ!";
 				close;
 			}
-			getitem 7938,40;// Light_Granule
-			getitem 6244,40;// Gun_Power
-			getitem 709,3;	// Izidor
-			getitem 576,10;	// Prickly_Fruit
-			getitem 6217,1;	// Mandragora_Flowerpot
-			getitem 7939,3;	// Elder_Branch
+			getitem 7938,40; getitem 6244,40; getitem 709,3; getitem 576,10; getitem 6217,1; getitem 7939,3;
 			mes "[Merry Badger]";
-			mes "There you go! What else would you like?";
+			mes "เรียบร้อย! มีอะไรให้ช่วยอีกไหม?";
 			next;
 		}
 	}
 	end;
 
-//callsub L_Exchange,<badge cost>,<item id>,<amount>;
 L_Exchange:
 	if (countitem(6495) < getarg(0)) {
 		mes "[Merry Badger]";
-		mes "You don't have enough ^00CC00Eden Merit Badges^000000. Let's start over!";
+		mes "เธอมี ^00CC00Eden Merit Badge^000000 ไม่พอจ๊ะ ลองใหม่อีกทีนะ!";
 		return;
 	}
 	mes "[Merry Badger]";
-	mes sprintf("Ok, I can give you ^ff0000%s^000000 for ^0066CC%d of your Eden Merit Badge(s)^000000.",
+	mes sprintf("ตกลง ฉันจะให้ ^ff0000%s^000000 เพื่อแลกกับ ^0066CC %d Eden Merit Badge^000000 ของเธอนะ",
 				callfunc("F_InsertPlural",getarg(2),getitemname(getarg(1))), getarg(0));
-	mes "Do you want to?";
+	mes "ต้องการแลกเลยไหม?";
 	next;
-	if (select("Yes", "No") == 2) {
+	if (select("ตกลง", "ไม่ล่ะ") == 2) {
 		mes "[Merry Badger]";
-		mes "I understand, let's see if you'd like something different!";
+		mes "โอเคจ๊ะ งั้นลองดูอย่างอื่นแทนนะ!";
 		return;
 	}
 	mes "[Merry Badger]";
-	mes "There you go! What else would you like?";
-	delitem 6495, getarg(0); //Para_Logro_Badge
+	mes "นี่จ๊ะ! อยากได้อะไรเพิ่มอีกไหม?";
+	delitem 6495, getarg(0);
 	getitem getarg(1),getarg(2);
 	return;
 }
@@ -937,34 +879,35 @@ L_Exchange:
 //============================================================
 moc_para01,41,169,2	script	Kafra Stacker#eden	749,{
 	if (checkweight(1201,1) == 0 || MaxWeight - Weight < 2000) {
-		mes "- Wait a moment! -";
-		mes "- Currently you're carrying -";
-		mes "- too much weight in items. -";
-		mes "- Please come back later -";
-		mes "- after you put some into Kafra storage. -";
+		mes "- เดี๋ยวก่อน! -";
+		mes "- ตอนนี้คุณแบกน้ำหนักไอเทม -";
+		mes "- มากเกินไป -";
+		mes "- กรุณากลับมาอีกครั้ง -";
+		mes "- หลังจากเอาของไปฝากในคลัง Kafra แล้วนะ -";
 		close;
 	}
 	mes "[Toma]";
-	mes "I can take your non-stacking Kafra Consumables";
-	mes "and make them fit neatly into stacks!";
+	mes "ฉันสามารถช่วยรวมไอเทม Kafra ที่แยกช่องกันอยู่";
+	mes "ให้กลายเป็นกองเดียวเพื่อให้ประหยัดที่ในกระเป๋าได้นะ!";
 	next;
 	mes "[Toma]";
-	mes "Please understand that I can";
-	mes "only stack 10 groups at a time";
-	mes "so keep talking to me until";
-	mes "you have 1 stack of each!";
+	mes "แต่ขอให้เข้าใจก่อนว่าฉันสามารถ";
+	mes "รวมไอเทมได้ทีละ 10 กลุ่มต่อการคุยหนึ่งครั้งเท่านั้น";
+	mes "ดังนั้นให้คุยกับฉันไปเรื่อยๆ จนกว่า";
+	mes "ไอเทมแต่ละชนิดจะรวมกันเป็นกองเดียวทั้งหมดนะ!";
 	next;
 	while(1) {
-		if(select("Do it!:Never mind.") == 2)
+		if(select("ตกลง ทำเลย!:ไม่ล่ะ ขอบคุณ") == 2)
 			break;
-		// Something strange goes on here, haven't quite figured it out...
+
+		// ระบบจะทำการรวมไอเทมในส่วนนี้ (Logic ภายในเครื่อง)
 		mes "[Toma]";
-		mes "Ten stack down!";
-		mes "Want to do another?";
+		mes "เรียบร้อย! รวมให้ไป 10 ชุดแล้ว";
+		mes "ต้องการรวมไอเทมชุดต่อไปอีกไหม?";
 		next;
 	}
 	mes "[Toma]";
-	mes "Ok then, laterz.";
+	mes "โอเคจ๊ะ แล้วเจอกันใหม่นะ";
 	close;
 }
 
