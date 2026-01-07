@@ -15,33 +15,33 @@ bat_room,124,178,5	script	Tierra Gorge Officer#01a	418,{
 	if (getbattleflag("feature.bgqueue"))
 		end;
 	if (checkweight(1201,1) == 0) {
-		mes "- Wait a minute !! -";
-		mes "- Currently you're carrying -";
-		mes "- too many items with you. -";
-		mes "- Please try again -";
-		mes "- after you lose some weight. -";
+		mes "- เดี๋ยวก่อน !! -";
+		mes "- ตอนนี้คุณพกไอเทม -";
+		mes "- มากเกินไป -";
+		mes "- กรุณาลองใหม่ -";
+		mes "- หลังจากจัดการน้ำหนักตัวแล้ว -";
 		close;
 	}
 	mes "[Guillaume Army Officer]";
-	mes "Let's show the power of the Guillaume Army to those stinky Croixs!";
+	mes "มาแสดงพลังของกองทัพกีโยมให้พวกครอยซ์จอมเหม็นเน่าได้เห็นกันเถอะ!";
 	next;
-	switch(select("I want to join your army!:End Conversation")) {
+	switch(select("ข้าต้องการเข้าร่วมกองทัพ!:จบการสนทนา")) {
 	case 1:
 		if ((BaseJob == Job_Novice) || (BaseJob == Job_Super_Novice)) {
 			mes "[Guillaume Army Officer]";
-			mes "I'm very pleased that you want to join us and fight the Croix Army, but I'm sorry: I can't send a rookie like you to die on the cruel battlefield.";
+			mes "ข้าดีใจนะที่เจ้าอยากจะร่วมสู้กับกองทัพครอยซ์ไปพร้อมกับเรา แต่ข้าขอโทษจริงๆ ข้าคงส่งหน้าใหม่อย่างเจ้าไปตายในสมรภูมิอันโหดร้ายไม่ได้หรอก";
 		}
 		else {
 			if (BaseLevel < 80) {
 				mes "[Guillaume Army Officer]";
-				mes "I'm very pleased that you want to join us and fight the Croix Army, but I'm sorry: I can't send a rookie like you to die on the cruel battlefield.";
+				mes "ข้าดีใจนะที่เจ้าอยากจะร่วมสู้กับกองทัพครอยซ์ไปพร้อมกับเรา แต่ข้าขอโทษจริงๆ ข้าคงส่งหน้าใหม่อย่างเจ้าไปตายในสมรภูมิอันโหดร้ายไม่ได้หรอก";
 			}
 			else {
 				set .@chk_urtime,checkquest(2069,PLAYTIME);
 				if ((.@chk_urtime == 0)|| (.@chk_urtime == 1)) {
 					mes "[Guillaume Army Officer]";
-					mes "You seem to have just returned from the battlefield.";
-					mes "It's too early for you to go back. Go rest, and leave the enemies to us!";
+					mes "ดูเหมือนเจ้าเพิ่งจะกลับมาจากสนามรบนี่นา";
+					mes "มันยังเร็วไปที่เจ้าจะกลับไปที่นั่น ไปพักผ่อนเถอะ แล้วปล่อยพวกศัตรูให้เป็นหน้าที่ของพวกเราเอง!";
 				}
 				else {
 					if (.@chk_urtime == 2)
@@ -49,20 +49,20 @@ bat_room,124,178,5	script	Tierra Gorge Officer#01a	418,{
 					set .@mapcount,getmapusers("bat_a01");
 					if (.@mapcount > 0) {
 						mes "[Guillaume Army Officer]";
-						mes "I've received a report informing me that an elite corps has been dispatched to the battlefield fighting the Croixs already.";
-						mes "Why don't you go wait for a while? I suggest you sharpen your weapons and prepare your supplies until then.";
+						mes "ข้าได้รับรายงานมาว่าตอนนี้มีหน่วยกล้าตายถูกส่งลงไปสู้กับพวกครอยซ์ในสนามรบแล้ว";
+						mes "ทำไมเจ้าไม่ไปรอสักพักล่ะ? ข้าแนะนำว่าระหว่างนี้ให้ไปเตรียมอาวุธและเสบียงให้พร้อมจะดีกว่านะ";
 					}
 					else {
 						if ($@TierraBG1) {
 							mes "[Guillaume Army Officer]";
-							mes "An elite corps is already standing by to be dispatched to the battlefield.";
-							mes "Why don't you go wait for a while? I suggest you sharpen your weapons and prepare your supplies until then.";
+							mes "ตอนนี้มีหน่วยกล้าตายกำลังสแตนด์บายเตรียมถูกส่งไปยังสนามรบแล้ว";
+							mes "ทำไมเจ้าไม่ไปรอสักพักล่ะ? ข้าแนะนำว่าระหว่างนี้ให้ไปเตรียมอาวุธและเสบียงให้พร้อมจะดีกว่านะ";
 						}
 						else {
 							mes "[Guillaume Army Officer]";
-							mes "You definitely seem to be ready for battle!";
-							mes "Go show the Croixs what fear truly means!";
-							mes "Today, our cry of victory shall echo all over the battlefield!";
+							mes "ดูเหมือนเจ้าจะพร้อมสำหรับศึกครั้งนี้แล้วสินะ!";
+							mes "ไปแสดงให้พวกครอยซ์เห็นซิว่าความกลัวที่แท้จริงมันเป็นยังไง!";
+							mes "ในวันนี้ เสียงโห่ร้องแห่งชัยชนะของเราจะดังกึกก้องไปทั่วทั้งสนามรบ!";
 							close2;
 							warp "bat_room",57,223;
 							end;
@@ -74,7 +74,7 @@ bat_room,124,178,5	script	Tierra Gorge Officer#01a	418,{
 		break;
 	case 2:
 		mes "[Guillaume Army Officer]";
-		mes "Today, we shall be victorious!";
+		mes "วันนี้ ชัยชนะจะต้องเป็นของพวกเรา!";
 		break;
 	}
 	close;
@@ -84,33 +84,33 @@ bat_room,140,178,5	script	Tierra Gorge Officer#02a	418,{
 	if (getbattleflag("feature.bgqueue"))
 		end;
 	if (checkweight(1201,1) == 0) {
-		mes "- Wait a minute !! -";
-		mes "- Currently you're carrying -";
-		mes "- too many items with you. -";
-		mes "- Please try again -";
-		mes "- after you lose some weight. -";
+		mes "- เดี๋ยวก่อน !! -";
+		mes "- ตอนนี้คุณพกไอเทม -";
+		mes "- มากเกินไป -";
+		mes "- กรุณาลองใหม่ -";
+		mes "- หลังจากจัดการน้ำหนักตัวแล้ว -";
 		close;
 	}
 	mes "[Guillaume Army Officer]";
-	mes "Let's show the power of the Guillaume Army to those stinky Croixs!";
+	mes "มาแสดงพลังของกองทัพกีโยม ให้พวกครอยซ์จอมเหม็นเน่าได้เห็นกันเถอะ!";
 	next;
-	switch(select("I want to join your army!:End Conversation")) {
+	switch(select("ข้าต้องการเข้าร่วมกองทัพ!:จบการสนทนา")) {
 	case 1:
 		if ((BaseJob == Job_Novice) || (BaseJob == Job_Super_Novice)) {
 			mes "[Guillaume Army Officer]";
-			mes "I'm very pleased that you want to join us and fight the Croix Army, but I'm sorry: I can't send a rookie like you to die on the cruel battlefield.";
+			mes "ข้าดีใจนะที่เจ้าอยากจะร่วมสู้กับกองทัพครอยซ์ไปพร้อมกับเรา แต่ข้าขอโทษจริงๆ ข้าคงส่งหน้าใหม่อย่างเจ้าไปตายในสมรภูมิอันโหดร้ายไม่ได้หรอก";
 		}
 		else {
 			if (BaseLevel < 80) {
 				mes "[Guillaume Army Officer]";
-				mes "I'm very pleased that you want to join us and fight the Croix Army, but I'm sorry: I can't send a rookie like you to die on the cruel battlefield.";
+				mes "ข้าดีใจนะที่เจ้าอยากจะร่วมสู้กับกองทัพครอยซ์ไปพร้อมกับเรา แต่ข้าขอโทษจริงๆ ข้าคงส่งหน้าใหม่อย่างเจ้าไปตายในสมรภูมิอันโหดร้ายไม่ได้หรอก";
 			}
 			else {
 				set .@chk_urtime,checkquest(2069,PLAYTIME);
 				if (.@chk_urtime == 1) {
 					mes "[Guillaume Army Officer]";
-					mes "You seem to have just returned from the battlefield.";
-					mes "It's too early for you to go back. Go rest, and leave the enemies to us!";
+					mes "ดูเหมือนเจ้าเพิ่งจะกลับมาจากสนามรบนี่นา";
+					mes "มันยังเร็วไปที่เจ้าจะกลับไปที่นั่น ไปพักผ่อนเถอะ แล้วปล่อยพวกศัตรูให้เป็นหน้าที่ของพวกเราเอง!";
 				}
 				else {
 					if (.@chk_urtime == 2)
@@ -118,20 +118,20 @@ bat_room,140,178,5	script	Tierra Gorge Officer#02a	418,{
 					set .@mapcount,getmapusers("bat_a02");
 					if (.@mapcount > 0) {
 						mes "[Guillaume Army Officer]";
-						mes "I've received a report informing me that an elite corps has been dispatched to the battlefield fighting the Croixs already.";
-						mes "Why don't you go wait for a while? I suggest you sharpen your weapons and prepare your supplies until then.";
+						mes "ข้าได้รับรายงานมาว่าตอนนี้มีหน่วยรบระดับหัวกะทิถูกส่งลงไปสู้กับพวกครอยซ์ในสนามรบแล้ว";
+						mes "ทำไมเจ้าไม่ไปรอสักพักล่ะ? ข้าแนะนำว่าระหว่างนี้ให้ไปเตรียมอาวุธและเสบียงให้พร้อมจะดีกว่านะ";
 					}
 					else {
 						if ($@TierraBG2) {
 							mes "[Guillaume Army Officer]";
-							mes "An elite corps is already standing by to be dispatched to the battlefield.";
-							mes "Why don't you go wait for a while? I suggest you sharpen your weapons and prepare your supplies until then.";
+							mes "ตอนนี้มีหน่วยรบระดับหัวกะทิกำลังสแตนด์บายเตรียมถูกส่งไปยังสนามรบแล้ว";
+							mes "ทำไมเจ้าไม่ไปรอสักพักล่ะ? ข้าแนะนำว่าระหว่างนี้ให้ไปเตรียมอาวุธและเสบียงให้พร้อมจะดีกว่านะ";
 						}
 						else {
 							mes "[Guillaume Army Officer]";
-							mes "You definitely seem to be ready for battle!";
-							mes "Go show the Croixs what fear truly means!";
-							mes "Today, our cry of victory shall echo all over the battlefield!";
+							mes "ดูเหมือนเจ้าจะพร้อมสำหรับศึกครั้งนี้แล้วสินะ!";
+							mes "ไปแสดงให้พวกครอยซ์เห็นซิว่าความกลัวที่แท้จริงมันเป็นยังไง!";
+							mes "ในวันนี้ เสียงโห่ร้องแห่งชัยชนะของเราจะดังกึกก้องไปทั่วทั้งสนามรบ!";
 							close2;
 							warp "bat_room",114,223;
 							end;
@@ -143,7 +143,7 @@ bat_room,140,178,5	script	Tierra Gorge Officer#02a	418,{
 		break;
 	case 2:
 		mes "[Guillaume Army Officer]";
-		mes "Today, we shall be victorious!";
+		mes "วันนี้ ชัยชนะจะต้องเป็นของพวกเรา!";
 		break;
 	}
 	close;
@@ -151,32 +151,32 @@ bat_room,140,178,5	script	Tierra Gorge Officer#02a	418,{
 
 bat_room,127,178,5	script	Guillaume Knight#1	417,{
 	mes "[Guillaume Knight]";
-	mes "Tierra Gorge consists of two steep sides placed vertically, and has ration depots for the Guillaume and Croix Armies at the 11 and 7 o'clock directions.";
+	mes "Tierra Gorge เป็นหุบเขาที่มีหน้าผาชันขนาบสองข้างทางทิศเหนือและใต้ โดยมีคลังเสบียงของกองทัพ Guillaume อยู่ที่ทิศ 11 นาฬิกา และของกองทัพ Croix อยู่ที่ทิศ 7 นาฬิกา";
 	next;
 	mes "[Guillaume Knight]";
-	mes "The battle starts at your army's ship, and the goal is to advance and destroy your enemy's rations depot faster than they can destroy yours.";
+	mes "การต่อสู้จะเริ่มต้นขึ้นที่เรือรบของกองทัพคุณ เป้าหมายคือบุกตะลุยไปข้างหน้าและทำลายคลังเสบียงของศัตรูให้ได้ก่อนที่ฝ่ายนั้นจะทำลายคลังเสบียงของเรา";
 	next;
 	mes "[Guillaume Knight]";
-	mes "The healer of the battlefield will resurrect soldiers once every 25 seconds so that they can rejoin the battle.";
-	mes "The army that captures the neutral flag in the center of the battlefield will be rewarded with extra regeneration points, meaning their soldiers will resurrect more than the other side, giving them an advantage.";
+	mes "ผู้ดูแลการรักษาในสนามรบจะชุบชีวิตเหล่านักรบทุกๆ 25 วินาที เพื่อให้พวกเขาสามารถกลับเข้าสู่สมรภูมิได้อีกครั้ง";
+	mes "กองทัพที่สามารถชิงธงกลางสนามรบมาครองได้จะได้รับแต้มฟื้นฟูพิเศษ ซึ่งจะช่วยให้ชุบชีวิตเหล่านักรบได้เร็วกว่าอีกฝ่ายหนึ่ง และสร้างความได้เปรียบเป็นอย่างมาก";
 	next;
 	mes "[Guillaume Knight]";
-	mes "Those two rations depots are connected to each other through short and narrow paths, but the gates are blocked with barricades.";
-	mes "Think and move as quickly as you can. The victory of your army relies on your contribution.";
+	mes "คลังเสบียงทั้งสองฝั่งนั้นเชื่อมต่อกันด้วยทางเดินที่แคบและสั้น แต่ประตูทางผ่านจะถูกปิดกั้นด้วยสิ่งกีดขวาง (Barricade)";
+	mes "จงคิดและเคลื่อนไหวให้เร็วที่สุดเท่าที่จะทำได้ ชัยชนะของกองทัพขึ้นอยู่กับการทุ่มเทของพวกเจ้าทุกคน";
 	next;
 	mes "[Guillaume Knight]";
 	if (getbattleflag("feature.bgqueue"))
-		mes "If you are ready, start by clicking the ^0000FFbattle button from the interface^000000.";
+		mes "หากเจ้าพร้อมแล้ว เริ่มต้นด้วยการคลิกที่ ^0000FFปุ่ม Battle จากหน้าต่างอินเทอร์เฟซ^000000 ได้เลย";
 	else {
-		mes "Please remember: when you join a battle, you will receive a token which indicates the set duration for which you cannot participate in the same type of battle.";
-		mes "You may check the duration by pressing the Alt+U keys.";
+		mes "โปรดจำไว้ว่า: เมื่อเจ้าเข้าร่วมการต่อสู้ เจ้าจะได้รับเหรียญตราที่ระบุระยะเวลาที่เจ้าจะไม่สามารถเข้าร่วมการต่อสู้ประเภทเดิมได้ในช่วงเวลาหนึ่ง";
+		mes "เจ้าสามารถตรวจสอบเวลาที่เหลือได้โดยการกดปุ่ม Alt+U";
 	}
 	next;
 	mes "[Guillaume Knight]";
 	if (getbattleflag("feature.bgqueue"))
-		mes "Please bear in mind once you cancel, ^0000FFyou may not reapply for 1 minute^000000!";
+		mes "โปรดระวังไว้ว่าหากเจ้ากดยกเลิก ^0000FFเจ้าจะไม่สามารถลงทะเบียนใหม่ได้เป็นเวลา 1 นาที^000000!";
 	else
-		mes "Are you ready to battle? Then apply with the recruiter next to me!";
+		mes "เจ้าพร้อมสำหรับศึกนี้หรือยัง? ถ้าพร้อมแล้วไปลงทะเบียนกับเจ้าหน้าที่รับสมัครข้างๆ ข้าได้เลย!";
 	close;
 }
 
@@ -184,32 +184,32 @@ bat_room,143,178,5	duplicate(Guillaume Knight#1)	Guillaume Knight#2	417
 
 bat_room,127,121,1	script	Croix Knight#1	413,{
 	mes "[Croix Knight]";
-	mes "Tierra Gorge consists of two steep sides placed vertically, and has ration depots for the Guillaume and Croix Armies at the 11 and 7 o'clock directions.";
+	mes "Tierra Gorge แห่งนี้เป็นหุบเขาที่มีหน้าผาชันขนาบสองข้างทางทิศเหนือและใต้ โดยมีคลังเสบียงของกองทัพ Guillaume อยู่ทางทิศ 11 นาฬิกา และของกองทัพ Croix เราอยู่ที่ทิศ 7 นาฬิกาครับ";
 	next;
 	mes "[Croix Knight]";
-	mes "The battle starts at your army's ship, and the goal is to advance and destroy your enemy's rations depot faster than they can destroy yours.";
+	mes "การศึกจะเริ่มต้นขึ้นที่เรือรบของแต่ละฝ่าย เป้าหมายสำคัญคือการบุกไปทำลายคลังเสบียงของศัตรูให้ได้ก่อนที่ฝ่ายนั้นจะเข้าถึงคลังเสบียงของเราครับ";
 	next;
 	mes "[Croix Knight]";
-	mes "The healer of the battlefield will resurrect soldiers once every 25 seconds so that they can rejoin the battle.";
-	mes "The army that captures the neutral flag in the center of the battlefield will be rewarded with extra regeneration points, meaning their soldiers will resurrect more than the other side, giving them an advantage.";
+	mes "หน่วยพยาบาลในสนามรบจะชุบชีวิตเหล่านักรบทุกๆ 25 วินาทีเพื่อให้สามารถกลับเข้าสู่สมรภูมิได้อีกครั้ง";
+	mes "หากกองทัพใดสามารถชิงธงกลางสนามรบมาได้ จะได้รับแต้มฟื้นฟูพิเศษ ซึ่งจะช่วยให้เหล่านักรบฟื้นคืนชีพได้รวดเร็วกว่าอีกฝ่าย และนั่นคือหัวใจสำคัญที่จะชิงความได้เปรียบครับ";
 	next;
 	mes "[Croix Knight]";
-	mes "Those two rations depots are connected to each other through short and narrow paths, but the gates are blocked with barricades.";
-	mes "Think and move as quickly as you can. The victory of your army relies on your contribution.";
+	mes "เส้นทางระหว่างคลังเสบียงทั้งสองฝั่งนั้นเชื่อมต่อกันด้วยทางเดินที่แคบและสั้น แต่ประตูทางผ่านจะถูกปิดกั้นด้วยสิ่งกีดขวาง (Barricade) เอาไว้";
+	mes "ขอให้ท่านตัดสินใจและเคลื่อนไหวอย่างรอบคอบแต่รวดเร็ว ชัยชนะของกองทัพเราขึ้นอยู่กับความร่วมมือของท่านแล้วครับ";
 	next;
 	mes "[Croix Knight]";
 	if (getbattleflag("feature.bgqueue"))
-		mes "If you are ready, start by clicking the ^0000FFbattle button from the interface^000000.";
+		mes "หากท่านพร้อมแล้ว สามารถเริ่มต้นได้ด้วยการคลิกที่ ^0000FFปุ่ม Battle จากหน้าต่างอินเทอร์เฟซ^000000 ครับ";
 	else {
-		mes "Please remember: when you join a battle, you will receive a token which indicates the set duration for which you cannot participate in the same type of battle.";
-		mes "You may check the duration by pressing the Alt+U keys.";
+		mes "โปรดทราบว่า: เมื่อท่านเข้าร่วมการศึก ท่านจะได้รับเหรียญตราที่ระบุระยะเวลาพักรบ ซึ่งจะทำให้ท่านไม่สามารถเข้าร่วมศึกประเภทเดิมได้ชั่วคราว";
+		mes "ท่านสามารถตรวจสอบเวลาที่เหลือได้โดยการกดปุ่ม Alt+U ครับ";
 	}
 	next;
 	mes "[Croix Knight]";
 	if (getbattleflag("feature.bgqueue"))
-		mes "Please bear in mind once you cancel, ^0000FFyou may not reapply for 1 minute^000000!";
+		mes "โปรดระลึกไว้ว่าหากท่านยกเลิกคำขอ ^0000FFท่านจะไม่สามารถลงทะเบียนใหม่ได้เป็นเวลา 1 นาที^000000 นะครับ";
 	else
-		mes "Are you ready to battle? Then apply with the recruiter next to me!";
+		mes "ท่านพร้อมสำหรับการศึกครั้งนี้หรือยังครับ? ถ้าพร้อมแล้ว ไปลงทะเบียนกับเจ้าหน้าที่ข้างๆ ข้าได้เลย!";
 	close;
 }
 
@@ -221,33 +221,33 @@ bat_room,125,121,1	script	Tierra Gorge Officer#01b	414,{
 	if (getbattleflag("feature.bgqueue"))
 		end;
 	if (checkweight(1201,1) == 0) {
-		mes "- Wait a minute !! -";
-		mes "- Currently you're carrying -";
-		mes "- too many items with you. -";
-		mes "- Please try again -";
-		mes "- after you lose some weight. -";
+		mes "- เดี๋ยวก่อน !! -";
+		mes "- ตอนนี้คุณพกไอเทม -";
+		mes "- มากเกินไป -";
+		mes "- กรุณาลองใหม่ -";
+		mes "- หลังจากจัดการน้ำหนักตัวแล้ว -";
 		close;
 	}
 	mes "[Croix Army Officer]";
-	mes "Let's show the power of the Croix Army to those stinky Guillaumes!";
+	mes "มาแสดงพลังของกองทัพครอยซ์ ให้พวกกีโยมจอมเหม็นเน่าได้เห็นกันเถอะ!";
 	next;
-	switch(select("I want to join your army!:End Conversation")) {
+	switch(select("ข้าต้องการเข้าร่วมกองทัพ!:จบการสนทนา")) {
 	case 1:
 		if ((BaseJob == Job_Novice) || (BaseJob == Job_Super_Novice)) {
 			mes "[Croix Army Officer]";
-			mes "I'm very pleased that you want to join us and fight the Guillaume Army, but I'm sorry: I can't send a rookie like you to die on the cruel battlefield.";
+			mes "ข้าดีใจนะที่เจ้าอยากจะร่วมสู้กับกองทัพกีโยมไปพร้อมกับเรา แต่ข้าขอโทษจริงๆ ข้าคงส่งหน้าใหม่อย่างเจ้าไปตายในสมรภูมิอันโหดร้ายไม่ได้หรอก";
 		}
 		else {
 			if (BaseLevel < 80) {
 				mes "[Croix Army Officer]";
-				mes "I'm very pleased that you want to join us and fight the Guillaume Army, but I'm sorry: I can't send a rookie like you to die on the cruel battlefield.";
+				mes "ข้าดีใจนะที่เจ้าอยากจะร่วมสู้กับกองทัพกีโยมไปพร้อมกับเรา แต่ข้าขอโทษจริงๆ ข้าคงส่งหน้าใหม่อย่างเจ้าไปตายในสมรภูมิอันโหดร้ายไม่ได้หรอก";
 			}
 			else {
 				set .@chk_urtime,checkquest(2069,PLAYTIME);
 				if ((.@chk_urtime == 0)|| (.@chk_urtime == 1)) {
 					mes "[Croix Army Officer]";
-					mes "You seem to have just returned from the battlefield.";
-					mes "It's too early for you to go back. Go rest, and leave the enemies to us!";
+					mes "ดูเหมือนเจ้าเพิ่งจะกลับมาจากสนามรบนี่นา";
+					mes "มันยังเร็วไปที่เจ้าจะกลับไปที่นั่น ไปพักผ่อนเถอะ แล้วปล่อยพวกศัตรูให้เป็นหน้าที่ของพวกเราเอง!";
 				}
 				else {
 					if (.@chk_urtime == 2)
@@ -255,20 +255,20 @@ bat_room,125,121,1	script	Tierra Gorge Officer#01b	414,{
 					set .@mapcount,getmapusers("bat_a02");
 					if (.@mapcount > 0) {
 						mes "[Croix Army Officer]";
-						mes "I've received a report informing me that an elite corps has been dispatched to the battlefield fighting the Guillaume already.";
-						mes "Why don't you go wait for a while? I suggest you sharpen your weapons and prepare your supplies until then.";
+						mes "ข้าได้รับรายงานมาว่าตอนนี้มีหน่วยกล้าตายถูกส่งลงไปสู้กับพวกกีโยมในสนามรบแล้ว";
+						mes "ทำไมเจ้าไม่ไปรอสักพักล่ะ? ข้าแนะนำว่าระหว่างนี้ให้ไปเตรียมอาวุธและเสบียงให้พร้อมจะดีกว่านะ";
 					}
 					else {
 						if ($@TierraBG1) {
 							mes "[Croix Army Officer]";
-							mes "An elite corps is already standing by to be dispatched to the battlefield.";
-							mes "Why don't you go wait for a while? I suggest you sharpen your weapons and prepare your supplies until then.";
+							mes "ตอนนี้มีหน่วยกล้าตายกำลังสแตนด์บายเตรียมถูกส่งไปยังสนามรบแล้ว";
+							mes "ทำไมเจ้าไม่ไปรอสักพักล่ะ? ข้าแนะนำว่าระหว่างนี้ให้ไปเตรียมอาวุธและเสบียงให้พร้อมจะดีกว่านะ";
 						}
 						else {
 							mes "[Croix Army Officer]";
-							mes "You definitely seem to be ready for battle!";
-							mes "Go show the Guillaumes what fear truly means!";
-							mes "Today, our cry of victory shall echo all over the battlefield!";
+							mes "ดูเหมือนเจ้าจะพร้อมสำหรับศึกครั้งนี้แล้วสินะ!";
+							mes "ไปแสดงให้พวกกีโยมเห็นซิว่าความกลัวที่แท้จริงมันเป็นยังไง!";
+							mes "ในวันนี้ เสียงโห่ร้องแห่งชัยชนะของเราจะดังกึกก้องไปทั่วทั้งสนามรบ!";
 							close2;
 							warp "bat_room",57,207;
 							end;
@@ -280,7 +280,7 @@ bat_room,125,121,1	script	Tierra Gorge Officer#01b	414,{
 		break;
 	case 2:
 		mes "[Croix Army Officer]";
-		mes "Today, we shall be victorious!";
+		mes "วันนี้ ชัยชนะจะต้องเป็นของพวกเรา!";
 		break;
 	}
 	close;
@@ -290,33 +290,33 @@ bat_room,140,121,1	script	Tierra Gorge Officer#02b	414,{
 	if (getbattleflag("feature.bgqueue"))
 		end;
 	if (checkweight(1201,1) == 0) {
-		mes "- Wait a minute !! -";
-		mes "- Currently you're carrying -";
-		mes "- too many items with you. -";
-		mes "- Please try again -";
-		mes "- after you lose some weight. -";
+		mes "- เดี๋ยวก่อน !! -";
+		mes "- ตอนนี้คุณพกไอเทม -";
+		mes "- มากเกินไป -";
+		mes "- กรุณาลองใหม่ -";
+		mes "- หลังจากจัดการน้ำหนักตัวแล้ว -";
 		close;
 	}
 	mes "[Croix Army Officer]";
-	mes "Let's show the power of the Croix Army to those stinky Guillaumes!";
+	mes "มาแสดงพลังของกองทัพครอยซ์ ให้พวกกีโยมจอมเหม็นเน่าได้เห็นกันเถอะ!";
 	next;
-	switch(select("I want to join your army!:End Conversation")) {
+	switch(select("ข้าต้องการเข้าร่วมกองทัพ!:จบการสนทนา")) {
 	case 1:
 		if ((BaseJob == Job_Novice) || (BaseJob == Job_Super_Novice)) {
 			mes "[Croix Army Officer]";
-			mes "I'm very pleased that you want to join us and fight the Guillaume Army, but I'm sorry: I can't send a rookie like you to die on the cruel battlefield.";
+			mes "ข้าดีใจนะที่เจ้าอยากจะร่วมสู้กับกองทัพกีโยมไปพร้อมกับเรา แต่ข้าขอโทษจริงๆ ข้าคงส่งหน้าใหม่อย่างเจ้าไปตายในสมรภูมิอันโหดร้ายไม่ได้หรอก";
 		}
 		else {
 			if (BaseLevel < 80) {
 				mes "[Croix Army Officer]";
-				mes "I'm very pleased that you want to join us and fight the Guillaume Army, but I'm sorry: I can't send a rookie like you to die on the cruel battlefield.";
+				mes "ข้าดีใจนะที่เจ้าอยากจะร่วมสู้กับกองทัพกีโยมไปพร้อมกับเรา แต่ข้าขอโทษจริงๆ ข้าคงส่งหน้าใหม่อย่างเจ้าไปตายในสมรภูมิอันโหดร้ายไม่ได้หรอก";
 			}
 			else {
 				set .@chk_urtime,checkquest(2069,PLAYTIME);
 				if (.@chk_urtime == 1) {
 					mes "[Croix Army Officer]";
-					mes "You seem to have just returned from the battlefield.";
-					mes "It's too early for you to go back. Go rest, and leave the enemies to us!";
+					mes "ดูเหมือนเจ้าเพิ่งจะกลับมาจากสนามรบนี่นา";
+					mes "มันยังเร็วไปที่เจ้าจะกลับไปที่นั่น ไปพักผ่อนเถอะ แล้วปล่อยพวกศัตรูให้เป็นหน้าที่ของพวกเราเอง!";
 				}
 				else {
 					if (.@chk_urtime == 2)
@@ -324,20 +324,20 @@ bat_room,140,121,1	script	Tierra Gorge Officer#02b	414,{
 					set .@mapcount,getmapusers("bat_a02");
 					if (.@mapcount > 0) {
 						mes "[Croix Army Officer]";
-						mes "I've received a report informing me that an elite corps has been dispatched to the battlefield fighting the Guillaume already.";
-						mes "Why don't you go wait for a while? I suggest you sharpen your weapons and prepare your supplies until then.";
+						mes "ข้าได้รับรายงานมาว่าตอนนี้มีหน่วยรบระดับหัวกะทิถูกส่งลงไปสู้กับพวกกีโยมในสนามรบแล้ว";
+						mes "ทำไมเจ้าไม่ไปรอสักพักล่ะ? ข้าแนะนำว่าระหว่างนี้ให้ไปเตรียมอาวุธและเสบียงให้พร้อมจะดีกว่านะ";
 					}
 					else {
 						if ($@TierraBG2) {
 							mes "[Croix Army Officer]";
-							mes "An elite corps is already standing by to be dispatched to the battlefield.";
-							mes "Why don't you go wait for a while? I suggest you sharpen your weapons and prepare your supplies until then.";
+							mes "ตอนนี้มีหน่วยรบระดับหัวกะทิกำลังสแตนด์บายเตรียมถูกส่งไปยังสนามรบแล้ว";
+							mes "ทำไมเจ้าไม่ไปรอสักพักล่ะ? ข้าแนะนำว่าระหว่างนี้ให้ไปเตรียมอาวุธและเสบียงให้พร้อมจะดีกว่านะ";
 						}
 						else {
 							mes "[Croix Army Officer]";
-							mes "You definitely seem to be ready for battle!";
-							mes "Go show the Guillaumes what fear truly means!";
-							mes "Today, our cry of victory shall echo all over the battlefield!";
+							mes "ดูเหมือนเจ้าจะพร้อมสำหรับศึกครั้งนี้แล้วสินะ!";
+							mes "ไปแสดงให้พวกกีโยมเห็นซิว่าความกลัวที่แท้จริงมันเป็นยังไง!";
+							mes "ในวันนี้ เสียงโห่ร้องแห่งชัยชนะของเราจะดังกึกก้องไปทั่วทั้งสนามรบ!";
 							close2;
 							warp "bat_room",114,207;
 							end;
@@ -349,7 +349,7 @@ bat_room,140,121,1	script	Tierra Gorge Officer#02b	414,{
 		break;
 	case 2:
 		mes "[Croix Army Officer]";
-		mes "Today, we shall be victorious!";
+		mes "วันนี้ ชัยชนะจะต้องเป็นของพวกเรา!";
 		break;
 	}
 	close;
