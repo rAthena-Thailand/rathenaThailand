@@ -12,19 +12,24 @@
 	.@storage_ticket = 7059;	// Cargo_Free_Ticket
 	.@storage_ticket_name$ = getitemname(.@storage_ticket);
 
-	mes "Vending Machine for Novices.";
-	mes "There are many buttons.";
+	mes "ตู้ขายของอัตโนมัติสำหรับ Novice";
+	mes "มีปุ่มกดอยู่มากมายบนตัวเครื่อง";
 	next;
-	switch( select( "Manual", "Trade " + .@storage_ticket_name$, "Trade Novice equipments" ) ) {
+	switch( select( "คำอธิบายการใช้งาน", "แลกเปลี่ยน " + .@storage_ticket_name$, "แลกเปลี่ยนอุปกรณ์ Novice" ) ) {
 	case 1:
-		mes "[Exchange " + .@storage_ticket_name$ + "]";
-		mes "4 " + .@storage_ticket_name$ + " can be exchanged into 1 Free Ticket for Warp, Airship or the Cart Service, or 1 Free Ticket for Peco Ride, 15 Novice Fly Wing, 5 Novice Butterfly Wing, 30 Novice Potion.";
+		mes "[ แลกเปลี่ยน " + .@storage_ticket_name$ + " ]";
+		mes "ใช้ " + .@storage_ticket_name$ + " 4 ใบ เพื่อแลกรับไอเทมอย่างใดอย่างหนึ่งดังนี้:";
+		mes "- บัตร Warp, เรือเหาะ หรือ รถเข็น 1 ใบ";
+		mes "- หรือ บัตรเช่า Peco Peco 1 ใบ";
+		mes "- หรือ Novice Fly Wing 15 อัน";
+		mes "- หรือ Novice Butterfly Wing 5 อัน";
+		mes "- หรือ Novice Potion 30 ขวด";
 		next;
-		mes "[Trade Novice Gears]";
-		mes "Armor, Hood, Sandals, Main Gauche and Guard for Novice from Criatura Academy can be exchanged into 4 " + .@storage_ticket_name$ + ".";
+		mes "[ แลกอุปกรณ์ Novice ]";
+		mes "เสื้อเกราะ, ผ้าคลุม, รองเท้า, Main Gauche และ Guard ของ Novice จากสถาบัน Criatura สามารถนำมาแลกเป็น " + .@storage_ticket_name$ + " ได้ 4 ใบ";
 		next;
-		mes "[Trade Novice Gears]";
-		mes "Novice Eggshell can be exchanged into Criatura Hair Coupon for changing your hairstyle.";
+		mes "[ แลกอุปกรณ์ Novice ]";
+		mes "Novice Eggshell สามารถนำมาแลกเป็น Criatura Hair Coupon สำหรับใช้เปลี่ยนทรงผมได้";
 		close;
 	case 2:
 		setarray .@exchange[0],
@@ -44,29 +49,29 @@
 		}
 		.@s = (select(.@menu$) - 1) * 2;
 		if (countitem(.@storage_ticket) < 4) {
-			mes "The number of " + .@storage_ticket_name$ + " is insufficient to proceed with the exchange.";
+			mes "จำนวน " + .@storage_ticket_name$ + " ของท่านไม่เพียงพอสำหรับการแลกเปลี่ยน";
 			close;
 		}
 		if (.@exchange[.@s+1] > 1)
 			.@amount$ = .@exchange[.@s+1] + " ";
-		mes "Exchanged 4 " + .@storage_ticket_name$ + " to " + .@amount$ + getitemname(.@exchange[.@s]);
+		mes "แลกเปลี่ยน " + .@storage_ticket_name$ + " 4 ใบ เป็น " + .@amount$ + getitemname(.@exchange[.@s]) + " เรียบร้อยแล้ว";
 		delitem .@storage_ticket,4;
 		getitem .@exchange[.@s],.@exchange[.@s+1];
 		close;
 	case 3:
-		mes "Exchange all Novice equipments into coupons.";
-		mes "Select continue to proceed.";
+		mes "ระบบจะแลกอุปกรณ์ Novice ทั้งหมดในตัวท่านเป็นคูปอง";
+		mes "กด 'ตกลง' เพื่อดำเนินการต่อ";
 		next;
-		if (select( "Continue", "Cancel." ) == 2) {
-			mes "The trade was interrupted.";
+		if (select( "ตกลง", "ยกเลิก" ) == 2) {
+			mes "การแลกเปลี่ยนถูกยกเลิก";
 			close;
 		}
-		mes "Exchanging all equipment into coupons.";
+		mes "กำลังแลกเปลี่ยนอุปกรณ์ทั้งหมดเป็นคูปอง...";
 		setarray .@list[0],2352,2510,2414,1243,2112,5055;
 		.@size = getarraysize(.@list);
 		
 		for ( .@i = 0, .@i < .@size; .@i++ ) {
-			.@count = countitem(.@list[.@i]);	// note: maybe check if equipped items are skipped
+			.@count = countitem(.@list[.@i]);
 			if (.@count < 1)
 				continue;
 			switch(.@list[.@i]) {
@@ -80,7 +85,7 @@
 				break;
 			case 5055:	// Novice_Egg_Cap
 				delitem .@list[.@i], .@count;
-				getitem 6593,.@count;	// Cryptura_Hair_Coupon
+				getitem 6593,.@count;	// Criatura_Hair_Coupon
 				break;
 			}
 		}

@@ -13,19 +13,20 @@
 //============================================================ 
 
 prt_in,211,173,3	script	Slot Move Card Sales#slo	4_F_01,{
-	mes "[Salesman]";
-	mes "Howdy.";
-	mes "I'm selling " + mesitemlink( 12786 ) + ".";
-	mes "You can ^4d4dffchange the slot position of a character using the card^000000.";
+	mes "[ พนักงานขาย ]";
+	mes "สวัสดีครับ";
+	mes "ผมกำลังจำหน่าย " + mesitemlink( 12786 ) + " อยู่ครับ";
+	mes "ท่านสามารถ ^4d4dffใช้การ์ดนี้เพื่อย้ายสลับตำแหน่งลำดับตัวละครใน ID ของท่านได้นะ^000000";
 	next;
-	mes "[Salesman]";
-	mes "I sell it in a limited quantity every week, so if you don't see anything,";
-	mes "it means all of the items are sold out, so please come back next time.";
+	mes "[ พนักงานขาย ]";
+	mes "เราวางจำหน่ายในจำนวนจำกัดต่อสัปดาห์เท่านั้น หากท่านไม่พบสินค้าในรายการ";
+	mes "นั่นหมายความว่าสินค้าถูกขายจนหมดแล้ว กรุณาแวะกลับมาใหม่ในโอกาสหน้านะครับ";
 	close2;
 	callshop "change_slot#slo";
 	end;
 
 OnMon0000:
+	// ระบบจะเติมสินค้าใหม่ทุกวันจันทร์ เวลา 00:00 น.
 	npcshopupdate "change_slot#slo",12786,0,9999;
 	end;
 }

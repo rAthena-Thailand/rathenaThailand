@@ -11,104 +11,111 @@
 
 // Dragon Breeder :: dragon
 //============================================================
-job3_rune01,88,62,5	script	Dragon Breeder	105,{
-	mes "[Dragon Breeder]";
+job3_rune01,88,62,5	script	คนเลี้ยงมังกร	105,{
+	mes "[ คนเลี้ยงมังกร ]";
 	if ((eaclass()&EAJ_THIRDMASK)==EAJ_RUNE_KNIGHT) {
-		mes "Welcome. Would you like to rent a Dragon?";
+		mes "ยินดีต้อนรับครับ ท่านสนใจจะเช่ามังกรสักตัวไหม?";
 		next;
-		switch(select("Yes:No")) {
+		switch(select("ตกลง:ไม่เป็นไร")) {
 		case 1:
-			//if (!getskilllv("RK_DRAGONTRAINING")) {
+			// หากยังไม่ได้อัปสกิลขี่สัตว์
+			//if (!getskilllv("RK_DRAGONTRAINING")) 
 			if (!getskilllv("KN_RIDING")) {
-				mes "[Dragon Breeder]";
-				mes "Please learn how to ride a Dragon first.";
+				mes "[ คนเลี้ยงมังกร ]";
+				mes "กรุณาเรียนรู้วิธีการขี่มังกร (Dragon Training) มาก่อนนะครับ";
 				close;
 			}
 			else if (checkdragon()) {
-				mes "[Dragon Breeder]";
-				mes "You already have a Dragon.";
+				mes "[ คนเลี้ยงมังกร ]";
+				mes "ท่านมีมังกรอยู่กับตัวแล้วนี่ครับ";
 				close;
 			}
 			else if (ismounting()) {
-				mes "[Dragon Breeder]";
-				mes "Please remove your cash mount.";
+				mes "[ คนเลี้ยงมังกร ]";
+				mes "กรุณาลงจากสัตว์ขี่จาก Cash Shop ก่อนนะครับ";
 				close;
 			}
 			setdragon;
 			close;
 		case 2:
-			mes "[Dragon Breeder]";
-			mes "I see. Then have a great day.";
+			mes "[ คนเลี้ยงมังกร ]";
+			mes "เข้าใจแล้วครับ ขอให้เป็นวันที่ดีนะ";
 			close;
 		}
 	}
-	mes "What are you doing here?";
-	mes "Only Rune Knights can rent a Dragon.";
+	mes "ท่านมาทำอะไรที่นี่เหรอ?";
+	mes "เฉพาะ Rune Knight เท่านั้นที่มีสิทธิ์เช่ามังกรได้นะ";
 	close;
 }
 
 // Dragon/Gryphon Master :: dragon
 //============================================================
-prontera,130,213,5	script	Riding Creature Master	105,{
-	mes "[Riding Creature Master]";
+prontera,130,213,5	script	ผู้ดูแลสัตว์พาหนะ	105,{
+	mes "[ ผู้ดูแลสัตว์พาหนะ ]";
+	
+	// ส่วนสำหรับ Rune Knight
 	if ((eaclass()&EAJ_THIRDMASK)==EAJ_RUNE_KNIGHT) {
-		mes "Welcome. Would you like to rent a Dragon?";
+		mes "ยินดีต้อนรับครับ ท่านสนใจจะเช่ามังกรสักตัวไหม?";
 		next;
-		switch(select("Yes:No")) {
+		switch(select("ตกลง:ไม่เป็นไร")) {
 		case 1:
 			//if (!getskilllv("RK_DRAGONTRAINING")) {
 			if (!getskilllv("KN_RIDING")) {
-				mes "[Riding Creature Master]";
-				mes "Please learn how to ride a Dragon first.";
+				mes "[ ผู้ดูแลสัตว์พาหนะ ]";
+				mes "กรุณาเรียนรู้วิธีการขี่มังกรมาก่อนนะครับ";
 				close;
 			}
 			else if (checkdragon()) {
-				mes "[Riding Creature Master]";
-				mes "You already have a Dragon.";
+				mes "[ ผู้ดูแลสัตว์พาหนะ ]";
+				mes "ท่านมีมังกรอยู่กับตัวแล้วนี่ครับ";
 				close;
 			}
 			else if (ismounting()) {
-				mes "[Riding Creature Master]";
-				mes "Please remove your cash mount.";
+				mes "[ ผู้ดูแลสัตว์พาหนะ ]";
+				mes "กรุณาลงจากสัตว์ขี่จาก Cash Shop ก่อนนะครับ";
 				close;
 			}
 			setdragon;
 			close;
 		case 2:
-			mes "[Riding Creature Master]";
-			mes "I see. Then have a great day.";
+			mes "[ ผู้ดูแลสัตว์พาหนะ ]";
+			mes "เข้าใจแล้วครับ ขอให้เป็นวันที่ดีนะ";
 			close;
 		}
 	}
+	
+	// ส่วนสำหรับ Royal Guard
 	if ((eaclass()&EAJ_THIRDMASK)==EAJ_ROYAL_GUARD) {
-		mes "Welcome. Would you like to rent a Gryphon?";
+		mes "ยินดีต้อนรับครับ ท่านสนใจจะเช่ากริฟฟอน (Gryphon) สักตัวไหม?";
 		next;
-		switch(select("Yes:No")) {
+		switch(select("ตกลง:ไม่เป็นไร")) {
 		case 1:
 			if (!getskilllv("KN_RIDING")) {
-				mes "[Riding Creature Master]";
-				mes "Please learn how to ride a Gryphon first.";
+				mes "[ ผู้ดูแลสัตว์พาหนะ ]";
+				mes "กรุณาเรียนรู้วิธีการขี่กริฟฟอนมาก่อนนะครับ";
 				close;
 			}
 			else if (checkriding()) {
-				mes "[Riding Creature Master]";
-				mes "You already have a Gryphon.";
+				mes "[ ผู้ดูแลสัตว์พาหนะ ]";
+				mes "ท่านมีกริฟฟอนอยู่กับตัวแล้วนี่ครับ";
 				close;
 			}
 			else if (ismounting()) {
-				mes "[Riding Creature Master]";
-				mes "Please remove your cash mount.";
+				mes "[ ผู้ดูแลสัตว์พาหนะ ]";
+				mes "กรุณาลงจากสัตว์ขี่จาก Cash Shop ก่อนนะครับ";
 				close;
 			}
 			setriding;
 			close;
 		case 2:
-			mes "[Riding Creature Master]";
-			mes "I see. Then have a great day.";
+			mes "[ ผู้ดูแลสัตว์พาหนะ ]";
+			mes "เข้าใจแล้วครับ ขอให้เป็นวันที่ดีนะ";
 			close;
 		}
 	}
-	mes "I'm here to provide Rune Knights and Royal Guards with riding creatures.";
+	
+	// ข้อความสำหรับอาชีพอื่น
+	mes "ข้ามีหน้าที่ดูแลและจัดหาพาหนะให้กับเหล่า Rune Knight และ Royal Guard เท่านั้นครับ";
 	close;
 }
 geffen,100,55,3	duplicate(Riding Creature Master)	Riding Creature Master#2	105
@@ -119,29 +126,29 @@ rachel,106,130,5	duplicate(Riding Creature Master)	Riding Creature Master#6	105
 
 // Peco removing NPC :: dragon
 //============================================================
-prontera,125,208,5	script	Peco Peco Remover	105,{
-	mes "[Soldier]";
-	mes "If you're unable to dismount from a Peco Peco";
-	mes "for some unknown reason,";
-	mes "please feel free to use my services.";
+prontera,125,208,5	script	ทหารปลดหน่วยเพคอเพคอ	105,{
+	mes "[ ทหาร ]";
+	mes "หากท่านประสบปัญหาไม่สามารถลงจาก Peco Peco ได้";
+	mes "ด้วยเหตุผลทางเทคนิคบางอย่าง";
+	mes "โปรดเรียกใช้บริการของข้าได้เลยครับ";
 	if (checkriding()) {
 		next;
-		mes "[Soldier]";
-		mes "You're riding a Peco Peco.";
-		mes "Would you like to dismount?";
+		mes "[ ทหาร ]";
+		mes "ตอนนี้ท่านกำลังขี่ Peco Peco อยู่สินะ";
+		mes "ต้องการจะลงจากสัตว์ขี่เลยไหมครับ?";
 		next;
-		switch(select("Yes:No")) {
+		switch(select("ใช่:ไม่เป็นไร")) {
 		case 1:
 			setriding 0;
-			mes "[Soldier]";
-			mes "Say, how does it feel to";
-			mes "step on the ground on your own";
-			mes "feet again?";
+			mes "[ ทหาร ]";
+			mes "เป็นอย่างไรบ้างครับ?";
+			mes "ความรู้สึกที่ได้กลับมาใช้เท้าของตัวเอง";
+			mes "เหยียบลงบนพื้นดินอีกครั้ง?";
 			close;
 		case 2:
-			mes "[Soldier]";
-			mes "I see. Please feel free to ask me";
-			mes "if you change your mind.";
+			mes "[ ทหาร ]";
+			mes "เข้าใจแล้วครับ หากท่านเปลี่ยนใจ";
+			mes "สามารถกลับมาหาข้าได้เสมอนะ";
 			close;
 		}
 	}
@@ -151,115 +158,116 @@ prontera,125,208,5	script	Peco Peco Remover	105,{
 // Mado Gear Renter :: madogear
 //============================================================
 -	script	::mgm	-1,{
-	mes "[Mado Gear Armorer]";
+	mes "[ ช่างติดตั้งมาโดเกียร์ ]";
 	if ((eaclass()&EAJ_THIRDMASK)==EAJ_MECHANIC) {
-		mes "Welcome, Mechanic.";
-		mes "Would you like to rent a Pushcart or";
-		mes "ride a Mado Gear?";
+		mes "ยินดีต้อนรับครับท่าน Mechanic";
+		mes "ต้องการจะเช่ารถเข็น หรือ";
+		mes "ขับหุ่นยนต์มาโดเกียร์ดีครับ?";
 		next;
-		switch(select("Rent a Pushcart:Ride a Mado Gear:Buy Emergency Mado Gear:Upgrade Cooling Device:Cancel")) {
+		switch(select("เช่ารถเข็น:ขับหุ่นมาโดเกียร์:ซื้อชุดมาโดเกียร์ฉุกเฉิน:อัปเกรดเครื่องระบายความร้อน:ยกเลิก")) {
 		case 1:
 			if (checkcart()) {
-				mes "[Mado Gear Armorer]";
-				mes "I'm sorry, but you already";
-				mes "have a Pushcart.";
+				mes "[ ช่างติดตั้งมาโดเกียร์ ]";
+				mes "ขออภัยด้วยครับ ดูเหมือนว่าท่านจะมี";
+				mes "รถเข็นอยู่แล้วนะครับ";
 				close;
 			}
 			setcart;
-			mes "[Mado Gear Armorer]";
-			mes "There you go!";
+			mes "[ ช่างติดตั้งมาโดเกียร์ ]";
+			mes "เรียบร้อยครับ นี่คือรถเข็นของท่าน!";
 			close;
 		case 2:
 			if (checkmadogear()) {
-				mes "[Mado Gear Armorer]";
-				mes "I'm sorry, but you're already";
-				mes "riding a Mado Gear.";
+				mes "[ ช่างติดตั้งมาโดเกียร์ ]";
+				mes "ขออภัยครับ ดูเหมือนว่าท่านจะ";
+				mes "ขับหุ่นมาโดเกียร์อยู่แล้วนะครับ";
 				close;
 			}
 			else if (!getskilllv("NC_MADOLICENCE")) {
-				mes "[Mado Gear Armorer]";
-				mes "Please learn the skill to get the Mado Gear License first.";
+				mes "[ ช่างติดตั้งมาโดเกียร์ ]";
+				mes "กรุณาเรียนรู้ทักษะเพื่อรับใบอนุญาตขับมาโดเกียร์ (Mado Gear License) ก่อนนะครับ";
 				close;
 			}
 			else if(ismounting()) {
-				mes "[Mado Gear Armorer]";
-				mes "Please remove your cash mount.";
+				mes "[ ช่างติดตั้งมาโดเกียร์ ]";
+				mes "กรุณาลงจากสัตว์ขี่จาก Cash Shop ก่อนนะครับ";
 				close;
 			}
 			setmadogear;
-			mes "[Mado Gear Armorer]";
-			mes "Have fun, and please come again!";
+			mes "[ ช่างติดตั้งมาโดเกียร์ ]";
+			mes "ขอให้สนุกนะครับ แล้วแวะมาใช้บริการใหม่นะ!";
 			close;
 		case 3:
-			mes "[Mado Gear Armorer]";
-			mes "Emergency Mado Gear is really useful for emergency situations and it is sold at 1,000,000 Zeny.";
+			mes "[ ช่างติดตั้งมาโดเกียร์ ]";
+			mes "ชุดมาโดเกียร์ฉุกเฉิน (Emergency Mado Gear) นั้นมีประโยชน์มากในสถานการณ์คับขัน โดยผมขายอยู่ที่ราคา 1,000,000 Zeny ครับ";
 			next;
-			if (select("Purchase:Cancel") == 2) {
-				mes "[Mado Gear Armorer]";
-				mes "I see. Please feel free to ask me";
-				mes "if you change your mind.";
+			if (select("ซื้อ:ยกเลิก") == 2) {
+				mes "[ ช่างติดตั้งมาโดเกียร์ ]";
+				mes "รับทราบครับ หากเปลี่ยนใจเมื่อไหร่";
+				mes "ก็แวะมาบอกผมได้ตลอดเวลานะ";
 				close;
 			}
 			if (countitem(23277) > 0) {
-				mes "[Mado Gear Armorer]";
-				mes "I'm sorry, but you already have an Emergency Mado Gear.";
+				mes "[ ช่างติดตั้งมาโดเกียร์ ]";
+				mes "ขออภัยครับ ดูเหมือนท่านจะมีชุดมาโดเกียร์ฉุกเฉินอยู่กับตัวแล้วนะครับ";
 				close;
 			}
 			if (Zeny < 1000000) {
-				mes "[Mado Gear Armorer]";
-				mes "I'm sorry, but you don't have enough Zeny to purchase the Emergency Mado Gear.";
+				mes "[ ช่างติดตั้งมาโดเกียร์ ]";
+				mes "ขออภัยครับ ท่านมีเงิน Zeny ไม่เพียงพอสำหรับซื้อชุดมาโดเกียร์ฉุกเฉินครับ";
 				close;
 			}
 			Zeny -= 1000000;
 			getitem 23277,1; //Mado_Box
-			mes "[Mado Gear Armorer]";
-			mes "There you go!";
+			mes "[ ช่างติดตั้งมาโดเกียร์ ]";
+			mes "เรียบร้อยครับ นี่คือของของท่าน!";
 			close;
 		case 4:
-			mes "[Mado Gear Armorer]";
-			mes "Which device do you want to upgrade?";
+			mes "[ ช่างติดตั้งมาโดเกียร์ ]";
+			mes "ท่านต้องการจะอัปเกรดอุปกรณ์ชิ้นไหนดีครับ?";
 			next;
 			if (select("Cooling Device:High Quality Cooler") == 1) {
-				mes "[Mado Gear Armorer]";
-				mes "Upgrading Cooling Device to High Quality Cooler needs 1 Cooling Device and 2,000,000 Zeny.";
+				mes "[ ช่างติดตั้งมาโดเกียร์ ]";
+				mes "การอัปเกรด Cooling Device เป็น High Quality Cooler ต้องใช้ 1 Cooling Device และเงิน 2,000,000 Zeny ครับ";
 				next;
 				.@itemid = 2804;
 				.@cost = 2000000;
 			} else {
-				mes "[Mado Gear Armorer]";
-				mes "Upgrading High Quality Cooler to Special Cooler needs 1 High Quality Cooler and 4,000,000 Zeny.";
+				mes "[ ช่างติดตั้งมาโดเกียร์ ]";
+				mes "การอัปเกรด High Quality Cooler เป็น Special Cooler ต้องใช้ 1 High Quality Cooler และเงิน 4,000,000 Zeny ครับ";
 				next;
 				.@itemid = 2809;
 				.@cost = 4000000;
 			}
-			if (select("Upgrade:Cancel") == 2) {
-				mes "[Mado Gear Armorer]";
-				mes "I see. Please feel free to ask me";
-				mes "if you change your mind.";
+			if (select("อัปเกรด:ยกเลิก") == 2) {
+				mes "[ ช่างติดตั้งมาโดเกียร์ ]";
+				mes "รับทราบครับ หากเปลี่ยนใจเมื่อไหร่";
+				mes "ก็แวะมาบอกผมได้ตลอดเวลานะ";
 				close;
 			}
 			if (!countitem(.@itemid)) {
-				mes "[Mado Gear Armorer]";
-				mes "I'm sorry, but you don't have the " + getitemname(.@itemid) + ".";
+				mes "[ ช่างติดตั้งมาโดเกียร์ ]";
+				mes "ขออภัยครับ ท่านไม่มี " + getitemname(.@itemid) + " สำหรับใช้ในการอัปเกรดครับ";
 				close;
 			}
 			if (Zeny < .@cost) {
-				mes "[Mado Gear Armorer]";
-				mes "I'm sorry, but you don't have enough Zeny to upgrade the device.";
+				mes "[ ช่างติดตั้งมาโดเกียร์ ]";
+				mes "ขออภัยครับ ท่านมีเงิน Zeny ไม่เพียงพอสำหรับค่าธรรมเนียมการอัปเกรดครับ";
 				close;
 			}
 			Zeny -= .@cost;
 			delitem .@itemid,1;
-			getitem (.@itemid == 2804 ? 2809 : 2810),1; //High_Quality_Cooler,Special_Cooler
-			mes "[Mado Gear Armorer]";
-			mes "Here you are! Your very own " + getitemname(.@itemid) + ".";
+			// รับไอเทมใหม่ตามเงื่อนไข (High Quality Cooler ID 2809 หรือ Special Cooler ID 2810)
+			getitem (.@itemid == 2804 ? 2809 : 2810),1; 
+			mes "[ ช่างติดตั้งมาโดเกียร์ ]";
+			mes "เรียบร้อยครับ! นี่คือ " + getitemname(.@itemid == 2804 ? 2809 : 2810) + " ของท่านครับ";
 			close;
 		case 5:
 			close;
 		}
 	}
-	mes "How may I help you?";
-	mes "Mado Gears are only available for Mechanics.";
+	mes "มีอะไรให้ช่วยไหมครับ?";
+	mes "หุ่นมาโดเกียร์นั้นมีไว้สำหรับอาชีพ Mechanic เท่านั้นนะครับ";
 	close;
 }
 prontera,163,178,3	duplicate(mgm)	Mado Gear Armorer#prt	105
