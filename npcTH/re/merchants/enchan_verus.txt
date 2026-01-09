@@ -11,47 +11,47 @@
 // Charleston
 verus04,69,108,5	script	Mass Charleston#1	4_F_CHARLESTON01,{
 	if (!checkweight(1201,1) || (MaxWeight - Weight) < 1000) {
-		mes "^ff0000You have carried too many items, please reduce it and come back later.^000000";
+		mes "^ff0000สัมภาระของเจ้าหนักเกินไป โปรดจัดการไอเทมในตัวแล้วค่อยกลับมาใหม่^000000";
 		close;
 	}
 	cutin "dalle01.bmp",2;
 	if (countitem(6752) < 10) {
 		if (isbegin_quest(13186) == 0) {
 			mes "[Mass Charleston]";
-			mes "I don't know where you can find Charleston Components,";
+			mes "ข้าไม่ทราบว่าเจ้าจะไปหา Charleston Components ได้จากที่ไหน...";
 			next;
 			mes "[Mass Charleston]";
-			mes "but if you have 10 or more, then I can exchange them with factory products.";
+			mes "แต่ถ้าเจ้าหามาได้ 10 ชิ้นหรือมากกว่านั้น ข้าสามารถนำมันไปแลกเปลี่ยนเป็นผลิตภัณฑ์จากโรงงานให้เจ้าได้";
 			close3;
 		}
 		mes "[Mass Charleston]";
-		mes "A series of trials and errors was made before the mass version of Charleston was developed.";
+		mes "ก่อนที่ Charleston รุ่นผลิตจำนวนมาก (Mass Version) จะถูกพัฒนาขึ้นมาได้นั้น ต้องผ่านการลองผิดลองถูกมานับครั้งไม่ถ้วน";
 		next;
 		mes "[Mass Charleston]";
-		mes "I don't mean to depreciate myself, but mass versions are mass versions; they're cost-effective and practical, but never as good as the high-end versions.";
+		mes "ข้าไม่ได้ตั้งใจจะดูถูกตัวเองหรอกนะ แต่รุ่นที่ผลิตจำนวนมากก็คือรุ่นที่เน้นความคุ้มค่าและใช้งานได้จริง แต่มันไม่มีทางเทียบชั้นกับรุ่นระดับไฮเอนด์ได้หรอก";
 		next;
 		mes "[Mass Charleston]";
-		mes "Some Charlestons, especially in the development stage, are equipped with more advanced features. To study them, I need more components.";
+		mes "แต่ Charleston บางตัว โดยเฉพาะในช่วงขั้นตอนการพัฒนา จะถูกติดตั้งฟีเจอร์ที่ล้ำสมัยกว่าปกติ ซึ่งข้าจำเป็นต้องใช้ชิ้นส่วนจำนวนมากเพื่อศึกษาพวกมัน";
 		next;
 		mes "[Mass Charleston]";
-		mes "If you have 10 or more Charleston Components, then I can exchange them with factory products.";
+		mes "หากเจ้ามี Charleston Components 10 ชิ้นขึ้นไป ข้าสามารถนำมาแลกเปลี่ยนเป็นอุปกรณ์จากโรงงานให้เจ้าได้นะ";
 		close3;
 	}
 	mes "[Mass Charleston]";
-	mes "You got some nice parts on you! Would you like to exchange it with the goods produced in the factory?";
+	mes "เจ้ามีชิ้นส่วนดีๆ อยู่กับตัวนี่นา! สนใจจะแลกเปลี่ยนกับสินค้าที่ผลิตจากโรงงานของเราไหม?";
 	next;
 	mes "[Mass Charleston]";
-	mes "Is a collection of Charleston advantages in a commodity, but can not be sold separately, IF bring good parts can be exchanged for you.";
+	mes "มันคือการรวบรวมข้อดีของ Charleston มาไว้ในสินค้าชิ้นเดียว ซึ่งปกติจะไม่มีวางจำหน่ายทั่วไป แต่ข้าจะยอมแลกให้ถ้าเจ้ามีชิ้นส่วนที่ใช้งานได้มามอบให้ข้า";
 	next;
-	.@s = select( "Quit.", "Exchange Reinforced parts", "Exchange Supplementary device" ) - 2;
+	.@s = select( "ยกเลิก", "แลกเปลี่ยน Reinforced parts (ส่วนเสริมพลัง)", "แลกเปลี่ยน Supplementary device (อุปกรณ์เสริม)" ) - 2;
 	if (.@s == -1) {
 		mes "[Mass Charleston]";
-		mes "I'll see you next time!";
+		mes "ไว้เจอกันใหม่โอกาสหน้า!";
 		close3;
 	}
 	setarray .@job_aft$[0], "Reinforced parts", "Supplementary device";
 	mes "[Mass Charleston]";
-	mes "Which part of " + .@job_aft$[.@s] + " do you want to select?";
+	mes "เจ้าต้องการเลือกชิ้นส่วนไหนของ " + .@job_aft$[.@s] + " ล่ะ?";
 	next;
 	switch(.@s) {
 	case 0:
@@ -68,79 +68,79 @@ verus04,69,108,5	script	Mass Charleston#1	4_F_CHARLESTON01,{
 		break;
 	default:
 		mes "[Mass Charleston]";
-		mes "I'll see you next time!";
+		mes "ไว้เจอกันใหม่โอกาสหน้า!";
 		close;
 	}
-	// custom translation from here
-	.@index = select( "Quit.", getitemname(.@item[0]) + " (garment)", getitemname(.@item[1]) + " (Shoes)", getitemname(.@item[2]) + " (Accessory)" ) - 2;
+	
+	.@index = select( "ยกเลิก", getitemname(.@item[0]) + " (ผ้าคลุม)", getitemname(.@item[1]) + " (รองเท้า)", getitemname(.@item[2]) + " (เครื่องประดับ)" ) - 2;
 	if (.@index == -1) {
 		mes "[Mass Charleston]";
-		mes "I'll see you next time!";
+		mes "ไว้เจอกันใหม่โอกาสหน้า!";
 		close3;
 	}
 	if (countitem(6752) < 10) {
 		mes "[Mass Charleston]";
-		mes "If you find enough Charleston parts, can you come to me again?";
+		mes "ถ้าเจ้าหาชิ้นส่วน Charleston ได้ครบเมื่อไหร่ ค่อยกลับมาหาข้าอีกครั้งนะ?";
 		close3;
 	}
 	delitem 6752,10;	// Charleston_Parts
 	getitem .@item[.@index],1;
 	mes "[Mass Charleston]";
-	mes "Exchanged 10 " + getitemname(6752) + " for " + .@job_aft$[.@s] + ". If you find more part, come to me again!";
+	mes "ทำการแลกเปลี่ยน 10 " + getitemname(6752) + " เป็น " + .@job_aft$[.@s] + " เรียบร้อยแล้ว ถ้าเจ้าเจอชิ้นส่วนอีก ก็แวะมาหาข้าได้เสมอ!";
 	close3;
 }
 
 verus04,71,106,5	script	Mass Charleston#2	4_F_CHARLESTON01,{
 	disable_items;
 	if (!checkweight(1201,1)) {
-		mes "You have too many types of items. Lighten your inventory first.";
+		mes "ช่องเก็บของเจ้ามีไอเทมหลากหลายประเภทเกินไป จัดการช่องว่างในตัวก่อนนะ";
 		close;
 	}
 	if ((MaxWeight - Weight) < 10000) {
-		mes "The items in your inventory are weighing you down. Lighten your weight first.";
+		mes "น้ำหนักสัมภาระของเจ้ามากเกินไปแล้ว ไปลดน้ำหนักลงก่อนเถอะ";
 		close;
 	}
 	cutin "dalle01.bmp",2;
 	mes "[Mass Charleston]";
-	mes "I can upgrade the Charleston Factory products. Let me know if you're interested.";
+	mes "ข้าสามารถอัปเกรดผลิตภัณฑ์จากโรงงาน Charleston ได้นะ บอกข้าได้เลยถ้าเจ้าสนใจ";
 	next;
-	switch( select( "More information.", "Add abilities to your product.", "Reset product." ) ) {
+	switch( select( "ขอข้อมูลเพิ่มเติม", "เพิ่มความสามารถให้อุปกรณ์ (Enchant)", "รีเซ็ตออฟชั่นอุปกรณ์" ) ) {
 	case 1:
 		mes "[Mass Charleston]";
-		mes "Each Upgrade/resetting attempt costs 100,000 zeny and 1 Charleston Component.";
+		mes "การพยายามอัปเกรดหรือรีเซ็ตในแต่ละครั้ง จะใช้ 100,000 Zeny และ Charleston Component 1 ชิ้น";
 		next;
 		mes "[Mass Charleston]";
-		mes "I also provide a wider selection of Upgrade options for Charleston Equipment at ^ff0000+9^000000 or above.";
+		mes "นอกจากนี้ ข้ายังมีตัวเลือกการอัปเกรดที่หลากหลายขึ้น สำหรับอุปกรณ์ Charleston ที่มีระดับการตีบวกตั้งแต่ ^ff0000+9^000000 ขึ้นไป";
 		next;
 		mes "[Mass Charleston]";
-		mes "Rest assured, my Upgrade technology does not involve accidental damage on the item's Upgrade level or equipped cards.";
+		mes "วางใจได้ เทคโนโลยีอัปเกรดของข้าจะไม่ส่งผลกระทบต่อระดับการตีบวกเดิมหรือการ์ดที่ติดตั้งไว้แน่นอน";
 		close3;
 	case 2:
 		.@type_action = 1;
-		.@string$ = "Upgrading";
+		.@string$ = "การอัปเกรด";
 		break;
 	case 3:
 		.@type_action = 2;
-		.@string$ = "Resetting";
+		.@string$ = "การรีเซ็ต";
 		break;
 	}
 	if (Zeny < 100000 || countitem(6752) < 1) {
 		mes "[Mass Charleston]";
-		mes "" + .@string$ + " a Charleston product costs 1 Charleston Component and 100,000 zeny. Please know that all the expenses go into " + strtolower(.@string$) + " your product.";
+		mes "" + .@string$ + " ผลิตภัณฑ์ Charleston ต้องใช้ 1 Charleston Component และเงิน 100,000 Zeny โปรดทราบว่าค่าใช้จ่ายทั้งหมดจะถูกใช้ไปในกระบวนการ" + .@string$ + " อุปกรณ์ของเจ้า";
 		close3;
 	}
 	mes "[Mass Charleston]";
-	mes "Please make sure you're equipped with the Equipment you want to upgrade.";
+	mes "โปรดตรวจสอบให้แน่ใจว่าเจ้าได้สวมใส่อุปกรณ์ที่ต้องการจะอัปเกรดไว้แล้ว";
 	next;
-	.@s = select( "Let me go equip it.", "Footgear", "Garment", "Clothes", "Accessory" ) - 2;
+	.@s = select( "ขอตัวไปสวมใส่ก่อนนะ", "รองเท้า (Footgear)", "ผ้าคลุม (Garment)", "เสื้อชุดเกราะ (Clothes)", "เครื่องประดับ (Accessory)" ) - 2;
 	if (.@s == -1) {
 		mes "[Mass Charleston]";
-		mes "Sure, please come back after you do.";
+		mes "ได้เลย กลับมาหาข้าหลังจากเตรียมตัวเสร็จแล้วนะ";
 		close3;
 	}
 	if (Zeny < 100000 || countitem(6752) < 1) {
 		mes "[Mass Charleston]";
-		mes "Things needed for commodity upgrades seem inadequate!";
+		mes "วัตถุดิบที่จำเป็นสำหรับการอัปเกรดดูเหมือนจะไม่พอนะ!";
 		close3;
 	}
 	setarray .@eq_num[0], EQI_SHOES, EQI_GARMENT, EQI_ARMOR, EQI_ACC_R;
@@ -154,74 +154,50 @@ verus04,71,106,5	script	Mass Charleston#2	4_F_CHARLESTON01,{
 	switch(.@item_id) {
 	case -1:
 		mes "[Mass Charleston]";
-		mes "Because it is a customized upgrade be sure to wear equipment.";
+		mes "เนื่องจากเป็นการอัปเกรดแบบเฉพาะตัว โปรดสวมใส่อุปกรณ์ชิ้นนั้นด้วย";
 		close3;
 	case 15111:	// Upgrade_Part_Plate
-		.@en_type = 3;
-		.@en_type_9 = 1;
-		.@max_slot = 1;
-		break;
+		.@en_type = 3; .@en_type_9 = 1; .@max_slot = 1; break;
 	case 20733:	// Upgrade_Part_Engine
-		.@en_type = 4;
-		.@en_type_9 = 5;
-		.@max_slot = 1;
-		break;
+		.@en_type = 4; .@en_type_9 = 5; .@max_slot = 1; break;
 	case 22044:	// Upgrade_Part_Booster
-		.@en_type = 6;
-		.@en_type_9 = 7;
-		.@max_slot = 1;
-		break;
+		.@en_type = 6; .@en_type_9 = 7; .@max_slot = 1; break;
 	case 2996:	// Upgrade_Part_Gun_Barrel
-		.@en_type = 8;
-		.@en_type_9 = 8;
-		.@max_slot = 2;
-		break;
+		.@en_type = 8; .@en_type_9 = 8; .@max_slot = 2; break;
 	case 15110:	// Supplement_Part_Str
-		.@en_type = 3;
-		.@en_type_9 = 2;
-		.@max_slot = 1;
-		break;
+		.@en_type = 3; .@en_type_9 = 2; .@max_slot = 1; break;
 	case 20732:	// Supplement_Part_Con
-		.@en_type = 4;
-		.@en_type_9 = 5;
-		.@max_slot = 1;
-		break;
+		.@en_type = 4; .@en_type_9 = 5; .@max_slot = 1; break;
 	case 22043:	// Supplement_Part_Agi
-		.@en_type = 6;
-		.@en_type_9 = 7;
-		.@max_slot = 1;
-		break;
+		.@en_type = 6; .@en_type_9 = 7; .@max_slot = 1; break;
 	case 2995:	// Supplement_Part_Dex
-		.@en_type = 8;
-		.@en_type_9 = 8;
-		.@max_slot = 2;
-		break;
+		.@en_type = 8; .@en_type_9 = 8; .@max_slot = 2; break;
 	default:
 		mes "[Mass Charleston]";
 		mes "^990099" + getequipname(.@part) + "^000000??";
-		mes "I'm not interested in this Equipment.";
+		mes "ข้าไม่สนใจอุปกรณ์ชิ้นนี้น่ะ";
 		close3;
 	}
 
 	switch(.@type_action) {
-	case 1:	// Add abilities
+	case 1:	// เพิ่มความสามารถ
 		if (.@refine >= 9) {
 			setarray .@menu_en_type$[1],
-				"Attack enhancement",
-				"Defense enhancement",
-				"Acceleration enhancements",
-				"Garment upgrade",
-				"Advanced Garment upgrade",
-				"Shoes upgrade",
-				"Advanced Shoes upgrade",
-				"Accessory upgrade";
+				"เน้นพลังโจมตี (Attack enhancement)",
+				"เน้นพลังป้องกัน (Defense enhancement)",
+				"เน้นความเร็ว (Acceleration enhancements)",
+				"อัปเกรดผ้าคลุม (Garment upgrade)",
+				"อัปเกรดผ้าคลุมขั้นสูง (Advanced Garment upgrade)",
+				"อัปเกรดรองเท้า (Shoes upgrade)",
+				"อัปเกรดรองเท้าขั้นสูง (Advanced Shoes upgrade)",
+				"อัปเกรดเครื่องประดับ (Accessory upgrade)";
 			if (.@menu_en_type$[.@en_type] == "" || .@menu_en_type$[.@en_type_9] == "") {
 				mes "[Mass Charleston]";
-				mes "Something's not right!";
+				mes "มีบางอย่างผิดปกติ!";
 				close3;
 			}
 			mes "[Mass Charleston]";
-			mes "This is a considerable level of enhanced equipment, this type can give enhanced expansion performance, choose from the following series of desirable to strengthen it!";
+			mes "นี่เป็นอุปกรณ์ที่ได้รับการขัดเกลามาอย่างดีเยี่ยม รุ่นนี้สามารถดึงประสิทธิภาพเสริมออกมาได้มากขึ้น โปรดเลือกสายที่เจ้าต้องการจะเสริมพลัง!";
 			next;
 			if (select( .@menu_en_type$[.@en_type], .@menu_en_type$[.@en_type_9] ) == 2)
 				.@en_type = .@en_type_9;
@@ -229,36 +205,36 @@ verus04,71,106,5	script	Mass Charleston#2	4_F_CHARLESTON01,{
 		if (.@card[3] < 1 && .@max_slot < 4) {
 			.@slot = 4;
 			mes "[Mass Charleston]";
-			mes "I'll be Upgrading the first ability. The existing Upgrade level and cards will not be damaged. Do you want to continue?";
+			mes "ข้าจะทำการอัปเกรดความสามารถแรกให้ ระดับการตีบวกเดิมและการ์ดจะไม่ได้รับความเสียหาย ยืนยันที่จะทำต่อไหม?";
 			next;
-			if (select( "I'll come back later.", "Continue." ) == 1) {
+			if (select( "เอาไว้คราวหน้าละกัน", "ตกลง ทำต่อเลย" ) == 1) {
 				mes "[Mass Charleston]";
-				mes "No problem. Come back if you change your mind.";
+				mes "ไม่มีปัญหา กลับมาหาข้าเมื่อเจ้าเปลี่ยนใจนะ";
 				close3;
 			}
 		}
 		else if (.@card[2] < 1 && .@max_slot < 3) {
 			.@slot = 3;
 			mes "[Mass Charleston]";
-			mes "I'll be Upgrading the second ability. The existing Upgrade level and cards will not be damaged.";
+			mes "ข้าจะทำการอัปเกรดความสามารถที่สองให้ ระดับการตีบวกเดิมและการ์ดจะไม่ได้รับความเสียหาย";
 			next;
 			mes "[Mass Charleston]";
-			mes "Though there is a slight chance of failure, in which case the existing Upgrade level will be reset. What would you like to do?";
+			mes "แต่ครั้งนี้มีความเสี่ยงเล็กน้อย หากล้มเหลว ออฟชั่นที่มีอยู่เดิมจะถูกรีเซ็ต เจ้าต้องการจะดำเนินการต่อไหม?";
 			next;
-			if (select( "I'll come back later.", "Continue." ) == 1) {
+			if (select( "เอาไว้คราวหน้าละกัน", "ตกลง ทำต่อเลย" ) == 1) {
 				mes "[Mass Charleston]";
-				mes "No problem. Come back if you change your mind.";
+				mes "ไม่มีปัญหา กลับมาหาข้าเมื่อเจ้าเปลี่ยนใจนะ";
 				close3;
 			}
 		}
 		else if (.@card[1] < 1 && .@max_slot < 2) {
 			.@slot = 2;
 			mes "[Mass Charleston]";
-			mes "I'll be Upgrading the 3rd ability. This highest Upgrade stage incurs a  chance of ^990000destroying the Equipment or resetting its existing Upgrade level.^000000 Do you want to continue?";
+			mes "ข้าจะทำการอัปเกรดความสามารถที่ 3 ให้ นี่เป็นขั้นสูงสุดซึ่งมีความเสี่ยงที่ ^990000อุปกรณ์อาจถูกทำลาย หรือออฟชั่นเดิมจะถูกรีเซ็ต^000000 ยืนยันที่จะทำต่อไหม?";
 			next;
-			if (select( "I'll come back later.", "Continue." ) == 1) {
+			if (select( "เอาไว้คราวหน้าละกัน", "ตกลง ทำต่อเลย" ) == 1) {
 				mes "[Mass Charleston]";
-				mes "No problem. Come back if you change your mind.";
+				mes "ไม่มีปัญหา กลับมาหาข้าเมื่อเจ้าเปลี่ยนใจนะ";
 				close3;
 			}
 		}
@@ -267,9 +243,10 @@ verus04,71,106,5	script	Mass Charleston#2	4_F_CHARLESTON01,{
 		else {
 			cutin "dalle02.bmp",2;
 			mes "[Mass Charleston]";
-			mes "This Equipment is Upgraded to the maximum level. Please bring something else.";
+			mes "อุปกรณ์ชิ้นนี้ได้รับการอัปเกรดจนเต็มขีดจำกัดแล้ว โปรดนำชิ้นอื่นมาแทนนะ";
 			close3;
 		}
+		
 		switch(.@en_type) {
 		case 1:
 			if (.@slot == 4) {
@@ -718,9 +695,10 @@ verus04,71,106,5	script	Mass Charleston#2	4_F_CHARLESTON01,{
 			mes "An unknown error has occurred.";
 			close3;
 		}
+
 		if (Zeny < 100000 || countitem(6752) < 1) {
 			mes "[Mass Charleston]";
-			mes "Things needed for commodity upgrades seem inadequate!";
+			mes "วัตถุดิบที่จำเป็นสำหรับการอัปเกรดดูเหมือนจะไม่พอนะ!";
 			close3;
 		}
 
@@ -729,7 +707,7 @@ verus04,71,106,5	script	Mass Charleston#2	4_F_CHARLESTON01,{
 				callfunc("F_IsEquipCardHack", .@part, .@card_saved[0], .@card_saved[1], .@card_saved[2], .@card_saved[3]) ||
 				callfunc("F_IsEquipRefineHack", .@part, .@refine)) {
 			mes "[Mass Charleston]";
-			mes "An unknown error has occurred.";
+			mes "เกิดข้อผิดพลาดที่ไม่ทราบสาเหตุ";
 			close3;
 		}
 
@@ -743,40 +721,39 @@ verus04,71,106,5	script	Mass Charleston#2	4_F_CHARLESTON01,{
 			cutin "dalle02.bmp",2;
 			specialeffect2 EF_SHIELDCHARGE;
 			mes "[Mass Charleston]";
-			mes "Since the balance of power does not match, the given existing ability has been destroyed. It is unfortunate but please try again next time.";// unknown text
+			mes "เนื่องจากสมดุลของพลังไม่เสถียร ความสามารถที่มีอยู่เดิมจึงถูกทำลายลง น่าเสียดายจริงๆ แต่โปรดลองใหม่คราวหน้านะ";
 			getitem2 .@item_id,1,1,.@refine,0, .@card[0], .@card[1], .@card[2], .@card[3];
 			close3;
 		case 9:
 			cutin "dalle04.bmp",2;
 			specialeffect2 EF_SUI_EXPLOSION;
 			mes "[Mass Charleston]";
-			mes "This!";
-			mes "I'm sorry but the equipment has been destroyed.";// unknown text
+			mes "แย่แล้ว!";
+			mes "ข้าเสียใจด้วย แต่อุปกรณ์ได้ถูกทำลายไปเสียแล้ว...";
 			close3;
 		default:
 			specialeffect2 EF_REPAIRWEAPON;
 			mes "[Mass Charleston]";
-			mes "^990000Socket" + .@slot + "^000000 will be Upgrade.";
+			mes "^990000Socket ช่องที่ " + .@slot + "^000000 ได้รับการอัปเกรดเรียบร้อย";
 			getitem2 .@item_id,1,1,.@refine,0, .@card[0], .@card[1], .@card[2], .@card[3];
 			close3;
 		}
 	case 2:	// Reset
-		// Note: the NPC doesn't check if the equipment is already enhanced
 		if (getiteminfo(.@card[0], ITEMINFO_SUBTYPE) == CARD_ENCHANT) .@card[0] = 0;
 		if (getiteminfo(.@card[1], ITEMINFO_SUBTYPE) == CARD_ENCHANT) .@card[1] = 0;
 		if (getiteminfo(.@card[2], ITEMINFO_SUBTYPE) == CARD_ENCHANT) .@card[2] = 0;
 		if (getiteminfo(.@card[3], ITEMINFO_SUBTYPE) == CARD_ENCHANT) .@card[3] = 0;
 		specialeffect2 EF_REPAIRWEAPON;
 		mes "[Mass Charleston]";
-		mes "Reset the product's abilities.";
+		mes "ข้าทำการรีเซ็ตความสามารถของอุปกรณ์ให้เรียบร้อยแล้ว";
 		delitem 6752,1;	// Charleston_Parts
 		Zeny -= 100000;
 		delequip .@part;
 		getitem2 .@item_id,1,1,.@refine,0, .@card[0], .@card[1], .@card[2], .@card[3];
 		close3;
-	dfault:
+	default:
 		mes "[Mass Charleston]";
-		mes "An unknown error has occurred.";
+		mes "เกิดข้อผิดพลาดที่ไม่ทราบสาเหตุ";
 		close3;
 	}
 	end;
@@ -784,242 +761,230 @@ verus04,71,106,5	script	Mass Charleston#2	4_F_CHARLESTON01,{
 
 verus04,63,112,4	script	Mass Charleston#3	4_F_CHARLESTON01,{
 	if (!checkweight(1201,1) || (MaxWeight - Weight) < 1000) {
-		mes "^ff0000You have carried too many items, please reduce it and come back later.^000000";
+		mes "^ff0000เจ้าแบกของเยอะเกินไปแล้ว โปรดจัดการสัมภาระแล้วค่อยกลับมาใหม่^000000";
 		close;
 	}
 	cutin "dalle03.bmp",2;
 	mes "[Mass Charleston]";
-	mes "Eh, do I have a customer? Activating Salesman mode...";
+	mes "เอ๊ะ มีลูกค้ามางั้นรึ? กำลังเข้าสู่โหมดพนักงานขาย...";
 	next;
 	cutin "dalle01.bmp",2;
 	mes "[Mass Charleston]";
-	mes "Charleston Factory's best-selling items: ^FF0000Upgrade Part Plate^000000 and ^FF0000Supplement Part Str^000000 now on sale!";
+	mes "สินค้าขายดีของโรงงาน Charleston: ^FF0000Upgrade Part Plate^000000 และ ^FF0000Supplement Part Str^000000 พร้อมจำหน่ายแล้ว!";
 	next;
 	mes "[Mass Charleston]";
-	mes "For only ^FF00003,999,999^000000 zeny! Get yourself the ultra-performance action gears!";
+	mes "ในราคาเพียง ^FF00003,999,999^000000 Zeny เท่านั้น! มาเป็นเจ้าของอุปกรณ์ประสิทธิภาพสูงเหล่านี้กันเถอะ!";
 	next;
 	mes "[Mass Charleston]";
-	mes "Also available is the ^FF0000Pilebuncker^000000 ^FF0000Upgrade^000000 service!";
+	mes "นอกจากนี้เรายังมีบริการ ^FF0000อัปเกรด^000000 ^FF0000Pilebuncker^000000 อีกด้วย!";
 	next;
-	switch( select( "Talk.", "Exchange Upgrade Parts.", "Exchange Supplementary devices.", "Upgrade Pilebuncker." ) ) {
+	switch( select( "ชวนคุย", "ซื้อ Upgrade Parts", "ซื้อ Supplementary devices", "อัปเกรด Pilebuncker" ) ) {
 	case 1:
 		if (isbegin_quest(13186) == 0) {
 			mes "[Mass Charleston]";
-			mes "The Charleston Factory shut down, but its technology and products remain with us.";
+			mes "โรงงาน Charleston ได้ปิดตัวลงแล้ว แต่เทคโนโลยีและผลิตภัณฑ์ของโรงงานยังคงอยู่กับเรา";
 			next;
 			mes "[Mass Charleston]";
-			mes "Oh, haven't you heard the news? Oops, my bad. Please forget I said that.";
+			mes "โอ้ เจ้ายังไม่รู้ข่าวหรอกรึ? ขออภัยด้วย ลืมที่ข้าพูดไปเถอะ";
 			close3;
 		}
 		cutin "dalle03.bmp",2;
 		mes "[Mass Charleston]";
-		mes "I'm a mass version Charleston. I wasn't even given a serial number. Who knows how many copies of me were made? It could be a hundred, maybe even a thousand.";
+		mes "ข้าเป็น Charleston รุ่นผลิตจำนวนมาก แม้แต่รหัสซีเรียลข้ายังไม่มีเลย ใครจะรู้ว่าข้ามีฝาแฝดถูกผลิตออกมาเท่าไหร่? อาจจะร้อย หรืออาจจะเป็นพันตัวก็ได้";
 		next;
 		mes "[Mass Charleston]";
-		mes "The original Charleston is standing over there, but...";
+		mes "Charleston ตัวต้นแบบยืนอยู่ตรงนั้น แต่ว่า...";
 		next;
 		mes "[Mass Charleston]";
-		mes "By the time Charlestons 1 and 2 escaped the factory, they're severely damaged. The battle that took place that day was incredible.";
+		mes "ในช่วงเวลาที่ Charleston 1 และ 2 หนีออกมาจากโรงงาน พวกเธอได้รับความเสียหายหนักมาก การต่อสู้ในวันนั้นมันเกินกว่าจะจินตนาการได้";
 		next;
 		mes "[Mass Charleston]";
-		mes "I can still remember Charlestons 1 and 2 destroying Dr. Ve's numerous creatures like it was yesterday.";
+		mes "ข้ายังจำภาพที่ Charleston 1 และ 2 ทำลายพวกสิ่งมีชีวิตของ Dr. Ve ได้เหมือนเพิ่งเกิดขึ้นเมื่อวาน";
 		next;
 		mes "[Mass Charleston]";
-		mes "They also destroyed the mass version Charlestons modified by Dr. Ve to his bidding.";
+		mes "พวกเธอยังทำลาย Charleston รุ่นผลิตจำนวนมากที่ถูก Dr. Ve ดัดแปลงให้เป็นเบี้ยล่างของเขาด้วย";
 		next;
 		mes "[Mass Charleston]";
-		mes "Of course there are others--like us here working on product upgrades--that were lucky enough to escape Dr. Ve's clutches and meet Charleston 1, who saved us all.";
+		mes "แน่นอนว่ายังมีคนอื่นๆ—อย่างพวกเราที่ทำงานอัปเกรดสินค้าอยู่ที่นี่—ที่โชคดีพอจะหนีพ้นเงื้อมมือของ Dr. Ve มาได้ เพราะมี Charleston 1 ช่วยพวกเราไว้";
 		next;
 		mes "[Mass Charleston]";
-		mes "After escaping with the modified Charleston 3, we came here.";
+		mes "หลังจากหนีออกมาพร้อมกับ Charleston 3 ที่ถูกดัดแปลง พวกเราก็มาที่นี่";
 		next;
 		mes "[Mass Charleston]";
-		mes "Just so you know, this place was already in shambles when we arrived. We had nothing to do with its destruction. Perhaps...";
+		mes "บอกไว้ก่อนนะ ที่นี่มันพังยับเยินอยู่แล้วตอนพวกเรามาถึง พวกเราไม่ได้เป็นคนทำลายมันนะ บางที...";
 		next;
 		mes "[Mass Charleston]";
-		mes "Sorry I sidetracked. Anyway, this is the problem.";
+		mes "ขออภัยที่ข้าพูดนอกเรื่องไปไกล กลับมาที่ปัญหานี้ดีกว่า";
 		next;
 		mes "[Mass Charleston]";
-		mes "Charlestons 1 and 2 were destroyed to a point of impairment. They tried to repair each other, to no avail.";
+		mes "Charleston 1 และ 2 เสียหายหนักจนถึงขั้นพิการ พวกเธอพยายามจะซ่อมแซมกันและกันแต่ก็ไม่สำเร็จ";
 		next;
 		mes "[Mass Charleston]";
-		mes "They realized they're damaged beyond repair. They salvaged however many parts they could, and built one body with one OS.";
+		mes "เมื่อรู้ตัวว่าเสียหายจนซ่อมไม่ได้แล้ว พวกเธอจึงรวบรวมชิ้นส่วนที่เหลืออยู่เท่าที่จะหาได้ สร้างร่างกายใหม่ขึ้นมาหนึ่งร่าง ด้วยระบบปฏิบัติการเพียงหนึ่งเดียว";
 		next;
 		mes "[Mass Charleston]";
-		mes "And that's the newly built body. They blamed themselves for the destruction of the factory, and wanted to fix it. I'm afraid their data is corrupted or missing important memory.";
+		mes "และนั่นคือร่างที่เพิ่งสร้างขึ้นมาใหม่ พวกเธอโทษตัวเองที่เป็นต้นเหตุความพินาศของโรงงาน และอยากจะแก้ไขมัน แต่ข้าเกรงว่าข้อมูลของเธอจะเสียหาย หรือความทรงจำสำคัญบางอย่างจะหายไป";
 		next;
 		mes "[Mass Charleston]";
-		mes "The characteristics of the data show more traits of Charleston 2, while the access method of the OS is more similar to that of Charleston 1. Charleston 1 always was the more sentimental one.";
+		mes "ลักษณะของข้อมูลแสดงให้เห็นถึงนิสัยของ Charleston 2 แต่รหัสการเข้าถึง OS กลับคล้ายกับ Charleston 1 มากกว่า... ซึ่งปกติ Charleston 1 มักจะเป็นคนที่มีอารมณ์อ่อนไหว";
 		next;
 		mes "[Mass Charleston]";
-		mes "I don't know if the new Charleston is Charleston 1 or 2. I can't even tell what it misses or remembers the most.";
+		mes "ข้าไม่รู้ว่า Charleston ตัวใหม่นี้คือ Charleston 1 หรือ 2 กันแน่ ข้าบอกไม่ได้ด้วยซ้ำว่าเธอทำอะไรหายไป หรือจำอะไรได้มากที่สุด";
 		next;
 		mes "[Mass Charleston]";
-		mes "She keeps blaming herself for losing her data, for letting down her friends. Every time we try to console her,";
+		mes "เธอยังเอาแต่โทษตัวเองที่สูญเสียข้อมูล และทำให้เพื่อนๆ ผิดหวัง ทุกครั้งที่พวกเราพยายามจะปลอบเธอ";
 		next;
 		mes "[Mass Charleston]";
-		mes "she would say she doesn't have the heart or brain to remember or know. I wonder if she knows";
+		mes "เธอมักจะพูดว่าเธอไม่มี 'หัวใจ' หรือ 'สมอง' ที่จะจดจำหรือรับรู้สิ่งใดได้ ข้าได้แต่สงสัยว่าเธอจะรู้ไหมนะ...";
 		next;
 		mes "[Mass Charleston]";
-		mes "that the memories of Humans fade and get distorted or glorified with time.";
+		mes "ว่าแม้แต่ความทรงจำของ 'มนุษย์' เองก็เลือนลาง บิดเบือน หรือถูกแต่งแต้มให้สวยงามไปตามกาลเวลาได้เหมือนกัน";
 		next;
 		mes "[Mass Charleston]";
-		mes "And that Humans learn from their mistakes and failures. I read that from those paper memory devices called ^FF0000books^000000 in the factory.";
+		mes "และมนุษย์ยังได้เรียนรู้จากความผิดพลาดและความล้มเหลว ข้าเคยอ่านเรื่องนี้จากอุปกรณ์บันทึกข้อมูลแบบกระดาษที่เรียกว่า ^FF0000หนังสือ^000000 ในโรงงานน่ะ";
 		next;
 		mes "[Mass Charleston]";
-		mes "There was a small study in the ^FF0000south wing of the factory^000000. Later, it was turned into a robot development room.";
+		mes "ที่ห้องอ่านหนังสือเล็กๆ ใน ^FF0000ปีกใต้ของโรงงาน^000000 น่ะ ต่อมามันถูกเปลี่ยนเป็นห้องพัฒนาหุ่นยนต์";
 		next;
 		mes "[Mass Charleston]";
-		mes "Maybe the Charleston is more like the Humans than the rest of us. I just hope she doesn't have to be so sad.";
+		mes "บางที Charleston ตัวนี้อาจจะมี 'ความเป็นมนุษย์' มากกว่าพวกเราที่เหลือเสียอีก ข้าแค่หวังว่าเธอจะไม่ต้องเศร้าโศกขนาดนั้น";
 		next;
 		mes "[Mass Charleston]";
-		mes "I feel so congested in the OS that I ranted. Perhaps I need to defragment my memory.";
+		mes "ข้ารู้สึกว่าระบบมันอัดอั้นจนระบายออกมาซะเยอะ บางทีข้าคงต้อง Defragment หน่วยความจำบ้างแล้วสิ";
 		close3;
 	case 2:
 		mes "[Mass Charleston]";
 		mes "Upgrade Part Plate";
-		mes "Class: Armor, indestructible.";
-		mes "-10% damage from Small and Medium monsters.";
-		mes "-10% damage from Large monsters when Upgraded to +7.";
-		mes "Additional -5% damage from Small and Medium monsters when Upgraded to +9.";
+		mes "ประเภท: ชุดเกราะ, ไม่ถูกทำลาย";
+		mes "- ลดความเสียหายจากมอนสเตอร์ขนาด เล็ก และ กลาง 10%";
+		mes "- ลดความเสียหายจากมอนสเตอร์ขนาด ใหญ่ 10% เมื่อตีบวกถึง +7";
+		mes "- ลดความเสียหายจากมอนสเตอร์ขนาด เล็ก และ กลาง เพิ่มอีก 5% เมื่อตีบวกถึง +9";
 		next;
 		mes "[Mass Charleston]";
-		mes "Weight: 300";
-		mes "Required Level: 100";
-		callsub S_Buy, 15111;	// Upgrade_Part_Plate
+		mes "น้ำหนัก: 300";
+		mes "เลเวลที่ต้องการ: 100";
+		callsub S_Buy, 15111;
 	case 3:
 		mes "[Mass Charleston]";
 		mes "Supplement Part Str";
 		mes "ATK+ 5%!";
-		mes "Additional ATK +1% every 4 Upgrade levels.";
-		mes "Use with Vitality/Agility/Dexterity supplementary devices for best results.";
+		mes "เพิ่ม ATK +1% ทุกๆ 4 ระดับการตีบวก";
+		mes "ใช้งานร่วมกับอุปกรณ์เสริมสาย Vitality/Agility/Dexterity เพื่อประสิทธิภาพสูงสุด";
 		next;
 		mes "[Mass Charleston]";
-		mes "Weight: 200";
-		mes "Required Level: 100";
-		callsub S_Buy, 15110;	// Supplement_Part_Str
+		mes "น้ำหนัก: 200";
+		mes "เลเวลที่ต้องการ: 100";
+		callsub S_Buy, 15110;
 	case 4:
 		mes "[Mass Charleston]";
-		mes "The last masterpiece of the Charleston Factory! You'll never find such fine Equipment anywhere else.";
+		mes "ผลงานชิ้นเอกชิ้นสุดท้ายของโรงงาน Charleston! เจ้าไม่มีทางหาอุปกรณ์ชั้นยอดแบบนี้จากที่ไหนได้อีกแล้ว";
 		next;
 		mes "[Mass Charleston]";
-		mes "To Upgrade Pilebuncker,";
+		mes "ในการอัปเกรด Pilebuncker เจ้าต้องใช้:";
 		mes "^FF00001 Pilebuncker^000000,";
 		mes "^FF0000300 Dented Iron Plates^000000,";
-		mes "and ^FF000015 Broken Engines^000000 are required.";
+		mes "และ ^FF000015 Broken Engines^000000";
 		next;
 		switch( select( "Pilebuncker S", "Pilebuncker P", "Pilebuncker T" ) ) {
 		case 1:
 			mes "[Mass Charleston]";
 			mes "Pilebuncker S";
-			mes "Class: Blunt Weapon";
+			mes "ประเภท: กระบอง (Blunt Weapon)";
 			mes "ATK: 400";
-			mes "Attack Speed bonus every 2 Upgrade levels.";
+			mes "เพิ่มโบนัสความเร็วการโจมตีทุกๆ 2 ระดับการตีบวก";
 			next;
 			mes "[Mass Charleston]";
-			mes "Weight: 300";
-			mes "Weapon Level: 4";
-			mes "Required Level: 130";
-			mes "Mechanic only. Comes with 1 Card socket.";
-			.@item_id = 16030;	// Pilebuncker_S
-			break;
+			mes "น้ำหนัก: 300 / เลเวลอาวุธ: 4 / เลเวลที่ต้องการ: 130";
+			mes "สำหรับอาชีพ Mechanic เท่านั้น (มี 1 รูใส่การ์ด)";
+			.@item_id = 16030; break;
 		case 2:
 			mes "[Mass Charleston]";
 			mes "Pilebuncker P";
-			mes "Class: Blunt Weapon";
+			mes "ประเภท: กระบอง (Blunt Weapon)";
 			mes "ATK: 450";
-			mes "ATK +5 every Upgrade level.";
+			mes "ATK +5 ทุกๆ ระดับการตีบวก";
 			next;
 			mes "[Mass Charleston]";
-			mes "Weight: 400";
-			mes "Weapon Level: 4";
-			mes "Required Level: 130";
-			mes "Mechanic only.";
-			.@item_id = 16031;	// Pilebuncker_P
-			break;
+			mes "น้ำหนัก: 400 / เลเวลอาวุธ: 4 / เลเวลที่ต้องการ: 130";
+			mes "สำหรับอาชีพ Mechanic เท่านั้น";
+			.@item_id = 16031; break;
 		case 3:
 			mes "[Mass Charleston]";
 			mes "Pilebuncker T";
-			mes "Class: Blunt Weapon";
+			mes "ประเภท: กระบอง (Blunt Weapon)";
 			mes "ATK: 400";
-			mes "SP cost -1% every Upgrade level.";
+			mes "ลดการใช้ SP -1% ทุกๆ ระดับการตีบวก";
 			next;
 			mes "[Mass Charleston]";
-			mes "Weight: 350";
-			mes "Weapon Level: 4";
-			mes "Required Level: 130";
-			mes "Mechanic only. Comes with 1 Card socket.";
-			.@item_id = 16032;	// Pilebuncker_T
-			break;
+			mes "น้ำหนัก: 350 / เลเวลอาวุธ: 4 / เลเวลที่ต้องการ: 130";
+			mes "สำหรับอาชีพ Mechanic เท่านั้น (มี 1 รูใส่การ์ด)";
+			.@item_id = 16032; break;
 		}
 		break;
 	}
 	next;
 	mes "[Mass Charleston]";
-	mes "Do you really want to Upgrade ^FF0000" + getitemname(.@item_id) + "^000000?";
+	mes "เจ้าต้องการอัปเกรดเป็น ^FF0000" + getitemname(.@item_id) + "^000000 จริงๆ หรือ?";
 	next;
-	if (select( "I suggest you reconsider.", "Buy." ) == 1) {
+	if (select( "ขอข้าคิดดูอีกที", "ตกลง" ) == 1) {
 		mes "[Mass Charleston]";
-		mes "It's a good buy, but you still need to make your decision carefully.";
+		mes "มันเป็นการซื้อที่คุ้มค่านะ แต่เจ้าควรตัดสินใจให้รอบคอบก่อน";
 		close;
 	}
 	if (countitem(6751) > 299 && countitem(6750) > 14 && countitem(1549) > 0) {
 		mes "[Mass Charleston]";
-		mes "You won't regret it! She's a Charleston factory!";
-		delitem 6751,300;	// Distorted_Iron_Plate
-		delitem 6750,15;	// Wrong_Engine
-		delitem 1549,1;		// Pilebuncker
+		mes "เจ้าจะไม่เสียใจแน่นอน! นี่แหละผลผลิตจากโรงงาน Charleston!";
+		delitem 6751,300; delitem 6750,15; delitem 1549,1;
 		getitem .@item_id,1;
 		close3;
 	}
 	mes "[Mass Charleston]";
-	mes "Not enough materials for the Upgrade.";
+	mes "วัตถุดิบสำหรับการอัปเกรดไม่เพียงพอนะ";
 	close3;
 
 S_Buy:
 	.@item_id = getarg(0);
-	mes "^FF0000Mechanic only^000000";
-	mes "^FF0000Price: 3,999,999 zeny^000000";
+	mes "^FF0000สำหรับอาชีพ Mechanic เท่านั้น^000000";
+	mes "^FF0000ราคา: 3,999,999 Zeny^000000";
 	next;
 	mes "[Mass Charleston]";
-	mes "Do you really want to buy ^FF0000" + getitemname(.@item_id) + "^000000?";
+	mes "เจ้าต้องการซื้อ ^FF0000" + getitemname(.@item_id) + "^000000 จริงๆ หรือ?";
 	next;
-	if (select( "I suggest you reconsider.", "Buy." ) == 1) {
+	if (select( "ขอข้าคิดดูอีกที", "ซื้อเลย" ) == 1) {
 		mes "[Mass Charleston]";
-		mes "It's a good buy, but you still need to make your decision carefully.";
+		mes "มันเป็นการซื้อที่คุ้มค่านะ แต่เจ้าควรตัดสินใจให้รอบคอบก่อน";
 		close3;
 	}
-	//if (Zeny >= 3999998) {// typo?
 	if (Zeny >= 3999999) {
 		mes "[Mass Charleston]";
-		mes "You won't regret it! She's a Charleston factory!";
+		mes "เจ้าจะไม่เสียใจแน่นอน! นี่แหละผลผลิตจากโรงงาน Charleston!";
 		Zeny -= 3999999;
 		getitem .@item_id,1;
 		close3;
 	}
 	mes "[Mass Charleston]";
-	mes "Good commodity value is not uncommon, please confirm your pocket depth!";
+	mes "สินค้าคุณภาพดีราคาก็ย่อมสูงเป็นธรรมดา โปรดตรวจสอบเงินในกระเป๋าของเจ้าด้วย!";
 	close3;
 }
 
 
 // Excellion
-verus04,161,222,4	script	Grandpa picking up scrap iron	1_M_HOF,{
+verus04,161,222,4	script	คุณปู่เก็บเศษเหล็ก	1_M_HOF,{
 	switch( isbegin_quest(12368) ) {
 	case 0:
-		mes "[Grandpa picking up scrap iron]";
-		mes "There are two pieces of scrap iron I see the value of not Fibonacci to pick up and sell to the recycling bin, the result is not willing to deal with me.";
+		mes "[คุณปู่เก็บเศษเหล็ก]";
+		mes "ข้าอุตส่าห์ไปเก็บเศษเหล็กที่ดูท่าจะมีราคาพวกนี้มาเพื่อเอาไปขายให้ถังขยะรีไซเคิล แต่ผลปรากฏว่าเจ้าถังนั่นมันดันไม่ยอมรับซื้อของจากข้าซะอย่างนั้น!";
 		next;
-		mes "[Grandpa picking up scrap iron]";
-		mes "Because it's not iron? Each resource recycling are not willing to buy, is nerve-racking!";
+		mes "[คุณปู่เก็บเศษเหล็ก]";
+		mes "หรือเพราะว่ามันไม่ใช่เหล็กกันแน่? ไม่ว่าจะเอาไปขายที่ไหนก็ไม่มีใครยอมรับซื้อเลย น่าปวดหัวจริงๆ!";
 		close;
 	case 1:
-		mes "[Grandpa picking up scrap iron]";
-		mes "Hey! Did you just talk to that piece of junk? Or am I losing my sight?";
+		mes "[คุณปู่เก็บเศษเหล็ก]";
+		mes "เฮ้! เมื่อกี้เจ้าเพิ่งคุยกับไอ้เศษเหล็กนั่นรึเปล่า? หรือว่าสายตาข้าจะฝ้าฟางไปเองกันแน่?";
 		close;
 	case 2:
-		mes "[Grandpa picking up scrap iron]";
-		mes "Oh, my God! That can't be sold to the Recycle Bin!";
+		mes "[คุณปู่เก็บเศษเหล็ก]";
+		mes "โอ้พระเจ้าช่วย! ไอ้ของแบบนั้นน่ะ มันขายให้ถังขยะรีไซเคิลไม่ได้หรอกนะ!";
 		close;
 	}
 }
@@ -1027,45 +992,45 @@ verus04,161,222,4	script	Grandpa picking up scrap iron	1_M_HOF,{
 verus04,163,219,4	script	PLUTO_09#pa0829	4_SCR_AT_ROBOTS,{
 	disable_items;
 	if (checkweight(1201,1) == 0 || (MaxWeight - Weight) < 10000) {
-		mes "^ff0000You have carried too many items, please reduce it and come back later.^000000";
+		mes "^ff0000เจ้าแบกของเยอะเกินไปแล้ว โปรดจัดการสัมภาระแล้วค่อยกลับมาใหม่^000000";
 		close;
 	}
 	if (isbegin_quest(12368) < 2) {
-		mes "^0000ffAlthough the LCD still dim, but does not seem to work anymore.^000000";
+		mes "^0000ffแม้ว่าหน้าจอ LCD จะยังสลัวๆ อยู่ แต่ดูเหมือนว่ามันจะไม่ทำงานแล้ว^000000";
 		close;
 	}
-	mes "^0000ffWhen the strange dinosaur pattern appears, go to the introduction screen.^000000";
+	mes "^0000ffเมื่อลวดลายไดโนเสาร์ประหลาดปรากฏขึ้น หน้าจอแนะนำการใช้งานก็เริ่มต้นทำงาน^000000";
 	next;
 	mes "[PLUTO_09]";
-	mes "" + strcharinfo(0) + ",";
-	mes "Hello. How can I help you?";
+	mes "คุณ " + strcharinfo(0) + ",";
+	mes "สวัสดีค่ะ มีอะไรให้ฉันช่วยไหมคะ?";
 	next;
-	switch( select( "Note", "Old Fuel and Huge Metal Scrap to exchange for gear.", "Design drawings for the production of Enchantment" ) ) {
+	switch( select( "ข้อมูลเบื้องต้น", "แลก Old Fuel และ Huge Metal Scrap เป็นอุปกรณ์", "ผลิตแบบแปลน (Design Drawing) สำหรับการ Enchant" ) ) {
 	case 1:
-		mes "^0000ffDinosaur forward screen appears and a description of the cute girl voice.^000000";
+		mes "^0000ffหน้าจอรูปไดโนเสาร์ปรากฏขึ้นพร้อมกับเสียงบรรยายของเด็กผู้หญิงที่ดูน่ารัก^000000";
 		next;
 		mes "[PLUTO_09]";
-		mes "This is 100 years since the genesis of the new PLUTO_09.";
+		mes "นี่คือ PLUTO_09 รุ่นใหม่ล่าสุดในรอบ 100 ปี นับตั้งแต่การกำเนิดใหม่ค่ะ";
 		next;
 		mes "[PLUTO_09]";
-		mes "Bring Huge Metal Scrap and Old Fuel can help you make useful to you Equipment Oh~";
+		mes "หากคุณนำ Huge Metal Scrap และ Old Fuel มาให้ ฉันสามารถช่วยคุณสร้างอุปกรณ์ที่มีประโยชน์ได้นะคะ~";
 		next;
 		mes "[PLUTO_09]";
-		mes "Do you want to make enchantment equipment? You bring the tank! I can make enchant with a design for you. Oh, good luck.";
+		mes "หรือถ้าคุณอยากอัปเกรดอุปกรณ์ (Enchant) ก็นำถังเชื้อเพลิงมาสิ! ฉันสามารถสร้างแบบแปลนอัปเกรดให้คุณได้ ขอให้โชคดีนะคะ";
 		next;
 		mes "[PLUTO_09]";
-		mes "This is the Tyrannosaurus rex that appeared in the dinosaur fairy tale, very beautiful... (Continue to appear boring dinosaur story)";
+		mes "และนี่คือ ไทแรนโนซอรัส เรกซ์ ที่ปรากฏในนิทานไดโนเสาร์ สวยมากเลยใช่ไหมคะ... (หน้าจอยังคงแสดงเรื่องราวไดโนเสาร์ที่น่าเบื่อต่อไป)";
 		next;
-		mes "^0000ffIn this introduction to the screen, presumed that the psychological state of the robot maker is extremely unstable.^000000";
+		mes "^0000ffจากคำแนะนำบนหน้าจอ สันนิษฐานได้ว่าสภาวะทางจิตของผู้สร้างหุ่นยนต์ตัวนี้น่าจะไม่ปกติอย่างมาก^000000";
 		close;
 	case 2:
 		setarray .@id[0],20773,15128; // Excelion_Wing, Excelion_Suit
 		mes "[PLUTO_09]";
-		mes "Production equipment needs ^0000ff10 Huge Metal Scrap and 5 Old Fuel^000000.";
+		mes "การผลิตอุปกรณ์ต้องใช้ ^0000ffHuge Metal Scrap 10 ชิ้น และ Old Fuel 5 ชิ้น^000000 ค่ะ";
 		next;
-		switch( select( "Quit.", "Making the " + getitemname(.@id[0]), "Making the " + getitemname(.@id[1]) ) ) {
+		switch( select( "ยกเลิก", "ผลิต " + getitemname(.@id[0]), "ผลิต " + getitemname(.@id[1]) ) ) {
 		case 1:
-			mes "^0000ffDinosaurs gazed at the picture here after staying a bit closed.^000000";
+			mes "^0000ffรูปภาพไดโนเสาร์จ้องมองมาที่คุณครู่หนึ่งก่อนที่หน้าจอจะดับลง^000000";
 			close;
 		case 2:
 			.@item_id = .@id[0];
@@ -1076,7 +1041,7 @@ verus04,163,219,4	script	PLUTO_09#pa0829	4_SCR_AT_ROBOTS,{
 		}
 		if (countitem(6961) < 10 || countitem(6962) < 5) {
 			mes "[PLUTO_09]";
-			mes "I have already talked about the production equipment needs ^0000ff10 " + getitemname(6961) + " and 5 " + getitemname(6962) + "^000000, you don't have enough.";
+			mes "ฉันแจ้งไปแล้วนะคะว่าต้องใช้ ^0000ff10 " + getitemname(6961) + " และ 5 " + getitemname(6962) + "^000000 แต่ดูเหมือนของของคุณจะไม่พอนะคะ";
 			close;
 		}
 		specialeffect EF_SPELLBREAKER;
@@ -1084,23 +1049,24 @@ verus04,163,219,4	script	PLUTO_09#pa0829	4_SCR_AT_ROBOTS,{
 		delitem 6961,10;// LargeScrap
 		getitem .@item_id,1;
 		mes "[PLUTO_09]";
-		mes "Your equipment is ready. Let's see if it fits.";
+		mes "อุปกรณ์ของคุณเสร็จเรียบร้อยแล้วค่ะ ลองดูสิคะว่าใส่พอดีไหม";
 		close;
 	case 3:
 		while(1) {
 			if (countitem(6962) < 5)
-				.@string$ = "^aaaaaaInsufficient fuel for making design drawings.^000000";
+				.@string$ = "^aaaaaaเชื้อเพลิงไม่พอสำหรับสร้างแบบแปลน^000000";
 			else
-				.@string$ = "Production design (^ff0000 success rate 30%^000000)";
+				.@string$ = "เริ่มการผลิตแบบแปลน (^ff0000โอกาสสำเร็จ 30%^000000)";
 			mes "[PLUTO_09]";
-			mes "If you give me 5 " + getitemname(6962) + ", I can do the production of design drawings look!";
+			mes "ถ้าคุณมอบ " + getitemname(6962) + " ให้ฉัน 5 ถัง ฉันจะลองสกัดแบบแปลนอัปเกรด (Design Drawing) ให้ดูค่ะ!";
 			mes "----------";
-			mes "^0000ffLittle dinosaur running around on the screen.^000000";
+			mes "^0000ffรูปไดโนเสาร์ตัวน้อยวิ่งไปมาบนหน้าจอ^000000";
 			next;
-			if (select( "Quit.", .@string$ ) == 1) {
-				mes "^0000ffIt's over after showing that the dinosaurs are stuffing themselves.^000000";
+			if (select( "ยกเลิก", .@string$ ) == 1) {
+				mes "^0000ffหน้าจอแสดงรูปไดโนเสาร์กำลังกินจนอิ่มหนำสำราญก่อนจะจบการทำงาน^000000";
 				close;
 			}
+			
 			.@fail = false;
 			.@reac_rnd = rand(1,10000);
 			if (.@reac_rnd < 26)		.@en_name = 6977;	// Reactor_A_STR_
@@ -1139,23 +1105,24 @@ verus04,163,219,4	script	PLUTO_09#pa0829	4_SCR_AT_ROBOTS,{
 				else
 					.@en_name = 7054;	// Brigan
 			}
+
 			if (countitem(6962) < 5)
-				mes "^0000ffThe picture shows the dinosaur silently looking at the empty bowl, it may be an error message when the material is insufficient!^000000";
+				mes "^0000ffภาพบนหน้าจอแสดงรูปไดโนเสาร์จ้องมองถังที่ว่างเปล่าอย่างเงียบงัน ดูเหมือนจะเป็นข้อความแจ้งเตือนว่าวัตถุดิบไม่พอ!^000000";
 			else {
 				specialeffect EF_SPELLBREAKER;
 				delitem 6962,5;// OldTank
 				getitem .@en_name,1;
 				mes "[PLUTO_09]";
 				if (.@fail)
-					mes "What a pity, the design failed.";
+					mes "น่าเสียดายจัง การสร้างแบบแปลนล้มเหลวค่ะ";
 				else
-					mes "Great, the design was made.";
+					mes "ยอดเยี่ยมไปเลย! สร้างแบบแปลนสำเร็จแล้วค่ะ";
 			}
 			next;
 		}
 		end;
 	default:
-		mes "^0000ffA screen showing howling that a dinosaur may not understand the command.^000000";
+		mes "^0000ffหน้าจอแสดงรูปไดโนเสาร์กำลังคำราม ดูเหมือนมันจะไม่เข้าใจคำสั่งที่คุณป้อนลงไป^000000";
 		close;
 	}
 	end;
@@ -1164,63 +1131,63 @@ verus04,163,219,4	script	PLUTO_09#pa0829	4_SCR_AT_ROBOTS,{
 verus04,165,217,4	script	MARS_01#pa0829	4_SCR_MT_ROBOTS,{
 	disable_items;
 	if (checkweight(1201,1) == 0 || (MaxWeight - Weight) < 10000) {
-		mes "^ff0000You have carried too many items, please reduce it and come back later.^000000";
+		mes "^ff0000เจ้าแบกของเยอะเกินไปแล้ว โปรดจัดการสัมภาระแล้วค่อยกลับมาใหม่^000000";
 		close;
 	}
 	switch( isbegin_quest(12368) ) {
 	case 0:
-		mes "Blurred LCD screen may be frightened or happy and intense shaking, perhaps due to lack of power and can not complete the presentation.";
+		mes "หน้าจอ LCD ที่พร่ามัวกำลังสั่นอย่างรุนแรง ไม่รู้ว่าเพราะตกใจหรือดีใจกันแน่ แต่ดูเหมือนพลังงานจะไม่พอจนไม่สามารถแสดงภาพให้สมบูรณ์ได้";
 		next;
-		if (select( "Just ignore it.", "Press every button." ) == 1) {
-			mes "It may be a pre-scrap robot that is common everywhere and doesn't require much attention.";
+		if (select( "เมินมันไปซะ", "ลองกดทุกปุ่มที่มี" ) == 1) {
+			mes "มันอาจจะเป็นแค่หุ่นยนต์เศษเหล็กธรรมดาที่มีอยู่เกลื่อนกราด ไม่เห็นจะมีอะไรน่าสนใจเลย";
 			close;
 		}
 		mes "[?????]";
-		mes "Hello! I'm MARS_01, an exploration robot. Currently, I have entered hibernation mode to save power. The related functions are set as follows.";
+		mes "สะ... สวัสดี! ฉันคือ MARS_01 หุ่นยนต์สำรวจ ขณะนี้กำลังอยู่ในโหมดจำศีลเพื่อประหยัดพลังงาน ฟังก์ชันต่างๆ ถูกตั้งค่าไว้ดังนี้...";
 		next;
-		if (select( "Interrupt the machine", "Supply of fuel" ) == 1) {
-			mes "The robot re-enters hibernation mode after a faint sound.";
+		if (select( "ปล่อยให้เครื่องพักไป", "เติมเชื้อเพลิงให้" ) == 1) {
+			mes "หุ่นยนต์กลับเข้าสู่โหมดจำศีลอีกครั้งหลังจากส่งเสียงแผ่วๆ ออกมา";
 			close;
 		}
 		mes "[MARS_01]";
-		mes "We are super power robot, as long as the old oil 1 will let me and the companion PLUTO has more than 90% of the power.";
+		mes "พวกเราคือหุ่นยนต์พลังงานสูง! ขอแค่มี Old Fuel เพียง 1 ถัง ก็จะช่วยให้ฉันและ PLUTO คู่หูของฉันมีพลังงานกลับมามากกว่า 90% เลยนะ!";
 		next;
 		mes "[MARS_01]";
-		mes "If you find Old Fuel, please insert the fuel into the mouth of the bottom of the screen, so you can lift the hibernation mode.";
+		mes "ถ้าคุณพบ Old Fuel โปรดใส่เชื้อเพลิงลงในช่องรับใต้หน้าจอ เพื่อยกเลิกโหมดจำศีลด้วยนะคะ";
 		setquest 12368;	// Operate the old robot
 		close;
 	case 1:
 		if (countitem(6962) < 1) {
 			mes "[MARS_01]";
-			mes "If you find 1 " + getitemname(6962) + ", please insert the fuel into the mouth of the bottom of the screen, so you can lift the hibernation mode.";
+			mes "ถ้าคุณพบ " + getitemname(6962) + " 1 ถัง โปรดใส่เชื้อเพลิงลงในช่องรับใต้หน้าจอ เพื่อยกเลิกโหมดจำศีลด้วยนะคะ";
 			close;
 		}
-		mes "Maybe we ran out of power when we went looking for fuel. should we put in the fuel?";
+		mes "ดูเหมือนหุ่นยนต์จะพลังงานหมดขณะที่กำลังรอเชื้อเพลิงอยู่ เราควรจะใส่เชื้อเพลิงให้มันไหม?";
 		next;
-		if (select( "Quit.", "Put in the fuel" ) == 1) {
-			mes "The old robot may be running out of power and not responding at all.";
+		if (select( "ยกเลิก", "ใส่เชื้อเพลิง" ) == 1) {
+			mes "หุ่นยนต์เก่าๆ ตัวนี้อาจจะพลังงานหมดเกลี้ยงไปแล้ว เพราะไม่มีการตอบสนองใดๆ เลย";
 			close;
 		}
-		mes "When the fuel is put in, the sound screen opens.";
-		npctalk "Whoa, whoa?! It moves!!!", "Grandpa picking up scrap iron";
+		mes "เมื่อใส่เชื้อเพลิงลงไป หน้าจอก็สว่างขึ้นพร้อมเสียงการทำงาน";
+		npctalk "ว้าว ว้าววว?! มันขยับแล้ว!!!", "คุณปู่เก็บเศษเหล็ก";
 		next;
 		mes "[MARS_01]";
-		mes "Start the inspection system and confirm the damage of each part.";
+		mes "เริ่มระบบตรวจสอบ และยืนยันความเสียหายของชิ้นส่วนต่างๆ";
 		next;
 		mes "[MARS_01]";
-		mes "Power meter 10%, dashboard normal, body skeleton 13%, perform mining operations well.";
+		mes "มาตรวัดพลังงาน 10%, แผงควบคุมปกติ, โครงสร้างร่างกาย 13%, เริ่มดำเนินการขุดเจาะได้";
 		next;
 		mes "[MARS_01]";
-		mes "Pluto_09 began to inject energy for mining auxiliary robot.";
-		npctalk "Energy response confirmed. It's working.", "PLUTO_09#pa0829";
+		mes "Pluto_09 เริ่มทำการฉีดพลังงานให้กับหุ่นยนต์เสริมการขุดเจาะ";
+		npctalk "ยืนยันการตอบสนองของพลังงาน ระบบพร้อมทำงาน", "PLUTO_09#pa0829";
 		next;
 		mes "[MARS_01]";
-		mes "Thank you for getting me started, I will reset the person who started me to be a manager.";
+		mes "ขอบคุณที่ช่วยเปิดระบบให้ฉันนะคะ ฉันจะบันทึกชื่อผู้ที่เปิดระบบให้เป็น 'ผู้ดูแล' (Manager) ค่ะ";
 		next;
-		select("Enter a name.");
+		select("ป้อนชื่อของคุณลงไป");
 		mes "[MARS_01]";
-		mes "" + strcharinfo(0) + ",";
-		mes "Hello! The fuel has been fully charged.";
+		mes "คุณ " + strcharinfo(0) + ",";
+		mes "สวัสดีค่ะ! พลังงานได้รับการชาร์จเต็มพิกัดแล้ว";
 		delitem 6962,1;// OldTank
 		completequest 12368;
 		close;
@@ -1228,24 +1195,24 @@ verus04,165,217,4	script	MARS_01#pa0829	4_SCR_MT_ROBOTS,{
 		break;
 	}
 	mes "[MARS_01]";
-	mes "" + strcharinfo(0) + ",";
-	mes "Hello! Can I help you?";
+	mes "คุณ " + strcharinfo(0) + ",";
+	mes "สวัสดีค่ะ! มีอะไรให้ฉันช่วยไหมคะ?";
 	next;
-	switch( select( "Note", "Enhanced " + getitemname(20773), "Enhanced " + getitemname(15128) ) ) {	// Excelion_Wing, Excelion_Suit
+	switch( select( "ข้อมูลการ Enchant", "Enchant " + getitemname(20773), "Enchant " + getitemname(15128) ) ) {	// Excelion_Wing, Excelion_Suit
 	case 1:
-		mes "^0000ffSoon the instructions again.^000000";
+		mes "^0000ffหน้าจอแสดงคำแนะนำการใช้งาน^000000";
 		next;
 		mes "[MARS_01]";
-		mes "While waiting for the new owner, we continue to update to the latest version.";
+		mes "ในระหว่างที่รอเจ้านายคนใหม่ พวกเราได้ทำการอัปเดตระบบเป็นเวอร์ชันล่าสุดอยู่เสมอค่ะ";
 		next;
 		mes "[MARS_01]";
-		mes "If you bring aak Seri Wong propulsion wing, aak Seri Wong jacket equipment and strengthen the design, I will strengthen the equipment according to the design.";
+		mes "หากคุณนำ Excelion Wing หรือ Excelion Suit พร้อมกับแบบแปลน (Design Drawing) มาให้ ฉันจะช่วยเพิ่มประสิทธิภาพให้อุปกรณ์ตามแบบแปลนนั้นๆ ค่ะ";
 		next;
 		mes "[MARS_01]";
-		mes "According to the standard design drawings of the operation, the equipment will not be damaged during the process, but the number of maximum upgrade will change depending on the type of equipment.";
+		mes "ตามมาตรฐานการผลิต อุปกรณ์ของคุณจะไม่ถูกทำลายในระหว่างกระบวนการนี้แน่นอน แต่จำนวนครั้งที่สามารถอัปเกรดได้สูงสุดจะขึ้นอยู่กับประเภทของอุปกรณ์นั้นๆ นะคะ";
 		next;
 		mes "[MARS_01]";
-		mes "Welcome back again~";
+		mes "ยินดีต้อนรับเสมอค่ะ~";
 		close;
 	case 2:
 		.@part = EQI_GARMENT;
@@ -1254,6 +1221,7 @@ verus04,165,217,4	script	MARS_01#pa0829	4_SCR_MT_ROBOTS,{
 		.@part = EQI_ARMOR;
 		break;
 	}
+
 	// <item ID required>, <item enchant ID>, <max number of this enchant on armor>, <max number of this enchant on garment>, <enchant on first slot only>
 	setarray .@list[0],
 		6965, 4970, 1,0,3,	// Reactor_P_FIRE_		Reactor_P_FIRE
@@ -1282,18 +1250,18 @@ verus04,165,217,4	script	MARS_01#pa0829	4_SCR_MT_ROBOTS,{
 
 	for ( .@i = 0; .@i < .@size; .@i += 5 ) {
 		if (countitem(.@list[.@i]) < 1)
-			.@menu$ += sprintf( "^aaaaaa%s (Missing)^000000:", getitemname(.@list[.@i]) );
+			.@menu$ += sprintf( "^aaaaaa%s (ไม่มีไอเทม)^000000:", getitemname(.@list[.@i]) );
 		else
 			.@menu$ += sprintf( "%s:", getitemname(.@list[.@i]) );
 	}
 	mes "[MARS_01]";
-	mes "" + strcharinfo(0) + ",";
-	mes "Choose the enchant you want to use!";
+	mes "คุณ " + strcharinfo(0) + ",";
+	mes "โปรดเลือกแบบแปลนที่คุณต้องการใช้งานค่ะ!";
 	next;
-	.@s = select("Quit.:" + .@menu$) - 2;
+	.@s = select("ยกเลิก:" + .@menu$) - 2;
 	if (.@s < 0) {
 		mes "[MARS_01]";
-		mes "So far.";
+		mes "ไว้เจอกันใหม่นะคะ";
 		close;
 	}
 	.@s *= 5;
@@ -1307,7 +1275,7 @@ verus04,165,217,4	script	MARS_01#pa0829	4_SCR_MT_ROBOTS,{
 
 	if (countitem(.@item_req) < 1) {
 		mes "[MARS_01]";
-		mes "So far.";
+		mes "ดูเหมือนคุณจะไม่มีไอเทมชิ้นนี้นะคะ";
 		close;
 	}
 	if (.@part == EQI_ARMOR)
@@ -1316,14 +1284,13 @@ verus04,165,217,4	script	MARS_01#pa0829	4_SCR_MT_ROBOTS,{
 		.@max_num_enchant = .@list[.@s+3];
 	else {
 		mes "[MARS_01]";
-		mes "Please contact the administrator.";
+		mes "เกิดข้อผิดพลาด โปรดติดต่อผู้ดูแลระบบ";
 		close;
 	}
 
-	// anti-hack
 	if (callfunc("F_IsEquipIDHack", .@part, .@equip_id) || callfunc("F_IsEquipCardHack", .@part, .@card[0], .@card[1], .@card[2], .@card[3]) || callfunc("F_IsEquipRefineHack", .@part, .@equip_refine)) {
 		mes "[MARS_01]";
-		mes "Did you remove your gear?";
+		mes "คุณถอดอุปกรณ์ออกกลางคันงั้นรึ?";
 		close;
 	}
 
@@ -1334,29 +1301,29 @@ verus04,165,217,4	script	MARS_01#pa0829	4_SCR_MT_ROBOTS,{
 
 	if (.@max_num_enchant < 1) {
 		mes "[MARS_01]";
-		mes "The design you choose is incompatible with the equipment.";
+		mes "แบบแปลนที่คุณเลือก ไม่สามารถใช้กับอุปกรณ์ชิ้นนี้ได้ค่ะ";
 		close;
 	}
 	if (.@first_slot_only > 0 && .@card[3] != 0) {
 		mes "[MARS_01]";
-		mes "This design is only for the first time to strengthen the use, but the equipment has other performance, please use other design to strengthen it!";
+		mes "แบบแปลนนี้ใช้ได้เฉพาะการ Enchant ครั้งแรกเท่านั้น แต่อุปกรณ์ของคุณมีการ Enchant อื่นอยู่แล้ว โปรดใช้แบบแปลนอื่นแทนนะคะ!";
 		close;
 	}
 	if (.@slot_sum >= .@max_num_enchant) {
 		mes "[MARS_01]";
-		mes "The maximum number of enchants is " + .@max_num_enchant + ". The item has reached the upper limit.";
+		mes "แบบแปลนชนิดนี้สามารถใส่ได้สูงสุด " + .@max_num_enchant + " ครั้ง ซึ่งอุปกรณ์นี้ถึงขีดจำกัดแล้วค่ะ";
 		close;
 	}
 	if (.@card[1] != 0) {
 		mes "[MARS_01]";
-		mes "The number of equipment has reached the limit.";
+		mes "จำนวนการ Enchant ของอุปกรณ์นี้เต็มขีดจำกัดแล้วค่ะ";
 		close;
 	}
-
+	
 	// anti-hack
 	if (callfunc("F_IsEquipIDHack", .@part, .@equip_id) || callfunc("F_IsEquipCardHack", .@part, .@card[0], .@card[1], .@card[2], .@card[3]) || callfunc("F_IsEquipRefineHack", .@part, .@equip_refine)) {
 		mes "[MARS_01]";
-		mes "Please pay special attention if the equipment will be removed.";
+		mes "กรุณาอย่าถอดอุปกรณ์ออกในระหว่างที่ระบบกำลังดำเนินการนะคะ";
 		close;
 	}
 
@@ -1366,20 +1333,21 @@ verus04,165,217,4	script	MARS_01#pa0829	4_SCR_MT_ROBOTS,{
 		break;
 	default:
 		mes "[MARS_01]";
-		mes "The product does not have a serial number, does not meet the specifications of the product can not be strengthened.";
+		mes "ตรวจไม่พบรหัสซีเรียลของผลิตภัณฑ์... ไม่สามารถเสริมพลังให้กับอุปกรณ์ที่ไม่ได้มาตรฐานได้ค่ะ";
 		close;
 	}
 	mes "[MARS_01]^0000ff";
-	mes "Choose " + getequipname(.@part) + " + " + getitemname(.@item_req) + ",";
+	mes "ยืนยันการใช้ " + getequipname(.@part) + " คู่กับ " + getitemname(.@item_req) + ",";
 	mes "^000000------------------";
-	mes "Your selected design can be upgraded to the equipment limit ^0000ff" + .@max_num_enchant + " the same design, ^000000so far, enhanced ^0000ff" + .@slot_sum + " times^000000, do you want to continue?";
+	mes "แบบแปลนนี้สามารถใช้กับอุปกรณ์ได้สูงสุด ^0000ff" + .@max_num_enchant + " ครั้ง^000000";
+	mes "ขณะนี้ใส่ไปแล้ว ^0000ff" + .@slot_sum + " ครั้ง^000000 คุณต้องการดำเนินการต่อหรือไม่?";
 	next;
-	if (select( "I'll think about it...", "Go on." ) == 1) {
+	if (select( "ขอคิดดูอีกที...", "ตกลง" ) == 1) {
 		mes "[MARS_01]";
-		mes "Come back next time you need me~";
+		mes "กลับมาหาฉันได้ทุกเมื่อที่ต้องการนะคะ~";
 		close;
 	}
-
+	
 	// anti-hack
 	if (callfunc("F_IsEquipIDHack", .@part, .@equip_id) || callfunc("F_IsEquipCardHack", .@part, .@card[0], .@card[1], .@card[2], .@card[3]) || callfunc("F_IsEquipRefineHack", .@part, .@equip_refine))
 		close;
@@ -1398,15 +1366,12 @@ verus04,165,217,4	script	MARS_01#pa0829	4_SCR_MT_ROBOTS,{
 	}
 	else {
 		mes "[MARS_01]";
-		mes "The equipment has reached the upper limit of strengthening Hello!";
+		mes "อุปกรณ์นี้ได้รับการเสริมพลังจนถึงขีดจำกัดแล้วค่ะ!";
 		close;
 	}
 	specialeffect2 EF_REPAIRWEAPON;
 	mes "[MARS_01]";
-	if (.@enchant_count < 5)
-		mes "The first equipment has been upgraded ^990000" + .@enchant_count + " times^000000.";
-	else
-		mes "For additional performance equipment^990000 ^000000 upgrade.";	// never displayed
+	mes "อุปกรณ์ได้รับการอัปเกรดเรียบร้อยแล้ว รวมเป็นครั้งที่ ^990000" + .@enchant_count + "^000000 ค่ะ";
 
 	delitem .@item_req, 1;
 	delequip .@part;
