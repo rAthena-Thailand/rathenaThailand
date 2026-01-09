@@ -18,29 +18,30 @@
 //============================================================
 geffen_in,99,174,5	script	Ore Tester#sorty	8_F_GIRL,{
 	mes "[Ore Tester Sorty]";
-	mes "Do you have ^3131FFany same type of ores in your inventories^000000 which take many spaces?";
-	mes "I can distinguish your ores and organize them right away~!";
+	mes "นี่ๆ... ในกระเป๋าของเจ้ามี ^3131FFพวกแร่ประเภทเดียวกัน^000000";
+	mes "ที่วางสลับไปสลับมาจนกินพื้นที่ในกระเป๋าบ้างไหม?";
+	mes "ข้าสามารถช่วยแยกประเภทและจัดระเบียบให้เจ้าได้ทันทีเลยนะ~!";
 	next;
-	switch(select("Refine my Ore.:Cancel.")) {
+	switch(select("ช่วยจัดระเบียบแร่ให้หน่อย:ยกเลิก")) {
 	case 1:
 		mes "[Ore Tester Sorty]";
-		mes "At the moment I can only distinguish ^FF0000Steel^000000, ^FF0000Iron^000000, ^FF0000Iron Ore^000000, and ^FF0000Rough Oridecon^000000 and organize them.";
-		mes "Please note that ^3131FFother items are unable^000000!";
+		mes "ตอนนี้ข้าสามารถแยกประเภทและจัดระเบียบได้เฉพาะ ^FF0000Steel^000000, ^FF0000Iron^000000, ^FF0000Iron Ore^000000 และ ^FF0000Rough Oridecon^000000 เท่านั้นนะ";
+		mes "โปรดจำไว้ว่า ^3131FFไอเทมอื่นๆ ข้ายังทำไม่ได้นะจ๊ะ^000000!";
 		next;
 		mes "[Ore Tester Sorty]";
-		mes "So, would you like me to organize your ores?";
+		mes "เอาล่ะ... อยากให้ข้าช่วยจัดระเบียบแร่ชนิดไหนดีล่ะ?";
 		next;
-		.@i = select("Steel, please.:Iron, please.:Iron Ore, please.:Rough Oridecon, please.:No, thanks.");
+		.@i = select("Steel (เหล็กกล้า):Iron (เหล็ก):Iron Ore (แร่เหล็ก):Rough Oridecon (อีลูเล็ก):ไม่ล่ะ ขอบคุณ");
 		if (.@i == 5) {
 			mes "[Ore Tester Sorty]";
-			mes "Huh, I really hate messy people!";
+			mes "โธ่... ข้าล่ะเกลียดพวกคนที่ไม่รักความสะอาดจริงๆ เลย!";
 			close;
 		}
 		setarray .@ores[0],999,998,1002,756;
 		.@item = .@ores[.@i-1];
 		if (countitem(.@item) == 0) {
 			mes "[Ore Tester Sorty]";
-			mes "You don't have any "+getitemname(.@item)+"...";
+			mes "เจ้าไม่มี "+getitemname(.@item)+" อยู่ในตัวเลยนี่นา...";
 			close;
 		}
 		// while(1) {
@@ -57,11 +58,11 @@ geffen_in,99,174,5	script	Ore Tester#sorty	8_F_GIRL,{
 		delitem .@item, .@count;
 		getitem .@item, .@count;
 		mes "[Ore Tester Sorty]";
-		mes "It's done. Looks great! Don't you think so?";
+		mes "เสร็จเรียบร้อย! ดูเป็นระเบียบขึ้นเยอะเลยว่าไหมล่ะ?";
 		close;
 	case 2:
 		mes "[Ore Tester Sorty]";
-		mes "It seems that your bag is clean? Huhu! You might be the master of cleaning!";
+		mes "ดูเหมือนกระเป๋าของเจ้าจะสะอาดดีอยู่แล้วสินะ? ฮิฮิ! เจ้าต้องเป็นเจ้าแห่งการจัดบ้านแน่ๆ เลย!";
 		close;
 	}
 }
