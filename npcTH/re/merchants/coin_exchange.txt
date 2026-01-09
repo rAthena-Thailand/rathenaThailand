@@ -20,15 +20,15 @@
 //============================================================
 malangdo,220,167,5	script	Coin Exchanger CX-1	564,{
 	if (checkweight(1201,1) == 0) {
-		mes "You have too many kinds of objects. Let's try to continue after reducing those objects.";
+		mes "คุณมีไอเทมหลายชนิดเกินไป กรุณาจัดการไอเทมในตัวแล้วค่อยกลับมาใหม่";
 		close;
 	}
 	if (MaxWeight - Weight < 10000) {
-		mes "Can't continue because you have too many heavy objects. Let's try to continue after reducing the weight.";
+		mes "ไม่สามารถดำเนินการได้เนื่องจากน้ำหนักตัวมากเกินไป กรุณาลดน้ำหนักไอเทมในตัวก่อน";
 		close;
 	}
 	mes "[Coin Exchanger CX-1]";
-	mes "Welcome to CX-1. If you have coins, you can exchange them to high or low grade coins.";
+	mes "ยินดีต้อนรับสู่ระบบ CX-1 หากคุณมีเหรียญแมว (Coin) คุณสามารถนำมาแลกเปลี่ยนเป็นระดับที่สูงขึ้นหรือต่ำลงได้ที่นี่";
 	next;
 	setarray .@coins[1],
 		6417, //Silvervine
@@ -37,18 +37,18 @@ malangdo,220,167,5	script	Coin Exchanger CX-1	564,{
 		6420, //Cgrade_Coin
 		6421, //Dgrade_Coin
 		6422; //Egrade_Coin
-	.@menu$ = "Stop:";
+	.@menu$ = "ยกเลิก:";
 	for(.@i = 1; .@i<=6; .@i++) {
 		if (countitem(.@coins[.@i]))
 			.@menu$ = .@menu$ + getitemname(.@coins[.@i]) + ":";
 		else
-			.@menu$ = .@menu$ + "^aaaaaa"+getitemname(.@coins[.@i])+" (None)^000000:";
+			.@menu$ = .@menu$ + "^aaaaaa"+getitemname(.@coins[.@i])+" (ไม่มีไอเทม)^000000:";
 	}
 	.@i = select(.@menu$);
 	switch(.@i) {
 	case 1:
 		mes "[Coin Exchanger CX-1]";
-		mes "Thank you for coming.";
+		mes "ขอบคุณที่ใช้บริการ";
 		close;
 	default:
 		.@coin = .@coins[.@i-1];
@@ -57,122 +57,122 @@ malangdo,220,167,5	script	Coin Exchanger CX-1	564,{
 	}
 	if (countitem(.@coin) == 0) {
 		mes "[Coin Exchanger CX-1]";
-		mes "You chose a coin that you don't have.";
-		mes "Thank you for coming.";
+		mes "คุณเลือกเหรียญที่คุณไม่มีอยู่ในตัว";
+		mes "ขอบคุณที่ใช้บริการ";
 		close;
 	}
 	mes "[Coin Exchanger CX-1]";
-	mes "----Rate of exchange----";
-	mes "Higher exchange - 30 to 10";
-	mes "Lower exchange - 10 to 30";
+	mes "---- อัตราการแลกเปลี่ยน ----";
+	mes "แลกเป็นระดับสูงขึ้น - ใช้ 30 ได้ 10";
+	mes "แลกเป็นระดับต่ำลง - ใช้ 10 ได้ 30";
 	mes "------------------------";
-	mes "^ff3333When you exchange, we charge a fee according to the current market price.^000000";
+	mes "^ff3333*หมายเหตุ: จะมีการหักค่าธรรมเนียมตามกลไกราคาตลาด ณ ปัจจุบัน^000000";
 	next;
-	setarray .@exchange_name$[0],"higher","lower";
+	setarray .@exchange_name$[0],"ที่ระดับสูงขึ้น","ที่ระดับต่ำลง";
 	setarray .@exchange_rate[0],30,10;
-	setarray .@exchange_loss[0],rand(1,4),rand(1,2); // Amount deducted per exchange.
+	setarray .@exchange_loss[0],rand(1,4),rand(1,2); // จำนวนที่ถูกหัก
 	setarray .@exchange_id[0],.@coins[.@coin_select-1],.@coins[.@coin_select+1];
-	if (.@exchange_id[0] == .@coins[1]) .@exchange_id[0] = 0; // Cannot exchange for Silvervine.
-	.@menu$ = "Stop:";
+	if (.@exchange_id[0] == .@coins[1]) .@exchange_id[0] = 0; // ไม่สามารถแลกเป็น Silvervine ได้
+	.@menu$ = "ยกเลิก:";
 	for(.@i = 0; .@i<2; .@i++) {
 		if (.@exchange_id[.@i] == 0)
-			.@menu$ = .@menu$ + "^ff3333Unavailable exchange to "+.@exchange_name$[.@i]+" coin^000000:";
+			.@menu$ = .@menu$ + "^ff3333ไม่สามารถแลกเป็นเหรียญระดับสูงกว่านี้ได้^000000:";
 		else if (countitem(.@coin) < .@exchange_rate[.@i])
-			.@menu$ = .@menu$ + "^aaaaaaExchange to "+.@exchange_name$[.@i]+" coin (null)^000000:";
+			.@menu$ = .@menu$ + "^aaaaaaแลกเป็นเหรียญ"+.@exchange_name$[.@i]+" (ไอเทมไม่พอ)^000000:";
 		else
-			.@menu$ = .@menu$ + "Exchange to "+.@exchange_name$[.@i]+" coin - "+getitemname(.@coin)+" ("+.@exchange_rate[.@i]+" needed):";
+			.@menu$ = .@menu$ + "แลกเป็นเหรียญ"+.@exchange_name$[.@i]+" - ใช้ "+getitemname(.@coin)+" ("+.@exchange_rate[.@i]+" เหรียญ):";
 	}
 	.@i = select(.@menu$)-2;
 	if (.@i == -1) {
 		mes "[Coin Exchanger CX-1]";
-		mes "Thank you for coming.";
+		mes "ขอบคุณที่ใช้บริการ";
 		close;
 	}
 	if (.@exchange_id[.@i] == 0) {
 		mes "[Coin Exchanger CX-1]";
-		mes "This coin is not available to exchange to "+.@exchange_name$[.@i]+" coin.";
-		mes "Thank you for coming.";
+		mes "เหรียญชนิดนี้ไม่สามารถแลกเปลี่ยนเป็นระดับ "+.@exchange_name$[.@i]+" ได้";
+		mes "ขอบคุณที่ใช้บริการ";
 		close;
 	}
 	if (countitem(.@coin) < .@exchange_rate[.@i]) {
 		mes "[Coin Exchanger CX-1]";
-		mes "You don't have enough coins to exchange to "+.@exchange_name$[.@i]+" coin.";
-		mes "Thank you for coming.";
+		mes "คุณมีเหรียญไม่เพียงพอที่จะแลกเปลี่ยนเป็นระดับ "+.@exchange_name$[.@i];
+		mes "ขอบคุณที่ใช้บริการ";
 		close;
 	}
 	.@exchange_total = .@exchange_rate[(!.@i)] - .@exchange_loss[(!.@i)];
 	delitem .@coin, .@exchange_rate[.@i];
 	getitem .@exchange_id[.@i], .@exchange_total;
 	mes "[Coin Exchanger CX-1]";
-	mes "^003399"+.@exchange_rate[.@i]+"^000000 unit(s) of ^003399 "+getitemname(.@coin)+"^000000 taken.";
-	mes "I exchanged them for ^003399"+.@exchange_name$[.@i]+" coins^000000, after deducting ^003399"+.@exchange_loss[(!.@i)]+"^000000 unit(s), ^003399"+.@exchange_total+"^000000 unit(s) remaining.";
+	mes "หัก ^003399"+.@exchange_rate[.@i]+"^000000 เหรียญ จากไอเทม ^003399 "+getitemname(.@coin)+"^000000 เรียบร้อยแล้ว";
+	mes "ทำการแลกเปลี่ยนเป็นเหรียญระดับ ^003399"+.@exchange_name$[.@i]+"^000000 โดยหักค่าธรรมเนียม ^003399"+.@exchange_loss[(!.@i)]+"^000000 เหรียญ คุณได้รับไอเทมทั้งหมด ^003399"+.@exchange_total+"^000000 เหรียญ";
 	close;
 }
 
 malangdo,218,165,5	script	Special Vending Machine	562,{
 	if (checkweight(1201,1) == 0) {
-		mes "You have too many kinds of objects. Let's try to continue after reducing those objects.";
+		mes "คุณมีไอเทมหลายชนิดเกินไป กรุณาจัดการพื้นที่ในกระเป๋าแล้วค่อยกลับมาใหม่";
 		close;
 	}
 	if (MaxWeight - Weight < 10000) {
-		mes "Can't continue because you have too many heavy objects. Let's try to continue after reducing the weight.";
+		mes "ไม่สามารถดำเนินการได้เนื่องจากน้ำหนักตัวมากเกินไป กรุณาลดน้ำหนักไอเทมในตัวก่อน";
 		close;
 	}
 	mes "[Special Vending Machine]";
-	mes "Welcome to CX-82. You have a Silvervine Fruit, so you can purchase the Malangdo Specialty that has special ability.";
+	mes "ยินดีต้อนรับสู่ระบบ CX-82 หากคุณมี Silvervine Fruit คุณสามารถซื้อสินค้าพื้นเมืองของ Malangdo ที่มีความสามารถพิเศษได้ที่นี่";
 	next;
 	callsub L_AddItem, //DisplayName,ItemID,Cost
-		"Seagod's Protection [23 hours]",16740,4,
-		"Seagod's Protection [7 days]",16763,12,
-		"Seagod's Protection [15 days]",16764,24,
-		"Octopus Hunting Stick [23 hours]",16765,2,
-		"Octopus Hunting Stick [3 days]",16766,5,
-		"Octopus Hunting Stick [7 days]",16767,10,
+		"Seagod's Protection [23 ชั่วโมง]",16740,4,
+		"Seagod's Protection [7 วัน]",16763,12,
+		"Seagod's Protection [15 วัน]",16764,24,
+		"Octopus Hunting Stick [23 ชั่วโมง]",16765,2,
+		"Octopus Hunting Stick [3 วัน]",16766,5,
+		"Octopus Hunting Stick [7 วัน]",16767,10,
 		"Premium Lubricant",6441,56,
 		"Ordinary Lubricant",6440,36,
 		"Sillit Pong",6443,192;
 L_AddItem:
-	.@menu$ = "Explanation:";
+	.@menu$ = "คำอธิบายไอเทม:";
 	for(.@i = 0; .@i<getargcount(); .@i += 3)
 		.@menu$ = .@menu$ + getarg(.@i)+":";
 	.@i = select(.@menu$)-2;
 	if (.@i == -1) {
 		mes "[Special Vending Machine]";
-		mes "Seagod's Protection is an item used for entering the Culvert memorial dungeon during a certain period.";
+		mes "Seagod's Protection คือไอเทมที่ใช้สำหรับผ่านเข้าสู่ดันเจี้ยน Culvert (ท่อระบายน้ำ) ในช่วงระยะเวลาที่กำหนด";
 		next;
 		mes "[Special Vending Machine]";
-		mes "Octopus Hunting Stick is an item used for entering the Culvert memorial dungeon during a certain period.";
+		mes "Octopus Hunting Stick คือไอเทมที่ใช้สำหรับผ่านเข้าสู่ดันเจี้ยน Octopus (ถ้ำปลาหมึก) ในช่วงระยะเวลาที่กำหนด";
 		next;
 		mes "[Special Vending Machine]";
-		mes "Premium and Ordinary Lubricant are items used for separation of equipment and cards. If you visit the specialist Jeremy with either item, he will explain more details of the effects.";
+		mes "Premium และ Ordinary Lubricant คือไอเทมสำหรับใช้แยกการ์ดออกจากอุปกรณ์ หากคุณไปพบผู้เชี่ยวชาญที่ชื่อ Jeremy พร้อมกับไอเทมเหล่านี้ เขาจะอธิบายรายละเอียดให้ฟังมากขึ้น";
 		next;
 		mes "[Special Vending Machine]";
-		mes "Sillit Pong is special item that separates sockets with MVP cards. Unable to separate MVP card by Premium and Ordinary Lubricant.";
+		mes "Sillit Pong คือไอเทมพิเศษที่ใช้สำหรับแยกการ์ดระดับ MVP ออกจากอุปกรณ์ ซึ่ง Premium หรือ Ordinary Lubricant ทั่วไปไม่สามารถทำได้";
 		close;
 	}
 	.@cost = getarg(.@i*3+2);
 	mes "[Special Vending Machine]";
-	mes "You choose ^005500"+getarg(.@i*3)+"^000000. For purchasing, you need ^005500"+.@cost+"^000000 unit(s) of Silvervine Fruit.";
+	mes "คุณเลือก ^005500"+getarg(.@i*3)+"^000000 ในการซื้อไอเทมนี้ คุณต้องใช้ ^005500"+.@cost+"^000000 Silvervine Fruit";
 	next;
 	if (countitem(6417) < .@cost)
-		.@ven_menu$ = "^999999Silvervine Fruit (missing "+(.@cost - countitem(6417))+")^000000";
+		.@ven_menu$ = "^999999Silvervine Fruit (ขาดอีก "+(.@cost - countitem(6417))+" อัน)^000000";
 	else
-		.@ven_menu$ = "Purchase - Silvervine Fruit (have "+countitem(6417)+")";
-	switch(select("Stop:"+.@ven_menu$)) {
+		.@ven_menu$ = "ยืนยันการซื้อ - Silvervine Fruit (มีอยู่ "+countitem(6417)+" อัน)";
+	switch(select("ยกเลิก:"+.@ven_menu$)) {
 	case 1:
 		mes "[Special Vending Machine]";
-		mes "Thank you for coming.";
+		mes "ขอบคุณที่แวะมา";
 		close;
 	case 2:
 		if (countitem(6417) < .@cost) {
 			mes "[Special Vending Machine]";
-			mes "Not enough Silvervine Fruit.";
-			mes "Closing the transaction.";
-			mes "Thank you for coming.";
+			mes "คุณมี Silvervine Fruit ไม่เพียงพอ";
+			mes "ขอระงับการทำรายการ";
+			mes "ขอบคุณที่แวะมา";
 			close;
 		}
 		mes "[Special Vending Machine]";
-		mes "The transaction is completed. Thank you for coming.";
+		mes "การซื้อขายเสร็จสมบูรณ์ ขอบคุณที่ใช้บริการ";
 		delitem 6417,.@cost; //Silvervine
 		getitem getarg(.@i*3+1),1;
 		close;
@@ -181,63 +181,63 @@ L_AddItem:
 
 malangdo,236,179,5	script	Dark Merchant K	554,{
 	if (checkweight(1201,1) == 0) {
-		mes "It seems you have too much in your inventory. Let's try again after getting rid of some of your belongings.";
+		mes "ดูเหมือนว่ากระเป๋าของคุณจะมีไอเทมเยอะเกินไปนะ ลองจัดการของออกบ้างแล้วค่อยกลับมาหาข้าใหม่";
 		close;
 	}
 	if (MaxWeight - Weight < 1000) {
-		mes "Your inventory is too heavy now. Please come back after getting rid of some of your belongings.";
+		mes "ตอนนี้ตัวคุณหนักเกินไปแล้วล่ะ กรุณาไปลดน้ำหนักของที่แบกอยู่แล้วค่อยกลับมาใหม่นะ";
 		close;
 	}
 	mes "[Merchant K]";
-	mes "Thank you for the trade.";
-	mes "We exchange ^ff000010 C Grade Coin^000000 to ^3333ff1 Mora Coin^000000. Shall we begin then?";
+	mes "ขอบใจมากที่แวะมาซื้อขายกับข้า";
+	mes "ข้าจะแลกเปลี่ยน ^ff000010 C Grade Coin^000000 เป็น ^3333ff1 Mora Coin^000000... เราจะเริ่มกันเลยไหม?";
 	next;
 	setarray .@coin_amount[0],10,100,500,1000;
 	while(1) {
 		.@menu$ = "";
 		for(.@i = 0; .@i<getarraysize(.@coin_amount); .@i++) {
 			if (countitem(6420) >= .@coin_amount[.@i])
-				.@menu$ = .@menu$ + "Exchange "+(.@coin_amount[.@i]/10)+" Mora Coin:";
+				.@menu$ = .@menu$ + "แลก "+(.@coin_amount[.@i]/10)+" Mora Coin:";
 			else
-				.@menu$ = .@menu$ + "^aaaaaaExchange "+(.@coin_amount[.@i]/10)+" Mora Coin (Not Enough)^000000:";
+				.@menu$ = .@menu$ + "^aaaaaaแลก "+(.@coin_amount[.@i]/10)+" Mora Coin (เหรียญไม่พอ)^000000:";
 		}
-		.@i = select(.@menu$+"Quit")-1;
+		.@i = select(.@menu$+"เลิกแลกเปลี่ยน")-1;
 		if (.@i == getarraysize(.@coin_amount)) {
 			mes "[Merchant K]";
-			mes "Let's exchange some other time.";
+			mes "งั้นไว้ค่อยมาแลกวันหลังแล้วกันนะ";
 			close;
 		}
 		if (countitem(6420) < .@coin_amount[.@i]) {
 			mes "[Merchant K]";
-			mes "You need ^ff0000"+.@coin_amount[.@i]+"^000000 C Grade Coin to perform the exchange. But you don't seem to have enough now.";
+			mes "คุณต้องใช้ ^ff0000"+.@coin_amount[.@i]+"^000000 C Grade Coin เพื่อแลกเปลี่ยน แต่ดูเหมือนว่าตอนนี้คุณจะมีไม่พอนะ";
 			close;
 		}
 		delitem 6420,.@coin_amount[.@i]; //Cgrade_Coin
 		getitem 6380,.@coin_amount[.@i]/10; //Mora_Coin
 		mes "[Merchant K]";
-		mes "C Grade Coin ^003399"+.@coin_amount[.@i]+"^000000 well received."; //FIXME: Dialogue.
-		mes "Exchanged to ^003399"+(.@coin_amount[.@i]/10)+"^000000 Mora Coin.";
+		mes "ข้าได้รับ C Grade Coin จำนวน ^003399"+.@coin_amount[.@i]+"^000000 เหรียญแล้ว";
+		mes "นี่คือ ^003399"+(.@coin_amount[.@i]/10)+"^000000 Mora Coin ที่คุณควรได้รับ";
 		next;
 		mes "[Merchant K]";
-		mes "Would you like to continue?";
+		mes "ต้องการจะแลกต่ออีกไหม?";
 		next;
 	}
 }
 
 malangdo,233,180,3	script	Dark MachineTX100	564,{
 	if (checkweight(1201,1) == 0) {
-		mes "It seems you have too much in your inventory. Let's try again after getting rid of some of your belongings.";
+		mes "ดูเหมือนว่าในกระเป๋าของคุณจะมีไอเทมเยอะเกินไป กรุณาจัดการพื้นที่แล้วค่อยกลับมาใหม่";
 		close;
 	}
 	if (MaxWeight - Weight < 1000) {
-		mes "Your inventory is too heavy now. Please come back after getting rid of some of your belongings.";
+		mes "ตอนนี้ตัวคุณหนักเกินไปแล้ว กรุณาลดน้ำหนักไอเทมที่แบกอยู่แล้วค่อยกลับมาใหม่นะ";
 		close;
 	}
 	mes "[Dark Machine TX100]";
-	mes "Thank you for visiting TX100. You can exchange coins into higher or lower level coins.";
+	mes "ขอบคุณที่เลือกใช้บริการ TX100 คุณสามารถแลกเปลี่ยนเหรียญเป็นระดับที่สูงขึ้นหรือต่ำลงได้ที่นี่";
 	next;
 	mes "[Dark Machine TX100]";
-	mes "For a lower level coin exchange you can do 500 as a 1 time maximum, and for higher level coin exchange you can do 99 as a 1 time maximum.";
+	mes "สำหรับการแลกเป็น 'เหรียญระดับต่ำลง' สามารถแลกได้สูงสุด 500 เหรียญต่อครั้ง และสำหรับการแลกเป็น 'เหรียญระดับสูงขึ้น' สามารถแลกได้สูงสุด 99 เหรียญต่อครั้ง";
 	next;
 	setarray .@coins[1],
 		6417, //Silvervine
@@ -246,150 +246,150 @@ malangdo,233,180,3	script	Dark MachineTX100	564,{
 		6420, //Cgrade_Coin
 		6421, //Dgrade_Coin
 		6422; //Egrade_Coin
-	.@menu$ = "Quit:";
+	.@menu$ = "ยกเลิก:";
 	for(.@i = 1; .@i<=6; .@i++) {
 		if (countitem(.@coins[.@i]))
-			.@menu$ = .@menu$ + getitemname(.@coins[.@i])+" (have "+countitem(.@coins[.@i])+"):";
+			.@menu$ = .@menu$ + getitemname(.@coins[.@i])+" (มี "+countitem(.@coins[.@i])+" เหรียญ):";
 		else
-			.@menu$ = .@menu$ + "^aaaaaa"+getitemname(.@coins[.@i])+" (None)^000000:";
+			.@menu$ = .@menu$ + "^aaaaaa"+getitemname(.@coins[.@i])+" (ไม่มีไอเทม)^000000:";
 	}
 	.@i = select(.@menu$)-1;
 	if (.@i == 0) {
 		mes "[Dark Machine TX100]";
-		mes "Thank you for coming.";
+		mes "ขอบคุณที่ใช้บริการ";
 		close;
 	}
 	.@coin = .@coins[.@i];
-	setarray .@exchange_name$[0],"higher","lower";
+	setarray .@exchange_name$[0],"ที่สูงขึ้น","ที่ต่ำลง";
 	setarray .@exchange_id[0],.@coins[.@i-1],.@coins[.@i+1];
-	if (.@exchange_id[0] == .@coins[1]) .@exchange_id[0] = 0; // Cannot exchange for Silvervine.
+	if (.@exchange_id[0] == .@coins[1]) .@exchange_id[0] = 0; // ไม่สามารถแลกกลับเป็น Silvervine ได้
 	if (.@i > getarraysize(.@coins)) {
 		mes "[Dark Machine TX100]";
-		mes "You've chosen abnormal menu.";
-		mes "Aborting process. Thank you for coming.";
+		mes "ระบบตรวจพบการเลือกเมนูที่ผิดปกติ";
+		mes "กำลังยกเลิกกระบวนการ... ขอบคุณที่ใช้บริการ";
 		close;
 	}
 	if (countitem(.@coin) == 0) {
 		mes "[Dark Machine TX100]";
-		mes "You chose a coin that you don't have.";
-		mes "Aborting process. Thank you for coming.";
+		mes "คุณเลือกเหรียญที่คุณไม่มีอยู่ในตัว";
+		mes "กำลังยกเลิกกระบวนการ... ขอบคุณที่ใช้บริการ";
 		close;
 	}
 	mes "[Dark Machine TX100]";
-	mes "----Exchange Rate----";
-	mes "Higher Coin - 3 to 1";
-	mes "Lower Coin - 1 to 3";
+	mes "---- อัตราการแลกเปลี่ยน ----";
+	mes "แลกเป็นระดับสูงขึ้น - ใช้ 3 ได้ 1";
+	mes "แลกเป็นระดับต่ำลง - ใช้ 1 ได้ 3";
 	mes "---------------------";
-	mes "^ff3333We take a small vendor fee from your exchanged coins.^000000";
+	mes "^ff3333*เราจะหักค่าธรรมเนียมเล็กน้อยจากเหรียญที่แลกเปลี่ยนสำเร็จ^000000";
 	next;
-	.@menu$ = "Quit:";
+	.@menu$ = "ยกเลิก:";
 	if (.@exchange_id[0] == 0)
-		.@menu$ = .@menu$ + "^ff3333Cannot exchange to higher level coin^000000:";
+		.@menu$ = .@menu$ + "^ff3333ไม่สามารถแลกเป็นเหรียญระดับสูงกว่านี้ได้^000000:";
 	else {
 		if (countitem(.@coin) >= 99)
-			.@menu$ = .@menu$ + "Exchange 99 "+getitemname(.@coin)+" into higher level coin:";
+			.@menu$ = .@menu$ + "แลก 99 "+getitemname(.@coin)+" เป็นเหรียญระดับสูงขึ้น:";
 		else
-			.@menu$ = .@menu$ + "^aaaaaaExchange to higher level coin (Not enough)^000000:";
+			.@menu$ = .@menu$ + "^aaaaaaแลกเป็นเหรียญระดับสูงขึ้น (เหรียญไม่พอ)^000000:";
 	}
 	if (.@exchange_id[1] == 0)
-		.@menu$ = .@menu$ + "^ff3333Cannot exchange to lower level coin^000000:";
+		.@menu$ = .@menu$ + "^ff3333ไม่สามารถแลกเป็นเหรียญระดับต่ำกว่านี้ได้^000000:";
 	else {
 		if (countitem(.@coin) > 500)
-			.@menu$ = .@menu$ + "Exchange 500 "+getitemname(.@coin)+" into lower level coin:";
+			.@menu$ = .@menu$ + "แลก 500 "+getitemname(.@coin)+" เป็นเหรียญระดับต่ำลง:";
 		else if (countitem(.@coin))
-			.@menu$ = .@menu$ + "Exchange "+countitem(.@coin)+" "+getitemname(.@coin)+" into lower level coin:";
+			.@menu$ = .@menu$ + "แลก "+countitem(.@coin)+" "+getitemname(.@coin)+" เป็นเหรียญระดับต่ำลง:";
 		else
-			.@menu$ = .@menu$ + "^aaaaaaExchange to lower level coin (Not enough)^000000:";
+			.@menu$ = .@menu$ + "^aaaaaaแลกเป็นเหรียญระดับต่ำลง (เหรียญไม่พอ)^000000:";
 	}
 	.@i = select(.@menu$)-2;
 	if (.@i == -1) {
 		mes "[Dark Machine TX100]";
-		mes "Thank you for coming.";
+		mes "ขอบคุณที่ใช้บริการ";
 		close;
 	}
 	if (.@exchange_id[.@i] == 0) {
 		mes "[Dark Machine TX100]";
-		mes "This coin cannot be exchanged to a "+.@exchange_name$[.@i]+" level coin.";
-		mes "Aborting process. Thank you for coming.";
+		mes "เหรียญชนิดนี้ไม่สามารถแลกเปลี่ยนเป็นระดับ "+.@exchange_name$[.@i]+" ได้";
+		mes "กำลังยกเลิกกระบวนการ... ขอบคุณที่ใช้บริการ";
 		close;
 	}
 	if ((.@i == 0 && countitem(.@coin) < 100) || (.@i == 1 && countitem(.@coin) == 0)) {
 		mes "[Dark Machine TX100]";
-		mes "You have not enough coins for a "+.@exchange_name$[.@i]+" level coin exchange.";
-		mes "Aborting process. Thank you for coming.";
+		mes "คุณมีเหรียญไม่เพียงพอสำหรับการแลกเปลี่ยนเป็นระดับ "+.@exchange_name$[.@i];
+		mes "กำลังยกเลิกกระบวนการ... ขอบคุณที่ใช้บริการ";
 		close;
 	}
 	if (countitem(.@exchange_id[.@i]) > 28000) {
 		mes "[Dark Machine TX100]";
-		mes "You have too many "+.@exchange_name$[.@i]+" level coins already. Please come back with less coins.";
+		mes "คุณมีเหรียญระดับ "+.@exchange_name$[.@i]+" มากเกินไปแล้ว กรุณากลับมาใหม่หลังจากจัดการจำนวนเหรียญในตัว";
 		close;
 	}
 	switch(.@i) {
 	case 0:
 		.@payment_amount = 99;
 		.@reward_amount = .@payment_amount/3;
-		.@coin_text$ = "High";
+		.@coin_text$ = "ระดับสูงขึ้น";
 		break;
 	case 1:
 		.@payment_amount = (((countitem(.@coin) > 500))?500:countitem(.@coin));
 		.@reward_amount = .@payment_amount*3;
-		.@coin_text$ = "Low";
+		.@coin_text$ = "ระดับต่ำลง";
 		break;
 	}
 	.@fee = rand(1,3);
 	delitem .@coin, .@payment_amount;
 	getitem .@exchange_id[.@i], .@reward_amount - .@fee;
 	mes "[Dark Machine TX100]";
-	mes "Received ^003399"+getitemname(.@coin)+"^000000 for ^003399"+.@payment_amount+"^000000 unit(s).";
-	mes "We have exchanged your coin to ^003399"+(.@reward_amount-.@fee)+"^000000 unit(s) of ^003399"+.@coin_text$+" Level Coin^000000, deducted ^003399"+.@fee+"^000000 unit(s) as exchanging fee.";
+	mes "ได้รับ ^003399"+getitemname(.@coin)+"^000000 จำนวน ^003399"+.@payment_amount+"^000000 เหรียญเรียบร้อยแล้ว";
+	mes "เราได้แลกเปลี่ยนเป็นเหรียญ ^003399"+.@coin_text$+"^000000 ให้คุณจำนวน ^003399"+(.@reward_amount-.@fee)+"^000000 เหรียญ (หักค่าธรรมเนียมออก ^003399"+.@fee+"^000000 เหรียญ)";
 	close;
 }
 
 malangdo,175,145,4	script	Can Agency Guard	549,{
 	if (checkweight(1201,1) == 0) {
-		mes "You seem to have too many items. Give it a try after sorting out the item kinds.";
+		mes "ดูเหมือนว่าคุณจะมีไอเทมหลายชนิดเกินไปนะ ลองจัดการคัดแยกไอเทมดูสักหน่อยแล้วค่อยกลับมาใหม่";
 		close;
 	}
 	if (MaxWeight - Weight < 1000) {
-		mes "You're not likely to be able to go on due to the heavy items you've got. Give it a try after lightening the weight.";
+		mes "ดูท่าคุณจะขยับตัวลำบากเพราะแบกของหนักเกินไปนะ ไปลดน้ำหนักของในตัวลงหน่อยแล้วค่อยมาคุยกันใหม่";
 		close;
 	}
 	mes "[Can Agency Guard]";
-	mes "Hey, you there... Have you seen any ^0000ffMalangdo Cat Can^000000s around here?";
+	mes "เฮ้ เจ้าน่ะ... แถวนี้พอจะมีพวก ^0000ffMalangdo Cat Can^000000 บ้างไหม?";
 	next;
-	switch(select("Why are you asking?:Oh, you mean these?")) {
+	switch(select("ถามทำไมเหรอ?:อ๋อ หมายถึงเจ้านี่น่ะเหรอ?")) {
 	case 1:
 		mes "[Can Agency Guard]";
-		mes "Umm.";
-		mes "We at the Can Agency recently got some suspicious intelligence about them...";
+		mes "อืม...";
+		mes "พวกเราจากหน่วยตรวจสอบปลากระป๋อง เพิ่งจะได้รับข้อมูลที่น่าสงสัยเกี่ยวกับพวกมันมาน่ะ...";
 		next;
 		mes "[Can Agency Guard]";
-		mes "There were faulty products in bulk on the can production line for Malangdo specialty. These products, to be discarded, seem to have fallen into a retail dealer's hands.";
+		mes "ดูเหมือนว่าจะมีสินค้าที่ไม่ได้มาตรฐานจำนวนมากหลุดออกมาจากสายการผลิตปลากระป๋องสูตรพิเศษของ Malangdo ซึ่งจริงๆ แล้วพวกมันควรจะถูกทำลายทิ้ง แต่ดันหลุดไปอยู่ในมือของพวกพ่อค้ารายย่อยซะได้";
 		next;
 		mes "[Can Agency Guard]";
-		mes "Actually they were hard to distinguish from normal products. But it obviously says ^0000ffMalangdo Cat Can^000000 outside.";
+		mes "จริงๆ แล้วมันแยกจากของปกติได้ยากมากเลยนะ แต่ที่ข้างกระป๋องจะเขียนไว้อย่างชัดเจนว่า ^0000ffMalangdo Cat Can^000000";
 		next;
 		mes "[Can Agency Guard]";
-		mes "As faulty products are moving around on the market, we've been collecting them as is our duty. Have you ever seen anyone who has things like what I'm describing?";
+		mes "ในเมื่อสินค้าตำหนิพวกนี้กำลังระบาดในตลาด มันจึงเป็นหน้าที่ของพวกเราที่ต้องตามเก็บกู้พวกมันคืนมา คุณพอจะเคยเห็นใครที่มีของตามที่ฉันบอกบ้างไหม?";
 		next;
 		mes "[Can Agency Guard]";
-		mes "If you find anyone selling these products, please come and tell me.";
+		mes "ถ้าคุณเจอใครที่กำลังขายสินค้าพวกนี้อยู่ล่ะก็ รีบมาบอกฉันทันทีเลยนะ";
 		close;
 	case 2:
 		if (countitem(12633) == 0) {
 			mes "[Can Agency Guard]";
-			mes "Umm? I cannot see the ^0000ffMalangdo Cat Can^000000 from you. Don't forget to bring it to me if you've found out...";
+			mes "หืม? ฉันไม่เห็นว่าคุณจะมี ^0000ffMalangdo Cat Can^000000 เลยนี่นา... อย่าลืมเอามาให้ฉันล่ะถ้าคุณหามันเจอ...";
 			close;
 		}
 		break;
 	}
 	mes "[Can Agency Guard]";
-	mes "The Malangdo Cat Can is a faulty product. Let me exchange it to 3 E Grade Coins. How about that?";
+	mes "เจ้า Malangdo Cat Can นี่มันเป็นสินค้าที่มีตำหนิน่ะ เอามาแลกเป็น E Grade Coin สัก 3 เหรียญดีไหม? คุณคิดว่าไงล่ะ?";
 	next;
-	switch(select("I won't exchange:^0000ff1^000000 Can -> ^0000ff3^000000 E Grade Coin:^0000ff10^000000 Can -> ^0000ff30^000000 E Grade Coin:^0000ff100^000000 Can -> ^0000ff300^000000 E Grade Coin:Exchange all I've got")) {
+	switch(select("ยังไม่แลกตอนนี้:แลก ^0000ff1^000000 กระป๋อง -> ^0000ff3^000000 E Grade Coin:แลก ^0000ff10^000000 กระป๋อง -> ^0000ff30^000000 E Grade Coin:แลก ^0000ff100^000000 กระป๋อง -> ^0000ff300^000000 E Grade Coin:แลกทั้งหมดที่มีในตัว")) {
 	case 1:
 		mes "[Can Agency Guard]";
-		mes "Umm, I'm not here forever, so come to me if you'd like to exchange while I still am.";
+		mes "อืม... ฉันไม่ได้อยู่ตรงนี้ตลอดไปหรอกนะ ถ้าอยากจะแลกก็รีบมาหาฉันในตอนที่ฉันยังอยู่นี่ล่ะ";
 		close;
 	case 2:
 		.@check = 1;
@@ -411,119 +411,119 @@ malangdo,175,145,4	script	Can Agency Guard	549,{
 	if (countitem(12633) < .@check) {
 		if (.@check == 1) {
 			mes "[Can Agency Guard]";
-			mes "Umm? I cannot see the ^0000ffMalangdo Cat Can^000000 from you. Don't forget to bring it to me if you've found out...";
+			mes "หืม? ฉันไม่เห็นว่าคุณจะมี ^0000ffMalangdo Cat Can^000000 เลยนี่นา... อย่าลืมเอามาให้ฉันล่ะถ้าคุณหามันเจอ...";
 			close;
 		} else {
 			mes "[Can Agency Guard]";
-			mes "Umm? I don't think you have enough to exchange... Come to me again when the amount is exactly decided.";
+			mes "อืม... ดูเหมือนว่าคุณจะมีของไม่พอแลกนะ เอาไว้รวบรวมให้ครบตามจำนวนที่ต้องการแล้วค่อยมาหาฉันใหม่";
 			close;
 		}
 	}
 	delitem 12633,.@count; //Malang_Cat_Can
 	getitem 6422,.@count*3; //Egrade_Coin
 	mes "[Can Agency Guard]";
-	mes "Exchanged "+.@count+" Malangdo Cat Can to "+(.@count*3)+" E Class Coin. Check it out.";
+	mes "แลกเปลี่ยน Malangdo Cat Can จำนวน "+.@count+" อัน เป็น "+(.@count*3)+" E Class Coin เรียบร้อยแล้ว ลองเช็คดูสิ";
 	close;
 }
 
 function	script	F_mal_coin	{
 
-// Initial dialogue and checks:
-// -- callfunc "F_mal_coin",0,"[<NPC Name>]",<NPC ID>;
+// บทสนทนาเริ่มต้นและการตรวจสอบเงื่อนไข:
+// -- callfunc "F_mal_coin",0,"[<ชื่อ NPC>]",<NPC ID>;
 	.@npc_name$ = getarg(1);
 	if (getarg(0) == 0) {
 		if (getarg(2) != 2 && BaseLevel < 50) {
 			mes .@npc_name$;
-			mes "Ahaaa~";
-			mes "If you want to buy this stuff,";
-			mes "you can talk to me";
-			mes "when you grow up a little more.";
-			mes "This stuff is too expensive";
-			mes "for a child~";
+			mes "อะฮ้าาา~";
+			mes "ถ้าเจ้าอยากจะซื้อของพวกนี้ล่ะก็";
+			mes "ไว้รอให้โตกว่านี้อีกหน่อย";
+			mes "ค่อยกลับมาคุยกับข้านะ";
+			mes "ของพวกนี้มันแพงเกินไป";
+			mes "สำหรับเด็กน้อยอย่างเจ้านะ~";
 			close;
 		}
 		mes .@npc_name$;
-		mes "Nice to meet you~~";
-		mes "I am! YES~~ That's right!";
-		mes "I'm selling special stuff";
-		mes "which you can see only here on Meow Meow Island!";
+		mes "ยินดีที่ได้รู้จักนะเมี๊ยว~~";
+		mes "ใช่แล้วล่ะ! ใช่เลย~~";
+		mes "ข้ากำลังขายของสุดพิเศษ";
+		mes "ที่หาดูได้แค่บนเกาะ Meow Meow แห่งนี้เท่านั้น!";
 		next;
 		mes .@npc_name$;
-		mes "How about it? What are you waiting for?";
-		mes "Why don't you take a look at";
-		mes "what kinds of stuff I have?";
+		mes "เป็นไงล่ะ? จะรออะไรอยู่?";
+		mes "ทำไมไม่ลองมาดูหน่อยล่ะว่า";
+		mes "ข้ามีของดีอะไรมาอวดบ้าง?";
 		next;
 		switch(getarg(2)) {
 		case 1:
 			mes "[Wandering Merchant]";
-			mes "Oh~";
-			mes "These are rental items, so make sure you know if you have the ^0000FF1 hour^000000 or ^0000FF7 day^000000 version.";
+			mes "โอ้~";
+			mes "ของพวกนี้เป็นไอเทมเช่านะ ตรวจสอบให้ดีล่ะว่าเจ้าเลือกแบบ ^0000FF1 ชั่วโมง^000000 หรือ ^0000FF7 วัน^000000";
 			next;
 			break;
 		case 2:
 			break;
 		case 3:
 			mes "[Roving Merchant]";
-			mes "Just for your information,";
-			mes "Sow Bug, Starfish, Dried Squid, and Flying Fish are the items which you can use for 1 hour.";
+			mes "ขอบอกไว้เป็นข้อมูลหน่อยนะ";
+			mes "ไอเทมพวก Sow Bug, Starfish, Dried Squid และ Flying Fish เป็นไอเทมที่ใช้งานได้แค่ 1 ชั่วโมงเท่านั้นนะ";
 			next;
 			break;
 		}
 		mes .@npc_name$;
-		mes "Well then, do you want to take a look at what I have now?";
+		mes "เอาล่ะ อยากจะลองดูของที่ข้ามีตอนนี้เลยไหม?";
 		next;
-		switch(select("Yes:No")) {
+		switch(select("ตกลง:ไม่ล่ะ")) {
 		case 1:
 			if (checkweight(1201,1) == 0) {
 				mes .@npc_name$;
-				mes "It seems that there are too many items in your inventory.";
-				mes "Please make space and come back again~";
+				mes "ดูเหมือนว่าเจ้าจะมีไอเทมในกระเป๋าเยอะเกินไปนะ";
+				mes "กรุณาไปจัดการที่ว่างแล้วกลับมาใหม่นะเมี๊ยว~";
 				close;
 			}
 			if (MaxWeight - Weight < 2500) {
 				mes .@npc_name$;
-				mes "It seems that you're overweight.";
-				mes "Please reduce your weight and come back again~";
+				mes "ดูเหมือนว่าน้ำหนักตัวของเจ้าจะเกินนะ";
+				mes "ไปลดน้ำหนักแล้วค่อยกลับมาใหม่นะเมี๊ยว~";
 				close;
 			}
 			mes .@npc_name$;
-			mes "Well, take a good look at them~~~";
+			mes "งั้นก็เชิญเลือกดูตามสบายเลยเมี๊ยว~~~";
 			next;
 			return;
 		case 2:
 			mes .@npc_name$;
-			mes "Well, then. I'll see you next time.";
-			mes "Goodbye.";
+			mes "อื้มม แล้วเจอกันใหม่นะ";
+			mes "ลาก่อนเมี๊ยว";
 			close;
 		}
 	}
 
-// Exchange function:
-// -- callfunc "F_mal_coin",1,"[<NPC Name>]","<Display Name>",<Item ID>,<Egrade_Coin>,<Malang_Sp_Can>,<Silvervine>
+// ฟังก์ชันการแลกเปลี่ยนสินค้า:
+// -- callfunc "F_mal_coin",1,"[<ชื่อ NPC>]","<ชื่อไอเทม>",<Item ID>,<Egrade_Coin>,<Malang_Sp_Can>,<Silvervine>
 	if (getarg(0) == 1) {
 		mes .@npc_name$;
-		mes "The price of ^0000FF["+getarg(2)+"]^000000 is";
-		if (getarg(4) && getarg(5)) { // Type 1: Egrade_Coin or Malang_Sp_Can
-			mes getarg(4)+" E Grade Coin or "+getarg(5)+" Malangdo Canned Specialties.";
+		mes "ราคาของ ^0000FF["+getarg(2)+"]^000000 คือ";
+		if (getarg(4) && getarg(5)) { // แบบที่ 1: ใช้ Egrade_Coin หรือ Malang_Sp_Can
+			mes getarg(4)+" E Grade Coin หรือ "+getarg(5)+" Malangdo Canned Specialties";
 			.@type = 1;
-			.@menu$ = "Yes.:No, I'll purchase with cans.:I don't want to purchase any.";
-		} else if (getarg(5)) { // Type 2: Malang_Sp_Can only
-			mes getarg(5)+" Malangdo Canned Specialties.";
+			.@menu$ = "ตกลง (ใช้เหรียญ):ไม่ล่ะ จะซื้อด้วยปลากระป๋อง:ยกเลิกการซื้อ";
+		} else if (getarg(5)) { // แบบที่ 2: ใช้ Malang_Sp_Can เท่านั้น
+			mes getarg(5)+" Malangdo Canned Specialties";
 			.@type = 2;
-			.@menu$ = "Yes.::No.";
-		} else { // Type 3: Silvervine only
-			mes getarg(6)+" Silvervine Fruit.";
+			.@menu$ = "ตกลง::ไม่ล่ะ";
+		} else { // แบบที่ 3: ใช้ Silvervine เท่านั้น
+			mes getarg(6)+" Silvervine Fruit";
 			.@type = 3;
-			.@menu$ = "Yes.::I don't want to purchase any.";
+			.@menu$ = "ตกลง::ยกเลิกการซื้อ";
 		}
 		next;
 		mes .@npc_name$;
 		if (.@type == 1) {
-			mes "Would you like to purchase";
-			mes "^0000FF["+getarg(2)+"]^000000 with E Grade Coins?";
+			mes "เจ้าต้องการจะซื้อ";
+			mes "^0000FF["+getarg(2)+"]^000000 ด้วย E Grade Coin ใช่ไหม?";
 		} else {
-			mes "Would you like to";
-			mes "purchase ^0000FF["+getarg(2)+"]^000000?";
+			mes "เจ้าต้องการจะ";
+			mes "ซื้อ ^0000FF["+getarg(2)+"]^000000 ใช่ไหม?";
 		}
 		next;
 		switch(select(.@menu$)) {
@@ -534,12 +534,12 @@ function	script	F_mal_coin	{
 			case 1:
 				.@item = 6422; //Egrade_Coin
 				.@amount = getarg(4);
-				.@str$ = "coins";
+				.@str$ = "เหรียญ";
 				break;
 			case 2:
 				.@item = 12636; //Malang_Sp_Can
 				.@amount = getarg(5);
-				.@str$ = "cans";
+				.@str$ = "ปลากระป๋อง";
 				break;
 			case 3:
 				.@item = 6417; //Silvervine
@@ -549,24 +549,24 @@ function	script	F_mal_coin	{
 			}
 			if (countitem(.@item) < .@amount) {
 				mes .@npc_name$;
-				mes "I'm sorry, you need more "+.@str$+".";
+				mes "ขออภัยด้วยนะ แต่เจ้าต้องใช้ "+.@str$+" มากกว่านี้";
 				close;
 			}
 			if (MaxWeight - Weight < getiteminfo(getarg(3), ITEMINFO_WEIGHT)) {
 				mes .@npc_name$;
-				mes "Sorry, you've purchased too many.";
-				mes "You need to make more space in your inventory. Please come back later.";
+				mes "ขอโทษทีนะ แต่เจ้าซื้อเยอะเกินไปแล้ว";
+				mes "เจ้าต้องเคลียร์ที่ว่างในกระเป๋าเพิ่มก่อน แล้วค่อยกลับมาใหม่นะ";
 				close;
 			}
 			mes .@npc_name$;
-			mes "Thank you.";
+			mes "ขอบใจมากนะเมี๊ยว";
 			delitem .@item,.@amount;
 			getitem getarg(3),1;
 			return;
 		case 3:
 			mes .@npc_name$;
-			mes "Always be careful";
-			mes "when you purchase items.";
+			mes "ตรวจสอบให้ดีทุกครั้งนะ";
+			mes "ก่อนจะเลือกซื้อไอเทมอะไร";
 			close;
 		}
 	}
@@ -574,129 +574,129 @@ function	script	F_mal_coin	{
 malangdo,162,146,5	script	Wandering Merchant#mal	495,{
 	callfunc "F_mal_coin",0,"[Wandering Merchant]",1;
 	setarray .@items[1],
-		16743,16747,16741,16745,16749,16751, // 1 hour items.
-		16742,16744,16746,16748,16752,16750; // 7 day items.
+		16743,16747,16741,16745,16749,16751, // ไอเทม 1 ชั่วโมง
+		16742,16744,16746,16748,16752,16750; // ไอเทม 7 วัน
 	setarray .@names$[1],
 		"Spearfish","Tuna","Hairtail","Saurel","Malang Snow Crab","Brindle Eel",
-		"Hairtail (7Days)","Spearfish (7Days)","Saurel (7Days)","Tuna (7Days)","Brindle Eel (7Days)","Malang Snow Crab (7Days)";
+		"Hairtail (7 วัน)","Spearfish (7 วัน)","Saurel (7 วัน)","Tuna (7 วัน)","Brindle Eel (7 วัน)","Malang Snow Crab (7 วัน)";
 	while(1) {
 		.@i = select(
-			"[Spearfish(1hr)] 8 E-Coins/50 Cans",
-			"[Tuna(1hr)] 8 E-Coins/50 Cans",
-			"[Hairtail(1hr)] 8 E-Coins/50 Cans",
-			"[Saurel(1hr)] 8 E-Coins/50 Can",
-			"[Malang Snow Crab(1hr)] 8 E-Coins/50 Can",
-			"[Brindle Eel(1hr)] 8 E-Coins/50 Can",
-			"[Hairtail(7Days)] 10 Silvervine Fruit",
-			"[Spearfish(7Days)] 10 Silvervine Fruit",
-			"[Saurel(7Days)] 10 Silvervine Fruit",
-			"[Tuna(7Days)] 10 Silvervine Fruit",
-			"[Brindle Eel(7Days)] 10 Silvervine Fruit",
-			"[Malang Snow Crab(7Days)] 10 Silvervine Fruit",
-			"End purchasing."
+			"[Spearfish(1ชม.)] 8 E-Coins/50 Cans",
+			"[Tuna(1ชม.)] 8 E-Coins/50 Cans",
+			"[Hairtail(1ชม.)] 8 E-Coins/50 Cans",
+			"[Saurel(1ชม.)] 8 E-Coins/50 Cans",
+			"[Malang Snow Crab(1ชม.)] 8 E-Coins/50 Cans",
+			"[Brindle Eel(1ชม.)] 8 E-Coins/50 Cans",
+			"[Hairtail(7วัน)] 10 Silvervine Fruit",
+			"[Spearfish(7วัน)] 10 Silvervine Fruit",
+			"[Saurel(7วัน)] 10 Silvervine Fruit",
+			"[Tuna(7วัน)] 10 Silvervine Fruit",
+			"[Brindle Eel(7วัน)] 10 Silvervine Fruit",
+			"[Malang Snow Crab(7วัน)] 10 Silvervine Fruit",
+			"จบการซื้อขาย"
 		);
 		if (.@i == 13) {
 			mes "[Wandering Merchant]";
-			mes "Well, then. I'll see you next time.";
-			mes "Goodbye.";
+			mes "อื้มม แล้วเจอกันใหม่นะ";
+			mes "ลาก่อนเมี๊ยว";
 			close;
 		}
 		mes "[Wandering Merchant]";
-		mes "Are you interested in ^0000FF["+.@names$[.@i]+"]^000000?";
+		mes "เจ้าสนใจ ^0000FF["+.@names$[.@i]+"]^000000 อย่างนั้นรึ?";
 		switch(.@i) {
 		case 1: //Spearfish_Box1
 		case 8: //Spearfish_Box2
-			mes "This is... a fish that moves according to the season, very tasty!";
-			mes "But this is only a food that I'm talking about, yummy~";
+			mes "เจ้านี่คือ... ปลาที่จะว่ายมาตามฤดูกาล รสชาติเยี่ยมยอดมาก!";
+			mes "อ้อ ข้าหมายถึงเอาไปทำอาหารน่ะนะ แซ่บสุดๆ ไปเลยเมี๊ยว~";
 			next;
 			mes "[Wandering Merchant]";
-			mes "Of course, this is ^DC143CTwo-Handed Spear^000000.";
-			mes "It gives a high chance of";
-			mes "causing the Bleeding status";
-			mes "when you're using Pierce or Clashing Spiral~";
+			mes "แต่แน่นอนว่าในฐานะอาวุธ มันคือ ^DC143CTwo-Handed Spear^000000 (หอกสองมือ)";
+			mes "มันมีโอกาสสูงมากที่จะทำให้ศัตรูติดสถานะ";
+			mes "^FF0000Bleeding (เลือดออก)^000000";
+			mes "เมื่อเจ้าใช้ทักษะ Pierce หรือ Clashing Spiral~";
 			next;
 			mes "[Wandering Merchant]";
-			mes "More details are...";
-			mes "Increase 100% of Clashing Spiral ATK and 50% of Inspiration ATK,";
-			mes "additional ATK + 30 when Base Lv. is over 100.";
-			mes "Base ATK is 220.";
+			mes "รายละเอียดเพิ่มเติมคือ...";
+			mes "เพิ่มความเสียหาย Clashing Spiral 100% และ Inspiration 50%";
+			mes "หาก Base Lv. สูงกว่า 100 จะเพิ่ม ATK + 30";
+			mes "พลังโจมตีพื้นฐาน (Base ATK) คือ 220";
 			next;
 			break;
 		case 2: //Tuna_Box1
 		case 10: //Tuna_Box2
-			mes "This is a very popular fish";
-			mes "which is used in various dishes.";
-			mes "Swordman, Merchant, and Acolyte classes can use it";
-			mes "as a ^DC143CMace^000000.";
+			mes "นี่คือปลาที่ยอดฮิตที่สุด";
+			mes "เอาไปทำเมนูได้หลากหลายเชียวล่ะ";
+			mes "อาชีพ Swordman, Merchant และ Acolyte สามารถใช้มัน";
+			mes "ในฐานะ ^DC143CMace^000000 (กระบอง) ได้นะ";
 			next;
 			mes "[Wandering Merchant]";
-			mes "It gives a high chance of executing the Stun or Auto-Spell Bash";
-			mes "when using close-range physical attacks.";
-			mes "Base ATK is 180.";
+			mes "มันมีโอกาสสูงที่จะทำให้ศัตรูติด Stun หรือร่าย Bash อัตโนมัติ";
+			mes "เมื่อโจมตีกายภาพระยะประชิด";
+			mes "พลังโจมตีพื้นฐาน (Base ATK) คือ 180";
 			next;
 			mes "[Wandering Merchant]";
-			mes "More details are...";
-			mes "additional ATK + 20 when Base Lv. is over 100,";
-			mes "freeze self with low rate.";
+			mes "รายละเอียดเพิ่มเติมคือ...";
+			mes "หาก Base Lv. สูงกว่า 100 จะเพิ่ม ATK + 20";
+			mes "แต่ระวังหน่อยนะ มีโอกาสเล็กน้อยที่จะแช่แข็งตัวเอง";
 			next;
 			break;
 		case 3: //Hairtail_Box1
 		case 7: //Hairtail_Box2
-			mes "This fish looks like a long belt.";
+			mes "ปลาตัวนี้รูปร่างเหมือนเข็มขัดยาวๆ เลยว่าไหม?";
 			next;
 			mes "[Wandering Merchant]";
-			mes "This is a ^DC143CTwo-Handed Sword^000000";
-			mes "which most swordmen can use.";
-			mes "It increases 50% of critical damage when attacking and CRI + 20.";
-			mes "Base ATK is 220.";
+			mes "เจ้านี่คือ ^DC143CTwo-Handed Sword^000000 (ดาบสองมือ)";
+			mes "ที่เหล่านักดาบส่วนใหญ่ใช้งานกัน";
+			mes "เพิ่มความเสียหายคริติคอล 50% และเพิ่ม CRI + 20";
+			mes "พลังโจมตีพื้นฐาน (Base ATK) คือ 220";
 			next;
 			mes "[Wandering Merchant]";
-			mes "More details are...";
-			mes "additional ATK + 50 when Base Lv. is over 100.";
+			mes "รายละเอียดเพิ่มเติมคือ...";
+			mes "หาก Base Lv. สูงกว่า 100 จะเพิ่ม ATK + 50";
 			next;
 			break;
 		case 4: //Saurel_Box1
 		case 9: //Saurel_Box2
-			mes "This is a ^DC143CDagger^000000 which gives MATK + 100";
-			mes "and ATK + 30 for 7sec at a certain rate with physical attacks.";
+			mes "นี่คือ ^DC143CDagger^000000 (มีด) ที่ให้ค่า MATK + 100";
+			mes "และมีโอกาสเพิ่ม ATK + 30 เป็นเวลา 7 วินาทีเมื่อโจมตีกายภาพ";
 			next;
 			mes "[Wandering Merchant]";
-			mes "More details are...";
-			mes "gives MATK + 20 for 7sec at a certain rate with magical attacks";
-			mes "and additional MATK + 10, ATK + 10 when Base Lv. is over 100.";
-			mes "Base ATK is 160.";
+			mes "รายละเอียดเพิ่มเติมคือ...";
+			mes "มีโอกาสเพิ่ม MATK + 20 เป็นเวลา 7 วินาทีเมื่อโจมตีด้วยเวทมนตร์";
+			mes "และเพิ่ม MATK + 10, ATK + 10 หาก Base Lv. สูงกว่า 100";
+			mes "พลังโจมตีพื้นฐาน (Base ATK) คือ 160";
 			next;
 			break;
 		case 5: //Malang_Crab_Box1
 		case 12: //Malang_Crab_Box2
-			mes "This is a ^DC143CBow^000000 which increases LUK + 3 and 50% of critical damage,";
-			mes "and increases 20% of long rage physical ATK when Base Lv. is over 100.";
-			mes "Base ATK is 120.";
+			mes "นี่คือ ^DC143CBow^000000 (ธนู) ที่เพิ่ม LUK + 3 และความเสียหายคริติคอล 50%";
+			mes "และเพิ่มพลังโจมตีกายภาพระยะไกล 20% หาก Base Lv. สูงกว่า 100";
+			mes "พลังโจมตีพื้นฐาน (Base ATK) คือ 120";
 			next;
 			mes "[Wandering Merchant]";
-			mes "More details are...";
-			mes "can be used by Archer, Thief, and Rogue classes.";
+			mes "รายละเอียดเพิ่มเติมคือ...";
+			mes "อาชีพ Archer, Thief และ Rogue สามารถใช้งานได้";
 			next;
 			break;
 		case 6: //Brindle_Eel_Box1
 		case 11: //Brindle_Eel_Box2
-			mes "This is a ^DC143CBow^000000.";
-			mes "Because it has elastic force,";
-			mes "we started to use it as a Bow.";
-			mes "Base ATK is 180.";
+			mes "เจ้านี่คือ ^DC143CBow^000000 (ธนู)";
+			mes "เพราะมันมีความยืดหยุ่นสูงมาก";
+			mes "เราเลยลองเอามันมาทำเป็นธนูซะเลย";
+			mes "พลังโจมตีพื้นฐาน (Base ATK) คือ 180";
 			next;
 			mes "[Wandering Merchant]";
-			mes "More details are...";
-			mes "AGI + 3, and ASPD + 2 for 5sec at a certain rate with long range physical attacks.";
-			mes "Also gives additional 20% of long range physical ATK when Base Lv. is over 100.";
-			mes "Hunter, Bard, and Dancer classes can use it.";
+			mes "รายละเอียดเพิ่มเติมคือ...";
+			mes "เพิ่ม AGI + 3 และมีโอกาสเพิ่ม ASPD + 2 เป็นเวลา 5 วินาทีเมื่อโจมตีระยะไกล";
+			mes "นอกจากนี้ยังเพิ่มพลังโจมตีกายภาพระยะไกล 20% หาก Base Lv. สูงกว่า 100";
+			mes "อาชีพ Hunter, Bard และ Dancer สามารถใช้งานได้";
 			next;
 			break;
 		}
 		if (.@i < 7)
-			setarray .@price[0],8,50,0; // 1 hour items cost 8 Egrade_Coin or 50 Malang_Sp_Can.
+			setarray .@price[0],8,50,0; // ไอเทม 1 ชม. ราคา 8 Egrade_Coin หรือ 50 Malang_Sp_Can
 		else
-			setarray .@price[0],0,0,10; // 7 day items cost 10 Silvervine.
+			setarray .@price[0],0,0,10; // ไอเทม 7 วัน ราคา 10 Silvervine
 		callfunc "F_mal_coin",1,"[Wandering Merchant]",.@names$[.@i],.@items[.@i],.@price[0],.@price[1],.@price[2];
 		next;
 	}
@@ -710,41 +710,41 @@ malangdo,173,145,4	script	Stinky Merchant	496,{
 		.@i = select(
 			"[Cat Paw Glove] 32 E-Coins/200 Cans",
 			"[Cat Club] 32 E-Coins/200 Cans",
-			"End purchasing."
+			"จบการซื้อขาย"
 		);
 		if (.@i == 3) {
 			mes "[Stinky Merchant]";
-			mes "Well, then. I'll see you next time.";
-			mes "Goodbye.";
+			mes "อื้มม แล้วเจอกันใหม่นะ";
+			mes "ลาก่อนเมี๊ยว";
 			close;
 		}
 		mes "[Stinky Merchant]";
-		mes "Are you interested in ^0000FF["+.@names$[.@i]+"]^000000?";
+		mes "เจ้าสนใจ ^0000FF["+.@names$[.@i]+"]^000000 อย่างนั้นรึ?";
 		switch(.@i) {
 		case 1: //Cat_Hand_Glove
-			mes "This is a glove which can give happiness";
-			mes "just by wearing it.";
+			mes "นี่คือถุงมือที่จะมอบความสุขให้คุณ";
+			mes "เพียงแค่ได้สวมใส่มัน";
 			next;
 			mes "[Stinky Merchant]";
-			mes "This is an ^DC143CAccessory^000000";
-			mes "and its defense is 5.";
-			mes "It also gives";
-			mes "VIT + 1, AGI + 1, DEX + 1, LUK + 1.";
+			mes "มันคือไอเทมประเภท ^DC143CAccessory^000000 (เครื่องประดับ)";
+			mes "มีพลังป้องกัน 5";
+			mes "และยังเพิ่มค่าสถานะ";
+			mes "VIT + 1, AGI + 1, DEX + 1, LUK + 1";
 			next;
 			mes "[Stinky Merchant]";
-			mes "More details are...";
-			mes "SLOT : 1 / Refine : Unable / Destruction : Unable";
+			mes "รายละเอียดเพิ่มเติมคือ...";
+			mes "จำนวนช่อง (SLOT) : 1 / ตีบวก : ไม่ได้ / การถูกทำลาย : ไม่มี";
 			next;
 			break;
 		case 2: //Cat_Club
-			mes "It looks like it wouldn't hurt, don't you think so?";
-			mes "But I'm telling you, it can hurt someone.";
+			mes "มันดูเหมือนจะไม่เจ็บเลยใช่ไหมล่ะ เจ้าคิดอย่างนั้นไหม?";
+			mes "แต่ข้าจะบอกอะไรให้นะ เจ้านี่แหละตัวทำเจ็บเลยล่ะ";
 			next;
 			mes "[Stinky Merchant]";
-			mes "This is a ^DC143CMace^000000 that increases 15% of damage to the animal type of monster.";
-			mes "Base ATK is 88.";
-			mes "The other details are";
-			mes "Weapon Lv : 1 / SLOT : 3 / Refine : Able / Destruction : Unable";
+			mes "นี่คือ ^DC143CMace^000000 (กระบอง) ที่เพิ่มความเสียหายต่อมอนสเตอร์เผ่าสัตว์ (Animal) 15%";
+			mes "พลังโจมตีพื้นฐาน (Base ATK) คือ 88";
+			mes "รายละเอียดอื่นๆ คือ";
+			mes "เลเวลอาวุธ : 1 / จำนวนช่อง (SLOT) : 3 / ตีบวก : ได้ / การถูกทำลาย : ไม่มี";
 			next;
 			break;
 		}
@@ -763,66 +763,66 @@ malangdo,150,135,5	script	Roving Merchant	495,{
 			"[Sow Bug] 200 Cans",
 			"[Dried Squid] 200 Cans",
 			"[Starfish] 200 Cans",
-			"End purchasing."
+			"จบการซื้อขาย"
 		);
 		if (.@i == 5) {
 			mes "[Roving Merchant]";
-			mes "Well, then. I'll see you next time.";
-			mes "Goodbye.";
+			mes "อื้มม แล้วเจอกันใหม่นะ";
+			mes "ลาก่อนเมี๊ยว";
 			close;
 		}
 		mes "[Roving Merchant]";
-		mes "Are you interested in ^0000FF["+.@names$[.@i]+"]^000000?";
+		mes "เจ้าสนใจ ^0000FF["+.@names$[.@i]+"]^000000 อย่างนั้นรึ?";
 		switch(.@i) {
 		case 1: //Flying_Fish_Box
-			mes "This is the one that flies";
-			mes "with a big pectoral.";
+			mes "นี่คือเจ้าปลาที่สามารถบินได้";
+			mes "ด้วยครีบอกขนาดใหญ่ของมัน";
 			next;
 			mes "[Roving Merchant]";
-			mes "This is a ^DC143CThrowing Weapon^000000.";
-			mes "Of course, it can give fatal wounds to the enemy";
-			mes "at a certain rate when attacking.";
+			mes "มันคือ ^DC143CThrowing Weapon^000000 (อาวุธขว้าง)";
+			mes "แน่นอนว่ามันสามารถสร้างบาดแผลฉกรรจ์ให้กับศัตรูได้";
+			mes "ด้วยอัตราการติดแบบสุ่มเมื่อทำการโจมตี";
 			next;
 			mes "[Roving Merchant]";
-			mes "Its property is neutral and ATK is 50.";
+			mes "คุณสมบัติของมันคือไร้ธาตุ (Neutral) และมี ATK 50";
 			next;
 			break;
 		case 2: //Gong_Bug_Pocket
-			mes "In that case, I'll explain for you.";
-			mes "This is a ^DC143CBullet^000000 which stuns the enemy at a certain rate when attacking.";
+			mes "ถ้าอย่างนั้น เดี๋ยวข้าจะอธิบายให้ฟังเอง";
+			mes "นี่คือ ^DC143CBullet^000000 (กระสุน) ที่มีโอกาสทำให้ศัตรูติดสถานะมึน (Stun) เมื่อทำการโจมตี";
 			next;
 			mes "[Roving Merchant]";
-			mes "I feel somthing bad";
-			mes "is moving in my pocket but...";
-			mes "it is neutral property and its ATK is 50.";
+			mes "ข้าเริ่มรู้สึกไม่ค่อยดีเลย";
+			mes "เหมือนมีอะไรบางอย่างขยับอยู่ในกระเป๋าของข้า... แต่ช่างเถอะ";
+			mes "มันเป็นธาตุเป็นกลาง และมี ATK อยู่ที่ 50 นะ";
 			next;
 			break;
 		case 3: //Dried_Squid_Box
-			mes "I'll explain about this item.";
-			mes "This is a ^DC143CThrowing Weapon^000000 which causes darkness at a certain rate.";
-			mes "It's neutral property and its ATK is 50.";
+			mes "เดี๋ยวข้าจะอธิบายเกี่ยวกับไอเทมชิ้นนี้ให้ฟัง";
+			mes "นี่คือ ^DC143CThrowing Weapon^000000 (อาวุธขว้าง) ที่มีโอกาสทำให้ศัตรูติดสถานะตาบอด (Darkness)";
+			mes "มันเป็นธาตุเป็นกลาง และมี ATK 50";
 			next;
 			mes "[Roving Merchant]";
-			mes "It is compressed";
-			mes "and put into a very small box,";
-			mes "so be careful when you open it.";
+			mes "มันถูกอัดแน่น";
+			mes "บรรจุอยู่ในกล่องใบเล็กๆ ใบนี้";
+			mes "เพราะฉะนั้น ระวังหน่อยล่ะเวลาเปิดใช้งานน่ะ";
 			next;
 			break;
 		case 4: //Starfish_Box
-			mes "I'll explain about this item.";
-			mes "This is a ^DC143CThrowing Weapon^000000 which stuns the enemy at a certain rate.";
+			mes "เดี๋ยวข้าจะอธิบายเกี่ยวกับไอเทมชิ้นนี้ให้ฟัง";
+			mes "นี่คือ ^DC143CThrowing Weapon^000000 (อาวุธขว้าง) ที่มีโอกาสทำให้ศัตรูติดสถานะมึน (Stun)";
 			next;
 			mes "[Roving Merchant]";
-			mes "It is perfectly organized and packed";
-			mes "so you can't even see inside.";
-			mes "It is neutral property and its ATK is 110.";
+			mes "มันถูกจัดเรียงและบรรจุมาอย่างสมบูรณ์แบบ";
+			mes "จนเจ้ามองไม่เห็นข้างในเลยล่ะ";
+			mes "มันเป็นธาตุเป็นกลาง และมี ATK อยู่ที่ 110";
 			next;
 			break;
 		}
 		mes "[Roving Merchant]";
-		mes "For your information,";
-		mes "one box contains";
-		mes "200 units.";
+		mes "ขอบอกไว้เป็นข้อมูลหน่อยนะ";
+		mes "หนึ่งกล่องจะบรรจุไอเทม";
+		mes "จำนวน 200 ชิ้น";
 		next;
 		callfunc "F_mal_coin",1,"[Roving Merchant]",.@names$[.@i],.@items[.@i],0,200,0;
 		next;
@@ -833,16 +833,16 @@ malangdo,150,135,5	script	Roving Merchant	495,{
 //============================================================
 ecl_in01,66,95,3	script	Armor Merchant Naphara#e::glove	436,{
 	if (!checkweight(1301,3)) {
-		mes "- Stop Here!! -";
-		mes "- You have too many items. -";
-		mes "- You cannot carry any more items. -";
-		mes "- Lighten your load and -";
-		mes "- try again. -";
+		mes "- หยุดก่อน!! -";
+		mes "- เจ้ามีไอเทมเยอะเกินไป -";
+		mes "- เจ้าไม่สามารถถือไอเทมเพิ่มได้อีกแล้ว -";
+		mes "- กรุณาไปลดน้ำหนักสิ่งของในตัว -";
+		mes "- แล้วค่อยลองใหม่อีกครั้ง -";
 		close;
 	}
 	mes "[Armor Merchant]";
-	mes "Hello, this is Naphara's store, a place of high class goods.";
-	mes "What would you need?";
+	mes "สวัสดีจ๊ะ ที่นี่คือร้านของ Naphara แหล่งรวมสินค้าระดับพรีเมียม";
+	mes "วันนี้เจ้าต้องการอะไรดีล่ะ?";
 	next;
 	.@choice = select("Str Glove:Int Glove:Agi Glove:Vit Glove:Dex Glove:Luk Glove") -1;
 	mes "[Armor Merchant]";
@@ -850,59 +850,59 @@ ecl_in01,66,95,3	script	Armor Merchant Naphara#e::glove	436,{
 	case 0: // Str Glove
 		mes "^3131FFStr Glove^000000";
 		mes "^3131FFMHP + 100, MSP + 20^000000";
-		mes "^3131FFATK+1 increases for every STR+10^000000";
-		mes "^3131FFATK +1% added above STR 110^000000";
+		mes "^3131FFเพิ่ม ATK + 1 ทุกๆ ค่า STR 10^000000";
+		mes "^3131FFเพิ่ม ATK + 1% เมื่อค่า STR ตั้งแต่ 110 ขึ้นไป^000000";
 		break;
 	case 1:
 		mes "^3131FFInt Glove^000000";
 		mes "^3131FFMHP + 100, MSP + 20^000000";
-		mes "^3131FFMATK+1 increases for every INT+10^000000";
-		mes "^3131FFMATK +1% added above INT 110^000000";
+		mes "^3131FFเพิ่ม MATK + 1 ทุกๆ ค่า INT 10^000000";
+		mes "^3131FFเพิ่ม MATK + 1% เมื่อค่า INT ตั้งแต่ 110 ขึ้นไป^000000";
 		break;
 	case 2:
 		mes "^3131FFAgi Glove^000000";
 		mes "^3131FFMHP + 100, MSP + 20^000000";
-		mes "^3131FFFLEE+1 increases for every AGI+10^000000";
-		mes "^3131FFComplete Flee +1 added above AGI 110^000000";
+		mes "^3131FFเพิ่ม FLEE + 1 ทุกๆ ค่า AGI 10^000000";
+		mes "^3131FFเพิ่ม Perfect Flee + 1 เมื่อค่า AGI ตั้งแต่ 110 ขึ้นไป^000000";
 		break;
 	case 3:
 		mes "^3131FFVit Glove^000000";
 		mes "^3131FFMHP + 100, MSP + 20^000000";
-		mes "^3131FFMHP+50 for every VIT+10^000000";
-		mes "^3131FFMHP+1% added above VIT 110^000000";
+		mes "^3131FFเพิ่ม MHP + 50 ทุกๆ ค่า VIT 10^000000";
+		mes "^3131FFเพิ่ม MHP + 1% เมื่อค่า VIT ตั้งแต่ 110 ขึ้นไป^000000";
 		break;
 	case 4:
 		mes "^3131FFDex Glove^000000";
 		mes "^3131FFMHP + 100, MSP + 20^000000";
-		mes "^3131FFHIT+1 increases for every DEX+10^000000";
-		mes "^3131FFRanged attack power +1% added above DEX 110^000000";
+		mes "^3131FFเพิ่ม HIT + 1 ทุกๆ ค่า DEX 10^000000";
+		mes "^3131FFเพิ่มพลังโจมตีระยะไกล + 1% เมื่อค่า DEX ตั้งแต่ 110 ขึ้นไป^000000";
 		break;
 	case 5:
 		mes "^3131FFLuk Glove^000000";
 		mes "^3131FFMHP + 100, MSP + 20^000000";
-		mes "^3131FFCRI+1 increases for every LUK+10^000000";
-		mes "^3131FFCritical damage +1% added above LUK 110^000000";
+		mes "^3131FFเพิ่ม CRI + 1 ทุกๆ ค่า LUK 10^000000";
+		mes "^3131FFเพิ่ม Critical Damage + 1% เมื่อค่า LUK ตั้งแต่ 110 ขึ้นไป^000000";
 		break;
 	}
-	mes "^3131FFRequired Level: 100^000000";
-	mes "^3131FFSlot: 0^000000";
-	mes "^3131FFWeight: 10^000000";
-	mes "are the characteristic options.";
+	mes "^3131FFเลเวลที่ต้องการ: 100^000000";
+	mes "^3131FFช่องใส่การ์ด: 0^000000";
+	mes "^3131FFน้ำหนัก: 10^000000";
+	mes "นี่คือคุณสมบัติทั้งหมดของมันจ๊ะ";
 	next;
 	mes "[Armor Merchant]";
-	mes "It costs 10 Splendide Coins.";
-	mes "Would you like to buy it?";
+	mes "ราคาอยู่ที่ 10 Splendide Coins";
+	mes "เจ้าสนใจจะซื้อเลยไหม?";
 	next;
-	if (select("Buy it.:Don't buy it.")==1) {
+	if (select("ตกลง ซื้อเลย:ยังไม่ซื้อดีกว่า")==1) {
 		if (countitem(6081) < 10) {
 			mes "[Armor Merchant]";
-			mes "It seems like you don't have enough coins.";
+			mes "ดูเหมือนว่าเจ้าจะไม่มีเหรียญพอนะจ๊ะ";
 			close;
 		}
 		delitem 6081,10; //Splendide_Coin
 		getitem (.@choice+2917),1;
 		mes "[Armor Merchant]";
-		mes "Great, it's yours. Thank you.";
+		mes "ยอดเยี่ยมไปเลย ไอเทมเป็นของเจ้าแล้วล่ะ ขอบคุณมากนะ";
 	}
 	close;
 }
@@ -910,42 +910,42 @@ ecl_in01,66,95,3	script	Armor Merchant Naphara#e::glove	436,{
 ecl_in01,64,97,5	script	Slot Expert Nattuer#ecl	436,{
 	disable_items;
 	mes "[Slot Expert]";
-	mes "I am Slot Expert Nattuer.";
-	mes "If you bring me an item from my little brother Naphara along with 5 Splendide Coins, I will open up one Slot for you.";
+	mes "ข้าคือ Nattuer ผู้เชี่ยวชาญด้านการเจาะรูไอเทม";
+	mes "ถ้าเจ้านำไอเทมที่ซื้อจาก Naphara น้องชายของข้ามาให้ พร้อมกับ Splendide Coin 5 เหรียญ ข้าจะเจาะช่อง Slot ให้เจ้า 1 ช่อง";
 	next;
-	if (select("Activate a Slot.:Forget it.") == 2){
+	if (select("เจาะรูไอเทม:ยกเลิก") == 2){
 		close;
 	}
 	mes "[Slot Expert]";
-	mes "Slot activation is an extremely difficult procedure that can fail even with heightened care and the use of a magnifying lens.";
+	mes "การเจาะรูไอเทมเป็นกระบวนการที่ยากลำบากและมีความเสี่ยงสูง แม้ข้าจะใช้ความระมัดระวังอย่างมากและใช้แว่นขยายช่วยแล้วก็ตาม แต่มันก็ยังมีโอกาสล้มเหลวได้นะ";
 	next;
 	mes "[Slot Expert]";
-	mes "Of course, if your heart were as big as that flower-filled land, you wouldn't mind. Right? Should I go for it?";
+	mes "แน่นอนว่าถ้าใจเจ้ากว้างเหมือนทุ่งดอกไม้แห่งนี้ เจ้าคงไม่ถือสาเรื่องความล้มเหลวหรอกจริงไหม? เอาล่ะ จะให้ข้าเริ่มเลยหรือเปล่า?";
 	next;
-	if (select("Continue.:Forget it.") == 2) {
+	if (select("เริ่มเลย:เปลี่ยนใจแล้ว") == 2) {
 		close;
 	}
 	mes "[Slot Expert]";
-	mes "Which item would you like to activate with a Slot?";
+	mes "เจ้าต้องการจะเจาะรูไอเทมชิ้นไหนล่ะ?";
 	next;
 	.@choice = select("Str Glove:Int Glove:Ag Glove:Vit Glove:Dex Glove:Luk Glove");
 	.@choice += 2916;
 	mes "[Slot Expert]";
-	mes "Let's confirm for the last time. Is the one you want " + getitemname(.@choice) + "?";
+	mes "ขอยืนยันเป็นครั้งสุดท้าย ไอเทมที่เจ้าต้องการเจาะรูคือ " + getitemname(.@choice) + " ใช่ไหม?";
 	next;
-	if (select("Yes:No")==2) {
+	if (select("ใช่:ไม่ใช่")==2) {
 		mes "[Slot Expert]";
-		mes "Why don't you talk to me when you know for sure.";
+		mes "งั้นก็กลับไปตัดสินใจให้ดีก่อน แล้วค่อยมาคุยกับข้าใหม่";
 		close;
 	}
 	if (countitem(.@choice) < 1) {
 		mes "[Slot Expert]";
-		mes "You don't have that item. Why don't you talk to me when you know for sure.";
+		mes "เจ้าไม่มีไอเทมชิ้นนั้นนี่นา... ไปเอาของมาให้เรียบร้อยก่อนเถอะ";
 		close;
 	}
 	if (countitem(6081) < 5) {
 		mes "[Slot Expert]";
-		mes "You don't have enough coins. Why don't you talk to me when you know for sure.";
+		mes "เหรียญของเจ้าไม่พอนะ ไปรวบรวมเหรียญมาให้ครบก่อนค่อยมาหาข้า";
 		close;
 	}
 	progressbar "0xFFFF00",3;
@@ -955,55 +955,55 @@ ecl_in01,64,97,5	script	Slot Expert Nattuer#ecl	436,{
 	if (.@luckyday % 20){
 		emotion ET_THINK;
 		delitem .@choice,1;
-		mes "Shoot, I'm sorry. It failed.";
-		mes "But I'm sure it will work next time. I have a feeling.";
+		mes "โธ่เอ๋ย... ข้าขอโทษด้วยนะ มันล้มเหลวน่ะ";
+		mes "แต่ข้ามั่นใจว่าครั้งหน้าต้องสำเร็จแน่ๆ ข้าสังหรณ์ใจแบบนั้นนะ";
 		close;
 	}
 	emotion ET_BEST;
 	delitem .@choice,1;
 	getitem (.@choice+6),1;
-	mes "My eyes feel like they're gonna pop out.";
-	mes "Nonetheless, congratulations. Slot activation was successful.";
+	mes "โอ๊ย... เพ่งจนตาข้าแทบจะหลุดออกมาข้างนอกแน่ะ";
+	mes "แต่ก็ยินดีด้วยนะ! การเจาะรูไอเทมประสบความสำเร็จแล้ว";
 	close;
 }
 
 ecl_in01,33,98,5	script	Herb Merchant Plafina#a	443,{
 	if (checkweight(1301,1)==0) {
-		mes "- Stop Here!! -";
-		mes "- You have too many items. -";
-		mes "- You cannot carry any more items. -";
-		mes "- Lighten your load and -";
-		mes "- try again. -";
+		mes "- หยุดก่อน!! -";
+		mes "- เจ้ามีไอเทมเยอะเกินไป -";
+		mes "- เจ้าไม่สามารถถือไอเทมเพิ่มได้อีกแล้ว -";
+		mes "- กรุณาไปลดน้ำหนักสิ่งของในตัว -";
+		mes "- แล้วค่อยลองใหม่อีกครั้ง -";
 		close;
 	}
 	mes "[Herb Merchant]";
-	mes "Welcome, this is Plafina's Herb Store where only the freshest herbs are provided~!";
+	mes "ยินดีต้อนรับจ้า~! ที่นี่คือร้านสมุนไพรของ Plafina ที่คัดสรรมาแต่สมุนไพรที่สดใหม่ที่สุดเท่านั้นจ้า~!";
 	next;
-	.@item = select("Snow Flip:Peony Mommy:Slapping Herb:Yggdrasil Dust:End conversation")-1;
+	.@item = select("Snow Flip:Peony Mommy:Slapping Herb:Yggdrasil Dust:จบการสนทนา")-1;
 	if (.@item == 4){
 		mes "[Herb Merchant]";
-		mes "Come back anytime.";
+		mes "แวะมาใหม่ได้ทุกเมื่อเลยนะจ๊ะ";
 		close;
 	}
 	mes "[Herb Merchant]";
 	switch (.@item){
 	case 0:
-		mes "Snow Flip has special effects on ^3131FFBurning, Bleeding, Deep Sleep, Sleep^000000.";
+		mes "Snow Flip มีประสิทธิภาพพิเศษในการรักษาอาการ ^3131FFBurning (ลุกไหม้), Bleeding (เลือดออก), Deep Sleep (หลับลึก), และ Sleep (หลับ)^000000";
 		break;
 	case 1:
-		mes "Peony Mamy has special effects on ^3131FFFrost, Frozen, Freezing^000000";
+		mes "Peony Mamy มีประสิทธิภาพพิเศษในการรักษาอาการ ^3131FFFrost (หนาวสั่น), Frozen (แช่แข็ง), และ Freezing (ลดความเร็วจากความเย็น)^000000";
 		break;
 	case 2:
-		mes "Slapping Herb has special effects on ^3131FFStun, Fear, Chaos, Hallucination^000000";
+		mes "Slapping Herb มีประสิทธิภาพพิเศษในการรักษาอาการ ^3131FFStun (มึน), Fear (หวาดกลัว), Chaos (สับสน), และ Hallucination (เห็นภาพหลอน)^000000";
 		break;
 	case 3:
-		mes "Yggdrasil Dust has special effects on ^3131FFBlind, Curse, Decrease Agility, Reverse Orcish^000000.";
+		mes "Yggdrasil Dust มีประสิทธิภาพพิเศษในการรักษาอาการ ^3131FFBlind (ตาบอด), Curse (คำสาป), Decrease Agility (ลดค่า Agi), และ Reverse Orcish (กลายร่างเป็นออร์ค)^000000";
 		break;
 	}
-	mes "Requires 5 seconds between uses.";
-	mes "It costs "+ .cost[.@item] +" Splendide Coins for each.";
+	mes "มีระยะเวลาคูลดาวน์ 5 วินาทีต่อการใช้งานหนึ่งครั้ง";
+	mes "ราคาชิ้นละ "+ .cost[.@item] +" Splendide Coins จ๊ะ";
 	next;
-	.@buy = select("Buy 1.:Buy 10.:Don't buy.");
+	.@buy = select("ซื้อ 1 ชิ้น:ซื้อ 10 ชิ้น:ไม่ซื้อ");
 	if (.@buy == 3){
 		close;
 	}
@@ -1011,18 +1011,18 @@ ecl_in01,33,98,5	script	Herb Merchant Plafina#a	443,{
 		.@buy = 10;
 	}
 	mes "[Herb Merchant]";
-	mes "Would you like to buy "+ .@buy +" "+ getitemname(.items[.@item]) +"?";
+	mes "เจ้าต้องการจะซื้อ "+ getitemname(.items[.@item]) +" จำนวน "+ .@buy +" ชิ้น ใช่ไหมจ๊ะ?";
 	next;
-	if (select("Buy.:Don't buy.") == 2){
+	if (select("ซื้อ:ไม่ซื้อ") == 2){
 		close;
 	}
 	if (countitem(6081) < (.cost[.@item]*.@buy) ) {
 		mes "[Herb Merchant]";
-		mes "You don't have enough coins.";
+		mes "ดูเหมือนเหรียญของเจ้าจะไม่พอนะจ๊ะ";
 		close;
 	}
 	mes "[Herb Merchant]";
-	mes "Thank you for your business.";
+	mes "ขอบคุณที่มาอุดหนุนนะจ๊ะ";
 	delitem 6081,.cost[.@item]*.@buy; //Splendide_Coin
 	getitem .items[.@item],.@buy;
 	close;
@@ -1035,76 +1035,76 @@ OnInit:
 
 ecl_in01,67,39,4	script	Replication Expert Paltu	445,{
 	if (checkweight(1301,3) == 0) {
-		mes "You have too many items to continue.";
+		mes "เจ้ามีไอเทมเยอะเกินไปจนไม่สามารถดำเนินการต่อได้";
 		close;
 	}
 	emotion ET_THROB;
 	mes "[Paltu]";
-	mes "Woohoo- Greetings. What are you looking for? Lots of goods here.";
+	mes "วู้วฮูว~ สวัสดีจ๊ะ มีอะไรให้ช่วยไหม? ที่นี่มีของดีเพียบเลยนะ";
 	next;
-	switch (select("No thanks.:Replication?:I know you got lots up your sleeve!")) {
+	switch (select("ไม่มีอะไรจ้ะ:ทำสำเนาคืออะไรเหรอ?:ข้าว่าเจ้าต้องมีของดีซ่อนไว้แน่ๆ!")) {
 	case 1:
 		emotion ET_FRET;
 		mes "[Paltu]";
-		mes "Really? Hmm?";
+		mes "งั้นเหรอ? อืม...";
 		close;
 	case 2:
 		mes "[Paltu]";
-		mes "One can say that there's no one better in Eclage than I at utilizing magic resistance.";
+		mes "ในเมือง Eclage แห่งนี้ ไม่มีใครจะเชี่ยวชาญด้านการควบคุมพลังเวทได้ดีไปกว่าข้าอีกแล้วล่ะ";
 		next;
 		mes "[Paltu]";
-		mes "I'll give you a good price whatever it is. Just trust me.";
+		mes "ไม่ว่าจะเป็นอะไร ข้าจะให้ราคาพิเศษกับเจ้าเลย เชื่อใจข้าได้";
 		next;
-		select("Could you do something for me?");
+		select("พอจะช่วยอะไรข้าหน่อยได้ไหม?");
 		emotion ET_BEST;
 		mes "[Paltu]";
-		mes "Hey, I like your attitude.";
+		mes "เฮ้! ข้าชอบทัศนคติของเจ้าจริงๆ";
 		next;
 		mes "[Paltu]";
-		mes "Ah- you know the hat you're wearing?";
+		mes "อา... เจ้าเห็นหมวกที่เจ้าสวมอยู่ไหม?";
 		next;
 		emotion ET_QUESTION;
 		mes "[Paltu]";
-		mes "Don't you have any of those hats lying around in storage that are solid but too ugly to wear? You do, right?";
+		mes "เจ้าไม่มีพวกหมวกที่ซ่อนอยู่ในคลังประเภทที่ 'คุณสมบัติดีแต่ดีไซน์มันแย่จนไม่กล้าใส่' บ้างเลยเหรอ? ข้าว่าเจ้าต้องมีแน่ๆ จริงไหม?";
 		next;
 		select(".........");
 		emotion ET_THINK, playerattached();
 		emotion ET_SMILE;
 		mes "[Paltu]";
-		mes "See! I knew it. I knew it from the first minute.";
+		mes "นั่นไง! ข้าว่าแล้ว ข้าดูออกตั้งแต่นาทีแรกที่เห็นเจ้าเลยล่ะ";
 		next;
 		mes "[Paltu]";
-		mes "If you bring me ^ff0000 50 Splendide Coins and the ingredients^000000, I'll make you a new hat in the same shape but worn as a ^ff0000Costume^000000.";
+		mes "ถ้าเจ้านำ ^ff0000 50 Splendide Coins และวัตถุดิบ^000000 มาให้ข้า ข้าจะทำหมวกใบใหม่ที่มีรูปร่างเหมือนเดิมทุกประการ แต่สวมใส่เป็นแบบ ^ff0000Costume^000000 ให้เจ้าเอง";
 		next;
 		mes "[Paltu]";
-		mes "Hmm, what was it...?";
-		mes "I think you adventurers call them ^0571B0Costumes^000000? right?";
+		mes "อืม... เขาเรียกกันว่าอะไรนะ...?";
+		mes "เห็นพวกนักผจญภัยเรียกมันว่า ^0571B0Costume (คอสตูม)^000000 ใช่ไหมล่ะ?";
 		next;
-		select("Yes~ What do you need?");
+		select("ใช่แล้ว~ แล้วเจ้าต้องใช้อะไรบ้าง?");
 		mes "[Paltu]";
-		mes "I need 1 ^0571B0hat to replicate^000000 and";
-		mes "I need ^E1281E 4 Crystal Mirrors^000000 for magic resistance, ^E1281E 1 Fairy Magic Powder^000000 as the catalyst, and ^E1281E Emerald, Ruby, Sapphire, Topaz, and Zircon, 10 of each^000000, to be used for amplifying the magic power.";
+		mes "ข้าต้องการ ^0571B0หมวกต้นแบบ 1 ใบ^000000 ที่เจ้าอยากจะทำสำเนา";
+		mes "และต้องใช้ ^E1281E 4 Crystal Mirrors^000000 สำหรับต้านทานเวทมนตร์, ^E1281E 1 Fairy Magic Powder^000000 เป็นตัวเร่งปฏิกิริยา และอัญมณี ^E1281E Emerald, Ruby, Sapphire, Topaz, Zircon อย่างละ 10 เม็ด^000000 เพื่อขยายพลังเวท";
 		next;
 		emotion ET_STARE_ABOUT;
 		mes "[Paltu]";
-		mes "There's quite a lot of ingredients, right? Well, I can't do anything about that. Dealing with magic power is not a joke.";
+		mes "วัตถุดิบอาจจะดูเยอะหน่อยใช่ไหม? แต่ข้าช่วยไม่ได้จริงๆ เพราะการจัดการกับพลังเวทไม่ใช่เรื่องเล่นๆ นะจ๊ะ";
 		next;
-		select("Which hats can be replicated?");
+		select("แล้วหมวกใบไหนทำสำเนาได้บ้าง?");
 		mes "[Paltu]";
-		mes "Oh! You're pretty sharp!";
-		mes "Almost forgot the most important thing.";
-		next;
-		mes "[Paltu]";
-		mes "Hats that I can replicate are:";
-		mes "^0571B0Frog Hat, Romantic Flower, Magestic Goat, Blush, Valkyrie Helm, Deviruchi Hat, Assassin Mask, Elven Ears, Hahoe Mask, and Boys Cap^000000 a total of 10 types.";
+		mes "โอ้! เจ้านี่หัวไวไม่เบา!";
+		mes "เกือบลืมบอกเรื่องสำคัญที่สุดไปเลย";
 		next;
 		mes "[Paltu]";
-		mes "What do you think? I'll make it happen as long as I have the ingredients and the compensation.";
+		mes "หมวกที่ข้าสามารถทำสำเนาได้มีดังนี้:";
+		mes "^0571B0Frog Hat, Romantic Flower, Magestic Goat, Blush, Valkyrie Helm, Deviruchi Hat, Assassin Mask, Elven Ears, Hahoe Mask และ Boys Cap^000000 รวมทั้งหมด 10 ชนิด";
 		next;
-		if (select("I'll do it later.:Show me what you got!") == 1) {
+		mes "[Paltu]";
+		mes "เจ้าคิดว่าไงล่ะ? ข้าพร้อมจะร่ายมนตร์ให้ทันทีถ้าเจ้ามีวัตถุดิบและค่าตอบแทนมาพร้อม";
+		next;
+		if (select("ไว้คราวหลังนะ:ข้ามีของครบแล้ว เริ่มเลย!") == 1) {
 			emotion ET_THINK;
 			mes "[Paltu]";
-			mes "What? Are you kidding me? Please tell me you are!";
+			mes "อะไรนะ? เจ้าล้อข้าเล่นใช่ไหม? บอกข้าทีว่าเจ้าแค่ล้อเล่น!";
 			close;
 		}
 		break;
@@ -1112,14 +1112,14 @@ ecl_in01,67,39,4	script	Replication Expert Paltu	445,{
 	disable_items;
 	emotion ET_BIGTHROB;
 	mes "[Paltu]";
-	mes "Oh wow.";
-	mes "You made the right call. I thought I was going to starve to death because the Laphines have no interest in pretty hats.";
+	mes "โอ้ ว้าว!";
+	mes "เจ้าตัดสินใจได้ถูกต้องที่สุด! ข้านึกว่าจะต้องอดตายเพราะพวก Laphine ไม่ค่อยสนใจหมวกสวยๆ พวกนี้ซะแล้ว";
 	next;
 	mes "[Paltu]";
-	mes "I'll make it a great deal for you. You really should know I'm giving you a good deal here.";
+	mes "ข้าจะจัดให้แบบงามๆ เลยล่ะ เจ้าควรจะรู้ไว้นะว่านี่คือข้อเสนอที่คุ้มค่าที่สุดที่ข้าจะให้ได้แล้ว";
 	next;
 	mes "[Paltu]";
-	mes "Is there something you had in mind? Why don't you take a look?";
+	mes "เจ้าเล็งใบไหนไว้ล่ะ? ลองเลือกดูสิ";
 	next;
 	setarray .@items[0], 5447, 2269, 2256, 5040, 5171, 5038, 5096, 2286, 5176, 5016;
 	setarray .@costumes[0], 19548, 19552, 19549, 19550, 19546, 19547, 19553, 19551, 19554, 19545;
@@ -1127,63 +1127,63 @@ ecl_in01,67,39,4	script	Replication Expert Paltu	445,{
 		.@item_check =1;
 	for(.@i = 0; .@i<getarraysize(.@items); .@i++) {
 		if (.@item_check && countitem(.@items[.@i]))
-			.@menu$ = .@menu$+getitemname(.@items[.@i])+" (^2502FDAble to Replicate^000000):";
+			.@menu$ = .@menu$+getitemname(.@items[.@i])+" (^2502FDทำสำเนาได้^000000):";
 		else
-			.@menu$ = .@menu$+getitemname(.@items[.@i])+" (^777777Insufficient ingredients^000000):";
+			.@menu$ = .@menu$+getitemname(.@items[.@i])+" (^777777วัตถุดิบไม่พอ^000000):";
 	}
 	.@i = select(.@menu$)-1;
 	mes "[Paltu]";
-	mes "Is ^0571B0"+getitemname(.@items[.@i])+"^000000 what you wanted?";
+	mes "เจ้าต้องการทำสำเนา ^0571B0"+getitemname(.@items[.@i])+"^000000 ใช่ไหม?";
 	next;
 	if (.@item_check == 0 || countitem(.@items[.@i]) == 0) {
 		emotion ET_CRY;
 		mes "[Paltu]";
-		mes "Ay... Credit purchases are difficult for me.";
+		mes "เฮ้อ... ข้าคงให้เจ้าซื้อติดค้างไว้ก่อนไม่ได้หรอกนะ";
 		next;
 		mes "[Paltu]";
-		mes "^0571B0"+getitemname(.@items[.@i])+"^000000 and";
-		mes "^E1281E50 Splendide Coins, 4 Crystal Mirrors, 1 Fairy Magic Powder, 10 of each Emerald, Ruby, Sapphire, Topaz, and Zircon^000000 are necessary.";
+		mes "เจ้าต้องใช้ ^0571B0"+getitemname(.@items[.@i])+"^000000 และ";
+		mes "^E1281Eเหรียญ 50 Splendide Coins, 4 Crystal Mirrors, 1 Fairy Magic Powder และอัญมณี Emerald, Ruby, Sapphire, Topaz, Zircon อย่างละ 10 เม็ด^000000";
 		next;
 		mes "[Paltu]";
-		mes "I'm in a tight spot myself. Please consider my situation also.";
+		mes "ข้าเองก็ลำบากเหมือนกัน เห็นใจข้าหน่อยเถอะ";
 		close;
 	}
 	emotion ET_QUESTION;
 	mes "[Paltu]";
-	mes "Yes, this is more than enough. Should I make it now?";
+	mes "ใช่แล้ว วัตถุดิบพวกนี้ครบถ้วนดีมาก จะให้ข้าเริ่มทำตอนนี้เลยไหม?";
 	next;
-	if (select("Please make it now.:Oops, I have to take care of something...") == 2) {
+	if (select("ทำตอนนี้เลย!:อุ๊ย ข้าลืมทำธุระบางอย่างน่ะ...") == 2) {
 		emotion ET_HUK;
 		mes "[Paltu]";
-		mes "Hey.. Hey! Hey! Where you going?";
+		mes "เฮ้! เดี๋ยวสิ! เจ้าจะไปไหนน่ะ?";
 		close;
 	}
 	emotion ET_HUK;
 	mes "[Paltu]";
-	mes "I got it. Oh right! Almost forgot again.";
+	mes "เข้าใจแล้ว... อ้อ! เกือบลืมบอกไปอีกเรื่อง";
 	next;
 	mes "[Paltu]";
-	mes "^FF0000In the process of replication, magic intervention phenomenon causes the hat to lose all of its refinements, cards, and hidden enchantments.^000000";
+	mes "^FF0000ในกระบวนการทำสำเนา พลังเวทจะทำให้หมวกต้นแบบสูญเสียค่าการตีบวก, การ์ดที่ใส่ไว้ และออฟชั่นต่างๆ ไปทั้งหมด^000000";
 	next;
 	mes "[Paltu]";
-	mes "^FF0000And if you possess multiple hats of the same type, the one you don't want can undergo the replication process, so please check to make sure.^000000";
+	mes "^FF0000และหากเจ้ามีหมวกชนิดเดียวกันหลายใบในตัว ใบที่เจ้าไม่อยากเสียไปอาจถูกนำเข้ากระบวนการได้ ดังนั้นกรุณาตรวจสอบให้แน่ใจก่อน^000000";
 	next;
 	mes "[Paltu]";
-	mes "So any problems with that?";
+	mes "ยอมรับเงื่อนไขนี้ได้ใช่ไหม?";
 	next;
-	if (select("Let me go check.:Start the replication process.") == 1) {
+	if (select("ขอข้าตรวจสอบอีกทีนะ:เริ่มกระบวนการทำสำเนาได้เลย") == 1) {
 		mes "[Paltu]";
-		mes "Yeah, please make sure!";
+		mes "ดีมาก ตรวจสอบให้แน่ใจก่อนล่ะ!";
 		close;
 	}
 	emotion ET_KIK;
 	mes "[Paltu]";
-	mes "Woohoo- Got it.";
-	mes "It's finally time for me to use my skills again.";
+	mes "วู้วฮูว~ จัดไป!";
+	mes "ถึงเวลาที่ข้าจะได้แสดงฝีมืออีกครั้งแล้ว";
 	next;
 	emotion ET_PROFUSELY_SWEAT;
 	mes "[Paltu]";
-	mes "Do this thing here, and do that thing there, and then do this thing here again...";
+	mes "หมุนตรงนี้หน่อย ผสมตรงนั้นนิด แล้วก็ร่ายมนตร์ตรงนี้อีกที...";
 	next;
 	emotion ET_THINK;
 	emotion ET_PROFUSELY_SWEAT;
@@ -1210,7 +1210,7 @@ ecl_in01,67,39,4	script	Replication Expert Paltu	445,{
 	delitem .@items[.@i],1;
 	getitem .@costumes[.@i],1;
 	mes "[Paltu]";
-	mes "Good. This is a satisfying result.";
-	mes "I'll do even a better job next time. Please tell others about my work. Have a good day~";
+	mes "เรียบร้อย! ผลลัพธ์น่าพึงพอใจมาก";
+	mes "คราวหน้าข้าจะทำให้ออกมาดียิ่งกว่านี้อีก อย่าลืมบอกต่อเพื่อนๆ ของเจ้าด้วยล่ะ ขอให้เป็นวันที่ดีนะ~";
 	close;
 }

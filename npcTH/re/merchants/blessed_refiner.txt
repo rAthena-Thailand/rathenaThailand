@@ -17,55 +17,55 @@
 -	script	::BlacksmithDister	-1,{
 	disable_items;
 	mes "[Blacksmith Dister]";
-	mes "In this highly competitive society, we must be different in order to survive!";
-	mes "I only refine equipment at the +6 ~ 12 levels.";
+	mes "ในสังคมที่มีการแข่งขันสูงแบบนี้ เราต้องแตกต่างถึงจะอยู่รอด!";
+	mes "ข้าจะรับตีบวกอุปกรณ์ที่อยู่ในระดับ +6 ถึง +12 เท่านั้น";
 	next;
 	mes "[Blacksmith Dister]";
-	mes "I will need ^ff9999Blessed Oridecon^000000 for weapons, and ^ff9999Blessed Elunium^000000 for armors.";
-	mes "Failed refines ^FF0000will not break or reduce the refine level^000000.";
+	mes "ข้าต้องใช้ ^ff9999Blessed Oridecon^000000 สำหรับอาวุธ และ ^ff9999Blessed Elunium^000000 สำหรับชุดเกราะ";
+	mes "หากตีบวกล้มเหลว ^FF0000อุปกรณ์จะไม่ถูกทำลายและระดับจะไม่ลดลง^000000";
 	next;
 	mes "[Blacksmith Dister]";
-	mes "How about it? Do you want to refine?";
+	mes "ว่ายังไงล่ะ? เจ้าพร้อมจะตีบวกหรือยัง?";
 	next;
 	setarray .@indices[1], EQI_HEAD_TOP, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_HEAD_MID, EQI_HEAD_LOW;
 	for(set .@i,1; .@i<=10; set .@i,.@i+1)
-		set .@menu$, .@menu$ + ( getequipisequiped(.@indices[.@i]) ? getequipname(.@indices[.@i]) : F_getpositionname(.@indices[.@i]) +"-[Unequipped]" ) +":";
+		set .@menu$, .@menu$ + ( getequipisequiped(.@indices[.@i]) ? getequipname(.@indices[.@i]) : F_getpositionname(.@indices[.@i]) +"-[ไม่ได้สวมใส่]" ) +":";
 	set .@part, .@indices[ select(.@menu$) ];
 	if (!getequipisequiped(.@part)) {
 		mes "[Blacksmith Dister]";
 		switch(.@part) {
 		case EQI_HEAD_TOP:
-			mes "I'm a blacksmith, not a hairstylist.";
+			mes "ข้าเป็นช่างตีเหล็กนะ ไม่ใช่ช่างทำผม";
 			break;
 		case EQI_ARMOR:
-			mes "With my hammer, I will make you a star of the sky.";
+			mes "ด้วยค้อนของข้า ข้าจะทำให้เจ้ากลายเป็นดาราที่เจิดจรัสที่สุดเลย";
 			break;
 		case EQI_HAND_L:
 		case EQI_HAND_R:
-			mes "Making artificial hands is not my specialty.";
+			mes "การทำมือเทียมไม่ใช่ความเชี่ยวชาญของข้านะ";
 			break;
 		case EQI_GARMENT:
-			mes "Bring out the item so I can refine it!";
+			mes "ไปเอาไอเทมออกมาสิ ข้าจะได้ตีบวกให้!";
 			break;
 		case EQI_SHOES:
-			mes "Where is this weird smell coming from?";
+			mes "กลิ่นแปลกๆ นี่มันมาจากไหนกันเนี่ย?";
 			break;
 		case EQI_ACC_L:
 		case EQI_ACC_R:
-			mes "Where is the accessory?";
+			mes "แล้วเครื่องประดับอยู่ไหนล่ะ?";
 			break;
 		case EQI_HEAD_MID:
-			mes "What do you want me to refine?";
+			mes "เจ้าต้องการให้ข้าตีบวกชิ้นไหนกันแน่?";
 			break;
 		case EQI_HEAD_LOW:
-			mes "Huh? What do you want me to do?";
+			mes "หืม? เจ้าต้องการให้ข้าทำอะไรนะ?";
 			break;
 		}
 		close;
 	}
 	if (!getequipisenableref(.@part)) {
 		mes "[Blacksmith Dister]";
-		mes "This item cannot be refined.";
+		mes "ไอเทมชิ้นนี้ไม่สามารถตีบวกได้";
 		close;
 	}
 	.@equip_id = getequipid(.@part);
@@ -75,12 +75,12 @@
 
 	if (.@equip_refine < 6 || .@equip_refine > 12) {
 		mes "[Blacksmith Dister]";
-		mes "This equipment has refined to "+.@equip_refine+". I only handle items with refine levels from +6 to +12!";
+		mes "อุปกรณ์ชิ้นนี้อยู่ที่ระดับ +"+.@equip_refine+" ข้าจะรับงานเฉพาะระดับ +6 ถึง +12 เท่านั้น!";
 		close;
 	}
 	if( .@itemtype == IT_ARMOR ){
 		.@equip_lv = getequiparmorlv( .@part );
-		.@type$ = "Armor";
+		.@type$ = "ชุดเกราะ";
 
 		switch(.@equip_lv) {
 			case 1:
@@ -93,7 +93,7 @@
 		}
 	}else if( .@itemtype == IT_WEAPON ){
 		.@equip_lv = getequipweaponlv( .@part );
-		.@type$ = "Weapon";
+		.@type$ = "อาวุธ";
 
 		switch( .@equip_lv ){
 			case 1:
@@ -122,31 +122,31 @@
 	}
 	set .@ore$,"^ff9999Blessed "+.@type$+" Ore^000000";
 	mes "[Blacksmith Dister]";
-	mes "This "+.@type$+" has been refined to "+.@equip_refine+". To refine it, I need "+.@ore$+" and a "+callfunc("F_InsertComma",.@price)+" zeny refining fee.";
-	mes "Do you want to proceed?";
+	mes ""+.@type$+" ชิ้นนี้อยู่ที่ระดับ +"+.@equip_refine+" การจะตีบวกเพิ่ม ข้าต้องการ "+.@ore$+" และค่าธรรมเนียมอีก "+callfunc("F_InsertComma",.@price)+" Zeny";
+	mes "เจ้าต้องการจะดำเนินการต่อหรือไม่?";
 	next;
-	if(select("Yes:No") == 2) {
+	if(select("ตกลง:ไม่ล่ะ") == 2) {
 		mes "[Blacksmith Dister]";
-		mes "I am busy, don't joke with me!";
+		mes "ข้ากำลังยุ่ง อย่ามาล้อเล่นกับข้านะ!";
 		close;
 	}
 	if (getequippercentrefinery(.@part) < 100) {
 		mes "[Blacksmith Dister]";
-		mes "This "+.@type$+" has been refined many times. Although it will not disappear upon failure, the "+.@ore$+" will disappear!";
+		mes ""+.@type$+" ชิ้นนี้ผ่านการตีบวกมาหลายครั้งแล้ว ถึงแม้อุปกรณ์จะไม่หายไปหากล้มเหลว แต่ "+.@ore$+" จะสูญหายไปทันทีนะ!";
 		next;
 		mes "[Blacksmith Dister]";
-		mes "Of course, the refining fee will not be returned! Do you want to continue?";
+		mes "และแน่นอนว่าค่าธรรมเนียมก็ไม่คืนให้ด้วย! ยังอยากจะไปต่อไหม?";
 		next;
-		if(select("Yes:No") == 2) {
+		if(select("ไปต่อ:หยุดแค่นี้ก่อน") == 2) {
 			mes "[Blacksmith Dister]";
-			mes "Good. I'd be sad if it failed, too.";
+			mes "ดีแล้วล่ะ... ข้าเองก็คงเสียใจถ้ามันล้มเหลวเหมือนกัน";
 			close;
 		}
 	}
 	if (countitem(.@material) == 0 || Zeny < .@price) {
 		mes "[Blacksmith Dister]";
-		mes "Materials insufficient.";
-		mes "To refine a level "+.@equip_lv+" "+.@type$+", I need "+.@ore$+" and a "+callfunc("F_InsertComma",.@price)+" zeny refining fee.";
+		mes "วัตถุดิบไม่เพียงพอ";
+		mes "สำหรับการตีบวก "+.@type$+" เลเวล "+.@equip_lv+" ข้าต้องการ "+.@ore$+" และเงิน "+callfunc("F_InsertComma",.@price)+" Zeny";
 		close;
 	}
 	delitem .@material,1;
@@ -157,16 +157,16 @@
 		close;
 
 	mes "[Blacksmith Dister]";
-	mes "Tac! Tac! Tac!";
+	mes "เคร้ง! เคร้ง! เคร้ง!";
 	if (getequippercentrefinery(.@part, true) > rand(100)) {
 		specialeffect EF_BLESSING;
 		successrefitem .@part;
 		next;
 		mes "[Blacksmith Dister]";
-		mes "Hahahahahaha!!!";
+		mes "ฮ่าๆๆๆๆๆๆๆ!!!";
 		next;
 		mes "[Blacksmith Dister]";
-		mes "Refine was a huge success~ Hahaha!";
+		mes "การตีบวกประสบความสำเร็จอย่างงดงาม~ ฮ่าๆ!";
 		close;
 	}
 	specialeffect EF_CURSEATTACK;
@@ -174,13 +174,13 @@
 	next;
 	emotion (!rand(5))?ET_ANGER:ET_HUK;
 	mes "[Blacksmith Dister]";
-	mes "Oh my goodness!!!!";
+	mes "โอ้... พระช่วย!!!!";
 	next;
 	mes "[Blacksmith Dister]";
-	mes "Oh! Although it was blessed by "+.@ore$+" to retain the equipment...";
+	mes "โถ่เอ๊ย! ถึงแม้จะมีพลังของ "+.@ore$+" ช่วยรักษาอุปกรณ์เอาไว้ก็เถอะ...";
 	next;
 	mes "[Blacksmith Dister]";
-	mes "My mood is worse when I fail!!";
+	mes "แต่พอตีบวกล้มเหลวแบบนี้ อารมณ์ข้าบูดชะมัดเลย!!";
 	close;
 }
 prt_in,52,56,3	duplicate(BlacksmithDister)	Blacksmith Dister#prt	826

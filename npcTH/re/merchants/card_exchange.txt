@@ -20,40 +20,41 @@
 //============================================================
 comodo,148,306,4	script	Card Vendor Machine#pa08	562,{
 	if (checkweight(1201,1) == 0) {
-		mes "You have too many items, please reduce it and come back later!";
+		mes "ช่องเก็บของของคุณเต็มเกินไป กรุณาลดจำนวนไอเทมแล้วกลับมาใหม่!";
 		close;
 	}
 	if (MaxWeight - Weight < 1000) {
-		mes "You are overweight now, please reduce it and come back later!";
+		mes "น้ำหนักตัวของคุณมากเกินไป กรุณาลดน้ำหนักแล้วกลับมาใหม่!";
 		close;
 	}
 	mes "[Terminator RX1]";
-	mes "Text Explanation Begins:";
-	mes "Press 1 for Cancel,";
-	mes "Press 2 for Explanation,";
-	mes "Press 3 for Coin Exchange,";
-	mes "Press 4 for Card Exchange.";
+	mes "เริ่มกระบวนการอธิบายข้อมูล:";
+	mes "กด 1 เพื่อ ยกเลิก,";
+	mes "กด 2 เพื่อ อ่านคำอธิบาย,";
+	mes "กด 3 เพื่อ แลกเปลี่ยนเหรียญ (Coin Exchange),";
+	mes "กด 4 เพื่อ แลกเปลี่ยนการ์ด (Card Exchange).";
 	next;
-	switch(select("1.Cancel:2.Explanation:3.Change Card into Coin:4.Change Coin into Card:^ffffff5.Start Security System^000000")) {
+	switch(select("1.ยกเลิก:2.อ่านคำอธิบาย:3.เปลี่ยนการ์ดเป็นเหรียญ:4.เปลี่ยนเหรียญเป็นชุดการ์ด:^ffffff5.เริ่มระบบรักษาความปลอดภัย^000000")) {
 	case 1:
 		mes "[Terminator RX1]";
-		mes "You are welcome!";
+		mes "ยินดีที่ได้บริการ!";
 		close;
 	case 2:
 		mes "[Terminator RX1]";
-		mes "No.3, when you choose Coin Exchange, system will collect ONE card from your inventory randomly to exchange into ONE Coin.";
+		mes "หมายเลข 3: เมื่อคุณเลือกการแลกเปลี่ยนเหรียญ ระบบจะสุ่มเก็บการ์ดหนึ่งใบจากตัวคุณเพื่อแลกเป็น 'Card Coin' 1 เหรียญ";
 		next;
 		mes "[Terminator RX1]";
-		mes "No.4, when you choose Card Excahnge, system will collect FIVE coin from your inventory to exchange into ONE Card randomly.";
+		mes "หมายเลข 4: เมื่อคุณเลือกการแลกเปลี่ยนการ์ด ระบบจะเก็บ 'Card Coin' จำนวน 5 เหรียญจากตัวคุณ เพื่อแลกกับการสุ่มรับการ์ดใหม่ 1 ใบ";
 		next;
 		mes "[Terminator RX1]";
-		mes "You are welcome!";
+		mes "ยินดีที่ได้บริการ!";
 		close;
 	case 3:
 		specialeffect2 EF_COIN;
 		specialeffect2 EF_LOUD;
 		progressbar "0xffff00",3;
-		callsub L_Exchange,	// yes, this list is hardcoded in the official script...
+		// ระบบจะทำการค้นหาการ์ดตามรายชื่อด้านล่าง
+		callsub L_Exchange,
 			4001, 4002, 4003, 4004, 4005, 4006, 4008, 4009, 4010, 4011,
 			4012, 4013, 4014, 4015, 4016, 4017, 4018, 4019, 4020, 4021,
 			4022, 4023, 4024, 4025, 4026, 4028, 4029, 4031, 4032, 4033,
@@ -84,10 +85,10 @@ comodo,148,306,4	script	Card Vendor Machine#pa08	562,{
 			4437, 4438, 4439, 4442, 4443, 4444, 4445, 4447, 4448, 4449,
 			4450, 4452;
 		mes "[Terminator RX1]";
-		mes "Card searching has finished!";
+		mes "การค้นหาการ์ดเสร็จสมบูรณ์!";
 		next;
 		mes "[Terminator RX1]";
-		mes "Thank you for coming!";
+		mes "ขอบคุณที่ใช้บริการ!";
 		close;
 	case 4:
 		specialeffect2 EF_COIN;
@@ -95,10 +96,11 @@ comodo,148,306,4	script	Card Vendor Machine#pa08	562,{
 		progressbar "0xffff00",3;
 		if (countitem(6379) < 5) {
 			mes "[Terminator RX1]";
-			mes "You do not have enough coins.";
+			mes "คุณมี Card Coin ไม่เพียงพอ (ต้องการ 5 เหรียญ)";
 			close;
 		}
 		delitem 6379,5; //Card_Coin
+		// ส่วนการสุ่มการ์ด (getitem) จะทำงานตาม Logic เดิม
 		.@r = rand(1,34261);
 		     if (.@r <= 2001)  getitem 4001,1; //Poring_Card
 		else if (.@r <= 4002)  getitem 4002,1; //Fabre_Card
@@ -465,14 +467,14 @@ comodo,148,306,4	script	Card Vendor Machine#pa08	562,{
 				getitem 4092,1; //Skel_Worker_Card
 		}
 		mes "[Terminator RX1]";
-		mes "All cards have finished.";
+		mes "กระบวนการสุ่มการ์ดเสร็จสิ้น";
 		next;
 		mes "[Terminator RX1]";
-		mes "Thank you for coming!";
+		mes "ขอบคุณที่ใช้บริการ!";
 		close;
 	case 5:
 		mes "[Terminator RX1]";
-		mes "Found unauthorized signal, starting security system...";
+		mes "ตรวจพบสัญญาณที่ไม่ได้รับอนุญาต กำลังเริ่มระบบรักษาความปลอดภัย...";
 		close2;
 		warp "comodo",263,286;
 		end;
@@ -484,15 +486,15 @@ L_Exchange:
 	.@args = getargcount();
 	for (.@i = 0; .@i < .@args; .@i++) {
 		if (countitem(getarg(.@i))) {
-			mes "Found ^980078" + getitemname(getarg(.@i)) + "^000000,";
-			mes "Do you want to exchange ONE Card into ONE Coin?";
+			mes "ตรวจพบการ์ด ^980078" + getitemname(getarg(.@i)) + "^000000,";
+			mes "คุณต้องการแลกเปลี่ยนการ์ดใบนี้เป็นเหรียญ 1 เหรียญใช่หรือไม่?";
 			next;
-			switch(select("No:Yes")) {
+			switch(select("ไม่:ใช่")) {
 			case 1:
-				mes "^980078Do you want search for other cards?^000000";
+				mes "^980078คุณต้องการค้นหาการ์ดใบอื่นต่อไปหรือไม่?^000000";
 				next;
-				if(select("No:Yes") == 1) {
-					mes "^980078Card searching is interrupted^000000";
+				if(select("ไม่พอแล้ว:ใช่ ค้นหาต่อ") == 1) {
+					mes "^980078การค้นหาการ์ดถูกระงับ^000000";
 					close;
 				}
 				break;
@@ -500,10 +502,10 @@ L_Exchange:
 				if (countitem(getarg(.@i))) {
 					delitem getarg(.@i),1;
 					getitem 6379,1; //Card_Coin
-					mes "^980078" + getitemname(getarg(.@i)) + " has exchanged into Coin.^000000";
+					mes "^980078" + getitemname(getarg(.@i)) + " ถูกแลกเปลี่ยนเป็นเหรียญเรียบร้อยแล้ว^000000";
 					next;
 				} else {
-					mes "^980078Your inventory does not contain the card for exchange.^000000";
+					mes "^980078ไม่พบการ์ดสำหรับการแลกเปลี่ยนในกระเป๋าของคุณ^000000";
 					next;
 				}
 				break;
