@@ -72,8 +72,8 @@ izlude_c,165,156,2	duplicate(Soldier_izlude)	Soldier#izlude_c	8W_SOLDIER
 izlude_d,165,156,2	duplicate(Soldier_izlude)	Soldier#izlude_d	8W_SOLDIER
 
 -	script	::Guard_izlude	-1,{
-	mes "[Izlude Guard]";
-	mes "Welcome to Izlude.";
+	mes "[ทหารยาม Izlude]";
+	mes "ยินดีต้อนรับสู่ Izlude";
 	close;
 }
 prt_fild08,350,219,4	duplicate(Guard_izlude)	Guard#izlude	8W_SOLDIER
@@ -85,86 +85,92 @@ prt_fild08d,350,219,4	duplicate(Guard_izlude)	Guard#izlude_d	8W_SOLDIER
 // Channel Warper :: channel
 //============================================================
 function	script	F_IzludeChannel	{
-	mes "[Channel Warp Official]";
-	mes "Izlude is a verly lively place is it not?";
-	mes "I am here to help make Izlude feel more smooth!";
-	mes "I can send you to another copy of Izlude.";
-	mes "Do you want to go to another copy?";
+	mes "[เจ้าหน้าที่บริการแชนแนล]";
+	mes "เมือง Izlude แห่งนี้ช่างดูคึกคักมีชีวิตชีวามากเลยว่าไหมครับ?";
+	mes "ผมมาที่นี่เพื่อช่วยให้การเดินทางในเมืองนี้ราบรื่นยิ่งขึ้น!";
+	mes "ผมสามารถส่งคุณไปยังเมือง Izlude ในแชนแนลอื่นได้นะ";
+	mes "คุณต้องการจะย้ายไปยังแชนแนลอื่นไหมครับ?";
 	next;
-	set .@i, select(getarg(0)+":Never mind");
+	set .@i, select(getarg(0)+":ไม่เป็นไร ขอบคุณ");
 	if (.@i < 6) {
 		setarray .@maps$[1],"izlude","izlude_a","izlude_b","izlude_c","izlude_d";
+		// ตั้งจุดเซฟและวาร์ปไปยังพิกัดกึ่งกลางเมือง
 		savepoint .@maps$[.@i],128,98,1,1;
 		warp .@maps$[.@i],128,98;
 		end;
 	}
 	close;
 }
-izlude,122,105,5	script	Channel Warp Official	1_M_WIZARD,{ callfunc "F_IzludeChannel",":Go to copy 2:Go to copy 3:Go to copy 4:Go to copy 5"; }
-izlude_a,122,105,5	script	Channel Warp Official#_a	1_M_WIZARD,{ callfunc "F_IzludeChannel","Go to copy 1::Go to copy 3:Go to copy 4:Go to copy 5"; }
-izlude_b,122,105,5	script	Channel Warp Official#_b	1_M_WIZARD,{ callfunc "F_IzludeChannel","Go to copy 1:Go to copy 2::Go to copy 4:Go to copy 5"; }
-izlude_c,122,105,5	script	Channel Warp Official#_c	1_M_WIZARD,{ callfunc "F_IzludeChannel","Go to copy 1:Go to copy 2:Go to copy 3::Go to copy 5"; }
-izlude_d,122,105,5	script	Channel Warp Official#_d	1_M_WIZARD,{ callfunc "F_IzludeChannel","Go to copy 1:Go to copy 2:Go to copy 3:Go to copy 4:"; }
+//izlude,122,105,5	script	Channel Warp Official	1_M_WIZARD,{ callfunc "F_IzludeChannel",":Go to copy 2:Go to copy 3:Go to copy 4:Go to copy 5"; }
+//izlude_a,122,105,5	script	Channel Warp Official#_a	1_M_WIZARD,{ callfunc "F_IzludeChannel","Go to copy 1::Go to copy 3:Go to copy 4:Go to copy 5"; }
+//izlude_b,122,105,5	script	Channel Warp Official#_b	1_M_WIZARD,{ callfunc "F_IzludeChannel","Go to copy 1:Go to copy 2::Go to copy 4:Go to copy 5"; }
+//izlude_c,122,105,5	script	Channel Warp Official#_c	1_M_WIZARD,{ callfunc "F_IzludeChannel","Go to copy 1:Go to copy 2:Go to copy 3::Go to copy 5"; }
+//izlude_d,122,105,5	script	Channel Warp Official#_d	1_M_WIZARD,{ callfunc "F_IzludeChannel","Go to copy 1:Go to copy 2:Go to copy 3:Go to copy 4:"; }
+izlude,122,105,5	script	เจ้าหน้าที่บริการแชนแนล	1_M_WIZARD,{ callfunc "F_IzludeChannel",":ไปยังแชนแนล 2:ไปยังแชนแนล 3:ไปยังแชนแนล 4:ไปยังแชนแนล 5"; }
+izlude_a,122,105,5	script	เจ้าหน้าที่บริการแชนแนล#_a	1_M_WIZARD,{ callfunc "F_IzludeChannel","ไปยังแชนแนล 1::ไปยังแชนแนล 3:ไปยังแชนแนล 4:ไปยังแชนแนล 5"; }
+izlude_b,122,105,5	script	เจ้าหน้าที่บริการแชนแนล#_b	1_M_WIZARD,{ callfunc "F_IzludeChannel","ไปยังแชนแนล 1:ไปยังแชนแนล 2::ไปยังแชนแนล 4:ไปยังแชนแนล 5"; }
+izlude_c,122,105,5	script	เจ้าหน้าที่บริการแชนแนล#_c	1_M_WIZARD,{ callfunc "F_IzludeChannel","ไปยังแชนแนล 1:ไปยังแชนแนล 2:ไปยังแชนแนล 3::ไปยังแชนแนล 5"; }
+izlude_d,122,105,5	script	เจ้าหน้าที่บริการแชนแนล#_d	1_M_WIZARD,{ callfunc "F_IzludeChannel","ไปยังแชนแนล 1:ไปยังแชนแนล 2:ไปยังแชนแนล 3:ไปยังแชนแนล 4:"; }
 
 // Talking NPCs
 //============================================================
-izlude,143,205,7	script	Talkative Kid#iz	4_F_KID2,{
+izlude,143,205,7	script	เด็กน้อยช่างพูด#iz	4_F_KID2,{
 	end;
 
 OnTimer64000:
-	npctalk "Talkative Kid : I used all my Novice Red Potions. What should I do?";
+	npctalk "เด็กน้อยช่างพูด : ผมใช้ Novice Red Potion หมดแล้วอ่ะ ทำยังไงดี?";
 	end;
 
 OnTimer72000:
-	npctalk "Talkative Kid : Where is the shop?";
+	npctalk "เด็กน้อยช่างพูด : ร้านค้าอยู่ตรงไหนเหรอ?";
 	end;
 
 OnTimer136000:
-	npctalk "Talkative Kid : Idiot! You do not know about the 'shortcut window'?";
+	npctalk "เด็กน้อยช่างพูด : เจ้างั่ง! นี่ไม่รู้จัก 'หน้าต่างคีย์ลัด' (Shortcut Window) งั้นเหรอ?";
 	end;
 
 OnTimer144000:
-	npctalk "Talkative Kid : The items in your inventory can be dragged and put in the shortcut window.";
+	npctalk "เด็กน้อยช่างพูด : ไอเทมในช่องเก็บของน่ะ สามารถลากไปวางในหน้าต่างคีย์ลัดได้นะ";
 	end;
 
 OnTimer212000:
-	npctalk "Talkative Kid : I got so many beginner's items in the Academy!";
+	npctalk "เด็กน้อยช่างพูด : ผมได้ไอเทมสำหรับมือใหม่จาก Academy มาเพียบเลย!";
 	end;
 
 OnTimer276000:
-	npctalk "Talkative Kid : They even gave me weapons and a shield!";
+	npctalk "เด็กน้อยช่างพูด : แถมเขายังให้ทั้งอาวุธและโล่มาด้วยนะ!";
 	end;
 
 OnTimer284000:
-	npctalk "Talkative Kid : Just press  <Ctrl+~key> to open the map you have.";
+	npctalk "เด็กน้อยช่างพูด : แค่กดปุ่ม <Ctrl + ~> เพื่อเปิดดูแผนที่ที่มีอยู่ได้เลย";
 	end;
 
 OnTimer344000:
-	npctalk "Talkative Kid : Then do you want to go Criatura Academy with me? I'm learning how to battle from Instructor Subino!";
+	npctalk "เด็กน้อยช่างพูด : แล้วอยากไป Criatura Academy กับผมไหมล่ะ? ผมกำลังหัดสู้กับครูฝึก Subino อยู่พอดี!";
 	end;
 
 OnTimer348000:
-	npctalk "Talkative Kid : The Academy is in North side of Izlude. Let's go~!";
+	npctalk "เด็กน้อยช่างพูด : Academy อยู่ทางทิศเหนือของเมือง Izlude นะ ไปกันเถอะ~!";
 	end;
 
 OnTimer416000:
-	npctalk "Talkative Kid : It's a system to guide you to a destination.";
+	npctalk "เด็กน้อยช่างพูด : มันเป็นระบบที่จะช่วยนำทางเจ้าไปยังจุดหมายน่ะ";
 	end;
 
 OnTimer424000:
-	npctalk "Talkative Kid : In the basic menu, please click the [Navigation] button.";
+	npctalk "เด็กน้อยช่างพูด : ในเมนูหลัก ลองคลิกที่ปุ่ม [Navigation] (นำทาง) ดูสิ";
 	end;
 
 OnTimer492000:
-	npctalk "Talkative Kid : Whee, Ain't gonna use your brain? Please type /where in the chat window now!";
+	npctalk "เด็กน้อยช่างพูด : วู้ฮู้ว~ ไม่อยากใช้สมองจำเองเหรอ? งั้นลองพิมพ์ /where ในช่องแชทดูสิ!";
 	end;
 
 OnTimer552000:
-	npctalk "Talkative Kid : In this case, you can push the <Enter> key.";
+	npctalk "เด็กน้อยช่างพูด : ในกรณีแบบนี้ เจ้าสามารถกดปุ่ม <Enter> ได้เลยนะ";
 	end;
 
 OnTimer560000:
-	npctalk "Talkative Kid : We are just repeating the same dialog. HaHaha.";
+	npctalk "เด็กน้อยช่างพูด : พวกเรากำลังคุยเรื่องเดิมซ้ำไปซ้ำมานะเนี่ย ฮ่าฮ่าฮ่า";
 	end;
 
 OnTimer565000:
@@ -173,76 +179,76 @@ OnInit:
 	end;
 }
 
-izlude_a,143,205,7	duplicate(Talkative Kid#iz)	Talkative Kid#iza	4_F_KID2
-izlude_b,143,205,7	duplicate(Talkative Kid#iz)	Talkative Kid#izb	4_F_KID2
-izlude_c,143,205,7	duplicate(Talkative Kid#iz)	Talkative Kid#izc	4_F_KID2
-izlude_d,143,205,7	duplicate(Talkative Kid#iz)	Talkative Kid#izd	4_F_KID2
+izlude_a,143,205,7	duplicate(เด็กน้อยช่างพูด#iz)	เด็กน้อยช่างพูด#iza	4_F_KID2
+izlude_b,143,205,7	duplicate(เด็กน้อยช่างพูด#iz)	เด็กน้อยช่างพูด#izb	4_F_KID2
+izlude_c,143,205,7	duplicate(เด็กน้อยช่างพูด#iz)	เด็กน้อยช่างพูด#izc	4_F_KID2
+izlude_d,143,205,7	duplicate(เด็กน้อยช่างพูด#iz)	เด็กน้อยช่างพูด#izd	4_F_KID2
 
-izlude,146,205,7	script	Talkative Adventurer#iz	4_M_KID1,{
+izlude,146,205,7	script	นักผจญภัยช่างพูด#iz	4_M_KID1,{
 	end;
 
 OnTimer69000:
-	npctalk "Talkative Adventurer : You can buy potion from Merchants.";
+	npctalk "นักผจญภัยช่างพูด : นายซื้อ Potion ได้จากเหล่าพ่อค้านะ";
 	end;
 
 OnTimer77000:
-	npctalk "Talkative Adventurer : It's the Potion image in the mini map.";
+	npctalk "นักผจญภัยช่างพูด : สังเกตรูปขวด Potion ในแผนที่เล็กดูสิ";
 	end;
 
 OnTimer131000:
-	npctalk "Talkative Adventurer : Is there any way to use items easily?";
+	npctalk "นักผจญภัยช่างพูด : มีวิธีไหนที่ทำให้ใช้ไอเทมได้ง่ายๆ บ้างไหมนะ?";
 	end;
 
 OnTimer141000:
-	npctalk "Talkative Adventurer : Shortcut window? The slots at the top of the screen? How can I use it?";
+	npctalk "นักผจญภัยช่างพูด : หน้าต่างคีย์ลัดเหรอ? ไอ้ช่องๆ ที่อยู่บนหน้าจอน่ะนะ? มันใช้ยังไงกันล่ะ?";
 	end;
 
 OnTimer149000:
-	npctalk "Talkative Adventurer : For inventory, do you mean 'item' menu? Oh, it is!";
+	npctalk "นักผจญภัยช่างพูด : ส่วนช่องเก็บของ... นายหมายถึงเมนู 'ไอเทม' ใช่ไหม? อ๋อ ใช่จริงๆ ด้วย!";
 	end;
 
 OnTimer217000:
-	npctalk "Talkative Adventurer : I have a bunch of potions?";
+	npctalk "นักผจญภัยช่างพูด : นี่ฉันมี Potion ตั้งเยอะแยะเลยเหรอเนี่ย?";
 	end;
 
 OnTimer281000:
-	npctalk "Talkative Adventurer : What?! I should go to the Academy now!";
+	npctalk "นักผจญภัยช่างพูด : อะไรนะ?! ฉันควรจะรีบไปที่ Academy เดี๋ยวนี้เลย!";
 	end;
 
 OnTimer279000:
-	npctalk "Talkative Adventurer : Where is Izlude? In the center?";
+	npctalk "นักผจญภัยช่างพูด : แล้ว Izlude อยู่ตรงไหนล่ะ? ตรงใจกลางนี่เลยเหรอ?";
 	end;
 
 OnTimer339000:
-	npctalk "Talkative Adventurer : I do not know what to do.";
+	npctalk "นักผจญภัยช่างพูด : ฉันไม่รู้เลยว่าต้องทำอะไรต่อไปดี";
 	end;
 
 OnTimer349000:
-	npctalk "Talkative Adventurer : Oh yea? I want to know so many things~ I will go with you!";
+	npctalk "นักผจญภัยช่างพูด : อ๋อเหรอ? ฉันมีสิ่งที่อยากรู้อีกเยอะแยะเลย~ งั้นฉันจะไปกับนายด้วย!";
 	end;
 
 OnTimer411000:
-	npctalk "Talkative Adventurer : Navigation, What is that?";
+	npctalk "นักผจญภัยช่างพูด : ระบบนำทาง (Navigation) งั้นเหรอ มันคืออะไรน่ะ?";
 	end;
 
 OnTimer421000:
-	npctalk "Talkative Adventurer : Oh-! Should I search for a Kafra Employee?";
+	npctalk "นักผจญภัยช่างพูด : โอ๊ะ-! ฉันควรจะลองค้นหาพนักงาน Kafra ดูดีไหมนะ?";
 	end;
 
 OnTimer487000:
-	npctalk "Talkative Adventurer : What is the town name?";
+	npctalk "นักผจญภัยช่างพูด : เมืองนี้ชื่อว่าอะไรนะ?";
 	end;
 
 OnTimer497000:
-	npctalk "Talkative Adventurer : I cannot see the part where I can write something in the chat window?";
+	npctalk "นักผจญภัยช่างพูด : ฉันมองไม่เห็นช่องที่ไว้สำหรับพิมพ์ข้อความในหน้าต่างแชทเลยแฮะ?";
 	end;
 
 OnTimer557000:
-	npctalk "Talkative Adventurer : Oh you smarty...";
+	npctalk "นักผจญภัยช่างพูด : โห นายเนี่่ยฉลาดจริงๆ...";
 	end;
 
 OnTimer555000:
-	npctalk "Talkative Adventurer : A while ago, one Novice talked to me like hey 'Talkative Adventurer'?. HaHaha.";
+	npctalk "นักผจญภัยช่างพูด : เมื่อกี้มี Novice คนนึงมาทักฉันด้วยนะว่า 'เฮ้ นักผจญภัยช่างพูด' ล่ะ ฮ่าฮ่าฮ่า";
 	end;
 
 OnTimer565000:
@@ -251,26 +257,26 @@ OnInit:
 	end;
 }
 
-izlude_a,146,205,7	duplicate(Talkative Adventurer#iz)	Talkative Adventurer#iza	4_M_KID1
-izlude_b,146,205,7	duplicate(Talkative Adventurer#iz)	Talkative Adventurer#izb	4_M_KID1
-izlude_c,146,205,7	duplicate(Talkative Adventurer#iz)	Talkative Adventurer#izc	4_M_KID1
-izlude_d,146,205,7	duplicate(Talkative Adventurer#iz)	Talkative Adventurer#izd	4_M_KID1
+izlude_a,146,205,7	duplicate(นักผจญภัยช่างพูด#iz)	นักผจญภัยช่างพูด#iza	4_M_KID1
+izlude_b,146,205,7	duplicate(นักผจญภัยช่างพูด#iz)	นักผจญภัยช่างพูด#izb	4_M_KID1
+izlude_c,146,205,7	duplicate(นักผจญภัยช่างพูด#iz)	นักผจญภัยช่างพูด#izc	4_M_KID1
+izlude_d,146,205,7	duplicate(นักผจญภัยช่างพูด#iz)	นักผจญภัยช่างพูด#izd	4_M_KID1
 
-prt_fild08,338,217,7	script	Resting Adventurer#iz	4_F_SITDOWN,{
+prt_fild08,338,217,7	script	นักผจญภัยพักผ่อน#iz	4_F_SITDOWN,{
 	end;
 
 OnTimer60000:
-	npctalk "Resting Adventurer : You know what? If you are sitting, HP and SP recovery is faster.";
+	npctalk "นักผจญภัยพักผ่อน : นี่เจ้ารู้ไหม? ถ้าเจ้านั่งลง HP และ SP จะฟื้นฟูได้เร็วขึ้นนะ";
 	end;
 
 OnTimer65000:
-	npctalk "Resting Adventurer : Sitting is possible if your basic job skill level is more than 3. Shortcut is pressing the <INSERT> key.";
+	npctalk "นักผจญภัยพักผ่อน : เจ้าจะนั่งได้ก็ต่อเมื่อมี Basic Skill เลเวล 3 ขึ้นไป และสามารถกดปุ่ม <INSERT> เป็นคีย์ลัดเพื่อนั่งได้เลย";
 OnInit:
 	initnpctimer;
 	end;
 }
 
-prt_fild08a,338,217,7	duplicate(Resting Adventurer#iz)	Resting Adventurer#iza	4_F_SITDOWN
-prt_fild08b,338,217,7	duplicate(Resting Adventurer#iz)	Resting Adventurer#izb	4_F_SITDOWN
-prt_fild08c,338,217,7	duplicate(Resting Adventurer#iz)	Resting Adventurer#izc	4_F_SITDOWN
-prt_fild08d,338,217,7	duplicate(Resting Adventurer#iz)	Resting Adventurer#izd	4_F_SITDOWN
+prt_fild08a,338,217,7	duplicate(นักผจญภัยพักผ่อน#iz)	นักผจญภัยพักผ่อน#iza	4_F_SITDOWN
+prt_fild08b,338,217,7	duplicate(นักผจญภัยพักผ่อน#iz)	นักผจญภัยพักผ่อน#izb	4_F_SITDOWN
+prt_fild08c,338,217,7	duplicate(นักผจญภัยพักผ่อน#iz)	นักผจญภัยพักผ่อน#izc	4_F_SITDOWN
+prt_fild08d,338,217,7	duplicate(นักผจญภัยพักผ่อน#iz)	นักผจญภัยพักผ่อน#izd	4_F_SITDOWN

@@ -20,51 +20,51 @@
 // Brasilis Transportation :: brasilis_trans
 //============================================================
 /* Pre-Renewal coordinates: alberta,247,115,3 */
-alberta,246,82,3	script	Crewman#bra2	100,{
-	mes "[Crewman]";
-	mes "Hey, have you heard of a place called Brasilis?";
-	mes "It's a tropical city that's hot like the desert but also rainy. It is a very mysterious place.";
+alberta,246,82,3	script	ลูกเรือ#bra2	100,{
+	mes "[ลูกเรือ]";
+	mes "เฮ้! เจ้าเคยได้ยินชื่อสถานที่ที่เรียกว่า Brasilis ไหม?";
+	mes "มันเป็นเมืองเขตร้อนที่ร้อนระอุเหมือนทะเลทรายแต่ก็มีฝนชุก เป็นสถานที่ที่เต็มไปด้วยความลึกลับมากเลยล่ะ";
 	next;
-	mes "[Crewman]";
-	mes "We recently found a new ocean route to get there easily.";
+	mes "[ลูกเรือ]";
+	mes "พวกเราเพิ่งจะค้นพบเส้นทางเดินเรือสายใหม่ที่ไปถึงที่นั่นได้ง่ายๆ";
 	if (VIP_SCRIPT) {
 		set .@cost, vip_status(VIP_STATUS_ACTIVE)?1000:10000;
-		mes "It's just 10,000 zeny for a round trip, and 1,000 for VIP! So do you want to go?"; //custom translation (VIP)
+		mes "ค่าโดยสารไป-กลับเพียง 10,000 Zeny เท่านั้น และสำหรับ VIP เพียง 1,000 Zeny! ว่าไง สนใจจะไปไหม?"; 
 	} else {
 		set .@cost,10000;
-		mes "It's just 10,000 zeny for a round trip! So do you want to go?";
+		mes "ค่าโดยสารไป-กลับเพียง 10,000 Zeny เท่านั้น! สนใจจะไปไหมล่ะ?";
 	}
 	next;
-	switch(select("Take me to Brasilis!:I'll stay here.")) {
+	switch(select("พาข้าไป Brasilis ที!:ข้าจะอยู่ที่นี่แหละ")) {
 	case 1:
 		if (Zeny < .@cost) {
-			mes "[Crewman]";
-			mes "I said "+callfunc("F_InsertComma",.@cost)+" zeny.";
+			mes "[ลูกเรือ]";
+			mes "ข้าบอกว่าต้องใช้เงิน "+callfunc("F_InsertComma",.@cost)+" Zeny ไงล่ะ";
 			close;
 		}
 		else {
-			mes "[Crewman]";
-			mes "Cool~!! Let's go~!";
+			mes "[ลูกเรือ]";
+			mes "เยี่ยมไปเลย~!! ไปกันเถอะ~!";
 			set Zeny, Zeny-.@cost;
 			close2;
 			warp "brasilis",314,60;
 			end;
 		}
 	case 2:
-		mes "[Crewman]";
-		mes "Well if you're ever interested, let me know and I can take you there.";
+		mes "[ลูกเรือ]";
+		mes "เอาเถอะ ถ้าเจ้าเกิดเปลี่ยนใจเมื่อไหร่ ก็แวะมาบอกข้าได้นะ ข้าพร้อมจะพาเจ้าไปเสมอ";
 		close;
 	}
 }
 
-brasilis,316,57,3	script	Crewman#bra1	100,{
-	mes "[Crewman]";
-	mes "My ship is going to back to Alberta, do you want to join us?";
+brasilis,316,57,3	script	ลูกเรือ#bra1	100,{
+	mes "[ลูกเรือ]";
+	mes "เรือของข้ากำลังจะมุ่งหน้ากลับไปยัง Alberta เจ้าจะร่วมเดินทางไปกับพวกเราเลยไหม?";
 	next;
-	switch(select("Go back to Alberta.:Not yet~.")) {
+	switch(select("กลับไปยัง Alberta:ยังก่อนล่ะ~")) {
 	case 1:
-		mes "[Crewman]";
-		mes "I sure do miss home.";
+		mes "[ลูกเรือ]";
+		mes "ข้าเองก็เริ่มคิดถึงบ้านแล้วเหมือนกัน";
 		close2;
 		if (checkre(0))
 			warp "alberta",243,82;
@@ -72,8 +72,8 @@ brasilis,316,57,3	script	Crewman#bra1	100,{
 			warp "alberta",244,115;
 		end;
 	case 2:
-		mes "[Crewman]";
-		mes "Ok, suit yourself. We'll see you when we get back then.";
+		mes "[ลูกเรือ]";
+		mes "โอเค ตามใจเจ้าแล้วกัน ไว้เจอกันตอนพวกเรากลับมานะ";
 		close;
 	}
 }
@@ -108,33 +108,33 @@ brasilis,278,137,3	script	Signpost#bra5	858,{
 	close;
 }
 
-brasilis,137,77,5	script	Ice-Cream Maker	85,{
-	mes "[Ice Cream Maker]";
-	mes "Come~come~";
-	mes "Ice cream is the perfect snack for a hot day~";
-	mes "It's just ^3355FF100 Zeny^000000~";
-	mes "Ice Cream~";
-	mes "Get 'yer Ice Cream!";
+brasilis,137,77,5	script	คนขายไอศกรีม	85,{
+	mes "[คนขายไอศกรีม]";
+	mes "เร่เข้ามา~ เร่เข้ามา~";
+	mes "ไอศกรีมเย็นๆ เหมาะที่สุดสำหรับวันอากาศร้อนแบบนี้นะ~";
+	mes "ราคาเพียงถ้วยละ ^3355FF100 Zeny^000000 เท่านั้น~";
+	mes "ไอศกรีมจ้าาา~";
+	mes "รับไอศกรีมเย็นๆ สักถ้วยไหมครับ!";
 	next;
-	switch(select("Give me one!:Ice Cream?:Cancel.")) {
+	switch(select("เอาถ้วยนึง!:ไอศกรีมคืออะไรเหรอ?:ยกเลิก")) {
 	case 1:
-		mes "[Ice Cream Maker]";
-		mes "Since there are so many people want to get a cool ice cream you can order only 5 at a time.";
-		mes "So how many d'ya want?";
+		mes "[คนขายไอศกรีม]";
+		mes "เพราะมีคนอยากกินไอศกรีมคลายร้อนกันเยอะมาก ผมเลยต้องจำกัดให้สั่งได้แค่ครั้งละไม่เกิน 5 ถ้วยนะ";
+		mes "แล้วสรุปว่าอยากรับกี่ถ้วยดีล่ะ?";
 		next;
 		while(1) {
 			input .@input; //,1,5;
 			if (.@input == 0) {
-				mes "[Ice Cream Maker]";
-				mes "None?";
-				mes "Fine get outta the way, I have customers to serve.";
+				mes "[คนขายไอศกรีม]";
+				mes "ไม่รับเลยเหรอ?";
+				mes "งั้นก็ช่วยหลีกทางหน่อยนะ ผมยังมีลูกค้าคนอื่นต้องบริการอีกเพียบ";
 				close;
 			}
 			else if ((.@input < 0) || (.@input > 5)) {
-				mes "[Ice Cream Maker]";
-				mes "Wow.";
-				mes "You ordered too much.";
-				mes "If you eat over 5 you might need to fight with a monster in your stomach. Calm down buddy.";
+				mes "[คนขายไอศกรีม]";
+				mes "ว้าวๆๆ";
+				mes "สั่งเยอะเกินไปแล้ว";
+				mes "ถ้าคุณกินเกินครั้งละ 5 ถ้วย ระวังท้องไส้จะปั่นป่วนจนเหมือนมีมอนสเตอร์สู้กันในท้องนะ ใจเย็นๆ ก่อนเพื่อนยาก";
 				next;
 			}
 			else
@@ -142,35 +142,34 @@ brasilis,137,77,5	script	Ice-Cream Maker	85,{
 		}
 		set .@icecream_hap,.@input*100;
 		if (Zeny < .@icecream_hap) {
-			mes "[Ice Cream Maker]";
-			mes "Dood~! You don't have enough money.";
-			mes "It's only ^3355FF100 Zeny^000000~ Seriously!";
+			mes "[คนขายไอศกรีม]";
+			mes "โธ่คุณ~! เงินไม่พอนี่นา";
+			mes "มันแค่ ^3355FF100 Zeny^000000 เองนะ~ ถามจริง!";
 			close;
 		}
 		if (!checkweight(536,.@input)) {
-			mes "[Ice Cream Maker]";
-			mes "You seem to have too much stuff.";
-			mes "Lighten your pack before buying this.";
+			mes "[คนขายไอศกรีม]";
+			mes "ดูเหมือนสัมภาระคุณจะหนักเกินไปนะ";
+			mes "ไปจัดการกระเป๋าให้ว่างก่อนจะมาซื้อไอศกรีมดีกว่า";
 			close;
 		}
 		set Zeny, Zeny-.@icecream_hap;
 		getitem 536,.@input; //Ice_Cream
 		close;
 	case 2:
-		mes "[Ice Cream Maker]";
-		mes "'Ice cream is...";
-		mes "Wait, don't you know";
-		mes "what Ice Cream is?";
-		mes "What rock have you";
-		mes "been living under?";
+		mes "[คนขายไอศกรีม]";
+		mes "ไอศกรีมก็คือ...";
+		mes "เดี๋ยวนะ นี่คุณไม่รู้จัก";
+		mes "ไอศกรีมจริงๆ เหรอ?";
+		mes "ไปอยู่หลังเขาที่ไหนมาเนี่ย?";
 		next;
-		mes "[Ice Cream Maker]";
-		mes "I'm not going to even start with how weird that sounds.";
-		mes "Anyway, get 'yer Ice Cream right here while it's nice and cold.";
+		mes "[คนขายไอศกรีม]";
+		mes "ผมจะไม่เสียเวลาอธิบายเรื่องที่ฟังดูประหลาดพรรค์นั้นหรอกนะ";
+		mes "เอาเป็นว่า มาซื้อไอศกรีมตอนที่มันยังเย็นฉ่ำอยู่ตรงนี้ดีกว่า!";
 		close;
 	case 3:
-		mes "[Ice Cream Maker]";
-		mes "Don't miss your chance to eat the greatest Ice Cream in all the land~!";
+		mes "[คนขายไอศกรีม]";
+		mes "อย่าพลาดโอกาสที่จะได้ชิมไอศกรีมที่อร่อยที่สุดในปฐพีเชียวนะ~!";
 		close;
 	}
 }
