@@ -3282,7 +3282,6 @@ static bool is_attack_hitting(struct Damage* wd, block_list *src, block_list *ta
 			case MS_MAGNUM:
 				hitrate += hitrate * 10 * skill_lv / 100;
 				break;
-			case KN_AUTOCOUNTER:
 			case NPC_WATERATTACK:
 			case NPC_GROUNDATTACK:
 			case NPC_FIREATTACK:
@@ -3312,7 +3311,6 @@ static bool is_attack_hitting(struct Damage* wd, block_list *src, block_list *ta
 			case NPC_DARKNESSBREATH:
 				hitrate *= 2;
 				break;
-			case KN_PIERCE:
 			case ML_PIERCE:
 				hitrate += hitrate * 5 * skill_lv / 100;
 				break;
@@ -3324,11 +3322,6 @@ static bool is_attack_hitting(struct Damage* wd, block_list *src, block_list *ta
 					hitrate += hitrate * 50 / 100;
 #endif
 				break;
-#ifdef RENEWAL
-			case RG_BACKSTAP:
-				hitrate += skill_lv; // !TODO: What's the rate increase?
-				break;
-#endif
 			case RK_SONICWAVE:
 				hitrate += hitrate * 3 * skill_lv / 100; // !TODO: Confirm the hitrate bonus
 				break;
@@ -4719,9 +4712,6 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, block_list *src,b
 			else
 				skillratio += 10 * skill_lv; //Outer 5x5 circle takes 100%+10%*level damage [Playtester]
 			break;
-		case HT_POWER:
-			skillratio += -50 + 8 * sstatus->str;
-			break;
 		case MA_DOUBLE:
 			skillratio += 10 * (skill_lv - 1);
 			break;
@@ -4735,30 +4725,12 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, block_list *src,b
 		case MA_CHARGEARROW:
 			skillratio += 50;
 			break;
-		case KN_PIERCE:
-			skillratio += 10 * skill_lv;
-			if (sc && sc->getSCE(SC_CHARGINGPIERCE_COUNT) && sc->getSCE(SC_CHARGINGPIERCE_COUNT)->val1 >= 10)
-				skillratio *= 2;
-			break;
 		case ML_PIERCE:
 			skillratio += 10 * skill_lv;
 			break;
 		case MER_CRASH:
 			skillratio += 10 * skill_lv;
 			break;
-		case KN_SPEARSTAB:
-			skillratio += 20 * skill_lv;
-			break;
-		case KN_SPEARBOOMERANG:
-			skillratio += 50 * skill_lv;
-			break;
-#ifdef RENEWAL
-		case KN_BRANDISHSPEAR:
-			skillratio += -100 + 400 + 100 * skill_lv + sstatus->str * 3;
-			break;
-#else
-		case KN_BRANDISHSPEAR:
-#endif
 		case ML_BRANDISH:
 			{
 				int32 ratio = 100 + 20 * skill_lv;
@@ -4778,7 +4750,6 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, block_list *src,b
 					skillratio += ratio / 2;
 			}
 			break;
-		case KN_BOWLINGBASH:
 		case MS_BOWLINGBASH:
 			skillratio += 40 * skill_lv;
 			break;
@@ -4826,22 +4797,6 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, block_list *src,b
 			break;
 		case NPC_REVERBERATION_ATK:
 			skillratio += 400 + 200 * skill_lv;
-			break;
-		case RG_BACKSTAP:
-			if(sd && sd->status.weapon == W_BOW && battle_config.backstab_bow_penalty)
-				skillratio += (200 + 40 * skill_lv) / 2;
-			else
-				skillratio += 200 + 40 * skill_lv;
-			break;
-		case RG_RAID:
-#ifdef RENEWAL
-			skillratio += -100 + 50 + skill_lv * 150;
-#else
-			skillratio += 40 * skill_lv;
-#endif
-			break;
-		case RG_INTIMIDATE:
-			skillratio += 30 * skill_lv;
 			break;
 		case CR_SHIELDCHARGE:
 			skillratio += 20 * skill_lv;
@@ -5124,13 +5079,6 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, block_list *src,b
 			}
 			break;
 #endif
-		case HT_PHANTASMIC:
-#ifdef RENEWAL
-			skillratio += 400;
-#else
-			skillratio += 50;
-#endif
-			break;
 		case MO_BALKYOUNG:
 #ifdef RENEWAL
 			skillratio += 700;
@@ -8384,48 +8332,11 @@ struct Damage battle_calc_magic_attack(block_list *src,block_list *target,uint16
 							}
 						}
 						break;
-					case AL_HOLYLIGHT:
-						skillratio += 25;
-						if (sd && sd->sc.getSCE(SC_SPIRIT) && sd->sc.getSCE(SC_SPIRIT)->val2 == SL_PRIEST)
-							skillratio *= 5; //Does 5x damage include bonuses from other skills?
-						break;
-					case AL_RUWACH:
-						skillratio += 45;
-						break;
-					case WZ_FROSTNOVA:
-#ifndef RENEWAL
-						skillratio += -100 + (100 + skill_lv * 10) * 2 / 3;
-#else
-						// In renewal the damage formula is identical to MG_FROSTDIVER
-						skillratio += 10 * skill_lv;
-#endif
-						break;
 					case WZ_FIREPILLAR:
+						// TODO: Refactor
 						if (sd && ad.div_ > 0)
 							ad.div_ *= -1; //For players, damage is divided by number of hits
-						skillratio += -60 + 20 * skill_lv; //20% MATK each hit
 						break;
-					case WZ_SIGHTRASHER:
-						skillratio += 20 * skill_lv;
-						break;
-					case WZ_WATERBALL:
-						skillratio += 30 * skill_lv;
-						break;
-					case WZ_STORMGUST:
-#ifdef RENEWAL
-						skillratio -= 30; // Offset only once
-						skillratio += 50 * skill_lv;
-#else
-						skillratio += 40 * skill_lv;
-#endif
-						break;
-#ifdef RENEWAL
-					case WZ_EARTHSPIKE:
-						skillratio += 100;
-						if (sc && sc->getSCE(SC_EARTH_CARE_OPTION))
-							skillratio += skillratio * 800 / 100;
-						break;
-#endif
 					case HW_NAPALMVULCAN:
 #ifdef RENEWAL
 						skillratio += -100 + 70 * skill_lv;
@@ -8497,22 +8408,8 @@ struct Damage battle_calc_magic_attack(block_list *src,block_list *target,uint16
 						skillratio += 100 * skill_lv;
 						break;
 #ifdef RENEWAL
-					case WZ_HEAVENDRIVE:
 					case NPC_GROUNDDRIVE:
 						skillratio += 25;
-						break;
-					case WZ_METEOR:
-						skillratio += 25;
-						break;
-					case WZ_VERMILION:
-						if(sd)
-							skillratio += 300 + skill_lv * 100;
-						else
-							skillratio += 20 * skill_lv - 20; //Monsters use old formula
-						break;
-					case PR_MAGNUS:
-						if (battle_check_undead(tstatus->race, tstatus->def_ele) || tstatus->race == RC_DEMON)
-							skillratio += 30;
 						break;
 					case BA_DISSONANCE:
 						skillratio += 10 + skill_lv * 50;
@@ -8526,13 +8423,6 @@ struct Damage battle_calc_magic_attack(block_list *src,block_list *target,uint16
 					case PA_PRESSURE:
 						skillratio += -100 + 500 + 150 * skill_lv;
 						RE_LVL_DMOD(100);
-						break;
-					case WZ_SIGHTBLASTER:
-						skillratio += 500;
-						break;
-#else
-					case WZ_VERMILION:
-						skillratio += 20 * skill_lv - 20;
 						break;
 #endif
 					case AB_JUDEX:
