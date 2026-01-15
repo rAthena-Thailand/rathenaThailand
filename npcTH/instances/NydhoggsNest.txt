@@ -22,24 +22,24 @@
 
 nyd_dun02,100,201,3	script	Yggdrasil Gatekeeper	111,8,8,{
 	if (ins_nyd == 0) {
-		mes "A great stone gate stands before you. The sculpture of a terrible dragon spreads its powerful looking wings.";
+		mes "ประตูหินขนาดมหึมาตั้งตระหง่านอยู่ตรงหน้าคุณ รูปสลักมังกรที่น่าสะพรึงกลัวกำลังสยายปีกที่ดูทรงพลังของมันออก";
 		next;
-		mes "Near the bottom of the gate, Laphine tribeswomen have been turned to stone and now look like they are part of the great door.";
+		mes "ที่บริเวณฐานประตู หญิงสาวเผ่า Laphine ถูกสาปให้กลายเป็นหินและดูราวกับว่าเป็นส่วนหนึ่งของประตูบานยักษ์นี้";
 		next;
-		switch(select("Move closer to look more carefully.:Step back.")) {
+		switch(select("ขยับเข้าไปดูใกล้ๆ อย่างระมัดระวัง:ถอยออกมา")) {
 		case 1:
 			specialeffect2 EF_HOLYHIT;
 			pushpc 3,3;
 			if (ep13_1_edq == 14)
 				set ep13_1_edq,15;
-			mes "A mysterious power prevents you from getting too close. It looks like there is something strong beyond the door...";
+			mes "พลังลึกลับบางอย่างขัดขวางไม่ให้คุณเข้าใกล้ ดูเหมือนว่าจะมีบางสิ่งที่แข็งแกร่งอยู่หลังประตูบานนี้...";
 			next;
-			mes "Perhaps there's a great hidden secret beyond the gate, beyond expectation.";
+			mes "บางทีอาจมีความลับอันยิ่งใหญ่ซ่อนอยู่หลังประตูนี้ เกินกว่าที่ใครจะคาดคิด";
 			next;
-			mes "It would be better to go back to camp and inform the others and ask for help.";
+			mes "ทางที่ดีควรกลับไปที่ค่ายเพื่อแจ้งให้คนอื่นๆ ทราบและขอความช่วยเหลือ";
 			if (ep13_1_edq != 15) {
 				next;
-				mes "You'll have to obtain the others trust in the expendition camp by working hard.";
+				mes "คุณต้องทำงานอย่างหนักเพื่อพิสูจน์ตัวเองให้ได้รับความไว้วางใจจากผู้คนในค่ายอาสาสำรวจเสียก่อน";
 			}
 			set ins_nyd,1;
 			close;
@@ -47,41 +47,41 @@ nyd_dun02,100,201,3	script	Yggdrasil Gatekeeper	111,8,8,{
 			close;
 		}
 	} else if (ins_nyd == 1) {
-		mes "A mysterious power prevents you from getting too close. It looks like there is something strong beyond the door...";
+		mes "พลังลึกลับบางอย่างขัดขวางไม่ให้คุณเข้าใกล้ ดูเหมือนว่าจะมีบางสิ่งที่แข็งแกร่งอยู่หลังประตูบานนี้...";
 		next;
-		mes "Perhaps there's a great hidden secret beyond the gate, beyond expectation.";
+		mes "บางทีอาจมีความลับอันยิ่งใหญ่ซ่อนอยู่หลังประตูนี้ เกินกว่าที่ใครจะคาดคิด";
 		next;
-		mes "It would be better to go back to camp and inform the others and ask for help.";
+		mes "ทางที่ดีควรกลับไปที่ค่ายเพื่อแจ้งให้คนอื่นๆ ทราบและขอความช่วยเหลือ";
 		if (ep13_1_edq == 14 || ep13_1_edq == 15) {
 			set ep13_1_edq,15;
 			close;
 		}
 		next;
-		mes "You'll have to obtain the others trust in the expendition camp by working hard.";
+		mes "คุณต้องทำงานอย่างหนักเพื่อพิสูจน์ตัวเองให้ได้รับความไว้วางใจจากผู้คนในค่ายอาสาสำรวจเสียก่อน";
 		close;
 	} else if (ins_nyd == 111 || ins_nyd == 112) {
 		specialeffect2 EF_CHANGECOLD;
-		mes "The strange sensation surrounding your body has disappeared";
+		mes "ความรู้สึกประหลาดที่ห่อหุ้มร่างกายของคุณได้สลายหายไป";
 		next;
-		mes "When you touch the stone gate, you hear a commanding voice.";
+		mes "เมื่อคุณสัมผัสประตูหิน คุณก็ได้ยินเสียงที่ทรงพลังและน่าเกรงขามดังขึ้น";
 		next;
 		mes "[??????]";
-		mes "Wingless one... Our promised words...";
+		mes "ผู้ไร้ปีกเอ๋ย... จงกล่าวคำสัญญาของพวกเราออกมา...";
 		next;
-		switch(select("'Guardian's spell'!:Take a step back.")) {
+		switch(select("'Guardian's spell' (คาถาแห่งผู้พิทักษ์)!:ก้าวถอยหลังกลับไป")) {
 		case 1:
 			mes "[??????]";
-			mes "Promised words... Guardian's spell... proof of their existence.";
+			mes "คำสัญญา... คาถาแห่งผู้พิทักษ์... ข้อพิสูจน์แห่งตัวตนของพวกเขา";
 			next;
 			mes "[Yggdrasil Gatekeeper]";
-			mes "In the name of Yggdrasiliad, I will accept you as a servant of the Guardian.";
+			mes "ในนามแห่ง Yggdrasiliad ข้าขอรับเจ้าเข้าเป็นผู้รับใช้แห่งผู้พิทักษ์";
 			next;
 			specialeffect2 EF_CHANGECOLD;
 			set ins_nyd,200;
 			mes "[Yggdrasil Gatekeeper]";
-			mes "I accept your entrance through the Guardian's gate. You are now considered a faithful servant of the Guardian Nidhoggur.";
+			mes "ข้าอนุญาตให้เจ้าผ่านประตูแห่งผู้พิทักษ์ได้ บัดนี้เจ้าคือผู้รับใช้ที่ซื่อสัตย์ของ Guardian Nidhoggur แล้ว";
 			next;
-			mes "The voice has disappeared, and the dark power is calming down from behind the stone gate.";
+			mes "เสียงนั้นหายไป และพลังงานอันมืดมิดที่อยู่หลังประตูหินก็เริ่มสงบลง";
 			close;
 		case 2:
 			close;
@@ -94,36 +94,36 @@ nyd_dun02,100,201,3	script	Yggdrasil Gatekeeper	111,8,8,{
 		set .@ins_nyd_check,checkquest(3135,PLAYTIME); // 3 Day cooldown
 		set .@ins_nyd_check2,checkquest(3136,PLAYTIME); // 4 Hour play limit
 
-		mes "As I put my hands on the stone gate, a voice sounded from the depth of my heart.";
+		mes "เมื่อข้าสัมผัสมือลงบนประตูหิน เสียงหนึ่งก็ดังขึ้นจากส่วนลึกของหัวใจ";
 		next;
 		if (.@ins_nyd_check == -1 && .@ins_nyd_check2 == -1) {
 			if (!instance_check_party(.@party_id,2,70)) {
 				mes "[Yggdrasil Gatekeeper]";
-				mes "Where are the other servants, so you can work together? Each servant cannot be admitted here individually...";
+				mes "ผู้รับใช้คนอื่นๆ อยู่ที่ไหนเสียล่ะ? พวกเจ้าต้องร่วมมือกันนะ ข้าไม่สามารถอนุญาตให้ผู้รับใช้เข้าพบเป็นการส่วนตัวได้...";
 				next;
 				mes "[Yggdrasil Gatekeeper]";
-				mes "Come with at least 1 more servant... Only party leaders can accept admission to Nidhoggur's Nest.";
+				mes "จงพาผู้รับใช้มาด้วยอย่างน้อยอีก 1 คน... และเฉพาะหัวหน้าปาร์ตี้เท่านั้นที่สามารถขออนุญาตเข้าสู่ Nidhoggur's Nest ได้";
 				next;
 				mes "[Yggdrasil Gatekeeper]";
-				mes "And only 1 representative of you needs to talk to me, so don't annoy me...";
+				mes "และขอแค่ตัวแทนของพวกเจ้าเพียงคนเดียวมาคุยกับข้าก็พอ อย่าทำให้ข้ารำคาญนักเลย...";
 				close;
 			}
 			if (is_party_leader(.@party_id) == true) {
 				mes "[Yggdrasil Gatekeeper]";
-				mes "The loyal servants of the Guardian... what can I do for you?";
+				mes "เหล่าผู้รับใช้ที่ซื่อสัตย์แห่งผู้พิทักษ์... มีอะไรให้ข้ารับใช้อย่างนั้นหรือ?";
 				next;
-				switch(select("Please allow me to enter.:I want to go in.:I want to leave.")) {
+				switch(select("กรุณาอนุญาตให้ข้าผ่านเข้าไป:ข้าต้องการเข้าไปด้านใน:ข้าต้องการออกไป")) {
 				case 1:
 					if (instance_create(.@md_name$) < 0) {
 						mes "[Yggdrasil Gatekeeper]";
-						mes "The Guardian seems to wish to be alone. I will go in and check, please wait out here.";
+						mes "ดูเหมือนผู้พิทักษ์จะต้องการอยู่ตามลำพัง ข้าจะเข้าไปตรวจสอบดูสักหน่อย โปรดรออยู่ข้างนอกก่อน";
 						close;
 					}
 					mes "[Yggdrasil Gatekeeper]";
-					mes "I've recorded your request, are you ready to go inside?";
+					mes "ข้าได้บันทึกคำร้องของพวกเจ้าไว้แล้ว พร้อมจะเข้าไปข้างในหรือยัง?";
 					next;
 					mes "[Yggdrasil Gatekeeper]";
-					mes "If you are ready, I will allow you to enter.";
+					mes "หากพวกเจ้าพร้อม ข้าจะเปิดทางให้เข้าไป";
 					close;
 				case 2:
 					goto L_Enter;
@@ -132,38 +132,38 @@ nyd_dun02,100,201,3	script	Yggdrasil Gatekeeper	111,8,8,{
 				}
 			}
 			mes "[Yggdrasil Gatekeeper]";
-			mes "If you have the dungeon generated already, you can enter it.";
+			mes "หากดันเจี้ยนถูกสร้างขึ้นแล้ว เจ้าสามารถผ่านเข้าไปได้เลย";
 			next;
-			if(select("I want to go in.:I want to leave.") == 2)
+			if(select("ข้าต้องการเข้าไปด้านใน:ข้าต้องการออกไป") == 2)
 				close;
 			goto L_Enter;
 		} else {
 			if (.@ins_nyd_check == 0 || .@ins_nyd_check == 1) {
 				if (ins_nyd2 == 3 || ins_nyd2 == 4) {
 					mes "[Yggdrasil Gatekeeper]";
-					mes "With the defeat of Nidhoggur's Shadow, the roots of the World Tree Yggdrasil are also affected.";
+					mes "เมื่อเงาของ Nidhoggur ถูกปราบลง รากของต้นไม้โลก Yggdrasil ก็ได้รับผลกระทบไปด้วย";
 					next;
 					mes "[Yggdrasil Gatekeeper]";
-					mes "After Nidhoggur's Shadow disappears, at least 3 days is needed for stabilizing.";
+					mes "หลังจากเงาของ Nidhoggur หายไป ต้องใช้เวลาอย่างน้อย 3 วันเพื่อให้พลังงานกลับมาคงที่";
 					close;
 				}
 				mes "[Yggdrasil Gatekeeper]";
-				mes "If you have the dungeon generated already, you can enter it.";
+				mes "หากดันเจี้ยนถูกสร้างขึ้นแล้ว เจ้าสามารถผ่านเข้าไปได้เลย";
 				next;
-				if(select("I want to go in.:I want to leave.") == 2)
+				if(select("ข้าต้องการเข้าไปด้านใน:ข้าต้องการออกไป") == 2)
 					close;
 				goto L_Enter;
 			} else if (.@ins_nyd_check == 2) {
 				if (.@ins_nyd_check2 == 0 || .@ins_nyd_check2 == 1) {
 					mes "[Yggdrasil Gatekeeper]";
-					mes "The time limit to enter the dungeon has expired. You must wait for the World Tree to stabilize its power before trying to re-enter.";
+					mes "ขีดจำกัดเวลาในการเข้าดันเจี้ยนหมดลงแล้ว เจ้าต้องรอให้ต้นไม้โลกฟื้นฟูพลังให้คงที่เสียก่อนจึงจะกลับเข้าไปใหม่ได้";
 					close;
 				} else if (.@ins_nyd_check2 == 2) {
 					mes "[Yggdrasil Gatekeeper]";
-					mes "The World Tree Yggdrasil has stabilized. Would you like to enter Nidhoggur's Nest again?";
+					mes "ต้นไม้โลก Yggdrasil กลับมาคงที่แล้ว เจ้าต้องการจะเข้าไปใน Nidhoggur's Nest อีกครั้งหรือไม่?";
 					next;
 					mes "[Yggdrasil Gatekeeper]";
-					mes "If you would like to enter again, please register with me.";
+					mes "หากเจ้าต้องการเข้าอีกครั้ง โปรดลงทะเบียนกับข้า";
 					erasequest 3135;
 					erasequest 3136;
 					set ins_nyd2,0;
@@ -173,17 +173,17 @@ nyd_dun02,100,201,3	script	Yggdrasil Gatekeeper	111,8,8,{
 		}
 		close;
 	} else {
-		mes "A great stone gate stands before you. The sculpture of a terrible dragon spreads its powerful looking wings.";
+		mes "ประตูหินขนาดมหึมาตั้งตระหง่านอยู่ตรงหน้าคุณ รูปสลักมังกรที่น่าสะพรึงกลัวกำลังสยายปีกที่ดูทรงพลังของมันออก";
 		next;
-		mes "Near the bottom of the gate, Laphine tribeswomen have been turned to stone and now look like they are part of the great door.";
+		mes "ที่บริเวณฐานประตู หญิงสาวเผ่า Laphine ถูกสาปให้กลายเป็นหินและดูราวกับว่าเป็นส่วนหนึ่งของประตูบานยักษ์นี้";
 		next;
-		switch(select("Move closer to look more carefully.:Step back.")) {
+		switch(select("ขยับเข้าไปดูใกล้ๆ อย่างระมัดระวัง:ถอยออกมา")) {
 		case 1:
 			specialeffect2 EF_HOLYHIT;
 			pushpc 3,3;
-			mes "A mysterious power prevents you from getting too close. It looks like there is something strong beyond the door...";
+			mes "พลังลึกลับบางอย่างขัดขวางไม่ให้คุณเข้าใกล้ ดูเหมือนว่าจะมีบางสิ่งที่แข็งแกร่งอยู่หลังประตูบานนี้...";
 			next;
-			mes "Perhaps there's a great hidden secret beyond the gate, beyond expectation.";
+			mes "บางทีอาจมีความลับอันยิ่งใหญ่ซ่อนอยู่หลังประตูนี้ เกินกว่าที่ใครจะคาดคิด";
 			close;
 		case 2:
 			close;
@@ -195,18 +195,18 @@ L_Enter:
 	switch(instance_enter("Nidhoggur's Nest")) {
 	case IE_OTHER:
 		mes "[Yggdrasil Gatekeeper]";
-		mes "An unknown error has occurred.";
+		mes "เกิดข้อผิดพลาดที่ไม่ทราบสาเหตุ";
 		close;
 	case IE_NOINSTANCE:
 		mes "[Yggdrasil Gatekeeper]";
-		mes "You didn't ask to be admitted... You should accept admission first before entering.";
+		mes "เจ้ายังไม่ได้ขออนุญาตเข้าพบ... เจ้าต้องได้รับสิทธิ์เข้าพบคราวก่อนจึงจะผ่านไปได้";
 		close;
 	case IE_NOMEMBER:
 		mes "[Yggdrasil Gatekeeper]";
-		mes "Where are the other servants, so you can work together? Each servant cannot be admitted here individually...";
+		mes "ผู้รับใช้คนอื่นๆ อยู่ที่ไหนเสียล่ะ? พวกเจ้าต้องร่วมมือกันนะ ข้าไม่สามารถอนุญาตให้ผู้รับใช้เข้าพบเป็นการส่วนตัวได้...";
 		close;
 	case IE_OK:
-		mapannounce "nyd_dun02", getpartyname(getcharid(1))+"'s party member "+strcharinfo(0)+" has entered Nidhoggur's Nest.",bc_map,"0x00ff99";
+		mapannounce "nyd_dun02", "สมาชิกปาร์ตี้ " + getpartyname(getcharid(1)) + " : คุณ " + strcharinfo(0) + " ได้เข้าสู่ Nidhoggur's Nest แล้ว", bc_map, "0x00ff99";
 		if (checkquest(3135) == -1) setquest 3135;
 		if (checkquest(3136) == -1) setquest 3136;
 		//warp "1@nyd",32,36;
@@ -224,22 +224,22 @@ OnTouch_:
 mid_camp,271,299,3	script	Historian Magnifier#edq	755,3,3,{
 	mes "[Historian Magniffer]";
 	if (ins_nyd == 1) {
-		mes "Sure, the mainland also has lots of interesting adventures... Hello, I am Magnifier, a historian dispatched from the Prontera royal court.";
+		mes "แน่นอนว่าบนแผ่นดินใหญ่มีเรื่องราวการผจญภัยที่น่าสนใจมากมาย... สวัสดีครับ ผมชื่อ Magnifier เป็นนักประวัติศาสตร์ที่ถูกส่งตัวมาจากสำนักพระราชวัง Prontera ครับ";
 		next;
 		mes "[Historian Magniffer]";
-		mes "Finding another line of work might make for a really worthy job, but only a historian gets to know the world over..";
+		mes "การหาอาชีพอื่นทำอาจจะเป็นงานที่มีเกียรติเหมือนกัน แต่มีเพียงนักประวัติศาสตร์เท่านั้นแหละที่จะได้รู้จักโลกใบนี้อย่างลึกซึ้ง...";
 		next;
 		mes "[Historian Magniffer]";
-		mes "How this world is organized... and the way of the future! With our studies of the past and present we can predict what is to come.";
+		mes "โลกนี้ถูกจัดระเบียบอย่างไร... และอนาคตจะเป็นไปในทิศทางไหน! ด้วยการศึกษาอดีตและปัจจุบัน พวกเราสามารถทำนายสิ่งที่จะเกิดขึ้นได้ครับ";
 		next;
 		mes "[Historian Magniffer]";
-		mes "We are expecting a lot from you, expert adventurer. So, if you find anything... just tell me.";
+		mes "พวกเราคาดหวังในตัวคุณมากนะ นักผจญภัยผู้เชี่ยวชาญ ถ้าคุณพบเบาะแสอะไร... บอกผมได้ทันทีเลยนะครับ";
 		close;
 	} else if (ins_nyd == 2) {
-		mes "Does Commander Agip want to talk to me? Let's listen to his story.";
+		mes "ผู้บัญชาการ Agip อยากคุยกับผมงั้นเหรอ? ไหนลองฟังเรื่องของเขาหน่อยสิ";
 		next;
 		mes "[Historian Magniffer]";
-		mes "Did you find the cave that the fairy tribes treat as a holy place? You are a really tough cookie. What did you find?";
+		mes "คุณไปพบถ้ำที่พวกเผ่าแฟรี่นับถือว่าเป็นสถานที่ศักดิ์สิทธิ์มางั้นเหรอ? คุณนี่ฝีมือไม่เบาเลยนะ แล้วคุณไปเจออะไรมาบ้างล่ะ?";
 		next;
 		mes "[Historian Magnifier]";
 		mes "...";
@@ -247,10 +247,10 @@ mid_camp,271,299,3	script	Historian Magnifier#edq	755,3,3,{
 		mes "... ...";
 		next;
 		mes "[Historian Magnifier]";
-		mes "Wait a second... I have a brilliant idea.";
+		mes "เดี๋ยวนะ... ผมมีความคิดดีๆ แล้ว";
 		next;
 		mes "[Historian Magnifier]";
-		mes "Let's see... This book... No... this one...? Hmm... Maybe this...";
+		mes "ไหนดูซิ... เล่มนี้... ไม่ใช่... เล่มนั้นเหรอ...? หืม... หรือจะเป็นเล่มนี้...";
 		next;
 		mes "[Historian Magnifier]";
 		mes "...";
@@ -259,150 +259,150 @@ mid_camp,271,299,3	script	Historian Magnifier#edq	755,3,3,{
 		mes "... ...";
 		next;
 		mes "[Historian Magnifier]";
-		mes "Oh, here it is! World Tree Yggdrasil and God's tribes... This is their book!";
+		mes "โอ้ เจอแล้ว! ต้นไม้โลก Yggdrasil และเผ่าพันธุ์ของพระเจ้า... นี่คือหนังสือของพวกเขา!";
 		next;
 		mes "[Historian Magnifier]";
-		mes "Maybe you found the central line to enter into the World Tree Yggdrasil!";
+		mes "บางทีสิ่งที่คุณค้นพบอาจจะเป็นเส้นทางหลักในการเข้าไปสู่ใจกลางของต้นไม้โลก Yggdrasil ก็ได้นะ!";
 		next;
 		mes "[Historian Magnifier]";
-		mes "If that's true, you've found the greatest discovery since the harnessing of mana. Isn't this exciting?";
+		mes "ถ้าเป็นเรื่องจริง นี่คือการค้นพบที่ยิ่งใหญ่ที่สุดนับตั้งแต่เราค้นพบวิธีควบคุมมานาเลยนะ ไม่ตื่นเต้นเหรอครับ?";
 		next;
 		mes "[Historian Magnifier]";
-		mes "But we need a lot more information... Are they refusing you admission?";
+		mes "แต่เราต้องการข้อมูลมากกว่านี้... พวกเขาปฏิเสธไม่ให้คุณเข้าใปงั้นเหรอ?";
 		next;
 		mes "[Historian Magnifier]";
-		mes "I will send a message to my assistant who is in the Prontera Library. So, help her find more information.";
+		mes "ผมจะส่งข้อความไปหาผู้ช่วยของผมที่ประจำอยู่ที่ห้องสมุด Prontera คุณช่วยไปหาเธอเพื่อรวบรวมข้อมูลเพิ่มเติมหน่อยนะ";
 		next;
 		mes "[Historian Magnifier]";
-		mes "I will definitely help you find a way to enter the World Tree directly so, just believe in me! Okay~!!";
+		mes "ผมจะช่วยคุณหาทางเข้าไปในต้นไม้โลกโดยตรงให้ได้ เชื่อใจผมเถอะ! โอเคไหม~!!";
 		set ins_nyd,3;
 		close;
 	} else if (ins_nyd == 3) {
-		mes "Why are you standing there? Go to my assistant in the Prontera Library!";
+		mes "มัวยืนรออะไรอยู่ล่ะครับ? รีบไปหาผู้ช่วยของผมที่ห้องสมุด Prontera ได้แล้ว!";
 		close;
 	} else if (ins_nyd == 4) {
-		mes "You've come back... Good, how's Naomi? Actually, I don't need to worry about her. She is always cheerful. Haha.";
+		mes "กลับมาแล้วเหรอ... ดีมาก Naomi เป็นยังไงบ้าง? จริงๆ ผมก็ไม่ค่อยห่วงเธอหรอกนะ เธอเป็นคนร่าเริงตลอดเวลาอยู่แล้ว ฮ่าฮ่า";
 		next;
 		mes "[Historian Magnifier]";
-		mes "You look like you have a lot on your mind... Your face is full of curiosity and questions.";
+		mes "ดูเหมือนคุณจะมีเรื่องให้คิดเยอะนะ... สีหน้าคุณเต็มไปด้วยความสงสัยและคำถามมากมายเลย";
 		next;
 		mes "[Historian Magnifier]";
-		mes "So, did you read the whole story that I have prepared?";
+		mes "แล้ว... คุณได้อ่านเรื่องราวทั้งหมดที่ผมเตรียมไว้ให้หรือยัง?";
 		next;
-		switch(select("Not yet.:I read all the stories.")) {
+		switch(select("ยังเลย:อ่านครบทุกเรื่องแล้ว")) {
 		case 1:
 			mes "[Historian Magnifier]";
-			mes "Sheesh~ I prepared these stories for you carefully, but you didn't bother to check anything out did you?";
+			mes "โธ่เอ๋ย~ ผมอุตส่าห์เตรียมข้อมูลพวกนั้นไว้อย่างดี แต่คุณกลับไม่ยอมอ่านเลยงั้นเหรอ?";
 			next;
 			mes "[Historian Magnifier]";
-			mes "It would be better if you returned after reading all of them. That's very basic data of what we should do for the future.";
+			mes "คุณควรจะกลับไปอ่านให้ครบก่อนจะดีกว่านะ นั่นเป็นข้อมูลพื้นฐานที่สำคัญมากสำหรับสิ่งที่เราต้องทำต่อไปในอนาคต";
 			close;
 		case 2:
 			mes "[Historian Magnifier]";
-			mes "Hm, good job. Maybe I don't need to check anything else, right?";
+			mes "หืม ทำได้ดีมากครับ ถ้าอย่างนั้นผมคงไม่ต้องเช็คอะไรเพิ่มแล้วล่ะจริงไหม?";
 			next;
 			mes "[Historian Magnifier]";
-			mes "I sent you to figure out which basic materials will be needed for the jobs ahead of us. You should bring research reports...";
+			mes "ผมส่งคุณไปเพื่อสืบดูว่าต้องใช้ข้อมูลดิบอะไรบ้างสำหรับงานที่รอเราอยู่ คุณควรจะนำรายงานผลการวิจัยกลับมาด้วย...";
 			next;
 			mes "[Historian Magnifier]";
-			mes "You might complain about why I didn't bring any myself... That's because I trust your abilities, don't ever take anything for granted.";
+			mes "คุณอาจจะบ่นว่าทำไมผมไม่ไปเอามาเอง... นั่นเป็นเพราะผมเชื่อมั่นในความสามารถของคุณไงล่ะ อย่ามองข้ามเรื่องเล็กน้อยสิ";
 			next;
 			mes "[Historian Magnifier]";
-			mes "But a while ago, while you were tranferring reports from Commander Agip to the mainland, you lost those reports... remember?";
+			mes "แต่เมื่อไม่นานมานี้ ระหว่างที่คุณกำลังส่งรายงานจากผู้บัญชาการ Agip กลับไปยังแผ่นดินใหญ่ คุณทำรายงานพวกนั้นหายไป... จำได้ไหม?";
 			next;
 			mes "[Historian Magnifier]";
-			mes "So far, nothing's come up... Was it that somebody attacked you?";
+			mes "จนถึงตอนนี้ยังไม่มีร่องรอยอะไรเลย... หรือว่ามีใครบางคนลอบโจมตีคุณกันแน่?";
 			next;
 			mes "[Historian Magnifier]";
-			mes "Somehow, the truth will come out, but we should be careful of shocking the natives if we go there unannounced and they're not prepared for our arrival.";
+			mes "ยังไงซะความจริงก็ต้องปรากฏ แต่เราต้องระวังอย่าให้ชาวพื้นเมืองที่นั่นตกใจ ถ้าเราบุ่มบ่ามเข้าไปโดยที่พวกเขาไม่ทันตั้งตัว";
 			next;
 			mes "[Historian Magnifier]";
-			mes "I've talked too much... Anyway, as you know through my report, you've found a great thing!";
+			mes "ผมพูดมากไปหน่อยแล้ว... เอาเป็นว่า อย่างที่คุณรู้จากรายงานของผม คุณได้ค้นพบสิ่งที่ยิ่งใหญ่เข้าให้แล้ว!";
 			next;
 			mes "[Historian Magnifier]";
-			mes "Firstly, we should find out more about the place. I expect we can, but... we can't do much without help from others.";
+			mes "อย่างแรก เราต้องหาข้อมูลเกี่ยวกับสถานที่นั้นให้มากกว่านี้ ผมคิดว่าเราทำได้ แต่... เราก็คงทำอะไรไม่ได้มากนักถ้าขาดความช่วยเหลือจากคนอื่น";
 			next;
 			mes "[Historian Magnifier]";
-			mes "I have heard about recent expeditions of adventurers that have tried to contact the tribes... Have you heard anything about this?";
+			mes "ผมได้ยินมาว่ามีคณะสำรวจของเหล่านักผจญภัยที่พยายามจะติดต่อกับเผ่าพันธุ์ต่างๆ ในช่วงนี้... คุณพอจะเคยได้ยินเรื่องนี้บ้างไหม?";
 			next;
 			mes "[Historian Magnifier]";
-			mes "Anyway, let's try to contact them first, to be clear about any caves or treasures.";
+			mes "เอาเถอะ ลองพยายามติดต่อพวกเขาก่อน เพื่อความชัดเจนเกี่ยวกับถ้ำหรือสมบัติพวกนั้น";
 			next;
 			mes "[Historian Magnifier]";
-			mes "For now, you try to contact the Sapha and Laphine tribes, and try to extract information from them.";
+			mes "สำหรับตอนนี้ คุณลองพยายามไปติดต่อเผ่า Sapha และ Laphine ดู แล้วลองเค้นข้อมูลจากพวกเขามาให้ได้";
 			next;
 			mes "[Historian Magnifier]";
-			mes "I'll also keep searching here. If you find anything, come back and let me know.";
+			mes "ผมก็จะหาข้อมูลจากที่นี่ด้วยเหมือนกัน ถ้าเจออะไรคืบหน้า กลับมาบอกผมด้วยนะ";
 			set ins_nyd,5;
 			close;
 		}
 	} else if ((ins_nyd == 5) || (ins_nyd == 51) || (ins_nyd == 52)) {
-		mes "Okay, let's try to contact them first, to be clear about any caves or treasures.";
+		mes "โอเคครับ ลองพยายามติดต่อพวกเขาดูเป็นอย่างแรก เพื่อที่เราจะได้ข้อมูลที่ชัดเจนเกี่ยวกับถ้ำหรือสมบัติพวกนั้น";
 		next;
 		mes "[Historian Magnifier]";
-		mes "For now, you try to contact the Sapha and Laphine tribes, and try to extract more information.";
+		mes "ตอนนี้คุณไปลองติดต่อเผ่า Sapha และ Laphine เพื่อหาข้อมูลเพิ่มเติมก่อนนะครับ";
 		next;
 		mes "[Historian Magnifier]";
-		mes "I'll also keep searching here. If you find anything, come back and let me know.";
+		mes "ผมจะคอยสืบอยู่ที่นี่เอง ถ้าได้เรื่องยังไง กลับมาแจ้งผมด้วยนะ";
 		close;
 	} else if ((ins_nyd == 61) || (ins_nyd == 62)) {
-		mes "Ah, you've come at a proper time. I found a curious thing while looking for reports from Arunafeltz.";
+		mes "อา มาได้ถูกเวลาพอดีเลย ผมเจอสิ่งที่น่าสนใจระหว่างค้นหารายงานจาก Arunafeltz ล่ะ";
 		next;
 		mes "[Historian Magnifier]";
-		mes "Right now, we are standing on part of one of the roots of the World Tree Yggdrasil.";
+		mes "ตอนนี้ พวกเรากำลังยืนอยู่บนส่วนหนึ่งของรากต้นไม้โลก Yggdrasil ครับ";
 		next;
 		mes "[Historian Magnifier]";
-		mes "This spot is connected to World Tree by the root. I think we can expect confrontations between the Sapha and Laphine here eventually, don't you think?";
+		mes "จุดนี้เชื่อมต่อกับต้นไม้โลกผ่านทางราก ผมว่าเราอาจจะได้เห็นการเผชิญหน้ากันระหว่างเผ่า Sapha และ Laphine ที่นี่ในไม่ช้า คุณคิดเหมือนกันไหม?";
 		next;
 		mes "[Historian Magnifier]";
-		mes "As I expected, the cave is the entrance to go to one of Yggdrasil's roots...";
+		mes "เป็นอย่างที่ผมคาดไว้จริงๆ ถ้ำนั้นคือทางเข้าที่เชื่อมไปยังหนึ่งในรากของ Yggdrasil...";
 		next;
 		mes "[Historian Magnifier]";
-		mes "Did you find anything about the Sapha and Laphine?";
+		mes "แล้วคุณล่ะ ได้เบาะแสอะไรเกี่ยวกับเผ่า Sapha และ Laphine บ้างไหม?";
 		next;
 		mes "...";
 		next;
 		mes "... ...";
 		next;
 		mes "[Historian Magnifier]";
-		mes "Both sides act ambiguously, so... I'm getting worried...";
+		mes "ทั้งสองฝ่ายดูมีท่าทีที่กำกวมจัง... ผมเริ่มจะกังวลซะแล้วสิ...";
 		next;
 		mes "[Historian Magnifier]";
-		mes "The two tribes have some trouble amongst their top leaders. It's not anything official, but...";
+		mes "ผู้นำระดับสูงของทั้งสองเผ่าดูเหมือนจะมีปัญหากันอยู่ แม้จะยังไม่มีประกาศออกมาเป็นทางการก็เถอะ แต่ว่า...";
 		next;
 		mes "[Historian Magnifier]";
-		mes "Let's report to Commander Agip about the situation so far. Then, we wait on his decision.";
+		mes "เราไปรายงานสถานการณ์จนถึงตอนนี้ให้ผู้บัญชาการ Agip ทราบกันก่อนเถอะ แล้วค่อยรอการตัดสินใจจากเขา";
 		set ins_nyd,7;
 		close;
 	} else if ((ins_nyd == 7) || (ins_nyd == 8)) {
-		mes "Report to Commander Hibba Agip about what we have discovered, since time is dependent on his decision.";
+		mes "ไปรายงานเรื่องที่เราค้นพบให้ผู้บัญชาการ Hibba Agip ทราบก่อนครับ ทุกอย่างขึ้นอยู่กับการตัดสินใจของเขาแล้ว";
 		close;
 	} else if ((ins_nyd == 121) || (ins_nyd == 122) || (ins_nyd == 131) || (ins_nyd == 132) || (ins_nyd ==14)) {
-		mes "So that's how it is... we were right about some parts of it... it's called the Guardian's Nest.";
+		mes "ที่แท้เรื่องราวมันเป็นแบบนี้เองเหรอ... สิ่งที่เราสันนิษฐานไว้มีส่วนถูกอยู่บ้าง... สถานที่นั้นถูกเรียกว่า Guardian's Nest (รังของผู้พิทักษ์) สินะ";
 		next;
 		mes "[Historian Magnifier]";
-		mes "We have gained a large amount of knowledge today, but...";
+		mes "วันนี้พวกเราได้รับความรู้มหาศาลเลยล่ะ แต่ว่า...";
 		next;
 		mes "[Historian Magnifier]";
-		mes "What we have figured out... how is it going to influence mankind? It's so unpredictable...";
+		mes "สิ่งที่เราค้นพบในวันนี้... มันจะส่งผลกระทบต่อมนุษยชาติอย่างไรบ้างนะ? มันยากที่จะคาดเดาจริงๆ...";
 		next;
 		mes "[Historian Magnifier]";
-		mes "This is only the beginning...we will be quite busy from now on.";
+		mes "แต่นี่เป็นเพียงจุดเริ่มต้นเท่านั้น... จากนี้ไปพวกเราคงจะยุ่งกันน่าดูเลยล่ะ";
 		next;
 		mes "[Historian Magnifier]";
-		mes "First, report to Commander Agip, then act according to the situation. Let me organize my research findings...";
+		mes "ก่อนอื่น ไปรายงานให้ผู้บัญชาการ Agip ทราบก่อน แล้วค่อยทำตามสถานการณ์นะ ขอผมรวบรวมผลวิจัยที่ได้มาหน่อย...";
 		close;
 	} else {
-		mes "Sure, the mainland also has lots of interesting adventures... Hello, I am Magnifier, a historian dispatched from the Prontera royal court.";
+		mes "แน่นอนว่าบนแผ่นดินใหญ่มีเรื่องราวการผจญภัยที่น่าสนใจมากมาย... สวัสดีครับ ผมชื่อ Magnifier เป็นนักประวัติศาสตร์ที่ถูกส่งตัวมาจากสำนักพระราชวัง Prontera ครับ";
 		next;
-		mes "[Historian Magnifier]";
-		mes "Finding another line of work might make for a really worthy job, but only a historian gets to know the world over..";
+		mes "[Historian Magniffer]";
+		mes "การหาอาชีพอื่นทำอาจจะเป็นงานที่มีเกียรติเหมือนกัน แต่มีเพียงนักประวัติศาสตร์เท่านั้นแหละที่จะได้รู้จักโลกใบนี้อย่างลึกซึ้ง...";
 		next;
-		mes "[Historian Magnifier]";
-		mes "How this world is organized... and the way of the future! With our studies of the past and present we can predict what is to come.";
+		mes "[Historian Magniffer]";
+		mes "โลกนี้ถูกจัดระเบียบอย่างไร... และอนาคตจะเป็นไปในทิศทางไหน! ด้วยการศึกษาอดีตและปัจจุบัน พวกเราสามารถทำนายสิ่งที่จะเกิดขึ้นได้ครับ";
 		next;
-		mes "[Historian Magnifier]";
-		mes "We are expecting a lot from you, expert adventurer. So, if you find anything... just tell me.";
+		mes "[Historian Magniffer]";
+		mes "พวกเราคาดหวังในตัวคุณมากนะ นักผจญภัยผู้เชี่ยวชาญ ถ้าคุณพบเบาะแสอะไร... บอกผมได้ทันทีเลยนะครับ";
 		close;
 	}
 }
@@ -411,243 +411,245 @@ prt_in,171,94,3	script	Assistant Naomi#edq	893,3,3,{
 	mes "[Assistant Naomi]";
 	set .@name$,strcharinfo(0);
 	if (ins_nyd == 3) {
-		mes "The doctor never ever tries to come back, and there're too many things to do... How can I do it all...";
+		mes "ท่านด็อกเตอร์ไม่เคยคิดจะกลับมาบ้างเลยหรือไงนะ งานก็เยอะแยะไปหมด... ฉันคนเดียวจะทำไหวได้ยังไง...";
 		next;
 		mes "[Assistant Naomi]";
-		mes "Hey, you. Please move these books. Put them into shelf 3 row B.";
+		mes "นี่คุณน่ะ ช่วยย้ายหนังสือพวกนี้หน่อยสิ เอาไปวางที่ชั้น 3 แถว B นะ";
 		next;
 		mes "["+.@name$+"]";
-		mes "Ah...um..I...am...";
+		mes "เอ่อ... คือว่า... ผม...";
 		next;
 		mes "[Assistant Naomi]";
-		mes "Don't you see I am too busy? Don't hesitate. Just do it.";
+		mes "ไม่เห็นหรือไงว่าฉันยุ่งอยู่น่ะ? อย่ามัวแต่ลังเล รีบทำเข้าเถอะ";
 		next;
-		switch(select("Look busy, and take a step back.:Help her just this once.")) {
+		switch(select("แกล้งทำเป็นยุ่งแล้วถอยออกมา:ช่วยเธอสักครั้งจะเป็นไรไป")) {
 		case 1:
 			mes "[Assistant Naomi]";
-			mes "Gosh! Where is-? Where did-? Ugh! It's so difficult!";
+			mes "ตายแล้ว! อันนี้อยู่ไหนนะ? แล้วอันนั้นล่ะ? โธ่เอ๊ย! งานมันยากชะมัดเลย!";
 			close;
 		case 2:
 			mes "[Assistant Naomi]";
-			mes "Ah... if you're done moving those, then these should go in shelf 3 row B.";
+			mes "อา... ถ้าคุณย้ายพวกนั้นเสร็จแล้ว เล่มพวกนี้ก็ต้องเอาไปไว้ที่ชั้น 3 แถว B เหมือนกันนะ";
 			next;
 			mes "["+.@name$+"]";
-			mes "Ah...I...see...";
+			mes "อ่า... เข้าใจแล้วครับ...";
 			next;
 			mes "[Assistant Naomi]";
-			mes "Now, I am almost done... Who are you? Are you a new assistant to Dr. Magnifier?";
+			mes "เอาล่ะ เท่านี้ก็น่าจะเกือบเสร็จแล้ว... ว่าแต่คุณเป็นใครกันคะ? เป็นผู้ช่วยคนใหม่ที่ด็อกเตอร์ Magnifier ส่งมาเหรอ?";
 			next;
 			mes "["+.@name$+"]";
-			mes "He asked me to bring some reports. Didn't he say anything?";
+			mes "เขาขอให้ผมมาเอาเนื้อหารายงานบางอย่างน่ะครับ เขาไม่ได้บอกอะไรคุณไว้เลยเหรอ?";
 			next;
 			mes "[Assistant Naomi]";
-			mes "Hmm... I haven't seen him in over a year! What's he doing now?";
+			mes "หืม... ฉันไม่เจอหน้าเขามาปีกว่าแล้วนะ! ตอนนี้เขาไปทำอะไรอยู่ที่ไหนกันล่ะนั่น?";
 			next;
 			mes "["+.@name$+"]";
-			mes "He said that he would send a message to you... didn't you get it?";
+			mes "เขาบอกว่าจะส่งข้อความมาหาคุณ... คุณยังไม่ได้รับมันเหรอครับ?";
 			next;
 			mes "[Assistant Naomi]";
-			mes "Message? ...Let's see... I never expected him to write a message...";
+			mes "ข้อความเหรอ? ...ไหนดูซิ... ฉันไม่คิดว่าเขาจะเขียนข้อความมาหาเลยนะเนี่ย...";
 			next;
 			mes "[Assistant Naomi]";
-			mes "I will check the mailbox, wait a minute. If you get bored read those books.";
+			mes "เดี๋ยวฉันจะไปเช็คตู้จดหมายดูสักหน่อย รอแป๊บนะ ถ้าเบื่อก็ลองอ่านหนังสือพวกนั้นดูสิ";
 			next;
 			mes "...";
 			next;
 			mes "... ...";
 			next;
-			mes "It's too messy due to lots of stacked books and files. Dr. Magnifier looks like he has a ton of reports.";
+			mes "ที่นี่ดูวุ่นวายมากเพราะมีกองหนังสือและเอกสารวางทับถมกันเต็มไปหมด ดูเหมือนด็อกเตอร์ Magnifier จะมีรายงานเยอะมหาศาลเลยล่ะ";
 			next;
 			mes "["+.@name$+"]";
-			mes "'Birth of the World', 'The Fiction of Odin's Myth', 'God's Battle Then After', 'Dreams of the Tribes'. There are a variety of books...";
+			mes "'กำเนิดโลก', 'เรื่องเล่าตำนานโอดิน', 'ศึกเทพเจ้าและผลลัพธ์หลังสงคราม', 'ความฝันของเหล่าชนเผ่า' มีหนังสือหลากหลายประเภทเลยแฮะ...";
 			next;
 			mes "...";
 			next;
 			mes "[Assistant Naomi]";
-			mes "Oh, sorry I took so long. There was too much mail, so it took me a while to find stuff.";
+			mes "โอ้ ขอโทษทีที่ให้รอนานนะคะ จดหมายมันเยอะมากน่ะ ฉันเลยต้องใช้เวลาหาอยู่พักใหญ่";
 			next;
 			mes "[Assistant Naomi]";
-			mes "He has sent me mail over 20 times. I did not know that...";
+			mes "เขาส่งจดหมายมาหาฉันตั้ง 20 กว่าฉบับแน่ะ ฉันไม่เคยรู้เลยนะเนี่ย...";
 			next;
 			mes "[Assistant Naomi]";
-			mes "Ah, here's the message about you. He's said to share the information on research and reports.";
+			mes "อา เจอแล้ว นี่คือข้อความที่เกี่ยวกับคุณ เขาบอกให้แชร์ข้อมูลการวิจัยและรายงานต่างๆ ให้คุณทราบได้";
 			next;
 			mes "["+.@name$+"]";
-			mes "What is the Doctor's area of expertise?";
+			mes "ด็อกเตอร์เขาเชี่ยวชาญด้านไหนเป็นพิเศษเหรอครับ?";
 			next;
 			mes "[Assistant Naomi]";
-			mes "Ever since 5 years ago, he has been curious about how the world started, and so he began his search for the God of creation.";
+			mes "ตั้งแต่ 5 ปีก่อน เขาสงสัยเรื่องจุดเริ่มต้นของโลกใบนี้ ก็เลยเริ่มออกตามหาข้อมูลเกี่ยวกับพระเจ้าผู้สร้างโลกน่ะค่ะ";
 			next;
 			mes "[Assistant Naomi]";
-			mes "He researches combat between Odin and the Gods, and about the Gods' origins and life.";
+			mes "เขาวิจัยเกี่ยวกับการต่อสู้ระหว่างโอดินกับเหล่าเทพ รวมถึงต้นกำเนิดและชีวิตของพระเจ้าด้วย";
 			next;
 			mes "["+.@name$+"]";
-			mes "So, did he already know that the Rebirth of Satan Morocc has occured before?";
+			mes "ถ้าอย่างนั้น เขาก็รู้อยู่แล้วสิครับว่าการคืนชีพของ Satan Morocc จะเกิดขึ้น?";
 			next;
 			mes "[Assistant Naomi]";
-			mes "I can't be sure, but he thought someday it would occur. It broke out earlier than he expected though.";
+			mes "ฉันก็ไม่แน่ใจนะ แต่เขาคิดว่าสักวันมันจะต้องเกิดขึ้นแน่ แค่มันอุบัติขึ้นเร็วกว่าที่เขาคาดไว้เท่านั้นเอง";
 			next;
 			mes "["+.@name$+"]";
-			mes "But Rune-Midgarts approved this research?";
+			mes "แล้วอาณาจักร Rune-Midgarts อนุมัติการวิจัยแบบนี้ด้วยเหรอครับ?";
 			next;
 			mes "[Assistant Naomi]";
-			mes "Our academics are not a religion. And they too have curiosity about this world's history.";
+			mes "วิชาการของพวกเราไม่ใช่ศาสนาค่ะ และทางอาณาจักรเองก็มีความอยากรู้อยากเห็นเกี่ยวกับประวัติศาสตร์ของโลกนี้เหมือนกัน";
 			next;
 			mes "[Assistant Naomi]";
-			mes "The combat of Odin vs. the Gods, and the God's sons and their purpose... The Doctor has researched this his whole life.";
+			mes "ทั้งเรื่องการต่อสู้ระหว่างโอดินกับเทพเจ้า ลูกหลานของเทพ และจุดประสงค์ของพวกเขา... ด็อกเตอร์ทุ่มเททั้งชีวิตเพื่อวิจัยเรื่องนี้เลยล่ะค่ะ";
 			next;
 			mes "["+.@name$+"]";
-			mes "But those reports haven't come out yet. Have they?";
+			mes "แต่รายงานพวกนั้นยังไม่ได้ถูกเผยแพร่ออกไปใช่ไหมครับ?";
 			next;
 			mes "[Assistant Naomi]";
-			mes "That's why he sent you here. By the way, this isn't the first time I've heard this.";
+			mes "นั่นแหละคือเหตุผลที่เขาบอกให้คุณมาที่นี่ไงคะ อีกอย่าง นี่ไม่ใช่ครั้งแรกที่ฉันได้ยินเรื่องพวกนี้หรอกนะ";
 			next;
 			mes "[Assistant Naomi]";
-			mes "After the establishment of the Rune-Midgarts Kingdom and Arunafeltz, the rumors have spread in secret about their tribes, myths, etc.";
+			mes "หลังจากการสถาปนาอาณาจักร Rune-Midgarts และ Arunafeltz ข่าวลือเรื่องชนเผ่าและตำนานต่างๆ ก็ถูกแพร่กระจายไปอย่างลับๆ มาตลอด";
 			next;
 			mes "[Assistant Naomi]";
-			mes "Anyway, I should make sure that you read all these books, and I'll just keep doing my work.";
+			mes "เอาเป็นว่า คุณควรอ่านหนังสือพวกนี้ให้ครบนะคะ ส่วนฉันก็จะไปทำงานของฉันต่อ";
 			next;
 			mes "["+.@name$+"]";
-			mes "Shouldn't I have filed the books?";
+			mes "ผมไม่ต้องช่วยเรียงหนังสือพวกนี้เข้าชั้นต่อเหรอครับ?";
 			next;
 			mes "[Assistant Naomi]";
-			mes "The Doctor said he will pick up the books through another person. Besides, don't you need the basic information on what to do?";
+			mes "ด็อกเตอร์บอกว่าเขาจะให้คนอื่นมาเก็บหนังสือพวกนี้ไปเองค่ะ อีกอย่าง คุณไม่ได้ต้องการข้อมูลพื้นฐานเพื่อไปทำงานต่อหรอกเหรอ?";
 			next;
 			mes "[Assistant Naomi]";
-			mes "Before you go back to the Doctor, you had better read these books. So, I will go back to work.";
+			mes "ก่อนที่คุณจะกลับไปหาด็อกเตอร์ คุณควรอ่านหนังสือเหล่านี้ให้เข้าใจเสียก่อนนะ ถ้าอย่างนั้นฉันขอตัวไปทำงานต่อนะคะ";
 			set ins_nyd,4;
 			close;
 		}
 	} else if (ins_nyd == 4) {
-		mes "Browse around, to take a look at the books.";
+		mes "ลองเปิดดูหนังสือรอบๆ เพื่อหาข้อมูลที่คุณสนใจ";
 		next;
-		switch(select("Discovery of Heterogeneity:Report of Indigenous Tribes")) {
+		switch(select("บันทึกการค้นพบสิ่งประหลาด:รายงานเกี่ยวกับชนเผ่าพื้นเมือง")) {
 		case 1:
-			mes "Satan Morocc has known that he didn't resurrect normally or by himself.";
+			mes "เป็นที่ทราบกันดีว่า Satan Morocc ไม่ได้คืนชีพขึ้นมาด้วยพลังของตัวเองอย่างปกติ";
 			next;
-			mes "Continuously, adventurers from Rune-Midgarts have attacked him and he is slowly losing his power. He would need more time to resurrect completely.";
+			mes "เหล่าเหล่านักผจญภัยจาก Rune-Midgarts ได้เข้าโจมตีเขาอย่างต่อเนื่อง ทำให้เขาสูญเสียพลังไปทีละน้อย และต้องใช้เวลามากขึ้นในการคืนชีพอย่างสมบูรณ์";
 			next;
-			mes "Satan Morocc stopped to destroy the city of Morocc, turning it into a ruined desert, then started to rip the world apart.";
+			mes "Satan Morocc หยุดการทำลายล้างเมือง Morocc และเปลี่ยนมันให้กลายเป็นทะเลทรายที่รกร้าง ก่อนจะเริ่มฉีกมิติของโลกออกเป็นเสี่ยงๆ";
 			next;
-			mes "Satan Morocc was worried about those who would give chase, so he created Morocc clones to keep watch behind him.";
+			mes "Satan Morocc กังวลเรื่องผู้ที่จะติดตามเขามา จึงสร้างร่างแยก (Morocc clones) ขึ้นมาเพื่อคอยเฝ้าจับตาดูอยู่เบื้องหลัง";
 			next;
-			mes "Modeled after Morocc, their appearance made it difficult to go around the time-space gap.";
+			mes "ด้วยรูปลักษณ์ที่จำลองมาจาก Morocc ทำให้การสัญจรผ่านรอยแยกแห่งกาลเวลาและอวกาศเป็นเรื่องยากลำบาก";
 			next;
-			mes "Still the adventurers gave chase. They came from all over the world, trying to approach the Dimensional Gorge.";
+			mes "แต่นักผจญภัยก็ยังไม่ลดละความพยายาม พวกเขามาจากทั่วทุกมุมโลกเพื่อเข้าใกล้ Dimensional Gorge (หุบเขาต่างมิติ)";
 			next;
-			mes "The reports of these adventurers have been sent to representatives of all kingdoms, and an expedition team has been created to find out more information.";
+			mes "รายงานของนักผจญภัยเหล่านี้ถูกส่งไปยังตัวแทนของทุกอาณาจักร จนนำไปสู่การก่อตั้งทีมสำรวจเพื่อหาข้อมูลเพิ่มเติม";
 			next;
-			mes "The scientists of Schwarzwald created a combination metal, using fragments of metals found in the dimensional gorge.";
+			mes "เหล่านักวิทยาศาสตร์แห่งสาธารณรัฐ Schwarzwald ได้สร้างโลหะผสมชนิดใหม่ โดยใช้เศษโลหะที่พบในหุบเขาต่างมิติ";
 			next;
-			mes "The Schwarzwald Republic requested approval to find the source of the new metal, and since Rune-Midgarts couldn't complete the test themselves, they finally accepted.";
+			mes "Schwarzwald ได้ยื่นขออนุมัติเพื่อค้นหาแหล่งกำเนิดของโลหะชนิดใหม่นี้ และเนื่องจาก Rune-Midgarts ไม่สามารถวิจัยได้เองเพียงลำพัง ในที่สุดพวกเขาก็ยอมตกลง";
 			next;
-			mes "They associated together to gather volunteers. The Assassin Guild was the first to volunteer.";
+			mes "พวกเขาได้ร่วมมือกันรวบรวมอาสาสมัคร โดยสมาคม Assassin Guild เป็นกลุ่มแรกที่อาสาเข้ามา";
 			next;
-			mes "The Assassins have a terrible past with Satan Morocc, so they gathered 18 members to chase him down.";
+			mes "เหล่าแอสซาสซินมีอดีตที่เลวร้ายกับ Satan Morocc พวกเขาจึงรวบรวมสมาชิก 18 คนเพื่อออกตามล่ามัน";
 			next;
-			mes "About 3 hours later, all 18 members returned without any problem, and each man and woman shared the information that they had collected.";
+			mes "ประมาณ 3 ชั่วโมงต่อมา สมาชิกทั้ง 18 คนกลับออกมาอย่างปลอดภัย และทุกคนได้แบ่งปันข้อมูลที่รวบรวมมาได้";
 			next;
-			mes "They had discovered another world with a definitively different nature and environment. And indeed, people could also live there.";
+			mes "พวกเขาค้นพบโลกอีกใบที่มีสภาพแวดล้อมและธรรมชาติที่แตกต่างจากโลกเราอย่างสิ้นเชิง และที่สำคัญคือ มนุษย์สามารถอาศัยอยู่ที่นั่นได้";
 			next;
-			mes "The most surprising thing is the flow of time. The 18 assassins had stayed for about 2 weeks in there, yet they returned within 3 hours after departing.";
+			mes "สิ่งที่น่าตกใจที่สุดคือการไหลของเวลา แอสซาสซินทั้ง 18 คนอาศัยอยู่ที่นั่นประมาณ 2 สัปดาห์ แต่พวกเขากลับออกมาภายในเวลาเพียง 3 ชั่วโมงหลังจากเดินทางไป";
 			next;
-			mes "The last thing to be tested... was to send adventurers who volunteered to explore the new world.";
+			mes "บททดสอบสุดท้าย... คือการส่งนักผจญภัยอาสาสมัครเข้าไปสำรวจโลกใหม่อย่างเป็นทางการ";
 			next;
-			mes "There was a flood of adventurer applications. Lots of volunteers disappeared over the dimensional gorge, and they brought back new data.";
+			mes "มีผู้สมัครเข้ามาอย่างล้นหลาม อาสาสมัครจำนวนมากหายเข้าไปในรอยแยกต่างมิติ และพวกเขาก็นำข้อมูลใหม่ๆ กลับมา";
 			next;
-			mes "The new world could support 3 completely different eco-systems dependant upon the race of people that lived there.";
+			mes "โลกใหม่มีระบบนิเวศที่แตกต่างกันโดยสิ้นเชิง 3 รูปแบบ ขึ้นอยู่กับเผ่าพันธุ์ที่อาศัยอยู่ที่นั่น";
 			next;
-			mes "The heterogenous phenomenon needed to be studied thoroughly and carefully in order to under the relationship between thair world and ours.";
+			mes "ปรากฏการณ์ที่แตกต่างกันเหล่านี้จำเป็นต้องได้รับการศึกษาอย่างละเอียดถี่ถ้วน เพื่อทำความเข้าใจความสัมพันธ์ระหว่างโลกของพวกเขาและโลกของเรา";
 			next;
-			mes "Just when it was expected to be impossible to travel into a different world, the first page of a new chapter was opened.";
+			mes "ในเวลาที่ใครต่อใครคิดว่าเป็นไปไม่ได้ที่จะเดินทางไปยังโลกอื่น หน้าแรกของบทประวัติศาสตร์ใหม่ก็ได้ถูกเปิดขึ้นแล้ว";
 			close;
 		case 2:
-			mes "Long ago, there wasn't a sun, moon, or stars; just empty earth... and Ymir was born. Then, by making sons, Ymir grew.";
+			mes "กาลครั้งหนึ่งนานมาแล้ว เมื่อโลกยังไม่มีดวงอาทิตย์ ดวงจันทร์ หรือดวงดาว มีเพียงความว่างเปล่า... และ Ymir ก็ได้ถือกำเนิดขึ้น จากนั้น Ymir ก็เติบโตขึ้นจากการสร้างบุตรชาย";
 			next;
-			mes "But, his sons grew as well and he was killed by Odin, Vili, and Ve; 3 brothers, Gods, that attacked from different sides.";
+			mes "แต่ทว่า บุตรของเขาก็เติบโตขึ้นเช่นกัน และสุดท้ายเขาก็ถูกสังหารโดย Odin, Vili และ Ve สามพี่น้องเทพเจ้าที่ร่วมมือกันโจมตีจากหลายด้าน";
 			next;
-			mes "At that time of Ymir's fall his blood flooded the world... killing all in it's path.";
+			mes "ในช่วงเวลาที่ Ymir สิ้นชีพ เลือดของเขาได้ไหลบ่าท่วมท้นไปทั่วโลก... สังหารทุกสรรพสิ่งที่มีชีวิตที่ขวางทาง";
 			next;
-			mes "Only Hvergelmir of the Sapha tribe escaped from this flooding of blood. And he swore vengeance in Jotunheim, which is covered with foggy snow.";
+			mes "มีเพียง Hvergelmir แห่งเผ่า Sapha เท่านั้นที่รอดพ้นจากอุทกภัยเลือดครั้งนั้นมาได้ และเขาได้สาบานว่าจะล้างแค้นใน Jotunheim ดินแดนที่ปกคลุมด้วยหิมะและหมอก";
 			next;
-			mes "Currently, one of the Sapha tribe has been discovered from beyond the Dimensional Gorge.";
+			mes "ในปัจจุบัน ได้มีการค้นพบสมาชิกของเผ่า Sapha จากดินแดนที่อยู่ไกลออกไปจากหุบเขาต่างมิติ";
 			next;
-			mes "Other than the Sapha tribe, there was another tribe beyond the time-space gap, known as the Laphine.";
+			mes "นอกจากเผ่า Sapha แล้ว ยังมีอีกเผ่าหนึ่งที่อาศัยอยู่อีกฟากของรอยแยกกาลเวลาและอวกาศ ซึ่งเป็นที่รู้จักในนาม Laphine";
 			next;
-			mes "The Laphine tribes gathered as well for an expedition to explore the time-space gap and figure out the World Tree's strange symptoms and perharps a cure method.";
+			mes "เหล่าเผ่า Laphine ได้รวมตัวกันเพื่อออกสำรวจรอยแยกมิติ เพื่อหาสาเหตุของอาการผิดปกติที่เกิดขึ้นกับต้นไม้โลก และอาจจะเพื่อหาวิธีรักษาด้วย";
 			next;
-			mes "The Laphine tribe was charged with the management of Yggdrasil, to establish their lands close to Asgard, and to protect the balance of Yggdrasil's magic power.";
+			mes "เผ่า Laphine ได้รับหน้าที่ในการดูแลรักษา Yggdrasil พวกเขาสร้างดินแดนใกล้กับ Asgard และคอยปกป้องสมดุลของพลังเวทมนตร์แห่งต้นไม้โลก";
 			next;
-			mes "The Laphine tribe has never contacted anyone outside of Asgard. But since they found that Yggdrasil's power if weakening...";
+			mes "เผ่า Laphine ไม่เคยติดต่อกับใครภายนอก Asgard เลย แต่เนื่องจากพวกเขาพบว่าพลังของ Yggdrasil กำลังอ่อนแอลง...";
 			next;
-			mes "They have declared they will attend to the high courts for the first time in 1000 human years, since the end of the battles of Gods vs. Magicians.";
+			mes "พวกเขาจึงประกาศว่าจะเข้าร่วมประชุมกับสภาสูงเป็นครั้งแรกในรอบ 1,000 ปีของมนุษย์ นับตั้งแต่สิ้นสุดสงครามระหว่างเทพเจ้าและผู้วิเศษ";
 			close;
 		}
 	} else {
-		mes "The doctor never ever tries to come back, and there're too many things to do... How can I do it all...";
+		mes "ท่านด็อกเตอร์ไม่เคยคิดจะกลับมาบ้างเลยหรือไงนะ งานก็เยอะแยะไปหมด... ฉันคนเดียวจะทำไหวได้ยังไง...";
 		next;
 		mes "[Assistant Naomi]";
-		mes "Don't you see that I'm too busy? Don't dawdle, just go!";
+		mes "ไม่เห็นเหรอว่าฉันยุ่งอยู่น่ะ? อย่ามัวแต่ยืนเกะกะ ไปได้แล้วค่ะ!";
 		close;
 	}
 }
 
 splendide,198,178,3	script	Grumbling Soldier#edq	447,3,3,{
 	mes "[Grumbling Soldier]";
+	// ตรวจสอบว่าใส่เครื่องแปลภาษา (Ring of the Wise King) หรือไม่
 	if (isequipped(2782) == 1) {
-		mes "Nowadays, the world has turned unstable. I can't even fly comfortably anymore.";
+		mes "ช่วงนี้โลกช่างวุ่นวายไม่หยุดหย่อนเลยนะ แม้แต่จะบินไปไหนมาไหนให้สบายใจก็ยังทำไม่ได้เลย";
 		next;
 		if (ins_nyd == 5) {
-			switch(select("What's with the cave up north?:Who are the Sapha tribesmen?:Hmm. We can talk later.")) {
+			switch(select("ถ้ำทางทิศเหนือมีอะไรอย่างนั้นเหรอ?:พวกเผ่า Sapha คือใครกัน?:อืม... ไว้เราค่อยคุยกันใหม่นะ")) {
 			case 1:
 				mes "[Grumbling Soldier]";
-				mes "What? If you wander around there... you might return with injuries.";
+				mes "อะไรนะ? ถ้าคุณขืนเดินสุ่มสี่สุ่มห้าเข้าไปแถวนั้นล่ะก็... ได้แบกร่างสะบักสะบอมกลับมาแน่";
 				next;
 				mes "[Grumbling Soldier]";
-				mes "I don't know exactly how to explain it, but it's like it has a bad mood. There are lots of terrible monsters there.";
+				mes "ผมเองก็อธิบายไม่ถูกเหมือนกันว่ามันคืออะไร แต่มันให้ความรู้สึกที่ไม่ค่อยดีเอาซะเลย แถมที่นั่นยังมีพวกมอนสเตอร์ที่น่ากลัวเต็มไปหมดด้วย";
 				next;
 				mes "[Grumbling Soldier]";
-				mes "They whisper to each other, so... something is there... But I don't care...";
+				mes "พวกมันกระซิบกระซาบกันเรื่องบางอย่าง... เหมือนมีอะไรบางอย่างอยู่ที่นั่น... แต่ช่างเถอะ ผมไม่สนใจหรอก...";
 				next;
 				mes "[Grumbling Soldier]";
-				mes "Might be... those Sapha tribesmen have dug in the cave before... They do have a special talent for digging.";
+				mes "อาจจะเป็นไปได้ว่า... พวกเผ่า Sapha เคยขุดถ้ำนั่นมาก่อนล่ะมั้ง... พวกนั้นน่ะถนัดเรื่องการขุดเจาะเป็นพิเศษอยู่แล้วนี่";
 				set ins_nyd,51;
 				close;
 			case 2:
 				mes "[Grumbling Soldier]";
-				mes "Oh! It is because of them that we have been living here, a lowdown and dirty city, for over one hundred years.";
+				mes "โอ้! ก็เพราะพวกเขานั่นแหละที่ทำให้เราต้องมาติดแหง็กอยู่ในเมืองที่ทั้งลึกลับและอับชื้นแบบนี้มานานกว่าร้อยปีแล้ว!";
 				next;
 				mes "[Grumbling Soldier]";
-				mes "They don't care if there's trouble with the Yggdrasil.";
+				mes "พวกนั้นไม่เคยสนหรอกว่าต้นไม้โลก Yggdrasil จะเกิดปัญหาขึ้นหรือไม่";
 				next;
 				mes "[Grumbling Soldier]";
-				mes "They are surely full of bad ideas, so... they have destroyed the Yggdrasil's root.";
+				mes "พวกนั้นน่ะเต็มไปด้วยความคิดแย่ๆ... พวกเขานั่นแหละที่เป็นคนทำลายรากของ Yggdrasil";
 				next;
 				mes "[Grumbling Soldier]";
-				mes "We are here to make sure that the Sapha don't make things worse.";
+				mes "พวกเรามาอยู่ที่นี่ก็เพื่อจับตาดูไม่ให้พวก Sapha ทำให้สถานการณ์มันเลวร้ายไปมากกว่านี้ยังไงล่ะ";
 				close;
 			case 3:
 				close;
 			}
 		} else {
 			mes "[Grumbling Soldier]";
-			mes "Nowadays, the world has turned unstable. I can't even fly comfortably anymore.";
+			mes "ช่วงนี้โลกช่างวุ่นวายไม่หยุดหย่อนเลยนะ แม้แต่จะบินไปไหนมาไหนให้สบายใจก็ยังทำไม่ได้เลย";
 			next;
 			mes "[Grumbling Soldier]";
-			mes "What can you expect when Manuk giants start to dig into the world to destroy the Yggdrasil...";
+			mes "คุณจะไปคาดหวังอะไรได้ล่ะ ในเมื่อพวกยักษ์จาก Manuk เริ่มขุดเจาะพื้นโลกเพื่อทำลายต้นไม้โลก Yggdrasil แบบนั้น...";
 			next;
 			mes "[Grumbling Soldier]";
-			mes "And the worst thing is... that strange things are strutting along the streets of the towns...";
+			mes "และที่แย่ที่สุดก็คือ... มีพวกตัวประหลาดๆ มาเดินป้วนเปี้ยนอยู่ตามถนนในเมืองเต็มไปหมด...";
 			next;
 			mes "[Grumbling Soldier]";
-			mes "Yes, you... What do you think about the way the government is handling this...?";
+			mes "ใช่ ผมหมายถึงคุณนั่นแหละ... คุณคิดยังไงกับวิธีที่รัฐบาลจัดการกับเรื่องนี้กันล่ะ...?";
 			next;
 			mes "[Grumbling Soldier]";
-			mes "Although they ignore your track record, still, one should be careful...";
+			mes "แม้ว่าพวกเขาจะไม่ได้สนใจประวัติที่ผ่านมาของคุณ แต่คุณเองก็ควรจะระวังตัวไว้ให้ดีนะ...";
 			close;
 		}
 	} else {
+		// เมื่อไม่ได้ใส่แหวน Ring of the Wise King จะฟังเป็นภาษาเผ่า Laphine
 		mes "SeLarsmar Di marThusVil U SeMushVohl";
 		close;
 	}
@@ -655,56 +657,58 @@ splendide,198,178,3	script	Grumbling Soldier#edq	447,3,3,{
 
 splendide,240,164,3	script	Sighing Soldier#edq	461,3,3,{
 	mes "[Sighing Soldier]";
+	// ตรวจสอบว่าใส่เครื่องแปลภาษา (Ring of the Wise King) หรือไม่
 	if (isequipped(2782) == 1) {
-		mes "When will we be finished with this combat with the Sapha? Ugghhhh...";
+		mes "เมื่อไหร่การสู้รบกับพวก Sapha นี่จะจบลงสักทีนะ... เฮ้ออออ...";
 		next;
 		if (ins_nyd == 5) {
-			switch(select("What's with the cave up north?:Who are the Sapha tribesmen?:Hmm. We can talk later.")) {
+			switch(select("ถ้ำทางทิศเหนือมีอะไรอย่างนั้นเหรอ?:พวกเผ่า Sapha คือใครกัน?:อืม... ไว้เราค่อยคุยกันใหม่นะ")) {
 			case 1:
 				mes "[Sighing Soldier]";
-				mes "Well... I'm not sure, but we have avoided going to that area.";
+				mes "คือ... ผมเองก็ไม่แน่ใจนักหรอกครับ แต่พวกเรามักจะเลี่ยงไม่ไปแถวๆ นั้นกันน่ะ";
 				next;
 				mes "[Sighing Soldier]";
-				mes "Sometimes, the dispatched researchers hang around here... I feel bad that there's nothing to see... without any reason...";
+				mes "บางครั้งพวกนักวิจัยที่ถูกส่งมาก็ชอบไปด้อมๆ มองๆ แถวนั้น... ผมรู้สึกแย่จังที่มันไม่มีอะไรให้ดูเลย... โดยไม่มีเหตุผลด้วย...";
 				next;
 				mes "[Sighing Soldier]";
-				mes "But the command officers make sure that there's something hidden in there.";
+				mes "แต่พวกผู้บัญชาการมั่นใจมากเลยล่ะว่ามีบางอย่างซ่อนอยู่ในนั้น";
 				next;
 				mes "[Sighing Soldier]";
-				mes "We don't know if the monsters there are strong, so we never checked it out. But on a personal level, nobody wants to go there...";
+				mes "พวกเราไม่รู้ว่ามอนสเตอร์ที่นั่นแข็งแกร่งแค่ไหน ก็เลยไม่เคยเข้าไปตรวจสอบกันจริงๆ จังๆ แต่ถ้าถามความเห็นส่วนตัวล่ะก็... ไม่มีใครอยากไปที่นั่นหรอกครับ...";
 				set ins_nyd,51;
 				close;
 			case 2:
 				mes "[Sighing Soldier]";
-				mes "I don't know what others think about it... but we've had some trouble with our attitude against the Sapha tribes.";
+				mes "ผมไม่รู้ว่าคนอื่นคิดยังไงนะ... แต่พวกเรามีปัญหาเรื่องทัศนคติที่มีต่อเผ่า Sapha อยู่เหมือนกัน";
 				next;
 				mes "[Sighing Soldier]";
-				mes "We didn't try to solve the problems with talk. We attacked them first.";
+				mes "พวกเราไม่ได้พยายามจะแก้ปัญหาด้วยการเจรจา แต่ดันเลือกที่จะเปิดฉากโจมตีพวกเขาก่อน";
 				next;
 				mes "[Sighing Soldier]";
-				mes "Maybe... our command officers don't want to accept other species different than us...";
+				mes "บางทีนะ... พวกผู้บัญชาการของเราอาจจะแค่ไม่อยากยอมรับเผ่าพันธุ์อื่นที่แตกต่างจากเราก็ได้...";
 				next;
 				mes "[Sighing Soldier]";
-				mes "Don't misunderstand... Recently, we have talked about your particular species and our commanders feel grateful to you.";
+				mes "อย่าเข้าใจผิดนะ... ช่วงนี้พวกเรามีการพูดถึงเผ่าพันธุ์ของคุณอยู่เหมือนกัน และพวกผู้บัญชาการก็รู้สึกขอบคุณพวกคุณมากครับ";
 				next;
 				mes "[Sighing Soldier]";
-				mes "Anyway... I'm just exhausted during this useless and nerve-wracking situation... Sigh.";
+				mes "ยังไงซะ... ผมก็แค่รู้สึกเหนื่อยหน่ายกับสถานการณ์ที่ไร้ความหมายและตึงเครียดแบบนี้เหลือเกิน... เฮ้อ";
 				close;
 			case 3:
 				close;
 			}
 		} else {
 			mes "[Sighing Soldier]";
-			mes "When will we be finished with this combat with the Sapha? Ugghhhh...";
+			mes "เมื่อไหร่การสู้รบกับพวก Sapha นี่จะจบลงสักทีนะ... เฮ้ออออ...";
 			next;
 			mes "[Sighing Soldier]";
-			mes "Frankly, I don't think of you or any Sapha is our enemy. Sigh...";
+			mes "พูดตรงๆ นะ ผมไม่เคยคิดว่าคุณหรือพวก Sapha เป็นศัตรูของเราเลยสักนิด... (ถอนหายใจ)...";
 			next;
 			mes "[Sighing Soldier]";
-			mes "Is there no way to resolve this by communicating? There's no meaning in useless combat! Geez.";
+			mes "มันไม่มีวิธีคลี่คลายเรื่องนี้ด้วยการพูดคุยกันเลยเหรอ? การสู้รบที่เปล่าประโยชน์เนี่ยมันไม่มีความหมายเอาซะเลย! ให้ตายสิ";
 			close;
 		}
 	} else {
+		// ภาษาเผ่า Laphine เมื่อไม่ใส่แหวน
 		mes "VohlLarsmar Ha DielCyatas";
 		close;
 	}
@@ -714,211 +718,212 @@ spl_in01,109,60,3	script	Commander Lebiordirr#edq	435,3,3,{
 	mes "[Commander Lebiordirr]";
 	if (isequipped(2782) == 1) {
 		if (ins_nyd == 51) {
-			mes "Are you...? Are you the one collecting information from my soldiers...?";
+			mes "คุณคือ...? คนที่เที่ยวเดินไล่ถามข้อมูลจากพวกทหารของฉันอย่างนั้นเหรอ...?";
 			next;
 			mes "[Commander Lebiordirr]";
-			mes "You should be cautious. Our tribe has respected the existence of you humans but...";
+			mes "คุณควรจะระวังตัวไว้หน่อยนะ เผ่าพันธุ์ของเราให้เกียรติในตัวตนของพวกคุณมนุษย์มาตลอด แต่ว่า...";
 			next;
 			mes "[Commander Lebiordirr]";
-			mes "I've taken a great risk in allowing you in here. So be wary.";
+			mes "การที่ฉันยอมให้คุณเข้ามาที่นี่ถือว่าฉันแบกรับความเสี่ยงไว้มากพอแล้ว ดังนั้นจงสำรวมไว้ด้วย";
 			next;
 			mes "[Commander Lebiordirr]";
-			mes "Don't attract too much attention because that would make your people look bad.";
+			mes "อย่าทำตัวให้เป็นจุดสนใจนัก เพราะมันจะทำให้เผ่าพันธุ์ของคุณดูแย่ในสายตาพวกเรา";
 			next;
 			mes "[Commander Lebiordirr]";
-			mes "Now, we don't need to talk much about this, so just go back where you came from.";
+			mes "เอาล่ะ เราไม่มีเรื่องอะไรต้องคุยกันมากไปกว่านี้ กลับไปในที่ที่คุณมาซะ";
 			next;
 			mes "[Commander Lebiordirr]";
-			mes "Unless you have any messages for me...? Your face says you do...";
+			mes "นอกจากว่า... คุณจะมีข้อความอะไรจะบอกฉันงั้นเหรอ? หน้าตาคุณมันฟ้องแบบนั้นนะ...";
 			next;
-			if(select("No. Nothing. We can talk later.:I intend to stay. For good reasons.")==1) close;
+			if(select("เปล่าครับ ไม่มีอะไร ไว้ค่อยคุยกันใหม่:ฉันตั้งใจจะอยู่ที่นี่ ด้วยเหตุผลที่จำเป็น")==1) close;
 			mes "[Splendide Guard]";
-			mes "Sir, I can drag this pest out right now.";
+			mes "ท่านครับ ให้ผมลากตัวเจ้าตัวก่อกวนนี่ออกไปเลยไหมครับ?";
 			next;
 			mes "[Commander Lebiordirr]";
-			mes "No. Let's hear an explanation. Good? Now, if you want...";
+			mes "ไม่ต้อง... ลองฟังคำอธิบายดูก่อนสิ ว่าไงล่ะ? ถ้าคุณต้องการ...";
 			next;
 			mes "[Commander Lebiordirr]";
-			mes "I have known that, recently, time has broken... so, you're here exploring for a solution, no?";
+			mes "ฉันพอจะรู้อยู่บ้างว่าช่วงนี้กาลเวลามันเริ่มวิปริต... คุณคงมาที่นี่เพื่อหาทางแก้ไขล่ะสิ ใช่ไหม?";
 			next;
 			mes "[Commander Lebiordirr]";
-			mes "Our tribe has respected you, so just forget about the searching and exploring around here.";
+			mes "เผ่าพันธุ์ของเราให้เกียรติพวกคุณ ดังนั้นจงลืมเรื่องการสืบค้นหรือสำรวจแถวนี้ไปซะเถอะ";
 			next;
 			mes "[Commander Lebiordirr]";
-			mes "I heard that you are to search for any treasure in the closed cave to the north.";
+			mes "ฉันได้ยินมาว่าพวกคุณต้องการจะหาขุมทรัพย์ในถ้ำที่ถูกปิดตายทางทิศเหนือนั่น";
 			next;
 			mes "[Commander Lebiordirr]";
-			mes "That place is banned by order of the Laphine tribe. So, people can't just go there without permission.";
+			mes "สถานที่นั้นถูกสั่งห้ามเข้าโดยคำสั่งของเผ่า Laphine ใครก็ตามไม่สามารถเข้าไปได้หากไม่ได้รับอนุญาต";
 			next;
 			mes "[Commander Lebiordirr]";
-			mes "If you can't follow this rule, I will stop associating with you and ban all of your people from here.";
+			mes "ถ้าคุณทำตามกฎนี้ไม่ได้ ฉันจะยุติความสัมพันธ์กับคุณ และสั่งแบนพรรคพวกของคุณทุกคนจากที่นี่";
 			next;
 			mes "[Commander Lebiordirr]";
-			mes "We still have an unstable relationship with the Sapha, we usually don't worry about outsiders.";
+			mes "ลำพังความสัมพันธ์กับพวก Sapha ก็ยังไม่มั่นคงพออยู่แล้ว เราไม่มีเวลามานั่งกังวลเรื่องคนนอกหรอกนะ";
 			next;
 			mes "[Commander Lebiordirr]";
-			mes "Now, if you understand this, inform your friends.";
+			mes "เอาล่ะ ถ้าคุณเข้าใจแล้ว ก็ไปบอกพรรคพวกของคุณซะ";
 			set ins_nyd,61;
 			close;
 		} else if (ins_nyd == 61) {
-			mes "If you can't follow this rule, I will stop associating with you and ban all of your people from here.";
+			mes "ถ้าคุณทำตามกฎนี้ไม่ได้ ฉันจะยุติความสัมพันธ์กับคุณ และสั่งแบนพรรคพวกของคุณทุกคนจากที่นี่";
 			next;
 			mes "[Commander Lebiordirr]";
-			mes "We still have an unstable relationship with the Sapha, we usually don't worry about outsiders.";
+			mes "เราไม่มีเวลามานั่งกังวลเรื่องคนนอกหรอกนะ";
 			next;
 			mes "[Commander Lebiordirr]";
-			mes "Now, if you understand this, inform your friends.";
+			mes "ถ้าเข้าใจแล้ว ก็ไปแจ้งเพื่อนๆ ของคุณซะ";
 			close;
 		} else if (ins_nyd == 81) {
-			mes "Why have you come back, outsider?";
+			mes "กลับมาทำไมอีก คนนอก?";
 			next;
-			select("To ask the Laphines about exploring...");
+			select("มาเพื่อขอพวก Laphine เรื่องการสำรวจ...");
 			mes "[Commander Lebiordirr]";
-			mes "Exploring what? Choose your words wisely?";
-			next;
-			mes "[Commander Lebiordirr]";
-			mes "Do we not understand each other? What do you want?";
-			next;
-			select("I must explore the cave.");
-			mes "[Commander Lebiordirr]";
-			mes "That means... that you are ignoring my warning? Is this your decision or are you just following orders?";
-			next;
-			select("I'm just following orders");
-			mes "[Commander Lebiordirr]";
-			mes "Are you trying to insult me on purpose, outsider?";
+			mes "สำรวจอะไร? คิดคำพูดให้ดีๆ นะ?";
 			next;
 			mes "[Commander Lebiordirr]";
-			mes "Why do you want to explore? It better be a very good reason.";
+			mes "นี่เราคุยกันไม่รู้เรื่องเหรอ? คุณต้องการอะไรกันแน่?";
 			next;
-			select("It's about Dr. Magnifier's report...");
+			select("ฉันจำเป็นต้องสำรวจถ้ำนั่น");
 			mes "[Commander Lebiordirr]";
-			mes "So... What do I care about an outsider's report?";
+			mes "นั่นหมายความว่า... คุณจะเมินเฉยต่อคำเตือนของฉันงั้นเหรอ? นี่เป็นการตัดสินใจของคุณเอง หรือคุณแค่ทำตามคำสั่ง?";
 			next;
+			select("ฉันแค่ทำตามคำสั่ง");
 			mes "[Commander Lebiordirr]";
-			mes "To protect the Yggdrasil! That's the Laphine's fate. Can you say that about yourself?";
-			next;
-			mes "[Commander Lebiordirr]";
-			mes "Do you have any proof of your birth with Odin and Yggdrasil's blessings?";
+			mes "นี่คุณตั้งใจจะดูหมิ่นฉันใช่ไหม คนนอก?";
 			next;
 			mes "[Commander Lebiordirr]";
-			mes "I shouldn't say anymore. Please don't take this as being rude but, please go now!";
+			mes "ทำไมถึงอยากสำรวจนัก? มันควรจะมีเหตุผลที่ดีมากๆ นะ";
 			next;
-			select("Then I'll ask the Sapha for help.");
+			select("มันเกี่ยวกับรายงานของด็อกเตอร์ Magnifier...");
 			mes "[Commander Lebiordirr]";
-			mes "What are you talking about, outsider?";
+			mes "แล้ว... ทำไมฉันต้องไปใส่ใจรายงานของคนนอกด้วยล่ะ?";
+			next;
+			mes "[Commander Lebiordirr]";
+			mes "การปกป้อง Yggdrasil! นั่นคือโชคชะตาของ Laphine แล้วคุณล่ะ กล้าพูดแบบนั้นเกี่ยวกับตัวเองไหม?";
+			next;
+			mes "[Commander Lebiordirr]";
+			mes "คุณมีหลักฐานอะไรไหมว่าคุณเกิดมาพร้อมกับพรของ Odin และ Yggdrasil?";
+			next;
+			mes "[Commander Lebiordirr]";
+			mes "ฉันไม่ควรพูดอะไรมากกว่านี้แล้ว อย่าหาว่าฉันหยาบคายเลยนะ แต่กรุณาออกไปได้แล้ว!";
+			next;
+			select("ถ้าอย่างนั้น ฉันจะไปขอให้พวก Sapha ช่วยแทน");
+			mes "[Commander Lebiordirr]";
+			mes "คุณพูดเรื่องอะไรน่ะ คนนอก?";
 			next;
 			mes "[Splendide Guard]";
-			mes "Sir, I can get rid of this rude outsider if you wish?";
+			mes "ท่านครับ ให้ผมจัดการคนนอกที่ไร้มารยาทคนนี้เลยไหมครับ?";
 			next;
 			mes "[Commander Lebiordirr]";
-			mes "No, wait... The Sapha tribesmen know the meaning of that place? Did you ask to associate with them?";
+			mes "เดี๋ยว... รอก่อน... พวก Sapha รู้จักความหมายของสถานที่แห่งนั้นด้วยเหรอ? คุณไปขอความร่วมมือกับพวกนั้นมางั้นเหรอ?";
 			next;
 			mes "[Commander Lebiordirr]";
-			mes "Ah... How tricky... Are you testing us?";
+			mes "อา... เจ้าเล่ห์นักนะ... นี่คุณกำลังลองเชิงพวกเราอยู่ใช่ไหม?";
 			next;
 			mes "[Splendide Guard]";
-			mes "Calm down, sir. I will throw this outsider into prison.";
+			mes "ใจเย็นก่อนครับท่าน เดี๋ยวผมจะจับเจ้าคนนอกนี่โยนเข้าคุกเอง";
 			next;
 			mes "[Commander Lebiordirr]";
-			mes "No... No, wait. Ok, I will accept it. I can accept your admission into the Holy Sekos.";
+			mes "ไม่... ไม่ เดี๋ยวก่อน ตกลง ฉันจะยอมรับก็ได้ ฉันอนุญาตให้คุณเข้าไปใน Holy Sekos (วิหารศักดิ์สิทธิ์)";
 			next;
 			mes "[Commander Lebiordirr]";
-			mes "Okay. If you are a servant of the Yggdrasil as you claim to be, I will allow you admission. But I am not responsible for your actions.";
+			mes "ก็ได้ หากคุณเป็นผู้รับใช้ของ Yggdrasil อย่างที่กล่าวอ้าง ฉันจะยอมให้คุณเข้าไป แต่ฉันจะไม่รับผิดชอบต่อการกระทำของคุณนะ";
 			next;
 			mes "[Commander Lebiordirr]";
-			mes "And make sure that if you find anything out of the ordinary in there, that you share it with us!";
+			mes "และจงจำไว้ว่า ถ้าคุณพบอะไรที่ไม่ชอบมาพากลข้างในนั้น คุณต้องแบ่งปันข้อมูลนั้นกับพวกเราด้วย!";
 			next;
-			select("But of course!");
+			select("แน่นอนอยู่แล้ว!");
 			mes "[Commander Lebiordirr]";
-			mes "So... since I have agreed to allow your exploration... Arioss, help them, and take the results.";
+			mes "เอาล่ะ... ในเมื่อฉันตกลงอนุญาตให้คุณสำรวจแล้ว... Arioss ช่วยพวกเขาหน่อย และนำผลลัพธ์กลับมาแจ้งด้วย";
 			next;
 			mes "[Aide Arioss]";
-			mes "Sir... are you sure? This is an invasion of the Holy Sekos...";
+			mes "ท่านครับ... แน่ใจแล้วเหรอครับ? นี่มันคือการรุกล้ำ Holy Sekos นะครับ...";
 			next;
 			mes "[Commander Lebiordirr]";
-			mes "Invasion is a harsh word. I am allowing them entrance. Better them than a dirty giant. It might just save our lives...";
+			mes "คำว่ารุกล้ำมันรุนแรงไป ฉันอนุญาตให้พวกเขาเข้าไปเอง ให้พวกเขาเข้าไปยังดีกว่าให้พวกยักษ์โสโครกนั่นเข้าถึง บางทีนี่อาจจะช่วยชีวิตพวกเราไว้ก็ได้...";
 			next;
 			mes "[Commander Lebiordirr]";
-			mes "Here, outsider. Arioss will explain the situation with the giants. Talk with him...";
+			mes "นี่ คนนอก Arioss จะเป็นคนอธิบายสถานการณ์เกี่ยวกับพวกยักษ์ให้ฟัง คุยกับเขาซะ...";
 			set ins_nyd,91;
 			close;
 		} else if ((ins_nyd == 91) || (ins_nyd == 101) || (ins_nyd == 111) || (ins_nyd == 200) || (ins_nyd == 201) || (ins_nyd == 202)) {
-			mes "Outsider. Arioss here will explain the situation with the giants, talk with him...";
+			mes "คนนอก Arioss จะอธิบายสถานการณ์เกี่ยวกับพวกยักษ์ให้ฟัง ไปคุยกับเขาดู...";
 			close;
 		} else if ((ins_nyd == 72) || (ins_nyd == 82) || (ins_nyd == 92) || (ins_nyd == 102) || (ins_nyd == 112) || (ins_nyd == 122) || (ins_nyd == 132)) {
-			mes "Welcome to the Laphine camp in Splendide, outsider... I am Lebiordirr. I am in charge here.";
+			mes "ยินดีต้อนรับสู่ค่ายของ Laphine ใน Splendide คนนอก... ฉันคือ Lebiordirr เป็นผู้ดูแลที่นี่";
 			next;
 			mes "[Commander Lebiordirr]";
-			mes "Be cautious of your actions. We already have lots of problems with the Sapha tribe as it is.";
+			mes "ระวังการกระทำของคุณด้วย ลำพังแค่ปัญหาที่มีกับเผ่า Sapha ก็มากพออยู่แล้ว";
 			next;
 			mes "[Commander Lebiordirr]";
-			mes "If you are cautious with your actions, I won't place any harm on you. Fare well.";
+			mes "ถ้าคุณสำรวมกิริยา ฉันก็จะไม่ทำอันตรายใดๆ กับคุณ ขอให้โชคดี";
 			close;
 		} else if (ins_nyd == 203) {
-			mes "I was waiting for you. You came back safe, that's good news. Did you find anything?";
+			mes "ฉันรอคุณอยู่พอดี กลับมาได้อย่างปลอดภัยถือว่าเป็นข่าวดี แล้วคุณพบอะไรบ้างไหม?";
 			next;
-			select("Explain about the guardian Nidhoggur's leave.");
+			select("อธิบายเรื่องการจากไปของ Guardian Nidhoggur");
 			mes "[Commander Lebiordirr]";
-			mes "What? The Guardian is not in his nest...?";
-			next;
-			mes "[Commander Lebiordirr]";
-			mes "And because of his disppearance, the Guardian's Shadow is currently destorying the roots of the World Tree...?";
+			mes "อะไรนะ? ผู้พิทักษ์ไม่ได้อยู่ในรังของเขาอย่างนั้นเหรอ...?";
 			next;
 			mes "[Commander Lebiordirr]";
-			mes "That's unbelievable. You must be insulting the Guardian's and our pride. I did not provide you with our help for that.";
+			mes "และเพราะการหายตัวไปของเขา ทำให้ตอนนี้ 'เงาของผู้พิทักษ์' กำลังทำลายรากของต้นไม้โลกงั้นเหรอ...?";
+			next;
+			mes "[Commander Lebiordirr]";
+			mes "เรื่องนี้มันเหลือเชื่อเกินไป คุณกำลังดูหมิ่นศักดิ์ศรีของผู้พิทักษ์และพวกเราอยู่นะ ฉันไม่ได้ช่วยคุณเพื่อให้คุณมาแต่งเรื่องแบบนี้";
 			next;
 			mes "[Aide Arioss]";
-			mes "It's not like that, Commander, they speak the truth.";
+			mes "ไม่ใช่แบบนั้นหรอกครับท่านผู้บัญชาการ พวกเขาพูดความจริงครับ";
 			next;
 			mes "[Commander Lebiordirr]";
-			mes "What are you saying? Arioss, do not forget your place as the Guardian's priest.";
+			mes "คุณพูดอะไรน่ะ Arioss อย่าลืมฐานะของตัวเองที่เป็นนักบวชของผู้พิทักษ์สิ";
 			next;
 			mes "[Aide Arioss]";
-			mes "Even though I have not seen it with my own eyes, this does explain why we lost communication with the great World Tree Yggdrasil.";
+			mes "แม้ว่าผมจะไม่ได้เห็นด้วยตาตัวเอง แต่นี่เป็นเหตุผลที่อธิบายได้ว่าทำไมเราถึงขาดการติดต่อกับต้นไม้โลก Yggdrasil ผู้ยิ่งใหญ่";
 			next;
 			mes "[Commander Lebiordirr]";
-			mes "Do not speak of His Highness, the World Tree Yggdrasil's name so lightly.";
+			mes "อย่าเอ่ยชื่อองค์ท่าน Yggdrasil อย่างลอยๆ แบบนั้น";
 			next;
-			select("Pass along World Tree Yggdrasil's words.");
+			select("ส่งต่อคำกล่าวของต้นไม้โลก Yggdrasil");
 			mes "[Commander Lebiordirr]";
-			mes "His Highness, the World Tree Yggdrasil, said that?";
-			next;
-			mes "[Commander Lebiordirr]";
-			mes "The reason behind all of this... is not because of the Sapha tribe, but because of the sudden leave of the Guardian? And the Guardian has given up on his identity?";
+			mes "องค์ท่านต้นไม้โลก Yggdrasil ตรัสแบบนั้นจริงๆ เหรอก?";
 			next;
 			mes "[Commander Lebiordirr]";
-			mes "This must be reported... reported to the High Priest of Alfheim... Unbelievable.";
+			mes "เหตุผลเบื้องหลังทั้งหมดนี้... ไม่ใช่เพราะเผ่า Sapha แต่เป็นเพราะการหายตัวไปอย่างกะทันหันของผู้พิทักษ์งั้นเหรอ? และผู้พิทักษ์ได้ละทิ้งตัวตนของเขาไปแล้วงั้นเหรอ?";
+			next;
+			mes "[Commander Lebiordirr]";
+			mes "เรื่องนี้ต้องรายงาน... ต้องรายงานต่อมหาปุโรหิตแห่ง Alfheim... ไม่อยากจะเชื่อเลย";
 			next;
 			mes "[Aide Arioss]";
-			mes "Commander... do we need to alert the rest of the tribe...?";
+			mes "ท่านผู้บัญชาการ... เราควรแจ้งคนในเผ่าที่เหลือด้วยไหมครับ...?";
 			next;
 			mes "[Commander Lebiordirr]";
-			mes "You don't need to worry about this, Arioss. As commander, I will handle it. You just pretend nothing happened...";
+			mes "คุณไม่ต้องกังวลเรื่องนี้หรอก Arioss ในฐานะผู้บัญชาการ ฉันจะจัดการเอง คุณแค่ทำเหมือนไม่มีอะไรเกิดขึ้นก็พอ...";
 			next;
 			mes "[Commander Lebiordirr]";
-			mes "Strange one, thank you for your cooperation in such situations... Please forget what has happened today...";
+			mes "เจ้าคนแปลกหน้า ขอบคุณสำหรับความร่วมมือในสถานการณ์เช่นนี้... โปรดลืมเรื่องที่เกิดขึ้นในวันนี้ไปซะ...";
 			next;
 			mes "[Commander Lebiordirr]";
-			mes "Arioss, please compensate this strange one for the help. I need to go rest...";
+			mes "Arioss ช่วยตอบแทนคนแปลกหน้าคนนี้สำหรับการช่วยเหลือด้วย ฉันขอตัวไปพักผ่อนก่อน...";
 			next;
 			mes "[Aide Arioss]";
-			mes "Commander...";
+			mes "ท่านผู้บัญชาการ...";
 			set ins_nyd,121;
 			close;
 		} else if ((ins_nyd == 121) || (ins_nyd == 131)) {
-			mes "Strange one, thank you for your cooperation in such situations... Please forget what has happened today...";
+			mes "เจ้าคนแปลกหน้า ขอบคุณสำหรับความร่วมมือ... โปรดลืมเรื่องที่เกิดขึ้นในวันนี้ไปซะเถอะ...";
 			close;
 		} else {
-			mes "Welcome to the Laphine camp in Splendide, outsider... I am Lebiordirr. I am in charge here.";
+			mes "ยินดีต้อนรับสู่ค่ายของ Laphine ใน Splendide คนนอก... ฉันคือ Lebiordirr เป็นผู้ดูแลที่นี่";
 			next;
 			mes "[Commander Lebiordirr]";
-			mes "Be cautious of your actions. We already have lots of problems with the Sapha tribe as it is.";
+			mes "ระวังการกระทำของคุณด้วย ลำพังแค่ปัญหาที่มีกับเผ่า Sapha ก็มากพออยู่แล้ว";
 			next;
 			mes "[Commander Lebiordirr]";
-			mes "If you are cautious with your actions, I won't place any harm on you. Fare well.";
+			mes "ถ้าคุณสำรวมกิริยา ฉันก็จะไม่ทำอันตรายใดๆ กับคุณ ขอให้โชคดี";
 			close;
 		}
 	} else {
+		// ภาษาเผ่า Laphine เมื่อไม่ใส่แหวน
 		mes "ThusDurnah Ra SharVeldIyaz U UorAmanDur Yee neaOsaAdor Yee...";
 		close;
 	}
@@ -926,78 +931,79 @@ spl_in01,109,60,3	script	Commander Lebiordirr#edq	435,3,3,{
 
 spl_in01,104,56,3	script	Aide Arioss#edq	437,3,3,{
 	mes "[Aide Arioss]";
+	// ตรวจสอบการสวมใส่ Ring of the Wise King
 	if (isequipped(2782) == 1) {
 		if (ins_nyd == 91) {
-			mes "Sigh, since it's Commander Lebiordirr's wish, I will cooperate with you...";
+			mes "(ถอนหายใจ) ในเมื่อมันเป็นความประสงค์ของผู้บัญชาการ Lebiordirr ข้าก็จะยอมร่วมมือกับคุณด้วย...";
 			next;
 			mes "[Aide Arioss]";
-			mes "You want to go there to find out exactly what that place is?";
+			mes "คุณต้องการจะไปที่นั่นเพื่อสืบให้รู้แน่ชัดว่าสถานที่แห่งนั้นคืออะไรสินะ?";
 			next;
 			mes "[Aide Arioss]";
-			mes "Alright...it's as you have assumed, a place connecting to the World Tree. It's also the Guardian's Nest.";
+			mes "ตกลง... มันเป็นอย่างที่คุณสันนิษฐานไว้ ที่นั่นคือสถานที่ที่เชื่อมต่อกับต้นไม้โลก และยังเป็น Guardian's Nest (รังของผู้พิทักษ์) อีกด้วย";
 			next;
-			select("Guardian's Nest?");
+			select("รังของผู้พิทักษ์?");
 			mes "[Aide Arioss]";
-			mes "Yes, that's the nest of Nidhoggur, the Guardian of the World Tree...";
-			next;
-			mes "[Aide Arioss]";
-			mes "Only a marked guardian's servant from the Laphine tribe is allowed to enter.";
+			mes "ใช่แล้ว ที่นั่นคือรังของ Nidhoggur ผู้พิทักษ์แห่งต้นไม้โลก...";
 			next;
 			mes "[Aide Arioss]";
-			mes "That place was initially closed off from the public, but then the giants of the Sapha tribe turned things around...";
+			mes "มีเพียงผู้รับใช้ที่มีตราประทับของผู้พิทักษ์จากเผ่า Laphine เท่านั้นที่ได้รับอนุญาตให้เข้าไปได้";
 			next;
 			mes "[Aide Arioss]";
-			mes "To obtain more minerals, they started to dig with madness.";
+			mes "เดิมทีสถานที่นั้นถูกปิดตายจากโลกภายนอก จนกระทั่งพวกยักษ์เผ่า Sapha เข้ามาทำให้ทุกอย่างเปลี่ยนไป...";
 			next;
 			mes "[Aide Arioss]";
-			mes "In the end, they have harmed a part of the World Tree's root that lies very close to their mine, and thus, the World Tree became very ill.";
+			mes "เพื่อที่จะขุดหาแร่ธาตุให้ได้มากขึ้น พวกนั้นเริ่มขุดเจาะพื้นดินอย่างบ้าคลั่ง";
 			next;
 			mes "[Aide Arioss]";
-			mes "After we have arrived here knowing the facts, the World Tree was already in a very bad state due to the many factories built by the Sapha tribe.";
+			mes "ในที่สุด พวกเขาก็ทำลายส่วนหนึ่งของรากต้นไม้โลกที่อยู่ใกล้กับเหมืองของพวกเขามากเกินไป ทำให้ต้นไม้โลกเริ่มล้มป่วยอย่างหนัก";
 			next;
 			mes "[Aide Arioss]";
-			mes "Even though, for a long time, we have been attacking the Sapha tribe, trying to force them to leave, they are not so easily defeated, leading to this stalemate.";
+			mes "กว่าพวกเราจะมาถึงที่นี่และรู้ความจริง ต้นไม้โลกก็อยู่ในสภาพที่แย่มากแล้ว เนื่องมาจากโรงงานจำนวนมากที่เผ่า Sapha สร้างขึ้น";
 			next;
 			mes "[Aide Arioss]";
-			mes "During this time, your people have travelled through the space-time gap to this land.";
+			mes "แม้ว่าพวกเราจะพยายามโจมตีเผ่า Sapha เพื่อบีบบังคับให้พวกเขาออกไปเป็นเวลานาน แต่พวกนั้นก็ไม่ยอมแพ้ง่ายๆ จนทำให้สถานการณ์ยืดเยื้อมาจนถึงตอนนี้";
 			next;
 			mes "[Aide Arioss]";
-			mes "Because of those many unexpected reasons, the Guardian's nest, which was meant to stay hidden deep underground, has been discovered by your race...";
+			mes "และในช่วงเวลานี้เองที่พรรคพวกของคุณได้เดินทางผ่านรอยแยกกาลเวลามายังดินแดนแห่งนี้";
 			next;
 			mes "[Aide Arioss]";
-			mes "Now you understand how serious this situation is. Because of the Sapha tribe, we are no longer able to approach the Guardian, and seek his teachings of wisdom.";
+			mes "เพราะเหตุการณ์ไม่คาดฝันหลายอย่าง รังของผู้พิทักษ์ที่ควรจะถูกซ่อนอยู่ลึกใต้พื้นดิน กลับถูกเผ่าพันธุ์ของคุณค้นพบเข้า...";
 			next;
 			mes "[Aide Arioss]";
-			mes "It's very insulting to our pride... but if you can help us enter that place again, and speak to the Guardian, maybe we can find a solution...";
+			mes "ตอนนี้คุณคงเข้าใจแล้วว่าสถานการณ์มันรุนแรงแค่ไหน เพราะเผ่า Sapha ทำให้พวกเราไม่สามารถเข้าใกล้ผู้พิทักษ์เพื่อขอคำชี้แนะจากท่านได้อีก";
 			next;
 			mes "[Aide Arioss]";
-			mes "Then we'll leave it to you. As for your request, I will do my best to cooperate.";
+			mes "มันเป็นเรื่องที่น่าอับอายต่อศักดิ์ศรีของเรามาก... แต่ถ้าคุณช่วยให้เราเข้าไปที่นั่นได้อีกครั้ง และได้พูดคุยกับผู้พิทักษ์ บางทีเราอาจจะพบทางแก้ไข...";
 			next;
 			mes "[Aide Arioss]";
-			mes "I have already told you what you wanted to know... If you need anything else, just let me know.";
+			mes "ถ้าอย่างนั้นข้าขอฝากเรื่องนี้ไว้กับคุณด้วย สำหรับคำขอของคุณ ข้าจะพยายามร่วมมืออย่างเต็มที่";
+			next;
+			mes "[Aide Arioss]";
+			mes "ข้าบอกทุกอย่างที่คุณอยากรู้ไปหมดแล้ว... ถ้าต้องการอะไรเพิ่มเติมก็บอกข้าได้เลย";
 			set ins_nyd,101;
 			close;
 		} else if (ins_nyd == 101) {
-			mes "Ah, you said that there is a strange power blocking the entrance to the Guardian's nest, right?";
+			mes "อา คุณบอกว่ามีพลังงานประหลาดขวางทางเข้าสู่รังของผู้พิทักษ์อยู่ใช่ไหม?";
 			next;
 			mes "[Aide Arioss]";
-			mes "That's because only the ones chosen by the Guardian may enter.";
+			mes "นั่นเป็นเพราะมีเพียงผู้ที่ถูกเลือกโดยผู้พิทักษ์เท่านั้นที่จะเข้าไปได้";
 			next;
 			mes "[Aide Arioss]";
-			mes "We have been the Guardian's servants for generations, and have been protecting the World Tree ever since.";
+			mes "พวกเราเป็นผู้รับใช้ของผู้พิทักษ์มาหลายชั่วอายุคน และคอยปกป้องต้นไม้โลกมาโดยตลอด";
 			next;
 			mes "[Aide Arioss]";
-			mes "Before we were captured and brought here, there were 3 servants including me. Our task was to heal the World Tree.";
+			mes "ก่อนที่เราจะถูกพามาที่นี่ มีผู้รับใช้ทั้งหมด 3 คนรวมถึงข้าด้วย หน้าที่ของพวกเราคือการเยียวยาต้นไม้โลก";
 			next;
 			mes "[Aide Arioss]";
-			mes "One was killed in our last war with the Sapha tribe... and the other has been taken captive.";
+			mes "คนหนึ่งถูกฆ่าตายในสงครามครั้งล่าสุดกับเผ่า Sapha... และอีกคนถูกจับตัวไปเป็นเชลย";
 			next;
 			mes "[Aide Arioss]";
-			mes "I will give you my proof. Don't worry, I'm just temporarily marking you as a guardian's servant.";
+			mes "ข้าจะมอบเครื่องหมายยืนยันให้คุณ ไม่ต้องกังวลไป ข้าแค่ทำเครื่องหมายให้คุณเป็นผู้รับใช้ของผู้พิทักษ์ชั่วคราวเท่านั้น";
 			specialeffect2 EF_HOLYHIT;
 			next;
 			mes "[Aide Arioss]";
-			mes "Also, remember this spell, it's needed to open the gate of the Guardian.";
+			mes "นอกจากนี้ จงจำบทสวดนี้ไว้ให้ดี เพราะมันจำเป็นต้องใช้ในการเปิดประตูของผู้พิทักษ์";
 			next;
 			mes "[Aide Arioss]";
 			mes "AnomarDu Ha OdesUdenVer Ie ";
@@ -1009,31 +1015,31 @@ spl_in01,104,56,3	script	Aide Arioss#edq	437,3,3,{
 			mes "TalsehrDur So CyaReMush Di DielAlaWos Ie RuffserIman Ie ";
 			next;
 			mes "[Aide Arioss]";
-			mes "Go find the fairy guarding the gate, and say this spell.";
+			mes "จงไปหาแฟรี่ที่เฝ้าประตูอยู่ แล้วกล่าวบทสวดนี้ออกมา";
 			next;
 			mes "[Aide Arioss]";
-			mes "The proof and the spell will confirm that you are one of the Guardian's servants.";
+			mes "เครื่องหมายและบทสวดนี้จะเป็นเครื่องยืนยันว่าคุณคือหนึ่งในผู้รับใช้ของผู้พิทักษ์";
 			next;
 			mes "[Aide Arioss]";
-			mes "Please meet the Guardian, and come back with an answer to everything. I believe in you.";
+			mes "ได้โปรดไปพบผู้พิทักษ์ และกลับมาพร้อมคำตอบของทุกอย่าง ข้าเชื่อมั่นในตัวคุณนะ";
 			set ins_nyd,111;
 			close;
-		} else if ((ins_nyd == 101) || (ins_nyd == 111) || (ins_nyd == 200) || (ins_nyd == 201) || (ins_nyd == 202)) {
-			mes "Please meet with the Guardian and take a wise answer from him. I will trust you.";
+		} else if ((ins_nyd == 111) || (ins_nyd == 200) || (ins_nyd == 201) || (ins_nyd == 202)) {
+			mes "ได้โปรดไปพบผู้พิทักษ์และขอคำชี้แนะที่ชาญฉลาดจากท่าน ข้าจะรอฟังข่าวดีจากคุณ";
 			close;
 		} else if ((ins_nyd == 72) || (ins_nyd == 82) || (ins_nyd == 92) || (ins_nyd == 102) || (ins_nyd == 112)) {
 			mes "... ...";
 			next;
-			mes "Not even caring about this a single bit? What a stupid woman...";
+			mes "ไม่สนใจเรื่องพวกนี้เลยแม้แต่นิดเดียวงั้นเหรอ? เป็นผู้หญิงที่โง่เขลาจริงๆ...";
 			close;
 		} else if (ins_nyd == 121) {
-			mes "Things have actually become like this... as priests of the Guardian, it's our responsibility...";
+			mes "เรื่องราวมันกลายเป็นแบบนี้ไปแล้วจริงๆ สินะ... ในฐานะนักบวชของผู้พิทักษ์ มันเป็นความรับผิดชอบของพวกเราเอง...";
 			next;
 			mes "[Aide Arioss]";
-			mes "I represent the entire Laphine tribe, and show you our gratitude. This must all be very hard for our commander...";
+			mes "ข้าขอเป็นตัวแทนของเผ่า Laphine ทั้งหมด เพื่อแสดงความขอบคุณต่อคุณ เรื่องนี้คงเป็นเรื่องที่ทำใจได้ยากสำหรับผู้บัญชาการของเรา...";
 			next;
 			mes "[Aide Arioss]";
-			mes "It can't compare with the effort you have put in for us... but please accept our token of friendship.";
+			mes "แม้ความพยายามที่คุณทุ่มเทให้เราจะประเมินค่าไม่ได้... แต่ได้โปรดรับสิ่งนี้ไว้เพื่อเป็นเครื่องหมายแห่งมิตรภาพจากเราเถอะ";
 			if (checkre(3))
 				getexp 1500000,350000;
 			else
@@ -1041,238 +1047,244 @@ spl_in01,104,56,3	script	Aide Arioss#edq	437,3,3,{
 			getitem 6081,10; //Splendide_Coin
 			set ins_nyd,131;
 			mes "[Aide Arioss]";
-			mes "If we can help you with anything in the future, we will do all we can to assist you. Once again, thank you.";
+			mes "หากมีอะไรที่เราพอจะช่วยคุณได้ในอนาคต พวกเราจะทำอย่างเต็มที่เพื่อช่วยเหลือคุณ ขอบคุณอีกครั้งนะ";
 			close;
 		} else if (ins_nyd == 131) {
-			mes "If we can help you with anything in the future, we will do all we can to assist you. Once again, thank you.";
+			mes "หากมีอะไรที่เราพอจะช่วยคุณได้ในอนาคต พวกเราจะทำอย่างเต็มที่เพื่อช่วยเหลือคุณ ขอบคุณอีกครั้งนะครับ";
 			close;
 		} else {
 			mes "... ...";
 			next;
-			mes "Never give attention to... um... a blunt woman...";
+			mes "อย่าไปสนใจ... อืม... ผู้หญิงที่ไร้ความรู้สึกคนนั้นเลย...";
 			close;
 		}
 	} else {
+		// ภาษาเผ่า Laphine เมื่อไม่ใส่แหวน
 		mes "AmanVilShar Ie DorLuShar Mu Re";
 		close;
 	}
 }
 
+// ระบบกับดักตรวจสอบบริเวณพื้นที่หวงห้ามภายในอาคาร
 spl_in01,110,21,0	script	trap#s_edq	-1,10,10,{
 OnTouch_:
 	if ((isequipped(2782) == 1) && (ins_nyd == 51)) {
 		mes "[Splendide Guard]";
-		mes "That man is currently under arrest.";
+		mes "ชายคนนั้นกำลังอยู่ภายใต้การกักตัวในขณะนี้";
 		next;
 		mes "[Splendide Guard]";
-		mes "You'd better behave, Aide Arioss says that different races shall be treated the same way.";
+		mes "คุณควรจะสำรวมกิริยาไว้หน่อยนะ ผู้ช่วย Arioss บอกไว้ว่าไม่ว่าจะเป็นเผ่าพันธุ์ไหนก็ต้องได้รับการปฏิบัติภายใต้กฎเดียวกัน";
+		// วาร์ปผู้เล่นกลับไปที่หน้าโต๊ะผู้บัญชาการ
 		warp "spl_in01",109,58;
 		close;
 	}
 	end;
 }
 
+// ทหารยามคนที่ 1
 spl_in01,101,52,5	script	Splendide Guard#1_edq	447,1,1,{
 	mes "[Splendide Guard]";
-	if (isequipped(2782) == 1) mes "This is the Splendide office. Don't act impolitely.";
+	if (isequipped(2782) == 1) mes "ที่นี่คือสำนักงานแห่งเมือง Splendide อย่าเสียมารยาทที่นี่";
 	else mes "ThusDurnah Ra SharVeldIyaz U UorAmanDur Yee neaOsaAdor Yee ";
 	close;
 }
 
+// ทหารยามคนที่ 2
 spl_in01,118,52,3	script	Splendide Guard#2_edq	447,1,1,{
 	mes "[Splendide Guard]";
-	if (isequipped(2782) == 1) mes "This is the Splendide office. Don't act impolitely.";
+	if (isequipped(2782) == 1) mes "ที่นี่คือสำนักงานแห่งเมือง Splendide อย่าเสียมารยาทที่นี่";
 	else mes "ThusDurnah Ra SharVeldIyaz U UorAmanDur Yee neaOsaAdor Yee ";
 	close;
 }
 
 man_in01,311,57,3	script	Neat Etorr#edq	453,3,3,{
 	mes "[Neat Etorr]";
+	// ตรวจสอบการสวมใส่ Ring of the Wise King
 	if (isequipped(2782) == 1) {
 		if (ins_nyd == 52) {
-			mes "Guest from the other world, please excuse our rudeness...";
+			mes "แขกจากต่างโลก... โปรดอภัยในความไร้มารยาทของพวกเราด้วย...";
 			next;
 			mes "[Neat Etorr]";
-			mes "As the leader of the Sapha tribe, I have something very important to tell you. That is why I asked for you...";
+			mes "ในฐานะผู้นำของเผ่า Sapha ข้ามีเรื่องสำคัญมากจะบอกคุณ นั่นคือเหตุผลที่ข้าเรียกคุณมา...";
 			next;
 			mes "[Neat Etorr]";
-			mes "Your race has come to this land not long ago through the space-time gap.";
+			mes "เผ่าพันธุ์ของคุณเพิ่งจะมายังดินแดนแห่งนี้ได้ไม่นานผ่านทางรอยแยกกาลเวลา";
 			next;
 			mes "[Neat Etorr]";
-			mes "You should have already seen what is going on. We have been at war with the Laphine tribe for a very long time.";
+			mes "คุณคงจะเห็นสถานการณ์ตอนนี้แล้ว พวกเราทำสงครามกับพวก Laphine มายาวนานมาก";
 			next;
 			mes "[Neat Etorr]";
-			mes "Recently, because you do not understand the current situations, you have done some things that I, as a leader, can't ignore any longer.";
+			mes "และเมื่อไม่นานมานี้ เพราะพวกคุณไม่เข้าใจสถานการณ์ที่เป็นอยู่ คุณจึงได้ทำบางสิ่งที่ข้าในฐานะผู้นำไม่สามารถนิ่งเฉยได้อีกต่อไป";
 			next;
 			mes "[Neat Etorr]";
-			mes "I hope that your people will becareful of your actions on this land, and terminate any unnecessary interventions.";
+			mes "ข้าหวังว่าคนของคุณจะระมัดระวังการกระทำบนดินแดนแห่งนี้ และยุติการแทรกแซงที่ไม่จำเป็นเสีย";
 			next;
-			if(select("Leave quietly.:Don't know what he's talking about, and ask for details.")==1) close;
+			if(select("จากไปอย่างเงียบๆ:แสร้งทำเป็นไม่เข้าใจ และถามรายละเอียดเพิ่มเติม")==1) close;
 			mes "[Manuk Field Elite Soldier]";
-			mes "Are we really just letting these people go after they have stirred up problems on our land?";
+			mes "ท่านครับ เราจะปล่อยคนพวกนี้ไปง่ายๆ หลังจากที่พวกมันก่อเรื่องวุ่นวายบนแผ่นดินเราเนี่ยนะ?";
 			next;
 			mes "[Neat Etorr]";
-			mes "After what happened, I don't think they know what else they can do. Let me explain.";
+			mes "หลังจากเกิดเรื่องขึ้น ข้าไม่คิดว่าพวกเขาจะรู้หรอกว่าต้องทำอะไรต่อ ให้ข้าอธิบายเอง";
 			next;
 			mes "[Neat Etorr]";
-			mes "For now, we have acknowledged your race, and have been tolerant towards your activities.";
+			mes "สำหรับตอนนี้ พวกเรายอมรับในเผ่าพันธุ์ของคุณ และพยายามอดทนต่อกิจกรรมต่างๆ ของพวกคุณมาตลอด";
 			next;
 			mes "[Neat Etorr]";
-			mes "But we have recently started to suspect you of being the Laphine tribe's eyes and ears.";
+			mes "แต่พักหลังมานี้ เราเริ่มสงสัยว่าพวกคุณอาจจะเป็นหูเป็นตาให้กับพวก Laphine";
 			next;
 			mes "[Neat Etorr]";
-			mes "Not long ago, We have heard that you have found remains in an abandoned cave in the north, and have been conducting investigations and researches regarding it.";
+			mes "เมื่อไม่นานมานี้ เราได้ยินว่าคุณไปพบซากอารยธรรมในถ้ำร้างทางทิศเหนือ และกำลังดำเนินการสืบสวนวิจัยเกี่ยวกับมันอยู่";
 			next;
 			mes "[Neat Etorr]";
-			mes "We have captured a Laphine tribe priest during the last war, and we have heard that you have had contact with said captive.";
+			mes "พวกเราจับตัวนักบวชของเผ่า Laphine มาได้ในสงครามครั้งก่อน และเราได้ยินมาว่าคุณพยายามติดต่อกับเชลยคนนั้น";
 			next;
 			mes "[Neat Etorr]";
-			mes "That captive is the only reference for our tribe, so we have taken good care of her. She is related to your current investigation.";
+			mes "เชลยคนนั้นคือแหล่งข้อมูลเดียวของเผ่าเรา เราจึงดูแลนางเป็นอย่างดี และนางก็เกี่ยวข้องกับการสืบสวนของคุณในตอนนี้ด้วย";
 			next;
 			mes "[Neat Etorr]";
-			mes "For your people, who have no direct connections, it is not a place satisfy your curiosity. I hope that you stop your investigations, and mind your own business.";
+			mes "สำหรับคนของคุณที่ไม่มีความเกี่ยวข้องโดยตรง ที่นั่นไม่ใช่ที่สำหรับตอบสนองความอยากรู้อยากเห็น ข้าหวังว่าคุณจะหยุดการสืบสวน และเลิกยุ่งเรื่องคนอื่นเสีย";
 			next;
 			mes "[Neat Etorr]";
-			mes "If you don't accept our request, then do not expect any cooperations between our races in the future.";
+			mes "หากคุณไม่ยอมรับคำขอของเรา ก็อย่าหวังว่าจะได้รับความร่วมมือใดๆ ระหว่างเผ่าพันธุ์ในอนาคต";
 			next;
 			mes "[Neat Etorr]";
-			mes "Because of the war against the Laphine tribe, everything is a mess. But even then, we cannot allow a foreign race to interfere.";
+			mes "เพราะสงครามกับพวก Laphine ทำให้ทุกอย่างวุ่นวายไปหมด แต่ถึงอย่างนั้น เราก็ไม่ยอมให้คนนอกมาแทรกแซง";
 			next;
 			mes "[Neat Etorr]";
-			mes "You have heard it all, now please report back to your race.";
+			mes "คุณได้ยินครบหมดแล้ว ทีนี้ก็กลับไปรายงานคนของคุณซะ";
 			set ins_nyd,62;
 			close;
 		} else if (ins_nyd == 62) {
-			mes "That captive is the only reference for our tribe, so we have taken good care of her. She is related to your current investigation.";
+			mes "เชลยคนนั้นคือแหล่งข้อมูลเดียวของเผ่าเรา เราจึงดูแลนางเป็นอย่างดี และนางก็เกี่ยวข้องกับการสืบสวนของคุณในตอนนี้ด้วย";
 			next;
 			mes "[Neat Etorr]";
-			mes "For your people, who have no direct connections, it is not a place to satisfy your curiosity. I hope that you stop your investigations, and mind your own business.";
+			mes "สำหรับคนของคุณ ที่นั่นไม่ใช่ที่สำหรับตอบสนองความอยากรู้อยากเห็น ข้าหวังว่าคุณจะหยุดการสืบสวน และเลิกยุ่งเรื่องคนอื่นเสีย";
 			next;
 			mes "[Neat Etorr]";
-			mes "If you don't accept our request, then do not expect any cooperations between our races in the future.";
+			mes "หากคุณไม่ยอมรับคำขอของเรา ก็อย่าหวังว่าจะได้รับความร่วมมือใดๆ ระหว่างเผ่าพันธุ์ในอนาคต";
 			close;
 		} else if (ins_nyd == 72) {
-			mes "Recently, because you do not understand the current situations, you have done some things that I, as a leader, can't ignore any longer.";
+			mes "เพราะคุณไม่เข้าใจสถานการณ์ที่เป็นอยู่ คุณจึงได้ทำบางสิ่งที่ข้าไม่สามารถนิ่งเฉยได้อีกต่อไป";
 			next;
 			mes "[Neat Etorr]";
-			mes "I hope that your people will becareful of your actions on this land, and terminate any unnecessary interventions.";
+			mes "ข้าหวังว่าพวกคุณจะระมัดระวังการกระทำบนดินแดนนี้ และเลิกแทรกแซงเรื่องที่ไม่จำเป็น";
 			close;
 		} else if (ins_nyd == 82) {
-			mes "Do you need me for something, strange one?";
+			mes "คุณต้องการอะไรจากข้าล่ะ เจ้าคนแปลกหน้า?";
 			next;
-			select("Received invitation from the Sapha tribe to cooperate and investigate.");
+			select("มาเพื่อขอความร่วมมือในการสืบสวนร่วมกับเผ่า Sapha");
 			mes "[Neat Etorr]";
-			mes "Cooperate and investigate? What do you mean?";
-			next;
-			mes "[Neat Etorr]";
-			mes "It seems like you did not understand what I said. What are you thinking?";
-			next;
-			select("Please allow me to investigate the cave.");
-			mes "[Neat Etorr]";
-			mes "From what I can tell, you are disrespecting my request. Is this your intention, or your people's intention?";
-			next;
-			select("It's our intention.");
-			mes "[Neat Etorr]";
-			mes "Ah, it is not an easy decision. You frighten me.";
+			mes "ร่วมมือสืบสวนงั้นเหรอ? คุณหมายความว่ายังไง?";
 			next;
 			mes "[Neat Etorr]";
-			mes "But may I ask why you want to do this?";
+			mes "ดูเหมือนคุณจะไม่เข้าใจที่ข้าพูดไปก่อนหน้านี้นะ คุณคิดอะไรอยู่กันแน่?";
 			next;
-			select("Explain Professor Magnifier's theory.");
+			select("ได้โปรดอนุญาตให้ฉันเข้าไปสืบสวนในถ้ำเถอะ");
 			mes "[Neat Etorr]";
-			mes "It's surprising that you are able to obtain such results. We also have a similar theory.";
+			mes "เท่าที่ข้าเห็น คุณกำลังดูหมิ่นคำขอของข้า นี่คือความตั้งใจของคุณเอง หรือเป็นความตั้งใจของคนของคุณกันแน่?";
 			next;
+			select("มันคือความตั้งใจของเรา");
 			mes "[Neat Etorr]";
-			mes "At least we also think that we must use the Laphine prisoner to get information.";
-			next;
-			mes "[Neat Etorr]";
-			mes "This problem has been the root of our conflicts with the Laphine tribe. Of course, it may also be an opportunity to resolve them.";
+			mes "อา... มันไม่ใช่การตัดสินใจที่ง่ายเลยนะ คุณทำให้ข้าประหลาดใจจริงๆ";
 			next;
 			mes "[Neat Etorr]";
-			mes "Therefore, it's more of a reason to depend on our own powers. There is no room for you to interfere. Please give up.";
+			mes "แต่ข้าขอถามหน่อยว่าทำไมคุณถึงอยากทำแบบนี้?";
 			next;
-			select("Give up request, and ask Laphine tribe for help instead.");
+			select("อธิบายทฤษฎีของศาสตราจารย์ Magnifier");
+			mes "[Neat Etorr]";
+			mes "น่าประหลาดใจที่คุณได้ผลสรุปเช่นนั้น พวกเราเองก็มีทฤษฎีที่คล้ายกันอยู่";
+			next;
+			mes "[Neat Etorr]";
+			mes "อย่างน้อยเราก็คิดเหมือนกันว่าเราต้องใช้ข้อมูลจากเชลยชาว Laphine เพื่อหาเบาะแส";
+			next;
+			mes "[Neat Etorr]";
+			mes "ปัญหานี้คือรากเหง้าของความขัดแย้งระหว่างเรากับพวก Laphine และแน่นอนว่ามันอาจจะเป็นโอกาสในการคลี่คลายมันด้วย";
+			next;
+			mes "[Neat Etorr]";
+			mes "ด้วยเหตุนี้ มันจึงยิ่งเป็นเหตุผลที่เราต้องพึ่งพากำลังของตนเอง ไม่มีที่ว่างให้คุณเข้ามาแทรกแซงหรอก ได้โปรดยอมแพ้ซะเถอะ";
+			next;
+			select("ถอนคำขอ และจะไปขอความช่วยเหลือจากเผ่า Laphine แทน");
 			mes "[Manuk Field Elite Soldier]";
-			mes "You finally showed your true face. I knew you were a spy from the Laphine tribe!";
+			mes "ในที่สุดแกก็เผยธาตุแท้ออกมา ข้ากะแล้วว่าแกต้องเป็นสายลับจากพวก Laphine!";
 			next;
 			mes "[Neat Etorr]";
-			mes "Ah...you'd go as far as saying that. What good will it do for you, helping the Laphine tribe?";
+			mes "อา... คุณถึงขั้นพูดแบบนั้นเชียวเหรอ การช่วยพวก Laphine มันจะให้อะไรคุณได้?";
 			next;
 			mes "[Neat Etorr]";
-			mes "Those obnoxious dwarves offended our right of living, and are trying to get rid of us.";
+			mes "พวกภูตแคระที่น่ารังเกียจพวกนั้นรุกล้ำสิทธิการใช้ชีวิตของเรา และพยายามจะกำจัดพวกเราทิ้ง";
 			next;
 			mes "[Neat Etorr]";
-			mes "The reason we don't allow anyone to enter that site is because it's full of suspicions.";
+			mes "เหตุผลที่เราไม่ยอมให้ใครเข้าไปในสถานที่นั้น ก็เพราะมันเต็มไปด้วยเรื่องน่าสงสัย";
 			next;
 			mes "[Neat Etorr]";
-			mes "Alright, I'll approve of your request, and let you investigate the secret the Laphine tribe has hidden inside the cave.";
+			mes "ก็ได้ ข้าจะอนุมัติคำขอของคุณ และยอมให้คุณเข้าไปสืบสวนความลับที่พวก Laphine ซ่อนไว้ในถ้ำนั้น";
 			next;
 			mes "[Neat Etorr]";
-			mes "If you promise to share all of your research results and findings, we will accept your request.";
+			mes "หากคุณสัญญาว่าจะแบ่งปันผลการวิจัยและการค้นพบทั้งหมดให้เราทราบ เราจะยอมรับคำขอของคุณ";
 			next;
-			select("Of course.");
+			select("แน่นอน ฉันสัญญา");
 			mes "[Neat Etorr]";
-			mes "Alright, from now on, we will cooperate with you, and allow you to directly communicate with the Laphine prisoner.";
+			mes "ตกลง จากนี้ไปเราจะร่วมมือกับคุณ และอนุญาตให้คุณสื่อสารกับเชลยชาว Laphine ได้โดยตรง";
 			next;
 			mes "[Manuk Field Elite Soldier]";
-			mes "Commander...are you sure of this? We don't even know if they're friend or foe...";
+			mes "ท่านผู้บัญชาการ... ท่านแน่ใจแล้วเหรอครับ? เรายังไม่รู้เลยว่าพวกนี้เป็นมิตรหรือศัตรู...";
 			next;
 			mes "[Neat Etorr]";
-			mes "With just our powers, it's impossible to figure out what the Laphine is up to. I think the past has proven that.";
+			mes "ด้วยลำพังเพียงกำลังของเรา มันเป็นไปไม่ได้เลยที่จะรู้ว่าพวก Laphine กำลังวางแผนอะไรอยู่ ข้าคิดว่าที่ผ่านมามันพิสูจน์เรื่องนั้นได้ดี";
 			next;
 			mes "[Neat Etorr]";
-			mes "What they're doing right now could potentially lead us to a solution.";
+			mes "สิ่งที่พวกเขาทำอยู่ในตอนนี้อาจนำเราไปสู่ทางออกก็ได้";
 			next;
 			mes "[Neat Etorr]";
-			mes "Strange one, we hope our cooperation will be a good one. Now please go interrogate the Laphine prisoner.";
+			mes "เจ้าคนแปลกหน้า ข้าหวังว่าความร่วมมือของเราจะเป็นไปด้วยดี ทีนี้จงไปสอบถามข้อมูลจากเชลยชาว Laphine ซะ";
 			set ins_nyd,92;
 			close;
 		} else if ((ins_nyd == 92) || (ins_nyd == 102) || (ins_nyd == 112) || (ins_nyd == 200) || (ins_nyd == 201) || (ins_nyd == 202)) {
-			mes "Strange one, we hope our cooperation will be a good one. Now please go interrogate the Laphine prisoner.";
+			mes "เจ้าคนแปลกหน้า ข้าหวังว่าความร่วมมือของเราจะเป็นไปด้วยดี ทีนี้จงไปสอบถามข้อมูลจากเชลยชาว Laphine ซะ";
 			close;
 		} else if ((ins_nyd == 71) || (ins_nyd == 81) || (ins_nyd == 91) || (ins_nyd == 101) || (ins_nyd == 111) || (ins_nyd == 121) || (ins_nyd == 131)) {
-			mes "Outsider. Welcome to Manuk, the village of the Sapha. I am its representative, Neat Etorr.";
+			mes "คนนอก ยินดีต้อนรับสู่ Manuk หมู่บ้านของชาว Sapha ข้าคือตัวแทนของที่นี่ นีท เอตอร์";
 			next;
 			mes "[Neat Etorr]";
-			mes "We are just a small village, nothing special... but rest comfortably.";
+			mes "พวกเราเป็นเพียงหมู่บ้านเล็กๆ ไม่มีอะไรพิเศษ... แต่ขอให้พักผ่อนตามสบาย";
 			close;
 		} else if (ins_nyd == 203) {
-			mes "I was waiting for you. It's good that you're safe. Did you find anything?";
+			mes "ข้ารอคุณอยู่พอดี ดีแล้วที่คุณปลอดภัย แล้วคุณค้นพบอะไรบ้างไหม?";
 			next;
-			select("Explain the sudden leave of the Guardian.");
+			select("อธิบายเรื่องการจากไปอย่างกะทันหันของผู้พิทักษ์");
 			mes "[Neat Etorr]";
-			mes "So... that's the nest of the Guardian of the World Tree, the sacred grounds for the Laphine tribe.";
-			next;
-			mes "[Neat Etorr]";
-			mes "But because of the angry leave of the Guardian, his shadow is wreaking havoc on the World Tree?";
+			mes "อย่างนั้นเหรอ... ที่นั่นคือรังของผู้พิทักษ์ต้นไม้โลก สถานที่ศักดิ์สิทธิ์ของพวก Laphine สินะ";
 			next;
 			mes "[Neat Etorr]";
-			mes "If what you're saying is true, then there is no more reason for us to continue fighting the Laphine tribe...";
+			mes "แต่เพราะความโกรธแค้นจากการจากไปของผู้พิทักษ์ ทำให้เงาของเขาอาละวาดทำลายต้นไม้โลกงั้นเหรอ?";
 			next;
 			mes "[Neat Etorr]";
-			mes "What a huge discovery... So Nidhoggur is no longer the Guardian of the World Tree...?";
+			mes "หากสิ่งที่คุณพูดเป็นความจริง ก็ไม่มีเหตุผลใดที่พวกเราจะต้องสู้รบกับเผ่า Laphine อีกต่อไป...";
 			next;
 			mes "[Neat Etorr]";
-			mes "Nidhoggur's Shadow came to exist in this world, and harmed the roots of the World Tree... what a disaster.";
-			next;
-			select("Pass along the World Tree Yggdrasil's message.");
-			mes "[Neat Etorr]";
-			mes "Is that what the priest of the Guardian said?";
+			mes "การค้นพบที่ยิ่งใหญ่อะไรเช่นนี้... สรุปว่า Nidhoggur ไม่ได้ทำหน้าที่เป็นผู้พิทักษ์ต้นไม้โลกอีกต่อไปแล้วอย่างนั้นหรือ...?";
 			next;
 			mes "[Neat Etorr]";
-			mes "From now on, we need to talk about this with the Laphine tribe.";
+			mes "เงาของ Nidhoggur ถือกำเนิดขึ้นในโลกนี้ และทำลายรากของต้นไม้โลก... ช่างเป็นหายนะจริงๆ";
+			next;
+			select("ส่งต่อข้อความจากต้นไม้โลก Yggdrasil");
+			mes "[Neat Etorr]";
+			mes "นั่นคือสิ่งที่นักบวชของผู้พิทักษ์กล่าวไว้อย่างนั้นหรือ?";
 			next;
 			mes "[Neat Etorr]";
-			mes "But of course...we don't know if they're reasonable enough...hehe.";
+			mes "จากนี้ไป เราจำเป็นต้องพูดคุยเรื่องนี้กับเผ่า Laphine";
 			next;
 			mes "[Neat Etorr]";
-			mes "This is all we needed from you...What is left is business between us and the Laphine tribe.";
+			mes "แต่ก็นะ... เราไม่รู้ว่าพวกนั้นจะมีเหตุผลพอไหม... หึหึ";
 			next;
 			mes "[Neat Etorr]";
-			mes "Thank you for helping us with such a huge problem. You may forget about it now.";
+			mes "นี่คือทั้งหมดที่เราต้องการจากคุณ... ที่เหลือเป็นเรื่องระหว่างเรากับเผ่า Laphine";
 			next;
 			mes "[Neat Etorr]";
-			mes "It's not a lot, but please this as a token of our appreciation.";
+			mes "ขอบคุณที่ช่วยพวกเราแก้ปัญหามหาศาลนี้ ตอนนี้คุณลืมเรื่องนี้ไปได้เลย";
+			next;
+			mes "[Neat Etorr]";
+			mes "มันอาจจะไม่มากนัก แต่โปรดรับสิ่งนี้ไว้เป็นเครื่องหมายแห่งความขอบคุณจากเรา";
 			if (checkre(3))
 				getexp 1500000,350000;
 			else
@@ -1281,171 +1293,176 @@ man_in01,311,57,3	script	Neat Etorr#edq	453,3,3,{
 			set ins_nyd,132;
 			close;
 		} else if (ins_nyd == 132) {
-			mes "Strange one, thank you for helping us in the time of need. I will never forget your kindness.";
+			mes "เจ้าคนแปลกหน้า ขอบคุณที่ช่วยเหลือเราในยามคับขัน ข้าจะไม่ลืมความมีน้ำใจของคุณเลย";
 			close;
 		} else {
-			mes "Outsider. Welcome to the Manuk village of Sapha. I am its representative, Neat Etorr.";
+			mes "คนนอก ยินดีต้อนรับสู่ Manuk หมู่บ้านของชาว Sapha ข้าคือนีท เอตอร์ ตัวแทนของที่นี่";
 			next;
 			mes "[Neat Etorr]";
-			mes "We are just a small village, nothing special... but rest comfortably.";
+			mes "พวกเราเป็นเพียงหมู่บ้านเล็กๆ ไม่มีอะไรพิเศษ... แต่ขอให้พักผ่อนตามสบาย";
 			close;
 		}
 	} else {
+		// ภาษาเผ่า Sapha เมื่อไม่ใส่แหวน
 		mes "Tkeh likek Ohek QekhlHkl PkedlioH.";
 		close;
 	}
 }
 
+// ทหารยามคนที่ 1
 man_in01,286,61,5	script	Manuk Guard#1_edq	450,1,1,{
 	mes "[Manuk Guard]";
-	if (isequipped(2782) == 1) mes "I'm guarding this Laphine prisoner. Leave me alone.";
+	// ตรวจสอบการสวมใส่ Ring of the Wise King
+	if (isequipped(2782) == 1) mes "ข้ากำลังเฝ้านักโทษชาว Laphine คนนี้อยู่ อย่ามากวนใจข้า";
 	else mes "Klekod Oi Thekd Pheid Okei.";
 	close;
 }
 
+// ทหารยามคนที่ 2
 man_in01,295,61,3	script	Manuk Guard#2_edq	450,1,1,{
 	mes "[Manuk Guard]";
-	if (isequipped(2782) == 1) mes "I'm guarding this Laphine prisoner. Leave me alone.";
+	if (isequipped(2782) == 1) mes "ข้ากำลังเฝ้านักโทษชาว Laphine คนนี้อยู่ อย่ามากวนใจข้า";
 	else mes "Liek QUekdk Ohei Vue.";
 	close;
 }
 
 man_in01,291,62,3	script	Laphine Prisoner#edq	437,3,3,{
 	mes "[Laphine Prisoner]";
+	// ตรวจสอบการสวมใส่ Ring of the Wise King
 	if (isequipped(2782) == 1) {
 		if (ins_nyd == 5) {
-			mes "You... are not of the Sapha tribe... Are you... an outsider?";
+			mes "คุณ... ไม่ใช่คนของเผ่า Sapha นี่... คุณเป็น... คนนอกอย่างนั้นเหรอ?";
 			next;
 			mes "[Laphine Prisoner]";
-			mes "Have you ever come in contact with the Laphine tribe? Have you ever been to Splendide?";
+			mes "คุณเคยติดต่อกับเผ่า Laphine บ้างไหม? เคยไปที่เมือง Splendide หรือเปล่า?";
 			next;
 			mes "[Laphine Prisoner]";
-			mes "Please, talk to my people in Splendide. They will come to help me.";
+			mes "ได้โปรดเถอะ ไปคุยกับคนของฉันที่ Splendide ที พวกเขาจะได้มาช่วยฉันออกไป";
 			next;
-			switch(select("What happened to you?:What's in the cave to the north?:Tell me about your tribe.:I will leave you alone.")) {
+			switch(select("เกิดอะไรขึ้นกับคุณ?:ในถ้ำทางทิศเหนือมีอะไร?:เล่าเรื่องเผ่าของคุณให้ฟังหน่อย:ปล่อยให้เธออยู่คนเดียว")) {
 			case 1:
 				mes "[Laphine Prisoner]";
-				mes "During out last battle with the Sapha tribe... they caught me and took me prisoner.";
+				mes "ระหว่างการต่อสู้ครั้งล่าสุดกับพวก Sapha... พวกมันจับตัวฉันได้และพามาคุมขังไว้ที่นี่";
 				next;
 				mes "[Laphine Prisoner]";
-				mes "The Sapha tribe attacked first. They are destroying the World Tree.";
+				mes "พวก Sapha เป็นฝ่ายโจมตีก่อน พวกมันกำลังทำลายต้นไม้โลก";
 				next;
 				mes "[Laphine Prisoner]";
-				mes "That's why the war started. But I don't want to fight with the Sapha tribe anymore...";
+				mes "นั่นคือสาเหตุที่สงครามเริ่มขึ้น แต่ฉันไม่อยากจะสู้กับพวก Sapha อีกต่อไปแล้ว...";
 				next;
 				mes "[Laphine Prisoner]";
-				mes "If it wasn't for that... I wouldn't survive here...";
+				mes "ถ้าไม่ใช่เพราะเรื่องนั้น... ฉันคงไม่ยอมทนอยู่ที่นี่หรอก...";
 				next;
 				mes "[Laphine Prisoner]";
-				mes "Please. Bring this news to all of Splendide. Send someone to save me... or they might kill me.";
+				mes "ได้โปรด นำข่าวนี้ไปบอกที่ Splendide ด้วย ส่งคนมาช่วยฉันที... ไม่อย่างนั้นพวกมันอาจจะฆ่าฉันก็ได้";
 				close;
 			case 2:
 				mes "[Laphine Prisoner]";
-				mes "There is...";
+				mes "ที่นั่นมี...";
 				next;
 				mes "[Laphine Prisoner]";
-				mes "No... I can't tell you... It's the secret of our tribe...";
+				mes "ไม่... ฉันบอกคุณไม่ได้... มันเป็นความลับของเผ่าพันธุ์เรา...";
 				next;
 				mes "[Laphine Prisoner]";
-				mes "I just want to say this...if the Sapha tribe intrude that place, we will never forgive them!";
+				mes "ฉันบอกได้เพียงแค่ว่า... ถ้าพวก Sapha บุกรุกเข้าไปในสถานที่แห่งนั้น พวกเราจะไม่มีวันให้อภัยพวกมันเด็ดขาด!";
 				set ins_nyd,52;
 				close;
 			case 3:
 				mes "[Laphine Prisoner]";
-				mes "The Laphines have protected the Yggdrasil World Tree for generations.";
+				mes "ชาว Laphine ปกป้องต้นไม้โลก Yggdrasil มาหลายชั่วอายุคนแล้ว";
 				next;
 				mes "[Laphine Prisoner]";
-				mes "We live in a... different time, different land... we came for an expedition.";
+				mes "พวกเราอยู่ใน... ช่วงเวลาที่ต่างออกไป ดินแดนที่ต่างออกไป... พวกเรามาที่นี่เพื่อการสำรวจ";
 				next;
 				mes "[Laphine Prisoner]";
-				mes "After we received reports from our spy about the World Tree's strange symptoms, we recgnized the Manuk's existence.";
+				mes "หลังจากได้รับรายงานจากสายลับเรื่องอาการผิดปกติของต้นไม้โลก เราจึงได้พบการมีอยู่ของพวก Manuk (Sapha)";
 				next;
 				mes "[Laphine Prisoner]";
-				mes "They are mining metal, and in so doing, destroying the World Tree's roots...";
+				mes "พวกนั้นขุดหาแร่ และการทำแบบนั้นมันทำลายรากของต้นไม้โลก...";
 				next;
 				mes "[Laphine Prisoner]";
-				mes "So we dispatched an expedition here. Soonafter, the war with the Sapha began...";
+				mes "เราจึงส่งกองกำลังสำรวจมาที่นี่ และหลังจากนั้นไม่นาน สงครามกับพวก Sapha ก็เริ่มขึ้น...";
 				close;
 			case 4:
 				close;
 			}
 		} else if (ins_nyd == 92) {
-			mes "The sapha tribe went as far as cooperating with an unknown race?";
+			mes "พวก Sapha ถึงกับยอมร่วมมือกับเผ่าพันธุ์ที่ไม่รู้จักเลยงั้นเหรอ?";
 			next;
 			mes "[Laphine Prisoner]";
-			mes "What is your purpose? Why do you want to know what that place is?";
+			mes "เป้าหมายของคุณคืออะไร? ทำไมคุณถึงอยากรู้ว่าสถานที่แห่งนั้นคืออะไรกันแน่?";
 			next;
 			mes "[Laphine Prisoner]";
-			mes "lright...it's as you have assumed, a place connecting to the World Tree. It's also the Guardian's Nest.";
+			mes "ก็ได้... เป็นอย่างที่คุณสันนิษฐานไว้ ที่นั่นคือสถานที่เชื่อมต่อกับต้นไม้โลก และยังเป็น Guardian's Nest (รังของผู้พิทักษ์) อีกด้วย";
 			next;
-			select("Guardian's Nest?");
+			select("รังของผู้พิทักษ์?");
 			mes "[Laphine Prisoner]";
-			mes "Yes, that's the nest of Nidhoggur, the Guardian of the World Tree...";
-			next;
-			mes "[Laphine Prisoner]";
-			mes "Only a marked guardian's servant from the Laphine tribe is allowed to enter.";
+			mes "ใช่ ที่นั่นคือรังของ Nidhoggur ผู้พิทักษ์แห่งต้นไม้โลก...";
 			next;
 			mes "[Laphine Prisoner]";
-			mes "That place was initially closed off from the public, but then the giants of the Sapha tribe turned things around...";
+			mes "มีเพียงผู้รับใช้ที่มีตราประทับจากเผ่า Laphine เท่านั้นที่ได้รับอนุญาตให้เข้าไปได้";
 			next;
 			mes "[Laphine Prisoner]";
-			mes "To obtain more minerals, they started to dig with madness.";
+			mes "เดิมทีสถานที่นั้นถูกปิดตายจากโลกภายนอก จนกระทั่งพวกยักษ์เผ่า Sapha เข้ามาทำให้ทุกอย่างเปลี่ยนไป...";
 			next;
 			mes "[Laphine Prisoner]";
-			mes "In the end, they have harmed a part of the World Tree's root that lies very close to their mine, and thus, the World Tree became very ill.";
+			mes "เพื่อที่จะขุดหาแร่ธาตุเพิ่ม พวกมันเริ่มขุดเจาะพื้นดินอย่างบ้าคลั่ง";
 			next;
 			mes "[Laphine Prisoner]";
-			mes "After we have arrived here knowing the facts, the World Tree was already in a very bad state due to the many factories built by the Sapha tribe.";
+			mes "ในที่สุด พวกมันก็ทำลายส่วนหนึ่งของรากต้นไม้โลกที่อยู่ใกล้กับเหมืองของพวกมันมากเกินไป ทำให้ต้นไม้โลกเริ่มเจ็บป่วยอย่างหนัก";
 			next;
 			mes "[Laphine Prisoner]";
-			mes "Even though, for a long time, we have been attacking the Sapha tribe, trying to force them to leave, they are not so easily defeated, leading to this stalemate.";
+			mes "กว่าพวกเราจะมาถึงและรู้ความจริง ต้นไม้โลกก็อยู่ในสภาพที่แย่มากแล้ว เนื่องมาจากโรงงานจำนวนมากที่เผ่า Sapha สร้างขึ้น";
 			next;
 			mes "[Laphine Prisoner]";
-			mes "During this time, your people have travelled through the space-time gap to this land.";
+			mes "แม้ว่าพวกเราจะพยายามโจมตีพวก Sapha เพื่อบีบให้พวกมันออกไปเป็นเวลานาน แต่พวกนั้นก็ไม่ยอมแพ้ง่ายๆ จนทำให้สถานการณ์ยืดเยื้อมาจนถึงตอนนี้";
 			next;
 			mes "[Laphine Prisoner]";
-			mes "Because of those many unexpected reasons, the Guardian's nest, which was meant to stay hidden deep underground, has been discovered by your race...";
+			mes "และในช่วงเวลานี้เอง เผ่าพันธุ์ของคุณก็ได้เดินทางผ่านรอยแยกกาลเวลามายังดินแดนแห่งนี้";
 			next;
 			mes "[Laphine Prisoner]";
-			mes "Now you understand how serious this situation is. Because of the Sapha tribe, we are no longer able to approach the Guardian, and seek his teachings of wisdom.";
+			mes "เพราะเหตุผลที่ไม่คาดคิดหลายอย่าง รังของผู้พิทักษ์ที่ควรจะถูกซ่อนอยู่ลึกใต้พื้นดิน กลับถูกเผ่าพันธุ์ของคุณค้นพบเข้า...";
 			next;
 			mes "[Laphine Prisoner]";
-			mes "Hmph...even if I don't cooperate, I know you will find other means to get in...";
+			mes "ตอนนี้คุณคงเข้าใจความรุนแรงของสถานการณ์แล้ว เพราะพวก Sapha ทำให้พวกเราไม่สามารถเข้าใกล้ผู้พิทักษ์เพื่อขอคำชี้แนะจากท่านได้อีก";
 			next;
 			mes "[Laphine Prisoner]";
-			mes "Looking at the current situation of the Laphine tribe, we do not have enough power to surround the Manuk fields, and chase the giants away.";
+			mes "หึ... ต่อให้ฉันไม่ให้ความร่วมมือ ฉันก็รู้ว่าคุณคงจะหาวิธีอื่นเข้าไปจนได้ล่ะสิ...";
 			next;
 			mes "[Laphine Prisoner]";
-			mes "Okay, if it has already become like this, I will help you. There are no dead-ends. If you keep going, you will find a solution.";
+			mes "เมื่อดูจากสถานการณ์ปัจจุบันของชาว Laphine แล้ว พวกเราไม่มีกำลังพอที่จะโอบล้อมพื้นที่ Manuk และขับไล่พวกยักษ์ออกไปได้";
 			next;
 			mes "[Laphine Prisoner]";
-			mes "Even if I don't say anything, my situation will not change.";
+			mes "ก็ได้ ในเมื่อมันกลายเป็นแบบนี้แล้ว ฉันจะช่วยคุณเอง มันไม่มีทางตันหรอก ถ้าคุณพยายามต่อไป คุณจะพบทางแก้ไขแน่นอน";
 			next;
 			mes "[Laphine Prisoner]";
-			mes "I have already told you everything you wanted to hear. If you have any other requests, please let me know.";
+			mes "ต่อให้ฉันไม่พูดอะไร สถานการณ์ของฉันมันก็ไม่เปลี่ยนไปจากเดิมหรอก";
+			next;
+			mes "[Laphine Prisoner]";
+			mes "ฉันบอกทุกอย่างที่คุณอยากได้ยินไปหมดแล้ว หากคุณมีคำขออื่นใดอีก โปรดแจ้งให้ฉันทราบ";
 			set ins_nyd,102;
 			close;
 		} else if (ins_nyd == 102) {
-			mes "Ah, you said that there is a strange power blocking the entrance to the Guardian's nest, right?";
+			mes "อา คุณบอกว่ามีพลังงานประหลาดขวางทางเข้าสู่รังของผู้พิทักษ์อยู่ใช่ไหม?";
 			next;
 			mes "[Laphine Prisoner]";
-			mes "That's because only the ones chosen by the Guardian may enter.";
+			mes "นั่นเป็นเพราะมีเพียงผู้ที่ถูกเลือกโดยผู้พิทักษ์เท่านั้นที่จะเข้าไปได้";
 			next;
 			mes "[Laphine Prisoner]";
-			mes "We have been the Guardian's servants for generations, and have been protecting the World Tree ever since.";
+			mes "พวกเราเป็นผู้รับใช้ของผู้พิทักษ์มาหลายชั่วอายุคน และคอยปกป้องต้นไม้โลกมาโดยตลอด";
 			next;
 			mes "[Laphine Prisoner]";
-			mes "Before we were captured and brought here, there were 3 servants including me. Our task was to heal the World Tree.";
+			mes "ก่อนที่เราจะถูกจับมาที่นี่ มีผู้รับใช้ทั้งหมด 3 คนรวมถึงฉัน หน้าที่ของพวกเราคือการเยียวยาต้นไม้โลก";
 			next;
 			mes "[Laphine Prisoner]";
-			mes "One was killed in our last war with the Sapha tribe...and I have been taken captive.";
+			mes "คนหนึ่งถูกฆ่าตายในสงครามครั้งล่าสุดกับพวก Sapha... และฉันก็ถูกจับมาเป็นเชลย";
 			next;
 			mes "[Laphine Prisoner]";
-			mes "I will give you my proof. Don't worry, I'm just temporarily marking you as a guardian's servant.";
+			mes "ฉันจะมอบเครื่องหมายยืนยันให้คุณ ไม่ต้องห่วงนะ ฉันแค่ทำเครื่องหมายให้คุณเป็นผู้รับใช้ของผู้พิทักษ์ชั่วคราวเท่านั้น";
 			specialeffect2 EF_HOLYHIT;
 			next;
 			mes "[Laphine Prisoner]";
-			mes "Also, remember this spell, it's needed to open the gate of the Guardian.";
+			mes "และจงจำบทสวดนี้ไว้ เพราะมันจำเป็นต้องใช้ในการเปิดประตูของผู้พิทักษ์";
 			next;
 			mes "[Laphine Prisoner]";
 			mes "AnomarDu Ha OdesUdenVer Ie ";
@@ -1457,60 +1474,64 @@ man_in01,291,62,3	script	Laphine Prisoner#edq	437,3,3,{
 			mes "TalsehrDur So CyaReMush Di DielAlaWos Ie RuffserIman Ie ";
 			next;
 			mes "[Laphine Prisoner]";
-			mes "Go find the fairy guarding the gate, and say this spell.";
+			mes "จงไปหาแฟรี่ที่เฝ้าประตูอยู่ แล้วกล่าวบทสวดนี้ออกมา";
 			next;
 			mes "[Laphine Prisoner]";
-			mes "he proof and the spell will confirm that you are one of the Guardian's servants.";
+			mes "เครื่องหมายและบทสวดนี้จะเป็นตัวยืนยันว่าคุณคือหนึ่งในผู้รับใช้ของผู้พิทักษ์";
 			next;
 			mes "[Laphine Prisoner]";
-			mes "Please meet the Guardian, and come back with an answer to everything. And tell the answer to...";
+			mes "ได้โปรดไปพบผู้พิทักษ์ และกลับมาพร้อมคำตอบของทุกอย่าง และนำคำตอบไปบอกกับ...";
 			set ins_nyd,112;
 			close;
 		} else if ((ins_nyd == 71) || (ins_nyd == 81) || (ins_nyd == 91) || (ins_nyd == 101) || (ins_nyd == 111) || (ins_nyd == 121) || (ins_nyd == 131)) {
 			mes "... ...";
 			next;
 			mes "[Manuk Guard]";
-			mes "Hey, outsider! Step away from the prisoner!";
+			mes "เฮ้ คนนอก! ถอยออกมาจากนักโทษเดี๋ยวนี้!";
 			close;
 		} else if (ins_nyd == 112) {
-			mes "Please meet the Guardian, and come back with an answer to everything. And tell the answer to...";
+			mes "ได้โปรดไปพบผู้พิทักษ์ และกลับมาพร้อมคำตอบของทุกอย่าง และนำคำตอบไปบอกกับ...";
 			close;
 		} else if (ins_nyd == 132) {
-			mes "Yes...I heard your conversation with the Sapha tribe...";
+			mes "ใช่... ฉันได้ยินที่คุณคุยกับพวก Sapha แล้ว...";
 			next;
 			mes "[Laphine Prisoner]";
-			mes "If our tribe were to really trust in the Sapha tribe...I don't know.";
+			mes "ถ้าคนของฉันจะหันมาไว้ใจพวก Sapha จริงๆ ล่ะก็... ฉันก็ไม่รู้สิ";
 			next;
 			mes "[Laphine Prisoner]";
-			mes "Our hatred towards them has already reached an abnormal level...";
+			mes "ความเกลียดชังที่พวกเรามีต่อพวกนั้นมันพุ่งสูงเกินกว่าระดับปกติไปแล้ว...";
 			next;
 			mes "[Laphine Prisoner]";
-			mes "Those giants...can they really be trusted?";
+			mes "ยักษ์พวกนั้น... จะไว้ใจได้จริงๆ งั้นเหรอ?";
 			next;
 			mes "[Laphine Prisoner]";
-			mes "It's...it's better if you don't believe the one called Etorr...the minds of the Sapha tribe is unpredictable.";
+			mes "มัน... มันจะดีกว่าถ้าคุณไม่เชื่อคนที่ชื่อ Etorr นั่น... จิตใจของพวก Sapha น่ะคาดเดาไม่ได้หรอก";
 			close;
 		} else {
 			mes "... ...";
 			next;
 			mes "[Manuk Guard]";
-			mes "Hey, outsider! Step away from the prisoner!";
+			mes "เฮ้ คนนอก! ถอยออกมาจากนักโทษเดี๋ยวนี้!";
 			close;
 		}
 	} else {
+		// ภาษาเผ่า Laphine เมื่อไม่ใส่แหวน
 		mes "AmanVilShar Ie DorLuShar Mu Re";
 		close;
 	}
 }
 
+// ระบบดักจับเพื่อนำตัวผู้เล่นไปพบ Neat Etorr
 man_in01,282,42,0	script	trap#edq2	-1,10,10,{
 OnTouch_:
+	// ตรวจสอบว่าใส่แหวนแปลภาษา และอยู่ในขั้นตอนเควสต์ที่ต้องพบผู้นำหรือไม่
 	if ((isequipped(2782) == 1) && (ins_nyd == 52)) {
 		mes "[Manuk Field Elite Soldier]";
-		mes "This is Neat Etorr's order. Please come with us to see him.";
+		mes "นี่คือคำสั่งของท่าน Neat Etorr โปรดตามพวกเราไปพบท่านด้วยครับ";
 		next;
 		mes "[Manuk Field Elite Soldier]";
-		mes "Bring him to Neat Etorr. All soldiers be prepared.";
+		mes "นำตัวเขาไปหาท่าน Neat Etorr ทหารทุกนาย เตรียมพร้อม!";
+		// วาร์ปผู้เล่นไปยืนหน้าผู้นำเผ่า Sapha
 		warp "man_in01",311,54;
 		close;
 	}
@@ -1521,153 +1542,153 @@ OnTouch_:
 //============================================================
 1@nyd,213,277,5	script	Murdered Yggdrasilid#1F	437,5,5,{
 	if ('ins_nyd2 == 0) {
-		mes "When a faint light enters your heart, a voice sounds in your head.";
+		mes "เมื่อแสงสว่างอันริบหรี่สัมผัสถึงหัวใจของคุณ เสียงหนึ่งก็ดังขึ้นในหัว...";
 		next;
-		mes "[World Tree World Tree Yggdrasil]";
-		mes "It's all over... servants of the Guardian... Hurry up and leave this place.";
+		mes "[World Tree Yggdrasil]";
+		mes "ทุกอย่างมันจบสิ้นแล้ว... ผู้รับใช้แห่งผู้พิทักษ์... รีบหนีไปจากที่นี่ซะ";
 		next;
 		while(1) {
-			switch(select("Who are you?:What do you mean?")) {
+			switch(select("คุณคือใคร?:คุณหมายความว่ายังไง?")) {
 			case 1:
-				mes "[World Tree World Tree Yggdrasil]";
-				mes "I... I am the World Tree Yggdrasil, servant of the Guardian of Nidhoggur, as well as the High Priest leading the Laphine Tribe.";
+				mes "[World Tree Yggdrasil]";
+				mes "ข้า... ข้าคือต้นไม้โลก Yggdrasil ผู้รับใช้ของผู้พิทักษ์ Nidhoggur และยังเป็นมหาปุโรหิตผู้นำของเหล่าชาว Laphine ด้วย";
 				next;
-				mes "[World Tree World Tree Yggdrasil]";
-				mes "So you're not priestess of the Laphine Tribe... How did you get in? No, there's no time to answer that.";
+				mes "[World Tree Yggdrasil]";
+				mes "ดูเหมือนคุณจะไม่ใช่นักบวชหญิงของเผ่า Laphine... คุณเข้ามาที่นี่ได้อย่างไรกัน? ไม่สิ... ไม่มีเวลามานั่งตอบเรื่องนั้นแล้ว";
 				next;
-				mes "[World Tree World Tree Yggdrasil]";
-				mes "Hurry... and leave... leave this place before it's too late.";
+				mes "[World Tree Yggdrasil]";
+				mes "เร็วเข้า... รีบไปซะ... ออกไปจากที่นี่ก่อนที่มันจะสายเกินไป";
 				next;
 				break;
 			case 2:
-				mes "[World Tree World Tree Yggdrasil]";
-				mes "The guardian... something's wrong with the guardian. I don't know what made him like this.";
-				next;
-				mes "[World Tree World Tree Yggdrasil]";
-				mes "This... this is no longer the nest of the Guardian of the World Tree Yggdrasil.";
+				mes "[World Tree Yggdrasil]";
+				mes "ผู้พิทักษ์... มีบางอย่างผิดปกติเกิดขึ้นกับผู้พิทักษ์ ข้าไม่รู้เลยว่าอะไรที่ทำให้ท่านกลายเป็นแบบนี้";
 				next;
 				mes "[World Tree Yggdrasil]";
-				mes "Darkness took over the Guardian and destroyed all living things... now this place has become the cursed home of monsters.";
+				mes "ที่นี่... ที่นี่ไม่ใช่รังของผู้พิทักษ์แห่งต้นไม้โลก Yggdrasil อีกต่อไปแล้ว";
 				next;
 				mes "[World Tree Yggdrasil]";
-				mes "Now the vile Nidhoggur's Shadow is wreaking havoc here...";
+				mes "ความมืดมิดเข้าครอบงำผู้พิทักษ์และทำลายล้างทุกชีวิต... ตอนนี้สถานที่แห่งนี้ได้กลายเป็นบ้านที่ถูกสาปของเหล่ามอนสเตอร์ไปแล้ว";
 				next;
 				mes "[World Tree Yggdrasil]";
-				mes "Now's not too late, hurry and get out... tell the Laphine Tribe about this... tell the commanders of Alfheim...";
+				mes "ตอนนี้ Nidhoggur's Shadow (เงาของนิดฮอกเกอร์) อันชั่วร้ายกำลังสร้างความหายนะอยู่ที่นี่...";
 				next;
 				mes "[World Tree Yggdrasil]";
-				mes "My soul... it has been trapped here. You're the only ones I can trust now.";
+				mes "ตอนนี้ยังไม่สายเกินไป รีบออกไปซะ... นำเรื่องนี้ไปบอกเผ่า Laphine... แจ้งผู้บัญชาการแห่ง Alfheim...";
+				next;
+				mes "[World Tree Yggdrasil]";
+				mes "วิญญาณของข้า... ถูกจองจำอยู่ที่นี่ คุณคือคนเดียวที่ข้าสามารถเชื่อใจได้ในตอนนี้";
 				next;
 				set .@exit,1;
 			}
 			if (.@exit) break;
 		}
-		select("Nidhoggur's Shadow?");
+		select("เงาของ Nidhoggur งั้นเหรอ?");
 		mes "[World Tree Yggdrasil]";
-		mes "The Guardian Nidhoggur... he's not in the nest.";
+		mes "ผู้พิทักษ์ Nidhoggur... ท่านไม่อยู่ในรังแล้ว";
 		next;
 		mes "[World Tree Yggdrasil]";
-		mes "He...for some reason abandoned his own shadow, and left.";
+		mes "ท่าน... ได้ละทิ้งเงาของตนเองและจากไป ด้วยเหตุผลบางประการ";
 		next;
 		mes "[World Tree Yggdrasil]";
-		mes "All that's left, is the ugly Shadow of the Guardian of Nidhoggur...the Shadow that is going mad.";
+		mes "สิ่งที่เหลืออยู่ มีเพียง 'เงา' อันอัปลักษณ์ของผู้พิทักษ์ Nidhoggur... เงาที่กำลังคลุ้มคลั่ง";
 		next;
 		mes "[World Tree Yggdrasil]";
-		mes "The Shadow sucked all the nutrients from the World Tree Yggdrasil, and has gone mad when there is nothing more left to obtain. Now, he wants this land.";
+		mes "เงาตนนั้นได้สูบกินสารอาหารทั้งหมดไปจากต้นไม้โลก Yggdrasil และเริ่มบ้าคลั่งเมื่อไม่มีอะไรให้มันสูบกินได้อีก ตอนนี้... มันต้องการดินแดนแห่งนี้";
 		next;
 		mes "[World Tree Yggdrasil]";
-		mes "Once the ugly Shadow leaves here to steal power from the other World Yggdrasil Trees, there will be great destruction. This world will become hell.";
+		mes "เมื่อใดที่เงาอันอัปลักษณ์นี้หนีออกไปเพื่อขโมยพลังจากต้นไม้โลกต้นอื่นๆ จะเกิดการทำลายล้างครั้งยิ่งใหญ่ และโลกนี้จะกลายเป็นขุมนรก";
 		next;
 		mes "[World Tree Yggdrasil]";
-		mes "You must... tell the commanders of Alfheim about this, and come up with a plan. Only them...";
+		mes "คุณต้อง... บอกเรื่องนี้แก่ผู้บัญชาการแห่ง Alfheim เพื่อหาทางรับมือ มีเพียงพวกเขาเท่านั้น...";
 		next;
-		select("Is there nothing else we can do?");
+		select("ไม่มีอะไรที่เราพอจะทำได้เลยเหรอ?");
 		mes "[World Tree Yggdrasil]";
-		mes "With our current powers...it is impossible to defeat the Guardian.";
-		next;
-		mes "[World Tree Yggdrasil]";
-		mes "But the one going mad is not the Guardian, but his dark Shadow...maybe we can trap him here...";
+		mes "ด้วยพลังของพวกเราในตอนนี้... มันเป็นไปไม่ได้เลยที่จะพิชิตผู้พิทักษ์ได้";
 		next;
 		mes "[World Tree Yggdrasil]";
-		mes "Are you willing to accept this mission? Even if it means to pay with your life?";
+		mes "แต่สิ่งที่กำลังคลุ้มคลั่งอยู่ไม่ใช่ตัวผู้พิทักษ์ แต่เป็น 'เงา' อันมืดมิดของเขา... บางทีเราอาจจะกักขังมันไว้ที่นี่ได้...";
 		next;
-		if(select("Leave it to us.:We can't do it.") == 2)
+		mes "[World Tree Yggdrasil]";
+		mes "คุณเต็มใจจะรับภารกิจนี้ไหม? แม้ว่ามันอาจจะต้องแลกด้วยชีวิตของคุณก็ตาม?";
+		next;
+		if(select("ปล่อยให้เป็นหน้าที่ของเราเอง:พวกเราทำไม่ไหวหรอก") == 2)
 			close;
 		mes "[World Tree Yggdrasil]";
-		mes "I thank you deeply for your decision. I will use what is left of my powers to open up the path towards the Guardian's Nest.";
+		mes "ข้าขอบใจในการตัดสินใจของคุณอย่างสุดซึ้ง ข้าจะใช้พลังที่เหลืออยู่ทั้งหมดเพื่อเปิดเส้นทางสู่รังของผู้พิทักษ์";
 		next;
 		mes "[World Tree Yggdrasil]";
 		if (is_party_leader() == true) {
-			mes "The path to the Guardian's Nest is just past the waterfall by the large World Tree Yggdrasil to the North. The defensive mechanisms of the Sanctuary will start immediately.";
+			mes "เส้นทางสู่รังของผู้พิทักษ์อยู่เลยน้ำตกข้างต้นไม้โลกยักษ์ทางทิศเหนือไป ระบบป้องกันของศาสนสถานจะเริ่มทำงานในทันที";
 			next;
 			mes "[World Tree Yggdrasil]";
-			mes "Defeat all of Nidhoggur's guardians and go through the waterfall into the nest... and stop Nidhoggur's Shadow there.";
+			mes "จงกำจัดเหล่าองครักษ์ของผู้พิทักษ์ทั้งหมด แล้วผ่านน้ำตกเข้าไปในรัง... และหยุดยั้ง 'เงาของ Nidhoggur' ที่นั่นซะ";
 			next;
 			mes "[World Tree Yggdrasil]";
-			mes "The gate will open soon. Go defeat all of the guardians... you must kill them all in 30 minutes before the gate opens...";
+			mes "ประตูจะเปิดออกในไม่ช้า จงไปกำจัดองครักษ์ทั้งหมด... คุณต้องกำจัดพวกมันให้หมดภายใน 30 นาที ก่อนที่ประตูจะเปิด...";
 			next;
 			mes "[World Tree Yggdrasil]";
-			mes "30 minutes... that's the limit of my powers. Please hurry.";
+			mes "30 นาที... นั่นคือขีดจำกัดพลังของข้าแล้ว ได้โปรดรีบหน่อย";
 			next;
 			mes "[World Tree Yggdrasil]";
-			mes "And... Be careful... Be careful of the shadow's power.";
-			'ins_nyd2 = ins_nyd2 = 1;
+			mes "และ... ระวังตัวด้วย... จงระวังพลังแห่งเงามืดให้ดี";
+			'ins_nyd2 = 1;
 			donpcevent instance_npcname("ins_nyd_1f_timer")+"::OnEnable";
 			donpcevent instance_npcname("nyd_call_mon_1")+"::OnEnable";
 			close;
 		} else {
-			mes "The path to the Guardian's Nest is just past the waterfall by the large World Tree Yggdrasil to the North. The defensive mechanisms will start immediately.";
+			mes "เส้นทางสู่รังของผู้พิทักษ์อยู่เลยน้ำตกข้างต้นไม้โลกยักษ์ทางทิศเหนือไป ระบบป้องกันจะเริ่มทำงานในทันที";
 			next;
 			mes "[World Tree Yggdrasil]";
-			mes "Defeat all of Nidhoggur's guardians and go through the waterfall into the nest... and stop Nidhoggur's Shadow there.";
+			mes "จงกำจัดเหล่าองครักษ์ของผู้พิทักษ์ทั้งหมด แล้วผ่านน้ำตกเข้าไปในรัง... และหยุดยั้ง 'เงาของ Nidhoggur' ที่นั่นซะ";
 			next;
 			mes "[World Tree Yggdrasil]";
-			mes "The gate will open soon. Go defeat all of the guardians... you must kill them all in 30 minutes before the gate opens...";
+			mes "ประตูจะเปิดออกในไม่ช้า จงไปกำจัดองครักษ์ทั้งหมด... คุณต้องกำจัดพวกมันให้หมดภายใน 30 นาที ก่อนที่ประตูจะเปิด...";
 			next;
 			mes "[World Tree Yggdrasil]";
-			mes "30 minutes... that's the limit of my powers. Please hurry.";
+			mes "30 นาที... นั่นคือขีดจำกัดพลังของข้าแล้ว ได้โปรดรีบหน่อย";
 			next;
 			mes "[World Tree Yggdrasil]";
-			mes "And... Be careful... Be careful of the shadow's power.";
+			mes "และ... ระวังตัวด้วย... จงระวังพลังแห่งเงามืดให้ดี";
 			close;
 		}
 	} else if ('ins_nyd2 == 1) {
 		mes "[World Tree Yggdrasil]";
-		mes "The path to the Guardian's Nest is just past the waterfall by the large World Tree Yggdrasil to the North. The defensive mechanisms will start immediately.";
+		mes "เส้นทางสู่รังของผู้พิทักษ์อยู่เลยน้ำตกทางทิศเหนือไป ระบบป้องกันจะเริ่มทำงานในทันที";
 		next;
 		mes "[World Tree Yggdrasil]";
-		mes "Defeat all of Nidhoggur's guardians and go through the waterfall into the nest... and stop Nidhoggur's Shadow there.";
+		mes "จงกำจัดองครักษ์ทั้งหมดและผ่านน้ำตกเข้าไป... หยุดยั้งเงาของ Nidhoggur ให้ได้";
 		next;
 		mes "[World Tree Yggdrasil]";
-		mes "The gate will open soon. Go defeat all of the guardians.";
+		mes "ประตูจะเปิดในไม่ช้า จงไปกำจัดองครักษ์ให้สิ้น";
 		close;
 	} else if ('ins_nyd2 == 2) {
 		mes "[World Tree Yggdrasil]";
-		mes "The path to the Guardian's Nest is just past the waterfall by the large World Tree Yggdrasil to the North.";
+		mes "เส้นทางสู่รังของผู้พิทักษ์อยู่เลยน้ำตกข้างต้นไม้โลกยักษ์ทางทิศเหนือไป";
 		next;
 		mes "[World Tree Yggdrasil]";
-		mes "Use your powers... and destroy the vile Shadow...";
+		mes "จงใช้พลังของคุณ... ทำลายล้างเงาอันชั่วร้ายนั่นซะ...";
 		next;
 		mes "[World Tree Yggdrasil]";
-		mes "This is... all I can do for you...";
+		mes "นี่คือ... ทั้งหมดที่ข้าพอจะช่วยคุณได้...";
 		close;
 	} else {
 		mes "[World Tree Yggdrasil]";
-		mes "Those who want to taint the sacred Sanctuary of the Guardian... Get out.";
+		mes "พวกที่คิดจะทำให้ศาสนสถานอันศักดิ์สิทธิ์ของผู้พิทักษ์ต้องแปดเปื้อน... จงออกไปซะ";
 		warp "mid_camp",100,100;
 	}
 	end;
 
 OnTouch:
 	if ('ins_nyd2 == 0) {
-		mes "What's a woman from the Laphine Tribe doing here...";
+		mes "ผู้หญิงจากเผ่า Laphine มาทำอะไรที่นี่กัน...";
 		next;
-		mes "What's happening? Let's go check it out.";
+		mes "เกิดอะไรขึ้นน่ะ? ลองไปตรวจสอบดูสิ";
 		close;
 	}
 	end;
 
-OnInstanceInit: // Temporary fix for @reloadscript.
+OnInstanceInit:
 	set 'ins_nyd2,0;
 	end;
 }
@@ -1679,6 +1700,7 @@ OnInstanceInit:
 
 OnEnable:
 	set .@map$, instance_mapname("1@nyd");
+	// เรียกมอนสเตอร์องครักษ์ออกมาตามพิกัดที่กำหนด
 	monster .@map$,220,250,"Nidhoggur's Guardian#1",2020,1,instance_npcname("nyd_call_mon_1")+"::OnMyMobDead";
 	monster .@map$,220,252,"Nidhoggur's Guardian#2",2020,1,instance_npcname("nyd_call_mon_1")+"::OnMyMobDead";
 	monster .@map$,240,270,"Nidhoggur's Guardian#3",2020,1,instance_npcname("nyd_call_mon_1")+"::OnMyMobDead";
@@ -1691,7 +1713,9 @@ OnEnable:
 	monster .@map$,255,255,"Nidhoggur's Guardian#10",2021,1,instance_npcname("nyd_call_mon_1")+"::OnMyMobDead";
 	monster .@map$,225,245,"Nidhoggur's Guardian#11",2021,1,instance_npcname("nyd_call_mon_1")+"::OnMyMobDead";
 	monster .@map$,230,280,"Nidhoggur's Guardian#12",2021,1,instance_npcname("nyd_call_mon_1")+"::OnMyMobDead";
-	mapannounce .@map$, "Nidhoggur's Guardian : Protect the Guardian's Sanctuary. Get rid of the intruders.",bc_map,"0x00ff99";
+	
+	// ข้อความประกาศเมื่อเริ่มภารกิจ
+	mapannounce .@map$, "Nidhoggur's Guardian : จงปกป้องศาสนสถานของผู้พิทักษ์ และกำจัดเหล่าผู้บุกรุกออกไปให้สิ้น!",bc_map,"0x00ff99";
 	end;
 
 OnDisable:
@@ -1702,11 +1726,13 @@ OnDisable:
 OnMyMobDead:
 	set .@map$, instance_mapname("1@nyd");
 	set .@mob_dead_num,mobcount(.@map$, instance_npcname("nyd_call_mon_1")+"::OnMyMobDead");
+	
+	// เมื่อกำจัดมอนสเตอร์ครบทุกตัว
 	if (.@mob_dead_num < 1) {
-		mapannounce .@map$, "All of Nidhoggur's Guardians have been defeated!",bc_map,"0x00ff99";
+		mapannounce .@map$, "เหล่าองครักษ์ของ Nidhoggur ทั้งหมดถูกกำจัดแล้ว!",bc_map,"0x00ff99";
 		donpcevent instance_npcname("ins_nyd_1f_timer")+"::OnDisable";
 		donpcevent instance_npcname("nyd_to2f_warp")+"::OnEnable";
-		'ins_nyd2 = ins_nyd2 = 2;
+		'ins_nyd2 = 2; // ปลดล็อกสถานะเพื่อไปชั้น 2
 	}
 	end;
 }
@@ -1727,29 +1753,34 @@ OnDisable:
 	killmonsterall instance_mapname("1@nyd");
 	end;
 
+// ประกาศเมื่อผ่านไป 15 นาที
 OnTimer900000:
-	mapannounce instance_mapname("1@nyd"), "World Tree Yggdrasil : There's not much time left. Please hurry.",bc_map,"0xFFFF00";
+	mapannounce instance_mapname("1@nyd"), "World Tree Yggdrasil : เหลือเวลาอีกไม่มากแล้ว ได้โปรดรีบหน่อย",bc_map,"0xFFFF00";
 	end;
 
+// ประกาศเมื่อผ่านไป 20 นาที
 OnTimer1200000:
-	mapannounce instance_mapname("1@nyd"), "World Tree Yggdrasil : My powers are slowly disappearing. Please hurry.",bc_map,"0xFFFF00";
+	mapannounce instance_mapname("1@nyd"), "World Tree Yggdrasil : พลังของข้ากำลังจะค่อยๆ จางหายไป ได้โปรดเร่งมือเข้า",bc_map,"0xFFFF00";
 	end;
 
+// ประกาศเมื่อผ่านไป 25 นาที
 OnTimer1500000:
-	mapannounce instance_mapname("1@nyd"), "World Tree Yggdrasil : I'm... almost at my limit... please hurry up.",bc_map,"0xFFFF00";
+	mapannounce instance_mapname("1@nyd"), "World Tree Yggdrasil : ข้า... เริ่มจะถึงขีดจำกัดแล้ว... ได้โปรดรีบหน่อยเถอะ",bc_map,"0xFFFF00";
 	end;
 
+// ประกาศเมื่อครบ 30 นาที (ล้มเหลว)
 OnTimer1800000:
-	mapannounce instance_mapname("1@nyd"), "World Tree Yggdrasil : You've failed... but I will use what power I have left... to send you out of here.",bc_map,"0xFFFF00";
+	mapannounce instance_mapname("1@nyd"), "World Tree Yggdrasil : พวกคุณล้มเหลว... แต่ข้าจะใช้พลังเฮือกสุดท้ายที่เหลืออยู่... ส่งพวกคุณออกไปจากที่นี่",bc_map,"0xFFFF00";
 	end;
 
 OnTimer1830000:
-	mapannounce instance_mapname("1@nyd"), "Opening of the Gate has failed.",bc_map,"0xFFFF00";
+	mapannounce instance_mapname("1@nyd"), "การเปิดประตูสู่รังล้มเหลว",bc_map,"0xFFFF00";
 	end;
 
 OnTimer1850000:
 	donpcevent instance_npcname("ins_nyd_1f_timer")+"::OnDisable";
 	donpcevent instance_npcname("nyd_call_mon_1")+"::OnDisable";
+	// วาร์ปทุกคนในปาร์ตี้กลับไปยังจุดพักแรมมิดการ์ด (Midgard Camp)
 	instance_warpall "mid_camp",310,150, instance_id();
 	stopnpctimer;
 	end;
@@ -1811,6 +1842,7 @@ OnTouch_:
 	end;
 }
 
+// ระบบประกาศเสียงของ Nidhoggur's Shadow เมื่อผู้เล่นเข้าสู่ชั้น 2
 2@nyd,1,1,0	script	nyd_2f_enter_broad	-1,{
 OnInstanceInit:
 OnDisable:
@@ -1823,27 +1855,29 @@ OnEnable:
 	end;
 
 OnTimer12000:
-	mapannounce instance_mapname("2@nyd"), "Nidhoggur's Shadow : No more... I can't stand this anymore...",bc_map,"0xFFFF00";
+	mapannounce instance_mapname("2@nyd"), "Nidhoggur's Shadow : ไม่ไหวแล้ว... ข้าทนรับมันต่อไปไม่ไหวแล้ว...",bc_map,"0xFFFF00";
 	end;
 
 OnTimer15000:
-	mapannounce instance_mapname("2@nyd"), "Nidhoggur's Shadow : I need... I need the World Tree Yggdrasil's powers...",bc_map,"0xFFFF00";
+	mapannounce instance_mapname("2@nyd"), "Nidhoggur's Shadow : ข้าต้องการ... ข้าต้องการพลังของต้นไม้โลก Yggdrasil...",bc_map,"0xFFFF00";
 	end;
 
 OnTimer18000:
-	mapannounce instance_mapname("2@nyd"), "Nidhoggur's Shadow : Destroy... everything...",bc_map,"0xFFFF00";
+	mapannounce instance_mapname("2@nyd"), "Nidhoggur's Shadow : ทำลาย... ทุกสรรพสิ่ง...",bc_map,"0xFFFF00";
 	stopnpctimer;
 	disablenpc instance_npcname("nyd_2f_enter_broad");
 	end;
 }
 
+// จุดควบคุมการเปลี่ยนมิติ (Warp) ภายในชั้น 2
 2@nyd,199,178,0	script	nyd_2f_ddr_control	-1,6,6,{
 OnTouch:
 	specialeffect2 EF_HOLYHIT;
-	mes "From below the gorgeous stones, a strange breeze is forming.";
+	mes "มีกระแสลมประหลาดก่อตัวขึ้นจากใต้หินอันวิจิตรตระการตา";
 	next;
-	mes "The strange power slowly surrounds your body, the dimension is starting to shift.";
+	mes "พลังอันแปลกประหลาดค่อยๆ เข้าโอบล้อมร่างกายของคุณ มิติรอบตัวเริ่มมีการบิดเบี้ยวและเปลี่ยนแปลงไป";
 	close2;
+	// วาร์ปผู้เล่นไปยังพิกัดในมิติถัดไป
 	warp instance_mapname("2@nyd"),199,255;
 	end;
 }
@@ -1866,8 +1900,9 @@ OnInstanceInit:
 OnEnable:
 	enablenpc instance_npcname("nyd_2f_boss_enter_call");
 	set .@map$, instance_mapname("2@nyd");
+	// เรียกบอส Nidhoggur's Shadow ออกมา
 	monster .@map$,199,327,"Nidhoggur's Shadow",2022,1,instance_npcname("nyd_2f_boss_enter_call")+"::OnMyMobDead";
-	mapannounce .@map$, "Nidhoggur's Shadow : I will devour all of you... you and the World Tree Yggdrasil.",bc_map,"0x00ff99";
+	mapannounce .@map$, "Nidhoggur's Shadow : ข้าจะกลืนกินพวกเจ้าทุกคน... ทั้งพวกเจ้าและต้นไม้โลก Yggdrasil!",bc_map,"0x00ff99";
 	//donpcevent instance_npcname("nyd_2f_boss_enter_call")+"::Ongo";
 	initnpctimer;
 	end;
@@ -1877,13 +1912,15 @@ OnDisable:
 	disablenpc instance_npcname("nyd_2f_boss_enter_call");
 	end;
 
+// เมื่อเวลาผ่านไป 3 นาที (180,000 ms) จะเริ่มกลไกการวาร์ปสุ่มห้อง
 OnTimer180000:
 	stopnpctimer;
 OnWarpColor:
 	set .@map$, instance_mapname("2@nyd");
 	switch(rand(1,4)) {
 	case 1:
-		mapannounce .@map$, "Nidhoggur's Shadow : In this chaos... your blood is just what I need.",bc_map,"0xFFFF00";
+		// ห้องสีแดง (Red Room) - เลือด
+		mapannounce .@map$, "Nidhoggur's Shadow : ท่ามกลางความบ้าคลั่งนี้... เลือดของพวกเจ้าคือสิ่งที่ข้าต้องการ!",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("nyd_2f_white")+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_yellow")+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_green")+"::OnDisable";
@@ -1891,7 +1928,8 @@ OnWarpColor:
 		instance_warpall .@map$,115,278, instance_id();
 		end;
 	case 2:
-		mapannounce .@map$, "Nidhoggur's Shadow : I will freeze every last drop of your blood.",bc_map,"0xFFFF00";
+		// ห้องสีขาว (White Room) - แช่แข็ง
+		mapannounce .@map$, "Nidhoggur's Shadow : ข้าจะแช่แข็งเลือดของพวกเจ้าทุกหยดให้เย็นเยียบ!",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("nyd_2f_red")+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_yellow")+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_green")+"::OnDisable";
@@ -1899,7 +1937,8 @@ OnWarpColor:
 		instance_warpall .@map$,115,373, instance_id();
 		end;
 	case 3:
-		mapannounce .@map$, "Nidhoggur's Shadow : Sleep for eternity in an empty illusion.",bc_map,"0xFFFF00";
+		// ห้องสีเหลือง (Yellow Room) - นิทรา/ภาพลวงตา
+		mapannounce .@map$, "Nidhoggur's Shadow : จงหลับใหลไปชั่วกาลนานในภาพลวงตาอันว่างเปล่านี้ซะเถอะ!",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("nyd_2f_red")+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_white")+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_green")+"::OnDisable";
@@ -1907,7 +1946,8 @@ OnWarpColor:
 		instance_warpall .@map$,284,278, instance_id();
 		end;
 	case 4:
-		mapannounce .@map$, "Nidhoggur's Shadow : I'll let you enjoy the pain of dying slowly.",bc_map,"0xFFFF00";
+		// ห้องสีเขียว (Green Room) - ความเจ็บปวด
+		mapannounce .@map$, "Nidhoggur's Shadow : ข้าจะให้พวกเจ้าได้ลิ้มรสความทรมานจากการค่อยๆ ตายอย่างช้าๆ!",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("nyd_2f_red")+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_white")+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_yellow")+"::OnDisable";
@@ -1920,7 +1960,8 @@ OnWarpColor:
 OnMyMobDead:
 	set .@map$, instance_mapname("2@nyd");
 	if (mobcount(.@map$,instance_npcname("nyd_2f_boss_enter_call")+"::OnMyMobDead") < 1) {
-		mapannounce .@map$, "Nidhoggur's Shadow : World Tree Yggdrasil's guardian... his powers are disappearing...",bc_map,"0x00ff99";
+		// เมื่อบอสถูกกำจัด
+		mapannounce .@map$, "Nidhoggur's Shadow : ผู้พิทักษ์แห่งต้นไม้โลก Yggdrasil... พลังของเขากำลังสูญสิ้นไป...",bc_map,"0x00ff99";
 		donpcevent instance_npcname("World Tree Yggdrasil#2F")+"::OnEnable";
 		donpcevent instance_npcname("nyd_2f_boss_enter_call")+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_boss_enter_logic")+"::OnDisable";
@@ -1928,7 +1969,7 @@ OnMyMobDead:
 		donpcevent instance_npcname("nyd_2f_white_c")+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_yellow_c")+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_green_c")+"::OnDisable";
-		'ins_nyd2 = ins_nyd2 = 4;
+		'ins_nyd2 = 4; // ตั้งค่าสถานะว่าบอสถูกกำจัดแล้ว
 		end;
 	}
 	end;
@@ -1957,37 +1998,36 @@ OnTimer180000:
 
 2@nyd,202,324,5	script	World Tree Yggdrasil#2F	437,3,3,{
 	mes "[World Tree Yggdrasil]";
-	mes "Thank you. You're the saviour of humans and the Laphine Tribe.";
+	mes "ขอบคุณมาก... คุณคือผู้ช่วยชีวิตของทั้งมวลมนุษย์และเผ่า Laphine";
 	next;
 	mes "[World Tree Yggdrasil]";
-	mes "You've defeated Nidhoggur's Shadow. But...It's not gone for good. Its powers are merely put to sleep.";
+	mes "คุณกำจัดเงาของ Nidhoggur ได้แล้ว แต่... มันยังไม่ได้หายไปตลอดกาลหรอกนะ พลังของมันเพียงแค่ถูกทำให้หลับใหลไปเท่านั้น";
 	next;
 	mes "[World Tree Yggdrasil]";
-	mes "But you have won us plenty of time. This is great.";
+	mes "แต่แค่นี้คุณก็ช่วยดึงเวลาให้พวกเราได้มากพอแล้ว ช่างเป็นเรื่องที่วิเศษยิ่งนัก";
 	next;
 	mes "[World Tree Yggdrasil]";
-	mes "Please go and report this to those in charge of Splendide and Manuk.";
+	mes "โปรดนำเรื่องนี้ไปรายงานแก่ผู้ที่รับผิดชอบในเมือง Splendide และ Manuk ด้วยเถิด";
 	next;
 	mes "[World Tree Yggdrasil]";
-	mes "As you have seen, neither the Sapha tribe nor the Laphine tribe is at fault for the weakening of the World Tree. It's all because of the Guardian's Shadow...";
+	mes "ดังเช่นที่คุณได้ประจักษ์แล้ว ไม่ว่าจะเป็นเผ่า Sapha หรือ Laphine ต่างก็ไม่ใช่ต้นเหตุที่ทำให้ต้นไม้โลกอ่อนแอลง ทั้งหมดเป็นเพราะเงาของผู้พิทักษ์...";
 	next;
 	mes "[World Tree Yggdrasil]";
-	mes "The Guardian's insanity...is caused by powers unknown to us... You must tell this to everyone.";
+	mes "ความคุ้มคลั่งของผู้พิทักษ์นั้น... เกิดจากพลังลึกลับที่เรามิอาจหยั่งรู้... คุณต้องบอกเรื่องนี้ให้ทุกคนได้รับทราบ";
 	next;
 	mes "[World Tree Yggdrasil]";
-	mes "Now... Allow me to escort you out of the cursed nest.";
+	mes "เอาละ... ให้ข้านำทางคุณออกจากรังที่ต้องสาปแห่งนี้เถิด";
 	next;
-	switch(select("Please let me out.:I want to look around for a while.")) {
+	switch(select("โปรดส่งฉันออกไปข้างนอก:ฉันอยากจะขอสำรวจแถวนี้ต่ออีกสักพัก")) {
 	case 1:
 		'ins_nyd2 = 0;
-		// ins_nyd2 = 0;
-		set ins_nyd,203;
-		//setquest 3135;
+		set ins_nyd,203; // อัปเดตสถานะเควสต์เพื่อไปรับรางวัลกับ Neat Etorr หรือ Arioss
+		// วาร์ปผู้เล่นกลับไปยังหน้าทางเข้าดันเจี้ยน
 		warp "nyd_dun02",98,196;
 		end;
 	case 2:
 		mes "[World Tree Yggdrasil]";
-		mes "Is that so... I'll be around if you want to leave.";
+		mes "อย่างนั้นหรือ... ข้าจะยังอยู่ที่นี่หากคุณต้องการจะจากไป";
 		close;
 	}
 
@@ -1998,7 +2038,8 @@ OnDisable:
 
 OnEnable:
 	enablenpc instance_npcname("World Tree Yggdrasil#2F");
-	mapannounce instance_mapname("2@nyd"), "World Tree Yggdrasil : You did good. Have everyone go to the Magic Circle in the middle, and get ready for the destruction of the nest.",bc_map,"0x00ff99";
+	// ประกาศข้อความเมื่อบอสถาย
+	mapannounce instance_mapname("2@nyd"), "World Tree Yggdrasil : ทำได้ดีมาก ขอให้ทุกคนไปรวมตัวกันที่วงเวทย์ตรงกลาง และเตรียมตัวสำหรับการล่มสลายของรังแห่งนี้",bc_map,"0x00ff99";
 	end;
 }
 
@@ -2086,8 +2127,12 @@ OnEnable:
 
 OnMyMobDead:
 	set .@map$, instance_mapname("2@nyd");
+	// ตรวจสอบว่ามอนสเตอร์ในกลุ่มนี้ถูกกำจัดจนหมดแล้วหรือยัง
 	if (mobcount(.@map$,instance_npcname(strnpcinfo(0))+"::OnMyMobDead") < 1) {
-		mapannounce .@map$, "Nidhoggur's Shadow : You're not bad... but I will be your opponent this time.",bc_map,"0x00ff99";
+		// ข้อความประกาศจากบอสก่อนเริ่มการต่อสู้จริง
+		mapannounce .@map$, "Nidhoggur's Shadow : ฝีมือพวกเจ้าไม่เลวเลย... แต่ครั้งนี้ ข้าจะเป็นคู่ต่อสู้ให้พวกเจ้าเอง!",bc_map,"0x00ff99";
+		
+		// เปิดระบบ Logic การต่อสู้ของบอส และปิดสคริปต์เรียกมอนสเตอร์ตัวเดิม
 		donpcevent instance_npcname("nyd_2f_boss_enter_logic")+"::OnEnable";
 		donpcevent instance_npcname(strnpcinfo(0))+"::OnDisable";
 		end;
@@ -2187,72 +2232,75 @@ OnMyPingDead:
 //============================================================
 sec_in02,36,167,3	script	Nidhoggur Manager	447,1,1,{
 	callfunc "F_GM_NPC";
-	mes "Enter the password.";
+	mes "กรุณาใส่รหัสผ่าน";
 	next;
-	if (callfunc("F_GM_NPC","1854",1) == 0) {
-		mes "Incorrect password.";
+	// ตรวจสอบรหัสผ่าน (Password: 18544)
+	if (callfunc("F_GM_NPC","18544",1) == 0) {
+		mes "รหัสผ่านไม่ถูกต้อง";
 		close;
 	}
-	mes "What do you need to do?";
+	mes "คุณต้องการดำเนินการส่วนไหน?";
 	next;
-	switch(select("Reset variables to allow entrance to Nidhoggur:change variable 'ins_nyd':Remove 3 day timer 3135:Confirm variable number")) {
+	switch(select("รีเซ็ตตัวแปรเพื่อเข้าดันเจี้ยน Nidhoggur:เปลี่ยนค่าตัวแปร 'ins_nyd':ลบเวลาจำกัด 3 วัน (Quest 3135):ตรวจสอบค่าตัวแปรปัจจุบัน")) {
 	case 1:
 		set ins_nyd,200;
 		set ins_nyd2,0;
 		erasequest 3135;
-		mes "ins_nyd set to 200 ins_nyd2 set to 0";
-		mes "quest 3135 erased.";
+		mes "ตั้งค่า ins_nyd เป็น 200 และ ins_nyd2 เป็น 0 เรียบร้อยแล้ว";
+		mes "ลบข้อมูลเควสต์ 3135 สำเร็จ";
 		close;
 	case 2:
-		mes "Which variable do you want to change?";
+		mes "คุณต้องการเปลี่ยนตัวแปรไหน?";
 		next;
 		switch(select("ins_nyd:ins_nyd2")) {
 			case 1: set .@var$,"ins_nyd"; break;
 			case 2: set .@var$,"ins_nyd2"; break;
 		}
-		mes "Input the variable number";
+		mes "กรุณาระบุตัวเลขที่ต้องการตั้งค่า";
 		next;
 		input .@input;
 		setd .@var$, .@input;
-		mes .@var$+" has been set to "+.@input+" .";
+		mes "ตั้งค่า " + .@var$ + " เป็น " + .@input + " สำเร็จ";
 		close;
 	case 3:
-		mes "The 3 day timer will be removed when you close this dialog.";
+		mes "ระบบจะทำการลบเวลาจำกัด 3 วัน หลังจากที่คุณปิดหน้าต่างสนทนานี้";
 		next;
 		erasequest 3135;
-		mes "Finished removing Quest Timer.";
+		mes "ลบ Quest Timer เรียบร้อยแล้ว";
 		close;
 	case 4:
-		mes "ins_nyd is at "+ins_nyd+".";
-		mes "ins_nyd2 is at "+ins_nyd2+".";
+		mes "ค่าตัวแปร ins_nyd ปัจจุบันคือ " + ins_nyd;
+		mes "ค่าตัวแปร ins_nyd2 ปัจจุบันคือ " + ins_nyd2;
 		close;
 	}
 }
 
+// NPC สำหรับผู้ดูแลระบบ (GM) เพื่อควบคุมการรีเซ็ตดันเจี้ยน
 nyd_dun02,7,7,2	script	Purification Admin#nyd2	844,2,0,{
 	callfunc "F_GM_NPC";
-	mes "Please enter the password";
+	mes "กรุณาใส่รหัสผ่าน";
+	// รหัสผ่านคือ: dragonslayer
 	set .@i, callfunc("F_GM_NPC","dragonslayer",1);
 	next;
 	if (.@i == 0) {
-		mes "Enter the password exactly.";
+		mes "กรุณาใส่รหัสผ่านให้ถูกต้องตามตัวอักษร";
 		close;
 	}
-	switch(select("Generate Purification Stone:Remove Purification Stone:Turn Entrance NPC OFF:Turn Entrance NPC On:Cancel")) {
+	switch(select("สร้างหินชำระล้าง (Purification Stone):ลบหินชำระล้าง:ปิด NPC ทางเข้า (Gatekeeper):เปิด NPC ทางเข้า (Gatekeeper):ยกเลิก")) {
 	case 1:
-		mes "Purification stone has been created and will stay on for 30 minutes.";
+		mes "หินชำระล้างถูกสร้างขึ้นแล้ว และจะคงอยู่เป็นเวลา 30 นาที";
 		donpcevent "Purification Stone#nyd2::OnEnable";
 		close;
 	case 2:
-		mes "The Purification Stone has been destroyed.";
+		mes "หินชำระล้างถูกทำลายทิ้งแล้ว";
 		donpcevent "Purification Stone#nyd2::OnDisable";
 		close;
 	case 3:
-		mes "The Yggdrasil Gatekeeper at nyd_dun02 100 201 is now OFF.";
+		mes "ปิดการใช้งาน Yggdrasil Gatekeeper ที่พิกัด nyd_dun02 100 201 เรียบร้อย";
 		disablenpc "Yggdrasil Gatekeeper";
 		close;
 	case 4:
-		mes "The Yggdrasil Gatekeeper at nyd_dun02 100 201 is now On.";
+		mes "เปิดการใช้งาน Yggdrasil Gatekeeper ที่พิกัด nyd_dun02 100 201 เรียบร้อย";
 		enablenpc "Yggdrasil Gatekeeper";
 		close;
 	case 5:
@@ -2260,29 +2308,37 @@ nyd_dun02,7,7,2	script	Purification Admin#nyd2	844,2,0,{
 	}
 }
 
+// หินชำระล้างสำหรับให้ผู้เล่นกดรีเซ็ต Cooldown ดันเจี้ยน
 nyd_dun02,88,195,4	script	Purification Stone#nyd2	406,{
 	erasequest 3135;
 	erasequest 3136;
 	set ins_nyd,200;
 	set ins_nyd2,0;
-	mes "^0000FFThe records and after-effect related to the Nidhoggur's Nest have been removed. You can generate and enter the dungeon again.^000000";
+	mes "^0000FFบันทึกและผลกระทบที่เกี่ยวข้องกับ Nidhoggur's Nest ได้ถูกชำระล้างแล้ว คุณสามารถสร้างและเข้าสู่ดันเจี้ยนได้อีกครั้ง^000000";
 	close;
+
 OnInit:
 	disablenpc "Purification Stone#nyd2";
 	end;
+
 OnEnable:
 	initnpctimer;
 	end;
+
 OnDisable:
 	stopnpctimer;
 	disablenpc "Purification Stone#nyd2";
 	end;
+
 OnTimer1000:
 	enablenpc "Purification Stone#nyd2";
 	end;
+
 OnTimer1740000:
-	mapannounce "nyd_dun02","The Purification Stone will be destroyed in one minute.",bc_map,"0x00FF99",FW_NORMAL,12;
+	// ประกาศแจ้งเตือนล่วงหน้า 1 นาทีก่อนหินหาย
+	mapannounce "nyd_dun02","หินชำระล้างจะถูกทำลายในอีก 1 นาที",bc_map,"0x00FF99",FW_NORMAL,12;
 	end;
+
 OnTimer1800000:
 	disablenpc "Purification Stone#nyd2";
 	end;
