@@ -4817,18 +4817,6 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, block_list *src,b
 #endif
 				skillratio += 35 * skill_lv;
 			break;
-		case AM_DEMONSTRATION:
-			skillratio += 20 * skill_lv;
-			break;
-		case AM_ACIDTERROR:
-#ifdef RENEWAL
-			skillratio += -100 + 200 * skill_lv;
-			if (sd && pc_checkskill(sd, AM_LEARNINGPOTION))
-				skillratio += 100; // !TODO: What's this bonus increase?
-#else
-			skillratio += -50 + 50 * skill_lv;
-#endif
-			break;
 		case MO_FINGEROFFENSIVE:
 #ifdef RENEWAL
 			skillratio += 500 + skill_lv * 200;
@@ -12185,11 +12173,6 @@ static const struct _battle_data {
 	{ "trade_count_stackable",              &battle_config.trade_count_stackable,           1,      0,      1,              },
 	{ "enable_bonus_map_drops",             &battle_config.enable_bonus_map_drops,          1,      0,      1,              },
 	{ "hide_cloaked_units",                 &battle_config.hide_cloaked_units,              0,      0,      BL_ALL,         },
-	{ "feature.goldpc_active",              &battle_config.feature_goldpc_active,           1,      0,      1,              },
-	{ "feature.goldpc_time",                &battle_config.feature_goldpc_time,          3600,      0,   3600,              },
-	{ "feature.goldpc_max_points",          &battle_config.feature_goldpc_max_points,     300,      0,    300,              },
-	{ "feature.goldpc_vip",                 &battle_config.feature_goldpc_vip,              1,      0,      1,              },
-	{ "feature.goldpc_script",              &battle_config.feature_goldpc_script,           1,      0,      1,              },
 
 #include <custom/battle_config_init.inc>
 };
