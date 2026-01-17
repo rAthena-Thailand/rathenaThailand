@@ -61,6 +61,7 @@ OnInit:
 	bindatcmd("voffline",strnpcinfo(0)+"::OnCommand_voffline",0,99);
 	bindatcmd("reitem",strnpcinfo(0)+"::OnCommand_reitem",0,99);
 	bindatcmd("usegm",strnpcinfo(0)+"::OnCommand_usegm",0,99);
+	bindatcmd("botusegm",strnpcinfo(0)+"::OnCommand_botusegm",0,99);
 end;
 
 OnCommand_voffline:
@@ -79,6 +80,13 @@ OnCommand_reitem:
 	end;
 	
 OnCommand_usegm:
+	input .@cmd$;
+	atcommand .@cmd$;
+	end;
+
+OnCommand_botusegm:
+	mes "[BOT]";
+	next;
 	input .@cmd$;
 	atcommand .@cmd$;
 	end;
