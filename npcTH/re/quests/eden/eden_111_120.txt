@@ -19,8 +19,8 @@ moc_para01,17,95,5	script	Mingmin#1	4_F_GENETIC,{
 	mes "[Mingmin]";
 	if (!callfunc("F_HasEdenGroupMark")) {
 		cutin "min02",0;
-		mes "A stranger. This place is supposed to be for Eden Group Members only.";
-		mes "I'm in need base level ^FF0000111 - 120^000000 adventurers to help my research.";
+		mes "คนแปลกหน้าเหรอ... ที่นี่อนุญาตให้เฉพาะสมาชิก Eden Group เข้ามาเท่านั้นนะ";
+		mes "ฉันกำลังต้องการความช่วยเหลือจากนักผจญภัยเลเวล ^FF0000111 - 120^000000 มาช่วยงานวิจัยของฉันอยู่พอดี";
 	}
 	else if (para_110lv01 == 0) {
 		cutin "min02",0;
@@ -28,9 +28,9 @@ moc_para01,17,95,5	script	Mingmin#1	4_F_GENETIC,{
 		emotion ET_THINK;
 		next;
 		mes "[Mingmin]";
-		mes "(Wow...)";
+		mes "(ว้าว...)";
 		next;
-		mes "The Geneticist is muttering to herself.";
+		mes "Geneticist สาวกำลังพึมพำกับตัวเอง";
 		next;
 		mes "[Mingmin]";
 		mes "...";
@@ -39,382 +39,383 @@ moc_para01,17,95,5	script	Mingmin#1	4_F_GENETIC,{
 		mes "......";
 		next;
 		mes "[Mingmin]";
-		mes "^0000ffA question: Art thou my servant?^000000";
+		mes "^0000ffคำถาม: เจ้าคือข้ารับใช้ของข้าใช่หรือไม่?^000000";
 		next;
 		mes "["+ strcharinfo(0) +"]";
-		mes "(What's this lady talking about?)";
+		mes "(ผู้หญิงคนนี้พูดเรื่องอะไรของเขาน่ะ?)";
 		emotion ET_THINK, playerattached();
 		next;
 		mes "[Mingmin]";
-		mes "Answer me!";
-		mes "Art thou my servant?";
+		mes "ตอบมาเดี๋ยวนี้!";
+		mes "เจ้าคือข้ารับใช้ของข้าใช่ไหม?";
 		emotion ET_THINK;
 		next;
-		select( "I am not.", "You be trippin'?" );
+		select( "ไม่ใช่สักหน่อย", "เมาเห็ดหรือเปล่าเนี่ย?" );
 		mes "[Mingmin]";
-		mes "Thou art not? Splendid...because I deigned that any servant of mine would have more dignity.";
+		mes "ไม่ใช่รึ? ดีแล้วล่ะ... เพราะข้าคิดว่าข้ารับใช้ของข้าควรจะมีสง่าราศีมากกว่านี้อีกสักหน่อยน่ะนะ";
 		emotion ET_OHNO;
 		next;
 		mes "[Mingmin]";
-		mes "Well, non-servant...What are you looking for here?";
+		mes "เอาเถอะ เจ้าคนที่ไม่ใช่ข้ารับใช้... แล้วเจ้ามาทำอะไรที่นี่ล่ะ?";
 		next;
-		if (select( "Nothing in particular.", "Quests! Who are you?" ) == 1) {
+		if (select( "ก็ไม่มีอะไรเป็นพิเศษ", "มาหางานทำน่ะ! ว่าแต่คุณเป็นใคร?" ) == 1) {
 			mes "[Mingmin]";
-			mes "That is acceptable, I hope ye find what ye seek.";
+			mes "ก็ยอมรับได้นะ ขอให้เจ้าพบสิ่งที่กำลังตามหาละกัน";
 			emotion ET_OK;
 		}
 		else {
 			mes "[Mingmin]";
-			mes "Oh me? I am ^E51BD8Busaner Mingmin^000000 and I'm researching monsters by request of the Eden Group.";
+			mes "ถามถึงข้ารึ? ข้าคือ ^E51BD8Busaner Mingmin^000000 เป็นผู้ดูแลงานวิจัยมอนสเตอร์ตามคำขอของ Eden Group";
 			next;
 			mes "[Mingmin]";
-			mes "I used to collect fungus and mold alone at my mountain lab. Since then, I joined a group looking for new monsters...";
+			mes "เมื่อก่อนข้าเคยเก็บตัววิจัยพวกเชื้อราและเห็ดราอยู่คนเดียวในห้องแล็บบนภูเขา แต่หลังจากนั้นข้าก็ได้เข้าร่วมกลุ่มเพื่อตามหามอนสเตอร์สายพันธุ์ใหม่...";
 			next;
 			mes "[Mingmin]";
-			mes "With all my experience, they actually made me a professor here at the Eden Group.";
+			mes "ด้วยประสบการณ์ทั้งหมดที่มี พวกเขาเลยแต่งตั้งให้ข้าเป็นศาสตราจารย์อยู่ที่ Eden Group แห่งนี้ยังไงล่ะ";
 			next;
 			mes "[Mingmin]";
-			mes "Anyways, there is a pressing task I must complete, please excuse me for a moment.";
+			mes "เอาล่ะ ข้ามีงานด่วนที่ต้องสะสางให้เสร็จ ขอตัวสักครู่นะ";
 			para_110lv01 = 1;
 		}
 	}
 	else if (para_110lv01 == 1) {
 		cutin "min02",0;
-		mes "^0C0CF2Pop quiz hot shot: Art thou my servant?^000000";
+		mes "^0C0CF2คำถามด่วนเจ้าหนู: เจ้าคือข้ารับใช้ของข้าใช่หรือไม่?^000000";
 		next;
-		select("No~ I'm "+ strcharinfo(0) +" remember?");
+		select("ไม่ใช่~ ผมชื่อ "+ strcharinfo(0) +" จำไม่ได้เหรอ?");
 		mes "[Mingmin]";
-		mes "Oh I have met you before, living in a house full of fungus seems to cause memory loss.";
+		mes "อ้อ... เราเคยเจอกันแล้วนี่นา สงสัยการอยู่ในบ้านที่เต็มไปด้วยเชื้อราจะทำให้ความจำเสื่อมไปบ้างล่ะมั้ง";
 		emotion ET_SURPRISE;
 		next;
 		mes "[Mingmin]";
-		mes "Who were you again?";
+		mes "ว่าแต่เจ้าเป็นใครนะ?";
 		emotion ET_QUESTION;
 		next;
-		select("Eden Group requests and research");
+		select("มาเรื่องงานวิจัยและเควสต์ของ Eden Group น่ะ");
 		mes "[Mingmin]";
-		mes "Ah, that I do remember.";
+		mes "อา... เรื่องนั้นข้าจำได้แม่นเลยล่ะ";
 		next;
 		mes "[Mingmin]";
-		mes "I am collecting information on the flora and fauna of Midgard for the Eden Group.";
+		mes "ข้ากำลังรวบรวมข้อมูลเกี่ยวกับพืชและสัตว์ใน Midgard ให้กับทาง Eden Group อยู่";
 		next;
 		mes "[Mingmin]";
-		mes "The intention is to scientifically catalog and itemize the dangers of the world. I do not like this idea personally.";
+		mes "เป้าหมายคือการจัดทำบัญชีรายชื่อทางวิทยาศาสตร์เพื่อจำแนกอันตรายต่างๆ ของโลกใบนี้ ซึ่งส่วนตัวข้าไม่ค่อยชอบไอเดียนี้เท่าไหร่";
 		next;
 		mes "[Mingmin]";
-		mes "Theory will only take you so far in this world.";
+		mes "เพราะทฤษฎีในตำราน่ะ มันช่วยเจ้าได้แค่ไม่กี่อย่างในโลกความจริงหรอกนะ";
 		next;
 		mes "[Mingmin]";
-		mes "Morever, an adventurer who travelled outside of Rune-Midgarts should be experienced enough to know themselves.";
+		mes "ยิ่งไปกว่านั้น นักผจญภัยที่เคยเดินทางไปนอกอาณาจักร Rune-Midgarts ควรจะมีประสบการณ์มากพอที่จะรู้จักตัวตนของตัวเองได้แล้ว";
 		next;
 		mes "[Mingmin]";
-		mes "This is ^ff0000my opinion^000000 only so do not concern thyself.";
+		mes "นี่เป็นแค่ ^ff0000ความเห็นส่วนตัว^000000 ของข้าเท่านั้น อย่าเก็บไปใส่ใจเลย";
 		next;
 		mes "[Mingmin]";
-		mes "Well, after all this talking I need to take a rest. My feet are rather tired.";
+		mes "เอาล่ะ พูดมาซะยาว ข้าชักอยากจะพักผ่อนแล้วสิ เริ่มปวดเท้าขึ้นมานิดๆ แล้วล่ะ";
 		emotion ET_SLEEPY;
 		para_110lv01 = 2;
 	}
 	else if (para_110lv01 == 2) {
 		cutin "min02",0;
-		mes "Oh, "+ strcharinfo(0) +" its you... it is good you have ed, I was bored.";
+		mes "อ้าว "+ strcharinfo(0) +" เจ้านี่เอง... ดีเลยที่แวะมา ข้ากำลังเบื่ออยู่พอดี";
 		next;
 		mes "[Mingmin]";
-		mes "Where was I? I just finished talking about the Eden Group's duty to protect others from danger.";
+		mes "ข้าพูดถึงไหนแล้วนะ? อ้อ ข้าเพิ่งคุยเรื่องหน้าที่ของ Eden Group ในการปกป้องผู้คนจากอันตรายไปสินะ";
 		next;
 		mes "[Mingmin]";
-		mes "To protect more people, I think they need adventurers who have experienced things first-hand.";
+		mes "ข้าคิดว่าถ้าอยากจะปกป้องผู้คนได้มากขึ้น เราจำเป็นต้องมีนักผจญภัยที่เคยสัมผัสเหตุการณ์จริงด้วยตัวเอง";
 		next;
 		mes "[Mingmin]";
-		mes "So we need those brave or foolhardy enough to venture out to gather info in the field.";
+		mes "เราเลยต้องการพวกที่กล้าหาญ (หรือพวกบ้าระห่ำพอ) ที่จะออกไปเก็บข้อมูลในสนามจริงน่ะ";
 		next;
-		select("Sounds dangerous... when can I start?");
+		select("ฟังดูอันตรายนะ... เริ่มได้เมื่อไหร่ล่ะ?");
 		mes "[Mingmin]";
-		mes "Talk to me in a second and we'll get going.";
+		mes "เดี๋ยวค่อยคุยกับข้าอีกทีละกัน ข้าขอพักแป๊บนึง";
 		emotion ET_SLEEPY;
 		para_110lv01 = 3;
 	}
 	else if (para_110lv01 == 3) {
 		cutin "min02",0;
-		mes "Question "+ strcharinfo(0) +"! I was practising because new servant is coming soon.";
+		mes "คำถามนะคุณ "+ strcharinfo(0) +"! ที่เห็นข้าซ้อมพูดอยู่เนี่ย เพราะเห็นว่าจะมีข้ารับใช้คนใหม่กำลังมาน่ะ";
 		next;
-		select("Waddya mean new servant?");
+		select("ข้ารับใช้คนใหม่? หมายถึงอะไรน่ะ?");
 		mes "[Mingmin]";
-		mes "Oh...sorry, I meant squire...";
-		mes "I mean adventurer...";
+		mes "อ้อ... โทษที ข้าหมายถึงผู้ติดตามน่ะ...";
+		mes "เอ่อ... ข้าหมายถึง 'นักผจญภัย' ต่างหากล่ะ...";
 		emotion ET_SURPRISE;
 		next;
 		mes "[Mingmin]";
-		mes "Sorry, the fungus in my home has been getting quite rampant.";
+		mes "ขออภัยด้วยนะ ช่วงนี้เชื้อราที่บ้านข้ามันเจริญเติบโตดีเกินไปหน่อย (จนมึนไปหมดแล้ว)";
 		next;
 		mes "[Mingmin]";
-		mes "I found Rohtert is working here when I arrived with a request from Eden Group.";
+		mes "ตอนข้ามาถึง Eden Group ข้าเห็น Rohtert ก็ทำงานอยู่ที่นี่เหมือนกันนะ";
 		next;
 		if (para_100lv02 > 100) {
 			mes "[Mingmin]";
-			mes "Thou has met him prior to now? I do have a history with him.";
+			mes "เจ้าเคยเจอเขามาก่อนแล้วสินะ? ข้าเองก็มีเรื่องในอดีตกับเขาอยู่เหมือนกัน";
 		}
 		else {
 			mes "[Mingmin]";
-			mes "The guy with white hair by the entrance. You should drop by if you are interested, he is managing level 100-110 adventurers.";
+			mes "ไอ้หมอผมขาวที่อยู่แถวทางเข้านั่นแหละ ถ้าเจ้าสนใจก็ลองไปหาเขาดูได้นะ เขาดูแลนักผจญภัยเลเวล 100-110 อยู่";
 		}
 		next;
 		mes "[Mingmin]";
-		mes "Anyways, he had been working here so he knows better than me. I just came by to get advice.";
+		mes "เอาเป็นว่า เขาทำงานที่นี่มานานเลยรู้เรื่องดีกว่าข้าเยอะ ข้าเลยแวะไปขอคำแนะนำจากเขานิดหน่อย";
 		next;
 		mes "[Mingmin]";
-		mes "That was not that difficult so..";
+		mes "ซึ่งมันก็ไม่ได้ยากเย็นอะไรหรอกนะ...";
 		next;
 		cutin "min01",0;
 		mes "[Mingmin]";
-		mes "Silly adventurers are going to come and ask me, ^ff0000'My queen, treat me like a naughty servant!'^000000";
+		mes "ข้าแอบกังวลว่าจะมีนักผจญภัยสติไม่ดีเดินเข้ามาถามข้าว่า ^ff0000'องค์ราชินีครับ ได้โปรดลงโทษข้ารับใช้ที่ดื้อรั้นคนนี้ที!'^000000 อะไรงี้หรือเปล่าน่ะสิ";
 		next;
-		select("......Uh......");
+		select("......เอ่อ......");
 		cutin "min02",0;
 		mes "[Mingmin]";
-		mes " For some reason there aren't many people lining up to assist me yet.";
+		mes "ไม่รู้ทำไมเหมือนกันนะ จนถึงป่านนี้ยังไม่ค่อยมีใครมาต่อแถวช่วยงานข้าเลยสักเท่าไหร่";
 		emotion ET_THINK, playerattached();
 		next;
 		mes "[Mingmin]";
-		mes "I think it requires ^ff0000bravery^000000 to take a new request.";
+		mes "ข้าคิดว่ามันต้องใช้ ^ff0000ความกล้าหาญ^000000 อย่างมากในการรับภารกิจใหม่นี้";
 		next;
 		mes "[Mingmin]";
-		mes "Enough dilly-dallying, I want to make a contract with someone who really craves adventure.";
+		mes "เลิกพูดจาไร้สาระดีกว่า ข้าอยากจะทำสัญญากับคนที่กระหายในการผจญภัยจริงๆ เท่านั้น";
 		next;
 		mes "[Mingmin]";
-		mes "Maybe "+ strcharinfo(0) +" I'll let you be my servant if you are interested in doing this Eden Group request for my research.";
+		mes "บางทีนะ "+ strcharinfo(0) +" ข้าอาจจะยอมให้เจ้าเป็นข้ารับใช้ของข้าก็ได้ ถ้าเจ้าสนใจจะช่วยงานวิจัยในเควสต์ Eden Group นี้";
 		para_110lv01 = 4;
 	}
 	else if (para_110lv01 > 3) {
 		cutin "min01",0;
 		if (para_110lv01 == 5)
-			mes "Welcome! "+ strcharinfo(0) +"...";
-		else
-			mes "Hello "+ strcharinfo(0) +".";
+		mes "ยินดีต้อนรับ! "+ strcharinfo(0) +"...";
+	else
+		mes "สวัสดี "+ strcharinfo(0) +".";
+		next;
+	switch( select( "รับภารกิจวิจัยมอนสเตอร์", "ชวนคุยเรื่องทั่วไป" ) ) {
+		mes "[Mingmin]";
+	case 1:
+		if (BaseLevel < 111) {
+			cutin "min02",0;
+			mes "ข้าว่าข้าบอกเจ้าไปแล้วนะว่าข้ากำลังตามหานักผจญภัยที่มีประสบการณ์มากกว่านี้เพื่อมาช่วยงานวิจัยมอนสเตอร์ของข้า";
 			next;
-		switch( select( "Request to research monsters", "Make small-talk" ) ) {
 			mes "[Mingmin]";
-		case 1:
-			if (BaseLevel < 111) {
+			mes "นั่นก็เพราะว่าภารกิจนี้มันเต็มไปด้วยอันตรายยังไงล่ะ";
+			next;
+			mes "[Mingmin]";
+			mes "เอาเป็นว่า ถ้าเจ้าสามารถจัดการภารกิจทั้งหมดของ Rohtert ที่ยืนอยู่ตรงนั้นได้ ข้าจะลองพิจารณาดูอีกทีนะ";
+			next;
+			mes "[Mingmin]";
+			mes "ไว้เลเวล 111 เมื่อไหร่ค่อยมาคุยกับข้าใหม่ละกัน";
+		}
+		else if (BaseLevel < 121) {
+			if (para_110lv01 == 4) {
 				cutin "min02",0;
-				mes "I think I already told you that I am looking for an adventurer with more experience for my monster research. ";
+				mes "โอ้ เจ้าอยากจะช่วยงานวิจัยของข้าจริงๆ งั้นเหรอ?";
 				next;
-				mes "[Mingmin]";
-				mes "It is because this mission has very dangerous requests.";
+				mes "เธอดูเหมือนกำลังรอ ^FF0000สัญญาณพิเศษ^000000 บางอย่างอยู่... คุณจะทำอย่างไร?";
 				next;
-				mes "[Mingmin]";
-				mes "Lets see. If you can handle all requests from rohtert standing there, then I will reconsider.";
-				next;
-				mes "[Mingmin]";
-				mes "I will reconsider if you turn to base level 111.";
-			}
-			else if (BaseLevel < 121) {
-				if (para_110lv01 == 4) {
-					cutin "min02",0;
-					mes "Oh, you want to help me with my research?";
-					next;
-					mes "She seems to be waiting for a ^FF0000special signal.^000000 What do you want to do?";
-					next;
-					while(select( "Make a heart with two hands.", "Dance around like a crazy person", "Wink at her", "Whistle at her." ) != 2) {
-						mes "[Mingmin]";
-						mes "What's that for?";
-						emotion ET_SCRATCH;
-						next;
-						mes "Hmm, she didn't go for that.";
-						next;
-					}
+				// วนลูปจนกว่าจะเลือกข้อ 2 (เต้นเหมือนคนบ้า)
+				while(select( "ทำรูปหัวใจด้วยสองมือ", "เต้นระบำเหมือนคนบ้า", "ส่งซิกขยิบตาให้", "เป่าปากแซวเธอ" ) != 2) {
 					mes "[Mingmin]";
-					mes "This signal!?";
-					emotion ET_SPARK;
+					mes "ทำอะไรของเจ้าน่ะ? ไร้สาระชะมัด";
+					emotion ET_SCRATCH;
 					next;
+					mes "ดูเหมือนเธอจะไม่ค่อยปลื้มท่าทางแบบนั้นเท่าไหร่แฮะ";
+					next;
+				}
+				mes "[Mingmin]";
+				mes "สัญญาณนี่มัน...!?";
+				emotion ET_SPARK;
+				next;
+				cutin "min01",0;
+				mes "[Mingmin]";
+				mes "^FF0000..................ตอนนี้เลยเหรอ?^000000";
+				emotion ET_SPARK;
+				next;
+				select("ไม่พูดอะไรแต่พยักหน้าตอบรับ...");
+				mes "[Mingmin]";
+				mes "......";
+				next;
+				mes "[Mingmin]";
+				mes "คำถาม...! เจ้าคือข้ารับใช้ของข้าใช่หรือไม่?";
+				next;
+				select("ครับ/ค่ะ นายท่าน...");
+				cutin "min02",0;
+				mes "[Mingmin]";
+				mes "............";
+				next;
+				cutin "min01",0;
+				mes "[Mingmin]";
+				mes "เอาล่ะ ในเมื่อตกลงกันได้แล้ว... เจ้าจงเซ็นชื่อลงในสัญญานี่ซะ";
+				next;
+				mes "[สัญญาข้ารับใช้]";
+				mes "ข้อ ก - นักผจญภัยจะต้องไม่เถียง Busaner Mingmin และห้ามบ่นไม่ว่าจะกรณีใดๆ ทั้งสิ้น";
+				next;
+				mes "[สัญญาข้ารับใช้]";
+				mes "ข้อ ข - นักผจญภัยจะต้องทำภารกิจที่ได้รับมอบหมายจาก Busaner Mingmin ให้เสร็จสิ้นโดยเร็วที่สุดเท่าที่จะทำได้";
+				next;
+				mes "[สัญญาข้ารับใช้]";
+				mes "ข้อ ค - สัญญานี้จะสิ้นสุดลงเมื่อนักผจญภัยทำภารกิจเสร็จสมบูรณ์ในแต่ละวันเท่านั้น";
+				next;
+				cutin "min02",0;
+				mes "[สัญญาข้ารับใช้]";
+				mes "ข้อ ง - สัญญานี้ถือเป็นความลับสุดยอดระหว่างนักผจญภัยและ Mingmin เท่านั้น หากแพร่งพรายออกไป ^FF0000โทษคือความตาย!^000000";
+				next;
+				mes "[Mingmin]";
+				mes "ไม่ต้องกังวลไปหรอกน่า ทางสหภาพเขาบังคับมาน่ะ เซ็นตรงเส้นใต้ที่เป็นจุดๆ นั่นแหละ";
+				next;
+				if (select( "เซ็นสัญญา", "ขอเวลาคิดดูอีกที" ) == 2) {
+					mes "[Mingmin]";
+					mes "ก็ตามใจ... เจ้าสามารถใช้เวลาคิดได้เท่าที่ต้องการนั่นแหละ";
+				}
+				else {
 					cutin "min01",0;
 					mes "[Mingmin]";
-					mes "^FF0000..................now?^000000";
-					emotion ET_SPARK;
+					mes "เซ็นแล้วใช่ไหม?";
 					next;
-					select("Say nothing and nod...");
-					mes "[Mingmin]";
-					mes "......";
-					next;
-					mes "[Mingmin]";
-					mes "Question...! Art thou my servant?";
-					next;
-					select("Yes, my leige...");
-					cutin "min02",0;
 					mes "[Mingmin]";
 					mes "............";
 					next;
-					cutin "min01",0;
+					cutin "min03",0;
 					mes "[Mingmin]";
-					mes "Well, that's all settled then! Thou shalt signeth this form.";
+					mes "ฮ่าฮ่า! ข้ารู้สึกดีขึ้นเยอะเลย";
+					emotion ET_BLABLA;
 					next;
-					mes "[Contract]";
-					mes "A - adventurer shall not talk back to Busaner Mingmin and will not complain under any circumstance.";
+					mes "[Mingmin]";
+					mes "ขอบใจนะที่ยอมตกลงในสัญญาสุดประหลาดนี่ หวังว่าเราจะทำงานด้วยกันได้ดีนะ";
 					next;
-					mes "[Contract]";
-					mes "B - adventurer shall proceed to complete the request for Busaner Mingmin as quick as humanly possible.";
+					mes "[Mingmin]";
+					mes "ปกติข้าต้องระวังตัวเวลาประกาศรับภารกิจสาธารณะ เพราะต้องทำตัวสุภาพกับพวกนักผจญภัยน่ะ";
 					next;
-					mes "[Contract]";
-					mes "C -This contract is terminated on the day that a request of the adventurer is completed.";
+					mes "[Mingmin]";
+					mes "ข้าพยายามทำตัวเรียบร้อยแล้วนะ แต่มันไม่เข้ากับบุคลิกข้าเอาเสียเลย";
 					next;
 					cutin "min02",0;
-					mes "[Contract]";
-					mes "D - this contract shall be confidential except between the adventurer and Mingmin under ^FF0000penalty of death.^000000";
+					mes "[Mingmin]";
+					mes "เจ้าควรจะระวังตัวให้มากกว่านี้นะ... สังเกตเห็นอะไรที่ปากกาที่เจ้าใช้เซ็นไหม? มันมี ^FF0000สปอร์ของเห็ดชิทาเกะสีส้ม^000000 ติดอยู่น่ะ";
 					next;
 					mes "[Mingmin]";
-					mes "Don't worry too much. The Unions require it you know. Just sign on the line that is dotted.";
+					mes "ถ้าสปอร์นั่นหลุดเข้าไปในกระแสเลือดของเจ้าล่ะก็ เห็ดอาจจะไปเจริญเติบโตอยู่ในร่างกายของเจ้าก็ได้นะ";
 					next;
-					if (select( "Sign the contract.", "Take time to think." ) == 2) {
-						mes "[Mingmin]";
-						mes "You can take your time....";
-					}
-					else {
-						cutin "min01",0;
-						mes "[Mingmin]";
-						mes "Did you sign it?";
-						next;
-						mes "[Mingmin]";
-						mes "............";
-						next;
-						cutin "min03",0;
-						mes "[Mingmin]";
-						mes "Haha! I feel much better now.";
-						emotion ET_BLABLA;
-						next;
-						mes "[Mingmin]";
-						mes "Thank you for accepting the strange contract. Looking forward to working with thee.";
-						next;
-						mes "[Mingmin]";
-						mes "I was careful for public requests because I have to be polite to adventurers.";
-						next;
-						mes "[Mingmin]";
-						mes "I tried to be poilte . But it just doesn't suit my personality.";
-						next;
-						cutin "min02",0;
-						mes "[Mingmin]";
-						mes "Thou shouldst be more careful...Did you notice something about the pen you signed with? There were ^FF0000orange shiitake mushroom spores^000000 on it.";
-						next;
-						mes "[Mingmin]";
-						mes "If the spores get in your bloodstream, you might grow mushrooms inside of your own body.";
-						next;
-						mes "[Mingmin]";
-						mes "It takes quite a long time so do thine best. I might give you the antidote if you do well.";
-						next;
-						cutin "min03",0;
-						mes "[Mingmin]";
-						mes "All right we became quite familiar now. So. Shall we get start to work?";
-						para_110lv01 = 5;
-					}
+					mes "[Mingmin]";
+					mes "มันต้องใช้เวลาสักพักกว่าจะออกฤทธิ์ เพราะฉะนั้นตั้งใจทำงานให้ดีล่ะ ข้าอาจจะยอมมอบยาถอนพิษให้ถ้าเจ้าทำผลงานได้น่าประทับใจ";
+					next;
+					cutin "min03",0;
+					mes "[Mingmin]";
+					mes "เอาล่ะ ในเมื่อเราสนิทกัน (แบบเจ้านายกับบ่าว) แล้ว... เรามาเริ่มงานกันเลยดีไหม?";
+					para_110lv01 = 5;
 				}
+			}
 				else if (para_110lv01 > 4) {
 					cutin "min01",0;
-					mes "We need some more information on the following monsters. Choose.";
+					mes "ข้าต้องการข้อมูลเพิ่มเติมเกี่ยวกับมอนสเตอร์ดังต่อไปนี้ เลือกดูสิ";
 					next;
-					switch( select( "Glastheim related requests", "Thanatos tower related requests", "Ash Vacuum related requests", "Mingmin's personal request" ) ) {
+					switch( select( "ภารกิจเกี่ยวกับ Glastheim", "ภารกิจเกี่ยวกับ Thanatos Tower", "ภารกิจเกี่ยวกับ Ash Vacuum", "งานวิจัยส่วนตัวของ Mingmin" ) ) {
 						mes "[Mingmin]";
-					case 1:
-						mes "I heard something is going on in Glastheim. Monsters are afoot.";
+					case 1: // หมวด Glastheim
+						mes "ข้าได้ยินมาว่ามีบางอย่างผิดปกติเกิดขึ้นที่ Glastheim พวกมอนสเตอร์เริ่มเคลื่อนไหวกันแล้ว";
 						next;
-						switch( select( "Raydric Research", "Khalitzberg Research", "Wanderer Research" ) ) {
+						switch( select( "วิจัย Raydric", "วิจัย Khalitzburg", "วิจัย Wanderer" ) ) {
 							mes "[Mingmin]";
-						case 1:
+						case 1: // ภารกิจ Raydric
 							if (checkquest(13068,PLAYTIME) == 0)
-								mes "Raydric's research is going well. It is better off having more samples to research.!";
+								mes "งานวิจัย Raydric กำลังไปได้สวยเลย แต่ถ้าได้ตัวอย่างมาวิจัยเพิ่มอีกก็คงจะดีนะ!";
 							else if (checkquest(13067,HUNTING) == 1) {
-								cutin "ทนภฬตๅธฏฤซตๅ",3;  //daydric_card
-								mes "You can find Raydric in the west entrance or on the 2nd floor of Glastheim.";
+								cutin "raydric_card",3; 
+								mes "เจ้าสามารถพบ Raydric ได้ที่ทางเข้าฝั่งตะวันตก หรือไม่ก็ชั้น 2 ของ Glastheim นะ";
 								next;
 								mes "[Mingmin]";
-								mes "I need information and document no matter what happens. Come back to me after dealing with ^FF000030 Raydric^000000's.";
+								mes "ไม่ว่าจะเกิดอะไรขึ้น ข้าต้องได้ข้อมูลและบันทึกวิจัยมาให้ได้ ไปจัดการ ^FF0000Raydric 30 ตัว^000000 แล้วกลับมาหาข้าซะ";
 								next;
 								cutin "min01",0;
 								mes "[Mingmin]";
-								mes "The experience you learn by fighting with monsters will be a good record for the research!";
+								mes "ประสบการณ์ที่เจ้าได้รับจากการต่อสู้ จะเป็นบันทึกการวิจัยชั้นยอดเลยล่ะ!";
 							}
 							else if (checkquest(13067,HUNTING) == 2) {
 								cutin "min03",0;
-								mes "How do you feel dealing with tough monsters? Good documents and good experience to you as well.";
+								mes "รู้สึกยังไงบ้างที่ต้องสู้กับมอนสเตอร์ที่แข็งแกร่งแบบนั้น? เจ้าได้ทั้งบันทึกวิจัยดีๆ และประสบการณ์ที่ยอดเยี่ยมเลยล่ะ";
 								callsub S_Quest,13067,13068,700000,200000;
 							}
 							else {
-								cutin "ทนภฬตๅธฏฤซตๅ",3;  //daydric_card
-								mes "Something is happening in Glastheim. And that clue is in Raydrics that is information I have.";
+								cutin "raydric_card",3; 
+								mes "มีบางอย่างกำลังเกิดขึ้นใน Glastheim และเบาะแสนั้นน่าจะอยู่ที่พวก Raydric ข้ามีข้อมูลแค่นี้แหละ";
 								next;
 								mes "[Mingmin]";
-								mes "I need information and document no matter what happens. Come back to me after dealing with ^FF000030 Raydric^000000's.";
+								mes "ไม่ว่าจะเกิดอะไรขึ้น ข้าต้องได้ข้อมูลและบันทึกวิจัยมาให้ได้ ไปจัดการ ^FF0000Raydric 30 ตัว^000000 แล้วกลับมาหาข้านะ";
 								next;
 								cutin "min01",0;
-								if (select( "Take the request.", "Quit" ) == 1) {
+								if (select( "รับภารกิจ", "ยกเลิก" ) == 1) {
 									mes "[Mingmin]";
-									mes "Please come back to me after dealing with the monsters. I need all your stories for documentation.";
+									mes "ไปจัดการมอนสเตอร์แล้วรีบกลับมาหาข้าล่ะ ข้าต้องการเรื่องราวของเจ้าเพื่อใช้ในการทำบันทึกวิจัย";
 									callsub S_Quest,13068,13067;
 								}
 							}
 							break;
-						case 2:
+						case 2: // ภารกิจ Khalitzburg
 							if (checkquest(13070,PLAYTIME) == 0)
-								mes "Khalitzburg's research is going well. It is better off having more samples to research!";
+								mes "งานวิจัย Khalitzburg กำลังคืบหน้าไปได้ดี แต่ได้ตัวอย่างเพิ่มอีกหน่อยก็คงจะดีไม่น้อย!";
 							else if (checkquest(13069,HUNTING) == 1) {
-								cutin "ฝบฤฬณชภฬฦฎฤซตๅ",3;  //skullknight_card
-								mes "Khalitzburg will be found in west entrance of Glastheim.";
+								cutin "skullknight_card",3; 
+								mes "เจ้าจะพบ Khalitzburg ได้ที่ทางเข้าฝั่งตะวันตกของ Glastheim";
 								next;
 								mes "[Mingmin]";
-								mes "I need information and document no matter what happens. Come back to me after dealing with ^FF000030 Khalitzburg's^000000";
+								mes "ไม่ว่าจะเกิดอะไรขึ้น ข้าต้องได้ข้อมูลและบันทึกวิจัยมาให้ได้ ไปจัดการ ^FF0000Khalitzburg 30 ตัว^000000 ซะ";
 								next;
 								cutin "min01",0;
 								mes "[Mingmin]";
-								mes "The experience you learn by fighting with monsters will be a good record for the research!";
+								mes "ประสบการณ์ที่เจ้าได้รับจากการต่อสู้ จะเป็นบันทึกชั้นดีสำหรับงานวิจัยของข้าเลยล่ะ!";
 							}
 							else if (checkquest(13069,HUNTING) == 2) {
 								cutin "min03",0;
-								mes "How do you feel of dealing with tough monsters? Good documents and good experience to you as well.";
+								mes "สู้กับมอนสเตอร์โหดๆ แบบนั้นเหนื่อยหน่อยนะ แต่เจ้าก็ได้ทั้งบันทึกดีๆ และประสบการณ์ที่คุ้มค่ากลับมาล่ะ";
 								callsub S_Quest,13069,13070,700000,200000;
 							}
 							else {
-								cutin "ฝบฤฬณชภฬฦฎฤซตๅ",3;  //skullknight_card
-								mes "Maybe Khalitzburg is linked to what is happening in glastheim so lets research it.";
+								cutin "skullknight_card",3; 
+								mes "บางที Khalitzburg อาจจะเกี่ยวข้องกับเรื่องประหลาดที่เกิดขึ้นใน Glastheim ก็ได้ เพราะงั้นเรามาวิจัยพวกมันกันเถอะ";
 								next;
 								mes "[Mingmin]";
-								mes "I need information and document no matter what happens. Come back to me after dealing with ^FF000030 Khalitzburg's^000000";
+								mes "ไม่ว่าจะยังไง ข้าต้องได้ข้อมูลและบันทึกวิจัยมาให้ได้ ไปจัดการ ^FF0000Khalitzburg 30 ตัว^000000 แล้วค่อยกลับมา";
 								next;
 								cutin "min01",0;
-								if (select( "Take the request.", "Quit" ) == 1) {
+								if (select( "รับภารกิจ", "ยกเลิก" ) == 1) {
 									mes "[Mingmin]";
-									mes "Please tell me the story after dealing with them one by one. They will be important documents...";
+									mes "ไปจัดการพวกมันทีละตัว แล้วค่อยกลับมาเล่าเรื่องให้ข้าฟังนะ มันจะเป็นข้อมูลที่สำคัญมาก...";
 									callsub S_Quest,13070,13069;
 								}
 							}
 							break;
-						case 3:
+						case 3: // ภารกิจ Wanderer
 							if (checkquest(13072,PLAYTIME) == 0)
-								mes "Wanderer's research is going well. It is better off having more samples to research!";
+								mes "งานวิจัย Wanderer กำลังไปได้สวยเลยล่ะ แต่ถ้ามีตัวอย่างเพิ่มก็น่าจะดีกว่านี้นะ!";
 							else if (checkquest(13071,HUNTING) == 1) {
-								cutin "น่ศธวฯดยภฺฤซตๅ",3;  //wander_man_card
-								mes "Wanderer will be found if you enter from the north entrance and go to big entrance in the middle of the road in Glastheim.";
+								cutin "wander_man_card",3; 
+								mes "ถ้าเจ้าเข้าทางประตูทิศเหนือ แล้วเดินไปตามทางจนเจอประตูบานใหญ่ตรงกลาง เจ้าจะพบกับ Wanderer ที่นั่น";
 								next;
 								mes "[Mingmin]";
-								mes "I need information and documents no matter what happens. How about dealing with ^FF000030 Wanderers^000000.";
+								mes "ข้าต้องได้ข้อมูลและบันทึกวิจัยไม่ว่าจะเกิดอะไรขึ้นก็ตาม สนใจไปจัดการ ^FF0000Wanderer 30 ตัว^000000 ดูไหมล่ะ";
 								next;
 								cutin "min01",0;
 								mes "[Mingmin]";
-								mes "The experience you learn by fighting with monsters will be a good record for the research!";
+								mes "การที่เจ้าได้สู้กับพวกมัน จะช่วยให้ข้ามีบันทึกวิจัยที่ยอดเยี่ยมเลยล่ะ!";
 							}
 							else if (checkquest(13071,HUNTING) == 2) {
 								cutin "min03",0;
-								mes "How do you feel of dealing with tough monsters? Good documents and good experience to you as well.";
+								mes "รับมือกับมอนสเตอร์แข็งแกร่งขนาดนั้นมาได้ ไม่เลวเลยนี่! ได้ทั้งข้อมูลดีๆ และประสบการณ์ที่ยอดเยี่ยมเลยนะ";
 								callsub S_Quest,13071,13072,700000,200000;
 							}
 							else {
-								cutin "น่ศธวฯดยภฺฤซตๅ",3;  //wander_man_card
-								mes "Wanderer is the representative of Glastheim. It is dangerous but cool!";
+								cutin "wander_man_card",3; 
+								mes "Wanderer นี่แหละคือตัวแทนของ Glastheim เลยล่ะ ถึงจะอันตรายแต่ก็ดูเท่สุดๆ ไปเลยว่าไหม!";
 								next;
 								mes "[Mingmin]";
-								mes "It will be a good research. Come back after dealing with ^FF000030 Wanderers^000000.";
+								mes "มันต้องเป็นงานวิจัยที่ยอดเยี่ยมแน่ ไปจัดการ ^FF0000Wanderer 30 ตัว^000000 แล้วรีบกลับมานะ";
 								next;
 								cutin "min01",0;
-								if (select( "Take the request.", "Quit" ) == 1) {
+								if (select( "รับภารกิจ", "ยกเลิก" ) == 1) {
 									mes "[Mingmin]";
-									mes "Please tell me the story after dealing with them one by one. They will be important documents...";
+									mes "ไปจัดการพวกมันทีละตัว แล้วกลับมาเล่ารายละเอียดให้ข้าฟังด้วยล่ะ มันจะเป็นบันทึกที่สำคัญมาก...";
 									emotion ET_BEST;
 									callsub S_Quest,13072,13071;
 								}
@@ -422,488 +423,488 @@ moc_para01,17,95,5	script	Mingmin#1	4_F_GENETIC,{
 						}
 						break;
 					case 2:
-						mes "We need to research monsters in Thanatos tower.";
+						mes "เราจำเป็นต้องวิจัยมอนสเตอร์ในหอคอย Thanatos Tower กันหน่อยแล้ว";
 						next;
-						switch( select( "Ancient Mimic research", "Deathword research", "Owl Baron research", "Bloody Page research" ) ) {
+						switch( select( "วิจัย Ancient Mimic", "วิจัย Deathword", "วิจัย Owl Baron", "สะสม Bloody Page" ) ) {
 							mes "[Mingmin]";
-						case 1:
+						case 1: // ภารกิจ Ancient Mimic
 							if (checkquest(13074,PLAYTIME) == 0)
-								mes "Ancient mimic research is going well. It is better off having more samples for the research!";
+								mes "งานวิจัย Ancient Mimic กำลังไปได้สวยเลย แต่ถ้าได้ตัวอย่างมาวิจัยเพิ่มอีกก็คงจะดีไม่น้อย!";
 							else if (checkquest(13073,HUNTING) == 1) {
-								cutin "ฟกภฮผวฦฎนฬนอ",3;  //ancient_mimic_card
-								mes "It is not far if you move from Juno or Hugel to Thanatos or Abyss lake.";
+								cutin "ancient_mimic_card",3; 
+								mes "มันไม่ไกลเท่าไหร่หรอกนะ ถ้าเจ้าเดินทางจาก Juno หรือ Hugel ไปยัง Thanatos หรือ Abyss Lake น่ะ";
 								next;
 								mes "[Mingmin]";
-								mes "Do not complain! It will be a good experience for you!";
+								mes "อย่าบ่นไปเลยน่า! ถือซะว่าเป็นประสบการณ์ที่ดีสำหรับเจ้ายังไงล่ะ!";
 								next;
 								cutin "min01",0;
 								mes "[Mingmin]";
-								mes "The experience you learn by fighting with monsters will be a good record to research!";
+								mes "ประสบการณ์ที่เจ้าได้รับจากการต่อสู้กับพวกมอนสเตอร์ จะเป็นบันทึกการวิจัยชั้นยอดให้ข้าเลยล่ะ!";
 							}
 							else if (checkquest(13073,HUNTING) == 2) {
 								cutin "min02",0;
-								mes "You did good work today!";
+								mes "วันนี้เจ้าทำหน้าที่ได้ดีมาก!";
 								callsub S_Quest,13073,13074,700000,300000;
 							}
 							else {
-								cutin "ฟกภฮผวฦฎนฬนอ",3;  //ancient_mimic_card
-								mes "You will see them often at thanatos tower or abyss lake. They are not generous with their drops but that is not important to finishing this request.";
+								cutin "ancient_mimic_card",3; 
+								mes "เจ้าจะพบพวกมันได้บ่อยในหอคอย Thanatos หรือไม่ก็ Abyss Lake พวกมันไม่ค่อยดรอปของดีๆ เท่าไหร่ แต่นั่นไม่สำคัญต่อการเคลียร์ภารกิจหรอกนะ";
 								next;
 								mes "[Mingmin]";
-								mes "I can not find any connection in two areas but they keep coming up so it is worth researching. Come back after taking care of ^FF000030 ancient mimic^000000.";
+								mes "ข้ายังหาจุดเชื่อมโยงของทั้งสองพื้นที่ไม่ได้เลย แต่พวกมันดันโผล่มาทั้งสองที่แบบนี้ ก็น่าวิจัยอยู่เหมือนกันนะ ไปจัดการ ^FF0000Ancient Mimic 30 ตัว^000000 แล้วค่อยกลับมา";
 								next;
 								cutin "min01",0;
-								if (select( "Take the request.", "Quit" ) == 1) {
+								if (select( "รับภารกิจ", "ยกเลิก" ) == 1) {
 									mes "[Mingmin]";
-									mes "If you possibly get a good drop from them, you know right? Do not forget about me!";
+									mes "ถ้าบังเอิญดรอปของดีๆ มาได้ เจ้าก็รู้ใช่ไหมว่าต้องทำยังไง? อย่าลืมส่วนแบ่งของข้าล่ะ! (ล้อเล่นน่า)";
 									emotion ET_SPARK;
 									callsub S_Quest,13074,13073;
 								}
 							}
 							break;
-						case 2:
+						case 2: // ภารกิจ Deathword
 							if (checkquest(13076,PLAYTIME) == 0)
-								mes "Deathword's research is going well. It is better off having more samples for the research!";
+								mes "งานวิจัย Deathword กำลังคืบหน้าไปได้ดี แต่ข้าอยากได้ตัวอย่างวิจัยเพิ่มอีกสักหน่อย";
 							else if (checkquest(13075,HUNTING) == 1) {
-								mes "Thanatos tower will be more dangerous than you thought. You might want to organize a party before going there.";
+								mes "หอคอย Thanatos น่ะอันตรายกว่าที่เจ้าคิดนะ ข้าว่าเจ้าน่าจะลองจัดปาร์ตี้ก่อนที่จะไปที่นั่นดีกว่า";
 								next;
 								mes "[Mingmin]";
-								mes "I want to research this so take this request please!";
+								mes "ข้าอยากวิจัยเรื่องนี้จริงๆ รับภารกิจนี้ไปเถอะนะ!";
 								next;
 								mes "[Mingmin]";
-								mes "I will give you a reward...";
+								mes "ข้ามีรางวัลให้อย่างงามแน่นอน...";
 							}
 							else if (checkquest(13075,HUNTING) == 2) {
 								cutin "min03",0;
-								mes "Thank you so much. This will be great research.";
+								mes "ขอบใจเจ้ามาก งานนี้ต้องเป็นบทความวิจัยที่ยอดเยี่ยมแน่ๆ";
 								callsub S_Quest,13075,13076,700000,300000;
 							}
 							else {
-								mes "That is the reason why I chose Thanatos tower to research. Do not be surprised. This one is an old book that became a monster!";
+								mes "นี่แหละคือเหตุผลที่ข้าเลือกวิจัยที่ Thanatos Tower... อย่าตกใจไปล่ะ เจ้าตัวนี้มันคือหนังสือเก่าแก่ที่กลายเป็นมอนสเตอร์เชียวนะ!";
 								next;
 								mes "[Mingmin]";
-								mes "I want to research the background of those creatures. Please check ^FF000030 Deathwords^000000.";
+								mes "ข้าอยากวิจัยที่มาที่ไปของสิ่งมีชีวิตพวกนี้ ช่วยไปตรวจสอบ ^FF0000Deathword สัก 30 ตัว^000000 ทีนะ";
 								next;
 								cutin "min01",0;
-								if (select( "Take the request.", "Quit" ) == 1) {
+								if (select( "รับภารกิจ", "ยกเลิก" ) == 1) {
 									mes "[Mingmin]";
-									mes "Please take care of them one by one. Those books contain precious history of Midgard so I want to research them.";
+									mes "ค่อยๆ จัดการพวกมันทีละตัวนะ หนังสือพวกนั้นมีประวัติศาสตร์อันล้ำค่าของ Midgard อยู่ ข้าเลยอยากศึกษามันน่ะ";
 									callsub S_Quest,13076,13075;
 								}
 							}
 							break;
-						case 3:
+						case 3: // ภารกิจ Owl Baron
 							if (checkquest(13078,PLAYTIME) == 0)
-								mes "Owl Baron's research is going well. It is better off having more samples for the research!";
+								mes "งานวิจัย Owl Baron กำลังไปได้สวยเลยล่ะ แต่ถ้าได้ข้อมูลเพิ่มอีกนิดก็น่าจะดีนะ";
 							else if (checkquest(13077,HUNTING) == 1) {
-								cutin "พฦฟ๏นูทะฤซตๅ",3;  //owl_baron_card
-								mes "You can meet it if you climb the tower according to the rumors. For me, well I've never been up there.";
+								cutin "owl_baron_card",3; 
+								mes "ตามข่าวลือคือเจ้าจะเจอมันได้ถ้าปีนหอคอยขึ้นไปสูงๆ ส่วนข้าน่ะเหรอ... เหอะ ข้าไม่เคยคิดจะขึ้นไปเองหรอก";
 								next;
 								mes "[Mingmin]";
-								mes "The guy with blue hat went to the top but I didn't bother to follow.";
+								mes "ตาคนหมวกฟ้าที่อยู่แถวนี้เคยปีนไปถึงยอดหอคอยด้วยนะ แต่ข้าขี้เกียจเดินตามเขาไปน่ะ";
 								next;
 								mes "[Mingmin]";
-								mes "Anyways, There will be enough reward for sure.";
+								mes "เอาเถอะ ข้ารับรองว่ารางวัลน่ะคุ้มค่าแน่นอน";
 								cutin "min01",0;
 							}
 							else if (checkquest(13077,HUNTING) == 2) {
 								cutin "min03",0;
-								mes "Safely back!? Eden Group will be happy.";
+								mes "กลับมาอย่างปลอดภัยสินะ!? ทาง Eden Group คงจะดีใจมากเลยล่ะ";
 								callsub S_Quest,13077,13078,700000,300000;
 							}
 							else {
-								cutin "พฦฟ๏นูทะฤซตๅ",3;  //owl_baron_card
-								mes "Personally I have no interest in this monster but it was requested from the Eden Group.";
+								cutin "owl_baron_card",3; 
+								mes "ส่วนตัวข้าไม่ได้สนใจเจ้าตัวนี้เท่าไหร่ แต่พอดีมีคำขอมาจากทาง Eden Group น่ะสิ";
 								next;
 								mes "[Mingmin]";
-								mes "Please take care of ^FF000020 Owl Barons^000000. It will help other adventurers to explore Thanatos tower.";
+								mes "ช่วยไปจัดการ ^FF0000Owl Baron สัก 20 ตัว^000000 ทีนะ มันจะช่วยให้นักผจญภัยคนอื่นๆ สำรวจ Thanatos Tower ได้ง่ายขึ้นด้วย";
 								next;
 								cutin "min01",0;
-								if (select( "Take the request.", "Quit" ) == 1) {
+								if (select( "รับภารกิจ", "ยกเลิก" ) == 1) {
 									mes "[Mingmin]";
-									mes "It does not mean I am not going to research them. The more documents the better research.";
+									mes "ไม่ได้หมายความว่าข้าจะไม่วิจัยมันนะ ยิ่งมีเอกสารประกอบเยอะเท่าไหร่ งานวิจัยก็ยิ่งสมบูรณ์เท่านั้นล่ะ";
 									callsub S_Quest,13078,13077;
 								}
 							}
 							break;
-						case 4:
+						case 4: // ภารกิจ Bloody Page
 							if (checkquest(13080,PLAYTIME) == 0) {
 								cutin "min03",0;
-								mes "I like old books! Okay I need to analyze this. Bloody Pages! Please bring more tomorrow or the day after tomorrow. Anytime!";
+								mes "ข้าชอบพวกหนังสือเก่าๆ ที่สุดเลย! โอเค ข้าต้องวิเคราะห์เจ้านี่... Bloody Page! พรุ่งนี้หรือมะรืนนี้ช่วยหามาเพิ่มอีกนะ เมื่อไหร่ก็ได้!";
 							}
 							else if (isbegin_quest(13079) == 1) {
-								if (countitem(7449) > 19) {// Bloody_Page
+								if (countitem(7449) > 19) { // Bloody_Page
 									cutin "min03",0;
-									mes "Wow. It is so curious. It is exciting!";
+									mes "ว้าว... เจ้านี่น่าสงสัยจริงๆ น่าตื่นเต้นที่สุด!";
 									delitem 7449,20;
 									callsub S_Quest,13079,13080,700000,300000;
 								}
 								else {
-									cutin "ตฅฝบฟ๖ตๅ",3;  //deathword_card
-									mes "3rd floor of thanatos has Deathword monsers that drop these bloody pages.";
+									cutin "deathword_card",3; 
+									mes "ชั้น 3 ของหอคอย Thanatos จะมีมอนสเตอร์ Deathword ที่ดรอปหน้ากระดาษเปื้อนเลือดพวกนี้อยู่";
 									next;
 									mes "[Mingmin]";
-									mes "I think if thou shalt collect 20 of these it should be enough for my research. It's barbaric, but it is a job!";
+									mes "ข้าว่าถ้าเจ้าสะสมได้สัก 20 แผ่น ก็น่าจะพอสำหรับงานวิจัยของข้าแล้วล่ะ ถึงมันจะดูดิบเถื่อนไปหน่อย แต่มันก็คืองานนะ!";
 									next;
 									mes "[Mingmin]";
-									mes "There will be enough reward for sure.";
+									mes "ไม่ต้องห่วง ข้าเตรียมรางวัลไว้ให้เจ้าแล้ว";
 									cutin "min01",0;
 								}
 							}
 							else {
-								cutin "ตฅฝบฟ๖ตๅ",3;  //deathword_card
-								mes "The fact that I decided to travel to Thanatos has the reason. Haha, I heard that I can get Bloody Pages from Deathword monsters.";
+								cutin "deathword_card",3; 
+								mes "เหตุผลที่ข้าถ่อมาถึง Thanatos นี่น่ะเหรอ... หึหึ ข้าได้ยินมาว่าเราสามารถหา 'Bloody Page' ได้จากพวก Deathword ยังไงล่ะ";
 								next;
 								mes "[Mingmin]";
-								mes "I know they're gross and bloody but just imagine the centuries of stories preserved in those pages...";
+								mes "ข้ารู้ว่ามันดูน่าขยะแขยงและเปื้อนเลือดไปหน่อย แต่ลองจินตนาการถึงเรื่องราวเป็นศตวรรษที่ถูกบันทึกไว้ในหน้ากระดาษพวกนี้ดูสิ...";
 								next;
 								mes "[Mingmin]";
-								mes "Can you please get me 20 ^FF0000Bloody Pages^000000? I will be happy if there is one useful bookshelf we can use when you bring them back.";
+								mes "ช่วยหา ^FF0000Bloody Page มาให้ข้าสัก 20 แผ่น^000000 ได้ไหม? ข้าคงมีความสุขมากถ้าได้เจอชั้นหนังสือดีๆ สักอันในหน้ากระดาษที่เจ้านำกลับมา";
 								next;
 								cutin "min01",0;
-								if (select( "Take the request.", "Quit" ) == 1) {
+								if (select( "รับภารกิจ", "ยกเลิก" ) == 1) {
 									mes "[Mingmin]";
-									mes "Please, I really want to research this.";
+									mes "ได้โปรดเถอะ ข้าอยากวิจัยเรื่องนี้จริงๆ นะ";
 									callsub S_Quest,13080,13079;
 								}
 							}
 						}
 						break;
 					case 3:
-						mes "The research for Ash Vacuum is just beginning. So there are still many thing to study!";
+						mes "งานวิจัยสำหรับ Ash Vacuum เพิ่งจะเริ่มต้นขึ้นเท่านั้น ยังมีอะไรให้ศึกษาอีกเยอะเลยล่ะ!";
 						next;
-						switch( select( "Dark Pinguicula research", "Nepenthes research", "Naga research", "Centipede Larva research", "Cornus research", "We know the magic power of the horn we saw that day." ) ) {
+						switch( select( "วิจัย Dark Pinguicula", "วิจัย Nepenthes", "วิจัย Naga", "วิจัย Centipede Larva", "วิจัย Cornus", "พลังเวทมนตร์จากเขาพิศวง" ) ) {
 							mes "[Mingmin]";
-						case 1:
+						case 1: // ภารกิจ Dark Pinguicula
 							if (checkquest(13082,PLAYTIME) == 0)
-								mes "Pinguicula dark's research is ongoing. Please come back to me next time.!";
+								mes "งานวิจัย Dark Pinguicula กำลังดำเนินการอยู่ ไว้ค่อยกลับมาหาข้าใหม่คราวหน้านะ!";
 							else if (checkquest(13081,HUNTING) == 1) {
-								cutin "วษฑอลงถ๓ดูลฉฤซตๅ",3;  //pinguicula_dark_card
-								mes "I think this research is easy. They are not too dangerous from the initial reports I've received.";
+								cutin "pinguicula_dark_card",3; 
+								mes "ข้าว่างานวิจัยนี้ไม่ยากหรอก จากรายงานเบื้องต้นพวกมันดูไม่ค่อยอันตรายเท่าไหร่นะ";
 								next;
 								mes "[Mingmin]";
-								mes "It is north west from the Allied Forces Camp. It is not that far so hurry up.";
+								mes "พวกมันอยู่ทางตะวันตกเฉียงเหนือของ Allied Forces Camp ไม่ไกลจากที่นี่หรอก รีบไปรีบมาล่ะ";
 								cutin "min01",0;
 							}
 							else if (checkquest(13081,HUNTING) == 2) {
 								cutin "min03",0;
-								mes "Good job! keep helping my research. I still have so much to do.";
+								mes "เยี่ยมมาก! ช่วยงานวิจัยข้าต่อไปนะ ข้ายังมีเรื่องต้องทำอีกเพียบเลย";
 								callsub S_Quest,13081,13082,700000,180000;
 							}
 							else {
-								cutin "วษฑอลงถ๓ดูลฉฤซตๅ",3;  //pinguicula_dark_card
-								mes "It is the monster living northwest of the Allied Forces Camp. I am not interested in going myself but the request was already paid for and I may as well research them.";
+								cutin "pinguicula_dark_card",3; 
+								mes "มันเป็นมอนสเตอร์ที่อาศัยอยู่ทางตะวันตกเฉียงเหนือของแคมป์น่ะ ข้าไม่ได้อยากออกไปเองหรอกนะ แต่ในเมื่อได้รับค่าจ้างมาแล้ว ข้าก็ต้องวิจัยพวกมันให้เสร็จ";
 								next;
 								mes "[Mingmin]";
-								mes "Hunt ^FF000030 Dark Pinguicula^000000. Battling it will provide some good research materials.";
+								mes "ไปล่า ^FF0000Dark Pinguicula มา 30 ตัว^000000 สิ การต่อสู้กับมันจะช่วยให้เราได้ข้อมูลวิจัยดีๆ มาล่ะ";
 								next;
 								cutin "min01",0;
-								if (select( "Take the request.", "Quit" ) == 1) {
+								if (select( "รับภารกิจ", "ยกเลิก" ) == 1) {
 									mes "[Mingmin]";
-									mes "Be careful and safe.";
+									mes "ระวังตัวด้วยนะ ขอให้ปลอดภัย";
 									callsub S_Quest,13082,13081;
 								}
 							}
 							break;
-						case 2:
+						case 2: // ภารกิจ Nepenthes
 							if (checkquest(13084,PLAYTIME) == 0)
-								mes "Nepenthes's research is still ongoing. Please come back to me next time!";
+								mes "งานวิจัย Nepenthes ยังไม่เสร็จเลย ไว้ค่อยกลับมาใหม่นะ!";
 							else if (checkquest(13083,HUNTING) == 1) {
-								cutin "ณืฦๆตฅฝบฤซตๅ",3;  //nepenthes_card
-								mes "It could be a simple request or tough request. Try to find friends if you are in trouble. That is adventure too!";
+								cutin "nepenthes_card",3; 
+								mes "ภารกิจนี้จะว่าง่ายก็ง่าย จะว่ายากก็ยากนะ ถ้าเจ้าลำบากก็ลองหาเพื่อนร่วมทางดูสิ นั่นแหละคือสีสันของการผจญภัย!";
 								next;
 								mes "[Mingmin]";
-								mes "It is east of the Allied Forces Camp. It is not that far so hurry up.";
+								mes "มันอยู่ทางตะวันออกของ Allied Forces Camp นี่เอง ไม่ไกลหรอก รีบไปจัดการซะ";
 								cutin "min01",0;
 							}
 							else if (checkquest(13083,HUNTING) == 2) {
 								cutin "min03",0;
-								mes "Good job! Keep assisting with my research. I still have so much to do.";
+								mes "เก่งมาก! ขอบใจที่ช่วยงานวิจัยข้า ข้ายังเหลือภารกิจอีกเยอะเลย";
 								callsub S_Quest,13083,13084,700000,180000;
 							}
 							else {
-								cutin "ณืฦๆตฅฝบฤซตๅ",3;  //nepenthes_card
-								mes "Do you know the monster name as mandragora? There is similar monster to the east of the expedition station. I am sure it will be related for researching monsters.";
+								cutin "nepenthes_card",3; 
+								mes "เจ้ารู้จักมอนสเตอร์ที่ชื่อ Mandragora ไหม? ทางทิศตะวันออกของแคมป์สำรวจมีตัวที่คล้ายๆ กันอยู่ ข้าว่ามันน่าจะเกี่ยวข้องกับงานวิจัยของข้าแน่ๆ";
 								next;
 								mes "[Mingmin]";
-								mes "Why don't you hunt 30 ^FF0000Nepenthes^000000? Their vines crawl up everywhere so be careful.";
+								mes "ลองไปล่า ^FF0000Nepenthes สัก 30 ตัว^000000 ดูสิ เถาวัลย์ของมันเลื้อยไปทั่วเลยล่ะ ระวังตัวด้วยนะ";
 								next;
 								cutin "min01",0;
-								if (select( "Take the request.", "Quit" ) == 1) {
+								if (select( "รับภารกิจ", "ยกเลิก" ) == 1) {
 									mes "[Mingmin]";
-									mes "The request like this satisfies me and the Eden Group. Be careful though.";
+									mes "คำขอแบบนี้แหละที่ถูกใจข้ากับ Eden Group ที่สุด ขอให้ปลอดภัยล่ะ";
 									callsub S_Quest,13084,13083;
 								}
 							}
 							break;
-						case 3:
+						case 3: // ภารกิจ Naga
 							if (checkquest(13086,PLAYTIME) == 0)
-								mes "Naga's research is still ongoing. Please come back to me next time.";
+								mes "งานวิจัย Naga ยังไม่เรียบร้อยเลย ไว้แวะมาใหม่นะ";
 							else if (checkquest(13085,HUNTING) == 1) {
-								cutin "ณชฐกฤซตๅ",3;  //naga_card
-								mes "You take care of those addicted to magic powers, I have no interest.";
+								cutin "naga_card",3; 
+								mes "พวกที่ลุ่มหลงในพลังเวทมนตร์น่ะ ข้าจัดการเองไม่ได้หรอก ไม่สนใจด้วย";
 								next;
 								mes "[Mingmin]";
-								mes "Please take care of 30 Naga monsters northwest of the expedition station.";
+								mes "ช่วยไปกำจัดมอนสเตอร์ Naga 30 ตัว ทางตะวันตกเฉียงเหนือของแคมป์สำรวจให้ทีนะ";
 								cutin "min01",0;
 							}
 							else if (checkquest(13085,HUNTING) == 2) {
 								cutin "min03",0;
-								mes "Good. Keep helping my research. I have too many to check out.";
+								mes "ดีมาก ช่วยงานวิจัยข้าต่อไปนะ ข้ามีเรื่องต้องตรวจสอบเยอะแยะไปหมด";
 								callsub S_Quest,13085,13086,700000,180000;
 							}
 							else {
-								cutin "ณชฐกฤซตๅ",3;  //naga_card
-								mes "Please take care of 30 ^FF0000Naga^000000 monsters northwest of the expedition station.";
+								cutin "naga_card",3; 
+								mes "ช่วยไปจัดการพวกมอนสเตอร์ ^FF0000Naga 30 ตัว^000000 ทางตะวันตกเฉียงเหนือของแคมป์สำรวจที";
 								next;
 								mes "[Mingmin]";
-								mes "I have no interest in it but it bothers my time to research the other monsters that I actually want to study. So I want the number of them to be reduced.";
+								mes "จริงๆ ข้าก็ไม่ได้สนใจมันนักหรอก แต่มันชอบมากวนเวลาวิจัยมอนสเตอร์ตัวอื่นที่ข้าอยากศึกษาจริงๆ น่ะสิ ข้าเลยอยากให้ลดจำนวนพวกมันลงหน่อย";
 								next;
 								cutin "min01",0;
-								if (select( "Take the request.", "Quit" ) == 1) {
+								if (select( "รับภารกิจ", "ยกเลิก" ) == 1) {
 									mes "[Mingmin]";
-									mes "Please do your best. This request is also important to unlock additional research.";
+									mes "พยายามเข้าล่ะ ภารกิจนี้สำคัญต่อการปลดล็อกงานวิจัยอื่นๆ ของข้าด้วยนะ";
 									callsub S_Quest,13086,13085;
 								}
 							}
 							break;
-						case 4:
+						case 4: // ภารกิจ Centipede Larva (ตัวอ่อนตะขาบ)
 							if (checkquest(13088,PLAYTIME) == 0)
-								mes "I'm still researching the Centipede Larva. Please come and help me next time.";
+								mes "ข้ายังวิจัย Centipede Larva ไม่เสร็จเลย ไว้มาช่วยข้าใหม่คราวหน้านะ";
 							else if (checkquest(13087,HUNTING) == 1) {
-								cutin "ผพฦผฦไตฅภฏรๆฤซตๅ",3;  //centipede_larva_card
-								mes "Oh... No Lets take a deep breath. For me, I want to exterminate more than 20 for research.";
+								cutin "centipede_larva_card",3; 
+								mes "โอ้... ไม่นะ... ขอนิ่งๆ สักครู่ สำหรับข้าแล้ว การให้เจ้าไปกำจัดพวกมันสัก 20 ตัวเพื่อการวิจัยก็นับว่ามากพอแล้วล่ะ";
 								next;
 								emotion ET_CRY;
 								mes "[Mingmin]";
-								mes "Be careful. And they're east of the expedition station.";
+								mes "ระวังตัวด้วยล่ะ พวกมันอยู่ทางตะวันออกของแคมป์สำรวจนะ";
 								cutin "min02",0;
 							}
 							else if (checkquest(13087,HUNTING) == 2) {
 								cutin "min02",0;
-								mes "Oh. Okay. You do not need to explain.";
+								mes "อืม... โอเค... เจ้าไม่ต้องอธิบายอะไรเพิ่มแล้วล่ะ (ขยะแขยงชะมัด)";
 								emotion ET_OTL;
 								callsub S_Quest,13087,13088,700000,180000;
 							}
 							else {
-								cutin "ผพฦผฦไตฅภฏรๆฤซตๅ",3;  //centipede_larva_card
-								mes "Yuck! It is very disgusting. Look at me. It is so creepy I wanted to survey it because I was interested in Nepenthes. But I hate bugs with lots of legs...";
+								cutin "centipede_larva_card",3; 
+								mes "ยึ๋ย! มันน่าขยะแขยงสุดๆ ไปเลย ดูข้าสิ ขนลุกไปหมดแล้ว... ตอนแรกข้าสนใจจะสำรวจ Nepenthes นะ แต่ข้าเกลียดพวกแมลงที่มีขาเยอะๆ แบบนี้ที่สุด!";
 								next;
 								mes "[Mingmin]";
-								mes "Come back after 20 ^FF0000Centipede Larva^000000 are exterminated. Can you imagine how big they became? Just the thought makes my skin crawl.";
+								mes "ไปกำจัด ^FF0000Centipede Larva สัก 20 ตัว^000000 แล้วค่อยกลับมานะ เจ้าจินตนาการออกไหมว่าถ้ามันโตขึ้นจะตัวใหญ่ขนาดไหน? แค่คิดข้าก็สยองแล้ว";
 								next;
 								cutin "min02",0;
-								if (select( "Take the request.", "Quit" ) == 1) {
+								if (select( "รับภารกิจ", "ยกเลิก" ) == 1) {
 									mes "[Mingmin]";
-									mes "I'm sorry that I didn't do it myself. I'm not ashamed to admit that it's too disgusting for me.";
+									mes "ขอโทษทีนะที่ข้าไม่ได้ออกไปทำเอง ข้าไม่อายหรอกที่จะบอกว่าข้าขยะแขยงพวกมันเกินกว่าจะทนไหว";
 									callsub S_Quest,13088,13087;
 								}
 							}
 							break;
-						case 5:
+						case 5: // ภารกิจ Cornus
 							if (checkquest(13090,PLAYTIME) == 0)
-								mes "Cornus's research is still ongoing. Please research for other adventurers.";
+								mes "งานวิจัย Cornus ยังไม่เรียบร้อยเลย ลองไปช่วยงานนักผจญภัยคนอื่นก่อนสิ";
 							else if (checkquest(13089,HUNTING) == 1) {
-								cutin "ฤฺธฃดฉฝบฤซตๅ",3;  //cornus_card
-								mes "I need to research those flying horse creatures so please help me out.";
+								cutin "cornus_card",3; 
+								mes "ข้าต้องวิจัยเจ้าพวกสัตว์ขี่มีปีกนั่นหน่อย ช่วยข้าทีนะ";
 								next;
 								mes "[Mingmin]";
-								mes "Of course, It will help your adventurers too in some way I suppose.";
+								mes "แน่นอนว่ามันน่าจะช่วยเสริมประสบการณ์การผจญภัยของเจ้าได้บ้างล่ะมั้งนะ";
 								cutin "min01",0;
 							}
 							else if (checkquest(13089,HUNTING) == 2) {
 								cutin "min03",0;
-								mes "How was it ? Is that monster easy for adventurers to get?";
+								mes "เป็นไงบ้าง? มอนสเตอร์พวกนั้นจัดการง่ายสำหรับนักผจญภัยอย่างเจ้าไหม?";
 								callsub S_Quest,13089,13090,700000,180000;
 							}
 							else {
-								cutin "ฤฺธฃดฉฝบฤซตๅ",3;  //cornus_card
-								mes "I found the monster that satisfies my research needs and helps adventurers to gain experience from the Eden Group. It is not weak or fierce monster either.";
+								cutin "cornus_card",3; 
+								mes "ข้าเจอมอนสเตอร์ที่ตอบโจทย์งานวิจัยของข้า แถมยังช่วยให้นักผจญภัยของ Eden Group ได้เก็บเกี่ยวประสบการณ์ได้ดีด้วย เพราะมันไม่ค่อยอ่อนแอแต่ก็ไม่ได้ดุร้ายเกินไป";
 								next;
 								mes "[Mingmin]";
-								mes "I believe that Adventurers will handle Cornus in the future, so go out and deal with ^FF000030 Cornus^000000 so I can research that viability.";
+								mes "ข้าเชื่อว่าในอนาคตนักผจญภัยจะต้องรับมือกับ Cornus ได้คล่องแน่ๆ เพราะฉะนั้นไปจัดการ ^FF0000Cornus สัก 30 ตัว^000000 เพื่อให้ข้าวิจัยความเป็นไปได้หน่อยสิ";
 								next;
 								cutin "min01",0;
-								if (select( "Take the request.", "Quit" ) == 1) {
+								if (select( "รับภารกิจ", "ยกเลิก" ) == 1) {
 									mes "[Mingmin]";
-									mes "This could be a revolution for Eden Group Adventurers. Be positive with this request please.";
+									mes "นี่อาจจะเป็นการปฏิวัติครั้งใหม่สำหรับนักผจญภัย Eden Group เลยนะ ช่วยมองในแง่ดีและรับงานนี้ไปทีเถอะ";
 									callsub S_Quest,13090,13089;
 								}
 							}
 							break;
-						case 6:
+						case 6: // ภารกิจ Mystic Horn
 							if (checkquest(13092,PLAYTIME) == 0)
-								mes "I'm still researching the Mystic Horns you brought. Quite interesting. I can beat blue hat soon.";
+								mes "ข้ากำลังวิจัย Mystic Horn ที่เจ้านำมาให้ล่ะ น่าสนใจมากเลย อีกไม่นานข้าคงเอาชนะเจ้าหมวกฟ้านั่นได้แน่ๆ";
 							else if (isbegin_quest(13091) == 1) {
-								if (countitem(6023) > 19) {// Mystic_Horn
+								if (countitem(6023) > 19) { // Mystic_Horn
 									cutin "min03",0;
-									mes "Yes this one! It is worth doing. Thank you for taking this request.";
+									mes "ใช่เลย ชิ้นนี้แหละ! คุ้มค่าที่ทำจริงๆ ขอบใจนะที่รับภารกิจนี้";
 									emotion ET_THANKS;
 									delitem 6023,20;
 									callsub S_Quest,13091,13092,700000,180000;
 								}
 								else {
-									cutin "ฤฺธฃดฉฝบฤซตๅ",3;  //cornus_card
-									mes "I am still researching but I hope to extract magic power from magical touched things.";
+									cutin "cornus_card",3; 
+									mes "ข้ายังวิจัยอยู่ แต่ข้าหวังว่าจะสกัดพลังเวทมนตร์ออกมาจากสิ่งที่สัมผัสกับพลังลี้ลับพวกนั้นได้";
 									next;
 									mes "[Mingmin]";
-									mes "It will be useful for me and adventurers, right?";
+									mes "มันจะเป็นประโยชน์ต่อทั้งข้าและนักผจญภัยคนอื่นๆ ใช่ไหมล่ะ?";
 									cutin "min01",0;
 								}
 							}
 							else {
-								cutin "ฤฺธฃดฉฝบฤซตๅ",3;  //cornus_card
-								mes "This is why I accepted the request for this from Eden Group. Find 20 ^FF0000Mystic Horn^000000 from the Cornus monsters.";
+								cutin "cornus_card",3; 
+								mes "นี่คือเหตุผลที่ข้ายอมรับภารกิจนี้จาก Eden Group ไปหา ^FF0000Mystic Horn 20 อัน^000000 จากพวก Cornus มาให้ข้าที";
 								next;
 								mes "[Mingmin]";
-								mes "I think I can use this horn for good things. It is easy to get. I will let you know later.";
+								mes "ข้าว่าข้าสามารถใช้เขานี่ทำเรื่องดีๆ ได้นะ มันหาไม่ยากหรอก ไว้ข้าจะบอกผลลัพธ์ภายหลังละกัน";
 								next;
 								cutin "min01",0;
-								if (select( "Take the request.", "Quit" ) == 1) {
+								if (select( "รับภารกิจ", "ยกเลิก" ) == 1) {
 									mes "[Mingmin]";
-									mes "Ye gain experience and I get research material. Good deal right? Excellent!";
+									mes "เจ้าได้ประสบการณ์ ส่วนข้าได้ของวิจัย แฟร์ดีใช่ไหมล่ะ? ยอดเยี่ยมที่สุด!";
 									callsub S_Quest,13092,13091;
 								}
 							}
 						}
 						break;
 					case 4:
-						mes "This request is for my personal research. I research for Eden Group and they support me to hire people assisting my research.";
+						mes "คำขอเหล่านี้เป็นส่วนหนึ่งของงานวิจัยส่วนตัวของข้า ข้าทำวิจัยให้ Eden Group และพวกเขาก็สนับสนุนงบประมาณให้ข้าจ้างคนมาช่วยงานยังไงล่ะ";
 						next;
-						switch( select( "Ancient Mummy research", "Geffenia survey", "Juperos survey", "Fragment and Rusty Screw collecting." ) ) {
+						switch( select( "วิจัย Ancient Mummy", "สำรวจ Geffenia", "สำรวจ Juperos", "สะสม Fragment และ Rusty Screw" ) ) {
 							mes "[Mingmin]";
-						case 1:
+						case 1: // ภารกิจ Ancient Mummy
 							if (checkquest(13094,PLAYTIME) == 0)
-								mes "Ancient Mummy's research is still ongoing.";
+								mes "งานวิจัย Ancient Mummy ยังไม่เรียบร้อยเลย ข้ายังไม่ต้องการข้อมูลเพิ่มตอนนี้";
 							else if (checkquest(13093,HUNTING) == 1) {
-								cutin "ฟกภฮผวฦฎนฬภฬถ๓ฤซตๅ",3;  //ancient_mummy_card
-								mes "If I finish researching, the first thing I'm going to do is eat a 10 year aged strawberry pudding...";
+								cutin "ancient_mummy_card",3; 
+								mes "ถ้าข้าวิจัยสำเร็จนะ สิ่งแรกที่ข้าจะทำคือการกินพุดดิ้งสตรอว์เบอร์รี่สูตรบ่ม 10 ปี...";
 								next;
 								mes "[Mingmin]";
-								mes "To finish my research I need you to hunt some Ancient Mummy.";
+								mes "เพื่อให้งานวิจัยคืบหน้า ข้าต้องการให้เจ้าไปจัดการ Ancient Mummy มาให้หน่อย";
 								cutin "min01",0;
 							}
 							else if (checkquest(13093,HUNTING) == 2) {
 								cutin "min03",0;
-								mes "Did a good job. Fantastic strawberry pudding is not easy to make. Trust me. I will let thee taste it someday soon.";
+								mes "ทำได้ดีมาก! พุดดิ้งสตรอว์เบอร์รี่ชั้นยอดน่ะทำไม่ง่ายหรอกนะ เชื่อข้าสิ ไว้สักวันข้าจะแบ่งให้เจ้าชิมนะ";
 								callsub S_Quest,13093,13094,700000,200000;
 							}
 							else {
-								cutin "ฟกภฮผวฦฎนฬภฬถ๓ฤซตๅ",3;  //ancient_mummy_card
-								mes "Things are supposed to go bad. Most of them but people want to keep and preserve food for a long time. ";
+								cutin "ancient_mummy_card",3; 
+								mes "ปกติแล้วสิ่งของมักจะเน่าเสียไปตามกาลเวลา แต่ผู้คนก็ยังพยายามจะถนอมอาหารให้อยู่ได้นานที่สุดจริงไหม?";
 								next;
 								mes "[Mingmin]";
-								mes "Have you even seen the bandage that Ancient Mummy are wound up in? They last even for centuries at a time.";
+								mes "เจ้าเคยเห็นผ้าพันแผลที่พันตัว Ancient Mummy ไหม? มันอยู่ยงคงกระพันมาได้เป็นศตวรรษเลยนะ!";
 								next;
 								mes "[Mingmin]";
-								mes "I guess it is rotten but we can make big money if this research goes well. Preservatives can make a strawberry pudding that does not go bad with time.";
+								mes "ข้าเดาว่ามันต้องมีเคล็ดลับบางอย่าง และถ้างานวิจัยนี้สำเร็จเราจะรวยเละเลยล่ะ! สารกันบูดที่จะทำให้พุดดิ้งสตรอว์เบอร์รี่ของข้าไม่มีวันบูดเน่า!";
 								next;
 								cutin "min01",0;
-								if (select( "Take the request.", "Quit" ) == 1) {
+								if (select( "รับภารกิจ", "ยกเลิก" ) == 1) {
 									mes "[Mingmin]";
-									mes "This research is necessary so that I can make my strawberry pudding.";
+									mes "งานวิจัยนี้สำคัญมากนะ เพื่อพุดดิ้งสตรอว์เบอร์รี่ของข้า!";
 									callsub S_Quest,13094,13093;
 								}
 							}
 							break;
-						case 2:
+						case 2: // ภารกิจ Geffenia
 							if (checkquest(13096,PLAYTIME) == 0)
-								mes "Geffenia's research has just started. It is beginning so go slowly. Lets research.";
+								mes "งานวิจัย Geffenia เพิ่งจะเริ่มเอง ค่อยเป็นค่อยไปเถอะนะ";
 							else if (checkquest(13095,HUNTING) == 1) {
-								cutin "ผญลฅน๖ฝบฤซตๅ",3;  //succubus_card
-								mes "I do not expect a lot because it is very dangerous and not easy to access.";
+								cutin "succubus_card",3; 
+								mes "ข้าไม่ได้คาดหวังอะไรมากหรอกนะ เพราะที่นั่นมันอันตรายแถมยังเข้าไปยากสุดๆ";
 								next;
 								mes "[Mingmin]";
-								mes "This request is attempting to an adventurer who used to enjoy it. Simple! Fun! Worthy experience!";
+								mes "ภารกิจนี้เหมาะสำหรับนักผจญภัยที่รักความท้าทาย ง่ายๆ! สนุก! และเป็นประสบการณ์ที่คุ้มค่า!";
 								cutin "min01",0;
 							}
 							else if (checkquest(13095,HUNTING) == 2) {
 								cutin "min03",0;
-								mes "You are more talented than I thought. If you found a tact, I will request to you for next time as well. This research is up to you.";
+								mes "เจ้ามีความสามารถมากกว่าที่ข้าคิดนะเนี่ย ถ้าเจ้าจับจุดได้แล้ว คราวหน้าข้าจะฝากความหวังไว้ที่เจ้าอีก งานวิจัยนี้ขึ้นอยู่กับเจ้าแล้วล่ะ";
 								callsub S_Quest,13095,13096,700000,200000;
 							}
 							else {
-								cutin "ภฮลฅน๖ฝบฤซตๅ",3;  //incubus_card
-								mes "This is pre-survey for precious research because Geffenia is easy to access.";
+								cutin "incubus_card",3; 
+								mes "นี่คือการสำรวจเบื้องต้นสำหรับงานวิจัยอันล้ำค่า เพราะ Geffenia น่ะเข้าถึงยากจะตาย";
 								next;
 								mes "[Mingmin]";
-								mes "The request starts from how to find a way in. Please take a look what kind of monsters are in there. first of all, start by hunting ^FF000010^000000 Incubus, Succubus and Violy. Then lets research the details later.";
+								mes "เริ่มจากหาทางเข้าไปให้ได้ก่อนนะ แล้วลองไปดูซิว่ามีมอนสเตอร์แบบไหนบ้าง เริ่มต้นด้วยการล่า ^FF0000Incubus, Succubus และ Violy อย่างละ 10 ตัว^000000 แล้วค่อยมาวิจัยรายละเอียดกันทีหลัง";
 								next;
 								cutin "min01",0;
-								if (select( "Take the request.", "Quit" ) == 1) {
+								if (select( "รับภารกิจ", "ยกเลิก" ) == 1) {
 									mes "[Mingmin]";
-									mes "Try to start from Geffen fountain, if you want more information.";
+									mes "ถ้าอยากได้เบาะแสเพิ่มเติม ลองไปเริ่มดูที่น้ำพุเมือง Geffen นะ";
 									callsub S_Quest,13096,13095;
 								}
 							}
 							break;
-						case 3:
+						case 3: // ภารกิจ Juperos (Hunt)
 							if (checkquest(13098,PLAYTIME) == 0)
-								mes "They all look the same for me.	I should research harder.";
+								mes "พวกมันดูหน้าตาเหมือนกันไปหมดเลยสำหรับข้า... ข้าคงต้องตั้งใจวิจัยให้มากกว่านี้";
 							else if (checkquest(13097,HUNTING) == 1) {
-								cutin "บฃณชล๕",3;  //venatu_card
-								mes "There is one more reason why many adventurers are sent to Juperos and that is my real request.";
+								cutin "venatu_card",3; 
+								mes "มีอีกเหตุผลหนึ่งที่นักผจญภัยจำนวนมากถูกส่งไปยัง Juperos และนั่นคือจุดประสงค์ที่แท้จริงของข้าล่ะ";
 								next;
 								mes "[Mingmin]";
-								mes "If you go to Juperos? I wish you to take a request about ^FF0000Venatus^000000.";
+								mes "ถ้าเจ้าไปที่ Juperos ข้าอยากให้เจ้าจัดการพวก ^FF0000Venatus^000000 ให้หน่อย";
 								cutin "min01",0;
 							}
 							else if (checkquest(13097,HUNTING) == 2) {
 								cutin "min03",0;
-								mes "You are not confused? I still do not know yet. What is the difference? Anyway good job.";
+								mes "เจ้าไม่สับสนเหรอ? ข้ายังดูไม่ออกเลยว่าพวกมันต่างกันตรงไหน แต่เอาเถอะ ทำได้ดีมาก!";
 								emotion ET_BLABLA;
 								callsub S_Quest,13097,13098,700000,300000;
 							}
 							else {
-								cutin "บฃณชล๕",3;  //venatu_card
-								mes "The remains of ancient, Juperos is mysterious. There are lots of ^FF0000secrets^000000. But this is yet again a simple monster research survey.";
+								cutin "venatu_card",3; 
+								mes "ซากอารยธรรมโบราณ Juperos นั้นเต็มไปด้วยปริศนาและ ^FF0000ความลับ^000000 มากมาย แต่นี่ก็เป็นแค่การสำรวจมอนสเตอร์ธรรมดาๆ เท่านั้นแหละ";
 								next;
 								mes "[Mingmin]";
-								mes "The monster ^FF0000Venatu^000000 in juperos has 4 types of colors. Which means there are four types of monsters.";
+								mes "เจ้ามอนสเตอร์ ^FF0000Venatu^000000 ใน Juperos น่ะมีตั้ง 4 สี ซึ่งหมายความว่ามันมี 4 ประเภทเลยนะ";
 								next;
 								mes "[Mingmin]";
-								mes "I thought they are the same because they look the same. Is it only me? I can not distinguish. Hunt 30 of each Green, Orange and Blue ones just to be sure.";
+								mes "ข้าคิดว่าพวกมันเหมือนกันหมดเพราะรูปร่างมันคล้ายกันมาก หรือมีแค่ข้าที่แยกไม่ออกนะ? ไปล่าสีเขียว สีส้ม และสีน้ำเงิน มาอย่างละ 30 ตัวเพื่อความแน่ใจทีสิ";
 								next;
 								cutin "min01",0;
-								if (select( "Take the request.", "Quit" ) == 1) {
+								if (select( "รับภารกิจ", "ยกเลิก" ) == 1) {
 									mes "[Mingmin]";
-									mes "It wil not be easy to be alone. But looking for a fellow for adventure is what an adventurer does.";
+									mes "ไปคนเดียวอาจจะไม่ง่ายนักนะ แต่การหาเพื่อนร่วมทางก็เป็นส่วนหนึ่งของนักผจญภัยอยู่แล้วนี่นา";
 									callsub S_Quest,13098,13097;
 								}
 							}
 							break;
-						case 4:
+						case 4: // ภารกิจ Juperos (Collect)
 							if (checkquest(13100,PLAYTIME) == 0)
-								mes "I will make anything better than you imagine.";
+								mes "ข้าจะสร้างสิ่งที่วิเศษเกินกว่าที่เจ้าจะจินตนาการได้เลยล่ะ";
 							else if (isbegin_quest(13099) == 1) {
 								if (countitem(7094) > 9 && countitem(7317) > 19) {
 									cutin "min03",0;
-									mes "Thank you. You will appreciate me if my research is completed.";
+									mes "ขอบใจมาก! เจ้าจะต้องขอบคุณข้าแน่ๆ เมื่องานวิจัยนี้เสร็จสมบูรณ์";
 									emotion ET_BLABLA;
-									delitem 7094,10;// Mystery_Piece
-									delitem 7317,20;// Screw
+									delitem 7094,10; // Mystery_Piece (Fragment)
+									delitem 7317,20; // Screw (Rusty Screw)
 									callsub S_Quest,13099,13100,700000,200000;
 								}
 								else {
-									cutin "บฃณชล๕",3;  //venatu_card
-									mes "You can find ^FF0000Fragment and Rusty Screw^000000 in juperos everywhere. Most of the monsters have it.";
+									cutin "venatu_card",3; 
+									mes "เจ้าสามารถหา ^FF0000Fragment และ Rusty Screw^000000 ได้จากทั่วทุกที่ใน Juperos นั่นแหละ มอนสเตอร์ส่วนใหญ่มีพวกมันอยู่";
 									next;
 									mes "[Mingmin]";
-									mes "I know it is not easy but I wish thee to take this request. Please.";
+									mes "ข้ารู้ว่ามันไม่ง่าย แต่ข้าอยากให้เจ้ารับภารกิจนี้จริงๆ นะ ได้โปรดเถอะ";
 									cutin "min01",0;
 								}
 							}
 							else {
-								cutin "บฃณชล๕",3;  //venatu_card
-								mes "Juperos is intense and mysterious. When he showed up, It seems like it is not Midgard.";
+								cutin "venatu_card",3; 
+								mes "Juperos เป็นสถานที่ที่ลึกลับและซับซ้อนมาก พอเจ้าหลงเข้าไปข้างใน มันแทบจะไม่เหมือนอยู่ในโลก Midgard เลยล่ะ";
 								next;
 								mes "[Mingmin]";
-								mes "It is core research. I need to know who he is. That will be amazing. Can you bring me 10 ^FF0000Fragment^000000 and 20 ^FF0000Rusty Screw^000000?";
+								mes "นี่คืองานวิจัยชิ้นสำคัญ ข้าต้องรู้ให้ได้ว่ามันคืออะไรกันแน่ ช่วยนำ ^FF0000Fragment 10 อัน^000000 และ ^FF0000Rusty Screw 20 อัน^000000 มาให้ข้าทีได้ไหม?";
 								next;
 								cutin "min01",0;
-								if (select( "Take the request.", "Quit" ) == 1) {
+								if (select( "รับภารกิจ", "Quit" ) == 1) {
 									mes "[Mingmin]";
-									mes "I do not know how many drops you can carry but I want as many as you can. May I ask you to bring 10 ^FF0000Fragment^000000 and 20 ^FF0000Rusty Screw^000000?";
+									mes "ข้าไม่รู้ว่าเจ้าจะขนไหวแค่ไหนนะ แต่ข้าต้องการมันมากที่สุดเท่าที่เจ้าจะหามาได้ ช่วยนำ ^FF0000Fragment 10 อัน^000000 และ ^FF0000Rusty Screw 20 อัน^000000 มาให้ข้าทีนะ";
 									callsub S_Quest,13100,13099;
 								}
 							}
@@ -912,19 +913,20 @@ moc_para01,17,95,5	script	Mingmin#1	4_F_GENETIC,{
 				}
 			}
 			else if (para_110lv01 < 5) {
-				mes "The request for researching monsters seem to easy for you.";
+				mes "ดูเหมือนงานวิจัยมอนสเตอร์พวกนี้จะง่ายเกินไปสำหรับเจ้านะ";
 				next;
 				mes "[Mingmin]";
-				mes "There is nothing I can do because these are the rules of the Eden Group.";
+				mes "แต่ข้าก็ทำอะไรไม่ได้หรอกนะ เพราะมันเป็นกฎของทาง Eden Group น่ะ";
 				next;
 				mes "[Mingmin]";
-				mes "There is someone who strongly wishes you to solve your request.";
+				mes "แต่ถึงอย่างนั้น ก็มีใครบางคนที่อยากให้เจ้าช่วยสะสางภารกิจพวกนี้ให้เสร็จจริงๆ นะ (ก็ข้ายังไงล่ะ!)";
 			}
 			else {
 				cutin "min01",0;
-				mes "Contract is terminated. "+ strcharinfo(0) +" reward for completed research. ^FF0000I will delete incompleted research from your quest list.^000000";
+				mes "สัญญาสิ้นสุดลงแล้ว "+ strcharinfo(0) +"... นี่คือรางวัลสำหรับงานวิจัยที่เสร็จสมบูรณ์ ^FF0000และข้าจะลบรายการวิจัยที่ยังไม่เสร็จออกจากรายการเควสต์ของเจ้าด้วยนะ^000000";
 				para_110lv01 = 6;
 				next;
+				// ส่วนการคำนวณรางวัลตามรายการที่ล่าสำเร็จ
 				callsub S_Hunting,
 					13067,200000,"Raydric",
 					13069,200000,"Khalitzburg",
@@ -945,141 +947,142 @@ moc_para01,17,95,5	script	Mingmin#1	4_F_GENETIC,{
 					13095,200000,"Geffenia expedition",
 					13097,300000,"Juperos";
 				callsub S_Gathering,13099,200000,"Fragments and Rusty Screws",7094,10,7317,20;
+				
 				mes "[Mingmin]";
-				mes "It is a little bit inconvenient. I will read to you politely ^FF0000again^000000 in public.";
+				mes "มันอาจจะดูขัดเขินไปหน่อยนะ แต่ต่อหน้าสาธารณชนเนี่ย ข้าคงต้องกลับมาพูดจาสุภาพกับเจ้า ^FF0000'อีกครั้ง'^000000 ล่ะนะ";
 				next;
 				mes "[Mingmin]";
-				mes "Anyway "+ strcharinfo(0) +" thank you for helping me start my research.";
+				mes "ยังไงก็เถอะ "+ strcharinfo(0) +" ขอบใจมากที่ช่วยให้งานวิจัยของข้าเริ่มต้นขึ้นได้";
 				next;
 				cutin "min03",0;
 				mes "[Mingmin]";
-				mes "Do not worry, I will treat you like a slave if we meet outside of Eden Group or if you tell anyone I was nice to you.";
+				mes "แต่อย่าวางใจไปล่ะ! ข้าจะปฏิบัติกับเจ้าเยี่ยงทาสแน่ถ้าเราเจอกันข้างนอก Eden Group หรือถ้าเจ้าบังอาจไปป่าวประกาศให้ใครรู้ว่าข้าทำตัวดีกับเจ้าล่ะก็... หึหึ";
 				emotion ET_BLABLA;
 				next;
 				cutin "min01",0;
 				mes "[Mingmin]";
-				mes "Just because I'm being nice now doesn't mean we're automatically friends though.";
+				mes "แล้วก็... แค่ข้าใจดีด้วยนิดหน่อยตอนนี้ ไม่ได้หมายความว่าเราเป็นเพื่อนกันโดยอัตโนมัติหรอกนะ! (อย่าเข้าใจผิดล่ะ!)";
 			}
 			break;
 		case 2:
 			if (para_110lv01 == 5)
-				mes "Do you want to know something? I am busy researching.";
+				mes "เจ้ามีอะไรอยากรู้งั้นเหรอ? ข้ากำลังยุ่งกับงานวิจัยอยู่นะ";
 			else
-				mes "It is fine day for researching. It is always fun to talk to someone of sufficient intelligence.";
+				mes "วันนี้เป็นวันที่เหมาะกับการวิจัยจริงๆ การได้คุยกับคนที่มีสติปัญญาในระดับที่น่าพอใจก็นับว่าเป็นเรื่องสนุกเหมือนกันนะ";
 			while(1) {
 				next;
-				switch( select( "^0000ffFriends^000000 story", "Something to research", "Orange beard gluey mushroom...", "Finish conversation" ) ) {
+				switch( select( "เรื่องของ ^0000ffเพื่อนๆ^000000", "หัวข้องานวิจัย", "เรื่องเห็ดสีส้มเหนียวๆ นั่น...", "จบการสนทนา" ) ) {
 					mes "[Mingmin]";
-				case 1:
+				case 1: // เรื่องของเพื่อนๆ (Rohtert และ Blue Hat)
 					if (para_110lv01 < 5) {
 						cutin "min02",0;
-						mes "I found a familiar face since I arrived to Eden Group with this request. ^ff0000Rohtert^000000 is the one.";
+						mes "ตั้งแต่ข้ามาที่ Eden Group เพื่อทำภารกิจวิจัย ข้าก็ได้เจอคนที่คุ้นหน้าคุ้นตาด้วยล่ะ นั่นก็คือ ^ff0000Rohtert^000000 ยังไงล่ะ";
 						next;
 						mes "[Mingmin]";
-						mes "I used to join clubs that researched rare monsters. I heard it became a guild and anyway I met him there.";
+						mes "เมื่อก่อนข้าเคยเข้าชมรมที่ทำวิจัยเรื่องมอนสเตอร์หายากน่ะ ได้ข่าวว่าตอนนี้มันกลายเป็นกิลด์ไปแล้วมั้ง ข้าเจอเขาที่นั่นแหละ";
 						next;
 						mes "[Mingmin]";
-						mes "I look younger but I am like his sister. There was so many things that happened in that club. However, I shouldn't go on and on about it. I might tell you later when we have time.";
+						mes "เห็นข้าดูเด็กแบบนี้ แต่จริงๆ ข้าเปรียบเสมือนพี่สาวของเขาเลยนะ มีเรื่องราวเกิดขึ้นมากมายในชมรมนั้นล่ะ แต่เอาเถอะ ข้าไม่ควรพูดเรื่องเก่าๆ นานเกินไป ไว้เรามีเวลาว่างค่อยคุยกันใหม่นะ";
 					}
 					else if (para_110lv01 == 5) {
 						cutin "min03",0;
-						mes "I found a familiar face since I arrived to Eden Group with this request. Do you see the guy ^FF0000Rohtert^000000 with white hair near the entrance?";
+						mes "ข้าเจอคนที่คุ้นหน้าตั้งแต่ข้ามาที่นี่ เจ้าเห็นผู้ชายผมขาวที่ชื่อ ^FF0000Rohtert^000000 ที่อยู่ใกล้ๆ ทางเข้าไหม?";
 						next;
 						mes "[Mingmin]";
-						mes "Now that he's grown up... well he used to follow me calling me his sister. By the way where is the blue hat guy who used to stick to him like glue. Did they have a fight?";
+						mes "เดี๋ยวนี้เขาโตขึ้นเยอะเลยนะ... เมื่อก่อนเขาชอบเดินตามหลังข้าแล้วเรียกข้าว่าพี่สาวตลอดเลยล่ะ ว่าแต่... ตาคนใส่หมวกสีฟ้าที่ชอบเกาะติดเขาเป็นตังเมหายไปไหนซะแล้วล่ะ? หรือว่าพวกเขาทะเลาะกันแล้ว?";
 						next;
 						mes "[Mingmin]";
-						mes "That blue hat guy... He used to annoy me even at the club. If I see him again I just might smack him...";
+						mes "เจ้าคนใส่หมวกฟ้านั่น... ชอบกวนประสาทข้าตั้งแต่สมัยอยู่ชมรมแล้ว ถ้าข้าเจอเขาอีกนะ ข้าจะเขกกะโหลกให้สักที...";
 					}
 					else {
 						cutin "min02",0;
-						mes "I used to talk to Rohtert from time to time while researching. There was a lot of things to talk about ever since I left the guild.";
+						mes "ข้าได้คุยกับ Rohtert เป็นระยะๆ ระหว่างทำวิจัยล่ะ มีเรื่องให้คุยกันเพียบเลยตั้งแต่ข้าออกจากกิลด์มา";
 						next;
 						mes "[Mingmin]";
-						mes "I think the guild is still around since there were so many members even when I was there.";
+						mes "ข้าว่ากิลด์นั้นน่าจะยังอยู่นะ เพราะตอนที่ข้าอยู่ สมาชิกเยอะจนนับไม่ถ้วนเลยล่ะ";
 						next;
 						mes "[Mingmin]";
-						mes "I even heard that blue hat guy made himself a guild master. Imagine that fool being a master oh ho ho ho.";
+						mes "ได้ยินมาว่าเจ้าคนหมวกฟ้านั่นได้เป็นถึงหัวหน้ากิลด์เชียวนะ ลองจินตนาการดูสิว่าเจ้าคนทึ่มนั่นเป็นหัวหน้ากิลด์... โอ๊ย ฮ่าฮ่าฮ่าฮ่า";
 					}
 					continue;
-				case 2:
+				case 2: // หัวข้องานวิจัย
 					if (para_110lv01 < 5) {
 						cutin "min01",0;
-						mes "I research monsters. Especially their features, personality, spleens, locations and relationship with other monsters. Etc.";
+						mes "ข้าทำวิจัยเกี่ยวกับมอนสเตอร์น่ะ โดยเฉพาะลักษณะเด่น นิสัย เครื่องใน แหล่งที่อยู่ และความสัมพันธ์ระหว่างพวกมันกับมอนสเตอร์ตัวอื่นๆ อะไรทำนองนั้น";
 					}
 					else if (para_110lv01 == 5) {
 						cutin "min03",0;
-						mes "Researching these magic items there is more to it than just having them in your possession.";
+						mes "การวิจัยไอเทมเวทมนตร์พวกนี้ มันมีอะไรที่ลึกซึ้งกว่าแค่การมีพวกมันไว้ในครอบครองนะ";
 						next;
 						mes "[Mingmin]";
-						mes "My plan so far is like this. Extracted magic from the Mystic Horn is compressed by the Fragments and Screws. Then I will input the ancient information which was written in the Bloody Pages.";
+						mes "แผนของข้าตอนนี้คือ... ข้าจะสกัดพลังเวทมนตร์จาก Mystic Horn แล้วบีบอัดมันด้วย Fragments และ Screws จากนั้นข้าจะป้อนข้อมูลโบราณที่เขียนไว้ใน Bloody Pages ลงไป";
 						next;
 						mes "[Mingmin]";
-						mes "I'm hoping to create some type of small hand-held storage device.";
+						mes "ข้าหวังว่าจะสร้างอุปกรณ์เก็บข้อมูลขนาดพกพาแบบล้ำสมัยขึ้นมาได้น่ะ";
 						next;
 						mes "[Mingmin]";
-						mes "I wil be rich if I complete this research! I am sure.";
+						mes "ถ้าข้าทำงานวิจัยนี้สำเร็จ ข้ารวยเละแน่! ข้ามั่นใจ!";
 					}
 					else {
 						cutin "min01",0;
-						mes "Well do you remember my personal research I mentioned before? It is not easy even I tried to develop...";
+						mes "เจ้ายังจำงานวิจัยส่วนตัวที่ข้าเคยพูดถึงได้ไหม? ถึงข้าจะพยายามพัฒนามัน แต่มันไม่ง่ายเลยจริงๆ...";
 						next;
 						mes "[Mingmin]";
-						mes "I tried to make a magic device that you can hold in your hand.";
+						mes "ข้าพยายามจะสร้างอุปกรณ์เวทมนตร์ที่สามารถถือไว้ในมือได้น่ะ (Hand-held device)";
 						next;
 						mes "[Mingmin]";
-						mes "No. I can not give up for this. I will make it.";
+						mes "ไม่สิ ข้าจะยอมแพ้ไม่ได้ ข้าต้องสร้างมันขึ้นมาให้ได้!";
 					}
 					continue;
-				case 3:
+				case 3: // เรื่องเห็ดสีส้มเหนียวๆ (เฉลย)
 					if (para_110lv01 < 5) {
 						cutin "min02",0;
-						mes "Orange mushroom? I do not know.";
+						mes "เห็ดสีส้มงั้นเหรอ? ข้าไม่เห็นจะรู้เรื่องเลย";
 					}
 					else if (para_110lv01 == 5) {
 						cutin "min01",0;
-						mes "Do not worry. Ok, maybe worry because mushrooms could be growing in your body. I will get rid of it if you help me to research. It will be dangerous if it takes longer time.";
+						mes "ไม่ต้องกังวลไปหรอกน่า... หรือจริงๆ อาจจะต้องกังวลนะ เพราะเห็ดมันอาจจะกำลังโตในตัวเจ้าก็ได้ ข้าจะช่วยกำจัดมันให้ถ้าเจ้าช่วยงานวิจัยข้าเสร็จน่ะนะ ปล่อยไว้นานมันจะอันตรายเอา";
 					}
 					else {
 						cutin "min02",0;
-						mes "... orange shiitake gluey mushroom?";
+						mes "...เห็ดชิทาเกะสีส้มเหนียวๆ นั่นน่ะเหรอ?";
 						next;
 						mes "[Mingmin]";
-						mes "Let me see. It might be dangerous.";
+						mes "ไหนข้าดูซิ... อืม ดูท่าจะอันตรายแฮะ";
 						next;
 						mes "[Mingmin]";
-						mes "You helped me to research so let me help you! I will get rid of your mushroom spore infection.";
+						mes "ในเมื่อเจ้าช่วยงานวิจัยข้ามามาก ข้าก็จะช่วยเจ้าบ้าง! ข้าจะกำจัดเชื้อสปอร์เห็ดในตัวเจ้าให้เอง!";
 						next;
 						mes "[Mingmin]";
 						mes "......";
 						next;
 						cutin "min03",0;
 						mes "[Mingmin]";
-						mes "...hee hee...";
+						mes "...คิๆ...";
 						emotion ET_SMILE;
 						next;
 						mes "[Mingmin]";
-						mes "Hmmph, You are so naive. Did you believe it? Sticky.. some kind of mushroom is growing in your body? Hahaha";
+						mes "หึๆ เจ้าเนี่ยซื่อบื้อกว่าที่ข้าคิดนะเนี่ย เจ้าเชื่อจริงๆ เหรอ? เรื่องเห็ดสีส้มเหนียวๆ มาโตในร่างกายมนุษย์เนี่ยนะ? ฮ่าๆๆๆๆ";
 						next;
 						mes "[Mingmin]";
-						mes "It was just a joke. A little joke between friends.";
+						mes "มันก็แค่เรื่องตลกล้อเล่นระหว่างเพื่อนฝูงน่ะ";
 						next;
 						mes "[Mingmin]";
-						mes "I am sorry if you are upset. You made it too easy...";
+						mes "ข้าขอโทษนะถ้าเจ้าโกรธ แต่เจ้าดันหลอกง่ายเองนี่นา...";
 						next;
 						emotion ET_SMILE;
 						mes "[Mingmin]";
-						mes "You are funnier than I thought. Do not worry. That mushroom does not exist.";
+						mes "เจ้าเนี่ยตลกกว่าที่ข้าคิดซะอีกนะ ไม่ต้องห่วงหรอก เจ้าเห็ดนั่นน่ะไม่มีอยู่จริงในโลกนี้หรอกนะ!";
 					}
 					continue;
-				case 4:
+				case 4: // จบการสนทนา
 					if (para_110lv01 == 5) {
 						cutin "min01",0;
-						mes "Please help me there are so many things to research.";
+						mes "รีบไปช่วยข้าทีนะ งานวิจัยยังเหลืออีกตั้งเยอะแยะ";
 					}
 					else {
 						cutin "min02",0;
-						mes "I hope you have a good time";
+						mes "ขอให้เป็นวันที่ดีสำหรับการผจญภัยนะ";
 					}
 				}
 				break;
@@ -1106,41 +1109,44 @@ S_Hunting:
 			if (checkquest(.@quest_id+1) > -1)
 				erasequest (.@quest_id+1);
 			continue;
-		case 2:
+		case 2: // กรณีที่ล่ามอนสเตอร์ครบตามจำนวน
 			mes "[Mingmin]";
-			mes "You finished researching about "+ getarg(.@i+2) +". Thank you.";
+			mes "เจ้าทำงานวิจัยเกี่ยวกับ "+ getarg(.@i+2) +" เสร็จสิ้นแล้ว ขอบใจมากนะ";
 			getexp 700000,getarg(.@i+1);
 			break;
 		case 0:
-		case 1:
+		case 1: // กรณีที่ยังล่าไม่เสร็จ (จะถูกลบทิ้งเมื่อกดคุยจบสัญญา)
 			mes "[Mingmin]";
-			mes "I will delete "+ getarg(.@i+2) +" research from request list.";
+			mes "ข้าจะลบรายการวิจัยของ "+ getarg(.@i+2) +" ออกจากรายการคำขอนะ";
 		}
 		erasequest .@quest_id;
 		next;
 	}
 	return;
+
 S_Gathering:
 	.@quest_id = getarg(0);
 	if (isbegin_quest(.@quest_id) > 0) {
 		if (getarg(5,0))
 			.@count_item2 = countitem(getarg(5));
 		mes "[Mingmin]";
+		// ตรวจสอบว่ามีไอเทมครบตามจำนวนที่กำหนดหรือไม่
 		if (countitem(getarg(3)) >= getarg(4) && .@count_item2 >= getarg(6,0)) {
 			if (.@count_item2)
-				mes "You finished researching about "+ getitemname(getarg(3)) +" and "+ getitemname(getarg(5)) +". Thank you.";
+				mes "เจ้าทำงานวิจัยเกี่ยวกับ "+ getitemname(getarg(3)) +" และ "+ getitemname(getarg(5)) +" เสร็จสิ้นแล้ว ขอบใจนะ";
 			else
-				mes "You finished researching about "+ getitemname(getarg(3)) +". Thank you.";
+				mes "เจ้าทำงานวิจัยเกี่ยวกับ "+ getitemname(getarg(3)) +" เสร็จสิ้นแล้ว ขอบใจมากนะ";
+			
 			delitem getarg(3),getarg(4);
 			if (getarg(5,0))
 				delitem getarg(5),getarg(6);
 			getexp 700000,getarg(1);
 		}
-		else {
+		else { // กรณีที่มีไอเทมไม่ครบ (จะถูกลบทิ้ง)
 			if (getarg(5,0))
-				mes "I will delete "+  getitemname(getarg(3)) +" and "+ getitemname(getarg(5)) +" research from request list.";
+				mes "ข้าจะลบรายการวิจัยของ "+  getitemname(getarg(3)) +" และ "+ getitemname(getarg(5)) +" ออกจากรายการคำขอนะ";
 			else
-				mes "I will delete "+  getitemname(getarg(3)) +" research from request list.";
+				mes "ข้าจะลบรายการวิจัยของ "+  getitemname(getarg(3)) +" ออกจากรายการคำขอนะ";
 		}
 		erasequest .@quest_id;
 		next;

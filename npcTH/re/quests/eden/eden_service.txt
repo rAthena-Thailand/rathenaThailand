@@ -17,34 +17,34 @@
 
 // Goods Cabinets :: pare_service
 //============================================================
--	script	Goods Cabinet#00::pggc	-1,{
-	mes "It is a Goods Storage Cabinet.";
-	mes "A message is written on a piece of paper.";
+-	script	ตู้เก็บของ#00::pggc	-1,{
+	mes "นี่คือตู้สำหรับเก็บสิ่งของ";
+	mes "มีข้อความเขียนไว้บนกระดาษแผ่นหนึ่ง";
 	next;
-	mes "+ Cabinet is exclusively +";
-	mes "+ for the Eden group +";
-	mes "If you want to use this";
-	mes "cabinet please check";
-	mes "the following:";
+	mes "+ ตู้เก็บของนี้สงวนสิทธิ์ +";
+	mes "+ สำหรับสมาชิก Eden Group เท่านั้น +";
+	mes "หากคุณต้องการใช้งาน";
+	mes "กรุณาตรวจสอบ";
+	mes "เงื่อนไขดังต่อไปนี้:";
 	next;
-	mes "1.Are you a member";
-	mes "   of Eden group?";
-	mes "2.Have you learned";
-	mes "   enough basic skills?";
-	mes "3.Cabinet fee is";
-	mes "  ^4d4dff500 zeny^000000!";
+	mes "1. คุณเป็นสมาชิก";
+	mes "   ของ Eden Group หรือไม่?";
+	mes "2. คุณเรียนรู้ทักษะพื้นฐาน";
+	mes "   (Basic Skill) เพียงพอหรือยัง?";
+	mes "3. ค่าธรรมเนียมการใช้งาน";
+	mes "   คือ ^4d4dff500 Zeny^000000!";
 	next;
 	if (callfunc("F_HasEdenGroupMark")) {
-		mes "You need to insert zeny to use the cabinet.";
-		mes "Cost : 500 Zeny ";
-		mes "Would you like to use it?";
+		mes "คุณต้องหยอดเหรียญ Zeny เพื่อใช้งานตู้เก็บของ";
+		mes "ค่าใช้จ่าย: 500 Zeny";
+		mes "คุณต้องการใช้งานหรือไม่?";
 		next;
-		switch(select("Use the Cabinet.:Cancel.")) {
+		switch(select("ใช้งานตู้เก็บของ:ยกเลิก")) {
 			case 1:
 				if (Zeny > 499) {
 					if(!callfunc("F_CanOpenStorage")){
-						mes "The cabinet is not working for me.";
-						mes "Maybe I am not yet qualified to use Cabinet.";
+						mes "ตู้เก็บของไม่ทำงานแฮะ...";
+						mes "บางทีฉันอาจจะยังไม่มีคุณสมบัติเพียงพอที่จะใช้ตู้เก็บของนี้";
 						close;
 					}
 					set Zeny, Zeny - 500;
@@ -52,16 +52,16 @@
 					openstorage;
 					end;
 				}
-				mes "I don't have enough zeny.";
-				mes "I need at least 500 zeny to use the Cabinet.";
+				mes "ฉันมี Zeny ไม่พอ...";
+				mes "ต้องมีอย่างน้อย 500 Zeny ถึงจะใช้ตู้เก็บของนี้ได้";
 				close;
 			case 2:
-				mes "I will use it next time.";
+				mes "เอาไว้คราวหน้าละกัน";
 				close;
 		}
 	}
-	mes "I need an Eden Group Mark to use this Cabinet.";
+	mes "ฉันต้องมีตราประทับ Eden Group ก่อน ถึงจะใช้งานตู้เก็บของนี้ได้";
 	close;
 }
-moc_para01,173,120,0	duplicate(pggc)	Goods Cabinet#01	111
-moc_para01,170,120,0	duplicate(pggc)	Goods Cabinet#02	111
+moc_para01,173,120,0	duplicate(pggc)	ตู้เก็บของ#01	111
+moc_para01,170,120,0	duplicate(pggc)	ตู้เก็บของ#02	111
