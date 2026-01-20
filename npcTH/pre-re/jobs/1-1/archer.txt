@@ -28,111 +28,111 @@ payon_in02,64,71,4	script	Archer Guildsman#archer	85,{
 	if (Upper == 1) {
 		if (Class == Job_Novice_High && (ADVJOB == Job_Sniper || ADVJOB == Job_Clown || ADVJOB == Job_Gypsy)) {
 			mes "[Archer Guildsman]";
-			mes "Hey, I know you.";
-			mes "You took this test";
-			mes "before, didn't you?";
+			mes "เฮ้ ฉันจำคุณได้";
+			mes "คุณเคยทำแบบทดสอบนี้";
+			mes "มาก่อนแล้วใช่ไหมล่ะ?";
 			next;
 			mes "[Archer Guildsman]";
-			mes "Ah, you must have been";
-			mes "to Valhalla and been reborn.";
-			mes "Wow, that's so impressive!";
+			mes "อา คุณคงจะไปที่";
+			mes "Valhalla และได้จุติใหม่สินะ";
+			mes "ว้าว ช่างน่าประทับใจจริงๆ!";
 			next;
 			if (!callfunc("F_CanChangeJob")) {
 				mes "[Archer Guildsman]";
-				mes "Err...";
-				mes "You'd better learn all the Basic Skills first before you can become an Archer.";
+				mes "เอ่อ...";
+				mes "คุณควรไปเรียนรู้ทักษะพื้นฐาน (Basic Skills) ทั้งหมดให้ครบก่อนที่จะมาเป็น Archer นะ";
 				next;
 				mes "[Archer Guildsman]";
-				mes "Alright, see you later.";
+				mes "ตกลง ไว้เจอกันใหม่นะ";
 				close;
 			}
 			mes "[Archer Guildsman]";
-			mes "Well then. I don't";
-			mes "need to say anything else.";
-			mes "I know you'll make a great Archer...";
+			mes "เอาล่ะ งั้นฉันก็";
+			mes "ไม่มีอะไรต้องพูดอีก";
+			mes "ฉันรู้ว่าคุณจะต้องเป็น Archer ที่ยอดเยี่ยมแน่ๆ...";
 			next;
 			skill "NV_TRICKDEAD",0,SKILL_PERM;
 			jobchange Job_Archer_high;
 			skill "AC_MAKINGARROW",1,SKILL_PERM;
 			skill "AC_CHARGEARROW",1,SKILL_PERM;
 			mes "[Archer Guildsman]";
-			mes "Although there's no special";
-			mes "reward for you this time, I hope you understand. Take care of yourself.";
+			mes "แม้ว่าครั้งนี้จะไม่มี";
+			mes "รางวัลพิเศษอะไรมอบให้ หวังว่าคุณจะเข้าใจนะ ดูแลตัวเองด้วยล่ะ";
 			close;
 		}
 		else {
 			mes "[Archer Guildsman]";
-			mes "Oh...?";
-			mes "Hey, what are";
-			mes "you doing here...?";
+			mes "โอ้...?";
+			mes "เฮ้ คุณมาทำ";
+			mes "อะไรที่นี่น่ะ...?";
 			next;
 			mes "[Archer Guildsman]";
-			mes "I can tell that you're not cut out to be an Archer. It sort of feels like you're meant to do";
-			mes "something else...";
+			mes "ฉันบอกได้เลยว่าคุณไม่เหมาะที่จะเป็น Archer ดูเหมือนว่าคุณถูกลิขิตมาให้ทำ";
+			mes "อย่างอื่นมากกว่านะ...";
 			close;
 		}
 	}
 	mes "[Archer Guildsman]";
-	mes "Good day. How may I help you?";
+	mes "สวัสดีครับ มีอะไรให้ผมช่วยไหม?";
 	next;
-	switch(select("I want to be an Archer.:I need the requirements, please.:Nothing, thanks.")) {
+	switch(select("ฉันอยากเป็น Archer ครับ:ขอทราบเงื่อนไขหน่อยครับ:ไม่มีอะไรครับ ขอบคุณ")) {
 	case 1:
 		if (BaseJob == Job_Archer) {
 			mes "[Archer Guildsman]";
-			mes "You've already become an Archer...";
+			mes "คุณเป็น Archer อยู่แล้วนี่นา...";
 			close;
 		}
 		else if (BaseJob != Job_Archer && BaseJob != Job_Novice) {
 			mes "[Archer Guildsman]";
-			mes "Hmm...";
-			mes "You don't look much like a Novice at all...";
+			mes "หืม...";
+			mes "คุณดูไม่เหมือน Novice เลยสักนิด...";
 			next;
 			mes "[Archer Guildsman]";
-			mes "Anyway, whatever you are, you can't choose a job as an Archer because you have a job already.";
+			mes "อย่างไรก็ตาม ไม่ว่าคุณจะเป็นใคร คุณไม่สามารถเลือกอาชีพ Archer ได้ เพราะคุณมีอาชีพอื่นอยู่แล้ว";
 			close;
 		}
 		if (job_archer_q == 0) {
 			mes "[Archer Guildsman]";
-			mes "Do you want to be an Archer?";
-			mes "If so, you need to fill out this application form.";
+			mes "คุณอยากเป็น Archer ใช่ไหม?";
+			mes "ถ้าอย่างนั้น คุณต้องกรอกใบสมัครนี้ก่อนนะ";
 			next;
-			if (select("Apply.:Cancel") == 1) {
+			if (select("สมัครเลย:ยกเลิก") == 1) {
 				set job_archer_q,1;
 				setquest 1004;
 				mes "[Archer Guildsman]";
-				mes "Okay, sign here. Alright, um, I'll promote you once you meet the requirements.";
+				mes "โอเค เซ็นชื่อตรงนี้ล่ะ เรียบร้อย... อื้ม ฉันจะเลื่อนขั้นให้ทันทีที่คุณทำตามเงื่อนไขครบถ้วน";
 				next;
 				mes "[Archer Guildsman]";
-				mes "If you think you've met them already, we can check that now.";
-				mes "Are you ready?";
+				mes "ถ้าคุณคิดว่าทำครบแล้ว เรามาตรวจสอบกันเลยตอนนี้ก็ได้";
+				mes "คุณพร้อมหรือยัง?";
 				next;
-				if (select("Yes, I am.:No, not yet.") == 1) {
+				if (select("พร้อมแล้วครับ:ยังไม่พร้อมครับ") == 1) {
 					mes "[Archer Guildsman]";
-					mes "Alright, let me check.";
+					mes "ตกลง เดี๋ยวฉันตรวจสอบให้";
 					next;
 				}
 				else {
 					mes "[Archer Guildsman]";
-					mes "I understand. Be my guest if you want to look at the requirements.";
+					mes "เข้าใจแล้ว ตามสบายเลยถ้าคุณอยากจะไปดูเงื่อนไขก่อน";
 					close;
 				}
 			}
 			else {
 				mes "[Archer Guildsman]";
-				mes "Well, alright.";
-				mes "See you next time.";
+				mes "เอาล่ะ ตกลงตามนั้น";
+				mes "ไว้เจอกันคราวหน้า";
 				close;
 			}
 		}
 		mes "[Archer Guildsman]";
-		mes "Are you..." + strcharinfo(0) + "?";
+		mes "คุณคือ..." + strcharinfo(0) + " ใช่ไหม?";
 		next;
 		if (!callfunc("F_CanChangeJob")) {
 			mes "[Archer Guildsman]";
-			mes "Well, you're not at the right job level. Please check the requirements again.";
+			mes "อืม Job Level ของคุณยังไม่ถึงนะ โปรดตรวจสอบเงื่อนไขอีกครั้ง";
 			next;
 			mes "[Archer Guildsman]";
-			mes "Your job level must be at least 10, and don't forget you should learn all of the Basic Skills. Once you've done that, come back.";
+			mes "Job Level ของคุณต้องไม่อยู่ต่ำกว่า 10 และอย่าลืมว่าคุณต้องเรียนรู้ทักษะพื้นฐาน (Basic Skills) ทั้งหมดด้วย เมื่อทำครบแล้วค่อยกลับมานะ";
 			close;
 		}
 		if (job_archer_q == 1) {
@@ -143,103 +143,103 @@ payon_in02,64,71,4	script	Archer Guildsman#archer	85,{
 			set .@total_archer,.@archer_item1 + .@archer_item2 + .@archer_item3 + .@archer_item4;
 			set .@total_archer2,(((.@archer_item2 + .@archer_item3) * 2) + .@archer_item4);
 			mes "[Archer Guildsman]";
-			mes "Excellent!";
-			mes "Now then,";
-			mes "let's see...";
+			mes "เยี่ยมยอด!";
+			mes "เอาล่ะ";
+			mes "ไหนดูซิ...";
 			next;
 			mes "[Archer Guildsman]";
-			mes "I will appraise the value of the various types of Trunks, needed to produce a Bow, that you've brought.";
+			mes "ฉันจะประเมินมูลค่าของ Trunk (ท่อนไม้) ประเภทต่างๆ ที่คุณนำมา ซึ่งจำเป็นต่อการผลิตคันธนู";
 			next;
 			if (countitem(1066) == 0 && countitem(1067) == 0 && countitem(1068) == 0 && countitem(1019) == 0) {
 				mes "[Archer Guildsman]";
-				mes "Um...";
-				mes "Unfortunately you didn't bring any of the required items. There's nothing for me to appraise.";
+				mes "เอ่อ...";
+				mes "โชคร้ายที่ดูเหมือนคุณจะไม่ได้นำไอเทมที่ต้องการมาเลย ไม่มีอะไรให้ฉันประเมินนะ";
 				close;
 			}
 			mes "[Archer Guildsman]";
-			if (countitem(1066) != 0) mes " Grade S : " + countitem(1066) + " ea, Grade: " + .@archer_item1 + " . ";
-			if (countitem(1067) != 0) mes " Grade A : " + countitem(1067) + " ea, Grade : " + .@archer_item2 + " . ";
-			if (countitem(1068) != 0) mes " Grade B : " + countitem(1068) + " ea, Grade : " + .@archer_item3 + " . ";
-			if (countitem(1019) != 0) mes " Grade C : " + countitem(1019) + " ea, Grade : " + .@archer_item4 + " . ";
+			if (countitem(1066) != 0) mes " เกรด S : " + countitem(1066) + " ชิ้น, คะแนน: " + .@archer_item1 + " . ";
+			if (countitem(1067) != 0) mes " เกรด A : " + countitem(1067) + " ชิ้น, คะแนน : " + .@archer_item2 + " . ";
+			if (countitem(1068) != 0) mes " เกรด B : " + countitem(1068) + " ชิ้น, คะแนน : " + .@archer_item3 + " . ";
+			if (countitem(1019) != 0) mes " เกรด C : " + countitem(1019) + " ชิ้น, คะแนน : " + .@archer_item4 + " . ";
 			if (.@total_archer < 25) {
-				mes "Total Grades: ^FF0000" + .@total_archer + "^000000 / 40";
+				mes "คะแนนรวม: ^FF0000" + .@total_archer + "^000000 / 40";
 				next;
 				mes "[Archer Guildsman]";
-				mes "Less than 25!? You have to get a grade of at least 25! Come on, try harder!";
+				mes "น้อยกว่า 25 คะแนน!? คุณต้องได้คะแนนอย่างน้อย 25 นะ! พยายามให้มากกว่านี้หน่อยสิ!";
 				close;
 			}
 			else {
-				mes "Total Grades: ^0000FF" + .@total_archer + "^000000 / 40";
+				mes "คะแนนรวม: ^0000FF" + .@total_archer + "^000000 / 40";
 				next;
 				mes "[Archer Guildsman]";
 				if (.@total_archer > 40) {
-					mes "Wow! More than 40!";
-					mes "Excellent! Congratulations!";
+					mes "ว้าว! มากกว่า 40 คะแนนเลย!";
+					mes "ยอดเยี่ยมมาก! ยินดีด้วยนะ!";
 				}
 				else if (.@total_archer > 30) {
-					mes "More than 30! Nice job!";
-					mes "Congratulations!";
+					mes "มากกว่า 30 คะแนน! ทำได้ดีมาก!";
+					mes "ยินดีด้วย!";
 				}
 				else {
-					mes "*Sigh* Well, you just barely passed... Anyway, well done.";
+					mes "*ถอนหายใจ* เอาเถอะ คุณผ่านแบบหวุดหวิดล่ะนะ... ยังไงก็ทำได้ดีมาก";
 				}
 			}
 			next;
 			mes "[Archer Guildsman]";
-			mes "I'll transfer these Trunks to our Bow Production Department. Now that you've met the requirements, let me promote you right away!";
-			if (countitem(1066) != 0) delitem 1066,countitem(1066); //Tree_Of_Archer_1
-			if (countitem(1067) != 0) delitem 1067,countitem(1067); //Tree_Of_Archer_2
-			if (countitem(1068) != 0) delitem 1068,countitem(1068); //Tree_Of_Archer_3
-			if (countitem(1019) != 0) delitem 1019,countitem(1019); //Wooden_Block
+			mes "ฉันจะส่งมอบท่อนไม้เหล่านี้ไปยังแผนกผลิตคันธนูของเรา ในเมื่อคุณทำตามเงื่อนไขครบแล้ว ให้ฉันเปลี่ยนอาชีพให้คุณทันทีเลย!";
+			if (countitem(1066) != 0) delitem 1066,countitem(1066); //Tree_Of_Archer_1 (ท่อนไม้เกรด S)
+			if (countitem(1067) != 0) delitem 1067,countitem(1067); //Tree_Of_Archer_2 (ท่อนไม้เกรด A)
+			if (countitem(1068) != 0) delitem 1068,countitem(1068); //Tree_Of_Archer_3 (ท่อนไม้เกรด B)
+			if (countitem(1019) != 0) delitem 1019,countitem(1019); //Wooden_Block (ท่อนไม้เกรด C)
 		}
 		next;
 		callfunc "Job_Change",Job_Archer;
 		callfunc "F_ClearJobVar";
 		completequest 1004;
 		mes "[Archer Guildsman]";
-		mes "Congratulations!";
-		mes "You are now an Archer!";
+		mes "ยินดีด้วย!";
+		mes "ตอนนี้คุณเป็น Archer แล้ว!";
 		next;
 		mes "[Archer Guildsman]";
-		mes "Of course, we expect that you will help contribute towards the future of the Archer Guild with your efforts.";
+		mes "แน่นอนว่าเราหวังว่าคุณจะช่วยสนับสนุนอนาคตของสมาคมนักธนูด้วยความพยายามของคุณนะ";
 		next;
 		mes "[Archer Guildsman]";
-		mes "Ah, your bow has arrived from the Bow Production Department. Here, take it! It's yours~";
-		getitem 1702,1; //Bow_
-		getitem 1750,.@total_archer2; //Arrow
+		mes "อา คันธนูของคุณส่งมาจากแผนกผลิตคันธนูพอดี นี่ รับไปสิ! มันเป็นของคุณแล้ว~";
+		getitem 1702,1; //Bow_ (คันธนู)
+		getitem 1750,.@total_archer2; //Arrow (ลูกธนู)
 		next;
 		mes "[Archer Guildsman]";
-		mes "Now, off you go. Hunt with pride, knowing you were trained by one of the best!";
+		mes "เอาล่ะ ออกเดินทางได้แล้ว จงล่าด้วยความภาคภูมิใจ และจงจำไว้ว่าคุณถูกฝึกฝนโดยหนึ่งในผู้ที่เก่งที่สุด!";
 		close;
 	case 2:
 		mes "[Archer Guildsman]";
-		mes "I will explain the requirements for being an Archer.";
+		mes "ฉันจะอธิบายเงื่อนไขสำหรับการเป็น Archer ให้ฟัง";
 		if (BaseJob != Job_Novice) {
 			if (BaseJob == Job_Archer) {
 				next;
 				mes "[Archer Guildsman]";
-				mes "But...";
-				mes "You're already an Archer. You should know these already...";
+				mes "แต่...";
+				mes "คุณเป็น Archer อยู่แล้วนี่ คุณควรจะรู้เรื่องพวกนี้อยู่แล้วนะ...";
 			}
 			else {
 				next;
 				mes "[Archer Guildsman]";
-				mes "Wait a second. You've chosen a different job already. You don't need to know this~";
+				mes "เดี๋ยวสิ คุณเลือกอาชีพอื่นไปแล้ว คุณไม่จำเป็นต้องรู้เรื่องนี้หรอก~";
 			}
-			mes "So...Yeah...no real reason to tell you the requirements...";
+			mes "สรุปก็คือ... ใช่... ไม่มีเหตุผลที่จะต้องบอกเงื่อนไขให้คุณรู้น่ะนะ...";
 		}
 		next;
 		mes "[Archer Guildsman]";
-		mes "First of all, you have to the Job Level 9 as a Novice, and know all of the Basic Skills.";
+		mes "อย่างแรกเลย คุณต้องมี Job Level 9 ในฐานะ Novice และเรียนรู้ทักษะพื้นฐาน (Basic Skills) ทั้งหมด";
 		next;
 		mes "[Archer Guildsman]";
-		mes "An Archer needs extremely high concentration and reflexes, so we do not accept those who have little patience.";
+		mes "Archer ต้องการสมาธิและการตอบสนองที่สูงมาก ดังนั้นเราจะไม่รับผู้ที่ไม่มีความอดทน";
 		next;
 		mes "[Archer Guildsman]";
-		mes "You also have to gather ^FF0000Trunks^000000. There are 4 different types of Trunks, each of differing quality. You'll be given different grades for your Trunks, depending on their quality.";
+		mes "คุณยังต้องรวบรวม ^FF0000Trunk (ท่อนไม้)^000000 ซึ่งมีทั้งหมด 4 ประเภท แต่ละประเภทมีคุณภาพแตกต่างกัน คุณจะได้รับคะแนนต่างกันตามคุณภาพของท่อนไม้นั้นๆ";
 		next;
 		mes "[Archer Guildsman]";
-		mes "In order to become an Archer, you must receive a grade of at least ^0000FF25^000000 points out of 40. You can get Trunks from 'Willow,' the tree. Be careful, though. They can be tough monsters.";
+		mes "ในการเป็น Archer คุณต้องได้รับคะแนนอย่างน้อย ^0000FF25^000000 คะแนนจากคะแนนเต็ม 40 คุณสามารถหาท่อนไม้ได้จากต้นไม้ 'Willow' แต่ต้องระวังด้วยล่ะ เพราะพวกมันเป็นมอนสเตอร์ที่แกร่งใช้ได้เลย";
 		close;
 	case 3:
 		close;

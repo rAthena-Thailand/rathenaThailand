@@ -35,26 +35,26 @@ alberta_in,53,43,6	script	Merchant#mer	86,{
 	if (Upper == 1) {
 		if (Class == Job_Novice_High && (ADVJOB == Job_Whitesmith || ADVJOB == Job_Creator)) {
 			mes "[Chief Mahnsoo]";
-			mes "Long time no see!";
-			mes "Hey, you didn't quit";
-			mes "your business, did you?";
-			mes "What happened?";
+			mes "ไม่ได้เจอกันนานเลยนะ!";
+			mes "เฮ้ คุณยังไม่ได้เลิก";
+			mes "ทำธุรกิจไปแล้วใช่ไหม?";
+			mes "เกิดอะไรขึ้นล่ะนั่น?";
 			next;
 			mes "[Chief Mahnsoo]";
-			mes "Whoa...";
-			mes "You've actually been to Valhalla?! Wow, you've come a long way...";
+			mes "ว้าว...";
+			mes "คุณไปถึง Valhalla มาจริงๆ เหรอเนี่ย?! ว้าว คุณมาได้ไกลมากเลยนะ...";
 			next;
 			if (!callfunc("F_CanChangeJob")) {
 				mes "[Chief Mahnsoo]";
-				mes "Hmmm...";
-				mes "It seems that you're not ready to become a Merchant again. Go finish learning the Basic Novice Skills first.";
+				mes "หืมมม...";
+				mes "ดูเหมือนว่าคุณยังไม่พร้อมที่จะกลับมาเป็น Merchant นะ ไปเรียนรู้ทักษะพื้นฐานของ Novice ให้ครบก่อนเถอะ";
 				next;
 				mes "[Chief Mahnsoo]";
-				mes "Don't worry, we'll always have a Merchant position open for you. Just come back when you're ready, okay?";
+				mes "ไม่ต้องกังวลไป เราจะเปิดตำแหน่ง Merchant ไว้รอคุณเสมอ แค่กลับมาเมื่อคุณพร้อมนะ โอเคไหม?";
 				close;
 			}
 			mes "[Chief Mahnsoo]";
-			mes "I guess it's destiny that we meet like this once more. Alright. Once again, let me change you into a Merchant!";
+			mes "ฉันเดาว่ามันคงเป็นโชคชะตาที่ทำให้เราได้พบกันแบบนี้อีกครั้ง เอาล่ะ ให้ฉันเปลี่ยนอาชีพคุณเป็น Merchant อีกครั้งเถอะ!";
 			next;
 			skill "NV_TRICKDEAD",0,SKILL_PERM;
 			jobchange Job_Merchant_High;
@@ -62,279 +62,278 @@ alberta_in,53,43,6	script	Merchant#mer	86,{
 			skill "MC_CHANGECART",1,SKILL_PERM;
 			skill "MC_LOUD",1,SKILL_PERM;
 			mes "[Chief Mahnsoo]";
-			mes "Ah~ How nostalgic. Just like old times! Alright, do your best!";
+			mes "อา~ ช่างน่าคิดถึงจริงๆ เหมือนวันวานเลย! เอาล่ะ พยายามเข้าล่ะ!";
 			close;
 		}
 		else {
 			mes "[Chief Mahnsoo]";
-			mes "^333333*Sigh*^000000";
-			mes "I'm so bored...";
-			mes "When will I hear from my lovely Blossom?";
+			mes "^333333*เฮ้อ*^000000";
+			mes "ฉันเบื่อจังเลย...";
+			mes "เมื่อไหร่ฉันจะได้ข่าวจาก Blossom ที่รักของฉันสักทีนะ?";
 			close;
 		}
 	}
 	if (BaseJob == Job_Merchant) {
 		mes "[Chief Mahnsoo]";
-		mes "Hello there!";
-		mes "How do you like";
-		mes "being a Merchant?";
+		mes "สวัสดี!";
+		mes "เป็นอย่างไรบ้าง";
+		mes "กับการเป็น Merchant?";
 		next;
 		mes "[Chief Mahnsoo]";
-		mes "Having a way with";
-		mes "money certainly";
-		mes "has its perks,";
-		mes "does it not?";
+		mes "การมีช่องทางทำเงิน";
+		mes "มันมีข้อดีของมัน";
+		mes "ใช่ไหมล่ะ?";
 		close;
 	}
 	else if (BaseJob != Job_Merchant && BaseJob != Job_Novice) {
 		mes "[Chief Mahnsoo]";
-		mes "We Merchants hate people who are two faced. It's bad for business.";
+		mes "พวกเราเหล่าพ่อค้าเกลียดพวกคนสองหน้าที่สุด มันไม่ดีต่อธุรกิจ";
 		next;
 		mes "[Chief Mahnsoo]";
-		mes "People who always try to take advantage of other people by selling things at a ridiculous price just so they can make money that they'll waste are the worst.";
+		mes "พวกที่พยายามเอาเปรียบคนอื่นด้วยการขายของในราคาที่ขูดรีดเพียงเพื่อจะหาเงินมาใช้อย่างไร้ค่านี่แหละคือพวกที่แย่ที่สุด";
 		next;
 		mes "[Chief Mahnsoo]";
-		mes "Well, in any case, we only accept Novices for job changes to the Merchant class. But I appreciate your interest in what we do.";
+		mes "เอาเป็นว่า ไม่ว่ากรณีใดก็ตาม เราจะรับเฉพาะ Novice เพื่อเปลี่ยนอาชีพเป็น Merchant เท่านั้น แต่ฉันก็ขอบใจนะที่คุณสนใจในงานของเรา";
 		close;
 	}
 	else if (job_merchant_q == 9) {
 		mes "[Chief Mahnsoo]";
-		mes "Hello there,";
+		mes "สวัสดี";
 		mes ""+ strcharinfo(0) +".";
 		set job_merchant_q,0;
 		set job_merchant_q2,0;
 		set quest_alb_01,0;
-		mes "Unfortunately, you failed to earn your Merchant License this time.";
+		mes "น่าเสียดาย ครั้งนี้คุณไม่สามารถคว้าใบอนุญาต Merchant มาได้";
 		next;
 		mes "[Chief Mahnsoo]";
-		mes "I'll erase your records, so come back anytime when you want to reapply.";
+		mes "ฉันจะลบประวัติของคุณทิ้งไป กลับมาใหม่ได้ทุกเมื่อที่คุณต้องการสมัครใหม่นะ";
 		close;
 	}
 	else if (job_merchant_q == 8 || job_merchant_q == 7) {
 		mes "[Chief Mahnsoo]";
-		mes "Hello there,";
+		mes "สวัสดี";
 		mes ""+ strcharinfo(0) +".";
-		mes "I'm pleased to tell you";
-		mes "that I have good news!";
+		mes "ฉันมีความยินดีที่จะบอกคุณว่า";
+		mes "ฉันมีข่าวดี!";
 		next;
 		mes "[Chief Mahnsoo]";
-		mes "The Merchant Guild accepted your application. You've proven that you are fully qualified to become a Merchant.";
+		mes "สมาคมพ่อค้ายอมรับใบสมัครของคุณแล้ว คุณได้พิสูจน์แล้วว่าคุณมีคุณสมบัติครบถ้วนที่จะเป็น Merchant";
 		if (job_merchant_q == 7) {
 			next;
 			mes "[Chief Mahnsoo]";
-			mes "The only thing to take care of is your Membership Fee.";
-			mes "Are you ready?";
+			mes "สิ่งเดียวที่ต้องจัดการคือค่าธรรมเนียมสมาชิกของคุณ";
+			mes "คุณพร้อมหรือยัง?";
 			next;
-			switch(select("Pay the rest of the 500 Zeny:Quit")) {
+			switch(select("จ่ายส่วนที่เหลืออีก 500 Zeny:เลิก")) {
 			case 1:
 				mes "[Chief Mahnsoo]";
 				if (Zeny < 500) {
-					mes "Hmmm...";
-					mes "I suppose you currently don't have enough zeny to pay the rest of your Membership fee right now.";
+					mes "หืมมม...";
+					mes "ฉันเกรงว่าตอนนี้คุณจะไม่มีเงิน Zeny เพียงพอที่จะจ่ายส่วนที่เหลือของค่าธรรมเนียมสมาชิกนะ";
 					next;
 					mes "[Chief Mahnsoo]";
-					mes "Please return when you have earned the 500 zeny that you need to become a Merchant.";
+					mes "โปรดกลับมาเมื่อคุณหาเงินได้ครบ 500 Zeny ที่จำเป็นต่อการเป็น Merchant แล้ว";
 					close;
 				}
 				set Zeny, Zeny-500;
-				mes "Ah yes...!";
-				mes "Now your";
-				mes "membership";
-				mes "is paid in full.";
+				mes "อา ใช่แล้ว...!";
+				mes "ตอนนี้ค่าสมาชิกของคุณ";
+				mes "ได้รับการชำระ";
+				mes "ครบถ้วนแล้ว";
 				break;
 			case 2:
 				mes "[Chief Mahnsoo]";
-				mes "I suppose you need some time to gather some zeny to pay your membership fee. Please come";
-				mes "back as soon as you're ready.";
+				mes "ฉันเข้าใจว่าคุณคงต้องใช้เวลาสักพักเพื่อรวบรวมเงิน Zeny มาจ่ายค่าธรรมเนียมสมาชิก โปรดกลับมาทันทีที่";
+				mes "คุณพร้อมนะ";
 				close;
 			}
 		}
 		next;
 		mes "[Chief Mahnsoo]";
-		mes "Congratulations!";
+		mes "ยินดีด้วย!";
 		callfunc "Job_Change",Job_Merchant;
 		callfunc "F_ClearJobVar";
 		for ( .@quest_id = 1009; .@quest_id <= 1012; .@quest_id++ ) {
 			if (isbegin_quest(.@quest_id) == 1)
 				completequest .@quest_id;
 		}
-		mes "I'm very pleased that you are joining the Merchant Guild and hope that you will play an active part in Rune-Midgarts' economy.";
+		mes "ฉันยินดีมากที่คุณได้เข้าร่วมสมาคมพ่อค้า และหวังว่าคุณจะมีบทบาทสำคัญในการขับเคลื่อนเศรษฐกิจของ Rune-Midgarts นะ";
 		next;
 		if (quest_alb_01 == 1) {
 			mes "[Chief Mahnsoo]";
-			mes "*Ahem* Aaaaand let me give you a little bit of money for delivering that message to Blossom for me.";
-			mes "I hope you'll help me again next time~";
+			mes "*อะแฮ่ม* แถะ... และนี่คือเงินเล็กๆ น้อยๆ ที่ฉันจะให้สำหรับการส่งข้อความนั้นไปให้ Blossom แทนฉัน";
+			mes "หวังว่าคราวหน้าคุณจะช่วยฉันอีกนะ~";
 			set Zeny, Zeny+200;
 			set quest_alb_01,2;
 		}
 		else {
 			mes "[Chief Mahnsoo]";
-			mes "The message you were supposed to deliver as per my request? You've forgotten about that? Oh well. Good work!";
+			mes "ข้อความที่คุณต้องไปส่งตามคำขอของฉันน่ะเหรอ? คุณลืมมันไปแล้วงั้นเหรอ? ช่างมันเถอะ ทำได้ดีมาก!";
 		}
 		next;
 		mes "[Chief Mahnsoo]";
-		mes "Our goal is to control 20 % of the world's income! We're going to need young, eager people like you!";
+		mes "เป้าหมายของเราคือการครองส่วนแบ่งรายได้ 20% ของโลก! เราต้องการคนรุ่นใหม่ที่มีไฟแรงอย่างคุณ!";
 		next;
 		mes "[Chief Mahnsoo]";
-		mes "But overall, we'll also be happy just to make loads of money.";
-		mes "But we all know that~";
+		mes "แต่รวมๆ แล้ว แค่พวกเราทำเงินได้มหาศาลเราก็มีความสุขแล้วล่ะ";
+		mes "แต่เราทุกคนก็รู้เรื่องนั้นดีอยู่แล้วนี่นา~";
 		close;
 	}
 	else if (job_merchant_q2 && job_merchant_q > 0 && job_merchant_q < 7) {
 		mes "[Chief Mahnsoo]";
 		if (job_merchant_q2 == 1 || job_merchant_q2 == 2) {
-			mes "First, get the delivery package from the storehouse, and then take it to the former Swordman's Association in Prontera.";
+			mes "ก่อนอื่น ไปรับพัสดุจากโกดังสินค้า แล้วนำไปส่งที่สมาคมนักดาบเก่าใน Prontera";
 			next;
 			mes "[Chief Mahnsoo]";
-			mes "When you get there, give the package to the Kafra Employee stationed near there. Her name is Blossom. Did you get all that?";
+			mes "เมื่อไปถึงที่นั่น ให้ส่งพัสดุให้กับพนักงาน Kafra ที่ประจำอยู่แถวนั้น เธอชื่อ Blossom เข้าใจทั้งหมดใช่ไหม?";
 			next;
 			if (job_merchant_q2 == 1) {
 				mes "[Chief Mahnsoo]";
-				mes "Remember, the Serial Number of the package is ^3355FF2485741^000000.";
+				mes "จำไว้ รหัสหมายเลขพัสดุคือ ^3355FF2485741^000000";
 			}
 			else {
 				mes "[Chief Mahnsoo]";
-				mes "Remember, the Serial Number of the package is ^3355FF2328137^000000.";
+				mes "จำไว้ รหัสหมายเลขพัสดุคือ ^3355FF2328137^000000";
 			}
 		}
 		else if (job_merchant_q2 == 3 || job_merchant_q2 == 4) {
-			mes "First, get the delivery package from the storehouse, and then take it to the Mage Guild in Geffen.";
+			mes "ก่อนอื่น ไปรับพัสดุจากโกดังสินค้า แล้วนำไปส่งที่สมาคม Mage ใน Geffen";
 			next;
 			if (job_merchant_q2 == 3) {
 				mes "[Chief Mahnsoo]";
-				mes "When you get there, give the package to the Mage Guildsman in charge. Remember, the packages Serial Number is ^3355FF2989396^000000.";
+				mes "เมื่อไปถึงที่นั่น ให้ส่งพัสดุให้กับเจ้าหน้าที่สมาคม Mage จำไว้ รหัสหมายเลขพัสดุคือ ^3355FF2989396^000000";
 			}
 			else {
 				mes "[Chief Mahnsoo]";
-				mes "When you get there, give the package to the Mage Guildsman in charge. Remember, the packages Serial Number is ^3355FF2191737^000000.";
+				mes "เมื่อไปถึงที่นั่น ให้ส่งพัสดุให้กับเจ้าหน้าที่สมาคม Mage จำไว้ รหัสหมายเลขพัสดุคือ ^3355FF2191737^000000";
 			}
 		}
 		else if (job_merchant_q2 == 5 || job_merchant_q2 == 6) {
-			mes "First, get the delivery package from the storehouse, and then take it to Morocc.";
+			mes "ก่อนอื่น ไปรับพัสดุจากโกดังสินค้า แล้วนำไปส่งที่ Morocc";
 			next;
 			mes "[Chief Mahnsoo]";
-			mes "You'll have to find Java Dullihan, the Dyemaker, so that you can deliver the product he ordered.";
+			mes "คุณต้องไปตามหา Java Dullihan ช่างทำสีย้อม เพื่อนำสินค้าที่เขาสั่งไปส่งให้";
 			next;
 			if (job_merchant_q2 == 5) {
 				mes "[Chief Mahnsoo]";
-				mes "But he's a little forgetful, so give it to one of his students. Remember, the package's Serial Number is ^3355FF3012685^000000.";
+				mes "แต่เขาขี้ลืมไปหน่อย ดังนั้นให้นำไปให้ลูกศิษย์คนหนึ่งของเขาแทนนะ จำไว้ รหัสหมายเลขพัสดุคือ ^3355FF3012685^000000";
 			}
 			else {
 				mes "[Chief Mahnsoo]";
-				mes "But he's a little forgetful, give it to one of his students. Remember, the package's Serial Number is ^3355FF3487372^000000.";
+				mes "แต่เขาขี้ลืมไปหน่อย ดังนั้นให้นำไปให้ลูกศิษย์คนหนึ่งของเขาแทนนะ จำไว้ รหัสหมายเลขพัสดุคือ ^3355FF3487372^000000";
 			}
 		}
 		else if (job_merchant_q2 == 7 || job_merchant_q2 == 8) {
-			mes "First, get the package from the storehouse, and then give it to the Kafra Employee stationed on Byalan Island. Her name is Blossom.";
+			mes "ก่อนอื่น ไปรับพัสดุจากโกดังสินค้า แล้วนำไปส่งให้พนักงาน Kafra ที่ประจำอยู่ที่เกาะ Byalan เธอชื่อ Blossom";
 			next;
 			if (job_merchant_q2 == 7) {
 				mes "[Chief Mahnsoo]";
-				mes "Remember, the package's Serial Number is ^3355FF3318702^000000.";
+				mes "จำไว้ รหัสหมายเลขพัสดุคือ ^3355FF3318702^000000";
 			}
 			else {
 				mes "[Chief Mahnsoo]";
-				mes "Remember, the package's Serial Number is ^3355FF3543625^000000.";
+				mes "จำไว้ รหัสหมายเลขพัสดุคือ ^3355FF3543625^000000";
 			}
 		}
 		if (job_merchant_q2 == 7 || job_merchant_q2 == 8) {
 			next;
 			mes "[Chief Mahnsoo]";
-			mes "Aaaannnnd...";
-			mes "Don't forget to deliver that message for me~";
+			mes "และะะะ...";
+			mes "อย่าลืมส่งข้อความนั้นแทนฉันด้วยนะ~";
 		}
 		next;
 		mes "[Chief Mahnsoo]";
-		mes "Don't forget your destination and the package's Serial Number.";
-		mes "You'll need to tell them";
-		mes "to the storekeeper.";
+		mes "อย่าลืมจุดหมายปลายทางและรหัสหมายเลขพัสดุล่ะ";
+		mes "คุณจะต้องบอกข้อมูลเหล่านั้น";
+		mes "แก่คนดูแลโกดังสินค้า";
 		next;
 		mes "[Chief Mahnsoo]";
-		mes "The storehouse is in the room";
-		mes "to my right. There, you can talk";
-		mes "to the storekeeper, and he'll";
-		mes "help you out.";
+		mes "โกดังสินค้าอยู่ในห้อง";
+		mes "ทางด้านขวาของฉัน คุณสามารถไปคุย";
+		mes "กับคนดูแลโกดังได้ แล้วเขาจะ";
+		mes "ช่วยคุณเอง";
 		next;
 		mes "[Chief Mahnsoo]";
-		mes "After you make the delivery, return to the storehouse and give the receipt to the storekeeper.";
-		mes "Then, come back";
-		mes "and see me.";
+		mes "หลังจากที่คุณส่งของเสร็จแล้ว ให้กลับมาที่โกดังสินค้าและยื่นใบเสร็จให้แก่คนดูแลโกดัง";
+		mes "จากนั้นค่อยกลับมา";
+		mes "หาฉัน";
 		next;
 		mes "[Chief Mahnsoo]";
-		mes "Is that clear?";
-		mes "Alright, that's";
-		mes "the spirit.";
-		mes "Take care!";
+		mes "ชัดเจนไหม?";
+		mes "ดีมาก แบบนั้นแหละ";
+		mes "จิตวิญญาณที่ดี";
+		mes "ดูแลตัวเองด้วยล่ะ!";
 		close;
 	}
 	else {
 		mes "[Chief Mahnsoo]";
-		mes "So, what brings you to";
-		mes "the Merchant Association?";
-		mes "Is there anything";
-		mes "I can help you with?";
+		mes "เอาล่ะ อะไรที่นำพาคุณมาสู่";
+		mes "สมาคมพ่อค้าแห่งนี้งั้นเหรอ?";
+		mes "มีอะไรที่";
+		mes "ฉันพอจะช่วยได้ไหม?";
 		next;
-		switch(select("I want to be a Merchant.:Tell me about Merchants.:Tell me the requirements.:Nope.")) {
+		switch(select("ฉันอยากเป็น Merchant:บอกฉันเกี่ยวกับ Merchant หน่อย:บอกเงื่อนไขการสมัครหน่อย:ไม่มีอะไรครับ")) {
 		case 1:
 			mes "[Chief Mahnsoo]";
-			mes "Do you want to";
-			mes "be a Merchant?";
-			mes "Well...";
+			mes "คุณต้องการที่";
+			mes "จะเป็น Merchant ใช่ไหม?";
+			mes "อืม...";
 			next;
 			if (!callfunc("F_CanChangeJob")) {
 				mes "[Chief Mahnsoo]";
-				mes "First, you have to be a Novice with Job Level 10. Once you do that, make sure you learn all of the Basic Skills.";
+				mes "ก่อนอื่น คุณต้องเป็น Novice ที่มี Job Level 10 และตรวจสอบให้แน่ใจว่าได้เรียนรู้ทักษะพื้นฐานครบทุกทักษะแล้ว";
 				next;
 				mes "[Chief Mahnsoo]";
-				mes "We're not just";
-				mes "simple money makers!";
-				mes "We pride ourselves on having standards and only accepting qualified applicants!";
+				mes "พวกเราไม่ใช่แค่";
+				mes "คนหาเงินธรรมดาๆ นะ!";
+				mes "เราภูมิใจในมาตรฐานของเราและจะรับเฉพาะผู้สมัครที่มีคุณสมบัติครบถ้วนเท่านั้น!";
 				close;
 			}
 			mes "[Chief Mahnsoo]";
-			mes "Alright, you'll need to fill out this application and prepare 1,000 Zeny for your Membership Fee.";
+			mes "ตกลง คุณจะต้องกรอกใบสมัครนี้และเตรียมเงิน 1,000 Zeny สำหรับค่าธรรมเนียมสมาชิก";
 			next;
 			mes "[Chief Mahnsoo]";
-			mes "Oh...!";
-			mes "If you don't have all the money,";
-			mes "I can just take 500 Zeny now.";
-			mes "You can pay the rest after you";
-			mes "pass the test and earn your";
-			mes "Merchant Guild License.";
+			mes "โอ้...!";
+			mes "ถ้าคุณมีเงินไม่ครบ";
+			mes "ฉันรับแค่ 500 Zeny ก่อนตอนนี้ก็ได้";
+			mes "ส่วนที่เหลือคุณค่อยมาจ่ายหลังจากที่คุณ";
+			mes "ผ่านการทดสอบและได้รับใบอนุญาต";
+			mes "สมาคมพ่อค้าแล้ว";
 			next;
 			mes "[Chief Mahnsoo]";
-			mes "So what do you think?";
-			mes "Are you ready to join now?";
+			mes "คุณคิดว่าอย่างไรล่ะ?";
+			mes "พร้อมจะเข้าร่วมตอนนี้เลยไหม?";
 			next;
-			if (select("Yes, I will.:Ummm, maybe later...") ==1 ) {
+			if (select("ครับ ผมจะสมัคร:อืม ไว้คราวหน้าดีกว่า...") ==1 ) {
 				mes "[Chief Mahnsoo]";
-				mes "Let me check if you";
-				mes "filled out everything";
-				mes "on your application form...";
+				mes "เดี๋ยวฉันขอเช็คหน่อยนะว่าคุณ";
+				mes "กรอกข้อมูลทุกอย่าง";
+				mes "ในใบสมัครครบถ้วนหรือยัง...";
 				next;
 				mes "[Chief Mahnsoo]";
-				mes "Hmm... ";
+				mes "หืม... ";
 				mes "" + strcharinfo(0) + "...";
-				mes "That's a nice name.";
+				mes "เป็นชื่อที่เพราะดีนะ";
 				next;
 				mes "[Chief Mahnsoo]";
-				mes "This application will";
-				mes "only be registered once";
-				mes "the Membership Fee is paid.";
-				mes "How do you wish to";
-				mes "handle the fee?";
+				mes "ใบสมัครนี้จะได้รับการ";
+				mes "ลงทะเบียนก็ต่อเมื่อ";
+				mes "ชำระค่าธรรมเนียมสมาชิกแล้วเท่านั้น";
+				mes "คุณต้องการจะจัดการ";
+				mes "ค่าธรรมเนียมอย่างไรดี?";
 				next;
-				switch(select("Pay all 1,000 Zeny now!:Two payments of 500 Zeny.:Quit")) {
+				switch(select("จ่ายทั้งหมด 1,000 Zeny ตอนนี้เลย!:แบ่งจ่ายสองงวด งวดละ 500 Zeny:ยกเลิก")) {
 				case 1:
 					mes "[Chief Mahnsoo]";
 					if (Zeny >= 1000) {
 						set job_merchant_q,2;
 						set Zeny, Zeny-1000;
-						mes "Alright~";
-						mes "That's 1,000 zeny.";
-						mes "Excellent, excellent.";
+						mes "ตกลง~";
+						mes "นั่นคือ 1,000 Zeny";
+						mes "ยอดเยี่ยม ยอดเยี่ยมมาก";
 					}
 					else {
-						mes "It seems don't have enough zeny to pay all of the fee right now. Why don't you just pay 500 zeny now? Think about it.";
+						mes "ดูเหมือนคุณจะมีเงิน Zeny ไม่พอจ่ายค่าธรรมเนียมทั้งหมดในตอนนี้ ทำไมไม่ลองจ่ายแค่ 500 Zeny ก่อนล่ะ? ลองคิดดูนะ";
 						close;
 					}
 					break;
@@ -343,134 +342,134 @@ alberta_in,53,43,6	script	Merchant#mer	86,{
 					if (Zeny >= 500) {
 						set job_merchant_q,1;
 						set Zeny, Zeny-500;
-						mes "Let's see...";
-						mes "That's 500 Zeny. Although I don't think splitting payment is a good idea for any Merchant, it's alright since you're still learning.";
+						mes "ไหนดูซิ...";
+						mes "นั่นคือ 500 Zeny แม้ว่าฉันจะไม่คิดว่าการแบ่งจ่ายจะเป็นไอเดียที่ดีสำหรับพ่อค้าคนไหนก็ตาม แต่สำหรับคุณที่ยังเรียนรู้อยู่ก็ไม่เป็นไร";
 					}
 					else {
-						mes "Hmm...";
-						mes "It seems you don't have the funds to pay half of the membership fee. Please come back once you collect the zeny that you need.";
+						mes "หืม...";
+						mes "ดูเหมือนคุณจะไม่มีทุนพอจ่ายแม้แต่ครึ่งเดียวของค่าธรรมเนียมนะ โปรดกลับมาเมื่อคุณรวบรวมเงิน Zeny ได้ครบตามที่ต้องการแล้ว";
 						close;
 					}
 					break;
 				case 3:
 					mes "[Chief Mahnsoo]";
-					mes "Feel free to return anytime";
-					mes "when you are ready, alright?";
+					mes "กลับมาได้ทุกเมื่อ";
+					mes "ที่คุณพร้อมนะ เข้าใจไหม?";
 					close;
 				}
 			}
 			else {
 				mes "[Chief Mahnsoo]";
-				mes "You don't have enough zeny now? That's no problem. Take your time and come back when you're";
-				mes "ready, okay?";
+				mes "คุณมีเงิน Zeny ไม่พอตอนนี้งั้นเหรอ? ไม่ใช่ปัญหาหรอก ใช้เวลาของคุณไปเถอะ แล้วค่อยกลับมาเมื่อคุณ";
+				mes "พร้อมนะ โอเคไหม?";
 				close;
 			}
 			next;
 			mes "[Chief Mahnsoo]";
-			mes "Alright, you're now on the list of applicants. Ah, before I get started let me say just one thing.";
+			mes "เอาล่ะ ตอนนี้คุณอยู่ในรายชื่อผู้สมัครแล้ว อา ก่อนที่ฉันจะเริ่มขอพูดอะไรสักอย่างหน่อยเถอะ";
 			next;
 			mes "[Chief Mahnsoo]";
-			mes "There are some dumb and greedy people out there who do not know what it means to be a Merchant.";
-			mes "I hope you won't turn out to be like them, will you?";
+			mes "มีพวกคนโง่และโลภบางกลุ่มที่ไม่รู้ซึ้งว่าการเป็น Merchant ที่แท้จริงคืออะไร";
+			mes "ฉันหวังว่าคุณจะไม่กลายเป็นคนแบบพวกนั้นใช่ไหม?";
 			next;
 			mes "[Chief Mahnsoo]";
-			mes "Now, let me";
-			mes "explain what you";
-			mes "need to do for the";
-			mes "Merchant License Test.";
+			mes "คราวนี้ ให้ฉัน";
+			mes "อธิบายสิ่งที่คุณ";
+			mes "ต้องทำเพื่อผ่าน";
+			mes "การทดสอบใบอนุญาต Merchant";
 			next;
 			mes "[Chief Mahnsoo]";
 			switch(rand(1,4)) {
 			case 1:
-				mes "First, get the delivery package from the storehouse, then go to the former Swordman's Association in Prontera.";
+				mes "ก่อนอื่น ไปรับพัสดุจากโกดังสินค้า แล้วไปที่สมาคมนักดาบเก่าในเมือง Prontera";
 				next;
 				mes "[Chief Mahnsoo]";
-				mes "When you get there, visit the Kafra Employee stationed there. Her name is Blossom. Did you get";
-				mes "all of that?";
+				mes "เมื่อไปถึงที่นั่น ให้ไปพบพนักงาน Kafra ที่ประจำอยู่ตรงนั้น เธอชื่อ Blossom เข้าใจ";
+				mes "ทั้งหมดที่พูดไหม?";
 				callsub S_GiveSerial,2485741,1,2328137,2,1009;
 				break;
 			case 2:
-				mes "First, get the delivery package from the storehouse, and then go to the Mage Guild in Geffen. When you get there, visit the Mage Guildsman in charge.";
+				mes "ก่อนอื่น ไปรับพัสดุจากโกดังสินค้า แล้วไปที่สมาคม Mage ในเมือง Geffen เมื่อไปถึงที่นั่น ให้ไปพบเจ้าหน้าที่สมาคม Mage";
 				callsub S_GiveSerial,2989396,3,2191737,4,1010;
 				break;
 			case 3:
-				mes "First, get the delivery package from the storehouse, and then go to Morocc. There you must find Java Dullihan, the dyemaker.";
+				mes "ก่อนอื่น ไปรับพัสดุจากโกดังสินค้า แล้วไปที่เมือง Morocc ที่นั่นคุณต้องตามหา Java Dullihan ช่างทำสีย้อม";
 				next;
 				mes "[Chief Mahnsoo]";
-				mes "He's a bit forgetful, so you should probably give the package to one of his students.";
+				mes "เขาขี้ลืมไปหน่อย ดังนั้นคุณควรจะส่งพัสดุให้ลูกศิษย์คนหนึ่งของเขาแทน";
 				callsub S_GiveSerial,3012685,5,3487372,6,1011;
 				break;
 			case 4:
-				mes "First, get the delivery package from the storehouse, and then give it to the Kafra Employee stationed on Byalan Island.";
+				mes "ก่อนอื่น ไปรับพัสดุจากโกดังสินค้า แล้วนำไปส่งให้พนักงาน Kafra ที่ประจำอยู่ที่เกาะ Byalan";
 				callsub S_GiveSerial,3318702,7,3543625,8,1012;
 				next;
 				mes "[Chief Mahnsoo]";
-				mes "Ummmm...";
-				mes "And I also have";
-				mes "a bit of a personal";
-				mes "request for you.";
+				mes "อืมมม...";
+				mes "และฉันก็มี";
+				mes "คำขอส่วนตัว";
+				mes "สำหรับคุณเล็กน้อย";
 				next;
 				mes "[Chief Mahnsoo]";
-				mes "Would you please give her this message when you deliver the package? Please~";
-				getitem 1072,1; //Delivery_Message
+				mes "ช่วยส่งข้อความนี้ให้เธอทีนะตอนที่คุณส่งพัสดุ ได้โปรดเถอะนะ~";
+				getitem 1072,1; //Delivery_Message (ข้อความนำส่ง)
 				break;
 			}
 			next;
 			mes "[Chief Mahnsoo]";
-			mes "Don't forget your destination and the package's Serial Number. You will need to tell those to the storekeeper in the storehouse to the right of me.";
+			mes "อย่าลืมจุดหมายปลายทางและรหัสหมายเลขพัสดุล่ะ คุณต้องบอกข้อมูลพวกนี้แก่คนดูแลโกดังในห้องทางด้านขวาของฉันนะ";
 			next;
 			mes "[Chief Mahnsoo]";
-			mes "After the delivery, give the receipt to the storekeeper, and then come back and see me.";
+			mes "หลังจากส่งของเสร็จ ให้นำใบเสร็จไปให้คนดูแลโกดัง แล้วค่อยกลับมาพบฉัน";
 			next;
 			mes "[Chief Mahnsoo]";
-			mes "Is that clear?";
-			mes "Alright, that's";
-			mes "the spirit.";
-			mes "Take care!";
+			mes "ชัดเจนไหม?";
+			mes "ดีมาก แบบนั้นแหละ";
+			mes "จิตวิญญาณที่ดี";
+			mes "ดูแลตัวเองด้วยล่ะ!";
 			close;
 		case 2:
 			mes "[Chief Mahnsoo]";
-			mes "Merchant?";
-			mes "Well, we basically sell goods to make money. That is the way";
-			mes "of the Merchant.";
+			mes "Merchant งั้นเหรอ?";
+			mes "โดยพื้นฐานแล้วเราขายสินค้าเพื่อทำเงิน นั่นคือวิถี";
+			mes "ของ Merchant";
 			next;
 			mes "[Chief Mahnsoo]";
-			mes "I guess we may not be the best at fighting, and we don't have many special attacks. We've got no healing skills...";
+			mes "ฉันเดาว่าเราอาจจะไม่ใช่พวกที่เก่งเรื่องการต่อสู้ที่สุด และเราก็ไม่มีท่าโจมตีพิเศษมากมาย เราไม่มีทักษะในการรักษา...";
 			next;
 			mes "[Chief Mahnsoo]";
-			mes "But we can buy goods at lower prices from NPC shops and sell them at a higher price to other people~";
+			mes "แต่เราสามารถซื้อสินค้าในราคาที่ถูกกว่าจากร้านค้า NPC และนำไปขายในราคาที่สูงกว่าให้คนอื่นได้นะ~";
 			next;
 			mes "[Chief Mahnsoo]";
-			mes "Our ultimate attack skill is 'Mammonite.' The strength of Mammonite comes from the anger";
-			mes "when we're forced to throw away perfectly good zeny.";
+			mes "ทักษะการโจมตีสูงสุดของเราคือ 'Mammonite' ความรุนแรงของ Mammonite มาจากความโกรธแค้น";
+			mes "ยามที่เราถูกบีบบังคับให้ต้องโยนเงิน Zeny ที่หามาได้ทิ้งไป";
 			next;
 			mes "[Chief Mahnsoo]";
-			mes "Throwing away zeny like that";
-			mes "causes a deadly rage to well up in the heart of any Merchant!";
-			mes "Just thinking about it";
-			mes "makes my blood boil!";
+			mes "การทิ้งเงิน Zeny แบบนั้น";
+			mes "ทำให้เกิดความโกรธแค้นถึงขีดสุดในหัวใจของ Merchant ทุกคน!";
+			mes "แค่คิดถึงมัน";
+			mes "เลือดฉันก็เดือดพล่านแล้ว!";
 			next;
 			mes "[Chief Mahnsoo]";
-			mes "Anyway, we can use most";
-			mes "weapons except Bows, Rods, and Two-Handed Swords. But we can always sell those.";
+			mes "อย่างไรก็ตาม เราสามารถใช้เกือบ";
+			mes "ทุกอาวุธ ยกเว้นพวกธนู (Bows), ไม้เท้า (Rods), และดาบสองมือ (Two-Handed Swords) แต่เราก็ยังเอาพวกมันไปขายได้เสมอนั่นแหละ";
 			next;
 			mes "[Chief Mahnsoo]";
-			mes "Yes...";
-			mes "We Merchants generally";
-			mes "have money on our minds...";
+			mes "ใช่...";
+			mes "พวกเรา Merchant มักจะ";
+			mes "คิดถึงแต่เรื่องเงินทองเป็นหลัก...";
 			close;
 		case 3:
 			mes "[Chief Mahnsoo]";
-			mes "There are three conditions that must be fulfilled before you can become a Merchant.";
+			mes "มีสามเงื่อนไขที่คุณต้องทำให้ครบก่อนที่จะเป็น Merchant ได้";
 			next;
 			mes "[Chief Mahnsoo]";
-			mes "First, You have to be a Novice with Job Level 10, and have learned all of the Basic Skills.";
+			mes "ข้อแรก คุณต้องเป็น Novice ที่มี Job Level 10 และได้เรียนรู้ทักษะพื้นฐานครบทุกทักษะแล้ว";
 			next;
 			mes "[Chief Mahnsoo]";
-			mes "Second, You have to pay a 1,000 Zeny Membership Fee. I believe any Merchant candidate should be able to earn 1,000 Zeny with ease.";
+			mes "ข้อสอง คุณต้องจ่ายค่าธรรมเนียมสมาชิก 1,000 Zeny ฉันเชื่อว่าผู้สมัคร Merchant ทุกคนควรจะหาเงิน 1,000 Zeny ได้อย่างง่ายดายนะ";
 			next;
 			mes "[Chief Mahnsoo]";
-			mes "Third, there is a License Test to test your physical strength and sense of direction. You will deliver a package to a specific person in a specific location.";
+			mes "ข้อสาม มีการทดสอบใบอนุญาตเพื่อทดสอบความแข็งแกร่งทางร่างกายและการจดจำเส้นทาง คุณจะต้องนำพัสดุไปส่งให้แก่บุคคลที่กำหนดในสถานที่ที่กำหนด";
 			close;
 		case 4:
 			close;
@@ -480,15 +479,15 @@ alberta_in,53,43,6	script	Merchant#mer	86,{
 S_GiveSerial:
 	next;
 	mes "[Chief Mahnsoo]";
-	mes "Remember...";
-	mes "The package's";
-	mes "Serial Number is";
+	mes "จำไว้...";
+	mes "รหัสหมายเลข";
+	mes "ของพัสดุคือ";
 	if (rand(2)) {
-		mes "^3355FF"+getarg(0)+"^000000.";
+		mes "^3355FF"+getarg(0)+"^000000";
 		set job_merchant_q2,getarg(1);
 	}
 	else {
-		mes "^3355FF"+getarg(2)+"^000000.";
+		mes "^3355FF"+getarg(2)+"^000000";
 		set job_merchant_q2,getarg(3);
 	}
 	setquest getarg(4);
@@ -498,71 +497,71 @@ S_GiveSerial:
 alberta_in,28,29,2	script	Merchant Guildsman#mer	83,{
 	if (BaseJob == Job_Merchant) {
 		mes "[Union Staff Kay]";
-		mes "Heya pal.";
-		mes "How ya doin'?";
+		mes "เฮ้ ว่าไงเพื่อน";
+		mes "เป็นยังไงบ้างล่ะ?";
 		close;
 	}
 	else if (BaseJob != Job_Merchant && BaseJob != Job_Novice) {
 		mes "[Union Staff Kay]";
-		mes "Hey you. We don't have any open positions for part time work. If you wanna earn some zeny, you'll hafta look elsewhere.";
+		mes "นี่คุณ เราไม่มีตำแหน่งงานพาร์ทไทม์ว่างหรอกนะ ถ้าอยากหาเงิน Zeny คุณคงต้องไปลองหาที่อื่นแล้วล่ะ";
 		close;
 	}
 	else if (job_merchant_q == 9) {
 		mes "[Union Staff Kay]";
-		mes "Hey you. Yeah, you.";
-		mes "If you wanna restart the test, go visit Mahnsoo in the other room. Then we can talk.";
+		mes "นี่คุณ ใช่ คุณนั่นแหละ";
+		mes "ถ้าอยากจะเริ่มการทดสอบใหม่ ไปหา Mahnsoo ในอีกห้องหนึ่งก่อนนะ แล้วเราค่อยมาคุยกัน";
 		close;
 	}
 	else if (job_merchant_q == 8 || job_merchant_q == 7) {
 		mes "[Union Staff Kay]";
-		mes "Alright! Everything looks perfect! I'll report your success to the guildmaster. Now go talk to Chief Mahnsoo, yeah?";
+		mes "เอาล่ะ! ทุกอย่างดูเรียบร้อยดี! ฉันจะรายงานความสำเร็จของคุณให้หัวหน้าสมาคมทราบ ตอนนี้ไปคุยกับ Chief Mahnsoo ได้แล้วนะ โอเคไหม?";
 		close;
 	}
 	else if (job_merchant_q == 6 || job_merchant_q == 5) {
 		mes " [Union Staff Kay] ";
-		mes "Oh, yeah? Okay, lemme check. Your name is " + strcharinfo(0) + "? Alright, your destination was...";
+		mes "โอ้ งั้นเหรอ? โอเค ไหนขอฉันเช็คหน่อย ชื่อของคุณคือ " + strcharinfo(0) + " ใช่ไหม? เอาล่ะ จุดหมายของคุณคือ...";
 		next;
 		mes "[Union Staff Kay]";
 		if (job_merchant_q2 == 1 || job_merchant_q2 == 2)
-			mes "Wow! You met the Kafra babe in Prontera?! Lucky you~ ...Receipt?";
+			mes "ว้าว! คุณได้เจอสาว Kafra สุดฮอตใน Prontera เลยเหรอ?! โชคดีจังนะนาย~ ...แล้วใบเสร็จล่ะ?";
 		else if (job_merchant_q2 == 3 || job_merchant_q2 == 4)
-			mes "Geffen Magic Academy. Okay, receipt?";
+			mes "สถาบันเวทมนตร์ Geffen โอเค ขอใบเสร็จด้วย?";
 		else if (job_merchant_q2 == 5 || job_merchant_q2 == 6)
-			mes "The dyemaker in Morocc. Not bad. Receipt?";
+			mes "ช่างทำสีย้อมใน Morocc ไม่เลวนี่ ขอใบเสร็จด้วย?";
 		else if (job_merchant_q2 == 7 || job_merchant_q2 == 8)
-			mes "Oh hohohoho~! The Kafra Babe on Byalan Island?! Awesome! Anyway, did you bring the receipt?";
+			mes "โอ้ โฮ่โฮ่โฮ่โฮ่~! แม่สาว Kafra บนเกาะ Byalan งั้นเหรอ?! เจ๋งไปเลย! ว่าแต่ คุณเอาใบเสร็จมาด้วยหรือเปล่า?";
 
 		if (job_merchant_q2 == 1 && countitem(1073) != 0)
-			delitem 1073,1; //Merchant_Voucher_1
+			delitem 1073,1; //Merchant_Voucher_1 (ใบเสร็จรับเงิน 1)
 		else if (job_merchant_q2 == 2 && countitem(1074) != 0)
-			delitem 1074,1; //Merchant_Voucher_2
+			delitem 1074,1; //Merchant_Voucher_2 (ใบเสร็จรับเงิน 2)
 		else if (job_merchant_q2 == 3 && countitem(1075) != 0)
-			delitem 1075,1; //Merchant_Voucher_3
+			delitem(1075,1); //Merchant_Voucher_3 (ใบเสร็จรับเงิน 3)
 		else if (job_merchant_q2 == 4 && countitem(1076) != 0)
-			delitem 1076,1; //Merchant_Voucher_4
+			delitem 1076,1; //Merchant_Voucher_4 (ใบเสร็จรับเงิน 4)
 		else if (job_merchant_q2 == 5 && countitem(1077) != 0)
-			delitem 1077,1; //Merchant_Voucher_5
+			delitem 1077,1; //Merchant_Voucher_5 (ใบเสร็จรับเงิน 5)
 		else if (job_merchant_q2 == 6 && countitem(1078) != 0)
-			delitem 1078,1; //Merchant_Voucher_6
+			delitem 1078,1; //Merchant_Voucher_6 (ใบเสร็จรับเงิน 6)
 		else if (job_merchant_q2 == 7 && countitem(1079) != 0)
-			delitem 1079,1; //Merchant_Voucher_7
+			delitem 1079,1; //Merchant_Voucher_7 (ใบเสร็จรับเงิน 7)
 		else if (job_merchant_q2 == 8 && countitem(1080) != 0)
-			delitem 1080,1; //Merchant_Voucher_8
+			delitem 1080,1; //Merchant_Voucher_8 (ใบเสร็จรับเงิน 8)
 		else {
 			next;
 			set job_merchant_q,9;
 			mes " [Union Staff Kay] ";
-			mes "Wait a sec.";
-			mes "Where's the receipt?";
-			mes "What happened?";
+			mes "เดี๋ยวๆ แป๊บหนึ่ง";
+			mes "ใบเสร็จอยู่ไหนล่ะ?";
+			mes "เกิดอะไรขึ้น?";
 			next;
 			mes " [Union Staff Kay] ";
-			mes "If you don't have the receipt, you fail the test! You better talk to Mahnsoo if you wanna retake it, alright? Pay attention next time!";
+			mes "ถ้าคุณไม่มีใบเสร็จ คุณก็สอบตกนะ! คุณควรจะไปคุยกับ Mahnsoo ถ้าอยากจะสอบใหม่ เข้าใจไหม? คราวหน้าก็หัดใส่ใจกว่านี้หน่อย!";
 			close;
 		}
 		next;
 		mes " [Union Staff Kay] ";
-		mes "...Great! Everything's perfect! I'll report your success to the Guildmaster. You should talk to Chief Mahnsoo now, alright?";
+		mes "...เยี่ยมมาก! ทุกอย่างสมบูรณ์แบบ! ฉันจะรายงานความสำเร็จของคุณให้หัวหน้าสมาคมทราบ คุณควรไปคุยกับ Chief Mahnsoo ตอนนี้เลยนะ ตกลงไหม?";
 		close2;
 		if (job_merchant_q == 6)
 			set job_merchant_q,8;
@@ -572,145 +571,145 @@ alberta_in,28,29,2	script	Merchant Guildsman#mer	83,{
 	}
 	else if (job_merchant_q == 4 || job_merchant_q == 3 && countitem(1081) == 0 && countitem(1082) == 0 && countitem(1091) == 0) {
 		mes " [Union Staff Kay] ";
-		mes "Huh?";
-		mes "You're back?";
-		mes "So how did";
-		mes "the delivery go?";
+		mes "หือ?";
+		mes "คุณกลับมาแล้วเหรอ?";
+		mes "แล้วการส่งของ";
+		mes "เป็นยังไงบ้างล่ะ?";
 		next;
-		if (select("*Sob* I lost the package.:Fine.") == 1) {
+		if (select("*ซิกๆ* ผมทำพัสดุหายครับ:เรียบร้อยดีครับ") == 1) {
 			set job_merchant_q,9;
 			mes "[Union Staff Kay]";
-			mes "Are you kidding me? You'll fail the test if you lose the package!";
+			mes "นี่ล้อกันเล่นหรือเปล่า? คุณจะสอบตกทันทีนะถ้าทำพัสดุหาย!";
 			next;
 			mes "[Union Staff Kay]";
-			mes "Awwww man. Well, if you wanna restart the test, talk to Mahnsoo, okay? You're lucky you're getting another chance!";
+			mes "โธ่เอ๋ยเพื่อน เอาล่ะ ถ้าคุณอยากจะเริ่มการทดสอบใหม่ ก็ไปคุยกับ Mahnsoo นะ โอเคไหม? ถือว่าโชคดีนะที่คุณยังได้รับโอกาสอีกครั้ง!";
 			close;
 		}
 		mes "[Union Staff Kay]";
-		mes "Huh...";
-		mes "Okay...";
+		mes "หือ...";
+		mes "โอเค...";
 		close;
 	}
 	else if (job_merchant_q == 4 || job_merchant_q == 3 && countitem(1081) != 0 || countitem(1082) != 0 || countitem(1091) != 0) {
 		mes "[Union Staff Kay]";
-		mes "Hey, what are you still doing here? Shouldn't you be on your way already?";
+		mes "เฮ้ คุณยังทำอะไรอยู่ที่นี่อีกล่ะ? คุณไม่ควรจะกำลังเดินทางอยู่หรอกเหรอ?";
 		next;
-		if (select("I need a new package.:Oh, yeah. You're right!") == 1) {
+		if (select("ผมต้องการพัสดุชิ้นใหม่ครับ:โอ้ ใช่แล้ว คุณพูดถูก!") == 1) {
 			if (countitem(1081) == 0 && countitem(1082) == 0 && countitem(1083) == 0 && countitem(1091) == 0) {
 				mes "[Union Staff Kay]";
-				mes "Wha--?";
-				mes "So where did";
-				mes "the package go?";
-				mes "Where is it?!";
+				mes "อะ-- อะไรนะ?";
+				mes "แล้วพัสดุ";
+				mes "มันหายไปไหนล่ะ?";
+				mes "มันอยู่ไหน?!";
 				next;
-				if (select("*Sob* I lost it!:I have it right here.") == 1) {
+				if (select("*ซิกๆ* ผมทำมันหายครับ!:ผมมีมันอยู่นี่ครับ") == 1) {
 					set job_merchant_q,9;
 					mes "[Union Staff Kay]";
-					mes "You...";
-					mes "Lost it?!";
-					mes "You failed the test!";
+					mes "คุณ...";
+					mes "ทำมันหายงั้นเหรอ?!";
+					mes "คุณสอบตก!";
 					next;
 					mes "[Union Staff Kay]";
-					mes "*Sigh* If you want to restart the test, go visit Mahnsoo in the other room, alright?";
+					mes "*เฮ้อ* ถ้าคุณต้องการเริ่มการทดสอบใหม่ ก็ไปหา Mahnsoo ในอีกห้องหนึ่งนะ เข้าใจไหม?";
 					close;
 				}
 				mes "[Union Staff Kay]";
-				mes "Huh.";
-				mes "I thought";
-				mes "you lost it.";
-				mes "You don't";
-				mes "need a new one.";
+				mes "หือ";
+				mes "ฉันก็นึกว่า";
+				mes "คุณทำมันหายซะอีก";
+				mes "คุณไม่จำเป็น";
+				mes "ต้องขอพัสดุใหม่หรอก";
 				close;
 			}
 			mes "[Union Staff Kay]";
-			mes "*Sigh* Man, you're starting to become a pain in the ass. Hold on, lemme cancel your record...";
+			mes "*เฮ้อ* ให้ตายสิ คุณเริ่มจะกลายเป็นตัวภาระแล้วนะเนี่ย รอเดี๋ยว ฉันจะขอยกเลิกบันทึกของคุณก่อน...";
 			if (countitem(1081) != 0)
-				delitem 1081,1; //Merchant_Box_1
+				delitem 1081,1; //Merchant_Box_1 (กล่องพัสดุ 1)
 			else if (countitem(1082) != 0)
-				delitem 1082,1; //Merchant_Box_2
+				delitem 1082,1; //Merchant_Box_2 (กล่องพัสดุ 2)
 			else if (countitem(1091) != 0)
-				delitem 1091,1; //Merchant_Box_Etc
+				delitem 1091,1; //Merchant_Box_Etc (กล่องพัสดุอื่นๆ)
 			if (job_merchant_q == 4)
 				set job_merchant_q,2;
 			else if (job_merchant_q == 3)
 				set job_merchant_q,1;
 			next;
 			mes "[Union Staff Kay]";
-			mes "I need some time to get everything in order, so come back later.";
+			mes "ฉันต้องใช้เวลาสักพักเพื่อจัดการทุกอย่างให้เข้าที่เข้าทาง เพราะฉะนั้นค่อยกลับมาใหม่ทีหลังนะ";
 			close;
 		}
 		mes "[Union Staff Kay]";
-		mes "What a bummer...";
+		mes "น่าผิดหวังจริงๆ...";
 		close;
 	}
 	else if ((job_merchant_q == 0 || job_merchant_q == 1 || job_merchant_q == 2)) {
 		set where_village,0;
 		mes "[Union Staff Kay]";
-		mes "Hey there.";
-		mes "what brings";
-		mes "you here?";
+		mes "เฮ้ สวัสดี";
+		mes "อะไรนำพาคุณ";
+		mes "มาที่นี่ล่ะ?";
 		next;
-		switch(select("My Merchant License test.:I'm looking for part time work.:Nothing.")) {
+		switch(select("มาทดสอบใบอนุญาต Merchant ครับ:ผมกำลังมองหางานพาร์ทไทม์ครับ:ไม่มีอะไรครับ")) {
 		case 1:
 			mes "[Union Staff Kay]";
-			mes "I see.";
-			mes "Alright.";
-			mes "So what's";
-			mes "your name?";
+			mes "เข้าใจแล้ว";
+			mes "ตกลง";
+			mes "แล้วคุณ";
+			mes "ชื่ออะไรล่ะ?";
 			mes "" + strcharinfo(0) + "...?";
 			next;
 			if (job_merchant_q == 0) {
 				mes "[Union Staff Kay]";
-				mes "Huh. Your name's not on my list. Did you apply for the job change quest or what?";
+				mes "หือ ชื่อของคุณไม่ได้อยู่ในรายการของฉันนะ คุณได้สมัครเควสเปลี่ยนอาชีพมาหรือเปล่าเนี่ย?";
 				next;
 				mes "[Union Staff Kay]";
-				mes "You gotta apply first by talking to Chief Mahnsoo in the center";
-				mes "of this building, okay?";
+				mes "คุณต้องไปสมัครก่อนโดยคุยกับ Chief Mahnsoo ที่อยู่ตรงกลาง";
+				mes "ของตึกนี้ โอเคไหม?";
 				close;
 			}
 			mes "[Union Staff Kay]";
-			mes "Alright, there you go. Lemme give you the package. Now, choose the destination of the delivery.";
+			mes "เอาล่ะ เรียบร้อย เดี๋ยวฉันจะมอบพัสดุให้ คราวนี้ เลือกจุดหมายปลายทางของการส่งของมา";
 			next;
-			switch(select("Prontera.:Geffen.:Morocc.:Byalan Island.")) {
+			switch(select("Prontera:Geffen:Morocc:เกาะ Byalan")) {
 			case 1: set .@where_village,1; break;
 			case 2: set .@where_village,2; break;
 			case 3: set .@where_village,3; break;
 			case 4: set .@where_village,4; break;
 			}
 			mes "[Union Staff Kay]";
-			mes "Okay, now you need to give me the package's Serial Number. If you wanna cancel, just enter '0', alright?";
+			mes "โอเค คราวนี้คุณต้องบอกรหัสหมายเลข (Serial Number) ของพัสดุให้ฉันด้วย ถ้าอยากจะยกเลิก ก็แค่ใส่เลข '0' ตกลงไหม?";
 			next;
 			while(1) {
 				while(1) {
 					input .@input;
 					if (.@input == 0) {
 						mes "[Union Staff Kay]";
-						mes "Are you sure that you wanna cancel?";
-						if (select("Yes.:Let me try again.") == 1) {
-							mes "Alright, we'll cancel for now.";
+						mes "คุณแน่ใจนะว่าต้องการจะยกเลิก?";
+						if (select("ใช่:ขอผมลองอีกครั้ง") == 1) {
+							mes "ตกลง งั้นเราขอยกเลิกไปก่อนในตอนนี้";
 							close;
 						}
 						next;
 					}
 					else if (.@input < 1000000 || .@input > 5000000) {
 						mes "[Union Staff Kay]";
-						mes "Hey hey. That number's not valid! Enter a value from 1000000 to 5000000. got it?";
+						mes "เฮ้ๆ เลขนั่นมันใช้ไม่ได้! ใส่ค่าตั้งแต่ 1000000 ถึง 5000000 เข้าใจหรือเปล่า?";
 						next;
 					}
-					else 
+					else 
 						break;
 				}
 				mes "[Union Staff Kay]";
 				if (.@where_village == 1)
-					mes "Destination is Prontera. The Serial Number is " + .@input + ". Are you positive?";
+					mes "จุดหมายคือ Prontera รหัสหมายเลขคือ " + .@input + " ยืนยันตามนี้ไหม?";
 				else if (.@where_village == 2)
-					mes "Destination is Geffen. Phew! That's really far! The Serial Number is " + .@input + ". Are you positive?";
+					mes "จุดหมายคือ Geffen ฟิ้ว! นั่นมันไกลมากเลยนะ! รหัสหมายเลขคือ " + .@input + " ยืนยันตามนี้ไหม?";
 				else if (.@where_village == 3)
-					mes "Destination is Morocc. That's pretty far away! The Serial Number is " + .@input + ". Are you positive?";
+					mes "จุดหมายคือ Morocc ไกลพอสมควรเลยล่ะ! รหัสหมายเลขคือ " + .@input + " ยืนยันตามนี้ไหม?";
 				else
-					mes "Lucky you! Your destination is Byalan Island. The Serial Number is " + .@input + ". Are you positive?";
+					mes "โชคดีนะเนี่ย! จุดหมายของคุณคือเกาะ Byalan รหัสหมายเลขคือ " + .@input + " ยืนยันตามนี้ไหม?";
 				next;
-				if (select("Positive.:Whoops! Wrong number!") == 1) {
+				if (select("ยืนยัน:อุ๊ย! ใส่เลขผิด!") == 1) {
 					break;
 				}
 			}
@@ -751,22 +750,22 @@ alberta_in,28,29,2	script	Merchant Guildsman#mer	83,{
 			else if (job_merchant_q == 1)
 				set job_merchant_q,3;
 			mes "[Union Staff Kay]";
-			mes "Alright. Take this package and guard it with your life until it's safely delivered to the customer. Don't lose this thing, got it?";
+			mes "เอาล่ะ รับพัสดุนี้ไปแล้วดูแลมันเท่าชีวิตจนกว่าจะส่งถึงมือลูกค้าอย่างปลอดภัย อย่าทำมันหายเชียวนะ เข้าใจไหม?";
 			next;
 			mes "[Union Staff Kay]";
-			mes "Well then, I wish you luck. Remember, you gotta bring me";
-			mes "a receipt once you finish the delivery, okay?";
+			mes "ถ้าอย่างนั้น ฉันขอให้คุณโชคดี จำไว้ว่าคุณต้องเอา";
+			mes "ใบเสร็จกลับมาให้ฉันหลังจากส่งของเสร็จแล้วด้วยนะ โอเคไหม?";
 			close;
 		case 2:
 			mes "[Union Staff Kay]";
-			mes "Part time job? Sorry pal, no jobs yet. The Paymaster's department can never balance our budget...";
+			mes "งานพาร์ทไทม์เหรอ? โทษทีนะเพื่อน ตอนนี้ยังไม่มีงาน แผนกจ่ายเงินไม่เคยจัดสรรงบประมาณให้ลงตัวได้เลยสักที...";
 			close;
 		case 3:
 			mes "[Union Staff Kay]";
-			mes "Nothing, eh?";
-			mes "I guess you enjoy";
-			mes "bothering people for";
-			mes "no reason then, yeah?";
+			mes "ไม่มีอะไรเหรอ?";
+			mes "ฉันเดาว่าคุณคงชอบ";
+			mes "รบกวนคนอื่นเล่นๆ";
+			mes "โดยไม่มีเหตุผลสินะ ใช่ไหม?";
 			close;
 		}
 	}
@@ -775,54 +774,54 @@ alberta_in,28,29,2	script	Merchant Guildsman#mer	83,{
 morocc_in,140,102,4	script	Student#mer	86,{
 	if ((job_merchant_q == 4) || (job_merchant_q == 3)) {
 		mes "[Dyer's Student]";
-		mes "You're from";
-		mes "the Merchant Guild?";
-		mes "Yes! You've come to";
-		mes "the right place.";
+		mes "คุณมาจาก";
+		mes "สมาคมพ่อค้า (Merchant Guild) ใช่ไหม?";
+		mes "ใช่แล้ว! คุณมา";
+		mes "ถูกที่แล้วล่ะ";
 		next;
 		mes "[Dyer's Student]";
 		if (countitem(1081) == 1 || countitem(1082) == 1 || countitem(1091) == 1) {
-			mes "Okay~";
-			mes "Please set the";
-			mes "package down";
-			mes "over there.";
+			mes "โอเค~";
+			mes "กรุณาวาง";
+			mes "พัสดุลง";
+			mes "ตรงนั้นได้เลย";
 		}
 		else {
-			mes "But...";
-			mes "Where's the";
-			mes "package I ordered?";
-			mes "That's strange...";
+			mes "แต่ว่า...";
+			mes "พัสดุที่ฉัน";
+			mes "สั่งไปอยู่ไหนล่ะ?";
+			mes "แปลกจังเลยนะ...";
 			close;
 		}
 		next;
 		mes "[Dyer's Student]";
-		mes "Let me check the Serial Number of the package so I can give you the receipt, okay?";
+		mes "ขอฉันตรวจสอบรหัสหมายเลข (Serial Number) ของพัสดุหน่อยนะ ฉันจะได้มอบใบเสร็จให้คุณ โอเคไหม?";
 		next;
 		mes "[Dyer's Student]";
 		if (job_merchant_q2 == 5 && countitem(1081) != 0) {
 			mes "3012685...";
-			mes "That's right.";
-			mes "Here's your";
-			mes "receipt.";
-			delitem 1081,1; //Merchant_Box_1
-			getitem 1077,1; //Merchant_Voucher_5
+			mes "ถูกต้องแล้ว";
+			mes "นี่คือ";
+			mes "ใบเสร็จของคุณ";
+			delitem 1081,1; //Merchant_Box_1 (กล่องพัสดุ 1)
+			getitem 1077,1; //Merchant_Voucher_5 (ใบเสร็จรับเงิน 5)
 		}
 		else if (job_merchant_q2 == 6 && countitem(1082) != 0) {
 			mes "3487372...";
-			mes "That's right.";
-			mes "Here's your";
-			mes "receipt.";
-			delitem 1082,1; //Merchant_Box_2
-			getitem 1078,1; //Merchant_Voucher_6
+			mes "ถูกต้องแล้ว";
+			mes "นี่คือ";
+			mes "ใบเสร็จของคุณ";
+			delitem 1082,1; //Merchant_Box_2 (กล่องพัสดุ 2)
+			getitem 1078,1; //Merchant_Voucher_6 (ใบเสร็จรับเงิน 6)
 		}
 		else {
-			mes "Excuse me, but...";
+			mes "ขออภัยด้วย แต่...";
 			if (job_merchant_q2 == 5)
-				mes "I don't think this is the package we ordered. The Serial Number should be 3012685. See?";
+				mes "ฉันไม่คิดว่านี่คือพัสดุที่เราสั่งนะ รหัสหมายเลขควรจะเป็น 3012685 เห็นไหมล่ะ?";
 			else if (job_merchant_q2 == 6)
-				mes "I don't think this is the package we ordered. The Serial Number should be 3487372. See?";
+				mes "ฉันไม่คิดว่านี่คือพัสดุที่เราสั่งนะ รหัสหมายเลขควรจะเป็น 3487372 เห็นไหมล่ะ?";
 			else
-				mes "I don't think this is the package we ordered. The Serial Number should be 3012685 or 3487372. Well, one of those two...";
+				mes "ฉันไม่คิดว่านี่คือพัสดุที่เราสั่งนะ รหัสหมายเลขควรจะเป็น 3012685 หรือไม่ก็ 3487372 อืม... ก็น่าจะเป็นอันใดอันหนึ่งในสองอันนี้แหละ...";
 			close;
 		}
 		if (job_merchant_q == 4)
@@ -831,28 +830,28 @@ morocc_in,140,102,4	script	Student#mer	86,{
 			set job_merchant_q,5;
 		next;
 		mes "[Dyer's Student]";
-		mes "Thanks a lot!";
-		mes "See you again";
-		mes "sometime!";
+		mes "ขอบคุณมากนะ!";
+		mes "ไว้เจอกันใหม่";
+		mes "โอกาสหน้า!";
 		close;
 	}
 	else if (job_merchant_q == 6 || job_merchant_q == 5 && job_merchant_q2 == 6 || job_merchant_q2 == 5) {
 		mes "[Dyer's Student]";
-		mes "Oh...";
-		mes "You're gonna";
-		mes "go back? Okay";
-		mes "then, take care!";
+		mes "โอ้...";
+		mes "คุณกำลังจะ";
+		mes "กลับแล้วเหรอ? ตกลง";
+		mes "งั้นก็ เดินทางปลอดภัยนะ!";
 		close;
 	}
 	else {
 		mes "[Dyer's Student]";
-		mes "Mr. Java Dullihan is the one and only, the best dye maker on the Midgard continent.";
+		mes "คุณ Java Dullihan คือหนึ่งเดียวและเป็นช่างทำสีย้อมที่เก่งที่สุดในทวีป Midgard แห่งนี้เลยล่ะ";
 		next;
 		mes "[Dyer's Student]";
-		mes "Aaaand I'm proud to say that I'm his student! Someday, I'll be able to make really beautiful dyes too!";
+		mes "แลลละ... ฉันภูมิใจมากที่จะบอกว่าฉันเป็นลูกศิษย์ของเขา! สักวันหนึ่ง ฉันจะสามารถทำสีย้อมที่สวยงามจริงๆ ออกมาได้เหมือนกัน!";
 		next;
 		mes "[Dyer's Student]";
-		mes "Of course, I'm still learning the basics right now, but someday...";
+		mes "แน่นอนว่าตอนนี้ฉันยังคงเรียนรู้พื้นฐานอยู่ แต่สักวันหนึ่ง...";
 		close;
 	}
 }
@@ -860,57 +859,57 @@ morocc_in,140,102,4	script	Student#mer	86,{
 geffen_in,155,122,4	script	Guild Staff#mer	47,{
 	if (job_merchant_q == 4 || job_merchant_q == 3) {
 		mes "[Guild Staff]";
-		mes "Ah, you must be with the Merchant Guild. Finally, my package has arrived! Alright...!";
+		mes "อา คุณต้องมาจากสมาคมพ่อค้าแน่ๆ ในที่สุด พัสดุของฉันก็มาถึงสักที! เอาล่ะ...!";
 		next;
 		mes "[Guild Staff]";
 		if (countitem(1081) == 1 || countitem(1082) == 1 || countitem(1091) == 1) {
-			mes "You must be very tired";
-			mes "from having to travel";
-			mes "in this kind";
-			mes "of weather...";
+			mes "คุณคงจะเหนื่อยมากเลยนะ";
+			mes "ที่ต้องเดินทาง";
+			mes "ท่ามกลางสภาพอากาศ";
+			mes "แบบนี้...";
 		}
 		else {
-			mes "Wait...";
-			mes "Where's the";
-			mes "package?";
+			mes "เดี๋ยวหน้า...";
+			mes "พัสดุ";
+			mes "อยู่ไหนล่ะ?";
 			close;
 		}
 		next;
 		mes "[Guild Staff]";
-		mes "Alright, let me";
-		mes "check the Serial Number...";
+		mes "เอาล่ะ ให้ฉัน";
+		mes "เช็ครหัสหมายเลข (Serial Number) หน่อยนะ...";
 		if (job_merchant_q2 == 3 && countitem(1081) != 0) {
-			mes "2989396. Yes, this is what we ordered. Here is your receipt.";
-			delitem 1081,1; //Merchant_Box_1
-			getitem 1075,1; //Merchant_Voucher_3
+			mes "2989396 ใช่แล้ว นี่คือสิ่งที่เราสั่งไป นี่จ้ะ ใบเสร็จของคุณ";
+			delitem 1081,1; //Merchant_Box_1 (กล่องพัสดุ 1)
+			getitem 1075,1; //Merchant_Voucher_3 (ใบเสร็จรับเงิน 3)
 		}
 		else if (job_merchant_q2 == 4 && countitem(1082) != 0) {
-			mes "2191737. Yes, this is what we ordered. Here is your receipt.";
-			delitem 1082,1; //Merchant_Box_2
-			getitem 1076,1; //Merchant_Voucher_4
+			mes "2191737 ใช่แล้ว นี่คือสิ่งที่เราสั่งไป นี่จ้ะ ใบเสร็จของคุณ";
+			delitem 1082,1; //Merchant_Box_2 (กล่องพัสดุ 2)
+			getitem 1076,1; //Merchant_Voucher_4 (ใบเสร็จรับเงิน 4)
 		}
 		else {
-			mes "Uh oh, this is the wrong number. This isn't what we ordered...";
+			mes "โอ๊ะโอ หมายเลขไม่ถูกต้องนะ นี่ไม่ใช่สิ่งที่เราสั่งไปนี่นา...";
 			next;
 			mes "[Guild Staff]";
 			if (job_merchant_q2 == 3) {
-				mes "The Serial Number";
-				mes "should be 2989396.";
+				mes "รหัสหมายเลข";
+				mes "ควรจะเป็น 2989396";
 			}
 			else if (job_merchant_q2 == 4) {
-				mes "The Serial Number";
-				mes "should be 2191737.";
+				mes "รหัสหมายเลข";
+				mes "ควรจะเป็น 2191737";
 			}
 			else {
-				mes "The Serial Number";
-				mes "should be 2989396";
-				mes "or 2191737, one of";
-				mes "those two.";
+				mes "รหัสหมายเลข";
+				mes "ควรจะเป็น 2989396";
+				mes "หรือไม่ก็ 2191737 อันใดอันหนึ่ง";
+				mes "ในสองอันนี้แหละ";
 			}
-			mes "Look here!";
-			mes "Don't you see";
-			mes "something";
-			mes "is wrong?";
+			mes "ดูนี่สิ!";
+			mes "คุณไม่เห็นเหรอ";
+			mes "ว่ามันมีบางอย่าง";
+			mes "ผิดปกติ?";
 			close;
 		}
 		if (job_merchant_q == 4)
@@ -919,21 +918,21 @@ geffen_in,155,122,4	script	Guild Staff#mer	47,{
 			set job_merchant_q,5;
 		next;
 		mes "[Guild Staff]";
-		mes "Heh heh~";
-		mes "Thank you!";
-		mes "Bye bye!";
+		mes "อิอิ~";
+		mes "ขอบคุณนะ!";
+		mes "บ๊ายบาย!";
 		close;
 	}
 	else if (job_merchant_q == 6 || job_merchant_q == 5 && job_merchant_q2 == 4 || job_merchant_q2 == 3) {
 		mes "[Guild Staff]";
-		mes "Hello,";
-		mes "Merchant Guildsman~";
-		mes "I give you my thanks.";
+		mes "สวัสดีจ้ะ";
+		mes "พ่อค้าจากสมาคม~";
+		mes "ฉันขอบใจคุณมากเลยนะ";
 		close;
 	}
 	else {
 		mes "[Guild Staff]";
-		mes "My package should have arrived by now. Huh. I guess the Merchant Guild might be running a little late...";
+		mes "พัสดุของฉันควรจะมาถึงได้แล้วนะเนี่ย หืม ฉันเดาว่าสมาคมพ่อค้าอาจจะมาส่งสายไปนิดหน่อยล่ะมั้ง...";
 		close;
 	}
 }
@@ -942,67 +941,67 @@ prontera,248,42,0	script	Kafra Employee#mer	116,{
 	cutin "kafra_02",2;
 	if (job_merchant_q == 6 || job_merchant_q == 5) && (job_merchant_q2 == 2 || job_merchant_q2 == 1) {
 		mes "[Kafra Employee]";
-		mes "Oh! Thank you for";
-		mes "traveling such a long";
-		mes "way to come over here~";
+		mes "โอ้! ขอบคุณมากนะคะที่";
+		mes "อุตส่าห์เดินทางมาไกล";
+		mes "เพื่อมาถึงที่นี่เลยนะคะ~";
 		close2;
 		cutin "",255;
 		end;
 	}
 	else if (job_merchant_q == 4 || job_merchant_q == 3) {
 		mes "[Kafra Employee]";
-		mes "A delivery from";
-		mes "the Merchant Guild?";
-		mes "Oh, yes, please set";
-		mes "it down right over there...";
+		mes "ของที่มาส่งจาก";
+		mes "สมาคมพ่อค้า (Merchant Guild) ใช่ไหมคะ?";
+		mes "โอ้ ใช่แล้วค่ะ รบกวนวางมัน";
+		mes "ลงตรงนั้นได้เลยนะคะ...";
 		if (countitem(1081) == 1 || countitem(1082) == 1 || countitem(1091) == 1) {
-			mes "You must be really tired";
-			mes "after carrying it for so long!";
+			mes "คุณต้องเหนื่อยมากแน่ๆ เลย";
+			mes "หลังจากที่แบกมันมาตั้งนาน!";
 		}
 		else {
-			mes "W-wait. Didn't you bring it?";
-			mes "Where's the package?";
+			mes "ด-เดี๋ยวสิคะ ไม่ได้นำมันมาด้วยเหรอ?";
+			mes "พัสดุอยู่ไหนล่ะคะ?";
 			close2;
 			cutin "",255;
 			end;
 		}
 		next;
 		mes "[Kafra Employee]";
-		mes "Now, let me check";
-		mes "the serial number...";
+		mes "คราวนี้ ขอฉันตรวจสอบ";
+		mes "รหัสหมายเลข (Serial Number) หน่อยนะคะ...";
 		if (job_merchant_q2 == 1 && countitem(1081) != 0) {
-			mes "2485741. Right, this is";
-			mes "the one we ordered. Oh,";
-			mes "and don't forget this receipt!";
+			mes "2485741 ถูกต้องค่ะ นี่คือ";
+			mes "ชิ้นที่เราสั่งไป โอ้";
+			mes "และอย่าลืมใบเสร็จนี้ด้วยนะคะ!";
 			next;
-			delitem 1081,1; //Merchant_Box_1
-			getitem 1073,1; //Merchant_Voucher_1
+			delitem 1081,1; //Merchant_Box_1 (กล่องพัสดุ 1)
+			getitem 1073,1; //Merchant_Voucher_1 (ใบเสร็จรับเงิน 1)
 		}
 		else if (job_merchant_q2 == 2 && countitem(1082) != 0) {
-			mes "2328137. Right, this is";
-			mes "the one we ordered. Oh,";
-			mes "and don't forget this receipt!";
+			mes "2328137 ถูกต้องค่ะ นี่คือ";
+			mes "ชิ้นที่เราสั่งไป โอ้";
+			mes "และอย่าลืมใบเสร็จนี้ด้วยนะคะ!";
 			next;
-			delitem 1082,1; //Merchant_Box_2
-			getitem 1074,1; //Merchant_Voucher_2
+			delitem 1082,1; //Merchant_Box_2 (กล่องพัสดุ 2)
+			getitem 1074,1; //Merchant_Voucher_2 (ใบเสร็จรับเงิน 2)
 		}
 		else {
-			mes "Mmmm? Hold on. This is";
-			mes "the wrong package. What we";
+			mes "อืมมมม? เดี๋ยวส่งสิคะ นี่มัน";
+			mes "พัสดุผิดชิ้นนะคะ สิ่งที่เรา";
 			if (job_merchant_q2 == 1)
-				mes "ordered had the serial number 2485741. I'm sure it's not this.";
+				mes "สั่งไปคือรหัสหมายเลข 2485741 ฉันมั่นใจว่าไม่ใช่ชิ้นนี้ค่ะ";
 			else if (job_merchant_q2 == 2)
-				mes "ordered had the serial number 2328137. I'm sure it's not this.";
+				mes "สั่งไปคือรหัสหมายเลข 2328137 ฉันมั่นใจว่าไม่ใช่ชิ้นนี้ค่ะ";
 			else
-				mes "ordered had the serial number 2485741 or 2328137.";
+				mes "สั่งไปคือรหัสหมายเลข 2485741 หรือไม่ก็ 2328137 ค่ะ";
 			next;
 			mes "[Kafra Employee]";
-			mes "I'm afraid there";
-			mes "must be some kind";
-			mes "of mistake. Perhaps";
-			mes "you should go back to";
-			mes "the Merchant Guild to";
-			mes "clear up this situation?";
+			mes "ฉันเกรงว่า";
+			mes "น่าจะมีความผิดพลาด";
+			mes "บางอย่างเกิดขึ้นนะคะ บางที";
+			mes "คุณควรจะกลับไปที่";
+			mes "สมาคมพ่อค้าเพื่อ";
+			mes "จัดการสถานการณ์นี้ให้เรียบร้อยดีไหมคะ?";
 			close2;
 			cutin "",255;
 			end;
@@ -1012,34 +1011,34 @@ prontera,248,42,0	script	Kafra Employee#mer	116,{
 		else if (job_merchant_q == 3)
 			set job_merchant_q,5;
 		mes "[Kafra Employee]";
-		mes "Thanks again";
-		mes "for going through";
-		mes "all of that trouble~";
+		mes "ขอบคุณอีกครั้งนะคะ";
+		mes "ที่ยอมลำบาก";
+		mes "ทำทั้งหมดนี้ให้เรานะคะ~";
 		close2;
 		cutin "",255;
 		end;
 	}
 	else {
 		mes "[Kafra Employee]";
-		mes "Welcome to the";
-		mes "Kafra Corportation,";
-		mes "where the service is";
-		mes "always on your side~";
+		mes "ยินดีต้อนรับสู่";
+		mes "บริษัทคาฟรา (Kafra Corporation) ค่ะ";
+		mes "ที่ซึ่งบริการ";
+		mes "อยู่เคียงข้างคุณเสมอ~";
 		next;
 		mes "[Kafra Employee]";
-		mes "As you can see, the";
-		mes "Swordman Assocation";
-		mes "has moved to Izlude, a";
-		mes "satellite city of Prontera.";
-		mes "Currently, we offer a Teleport";
-		mes "Service to Izlude for 600 zeny.";
+		mes "อย่างที่คุณเห็นนะคะ";
+		mes "สมาคมนักดาบ (Swordman Association)";
+		mes "ได้ย้ายไปยัง Izlude ซึ่งเป็น";
+		mes "เมืองบริวารของ Prontera แล้วค่ะ";
+		mes "ปัจจุบัน เรามีบริการวาร์ป (Teleport)";
+		mes "ไปยัง Izlude ในราคา 600 zeny ค่ะ";
 		next;
-		if (select("Use:Cancel") == 1) {
+		if (select("ใช้บริการ:ยกเลิก") == 1) {
 			if (Zeny < 600) {
 				mes "[Kafra Employee]";
-				mes "I'm sorry, but you";
-				mes "don't have enough zeny";
-				mes "for this Teleport Service.";
+				mes "ขออภัยด้วยนะคะ แต่ดูเหมือนคุณ";
+				mes "จะมีเงิน zeny ไม่เพียงพอ";
+				mes "สำหรับบริการวาร์ปนี้ค่ะ";
 				close2;
 				cutin "",255;
 				end;
@@ -1060,58 +1059,58 @@ prontera,248,42,0	script	Kafra Employee#mer	116,{
 function	script	F_MercKafra	{
 	if ((job_merchant_q == 6 || job_merchant_q == 5) && (job_merchant_q2 == 8 || job_merchant_q2 == 7)) {
 		mes "[Kafra Employee]";
-		mes "Oh hello~";
-		mes "Um, is there";
-		mes "some special reason";
-		mes "as to why you're here?";
+		mes "โอ้ สวัสดีค่ะ~";
+		mes "เอ่อ มีธุระด่วน";
+		mes "หรือเหตุผลพิเศษอะไรหรือเปล่าคะ";
+		mes "ที่ทำให้คุณมาที่นี่?";
 		close2;
 		cutin "",255;
 		end;
 	}
 	else if (job_merchant_q == 4 || job_merchant_q == 3) {
 		mes "[Kafra Employee]";
-		mes "A delivery from";
-		mes "the Merchant Guild?";
-		mes "Oh, yes, please set";
-		mes "it down right over there...";
+		mes "ของที่มาส่งจาก";
+		mes "สมาคมพ่อค้า (Merchant Guild) ใช่ไหมคะ?";
+		mes "โอ้ ใช่แล้วค่ะ รบกวนวางมัน";
+		mes "ลงตรงนั้นได้เลยนะคะ...";
 		if (countitem(1081) == 1 || countitem(1082) == 1 || countitem(1091) == 1) {
-			mes "You must be really tired";
-			mes "after carrying it for so long!";
+			mes "คุณต้องเหนื่อยมากแน่ๆ เลย";
+			mes "หลังจากที่แบกมันมาตั้งนาน!";
 		}
 		else {
-			mes "W-wait. Didn't you bring it?";
-			mes "Where's the package?";
+			mes "ด-เดี๋ยวสิคะ ไม่ได้นำมันมาด้วยเหรอ?";
+			mes "พัสดุอยู่ไหนล่ะคะ?";
 			close2;
 			cutin "",255;
 			end;
 		}
 		next;
 		mes "[Kafra Employee]";
-		mes "Now, let me check";
-		mes "the serial number...";
+		mes "คราวนี้ ขอฉันตรวจสอบ";
+		mes "รหัสหมายเลข (Serial Number) หน่อยนะคะ...";
 		if (job_merchant_q2 == 7 && countitem(1081) != 0) {
-			mes "3318702. Right, this is";
-			mes "the one we ordered. Oh,";
-			mes "and don't forget this receipt!";
-			delitem 1081,1; //Merchant_Box_1
-			getitem 1079,1; //Merchant_Voucher_7
+			mes "3318702 ถูกต้องค่ะ นี่คือ";
+			mes "ชิ้นที่เราสั่งไป โอ้";
+			mes "และอย่าลืมใบเสร็จนี้ด้วยนะคะ!";
+			delitem 1081,1; //Merchant_Box_1 (กล่องพัสดุ 1)
+			getitem 1079,1; //Merchant_Voucher_7 (ใบเสร็จรับเงิน 7)
 		}
 		else if (job_merchant_q2 == 8 && countitem(1082) != 0) {
-			mes "3543625. Right, this is";
-			mes "the one we ordered. Oh,";
-			mes "and don't forget this receipt!";
-			delitem 1082,1; //Merchant_Box_2
-			getitem 1080,1; //Merchant_Voucher_8
+			mes "3543625 ถูกต้องค่ะ นี่คือ";
+			mes "ชิ้นที่เราสั่งไป โอ้";
+			mes "และอย่าลืมใบเสร็จนี้ด้วยนะคะ!";
+			delitem 1082,1; //Merchant_Box_2 (กล่องพัสดุ 2)
+			getitem 1080,1; //Merchant_Voucher_8 (ใบเสร็จรับเงิน 8)
 		}
 		else {
-			mes "Mmmm? Hold on. This is";
-			mes "the wrong package. What we";
+			mes "อืมมมม? เดี๋ยวส่งสิคะ นี่มัน";
+			mes "พัสดุผิดชิ้นนะคะ สิ่งที่เรา";
 			if (job_merchant_q2 == 7)
-				mes "ordered had the serial number 3318702. I'm sure it's not this.";
+				mes "สั่งไปคือรหัสหมายเลข 3318702 ฉันมั่นใจว่าไม่ใช่ชิ้นนี้ค่ะ";
 			else if (job_merchant_q2 == 8)
-				mes "ordered had the serial number 3543625. I'm sure it's not this.";
+				mes "สั่งไปคือรหัสหมายเลข 3543625 ฉันมั่นใจว่าไม่ใช่ชิ้นนี้ค่ะ";
 			else
-				mes "ordered had the serial number 3318702 or 3543625.";
+				mes "สั่งไปคือรหัสหมายเลข 3318702 หรือไม่ก็ 3543625 ค่ะ";
 			close2;
 			cutin "",255;
 			end;
@@ -1122,31 +1121,31 @@ function	script	F_MercKafra	{
 			set job_merchant_q,5;
 		next;
 		if (countitem(1072) != 0 && quest_alb_01 == 0) {
-			select("This is from Chief Mahnsoo of the Merchant Guild...");
-			delitem 1072,1; //Delivery_Message
+			select("นี่เป็นข้อความจากหัวหน้า Mahnsoo แห่งสมาคมพ่อค้าครับ...");
+			delitem 1072,1; //Delivery_Message (ข้อความนำส่ง)
 			set quest_alb_01,1;
 			mes "[Kafra Employee]";
-			mes "Oh~! A letter from";
-			mes "Mahnsoo! Thank you";
-			mes "so much, I've been dying";
-			mes "to hear from him. How is";
-			mes "he doing, is he alright?";
-			mes "I can't wait to read it...";
+			mes "โอ้~! จดหมายจาก";
+			mes "Mahnsoo! ขอบคุณ";
+			mes "คุณมากเลยนะคะ ฉันรอคอย";
+			mes "ข่าวคราวจากเขาใจจะขาด เขาเป็น";
+			mes "อย่างไรบ้างคะ เขาสบายดีไหม?";
+			mes "ฉันรอที่จะอ่านมันไม่ไหวแล้วล่ะค่ะ...";
 			next;
 			mes "[Kafra Employee]";
-			mes "Oh, thank you for";
-			mes "going through all the";
-			mes "trouble of delivering all";
-			mes "of this. This isn't anything";
-			mes "special, but please take it.";
-			mes "Well, see you again~";
-			getitem 513,3; //Banana
+			mes "โอ้ ขอบคุณมากนะคะ";
+			mes "ที่ยอมลำบากเดินทาง";
+			mes "มาส่งของทั้งหมดนี้ให้";
+			mes "นี่อาจจะไม่ใช่ของวิเศษ";
+			mes "อะไรนัก แต่โปรดรับไว้เถอะค่ะ";
+			mes "เอาล่ะ แล้วเจอกันใหม่นะคะ~";
+			getitem 513,3; //Banana (กล้วย)
 		}
 		else {
 			mes "[Kafra Employee]";
-			mes "Thanks again";
-			mes "for going through";
-			mes "all of that trouble~";
+			mes "ขอบคุณอีกครั้งนะคะ";
+			mes "ที่ยอมลำบาก";
+			mes "ทำทั้งหมดนี้ให้เรานะคะ~";
 		}
 		close2;
 		cutin "",255;

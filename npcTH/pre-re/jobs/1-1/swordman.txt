@@ -41,23 +41,23 @@ izlude_in,74,172,4	script	Swordman#swd_1	119,{
 	if (Upper == 1) {
 		if (Class == Job_Novice_High && (ADVJOB == Job_Lord_Knight || ADVJOB == Job_Paladin)) {
 			mes "[Swordman]";
-			mes "It...";
-			mes "Can't be...";
-			mes "You've been reborn, haven't you?";
+			mes "มัน...";
+			mes "จะเป็นไปได้ยังไง...";
+			mes "คุณกลับชาติมาเกิดใหม่สินะ ใช่ไหม?";
 			next;
 			mes "[Swordman]";
-			mes "I see you're retreading the path of the Swordman! Once you've gotten used to brandishing a sword, you can never go back!!";
+			mes "ฉันเห็นนะว่าคุณกำลังเดินตามเส้นทางของ Swordman อีกครั้ง! เมื่อคุณคุ้นเคยกับการกวัดแกว่งดาบแล้ว คุณจะไม่มีวันหันหลังกลับไปได้อีก!!";
 			next;
 			if (!callfunc("F_CanChangeJob")) {
 				mes "[Swordman]";
-				mes "Hmm? Ah, you must first master the Basic Skills before you are ready to become a Swordman.";
+				mes "หืม? อา คุณต้องเชี่ยวชาญทักษะพื้นฐาน (Basic Skills) เสียก่อน ถึงจะพร้อมเป็น Swordman";
 				next;
 				mes "[Swordman]";
-				mes "Come back to me when you have finished learning the Basic Novice Skills.";
+				mes "กลับมาหาฉันเมื่อคุณเรียนรู้ทักษะพื้นฐานของ Novice เสร็จสิ้นแล้วนะ";
 				close;
 			}
 			mes "[Swordman]";
-			mes "Excellent! Let me promote you to a Swordman right away!";
+			mes "ยอดเยี่ยม! ให้ฉันเลื่อนขั้นคุณเป็น Swordman เดี๋ยวนี้เลย!";
 			next;
 			skill "NV_TRICKDEAD",0,SKILL_PERM;
 			jobchange Job_Swordman_High;
@@ -65,140 +65,140 @@ izlude_in,74,172,4	script	Swordman#swd_1	119,{
 			skill "SM_FATALBLOW",1,SKILL_PERM;
 			skill "SM_AUTOBERSERK",1,SKILL_PERM;
 			mes "[Swordman]";
-			mes "Hmm... You look like a well-experienced Swordman. Still, I'm sure that you must train to improve your skills and gain strength!";
+			mes "หืม... คุณดูเหมือน Swordman ที่มีประสบการณ์สูงนะ อย่างไรก็ตาม ฉันมั่นใจว่าคุณต้องฝึกฝนเพื่อพัฒนาทักษะและเพิ่มความแข็งแกร่งต่อไป!";
 			close;
 		}
 		else {
 			mes "[Swordman]";
-			mes "Hm...?";
-			mes "You're a reborn";
-			mes "warrior, aren't you?";
+			mes "หือ...?";
+			mes "คุณคือเหล่านักรบที่";
+			mes "จุติมาใหม่สินะ?";
 			next;
 			mes "[Swordman]";
-			mes "Hmmm...";
-			mes "It seems that being";
-			mes "a Swordman is not part";
-			mes "of your destiny. I'm sorry,";
-			mes "but it seems there is nothing";
-			mes "I can do for you.";
+			mes "หืมมม...";
+			mes "ดูเหมือนว่าการเป็น";
+			mes "Swordman จะไม่ใช่ส่วนหนึ่ง";
+			mes "ในโชคชะตาของคุณ ฉันเสียใจด้วยนะ";
+			mes "แต่ดูเหมือนจะไม่มีอะไรที่";
+			mes "ฉันสามารถทำให้คุณได้";
 			close;
 		}
 	}
 	mes "[Swordman]";
-	mes "Welcome to the";
-	mes "Swordman Association!";
+	mes "ยินดีต้อนรับสู่";
+	mes "สมาคมนักดาบ (Swordman Association)!";
 	next;
 	mes "[Swordman]";
-	mes "So...";
-	mes "What business";
-	mes "brings you to us?";
+	mes "เอาล่ะ...";
+	mes "มีธุระอะไร";
+	mes "ที่นำพาคุณมาหาเรางั้นเหรอ?";
 	next;
-	switch(select("Job Change:About Swordman.:About the Job requirements.:Cancel.")) {
+	switch(select("เปลี่ยนอาชีพ:เกี่ยวกับ Swordman:เกี่ยวกับเงื่อนไขการเปลี่ยนอาชีพ:ยกเลิก")) {
 	case 1:
 		if (BaseJob == Job_Swordman) {
 			mes "[Swordman]";
-			mes "Job change? Muhahaha! But you're already a Swordman! Be proud and be strong!";
+			mes "เปลี่ยนอาชีพเหรอ? มูฮ่าฮ่าฮ่า! ก็คุณเป็น Swordman อยู่แล้วนี่นา! จงภูมิใจและแข็งแกร่งเข้าไว้!";
 			close;
 		}
 		else if (BaseJob != Job_Novice) {
 			mes "[Swordman]";
-			mes "Haha! Oh boy. I'm flattered, but you already have another job! Still, I can't blame you...";
+			mes "ฮ่าฮ่า! พ่อหนุ่ม ฉันล่ะปลื้มจริงๆ แต่คุณมีอาชีพอื่นอยู่แล้วนะ! ถึงอย่างนั้น ฉันก็ตำหนิความต้องการของคุณไม่ลงหรอก...";
 			close;
 		}
 		if (job_sword_q == 0) {
 			mes "[Swordman]";
-			mes "So you wish to become a proud Swordman? By all means, please sign up!";
+			mes "งั้นคุณปรารถนาที่จะเป็น Swordman ผู้ภาคภูมิใจงั้นเหรอ? ถ้าอย่างนั้นก็เชิญลงชื่อสมัครได้เลย!";
 			next;
-			if (select("Sign up.:Cancel.") == 1) {
+			if (select("ลงชื่อสมัคร:ยกเลิก") == 1) {
 				savepoint "izlude_in",65,165,1,1;
 				set job_sword_q,1;
 				setquest 1014;
 				mes "[Swordman]";
-				mes "Ah, yes. Your application will be reviewed as soon as possible.";
+				mes "อา ใช่แล้ว ใบสมัครของคุณจะได้รับการพิจารณาโดยเร็วที่สุด";
 				next;
 				mes "[Swordman]";
-				mes "If you have already met the requirements, you can take an interview right now. Would you like to?";
+				mes "หากคุณมีคุณสมบัติครบถ้วนแล้ว คุณสามารถรับการสัมภาษณ์ได้ตอนนี้เลย คุณต้องการไหมล่ะ?";
 				next;
-				if (select("Yes.:No.") == 1) {
+				if (select("ใช่:ไม่") == 1) {
 					mes "[Swordman]";
-					mes "Good, good.";
-					mes "Now, let's see...";
+					mes "ดีมาก ดีมาก";
+					mes "ไหนดูซิ...";
 					next;
 				}
 				else {
 					mes "[Swordman]";
-					mes "Alright then. Feel free to come back whenever you are ready. All you have to do now is meet our requirements. Good luck to you.";
+					mes "ตกลงตามนั้น กลับมาหาฉันได้ทุกเมื่อที่คุณพร้อม สิ่งที่คุณต้องทำตอนนี้คือทำตามเงื่อนไขของเราให้ครบ โชคดีนะ";
 					close;
 				}
 			}
 			else {
 				mes "[Swordman]";
-				mes "Hm? Alright, come back whenever you change your mind. The world can always use another Swordman!";
+				mes "หืม? เอาล่ะ กลับมาเมื่อไหร่ก็ได้ที่คุณเปลี่ยนใจ โลกใบนี้ต้องการ Swordman เพิ่มเสมอ!";
 				close;
 			}
 		}
 		mes "[Swordman]";
 		if (!callfunc("F_CanChangeJob")) {
-			mes "Hm, you still haven't learned all of the Basic Skills. You need to do that before you can become a Swordman.";
+			mes "หืม คุณยังเรียนรู้ทักษะพื้นฐาน (Basic Skills) ไม่ครบเลยนะ คุณต้องทำอย่างนั้นก่อนถึงจะเปลี่ยนอาชีพเป็น Swordman ได้";
 			next;
 			mes "[Swordman]";
-			mes "Check the requirements for job change again, and come back when you are ready.";
+			mes "ไปตรวจสอบเงื่อนไขการเปลี่ยนอาชีพอีกครั้ง แล้วค่อยกลับมาเมื่อคุณพร้อมนะ";
 			close;
 		}
 		else if (job_sword_q <= 3) {
-			mes "Hm, you've learned all of the Basic Skills but didn't take the test yet. You must first pass the exam before you can change your job to Swordman.";
+			mes "หืม คุณเรียนรู้ทักษะพื้นฐานครบแล้วแต่ยังไม่ได้เข้าทดสอบ คุณต้องผ่านการสอบเสียก่อนถึงจะเปลี่ยนอาชีพเป็น Swordman ได้";
 			next;
 			mes "[Swordman]";
-			mes "Enter the room to my right so that you can take the test. You'll need to speak to my right so you can enter the examination area.";
+			mes "เข้าไปในห้องทางด้านขวาของฉันเพื่อรับการทดสอบนะ คุณต้องคุยกับเจ้าหน้าที่ทางขวาเพื่อเข้าสู่พื้นที่ทดสอบ";
 			close;
 		}
 		else if (job_sword_q == 4) {
-			mes "Hahaha! Congratulations! Now you are fully qualified to be a real Swordman! I will transform you right away!";
+			mes "ฮ่าฮ่าฮ่า! ยินดีด้วย! ตอนนี้คุณมีคุณสมบัติครบถ้วนที่จะเป็น Swordman ที่แท้จริงแล้ว! ฉันจะเปลี่ยนอาชีพให้คุณเดี๋ยวนี้เลย!";
 			next;
 			callfunc "Job_Change",Job_Swordman;
 			set job_sword_q,0;
 			completequest 1014;
 			mes "[Swordman]";
-			mes "Once again, congratulations. I expect that you will be a good representative of the Swordman Association.";
+			mes "ขอแสดงความยินดีอีกครั้ง ฉันคาดหวังว่าคุณจะเป็นตัวแทนที่ดีของสมาคมนักดาบนะ";
 			close;
 		}
 	case 2:
 		mes "[Swordman]";
-		mes "So you wish to know more about the mighty Swordman job? Well, then...";
+		mes "งั้นคุณอยากรู้เพิ่มเติมเกี่ยวกับอาชีพ Swordman ผู้ทรงพลังงั้นเหรอ? เอาล่ะ ถ้าอย่างนั้น...";
 		next;
 		mes "[Swordman]";
-		mes "Amongst the First Class jobs, the Swordman is the best melee fighter for three reasons.";
-		mes "There are 3 reasons why Swordy is the best to approch a fight!";
+		mes "ในบรรดาอาชีพคลาส 1 ทั้งหมด Swordman คือนักรบระยะประชิดที่ดีที่สุดด้วยเหตุผลสามประการ";
+		mes "มี 3 เหตุผลว่าทำไมเหล่านักดาบถึงยอดเยี่ยมที่สุดในการเผชิญหน้ากับการต่อสู้!";
 		next;
 		mes "[Swordman]";
-		mes "First, Swordman has the benefit of additional HP. Second, Swordman generally have access to a wider selection fo weapons than the other First Class jobs.";
+		mes "ข้อแรก Swordman มีข้อดีเรื่องพลังชีวิต (HP) ที่มากกว่าคนอื่น ข้อสอง โดยทั่วไปแล้ว Swordman สามารถเลือกใช้อาวุธได้หลากหลายประเภทมากกว่าอาชีพคลาส 1 อื่นๆ";
 		next;
 		mes "[Swordman]";
-		mes "And third, most of the Swordman skills are crushing physical attacks! In my opinion, being a Swordman is the best job ever!";
+		mes "และข้อสาม ทักษะส่วนใหญ่ของ Swordman คือการโจมตีทางกายภาพที่รุนแรง! ในความเห็นของฉัน การเป็น Swordman คืออาชีพที่เจ๋งที่สุดเท่าที่เคยมีมาเลยล่ะ!";
 		close;
 	case 3:
 		mes "[Swordman]";
-		mes "Hmmm...";
+		mes "หืมมม...";
 		if (BaseJob != Job_Novice) {
 			if (BaseJob == Job_Swordman)
-				mes "But there's no need to tell you the requirements. You've met them and already became a Swordman! Well, anyway...";
+				mes "แต่ดูเหมือนจะไม่มีความจำเป็นต้องบอกเงื่อนไขให้คุณฟังนะ เพราะคุณทำครบและเป็น Swordman ไปแล้ว! แต่ยังไงก็เถอะ...";
 			else
-				mes "It's too late for you to become a Swordman. You already have another job. Still, there's no harm in telling you...";
+				mes "มันสายเกินไปที่คุณจะเป็น Swordman แล้วล่ะ เพราะคุณมีอาชีพอื่นไปแล้ว แต่ถึงอย่างนั้น การบอกให้รู้ไว้ก็ไม่เสียหายอะไร...";
 		}
 		next;
 		mes "[Swordman]";
-		mes "First, you must learn all 9 of the Basic Skills. If you can't complete this requirement, you won't be able to change to any job.";
+		mes "ข้อแรก คุณต้องเรียนรู้ทักษะพื้นฐาน (Basic Skills) ให้ครบทั้ง 9 เลเวล หากคุณทำเงื่อนไขนี้ไม่ได้ คุณก็จะไม่สามารถเปลี่ยนอาชีพเป็นอาชีพใดๆ ได้เลย";
 		next;
 		mes "[Swordman]";
-		mes "Second, you must pass the Swordman Test. Inquire the Test Manager located in the waiting room of the Swordman Test.";
+		mes "ข้อสอง คุณต้องผ่านการทดสอบ Swordman Test สอบถามข้อมูลจากผู้จัดการทดสอบ (Test Manager) ที่อยู่ในห้องรอสอบของ Swordman ได้เลย";
 		next;
 		mes "[Swordman]";
-		mes "If you can complete these 2 requirements, you can change to a Swordman anytime you want.";
+		mes "หากคุณทำตามเงื่อนไขทั้ง 2 ข้อนี้ครบถ้วน คุณก็สามารถเปลี่ยนอาชีพเป็น Swordman ได้ทุกเมื่อที่คุณต้องการ";
 		close;
 	case 4:
 		mes "[Swordman]";
-		mes "Ha ha ha!";
-		mes "Ah, youth!";
+		mes "ฮ่า ฮ่า ฮ่า!";
+		mes "อา... วัยหนุ่มสาวนี่มันดีจริงๆ!";
 		close;
 	}
 }
@@ -206,26 +206,26 @@ izlude_in,74,172,4	script	Swordman#swd_1	119,{
 izlude_in,62,170,6	script	Swordman#swd_2	85,{
 	mes "[Swordman]";
 	if (BaseJob == Job_Swordman) {
-		mes "Sorry guy, but I can only allow Novices to enter the Test Hall.";
+		mes "ขอโทษทีเพื่อน แต่ฉันอนุญาตให้เฉพาะ Novice เข้าไปในห้องทดสอบได้เท่านั้น";
 		close;
 	}
 	else if (BaseJob != Job_Novice) {
-		mes "Who the hell are you?! Nobody, other than Novices, is permitted to come in here!";
+		mes "แกเป็นใครกันวะ?! ที่นี่ไม่อนุญาตให้ใครก็ตามที่ไม่ใช่ Novice เข้าไปข้างในทั้งนั้น!";
 		close;
 	}
 	else if (!callfunc("F_CanChangeJob")) {
-		mes "Stop! I can't let you in until you learn all of the Basic Skills. The Test Hall isn't for goofing off!";
+		mes "หยุดก่อน! ฉันปล่อยให้คุณเข้าไปไม่ได้จนกว่าคุณจะเรียนรู้ทักษะพื้นฐาน (Basic Skills) ครบทั้งหมด ห้องทดสอบนี้ไม่ใช่ที่สำหรับมาเดินเล่นไร้สาระนะ!";
 		close;
 	}
 	else if (job_sword_q == 4) {
-		mes "Hey. You need to talk to the Swordman in the center of the room, not me.";
+		mes "เฮ้ คุณต้องไปคุยกับ Swordman ที่อยู่ตรงกลางห้องนู่น ไม่ใช่ฉัน";
 		close;
 	}
 	else if (job_sword_q == 0) {
-		mes "Stop! If you want to take the Swordman Test, you'll need to fill out an application first.";
+		mes "หยุด! ถ้าคุณต้องการจะทดสอบเพื่อเป็น Swordman คุณต้องกรอกใบสมัครก่อน";
 		next;
 		mes "[Swordman]";
-		mes "The Swordman in the center of the room can help you with that, got it?";
+		mes "Swordman ที่อยู่ตรงกลางห้องนั่นช่วยคุณเรื่องนั้นได้ เข้าใจนะ?";
 		close;
 	}
 	else {
@@ -237,59 +237,59 @@ izlude_in,62,170,6	script	Swordman#swd_2	85,{
 
 izlude_in,30,175,4	script	Swordman#swd_3	92,{
 	mes "[Swordman]";
-	mes "I will tell you about the Test! Listen carefully, I won't repeat myself.";
+	mes "ฉันจะอธิบายเกี่ยวกับการทดสอบให้ฟัง! ฟังให้ดีล่ะ ฉันจะไม่พูดซ้ำเป็นรอบที่สอง";
 	next;
 	mes "[Swordman]";
-	mes "The purpose of this test is to confirm whether or not you are qualified to be a Swordman. As you know, a Swordman needs physical strength and spirit!";
+	mes "เป้าหมายของการทดสอบนี้คือเพื่อยืนยันว่าคุณมีคุณสมบัติเพียงพอที่จะเป็น Swordman หรือไม่ อย่างที่คุณรู้ Swordman จำเป็นต้องมีทั้งความแข็งแกร่งทางกายและจิตวิญญาณ!";
 	next;
 	mes "[Swordman]";
-	mes "Without those, you won't be able to become a Swordman. Now, the conditions for completing this test are very simple.";
+	mes "ถ้าไม่มีสิ่งเหล่านั้น คุณก็จะเป็น Swordman ไม่ได้ เอาล่ะ เงื่อนไขในการผ่านการทดสอบนี้ง่ายมาก";
 	next;
 	mes "[Swordman]";
-	mes "You will travel through three courses and must reach the final checkpoint within ^FF000010 minutes^000000.";
+	mes "คุณจะต้องเดินทางผ่านด่านทั้งหมด 3 เส้นทาง และต้องไปให้ถึงจุดเช็คพอยท์สุดท้ายภายในเวลา ^FF000010 นาที^000000";
 	next;
 	mes "[Swordman]";
-	mes "If you choose to 'Surrender,' or if you run out of time, you will not pass the test.";
+	mes "ถ้าคุณเลือกที่จะ 'ยอมแพ้' หรือถ้าเวลาหมดลง คุณจะไม่ผ่านการทดสอบนี้";
 	next;
 	mes "[Swordman]";
-	mes "If you find that you are not strong enough to pass the test, head to the entrance of the course and talk to the checkpoint manager.";
+	mes "หากคุณพบว่าตัวเองยังไม่แข็งแกร่งพอที่จะผ่านการทดสอบ ให้มุ่งหน้าไปที่ทางเข้าของด่านและคุยกับผู้ดูแลจุดเช็คพอยท์";
 	next;
 	mes "[Swordman]";
-	mes "As you travel through the three courses, you may fall to a random, underground area. The course is designed so that you can still find your way back.";
+	mes "ในขณะที่คุณเดินทางผ่านทั้ง 3 ด่าน คุณอาจจะตกไปในพื้นที่ใต้ดินแบบสุ่ม ตัวด่านถูกออกแบบมาเพื่อให้คุณยังสามารถหาทางกลับขึ้นมาได้";
 	next;
 	mes "[Swordman]";
-	mes "However, be careful, as this will waste your time! Godspeed to you.";
+	mes "อย่างไรก็ตาม ระวังด้วยล่ะ เพราะนั่นจะทำให้คุณเสียเวลา! ขอให้พระเจ้าคุ้มครอง";
 	close;
 }
 
 izlude_in,30,163,0	script	Test Hall Staff#swd_1	105,{
 	mes "[Test Hall Staff]";
 	if (BaseJob == Job_Swordman) {
-		mes "Hm? How did you get inside? You're not supposed to be in here, so please leave now.";
+		mes "หืม? คุณเข้ามาข้างในนี้ได้ยังไง? คุณไม่ได้รับอนุญาตให้เข้ามาในนี้นะ กรุณาออกไปเดี๋ยวนี้เลย";
 		close2;
 		warp "izlude_in",66,170;
 		end;
 	}
 	else if (BaseJob != Job_Novice) {
-		mes "Who are you?! This place is for the Swordman Test! You're not allowed to be in here! Leave now!";
+		mes "คุณเป็นใคร?! ที่นี่มีไว้สำหรับการทดสอบ Swordman เท่านั้น! คุณไม่ได้รับอนุญาตให้เข้ามา! ออกไปเดี๋ยวนี้!";
 		close2;
 		warp "izlude_in",66,170;
 		end;
 	}
 	if (job_sword_q == 1) {
-		mes "So are you the one who wants to be a Swordman? Alright! You look reliable!";
+		mes "งั้นคุณคือคนที่จะมาเป็น Swordman สินะ? เอาล่ะ! ดูท่าทางพึ่งพาได้นี่!";
 		next;
 		mes "[Test Hall Staff]";
-		mes "Try to relax and do your best. This course isn't so difficult.";
+		mes "พยายามผ่อนคลายและทำให้เต็มที่ ด่านพวกนี้มันไม่ยากเกินความสามารถหรอก";
 		set job_sword_q,2;
 	}
 	else if (job_sword_q == 2) {
-		mes "Retesting? Try not to worry about it. It's good that you don't back down from a challenge! Here, take these and cheer up!";
-		getitem 512,5; //Apple
+		mes "มาทดสอบใหม่เหรอ? อย่าไปกังวลกับมันเลย เป็นเรื่องดีนะที่คุณไม่ยอมถอยต่ออุปสรรค! เอ้า รับนี่ไปแล้วร่าเริงเข้าไว้!";
+		getitem 512,5; //Apple (แอปเปิ้ล)
 		set job_sword_q,3;
 	}
 	else if (job_sword_q == 3)
-		mes "Don't ever give up! Now retesting!";
+		mes "อย่าเพิ่งยอมแพ้ล่ะ! เอาล่ะ เริ่มการทดสอบใหม่!";
 	close2;
 	warp "job_sword1",10,245;
 	end;
@@ -311,11 +311,11 @@ job_sword1,230,204,2	script	Test Hall Staff#2swd_3	105,{
 	callfunc "F_JobSwdStaff",1;
 }
 job_sword1,223,167,2	script	Mae#swd_1_success	92,{
-	mapannounce "job_sword1","Applicant " + strcharinfo(0) + ". You successfully passed the test.",bc_map;
+	mapannounce "job_sword1","ผู้สมัคร " + strcharinfo(0) + " คุณผ่านการทดสอบเรียบร้อยแล้ว",bc_map;
 	set job_sword_q,4;
 	mes "[Mae]";
-	mes "I sencerely congratulate you for passing the test!";
-	mes "I already sent your test result to the Job Department. Please inquire at the Officer in Centre.Thank you.";
+	mes "ฉันขอแสดงความยินดีจากใจจริงที่คุณผ่านการทดสอบนี้ได้!";
+	mes "ฉันได้ส่งผลการทดสอบของคุณไปยังแผนกเปลี่ยนอาชีพเรียบร้อยแล้ว โปรดสอบถามกับเจ้าหน้าที่ที่อยู่ตรงกลาง ขอบคุณค่ะ";
 	close2;
 	warp "izlude_in",66,173;
 	end;
@@ -326,31 +326,31 @@ job_sword1,223,167,2	script	Mae#swd_1_success	92,{
 function	script	F_JobSwdMedic	{
 	percentheal 100,0;
 	mes "[Medic]";
-	mes "This is the "+getarg(0)+" check point! Cheer up!";
+	mes "นี่คือจุดเช็คพอยท์ที่ "+getarg(0)+"! สู้ๆ นะ!";
 	close;
 }
 
 function	script	F_JobSwdStaff	{
 	mes "[Test Hall Staff]";
-	mes "Do you surrender?";
+	mes "คุณจะยอมแพ้ไหม?";
 	next;
-	if (select("Yes.:No.") == 1) {
-		mapannounce "job_sword1","Applicant " + strcharinfo(0) + " quit the test.",bc_map;
+	if (select("ใช่:ไม่") == 1) {
+		mapannounce "job_sword1","ผู้สมัคร " + strcharinfo(0) + " ขอยอมแพ้ในการทดสอบ",bc_map;
 		warp "izlude_in",65,165;
 		end;
 	}
 	mes "[Test Hall Staff]";
-	mes "Bravo! Go for it again!";
+	mes "เยี่ยมาก! พยายามเข้าอีกครั้ง!";
 	close;
 }
 
 function	script	F_JobSwdTestStaff	{
 OnTouch:
 	mes "[Test Hall Staff]";
-	mes "Applicant " + strcharinfo(0) + ". Do you surrender??";
+	mes "ผู้สมัคร " + strcharinfo(0) + " คุณจะยอมแพ้หรือไม่??";
 	next;
-	if (select("Yes.:No.") == 1) {
-		mapannounce "job_sword1","Applicant " + strcharinfo(0) + " quit the test..",bc_map;
+	if (select("ใช่:ไม่") == 1) {
+		mapannounce "job_sword1","ผู้สมัคร " + strcharinfo(0) + " ขอยอมแพ้ในการทดสอบ..",bc_map;
 		warp "izlude_in",65,165;
 		end;
 	}
@@ -360,7 +360,7 @@ OnTouch:
 
 function	script	F_JobSwdTestStaff2	{
 OnTouch:
-	mapannounce "job_sword1","Applicant " + strcharinfo(0) + ". Pass the "+getarg(0)+" course.",bc_map;
+	mapannounce "job_sword1","ผู้สมัคร " + strcharinfo(0) + " ผ่านด่านที่ "+getarg(0)+" แล้ว",bc_map;
 	warp "job_sword1",getarg(1),getarg(2);
 	end;
 }
