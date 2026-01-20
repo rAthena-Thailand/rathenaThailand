@@ -21,59 +21,59 @@
 morocc,153,286,6	script	Guide#moc::MocGuide	707,{
 	cutin "moc_soldier",2;
 	mes "[Morocc Guide]";
-	mes "Welcome to Morocc,";
-	mes "the frontier town of the";
-	mes "Rune-Midgarts Kingdom.";
-	mes "Please ask me for help if";
-	mes "you're having any trouble";
-	mes "finding anything in town.";
+	mes "ยินดีต้อนรับสู่ Morocc";
+	mes "เมืองหน้าด่านแห่ง";
+	mes "อาณาจักร Rune-Midgarts ค่ะ";
+	mes "โปรดสอบถามฉันได้เลยนะคะ หาก";
+	mes "คุณมีปัญหาในการตามหา";
+	mes "สถานที่ต่างๆ ภายในเมืองนี้";
 	set .@loop1,1;
 	while (.@loop1) {
 		next;
-		switch(select("City Guide:Remove Marks from Mini-Map:Notice:Cancel")) {
+		switch(select("แนะนำเมือง:ลบเครื่องหมายออกจากแผนที่ขนาดเล็ก:ประกาศ:ยกเลิก")) {
 		case 1:
 			mes "[Morocc Guide]";
-			mes "Please select";
-			mes "a location from";
-			mes "the following menu.";
+			mes "กรุณาเลือก";
+			mes "สถานที่จาก";
+			mes "เมนูต่อไปนี้ค่ะ";
 			if (.@compass_check == 0) {
-				mes "Would you like me";
-				mes "to mark locations";
-				mes "on your Mini-Map?";
+				mes "คุณต้องการให้ฉัน";
+				mes "ทำเครื่องหมายระบุตำแหน่ง";
+				mes "ลงบนแผนที่ขนาดเล็กไหมคะ?";
 				next;
-				if (select("Yes.:No.") == 1) set .@compass_check,1;
+				if (select("ใช่:ไม่") == 1) set .@compass_check,1;
 			}
 			set .@loop2,1;
 			while(.@loop2) {
 				if (.@wait_button_chk == 0) set .@wait_button_chk,1;
 				else next;
 				
-				switch(select("^FF0000Thief Guild^000000:Weapon Shop:Inn:Pub:Mercenary Guild:Forge:Cancel")) {
+				switch(select("^FF0000สมาคม Thief^000000:ร้านขายอาวุธ:โรงแรม:ผับ:สมาคม Mercenary:โรงตีเหล็ก:ยกเลิก")) {
 				case 1:
 					mes "[Morocc Guide]";
-					mes "The Thief Guild is";
-					mes "in charge of all Job";
-					mes "Changes to the Thief";
-					mes "Class. From what I hear,";
-					mes "you can find them inside";
-					mes "the Pyramids nearby...";
+					mes "สมาคม Thief";
+					mes "ทำหน้าที่ดูแลการเปลี่ยน";
+					mes "อาชีพสาย Thief ทั้งหมดค่ะ";
+					mes "จากที่ฉันได้ยินมา คุณสามารถ";
+					mes "พบพวกเขาได้ที่ข้างใน";
+					mes "พีระมิดที่อยู่ใกล้ๆ นี้ค่ะ...";
 					if (.@compass_check)
 						viewpoint 1,24,297,2,0xFF0000;
 					break;
 				case 2:
 					mes "[Morocc Guide]";
-					mes "The Weapon Shop";
-					mes "is in the southeast";
-					mes "end of Morocc.";
+					mes "ร้านขายอาวุธ";
+					mes "ตั้งอยู่ทางทิศตะวันออกเฉียงใต้";
+					mes "สุดเขตของเมือง Morocc ค่ะ";
 					if (.@compass_check)
 						viewpoint 1,253,56,3,0xFF00FF;
 					break;
 				case 3:
 					mes "[Morocc Guide]";
-					mes "There are Inns";
-					mes "where you can rest";
-					mes "at the southeast and";
-					mes "northeast ends of Morocc.";
+					mes "มีโรงแรมหลายแห่ง";
+					mes "ที่คุณสามารถพักผ่อนได้";
+					mes "ที่บริเวณทิศตะวันออกเฉียงใต้ และ";
+					mes "ทิศตะวันออกเฉียงเหนือของ Morocc ค่ะ";
 					if (.@compass_check) {
 						viewpoint 1,197,66,4,0xFF00FF;
 						viewpoint 1,273,269,5,0xFF00FF;
@@ -81,35 +81,35 @@ morocc,153,286,6	script	Guide#moc::MocGuide	707,{
 					break;
 				case 4:
 					mes "[Morocc Guide]";
-					mes "You can find the";
-					mes "Pub in northeast Morocc.";
+					mes "คุณสามารถพบ";
+					mes "ผับได้ที่ทางตะวันออกเฉียงเหนือของ Morocc ค่ะ";
 					if (.@compass_check)
 						viewpoint 1,52,259,6,0xFF00FF;
 					break;
 				case 5:
 					mes "[Morocc Guide]";
-					mes "The Mercenary";
-					mes "Guild is located";
-					mes "in East Morocc.";
+					mes "สมาคม Mercenary";
+					mes "(Mercenary Guild) ตั้งอยู่";
+					mes "ในเขตตะวันออกของ Morocc ค่ะ";
 					if (.@compass_check)
 						viewpoint 1,284,171,7,0x00FF00;
 					break;
 				case 6:
 					mes "[Morocc Guide]";
-					mes "The Forge is";
-					mes "located just";
-					mes "southwest from";
-					mes "the center of Morocc.";
+					mes "โรงตีเหล็ก";
+					mes "ตั้งอยู่ทาง";
+					mes "ตะวันตกเฉียงใต้จาก";
+					mes "ใจกลางเมือง Morocc ค่ะ";
 					if (.@compass_check)
 						viewpoint 1,47,47,7,0xFF00FF;
 					break;
 				case 7:
 					mes "[Morocc Guide]";
-					mes "Please ask me to ''Remove";
-					mes "Marks from Mini-Map'' if you";
-					mes "no longer wish to have the";
-					mes "location marks displayed";
-					mes "on your Mini-Map.";
+					mes "กรุณาบอกให้ฉัน ''ลบเครื่องหมาย";
+					mes "ออกจากแผนที่ขนาดเล็ก'' หากคุณ";
+					mes "ไม่ต้องการให้มีเครื่องหมาย";
+					mes "ระบุตำแหน่งแสดงผลอยู่บน";
+					mes "แผนที่ขนาดเล็กของคุณอีกต่อไปค่ะ";
 					set .@loop2,0;
 				}
 			}
@@ -125,34 +125,33 @@ morocc,153,286,6	script	Guide#moc::MocGuide	707,{
 			break;
 		case 3:
 			mes "[Morocc Guide]";
-			mes "Advances in sorcery and";
-			mes "technology have allowed";
-			mes "us to update our information";
-			mes "system, enabling up to mark";
-			mes "locations on your Mini-Map";
-			mes "for easier navigation.";
+			mes "ความก้าวหน้าทางเวทมนตร์และ";
+			mes "เทคโนโลยีช่วยให้เราสามารถ";
+			mes "อัปเดตระบบข้อมูลของเราได้";
+			mes "ทำให้สามารถทำเครื่องหมายระบุ";
+			mes "ตำแหน่งบนแผนที่ขนาดเล็กของคุณ";
+			mes "เพื่อให้การนำทางง่ายขึ้นค่ะ";
 			next;
 			mes "[Morocc Guide]";
-			mes "Your Mini-Map is located";
-			mes "in the upper right corner";
-			mes "of the screen. If you can't";
-			mes "see it, press the Ctrl + Tab";
-			mes "keys or click the ''Map'' button in your Basic Info Window.";
+			mes "แผนที่ขนาดเล็กของคุณตั้งอยู่";
+			mes "ที่มุมขวาบนของหน้าจอค่ะ";
+			mes "หากคุณมองไม่เห็นมัน ให้กดปุ่ม";
+			mes "Ctrl + Tab หรือคลิกปุ่ม ''Map''";
+			mes "ในหน้าต่างข้อมูลพื้นฐาน (Basic Info) ของคุณค่ะ";
 			next;
 			mes "[Morocc Guide]";
-			mes "On your Mini-Map,";
-			mes "click on the ''+'' and ''-''";
-			mes "symbols to zoom in and";
-			mes "our of your Mini-Map. We";
-			mes "hope you enjoy your travels";
-			mes "here in the city of Morocc.";
+			mes "บนแผนที่ขนาดเล็กของคุณ";
+			mes "คลิกที่สัญลักษณ์ ''+'' และ ''-''";
+			mes "เพื่อซูมเข้าและซูมออก";
+			mes "จากแผนที่ขนาดเล็กค่ะ เราหวังว่า";
+			mes "คุณจะสนุกกับการเดินทางที่นี่ ในเมือง Morocc นะคะ";
 			break;
 		case 4:
 			mes "[Morocc Guide]";
-			mes "Alright then,";
-			mes "try to stay out of";
-			mes "too much trouble";
-			mes "out there, adventurer.";
+			mes "ตกลงค่ะ ถ้าอย่างนั้น";
+			mes "ขอให้ระวังตัวและอย่าไป";
+			mes "ก่อเรื่องที่ไหนนะคะ";
+			mes "โชคดีค่ะ นักผจญภัย";
 			close2;
 			set .@loop1,0;
 		}

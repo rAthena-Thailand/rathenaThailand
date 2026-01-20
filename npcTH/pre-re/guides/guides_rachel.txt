@@ -21,66 +21,66 @@
 
 rachel,138,146,5	script	Rachel Guide	934,{
 	mes "[Rachel Guide]";
-	mes "Welcome to the capital of";
-	mes "Arunafeltz, Rachel where a warm";
-	mes "breath of goddess Freya reaches.";
-	mes "If this is the first time for you";
-	mes "to use the guide services, why";
-	mes "don't you check the \"Notice\" menu first?";
+	mes "ยินดีต้อนรับสู่ Rachel เมืองหลวงแห่ง";
+	mes "Arunafeltz สถานที่ซึ่งลมหายใจอันอบอุ่น";
+	mes "ของเทพธิดา Freya เอื้อมไปถึงค่ะ";
+	mes "หากนี่เป็นครั้งแรกของคุณ";
+	mes "ที่ใช้บริการนำทาง ทำไม";
+	mes "ไม่ลองเช็คเมนู \"ประกาศ\" ดูก่อนล่ะคะ?";
 	set .@loop1,1;
 	while(.@loop1) {
 		next;
-		switch(select("Village Guide:Remove Marks from Mini-Map:Notice:Cancel")) {
+		switch(select("แนะนำหมู่บ้าน:ลบเครื่องหมายออกจากแผนที่ขนาดเล็ก:ประกาศ:ยกเลิก")) {
 		case 1:
 			mes "[Rachel Guide]";
-			mes "I can tell you any building location as long as it is in Rachel.";
-			mes "So where do you want to go?";
+			mes "ฉันสามารถบอกตำแหน่งอาคารใดก็ได้ตราบเท่าที่มันอยู่ใน Rachel ค่ะ";
+			mes "แล้วคุณต้องการจะไปที่ไหนคะ?";
 			if (.@compass_check == 0) {
-				mes "Would you like me";
-				mes "to mark locations";
-				mes "on your Mini-Map?";
+				mes "คุณต้องการให้ฉัน";
+				mes "ทำเครื่องหมายระบุตำแหน่ง";
+				mes "ลงบนแผนที่ขนาดเล็กไหมคะ?";
 				next;
-				if (select("Yes:No") == 1) set .@compass_check,1;
+				if (select("ใช่:ไม่") == 1) set .@compass_check,1;
 			}
 			set .@loop2,1;
 			while(.@loop2) {
 				if (.@wait_button_chk == 0) set .@wait_button_chk,1;
 				else next;
 
-				switch(select("Cheshrumnir:Inn:Weapon Shop:Tool Shop:Airport:Cancel")) {
+				switch(select("วิหาร Cheshrumnir:โรงแรม:ร้านขายอาวุธ:ร้านขายเครื่องมือ:สนามบิน:ยกเลิก")) {
 				case 1:
 					mes "[Rachel Guide]";
-					mes "Cheshrumnir is a holy ground where pope, the incarnation of goddess Freya stays.";
-					mes "Take the road to the norh to find the building.";
+					mes "Cheshrumnir เป็นพื้นที่ศักดิ์สิทธิ์ที่องค์สันตะปาปา (Pope) ผู้เป็นร่างสถิตของเทพธิดา Freya พำนักอยู่ค่ะ";
+					mes "ใช้เส้นทางไปทางทิศเหนือเพื่อหาอาคารนั้นนะคะ";
 					if (.@compass_check == 1) viewpoint 1,150,249,1,0xFF0000;
 					break;
 				case 2:
 					mes "[Rachel Guide]";
-					mes "You can rest your fatigue off the journey in the Inn.";
-					mes "The left building next to me is the Inn of Rachel.";
+					mes "คุณสามารถพักผ่อนจากความเหนื่อยล้าในการเดินทางได้ที่โรงแรมค่ะ";
+					mes "อาคารทางซ้ายที่อยู่ถัดจากฉันไปคือโรงแรมของ Rachel ค่ะ";
 					if (.@compass_check == 1) viewpoint 1,115,149,2,0xFF00FF;
 					break;
 				case 3:
 					mes "[Rachel Guide]";
-					mes "Do you want to check out the weapons that are sold in Rachel?";
-					mes "The weapon shop is located nearby the western gate.";
+					mes "คุณต้องการตรวจสอบอาวุธที่มีขายใน Rachel หรือเปล่าคะ?";
+					mes "ร้านขายอาวุธตั้งอยู่ใกล้กับประตูทางทิศตะวันตกค่ะ";
 					if (.@compass_check == 1) viewpoint 1,42,87,3,0x99FFFF;
 					break;
 				case 4:
 					mes "[Rachel Guide]";
-					mes "Rachel tool shop sells the best quality potions.";
-					mes "It's located nearby the western gate.";
+					mes "ร้านขายเครื่องมือของ Rachel ขายยาโพชั่นคุณภาพดีที่สุดค่ะ";
+					mes "ตั้งอยู่ใกล้กับประตูทางทิศตะวันตกค่ะ";
 					if (.@compass_check == 1) viewpoint 1,83,78,4,0x0000FF;
 					break;
 				case 5:
 					mes "[Rachel Guide]";
-					mes "The Airport is located outside the eastern gate.";
+					mes "สนามบินตั้งอยู่ด้านนอกประตูทางทิศตะวันออกค่ะ";
 					if (.@compass_check == 1) viewpoint 1,273,125,5,0x00FF00;
 					break;
 				case 6:
 					mes "[Rachel Guide]";
-					mes "If you like to get rid of all the location marks on your Mini-Map,";
-					mes "just ask me again, and choose \"Remove Marks from Mini-Map\" menu.";
+					mes "หากคุณต้องการกำจัดเครื่องหมายระบุตำแหน่งทั้งหมดออกจากแผนที่ขนาดเล็กของคุณ";
+					mes "แค่ถามฉันอีกครั้ง แล้วเลือกเมนู \"ลบเครื่องหมายออกจากแผนที่ขนาดเล็ก\" นะคะ";
 					set .@loop2,0;
 					break;
 				}
@@ -94,19 +94,19 @@ rachel,138,146,5	script	Rachel Guide	934,{
 			viewpoint 2,83,78,4,0x0000FF;
 			viewpoint 2,273,125,5,0x00FF00;
 			mes "[Rachel Guide]";
-			mes "Okay, they are gone now. If you have more locations to ask, just let me know.";
+			mes "ตกลงค่ะ เครื่องหมายพวกนั้นหายไปแล้ว หากคุณมีสถานที่อื่นที่จะถามอีก ก็บอกฉันได้เลยนะคะ";
 			break;
 		case 3:
 			mes "[Rachel Guide]";
-			mes "When you are using the ''Village Guide'' menu,";
-			mes "make sure that building locations will be marked on your mini-map at the upper right side of your screen.";
-			mes "If you cannot see your mini-map, use the short cut key ''ctrl+tab'' or press the ''Map'' button on your basic information windows, okay?";
-			mes "And you can also zoom out your mini-map by using the ''-'' button in case you cannot view the entire map of the village.";
+			mes "เมื่อคุณกำลังใช้เมนู ''แนะนำหมู่บ้าน''";
+			mes "ตำแหน่งของอาคารจะถูกทำเครื่องหมายไว้บนแผนที่ขนาดเล็กที่มุมขวาบนของหน้าจอคุณค่ะ";
+			mes "หากคุณมองไม่เห็นแผนที่ขนาดเล็ก ให้ใช้คีย์ลัด ''ctrl+tab'' หรือกดปุ่ม ''Map'' บนหน้าต่างข้อมูลพื้นฐานของคุณ ตกลงไหมคะ?";
+			mes "และคุณยังสามารถซูมออกแผนที่ขนาดเล็กได้โดยใช้ปุ่ม ''-'' ในกรณีที่คุณไม่สามารถดูแผนที่ทั้งหมดของหมู่บ้านได้ค่ะ";
 			break;
 		case 4:
 			mes "[Rachel Guide]";
-			mes "Hope you have a wonderfull journey";
-			mes "in Arunafeltz.";
+			mes "ขอให้มีช่วงเวลาการเดินทางที่แสนวิเศษ";
+			mes "ใน Arunafeltz นะคะ";
 			close2;
 			set .@loop1,0;
 			break;

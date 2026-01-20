@@ -21,126 +21,125 @@
 einbroch,72,202,4	script	Guide#ein::EinGuide	852,{
 	cutin "ein_soldier",2;
 	mes "[Einbroch Guide]";
-	mes "Welcome";
-	mes "to Einbroch,";
-	mes "the City of Steel.";
-	mes "Please ask me if you";
-	mes "have any questions.";
+	mes "ยินดีต้อนรับ";
+	mes "สู่ Einbroch";
+	mes "เมืองแห่งเหล็กกล้าค่ะ";
+	mes "โปรดสอบถามฉันได้เลยนะคะ";
+	mes "หากคุณมีคำถามใดๆ";
 	set .@loop1,1;
 	while (.@loop1) {
 		next;
-		switch(select("City Guide.:Remove Marks from Mini-Map.:Notice.:Cancel.")) {
+		switch(select("แนะนำเมือง:ลบเครื่องหมายออกจากแผนที่ขนาดเล็ก:ประกาศ:ยกเลิก")) {
 		case 1:
 			mes "[Einbroch Guide]";
-			mes "Please select";
-			mes "a location from";
-			mes "the following menu.";
+			mes "กรุณาเลือก";
+			mes "สถานที่จาก";
+			mes "เมนูต่อไปนี้ค่ะ";
 			if (.@compass_check == 0) {
-				mes "Would you like me";
-				mes "to mark locations";
-				mes "on your Mini-Map?";
+				mes "คุณต้องการให้ฉัน";
+				mes "ทำเครื่องหมายระบุตำแหน่ง";
+				mes "ลงบนแผนที่ขนาดเล็ก (Mini-Map) ไหมคะ?";
 				next;
-				if (select("Yes.:No.") == 1) set .@compass_check,1;
+				if (select("ใช่:ไม่") == 1) set .@compass_check,1;
 			}
 			set .@loop2,1;
 			while(.@loop2) {
 				if (.@wait_button_chk == 0) set .@wait_button_chk,1;
 				else next;
-				switch(select("^FF0000Airport^000000:Train Station:Factory:Plaza:Hotel:Weapon Shop:Laboratory:Blacksmith Guild:Einbroch Tower:Cancel")) {
+				switch(select("^FF0000สนามบิน (Airport)^000000:สถานีรถไฟ:โรงงาน:พลาซ่า:โรงแรม:ร้านขายอาวุธ:ห้องแล็บ:สมาคม Blacksmith:หอคอย Einbroch:ยกเลิก")) {
 				case 1:
 					mes "[Einbroch Guide]";
-					mes "The ^FF0000Airport^000000 is located";
-					mes "in the northwestern part";
-					mes "of the city. There you can";
-					mes "see our city's pride and joy, the Airship. Remember that you must pay admission to board the Airship.";
+					mes "^FF0000สนามบิน^000000 ตั้งอยู่";
+					mes "ทางส่วนตะวันตกเฉียงเหนือ";
+					mes "ของเมืองค่ะ ที่นั่นคุณจะ";
+					mes "ได้พบกับความภูมิใจของเมืองเรา นั่นคือเรือเหาะ (Airship) อย่าลืมว่าคุณต้องจ่ายค่าธรรมเนียมก่อนขึ้นเรือเหาะนะคะ";
 					if (.@compass_check)
 						viewpoint 1,63,228,2,0xFF0000;
 					break;
 				case 2:
 					mes "[Einbroch Guide]";
-					mes "The Train Station is";
-					mes "located in the northeast";
-					mes "part of Einbroch. Trains";
-					mes "running between here";
-					mes "and Einbech run all day";
-					mes "long, everyday.";
+					mes "สถานีรถไฟตั้งอยู่";
+					mes "ทางส่วนตะวันออกเฉียงเหนือ";
+					mes "ของ Einbroch ค่ะ รถไฟที่";
+					mes "วิ่งระหว่างที่นี่และ Einbech";
+					mes "เปิดให้บริการตลอดทั้งวัน";
+					mes "ในทุกๆ วันค่ะ";
 					if (.@compass_check)
 						viewpoint 1,236,279,3,0xFF00FF;
 					break;
 				case 3:
 					mes "[Einbroch Guide]";
-					mes "The Factory, perhaps the";
-					mes "most important facility in";
-					mes "Einbroch, is located in the";
-					mes "southern part of the city.";
+					mes "โรงงาน น่าจะเป็น";
+					mes "สิ่งอำนวยความสะดวกที่สำคัญที่สุด";
+					mes "ใน Einbroch ตั้งอยู่ทางส่วน";
+					mes "ตอนใต้ของเมืองค่ะ";
 					if (.@compass_check)
 						viewpoint 1,158,78,4,0xFF00FF;
 					break;
 				case 4:
 					mes "[Einbroch Guide]";
-					mes "The Plaza, our biggest";
-					mes "shopping district, can be";
-					mes "found just east from the";
-					mes "center of Einbroch.";
+					mes "พลาซ่า ย่านช้อปปิ้ง";
+					mes "ที่ใหญ่ที่สุดของเรา สามารถ";
+					mes "พบได้ทางตะวันออกจาก";
+					mes "ใจกลางเมือง Einbroch ค่ะ";
 					if (.@compass_check)
 						viewpoint 1,232,190,5,0xFF00FF;
 					break;
 				case 5:
 					mes "[Einbroch Guide]";
-					mes "The Hotel is east of";
-					mes "the Plaza and offers top";
-					mes "caliber accomodations.";
-					mes "There, you can enjoy your";
-					mes "stay in Einbroch in comfort~";
+					mes "โรงแรมอยู่ทางทิศตะวันออก";
+					mes "ของพลาซ่า และมีบริการ";
+					mes "ที่พักระดับชั้นนำค่ะ";
+					mes "ที่นั่น คุณจะได้รับความสะดวกสบาย";
+					mes "ตลอดการพักผ่อนใน Einbroch ค่ะ~";
 					if (.@compass_check)
 						viewpoint 1,260,201,6,0x00FF00;
 					break;
 				case 6:
 					mes "[Einbroch Guide]";
-					mes "The Weapon Shop is";
-					mes "located north from the";
-					mes "Plaza. There you can";
-					mes "purchase weapons for";
-					mes "your personal use.";
+					mes "ร้านขายอาวุธตั้งอยู่";
+					mes "ทางทิศเหนือจากพลาซ่าค่ะ";
+					mes "ที่นั่นคุณสามารถซื้อหา";
+					mes "อาวุธไว้สำหรับ";
+					mes "ใช้งานส่วนตัวได้ค่ะ";
 					if (.@compass_check)
 						viewpoint 1,215,221,7,0x00FF00;
 					break;
 				case 7:
 					mes "[Einbroch Guide]";
-					mes "The Laboratory is an";
-					mes "annex of the Factory and";
-					mes "is located in the southwest";
-					mes "sector of Einbroch.";
+					mes "ห้องแล็บ (Laboratory) เป็น";
+					mes "ส่วนต่อขยายของโรงงาน และ";
+					mes "ตั้งอยู่ทางเขตตะวันตกเฉียงใต้";
+					mes "ของเมือง Einbroch ค่ะ";
 					if (.@compass_check)
 						viewpoint 1,36,49,8,0x00FF;
 					break;
 				case 8:
 					mes "[Einbroch Guide]";
-					mes "The Blacksmith Guild is";
-					mes "located in the southeast";
-					mes "part of Einbroch. You can";
-					mes "upgrade your equipment";
-					mes "by using their services.";
+					mes "สมาคม Blacksmith ตั้งอยู่";
+					mes "ทางส่วนตะวันออกเฉียงใต้";
+					mes "ของ Einbroch ค่ะ คุณสามารถ";
+					mes "อัปเกรดอุปกรณ์ของคุณได้";
+					mes "โดยการใช้บริการของที่นั่นค่ะ";
 					if (.@compass_check)
 						viewpoint 1,244,90,9,0x00FF00;
 					break;
 				case 9:
 					mes "[Einbroch Guide]";
-					mes "The Einbroch Tower is";
-					mes "located in the center of";
-					mes "the city. From the top of";
-					mes "the tower, you can view";
-					mes "all of Einbroch.";
+					mes "หอคอย Einbroch ตั้งอยู่";
+					mes "ใจกลางเมืองค่ะ จากบนยอด";
+					mes "ของหอคอย คุณสามารถมองเห็น";
+					mes "ทัศนียภาพทั้งหมดของ Einbroch ได้ค่ะ";
 					if (.@compass_check)
 						viewpoint 1,174,195,10,0xFFFF00;
 					break;
 				case 10:
 					mes "[Einbroch Guide]";
-					mes "Please ask me to ''Remove";
-					mes "Marks from Mini-Map'' if you";
-					mes "no longer wish to have the";
-					mes "location marks displayed";
-					mes "on your Mini-Map.";
+					mes "กรุณาบอกให้ฉัน ''ลบเครื่องหมาย";
+					mes "ออกจากแผนที่ขนาดเล็ก'' หากคุณ";
+					mes "ไม่ต้องการให้มีเครื่องหมาย";
+					mes "ระบุตำแหน่งแสดงผลอยู่บน";
+					mes "แผนที่ขนาดเล็กของคุณอีกต่อไปค่ะ";
 					set .@loop2,0;
 				}
 			}
@@ -157,44 +156,42 @@ einbroch,72,202,4	script	Guide#ein::EinGuide	852,{
 			viewpoint 2,174,195,10,0xFFFF00;
 			set .@compass_check,0;
 			mes "[Einbroch Guide]";
-			mes "Okay, the marks from";
-			mes "your Mini-Map have been";
-			mes "removed. If you need any";
-			mes "guidance around Einbroch,";
-			mes "please let me or one of the";
-			mes "other Einbroch Guides know.";
+			mes "ตกลงค่ะ เครื่องหมายต่างๆ";
+			mes "บนแผนที่ขนาดเล็กของคุณถูก";
+			mes "ลบออกเรียบร้อยแล้ว หากคุณต้องการ";
+			mes "คำแนะนำรอบๆ Einbroch อีก";
+			mes "โปรดบอกฉันหรือเจ้าหน้าที่";
+			mes "แนะนำคนอื่นๆ ให้ทราบนะคะ";
 			break;
 		case 3:
 			mes "[Einbroch Guide]";
-			mes "Through the technology of";
-			mes "the Schwarzwald Republic,";
-			mes "we've upgraded to a digital";
-			mes "information system that allows";
-			mes "us to mark locations on your";
-			mes "Mini-Map for easier navigation.";
+			mes "ด้วยเทคโนโลยีของสาธารณรัฐ";
+			mes "Schwarzwald เราได้อัปเกรด";
+			mes "ระบบข้อมูลเป็นแบบดิจิทัลซึ่งช่วย";
+			mes "ให้เราสามารถมาร์คตำแหน่งลงบน";
+			mes "แผนที่ขนาดเล็กเพื่อให้นำทางได้ง่ายขึ้นค่ะ";
 			next;
 			mes "[Einbroch Guide]";
-			mes "Your Mini-Map is located";
-			mes "in the upper right corner";
-			mes "of the screen. If you can't";
-			mes "see it, press the Ctrl + Tab";
-			mes "keys or click the ''Map'' button in your Basic Info Window.";
+			mes "แผนที่ขนาดเล็กของคุณตั้งอยู่";
+			mes "ที่มุมขวาบนของหน้าจอค่ะ";
+			mes "หากคุณมองไม่เห็นมัน ให้กดปุ่ม";
+			mes "Ctrl + Tab หรือคลิกปุ่ม ''Map''";
+			mes "ในหน้าต่างข้อมูลพื้นฐาน (Basic Info) ของคุณค่ะ";
 			next;
 			mes "[Einbroch Guide]";
-			mes "On your Mini-Map,";
-			mes "click on the ''+'' and ''-''";
-			mes "symbols to zoom in and";
-			mes "our of your Mini-Map. We";
-			mes "hope you enjoy your travels";
-			mes "here in Einbroch, adventurer.";
+			mes "บนแผนที่ขนาดเล็กของคุณ";
+			mes "คลิกที่สัญลักษณ์ ''+'' และ ''-''";
+			mes "เพื่อซูมเข้าและซูมออก";
+			mes "จากแผนที่ขนาดเล็กค่ะ เราหวังว่า";
+			mes "คุณจะสนุกกับการเดินทางใน Einbroch นะคะ นักผจญภัย";
 			break;
 		case 4:
 			mes "[Einbroch Guide]";
-			mes "We hope that you";
-			mes "enjoy your travels";
-			mes "here in Einbroch.";
-			mes "Oh, and please be";
-			mes "aware of the Smog Alerts.";
+			mes "เราหวังว่าคุณจะ";
+			mes "สนุกกับการเดินทาง";
+			mes "ที่ Einbroch แห่งนี้ค่ะ";
+			mes "อ้อ และโปรดระมัดระวัง";
+			mes "ประกาศเตือนเรื่องหมอกควัน (Smog) ด้วยนะคะ";
 			close2;
 			set .@loop1,0;
 		}
@@ -209,89 +206,89 @@ einbroch,162,317,4	duplicate(EinGuide)	Guide#3ein	852
 einbech,67,37,4	script	Guide#4ein::EinGuide2	852,{
 	cutin "ein_soldier",2;
 	mes "[Einbech Guide]";
-	mes "Welcome to Einbech,";
-	mes "the Mining Town. We're";
-	mes "here to assist tourists,";
-	mes "so if you have any questions,";
-	mes "please feel free to ask us.";
+	mes "ยินดีต้อนรับสู่ Einbech";
+	mes "เมืองแห่งเหมืองแร่ค่ะ พวกเรา";
+	mes "อยู่ที่นี่เพื่อช่วยเหลือเหล่านักท่องเที่ยว";
+	mes "ดังนั้นหากคุณมีคำถามใดๆ";
+	mes "โปรดสอบถามพวกเราได้ตามสบายเลยนะคะ";
 	set .@loop1,1;
 	while (.@loop1) {
 		next;
-		switch(select("City Guide.:Remove Marks from Mini-Map.:Notice.:Cancel.")) {
+		switch(select("แนะนำเมือง:ลบเครื่องหมายออกจากแผนที่ขนาดเล็ก:ประกาศ:ยกเลิก")) {
 		case 1:
 			mes "[Einbech Guide]";
-			mes "Please select";
-			mes "a location from";
-			mes "the following menu.";
+			mes "กรุณาเลือก";
+			mes "สถานที่จาก";
+			mes "เมนูต่อไปนี้ค่ะ";
 			if (.@compass_check == 0) {
-				mes "Would you like me";
-				mes "to mark locations";
-				mes "on your Mini-Map?";
+				mes "คุณต้องการให้ฉัน";
+				mes "ทำเครื่องหมายระบุตำแหน่ง";
+				mes "ลงบนแผนที่ขนาดเล็ก (Mini-Map) ไหมคะ?";
 				next;
-				if (select("Yes.:No.") == 1) set .@compass_check,1;
+				if (select("ใช่:ไม่") == 1) set .@compass_check,1;
 			}
 			set .@loop2,1;
 			while (.@loop2) {
 				if (.@wait_button_chk == 0) set .@wait_button_chk,1;
 				else next;
-				switch(select("Train Station:Tavern:Tool Shop:Swordman Guild:Mine:Cancel")) {
+				switch(select("สถานีรถไฟ:โรงเตี๊ยม:ร้านขายเครื่องมือ:สมาคม Swordman:เหมืองแร่:ยกเลิก")) {
 				case 1:
 					mes "[Einbech Guide]";
-					mes "The Train Stations are";
-					mes "located in the northwest";
-					mes "and northeast parts of";
-					mes "Einbech. There, you can";
-					mes "take a train to Einbroch.";
+					mes "สถานีรถไฟตั้งอยู่";
+					mes "ทางทิศตะวันตกเฉียงเหนือ";
+					mes "และทิศตะวันออกเฉียงเหนือของ";
+					mes "Einbech ค่ะ ที่นั่นคุณสามารถ";
+					mes "นั่งรถไฟไปยังเมือง Einbroch ได้ค่ะ";
 					if (.@compass_check)
 						viewpoint 1,43,213,2,0xFF0000;
 					break;
 				case 2:
 					mes "[Einbech Guide]";
-					mes "The Tavern is located";
-					mes "in the southern part of";
-					mes "Einbech. It's a nice place";
-					mes "to relax after a long day.";
+					mes "โรงเตี๊ยมตั้งอยู่";
+					mes "ทางตอนใต้ของเมือง";
+					mes "Einbech ค่ะ เป็นสถานที่ที่ดี";
+					mes "สำหรับการพักผ่อนหลังจากวันที่ยาวนาน";
 					if (.@compass_check)
 						viewpoint 1,142,112,3,0xFF00FF;
 					break;
 				case 3:
 					mes "[Einbech Guide]";
-					mes "You can find the Tool";
-					mes "Shop in the center of";
-					mes "Einbech. There, you can";
-					mes "purchase any tools you";
-					mes "might need for your travels.";
+					mes "คุณสามารถพบร้านขาย";
+					mes "เครื่องมือได้ที่ใจกลางของ";
+					mes "Einbech ค่ะ ที่นั่นคุณสามารถ";
+					mes "ซื้อเครื่องมือต่างๆ ที่คุณ";
+					mes "อาจจำเป็นต้องใช้ในการเดินทางได้ค่ะ";
 					if (.@compass_check)
 						viewpoint 1,176,136,4,0xFF00FF;
 					break;
 				case 4:
 					mes "[Einbech Guide]";
-					mes "The Swordman Guild";
-					mes "is located in the eastern";
-					mes "outskirts of Einbech. It's";
-					mes "under construction and they";
-					mes "haven't started accepting";
-					mes "applications.";
+					mes "สมาคม Swordman";
+					mes "ตั้งอยู่บริเวณชานเมือง";
+					mes "ทางทิศตะวันออกของ Einbech ค่ะ";
+					mes "ตอนนี้ยังอยู่ระหว่างการก่อสร้าง";
+					mes "และพวกเขายังไม่เปิดรับ";
+					mes "การสมัครเข้าสมาคมค่ะ";
 					if (.@compass_check)
 						viewpoint 1,250,110,5,0xFF00FF;
 					break;
 				case 5:
 					mes "[Einbech Guide]";
-					mes "The Mine, which is";
-					mes "Einbech's major industry,";
-					mes "is located in the northern";
-					mes "part of this town. It's where";
-					mes "we get all our ores, although monsters get in the miners' way.";
+					mes "เหมืองแร่ ซึ่งถือเป็น";
+					mes "อุตสาหกรรมหลักของ Einbech";
+					mes "ตั้งอยู่ทางตอนเหนือ";
+					mes "ของเมืองนี้ค่ะ เป็นที่ที่เราขุดหาแร่";
+					mes "แต่ก็มักจะมีพวกมอนสเตอร์มาคอยขัดขวางเหล่านักขุดแร่เสมอ";
 					if (.@compass_check)
 						viewpoint 1,138,251,6,0x00FF00;
 					break;
 				case 6:
 					mes "[Einbech Guide]";
-					mes "Please ask me to ''Remove";
-					mes "Marks from Mini-Map'' if you";
-					mes "no longer wish to have the";
-					mes "location marks displayed";
-					mes "on your Mini-Map.";
+					mes "กรุณาบอกให้ฉัน ''ลบเครื่องหมาย";
+					mes "ออกจากแผนที่ขนาดเล็ก'' หากคุณ";
+					mes "ไม่ต้องการให้มีเครื่องหมาย";
+					mes "ระบุตำแหน่งแสดงผลอยู่บน";
+					mes "แผนที่ขนาดเล็กของคุณอีกต่อไปค่ะ";
 					set .@loop2,0;
 				}
 			}
@@ -304,42 +301,40 @@ einbech,67,37,4	script	Guide#4ein::EinGuide2	852,{
 			viewpoint 2,138,251,6,0x00FF00;
 			set .@compass_check,0;
 			mes "[Einbech Guide]";
-			mes "Okay, the marks from";
-			mes "your Mini-Map have been";
-			mes "removed. If you need any";
-			mes "guidance around Einbech,";
-			mes "please let me or one of the";
-			mes "other Einbech Guides know.";
+			mes "ตกลงค่ะ เครื่องหมายต่างๆ";
+			mes "บนแผนที่ขนาดเล็กของคุณถูก";
+			mes "ลบออกเรียบร้อยแล้ว หากคุณต้องการ";
+			mes "คำแนะนำรอบๆ Einbech อีก";
+			mes "โปรดบอกฉันหรือเจ้าหน้าที่";
+			mes "แนะนำคนอื่นๆ ให้ทราบนะคะ";
 			break;
 		case 3:
 			mes "[Einbech Guide]";
-			mes "Through the technology of";
-			mes "the Schwarzwald Republic,";
-			mes "we've upgraded to a digital";
-			mes "information system that allows";
-			mes "us to mark locations on your";
-			mes "Mini-Map for easier navigation.";
+			mes "ด้วยเทคโนโลยีของสาธารณรัฐ";
+			mes "Schwarzwald เราได้อัปเกรด";
+			mes "ระบบข้อมูลเป็นแบบดิจิทัลซึ่งช่วย";
+			mes "ให้เราสามารถมาร์คตำแหน่งลงบน";
+			mes "แผนที่ขนาดเล็กเพื่อให้นำทางได้ง่ายขึ้นค่ะ";
 			next;
 			mes "[Einbech Guide]";
-			mes "Your Mini-Map is located";
-			mes "in the upper right corner";
-			mes "of the screen. If you can't";
-			mes "see it, press the Ctrl + Tab";
-			mes "keys or click the ''Map'' button in your Basic Info Window.";
+			mes "แผนที่ขนาดเล็กของคุณตั้งอยู่";
+			mes "ที่มุมขวาบนของหน้าจอค่ะ";
+			mes "หากคุณมองไม่เห็นมัน ให้กดปุ่ม";
+			mes "Ctrl + Tab หรือคลิกปุ่ม ''Map''";
+			mes "ในหน้าต่างข้อมูลพื้นฐาน (Basic Info) ของคุณค่ะ";
 			next;
 			mes "[Einbech Guide]";
-			mes "On your Mini-Map,";
-			mes "click on the ''+'' and ''-''";
-			mes "symbols to zoom in and";
-			mes "our of your Mini-Map. We";
-			mes "hope you enjoy your travels";
-			mes "here in Einbech, adventurer.";
+			mes "บนแผนที่ขนาดเล็กของคุณ";
+			mes "คลิกที่สัญลักษณ์ ''+'' และ ''-''";
+			mes "เพื่อซูมเข้าและซูมออก";
+			mes "จากแผนที่ขนาดเล็กค่ะ เราหวังว่า";
+			mes "คุณจะสนุกกับการเดินทางใน Einbech นะคะ นักผจญภัย";
 			break;
 		case 4:
 			mes "[Einbech Guide]";
-			mes "We hope that you";
-			mes "enjoy your travels";
-			mes "here in Einbech.";
+			mes "เราหวังว่าคุณจะ";
+			mes "สนุกกับการเดินทาง";
+			mes "ที่ Einbech แห่งนี้ค่ะ";
 			close2;
 			set .@loop1,0;
 		}
