@@ -16,2002 +16,2002 @@
 
 payon_in03,117,128,5	script	Fortune Teller	4_M_BIBI,{
 	mes "[Lhimetorra]";
-	mes "You're an adventurer of this world... " +strcharinfo(0)+ ", right? So, what can an old person like me do for you?";
+	mes "เจ้าคือนักผจญภัยของโลกใบนี้... " +strcharinfo(0)+ " สินะ? เอาล่ะ คนแก่อย่างข้าจะช่วยอะไรเจ้าได้บ้างล่ะ?";
 	next;
-	if (select("I would like a tarot card reading.:What's a tarot card reading?") == 2) {
+	if (select("ข้าอยากจะดูดวงด้วยการ์ดหน่อยครับ/ค่ะ:การดูดวงด้วยการ์ดคืออะไรเหรอ?") == 2) {
 		mes "[Lhimetorra]";
-		mes " Monster card reading uses the cards of familiar monsters around us to get advice about our future, love, and many other things. ";
-		mes " A fortuneteller like me takes a question from a person and asks the card. The card answers and I tell the person. ";
+		mes " การดูดวงด้วยการ์ดมอนสเตอร์นั้น คือการใช้การ์ดของเหล่ามอนสเตอร์ที่คุ้นเคยรอบตัวเรา เพื่อรับคำแนะนำเกี่ยวกับอนาคต ความรัก และเรื่องอื่นๆ อีกมากมาย ";
+		mes " นักพยากรณ์อย่างข้าจะรับคำถามจากผู้คนและสื่อสารไปยังการ์ด เมื่อการ์ดให้คำตอบมา ข้าก็จะบอกต่อแก่เจ้า ";
 		next;
 		mes "[Lhimetorra]";
-		mes " You should not get more than one card reading a day, and don't get one often since the card can get angry or confused. ";
-		mes " Also, it can have a bad influence on your life, too! ";
+		mes " เจ้าไม่ควรดูดวงเกินวันละหนึ่งครั้ง และอย่าดูบ่อยจนเกินไป เพราะการ์ดอาจจะโกรธหรือเกิดความสับสนได้ ";
+		mes " นอกจากนี้ มันยังอาจส่งผลเสียต่อชีวิตของเจ้าได้ด้วยเช่นกัน! ";
 		next;
 		mes "[Lhimetorra]";
-		mes " And... one more thing. ";
-		mes " A card reading is only a reading... No matter how extraordinary the result may be, don't get too caught up with it. Bear that in mind. ";
+		mes " และ... อีกเรื่องหนึ่ง ";
+		mes " การดูดวงก็เป็นเพียงแค่การทำนาย... ไม่ว่าผลลัพธ์จะออกมาวิเศษเลอเลิศเพียงใด อย่าได้ยึดติดกับมันจนเกินไป จงจำเรื่องนี้ไว้ให้ดี ";
 		close;
 	}
 	mes "[Lhimetorra]";
-	mes "Is that so...?";
-	mes "Well, if you want a monster card reading, you must first show me your faith. Otherwise, the monster spirits will grow angry and place a curse on you.";
+	mes "อย่างนั้นรึ...?";
+	mes "เอาเถอะ หากเจ้าต้องการจะดูดวงด้วยการ์ดมอนสเตอร์ ก่อนอื่นเจ้าต้องแสดงให้ข้าเห็นถึงความศรัทธาของเจ้าเสียก่อน มิฉะนั้น วิญญาณของเหล่านั้นมอนสเตอร์จะโกรธเกรี้ยวและสาปแช่งเจ้าได้";
 	next;
 	mes "[Lhimetorra]";
-	mes "So, would you like a monster card reading? ";
+	mes "สรุปแล้ว เจ้าอยากจะดูดวงด้วยการ์ดมอนสเตอร์หรือไม่? ";
 	next;
-	if (select("Yes.:I would like to think it over once more.") == 2) {
+	if (select("ตกลงครับ/ค่ะ:ข้าขอไปทบทวนดูอีกครั้งก่อนดีกว่า") == 2) {
 		mes "[Lhimetorra]";
-		mes " Ok then. Young adventurer, may luck be with you... ";
+		mes " ตกลงตามนั้น นักผจญภัยหนุ่ม/สาวเอ๋ย ขอให้โชคจงสถิตอยู่กับเจ้า... ";
 		close;
 	}
 	mes "[Lhimetorra]";
-	mes "Then...";
-	mes "Please pay your fee with all of your sincerity.";
+	mes "ถ้าเช่นนั้น...";
+	mes "โปรดจ่ายค่าธรรมเนียมด้วยความจริงใจทั้งหมดของเจ้า";
 	next;
 	input .@input;
 	if (.@input == 0) {
 		mes "[Lhimetorra]";
-		mes "Ah...?!";
-		mes "You have angered the monster spirits!";
+		mes "อ๊ะ...?!";
+		mes "เจ้าได้ทำให้วิญญาณมอนสเตอร์โกรธเข้าเสียแล้ว!";
 		close;
 	}
 	else if (.@input > zeny) {
 		mes "[Lhimetorra]";
-		mes "There's no need to overdo it. Just give with all your heart... *Tsk tsk*";
+		mes "ไม่จำเป็นต้องทำเกินตัวหรอก แค่มอบให้ด้วยหัวใจทั้งหมดของเจ้าก็พอ... *จึ๊ๆ (เสียงเดาะลิ้น)*";
 		close;
 	}
 	else {
 		mes "[Lhimetorra]";
-		mes "I accept your heart and your devotion with my gratitude. Thoughts are more important than the amount when paying a fortune teller.";
+		mes "ข้ายอมรับในหัวใจและความทุ่มเทของเจ้าด้วยความซาบซึ้ง ความคิดนั้นสำคัญกว่าจำนวนเงินเมื่อต้องจ่ายให้กับนักพยากรณ์";
 		Zeny = Zeny-.@input;
 	}
 	next;
 	mes "[Lhimetorra]";
-	mes "Then, I will begin to tell the fortune of your wish. Concentrate on yourself...";
+	mes "ถ้าอย่างนั้น ข้าจะเริ่มทำนายดวงตามคำปรึกษาของเจ้า จงรวบรวมสมาธิไปที่ตัวเจ้าเอง...";
 	next;
 	mes "[Lhimetorra]";
 	mes "...";
-	mes "Clear your mind... ";
+	mes "ทำจิตใจให้ว่างเปล่า... ";
 	next;
 	mes "[Lhimetorra]";
 	mes "...";
-	mes "Once you have emptied your mind, think of the thing you most wish to know.";
+	mes "เมื่อเจ้าทำใจให้ว่างได้แล้ว จงนึกถึงสิ่งที่เจ้าปรารถนาจะรู้มากที่สุด";
 	next;
-	switch(select(" (I would like to know my love fortune.) "," (How rich will I be?) "," (I need advice about my future.) "," (Can I get a warning of any dangers awaiting?) ")) {
+	switch(select(" (ข้าอยากรู้ดวงความรักของข้า) "," (ข้าจะรวยแค่ไหนกันนะ?) "," (ข้าต้องการคำแนะนำเกี่ยวกับอนาคต) "," (ข้าจะขอคำเตือนเกี่ยวกับอันตรายที่รออยู่ข้างหน้าได้ไหม?) ")) {
 	case 1:
 		mes "[Lhimetorra]";
-		mes " I see it... I see a sign of love... ";
+		mes " ข้าเห็นแล้ว... ข้าเห็นนิมิตแห่งความรัก... ";
 		next;
 		.@card_1_love = rand(1,74);
-		if (.@card_1_love < 5) cutin "ฐกภฬพฦฝบฤซตๅ",4;		// Giearth Card
-		else if (.@card_1_love < 10) cutin "ด๕ฝบฦผณืฝบฤซตๅ",4;// Dustiness Card
-		else if (.@card_1_love < 18) cutin "ตๅถ๓ลฅถ๓ฤซตๅ",4;	// Dracula Card
-		else if (.@card_1_love < 26) cutin "ธถธฎณชฤซตๅ",4;	// Marina Card
-		else if (.@card_1_love < 30) cutin "ธÞตฮป็ฤซตๅ",4;	// Medusa Card
-		else if (.@card_1_love < 35) cutin "นูฦ๗ธÞฦฎฤซตๅ",4;	// Baphomet Card
-		else if (.@card_1_love < 39) cutin "ป๗ตๅธวฤซตๅ",4;	// Sandman Card
-		else if (.@card_1_love < 43) cutin "ผาศ๑ฤซตๅ",4;		// Sohee Card
-		else if (.@card_1_love < 51) cutin "ฝบฤฬฟ๖ฤฟฤซตๅ",4;	// Skel Worker Card
-		else if (.@card_1_love < 55) cutin "พฦดฉบ๑ฝบฤซตๅ",4;	// Anubis Card
-		else if (.@card_1_love < 59) cutin "ฟภลฉทฮตๅฤซตๅ",4;	// Orc Lord Card
-		else if (.@card_1_love < 63) cutin "ภ่ฤซตๅ",4;		// Jakk Card
-		else if (.@card_1_love < 67) cutin "มถฤฟฤซตๅ",4;		// Joker Card
-		else if (.@card_1_love < 71) cutin "ศฃตๅฤซตๅ",4;		// Hode Card
-		else cutin "ศฒผาฤซตๅ",4;// Minorous Card
+		if (.@card_1_love < 5) cutin "ฐกภฬพฦฝบฤซตๅ",4;		// การ์ด Giearth
+		else if (.@card_1_love < 10) cutin "ด๕ฝบฦผณืฝบฤซตๅ",4;// การ์ด Dustiness
+		else if (.@card_1_love < 18) cutin "ตๅถ๓ลฅถ๓ฤซตๅ",4;	// การ์ด Dracula
+		else if (.@card_1_love < 26) cutin "ธถธฎณชฤซตๅ",4;	// การ์ด Marina
+		else if (.@card_1_love < 30) cutin "ธÞตฮป็ฤซตๅ",4;	// การ์ด Medusa
+		else if (.@card_1_love < 35) cutin "นูฦ๗ธÞฦฎฤซตๅ",4;	// การ์ด Baphomet
+		else if (.@card_1_love < 39) cutin "ป๗ตๅธวฤซตๅ",4;	// การ์ด Sandman
+		else if (.@card_1_love < 43) cutin "ผาศ๑ฤซตๅ",4;		// การ์ด Sohee
+		else if (.@card_1_love < 51) cutin "ฝบฤฬฟ๖ฤฟฤซตๅ",4;	// การ์ด Skel Worker
+		else if (.@card_1_love < 55) cutin "พฦดฉบ๑ฝบฤซตๅ",4;	// การ์ด Anubis
+		else if (.@card_1_love < 59) cutin "ฟภลฉทฮตๅฤซตๅ",4;	// การ์ด Orc Lord
+		else if (.@card_1_love < 63) cutin "ภ่ฤซตๅ",4;		// การ์ด Jakk
+		else if (.@card_1_love < 67) cutin "มถฤฟฤซตๅ",4;		// การ์ด Joker
+		else if (.@card_1_love < 71) cutin "ศฃตๅฤซตๅ",4;		// การ์ด Hode
+		else cutin "ศฒผาฤซตๅ",4;// การ์ด Minorous
 		
 		mes "[Lhimetorra]";
 		switch(.@card_1_love) {
 		case 1:
-			mes " You are afraid to show yourself working, to your loved one.. ";
-			mes " But that is not love. Do not be afraid to show different sides of yourself to your loved one.. ";
+			mes " เจ้ากลัวที่จะแสดงภาพการทำงานของเจ้าให้คนที่รักเห็น.. ";
+			mes " แต่นั่นไม่ใช่ความรัก อย่าได้กลัวที่จะแสดงด้านที่แตกต่างของตัวเจ้าให้คนรักได้เห็นเลย.. ";
 			next;
 			mes "[Lhimetorra]";
-			mes " So do not worry and move on. ";
+			mes " เพราะฉะนั้นอย่ากังวลและก้าวต่อไป ";
 			break;
 		case 2:
-			mes " Maybe you are using love as an excuse to work? The card is saying to try observing love from a different perspective. ";
+			mes " บางทีเจ้าอาจใช้ความรักเป็นข้ออ้างในการทำงานหรือเปล่า? การ์ดกำลังบอกให้เจ้าลองสังเกตความรักจากมุมมองที่แตกต่างออกไปดูนะ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Shoveling requires skills as well. ";
+			mes " การขุดดินเองก็ต้องใช้ทักษะเหมือนกันนั่นแหละ ";
 			break;
 		case 3:
-			mes " How about taking a break from love and giving yourself time to relax.. I agree with what the card is saying. ";
+			mes " ลองหยุดพักเรื่องความรักแล้วให้เวลาตัวเองได้ผ่อนคลายดูบ้างเป็นไง.. ข้าเห็นด้วยกับสิ่งที่การ์ดบอกนะ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Love is not meant to be so hard. ";
+			mes " ความรักไม่ได้ถูกสร้างมาเพื่อให้เหนื่อยยากขนาดนั้น ";
 			break;
 		case 4:
-			mes " A shovel..? ";
+			mes " พลั่วเนี่ยนะ..? ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Strange that this would come up about love.. bizarre.. You aren't using this shovel to take revenge on someone, are you?? ";
-			mes " Don't get malicious thoughts. Keep a kind heart. ";
+			mes " แปลกจังที่สิ่งนี้ปรากฏขึ้นมาในเรื่องความรัก.. ประหลาดแท้.. เจ้าไม่ได้กำลังใช้พลั่วนี้เพื่อแก้แค้นใครอยู่ใช่ไหม?? ";
+			mes " อย่าได้มีความคิดมุ่งร้าย จงรักษาจิตใจที่โอบอ้อมอารีไว้ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " How about taking a break from love and giving yourself time to relax.. I agree with this card. ";
+			mes " ลองหยุดพักเรื่องความรักแล้วให้เวลาตัวเองได้ผ่อนคลายดูบ้าง.. ข้าเห็นด้วยกับการ์ดใบนี้ ";
 			break;
-		case 5:// Dustiness Card
-			mes " Its pure eyes look at a loved one but cannot recognize them, the wings flutter towards the loved one, but it helplessly stays in one place, ";
-			mes " it calls its loved one, but they cannot hear.. ";
+		case 5:// การ์ด Dustiness
+			mes " ดวงตาอันบริสุทธิ์ของมันจ้องมองคนรักแต่กลับจำพวกเขาไม่ได้ ปีกที่ขยับโบยบินไปหาคนรัก แต่กลับต้องหยุดนิ่งอยู่ที่เดิมอย่างไร้หนทาง ";
+			mes " มันเรียกหาคนที่มันรัก แต่พวกเขากลับไม่ได้ยิน.. ";
 			next;
 			mes "[Lhimetorra]";
-			mes " What a sad fortune.. ";
-			mes " Indeed, it is sad love... it might be hard to overcome. ";
+			mes " ช่างเป็นดวงชะตาที่น่าเศร้า... ";
+			mes " ใช่แล้ว มันคือรักที่แสนเศร้า... มันอาจจะยากที่จะก้าวผ่านไปได้ ";
 			break;
 		case 6:
-			mes " The passion of love like a raging wave... You can't even hide it. ";
-			mes " With such passionate love, isn't there only one way..? ";
+			mes " ความคลั่งไคล้ในรักประดุจคลื่นที่บ้าคลั่ง... เจ้าไม่สามารถซ่อนมันไว้ได้เลย ";
+			mes " ด้วยรักที่เร่าร้อนเช่นนี้ มิใช่ว่ามีเพียงทางเดียวหรอกหรือ..? ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Passionate love is nearby. It is a good sign. ";
+			mes " รักที่แสนเร่าร้อนอยู่ใกล้ตัวเจ้าแล้ว นี่เป็นนิมิตหมายที่ดี ";
 			break;
 		case 7:
-			mes " The teeth of dustiness are very strong. This means.. use your teeth for victory?! ";
+			mes " ฟันของ Dustiness นั้นแข็งแกร่งมาก สิ่งนี้หมายความว่า.. จงใช้ฟันของเจ้าเพื่อชัยชนะงั้นรึ?! ";
 			break;
 		case 8:
-			mes " The card is telling me, 'Fly to your loved one as you were a butterfly and shoot at it as you were a star.' ";
-			mes "..even though it doesn't sound like something a moth would say. ";
+			mes " การ์ดบอกข้าว่า 'จงบินไปหาคนที่เจ้ารักราวกับเจ้าเป็นผีเสื้อ และพุ่งเข้าใส่ดั่งเจ้าเป็นดวงดาว' ";
+			mes "..ทั้งที่ฟังดูไม่เหมือนสิ่งที่ผีเสื้อกลางคืนจะพูดเลยสักนิด ";
 			next;
 			mes "[Lhimetorra]";
-			mes " The passion of love like a raging wave.. You can't even hide it. ";
+			mes " ความคลั่งไคล้ในรักประดุจคลื่นที่บ้าคลั่ง.. เจ้าไม่สามารถซ่อนมันไว้ได้เลย ";
 			break;
 		case 9:
-			mes " Perhaps the person you believe to be a butterfly is actually a moth. This fortune is awaiting a prudent judgement. ";
+			mes " บางทีคนที่เจ้าเชื่อว่าเป็นผีเสื้อแสนสวย แท้จริงอาจเป็นเพียงผีเสื้อกลางคืน ดวงชะตานี้กำลังรอคอยการตัดสินใจที่รอบคอบของเจ้าอยู่ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Love is indeed a subject to be dealt with prudence. Keep that in mind young one. ";
+			mes " ความรักเป็นเรื่องที่ต้องจัดการด้วยความรอบคอบจริงๆ จำคำข้าไว้ให้ดีนะเจ้าหนู ";
 			break;
-		case 10: // Dracula Card
-			mes " The one you love will give you a kiss of death. ";
-			mes " The irresistable kiss.. It is up to you to decide whether to avoid it or not. ";
+		case 10: // การ์ด Dracula
+			mes " คนที่เจ้ารักจะมอบรอยจุมพิตแห่งความตายให้แก่เจ้า ";
+			mes " รอยจุมพิตที่ไม่อาจต้านทาน.. มันขึ้นอยู่กับเจ้าแล้วว่าจะเลือกหลีกหนีมันหรือไม่ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Charisma... is the sweetest poison. ";
+			mes " เสน่ห์อันเย้ายวน... คือยาพิษที่หวานล้ำที่สุด ";
 			break;
 		case 11:
-			mes " You are looking at a wonderful person, but their eyes are fixed in darkness. ";
-			mes " How about trying to grab their attention? ";
+			mes " เจ้ากำลังมองหาบุคคลที่แสนวิเศษ แต่ดวงตาของพวกเขากลับจ้องลึกเข้าไปในความมืดมิด ";
+			mes " ลองพยายามดึงดูดความสนใจของพวกเขาดูหน่อยเป็นไง? ";
 			next;
 			mes "[Lhimetorra]";
-			mes " so, you need to try something other than charisma. ";
+			mes " ดังนั้น เจ้าจำเป็นต้องลองใช้วิธีอื่นนอกเหนือจากแค่เสน่ห์เพียงอย่างเดียว ";
 			break;
 		case 12:
-			mes " Your love needs fresh blood. Healthy exercises and eating habits are necessary! ";
-			mes " You must change your living pattern first. ";
+			mes " ความรักของเจ้าต้องการเลือดที่สดใหม่ การออกกำลังกายเพื่อสุขภาพและนิสัยการกินที่ดีเป็นสิ่งจำเป็น! ";
+			mes " เจ้าต้องเปลี่ยนรูปแบบการใช้ชีวิตก่อนเป็นอันดับแรก ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Health is the best. ";
+			mes " สุขภาพนั้นดีที่สุด ";
 			break;
 		case 13:
-			mes " Don't you think you are infatuated by outer appearance and gambling with love? You might have to be more careful about it this time. ";
+			mes " เจ้าไม่คิดบ้างหรือว่าเจ้ากำลังหลงใหลเพียงรูปกายภายนอกและกำลังพนันกับความรัก? ครั้งนี้เจ้าอาจจะต้องระวังให้มากกว่าเดิมนะ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Beauty is only skin deep. ";
+			mes " ความงามเป็นเพียงสิ่งที่ฉาบไว้แค่ภายนอก ";
 			break;
 		case 14:
-			mes " Become a pirate of love! It is a simple, yet strong fortune! ";
+			mes " จงกลายเป็นโจรสลัดแห่งรัก! มันเป็นดวงชะตาที่เรียบง่ายแต่แข็งแกร่ง! ";
 			break;
 		case 15:
-			mes " No matter how romantic and beautiful love is, it is not rightful, it is undesirable.. ";
-			mes " is what this card means. ";
+			mes " ไม่ว่าความรักจะโรแมนติกและสวยงามเพียงใด แต่มันไม่ใช่สิ่งที่ถูกต้อง และเป็นสิ่งที่ไม่พึงปรารถนา.. ";
+			mes " นั่นคือความหมายของการ์ดใบนี้ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " I hope you are not disappointed by the moral of this fortune. ";
+			mes " ข้าหวังว่าเจ้าจะไม่ผิดหวังกับคติสอนใจของดวงชะตานี้นะ ";
 			break;
 		case 16:
-			mes " In the rough sea called the world, only pirates, the outlaws of love, are the law. ";
-			mes " This card supports strong love. ";
+			mes " ในท้องทะเลอันปั่นป่วนที่เรียกว่าโลกใบนี้ มีเพียงโจรสลัดหรือเหล่านอกกฎหมายแห่งความรักเท่านั้นที่เป็นกฎเกณฑ์ ";
+			mes " การ์ดใบนี้สนับสนุนความรักที่แข็งกร้าว ";
 			next;
 			mes "[Lhimetorra]";
-			mes " You must overcome it - no matter how strong the wave is. ";
+			mes " เจ้าต้องก้าวผ่านมันไปให้ได้ ไม่ว่าคลื่นจะซัดแรงเพียงใดก็ตาม ";
 			break;
 		case 17:
-			mes " It is a warning not to get involved in false love like pirated editions! ";
-			mes " You may have to reconsider your love right now. ";
+			mes " นี่คือคำเตือนว่าอย่าเข้าไปพัวพันกับรักที่จอมปลอมเหมือนพวกของละเมิดลิขสิทธิ์! ";
+			mes " เจ้าอาจจะต้องทบทวนความรักของเจ้าในตอนนี้ดูใหม่อีกครั้ง ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Illegal copying is not love! ";
+			mes " การคัดลอกที่ผิดกฎหมายไม่ใช่ความรัก! ";
 			break;
-		case 18:// Marina Card
-			mes " This is praising the type of love that is always there, yet barely has a form as it does not exist. ";
-			mes " Are you involved this type of love? ";
+		case 18:// การ์ด Marina
+			mes " นี่คือการสรรเสริญความรักประเภทที่คงอยู่เสมอมา ทว่ากลับไร้ตัวตนราวกับไม่มีอยู่จริง ";
+			mes " เจ้ากำลังพัวพันกับความรักแบบนี้อยู่ใช่ไหม? ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Love's form is obscure. ";
+			mes " รูปแบบของความรักนั้นช่างคลุมเครือ ";
 			break;
 		case 19:
-			mes " You must be careful. Love is quietly approaching and spreading poison. Be careful of the poison of love. ";
+			mes " เจ้าต้องระวังให้ดี ความรักกำลังคืบคลานเข้ามาอย่างเงียบๆ และแพร่กระจายยาพิษ จงระวังพิษแห่งรักไว้ให้ดี ";
 			next;
 			mes "[Lhimetorra]";
-			mes " There is no cure for this poison! ";
+			mes " ไม่มีทางรักษาสำหรับยาพิษชนิดนี้! ";
 			break;
 		case 20:
-			mes " Aren't you already caught in love that you cannot run away from? Look around you. ";
-			mes " You might be captured inside invisible walls. ";
+			mes " เจ้าติดบ่วงรักจนโงหัวไม่ขึ้นแล้วใช่ไหม? ลองมองไปรอบๆ ตัวเจ้าสิ ";
+			mes " เจ้าอาจจะถูกกักขังไว้ในกำแพงที่มองไม่เห็น ";
 			next;
 			mes "[Lhimetorra]";
-			mes " You have been blinded by love and became a prisoner! Shouldn't you escape? ";
+			mes " เจ้าถูกความรักบังตาจนกลายเป็นนักโทษไปเสียแล้ว! เจ้าควรจะหาทางหนีออกมาไม่ใช่รึ? ";
 			break;
 		case 21:
-			mes " This fortune is saying that love is.. approaching wobbly and softly~ and then bam~ embracing it. ";
-			mes " Very romantic. Hehe. ";
+			mes " ดวงชะตานี้บอกว่าความรักกำลัง.. เข้ามาหาอย่างนุ่มนวลและโอนเอน~ จากนั้นก็โครม~ สวมกอดมันไว้ ";
+			mes " โรแมนติกมากเลยล่ะ ฮิฮิ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Romance is the best part of love~ ";
+			mes " ความโรแมนติกคือส่วนที่ดีที่สุดของความรักเลยล่ะ~ ";
 			break;
 		case 22:
-			mes " This card is warning you to not treat your loved one like a puppet. ";
-			mes " You're not doing this, are you? ";
+			mes " การ์ดใบนี้เตือนเจ้าว่าอย่าปฏิบัติกับคนที่เจ้ารักราวกับเขาเป็นหุ่นเชิด ";
+			mes " เจ้าไม่ได้ทำแบบนั้นอยู่ใช่ไหม? ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Love is not supposed to be about controlling and restraining~ mm~ ";
+			mes " ความรักไม่ได้มีไว้เพื่อการควบคุมและเหนี่ยวรั้งหรอกนะ~ อืมม~ ";
 			break;
 		case 23:
-			mes " Dolls understand a human's heart more than a human. Try treating your loved one as they were a doll. ";
+			mes " ตุ๊กตาย่อมเข้าใจหัวใจมนุษย์มากกว่ามนุษย์ด้วยกันเอง ลองปฏิบัติกับคนรักราวกับว่าพวกเขาเป็นตุ๊กตาดูสิ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Your loved one can't be worse than a doll, can they? ";
+			mes " คนที่เจ้ารักคงไม่แย่ไปกว่าตุ๊กตาหรอก จริงไหม? ";
 			break;
 		case 24:
-			mes " you are afraid to look into a doll's eyes, that is because there is a dark shadow covering your love. ";
-			mes " Rid yourselves of that shadow. Then the doll will smile as well. ";
+			mes " เจ้ากลัวที่จะสบตาตุ๊กตา นั่นเป็นเพราะมีเงาทมิฬปกคลุมความรักของเจ้าอยู่ ";
+			mes " จงกำจัดเงานั้นทิ้งไปเสีย แล้วตุ๊กตาจะยิ้มออกมาเอง ";
 			next;
 			mes "[Lhimetorra]";
-			mes " That is what love is. ";
+			mes " นั่นแหละคือสิ่งที่ความรักเป็น ";
 			break;
 		case 25:
-			mes " Dolls become accustomed to the owner the more they are handled. Give your doll more attention. ";
-			mes " The doll is craving attention. A lot of attention. ";
+			mes " ตุ๊กตาจะคุ้นเคยกับเจ้าของมากขึ้นเมื่อถูกดูแลบ่อยๆ จงให้ความสนใจกับตุ๊กตาของเจ้าให้มากขึ้น ";
+			mes " ตุ๊กตากำลังโหยหาความสนใจ... ความสนใจที่มากมหาศาล ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Delicate treatment and attention is the best in love. ";
+			mes " การดูแลอย่างทะนุถนอมและความใส่ใจคือสิ่งที่ยอดเยี่ยมที่สุดในความรัก ";
 			break;
-		case 26:// Medusa Card
-			mes " Do you fear the snake hair of a Medusa? However, love cannot be achieved with fear. ";
-			mes " You must move forward! ";
+		case 26:// การ์ด Medusa
+			mes " เจ้ากลัวผมงูของ Medusa งั้นรึ? อย่างไรก็ตาม ความรักย่อมไม่อาจสำเร็จได้หากมีความกลัว ";
+			mes " เจ้าต้องรุกไปข้างหน้า! ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Love must be pushed forward! ";
+			mes " ความรักต้องได้รับแรงผลักดัน! ";
 			break;
 		case 27:
-			mes " Warriors that hastily attacked the Medusa all failed, but the one hero that used a mirror succeeded. ";
-			mes " You cannot succeed in love with brute force. You must use wisdom. ";
+			mes " เหล่านักรบที่บุ่มบ่ามโจมตี Medusa ล้วนล้มเหลว แต่มีเพียงฮีโร่ที่ใช้กระจกเท่านั้นที่ทำสำเร็จ ";
+			mes " เจ้าไม่สามารถประสบความสำเร็จในรักได้ด้วยกำลังเพียงอย่างเดียว เจ้าต้องใช้สติปัญญา ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Do you understand what I mean young one? ";
+			mes " เจ้าเข้าใจสิ่งที่ข้าพูดไหมเจ้าหนู? ";
 			break;
 		case 28:
-			mes " Must you love the one that has hair of snakes? Reconsider this love and think about it earnestly. ";
+			mes " เจ้าจำเป็นต้องรักคนที่มีเส้นผมเป็นงูจริงๆ หรือ? จงทบทวนความรักนี้อีกครั้งและคิดถึงมันอย่างจริงจัง ";
 			next;
 			mes "[Lhimetorra]";
-			mes " What do you think? Isn't this a great opportunity to ponder about the relationship. ";
+			mes " เจ้าคิดว่าอย่างไรล่ะ? นี่เป็นโอกาสที่ดีที่จะพิจารณาถึงความสัมพันธ์นะ ";
 			break;
 		case 29:
-			mes " It is a hint saying that a strong hairstyle is the key to turning over the situation. Change your hairstyle! ";
+			mes " นี่คือคำใบ้ที่บอกว่าทรงผมที่ดูโดดเด่นคือหัวใจสำคัญที่จะพลิกสถานการณ์ได้ เปลี่ยนทรงผมของเจ้าซะ! ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Fashion is in the hands of those who are ahead! ";
+			mes " แฟชั่นอยู่ในมือของผู้ที่ก้าวล้ำนำสมัยเสมอ! ";
 			break;
-		case 30:// Baphomet Card
-			mes " Love must have two things: great strength and the will to live. Have you thought about whether or not you can overcome this with your current self? ";
+		case 30:// การ์ด Baphomet
+			mes " ความรักต้องมีสองสิ่ง: พลังที่ยิ่งใหญ่และความปรารถนาที่จะมีชีวิตอยู่ เจ้าเคยคิดไหมว่าตัวเจ้าในตอนนี้จะเอาชนะมันได้หรือไม่? ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Know love and know thyself! ";
+			mes " จงรู้จักรัก และจงรู้จักตนเอง! ";
 			break;
 		case 31:
-			mes " A scythe may seem burdensome but a strong Baphomet can freely use it. ";
-			mes " It is the same concept. you are ready, any type of love is possible. There is no such thing as impossible. ";
+			mes " เคียวอาจดูเป็นภาระ แต่ Baphomet ที่แข็งแกร่งย่อมใช้มันได้อย่างอิสระ ";
+			mes " มันเป็นแนวคิดเดียวกัน หากเจ้าพร้อม ความรักทุกรูปแบบย่อมเป็นไปได้ ไม่มีคำว่าเป็นไปไม่ได้ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Love requires preparation as well! ";
+			mes " ความรักเองก็ต้องมีการเตรียมตัวเช่นกัน! ";
 			break;
 		case 32:
-			mes " Love must have two things: great strength and the will to live. Have you thought about whether or not you can overcome this with your current self? ";
+			mes " ความรักต้องมีสองสิ่ง: พลังที่ยิ่งใหญ่และความปรารถนาที่จะมีชีวิตอยู่ เจ้าเคยคิดไหมว่าตัวเจ้าในตอนนี้จะเอาชนะมันได้หรือไม่? ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Know love and know thyself! ";
+			mes " จงรู้จักรัก และจงรู้จักตนเอง! ";
 			break;
 		case 33:
-			mes " There are those who are born, destined to run into this wall, an obstacle. Your love seems to have reached that wall.. It must be hard. ";
+			mes " มีบางคนที่เกิดมาพร้อมโชคชะตาที่ต้องชนกับกำแพงอันเป็นอุปสรรคนี้ ความรักของเจ้าดูเหมือนจะมาถึงกำแพงนั้นแล้ว.. คงจะลำบากน่าดูนะ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " What a pity. ";
+			mes " น่าสงสารเหลือเกิน ";
 			break;
 		case 34:
-			mes " This Baphomet looks as it is having a hard time. The person must be exhausted even it may not seem so. ";
+			mes " Baphomet ตนนี้ดูเหมือนกำลังลำบาก บุคคลนั้นอาจจะกำลังเหนื่อยล้าแม้จะดูเหมือนไม่เป็นอะไรก็ตาม ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Approach then with affection. ";
+			mes " จงเข้าหาพวกเขาด้วยความเสน่หา ";
 			break;
-		case 35:// Sandman Card
-			mes " Can't you hear the cry of the card? It is suffering. Love is like that.. ";
+		case 35:// การ์ด Sandman
+			mes " เจ้าได้ยินเสียงร้องไห้จากการ์ดใบนี้ไหม? มันกำลังทนทุกข์อยู่ ความรักก็เป็นเช่นนั้นเอง.. ";
 			next;
 			mes "[Lhimetorra]";
-			mes " So don't be upset about it! ";
+			mes " เพราะฉะนั้นอย่าไปเสียใจกับมันเลย! ";
 			break;
 		case 36:
-			mes " Your love right now is so bored that it is yawning. How about trying something fresh and new? ";
+			mes " ความรักของเจ้าในตอนนี้ช่างน่าเบื่อจนถึงขั้นหาวออกมาเลยล่ะ ลองทำอะไรที่สดใหม่ดูบ้างไหม? ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Try changing your dating style. ";
+			mes " ลองเปลี่ยนสไตล์การออกเดทดูสิ ";
 			break;
 		case 37:
-			mes " Deep sleep brings happiness and dreams. I think what you need right now is sleep. ";
+			mes " การนอนหลับลึกนำมาซึ่งความสุขและความฝัน ข้าคิดว่าสิ่งที่เจ้าต้องการตอนนี้คือการนอนนะ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Get some sleep. ";
+			mes " ไปนอนซักงีบเถอะ ";
 			break;
 		case 38:
-			mes " I feel some sort of emptiness.. Maybe there is a gap in your love? ";
+			mes " ข้าสัมผัสได้ถึงความว่างเปล่าบางอย่าง.. บางทีอาจมีช่องว่างในความรักของเจ้าหรือเปล่า? ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Take a close look. ";
+			mes " ลองมองดูใกล้ๆ สิ ";
 			break;
-		case 39:// Sohee Card
-			mes " Even a traditional beauty can seem cold to others. Try looking at your loved one from a different point of view. ";
+		case 39:// การ์ด Sohee
+			mes " แม้แต่สาวงามตามขนบก็อาจดูเย็นชาในสายตาคนอื่นได้ ลองมองคนที่เจ้ารักจากมุมมองอื่นดูบ้างสิ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Look at love from a different perspective. You never know when you'll be able to discover something. ";
+			mes " มองความรักจากมุมมองที่ต่างออกไป เจ้าไม่มีทางรู้หรอกว่าจะค้นพบอะไรเมื่อไหร่ ";
 			break;
 		case 40:
-			mes " They may seem dreary and ominous but their attire is spotless. They show devotion to the other. ";
-			mes " Even though you are not satisfied with your love right now, take a look at their attire. ";
+			mes " พวกเขาอาจดูหดหู่และเป็นลางร้าย แต่เครื่องแต่งกายของพวกเขานั้นไร้ที่ติ พวกเขาแสดงความทุ่มเทให้อีกฝ่าย ";
+			mes " แม้เจ้าจะไม่พอใจกับความรักในตอนนี้ แต่ลองสังเกตการแต่งกายของพวกเขาดูสิ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " it is carefully worn, their heart for you can be seen in it as well.. ";
+			mes " มันถูกสวมใส่อย่างประณีต ใจของเขาที่มีต่อเจ้าก็สะท้อนอยู่ในนั้นเช่นกัน.. ";
 			break;
 		case 41:
-			mes " There is a person you must not deal with thoughtlessly nearby. Don't say or do anything carelessly. You must be careful when dealing with this person. ";
+			mes " มีใครบางคนที่เจ้าห้ามไปยุ่งด้วยอย่างไม่คิดหน้าคิดหลังอยู่ใกล้ๆ อย่าพูดหรือทำอะไรอย่างประมาท เจ้าต้องระวังให้มากเมื่อต้องติดต่อกับคนคนนี้ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Bear that in mind. ";
+			mes " จำเรื่องนี้ไว้ให้ดี ";
 			break;
 		case 42:
-			mes " Even the wind blows and the trail of her clothes flutter, her posture never changes. Loving a person with that type of heart will bring goodwill and happiness. ";
+			mes " แม้ลมจะพัดจนชายเสื้อปลิวไสว ท่าทางของนางก็ไม่เคยเปลี่ยนไป การรักคนที่มีหัวใจมั่นคงเช่นนั้นจะนำมาซึ่งความหวังดีและความสุข ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Keep a righteous heart and mind. ";
+			mes " จงรักษาใจและกายที่เที่ยงธรรมเอาไว้ ";
 			break;
-		case 43:// Skel Worker Card
-			mes " That lightens and attacks with a pickaxe! You must aggressively move forward. What do you think? Your fortune is a good one. ";
+		case 43:// การ์ด Skel Worker
+			mes " นั่นคือการจู่โจมด้วยพลั่วที่ว่องไว! เจ้าต้องรุกไปข้างหน้าอย่างหนักแน่น เจ้าคิดว่าไงล่ะ? ดวงของเจ้าถือว่าดีเลยทีเดียว ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Is your heart ready young one? ";
+			mes " ใจเจ้าพร้อมหรือยังเจ้าหนู? ";
 			break;
 		case 44:
-			mes " The card only shows gaunt bones, but notice how it has all the necessary tools?";
-			mes " Even though your love right now may seem as there is nothing to it, it has everything you need. ";
+			mes " การ์ดใบนี้แสดงให้เห็นเพียงกระดูกที่ซูบผอม แต่สังเกตเห็นไหมว่ามันมีเครื่องมือที่จำเป็นครบครัน?";
+			mes " แม้ความรักของเจ้าในตอนนี้อาจดูเหมือนไม่มีอะไรเลย แต่มันมีทุกอย่างที่เจ้าต้องการอยู่แล้ว ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Don't get too greedy about things. ";
+			mes " อย่าโลภมากจนเกินไปนัก ";
 			break;
 		case 45:
-			mes " It has a lantern on its back and even in its hand.. it believes one light is insufficient. ";
-			mes " you are only shining one type of light to your loved one, shining another might help. ";
+			mes " มันมีตะเกียงอยู่บนหลังและแม้แต่ในมือ.. มันเชื่อว่าแสงสว่างเพียงดวงเดียวนั้นไม่พอ ";
+			mes " เจ้ากำลังส่องแสงสว่างเพียงด้านเดียวให้คนรักของเจ้า การส่องแสงด้านอื่นเพิ่มอาจช่วยได้นะ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " They might be feeling that one is not enough. ";
+			mes " พวกเขาอาจรู้สึกว่าแค่ด้านเดียวมันยังไม่เพียงพอ ";
 			break;
 		case 46:
-			mes " You know the smile of Mona Lisa.. Perhaps the person you are looking at has the same expression? ";
+			mes " เจ้ารู้จักรอยยิ้มของโมนาลิซ่าไหม.. บางทีคนที่เจ้ามองอยู่อาจมีสีหน้าแบบเดียวกันก็ได้นะ? ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Don't try to gaze straight them. Make an effort to approach them. ";
+			mes " อย่าพยายามจ้องไปที่พวกเขาตรงๆ จงใช้ความพยายามในการเข้าหาแทน ";
 			break;
 		case 47:
-			mes " A knight on a horse is a fantasy in every person's heart. Make it so that this fantasy becomes real. ";
+			mes " อัศวินบนหลังม้าคือจินตนาการในใจของทุกคน จงทำให้จินตนาการนั้นกลายเป็นจริงซะ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Then there will surely be progress. ";
+			mes " แล้วมันจะมีความคืบหน้าเกิดขึ้นแน่นอน ";
 			break;
 		case 48:
-			mes " Is that soldier waiting to attack? I can feel great tension between the horse and knight. ";
-			mes " Don't run forward carelessly. Raise your sword and wait for your chance. ";
+			mes " ทหารคนนั้นกำลังรอที่จะจู่โจมอยู่หรือเปล่า? ข้าสัมผัสได้ถึงความตึงเครียดระหว่างม้าและอัศวิน ";
+			mes " อย่าวิ่งพรวดพราดไปข้างหน้าอย่างประมาท จงชูดาบขึ้นแล้วรอคอยโอกาสของเจ้า ";
 			next;
 			mes "[Lhimetorra]";
-			mes " This means now is a time to wait. How about it, would you like to wait a while? ";
+			mes " นี่หมายความว่าตอนนี้คือเวลารอคอย ว่าไงล่ะ เจ้าอยากจะรอสักพักไหม? ";
 			break;
 		case 49:
-			mes " He is falling asleep awaiting a battle. Is it because he is laid back, or simply pathetic? Depends on the situation I suppose. ";
-			mes " But you've got to give him credit for his boldness. ";
+			mes " เขากำลังหลับใหลเพื่อรอการต่อสู้ เป็นเพราะเขาใจเย็น หรือแค่ไร้ค่าน่าสังเวชกันแน่? ข้าว่ามันขึ้นอยู่กับสถานการณ์นะ ";
+			mes " แต่เจ้าต้องยกความดีความชอบให้ความกล้าหาญของเขาเลยล่ะ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " How about becoming a brave warrior in the battle of love? ";
+			mes " ลองกลายเป็นนักรบผู้กล้าในสมรภูมิแห่งรักดูเป็นไง? ";
 			break;
 		case 50:
-			mes " Very favorable. It's to a point that I can feel strong energy from the card. I will give some of this energy to you. ";
+			mes " ดีมากเลยล่ะ ข้าสัมผัสได้ถึงพลังอันแก่กล้าจากการ์ดใบนี้เลย ข้าจะมอบพลังส่วนหนึ่งให้แก่เจ้า ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Devote that energy to love..! ";
+			mes " จงทุ่มเทพลังนั้นให้กับความรักซะ..! ";
 			break;
-		case 51:// Anubis Card
-			mes " What does the god of death have to say about love? It is something ominous for sure. ";
+		case 51:// การ์ด Anubis
+			mes " เทพแห่งความตายจะมีอะไรพูดถึงเรื่องความรักกันนะ? มันต้องเป็นลางร้ายแน่นอน ";
 			next;
 			mes "[Lhimetorra]";
-			mes " I think it is trying to give a warning. Be careful. ";
+			mes " ข้าว่ามันพยายามจะเตือนเจ้านะ ระวังตัวด้วย ";
 			break;
 		case 52:
-			mes " Hmm. How about giving a cute puppy as a gift? One with a round nose. Then they will surely be happy. ";
+			mes " อืม ลองให้ลูกหมาน่ารักๆ เป็นของขวัญดูไหม? ตัวที่มีจมูกกลมน่ะ แล้วพวกเขาจะมีความสุขแน่นอน ";
 			next;
 			mes "[Lhimetorra]";
-			mes " But can't help it they don't like puppies. ";
+			mes " แต่ถ้าพวกเขาไม่ชอบหมาก็ช่วยไม่ได้นะ ";
 			break;
 		case 53:
-			mes " I can tell what it was doing from the way it is crying while holding an axe with blood. It is deeply wounded by love. ";
+			mes " ข้าบอกได้เลยว่ามันกำลังทำอะไรจากเสียงร้องไห้ขณะที่ถือขวานเปื้อนเลือด มันบาดเจ็บสาหัสเพราะความรัก ";
 			next;
 			mes "[Lhimetorra]";
-			mes " that wound isn't cured soon, it will become as Anubis wanted. ";
+			mes " ถ้าแผลนั้นไม่หายในเร็ววัน มันจะกลายเป็นอย่างที่ Anubis ต้องการ ";
 			break;
 		case 54:
-			mes " The pattern of the clothes symbolizes a warning. It is saying to be careful of love. ";
+			mes " ลวดลายบนเสื้อผ้าเป็นสัญลักษณ์ของคำเตือน มันกำลังบอกให้ระวังเรื่องความรัก ";
 			next;
 			mes "[Lhimetorra]";
-			mes "Be cautious. ";
+			mes " จงระแวดระวังให้ดี ";
 			break;
-		case 55:// Orc Lord Card
-			mes " He is a warning you not to drool over someone else. ";
+		case 55:// การ์ด Orc Lord
+			mes " เขากำลังเตือนเจ้าว่าอย่าไปมองคนอื่นจนน้ำลายไหลเชียวล่ะ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " That's bad! You will be punished! ";
+			mes " นั่นมันแย่มาก! เจ้าจะถูกลงโทษนะ! ";
 			break;
 		case 56:
-			mes " Who is he so fiercly gazing at with those grand muscles? He is looking at someone else for sure. ";
+			mes " เขากำลังจ้องมองใครด้วยกล้ามเนื้ออันกำยำเหล่านั้นอย่างดุดันกันนะ? เขาจ้องมองคนอื่นอยู่แน่ๆ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Don't get sidetracked and look elsewhere! You will be cursed! ";
+			mes " อย่าได้วอกแวกและมองไปที่อื่น! เจ้าจะถูกสาปเอาได้นะ! ";
 			break;
 		case 57:
-			mes " Strengthen your body and observe the target. That is the step to success. ";
+			mes " เสริมสร้างร่างกายของเจ้าและสังเกตเป้าหมายให้ดี นั่นคือขั้นตอนสู่ความสำเร็จ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " you want love as well, why don't you take the card's advice and prepare yourself first? ";
+			mes " เจ้าเองก็ต้องการความรักไม่ใช่รึ ทำไมไม่ลองฟังคำแนะนำของการ์ดแล้วเตรียมตัวให้พร้อมก่อนล่ะ? ";
 			break;
 		case 58:
-			mes " His navel is very pretty. You have to meet someone with that type of navel to be happy. ";
+			mes " สะดือของเขาสวยมากเลยนะ เจ้าต้องเจอคนที่มีสะดือแบบนั้นถึงจะมีความสุข ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Ok? Keep that in mind~ ";
+			mes " โอเคไหม? จำไว้ให้ดีนะ~ ";
 			break;
-		case 59:// Jakk Card
-			mes " You'll get hurt you mess around. This card is giving you a piece of advice. ";
+		case 59:// การ์ด Jakk
+			mes " เจ้าจะเจ็บตัวถ้าเจ้าทำตัวเหลวไหล การ์ดใบนี้กำลังให้คำแนะนำแก่เจ้า ";
 			next;
 			mes "[Lhimetorra]";
-			mes " You did something wrong to your loved one, didn't you? Make an effort to make up for it~! ";
+			mes " เจ้าทำอะไรผิดต่อคนที่เจ้ารักมาใช่ไหมล่ะ? พยายามหาทางชดเชยให้ได้ล่ะ~! ";
 			break;
 		case 60:
-			mes " From the way he is massaging its back because of a shoulder cramp, maybe your love is seeking someone to massage them. Love starts from little thoughts.";
+			mes " จากท่าทางที่เขากำลังนวดหลังเพราะไหล่ตึง บางทีคนรักของเจ้าอาจกำลังมองหาใครสักคนมาช่วยนวดให้ ความรักเริ่มจากความคิดเล็กๆ น้อยๆ นี่แหละ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Next time you meet them, give them a massage. Start with the little things. ";
+			mes " ครั้งหน้าที่เจอเขา ลองนวดให้เขาดูสิ เริ่มจากสิ่งเล็กน้อยนี่แหละ ";
 			break;
 		case 61:
-			mes " His expression is in awe. When encountering an absurd incident, his face and expression becomes peculiarly distorted. ";
-			mes " I think the one you are looking towards has that type of expression. ";
+			mes " สีหน้าของเขาดูตกตะลึง เมื่อเผชิญกับเหตุการณ์ที่ไร้สาระ ใบหน้าและสีหน้าของเขาจะบิดเบี้ยวไปอย่างประหลาด ";
+			mes " ข้าคิดว่าคนที่เจ้ากำลังมองหาอยู่มีสีหน้าแบบนั้นแหละ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Did you do something absurd to that person? Are you sure? Think about it~ ";
+			mes " เจ้าไปทำเรื่องไร้สาระใส่คนคนนั้นมาหรือเปล่า? มั่นใจนะ? ลองคิดดูดีๆ สิ~ ";
 			break;
 		case 62:
-			mes " the lover does something wrong he pokes them with a needle. How scary.. ";
+			mes " เมื่อคนรักทำอะไรผิด เขาก็เอาเข็มทิ่มซะเลย น่ากลัวจริงๆ.. ";
 			break;
-		case 63:// Joker Card
-			mes " A person's heart is like this card. you flip it over nobody can tell what is behind it. Try turning the person's card over. ";
+		case 63:// การ์ด Joker
+			mes " หัวใจของคนเราก็เหมือนการ์ดใบนี้แหละ ถ้าเจ้าพลิกมันกลับ ก็ไม่มีใครบอกได้ว่ามีอะไรอยู่ข้างหลัง ลองพลิกการ์ดของคนคนนั้นดูสิ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " You must approach their true heart. Understand? ";
+			mes " เจ้าต้องเข้าถึงตัวตนที่แท้จริงของพวกเขา เข้าใจไหม? ";
 			break;
 		case 64:
-			mes " Jokers are sly, but that is just because it is their habit. ";
-			mes " The reason the person may seem capricious or cunning is partially because they are born like that. ";
+			mes " Joker น่ะเจ้าเล่ห์ แต่นั่นก็เป็นเพียงนิสัยของพวกเขา ";
+			mes " สาเหตุที่คนคนนั้นอาจดูแปรปรวนหรือกะล่อน ส่วนหนึ่งก็เพราะเขาเกิดมาเป็นแบบนั้น ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Will you be able to approach them regardless? To do so, you must prepare you heart.. mm.. ";
+			mes " เจ้าจะยังสามารถเข้าหาพวกเขาได้อยู่ไหม? การจะทำเช่นนั้น เจ้าต้องเตรียมใจเอาไว้ให้ดี.. อืมม.. ";
 			break;
 		case 65:
-			mes " The joker can't use any of his strength because he is tied to a card. Perhaps the person is caught in something and can't show their true merit? ";
+			mes " Joker ไม่สามารถใช้พลังใดๆ ได้เลยเพราะเขาถูกล่ามไว้กับการ์ด บางทีบุคคลนั้นอาจกำลังติดขัดอะไรบางอย่างและไม่สามารถแสดงความดีงามที่แท้จริงออกมาได้หรือเปล่า? ";
 			next;
 			mes "[Lhimetorra]";
-			mes " you love them, free them from the chains tying them down.. That is consideration.. and love ";
+			mes " ถ้าเจ้ารักพวกเขา จงปลดปล่อยพวกเขาจากโซ่ตรวนที่ล่ามเอาไว้.. นั่นแหละคือความเห็นอกเห็นใจ.. และความรัก ";
 			break;
 		case 66:
-			mes " Don't get fooled by tricks. They are a person, too. They know how to lie once in a while. Search for the trick calmly and carefully. ";
+			mes " อย่าหลงกลเล่ห์เหลี่ยม พวกเขาก็เป็นมนุษย์เหมือนกัน ย่อมต้องรู้จักโกหกบ้างเป็นธรรมดา จงหาทริคเหล่านั้นอย่างใจเย็นและระมัดระวัง ";
 			next;
 			mes "[Lhimetorra]";
-			mes " And then search for a different route. That is the wise decision. ";
+			mes " แล้วค่อยหาเส้นทางอื่น นั่นคือการตัดสินใจที่ชาญฉลาด ";
 			break;
-		case 67:// Hode Card
-			mes " It is saying that daring action is necessary, such as that of the Hode that strikes up from the sand. ";
+		case 67:// การ์ด Hode
+			mes " มันกำลังบอกว่าการกระทำที่กล้าหาญนั้นจำเป็น เช่นเดียวกับ Hode ที่พุ่งขึ้นมาจากทราย ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Maybe you are discouraged a little too much right now. Be brave and daring young one. ";
+			mes " บางทีตอนนี้เจ้าอาจจะรู้สึกท้อแท้มากจนเกินไป จงมีความกล้าและเด็ดเดี่ยวเข้าไว้เจ้าหนู ";
 			break;
 		case 68:
-			mes " Seeing that the Hode spits out sand to those who bother them, you must have done something to bother the person somehow. ";
+			mes " จากการที่ Hode พ่นทรายใส่คนที่มารบกวน เจ้าคงต้องไปทำอะไรให้คนคนนั้นรำคาญใจเข้าแน่ๆ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Maybe you are being troublesome? Make an effort to relax a little more. ";
+			mes " บางทีเจ้าอาจกำลังทำตัวเป็นภาระ? พยายามทำตัวให้ผ่อนคลายลงอีกหน่อยนะ ";
 			break;
 		case 69:
-			mes " The Hode has a very strong will to live. It is to survive in the forest. It is suggesting dating with that kind of will.";
+			mes " Hode มีความปรารถนาที่จะมีชีวิตรอดอย่างแรงกล้า เพื่อให้อยู่รอดได้ในป่า สิ่งนี้กำลังแนะนำให้เจ้าลองเดทด้วยความมุ่งมั่นแบบนั้นดูนะ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Hmm, try love with more spirit. You will get good results. ";
+			mes " อืม ลองรักแบบมีจิตวิญญาณดูสิ แล้วเจ้าจะได้ผลลัพธ์ที่ดี ";
 			break;
 		case 70:
-			mes " Ah.. there is a noble person up north. North it is. This direction will never change. ";
+			mes " อ๊ะ.. มีบุคคลผู้สูงศักดิ์อยู่ทางทิศเหนือ ทิศเหนือสินะ ทิศทางนี้จะไม่มีวันเปลี่ยนแปลง ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Trust me and go for it. ";
+			mes " เชื่อข้าสิ แล้วลุยเลย ";
 			break;
-		case 71:// Minorous Card
-			mes " A walking bull is rare. The person you are looking towards is that rare. Don't let go of them. You may never see them again.. ";
+		case 71:// การ์ด Minorous
+			mes " กระทิงเดินสองขานั้นหาได้ยากยิ่ง คนที่เจ้ามองหาอยู่นั้นก็หาได้ยากเช่นกัน อย่าปล่อยพวกเขาไปเชียวล่ะ เจ้าอาจไม่มีวันได้พบพวกเขาอีก.. ";
 			next;
 			mes "[Lhimetorra]";
-			mes " The card is saying this. ";
+			mes " การ์ดกำลังบอกเช่นนี้ ";
 			break;
 		case 72:
-			mes " Can you see the strong muscles that even arrows cannot pierce? The person is like that, too. ";
+			mes " เจ้าเห็นกล้ามเนื้อที่แข็งแกร่งจนแม้แต่ลูกธนูยังแทงไม่เข้าไหม? บุคคลนั้นก็เป็นแบบนั้นเหมือนกัน ";
 			next;
 			mes "[Lhimetorra]";
-			mes " To attack with love.. you will need a stronger attack.. Mmm.. ";
+			mes " การจะจู่โจมด้วยความรัก.. เจ้าคงต้องใช้การโจมตีที่รุนแรงกว่านี้แล้วล่ะ.. อืมมม.. ";
 			break;
 		case 73:
-			mes " The scariest thing is not the hammer nor horn. It is the massive legs that support its heavy weight. Nobody can survive a hit by those legs. The person is also probably hiding the most dangerous part. ";
+			mes " สิ่งที่น่ากลัวที่สุดไม่ใช่ค้อนหรือเขา แต่มันคือขาอันทรงพลังที่รองรับน้ำหนักมหาศาล ไม่มีใครรอดจากการถูกเตะด้วยขาคู่นั้นได้ คนคนนั้นก็น่าจะซ่อนส่วนที่อันตรายที่สุดเอาไว้เช่นกัน ";
 			next;
 			mes "[Lhimetorra]";
-			mes " You must love but be careful at the same time. You never know when you will be hit by the hind legs. ";
+			mes " เจ้ารักได้แต่ต้องระวังตัวไปพร้อมๆ กัน เจ้าไม่มีทางรู้หรอกว่าจะถูกขาหลังเตะเอาเมื่อไหร่ ";
 			break;
 		case 74:
-			mes " No matter how fearful the bull may be, it has a nose ring, it has already been tamed by humans. No matter how astonishing that person may be, taming is your responsibility. ";
+			mes " ไม่ว่ากระทิงจะน่ากลัวเพียงใด แต่มันก็มีห่วงจมูก มันถูกมนุษย์ฝึกให้เชื่องมาแล้ว ไม่ว่าคนคนนั้นจะน่าทึ่งเพียงใด การทำให้เขาเชื่องคือความรับผิดชอบของเจ้า ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Approach them with more sincerity and consideration. ";
+			mes " จงเข้าหาพวกเขาด้วยความจริงใจและความเห็นอกเห็นใจให้มากขึ้น ";
 			break;
 		}
 		next;
 		mes "[Lhimetorra]";
-		mes " You seeked advice about love. ";
-		mes " Even if you may not pleased with it, consider it calmly and make an effort to find true happiness. ";
+		mes " เจ้าได้ขอคำปรึกษาเกี่ยวกับความรักไปแล้ว ";
+		mes " แม้เจ้าอาจจะไม่พอใจกับมันนัก แต่จงพิจารณามันอย่างใจเย็นและพยายามค้นหาความสุขที่แท้จริงให้เจอ ";
 		cutin "",255;
 		next;
 		mes "[Lhimetorra]";
-		mes " Then... ";
+		mes " ถ้าเช่นนั้น... ";
 		close;
 	//=================================================================Assets? ===
 	case 2:
 		mes "[Lhimetorra]";
-		mes " Ooh... something about your fortune is starting to show... ";
+		mes " โอ้ว... บางอย่างเกี่ยวกับดวงชะตาของเจ้าเริ่มปรากฏออกมาแล้ว... ";
 		next;
 		.@card_1_money = rand(1,73);
-		if (.@card_1_money < 5) cutin "ฐกภฬพฦฝบฤซตๅ",4;			// Giearth Card
-		else if (.@card_1_money < 10) cutin "ด๕ฝบฦผณืฝบฤซตๅ",4;	// Dustiness Card
-		else if (.@card_1_money < 13) cutin "ตๅถ๓ลฅถ๓ฤซตๅ",4;		// Dracula Card
-		else if (.@card_1_money < 16) cutin "ตๅทนภฬลฉฤซตๅ",4;		// Drake Card
-		else if (.@card_1_money < 20) cutin "ธถธฎณชฤซตๅ",4;		// Marina Card
-		else if (.@card_1_money < 24) cutin "ธถธฎฟภณืฦฎฤซตๅ",4;	// Marionette Card
-		else if (.@card_1_money < 29) cutin "ธÞตฮป็ฤซตๅ",4;		// Medusa Card
-		else if (.@card_1_money < 33) cutin "นูฦ๗ธÞฦฎฤซตๅ",4;		// Baphomet Card
-		else if (.@card_1_money < 37) cutin "ป๗ตๅธวฤซตๅ",4;		// Sandman Card
-		else if (.@card_1_money < 41) cutin "ผาศ๑ฤซตๅ",4;		// Sohee Card
-		else if (.@card_1_money < 45) cutin "ฝบฤฬฟ๖ฤฟฤซตๅ",4;		// Skel Worker Card
-		else if (.@card_1_money < 50) cutin "ฝบฤฬณชภฬฦฎฤซตๅ",4;	// Khalitzburg Card
-		else if (.@card_1_money < 54) cutin "พฦดฉบ๑ฝบฤซตๅ",4;		// Anubis Card
-		else if (.@card_1_money < 58) cutin "ฟภลฉทฮตๅฤซตๅ",4;		// Orc Lord Card
-		else if (.@card_1_money < 62) cutin "ภ่ฤซตๅ",4;			// Jakk Card
-		else if (.@card_1_money < 66) cutin "มถฤฟฤซตๅ",4;		// Joker Card
-		else if (.@card_1_money < 70) cutin "ศฃตๅฤซตๅ",4;		// Hode Card
-		else cutin "ศฒผาฤซตๅ",4; // Minorous Card
+		if (.@card_1_money < 5) cutin "ฐกภฬพฦฝบฤซตๅ",4;			// การ์ด Giearth
+		else if (.@card_1_money < 10) cutin "ด๕ฝบฦผณืฝบฤซตๅ",4;	// การ์ด Dustiness
+		else if (.@card_1_money < 13) cutin "ตๅถ๓ลฅถ๓ฤซตๅ",4;		// การ์ด Dracula
+		else if (.@card_1_money < 16) cutin "ตๅทนภฬลฉฤซตๅ",4;		// การ์ด Drake
+		else if (.@card_1_money < 20) cutin "ธถธฎณชฤซตๅ",4;		// การ์ด Marina
+		else if (.@card_1_money < 24) cutin "ธถธฎฟภณืฦฎฤซตๅ",4;	// การ์ด Marionette
+		else if (.@card_1_money < 29) cutin "ธÞตฮป็ฤซตๅ",4;		// การ์ด Medusa
+		else if (.@card_1_money < 33) cutin "นูฦ๗ธÞฦฎฤซตๅ",4;		// การ์ด Baphomet
+		else if (.@card_1_money < 37) cutin "ป๗ตๅธวฤซตๅ",4;		// การ์ด Sandman
+		else if (.@card_1_money < 41) cutin "ผาศ๑ฤซตๅ",4;		// การ์ด Sohee
+		else if (.@card_1_money < 45) cutin "ฝบฤฬฟ๖ฤฟฤซตๅ",4;		// การ์ด Skel Worker
+		else if (.@card_1_money < 50) cutin "ฝบฤฬณชภฬฦฎฤซตๅ",4;	// การ์ด Khalitzburg
+		else if (.@card_1_money < 54) cutin "พฦดฉบ๑ฝบฤซตๅ",4;		// การ์ด Anubis
+		else if (.@card_1_money < 58) cutin "ฟภลฉทฮตๅฤซตๅ",4;		// การ์ด Orc Lord
+		else if (.@card_1_money < 62) cutin "ภ่ฤซตๅ",4;			// การ์ด Jakk
+		else if (.@card_1_money < 66) cutin "มถฤฟฤซตๅ",4;		// การ์ด Joker
+		else if (.@card_1_money < 70) cutin "ศฃตๅฤซตๅ",4;		// การ์ด Hode
+		else cutin "ศฒผาฤซตๅ",4; // การ์ด Minorous
 		
 		mes "[Lhimetorra]";
 		switch(.@card_1_money) {
 		case 1:
-			mes " You must work hard to become wealthy. Don't think of other things.. Focus on and put effort into achieving your goals. ";
+			mes " เจ้าต้องทำงานหนักเพื่อที่จะร่ำรวย อย่าไปคิดเรื่องอื่น.. จงจดจ่อและทุ่มเทความพยายามเพื่อให้บรรลุเป้าหมายของเจ้า ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Then good luck and try your best. ";
+			mes " ถ้าอย่างนั้นขอให้โชคดีและพยายามให้เต็มที่ ";
 			break;
 		case 2:
-			mes " Something very rare may come your way. A gold mine has been the dream of many since ancient times. You have a gold mine right in front of you. ";
+			mes " บางสิ่งที่หายากมากอาจกำลังเดินทางมาหาเจ้า เหมืองทองคือความฝันของใครหลายคนมาตั้งแต่สมัยโบราณ และเจ้ามีเหมืองทองอยู่ตรงหน้าแล้ว ";
 			next;
 			mes "[Lhimetorra]";
-			mes " All in all, a big fortune is right in front of your eyes. I'll be looking forward to it. ";
+			mes " สรุปแล้ว โชคลาภก้อนใหญ่อยู่ต่อหน้าต่อตาเจ้าแล้ว ข้าจะรอดูนะ ";
 			break;
 		case 3:
-			mes " In the stomach pocket, there must be a secret treasure. There may be something in your pocket as well. ";
+			mes " ในกระเป๋าที่หน้าท้องนั่น จะต้องมีขุมทรัพย์ลับซ่อนอยู่แน่ๆ ในกระเป๋าของเจ้าเองก็น่าจะมีบางอย่างอยู่เหมือนกัน ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Are you hiding things from other people? You should get rid of them. They may bring bad luck. ";
+			mes " เจ้ากำลังซ่อนของบางอย่างจากคนอื่นอยู่หรือเปล่า? เจ้าควรจะกำจัดมันทิ้งซะ เพราะมันอาจนำโชคร้ายมาให้ ";
 			break;
 		case 4:
-			mes " The card says that you should not be too greedy, for that may cause you to dig your own grave. ";
+			mes " การ์ดบอกว่าเจ้าไม่ควรโลภจนเกินไป เพราะนั่นอาจทำให้เจ้าขุดหลุมฝังศพตัวเอง ";
 			next;
 			mes "[Lhimetorra]";
-			mes " You may not feel good about it, but you should accept the card's advice..! ";
+			mes " เจ้าอาจจะรู้สึกไม่ดีกับมันนัก แต่เจ้าควรยอมรับคำแนะนำของการ์ดนะ..! ";
 			break;
-		case 5:// Dustiness Card
-			mes " Did you know that a moth's wings has infinite amounts of powder on it? A moth symbolizes wealth in the sense that it can gather wealth just as the powder on its wings. ";
+		case 5:// การ์ด Dustiness
+			mes " เจ้ารู้ไหมว่าปีกของผีเสื้อกลางคืนมีผงจำนวนมหาศาลอยู่บนนั้น? ผีเสื้อกลางคืนเป็นสัญลักษณ์ของความมั่งคั่งในแง่ที่ว่ามันสามารถรวบรวมทรัพย์สินได้เหมือนกับผงที่ติดอยู่บนปีกของมัน ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Young one, you will gather much wealth. ";
+			mes " เจ้าหนูเอ๋ย เจ้าจะรวบรวมทรัพย์สมบัติได้มากมาย ";
 			break;
 		case 6:
-			mes " You must work hard to become wealthy. Don't think of other things. Simply focusing on your goals putting effort into it will help. ";
+			mes " เจ้าต้องทำงานหนักเพื่อที่จะร่ำรวย อย่าไปคิดเรื่องอื่น เพียงแค่จดจ่ออยู่กับเป้าหมายและทุ่มเทแรงกายแรงใจลงไปจะช่วยเจ้าได้ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Good luck and try your best. ";
+			mes " ขอให้โชคดีและพยายามให้เต็มที่ ";
 			break;
 		case 7:
-			mes " There is a common saying that when a moth flaps its wings, wealth will fly away as well. It's not a very good sign. ";
+			mes " มีคำกล่าวกันทั่วไปว่าเมื่อผีเสื้อกลางคืนขยับปีก ความมั่งคั่งก็จะโบยบินจากไปเช่นกัน นี่ไม่ใช่สัญญาณที่ดีนัก ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Be careful not to lose your assets. Take good care of your wallet. ";
+			mes " ระวังอย่าให้เสียทรัพย์ล่ะ ดูแลกระเป๋าตังค์ของเจ้าให้ดีๆ ";
 			break;
 		case 8:
-			mes " Dustiness teeth are very strong. This means.. ";
+			mes " ฟันของ Dustiness นั้นแข็งแรงมาก สิ่งนี้หมายความว่า.. ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Your tooth will become a gold tooth?! ";
+			mes " ฟันของเจ้าจะกลายเป็นฟันทองงั้นรึ?! ";
 			break;
 		case 9:
-			mes " When a dustiness flies around, a big expense comes up. You may need to spend some money soon. ";
+			mes " เมื่อ Dustiness บินไปรอบๆ จะเกิดรายจ่ายก้อนใหญ่ตามมา เจ้าอาจจำเป็นต้องใช้เงินในเร็วๆ นี้ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " You might want to set up a budget to prepare for this expense. ";
+			mes " เจ้าอาจจะอยากลองจัดงบประมาณไว้เพื่อเตรียมรับมือกับค่าใช้จ่ายนี้ดูนะ ";
 			break;
-		case 10:// Dracula Card
-			mes " Dracula brings in money. Maybe it is the moral influence from when it was a count. It is expensive to be a vampire, but I've never seen a poor one before. ";
+		case 10:// การ์ด Dracula
+			mes " Dracula นำพาเงินทองมาให้ บางทีมันอาจเป็นอิทธิพลทางศีลธรรมตั้งแต่สมัยที่เขายังเป็นเคานต์ การเป็นแวมไพร์มันมีค่าใช้จ่ายสูง แต่ข้าก็ไม่เคยเห็นแวมไพร์ที่ยากจนมาก่อนเลยนะ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " You don't need to worry about money. ";
+			mes " เจ้าไม่จำเป็นต้องกังวลเรื่องเงินหรอก ";
 			break;
 		case 11:
-			mes " To Dracula, money is not important. Blood is more valuable. To you, money must not be that important. You don't need to be concerned about money. ";
+			mes " สำหรับ Dracula แล้ว เงินไม่ใช่เรื่องสำคัญ เลือดมีค่ามากกว่า สำหรับเจ้าเอง เงินก็คงไม่ได้สำคัญขนาดนั้น เจ้าไม่จำเป็นต้องกังวลเรื่องเงินไป ";
 			next;
 			mes "[Lhimetorra]";
-			mes " How about it? Try being a little more casual about money. ";
+			mes " ลองทำตัวสบายๆ กับเรื่องเงินให้มากขึ้นดูหน่อยเป็นไง? ";
 			break;
 		case 12:
-			mes " Dracula mocks human's money. To him it is worthless. ";
+			mes " Dracula เยาะเย้ยเงินตราของมนุษย์ สำหรับเขาแล้วมันไร้ค่า ";
 			next;
 			mes "[Lhimetorra]";
-			mes " You should not be so concerned about money and assets, too. ";
+			mes " เจ้าเองก็ไม่ควรไปยึดติดกับเงินทองและทรัพย์สมบัติมากจนเกินไปเช่นกัน ";
 			break;
-		case 13:// Drake Card
-			mes " No matter what, stealing is wrong! Even a Drake blesses you in the name of pirates! Stealing is forbidden! ";
+		case 13:// การ์ด Drake
+			mes " ไม่ว่าจะยังไง การขโมยก็เป็นสิ่งที่ผิด! แม้แต่ Drake ยังอวยพรให้เจ้าในนามของโจรสลัดเลย! การขโมยเป็นสิ่งต้องห้าม! ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Noooooooo stealing! ";
+			mes " ห้ามมมมมมมมมขโมยเด็ดขาด! ";
 			break;
 		case 14:
-			mes " You will gather good fortune in a secretive and peculiar way.. Although, there seems to be shadows over some parts of your life. ";
+			mes " เจ้าจะรวบรวมโชคลาภด้วยวิธีที่ลึกลับและแปลกประหลาด.. อย่างไรก็ตาม ดูเหมือนจะมีเงามืดปกคลุมอยู่ในบางส่วนของชีวิตเจ้า ";
 			next;
 			mes "[Lhimetorra]";
-			mes " It's an uneasy fortune. Are you ready? ";
+			mes " มันเป็นดวงชะตาที่น่าหวั่นใจ เจ้าพร้อมหรือยัง? ";
 			break;
 		case 15:
-			mes " The reason pirates indulge in others assets in the vast rough ocean, is because it is the only way to let the people of the land know of their existence. ";
+			mes " เหตุผลที่เหล่าโจรสลัดช่วงชิงทรัพย์สินของผู้อื่นในมหาสมุทรอันกว้างใหญ่ปั่นป่วน ก็เพื่อให้ผู้คนบนแผ่นดินได้รับรู้ถึงการมีอยู่ของพวกเขา ";
 			next;
 			mes "[Lhimetorra]";
-			mes " But those who live on land do not need to do so. Don't look over other people's belongings. It is the advice of a pirate. ";
+			mes " แต่ผู้ที่อาศัยอยู่บนบกไม่จำเป็นต้องทำเช่นนั้น อย่าไปมองของของคนอื่นเลย นี่คือคำแนะนำของโจรสลัดล่ะ ";
 			break;
-		case 16:// Marina Card
-			mes " Marina prefers clean funds. It hates suspicious money. Your possessions should be clean as well. ";
+		case 16:// การ์ด Marina
+			mes " Marina ชอบเงินที่สะอาดสะอ้าน มันเกลียดเงินที่มีที่มาน่าสงสัย ทรัพย์สินของเจ้าเองก็ควรจะสะอาดด้วยเช่นกัน ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Why? The Marina might get rid of it all. ";
+			mes " ทำไมน่ะรึ? เพราะ Marina อาจจะกำจัดมันทิ้งไปทั้งหมดน่ะสิ ";
 			break;
 		case 17:
-			mes " The Marina gathers money quietly, little by little, and freely roaming at the same time. That's the real way to make money. The Marina is suggesting this method to you. ";
+			mes " Marina รวบรวมเงินอย่างเงียบๆ ทีละเล็กทีละน้อย และท่องไปอย่างอิสระในเวลาเดียวกัน นั่นคือวิธีหาเงินที่แท้จริง และ Marina กำลังแนะนำวิธีนี้ให้กับเจ้า ";
 			next;
 			mes "[Lhimetorra]";
-			mes " You should take a shot at it. You've got nothing to lose. ";
+			mes " เจ้าควรจะลองดูนะ ไม่มีอะไรจะเสียอยู่แล้วนี่ ";
 			break;
 		case 18:
-			mes " The Marina is not interested in money. The card suggests that you will resemble these traits as well. You will enjoy life apart from money. ";
+			mes " Marina ไม่สนใจเรื่องเงินหรอก การ์ดบ่งบอกว่าเจ้าเองก็จะได้รับอิทธิพลจากคุณลักษณะเหล่านี้เช่นกัน เจ้าจะมีความสุขกับชีวิตโดยแยกออกจากเรื่องเงินทอง ";
 			next;
 			mes "[Lhimetorra]";
-			mes " That's the fortune from a Marina card. ";
+			mes " นั่นคือคำทำนายจากการ์ด Marina ";
 			break;
 		case 19:
-			mes " You will gather money swiftly and quietly, then boom~ blow it all at once. ";
+			mes " เจ้าจะรวบรวมเงินได้อย่างรวดเร็วและเงียบเชียบ แล้วจากนั้นก็ ตูม~ ผลาญมันจนเกลี้ยงในคราวเดียว ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Very witty, hoho. ";
+			mes " ช่างมีไหวพริบจริงๆ โฮ่โฮ่ ";
 			break;
-		case 20:// Marionette Card
-			mes " The Marionette treasures art over wealth. Bear that in mind. Honor over assets. ";
+		case 20:// การ์ด Marionette
+			mes " Marionette ให้คุณค่ากับศิลปะมากกว่าความมั่งคั่ง จงจำไว้ให้ดี เกียรติยศนั้นสำคัญกว่าทรัพย์สมบัติ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " What an important lesson.. Mmm... ";
+			mes " ช่างเป็นบทเรียนที่สำคัญจริงๆ.. อืมมม... ";
 			break;
 		case 21:
-			mes " The Marionette likes shiny money. Not dull money, but the shiny kind. ";
+			mes " Marionette ชอบเงินที่แวววาว ไม่ใช่เงินที่ดูหมองๆ แต่ต้องเป็นแบบที่มันวาวเท่านั้น ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Anyways, search for that type of money. ";
+			mes " อย่างไรก็ตาม จงตามหาเงินประเภทนั้นซะ ";
 			break;
 		case 22:
-			mes " The Marionette requires lots of money. Its expenditures are enormous. You must have many expenditures ahead of you. ";
+			mes " Marionette ต้องใช้เงินจำนวนมาก รายจ่ายของมันนั้นมหาศาล เจ้าเองก็น่าจะมีรายจ่ายมากมายรออยู่ข้างหน้าเหมือนกัน ";
 			next;
 			mes "[Lhimetorra]";
-			mes " A gloomy fortune. How about being cautious? ";
+			mes " เป็นดวงที่มืดมนจังเลยนะ ลองระมัดระวังดูหน่อยไหม? ";
 			break;
 		case 23:
-			mes " The Marionette uses a lot of money. There is someone around you that is like that, too. ";
+			mes " Marionette ใช้เงินเปลืองมาก และมีใครบางคนรอบตัวเจ้าที่เป็นแบบนั้นเหมือนกันนะ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " There is a person like that for sure. You should watch out. ";
+			mes " มีคนแบบนั้นอยู่แน่นอน เจ้าควรระวังไว้ให้ดี ";
 			break;
-		case 24:// Medusa Card
-			mes " The hair of the Medusa symbolizes the amount of wealth. Seems as something good will happen to you, young one. ";
+		case 24:// การ์ด Medusa
+			mes " เส้นผมของ Medusa เป็นสัญลักษณ์ของจำนวนความมั่งคั่ง ดูเหมือนจะมีเรื่องดีๆ เกิดขึ้นกับเจ้านะเจ้าหนู ";
 			next;
 			mes "[Lhimetorra]";
-			mes " You can look forward to it. ";
+			mes " ตั้งตารอได้เลย ";
 			break;
 		case 25:
-			mes " The hair of the Medusa are all snakes. Snakes symbolize greed and slyness. When gathering things, it seems as a cunning force will join you. It's not exactly a bright sign.. ";
+			mes " เส้นผมของ Medusa ล้วนเป็นงู งูเป็นสัญลักษณ์ของความโลภและความเจ้าเล่ห์ ในขณะที่เจ้ากำลังรวบรวมสิ่งของ ดูเหมือนจะมีอำนาจที่คดโกงมาร่วมกับเจ้าด้วย มันไม่ใช่สัญญาณที่สว่างไสวนักหรอก.. ";
 			next;
 			mes "[Lhimetorra]";
-			mes " But you surely will get money. Hmm.. ";
+			mes " แต่เจ้าจะได้เงินแน่นอน อืมม.. ";
 			break;
 		case 26:
-			mes " The Medusa is strongly recommending saving. This card is telling you to save. It says to put many savings accounts in your hair and make yourself resemble its head shape. ";
+			mes " Medusa แนะนำการออมเงินอย่างยิ่ง การ์ดใบนี้บอกให้เจ้าออมซะ มันบอกให้ฝากบัญชีออมทรัพย์ไว้ในผมของเจ้าเยอะๆ และทำให้ตัวเองดูคล้ายกับรูปทรงศีรษะของมัน ";
 			next;
 			mes "[Lhimetorra]";
-			mes " That is what it believes to be wealth. Oooh! ";
+			mes " นั่นคือสิ่งที่มันเชื่อว่าเป็นความมั่งคั่ง โอ้วว! ";
 			break;
 		case 28:
-			mes " The Medusa does not enjoy playing with money. you are attempting to use money other than the way it should be used, you should stop. Why? ";
+			mes " Medusa ไม่ชอบการเล่นกับเงิน หากเจ้ากำลังพยายามใช้เงินผิดวัตถุประสงค์ เจ้าควรหยุดซะ ทำไมน่ะรึ? ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Because there can be a curse of the Medusa. ";
+			mes " เพราะอาจจะเกิดคำสาปของ Medusa ได้ยังไงล่ะ ";
 			break;
-		case 29:// Baphomet Card
-			mes " The great strength of the Baphomet brings in fortune. It seems as you will be able to gather much wealth with the aid of the Baphomet's force! ";
+		case 29:// การ์ด Baphomet
+			mes " พลังอำนาจอันยิ่งใหญ่ของ Baphomet นำพาโชคลาภมาให้ ดูเหมือนเจ้าจะสามารถรวบรวมความมั่งคั่งได้มากมายด้วยความช่วยเหลือจากพลังของ Baphomet! ";
 			next;
 			mes "[Lhimetorra]";
-			mes " It's a good sign! Congratulations! ";
+			mes " เป็นนิมิตหมายที่ดี! ยินดีด้วย! ";
 			break;
 		case 30:
-			mes " The scythe of the Baphomet means a strong tool to gather wealth. you have a strong tool like his, it should be easy to gather wealth. ";
+			mes " เคียวของ Baphomet หมายถึงเครื่องมือที่ทรงพลังในการรวบรวมทรัพย์สมบัติ หากเจ้ามีเครื่องมือที่แข็งแกร่งเหมือนของเขา การสะสมความมั่งคั่งก็จะเป็นเรื่องง่าย ";
 			next;
 			mes "[Lhimetorra]";
-			mes " What the Baphomet is trying to say is, find a mean that can help you like his tool. ";
+			mes " สิ่งที่ Baphomet พยายามจะบอกคือ จงหาวิธีการที่สามารถช่วยเจ้าได้เหมือนเครื่องมือของเขา ";
 			break;
 		case 31:
-			mes " How about getting involved in raising cattle? It seems like you can gather much wealth through it. ";
+			mes " ลองหันไปทำอาชีพเลี้ยงปศุสัตว์ดูเป็นไง? ดูเหมือนเจ้าจะสามารถรวบรวมความมั่งคั่งได้มากมายผ่านทางนั้นนะ ";
 			break;
 		case 32:
-			mes " The Baphomet would like a tribute. He is saying that you do, he will return great benefits. ";
+			mes " Baphomet อยากได้เครื่องเซ่นสังเวย เขาบอกว่าถ้าเจ้าทำตาม เขาจะตอบแทนด้วยผลประโยชน์มหาศาล ";
 			next;
 			mes "[Lhimetorra]";
-			mes " So try offering a part of your assets to the Baphomet. ";
+			mes " ดังนั้นลองถวายส่วนหนึ่งของทรัพย์สมบัติให้แก่ Baphomet ดูสิ ";
 			break;
-		case 33:// Sandman Card
-			mes " The Sandman cries with sadness when money comes up. It is sad because money does not possess love or affection. ";
+		case 33:// การ์ด Sandman
+			mes " Sandman ร้องไห้ด้วยความเศร้าเมื่อพูดถึงเรื่องเงิน มันเศร้าเพราะเงินไม่มีความรักหรือความเสน่หาเจือปนอยู่เลย ";
 			next;
 			mes "[Lhimetorra]";
-			mes " I wonder the meaning of money will slowly disappear from your life as well. ";
+			mes " ข้าสงสัยว่าความหมายของเงินจะค่อยๆ เลือนหายไปจากชีวิตของเจ้าด้วยเช่นกันหรือไม่ ";
 			break;
 		case 34:
-			mes " The Sandman is screaming because it saw too much money. It saw the money in the hands of your future. I wonder what all that money is? ";
+			mes " Sandman กำลังกรีดร้องเพราะมันเห็นเงินมากเกินไป มันเห็นเงินอยู่ในกำมือในอนาคตของเจ้า ข้าสงสัยจังว่าเงินทั้งหมดนั่นคืออะไรกันนะ? ";
 			next;
 			mes "[Lhimetorra]";
-			mes " I wonder.. Aren't you curious? ";
+			mes " ข้าสงสัยจริงๆ.. เจ้าไม่สงสัยบ้างรึ? ";
 			break;
 		case 35:
-			mes " The Sandman's body is empty inside. Your wallet seems to be emtpy, too. You should save up some money. ";
+			mes " ร่างกายของ Sandman ว่างเปล่าอยู่ภายใน กระเป๋าตังค์ของเจ้าเองก็ดูเหมือนจะว่างเปล่าด้วยนะ เจ้าควรเก็บหอมรอมริบไว้บ้าง ";
 			next;
 			mes "[Lhimetorra]";
-			mes " The Sandman likes to save, too. Even a monster likes to save, but when a human doesn't... ";
+			mes " Sandman เองก็ชอบการออมเงินเหมือนกันนะ ขนาดมอนสเตอร์ยังชอบออมเงินเลย แล้วถ้ามนุษย์ไม่ทำล่ะก็... ";
 			break;
 		case 36:
-			mes " Money is like sand. Even you save it, once the wind blows, it disappears. This card shows the emptiness of money. ";
+			mes " เงินก็เหมือนเม็ดทราย ต่อให้เจ้าเก็บมันไว้ เมื่อลมพัดมามันก็ปลิวหายไป การ์ดใบนี้แสดงให้เห็นถึงความไร้แก่นสารของเงินทอง ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Indeed, money is futile. ";
+			mes " ใช่แล้ว เงินทองเป็นของนอกกายจริงๆ ";
 			break;
-		case 37:// Sohee Card
-			mes " Sohee is wearing a fine article. To wear something like that, you would need plenty of money. Do you know what the secret is? Sohee saved very much when she was once alive. ";
+		case 37:// การ์ด Sohee
+			mes " Sohee สวมใส่เครื่องประดับชั้นเลิศ การจะใส่อะไรแบบนั้นได้เจ้าต้องมีเงินเยอะพอดูเลยล่ะ เจ้ารู้ไหมว่าความลับคืออะไร? Sohee ออมเงินไว้เยอะมากตั้งแต่ตอนที่เธอยังมีชีวิตอยู่ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " So you should start saving, too. ";
+			mes " เพราะฉะนั้นเจ้าเองก็ควรเริ่มออมเงินได้แล้วนะ ";
 			break;
 		case 38:
-			mes " Sohee hates misers. She believes she has become like that because of a miser. Don't be stingy in front of Sohee! ";
+			mes " Sohee เกลียดพวกคนขี้เหนียว เธอเชื่อว่าเธอต้องกลายเป็นแบบนี้ก็เพราะคนขี้เหนียว อย่าทำตัวตระหนี่ต่อหน้า Sohee เชียวล่ะ! ";
 			next;
 			mes "[Lhimetorra]";
-			mes " That type of stinginess will spite other people. Use money when it is necessary. ";
+			mes " ความขี้เหนียวแบบนั้นจะทำให้คนอื่นผูกใจเจ็บ จงใช้เงินเมื่อคราวจำเป็นเถิด ";
 			break;
 		case 39:
-			mes " Sohee dislikes the wealthy. They try to gather money, but never use it for others. you don't want to be cursed by Sohee, you need to learn how to be generous with money. ";
+			mes " Sohee ไม่ชอบพวกคนรวย พวกเขาพยายามรวบรวมเงินแต่ไม่เคยใช้เพื่อคนอื่นเลย หากเจ้าไม่อยากถูก Sohee สาป เจ้าต้องเรียนรู้วิธีที่จะเป็นคนใจกว้างเรื่องเงินทองเสียบ้าง ";
 			next;
 			mes "[Lhimetorra]";
-			mes " So you have malicious desires, forget them. An ill heart easily gathers misfortune. ";
+			mes " หากเจ้ามีความปรารถนาที่มุ่งร้าย จงลืมมันซะ ใจที่ชั่วร้ายมักจะดึงดูดโชคร้ายได้ง่ายดาย ";
 			break;
 		case 40:
-			mes " Sohee likes foreign money. They are cute and pretty. you have foreign currency, Sohee will love you. ";
+			mes " Sohee ชอบเงินตราต่างประเทศ พวกมันดูน่ารักและสวยดีนะ หากเจ้ามีเงินสกุลต่างชาติ Sohee จะรักเจ้ามากเลยล่ะ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Keep an eye out for foreign currency. It will bring you luck. ";
+			mes " คอยมองหาเงินสกุลต่างชาติไว้บ้างล่ะ มันจะนำโชคมาให้เจ้า ";
 			break;
-		case 41:// Skel Worker Card
-			mes " Those who work hard will gather great fortune. The Skeleton says diligent work will help greatly in gathering wealth. ";
+		case 41:// การ์ด Skel Worker
+			mes " ผู้ที่ทำงานหนักย่อมรวบรวมโชคลาภได้มหาศาล เจ้าโครงกระดูกบอกว่าการขยันขันแข็งจะช่วยในการสะสมความมั่งคั่งได้เป็นอย่างดี ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Hmm~ a ghost is saying strange things. ";
+			mes " อืมม~ ผีสางพูดจาอะไรแปลกๆ แฮะ ";
 			break;
 		case 42:
-			mes " Its youth is gone after a lifetime of chasing after gold. It became a monster with only bones left. No matter how much you like money and your work, look after your life as well. ";
+			mes " วัยเยาว์ของมันจางหายไปหลังจากใช้เวลาทั้งชีวิตวิ่งไล่ตามทองคำ จนกลายเป็นมอนสเตอร์ที่เหลือแต่กระดูก ไม่ว่าเจ้าจะชอบเงินหรืองานของเจ้าแค่ไหน ก็จงดูแลชีวิตของตัวเองด้วย ";
 			next;
 			mes "[Lhimetorra]";
-			mes " There is much more to life than wealth. ";
+			mes " ชีวิตคนเรามีอะไรมากกว่าความมั่งคั่งนะ ";
 			break;
 		case 43:
-			mes " To become rich, you must work hard as you became a skeleton. The Skeleton is saying to work hard until you become a skeleton. ";
+			mes " การจะร่ำรวยได้ เจ้าต้องทำงานหนักจนเป็นโครงกระดูกเลยล่ะ เจ้าโครงกระดูกบอกให้เจ้าทำงานหนักจนกว่าเจ้าจะกลายเป็นเหมือนมัน ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Then not only the Skeleton, but many people will repay you greatly. ";
+			mes " แล้วไม่เพียงแต่เจ้าโครงกระดูกเท่านั้น แต่ผู้คนมากมายจะตอบแทนเจ้าอย่างมหาศาล ";
 			break;
 		case 44:
-			mes " The Skeleton says that you can make money by going north. Go north. ";
+			mes " เจ้าโครงกระดูกบอกว่าเจ้าสามารถหาเงินได้จากการเดินทางไปทางทิศเหนือ จงมุ่งหน้าไปทางทิศเหนือซะ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " There must be great fortune in that direction. ";
+			mes " จะต้องมีโชคลาภก้อนโตรออยู่ในทิศนั้นแน่ๆ ";
 			break;
-		case 45:// Khalitzburg Card
-			mes " A knight is a job that requires a lot of money. A hint of a big expense. You might want to tighten your belt. ";
+		case 45:// การ์ด Khalitzburg
+			mes " อัศวินเป็นอาชีพที่ต้องใช้เงินเยอะ เป็นลางบอกเหตุถึงรายจ่ายก้อนโต เจ้าอาจจะต้องรัดเข็มขัดให้แน่นหน่อยนะ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " That is, you don't want go to bankrupt. ";
+			mes " นั่นก็คือ เจ้าคงไม่อยากล้มละลายหรอกใช่ไหม ";
 			break;
 		case 46:
-			mes " Knights do not fight for money. they did, they would be a mercenary. A knight reaches for something higher. What the knight wants to tell you is the way to live. ";
+			mes " อัศวินไม่ได้ต่อสู้เพื่อเงิน หากพวกเขาทำเช่นนั้น พวกเขาก็จะเป็นเพียงทหารรับจ้าง แต่อัศวินไขว่คว้าสิ่งที่สูงส่งกว่านั้น สิ่งที่อัศวินอยากบอกเจ้าก็คือวิถีแห่งการใช้ชีวิต ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Set a goal higher than money and wealth. Do you understand, young one? ";
+			mes " จงตั้งเป้าหมายให้สูงกว่าเงินทองและความมั่งคั่ง เข้าใจไหมเจ้าหนู? ";
 			break;
 		case 47:
-			mes " A knight values honor more than fortune. They consider discussing wealth itself dirty not worthy. How would you be able to ask such a knight a fortune about wealth? ";
+			mes " อัศวินให้คุณค่ากับเกียรติยศมากกว่าโชคลาภ พวกเขาถือว่าการพูดคุยเรื่องความมั่งคั่งเป็นเรื่องสกปรกและไม่คู่ควร เจ้าจะถามเรื่องความมั่งคั่งจากอัศวินแบบนี้ได้อย่างไรกัน? ";
 			next;
 			mes "[Lhimetorra]";
-			mes " The knight says that a new road of life will open once you look away from fortune. ";
+			mes " อัศวินกล่าวว่า เส้นทางชีวิตใหม่จะเปิดออกเมื่อเจ้าละสายตาจากโชคลาภ ";
 			break;
 		case 48:
-			mes " You need to think of an ideal more noble than money. The fortune the knight suggests is this: Knights never speak of ways to make money. ";
+			mes " เจ้าต้องคิดถึงอุดมคติที่สูงส่งกว่าเงินทองดั่งเช่นอัศวิน คำทำนายที่อัศวินแนะนำคือ: อัศวินไม่มีวันพูดถึงวิธีหาเงิน ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Compared to life, they believe money is foolish. The knight would like to understand these ideas of life. ";
+			mes " เมื่อเทียบกับชีวิตแล้ว พวกเขาเชื่อว่าเงินเป็นเรื่องงมงาย อัศวินอยากให้เจ้าเข้าใจแนวคิดเหล่านี้ของชีวิต ";
 			break;
 		case 49:
-			mes " Working hard is the only way to gather wealth; don't get sidetracked and put effort into working will help your fortune. ";
+			mes " การทำงานหนักเป็นวิธีเดียวที่จะรวบรวมความมั่งคั่ง อย่าได้วอกแวก ทุ่มเทแรงกายแรงใจไปกับงานจะช่วยส่งเสริมดวงชะตาของเจ้า ";
 			next;
 			mes "[Lhimetorra]";
-			mes " So do your best. ";
+			mes " เพราะฉะนั้นจงทำให้ดีที่สุด ";
 			break;
-		case 50:// Anubis Card
-			mes " What does the god of death have to say about wealth? It is surely a bad omen. It is trying to warn something. ";
+		case 50:// การ์ด Anubis
+			mes " เทพแห่งความตายจะมีอะไรพูดเกี่ยวกับความมั่งคั่งงั้นรึ? มันเป็นลางร้ายแน่นอน มันพยายามจะเตือนบางอย่าง ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Be careful. It is the word of the god of death. ";
+			mes " ระวังตัวด้วยล่ะ นั่นคือคำเตือนจากเทพแห่งความตายเชียวนะ ";
 			break;
 		case 51:
-			mes " The Anubis is very interested in the sacrifices offered. The offerings he likes are youth and effort. ";
+			mes " Anubis สนใจในเครื่องเซ่นสังเวยที่ถูกถวายอย่างมาก สิ่งที่เขาชอบคือวัยเยาว์และความพยายาม ";
 			next;
 			mes "[Lhimetorra]";
-			mes " you offer these two things, the Anubis says he will bring you wealth. ";
+			mes " หากเจ้าถวายสองสิ่งนี้ Anubis บอกว่าเขาจะบันดาลความมั่งคั่งให้เจ้า ";
 			break;
 		case 52:
-			mes " The Anubis is giving a warning of the west. There is a being there that can break away your wealth. ";
+			mes " Anubis กำลังเตือนเกี่ยวกับทิศตะวันตก มีตัวตนบางอย่างที่นั่นที่สามารถพรากความมั่งคั่งของเจ้าไปได้ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " you want to protect your assets, beware of the west. ";
+			mes " หากเจ้าอยากปกป้องทรัพย์สินของเจ้า จงระวังทิศตะวันตกให้ดี ";
 			break;
 		case 53:
-			mes " The Anubis hates those who try to gather money for his death. He believes it's a waste of money. Don't make the mistake of gathering money for death. ";
+			mes " Anubis เกลียดคนที่พยายามรวบรวมเงินไว้เพื่องานศพของตัวเอง เขาเชื่อว่ามันเป็นการเสียเงินโดยเปล่าประโยชน์ อย่าทำผิดพลาดด้วยการสะสมเงินเพื่อความตายเลย ";
 			next;
 			mes "[Lhimetorra]";
-			mes " This is the true advice of a Anubis. ";
+			mes " นี่คือคำแนะนำที่แท้จริงจาก Anubis ";
 			break;
-		case 54:// Orc Lord Card
-			mes " The Orc Lord possesses much wealth. It's because of greed. Greed is essential in collecting money. The desire and greediness to make money is not something to be ashamed about. Be diligent and go make money. ";
+		case 54:// การ์ด Orc Lord
+			mes " Orc Lord ครอบครองความมั่งคั่งมากมาย นั่นเป็นเพราะความโลภ ความโลภเป็นสิ่งจำเป็นในการเก็บเงิน ความปรารถนาและความโลภในการหาเงินไม่ใช่เรื่องที่น่าอาย จงขยันขันแข็งและออกไปหาเงินซะ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " But, too much greed is forbidden. ";
+			mes " แต่ความโลภที่มากเกินไปก็เป็นสิ่งต้องห้ามนะ ";
 			break;
 		case 55:
-			mes " The Orc Lord starts drooling about anything involving money. He targets anybody with money. ";
+			mes " Orc Lord จะเริ่มน้ำลายไหลกับทุกสิ่งที่เกี่ยวข้องกับเงิน เขาตั้งเป้าหมายไปที่ทุกคนที่มีเงิน ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Therefore, don't speak of money to the Orc Lord. ";
+			mes " เพราะฉะนั้น อย่าได้พูดเรื่องเงินต่อหน้า Orc Lord เชียวล่ะ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Same goes for humans. Be wary of those who are avaricious like the Orc Lord. ";
+			mes " กับมนุษย์ก็เช่นกัน จงระวังพวกที่ละโมบเหมือน Orc Lord ไว้ให้ดี ";
 			break;
 		case 56:
-			mes " There should be great wealth awaiting in the direction the Orc Lord's horn is pointing. The card is directing towards.. ";
+			mes " จะต้องมีความมั่งคั่งมหาศาลรออยู่ในทิศทางที่เขาของ Orc Lord ชี้ไป การ์ดกำลังชี้ไปที่.. ";
 			next;
 			mes "[Lhimetorra]";
-			mes " The northwest? Would you like to try your luck in that direction? ";
+			mes " ทิศตะวันตกเฉียงเหนือรึเปล่านะ? เจ้าอยากจะลองไปเสี่ยงโชคในทิศนั้นดูไหมล่ะ? ";
 			break;
 		case 57:
-			mes " The Orc Lord likes gold. Of all the treasures, gold is the best. Closely watch gold. ";
+			mes " Orc Lord ชอบทองคำ ในบรรดาสมบัติทั้งหลาย ทองคำดีที่สุด จงเฝ้ามองทองคำให้ดีๆ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Gold is rather peculiar compared to other assets. ";
+			mes " ทองคำนั้นค่อนข้างจะพิเศษเมื่อเทียบกับทรัพย์สินอื่นๆ นะ ";
 			break;
-		case 58: // Jakk Card
-			mes " Jack makes money through jokes. Others' happiness is the key to his wealth. ";
+		case 58: // การ์ด Jakk
+			mes " Jakk หาเงินผ่านเรื่องตลก ความสุขของคนอื่นคือหัวใจสำคัญสู่ความมั่งคั่งของเขา ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Why don't you learn how to make others happy? It should be of great help. ";
+			mes " ทำไมเจ้าไม่ลองเรียนรู้วิธีทำให้คนอื่นมีความสุขดูล่ะ? มันน่าจะมีประโยชน์มากเลยนะ ";
 			break;
 		case 59:
-			mes " Jack likes fun money. He detests sad and burdensome money. ";
-			mes " He always says this. Light-hearted and easy money isn't dangerous even it piles up. ";
+			mes " Jakk ชอบเงินที่ได้มาอย่างสนุกสนาน เขาเกลียดเงินที่ได้มาอย่างเศร้าสร้อยและเหนื่อยยาก ";
+			mes " เขามักจะพูดแบบนี้เสมอ เงินที่ได้มาแบบง่ายๆ และสบายใจไม่เป็นอันตรายหรอกถึงแม้จะกองเป็นภูเขาเลากา ";
 			next;
 			mes "[Lhimetorra]";
-			mes " As Jack's advice says, stay closer to light money. It is safer and better. ";
+			mes " ตามคำแนะนำของ Jakk จงอยู่ใกล้ชิดกับเงินที่ได้มาอย่างสบายใจไว้ มันปลอดภัยกว่าและดีกว่าเยอะ ";
 			break;
 		case 60:
-			mes " Jack thinks of money as a foolish item. But somehow he makes that kind of money. ";
-			mes " That's why those who are controlled by fools consider the other a fool, too. ";
+			mes " Jakk คิดว่าเงินเป็นไอเทมที่งมงาย แต่เขากลับหาเงินแบบนั้นได้เฉยเลย ";
+			mes " นั่นเป็นเหตุผลที่ผู้ที่ถูกควบคุมโดยคนโง่ มักจะมองอีกฝ่ายเป็นคนโง่เช่นกัน ";
 			next;
 			mes "[Lhimetorra]";
-			mes " you don't want to be considered a fool by Jack, don't be controlled by money. ";
-			mes " Or else, Jack will attack. ";
+			mes " หากเจ้าไม่อยากถูก Jakk มองว่าเป็นคนโง่ ก็อย่าให้เงินมาควบคุมเจ้า ";
+			mes " มิฉะนั้น Jakk จะโจมตีเจ้าเอาได้นะ ";
 			break;
 		case 61:
-			mes " Jack is asking for money. Don't be stingy about paying those who bring entertainment and fun. ";
+			mes " Jakk กำลังขอเงิน อย่าได้ขี้เหนียวกับการจ่ายเงินให้ผู้ที่มอบความบันเทิงและความสนุกสนานเลย ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Then, Jack will reward you in return. ";
+			mes " แล้ว Jakk จะให้รางวัลตอบแทนเจ้าเอง ";
 			break;
-		case 62:// Joker Card
-			mes " Do you know what a joker's specialty is? It is tricking others and making money. Be wary of the joker. ";
+		case 62:// การ์ด Joker
+			mes " เจ้ารู้ไหมว่าความเชี่ยวชาญของ Joker คืออะไร? มันคือการหลอกลวงคนอื่นและหาเงินยังไงล่ะ จงระวัง Joker ไว้ให้ดี ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Jokers do not exist in one form. They will aim for your money in several different ways. ";
+			mes " Joker ไม่ได้มาในรูปแบบเดียวหรอกนะ พวกมันจะตั้งเป้าที่เงินของเจ้าผ่านวิธีที่หลากหลาย ";
 			break;
 		case 63:
-			mes " The Joker says you let him borrow money, he will repay you with more. You're going to refuse, right? But the Joker's temptation does not end after one try. ";
-			mes " He will linger around you as a neighbor, or a rare item and ask for money. ";
+			mes " Joker บอกว่าหากเจ้าให้เขายืมเงิน เขาจะคืนให้เจ้ามากกว่าเดิม เจ้าจะปฏิเสธใช่ไหมล่ะ? แต่การล่อลวงของ Joker ไม่ได้จบลงเพียงแค่ครั้งเดียวหรอกนะ ";
+			mes " เขาจะวนเวียนอยู่รอบตัวเจ้าในฐานะเพื่อนบ้าน หรือในรูปแบบของไอเทมหานากแล้วขอเงินเจ้า ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Act wisely! You'll be in trouble you are tricked easily! ";
+			mes " จงทำตัวให้ฉลาดเข้าไว้! เจ้าจะเดือดร้อนแน่ถ้าถูกหลอกง่ายๆ แบบนั้น! ";
 			break;
 		case 64:
-			mes " Even a joker asks for change, never give any to him. He will ask for change, then end up ask for a big sum of money. ";
-			mes " Jokers are like that. They have the ability to turn a small mistake into a big calamity. ";
+			mes " ถึงแม้ Joker จะขอแค่เศษเงิน ก็ห้ามให้เด็ดขาด เขาจะขอเศษเงินก่อน แล้วสุดท้ายก็จะขอเงินก้อนใหญ่จากเจ้า ";
+			mes " Joker ก็เป็นแบบนี้แหละ พวกมันมีความสามารถในการเปลี่ยนความผิดพลาดเล็กๆ ให้กลายเป็นหายนะก้อนโต ";
 			next;
 			mes "[Lhimetorra]";
-			mes " That's why you should be more careful about it. ";
+			mes " นั่นคือเหตุผลที่เจ้าควรจะระวังให้มากกว่านี้ ";
 			break;
 		case 65:
-			mes " There is only one reason a Joker requests money.. to take yours. ";
-			mes " His goal is not to become rich. A real foul playful one. ";
+			mes " มีเพียงเหตุผลเดียวที่ Joker ร้องขอเงิน.. เพื่อฮุบเอาเงินของเจ้าไปนั่นเอง ";
+			mes " เป้าหมายของเขาไม่ใช่การเป็นคนรวยหรอกนะ แค่พวกที่ชอบเล่นตลกแบบร้ายกาจน่ะ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " But losing money isn't a joke now, is it? You should be careful. ";
+			mes " แต่การเสียเงินมันไม่ใช่เรื่องตลกหรอกนะ จริงไหม? เจ้าควรจะระวังตัวไว้ ";
 			break;
-		case 66:// Hode Card
-			mes " Hodes do not know about money. They just gobble everything up. But that might be the shortcut to gaining great wealth. ";
+		case 66:// การ์ด Hode
+			mes " Hode ไม่รู้จักเรื่องเงินทองหรอก พวกมันแค่เขมือบทุกอย่างที่ขวางหน้า แต่นั่นอาจเป็นทางลัดสู่การได้มาซึ่งความมั่งคั่งอันยิ่งใหญ่ก็ได้นะ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Don't focus too much on money. Just work at it. It's saying that it is the best method. ";
+			mes " อย่าไปจดจ่อกับเงินมากเกินไป แค่ตั้งใจทำงานไปเถอะ การ์ดกำลังบอกว่านั่นคือวิธีที่ดีที่สุด ";
 			break;
 		case 67:
-			mes " Hodes do not know anything about money. But they do not forgive those who have an eye on their things. ";
-			mes " Not being greedy and taking care of your share is the wisest way to manage your wealth. ";
+			mes " Hode ไม่รู้เรื่องเงินทองเลยจริงๆ แต่พวกมันจะไม่ยกโทษให้ใครก็ตามที่จ้องจะมาเอาของของมัน ";
+			mes " การไม่โลภและดูแลส่วนแบ่งของตัวเองให้ดีคือวิธีที่ฉลาดที่สุดในการจัดการความมั่งคั่ง ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Indeed, the Hode is right. Do you understand as well? ";
+			mes " จริงของ Hode นะ เจ้าเข้าใจเหมือนกันใช่ไหม? ";
 			break;
 		case 68:
-			mes " The Hode knows nothing about money. But a very rare item drops from a Hode's body. ";
-			mes " It has a treasure in it without knowing. ";
+			mes " Hode ไม่รู้อะไรเกี่ยวกับเงินเลย แต่มักจะมีไอเทมหานากดรอปจากร่างของมัน ";
+			mes " มันมีขุมทรัพย์อยู่ในตัวโดยที่ตัวมันเองก็ไม่รู้ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Take a careful look around you. Treasures are hidden all over. ";
+			mes " ลองสังเกตสิ่งรอบตัวให้ดีสิ ขุมทรัพย์ถูกซ่อนอยู่ทั่วทุกแห่งนั่นแหละ ";
 			break;
 		case 69:
-			mes " Hodes are strong even though they live in the desert. Just because the environment is poor, doesn't mean that you can't gather wealth. ";
+			mes " Hode นั้นแข็งแกร่งแม้จะอาศัยอยู่ในทะเลทราย เพียงเพราะสภาพแวดล้อมย่ำแย่ ไม่ได้หมายความว่าเจ้าจะสะสมทรัพย์สมบัติไม่ได้นี่ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Don't blame the environment. That excuse is only for whiners. ";
+			mes " อย่าไปโทษสภาพแวดล้อมเลย ข้ออ้างนั้นมีไว้สำหรับพวกขี้แยเท่านั้นแหละ ";
 			break;
-		case 70:// Minorous Card
-			mes " Do you know the saying that says those who work like bulls become rich? Working hard is the best way. ";
+		case 70:// การ์ด Minorous
+			mes " เจ้ารู้จักคำกล่าวที่ว่า คนที่ทำงานหนักเหมือนวัวจะกลายเป็นเศรษฐีไหม? การทำงานหนักคือวิธีที่ดีที่สุด ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Just like a bull. ";
+			mes " เหมือนกับวัวตัวนั้นเลย ";
 			break;
 		case 71:
-			mes " Bulls only know how to work, but the bull itself has a lot to offer. Meat, leather, horn.. ";
+			mes " วัวรู้แต่เรื่องการทำงาน แต่วัวเองก็มีหลายอย่างที่จะมอบให้ ทั้งเนื้อ หนัง เขา.. ";
 			next;
 			mes "[Lhimetorra]";
-			mes " You, too, should look after yourself and not just work. You have many hidden values. ";
+			mes " เจ้าเองก็ควรดูแลตัวเองด้วย ไม่ใช่แค่ก้มหน้าก้มตาทำงาน เจ้ามีคุณค่าที่ซ่อนอยู่ในตัวเองมากมายนะ ";
 			break;
 		case 72:
-			mes " Bulls continue to work even on gloomy days. Then they can gather a lot of things. ";
+			mes " วัวยังคงทำงานแม้ในวันที่มืดหม่น แล้วพวกมันก็จะรวบรวมสิ่งต่างๆ ได้มากมาย ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Don't be picky about the days you work. You will be able to make more money. ";
+			mes " อย่าเลือกงานเลือกวันทำงานเลย แล้วเจ้าจะหาเงินได้มากขึ้น ";
 			break;
 		case 73:
-			mes " Bulls do not like working for money. They are disgruntled when others consider labor as money. ";
-			mes " Shouldn't you reconsider working against your will just for money? ";
+			mes " วัวไม่ชอบทำงานเพื่อเงิน พวกมันไม่พอใจเมื่อคนอื่นมองว่าแรงงานคือเงินทอง ";
+			mes " เจ้าควรทบทวนดูใหม่ไหมว่าเจ้าฝืนใจทำงานเพียงเพื่อเงินอย่างเดียวหรือเปล่า? ";
 			next;
 			mes "[Lhimetorra]";
-			mes " It is a serious problem. It is your life, so ponder about it young one. ";
+			mes " มันเป็นปัญหาที่จริงจังนะ มันคือชีวิตของเจ้า เพราะฉะนั้นลองใคร่ครวญดูให้ดีนะเจ้าหนู ";
 			break;
 		}
 		next;
 		mes "[Lhimetorra]";
-		mes " Most people are curious about money. ";
-		mes " It is a very humanly and common curiosity. Cards are very stingy about fortunes regarding wealth. ";
+		mes " คนส่วนใหญ่มักจะสงสัยใคร่รู้เรื่องเงินทอง ";
+		mes " มันเป็นความอยากรู้อยากเห็นที่ธรรมดาและเป็นธรรมชาติของมนุษย์มาก การ์ดเองก็ค่อนข้างจะขี้เหนียวเมื่อพูดถึงดวงชะตาด้านความมั่งคั่งนะ ";
 		next;
 		cutin "",255;
 		mes "[Lhimetorra]";
-		mes " Therefore, getting a fortune like this is considered being lucky. Use this fortune to prosper. ";
+		mes " ดังนั้น การได้รับคำทำนายเช่นนี้ถือว่าเจ้าโชคดีมาก จงใช้ดวงนี้เพื่อสร้างความเจริญรุ่งเรืองเถิด ";
 		close;
 	//=================================================================Future ===
 	case 3:
 		mes "[Lhimetorra]";
-		mes " Future... the card that sees the future is beginning to speak...... Prepare yourself... ";
+		mes " อนาคต... การ์ดที่มองเห็นอนาคตกำลังเริ่มที่จะพูดแล้ว...... เตรียมตัวให้พร้อม... ";
 		next;
 		.@card_1_future = rand(1,67);
-		if (.@card_1_future < 5) cutin "ฐกภฬพฦฝบฤซตๅ",4;			// Giearth Card
-		else if (.@card_1_future < 10) cutin "ด๕ฝบฦผณืฝบฤซตๅ",4;	// Dustiness Card
-		else if (.@card_1_future < 13) cutin "ตๅถ๓ลฅถ๓ฤซตๅ",4;	// Dracula Card
-		else if (.@card_1_future < 16) cutin "ตๅทนภฬลฉฤซตๅ",4;	// Drake Card
-		else if (.@card_1_future < 19) cutin "ธถธฎณชฤซตๅ",4;		// Marina Card
-		else if (.@card_1_future < 23) cutin "ธถธฎฟภณืฦฎฤซตๅ",4;	// Marionette Card
-		else if (.@card_1_future < 27) cutin "ธÞตฮป็ฤซตๅ",4;		// Medusa Card
-		else if (.@card_1_future < 31) cutin "นูฦ๗ธÞฦฎฤซตๅ",4;	// Baphomet Card
-		else if (.@card_1_future < 35) cutin "ป๗ตๅธวฤซตๅ",4;		// Sandman Card
-		else if (.@card_1_future == 35) cutin "ผาศ๑ฤซตๅ",4;		// Sohee Card
-		else if (.@card_1_future < 40) cutin "ฝบฤฬฟ๖ฤฟฤซตๅ",4;	// Skel Worker Card
-		else if (.@card_1_future < 44) cutin "ฝบฤฬณชภฬฦฎฤซตๅ",4;	// Khalitzburg Card
-		else if (.@card_1_future < 48) cutin "พฦดฉบ๑ฝบฤซตๅ",4;	// Anubis Card
-		else if (.@card_1_future < 52) cutin "ฟภลฉทฮตๅฤซตๅ",4;	// Orc Lord Card
-		else if (.@card_1_future < 57) cutin "ภ่ฤซตๅ",4;			// Jakk Card
-		else if (.@card_1_future < 61) cutin "มถฤฟฤซตๅ",4;		// Joker Card
-		else if (.@card_1_future < 63 || .@card_1_future == 67) cutin "ศฃตๅฤซตๅ",4;	// Hode Card
-		else cutin "ศฒผาฤซตๅ",4; // Minorous Card
+		if (.@card_1_future < 5) cutin "ฐกภฬพฦฝบฤซตๅ",4;			// การ์ด Giearth
+		else if (.@card_1_future < 10) cutin "ด๕ฝบฦผณืฝบฤซตๅ",4;	// การ์ด Dustiness
+		else if (.@card_1_future < 13) cutin "ตๅถ๓ลฅถ๓ฤซตๅ",4;	// การ์ด Dracula
+		else if (.@card_1_future < 16) cutin "ตๅทนภฬลฉฤซตๅ",4;	// การ์ด Drake
+		else if (.@card_1_future < 19) cutin "ธถธฎณชฤซตๅ",4;		// การ์ด Marina
+		else if (.@card_1_future < 23) cutin "ธถธฎฟภณืฦฎฤซตๅ",4;	// การ์ด Marionette
+		else if (.@card_1_future < 27) cutin "ธÞตฮป็ฤซตๅ",4;		// การ์ด Medusa
+		else if (.@card_1_future < 31) cutin "นูฦ๗ธÞฦฎฤซตๅ",4;	// การ์ด Baphomet
+		else if (.@card_1_future < 35) cutin "ป๗ตๅธวฤซตๅ",4;		// การ์ด Sandman
+		else if (.@card_1_future == 35) cutin "ผาศ๑ฤซตๅ",4;		// การ์ด Sohee
+		else if (.@card_1_future < 40) cutin "ฝบฤฬฟ๖ฤฟฤซตๅ",4;	// การ์ด Skel Worker
+		else if (.@card_1_future < 44) cutin "ฝบฤฬณชภฬฦฎฤซตๅ",4;	// การ์ด Khalitzburg
+		else if (.@card_1_future < 48) cutin "พฦดฉบ๑ฝบฤซตๅ",4;	// การ์ด Anubis
+		else if (.@card_1_future < 52) cutin "ฟภลฉทฮตๅฤซตๅ",4;	// การ์ด Orc Lord
+		else if (.@card_1_future < 57) cutin "ภ่ฤซตๅ",4;			// การ์ด Jakk
+		else if (.@card_1_future < 61) cutin "มถฤฟฤซตๅ",4;		// การ์ด Joker
+		else if (.@card_1_future < 63 || .@card_1_future == 67) cutin "ศฃตๅฤซตๅ",4;	// การ์ด Hode
+		else cutin "ศฒผาฤซตๅ",4; // การ์ด Minorous
 
 		mes "[Lhimetorra]";
 		switch(.@card_1_future) {
 		case 1:
-			mes " Youth is not eternal. At one point when you wake up, you realize you are already a middle-aged worker. ";
-			mes " Even reminiscing about the past over a cup of coffee can't bring back time. ";
+			mes " วัยเยาว์ไม่ได้คงอยู่ชั่วนิรันดร์ เมื่อถึงจุดหนึ่งที่คุณตื่นขึ้นมา คุณจะพบว่าตัวเองกลายเป็นคนทำงานวัยกลางคนไปเสียแล้ว ";
+			mes " แม้แต่การรำลึกถึงความหลังผ่านกาแฟสักถ้วยก็ไม่สามารถย้อนเวลากลับมาได้ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Treasure the present.. is what the card is saying. ";
+			mes " จงถนอมปัจจุบันเอาไว้.. นั่นคือสิ่งที่การ์ดกำลังบอก ";
 			break;
 		case 2:
-			mes " This fortune is foreshadowing that you will become a strong and healthy worker in the future. ";
-			mes " Not a normal worker, but one that has great strength and might.. ";
+			mes " ดวงชะตานี้กำลังพยากรณ์ว่าคุณจะกลายเป็นคนทำงานที่แข็งแรงและมีสุขภาพดีในอนาคต ";
+			mes " ไม่ใช่คนทำงานธรรมดา แต่เป็นคนที่มีพละกำลังและอำนาจอันยิ่งใหญ่.. ";
 			next;
 			mes "[Lhimetorra]";
-			mes " You should prepare for your future. ";
+			mes " คุณควรเตรียมตัวสำหรับอนาคตของคุณ ";
 			break;
 		case 3:
-			mes " Smoking in a mine is an imprudent, life-threatening thing to do. You are wasting your precious life with that kind of behavior. ";
+			mes " การสูบบุหรี่ในเหมืองเป็นการกระทำที่ประมาทและเป็นอันตรายต่อชีวิต คุณกำลังทำให้ชีวิตอันมีค่าของคุณสูญเปล่าด้วยพฤติกรรมแบบนั้น ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Act with a little more wisdom for your future. ";
+			mes " จงทำตัวให้มีสติปัญญามากกว่านี้อีกสักนิดเพื่ออนาคตของคุณ ";
 			break;
 		case 4:
-			mes " You may be shoveling in the future. In a dark dark place, shoveling that requires great strength. You must be careful young one. ";
+			mes " คุณอาจจะต้องขุดดินในอนาคต ในสถานที่ที่มืดมิด การขุดที่ต้องใช้พละกำลังมหาศาล คุณต้องระวังนะเจ้าหนู ";
 			next;
 			mes "[Lhimetorra]";
-			mes " This type of fortune is never wrong. ";
+			mes " คำทำนายประเภทนี้ไม่มีวันผิดพลาด ";
 			break;
-		case 5:// Dustiness Card
-			mes " The moth is used when it is a caterpillar and ignored after it becomes a moth, by humans. ";
-			mes " Which is better? ";
+		case 5:// การ์ด Dustiness
+			mes " ผีเสื้อกลางคืนจะถูกใช้งานเมื่อมันยังเป็นหนอนผีเสื้อ และถูกเมินเฉยโดยมนุษย์หลังจากที่มันกลายเป็นผีเสื้อกลางคืนแล้ว ";
+			mes " แบบไหนมันดีกว่ากันล่ะ? ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Check to see if there is an aspect of your life that is like the moth. ";
+			mes " ลองตรวจสอบดูว่ามีแง่มุมไหนในชีวิตของคุณที่เหมือนกับผีเสื้อกลางคืนบ้างไหม ";
 			break;
 		case 6:
-			mes " The moth flies around without worrying about the future. It is telling you to fly freely rather than getting anxious about the future.. ";
+			mes " ผีเสื้อกลางคืนบินไปรอบๆ โดยไม่กังวลเกี่ยวกับอนาคต มันกำลังบอกให้คุณบินไปอย่างอิสระ ดีกว่าที่จะมานั่งวิตกกังวลเรื่องวันพรุ่งนี้.. ";
 			next;
 			mes "[Lhimetorra]";
-			mes " This is the fortune from this card. ";
+			mes " นี่คือคำทำนายจากการ์ดใบนี้ ";
 			break;
 		case 7:
-			mes " Dustiness' teeth are very strong. This means... ";
+			mes " ฟันของ Dustiness นั้นแข็งแรงมาก สิ่งนี้หมายความว่า... ";
 			next;
 			mes "[Lhimetorra]";
-			mes " To live the future with strong teeth?! ";
+			mes " จะมีชีวิตอยู่ในอนาคตด้วยฟันที่แข็งแร็งงั้นรึ?! ";
 			break;
 		case 8:
-			mes " The moth says that this is not a time to think about wealth and prosperity. It says that someone important has appeared near you. ";
+			mes " ผีเสื้อกลางคืนบอกว่านี่ไม่ใช่เวลาที่จะมาคิดเรื่องความมั่งคั่งและความรุ่งเรือง มันบอกว่าใครบางคนที่สำคัญได้ปรากฏตัวขึ้นใกล้ๆ คุณแล้ว ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Any ideas who that may be? ";
+			mes " พอจะนึกออกไหมว่าคนคนนั้นคือใคร? ";
 			break;
 		case 9:
-			mes " Dustiness symbolizes a hazy future. It is similar to your mind right now. It says it is obvious. ";
-			mes " It says that there is no set path in the future. Isn't a relief in a way? ";
+			mes " Dustiness เป็นสัญลักษณ์ของอนาคตที่พร่ามัว มันคล้ายกับจิตใจของคุณในตอนนี้เลย มันบอกว่าเรื่องนี้มันชัดเจนมาก ";
+			mes " มันบอกว่าไม่มีเส้นทางที่ถูกกำหนดไว้ตายตัวในอนาคต ในแง่หนึ่งมันก็น่าเบาใจไม่ใช่หรือ? ";
 			next;
 			mes "[Lhimetorra]";
-			mes " It is not good nor bad, so there is always room for new possibilities. ";
+			mes " มันไม่ดีและไม่ร้าย ดังนั้นจึงมีที่ว่างสำหรับความเป็นไปได้ใหม่ๆ เสมอ ";
 			break;
-		case 10:// Dracula Card
-			mes " Sometime in your future, a future like Dracula awaits you. ";
+		case 10:// การ์ด Dracula
+			mes " ในช่วงเวลาหนึ่งของอนาคต อนาคตที่เหมือนกับ Dracula กำลังรอคุณอยู่ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " If you hope for that type of future, it is no problem, but you should be careful nonetheless. ";
+			mes " หากคุณหวังอนาคตแบบนั้น มันก็ไม่มีปัญหาอะไร แต่ถึงอย่างนั้นคุณก็ควรระวังตัวไว้ ";
 			break;
 		case 11:
-			mes " If the condition is just right, vampires can live forever. But, when that perfect condition is disrupted, they meet a tragic end. ";
+			mes " หากเงื่อนไขทุกอย่างเหมาะสม แวมไพร์สามารถมีชีวิตอยู่ได้ตลอดกาล แต่เมื่อเงื่อนไขที่สมบูรณ์แบบนั้นถูกทำลาย พวกเขาจะพบกับจุดจบที่น่าสลดใจ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " This means that if you go after fame and eternal life, tragedy awaits you in the end. They are not the important things in life. ";
+			mes " นี่หมายความว่าถ้าคุณวิ่งตามหาชื่อเสียงและชีวิตอมตะ โศกนาฏกรรมจะรอคุณอยู่ในบั้นปลาย สิ่งเหล่านั้นไม่ใช่สิ่งสำคัญที่สุดในชีวิต ";
 			break;
 		case 12:
-			mes " The Dracula says to be true to the present. Indeed, thinking and being true to the present is much more important than trying to figure out your future. ";
+			mes " Dracula บอกว่าจงจริงใจต่อปัจจุบัน แท้จริงแล้ว การคิดและซื่อตรงต่อปัจจุบันนั้นสำคัญกว่าการพยายามตามหาอนาคตมากนัก ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Unfortunately, I agree with it young one. ";
+			mes " น่าเสียดายที่ข้าเห็นด้วยกับเขานะเจ้าหนู ";
 			break;
-		case 13:// Drake Card
-			mes " Pirates do not have a future. That doesn't mean you do not have one. But.. you simply need to make more prudent decisions. ";
+		case 13:// การ์ด Drake
+			mes " โจรสลัดไม่มีอนาคต แต่นั่นไม่ได้หมายความว่าคุณจะไม่มี เพียงแต่.. คุณต้องตัดสินใจอย่างรอบคอบให้มากขึ้น ";
 			next;
 			mes "[Lhimetorra]";
-			mes " How about changing your lifestyle? That's what this means. ";
+			mes " ลองเปลี่ยนไลฟ์สไตล์ดูสักหน่อยไหม? นั่นคือความหมายของมัน ";
 			break;
 		case 14:
-			mes " In this world, being a pirate out in the rough seas is very dangerous. But, they do not regret their decisions. ";
+			mes " ในโลกนี้ การเป็นโจรสลัดท่ามกลางทะเลที่บ้าคลั่งนั้นอันตรายมาก แต่พวกเขาไม่เคยเสียใจกับการตัดสินใจของตัวเองเลย ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Because they find their meaning of life in the process. Young one, how about searching for the meaning of your life? ";
+			mes " เพราะพวกเขาพบความหมายของชีวิตในระหว่างกระบวนการนั้น เจ้าหนู ลองค้นหาความหมายของชีวิตดูบ้างเป็นไง? ";
 			break;
 		case 15:
-			mes " Pirates are remembered as pirates even after they pass away. A person's name is beyond the matter of life and death. ";
+			mes " โจรสลัดจะถูกจดจำในฐานะโจรสลัดแม้หลังจากที่พวกเขาจากไปแล้ว ชื่อของคนคนหนึ่งนั้นอยู่เหนือเรื่องของความเป็นและความตาย ";
 			next;
 			mes "[Lhimetorra]";
-			mes " You should live with that aspect in mind.";
+			mes " คุณควรใช้ชีวิตโดยคำนึงถึงแง่มุมนั้นเอาไว้ ";
 			break;
-		case 16:// Marina Card
-			mes " The Marina does not think of its future.. But I can tell you one thing. Survival. The Marina only thinks about survival and life. ";
+		case 16:// การ์ด Marina
+			mes " Marina ไม่คิดถึงอนาคตของมัน.. แต่ข้าบอกคุณได้อย่างหนึ่ง นั่นคือ 'การอยู่รอด' Marina คิดเพียงเรื่องการอยู่รอดและชีวิตเท่านั้น ";
 			next;
 			mes "[Lhimetorra]";
-			mes " You.. no, all of us should learn and do the same. ";
+			mes " คุณ.. ไม่สิ พวกเราทุกคนควรเรียนรู้และทำแบบเดียวกันนั่นแหละ ";
 			break;
 		case 17:
-			mes " The Marina doesn't think of its future.. but I can tell you one thing. Freedom. The Marina swims freely. ";
+			mes " Marina ไม่คิดถึงอนาคตของมัน.. แต่ข้าบอกคุณได้อย่างหนึ่ง นั่นคือ 'อิสรภาพ' Marina ว่ายน้ำไปอย่างอิสระ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " How about living like that, too? ";
+			mes " ลองใช้ชีวิตแบบนั้นดูบ้างไหมล่ะ? ";
 			break;
 		case 18:
-			mes " Leave your future to the Marina. The Marina treasures its precious ocean. The sea will be of great significance in your future, too. ";
+			mes " ฝากอนาคตของคุณไว้กับ Marina เถิด Marina ถนอมมหาสมุทรอันมีค่าของมัน ทะเลจะมีความสำคัญอย่างยิ่งต่ออนาคตของคุณเช่นกัน ";
 			next;
 			mes "[Lhimetorra]";
-			mes " A fisherman? Oceanographer? Pirate? Although I do not know which job it is... ";
+			mes " ชาวประมง? นักมหาสมุทรศาสตร์? หรือโจรสลัด? ถึงข้าจะไม่รู้ว่าจะเป็นอาชีพไหนก็เถอะ... ";
 			break;
-		case 19:// Marionette Card
-			mes " A Marionette is a Marionette forever. Its past and future never changes. Its present is its future. Don't you think it is rather sad? ";
+		case 19:// การ์ด Marionette
+			mes " Marionette ก็คือ Marionette ตลอดกาล อดีตและอนาคตของมันไม่เคยเปลี่ยน ปัจจุบันของมันก็คืออนาคตของมัน คุณไม่คิดว่ามันค่อนข้างน่าเศร้าหรือ? ";
 			next;
 			mes "[Lhimetorra]";
-			mes " But that could also be a good thing. This is the meaning of a Marionette. ";
+			mes " แต่นั่นก็อาจจะเป็นเรื่องดีก็ได้ นี่คือความหมายของ Marionette ";
 			break;
 		case 20:
-			mes " A Marionette is restrained but it has hope that it will be freed one day. ";
+			mes " Marionette ถูกพันธนาการไว้ แต่มันก็มีความหวังว่าวันหนึ่งมันจะได้รับอิสระ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Very nice. This fortune signifies 'hope'. ";
+			mes " เยี่ยมมาก คำทำนายนี้หมายถึง 'ความหวัง' ";
 			break;
 		case 21:
-			mes " The eyes of a Marionette symbolize 'challenge.' Challenge will mean a lot in your future. ";
+			mes " ดวงตาของ Marionette เป็นสัญลักษณ์ของ 'ความท้าทาย' ความท้าทายจะมีความหมายอย่างมากในอนาคตของคุณ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " ...to the point where that challenge will change your life. ";
+			mes " ...ถึงขั้นที่ความท้าทายนั้นจะเปลี่ยนชีวิตของคุณไปเลยล่ะ ";
 			break;
 		case 22:
-			mes " The Marionette believes the present is more important than the future. Basically, asking about the future is pointless. ";
+			mes " Marionette เชื่อว่าปัจจุบันสำคัญกว่าอนาคต โดยพื้นฐานแล้ว การถามถึงอนาคตจึงเป็นเรื่องที่ไร้ประโยชน์ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " The Marionette devotes everything into the present. It suggests that type of attitude to you, too. ";
+			mes " Marionette อุทิศทุกอย่างให้กับปัจจุบัน มันแนะนำให้คุณมีทัศนคติแบบนั้นเช่นกัน ";
 			break;
-		case 23:// Medusa Card
-			mes " The Medusa symbolizes the absolute one who accepts everyone's challenge. Your future will be in a position that is challenged by many. ";
+		case 23:// การ์ด Medusa
+			mes " Medusa เป็นสัญลักษณ์ของผู้ที่อยู่เหนือสิ่งอื่นใด ผู้ซึ่งยอมรับการท้าทายจากทุกคน อนาคตของคุณจะอยู่ในจุดที่ถูกท้าทายโดยผู้คนมากมาย ";
 			next;
 			mes "[Lhimetorra]";
-			mes " It could be good and bad. It is also a very tiring position. ";
+			mes " มันเป็นได้ทั้งเรื่องดีและร้าย และมันยังเป็นตำแหน่งที่น่าเหนื่อยหน่ายมากด้วย ";
 			break;
 		case 24:
-			mes " The Medusa symbolizes the absolute one who accepts everyone's challenge. Your future must be filled with challenges! ";
+			mes " Medusa เป็นสัญลักษณ์ของผู้ที่อยู่เหนือสิ่งอื่นใด ผู้ซึ่งยอมรับการท้าทายจากทุกคน อนาคตของคุณจะต้องเต็มไปด้วยความท้าทาย! ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Always challenge others! It is alright to fail, since challenge itself will become life. ";
+			mes " จงท้าทายคนอื่นเสมอ! ไม่เป็นไรหรอกที่จะล้มเหลว เพราะการท้าทายนั้นเองที่จะกลายเป็นชีวิต ";
 			break;
 		case 25:
-			mes " The Medusa says that there will be great chaos in the future. Chaos... I'm not sure what type of chaos it means, but it is definitely something that has never happened before. ";
+			mes " Medusa บอกว่าจะเกิดความโกลาหลครั้งใหญ่ในอนาคต ความวุ่นวาย... ข้าไม่แน่ใจว่ามันหมายถึงความวุ่นวายแบบไหน แต่มันเป็นสิ่งที่ไม่เคยเกิดขึ้นมาก่อนแน่นอน ";
 			next;
 			mes "[Lhimetorra]";
-			mes " There is something that you must fight.. and win, in your future. ";
+			mes " มีบางอย่างที่คุณต้องต่อสู้.. และเอาชนะให้ได้ในอนาคตของคุณ ";
 			break;
 		case 26:
-			mes " The hair of the Medusa are sticking up. It is nervous about the big change that is going to happen. A change that even makes the scary Medusa worried. ";
+			mes " เส้นผมของ Medusa ตั้งชันขึ้น มันกำลังตื่นตระหนกเกี่ยวกับการเปลี่ยนแปลงครั้งใหญ่ที่กำลังจะเกิดขึ้น การเปลี่ยนแปลงที่แม้แต่ Medusa ที่น่ากลัวยังต้องกังวล ";
 			next;
 			mes "[Lhimetorra]";
-			mes " How about preparing yourself as well? ";
+			mes " ลองเตรียมตัวไว้บ้างก็ดีนะ? ";
 			break;
-		case 27:// Baphomet Card
-			mes " The Baphomet doesn't care about a human's future. They simply observe quietly. Hmm... It seems like it has nothing to say about your future as well... ";
+		case 27:// การ์ด Baphomet
+			mes " Baphomet ไม่สนใจอนาคตของมนุษย์ พวกเขาเพียงแค่เฝ้ามองอย่างเงียบๆ อืม... ดูเหมือนเขาจะไม่มีอะไรจะพูดเกี่ยวกับอนาคตของคุณเหมือนกันนะ... ";
 			next;
 			mes "[Lhimetorra]";
-			mes " It has an unconcerned expression. ";
+			mes " เขามีสีหน้าเรียบเฉยไม่สนใจไยดีเลย ";
 			break;
 		case 28:
-			mes " The scythe the Baphomet is holding signifies the strong will to conquer the future. ";
-			mes " What you need is not someone else's help or wisdom, but strong willpower. ";
+			mes " เคียวที่ Baphomet ถืออยู่นั้นหมายถึงเจตจำนงที่แรงกล้าในการพิชิตอนาคต ";
+			mes " สิ่งที่คุณต้องการไม่ใช่ความช่วยเหลือหรือสติปัญญาจากคนอื่น แต่เป็นพลังใจที่เข้มแข็ง ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Once you have that type of willpower, the road to the future will be very broad and promising. ";
+			mes " เมื่อคุณมีพลังใจแบบนั้นแล้ว เส้นทางสู่อนาคตก็จะกว้างไกลและเต็มไปด้วยความหวัง ";
 			break;
 		case 29:
-			mes " The Baphomet says that humans have no future. It says that their greed and selfishness shows no hope. ";
-			mes " The future will only open to those that go beyond human's greed. ";
+			mes " Baphomet บอกว่ามนุษย์ไม่มีอนาคต เขากล่าวว่าความโลภและความเห็นแก่ตัวของพวกเขาทำให้มองไม่เห็นความหวัง ";
+			mes " อนาคตจะเปิดออกให้กับผู้ที่ก้าวข้ามความโลภของมนุษย์ได้เท่านั้น ";
 			next;
 			mes "[Lhimetorra]";
-			mes " The card expects something like that from you. ";
+			mes " การ์ดคาดหวังสิ่งแบบนั้นจากคุณ ";
 			break;
 		case 30:
-			mes " The Baphomet is facing the future. No matter how much effort you put in, without an eye that looks towards the future, it is pointless. ";
-			mes " The Baphomet is telling you to look towards the future. ";
+			mes " Baphomet กำลังเผชิญหน้ากับอนาคต ไม่ว่าคุณจะใช้ความพยายามมากแค่ไหน หากไม่มีดวงตาที่มองไปข้างหน้า มันก็เปล่าประโยชน์ ";
+			mes " Baphomet กำลังบอกให้คุณมองไปยังอนาคต ";
 			next;
 			mes "[Lhimetorra]";
-			mes " To know your position right now and where to aim in the future. ";
+			mes " เพื่อให้รู้ตำแหน่งของคุณในตอนนี้ และรู้ว่าควรจะมุ่งหน้าไปทางไหนในอนาคต ";
 			break;
-		case 31:// Sandman Card
-			mes " A sand's future is simply sand. Not a rock, nor mud. Some things just don't change young one. ";
+		case 31:// การ์ด Sandman
+			mes " อนาคตของทรายก็คือทราย ไม่ใช่ก้อนหิน และไม่ใช่โคลน บางอย่างมันก็ไม่เปลี่ยนหรอกนะเจ้าหนู ";
 			next;
 			mes "[Lhimetorra]";
-			mes " What the Sandman card is trying to say is to treasure your present self. ";
+			mes " สิ่งที่การ์ด Sandman พยายามจะบอกก็คือ จงเห็นคุณค่าในตัวเองที่เป็นอยู่ในปัจจุบัน ";
 			break;
 		case 32:
-			mes " A sand dune changes its shape even after a day. The Sandman card is speaking of a future with many changes. ";
+			mes " เนินทรายเปลี่ยนรูปร่างได้แม้ผ่านไปเพียงวันเดียว การ์ด Sandman กำลังพูดถึงอนาคตที่มีการเปลี่ยนแปลงมากมาย ";
 			next;
 			mes "[Lhimetorra]";
-			mes " It says not to be too caught up with the present, because the future is always changing. ";
+			mes " มันบอกว่าอย่าไปยึดติดกับปัจจุบันมากเกินไป เพราะอนาคตนั้นเปลี่ยนแปลงอยู่เสมอ ";
 			break;
 		case 33:
-			mes " You will have a son in the future. Hmm? What'd you say? No plans for a baby? ";
+			mes " คุณจะมีลูกชายในอนาคต หืม? คุณว่ายังไงนะ? ไม่ได้วางแผนจะมีลูกงั้นรึ? ";
 			next;
 			mes "[Lhimetorra]";
-			mes " That's why it is the future. Unexpected things happen every once in a while in the future. Lala~ ";
+			mes " นั่นแหละคือเหตุผลที่มันเป็นอนาคตไงล่ะ เรื่องที่ไม่ได้คาดฝันมักจะเกิดขึ้นในอนาคตเสมอแหละ ลัลลา~ ";
 			break;
 		case 34:
-			mes " There are rare and precious treasures in the sand. The Sandman says that in the vast sand of the world, a treasure, will be discovered. That treasure is you young one.";
+			mes " มีสมบัติที่หายากและล้ำค่าอยู่ในทราย Sandman บอกว่าในผืนทรายอันกว้างใหญ่ของโลก สมบัติชิ้นหนึ่งจะถูกค้นพบ และสมบัตินั้นก็คือคุณนั่นแหละเจ้าหนู ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Hmm... Expecting a lot. Hehe~ ";
+			mes " อืม... คาดหวังไว้เยอะเลยนะ ฮิฮิ~ ";
 			break;
-		case 35:// Sohee Card
-			mes " Do you know what a Sohee thinks the most pitiful thing is? The future. It is because she was not able to live her future. ";
-			mes " That is why you cannot bring up the subject of future in front of Sohee. I'm very sorry I cannot help. ";
+		case 35:// การ์ด Sohee
+			mes " คุณรู้ไหมว่าสิ่งที่ Sohee คิดว่าน่าสมเพชที่สุดคืออะไร? อนาคตยังไงล่ะ นั่นก็เพราะเธอไม่มีโอกาสได้ใช้ชีวิตในอนาคตของเธอ ";
+			mes " นั่นคือเหตุผลที่คุณไม่สามารถยกเรื่องอนาคตมาพูดต่อหน้า Sohee ได้ ข้าเสียใจจริงๆ ที่ช่วยไม่ได้ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " But isn't it better than a curse. Just think of it as that and forget about it. ";
+			mes " แต่มันก็ยังดีกว่าถูกสาปไม่ใช่หรือ คิดซะว่าแบบนั้นแล้วก็ลืมมันไปเสียเถอะ ";
 			break;
-		case 36:// Skel Worker Card
-			mes " Even in darkness you will shine for your goal. ";
-			mes " The Skeleton is encouraging you to not lose your light even in a life in dark and damp places. ";
+		case 36:// การ์ด Skel Worker
+			mes " แม้ในความมืดมิด คุณจะยังคงส่องประกายเพื่อเป้าหมายของคุณ ";
+			mes " เจ้าโครงกระดูกกำลังให้กำลังใจคุณไม่ให้สูญเสียแสงสว่างในตัวเองไป แม้ต้องใช้ชีวิตในที่ที่มืดและอับชื้นก็ตาม ";
 			next;
 			mes "[Lhimetorra]";
-			mes " You must feel good, getting a word of encouragement from the Skeleton. Lala~ ";
+			mes " คุณควรรู้สึกดีนะ ที่ได้รับคำให้กำลังใจจากเจ้าโครงกระดูกน่ะ ลัลลา~ ";
 			break;
 		case 37:
-			mes " The story I heard from the skeleton goes like this. I am the king of the future. What in the world is that supposed to mean? ";
+			mes " เรื่องราวที่ข้าได้ยินมาจากเจ้าโครงกระดูกเป็นแบบนี้ 'ข้าคือราชาแห่งอนาคต' มันหมายความว่ายังไงกันแน่เนี่ย? ";
 			next;
 			mes "[Lhimetorra]";
-			mes " I don't know. Maybe it is saying that a scrawny person will do something great in the future? ";
+			mes " ข้าก็ไม่รู้เหมือนกัน บางทีมันอาจจะบอกว่าคนที่ผอมกะหร่องจะทำสิ่งที่ยิ่งใหญ่ได้ในอนาคตล่ะมั้ง? ";
 			break;
 		case 38:
-			mes " If you want to do something great in the future, you must express your thankfulness to the Skeleton. ";
-			mes " Then the Skeleton will help you. How do you express your thankfulness? ";
+			mes " หากคุณอยากทำสิ่งที่ยิ่งใหญ่ในอนาคต คุณต้องแสดงความขอบคุณต่อเจ้าโครงกระดูก ";
+			mes " แล้วเจ้าโครงกระดูกจะช่วยคุณ คุณจะแสดงความขอบคุณยังไงน่ะรึ? ";
 			next;
 			mes "[Lhimetorra]";
-			mes " If you see someone that resembles the Skeleton, help them. ";
-			mes " Then the Skeleton will think that you helped itself and be happy. What a silly monster. Haha. ";
+			mes " หากคุณเห็นใครที่มีรูปร่างลักษณะคล้ายกับเจ้าโครงกระดูก ก็จงช่วยเหลือพวกเขาซะ ";
+			mes " แล้วเจ้าโครงกระดูกจะคิดว่าคุณได้ช่วยมันไว้และจะมีความสุข ช่างเป็นมอนสเตอร์ที่บ๊องจริงๆ ฮะฮะ ";
 			break;
 		case 39:
-			mes " The Skeleton has the ability to dig where it feels the future, rather than looking into it. ";
-			mes " It is digging in the east right now. How about it, won't you try going there? ";
+			mes " เจ้าโครงกระดูกมีความสามารถในการขุดตรงจุดที่มันรู้สึกถึงอนาคต แทนที่จะแค่เฝ้ามองดูมัน ";
+			mes " ตอนนี้มันกำลังขุดอยู่ที่ทางทิศตะวันออก เป็นไงล่ะ สนใจจะลองไปที่นั่นดูไหม? ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Who knows, the key to the future may be lying in the east. ";
+			mes " ใครจะไปรู้ กุญแจสู่อนาคตอาจจะวางรออยู่ที่ทิศตะวันออกก็ได้นะ ";
 			break;
-		case 40:// Khalitzburg Card
-			mes " A knight's future leads to death. An honorable death on the battlefield. ";
-			mes " One cannot live as a knight without being proud of that type of future. ";
+		case 40:// การ์ด Khalitzburg
+			mes " อนาคตของอัศวินนำไปสู่ความตาย ความตายอันทรงเกียรติในสนามรบ ";
+			mes " คนเราไม่สามารถใช้ชีวิตเยี่ยงอัศวินได้หากไม่ภูมิใจในอนาคตแบบนั้น ";
 			next;
 			mes "[Lhimetorra]";
-			mes " The knight wants you to be proud of yourself. ";
-			mes " It says what you need is pride. Not honor, wealth, or love.. but pride. ";
+			mes " อัศวินอยากให้คุณภูมิใจในตัวเอง ";
+			mes " เขาบอกว่าสิ่งที่คุณต้องการคือ 'ความภาคภูมิใจ' ไม่ใช่เกียรติยศ ทรัพย์สมบัติ หรือความรัก.. แต่คือความภาคภูมิใจ ";
 			break;
 		case 41:
-			mes " A knight commenting about a person's future is very rare. ";
-			mes " It says nothing for you in particular. Nothing ominous. ";
+			mes " การที่อัศวินจะให้ความเห็นเกี่ยวกับอนาคตของคนคนหนึ่งนั้นหาได้ยากมาก ";
+			mes " เขาไม่ได้บอกอะไรเกี่ยวกับคุณเป็นพิเศษ ไม่มีลางร้ายใดๆ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " It is a very good thing. Means a bright and clear future. Hohoho~ ";
+			mes " มันเป็นเรื่องดีมากนะ หมายถึงอนาคตที่สดใสและปลอดโปร่ง โฮ่โฮ่โฮ่~ ";
 			break;
 		case 42:
-			mes " A knight commenting about a person's future is very rare. ";
-			mes " It says it will say one thing for you. Dark clouds can be seen beyond the clear skies. ";
+			mes " การที่อัศวินจะให้ความเห็นเกี่ยวกับอนาคตของคนคนหนึ่งนั้นหาได้ยากมาก ";
+			mes " เขาบอกว่าจะพูดกับคุณเพียงเรื่องเดียว 'เมฆมืดสามารถมองเห็นได้หลังท้องฟ้าที่แจ่มใส' ";
 			next;
 			mes "[Lhimetorra]";
-			mes " You must find out for yourself what those clouds mean. Anyways, you must be careful. ";
+			mes " คุณต้องหาคำตอบด้วยตัวเองว่าเมฆเหล่านั้นหมายถึงอะไร อย่างไรก็ตาม คุณต้องระวังตัวนะ ";
 			break;
 		case 43:
-			mes " It is necessary to reflect upon the past and present in order to look into the future. This card says to look carefully into your past. ";
+			mes " การทบทวนอดีตและปัจจุบันเป็นสิ่งจำเป็นเพื่อที่จะมองไปยังอนาคต การ์ดใบนี้บอกให้คุณพินิจพิเคราะห์อดีตของคุณให้ดี ";
 			next;
 			mes "[Lhimetorra]";
-			mes " ..with the attitude of reflecting upon yourself. What do you think? Don't you think you lived too much looking into the future? ";
+			mes " ..ด้วยทัศนคติที่สะท้อนถึงตัวตนของคุณ คุณคิดอย่างไรล่ะ? คุณไม่คิดว่าคุณใช้ชีวิตโดยมองแต่อนาคตมากเกินไปหน่อยรึ? ";
 			break;
 		case 44:
-			mes " What does the god of death want to say about the future? It is definitely an ominous sign. ";
+			mes " เทพแห่งความตายต้องการจะพูดอะไรเกี่ยวกับอนาคตงั้นรึ? มันเป็นสัญญาณที่อัปมงคลอย่างแน่นอน ";
 			next;
 			mes "[Lhimetorra]";
-			mes " It is trying to warn something about the future. Be careful. ";
+			mes " เขากำลังพยายามเตือนบางอย่างเกี่ยวกับอนาคต ระวังตัวด้วยล่ะ ";
 			break;
 		case 45:
-			mes " The Anubis likes comedy despite people's expectations. It looks forward to comedy. Comedy must be important in the future. ";
+			mes " Anubis ชอบเรื่องตลกขบขันผิดกับที่ผู้คนคาดคิด เขาตั้งตารอคอยเสียงหัวเราะ เรื่องตลกน่าจะสำคัญมากในอนาคตนะ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " In your case, it would be wise to grow your sense of humor. ";
+			mes " ในกรณีของคุณ มันคงจะฉลาดถ้าคุณจะฝึกฝนอารมณ์ขันไว้บ้าง ";
 			break;
 		case 46:
-			mes " The Anubis is the god of death, but it expresses more interest in the future than death. ";
+			mes " Anubis คือเทพแห่งความตาย แต่เขากลับแสดงความสนใจในเรื่องของอนาคตมากกว่าความตายเสียอีก ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Even the Anubis doesn't think about death, so why should you be thinking about it? Expect a good future young one. ";
+			mes " แม้แต่ Anubis ยังไม่คิดเรื่องความตายเลย แล้วทำไมคุณต้องไปคิดล่ะ? จงหวังถึงอนาคตที่ดีนะเจ้าหนู ";
 			break;
 		case 47:
-			mes " The Anubis says it has no interest in you. It is a good sign. ";
+			mes " Anubis บอกว่าเขาไม่สนใจในตัวคุณเลย นั่นเป็นสัญญาณที่ดีนะ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " What can be better than being ignored by the god of death? ";
+			mes " จะมีอะไรดีไปกว่าการถูกเพิกเฉยโดยเทพแห่งความตายล่ะ จริงไหม? ";
 			break;
-		case 48:// Orc Lord Card
-			mes " The Orc Lord says that dairy farming will develop in the future. Why don't you invest in it as well? ";
+		case 48:// การ์ด Orc Lord
+			mes " Orc Lord บอกว่าการทำฟาร์มโคนมจะรุ่งเรืองในอนาคต ทำไมคุณไม่ลองลงทุนในธุรกิจนั้นดูล่ะ? ";
 			next;
 			mes "[Lhimetorra]";
-			mes " A business looking into the future? ";
+			mes " ธุรกิจที่มองไปยังอนาคตงั้นรึ? ";
 			break;
 		case 49:
-			mes " The Orc Lord says you need great strength in the future. Strength that is three, four times greater than now. ";
+			mes " Orc Lord บอกว่าคุณต้องการพละกำลังมหาศาลในอนาคต พละกำลังที่มากกว่าปัจจุบันถึงสามสี่เท่า ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Make yourself stronger in any form. In the future, you will need it. ";
+			mes " จงทำให้ตัวเองแข็งแกร่งขึ้นไม่ว่าจะในรูปแบบใดก็ตาม ในอนาคตคุณต้องได้ใช้มันแน่ ";
 			break;
 		case 50:
-			mes " The Orc Lord says that love for your companions will become great strength in the future. ";
-			mes " Your strength is not enough. ";
+			mes " Orc Lord บอกว่าความรักที่มีต่อพวกพ้องจะกลายเป็นพลังอันยิ่งใหญ่ในอนาคต ";
+			mes " ลำพังแค่กำลังของคุณน่ะไม่พอหรอก ";
 			next;
 			mes "[Lhimetorra]";
-			mes " To become a Lord, you will need colleagues. You should take the Orc Lord's advice! ";
+			mes " การจะขึ้นเป็น Lord ได้ คุณต้องการเพื่อนพ้อง คุณควรรับคำแนะนำของ Orc Lord ไว้นะ! ";
 			break;
 		case 51:
-			mes " The Orc Lord is expressing opposition in being too curious about the future. ";
-			mes " Pay a little more attention to the present. ";
+			mes " Orc Lord แสดงความไม่เห็นด้วยกับการที่คุณอยากรู้อยากเห็นเรื่องอนาคตมากเกินไป ";
+			mes " จงใส่ใจกับปัจจุบันให้มากขึ้นอีกนิด ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Respect his opinion young one. You have nothing to lose. ";
+			mes " เคารพการตัดสินใจของเขาเถอะเจ้าหนู คุณไม่มีอะไรจะเสียนี่ ";
 			break;
-		case 52:// Jakk Card
-			mes " Jack says something interesting will happen in the future. According to him, the future will be more fun than the present. ";
+		case 52:// การ์ด Jakk
+			mes " Jack บอกว่าจะมีเรื่องน่าสนใจเกิดขึ้นในอนาคต ตามคำกล่าวของเขา อนาคตจะสนุกกว่าปัจจุบันเสียอีก ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Are you looking forward to it? ";
+			mes " คุณตั้งตารอมันอยู่หรือเปล่าล่ะ? ";
 			break;
 		case 53:
-			mes " Jack says, in order to prepare for the future, a delightful preparation is necessary. ";
-			mes " Delightful preparation? I don't understand.. I suppose I am too old. Maybe young ones get it.. ";
+			mes " Jack บอกว่า เพื่อที่จะเตรียมตัวสำหรับอนาคต จำเป็นต้องมีการเตรียมความพร้อมที่น่ารื่นรมย์ ";
+			mes " การเตรียมตัวที่น่ารื่นรมย์งั้นรึ? ข้าไม่ค่อยเข้าใจเท่าไหร่.. สงสัยข้าจะแก่เกินไปแล้วล่ะมั้ง บางทีคนหนุ่มสาวอาจจะเข้าใจก็ได้.. ";
 			next;
 			mes "[Lhimetorra]";
-			mes " What do you think? Any assumptions? ";
+			mes " คุณคิดว่ายังไง? พอจะเดาอะไรออกไหม? ";
 			break;
 		case 54:
-			mes " Jack is jealous because a splendid person is headed your way in the future. ";
-			mes " I wonder what type of person it is to make that Jack jealous! ";
+			mes " Jack กำลังอิจฉา เพราะจะมีคนที่ยอดเยี่ยมมุ่งหน้ามาหาคุณในอนาคต ";
+			mes " ข้าอยากรู้จังว่าคนประเภทไหนกันที่ทำให้ Jack คนนั้นอิจฉาได้! ";
 			next;
 			mes "[Lhimetorra]";
-			mes " One thing for sure is that you will be very happy! Congratulations young one! ";
+			mes " สิ่งหนึ่งที่แน่ใจได้คือคุณจะมีความสุขมากแน่ๆ! ยินดีด้วยนะเจ้าหนู! ";
 			break;
 		case 56:
-			mes " Jack says you may be frustrated in the future. ";
-			mes " He says to overcome the frustration, it is necessary to think of happy thoughts. ";
+			mes " Jack บอกว่าคุณอาจจะพบกับความท้อแท้ในอนาคต ";
+			mes " เขาสอนว่าเพื่อจะก้าวข้ามความท้อแท้นั้น จำเป็นต้องคิดถึงเรื่องที่มีความสุขเข้าไว้ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Meaning your future will become a battle between happiness and frustration.. ";
+			mes " หมายความว่าอนาคตของคุณจะกลายเป็นการต่อสู้ระหว่างความสุขและความท้อแท้นั่นเอง.. ";
 			break;
-		case 57:// Joker Card
-			mes " The Joker is trying to trick you. This card has all different types of ominous fortunes. ";
-			mes " He wants to enjoy watching you tremble with anxiety. ";
+		case 57:// การ์ด Joker
+			mes " Joker กำลังพยายามจะหลอกคุณ การ์ดใบนี้มีดวงชะตาที่อัปมงคลทุกรูปแบบเลยล่ะ ";
+			mes " เขาต้องการที่จะสนุกกับการดูคุณตัวสั่นด้วยความวิตกกังวล ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Sadness, failure, darkness, loneliness.. you may feel all of these emotions, but they are not fatal. Don't worry. ";
+			mes " ความเศร้า ความล้มเหลว ความมืดมิด ความโดดเดี่ยว.. คุณอาจจะรู้สึกถึงอารมณ์เหล่านี้ทั้งหมด แต่มันไม่ถึงตายหรอก ไม่ต้องห่วง ";
 			break;
 		case 58:
-			mes " Jokers don't just appear and go away. They come back in the future. ";
-			mes " They will seduce you numerous times. ";
+			mes " Joker ไม่ได้แค่ปรากฏตัวแล้วหายไป พวกเขาจะกลับมาอีกในอนาคต ";
+			mes " พวกเขาจะล่อลวงคุณนับครั้งไม่ถ้วน ";
 			next;
 			mes "[Lhimetorra]";
-			mes " So train yourself not to be tempted. ";
-			mes " Or else you will face frustration or commit a blunder. ";
+			mes " เพราะฉะนั้นจงฝึกฝนตัวเองไม่ให้หวั่นไหวไปกับคำล่อลวง ";
+			mes " มิฉะนั้นคุณจะต้องเผชิญกับความผิดหวังหรือทำเรื่องผิดพลาดมหันต์ ";
 			break;
 		case 59:
-			mes " Do you see the thing that looks like a leaf flying around the Joker? That is the spade mark. ";
-			mes " Spades means death. Jokers leave those kinds of marks on purpose. ";
+			mes " คุณเห็นสิ่งที่ดูเหมือนใบไม้บินอยู่รอบตัว Joker ไหม? นั่นคือสัญลักษณ์โพดำ (Spade) ";
+			mes " โพดำหมายถึงความตาย Joker จงใจทิ้งสัญลักษณ์พวกนั้นไว้ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Don't get disturbed by the mark of death. It's merely a Joker's joke. ";
+			mes " อย่าไปเสียขวัญกับเครื่องหมายแห่งความตายเลย มันก็แค่ตลกฝืดของพวก Joker เท่านั้นแหละ ";
 			break;
 		case 60:
-			mes " Joker offers a nice insurance and says to prepare for the future, but most of it is a waste of time. ";
+			mes " Joker เสนอประกันชีวิตดีๆ และบอกให้เตรียมพร้อมสำหรับอนาคต แต่ส่วนใหญ่มันก็แค่เรื่องเสียเวลา ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Don't prepare for the future carelessly. A loose measure is worse than a prepared adventure. ";
+			mes " อย่าเตรียมตัวสำหรับอนาคตอย่างลวกๆ มาตรการที่หละหลวมนั้นแย่ยิ่งกว่าการออกไปผจญภัยโดยไม่เตรียมตัวเสียอีก ";
 			break;
-		case 61:// Hode Card
-			mes " Hodes do not know about tomorrow. But though they are quiet, they endanger other living things. ";
-			mes " Effort into oneself puts great power into the mere existence of one. ";
+		case 61:// การ์ด Hode
+			mes " Hode ไม่รู้จักวันพรุ่งนี้หรอก แต่ถึงแม้พวกมันจะเงียบขรึม พวกมันก็เป็นอันตรายต่อสิ่งมีชีวิตอื่น ";
+			mes " ความพยายามที่ทุ่มเทให้กับตัวเอง จะช่วยเสริมสร้างพลังอันยิ่งใหญ่ให้กับการดำรงอยู่ของตนเอง ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Don't forget that you must think about yorsrelf the most. ";
+			mes " อย่าลืมว่าคุณต้องนึกถึงตัวเองให้มากที่สุด ";
 			break;
 		case 62:
-			mes " Hodes do not know about tomorrow, but they still know about death. ";
-			mes " Even though you may be honest and simple, in a time of a crisis, you must be alert. ";
+			mes " Hode ไม่รู้จักวันพรุ่งนี้ แต่พวกมันยังคงรู้จักความตาย ";
+			mes " ถึงแม้คุณอาจจะเป็นคนซื่อสัตย์และสมถะ แต่ในยามวิกฤต คุณต้องตื่นตัวเข้าไว้ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Or else you will really be a simple and honest fool. That may be troublesome. ";
+			mes " มิฉะนั้นคุณจะเป็นได้แค่คนซื่อที่โง่เขลา ซึ่งนั่นอาจจะสร้างปัญหาได้ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Hodes do not ponder about life, but their will to live is very strong.";
-			mes " You can gain a lot simply through the will to hold on to life. ";
+			mes " Hode ไม่เคยครุ่นคิดเกี่ยวกับชีวิต แต่เจตจำนงในการมีชีวิตอยู่ของพวกมันนั้นแรงกล้ามาก ";
+			mes " คุณสามารถได้รับอะไรหลายอย่างเพียงแค่มีเจตจำนงที่จะรักษาชีวิตไว้ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Be thankful that you are alive. Thankfullness itself should help greatly. ";
+			mes " จงขอบคุณที่คุณยังมีชีวิตอยู่ ความกตัญญูรู้คุณนั้นควรจะช่วยคุณได้มากทีเดียว ";
 			break;
 		case 63:
-			mes " Hodes are afraid of crises. You should try not to be afraid of crises either. ";
+			mes " Hode กลัววิกฤตการณ์ คุณเองก็ควรพยายามไม่กลัววิกฤตการณ์เช่นกัน ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Don't think of them too much. A crisis is simply a crisis. ";
+			mes " อย่าไปคิดถึงมันมากนัก วิกฤตก็คือวิกฤตวันยังค่ำแหละ ";
 			break;
-		case 64:// Minorous Card
-			mes " Before, bulls used to be thought of as foolishly honest workers, but these days bulls are great strong fighters. ";
+		case 64:// การ์ด Minorous
+			mes " เมื่อก่อน วัวถูกมองว่าเป็นคนทำงานที่ซื่อสัตย์แบบเซ่อๆ แต่สมัยนี้วัวคือนักสู้ที่แข็งแกร่งและยิ่งใหญ่ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Finding different sides of oneself is the way to improve. Study about yourself. ";
+			mes " การค้นหาด้านที่แตกต่างของตัวเองคือหนทางสู่การพัฒนา จงเรียนรู้เกี่ยวกับตัวเองซะ ";
 			break;
 		case 65:
-			mes " Do bulls leave leather when they pass away? Or was it the tiger? ";
-			mes " Anyways, he is jealous of the humans that leave their name in history. ";
+			mes " วัวจะทิ้งหนังไว้เมื่อพวกมันจากไปงั้นรึ? หรือว่าเป็นเสือกันแน่นะ? ";
+			mes " อย่างไรก็ตาม เขากำลังอิจฉามนุษย์ที่ทิ้งชื่อไว้ในประวัติศาสตร์ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " If you don't leave your name, he may bear hatred against you for wasting your life. ";
-			mes " So, to not be cursed, make an effort to leave your name in history. ";
+			mes " หากคุณไม่ทิ้งชื่อไว้ เขาอาจจะผูกใจเจ็บต่อคุณที่ใช้ชีวิตอย่างสูญเปล่า ";
+			mes " เพื่อไม่ให้ถูกสาป จงพยายามสร้างชื่อทิ้งไว้ในประวัติศาสตร์เสียเถอะ ";
 			break;
 		case 66:
-			mes " It might seem funny that a bull will look into the future, but the bull is looking into your future right now. ";
-			mes " He says your future is mixed with storms and fall weather. ";
+			mes " มันอาจจะดูตลกที่วัวจะมองเห็นอนาคต แต่ตอนนี้วัวตัวนั้นกำลังจ้องมองอนาคตของคุณอยู่ ";
+			mes " เขากล่าวว่าอนาคตของคุณมีทั้งพายุและฤดูใบไม้ร่วงผสมปนเปกันไป ";
 			next;
 			mes "[Lhimetorra]";
-			mes " It may be difficult if you are caught up with one situation. In good times, prepare for the bad, and in bad times look forward to good luck. ";
+			mes " มันอาจจะลำบากถ้าคุณติดหล่มอยู่กับสถานการณ์ใดสถานการณ์หนึ่ง ในยามดีจงเตรียมพร้อมรับมือกับเรื่องร้าย และในยามร้ายจงมองหาโชคลาภที่กำลังจะมา ";
 			break;
-		case 67:// Hode Card
-			mes " The bull thinks of the happiness awaiting in the future, but it doesn't like reduced efficiency because of that happiness. ";
+		case 67:// การ์ด Hode
+			mes " วัวคิดถึงความสุขที่รออยู่ในอนาคต แต่มันไม่ชอบใจเลยหากประสิทธิภาพการทำงานลดลงเพราะความสุขนั้น ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Even though happiness may be on its way, don't let it affect your work right now. ";
-			mes " This is the bull's thought and your fortune. ";
+			mes " ถึงแม้ความสุขอาจจะกำลังเดินทางมา แต่อย่าปล่อยให้มันส่งผลกระทบต่องานของคุณในตอนนี้ล่ะ ";
+			mes " นี่คือความคิดของวัวและคือดวงชะตาของคุณ ";
 			break;
 		}
 		next;
 		mes "[Lhimetorra]";
-		mes " Speaking of the future is as dangerous act. ";
-		mes " Humans may face disaster if speaking of the future carelessly. That's why we ask cards about the future. ";
+		mes " การพูดถึงอนาคตถือเป็นการกระทำที่อันตรายนะ ";
+		mes " มนุษย์อาจเผชิญกับภัยพิบัติหากพูดเรื่องอนาคตอย่างไม่ระมัดระวัง นั่นคือเหตุผลที่เราต้องถามเรื่องอนาคตผ่านการ์ดยังไงล่ะ ";
 		next;
 		cutin "",255;
 		mes "[Lhimetorra]";
-		mes " Your fortune is a rather good one. There are some in this world who get more horrible fortunes. ";
-		mes " Use this fortune as a support in your life. Ok? ";
+		mes " ดวงชะตาของคุณถือว่าค่อนข้างดีทีเดียว มีบางคนในโลกนี้ที่ได้รับคำทำนายที่เลวร้ายกว่านี้มาก ";
+		mes " จงใช้คำทำนายนี้เป็นแรงสนับสนุนในชีวิตของคุณนะ ตกลงไหม? ";
 		close;
 	//================================================================= Warning ===
 	case 4:
 		mes "[Lhimetorra]";
-		mes " Someone that knows of the dangers you do not, will warn you in the form of cards... so listen carefully-! ";
+		mes " ใครบางคนที่ล่วงรู้ถึงอันตรายที่คุณไม่รู้ จะมาเตือนคุณในรูปแบบของการ์ด... ดังนั้น ฟังให้ดีล่ะ-! ";
 		next;
 		.@card_1_warning = rand(1,70);
-		if (.@card_1_warning < 5) cutin "ฐกภฬพฦฝบฤซตๅ",4;			// Giearth Card
-		else if (.@card_1_warning < 9) cutin "ด๕ฝบฦผณืฝบฤซตๅ",4;	// Dustiness Card
-		else if (.@card_1_warning < 13) cutin "ตๅถ๓ลฅถ๓ฤซตๅ",4;	// Dracula Card
-		else if (.@card_1_warning < 16) cutin "ตๅทนภฬลฉฤซตๅ",4;	// Drake Card
-		else if (.@card_1_warning < 20) cutin "ธถธฎณชฤซตๅ",4;		// Marina Card
-		else if (.@card_1_warning < 24) cutin "ธถธฎฟภณืฦฎฤซตๅ",4;	// Marionette Card
-		else if (.@card_1_warning < 28) cutin "ธÞตฮป็ฤซตๅ",4;		// Medusa Card
-		else if (.@card_1_warning < 32) cutin "นูฦ๗ธÞฦฎฤซตๅ",4;	// Baphomet Card
-		else if (.@card_1_warning < 36) cutin "ป๗ตๅธวฤซตๅ",4;		// Sandman Card
-		else if (.@card_1_warning < 40) cutin "ผาศ๑ฤซตๅ",4;		// Sohee Card
-		else if (.@card_1_warning < 44) cutin "ฝบฤฬฟ๖ฤฟฤซตๅ",4;	// Skel Worker Card
-		else if (.@card_1_warning < 48) cutin "ฝบฤฬณชภฬฦฎฤซตๅ",4;	// Khalitzburg Card
-		else if (.@card_1_warning < 52) cutin "พฦดฉบ๑ฝบฤซตๅ",4;	// Anubis Card
-		else if (.@card_1_warning < 56) cutin "ฟภลฉทฮตๅฤซตๅ",4;	// Orc Lord Card
-		else if (.@card_1_warning < 59) cutin "ภ่ฤซตๅ",4;		// Jakk Card
-		else if (.@card_1_warning < 63) cutin "มถฤฟฤซตๅ",4;		// Joker Card
-		else if (.@card_1_warning < 68) cutin "ศฃตๅฤซตๅ",4;		// Hode Card
-		else cutin "ศฒผาฤซตๅ",4; // Minorous Card
+		if (.@card_1_warning < 5) cutin "ฐกภฬพฦฝบฤซตๅ",4;			// การ์ด Giearth
+		else if (.@card_1_warning < 9) cutin "ด๕ฝบฦผณืฝบฤซตๅ",4;	// การ์ด Dustiness
+		else if (.@card_1_warning < 13) cutin "ตๅถ๓ลฅถ๓ฤซตๅ",4;	// การ์ด Dracula
+		else if (.@card_1_warning < 16) cutin "ตๅทนภฬลฉฤซตๅ",4;	// การ์ด Drake
+		else if (.@card_1_warning < 20) cutin "ธถธฎณชฤซตๅ",4;		// การ์ด Marina
+		else if (.@card_1_warning < 24) cutin "ธถธฎฟภณืฦฎฤซตๅ",4;	// การ์ด Marionette
+		else if (.@card_1_warning < 28) cutin "ธÞตฮป็ฤซตๅ",4;		// การ์ด Medusa
+		else if (.@card_1_warning < 32) cutin "นูฦ๗ธÞฦฎฤซตๅ",4;	// การ์ด Baphomet
+		else if (.@card_1_warning < 36) cutin "ป๗ตๅธวฤซตๅ",4;		// การ์ด Sandman
+		else if (.@card_1_warning < 40) cutin "ผาศ๑ฤซตๅ",4;		// การ์ด Sohee
+		else if (.@card_1_warning < 44) cutin "ฝบฤฬฟ๖ฤฟฤซตๅ",4;	// การ์ด Skel Worker
+		else if (.@card_1_warning < 48) cutin "ฝบฤฬณชภฬฦฎฤซตๅ",4;	// การ์ด Khalitzburg
+		else if (.@card_1_warning < 52) cutin "พฦดฉบ๑ฝบฤซตๅ",4;	// การ์ด Anubis
+		else if (.@card_1_warning < 56) cutin "ฟภลฉทฮตๅฤซตๅ",4;	// การ์ด Orc Lord
+		else if (.@card_1_warning < 59) cutin "ภ่ฤซตๅ",4;		// การ์ด Jakk
+		else if (.@card_1_warning < 63) cutin "มถฤฟฤซตๅ",4;		// การ์ด Joker
+		else if (.@card_1_warning < 68) cutin "ศฃตๅฤซตๅ",4;		// การ์ด Hode
+		else cutin "ศฒผาฤซตๅ",4; // การ์ด Minorous
 
 		mes "[Lhimetorra]";
 		switch(.@card_1_warning) {
 		case 1:
-			mes " Do you see the forbidden mark on its shoulder? It is telling you to not do something. ";
+			mes " คุณเห็นสัญลักษณ์ต้องห้ามบนไหล่ของมันไหม? มันกำลังบอกให้คุณอย่าทำบางสิ่งบางอย่าง ";
 			next;
 			mes "[Lhimetorra]";
-			mes " If you are thinking of something right now, stop your movement. Or else disaster may be headed your way. ";
+			mes " หากตอนนี้คุณกำลังคิดจะทำอะไรอยู่ล่ะก็ จงหยุดการกระทำนั้นซะ มิฉะนั้นหายนะอาจกำลังมุ่งหน้ามาหาคุณ ";
 			break;
 		case 2:
-			mes " Someone is after you. The person is very strong like the picture. They might be holding grudges against you. ";
+			mes " ใครบางคนกำลังตามล่าคุณอยู่ คนคนนั้นแข็งแกร่งมากเหมือนในรูปภาพ พวกเขาอาจจะกำลังถือความโกรธแค้นต่อคุณอยู่ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Look around you. Of course, look for anyone you might have spited.. ";
+			mes " มองไปรอบๆ ตัวคุณสิ และแน่นอน ลองนึกดูว่าคุณอาจจะเคยไปดูหมิ่นใครไว้บ้างหรือเปล่า.. ";
 			break;
 		case 3:
-			mes " It is saying to be careful not to burn your mustache with a cigarette. When you do something, something is always at risk.. It is probably warning about that. ";
+			mes " มันกำลังบอกให้ระวังอย่าให้บุหรี่ไหม้หนวดเข้าล่ะ เมื่อคุณทำบางสิ่ง มักจะมีความเสี่ยงตามมาเสมอ.. มันคงจะเตือนเกี่ยวกับเรื่องนั้นแหละ ";
 			break;
 		case 4:
-			mes " 'Be careful of shoveling'.. You might get hit by a shovel. Should you be careful around a construction site? ";
+			mes " 'ระวังการขุดดินให้ดี'.. คุณอาจจะถูกจอบหรือพลั่วฟาดเอาได้ คุณควรจะระมัดระวังเวลาอยู่แถวเขตก่อสร้างนะ ";
 			break;
-		case 5:// Dustiness Card
-			mes " The sound of a moth's wings fluttering means chaos. A chaotic event may occur around you. ";
+		case 5:// การ์ด Dustiness
+			mes " เสียงกระพือปีกของผีเสื้อกลางคืนหมายถึงความวุ่นวาย เหตุการณ์ที่โกลาหลอาจเกิดขึ้นรอบตัวคุณ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " The moth is warning you of this. You should be careful. ";
+			mes " ผีเสื้อกลางคืนกำลังเตือนคุณเรื่องนี้ คุณควรจะระวังตัวไว้นะ ";
 			break;
 		case 6:
-			mes " Be aware of the wings. Wings symbolize flight, adventure, and fickleness of a player. ";
+			mes " จงระวังปีกเอาไว้ ปีกเป็นสัญลักษณ์ของการบิน การผจญภัย และความโลเลของผู้เล่น ";
 			next;
 			mes "[Lhimetorra]";
-			mes " If a word strikes you, be wary of that. Maybe.. a player? ";
+			mes " หากมีคำไหนที่สะกิดใจคุณ ก็จงระวังเรื่องนั้นไว้ให้ดี บางที.. อาจจะเป็นผู้เล่นงั้นรึ? ";
 			break;
 		case 7:
-			mes " The teeth of Dustiness are very strong. This means.. Someone may attempt to bite you with their teeth?! ";
+			mes " ฟันของ Dustiness นั้นแข็งแรงมาก สิ่งนี้หมายความว่า.. ใครบางคนอาจจะพยายามกัดคุณด้วยฟันของพวกเขาก็ได้นะ?! ";
 			break;
 		case 8:
-			mes " The moth's warning: 'Dangerous!'. A very simple, yet obvious warning. ";
+			mes " คำเตือนจากผีเสื้อกลางคืน: 'อันตราย!'. เป็นคำเตือนที่เรียบง่าย แต่ชัดเจนที่สุด ";
 			break;
-		case 9:// Dracula Card
-			mes " Dracula says, 'Be careful in the streets at night.' ";
+		case 9:// การ์ด Dracula
+			mes " Dracula บอกว่า, 'จงระวังเวลาอยู่ตามท้องถนนในยามค่ำคืน' ";
 			break;
 		case 10:
-			mes " Dracula says, 'Don't be too picky.' ";
+			mes " Dracula บอกว่า, 'อย่าเป็นคนเลือกกินนักเลย' ";
 			break;
 		case 11:
-			mes " Dracula says, 'Brush your teeth 3 times a day.' Make sure you brush your teeth! ";
+			mes " Dracula บอกว่า, 'จงแปรงฟันวันละ 3 ครั้ง' อย่าลืมแปรงฟันล่ะ! ";
 			break;
 		case 12:
-			mes " Dracula says, 'Study the important points first.' Cramming will not work! ";
+			mes " Dracula บอกว่า, 'จงเรียนรู้จุดที่สำคัญที่สุดก่อน' การอ่านหนังสือแบบยัดเหยียดนาทีสุดท้ายไม่ได้ผลหรอก! ";
 			break;
-		case 13:// Drake Card
-			mes " If you see the flag of a pirate, either run or do as they say. Pirates do not give more than one warning. ";
+		case 13:// การ์ด Drake
+			mes " หากคุณเห็นธงโจรสลัด ไม่ว่าจะหนีหรือทำตามที่พวกเขาสั่ง โจรสลัดจะไม่เตือนเป็นครั้งที่สอง ";
 			next;
 			mes "[Lhimetorra]";
-			mes " It is the same in life. ";
+			mes " ในชีวิตจริงก็เช่นเดียวกัน ";
 			break;
 		case 14:
-			mes " Pirates give warnings about many things. But right now, this card is speaking of betrayal. ";
+			mes " โจรสลัดให้คำเตือนเกี่ยวกับหลายสิ่งหลายอย่าง แต่ในตอนนี้ การ์ดใบนี้กำลังพูดถึงการหักหลัง ";
 			next;
 			mes "[Lhimetorra]";
-			mes " To pirates, betrayal means tragic death. Be careful of betrayals. ";
+			mes " สำหรับโจรสลัด การหักหลังหมายถึงความตายที่น่าสลดใจ จงระวังการถูกทรยศหักหลังไว้ให้ดี ";
 			break;
 		case 15:
-			mes " The pirate is warning you of your beauty. Don't show off your beauty too much. Pirates are very jealous of appearance, as well. ";
+			mes " โจรสลัดกำลังเตือนคุณเรื่องความงาม อย่าอวดความงามของคุณมากเกินไปนัก เพราะโจรสลัดเองก็อิจฉาในรูปลักษณ์เหมือนกันนะ ";
 			break;
-		case 16:// Marina Card
-			mes " The Marina is warning of a hot stinging poison. Be cautious of poison. ";
+		case 16:// การ์ด Marina
+			mes " Marina กำลังเตือนถึงพิษที่แสบร้อน จงระมัดระวังเรื่องยาพิษไว้ด้วย ";
 			break;
 		case 17:
-			mes " The Marina is warning about a lazy lifestyle. It says such a lifestyle will lead to something like itself. ";
+			mes " Marina กำลังเตือนเกี่ยวกับการใช้ชีวิตที่เกียจคร้าน มันบอกว่าไลฟ์สไตล์แบบนั้นจะนำไปสู่บางสิ่งที่เหมือนกับตัวมันเอง ";
 			break;
 		case 18:
-			mes " The Marina doesn't really think about anything else.. But it will say one thing. Food. The Marina loves food. ";
+			mes " Marina ไม่ค่อยคิดเรื่องอื่นหรอก.. แต่มันจะบอกอย่างหนึ่ง นั่นคือ อาหาร Marina รักการกินเป็นที่สุด ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Eating is happiness. Same goes for humans as well. Value food and enjoy eating. ";
+			mes " การกินคือความสุข มนุษย์เราก็เช่นกัน จงเห็นคุณค่าของอาหารและสนุกกับการกินนะ ";
 			break;
 		case 19:
-			mes " The Marina is warning about a big belly. It's not happy because it resembles itself.. How about losing some weight? ";
+			mes " Marina กำลังเตือนเรื่องพุงพลุ้ยๆ ของคุณน่ะ มันไม่ค่อยพอใจที่พุงคุณเริ่มจะเหมือนตัวมันเข้าไปทุกที.. ลองลดน้ำหนักดูหน่อยเป็นไง? ";
 			break;
-		case 20:// Marionette Card
-			mes " The Marionette says that you must not rely on violence and to use a different method. ";
-			mes " I'm not quite sure, but it may become an important word of advice to you..? ";
+		case 20:// การ์ด Marionette
+			mes " Marionette บอกว่าคุณต้องไม่พึ่งพาความรุนแรงและให้ใช้วิธีการอื่นแทน ";
+			mes " ข้าไม่ค่อยแน่ใจนัก แต่มันอาจกลายเป็นคำแนะนำที่สำคัญสำหรับคุณก็ได้นะ..? ";
 			break;
 		case 21:
-			mes " The Marionette is warning about ominous activities. If you did something recently, you should settle it soon. ";
+			mes " Marionette กำลังเตือนเกี่ยวกับการกระทำที่เป็นลางร้าย หากคุณเพิ่งทำบางอย่างไปเมื่อเร็วๆ นี้ คุณควรจะรีบจัดการมันให้เรียบร้อยโดยเร็ว ";
 			next;
 			mes "[Lhimetorra]";
-			mes " A bad result may come your way. ";
+			mes " ผลลัพธ์ที่เลวร้ายอาจกำลังตามมาหาคุณ ";
 			break;
 		case 22:
-			mes " The Marionette's eyes are warning about your falsehood. Lies, deceit, fake calculations and actions.. The Marionette is warning about all of them. ";
+			mes " ดวงตาของ Marionette กำลังเตือนเรื่องความไม่จริงใจของคุณ ทั้งเรื่องโกหก การหลอกลวง การคำนวณและกระทำที่เสแสร้ง.. Marionette กำลังเตือนเรื่องพวกนั้นทั้งหมด ";
 			next;
 			mes "[Lhimetorra]";
-			mes " This is all for you young one. Therefore, follow this fortune and rid yourself of falsehood. ";
+			mes " นี่คือทั้งหมดเพื่อตัวคุณนะเจ้าหนู เพราะฉะนั้น จงทำตามคำทำนายนี้และสลัดความหลอกลวงทิ้งไปเสีย ";
 			break;
 		case 23:
-			mes " The Marionette is emphasizing a proper diet. Don't rely too much on meat. ";
+			mes " Marionette กำลังเน้นย้ำเรื่องการรับประทานอาหารที่เหมาะสม อย่าพึ่งพาแต่เนื้อสัตว์มากเกินไป ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Take the Marionette's advice. She never says anything wrong. Hoho... ";
+			mes " เชื่อคำแนะนำของ Marionette เถอะ เธอไม่เคยพูดอะไรผิดหรอก โฮ่โฮ่... ";
 			break;
-		case 24:// Medusa Card
-			mes " The Medusa punishes those who challenge it without warning. Unexpected punishment. ";
+		case 24:// การ์ด Medusa
+			mes " Medusa ลงโทษผู้ที่ท้าทายมันโดยไม่มีการเตือนล่วงหน้า เป็นการลงโทษที่ไม่ได้คาดคิด ";
 			next;
 			mes "[Lhimetorra]";
-			mes " That is a Medusa. You should be careful. The warning ended a long time ago. ";
+			mes " นั่นแหละคือ Medusa คุณควรระวังตัวไว้นะ คำเตือนมันจบลงไปตั้งนานแล้ว ";
 			break;
 		case 25:
-			mes " The Medusa is warning you to be nice to others, or else it will turn you into stone.";
+			mes " Medusa กำลังเตือนให้คุณทำดีกับคนอื่น มิฉะนั้นมันจะสาปคุณให้กลายเป็นหิน ";
 			next;
 			mes "[Lhimetorra]";
-			mes " What a rightful Medusa. Hmm... ";
+			mes " ช่างเป็น Medusa ที่รักความยุติธรรมจริงๆ อืม... ";
 			break;
 		case 26:
-			mes " The Medusa is warning you to return anything you borrow on time. ";
-			mes " Saying it will not forgive those who use other's things like a black hole.. borrowing and never returning ";
+			mes " Medusa กำลังเตือนให้คุณคืนของที่ยืมมาให้ตรงเวลา ";
+			mes " เธอบอกว่าจะไม่ให้อภัยพวกที่ใช้ของคนอื่นเหมือนหลุมดำ.. ยืมไปแล้วไม่เคยคืน ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Are you sure you returned everything you have borrowed? Better take care of everything before you get punished. ";
+			mes " คุณแน่ใจนะว่าคืนของทุกอย่างที่ยืมมาแล้ว? รีบจัดการให้เรียบร้อยก่อนที่จะถูกลงโทษดีกว่านะ ";
 			break;
 		case 27:
-			mes " The Medusa is warning about a person near you. Of their existence.. and the relationship, ";
+			mes " Medusa กำลังเตือนเกี่ยวกับคนใกล้ตัวคุณ ทั้งเรื่องการมีตัวตนของพวกเขา.. และความสัมพันธ์นั้น ";
 			next;
 			mes "[Lhimetorra]";
-			mes " The Medusa's warning is very stern. Take a close look around you. ";
+			mes " คำเตือนของ Medusa นั้นเข้มงวดมาก ลองพิจารณาสิ่งรอบตัวดูให้ดีๆ ";
 			break;
-		case 28:// Baphomet Card
-			mes " The Baphomet says to beware when intervening with others' issues. ";
+		case 28:// การ์ด Baphomet
+			mes " Baphomet บอกว่าจงระวังเวลาเข้าไปก้าวก่ายเรื่องของคนอื่น ";
 			next;
 			mes "[Lhimetorra]";
-			mes " He is very angry about intruding in others' spaces. Accept the Baphomet's warning. ";
+			mes " เขาโกรธมากเรื่องการบุกรุกพื้นที่ของผู้อื่น จงยอมรับคำเตือนของ Baphomet ซะ ";
 			break;
 		case 29:
-			mes " The Baphomet is warning about arrogance. Even a strong and wise warrior must show respect to a Baphomet, ";
-			mes " Arrogance takes away that respect. The Baphomet hates that type of arrogance. ";
+			mes " Baphomet กำลังเตือนเรื่องความโอหัง แม้แต่นักรบที่แข็งแกร่งและชาญฉลาดก็ยังต้องแสดงความเคารพต่อ Baphomet ";
+			mes " ความหยิ่งยโสจะพรากความเคารพนั้นไป Baphomet เกลียดความจองหองประเภทนั้นที่สุด ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Maybe it means he sees that type of arrogance in you? Since the Baphomet is warning you.. ";
+			mes " บางทีมันอาจหมายความว่าเขาเห็นความโอหังแบบนั้นในตัวคุณหรือเปล่า? ในเมื่อ Baphomet เป็นฝ่ายเตือนคุณเองแบบนี้.. ";
 			break;
 		case 30:
-			mes " The Baphomet is warning about the laziness that stops one from sharpening the scythe. ";
-			mes " That laziness will cause you to lose your life in an instant. ";
+			mes " Baphomet กำลังเตือนเรื่องความขี้เกียจที่ทำให้หยุดลับคมเคียวของตัวเอง ";
+			mes " ความเกียจคร้านนั้นจะทำให้คุณสูญเสียชีวิตได้ในพริบตา ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Laziness is more dangerous than the monster in front of you. Don't forget about this warning. ";
+			mes " ความขี้เกียจนั้นอันตรายยิ่งกว่ามอนสเตอร์ที่อยู่ตรงหน้าคุณเสียอีก อย่าลืมคำเตือนนี้เชียวล่ะ ";
 			break;
 		case 31:
-			mes " The Baphomet says it has nothing to say. I wonder why? Isn't it a very good sign?!! ";
+			mes " Baphomet บอกว่าเขาไม่มีอะไรจะพูด ข้าสงสัยจังว่าเพราะอะไร? แต่นั่นเป็นสัญญาณที่ดีมากเลยไม่ใช่รึ!! ";
 			break;
-		case 32:// Sandman Card
-			mes " Sand is an instant cure of athlete's foot. He says to beware of athlete's foot and that he hates those rubbing their infected feet into his body. ";
+		case 32:// การ์ด Sandman
+			mes " ทรายคือยารักษาโรคน้ำกัดเท้าได้อย่างฉับพลัน เขาบอกให้ระวังโรคน้ำกัดเท้า และเขาเกลียดพวกที่เอาเท้าติดเชื้อมาถูไถกับร่างกายของเขา ";
 			next;
 			mes "[Lhimetorra]";
-			mes " A Sandman's warning is very stern. Wash your feet regularly, young one. ";
+			mes " คำเตือนของ Sandman นั้นจริงจังมาก ล้างเท้าเป็นประจำนะเจ้าหนู ";
 			break;
 		case 33:
-			mes " A chicken puts sand in its mouth to aid its insufficient digestion system. ";
-			mes " The Sandman says to watch out before you become like a chicken. ";
+			mes " ไก่จะกินทรายเข้าไปเพื่อช่วยในระบบย่อยอาหารที่ไม่เพียงพอของมัน ";
+			mes " Sandman บอกให้ระวังตัวไว้ก่อนที่คุณจะกลายเป็นเหมือนไก่ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " And don't eat too much spicy and salty food, alcohol, etc. What a thoughtful Sandman. ";
+			mes " และอย่ากินอาหารเผ็ดจัด เค็มจัด แอลกอฮอล์ และอื่นๆ มากเกินไป ช่างเป็น Sandman ที่ใส่ใจจริงๆ ";
 			break;
 		case 34:
-			mes " The Sandman says over-sleepers will be punished by society! ";
+			mes " Sandman บอกว่าพวกที่ชอบนอนตื่นสายจะถูกสังคมลงโทษ! ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Oooh, a stern warning about the future! Young one, bear this in mind. ";
+			mes " โอ้ว คำเตือนที่รุนแรงเกี่ยวกับอนาคต! เจ้าหนู จำใส่ใจไว้ให้ดีนะ ";
 			break;
 		case 35:
-			mes " One warning from the Sandman, respect your parents. ";
+			mes " คำเตือนหนึ่งข้อจาก Sandman คือ จงเคารพพ่อแม่ของคุณ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " If you don't, you will end up like him. Listen to the Sandman. ";
+			mes " ถ้าคุณไม่ทำ คุณจะจบเหม่เหมือนเขา ฟังคำเตือนของ Sandman ไว้เถอะ ";
 			break;
-		case 36:// Sohee Card
-			mes " Sohee dislikes stinky feet. Don't forget to wash your feet. ";
+		case 36:// การ์ด Sohee
+			mes " Sohee ไม่ชอบเท้าเหม็น อย่าลืมล้างเท้าของคุณล่ะ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Bah, don't laugh about it! This is a solemn warning. ";
+			mes " แหม อย่าหัวเราะไปสิ! นี่คือคำเตือนที่ขึงขังนะ ";
 			break;
 		case 37:
-			mes " Sohee stands on the tip of her toes. It is because her toes are very strong. ";
-			mes " No matter what a person does, physical strength is the most important. Exercise and get stronger. ";
+			mes " Sohee ยืนด้วยปลายเท้า นั่นเป็นเพราะนิ้วเท้าของเธอแข็งแรงมาก ";
+			mes " ไม่ว่าคนเราจะทำอะไร พละกำลังทางกายคือสิ่งสำคัญที่สุด จงออกกำลังกายและทำให้แข็งแกร่งขึ้นซะ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " If you sit around all day, even the things that were going to work won't. Got it? Exercise, exercise! ";
+			mes " หากคุณเอาแต่นั่งเล่นทั้งวัน แม้แต่เรื่องที่กำลังจะไปได้ดีก็อาจพังลงได้ เข้าใจไหม? ออกกำลังกายซะ ออกกำลังกาย! ";
 			break;
 		case 38:
-			mes " Look at Sohee's hairstyle. Isn't it splendid. ";
-			mes " Sohee likes to take care of her appearance. If you don't, Sohee will get mad at you. ";
+			mes " ดูทรงผมของ Sohee สิ ไม่ใช่ว่ามันวิเศษมากหรอกรึ ";
+			mes " Sohee ชอบดูแลรูปลักษณ์ของเธอ หากคุณไม่ทำแบบนั้น Sohee จะโกรธคุณเอาได้นะ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Making yourself look presentable is just as important as keeping a good heart. ";
-			mes " Take care of your appearance. And get that pepper out from between your teeth! ";
+			mes " การทำให้ตัวเองดูดีนั้นสำคัญพอๆ กับการรักษาจิตใจที่ดีนั่นแหละ ";
+			mes " ดูแลภาพลักษณ์ตัวเองซะ แล้วก็เอาเศษพริกที่ติดฟันอยู่นั่นออกด้วย! ";
 			break;
 		case 39:
-			mes " Once, Sohee didn't get her change back when she asked a baby ghost to run an errand. ";
-			mes " No can do! Always return the change. ";
+			mes " ครั้งหนึ่ง Sohee ไม่ได้เงินทอนคืนหลังจากที่เธอใช้ให้วิญญาณเด็กไปทำธุระให้ ";
+			mes " แบบนั้นไม่ได้นะ! ต้องคืนเงินทอนเสมอ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " No matter how little the amount, you must not just keep it. Sohee greatly dislikes it. ";
+			mes " ไม่ว่าจะเป็นเงินเพียงน้อยนิด คุณก็ไม่ควรเก็บมันไว้เอง Sohee เกลียดเรื่องนี้มาก ";
 			break;
-		case 40:// Skel Worker Card
-			mes " Even though it is a skeleton with only bones, it has all the safety gear needed. ";
+		case 40:// การ์ด Skel Worker
+			mes " แม้ว่าจะเป็นโครงกระดูกที่มีแต่กระดูก แต่มันก็มีอุปกรณ์ความปลอดภัยครบครัน ";
 			next;
 			mes "[Lhimetorra]";
-			mes " What the skeleton wants to say is, be aware of 'safety'. Being ignorant about safety is dangerous. ";
+			mes " สิ่งที่เจ้าโครงกระดูกอยากจะบอกก็คือ จงคำนึงถึง 'ความปลอดภัย' การละเลยความปลอดภัยนั้นอันตรายมาก ";
 			break;
 		case 41:
-			mes " The skeleton card has a gray tone. If you read the grey, you can see the darkness. ";
-			mes " It seems like darkness is on its way. Be careful, this darkness isn't ordinary. ";
+			mes " การ์ดโครงกระดูกมีโทนสีเทา หากคุณอ่านผ่านสีเทานั้น คุณจะเห็นความมืดมิด ";
+			mes " ดูเหมือนว่าความมืดกำลังเดินทางมา ระวังตัวด้วย ความมืดนี้ไม่ธรรมดาหรอกนะ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Hmm.. would you like an amulet? ";
+			mes " อืม.. สนใจรับเครื่องรางสักชิ้นไหมล่ะ? ";
 			break;
 		case 42:
-			mes " The skeleton is warning you about an irregular eating pattern. ";
-			mes " It says it became like that because of a bad eating habit. ";
+			mes " เจ้าโครงกระดูกกำลังเตือนคุณเรื่องการรับประทานอาหารที่ไม่เป็นเวลา ";
+			mes " มันบอกว่ามันกลายเป็นแบบนี้ก็เพราะนิสัยการกินที่แย่นั่นแหละ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Eat the right food at the right time. That's the only way your body will survive. You can't afford to become like a skeleton. ";
+			mes " กินอาหารที่เหมาะสมในเวลาที่ถูกต้อง นั่นคือทางเดียวที่ร่างกายคุณจะอยู่รอด คุณคงไม่อยากกลายเป็นเหมือนโครงกระดูกหรอกนะ ";
 			break;
 		case 43:
-			mes " The skeleton's pickaxe is very strong. Even though its body seems weak, with the right tools, it can do great things. ";
+			mes " อีเต้อขุดดินของเจ้าโครงกระดูกนั้นแข็งแรงมาก ถึงร่างกายจะดูอ่อนแอ แต่หากมีเครื่องมือที่เหมาะสม มันก็สามารถทำสิ่งที่ยิ่งใหญ่ได้ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " So don't blame your body right now and go search for the right tools. Then you will have a good result. ";
+			mes " ดังนั้นอย่าเพิ่งโทษร่างกายของตัวเองตอนนี้เลย จงไปหาเครื่องมือที่ใช่มาซะ แล้วผลลัพธ์ที่ดีจะตามมาเอง ";
 			break;
-		case 44:// Khalitzburg Card
-			mes " The knight is warning you of reckless driving. Do you ride a Pecopeco by any chance? ";
-			mes " Anyhow, you should avoid reckless driving.. If a knight is saying that, it is a big problem. ";
+		case 44:// การ์ด Khalitzburg
+			mes " อัศวินกำลังเตือนคุณเรื่องการขับขี่ที่ประมาท คุณขี่ Pecopeco บ้างหรือเปล่าน่ะ? ";
+			mes " อย่างไรก็ตาม คุณควรหลีกเลี่ยงการขับขี่ที่อันตราย.. ถ้าอัศวินเป็นฝ่ายเตือนเองแบบนี้ แสดงว่าเป็นเรื่องใหญ่แล้วล่ะ ";
 			break;
 		case 45:
-			mes " The knight is warning you of cruelty. It could be yours or that of someone around you. ";
+			mes " อัศวินกำลังเตือนคุณเรื่องความโหดร้าย มันอาจจะเป็นความโหดร้ายของคุณเองหรือของคนรอบข้างก็ได้ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Anyhow, cruelty will harm you for sure. Be cautious of it. ";
+			mes " ไม่ว่าจะยังไง ความโหดร้ายจะทำร้ายคุณแน่นอน จงระมัดระวังมันไว้ ";
 			break;
 		case 46:
-			mes " The misfortune shown in the knight card is hastiness. That is also what takes away a knight's life, too. ";
+			mes " โชคร้ายที่แสดงออกมาในการ์ดอัศวินคือความรีบร้อน นั่นคือสิ่งที่พรากชีวิตอัศวินไปเหมือนกัน ";
 			next;
 			mes "[Lhimetorra]";
-			mes " This knight is warning you from the bottom of his heart, ";
-			mes " so that you don't repeat his mistake. Be ware of hastiness. ";
+			mes " อัศวินคนนี้กำลังเตือนคุณจากก้นบึ้งของหัวใจ ";
+			mes " เพื่อที่คุณจะได้ไม่ทำพลาดซ้ำรอยเดิม จงระวังความรีบร้อนเอาไว้ ";
 			break;
 		case 47:
-			mes " This knight is warning you of loneliness. He doesn't have a person to help his horse, ";
-			mes " nor a lover awaiting him, so loneliness hits him in the heart. ";
+			mes " อัศวินคนนี้กำลังเตือนคุณเรื่องความโดดเดี่ยว เขาไม่มีคนช่วยดูแลม้าของเขา ";
+			mes " และไม่มีคนรักรอคอยเขาอยู่ ความเหงาจึงกัดกินใจเขา ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Loneliness is not simply sadness. It is a formless devil eating your life. Stay away from loneliness. ";
+			mes " ความโดดเดี่ยวไม่ใช่แค่ความเศร้าธรรมดา แต่มันคือปีศาจที่ไร้รูปร่างซึ่งจะกัดกินชีวิตคุณ จงอยู่ห่างจากความโดดเดี่ยวซะ ";
 			break;
-		case 48:// Anubis Card
-			mes " The warning of the god of death is death itself. ";
+		case 48:// การ์ด Anubis
+			mes " คำเตือนของเทพแห่งความตายก็คือความตายเองนั่นแหละ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Be cautious of death.. death that can be your turn, or maybe someone else. ";
+			mes " จงระมัดระวังเรื่องความตาย.. ความตายที่อาจจะถึงคิวของคุณ หรืออาจจะเป็นคนอื่น ";
 			break;
 		case 49:
-			mes " The Anubis says to be careful of darkness. In darkness, death lingers in the dark. ";
+			mes " Anubis บอกว่าให้ระวังความมืด ในความมืดนั้น ความตายมักจะแฝงกายอยู่ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Take the Anubis's advice and avoid the dark. That is the wisest choice. ";
+			mes " เชื่อคำแนะนำของ Anubis แล้วหลีกเลี่ยงที่มืดซะ นั่นคือทางเลือกที่ฉลาดที่สุด ";
 			break;
 		case 50:
-			mes " The Anubis doesn't like foul language. You don't have a foul mouth, do you? ";
-			mes " Watch your mouth. The Anubis is after those that say foul language.";
+			mes " Anubis ไม่ชอบภาษาที่หยาบคาย คุณไม่ได้เป็นพวกปากเสียใช่ไหม? ";
+			mes " ระวังคำพูดของคุณด้วยล่ะ Anubis มักจะตามล่าพวกที่ใช้คำพูดหยาบคาย ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Humans have a problem with their mouths. Mmm~ Agh. Me, too?! ";
+			mes " มนุษย์เราชอบมีปัญหากับปากตัวเองนี่แหละ อืม~ อั๊ก ข้าด้วยงั้นรึ?! ";
 			break;
 		case 51:
-			mes " The Anubis is warning you of hatred. Hatred only brings upon death. ";
-			mes " The Anubis must not like being busy these days. ";
+			mes " Anubis กำลังเตือนคุณเรื่องความเกลียดชัง ความแค้นนำมาซึ่งความตายเท่านั้น ";
+			mes " ช่วงนี้ Anubis คงไม่อยากจะยุ่งงานหนักเท่าไหร่ล่ะมั้ง ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Seeing that he is warning about hatred. Don't you think it's a good idea to avoid his eyes at a time like this? ";
+			mes " เห็นได้จากการที่เขาเตือนเรื่องความเกลียดชัง คุณไม่คิดว่ามันเป็นความคิดที่ดีที่จะหลบสายตาเขาในเวลาแบบนี้รึ? ";
 			break;
-		case 52:// Orc Lord Card
-			mes " The Orc Lord is warning you of self-righteousness. It is the most dangerous noxious bug that will feed on you. ";
+		case 52:// การ์ด Orc Lord
+			mes " Orc Lord กำลังเตือนคุณเรื่องการถือดีในตัวเอง มันคือแมลงร้ายที่เป็นพิษและอันตรายที่สุดที่จะคอยกัดกินคุณ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Learn how to accept others' opinions. How about starting from accepting the Orc Lord's? ";
+			mes " จงเรียนรู้วิธีที่จะยอมรับความเห็นของผู้อื่น เริ่มต้นจากการยอมรับคำเตือนของ Orc Lord ก่อนเป็นไง? ";
 			break;
 		case 53:
-			mes " The Orc Lord is warning you about freedom. Isn't freedom a good thing? ";
-			mes " Not always! Too much freedom can lead to self-indulgence! ";
+			mes " Orc Lord กำลังเตือนคุณเรื่องอิสรภาพ อิสรภาพไม่ใช่เรื่องดีหรอกรึ? ";
+			mes " ไม่เสมอไปหรอก! อิสรภาพที่มากเกินไปอาจนำไปสู่ความปล่อยตัวปล่อยใจจนเกินขอบเขต! ";
 			next;
 			mes "[Lhimetorra]";
-			mes " He knows about the danger of freedom as a lord. ";
+			mes " เขาในฐานะเจ้าครองเมืองรู้ซึ้งถึงอันตรายของอิสรภาพดี ";
 			break;
 		case 54:
-			mes " The Orc Lord warning you of the opposite sex. Yes. They are poisonous. Keep your distance. ";
+			mes " Orc Lord เตือนคุณเรื่องเพศตรงข้าม ใช่แล้ว พวกเขาเป็นพิษ จงรักษาระยะห่างไว้ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Especially a young one like you... You are too close to one. Cough. ";
+			mes " โดยเฉพาะเด็กหนุ่มอย่างคุณ... คุณอยู่ใกล้คนหนึ่งมากเกินไปแล้วนะ *อะแฮ่ม* ";
 			break;
 		case 55:
-			mes " The Orc Lord is warning about destruction. He knows destruction very well because he is a master of destruction. ";
+			mes " Orc Lord กำลังเตือนเรื่องการทำลายล้าง เขารู้จักมันดีเพราะเขาคือเจ้าแห่งการทำลายล้าง ";
 			next;
 			mes "[Lhimetorra]";
-			mes " That's why he knows about the danger and misfortune destruction brings. Don't destroy thoughtlessly. You will end up destroying yourself as well. ";
+			mes " นั่นแหละคือเหตุผลที่เขารู้จักอันตรายและความอัปมงคลที่การทำลายล้างนำมาให้ อย่าทำลายอะไรเล่นๆ โดยไม่คิด ไม่อย่างนั้นคุณจะลงเอยด้วยการทำลายตัวเองไปด้วย ";
 			break;
-		case 56:// Jakk Card
-			mes " Jack is warning you of lame jokes. When he finds one saying them, he tends to hit them with his stick. ";
+		case 56:// การ์ด Jakk
+			mes " Jack กำลังเตือนคุณเรื่องมุกฝืดๆ เมื่อเขาเจอใครที่เล่นมุกแบบนั้น เขาชอบเอาไม้เท้าฟาดซะ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " If you don't want to be hit, stop your lame jokes! ";
+			mes " หากไม่อยากโดนฟาด ก็เลิกเล่นมุกแป้กได้แล้ว! ";
 			break;
 		case 57:
-			mes " Jack is warning you about others' anger and that anger takes away happiness and kills a joke. ";
+			mes " Jack กำลังเตือนคุณเรื่องความโกรธของคนอื่น และความโกรธนั้นจะพรากความสุขไปแถมยังฆ่าความตลกให้ตายสนิท ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Anger only exhausts you. Keep your distance from anger and befriend jokes. Jack's word. ";
+			mes " ความโกรธมีแต่จะทำให้คุณเหนื่อยเปล่า จงอยู่ห่างจากความโกรธและเป็นมิตรกับอารมณ์ขันซะ คำสอนของ Jack ล่ะ ";
 			break;
 		case 58:
-			mes " It seems like Jack is worried about excessive jokes. ";
-			mes " Jokes are fun, but too much will turn you into a ghost like him. ";
+			mes " ดูเหมือน Jack จะกังวลเรื่องการเล่นตลกที่เกินขอบเขต ";
+			mes " มุกตลกน่ะมันสนุกดี แต่ถ้ามากเกินไปจะทำให้คุณกลายเป็นวิญญาณเหมือนเขา ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Be careful. When Jack speaks like this, he playfulness is gone. ";
+			mes " ระวังตัวด้วยล่ะ เมื่อ Jack พูดแบบนี้ แสดงว่าเขาไม่ได้ล้อเล่นแล้ว ";
 			break;
-		case 59:// Joker Card
-			mes " Jokers enjoy giving opposite warnings. He says to enjoy sleeping in.";
+		case 59:// การ์ด Joker
+			mes " Joker สนุกกับการให้คำเตือนที่ตรงกันข้าม เขาบอกให้คุณนอนตื่นสายๆ ให้สนุกไปเลย ";
 			next;
 			mes "[Lhimetorra]";
-			mes " I think you should wake up early. ";
+			mes " ข้าว่าคุณควรจะตื่นเช้าๆ นะ ";
 			break;
 		case 60:
-			mes " Jokers enjoy giving opposite warnings. He says to enjoy a midnight snack. ";
+			mes " Joker สนุกกับการให้คำเตือนที่ตรงกันข้าม เขาบอกให้สนุกกับอาหารมื้อดึกซะ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Don't eat anything at night. Your stomach will hurt. ";
+			mes " อย่ากินอะไรตอนกลางคืนเชียวล่ะ เดี๋ยวจะปวดท้องเอา ";
 			break;
 		case 61:
-			mes " Jokers enjoy giving opposite warnings. ";
-			mes " He says if someone has something you want, make it yours. ";
+			mes " Joker สนุกกับการให้คำเตือนที่ตรงกันข้าม ";
+			mes " เขาบอกว่าถ้าใครมีของที่คุณอยากได้ ก็จงแย่งมาเป็นของคุณซะ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Need I say more? That's a dangerous thought!! ";
+			mes " ข้าต้องพูดอะไรเพิ่มอีกไหม? นั่นมันความคิดที่อันตรายสุดๆ เลยนะ!! ";
 			break;
 		case 62:
-			mes " Joker enjoys giving opposite warnings. ";
-			mes " What he is telling you is to not fear death. ";
+			mes " Joker สนุกกับการให้คำเตือนที่ตรงกันข้าม ";
+			mes " สิ่งที่เขาบอกคุณก็คืออย่าไปกลัวความตาย ";
 			next;
 			mes "[Lhimetorra]";
-			mes " If a Joker is saying this, be careful. There is no cure for thoughtless fools. ";
+			mes " หาก Joker พูดแบบนี้ล่ะก็ ระวังตัวไว้เถอะ ไม่มียารักษาพวกคนเขลาที่ทำอะไรไม่คิดหรอกนะ ";
 			break;
-		case 63:// Hode Card
-			mes " The Hode can forgive others, but not those who hurt it. ";
-			mes " You should also only not forgive those who hurt you. ";
+		case 63:// การ์ด Hode
+			mes " Hode สามารถให้อภัยคนอื่นได้ แต่ไม่ใช่พวกที่ทำร้ายมัน ";
+			mes " คุณเองก็ควรจะไม่ให้อภัยเฉพาะคนที่ทำร้ายคุณเท่านั้น ";
 			next;
 			mes "[Lhimetorra]";
-			mes " A small territory will ensure great happiness. ";
+			mes " พื้นที่เขตแดนเล็กๆ จะรับประกันความสุขที่ยิ่งใหญ่ ";
 			break;
 		case 64:
-			mes " The Hode is warning you of voracious eating that made it sluggish. ";
-			mes " Eating is good, but the wild is a dangerous place. Leave your stomach partially empty. ";
+			mes " Hode กำลังเตือนคุณเรื่องการกินที่ตะกละตะกลามซึ่งทำให้มันเฉื่อยชา ";
+			mes " การกินเป็นเรื่องดี แต่ในป่าใหญ่คือสถานที่ที่อันตราย จงเหลือพื้นที่ในท้องไว้บ้าง ";
 			next;
 			mes "[Lhimetorra]";
-			mes " So you can quickly respond to crises. ";
+			mes " เพื่อที่คุณจะได้ตอบสนองต่อวิกฤตการณ์ได้อย่างรวดเร็ว ";
 			break;
 		case 65:
-			mes " The Hode is warning you of voracious eating that made it sluggish. ";
-			mes " Eating is good, but the wild is a dangerous place. Leave your stomach partially empty.";
+			mes " Hode กำลังเตือนคุณเรื่องการกินที่ตะกละตะกลามซึ่งทำให้มันเฉื่อยชา ";
+			mes " การกินเป็นเรื่องดี แต่ในป่าใหญ่คือสถานที่ที่อันตราย จงเหลือพื้นที่ในท้องไว้บ้าง ";
 			next;
 			mes "[Lhimetorra]";
-			mes " So you can quickly respond to crises. ";
+			mes " เพื่อที่คุณจะได้ตอบสนองต่อวิกฤตการณ์ได้อย่างรวดเร็ว ";
 			break;
 		case 66:
-			mes " If you are to the point of being warned by a Hode.. you must be one considerable person. ";
+			mes " หากคุณถึงขั้นได้รับการเตือนจาก Hode.. คุณคงจะเป็นคนที่น่าพิจารณามากทีเดียว ";
 			next;
 			mes "[Lhimetorra]";
-			mes " It says to do better.. I have no idea what it means. ";
+			mes " มันบอกให้ทำให้ดีกว่านี้.. ข้าก็ไม่เข้าใจเหมือนกันว่ามันหมายถึงอะไร ";
 			break;
 		case 67:
-			mes " The Bull warns of corruption. A lazy hedonist that is not diligent. ";
-			mes " He believes that is like a cancer cell that can't be removed. ";
+			mes " เจ้าวัวเตือนเรื่องความเสื่อมทราม พวกที่รักสนุกและขี้เกียจ ไม่ขยันขันแข็ง ";
+			mes " เขาเชื่อว่านั่นเปรียบเสมือนเซลล์มะเร็งที่ไม่สามารถกำจัดออกได้ ";
 			next;
 			mes "[Lhimetorra]";
-			mes " Be careful to not have that kind of cell stuck on you. ";
+			mes " ระวังอย่าให้เซลล์แบบนั้นมาเกาะติดตัวคุณล่ะ ";
 			break;
-		case 68:// Minorous Card
-			mes " The bull is warning about ignorance about a crisis. ";
-			mes " Not knowing that a crisis is a crisis is the most dangerous of all. ";
+		case 68:// การ์ด Minorous
+			mes " เจ้าวัวกำลังเตือนเรื่องความเพิกเฉยต่อวิกฤตการณ์ ";
+			mes " การไม่รู้ว่าวิกฤตคือวิกฤตนั้น อันตรายที่สุดในบรรดาทุกสิ่ง ";
 			next;
 			mes "[Lhimetorra]";
-			mes " You will need to learn how to read danger. Accept the bull's advice. ";
+			mes " คุณจำเป็นต้องเรียนรู้วิธีอ่านอันตรายให้ออก รับฟังคำแนะนำของเจ้าวัวซะ ";
 			break;
 		case 69:
-			mes " The bull is warning of something that will make life sad. ";
-			mes " Sadness is a natural feeling, but don't let that put you down. ";
+			mes " เจ้าวัวกำลังเตือนถึงบางสิ่งที่จะทำให้ชีวิตเศร้าสรอง ";
+			mes " ความเศร้าเป็นความรู้สึกตามธรรมชาติ แต่อย่าปล่อยให้มันทำให้คุณท้อถอย ";
 			next;
 			mes "[Lhimetorra]";
-			mes " A bull is an honest worker that cries even while it works. It knows that it must not be lazy about what it needs to do, even when expressing sadness. ";
-			mes " It seems like he wants to tell you this. ";
+			mes " วัวคือคนทำงานที่ซื่อสัตย์ซึ่งร้องไห้ไปด้วยขณะทำงาน มันรู้ว่ามันต้องไม่ขี้เกียจในสิ่งที่ต้องทำ แม้จะกำลังแสดงความเสียใจออกมาก็ตาม ";
+			mes " ดูเหมือนว่าเขาอยากจะบอกคุณเรื่องนี้นะ ";
 			break;
 		case 70:
-			mes " The bull is warning about meat from watered cows. ";
-			mes " Saying that, that type of behavior will surely bring upon monsters' curses. ";
+			mes " เจ้าวัวกำลังเตือนเรื่องเนื้อวัวจากวัวที่ถูกกรอกน้ำ ";
+			mes " เขาว่าพฤติกรรมแบบนั้นจะนำคำสาปของมอนสเตอร์มาสู่ตัวอย่างแน่นอน ";
 			next;
 			mes "[Lhimetorra]";
-			mes " I don't know why he would warn you about it.. Do you raise cattle by any chance? ";
+			mes " ข้าก็ไม่รู้ว่าทำไมเขาถึงเตือนคุณเรื่องนี้.. คุณเลี้ยงปศุสัตว์บ้างหรือเปล่าล่ะนั่น? ";
 			break;
 		}
 		next;
 		mes "[Lhimetorra]";
-		mes " A warning is always a useful fortune. You can never lose anything. ";
+		mes " คำเตือนคือโชคชะตาที่มีประโยชน์เสมอ คุณไม่มีทางเสียอะไรจากมันหรอก ";
 		next;
 		cutin "",255;
 		mes "[Lhimetorra]";
-		mes " I hope you will be able to avoid misfortune with this warning. Then... ";
+		mes " ข้าหวังว่าคุณจะสามารถหลีกเลี่ยงโชคร้ายได้ด้วยคำเตือนนี้ ถ้าอย่างนั้น... ";
 		close;
 	}
 }
 
 payon_in03,75,129,5	script	Poring Fortune Teller	4_M_BIBI,{
 	mes "[Chocarle]";
-	mes " Welcome, welcome~!! " +strcharinfo(0)+ "~!";
-	mes " What brings you here today!? ";
+	mes " ยินดีต้อนรับ ยินดีต้อนรับ~!! " +strcharinfo(0)+ "~!";
+	mes " อะไรนำพาคุณมาที่นี่ในวันนี้งั้นรึ!? ";
 	next;
-	if (select(" I would like a Poring card reading. : What is a Poring card reading? ") == 2) {
+	if (select(" ข้าอยากจะขอดูพยากรณ์จากการ์ด Poring หน่อย : การทำนายด้วยการ์ด Poring คืออะไร? ") == 2) {
 		mes "[Chocarle]";
-		mes " Poring card readings focus on cards with cute Porings..! ";
-		mes " Poke~poke~ they tell you your fortune! It is not traditional, but the liveliness is the best! ";
+		mes " การทำนายด้วยการ์ด Poring จะเน้นไปที่เหล่าการ์ดที่มีรูป Poring สุดน่ารักยังไงล่ะ..! ";
+		mes " จิ้ม~จิ้ม~ พวกมันจะบอกโชคชะตาให้คุณเอง! ถึงมันจะไม่ใช่แบบดั้งเดิม แต่ความมีชีวิตชีวาน่ะถือว่าที่สุดเลยล่ะ! ";
 		next;
 		mes "[Chocarle]";
-		mes " The fortunes are simple and refreshing. It is perfect when you would like your fortune told with a light heart and not be burdensome! ";
+		mes " คำทำนายนั้นง่ายและสดชื่น มันเหมาะมากเวลาที่คุณอยากจะดูดวงด้วยหัวใจที่เบิกบานและไม่รู้สึกหนักอึ้งจนเกินไป! ";
 		close;
 	}
 	mes "[Chocarle]";
-	mes " Ah~ is that so! ";
-	mes " Solving the wonders of the future with these cute and adorable Poring cards! ";
-	mes " It is 1000z for each fortune! Shall we begin? ";
+	mes " อ่า~ งั้นหรอกรึ! ";
+	mes " มาไขปริศนาแห่งอนาคตด้วยการ์ด Poring ที่น่ารักและน่าเอ็นดูเหล่านี้กันเถอะ! ";
+	mes " ค่าทำนายครั้งละ 1,000z นะ! เรามาเริ่มกันเลยไหม? ";
 	next;
-	if (select(" Yes. : I would like to think about it once more. ") == 2) {
+	if (select(" ตกลง : ข้าขอคิดดูอีกทีดีกว่า ") == 2) {
 		mes "[Chocarle]";
-		mes " Ok then! Come again next time! We'll do a good job! Bye-bye~! ";
+		mes " ตกลงจ้า! งั้นไว้คราวหน้ามาใหม่นะ! เราจะทำออกมาให้ดีเลยล่ะ! บ๊ายบาย~! ";
 		close;
 	}
 	if (Zeny < 1000) {
 		mes "[Chocarle]";
-		mes "You don't even have 1000 zeny!";
-		mes "Nope, I can read cards for you!";
-		mes "Nope!";
+		mes "คุณมี Zeny ไม่ถึง 1,000 เลยนี่นา!";
+		mes "ไม่ได้หรอก ข้าอ่านการ์ดให้คุณไม่ได้!";
+		mes "ไม่ได้เด็ดขาด!";
 		close;
 	}
 	Zeny = Zeny -1000;
 	mes "[Chocarle]";
-	mes " Thank you~! Then we shall look into your fortune! ";
-	mes " First, clear your mind! Just like washing when you wash dishes! ";
+	mes " ขอบคุณน้า~! งั้นเรามาดูโชคชะตาของคุณกันเถอะ! ";
+	mes " ขั้นแรก ทำจิตใจให้ว่าง! เหมือนตอนที่คุณขัดล้างจานยังไงล่ะ! ";
 	next;
 	mes "[Chocarle]";
-	mes " Then~ gently think of your wish! ";
+	mes " จากนั้น~ ค่อยๆ นึกถึงสิ่งที่คุณปรารถนาไว้นะ! ";
 	next;
-	switch(select(" (I'm curious about love!) : (I would like to do well in school!) : (Will my friendship be intact?) : (I want to know about my future self!) : (Will I make a lot of money?) ")) {
+	switch(select(" (ข้าอยากรู้เรื่องความรัก!) : (ข้าอยากจะเรียนให้ดีขึ้น!) : (มิตรภาพของข้าจะยังคงแน่นแฟ้นไหมนะ?) : (ข้าอยากรู้เกี่ยวกับตัวข้าในอนาคต!) : (ข้าจะทำเงินได้เยอะๆ ไหมนะ?) ")) {
 	case 1:
 		mes "[Chocarle]";
-		mes " Ohh! Cute love fortune! Heh! Lets look at the cards! ";
+		mes " โอ้! ดวงความรักสุดน่ารัก! เฮะ! มาดูการ์ดกันเลย! ";
 		next;
 		.@card_2_love = rand(1,33);
 		callsub L_displaycutin, .@card_2_love;
@@ -2019,117 +2019,117 @@ payon_in03,75,129,5	script	Poring Fortune Teller	4_M_BIBI,{
 		mes "[Chocarle]";
 		switch(.@card_2_love) {
 		case 1:
-			mes " Oh! Your lover is about to leave your side! Hold on tight! ";
+			mes " โอ๊ะ! คนรักของคุณกำลังจะจากไปแล้ว! รั้งเขาไว้ให้แน่นๆ ล่ะ! ";
 			break;
 		case 2:
-			mes " Agh! You're about to give your soul to your loved one! Take it down a notch! ";
+			mes " อ๊าก! คุณกำลังจะมอบจิตวิญญาณให้กับคนที่คุณรัก! เพลาๆ ลงหน่อยนะ! ";
 			break;
 		case 3:
-			mes " No! Your heart is about to leave your love! Catch it! ";
+			mes " ไม่นะ! หัวใจของคุณกำลังจะหลุดลอยไปจากความรัก! จับมันไว้ให้ได้! ";
 			break;
-		case 4:// Drops Card
-			mes " Love is like juice in the forest! It is refreshing! Take care of your loved one! ";
+		case 4:// การ์ด Drops
+			mes " ความรักก็เหมือนน้ำผลไม้ในป่าใหญ่! มันช่างสดชื่น! ดูแลคนที่คุณรักให้ดีล่ะ! ";
 			break;
 		case 5:
-			mes " Uh! You didn't share your juice with your loved one! What a shame! Take care of your loved one! ";
+			mes " เอ๊ะ! คุณไม่ได้แบ่งน้ำผลไม้ให้กับคนที่คุณรัก! น่าเสียดายจัง! ดูแลคนที่คุณรักหน่อยนะ! ";
 			break;
 		case 6:
-			mes " Why not share with your loved one? Don't be too greedy and try to keep it all! ";
+			mes " ทำไมไม่แบ่งปันกับคนที่คุณรักล่ะ? อย่าโลภมากและพยายามเก็บมันไว้คนเดียวเลย! ";
 			break;
-		case 7:// Mantis Card
-			mes " Your love is going to have a crisis! Protect your love! ";
+		case 7:// การ์ด Mantis
+			mes " ความรักของคุณกำลังจะพบกับวิกฤต! จงปกป้องความรักของคุณเอาไว้! ";
 			break;
 		case 8:
-			mes " Hee! Go after your love like a mole! Puhahaha! ";
+			mes " ฮี้! จงตามหาความรักของคุณให้เหมือนกับตัวตุ่น! ปูฮ่าฮ่าฮ่า! ";
 			break;
 		case 9:
-			mes " Oh no! Your love is in danger! Run away from the menace! ";
+			mes " แย่แล้ว! ความรักของคุณกำลังตกอยู่ในอันตราย! วิ่งหนีไปจากภัยคุกคามนั้นซะ! ";
 			break;
-		case 10:// Munak Card
-			mes " Oh no! You lost your loved one. And, nobody similar around you. Cheer up! ";
+		case 10:// การ์ด Munak
+			mes " โอไม่นะ! คุณสูญเสียคนที่คุณรักไปเสียแล้ว และไม่มีใครรอบตัวที่เหมือนเขาเลย... ร่าเริงเข้าไว้นะ! ";
 			break;
 		case 11:
-			mes " Ah! A sexy rival has appeared! Don't get sidetracked! ";
+			mes " อา! คู่แข่งที่เซ็กซี่ปรากฏตัวขึ้นแล้ว! อย่าวอกแวกเด็ดขาด! ";
 			break;
 		case 12:
-			mes " You are desperately searching for love! If you go beyond this desert, you can find love! ";
+			mes " คุณกำลังตามหาความรักอย่างเอาเป็นเอาตาย! หากคุณข้ามผ่านทะเลทรายนี้ไปได้ คุณจะพบกับความรัก! ";
 			break;
-		case 13:// Santa Poring Card
-			mes " Prepare an event of love! They will be flying with happiness! ";
+		case 13:// การ์ด Santa Poring
+			mes " เตรียมจัดกิจกรรมแห่งความรักเอาไว้เถอะ! พวกเขาจะตัวลอยด้วยความสุขเลยล่ะ! ";
 			break;
 		case 14:
-			mes " Love is sweet! Be careful not to get cavities! ";
+			mes " ความรักช่างหวานชื่น! ระวังอย่าให้ฟันผุนะ! ";
 			break;
 		case 15:
-			mes " Prepare a present for your love! They might get a heart attack because they will be overwhelmed with happiness! ";
+			mes " เตรียมของขวัญไว้ให้คนที่คุณรักนะ! พวกเขาอาจจะหัวใจวายได้เพราะตื้นตันใจในความสุขมากเกินไป! ";
 			break;
-		case 16:// Soldier Skeleton Card
-			mes " Don't be shy in front of your loved one! Love transcends everything! ";
+		case 16:// การ์ด Soldier Skeleton
+			mes " อย่าเขินอายต่อหน้าคนที่คุณรักเลย! ความรักอยู่เหนือทุกสิ่ง! ";
 			break;
 		case 17:
-			mes " Embrace every aspect of your loved one! That is true love! ";
+			mes " จงโอบกอดทุกแง่มุมของคนที่คุณรักเอาไว้! นั่นแหละคือความรักที่แท้จริง! ";
 			break;
 		case 18:
-			mes " Love will blossom with a totally different person! Wow, so cool! ";
+			mes " ความรักจะเบ่งบานกับคนที่แตกต่างกันอย่างสิ้นเชิง! ว้าว สุดยอดไปเลย! ";
 			break;
-		case 19:// Skeleton Card
-			mes " No matter what other people say, run towards your loved one! One-track love! ";
+		case 19:// การ์ด Skeleton
+			mes " ไม่ว่าคนอื่นจะว่ายังไง จงวิ่งไปหาคนที่คุณรัก! ความรักที่มุ่งมั่นเพียงหนึ่งเดียว! ";
 			break;
 		case 20:
-			mes " Go to your loved one with a present! They will be very happy! ";
+			mes " ไปหาคนที่คุณรักพร้อมกับของขวัญสิ! พวกเขาจะมีความสุขมากแน่ๆ! ";
 			break;
 		case 21:
-			mes " Love requires health and strength! Exercise to become stronger! Power and love! ";
+			mes " ความรักต้องการสุขภาพและพละกำลัง! ออกกำลังกายเพื่อให้แข็งแรงขึ้น! พลังและใจ! ";
 			break;
-		case 22:// Eddga Card
-			mes " Even if you wish to approach your loved one, your body is discomforted! Take a break and rest! ";
+		case 22:// การ์ด Eddga
+			mes " ถึงแม้คุณอยากจะเข้าหาคนที่คุณรัก แต่ร่างกายของคุณกลับไม่เอื้ออำนวย! หยุดพักผ่อนบ้างนะ! ";
 			break;
 		case 23:
-			mes " Love is bending yourself for someone! Service! Sacrifice! ";
+			mes " ความรักคือการยอมปรับตัวเพื่อใครบางคน! การปรนนิบัติ! และการเสียสละ! ";
 			break;
 		case 24:
-			mes " You will be meeting your lover's parents! Prepare well! ";
+			mes " คุณจะได้ไปพบกับพ่อแม่ของคนรัก! เตรียมตัวให้ดีล่ะ! ";
 			break;
-		case 25:// Angeling Card
-			mes " Your relationship must be very happy as it seems you two are flying amongst the clouds! Very jealous! ";
+		case 25:// การ์ด Angeling
+			mes " ความสัมพันธ์ของคุณต้องมีความสุขมากแน่ๆ ดูเหมือนพวกคุณสองคนกำลังบินอยู่บนก้อนเมฆเลย! น่าอิจฉาจัง! ";
 			break;
 		case 26:
-			mes " Make an opportunity to be alone with each other! It will bring much happiness! ";
+			mes " หาโอกาสได้อยู่กันตามลำพังสองต่อสองบ้าง! มันจะนำความสุขมาให้มากมายเลยล่ะ! ";
 			break;
 		case 27:
-			mes " Uh oh! Someone is peeping at your love! Go scold them! ";
+			mes " อาโอ! มีคนกำลังแอบส่องความรักของคุณอยู่! ไปดุพวกเขาซะ! ";
 			break;
-		case 28:// Poring Card
-			mes " Love blossoms from the foundation! Be true to the basics! ";
+		case 28:// การ์ด Poring
+			mes " ความรักเบ่งบานจากรากฐานที่มั่นคง! จงซื่อตรงต่อพื้นฐานเข้าไว้! ";
 			break;
 		case 29:
-			mes " When your loved one is hurt, be by them! They will be very happy! ";
+			mes " เมื่อคนที่คุณรักได้รับบาดเจ็บ จงอยู่เคียงข้างเขา! พวกเขาจะมีความสุขมาก ";
 			break;
 		case 30:
-			mes " One day, when you wake up, your loved one will leave a present! Be happy! ";
+			mes " วันหนึ่งเมื่อคุณตื่นขึ้นมา คนที่คุณรักจะทิ้งของขวัญเอาไว้ให้! มีความสุขเข้าไว้นะ! ";
 			break;
-		case 31:// Poporing Card
-			mes " Give lots~~ of presents to your loved one! Then you will experience many~ many good things! ";
+		case 31:// การ์ด Poporing
+			mes " มอบของขวัญให้คนรักของคุณเยอะๆ~~ เลยนะ! แล้วคุณจะได้พบกับเรื่องดีๆ มากมาย~ เลยล่ะ! ";
 			break;
 		case 32:
-			mes " Lean against a wall and await your love! *Boom* Love will appear! ";
+			mes " ลองพิงกำแพงแล้วรอคอยความรักของคุณดูสิ! *บึ้ม* แล้วความรักจะปรากฏออกมา! ";
 			break;
 		case 33:
-			mes " You must be lonely! It's ok, cheer up! ";
+			mes " คุณต้องกำลังเหงาอยู่แน่ๆ! ไม่เป็นไรนะ ร่าเริงเข้าไว้! ";
 			break;
 		}
 		next;
 		mes "[Chocarle]";
-		mes " A fortune of love was told! What do you think! Do you like it? ";
-		mes " Even if you did not get the fortune you wished for, don't be do upset and simply go for your love! ";
+		mes " ทำนายดวงความรักเสร็จแล้ว! คุณคิดว่ายังไงบ้าง! ชอบไหม? ";
+		mes " ถึงแม้คุณจะไม่ได้ดวงตามที่หวังไว้ ก็อย่าได้เศร้าไปเลย และจงเดินหน้าเพื่อความรักของคุณต่อไป! ";
 		cutin "",255;
 		next;
 		mes "[Chocarle]";
-		mes " Then, see you next time~~~~~ ";
+		mes " ถ้าอย่างนั้น ไว้เจอกันคราวหน้านะ~~~~~ ";
 		close;
-	case 2:// Study
+	case 2:// การเรียน
 		mes "[Chocarle]";
-		mes " Issues about studying is a serious matter! Lets take a look! Yap! ";
+		mes " เรื่องเกี่ยวกับการเรียนเนี่ยเป็นเรื่องซีเรียสนะ! มาดูกันเลย! ยัพ! ";
 		next;
 		.@card_2_study = rand(1,33);
 		callsub L_displaycutin, .@card_2_study;
@@ -2137,117 +2137,117 @@ payon_in03,75,129,5	script	Poring Fortune Teller	4_M_BIBI,{
 		mes "[Chocarle]";
 		switch(.@card_2_study) {
 		case 1:
-			mes " Agh! Don't die from studying! Take breaks while you're at it! You need some rest! ";
+			mes " อ๊าก! อย่าเรียนหนักจนตายล่ะ! หาเวลาพักระหว่างเรียนบ้าง! คุณต้องการการพักผ่อนนะ! ";
 			break;
 		case 2:
-			mes " Oh, no! You're missing the main points! Figure out the essentials! ";
+			mes " โอไม่นะ! คุณกำลังพลาดประเด็นสำคัญไป! ลองหาใจความสำคัญให้เจอสิ! ";
 			break;
 		case 3:
-			mes " Mmph! You're dying not to study! At times like this, a break is the best! ";
+			mes " อึ้มม! คุณกำลังไม่อยากเรียนสุดๆ! ในเวลาแบบนี้ การได้พักน่ะดีที่สุดเลยล่ะ! ";
 			break;
-		case 4:// Drops Card
-			mes " Studying is just like hunting a monster in the desert. Resting for a little is the best. Understand? ";
+		case 4:// การ์ด Drops
+			mes " การเรียนก็เหมือนการล่ามอนสเตอร์ในทะเลทราย การได้พักสักนิดคือสิ่งที่ดีที่สุด เข้าใจไหม? ";
 			break;
 		case 5:
-			mes " A nice cup of cold juice under the hot sun! Studying should be done like that, too! ";
+			mes " น้ำผลไม้เย็นๆ สักแก้วภายใต้แสงแดดที่แผดเผา! การเรียนก็ควรจะทำแบบนั้นเหมือนกันนะ! ";
 			break;
 		case 6:
-			mes " Even though it is the desert, you seem to have a relaxed smile! Maybe you need to relax like this when studying as well! ";
+			mes " ถึงแม้จะอยู่ในทะเลทราย แต่คุณดูเหมือนจะมีรอยยิ้มที่ผ่อนคลายนะ! บางทีคุณอาจจะต้องผ่อนคลายแบบนี้เวลาเรียนด้วยเหมือนกัน! ";
 			break;
-		case 7:// Mantis Card
-			mes " Your grades are in danger! You must study harder! ";
+		case 7:// การ์ด Mantis
+			mes " เกรดของคุณกำลังอยู่ในอันตราย! คุณต้องเรียนให้หนักขึ้นกว่านี้แล้วล่ะ! ";
 			break;
 		case 8:
-			mes " There may be a big crisis! Don't get too stressed just because you can't study! ";
+			mes " อาจจะมีวิกฤตครั้งใหญ่เกิดขึ้น! แต่อย่าเครียดจนเกินไปเพียงเพราะคุณเรียนไม่รู้เรื่องนะ! ";
 			break;
 		case 9:
-			mes " It is saying studying in the dark night can be dangerous! Careful when studying at night! ";
+			mes " มันกำลังบอกว่าการเรียนในคืนที่มืดมิดอาจเป็นอันตรายได้! ระวังตัวด้วยเวลาเรียนตอนกลางคืน! ";
 			break;
-		case 10:// Munak Card
-			mes " Studying came to a strange place! It needs to find its original path! You can do it! ";
+		case 10:// การ์ด Munak
+			mes " การเรียนหลงมายังสถานที่ที่แปลกประหลาด! มันต้องหาเส้นทางเดิมของมันให้เจอ! คุณทำได้อยู่แล้ว! ";
 			break;
 		case 11:
-			mes " You're gazing at a smart friend with the eyes of a Poring! Heehee! Doing good! ";
+			mes " คุณกำลังจ้องมองเพื่อนที่เรียนเก่งด้วยดวงตาแบบเจ้า Poring เลย! ฮีฮี! ทำได้ดีมาก! ";
 			break;
 		case 12:
-			mes " Eh? You're too smart! You're at a much higher level than your friends! Take a break! ";
+			mes " เอ๊ะ? คุณฉลาดเกินไปแล้ว! คุณอยู่ในระดับที่สูงกว่าเพื่อนๆ มากเลยนะ! พักผ่อนบ้างเถอะ! ";
 			break;
-		case 13:// Santa Poring Card
-			mes " You will be rewarded for your accomplishments! It was worth the effort! ";
+		case 13:// การ์ด Santa Poring
+			mes " คุณจะได้รับรางวัลสำหรับความสำเร็จของคุณ! มันคุ้มค่ากับความเหนื่อยยากจริงๆ! ";
 			break;
 		case 14:
-			mes " Forget about studying for a moment and enjoy the party! It should be refreshing~! ";
+			mes " ลืมเรื่องเรียนไปสักพักแล้วสนุกกับปาร์ตี้เถอะ! มันควรจะช่วยให้สดชื่นขึ้นนะ~! ";
 			break;
 		case 15:
-			mes " Study something that will make people happy! Future set! ";
+			mes " จงเรียนในสิ่งที่จะทำให้ผู้คนมีความสุข! อนาคตถูกกำหนดไว้แล้ว! ";
 			break;
-		case 16:// Soldier Skeleton Card
-			mes " If you're not sure of something, ask a friend! It's not something to be ashamed about! You can do it! ";
+		case 16:// การ์ด Soldier Skeleton
+			mes " ถ้าคุณไม่แน่ใจในบางสิ่ง จงถามเพื่อนซะ! มันไม่ใช่เรื่องน่าอายหรอกนะ! คุณทำได้! ";
 			break;
 		case 17:
-			mes " Don't think that your head is empty! Because, you are smart! You can do it! ";
+			mes " อย่าคิดว่าในหัวของคุณว่างเปล่าสิ! เพราะจริงๆ แล้วคุณน่ะฉลาดนะ! คุณทำได้! ";
 			break;
 		case 18:
-			mes " There's a phenomenon you don't understand! Do a little more research! You'll be able to figure it out soon! ";
+			mes " มีปรากฏการณ์บางอย่างที่คุณไม่เข้าใจ! ลองค้นคว้าเพิ่มเติมอีกนิดสิ! อีกไม่นานคุณก็จะเข้าใจมันได้เอง! ";
 			break;
-		case 19:// Skeleton Card
-			mes " Don't get lazy about studying wherever you go! Seek the road of truth and go down it to find the answer! ";
+		case 19:// การ์ด Skeleton
+			mes " ไม่ว่าจะไปที่ไหน อย่าเกียจคร้านเรื่องการเรียน! จงมองหาหนทางแห่งความจริงและเดินไปตามทางนั้นเพื่อหาคำตอบ! ";
 			break;
 		case 20:
-			mes " You need strength to study! Get stronger! Running is a start! ";
+			mes " คุณต้องมีพละกำลังในการเรียนนะ! จงแข็งแกร่งขึ้น! เริ่มจากการวิ่งเป็นอย่างแรกเลย! ";
 			break;
 		case 21:
-			mes " You will become an admirable person because of all the effort put into studying! You must feel very worth while! ";
+			mes " คุณจะกลายเป็นคนที่น่าเลื่อมใสเพราะความพยายามทั้งหมดที่ทุ่มเทให้กับการเรียน! คุณต้องรู้สึกว่ามันคุ้มค่ามากแน่ๆ! ";
 			break;
-		case 22:// Eddga Card
-			mes " Try studying the history of our country! From when the tiger started smoking! ";
+		case 22:// การ์ด Eddga
+			mes " ลองศึกษาประวัติศาสตร์ประเทศของเราดูสิ! ตั้งแต่สมัยที่เสือเริ่มสูบบุหรี่น่ะ! ";
 			break;
 		case 23:
-			mes " You must be having a hard time studying because of all the pressure! Go out and get some fresh air! ";
+			mes " คุณต้องกำลังลำบากกับการเรียนเพราะความกดดันแน่ๆ! ออกไปสูดอากาศบริสุทธิ์บ้างนะ! ";
 			break;
 		case 24:
-			mes " Your head seems to be heavy because of studying! You need a diversion! Put studying aside for a moment! ";
+			mes " หัวของคุณดูจะหนักอึ้งเพราะการเรียนนะ! คุณต้องการการเบี่ยงเบนความสนใจบ้าง! วางเรื่องเรียนไว้ข้างหลังสักพักเถอะ! ";
 			break;
-		case 25:// Angeling Card
-			mes " Try studying aerospace or meteorology! Don't you think it would be fun? ";
+		case 25:// การ์ด Angeling
+			mes " ลองเรียนวิชาดาราศาสตร์การบินหรืออุตุนิยมวิทยาดูไหม? คุณไม่คิดว่ามันน่าสนุกงั้นรึ? ";
 			break;
 		case 26:
-			mes " How about studying theology? You even get to study about angels! ";
+			mes " ลองศึกษาวิชาศาสนศาสตร์ดูเป็นไง? คุณจะได้ศึกษาเรื่องเกี่ยวกับนางฟ้าด้วยนะ! ";
 			break;
 		case 27:
-			mes " Study little by little and make yourself feel lighter! You can't study if you're overloaded with words! ";
+			mes " ค่อยๆ เรียนไปทีละนิดและทำตัวให้เบาสบายเข้าไว้! คุณเรียนไม่ได้หรอกถ้าในหัวมันอัดแน่นไปด้วยตัวอักษรมากเกินไป! ";
 			break;
-		case 28:// Poring Card
-			mes " When studying, you should have a snack! It may seem trivial, but it is rather important! ";
+		case 28:// การ์ด Poring
+			mes " เวลาเรียนคุณควรจะมีขนมกินด้วยนะ! มันอาจจะดูเป็นเรื่องเล็กน้อย แต่มันค่อนข้างสำคัญเลยล่ะ! ";
 			break;
 		case 29:
-			mes " Even when you are sick, don't forget about studying! Where there is effort, there is bound to be good results! ";
+			mes " แม้ในยามที่คุณเจ็บป่วย ก็อย่าลืมเรื่องการเรียนนะ! ที่ไหนมีความพยายาม ที่นั่นย่อมมีผลลัพธ์ที่ดีเสมอ! ";
 			break;
 		case 30:
-			mes " Newton discovered gravity through a falling apple! Be wary of even the little things in your surroundings! ";
+			mes " นิวตันค้นพบแรงโน้มถ่วงผ่านแอปเปิลที่ร่วงหล่น! จงระแวดระวังแม้แต่สิ่งเล็กๆ น้อยๆ รอบตัวคุณ! ";
 			break;
-		case 31:// Poporing Card
-			mes " Green is good for studying! Color your walls green or get a green drink! The lucky color! Green! ";
+		case 31:// การ์ด Poporing
+			mes " สีเขียวดีต่อการเรียนนะ! ทาสีผนังของคุณเป็นสีเขียวหรือหาเครื่องดื่มสีเขียวมาดื่มสิ! สีนำโชคเลยล่ะ! สีเขียว! ";
 			break;
 		case 32:
-			mes " There is a jewel in your mind! You need to bring all the wisdom to life! Don't study bad things! ";
+			mes " มีอัญมณีอยู่ในจิตใจของคุณ! คุณต้องปลุกสติปัญญาให้มีชีวิตขึ้นมา! อย่าไปเรียนรู้เรื่องที่ไม่ดีล่ะ! ";
 			break;
 		case 33:
-			mes " You will receive good results from studying! You can focus on your current studies! ";
+			mes " คุณจะได้รับผลลัพธ์ที่ดีจากการเรียน! คุณสามารถจดจ่อกับการเรียนปัจจุบันของคุณได้เลย! ";
 			break;
 		}
 		next;
 		mes "[Chocarle]";
-		mes " You've been told your study fortune! Was it a good one? ";
-		mes " But in studying, effort is more important than any type of fortune! ";
+		mes " ทำนายดวงการเรียนเสร็จแล้ว! เป็นดวงที่ดีหรือเปล่านะ? ";
+		mes " แต่สำหรับการเรียนแล้ว ความพยายามน่ะสำคัญกว่าคำทำนายใดๆ ทั้งหมดนะ! ";
 		next;
 		cutin "",255;
 		mes "[Chocarle]";
-		mes " Try your best. Then, see you again! Byyyyyyyyyyyyyyyyeeeee~~byyyyeeee~ ";
+		mes " พยายามให้เต็มที่ล่ะ แล้วเจอกันใหม่! บ๊ายยยยยยยยยยยยยยยยยยยยยยยยยย~บ๊ายบายยย~ ";
 		close;
-	case 3:// Friends
+	case 3:// มิตรภาพ
 		mes "[Chocarle]";
-		mes " Relationships among friends is more difficult than people think! Let's use the cards to try and solve this complicated puzzle of friendship! ";
+		mes " ความสัมพันธ์ในหมู่เพื่อนฝูงนั้นยากกว่าที่คนคิดนะ! มาใช้การ์ดเหล่านี้เพื่อพยายามไขปริศนามิตรภาพที่ซับซ้อนนี้กันเถอะ! ";
 		next;
 		.@card_2_buddy = rand(1,33);
 		callsub L_displaycutin, .@card_2_buddy;
@@ -2255,117 +2255,117 @@ payon_in03,75,129,5	script	Poring Fortune Teller	4_M_BIBI,{
 		mes "[Chocarle]";
 		switch(.@card_2_buddy) {
 		case 1:
-			mes " Ah! Your friend has gone crazy! They need the heal of friendship! ";
+			mes " อา! เพื่อนของคุณสติหลุดไปแล้ว! พวกเขาต้องการการเยียวยาจากมิตรภาพนะ! ";
 			break;
 		case 2:
-			mes " Mmm! You both have gone crazy. You must overcome it through conversations! ";
+			mes " อื้ม! คุณทั้งคู่สติหลุดไปหมดแล้ว คุณต้องเอาชนะมันด้วยการพูดคุยกันนะ! ";
 			break;
 		case 3:
-			mes " Agh! You are suffering because of your friend! Try opening your heart and be more lenient! ";
+			mes " อ๊าก! คุณกำลังทุกข์ทรมานเพราะเพื่อนของคุณ! ลองเปิดใจและผ่อนปรนให้มากขึ้นดูสิ! ";
 			break;
-		case 4:// Drops Card
-			mes " You even split a pea between friends! Don't be so cruel. Reflect upon yourself and apologize! ";
+		case 4:// การ์ด Drops
+			mes " ขนาดถั่วเมล็ดเดียวยังแบ่งกันกินในหมู่เพื่อนเลย! อย่าใจร้ายนักเลย กลับไปทบทวนตัวเองและขอโทษซะ! ";
 			break;
 		case 5:
-			mes " Oh no! Your friend is ignoring you! Offer a bottle of juice to your friend! Your friendship may come back? ";
+			mes " แย่แล้ว! เพื่อนของคุณกำลังเมินคุณอยู่! ลองมอบน้ำผลไม้สักขวดให้เพื่อนของคุณดูสิ! มิตรภาพอาจจะกลับมาก็ได้นะ? ";
 			break;
 		case 6:
-			mes " Eh!? What kind of friendship is this?! Hurry up and make up! ";
+			mes " เอ๊ะ!? นี่มันมิตรภาพแบบไหนกันเนี่ย?! รีบๆ ไปคืนดีกันซะ! ";
 			break;
-		case 7:// Mantis Card
-			mes "Oh no?! This person is not your friend, but an enemy! You must be careful! ";
+		case 7:// การ์ด Mantis
+			mes "โอ้ไม่นะ?! คนคนนี้ไม่ใช่เพื่อนของคุณ แต่เป็นศัตรู! คุณต้องระวังตัวนะ! ";
 			break;
 		case 8:
-			mes " Your friend is in danger! You must help your friend! ";
+			mes " เพื่อนของคุณกำลังตกอยู่ในอันตราย! คุณต้องช่วยเหลือเพื่อนของคุณนะ! ";
 			break;
 		case 9:
-			mes " Your friendship is on the verge of falling apart! Cast a shield around your friendship! ";
+			mes " มิตรภาพของคุณกำลังจวนเจียนจะแตกหัก! จงร่ายโล่ป้องกันไว้รอบมิตรภาพของคุณซะ! ";
 			break;
-		case 10:// Munak Card
-			mes " One person is left out amongst your friends! Be more friendly! ";
+		case 10:// การ์ด Munak
+			mes " มีคนหนึ่งถูกทิ้งให้โดดเดี่ยวในหมู่เพื่อนของคุณ! จงเป็นมิตรให้มากขึ้นหน่อยนะ! ";
 			break;
 		case 11:
-			mes " Your friend hit you! Don't cry even if it may hurt! Hurry and make up! ";
+			mes " เพื่อนของคุณตีคุณเข้าให้แล้ว! อย่าร้องไห้เลยแม้ว่ามันจะเจ็บ! รีบไปคืนดีกันเร็วเข้า! ";
 			break;
 		case 12:
-			mes " You must be alone! It must be hard to make friends! Try putting on a brighter face! ";
+			mes " คุณต้องกำลังโดดเดี่ยวอยู่แน่ๆ! การหาเพื่อนใหม่มันคงจะยากสินะ! ลองทำหน้าตาให้สดใสกว่านี้หน่อยสิ! ";
 			break;
-		case 13:// Santa Poring Card
-			mes " Give your friends a present! Your friendship will become deeper! ";
+		case 13:// การ์ด Santa Poring
+			mes " ให้ของขวัญเพื่อนๆ ของคุณบ้างสิ! มิตรภาพของคุณจะแน่นแฟ้นยิ่งขึ้นนะ! ";
 			break;
 		case 14:
-			mes " Prepare a hat to cover your friend's large head! They will be moved by your care! ";
+			mes " เตรียมหมวกสักใบไว้ปิดหัวโตๆ ของเพื่อนคุณหน่อย! พวกเขาจะซึ้งใจในการดูแลของคุณมากเลยล่ะ! ";
 			break;
 		case 15:
-			mes " A friend is waiting for you! Be nice to your friend! ";
+			mes " มีเพื่อนคนหนึ่งกำลังรอคุณอยู่! ทำดีกับเพื่อนของคุณไว้ล่ะ! ";
 			break;
-		case 16:// Soldier Skeleton Card
-			mes " Being close friends despite differences is true friendship! Shelter each other's differences! ";
+		case 16:// การ์ด Soldier Skeleton
+			mes " การได้เป็นเพื่อนสนิทกันแม้จะมีความแตกต่าง นั่นแหละคือมิตรภาพที่แท้จริง! จงโอบรับความแตกต่างของกันและกันเถอะ! ";
 			break;
 		case 17:
-			mes " Your misunderstandings will be removed if you take the time to talk! Go have a conversation with your friend! ";
+			mes " ความเข้าใจผิดจะหมดไปถ้าคุณสละเวลาพูดคุยกัน! ไปคุยกับเพื่อนของคุณซะ! ";
 			break;
 		case 18:
-			mes " When a friend is sick, visit them! They will be happy! For sure! ";
+			mes " เมื่อเพื่อนป่วย จงไปเยี่ยมพวกเขา! พวกเขาจะมีความสุขมาก! แน่นอนเลยล่ะ! ";
 			break;
-		case 19:// Skeleton Card
-			mes " Go out and have some fun with your friend! Your friendship will surely get stronger! ";
+		case 19:// การ์ด Skeleton
+			mes " ออกไปเที่ยวเล่นสนุกสนานกับเพื่อนบ้างสิ! มิตรภาพของคุณจะแข็งแกร่งขึ้นอย่างแน่นอน! ";
 			break;
 		case 20:
-			mes " Give your friend a present! They'll go bragging around town?! ";
+			mes " มอบของขวัญให้เพื่อนของคุณสิ! พวกเขาจะเอาไปคุยโวฟุ้งไปทั่วเมืองเลยล่ะมั้ง?! ";
 			break;
 		case 21:
-			mes " Share your bone with your friend! Sacrifices in friendship are beautiful! ";
+			mes " แบ่งปันกระดูกของคุณให้เพื่อนสิ! การเสียสละในมิตรภาพเป็นสิ่งที่งดงามนะ! ";
 			break;
-		case 22:// Eddga Card
-			mes " Do anything for your friend! With all your heart and soul! Your friend will be delighted! ";
+		case 22:// การ์ด Eddga
+			mes " ทำทุกอย่างเพื่อเพื่อนของคุณ! ด้วยหัวใจและจิตวิญญาณทั้งหมดที่มี! เพื่อนของคุณจะปลาบปลื้มมากเลยล่ะ! ";
 			break;
 		case 23:
-			mes " No smoking, even with a friend! Stop smoking for your health! ";
+			mes " ห้ามสูบบุหรี่ แม้จะอยู่กับเพื่อนก็ตาม! เลิกสูบบุหรี่เพื่อสุขภาพของคุณเถอะ! ";
 			break;
 		case 24:
-			mes " You and your friend will encounter hardships! Combine your powers and overcome it! ";
+			mes " คุณและเพื่อนจะเผชิญกับความยากลำบาก! จงรวมพลังกันแล้วก้าวข้ามมันไปให้ได้! ";
 			break;
-		case 25:// Angeling Card
-			mes " Go on a trip with your friend! Friendship can get stronger in new environments! ";
+		case 25:// การ์ด Angeling
+			mes " ไปเที่ยวกับเพื่อนของคุณสิ! มิตรภาพจะแข็งแกร่งขึ้นได้ในสภาพแวดล้อมใหม่ๆ นะ! ";
 			break;
 		case 26:
-			mes " Give your friend a ride in a plane! They'll probably fly with joy!? ";
+			mes " พามีเพื่อนของคุณขึ้นเครื่องบินดูสิ! พวกเขาคงจะตัวลอยด้วยความดีใจเลยล่ะมั้ง!? ";
 			break;
 		case 27:
-			mes " Don't forget your friend in heaven! Friendship is eternal! ";
+			mes " อย่าลืมเพื่อนของคุณที่อยู่บนสวรรค์ล่ะ! มิตรภาพนั้นเป็นนิรันดร์นะ! ";
 			break;
-		case 28:// Poring Card
-			mes " Help your friend's scar. Your friend would greatly appreciate it! ";
+		case 28:// การ์ด Poring
+			mes " ช่วยรักษาบาดแผลของเพื่อนคุณซะ เพื่อนของคุณจะซาบซึ้งใจเป็นอย่างมากเลยล่ะ! ";
 			break;
 		case 29:
-			mes " You even split a slice of an apple among friends! Share more things with your friend! Something good will happen! ";
+			mes " ขนาดแอปเปิลชิ้นเดียวยังแบ่งกันได้ในหมู่เพื่อน! แบ่งปันสิ่งต่างๆ ให้เพื่อนของคุณมากขึ้นสิ! แล้วเรื่องดีๆ จะเกิดขึ้น! ";
 			break;
 		case 30:
-			mes " When your friend is sleeping, think of them! Then there will be progress in your friendship! What do you think~ it means~?! ";
+			mes " เมื่อเพื่อนของคุณนอนหลับ จงนึกถึงพวกเขา! แล้วมิตรภาพของคุณจะก้าวหน้าขึ้น! คุณคิดว่า~ มันหมายความว่ายังไงล่ะ~?! ";
 			break;
-		case 31:// Poporing Card
-			mes " Don't measure friendship with money! If you do, be careful for there will be a crack in your friendship! ";
+		case 31:// การ์ด Poporing
+			mes " อย่าใช้เงินเป็นตัววัดมิตรภาพ! ถ้าคุณทำแบบนั้น ระวังจะมีรอยร้าวในความสัมพันธ์ของพวกคุณนะ! ";
 			break;
 		case 32:
-			mes " It seems as if your friend will give you many presents! Look forward to it! ";
+			mes " ดูเหมือนว่าเพื่อนของคุณจะให้ของขวัญคุณมากมายเลยล่ะ! ตั้งตารอได้เลย! ";
 			break;
 		case 33:
-			mes " You must be lonely without a friend! A good friend will come along soon! ";
+			mes " คุณคงจะเหงาถ้าไม่มีเพื่อนสักคน! เดี๋ยวเพื่อนดีๆ ก็จะตามมาในไม่ช้านี้แหละ! ";
 			break;
 		}
 		next;
 		mes "[Chocarle]";
-		mes " Poring fortunetelling works very well when it is about friendship! ";
-		mes " It is the heart of the poring card that earnestly hopes for good friendships! ";
+		mes " การทำนายดวงแบบ Poring ได้ผลดีมากเลยนะเมื่อเป็นเรื่องของมิตรภาพ! ";
+		mes " มันคือหัวใจของการ์ด Poring ที่ปรารถนาอย่างแรงกล้าให้เกิดมิตรภาพที่ดีงาม! ";
 		next;
 		cutin "",255;
 		mes "[Chocarle]";
-		mes " Did you like it? Next time invite your friend! Then byebye!! ";
+		mes " ชอบไหมล่ะ? คราวหน้าพาเพื่อนมาด้วยนะ! งั้นบ๊ายบาย!! ";
 		close;
-	case 4:// Future
+	case 4:// อนาคต
 		mes "[Chocarle]";
-		mes " If you say fortunetelling! Of course it is about the future! Let's try to figure this out! ";
+		mes " ถ้าพูดถึงการดูดวง! แน่นอนว่าต้องเป็นเรื่องอนาคตอยู่แล้ว! มาลองหาคำตอบกันเถอะ! ";
 		next;
 		.@card_2_future = rand(1,33);
 		callsub L_displaycutin, .@card_2_future;
@@ -2373,118 +2373,118 @@ payon_in03,75,129,5	script	Poring Fortune Teller	4_M_BIBI,{
 		mes "[Chocarle]";
 		switch(.@card_2_future) {
 		case 1:
-			mes " Oh no! You are not confident about the future! Trust yourself a little more! Hope! ";
+			mes " โอ้ไม่นะ! คุณไม่มีความมั่นใจเกี่ยวกับอนาคตเลย! เชื่อมั่นในตัวเองอีกนิดสิ! ความหวังน่ะ! ";
 			break;
 		case 2:
-			mes " Oh! Do you keep on thinking about your death in the future! First, forget about death and live your life! ";
+			mes " โอ้! คุณมัวแต่คิดเรื่องความตายในอนาคตอยู่หรือเปล่า! ก่อนอื่น ลืมเรื่องตายแล้วใช้ชีวิตให้เต็มที่เถอะ! ";
 			break;
 		case 3:
-			mes " Cut! You are filled with uncertainty about the future! Let's get rid of this! Wee! It's gone! ";
+			mes " ตัด! คุณเต็มไปด้วยความไม่แน่นอนเรื่องอนาคต! มากำจัดมันทิ้งไปซะ! วี้! หายไปแล้ว! ";
 			break;
-		case 4:// Drops Card
-			mes " Life may seem like a hot and dry desert, but in the future, delicious juice and rest awaits you! ";
+		case 4:// การ์ด Drops
+			mes " ชีวิตอาจดูเหมือนทะเลทรายที่ร้อนระอุและแห้งแล้ง แต่ในอนาคต น้ำผลไม้แสนอร่อยและการพักผ่อนกำลังรอคุณอยู่! ";
 				break;
 		case 5:
-			mes " Even in a hot and dry desert, isn't the future happier since you can encounter sweet juice? Put forth your strength! ";
+			mes " แม้ในทะเลทรายที่ร้อนระอุ อนาคตจะไม่ยิ่งมีความสุขกว่ารึถ้าคุณได้เจอกับน้ำผลไม้แสนหวาน? ดึงพลังออกมาใช้หน่อย! ";
 			break;
 		case 6:
-			mes " Don't your troubles disappear watching a poring smile? Your future must be filled with good things! ";
+			mes " ปัญหาของคุณไม่หายไปหมดเลยรึเมื่อได้ดูรอยยิ้มของ Poring? อนาคตของคุณต้องเต็มไปด้วยเรื่องดีๆ แน่! ";
 			break;
-		case 7:// Mantis Card
-			mes " There is danger waiting ahead! You should avoid it for now! Take care of yourself! ";
+		case 7:// การ์ด Mantis
+			mes " มีอันตรายรออยู่ข้างหน้า! ตอนนี้คุณควรหลีกเลี่ยงมันไปก่อนนะ! ดูแลตัวเองด้วยล่ะ! ";
 			break;
 		case 8:
-			mes " You must be fearing your future!? Don't worry too much! Think of happy thoughts! ";
+			mes " คุณต้องกำลังกลัวอนาคตอยู่แน่ๆ!? อย่ากังวลเกินไปเลย! คิดถึงแต่เรื่องที่มีความสุขเข้าไว้นะ! ";
 			break;
 		case 9:
-			mes " You may endanger someone in the future! Don't become a bad person~! ";
+			mes " คุณอาจจะทำให้ใครบางคนตกอยู่ในอันตรายในอนาคต! อย่ากลายเป็นคนเลวไปล่ะ~! ";
 			break;
-		case 10:// Munak Card
-			mes " You may have to stand alone in the future! Prepare yourself right now! ";
+		case 10:// การ์ด Munak
+			mes " คุณอาจจะต้องยืนหยัดเพียงลำพังในอนาคต! เตรียมตัวไว้ตั้งแต่วันนี้เลยนะ! ";
 			break;
 		case 11:
-			mes " Many hardships await you in the future! But you can overcome them! ";
+			mes " ความยากลำบากมากมายรอคุณอยู่ในอนาคต! แต่คุณจะผ่านมันไปได้! ";
 			break;
 		case 12:
-			mes " You might not even be able to buy summer clothes in the future! Don't waste your money! ";
+			mes " ในอนาคตคุณอาจจะไม่มีเงินแม้แต่จะซื้อชุดหน้าร้อนด้วยซ้ำ! อย่าใช้เงินฟุ่มเฟือยล่ะ! ";
 			break;
-		case 13:// Santa Poring Card
-			mes " Something exciting may happen! What can it be? Fun! Fun! ";
+		case 13:// การ์ด Santa Poring
+			mes " บางสิ่งที่น่าตื่นเต้นอาจจะเกิดขึ้น! มันจะเป็นอะไรกันนะ? สนุก! สนุกจัง! ";
 			break;
 		case 14:
-			mes " Something good might happen on this nice day! You can look forward to it! Yay! ";
+			mes " บางสิ่งที่ดีอาจจะเกิดขึ้นในวันที่สดใสแบบนี้! คุณตั้งตารอได้เลย! เย้! ";
 			break;
 		case 15:
-			mes " A splendid event will be held! Go get ready! Look forward to it! ";
+			mes " กิจกรรมที่แสนวิเศษกำลังจะจัดขึ้น! ไปเตรียมตัวซะ! ตั้งตารอได้เลย! ";
 			break;
-		case 16:// Soldier Skeleton Card
-			mes " You will meet someone new! It will be very interesting! ";
+		case 16:// การ์ด Soldier Skeleton
+			mes " คุณจะได้พบกับคนใหม่ๆ! มันจะน่าสนใจมากเลยล่ะ! ";
 			break;
 		case 17:
-			mes " If you go little by little, something good will happen! Sit and take a look around you! ";
+			mes " ถ้าคุณค่อยๆ ก้าวไปทีละนิด สิ่งดีๆ จะเกิดขึ้นเอง! นั่งลงแล้วลองมองไปรอบๆ ตัวคุณดูสิ! ";
 			break;
 		case 18:
-			mes " You get a headache from thinking about the future? Empty your mind! You will feel refreshed! ";
+			mes " คุณปวดหัวจากการคิดเรื่องอนาคตงั้นรึ? ทำหัวให้ว่างซะ! แล้วคุณจะรู้สึกสดชื่นขึ้น! ";
 			break;
-		case 19:// Skeleton Card
-			mes " You will become a respectable person in the future! Good job! ";
+		case 19:// การ์ด Skeleton
+			mes " คุณจะกลายเป็นคนที่น่าเคารพนับถือในอนาคต! ทำได้ดีมาก! ";
 			break;
 		case 20:
-			mes " I can see you working hard in the future! What a lively future! ";
+			mes " ข้าเห็นภาพคุณกำลังทำงานอย่างขยันขันแข็งในอนาคต! ช่างเป็นอนาคตที่มีชีวิตชีวาจริงๆ! ";
 			break;
 		case 21:
-			mes " You have a very busy future! Take care of your health! ";
+			mes " อนาคตของคุณจะยุ่งมากเลยล่ะ! รักษาสุขภาพด้วยนะ! ";
 			break;
-		case 22:// Eddga Card
-			mes " Pick a job where you can work with other people! It will be very rewarding, right? ";
+		case 22:// การ์ด Eddga
+			mes " เลือกงานที่คุณจะได้ทำร่วมกับคนอื่นๆ สิ! มันจะคุ้มค่ามากเลยใช่ไหมล่ะ? ";
 			break;
 		case 23:
-			mes " Try doing some volunteer work! It is worthwhile and you will feel good about it, too! ";
+			mes " ลองไปทำงานอาสาสมัครดูบ้างสิ! มันมีคุณค่าและคุณจะรู้สึกดีกับมันด้วยนะ! ";
 			break;
 		case 24:
-			mes " You may become a commander! Mmm~! Kind of scary! ";
+			mes " คุณอาจจะได้เป็นผู้บัญชาการ! อื้ม~! น่ากลัวนิดๆ นะเนี่ย! ";
 			break;
-		case 25:// Angeling Card
-			mes " Choose a job that involves flying! You show potential! ";
+		case 25:// การ์ด Angeling
+			mes " เลือกงานที่เกี่ยวข้องกับการบินสิ! คุณมีศักยภาพอยู่นะ! ";
 			break;
 		case 26:
-			mes " Scrumptious ice cream that could even be eaten in heaven! Challenge yourself and get involved in a job making things of that sort! ";
+			mes " ไอศกรีมรสเลิศที่แม้แต่บนสวรรค์ก็ยังอยากกิน! ลองท้าทายตัวเองด้วยงานที่ทำอะไรประเภทนั้นดูสิ! ";
 			break;
 		case 27:
-			mes " In the future, things that cannot be done right now will be accomplished! You can look forward to it! ";
+			mes " ในอนาคต สิ่งที่ตอนนี้ยังทำไม่ได้จะสำเร็จลุล่วง! ตั้งตารอได้เลย! ";
 			break;
-		case 28:// Poring Card
-			mes " Little things in life will bring you happiness and joy in the future! Even more than now! ";
+		case 28:// การ์ด Poring
+			mes " สิ่งเล็กๆ ในชีวิตจะนำความสุขและความสนุกมาให้คุณในอนาคต! ยิ่งกว่าตอนนี้เสียอีก! ";
 			break;
 		case 29:
-			mes " Do what you have to do. Live life to the fullest, even though the world may end tomorrow! ";
+			mes " ทำในสิ่งที่คุณต้องทำ ใช้ชีวิตให้เต็มที่ แม้ว่าโลกอาจจะแตกในวันพรุ่งนี้ก็ตาม! ";
 			break;
 		case 30:
-			mes " You will deal with fruits in the future! How about preparing yourself? ";
+			mes " คุณจะได้ข้องเกี่ยวกับผลไม้ในอนาคต! เตรียมตัวไว้หน่อยเป็นไง? ";
 			break;
-		case 31:// Poporing Card
-			mes " Your future self will encounter a high wall! Although, I'm not sure what type of building it may be! ";
+		case 31:// การ์ด Poporing
+			mes " ตัวคุณในอนาคตจะได้พบกับกำแพงที่สูงชัน! แม้ข้าจะไม่แน่ใจว่ามันจะเป็นตึกประเภทไหนก็เถอะ! ";
 			break;
 		case 32:
-			mes " Green symbolizes peace! Your future seems as if it will be very peaceful! It's a good thing, right? ";
+			mes " สีเขียวคือสัญลักษณ์ของความสงบ! อนาคตของคุณดูเหมือนจะสงบสุขมากเลยล่ะ! มันเป็นเรื่องดีใช่ไหมล่ะ? ";
 			break;
 		case 33:
-			mes " Romance lays ahead in your future! Relax yourself and prepare yourself! ";
+			mes " ความรักที่แสนหวานรออยู่ในอนาคตของคุณ! ผ่อนคลายและเตรียมตัวให้พร้อมล่ะ! ";
 			break;
 		}
 		next;
 		mes "[Chocarle]";
-		mes " What do you think? Has your anxiety been relieved after hearing your fortune? ";
-		mes " This is only a small part of your future! You must discover the rest! ";
+		mes " คุณคิดว่ายังไงล่ะ? ความกังวลหายไปบ้างไหมหลังจากได้ฟังคำทำนาย? ";
+		mes " นี่เป็นเพียงส่วนเล็กๆ ในอนาคตของคุณเท่านั้น! คุณต้องค้นหาส่วนที่เหลือด้วยตัวเองนะ! ";
 		next;
 		cutin "",255;
 		mes "[Chocarle]";
-		mes " Am I cheesy? I'm just like that! Then, bye~~~~ye~~~ye~~~~!! ";
+		mes " ข้าพูดเลี่ยนไปรึเปล่า? ข้าก็เป็นแบบนี้แหละ! งั้น บ๊าย~~~~บาย~~~บาย~~~~!! ";
 		close;
-	case 5:// Fortune
+	case 5:// โชคลาภ (การเงิน)
 		mes "[Chocarle]";
-		mes " Mmm! The long awaited time has come! Asking a question about money to the cute Poring! ";
-		mes " Ok! Let's try it! ";
+		mes " อื้ม! ช่วงเวลาที่รอคอยมาถึงแล้ว! การถามคำถามเรื่องเงินทองกับเจ้า Poring สุดน่ารัก! ";
+		mes " โอเค! มาลองกันเลย! ";
 		next;
 		.@card_2_fortune = rand(1,33);
 		callsub L_displaycutin, .@card_2_fortune;
@@ -2492,113 +2492,113 @@ payon_in03,75,129,5	script	Poring Fortune Teller	4_M_BIBI,{
 		mes "[Chocarle]";
 		switch(.@card_2_fortune) {
 		case 1:
-			mes " Uh oh! You're about to be robbed! You must save a little first! ";
+			mes " อาโอ! คุณกำลังจะถูกปล้น! คุณต้องเก็บออมไว้ก่อนนะ! ";
 			break;
 		case 2:
-			mes " Kek! Your mind goes blank when you think about money! Think of other thoughts! Forget about money for a while! ";
+			mes " เค้ก! สมองคุณว่างเปล่าไปหมดเลยเวลาคิดเรื่องเงิน! ไปคิดเรื่องอื่นบ้างเถอะ! ลืมเรื่องเงินไปสักพักนะ! ";
 			break;
 		case 3:
-			mes " Bah! This isn't a time to think about money. Calm down and put your mind at ease! ";
+			mes " บ๊ะ! นี่ไม่ใช่เวลามาคิดเรื่องเงินนะ ใจเย็นๆ แล้วทำจิตใจให้สบายเถอะ! ";
 			break;
-		case 4:// Drops Card
-			mes " If you look carefully, it is not drinking juice, but underground water through a straw in the ground! Money is hidden where nobody expects! Good luck searching! ";
+		case 4:// การ์ด Drops
+			mes " ถ้ามองดูดีๆ มันไม่ได้กำลังดื่มน้ำผลไม้นะ แต่มันกำลังดื่มน้ำใต้ดินผ่านหลอดในดินต่างหาก! เงินทองซ่อนอยู่ในที่ที่ไม่มีใครคาดคิด! ขอให้โชคดีกับการหานะ! ";
 			break;
 		case 5:
-			mes " As you can quench your thirst in the dry desert, you can gather money even in this difficult world! ";
+			mes " เหมือนที่คุณสามารถดับกระหายในทะเลทรายอันแห้งแล้งได้ คุณก็สามารถรวบรวมเงินทองได้แม้ในโลกที่ยากลำบากนี้! ";
 			break;
 		case 6:
-			mes " Just like the juice inside the needles of a cactus, you can still gather wealth though you may be in anguish. You can do it! ";
+			mes " เช่นเดียวกับน้ำผลไม้ในหนามกระบองเพชร คุณยังสามารถสะสมความมั่งคั่งได้แม้จะอยู่ในความทุกข์ยาก คุณทำได้อยู่แล้ว! ";
 			break;
-		case 7:// Mantis Card
-			mes "Agh! Someone is after your possessions! Be careful! ";
+		case 7:// การ์ด Mantis
+			mes "อั๊ก! ใครบางคนกำลังจ้องจะแย่งชิงทรัพย์สินของคุณ! ระวังตัวด้วย! ";
 			break;
 		case 8:
-			mes " Uh oh! Someone is after your money! Take good care of it! ";
+			mes " อาโอ! ใครบางคนกำลังจ้องเงินของคุณอยู่! ดูแลมันให้ดีล่ะ! ";
 			break;
 		case 9:
-			mes " It says you might be tempted to do something bad to gather money! Don't forget about a kind heart! ";
+			mes " มันบอกว่าคุณอาจจะถูกล่อลวงให้ทำเรื่องไม่ดีเพื่อหาเงิน! อย่าลืมจิตใจที่เมตตาด้วยล่ะ! ";
 			break;
-		case 10:// Munak Card
-			mes " You have hidden money in your clothes! Hidden rich one! Be careful not to be caught! ";
+		case 10:// การ์ด Munak
+			mes " คุณมีเงินซ่อนอยู่ในเสื้อผ้า! พวกรวยเงียบนี่นา! ระวังอย่าให้ถูกจับได้ล่ะ! ";
 			break;
 		case 11:
-			mes " In the future, it seems like you will be kicking money around with your feet like those Porings! Congratulations! ";
+			mes " ในอนาคต ดูเหมือนคุณจะเตะเงินเล่นไปมาเหมือนเจ้าพวก Poring เลยล่ะ! ยินดีด้วยนะ! ";
 			break;
 		case 12:
-			mes " You must be exhausted! Making money is not the easiest thing to do! But it will be that much more valuable! ";
+			mes " คุณคงจะเหนื่อยล้าสินะ! การหาเงินน่ะไม่ใช่เรื่องง่ายที่สุดหรอก! แต่มันจะทำให้เงินนั้นมีค่ามากขึ้นไปอีกนะ! ";
 			break;
-		case 13:// Santa Poring Card
-			mes " Your tendency to spend money is growing! Be careful! Don't be left empty-handed! ";
+		case 13:// การ์ด Santa Poring
+			mes " นิสัยการใช้เงินของคุณเริ่มมากขึ้นแล้วนะ! ระวังด้วย! อย่าปล่อยให้ตัวเองเหลือแต่ตัวเปล่าล่ะ! ";
 			break;
 		case 14:
-			mes " Use your money to buy something fun! Then good luck will be headed your way! ";
+			mes " ใช้เงินของคุณซื้ออะไรสนุกๆ บ้างสิ! แล้วโชคดีจะมุ่งหน้ามาหาคุณเอง! ";
 			break;
 		case 15:
-			mes " Use your money on something exciting! It looks as if good luck will be headed your way! ";
+			mes " ใช้เงินของคุณไปกับสิ่งที่น่าตื่นเต้นเถอะ! ดูเหมือนว่าโชคดีกำลังมุ่งหน้ามาหาคุณนะ! ";
 			break;
-		case 16:// Soldier Skeleton Card
-			mes " It seems like you will have two lucky offerings! Don't miss these two opportunities! ";
+		case 16:// การ์ด Soldier Skeleton
+			mes " ดูเหมือนคุณจะได้รับข้อเสนอที่โชคดีถึงสองอย่าง! อย่าพลาดโอกาสทั้งสองนี้ล่ะ! ";
 			break;
 		case 17:
-			mes " Doesn't it seem like there should be money in the small wallet? You will have some small income! Save money wisely! ";
+			mes " มันดูเหมือนควรจะมีเงินอยู่ในกระเป๋าสตางค์ใบเล็กไม่ใช่รึ? คุณจะมีรายได้เล็กน้อยเข้ามานะ! ออมเงินอย่างชาญฉลาดล่ะ! ";
 			break;
 		case 18:
-			mes " So~ empty. Upsetting, but don't worry too much about money! Something better ought to happen! ";
+			mes " ช่าง~ ว่างเปล่า น่าเสียใจจัง แต่อย่ากังวลเรื่องเงินมากเกินไปเลย! เรื่องที่ดีกว่ากำลังจะเกิดขึ้นแน่นอน! ";
 			break;
-		case 19:// Skeleton Card
-			mes " Someone will return something you lost! What a relief! ";
+		case 19:// การ์ด Skeleton
+			mes " ใครบางคนจะเอาของที่คุณทำหายมาคืนให้! เฮ้อ โล่งอกไปที! ";
 			break;
 		case 20:
-			mes " No need to worry about osteoporosis! Wasn't it a good thing to eat so much calcium? Oops! This isn't about money?! ";
+			mes " ไม่ต้องกังวลเรื่องโรคกระดูกพรุนหรอก! การกินแคลเซียมเยอะๆ มันเป็นเรื่องดีไม่ใช่รึ? อุ๊ย! นี่มันไม่เกี่ยวกับเรื่องเงินนี่นา?! ";
 			break;
 		case 21:
-			mes " Seeing that you work so hard, seems like you will make lots of money! Congratz~! ";
+			mes " เห็นว่าคุณทำงานหนักขนาดนี้ ดูเหมือนคุณจะทำเงินได้มหาศาลเลยล่ะ! ยินดีด้วยน้า~! ";
 			break;
-		case 22:// Eddga Card
-			mes " Even if you save money, it disappears like smoke. Don't get too caught up with it! ";
+		case 22:// การ์ด Eddga
+			mes " ถึงแม้คุณจะเก็บเงิน แต่มันก็สลายไปเหมือนควัน อย่าไปยึดติดกับมันมากเลย! ";
 			break;
 		case 23:
-			mes " It's hard to make money, isn't it? But don't forget the good deeds in life! ";
+			mes " การหาเงินมันยากใช่ไหมล่ะ? แต่อย่าลืมทำความดีในชีวิตด้วยนะ! ";
 			break;
 		case 24:
-			mes " Going around to collect money might lead you to a scary person! Be very careful! ";
+			mes " การออกไปตระเวนเก็บเงินอาจจะนำคุณไปหาคนที่น่ากลัวได้! ระวังตัวให้ดีล่ะ! ";
 			break;
-		case 25:// Angeling Card
-			mes " Forget about money and fly~fly! You will feel very refreshed! ";
+		case 25:// การ์ด Angeling
+			mes " ลืมเรื่องเงินแล้วไปบิน~บิน กันเถอะ! คุณจะรู้สึกสดชื่นมากเลยล่ะ! ";
 			break;
 		case 26:
-			mes " Money is like clouds! Instead of money, think about a happy life! ";
+			mes " เงินก็เหมือนเมฆนั่นแหละ! แทนที่จะคิดเรื่องเงิน ลองคิดเรื่องชีวิตที่มีความสุขดูสิ! ";
 			break;
 		case 27:
-			mes " Even if it may seem pointless, if you persist, you will be able to make lots of money! You can do it! ";
+			mes " ถึงมันอาจจะดูไร้จุดหมาย แต่ถ้าคุณยืนหยัด คุณจะสามารถหาเงินได้มากมายแน่นอน! คุณทำได้! ";
 			break;
-		case 28:// Poring Card
-			mes " Don't neglect the trivial things on the floor! If you keep an open heart like that, you will be able to collect money! ";
+		case 28:// การ์ด Poring
+			mes " อย่าละเลยสิ่งเล็กๆ น้อยๆ บนพื้นล่ะ! ถ้าคุณเปิดใจกว้างแบบนั้น คุณจะสามารถรวบรวมเงินทองได้เอง! ";
 			break;
 		case 29:
-			mes " If you work with something that is related to mushrooms or apples, a good fortune awaits you! What kind of work would that be? ";
+			mes " ถ้าคุณทำงานที่เกี่ยวข้องกับเห็ดหรือแอปเปิล โชคดีรอคุณอยู่ล่ะ! งานแบบนั้นจะเป็นงานประเภทไหนกันนะ? ";
 			break;
 		case 30:
-			mes " How can you think of money looking at such a peaceful card! That's not nice! Sniff..sniffles! Anyhow, it seems like you will gather much fortune! ";
+			mes " คุณคิดเรื่องเงินตอนดูการ์ดที่สงบสุขแบบนี้ได้ยังไงกัน! ไม่ดีเลยนะ! ฮึก..ฟืด! ยังไงก็ตาม ดูเหมือนคุณจะรวบรวมโชคลาภได้มากมายเลยล่ะ! ";
 			break;
-		case 31:// Poporing Card
-			mes " You have many fine stones! You will prosper if you are involved in this industry! ";
+		case 31:// การ์ด Poporing
+			mes " คุณมีหินสวยๆ มากมายเลยนะ! คุณจะรุ่งเรืองถ้าได้ข้องเกี่ยวกับอุตสาหกรรมนี้! ";
 			break;
 		case 32:
-			mes " It is an indication that you will prosper! No need to worry now! ";
+			mes " มันเป็นข้อบ่งชี้ว่าคุณจะเจริญรุ่งเรือง! ไม่ต้องกังวลแล้วล่ะตอนนี้! ";
 			break;
 		case 33:
-			mes " You will collect many treasures! But the problem is protecting all of it! ";
+			mes " คุณจะรวบรวมสมบัติได้มากมาย! แต่ปัญหาก็คือการปกป้องพวกมันทั้งหมดนั่นแหละ! ";
 			break;
 		}
 		next;
 		mes "[Chocarle]";
-		mes " There is something you need to keep in mind after being told a fortune about wealth! ";
-		mes " Money does not automatically come to one without effort! No matter how good the fortune, you must work diligently! ";
+		mes " มีบางอย่างที่คุณต้องจำใส่ใจไว้หลังจากฟังคำทำนายเรื่องความมั่งคั่งนะ! ";
+		mes " เงินทองไม่ได้ลอยมาหาใครโดยไม่ต้องออกแรงหรอก! ไม่ว่าดวงจะดีแค่ไหน คุณก็ต้องทำงานอย่างขยันขันแข็งด้วย! ";
 		next;
 		cutin "",255;
 		mes "[Chocarle]";
-		mes " Bear that in mind! Then, until we meet again.. *poof*! ";
+		mes " จำเรื่องนั้นไว้ให้ดีล่ะ! แล้วพบกันใหม่นะ.. *ปึ้ง*! ";
 		close;
 	}
 
@@ -2620,33 +2620,33 @@ L_displaycutin:
 	
 payon_in03,118,119,1	script	Ascetic	4W_F_01,2,2,{
 	mes "[Kissy-Kissy]";
-	mes "NyangNyangNyang~";
-	mes "NyaNyangNyaNyag~";
+	mes "เนียนเนียนเนียน~";
+	mes "เนียเนียนเนียเนียก~";
 	next;
 	mes "[Kissy-Kissy]";
-	mes "I decided to become a fortune teller";
-	mes "when I was young and came to the city";
-	mes "and devoted myself to training.";
-	mes "I was in agony because of my slow progress.";
+	mes "ข้าตัดสินใจที่จะเป็นนักพยากรณ์";
+	mes "ตั้งแต่ตอนที่ยังเด็กและได้เข้ามาในเมือง";
+	mes "เพื่อทุ่มเทตนเองให้กับการฝึกฝน";
+	mes "ข้าเคยตกอยู่ในความทุกข์ทรมานเพราะความก้าวหน้าที่ล่าช้าของข้าเอง";
 	next;
 	mes "[Kissy-Kissy]";
-	mes "I came because I heard many ";
-	mes "fortunetellers gather here in Payon,";
-	mes "but nobody will tell me anything~";
-	mes "Waaah~ so sad~";
+	mes "ข้ามาที่นี่เพราะได้ยินมาว่า";
+	mes "เหล่านักพยากรณ์มากมายมาชุมนุมกันที่ Payon แห่งนี้";
+	mes "แต่ไม่มีใครยอมบอกอะไรข้าเลยสักอย่าง~";
+	mes "แงงง~ เศร้าจังเลย~";
 	next;
 	mes "[Kissy-Kissy]";
-	mes "NyangNyangNyang~";
-	mes "NyaNyangNyaNyang~";
+	mes "เนียนเนียนเนียน~";
+	mes "เนียเนียนเนียเนียน~";
 	next;
 	mes "[Kissy-Kissy]";
-	mes "Kiss me~~";
+	mes "จูบข้าที~~";
 	close;
 
 OnTouch_:
 	mes "[Kissy-Kissy]";
-	mes "NyangNyangNyang~";
-	mes "NyaNyangNyaNyang~";
-	mes "Kissy me~";
+	mes "เนียนเนียนเนียน~";
+	mes "เนียเนียนเนียเนียน~";
+	mes "จูบข้าที~";
 	close;
 }

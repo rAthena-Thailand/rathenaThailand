@@ -26,27 +26,27 @@
 //============================================================
 -	script	Mailbox#dummy::MailBox	-1,{
 	mes "[Mailbox]";
-	mes "To use the mailbox service,";
-	mes "you are required to pay 130 zeny.";
-	mes "Would you like to use the service?";
+	mes "ในการใช้บริการตู้ไปรษณีย์,";
+	mes "คุณจำเป็นต้องชำระเงิน 130 zeny";
+	mes "คุณต้องการจะใช้บริการหรือไม่?";
 	next;
-	switch(select("Yes.:No.")) {
+	switch(select("ใช่.:ไม่.")) {
 	case 1:
 		mes "[Mailbox]";
 		if (Zeny < 130) {
-			mes "I am sorry, but you do not have enough money.";
-			mes "To use the mailbox service,";
-			mes "you are required to pay 130 zeny.";
+			mes "ขออภัยด้วย แต่คุณมีเงินไม่เพียงพอ";
+			mes "ในการใช้บริการตู้ไปรษณีย์,";
+			mes "คุณจำเป็นต้องชำระเงิน 130 zeny";
 			close;
 		}
-		mes "Thank you, please come again.";
+		mes "ขอบคุณ, ไว้มาใช้บริการใหม่นะ";
 		set Zeny, Zeny - 130;
 		close2;
 		openmail;
 		end;
 	case 2:
 		mes "[Mailbox]";
-		mes "Thank you, please come again.";
+		mes "ขอบคุณ, ไว้มาใช้บริการใหม่นะ";
 		close;
 	}
 }
