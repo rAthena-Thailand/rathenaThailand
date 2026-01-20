@@ -21,10 +21,10 @@
 payon,157,146,6	script	Suhnbi#cash	85,{
 	disable_items;
 	mes "[Suhnbi]";
-	mes "I am the Armsmith";
-	mes "I can refine all kinds of weapons,";
-	mes "armor and equipment, so let me";
-	mes "know what you want to refine.";
+	mes "ข้าคือช่างตีเหล็กผู้สร้างอาวุธ";
+	mes "ข้าสามารถตีบวกอาวุธ, ชุดเกราะ";
+	mes "และอุปกรณ์ได้ทุกชนิดเลยล่ะ บอกข้ามาสิ";
+	mes "ว่าเจ้าต้องการจะตีบวกชิ้นไหน";
 	next;
 
 	setarray .@indices[1], EQI_HEAD_TOP, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_HEAD_MID, EQI_HEAD_LOW;
@@ -37,56 +37,56 @@ payon,157,146,6	script	Suhnbi#cash	85,{
 	}
 	if (.@equipped == 0) {
 		mes "[Suhnbi]";
-		mes "I don't think I can refine any items you have...";
+		mes "ข้าไม่คิดว่าข้าจะสามารถตีบวกไอเทมชิ้นไหนที่เจ้ามีอยู่ได้เลยนะ...";
 		close;
 	}
 	set .@part, .@indices[ select(.@menu$) ];
 
-	if (!getequipisequiped(.@part)) //custom check
+	if (!getequipisequiped(.@part)) // ตรวจสอบเพิ่มเติม (custom check)
 		close;
 	if (!getequipisenableref(.@part)) {
 		mes "[Suhnbi]";
-		mes "Go find another Blacksmith. You can't refine this thing.";
+		mes "ไปหาช่างตีเหล็กคนอื่นซะ เจ้าไม่สามารถตีบวกของสิ่งนี้ได้";
 		close;
 	}
 	if (getequiprefinerycnt(.@part) >= 10) {
 		mes "[Suhnbi]";
-		mes "Hmm... someone perfected this already. I don't think I can work on it further.";
+		mes "หืม... มีคนทำให้มันสมบูรณ์แบบไปแล้ว ข้าไม่คิดว่าจะสามารถทำอะไรกับมันได้มากไปกว่านี้อีก";
 		close;
 	}
 
-	.@refineitemid = getequipid(.@part); // save id of the item
-	.@refinerycnt = getequiprefinerycnt(.@part); //save refinery count
+	.@refineitemid = getequipid(.@part); // บันทึก id ของไอเทม
+	.@refinerycnt = getequiprefinerycnt(.@part); // บันทึกจำนวนการตีบวก
 	.@price = getequiprefinecost(.@part, REFINE_COST_ENRICHED, REFINE_ZENY_COST);
 	.@material = getequiprefinecost(.@part, REFINE_COST_ENRICHED, REFINE_MATERIAL_ID);
 	.@itemtype = getiteminfo( .@refineitemid, ITEMINFO_TYPE );
 
-	// Make sure you have the necessary items and Zeny to refine your items
-	// Determines chance of failure and verifies that you want to continue.
+	// ตรวจสอบให้แน่ใจว่าเจ้ามีไอเทมที่จำเป็นและ Zeny ในการตีบวกไอเทมของเจ้า
+	// กำหนดโอกาสของความล้มเหลวและยืนยันว่าเจ้าต้องการจะดำเนินการต่อหรือไม่
 	callsub S_RefineValidate,.@itemtype,.@material,.@price,.@part,.@refineitemid,.@refinerycnt;
 
 	mes "[Suhnbi]";
-	mes "Clang! Clang! Clang!";
+	mes "เคร้ง! เคร้ง! เคร้ง!";
 	if (getequippercentrefinery(.@part, true) > rand(100)) {
 		successrefitem .@part;
 		next;
 		emotion ET_BEST;
 		mes "[Suhnbi]";
-		mes "There you go! It's done.";
-		mes "It's been a while since I've made such a fine "+((.@itemtype == IT_WEAPON)?"weapon":"armor")+". You must be happy because it has become stronger!";
+		mes "เรียบร้อย! มันเสร็จแล้วล่ะ";
+		mes "นานมากแล้วที่ข้าไม่ได้สร้าง "+((.@itemtype == IT_WEAPON)?"อาวุธ":"ชุดเกราะ")+" ที่ยอดเยี่ยมขนาดนี้ เจ้าคงจะมีความสุขเพราะมันแข็งแกร่งขึ้นแล้ว!";
 		close;
 	}
 	failedrefitem .@part;
 	next;
 	emotion (!rand(5))?ET_MONEY:ET_HUK;
 	mes "[Suhnbi]";
-	mes "Uuuuuuuuuummmmmph!!!";
+	mes "อึ๊บบบบบบบบบบบ!!!";
 	next;
 	mes "[Suhnbi]";
 	mes "...";
 	mes ".....";
-	mes ".......Huhuhuhuhu~";
-	mes "........It was your choice and my ability, no regret.";
+	mes ".......หึหึหึหึหึ~";
+	mes "........มันคือการเลือกของเจ้าและความสามารถของข้า ห้ามเสียใจภายหลังล่ะ";
 	close;
 
 S_RefineValidate:
@@ -99,7 +99,7 @@ S_RefineValidate:
 	if( .@itemtype == IT_ARMOR ){
 		.@equip_lv = getequiparmorlv( .@part );
 
-		// If the VIP system is enabled, the prices for non-VIP players are considerably higher.
+		// หากเปิดใช้งานระบบ VIP ราคาสำหรับผู้เล่นที่ไม่ใช่ VIP จะสูงกว่ามาก
 		if (VIP_SCRIPT && !vip_status(VIP_STATUS_ACTIVE)) {
 			switch(.@equip_lv) {
 				case 1:
@@ -113,7 +113,7 @@ S_RefineValidate:
 	}else if( .@itemtype == IT_WEAPON ){
 		.@equip_lv = getequipweaponlv( .@part );
 
-		// If the VIP system is enabled, the prices for non-VIP players are considerably higher.
+		// หากเปิดใช้งานระบบ VIP ราคาสำหรับผู้เล่นที่ไม่ใช่ VIP จะสูงกว่ามาก
 		if (VIP_SCRIPT && !vip_status(VIP_STATUS_ACTIVE)) {
 			switch( .@equip_lv ){
 				case 1:
@@ -140,47 +140,47 @@ S_RefineValidate:
 
 	mes "[Suhnbi]";
 	if (.@itemtype == IT_WEAPON)
-		mes "You want to refine a level "+ .@equip_lv +" weapon?";
-	mes "To refine that, you'll need to have one ^ff9999"+ getitemname(.@item_req) +"^000000 and "+ .@price +" zeny.";
-	mes "Would you like to continue?";
+		mes "เจ้าต้องการจะตีบวกอาวุธเลเวล "+ .@equip_lv +" งั้นรึ?";
+	mes "ในการตีบวกสิ่งนี้ เจ้าจำเป็นต้องมี ^ff9999"+ getitemname(.@item_req) +"^000000 หนึ่งชิ้น และเงินจำนวน "+ .@price +" zeny";
+	mes "เจ้าต้องการจะดำเนินการต่อไหม?";
 	next;
-	if(select("Yes:No") == 1) {
+	if(select("ใช่:ไม่") == 1) {
 		if (getequippercentrefinery(.@part) < 100) {
 			if (.@itemtype == IT_WEAPON) {
 				mes "[Suhnbi]";
-				mes "Wow!!";
-				mes "This weapon probably";
-				mes "looks like it's been refined...";
-				mes "many times...";
-				mes "It may break if";
-				mes "you refine it again.";
+				mes "ว้าว!!";
+				mes "อาวุธชิ้นนี้ดูเหมือนว่ามันจะ";
+				mes "ผ่านการตีบวกมาแล้ว...";
+				mes "หลายครั้งเลยนะ...";
+				mes "มันอาจจะแตกได้ถ้า";
+				mes "เจ้าตีบวมมันอีกครั้ง";
 				next;
-				mes "And if it breaks,";
-				mes "you can't use it anymore!";
-				mes "All the cards in it and the properties ^ff0000will be lost^000000!";
-				mes "^ff0000Besides, the equipment will break!^000000";
-				mes "Are you sure you still want to continue?";
+				mes "และถ้ามันแตก";
+				mes "เจ้าก็จะไม่สามารถใช้มันได้อีก!";
+				mes "การ์ดทั้งหมดในนั้นและคุณสมบัติ ^ff0000จะสูญหายไป^000000!";
+				mes "^ff0000นอกจากนี้ อุปกรณ์จะแตกสลายไปด้วย!^000000";
+				mes "เจ้าแน่ใจนะว่ายังต้องการจะไปต่อ?";
 				next;
-				if(select("Yes:No") == 2) {
+				if(select("ใช่:ไม่") == 2) {
 					mes "[Suhnbi]";
-					mes "Good.";
-					mes "Because if the weapon breaks from unreasonable refining, then I get a bad mood, too.";
+					mes "ดีแล้วล่ะ";
+					mes "เพราะถ้าอาวุธแตกจากการตีบวกที่เกินตัว ข้าเองก็อารมณ์เสียไปด้วยเหมือนกัน";
 					close;
 				}
 			} else {
 				mes "[Suhnbi]";
-				mes "Giggle. Giggle. Oh, you have guts, daring to refine this.";
-				mes "You know it's pretty risky, don't you?";
+				mes "คิกๆๆ โอ้ เจ้าช่างมีความกล้าเหลือเกินนะที่บังอาจตีบวกของสิ่งนี้";
+				mes "เจ้ารู้ใช่ไหมว่ามันค่อนข้างเสี่ยง?";
 				next;
-				mes "If your defensive equipment is broken, you'll never be able to use it again.";
-				mes "Even your cards and your modifications will ^ff0000completely disappear^000000.";
-				//mes "Everything will disappear. As in... GONE!";
-				mes "Do you really wish to continue?";
+				mes "หากอุปกรณ์ป้องกันของเจ้าแตก เจ้าจะไม่สามารถใช้มันได้อีกเลย";
+				mes "แม้แต่การ์ดและการปรับแต่งของเจ้าก็จะ ^ff0000หายไปโดยสิ้นเชิง^000000";
+				//mes "ทุกอย่างจะหายไป เหมือนกับ... อันตรธานไปเลย!";
+				mes "เจ้าปรารถนาจะไปต่อจริงๆ หรือ?";
 				next;
-				if(select("Yes:No") == 2) {
+				if(select("ใช่:ไม่") == 2) {
 					mes "[Suhnbi]";
-					mes "What nonsense. You waste my precious time.";
-					mes "Get lost, punk.";
+					mes "ช่างไร้สาระเสียนี่กะไร เจ้าทำให้ข้าเสียเวลาอันมีค่า";
+					mes "ไปให้พ้นเลยไป๊ เจ้าหนู";
 					close;
 				}
 			}
@@ -189,25 +189,25 @@ S_RefineValidate:
 			delitem .@item_req,1;
 			set Zeny, Zeny - .@price;
 
-			// anti-hack
+			// ระบบป้องกันการโกง (anti-hack)
 			if (callfunc("F_IsEquipIDHack", .@part, getarg(4)) ||
 				callfunc("F_IsEquipRefineHack", .@part, getarg(5)) || callfunc("F_IsEquipCardHack", .@part, .@card[0], .@card[1], .@card[2], .@card[3])) {
 				mes "[Suhnbi]";
 				emotion ET_FRET;
-				mes "Wait a second...";
-				mes "Do you think I'm stupid?!";
-				mes "You switched the item while I wasn't looking! Get out of here!";
+				mes "เดี๋ยวก่อนนะ...";
+				mes "เจ้าคิดว่าข้าโง่หรือไง?!";
+				mes "เจ้าแอบสลับไอเทมตอนข้าเผลอสิทะ! ออกไปจากที่นี่เลยนะ!";
 				close;
 			}
 
 			return;
 		}
 		mes "[Suhnbi]";
-		mes "Are these all you have?";
-		mes "I'm very sorry, but I can't do anything without all the materials. Besides, I deserve some payments for my work, don't I?";
+		mes "เจ้ามีของอยู่แค่นี้เองรึ?";
+		mes "ข้าเสียใจด้วยจริงๆ แต่ข้าไม่สามารถทำอะไรได้เลยหากปราศจากวัตถุดิบครบถ้วน อีกอย่าง ข้าก็ควรจะได้รับค่าตอบแทนจากการทำงานของข้าด้วย ไม่ใช่รึไง?";
 		close;
 	}
 	mes "[Suhnbi]";
-	mes "I can't help it even if you're not happy about it...";
+	mes "ข้าก็ช่วยไม่ได้หรอกนะ ต่อให้เจ้าจะไม่พอใจกับมันก็ตาม...";
 	close;
 }

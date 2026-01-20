@@ -20,49 +20,50 @@
 -	script	::merchant_13_2	-1,{
 	set .@n$, "["+strnpcinfo(1)+"]";
 	mes .@n$;
+	// ตรวจสอบว่าสวมใส่ Ring of the Wise King (2782) และผ่านเควส ep13_2_rhea หรือยัง
 	if (isequipped(2782) && ep13_2_rhea == 100) {
 		if (!checkweight(1201,1)) {
-			mes "It looks like you're carrying too many things.";
-			mes "Why not put some of your items in storage and come back?";
+			mes "ดูเหมือนว่าเจ้ากำลังแบกของหนักเกินไปนะ";
+			mes "ลองเอาของบางอย่างไปฝากในคลังเก็บของแล้วค่อยกลับมาดีไหม?";
 			close;
 		}
-		mes "Hello.";
-		mes "What are you looking for?";
+		mes "สวัสดี";
+		mes "เจ้ากำลังมองหาอะไรอยู่ล่ะ?";
 		next;
 		if (strnpcinfo(1) == "Merchant of Manuk") {
 			setarray .@Items[2],12342,12343,12348;
-			set .@Book,11019; //Manuk_Selling_Item
-			set .@Coin,6080; //Manuk_Coin
-			set .@i, select("View item description:Manuk's Opportunity:Manuk's Courage:Manuk's Faith:Cancel");
+			set .@Book,11019; //รายการสินค้าที่ขายใน Manuk (Manuk_Selling_Item)
+			set .@Coin,6080; //เหรียญ Manuk (Manuk_Coin)
+			set .@i, select("ดูรายละเอียดไอเทม:Manuk's Opportunity:Manuk's Courage:Manuk's Faith:ยกเลิก");
 		}
 		else {
 			setarray .@Items[2],12344,12345,12349;
-			set .@Book,11018; //Splendide_Selling_Item
-			set .@Coin,6081; //Splendide_Coin
-			set .@i, select("View item description:Buy Pinguicula's Fruit Jam:Buy Luciola's Honey Jam:Buy Cornus' Tears:Do nothing");
+			set .@Book,11018; //รายการสินค้าที่ขายใน Splendide (Splendide_Selling_Item)
+			set .@Coin,6081; //เหรียญ Splendide (Splendide_Coin)
+			set .@i, select("ดูรายละเอียดไอเทม:ซื้อ Pinguicula's Fruit Jam:ซื้อ Luciola's Honey Jam:ซื้อ Cornus' Tears:ไม่ทำอะไร");
 		}
 		mes .@n$;
 		if (.@i == 1) {
-			mes "Here are the item descriptions.";
+			mes "นี่คือรายละเอียดของไอเทมจ้ะ";
 			close2;
 			readbook .@Book,1;
 			end;
 		}
 		else if (.@i < 5) {
-			mes "I can sell you 3 "+getitemname(.@Items[.@i])+" for ^3131FF1 coin^000000.";
+			mes "ข้าสามารถขาย "+getitemname(.@Items[.@i])+" จำนวน 3 ชิ้น ให้เจ้าได้ในราคา ^3131FFเหรียญ 1 เหรียญ^000000 นะ";
 			next;
-			switch(select("Purchase:Do not purchase")) {
+			switch(select("ซื้อ:ไม่ซื้อ")) {
 			case 1:
 				if (countitem(.@Coin)) {
 					mes .@n$;
-					mes "Thank you for coming.";
+					mes "ขอบคุณที่แวะมานะ";
 					delitem .@Coin,1; 
 					getitem .@Items[.@i],3;
 					close;
 				}
 				else {
 					mes .@n$;
-					mes "You don't have enough coins.";
+					mes "เจ้ามีเหรียญไม่เพียงพอจ้ะ";
 					close;
 				}
 			case 2:
@@ -70,10 +71,11 @@
 				break;
 			}
 		}
-		mes "Come again if you change your mind.";
+		mes "แวะมาใหม่นะถ้าเจ้าเปลี่ยนใจ";
 		close;
 	}
 	else {
+		// หากไม่ได้ใส่แหวน Ring of the Wise King จะคุยไม่รู้เรื่อง (ภาษาพื้นเมือง)
 		if (strnpcinfo(1) == "Merchant of Manuk") {
 			mes "Rtt od d";
 			mes "Qwo hd is d irr";

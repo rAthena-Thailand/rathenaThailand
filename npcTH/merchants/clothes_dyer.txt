@@ -24,53 +24,53 @@
 prt_in,284,168,2	script	Dyer Ginedin Rephere	55,{
 function Dyes;
 
-	set .@EnableDyes,1;	// Disable (set to 0) if palettes cause errors [see note v2.4]
+	set .@EnableDyes,1;	// ปิดใช้งาน (ตั้งค่าเป็น 0) หากไฟล์ Palette ทำให้เกิดข้อผิดพลาด [ดูหมายเหตุ v2.4]
 
 	set .n$,"[Dyer Ginedin Rephere]";
 	mes .n$;
-	mes "11... 12... Mmm... good. I think I'll be able to finish before tonight's party. Oh! I didn't notice you were here!";
+	mes "11... 12... อืม... ดี ข้าคิดว่าข้าน่าจะทำงานให้เสร็จได้ก่อนงานปาร์ตี้คืนนี้จะเริ่มนะ โอ้! ข้าไม่ทันสังเกตเลยว่าคุณอยู่ตรงนี้ด้วย!";
 	while(1) {
 		next;
 		mes .n$;
-		mes "How may I assist you?";
+		mes "มีอะไรให้ข้าช่วยไหม?";
 		next;
-		switch(select("- Talk:- Dye Clothing:- Price List:- ^777777Cancel^000000")) {
+		switch(select("- พูดคุย:- ย้อมสีเสื้อผ้า:- รายการราคา:- ^777777ยกเลิก^000000")) {
 		case 1:
 			mes .n$;
-			mes "Life may have gotten a bit better, but when I look at all of the orders I've received... Whew!";
-			mes "It seems that the young women of Rune-Midgarts must be very well off these days.";
+			mes "ชีวิตอาจจะดีขึ้นบ้างนิดหน่อยนะ แต่พอข้าดูรายการสั่งของทั้งหมดที่ได้รับมา... เฮ้อ!";
+			mes "ดูเหมือนว่าพวกหญิงสาวใน Rune-Midgarts พักนี้คงจะมีฐานะร่ำรวยกันน่าดูเลยสินะ";
 			next;
 			mes .n$;
-			mes "Not that I think that they are indulging in anything luxurious, mind you.";
-			mes "I don't think there is anything wrong with the pursuit of beauty and being fashionable.";
+			mes "ไม่ใช่ว่าข้าคิดว่าพวกนางกำลังลุ่มหลงในความหรูหราอะไรหรอกนะ บอกไว้ก่อน";
+			mes "ข้าไม่คิดว่ามันจะมีอะไรผิดหรอก สำหรับการไขว่คว้าหาความงามและการเป็นคนทันสมัย";
 			next;
 			mes .n$;
-			mes "For us humans, who have no colorful fur or decorative scales, clothes are one of the few ways we have to display our personality, style, and beauty.";
+			mes "สำหรับพวกเราที่เป็นมนุษย์ ซึ่งไม่มีขนที่มีสีสันหรือเกล็ดที่สวยงามเหมือนสัตว์อื่น เสื้อผ้าจึงเป็นหนึ่งในไม่กี่วิธีที่เรามีไว้เพื่อแสดงออกถึงบุคลิกภาพ สไตล์ และความงดงามของตนเอง";
 			next;
 			mes .n$;
-			mes "Haha... When I think about it, I really feel that my job is worthwhile.  I believe that I provide a service that the people desire.";
+			mes "ฮ่าฮ่า... พอข้าลองคิดดูแล้ว ข้ารู้สึกจริงๆ ว่างานของข้านั้นมีคุณค่า ข้าเชื่อว่าข้าได้มอบบริการที่ผู้คนปรารถนา";
 			next;
 			mes .n$;
-			mes "Can you feel it too? The energy that is released when rough fabric and leather are brought to life with color?.....";
+			mes "คุณรู้สึกได้เหมือนกันไหม? พลังงานที่ถูกปลดปล่อยออกมาในยามที่ผืนผ้าหยาบๆ และแผ่นหนังถูกปลุกให้มีชีวิตชีวาด้วยสีสัน?.....";
 			next;
 			mes .n$;
-			mes "Although the process is very tedious and time consuming, the joy and happiness I feel when a dress is finished more than makes up for all of the hard work!!";
+			mes "แม้ว่าขั้นตอนการทำจะน่าเบื่อหน่ายและใช้เวลามากเพียงใด แต่ความปิติและความสุขที่ข้ารู้สึกเมื่อชุดกระโปรงตัวหนึ่งเสร็จสมบูรณ์ มันก็คุ้มค่าเกินกว่าความยากลำบากทั้งหมดที่ลงแรงไปเสียอีก!!";
 			break;
 		case 2:
 			mes .n$;
 			if (!.@EnableDyes) {
-				mes "Sorry, I'm too busy with other jobs to dye your clothes.";
+				mes "ขออภัยด้วย ข้ากำลังยุ่งกับงานอื่นจนไม่สามารถย้อมสีเสื้อผ้าให้คุณได้ในตอนนี้";
 				break;
 			}
-			mes "Oh... you need my work? Well... okay, sounds good.";
+			mes "โอ้... คุณต้องการงานฝีมือของข้างั้นรึ? อืม... ได้สิ ฟังดูดีเลย";
 			next;
 			mes .n$;
-			mes "Please choose a color";
-			mes "that suits you.";
+			mes "โปรดเลือกสี";
+			mes "ที่เหมาะสมกับคุณ";
 			next;
 
-			// Dyes(<color value>,<dye number>{,...});
-			// Colors: [1]Orange, [2]Violet, [3]Red, [4]Black, [5]Green, [6]Blue, [7]White, [8]Yellow
+			// Dyes(<ค่าสี>,<หมายเลขสีของ Palette>{,...});
+			// สีที่มี: [1]ส้ม, [2]ม่วง, [3]แดง, [4]ดำ, [5]เขียว, [6]น้ำเงิน, [7]ขาว, [8]เหลือง
 			switch(BaseJob) {
 			case Job_Novice:
 				if (Sex == SEX_MALE) Dyes(4,1,6,2,5,3); else Dyes(6,1,3,2,5,3,4,4);
@@ -108,21 +108,21 @@ function Dyes;
 			case Job_Super_Novice:
 				if (Sex == SEX_MALE) Dyes(2,1,6,2,5,3,4,4); else Dyes(6,1,3,2,5,3,4,4);
 			default: 
-				mes "Wow, I've never seen clothes like that before! I'm sorry, but I don't think I can paint it.";
+				mes "ว้าว ข้าไม่เคยเห็นเสื้อผ้าแบบนั้นมาก่อนเลย! ข้าขอโทษด้วยนะ แต่ข้าไม่คิดว่าจะสามารถย้อมสีมันได้";
 				close;
 			}
 		case 3:
 			mes .n$;
-			mes "Each color costs 10000z and 1 dye:";
+			mes "การย้อมแต่ละสีมีค่าใช้จ่าย 10,000 Zeny และสีย้อม (Dye) 1 ขวด:";
 			mes " ";
-			mes " - ^FF4422Red^000000: Scarlet Dyestuffs";
-			mes " - ^D5A500Yellow^000000: Lemon Dyestuffs";
-			mes " - ^AA00AAViolet^000000: Violet Dyestuffs";
-			mes " - ^FF8800Orange^000000: Orange Dyestuffs";
-			mes " - ^4422FFBlue^000000: CobaltBlue Dyestuffs";
-			mes " - ^009500Green^000000: DarkGreen Dyestuffs";
-			mes " - Black: Black Dyestuffs";
-			mes " - White: White Dyestuffs";
+			mes " - ^FF4422สีแดง^000000: Scarlet Dyestuffs";
+			mes " - ^D5A500สีเหลือง^000000: Lemon Dyestuffs";
+			mes " - ^AA00AAสีม่วง^000000: Violet Dyestuffs";
+			mes " - ^FF8800สีส้ม^000000: Orange Dyestuffs";
+			mes " - ^4422FFสีน้ำเงิน^000000: CobaltBlue Dyestuffs";
+			mes " - ^009500สีเขียว^000000: DarkGreen Dyestuffs";
+			mes " - สีดำ: Black Dyestuffs";
+			mes " - สีขาว: White Dyestuffs";
 			break;
 		case 4:
 			goto L_End;
@@ -131,46 +131,46 @@ function Dyes;
 
 L_End:
 	mes .n$;
-	mes "Make yourself at home. Even though I don't have time for you.";
+	mes "ทำตัวตามสบายนะ แม้ว่าข้าจะไม่มีเวลาว่างมาต้อนรับคุณก็ตาม";
 	close;
 
 function Dyes {
-	setarray .@DyeName$[0],"the default color","Orange","Violet","Red","Black","Green","Blue","White","Yellow";
+	setarray .@DyeName$[0],"สีดั้งเดิม","สีส้ม","สีม่วง","สีแดง","สีดำ","สีเขียว","สีน้ำเงิน","สีขาว","สีเหลือง";
 	setarray .@DyeItems[0],0,980,981,975,983,979,978,982,976;
-	set .@menu$,"- Default:";
+	set .@menu$,"- สีดั้งเดิม:";
 	for(set .@i,0; .@i<getargcount(); set .@i,.@i+2)
 		set .@menu$, .@menu$+"- "+.@DyeName$[getarg(.@i)]+":";
-	set .@menu$, .@menu$+"- ^777777Cancel^000000";
+	set .@menu$, .@menu$+"- ^777777ยกเลิก^000000";
 	set .@s, select(.@menu$)-1;
 	if (.@s == (getargcount()/2)+1) goto L_End;
 	mes .n$;
 	if (.@s == 0) {
-		mes "I can change your dye to";
-		mes "the default for free.";
-		mes "Are you sure?";
+		mes "ข้าสามารถเปลี่ยนสีเสื้อผ้าของคุณ";
+		mes "กลับเป็นสีดั้งเดิมให้ฟรี";
+		mes "คุณแน่ใจนะ?";
 		next;
-		switch(select("Yes:No")) {
+		switch(select("ใช่:ไม่")) {
 		case 1:
 			mes .n$;
 			setlook 7,0;
-			mes "Your clothes have been dyed "+.@DyeName$[0]+".";
+			mes "เสื้อผ้าของคุณถูกเปลี่ยนเป็น "+.@DyeName$[0]+" เรียบร้อยแล้ว";
 			close;
 		case 2:
 			goto L_End;
 		}
 	}
 	if (!countitem(.@DyeItems[getarg((.@s-1)*2)])) {
-		mes "For me to dye your clothes, I'll need the appropriate Dyestuffs. Please check my price list for the information.";
+		mes "หากต้องการให้ข้าย้อมสีเสื้อผ้า ข้าจำเป็นต้องใช้สีย้อม (Dyestuffs) ที่ถูกต้อง โปรดตรวจสอบข้อมูลได้จากรายการราคาของข้า";
 		close;
 	}
 	if (Zeny < 10000) {
-		mes "I'm sorry, but you don't have enough money.";
+		mes "ข้าขอโทษนะ แต่ดูเหมือนคุณจะมีเงินไม่เพียงพอ";
 		close;
 	}
 	delitem .@DyeItems[getarg((.@s-1)*2)],1;
 	set Zeny, Zeny-10000;
 	setlook 7, ((.@s)?(getarg((.@s-1)*2+1)):0);
-	mes "Your clothes have been dyed "+((.@s)?.@DyeName$[getarg((.@s-1)*2)]:.@DyeName$[0])+".";
+	mes "เสื้อผ้าของคุณถูกย้อมเป็น "+((.@s)?.@DyeName$[getarg((.@s-1)*2)]:.@DyeName$[0])+" เรียบร้อยแล้ว";
 	close;
 }
 }
