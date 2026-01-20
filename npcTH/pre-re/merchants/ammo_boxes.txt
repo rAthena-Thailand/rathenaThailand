@@ -17,14 +17,14 @@
 que_ng,187,149,3	script	Magazine Dealer Kenny::mdk	4_M_01,{
 	mes "[Kenny]";
 	if (BaseClass == Job_Gunslinger) {
-		mes "Welcome to my Magazine Shop.";
-		mes "As you may know, large numbers";
-		mes "of bullets can be carried more";
-		mes "easily when they're in Magazines. Now, can I interest you in";
-		mes "anything in particular?";
+		mes "ยินดีต้อนรับสู่ร้านแม็กกาซีนของฉันครับ";
+		mes "อย่างที่คุณทราบดี กระสุนจำนวนมหาศาล";
+		mes "จะสามารถพกพาได้ง่ายขึ้นมาก";
+		mes "เมื่อพวกมันถูกบรรจุอยู่ในแม็กกาซีน เอาล่ะ";
+		mes "มีอะไรที่คุณสนใจเป็นพิเศษไหมครับ?";
 		next;
-		switch(select("Wind Sphere Pack:Shadow Sphere Pack:Poison Sphere Pack:Water Sphere Pack:Fire Sphere Pack:Cartridge:Blood Cartridge:Silver Cartridge:Cancel")) {
-		case 1: callsub S_Casing,13204,12144;// <bullet id>, <pack id>
+		switch(select("Wind Sphere Pack:Shadow Sphere Pack:Poison Sphere Pack:Water Sphere Pack:Fire Sphere Pack:Cartridge:Blood Cartridge:Silver Cartridge:ยกเลิก")) {
+		case 1: callsub S_Casing,13204,12144;// <ID กระสุน>, <ID ไอเทมแพ็ก/กล่อง>
 		case 2: callsub S_Casing,13206,12145;
 		case 3: callsub S_Casing,13205,12146;
 		case 4: callsub S_Casing,13207,12147;
@@ -34,26 +34,25 @@ que_ng,187,149,3	script	Magazine Dealer Kenny::mdk	4_M_01,{
 		case 8: callsub S_Casing,13201,12151;
 		case 9:
 			mes "[Kenny]";
-			mes "Well, if you ever find";
-			mes "that you have too many";
-			mes "bullets, come and see me.";
-			mes "It's a smart idea to store";
-			mes "bullets with my Magazines.";
+			mes "เอาล่ะ ถ้าเมื่อไหร่ที่คุณพบว่า";
+			mes "คุณมีกระสุนเยอะเกินไป";
+			mes "ก็แวะมาหาฉันได้นะ";
+			mes "มันเป็นความคิดที่ฉลาดที่จะเก็บ";
+			mes "กระสุนไว้ในแม็กกาซีนของฉัน";
 			close;
 		}
 	}
-	mes "Welcome to my shop.";
-	mes "Here, I provide Magazines";
-	mes "and Cartridges for Gunslingers.";
-	mes "Sorry, but it doesn't look like";
-	mes "my services would be of any";
-	mes "use to you, adventurer.";
+	mes "ยินดีต้อนรับสู่ร้านของฉันครับ";
+	mes "ที่นี่ ฉันมีบริการทำแม็กกาซีน (Magazines)";
+	mes "และตลับกระสุน (Cartridges) สำหรับ Gunslinger";
+	mes "ขออภัยด้วย แต่ดูเหมือนว่าบริการของฉัน";
+	mes "จะไม่มีประโยชน์อะไรสำหรับคุณนะ นักผจญภัย";
 	next;
 	mes "[Kenny]";
-	mes "Eh, but if you happen to";
-	mes "know any Gunslingers, send";
-	mes "them my way. You can never";
-	mes "have too many bullets.";
+	mes "เอ้อ แต่ถ้าคุณบังเอิญรู้จัก";
+	mes "Gunslinger คนไหนล่ะก็ ฝากส่งพวกเขา";
+	mes "มาทางนี้ทีนะ เพราะคุณไม่มีทาง";
+	mes "มีกระสุนที่มากเกินไปได้หรอก";
 	close;
 
 S_Casing:
@@ -61,66 +60,60 @@ S_Casing:
 	.@pack_id = getarg(1);
 
 	mes "[Kenny]";
-	mes "Now, you can trade";
+	mes "เอาล่ะ คุณสามารถแลก";
 	mes callfunc("F_InsertPlural",500,getitemname(.@bullet_id));
-	mes "and 500 zeny for 1 "+getitemname(.@pack_id)+", so make sure";
-	mes "you have sufficient bullets";
-	mes "and zeny for this exchange.";
+	mes "และเงิน 500 zeny สำหรับ 1 "+getitemname(.@pack_id)+" ดังนั้น";
+	mes "ตรวจสอบให้แน่ใจว่าคุณมีกระสุน";
+	mes "และเงิน zeny เพียงพอสำหรับการแลกเปลี่ยนนี้";
 	next;
 	mes "[Kenny]";
-	mes "You can exchange "+callfunc("F_InsertPlural",500,getitemname(.@bullet_id))+" and 500 zeny";
-	mes "with 1 "+getitemname(.@pack_id)+".";
+	mes "คุณสามารถแลก "+callfunc("F_InsertPlural",500,getitemname(.@bullet_id))+" และเงิน 500 zeny";
+	mes "กับ 1 "+getitemname(.@pack_id)+" ครับ";
 	next;
 	mes "[Kenny]";
-	mes "Remember that I can't give";
-	mes "you more than 50 Magazines";
-	mes "at a time. Now please enter";
-	mes "the number of Magazines you";
-	mes "want to receive. If you want to cancel, then just enter ''0.''";
+	mes "จำไว้นะว่าฉันไม่สามารถให้คุณ";
+	mes "เกิน 50 แม็กกาซีนต่อครั้งได้";
+	mes "ตอนนี้กรุณาใส่จำนวนแม็กกาซีน";
+	mes "ที่คุณต้องการได้รับ หากคุณต้องการยกเลิก ให้ใส่เลข ''0''";
 	next;
 	input .@amount;
 	mes "[Kenny]";
 	if (.@amount > 50 || .@amount == 0) {
-		mes "Hey, I can't give you";
-		mes "that many Magazines.";
-		mes "Please try again, and";
-		mes "enter a number no";
-		mes "greater than 50.";
+		mes "เฮ้ ฉันไม่สามารถให้แม็กกาซีน";
+		mes "จำนวนมากขนาดนั้นได้หรอกนะ";
+		mes "กรุณาลองใหม่อีกครั้ง และ";
+		mes "ใส่ตัวเลขที่ไม่เกิน 50 ครับ";
 	}
 	else if (countitem(.@bullet_id) >= (500*.@amount)) {
 		if (Zeny >= (500*.@amount)) {
 			if (checkweight(.@pack_id,.@amount) == 0) {
-				mes "Hey, you've got a lot";
-				mes "of junk crammed in your";
-				mes "Inventory. Free up some";
-				mes "space, and then come back";
-				mes "and trade your bullets for";
-				mes "some Magazines later, okay?";
+				mes "เฮ้ คุณมีขยะอัดแน่นอยู่เต็ม";
+				mes "ในช่องเก็บของเลยนะ ไปจัดการ";
+				mes "เพิ่มที่ว่างก่อน แล้วค่อยกลับมา";
+				mes "แลกกระสุนของคุณเป็นแม็กกาซีน";
+				mes "ในภายหลังนะ โอเคไหม?";
 			} else {
-				mes "Alright, here are";
-				mes "your Magazines. Thanks";
-				mes "for visiting my shop, and";
-				mes "I hope that you use all";
-				mes "of your ammo wisely.";
+				mes "เรียบร้อย นี่คือแม็กกาซีน";
+				mes "ของคุณ ขอบคุณที่มาอุดหนุน";
+				mes "ร้านของฉันนะ และฉันหวังว่า";
+				mes "คุณจะใช้กระสุนทั้งหมดอย่างชาญฉลาด";
 				Zeny = Zeny -500*.@amount;
 				delitem .@bullet_id,(500*.@amount);
 				getitem .@pack_id,.@amount;
 			}
 		} else {
-			mes "Sorry, but you don't";
-			mes "have enough zeny for";
-			mes "this Magazine exchange.";
-			mes "Come back to my shop";
-			mes "after you've saved up";
-			mes "some more money.";
+			mes "ขออภัยด้วย แต่คุณมีเงิน";
+			mes "zeny ไม่เพียงพอสำหรับการ";
+			mes "แลกเปลี่ยนแม็กกาซีนในครั้งนี้";
+			mes "กลับมาที่ร้านของฉันอีกครั้ง";
+			mes "หลังจากที่คุณเก็บเงินได้มากกว่านี้นะ";
 		}
 	} else {
-		mes "Sorry, but you don't";
-		mes "have enough bullets for";
-		mes "this Magazine exchange.";
-		mes "Maybe you should double";
-		mes "check your Inventory, and";
-		mes "then come back to me later.";
+		mes "ขออภัยด้วย แต่คุณมีกระสุน";
+		mes "ไม่เพียงพอสำหรับการ";
+		mes "แลกเปลี่ยนแม็กกาซีนในครั้งนี้";
+		mes "บางทีคุณควรจะตรวจสอบช่องเก็บของ";
+		mes "ให้ดีอีกรอบ แล้วค่อยกลับมาหาฉันใหม่";
 	}
 	close;
 }
