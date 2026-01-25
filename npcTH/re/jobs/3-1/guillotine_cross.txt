@@ -28,56 +28,56 @@ que_job01,75,96,3	script	Guild Member#3rdgc01	997,{
 			if (BaseLevel > 98) {
 			L_Mission:
 				mes "[Ahcart]";
-				mes "Finally, it's time...";
-				mes "Hey, what's your name?";
+				mes "ในที่สุด ก็ถึงเวลาแล้ว...";
+				mes "นี่ เจ้าชื่ออะไรล่ะ?";
 				next;
 				switch(select(strcharinfo(0),".....")) {
 				case 1:
 					mes "[Ahcart]";
 					mes strcharinfo(0)+"?";
-					mes "Got it. I'll remember your name.";
-					mes "A master told me that you are a person with ability.";
+					mes "รับทราบ ข้าจะจำชื่อเจ้าไว้";
+					mes "ท่านอาจารย์บอกข้าว่าเจ้าเป็นผู้ที่มีความสามารถคนหนึ่ง";
 					break;
 				case 2:
 					mes "[Ahcart]";
-					mes "What? You are a distrustful person.";
-					mes "Hmm, whatever.";
-					mes "I heard that you are a person with ability.";
+					mes "อะไรกัน? เจ้าเป็นพวกไม่ค่อยไว้ใจคนสินะ";
+					mes "อืม ช่างมันเถอะ";
+					mes "ข้าได้ยินมาว่าเจ้าเป็นคนที่มีความสามารถ";
 					break;
 				}
 				next;
 				mes "[Ahcart]";
-				mes "My duty is delivering a guild message to a capable assassin.";
-				mes "I think that you are suitable to perform the guild's duty.";
+				mes "หน้าที่ของข้าคือการส่งข้อความจากกิลด์ไปยังแอสแซสซินที่มีฝีมือ";
+				mes "ข้าคิดว่าเจ้าเหมาะสมที่จะปฏิบัติหน้าที่ของกิลด์";
 				next;
 				mes "[Ahcart]";
-				mes "So, would you perform this duty for us?";
-				mes "Of course, I'm going to offer a reward for completing your task.";
+				mes "ดังนั้น เจ้าจะรับปฏิบัติหน้าที่นี้เพื่อพวกเราหรือไม่?";
+				mes "แน่นอน ข้าจะมอบรางวัลให้สำหรับการทำภารกิจของเจ้าจนสำเร็จ";
 				next;
-				select("What is the request?");
+				select("คำขอคืออะไร?");
 				mes "[Ahcart]";
-				mes "It's unclear.";
-				mes "I told you. It's a special task.";
-				mes "The only thing I know is the condition to bring a person with the master's ability.";
-				next;
-				mes "[Ahcart]";
-				mes "First, one who has patience.";
-				mes "Second, one who is quiet.";
-				mes "Third, one who is focused.";
+				mes "มันยังไม่ชัดเจนนัก";
+				mes "ข้าบอกเจ้าแล้ว มันเป็นงานพิเศษ";
+				mes "สิ่งเดียวที่ข้ารู้คือเงื่อนไขในการพาคนที่มีความสามารถระดับปรมาจารย์มา";
 				next;
 				mes "[Ahcart]";
-				mes "What do you think about what I told you?";
-				mes "This task means that it needs a person who can perform a task irrespective of their own will.";
+				mes "หนึ่ง ต้องเป็นผู้ที่มีความอดทน";
+				mes "สอง ต้องเป็นผู้ที่เงียบเชียบ";
+				mes "สาม ต้องเป็นผู้ที่มีสมาธิจดจ่อ";
 				next;
 				mes "[Ahcart]";
-				mes "It's necessary to keep this request secret.";
-				mes "But it's also your duty not to tell anyone.";
+				mes "เจ้าคิดอย่างไรกับสิ่งที่ข้าบอก?";
+				mes "งานนี้หมายความว่าต้องการคนที่สามารถปฏิบัติงานได้โดยไม่คำนึงถึงความต้องการของตัวเอง";
 				next;
 				mes "[Ahcart]";
-				mes "This is all your choice.";
-				mes "Will you help us with this request?";
+				mes "จำเป็นอย่างยิ่งที่จะต้องเก็บคำขอนี้เป็นความลับ";
+				mes "แต่มันก็เป็นหน้าที่ของเจ้าด้วยที่จะไม่บอกเรื่องนี้กับใคร";
 				next;
-				switch(select("I'll do it.:Give me time to think.")) {
+				mes "[Ahcart]";
+				mes "ทั้งหมดนี้คือการตัดสินใจของเจ้า";
+				mes "เจ้าจะช่วยพวกเรากับคำขอนี้หรือไม่?";
+				next;
+				switch(select("ข้าจะทำมัน:ขอเวลาข้าคิดหน่อย")) {
 				case 1:
 					if (VIP_SCRIPT) {
 						callfunc "VIP_Third_Class";
@@ -86,51 +86,51 @@ que_job01,75,96,3	script	Guild Member#3rdgc01	997,{
 						next;
 					}
 					mes "[Ahcart]";
-					mes "Ok, to Veins.";
-					mes "I'll contact them.";
-					mes "It's your first duty to go to Veins.";
+					mes "ตกลง ไปที่ Veins ซะ";
+					mes "ข้าจะติดต่อพวกเขาเอง";
+					mes "หน้าที่แรกของเจ้าคือการไปที่ Veins";
 					next;
 					mes "[Ahcart]";
-					mes "You should be able to find it easily.";
-					mes "Go now.";
+					mes "เจ้าน่าจะหาที่นั่นได้ไม่ยาก";
+					mes "ไปได้แล้ว";
 					set job_3rd_gc, 3;
 					setquest 7101;
 					close;
 				case 2:
 					mes "[Ahcart]";
-					mes "Got it.";
-					mes "But don't think about it for too long.";
+					mes "เข้าใจแล้ว";
+					mes "แต่แม่อย่านานเกินไปล่ะ";
 					set job_3rd_gc, 2;
 					close;
 				}
 			}
 			mes "[Ahcart]";
-			mes "Hmm, you are my peer.";
-			mes "I'm Ahcart. I'm from Veins.";
-			mes "Hmm...";
+			mes "หืม เจ้าคือเพื่อนร่วมอาชีพของข้าสินะ";
+			mes "ข้าชื่อ Ahcart ข้ามาจาก Veins";
+			mes "หืม...";
 			next;
 			mes "[Ahcart]";
-			mes "Of course, a chapter of the assassin guild is not only in Morocc. If you have a chance to go there, visit there.";
-			mes "I think you might go there.";
+			mes "แน่นอนว่าสาขาของกิลด์แอสแซสซินไม่ได้มีแค่ใน Morocc เท่านั้น หากเจ้ามีโอกาสได้ไปที่นั่น ก็จงแวะไปเยือนบ้าง";
+			mes "ข้าคิดว่าเจ้าอาจจะได้ไปที่นั่นนะ";
 			set job_3rd_gc, 1;
 			close;
 		}
-		mes "[A man of a sharp impression]";
+		mes "[ชายผู้มีลักษณะที่เฉียบคม]";
 		mes "....";
-		mes "What the...?";
-		mes "You are not an assassin.";
+		mes "อะไรกัน...?";
+		mes "เจ้าไม่ใช่แอสแซสซินนี่";
 		close;
 	} else if (job_3rd_gc == 1) {
 		if (BaseLevel > 98) goto L_Mission;
 		mes "[Ahcart]";
-		mes "If you become stronger and more skillful, then the assassin's guild will give you a special task.";
-		mes "Go for it.";
+		mes "หากเจ้าแข็งแกร่งขึ้นและมีฝีมือมากกว่านี้ กิลด์แอสแซสซินจะมอบงานพิเศษให้แก่เจ้า";
+		mes "พยายามเข้าล่ะ";
 		close;
 	} else if (job_3rd_gc == 2) {
 		mes "[Ahcart]";
-		mes "Have you thought about it more?";
+		mes "เจ้าได้ทบทวนเรื่องนั้นหรือยัง?";
 		next;
-		switch(select("I'll do it.:I'm not ready.")) {
+		switch(select("ข้าจะทำมัน:ข้ายังไม่พร้อม")) {
 		case 1:
 			if (VIP_SCRIPT) {
 				callfunc "VIP_Third_Class";
@@ -139,30 +139,30 @@ que_job01,75,96,3	script	Guild Member#3rdgc01	997,{
 				next;
 			}
 			mes "[Ahcart]";
-			mes "Ok, to Veins.";
-			mes "I'll contact them.";
-			mes "It's your first duty to go to Veins.";
+			mes "ตกลง ไปที่ Veins ซะ";
+			mes "ข้าจะติดต่อพวกเขาเอง";
+			mes "หน้าที่แรกของเจ้าคือการไปที่ Veins";
 			next;
 			mes "[Ahcart]";
-			mes "You should be able to find it easily.";
-			mes "Go now.";
+			mes "เจ้าน่าจะหาที่นั่นได้ไม่ยาก";
+			mes "ไปได้แล้ว";
 			set job_3rd_gc, 3;
 			setquest 7101;
 			close;
 		case 2:
 			mes "[Ahcart]";
-			mes "You are too cautious.";
-			mes "I get the sense that you don't want to work for us.";
+			mes "เจ้าช่างระมัดระวังเกินไป";
+			mes "ข้าสัมผัสได้ว่าเจ้าไม่อยากทำงานให้พวกเรา";
 			close;
 		}
 	} else if (job_3rd_gc == 3) {
 		mes "[Ahcart]";
-		mes "Go to Veins and find a chapter.";
-		mes "You can hear more details from there.";
+		mes "จงไปที่ Veins และตามหาสาขาที่นั่น";
+		mes "เจ้าสามารถฟังรายละเอียดเพิ่มเติมได้จากที่นั่น";
 		close;
 	} else {
 		mes "[Ahcart]";
-		mes "Good luck to you.";
+		mes "ขอให้เจ้าโชคดี";
 		close;
 	}
 }
@@ -170,71 +170,71 @@ que_job01,75,96,3	script	Guild Member#3rdgc01	997,{
 function	script	func_3rdgc	{
 	set .@n$, "["+strcharinfo(0)+"]";
 	mes .@n$;
-	mes "Let me collect all the information...";
+	mes "ขอมือข้าประมวลผลข้อมูลทั้งหมดก่อน...";
 	set .@i,0;
-	if (checkquest(7112) == 1) { mes "Madelle saw a person who looked like a priest from Rachel late at night."; set .@i,.@i+1; }
-	if (checkquest(7113) == 1) { mes "Crave said that there was a girl who bought lots of things day and night."; set .@i,.@i+1; }
-	if (checkquest(7114) == 1) { mes "Trovan said that there was a guy who could be seen often but is not a hotel guest, so he is suspicious."; set .@i,.@i+1; }
+	if (checkquest(7112) == 1) { mes "Madelle เห็นคนที่ดูเหมือนนักบวชจาก Rachel เมื่อดึกคืนวาน"; set .@i,.@i+1; }
+	if (checkquest(7113) == 1) { mes "Crave บอกว่ามีเด็กสาวคนหนึ่งมาซื้อของมากมายทั้งกลางวันและกลางคืน"; set .@i,.@i+1; }
+	if (checkquest(7114) == 1) { mes "Trovan บอกว่ามีชายคนหนึ่งที่เห็นบ่อยๆ แต่ไม่ใช่แขกของโรงแรม ดังนั้นเขาจึงดูน่าสงสัย"; set .@i,.@i+1; }
 	if (!getarg(0)) {
 		set .@i,.@i-2;
-		if (checkquest(7115) == 1) { mes "A peddler wears shabby clothes, but she buys fresh and expensive things every single day."; set .@i,.@i+1; }
-		if (checkquest(7116) == 1) { mes "The old man in village said that there was a girl who showed up in same place at the same time, so maybe moved here."; set .@i,.@i+1; }
+		if (checkquest(7115) == 1) { mes "คนขายของหาบเร่สวมเสื้อผ้าซอมซ่อ แต่เธอกลับซื้อของสดและของราคาแพงทุกวัน"; set .@i,.@i+1; }
+		if (checkquest(7116) == 1) { mes "ชายแก่ในหมู่บ้านบอกว่ามีเด็กสาวมาปรากฏตัวที่เดิมเวลาเดิมบ่อยๆ สงสัยอาจจะย้ายมาอยู่ที่นี่"; set .@i,.@i+1; }
 	}
 	next;
 	if (.@i == 3) {
 		mes .@n$;
-		mes "One day, Madelle saw a person who looked like a priest of Rachel,";
-		mes "and Trovan is suspicious of why that person is here.";
+		mes "วันหนึ่ง Madelle เห็นคนที่ดูเหมือนนักบวชของ Rachel,";
+		mes "และ Trovan ก็สงสัยว่าทำไมคนๆ นั้นถึงมาอยู่ที่นี่";
 		next;
 		mes .@n$;
-		mes "But the reason that Trovan suspects them is...";
+		mes "แต่เหตุผลที่ Trovan สงสัยพวกเขาก็คือ...";
 		next;
-		switch(select("They are unfamiliar:The residence is unclear")) {
+		switch(select("พวกเขาดูไม่คุ้นหน้า:ที่พักอาศัยไม่ชัดเจน")) {
 		case 1:
 			mes .@n$;
-			mes "No, that's not the reason. The guard sees new adventurers every day.";
-			mes "Besides, Madelle told me that it was a guy and Crave said it was a girl.";
-			mes "I'm confused.";
+			mes "ไม่ใช่ นั่นไม่ใช่เหตุผล ทหารยามเห็นนักผจญภัยหน้าใหม่ทุกวันอยู่แล้ว";
+			mes "นอกจากนี้ Madelle บอกข้าว่าเป็นผู้ชาย แต่ Crave บอกว่าเป็นผู้หญิง";
+			mes "ข้าชักจะสับสนแล้วสิ";
 			next;
 			mes .@n$;
-			mes "Let me rethink this.";
+			mes "ขอมือข้าคิดทบทวนอีกครั้ง";
 			set job_3rd_gc, 7;
 			close;
 		case 2:
 			mes .@n$;
-			mes "Yeah, adventurers often visit so it can't be a proper reason.";
+			mes "ใช่แล้ว นักผจญภัยแวะเวียนมาบ่อยๆ ดังนั้นมันจึงไม่ใช่เหตุผลที่เหมาะสม";
 			next;
 			mes .@n$;
-			mes "The thing Trovan suspected is that his residence is unclear. But he shows up often and buys supplies regularly.";
+			mes "สิ่งที่ Trovan สงสัยคือที่พักอาศัยของเขาไม่ชัดเจน แต่เขากลับปรากฏตัวบ่อยและซื้อเสบียงเป็นประจำ";
 			next;
 			mes .@n$;
-			mes "But Crave said it was a girl.";
-			mes "Madelle said that she witnessed a guy.";
+			mes "แต่ Crave บอกว่าเป็นผู้หญิง";
+			mes "ส่วน Madelle บอกว่าเธอเห็นผู้ชาย";
 			next;
 			if (getarg(0)) {
-				if(select("Madelle witnessed 2...:There are more than 2...") == 1) {
+				if(select("Madelle เห็นคน 2 คน...:มีมากกว่า 2 คน...") == 1) {
 					mes .@n$;
-					mes "Madelle said that she saw one more person in the darkness.";
-					mes "Then is it a girl who brought the supplies?";
+					mes "Madelle บอกว่าเธอเห็นคนอีกคนหนึ่งในความมืด";
+					mes "ถ้าอย่างนั้น คนที่มาซื้อเสบียงคือเด็กสาวใช่ไหม?";
 					next;
 				}
 			}
-			else select("It could be a helper.");
+			else select("อาจจะเป็นผู้ช่วยก็ได้");
 			mes .@n$;
-			mes "Yeah. There could be one more helper.";
-			mes "She sent a person to buy the stuff instead of herself.";
-			mes "Or it could be a peer Madelle can't see.";
+			mes "ใช่แล้ว อาจจะมีผู้ช่วยอีกคนหนึ่ง";
+			mes "เธอส่งคนมาซื้อของแทนตัวเธอเอง";
+			mes "หรืออาจจะเป็นเพื่อนที่ Madelle มองไม่เห็น";
 			next;
 			mes .@n$;
-			mes "Crave said that she comes here day and night to buy stuff regularly.";
-			mes "Then I know what I have to do.";
+			mes "Crave บอกว่าเธอมาที่นี่ทั้งกลางวันและกลางคืนเพื่อซื้อของเป็นประจำ";
+			mes "ถ้าอย่างนั้น ข้ารู้แล้วว่าต้องทำอย่างไร";
 			set job_3rd_gc, 8;
 			close;
 		}
 	}
 	mes .@n$;
-	mes "Umm...";
-	mes "Do I need more information? I think something more is needed.";
+	mes "อืม...";
+	mes "ข้าต้องการข้อมูลมากกว่านี้หรือเปล่า? ข้าคิดว่ายังขาดอะไรบางอย่างไป";
 	close;
 }
 
@@ -243,597 +243,597 @@ job3_guil01,82,95,3	script	Daora#3rdgc02	940,{
 	if (Class == Job_Assassin || Class == Job_Assassin_Cross || Class == Job_Baby_Assassin) {
 		if (job_3rd_gc < 4) {
 			if (Sex == SEX_MALE) {
-				mes "Oh~ you're good-looking!";
-				mes "So, what do you want?";
+				mes "โอ้~ พ่อหนุ่มรูปหล่อ!";
+				mes "แล้ว เจ้าต้องการอะไรล่ะ?";
 			} else {
-				mes "Hmm, you're a girl.";
-				mes "Ok pick up whatever you want.";
+				mes "หืม เจ้าเป็นผู้หญิงนี่นา";
+				mes "เอาล่ะ เลือกอะไรก็ได้ที่เจ้าต้องการ";
 			}
 			next;
 			mes "[Daora]";
-			mes "I'm not sure that you already know or not, but we are selling special Morocc liquor.";
-			mes "Which one do you want?";
+			mes "ข้าไม่แน่ใจว่าเจ้ารู้หรือยัง แต่พวกเราขายเหล้าสูตรพิเศษของ Morocc นะ";
+			mes "เจ้าต้องการอันไหนล่ะ?";
 			next;
-			switch(select("Tropical Sograt:Vermilion on the Beach:No thanks!:......")) {
+			switch(select("Tropical Sograt:Vermilion on the Beach:ไม่ล่ะ ขอบคุณ!:......")) {
 			case 1:
 				mes "[Daora]";
 				if (Zeny > 799) {
-					mes "Here you are, take it.";
+					mes "นี่จ้ะ รับไปสิ";
 					set Zeny, Zeny - 800;
 					getitem 12112,1; //Tropical_Sograt
 					close;
 				}
-				mes "It's 800 zeny per glass of Tropical Sograt.";
+				mes "Tropical Sograt ราคาแก้วละ 800 zeny จ้ะ";
 				close;
 			case 2:
 				mes "[Daora]";
 				if (Zeny > 799) {
-					mes "Here you are, take it.";
+					mes "นี่จ้ะ รับไปสิ";
 					set Zeny, Zeny - 800;
 					getitem 12113,1; //Vermilion_The_Beach
 					close;
 				}
-				mes "It's 800 zeny per glass of Vermilion on the Beach.";
+				mes "Vermilion on the Beach ราคาแก้วละ 800 zeny จ้ะ";
 				close;
 			case 3:
 				mes "[Daora]";
-				mes "Don't show me your nervousness!";
+				mes "อย่าแสดงความประหม่าให้ข้าเห็นสิ!";
 				specialeffect2 EF_HIT1;
 				percentheal -30,0;
 				close;
 			case 4:
 				mes "[Daora]";
-				mes "What? Why are you looking at me like that?";
-				mes "Oh? You are a person of this world.";
-				mes "Your name is...";
+				mes "อะไร? ทำไมเจ้าถึงมองข้าแบบนั้นล่ะ?";
+				mes "โอ้? เจ้าเป็นคนของโลกฝั่งนี้สินะ";
+				mes "เจ้าชื่ออะไรล่ะ...";
 				next;
 				mes "["+strcharinfo(0)+"]";
 				mes strcharinfo(0)+".";
 				next;
 				mes "[Daora]";
 				if (job_3rd_gc == 3) {
-					mes "Ah~ I've heard your name before.";
-					mes "Umm... right!";
-					mes "You were recommended by Ahcart.";
+					mes "อ้อ~ ข้าเคยได้ยินชื่อเจ้ามาก่อน";
+					mes "อืม... ใช่แล้ว!";
+					mes "เจ้าถูกแนะนำมาโดย Ahcart นี่เอง";
 					next;
 					mes "[Daora]";
-					mes "Yeah, can you find an entrance to an alley in the corner?";
-					mes "Go in there, then you can hear a more detailed story.";
-					mes "Take on this special task~!";
+					mes "ใช่แล้ว เจ้าเห็นทางเข้าตรอกตรงมุมนั่นไหม?";
+					mes "เข้าไปในนั้นสิ แล้วเจ้าจะได้ยินเรื่องราวที่ละเอียดกว่านี้";
+					mes "รับงานพิเศษนี้ไปซะล่ะ~!";
 					set job_3rd_gc, 4;
 					changequest 7101,7102;
 					close;
 				}
-				mes "What, I don't know that name.";
-				mes "Hey, I have to be in business, so can you move over?";
+				mes "อะไรกัน ข้าไม่รู้จักชื่อนั้นหรอก";
+				mes "นี่ ข้าต้องทำมาหากินนะ ช่วยหลีกทางหน่อยได้ไหม?";
 				close;
 			}
 		} else if (job_3rd_gc == 4) {
-			mes "The room in the corner. Feel free to enter it because no one enters that room anyway.";
-			mes "Or do you need something?";
+			mes "ห้องตรงมุมนั่นแหละ เข้าไปได้ตามสบายเลย เพราะปกติก็ไม่มีใครเข้าห้องนั้นอยู่แล้ว";
+			mes "หรือว่าเจ้าต้องการอะไรอีกล่ะ?";
 			next;
 			mes "[Daora]";
-			mes "Ah, I'm not selling liquir to someone who's started the special task.";
+			mes "อ้อ ข้าไม่ขายเหล้าให้คนที่เริ่มทำภารกิจพิเศษหรอกนะ";
 			next;
-			switch(select("Not selling liquor...:I need information.:Fine then punk!")) {
+			switch(select("ไม่ขายเหล้า...:ข้าต้องการข้อมูล:ก็ได้ ยัยป้า!")) {
 			case 1:
 				mes "[Daora]";
-				mes "Hey, you are performing a task now.";
-				mes "And you want me to sell you booze?!";
-				mes "Is every assasin like you? Lazy boozers?";
+				mes "นี่ เจ้ากำลังปฏิบัติหน้าที่อยู่นะ";
+				mes "แล้วเจ้ายังอยากให้ข้าขายเหล้าให้เจ้าอีกเหรอ?!";
+				mes "แอสแซสซินทุกคนเป็นเหมือนเจ้าหมดเลยเหรอ? พวกขี้เมาขี้เกียจเนี่ยนะ?";
 				close;
 			case 2:
 				mes "[Daora]";
-				mes "You dare to demand information after taking a task.";
-				mes "You didn't meet a master yet?";
-				mes "As if I would just tell you because you ask!";
-				mes "You are childish.";
+				mes "เจ้ากล้าดียังไงมาเรียกร้องข้อมูลหลังจากรับภารกิจไปแล้ว";
+				mes "เจ้ายังไม่ได้พบอาจารย์อีกล่ะสิ?";
+				mes "คิดเหรอว่าข้าจะบอกแค่เพราะเจ้าถามน่ะ!";
+				mes "เจ้านี่มันเด็กน้อยจริงๆ";
 				close;
 			case 3:
 				mes "[Daora]";
-				mes "Don't talk to me like I'm one of your friends!";
-				mes "You have no right to be that way!";
+				mes "อย่ามาคุยกับข้าเหมือนข้าเป็นเพื่อนเล่นของเจ้านะ!";
+				mes "เจ้าไม่มีสิทธิ์ทำตัวแบบนั้น!";
 				specialeffect2 EF_HIT1;
 				percentheal -30,0;
 				close;
 			}
 		} else if (job_3rd_gc == 10) {
-			mes "Oh~! good for me.";
-			mes "Who is she?";
-			mes "You told her that we'll protect her?";
+			mes "โอ้~! ดีสำหรับข้าเลย";
+			mes "เธอคือใครล่ะนั่น?";
+			mes "เจ้าบอกเธอว่าพวกเราจะปกป้องเธองั้นเหรอ?";
 			next;
-			select("Yes,I did.");
+			select("ใช่ ข้าบอกแบบนั้น");
 			mes "[Daora]";
-			mes "Hmm, I see...";
-			mes "Your opinion will be important.";
-			mes "I got it.";
-			next;
-			mes "[Daora]";
-			mes "She was so scared,";
-			mes "so I gave her a hot drink";
-			mes "and took her to a her room.";
+			mes "อืม ข้าเข้าใจแล้ว...";
+			mes "ความคิดเห็นของเจ้าจะมีความสำคัญมาก";
+			mes "ข้ารับทราบแล้ว";
 			next;
 			mes "[Daora]";
-			mes "Well... there is better place to keep an eye on her than this room.";
-			next;
-			select("No, I just protect...");
-			mes "[Daora]";
-			mes "Ah~ whatever anyway you make me work.";
-			mes "To protect that young girl.";
+			mes "เธอดูหวาดกลัวมากเลยนะ,";
+			mes "ข้าก็เลยให้เครื่องดื่มอุ่นๆ กับเธอ";
+			mes "แล้วก็พาเธอไปที่ห้องของเธอแล้ว";
 			next;
 			mes "[Daora]";
-			mes "Mayshell told me that I have to support you, so I'm not going to complain.";
+			mes "เอาล่ะ... มีที่ที่ดีกว่าห้องนี้ในการเฝ้าดูเธออยู่นะ";
+			next;
+			select("เปล่า ข้าแค่ปกป้อง...");
+			mes "[Daora]";
+			mes "อ้อ~ ช่างมันเถอะ ยังไงเจ้าก็ทำให้ข้าต้องทำงาน";
+			mes "เพื่อปกป้องเด็กสาวคนนั้น";
 			next;
 			mes "[Daora]";
-			mes "So, don't worry.";
-			mes "Are you supposed to be here for her?";
-			mes "Go ahead.";
+			mes "Mayshell บอกข้าว่าข้าต้องสนับสนุนเจ้า ดังนั้นข้าจะไม่บ่นอะไรหรอก";
+			next;
+			mes "[Daora]";
+			mes "เพราะฉะนั้น ไม่ต้องกังวลไป";
+			mes "เจ้าควรจะอยู่ที่นี่เพื่อเธอใช่ไหม?";
+			mes "เชิญเลย";
 			set job_3rd_gc, 11;
 			close;
 		} else if (job_3rd_gc == 11) {
-			mes "She is in a room.";
-			mes "The one in front of master's room.";
-			mes "Can you find it?";
+			mes "เธออยู่ในห้องน่ะ";
+			mes "ห้องที่อยู่หน้าห้องของอาจารย์";
+			mes "เจ้าหาเจอไหม?";
 			close;
 		} else if (job_3rd_gc == 12) {
-			mes "That girl...";
-			mes "will be sent to her home?";
-			mes "Don't worry about that.";
+			mes "เด็กสาวคนนั้น...";
+			mes "จะถูกส่งกลับบ้านงั้นเหรอ?";
+			mes "ไม่ต้องกังวลเรื่องนั้นหรอก";
 			next;
 			mes "[Daora]";
-			mes "Mayshell and the other guys will handle it.";
+			mes "Mayshell และคนอื่นๆ จะจัดการเรื่องนี้เอง";
 			close;
 		} else if (job_3rd_gc == 14) {
-			mes "Oh, it's perfect timing.";
-			mes "Mayshell will call you.";
-			mes "Go to the master's room.";
+			mes "โอ้ จังหวะเหมาะพอดีเลย";
+			mes "Mayshell กำลังเรียกหาเจ้าอยู่";
+			mes "ไปที่ห้องของอาจารย์ซะ";
 			close;
 		} else if (job_3rd_gc > 4 && job_3rd_gc < 18) {
-			mes "What do you need?";
-			mes "We don't sell to anyone who has started the special task.";
+			mes "เจ้าต้องการอะไร?";
+			mes "พวกเราไม่ขายของให้ใครก็ตามที่เริ่มทำภารกิจพิเศษไปแล้ว";
 			next;
-			switch(select("....:Give me 1 glass.:Then, can you give milk?")) {
+			switch(select("....:ขอสักแก้วเถอะ:งั้น ขอเป็นนมแทนได้ไหม?")) {
 			case 1:
 				mes "[Daora]";
-				mes "Why? Are you disappointed?";
-				mes "Um~";
-				mes "I can't let anyone on duty drink.";
+				mes "ทำไมล่ะ? เจ้าผิดหวังเหรอ?";
+				mes "อืม~";
+				mes "ข้าปล่อยให้ใครที่กำลังปฏิบัติหน้าที่ดื่มเหล้าไม่ได้หรอก";
 				close;
 			case 2:
 				mes "[Daora]";
 				if (job_3rd_gc == 5) {
-					mes "I told you that I won't sell you any.";
-					mes "An empty glass is fine without liquor.";
-					mes "I already told you...";
+					mes "ข้าบอกเจ้าแล้วไงว่าข้าจะไม่ขายให้เจ้า";
+					mes "แก้วเปล่าๆ ที่ไม่มีเหล้าน่ะพอไหว";
+					mes "ข้าบอกเจ้าไปแล้วนะ...";
 					next;
 					mes "[Daora]";
-					mes "I'll let you know all the information that I know.";
+					mes "ข้าจะบอกข้อมูลทั้งหมดที่ข้ารู้ให้เจ้าฟัง";
 					next;
 					mes "[Daora]";
-					mes "If you need to, visit me anytime and I'll serve you a drink after your task is done.";
+					mes "ถ้าจำเป็น ก็แวะมาหาข้าได้ทุกเมื่อ แล้วข้าจะเสิร์ฟเครื่องดื่มให้หลังจากภารกิจของเจ้าเสร็จสิ้น";
 					set job_3rd_gc, 6;
 					close;
 				} else if (job_3rd_gc == 6) {
 					if (checkquest(7091) == 1) {
-						mes "You hope that there will be something in the glass?";
-						mes "Information can't come out of empty glasses.";
+						mes "เจ้าหวังว่าจะมีอะไรอยู่ในแก้วงั้นเหรอ?";
+						mes "ข้อมูลมันไม่ไหลออกมาจากแก้วเปล่าหรอกนะ";
 						close;
 					}
-					mes "You need a glass?";
-					mes "Mayshell's order distracted you, so you can't understand anything.";
+					mes "เจ้าต้องการแก้วงั้นเหรอ?";
+					mes "คำสั่งของ Mayshell ทำให้เจ้าเขว จนเจ้าไม่เข้าใจอะไรเลย";
 					next;
 					mes "[Daora]";
-					mes "Ok, what do you want to know?";
-					mes "You hope that there will be something in the glass?";
+					mes "ตกลง เจ้าอยากรู้อะไรล่ะ?";
+					mes "เจ้าหวังว่าจะมีอะไรอยู่ในแก้วงั้นเหรอ?";
 					next;
-					switch(select("Ask for help.:Handle it by yourself.")) {
+					switch(select("ขอความช่วยเหลือ:จัดการด้วยตัวเอง")) {
 					case 1:
 						mes "[Daora]";
-						mes "So, it means just killing a strange guy in the village?";
-						mes "Why were you in agony because of that?";
-						mes "Hmm... Let me see...";
+						mes "สรุปคือ มันก็แค่การกำจัดชายประหลาดในหมู่บ้านใช่ไหม?";
+						mes "ทำไมเจ้าต้องเป็นทุกข์เป็นร้อนเพราะเรื่องนั้นด้วยล่ะ?";
+						mes "อืม... ไหนดูซิ...";
 						next;
 						mes "[Daora]";
-						mes "Then it will need legwork?";
-						mes "Where is the most crowded place in this village?";
-						mes "The pub and motel.";
+						mes "ถ้าอย่างนั้นมันต้องใช้การสืบสวนหน่อยไหม?";
+						mes "ที่ไหนที่คนพลุกพล่านที่สุดในหมู่บ้านนี้ล่ะ?";
+						mes "ก็คือผับและโรงแรมไง";
 						next;
 						mes "[Daora]";
-						mes "And the guard of the village always keeps an eye on strange people.";
-						mes "Or the old merchant is quick in visual learning.";
+						mes "และทหารยามของหมู่บ้านก็คอยจับตาดูคนแปลกหน้าอยู่เสมอ";
+						mes "หรือพ่อค้าแก่ๆ ก็เป็นพวกหูไวตาไวนะ";
 						next;
 						mes "[Daora]";
-						mes "I can say that especially...";
-						mes "Trovan, Crave who is a trader, and Madelle in the pub are quick in visual learning.";
+						mes "ข้าบอกได้เลยว่าโดยเฉพาะ...";
+						mes "Trovan, Crave ที่เป็นพ่อค้า และ Madelle ในผับ พวกนี้หูไวตาไวมาก";
 						next;
 						mes "[Daora]";
-						mes "It's good information, isn't it?";
+						mes "เป็นข้อมูลที่ดีใช่ไหมล่ะ?";
 						setquest 7091;
 						next;
-						mes "- The advice of Daora is attached to the board with quest information. -";
+						mes "- คำแนะนำของ Daora ถูกติดไว้ที่กระดานข้อมูลเควส -";
 						close;
 					case 2:
 						mes "[Daora]";
-						mes "Ok. It's great.";
-						mes "Each word and behavior will be an important key of the events.";
-						mes "So, look around carefully and figure it out.";
+						mes "ตกลง ยอดเยี่ยมมาก";
+						mes "คำพูดและพฤติกรรมแต่ละอย่างจะเป็นกุญแจสำคัญของเหตุการณ์";
+						mes "เพราะฉะนั้น จงมองไปรอบๆ อย่างระมัดระวังและหาคำตอบซะ";
 						next;
 						mes "[Daora]";
-						mes "Something good will happen.";
+						mes "สิ่งดีๆ จะเกิดขึ้นเอง";
 						close;
 					}
 				} else if (job_3rd_gc == 7) {
-					mes "You seem to be worried.";
-					mes "Here, It's cold water.";
-					mes "You think over with cold water.";
+					mes "เจ้าดูท่าทางกังวลนะ";
+					mes "นี่จ้ะ น้ำเย็นๆ";
+					mes "จงไตร่ตรองด้วยน้ำเย็นแก้วนี้ซะ";
 					next;
-					switch(select("Figure out based on information.:Stop the stage.")) {
+					switch(select("วิเคราะห์ตามข้อมูล:หยุดการยืนยันข้อมูลไว้ก่อน")) {
 					case 1:
 						if (checkquest(7091) == 1) set .@j,1;
 						callfunc "func_3rdgc",.@j;
 						close;
 					case 2:
-						mes "You stop the confirmation of information.";
+						mes "เจ้าหยุดการยืนยันข้อมูล";
 						close;
 					}
 				} else if (job_3rd_gc == 8) {
 					if (checkquest(7092) == 1) {
-						mes "Wait in an alley where she usually shows up to find her, and you will be able to pursue the question.";
+						mes "จงไปรอในตรอกที่เธอมักจะปรากฏตัวเพื่อตามหาเธอ แล้วเจ้าจะสามารถสืบสาวราวเรื่องได้";
 						next;
 						mes "[Daora]";
-						mes "Trying wouldn't hurt.";
-						mes "If you want to find a root, you have to find a leaf first.";
-						mes "Work hard.";
+						mes "ลองดูไม่เสียหายหรอก";
+						mes "ถ้าเจ้าอยากจะหาลาก เจ้าก็ต้องหาใบให้เจอก่อน";
+						mes "พยายามเข้านะ";
 						close;
 					}
-					mes "Did you solve it?";
-					mes "What will you do?";
+					mes "เจ้าแก้ปัญหาได้หรือยัง?";
+					mes "เจ้าจะทำอย่างไรต่อ?";
 					next;
-					switch(select("Get advice.:It's a secret.")) {
+					switch(select("ขอคำแนะนำ:มันเป็นความลับ")) {
 					case 1:
 						mes "[Daora]";
-						mes "Can you let me know about an information you collected?";
+						mes "เจ้าช่วยบอกข้อมูลที่เจ้ารวบรวมมาให้ข้าฟังหน่อยได้ไหม?";
 						next;
-						if(select("You have a heart-to-heart talk with him.:That's impossible.") == 2) {
+						if(select("เจ้าเปิดใจคุยกับเขาอย่างลึกซึ้ง:มันเป็นไปไม่ได้หรอก") == 2) {
 							mes "[Daora]";
-							mes "What, I can't support you properly?";
-							mes "You solve it by yourself.";
+							mes "อะไรกัน ข้าสนับสนุนเจ้าได้ไม่ดีพอเหรอ?";
+							mes "งั้นเจ้าก็แก้ปัญหาเอาเองแล้วกัน";
 							close;
 						}
 						mes "[Daora]";
-						mes "Hum. Got it.";
+						mes "อืม เข้าใจแล้ว";
 						next;
 						mes "[Daora]";
-						mes "There is a guy who looks like a priest and Trovan and Madelle saw him.";
-						mes "A merchant saw a girl who buys things regularly.";
+						mes "มีผู้ชายที่ดูเหมือนนักบวช ซึ่ง Trovan และ Madelle เห็นเขา";
+						mes "ส่วนพ่อค้าเห็นเด็กสาวที่มาซื้อของเป็นประจำ";
 						next;
 						mes "[Daora]";
-						mes "The main target is a guy,";
-						mes "but the helper is a girl.";
-						mes "Maybe.";
+						mes "เป้าหมายหลักคือผู้ชาย,";
+						mes "แต่คนช่วยคือเด็กสาว";
+						mes "อาจจะเป็นอย่างนั้น";
 						next;
 						mes "[Daora]";
-						mes "Above all,";
-						mes "it's really getting to you.";
+						mes "เหนือสิ่งอื่นใด,";
+						mes "มันเริ่มส่งผลต่อเจ้าแล้วสินะ";
 						next;
 						mes "[Daora]";
-						mes "Then it's simple.";
-						mes "Why don't you meet her in the place where she visits often?";
+						mes "ถ้าอย่างนั้นมันก็ง่ายมาก";
+						mes "ทำไมเจ้าไม่ไปพบเธอในที่ที่เธอไปบ่อยๆ ล่ะ?";
 						next;
 						mes "[Daora]";
-						mes "It's the transience of duty.";
-						mes "You don't know the meaning with a piece of the puzzle.";
+						mes "มันคือความไม่ยั่งยืนของหน้าที่";
+						mes "เจ้าจะไม่รู้ความหมายเลยถ้ามีแค่จิ๊กซอว์ชิ้นเดียว";
 						next;
 						mes "[Daora]";
-						mes "They can be related people or not.";
-						mes "Ok, I'll be very attentive to my want.";
+						mes "พวกเขาอาจจะเกี่ยวข้องกันหรือไม่ก็ได้";
+						mes "ตกลง ข้าจะใส่ใจกับความต้องการของข้าให้มาก";
 						next;
 						mes "[Daora]";
-						mes "Right~?";
-						mes "Go on a place where can look down a village well and find Melissa.";
-						mes "That will be helpful.";
+						mes "ใช่ไหมล่ะ~?";
+						mes "จงไปในที่ที่สามารถมองลงไปยังบ่อน้ำของหมู่บ้านได้ แล้วตามหา Melissa";
+						mes "นั่นน่าจะช่วยได้นะ";
 						next;
-						mes "- Daora's advice is attached on the board of quest. -";
+						mes "- คำแนะนำของ Daora ถูกติดไว้ที่กระดานเควส -";
 						setquest 7092;
 						close;
 					case 2:
 						mes "[Daora]";
-						mes "Umm~.";
-						mes "Right. There is a secret";
-						mes "you can't tell anyone while perfoming a task.";
+						mes "อืม~";
+						mes "ใช่แล้ว มีความลับ";
+						mes "ที่เจ้าไม่สามารถบอกใครได้ในขณะปฏิบัติหน้าที่";
 						next;
 						mes "[Daora]";
-						mes "In those regards, you surpass the standards.";
+						mes "ในแง่นั้น เจ้าทำได้เกินมาตรฐานเลยล่ะ";
 						close;
 					}
 				} else if (job_3rd_gc == 9) {
 					if (checkquest(7093) == 1) {
-						mes "So, go to the east of village, you can see a narrow alley directed to the north.";
+						mes "งั้นจงไปทางตะวันออกของหมู่บ้าน เจ้าจะเห็นตรอกแคบๆ ที่มุ่งไปทางทิศเหนือ";
 						next;
 						mes "[Daora]";
-						mes "The blind alley that Melissa told means this street.";
-						mes "You are thinking like a child.";
+						mes "ทางตันที่ Melissa บอก หมายถึงถนนสายนี้นั่นแหละ";
+						mes "เจ้านี่คิดเหมือนเด็กเลยนะ";
 						close;
 					}
-					mes "Haha... how's it going?";
+					mes "ฮ่าฮ่า... เป็นยังไงบ้างล่ะ?";
 					next;
-					switch(select("Where is the blind alley?:It's okay.")) {
+					switch(select("ทางตันอยู่ที่ไหน?:ไม่เป็นไร ข้าโอเค")) {
 					case 1:
 						mes "[Daora]";
-						mes "The blind alley?";
-						mes "Hmm... well.";
-						mes "Is there a blind alley like our pub...";
+						mes "ทางตันงั้นเหรอ?";
+						mes "อืม... ก็นะ";
+						mes "มันมีทางตันเหมือนหลังผับของเราหรือเปล่านะ...";
 						next;
 						mes "[Daora]";
-						mes "Ah, in the northeast alley";
-						mes "directed upside in the village,";
-						mes "there is no street because";
-						mes "the houses stand close together in that area.";
+						mes "อ้อ ในตรอกทางตะวันออกเฉียงเหนือ";
+						mes "ที่มุ่งไปทางด้านบนของหมู่บ้าน,";
+						mes "มันไม่มีถนนเพราะ";
+						mes "บ้านเรือนตั้งอยู่ชิดกันมากในบริเวณนั้น";
 						next;
 						mes "[Daora]";
-						mes "Around Melissa's house,";
-						mes "that is the blind alley";
-						mes "for the boy, maybe.";
+						mes "แถวๆ บ้านของ Melissa,";
+						mes "นั่นแหละคือทางตัน";
+						mes "สำหรับพ่อหนุ่มนั่น บางทีนะ";
 						next;
 						mes "[Daora]";
-						mes "It's very easy to find walking around the village.";
+						mes "มันหาง่ายมากแค่เดินไปรอบๆ หมู่บ้าน";
 						setquest 7093;
 						next;
-						mes "- Daora's advice is attached on the board of quest. -";
+						mes "- คำแนะนำของ Daora ถูกติดไว้ที่กระดานเควส -";
 						close;
 					case 2:
 						mes "[Daora]";
-						mes "Ok. It's going well.";
-						mes "Can I expect a good result?";
+						mes "ตกลง มันกำลังไปได้สวย";
+						mes "ข้าหวังจะได้ผลลัพธ์ที่ดีนะ?";
 						close;
 					}
 				} else if (job_3rd_gc == 13) {
-					mes "I sent a girl named Estillda to her home.";
-					mes "Why do we handle worthless things like it?";
+					mes "ข้าส่งเด็กสาวที่ชื่อ Estillda กลับบ้านของเธอแล้ว";
+					mes "ทำไมพวกเราต้องจัดการเรื่องไร้สาระแบบนี้ด้วยนะ?";
 					next;
 					if (checkquest(7094) == 1) {
 						mes "[Daora]";
-						mes "I'm not sure if he still lives...";
-						mes "Anyway, he is a key artisan in Rachel,";
-						mes "and can recognize all kinds of keys.";
+						mes "ข้าไม่แน่ใจว่าเขายังมีชีวิตอยู่ไหม...";
+						mes "อย่างไรก็ตาม เขาคือช่างฝีมือกุญแจสำคัญใน Rachel,";
+						mes "และสามารถจดจำกุญแจได้ทุกประเภท";
 						next;
 						mes "[Daora]";
-						mes "What? Residence?";
-						mes "I told you, it's Rachel.";
-						mes "He maybe lives in comfort for the rest of his days in Rachel.";
+						mes "อะไรนะ? ที่อยู่เหรอ?";
+						mes "ข้าบอกเจ้าแล้วไง ว่าคือ Rachel";
+						mes "เขาอาจจะใช้ชีวิตอย่างสุขสบายในช่วงบั้นปลายที่ Rachel นั่นแหละ";
 						next;
 						mes "[Daora]";
-						mes "Go ask inside a pub of Rachel...";
+						mes "ลองไปถามในผับของ Rachel ดูสิ...";
 						close;
 					}
 					mes "[Daora]";
-					mes "Yeah, how's it going?";
+					mes "ใช่แล้ว เป็นยังไงบ้าง?";
 					next;
-					switch(select("It progress satisfactorily.:Show the key.")) {
+					switch(select("มันก้าวหน้าอย่างน่าพอใจ:แสดงกุญแจให้ดู")) {
 					case 1:
 						mes "[Daora]";
-						mes "My glass, you don't need it?";
+						mes "แก้วของข้า เจ้าไม่ต้องการมันแล้วเหรอ?";
 						next;
 						mes "["+strcharinfo(0)+"]";
-						mes "Yes. I already have enough information.";
-						mes "If that is a stuff has a long story behind it,";
-						mes "we have only one way.";
+						mes "ใช่ ข้ามีข้อมูลเพียงพอแล้ว";
+						mes "ถ้าสิ่งนั้นเป็นของที่มีเรื่องราวเบื้องหลังยาวนาน,";
+						mes "พวกเราก็มีทางเดียวเท่านั้น";
 						next;
 						mes "[Daora]";
-						mes "Right.";
-						mes "If you think carefully,";
-						mes "you can find a way.";
+						mes "ถูกต้อง";
+						mes "ถ้าเจ้าคิดอย่างรอบคอบ,";
+						mes "เจ้าก็จะหาทางเจอ";
 						next;
 						mes "[Daora]";
-						mes "Good luck~";
+						mes "โชคดีนะ~";
 						close;
 					case 2:
 						mes "[Daora]";
-						mes "What is th--";
-						mes "I see, that guy had this key...?";
+						mes "นี่มันอั--";
+						mes "ข้าเข้าใจแล้ว ชายคนนั้นมีกุญแจนี้งั้นเหรอ...?";
 						next;
 						mes "[Daora]";
-						mes "It's a symbol of shrines";
-						mes "and has a showy pattern.";
-						mes "Hmm...";
+						mes "มันคือสัญลักษณ์ของวิหารต่างๆ";
+						mes "และมีลวดลายที่โอ้อวด";
+						mes "อืม...";
 						next;
 						mes "[Daora]";
-						mes "So, you want to know this key's use?";
-						mes "If you do, go to Rachel.";
-						mes "There is a key artisan there.";
+						mes "เจ้าอยากรู้การใช้งานของกุญแจนี้สินะ?";
+						mes "ถ้าอย่างนั้น ก็จงไปที่ Rachel";
+						mes "มีช่างกุญแจอยู่ที่นั่น";
 						next;
 						mes "[Daora]";
-						mes "Now, he is retired, but he";
-						mes "spends his declining years in peace.";
-						mes "You can ask him yourself.";
+						mes "ตอนนี้เขาเกษียณแล้ว แต่เขา";
+						mes "ใช้เวลาในช่วงปีที่ร่วงโรยอย่างสงบสุข";
+						mes "เจ้าไปถามเขาด้วยตัวเองได้เลย";
 						next;
 						mes "[Daora]";
-						mes "Ask what this key's use is.";
+						mes "ถามดูว่ากุญแจนี้ใช้ทำอะไร";
 						setquest 7094;
 						next;
-						mes "- Daora's advice is attached on the quest board. -";
+						mes "- คำแนะนำของ Daora ถูกติดไว้บนกระดานเควส -";
 						close;
 					}
 				} else if (job_3rd_gc == 15) {
 					if (checkquest(7095) == 1) {
-						mes "The field northwest of Veins.";
-						mes "You can find that easily with a map.";
-						mes "There are lots of wolves, so be careful.";
+						mes "ทุ่งหญ้าทางตะวันตกเฉียงเหนือของ Veins";
+						mes "เจ้าหาที่นั่นได้ง่ายๆ ด้วยแผนที่นะ";
+						mes "ที่นั่นมีหมาป่าเยอะแยะเลย ระวังตัวด้วย";
 						close;
 					}
-					mes "Hey, how's Mayshell?";
-					mes "Can you fix an uncomfortable way of talking?";
+					mes "เฮ้ Mayshell เป็นยังไงบ้าง?";
+					mes "เจ้าพอจะแก้ไขวิธีการพูดที่ไม่รื่นหูของเธอได้ไหม?";
 					next;
 					mes "[Daora]";
-					mes "Don't pretend to be a noblewoman.";
+					mes "อย่ามาทำตัวสูงส่งเหมือนเป็นหญิงผู้ดีหน่อยเลย";
 					next;
-					switch(select("I'm going to go.:Do you know a mansion around Veins?")) {
+					switch(select("ข้ากำลังจะไป:เจ้ารู้จักคฤหาสน์แถวๆ Veins ไหม?")) {
 					case 1:
 						mes "[Daora]";
-						mes "Ok.";
-						mes "Don't be carried away by ill-advised bravery.";
-						mes "Well... it's also hard to be killed.";
+						mes "ตกลง";
+						mes "อย่าหลงระเริงไปกับความกล้าหาญที่ขาดการไตร่ตรองล่ะ";
+						mes "เอาเถอะ... มันก็ยากเหมือนกันที่จะถูกฆ่าน่ะนะ";
 						close;
 					case 2:
 						mes "[Daora]";
-						mes "Yes, sure.";
-						mes "There is a mansion between ravines.";
-						mes "It's very gloomy.";
-						mes "I don't understand his taste.";
+						mes "ใช่ แน่นอน";
+						mes "มีคฤหาสน์หลังหนึ่งอยู่ระหว่างหุบเขา";
+						mes "มันดูหดหู่มากเลยล่ะ";
+						mes "ข้าไม่เข้าใจรสนิยมของเขาเลย";
 						next;
 						mes "[Daora]";
-						mes "And that mansion is built in back of a ravine...";
-						mes "It's always dark like the night.";
+						mes "และคฤหาสน์หลังนั้นสร้างขึ้นที่ด้านหลังของหุบเขา...";
+						mes "มันมืดมิดเหมือนตอนกลางคืนอยู่ตลอดเวลา";
 						next;
 						mes "[Daora]";
-						mes "The location?";
-						mes "Well...";
-						mes "It's in the northwest field of Veins.";
-						mes "You can go through a narrow road to northeast.";
+						mes "ตำแหน่งงั้นเหรอ?";
+						mes "อืม...";
+						mes "มันอยู่ในทุ่งทางตะวันตกเฉียงเหนือของ Veins";
+						mes "เจ้าสามารถไปตามถนนแคบๆ ทางทิศตะวันออกเฉียงเหนือ";
 						setquest 7095;
 						next;
-						mes "- Daora's advice is attached on the board of quest. -";
+						mes "- คำแนะนำของ Daora ถูกติดไว้ที่กระดานเควส -";
 						next;
 						mes "[Daora]";
-						mes "There are lots of scary wolves in that area, be careful.";
+						mes "แถวนั้นมีหมาป่าน่ากลัวๆ เยอะเลย ระวังด้วยล่ะ";
 						close;
 					}
 				} else {
-					mes "No. It's not funny anymore.";
+					mes "ไม่ล่ะ มันไม่ตลกอีกต่อไปแล้ว";
 					close;
 				}
 			case 3:
 				mes "[Daora]";
-				mes "Our milk is expensive!";
-				mes "Give me 500 zeny for a cup.";
+				mes "นมของเราน่ะราคาแพงนะ!";
+				mes "จ่ายมา 500 zeny สำหรับหนึ่งแก้ว";
 				next;
-				switch(select("It's ok. Give me a cup of milk.:You are a barefaced robber!")) {
+				switch(select("ตกลง ขอสักแก้ว:เจ้านี่มันโจรหน้าเลือดชัดๆ!")) {
 				case 1:
 					mes "[Daora]";
 					if (Zeny > 499) {
-						mes "Here you are. Milk.";
-						mes "Then take a rest.";
+						mes "นี่จ้ะ นม";
+						mes "แล้วก็พักผ่อนซะนะ";
 						set Zeny, Zeny - 500;
 						getitem 519,1; //Milk
 						close;
 					}
-					mes "I told you, it's 500 zeny.";
-					mes "A poor man. You have only a fine figure!";
+					mes "ข้าบอกเจ้าแล้วไง ว่ามัน 500 zeny";
+					mes "พ่อหนุ่มผู้ยากไร้ เจ้ามีดีแค่รูปร่างจริงๆ!";
 					close;
 				case 2:
 					mes "[Daora]";
-					mes "An impertinent fellow!";
+					mes "เจ้าเด็กอวดดี!";
 					specialeffect2 EF_HIT1;
 					percentheal -30,0;
 					close;
 				}
 			}
 		} else {
-			mes "You've completed the task perfectly.";
-			mes "What do you need now?";
-			mes "Do you need something else?";
+			mes "เจ้าทำภารกิจได้สมบูรณ์แบบมาก";
+			mes "ตอนนี้เจ้าต้องการอะไรล่ะ?";
+			mes "ต้องการอย่างอื่นอีกไหม?";
 			next;
 			mes "[Daora]";
-			mes "If you decide on a way to walk, it's time to start newly.";
-			mes "Everyone is waiting for you.";
+			mes "หากเจ้าตัดสินใจเลือกเส้นทางเดินได้แล้ว มันก็ถึงเวลาเริ่มต้นใหม่";
+			mes "ทุกคนกำลังรอเจ้าอยู่";
 			close;
 		}
 	} else if (Class == Job_Guillotine_Cross || Class == Job_Guillotine_Cross_T || Class == Job_Baby_Guillotine_Cross) {
 		if (Sex == SEX_MALE) {
-			mes "Oh~ you're good-looking~!";
-			mes "It's worthwhile to open a pub~";
-			mes "I can feel fruitful labors whenever I see a guy like you~";
+			mes "โอ้~ พ่อหนุ่มรูปหล่อ~!";
+			mes "การเปิดผับนี่มันช่างคุ้มค่าจริงๆ~";
+			mes "ข้ารู้สึกว่าแรงกายที่เสียไปมันช่างหอมหวานทุกครั้งที่ได้เห็นหนุ่มแบบเจ้า~";
 		} else {
-			mes "Hmm... You look as good as I did in my youth.";
-			mes "What do you want?";
+			mes "หืม... เจ้าดูดีเหมือนข้าสมัยสาวๆ เลยนะ";
+			mes "เจ้าต้องการอะไรล่ะ?";
 		}
 		next;
-		switch(select("Tropical Sograt:Vermilion on the Beach:Milk")) {
+		switch(select("Tropical Sograt:Vermilion on the Beach:นม")) {
 		case 1:
 			mes "[Daora]";
 			if (Zeny > 799) {
-				mes "Here you are, take it.";
+				mes "นี่จ้ะ รับไปสิ";
 				set Zeny, Zeny - 800;
 				getitem 12112,1; //Tropical_Sograt
 				close;
 			}
-			mes "It's 800 zeny per 1 glass of Tropical Sograt.";
+			mes "Tropical Sograt ราคาแก้วละ 800 zeny จ้ะ";
 			close;
 		case 2:
 			mes "[Daora]";
 			if (Zeny > 799) {
-				mes "Here you are, take it.";
+				mes "นี่จ้ะ รับไปสิ";
 				set Zeny, Zeny - 800;
 				getitem 12113,1; //Vermilion_The_Beach
 				close;
 			}
 			mes "[Daora]";
-			mes "It's 800 zeny per 1 glass of Vermilion on the Beach.";
+			mes "Vermilion on the Beach ราคาแก้วละ 800 zeny จ้ะ";
 			close;
 		case 3:
 			mes "[Daora]";
 			if (Sex == SEX_MALE) {
-				mes "Uh... Umm...";
-				mes "It's complicated order. but I don't have any choice since you want it.";
+				mes "เอ่อ... อืม...";
+				mes "มันเป็นคำสั่งที่ค่อนข้างซับซ้อนนะ แต่ข้าไม่มีทางเลือกในเมื่อเจ้าต้องการมัน";
 				next;
 				mes "[Daora]";
 				if (Zeny > 499) {
-					mes "I feel sorry to take 500 zeny per bottle, but I have to.";
-					mes "It's very hard to get milk in Veins.";
+					mes "ข้ารู้สึกผิดที่ต้องคิด 500 zeny ต่อขวด แต่มันจำเป็นน่ะ";
+					mes "ใน Veins นมมันหายากมากเลยนะ";
 					set Zeny, Zeny - 500;
 					getitem 519,1; //Milk
 					close;
 				}
-				mes "Umm... I think I can't help you.";
-				mes "There is no milk in Veins.";
+				mes "อืม... ข้าเกรงว่าข้าจะช่วยเจ้าไม่ได้";
+				mes "ไม่มีนมเหลืออยู่ใน Veins เลย";
 				close;
 			} else {
-				mes "Ah, milk.";
-				mes "Huu! Milk!";
+				mes "อ้อ นมเหรอ";
+				mes "ฮู! นม!";
 				next;
 				mes "[Daora]";
-				mes "I don't have anything like that.";
+				mes "ข้าไม่มีของแบบนั้นหรอก";
 				close;
 			}
 		}
 	} else {
 		if (Sex == SEX_MALE) {
-			mes "Oh~ you're good-looking!";
-			mes "So, what do you want?";
+			mes "โอ้~ พ่อหนุ่มรูปหล่อ!";
+			mes "แล้ว เจ้าต้องการอะไรล่ะ?";
 		}
 		else {
-			mes "Hum...you're a girl.";
-			mes "Ok pick up whatever you want.";
+			mes "หืม... เจ้าเป็นผู้หญิงนี่นา";
+			mes "เอาล่ะ เลือกอะไรก็ได้ที่เจ้าต้องการ";
 		}
 		next;
 		mes "[Daora]";
-		mes "I'm not sure that you already know or not, but we are selling special liquor of Morocc.";
-		mes "Which one do you want?";
+		mes "ข้าไม่แน่ใจว่าเจ้ารู้หรือยัง แต่พวกเราขายเหล้าพิเศษของ Morocc นะ";
+		mes "เจ้าต้องการอันไหนล่ะ?";
 		next;
-		switch(select("Tropical Sograt:Vermilion the beach:No thanks!")) {
+		switch(select("Tropical Sograt:Vermilion the beach:ไม่ล่ะ ขอบคุณ!")) {
 		case 1:
 			mes "[Daora]";
 			if (Zeny > 999) {
-				mes "Here you are, take it.";
+				mes "นี่จ้ะ รับไปสิ";
 				set Zeny, Zeny - 1000;
 				getitem 12112,1; //Tropical_Sograt
 				close;
 			}
-			mes "It's 1000 zeny per glass of Tropical Sograt.";
+			mes "Tropical Sograt ราคาแก้วละ 1000 zeny จ้ะ";
 			close;
 		case 2:
 			mes "[Daora]";
 			if (Zeny > 999) {
-				mes "Here you are, take it.";
+				mes "นี่จ้ะ รับไปสิ";
 				set Zeny, Zeny - 1000;
 				getitem 12113,1; //Vermilion_The_Beach
 				close;
 			}
-			mes "It's 1000 zeny per glass of Vermilion on the Beach.";
+			mes "Vermilion on the Beach ราคาแก้วละ 1000 zeny จ้ะ";
 			close;
 		case 3:
 			mes "[Daora]";
-			mes "Don't show me your nervousness!";
+			mes "อย่าแสดงความประหม่าให้ข้าเห็นสิ!";
 			specialeffect2 EF_HIT1;
 			percentheal -30,0;
 			close;
@@ -843,134 +843,134 @@ job3_guil01,82,95,3	script	Daora#3rdgc02	940,{
 
 job3_guil01,16,20,4	script	Mayshell#3rdgc03	894,{
 	if (!checkweight(1201,2)) {
-		mes "- You can't continue this quest because you have too many items. -";
+		mes "- คุณไม่สามารถดำเนินเควสนี้ต่อไปได้เนื่องจากมีไอเทมในตัวมากเกินไป -";
 		close;
 	}
 	mes "[Mayshell]";
 	if (job_3rd_gc == 4) {
-		mes "You were sent here by Ahcart?";
-		mes "I'll give you a task without asking anymore questions.";
-		mes "Ok, listen carefully.";
+		mes "Ahcart ส่งเจ้ามาที่นี่งั้นรึ?";
+		mes "ข้าจะมอบหมายงานให้เจ้าโดยไม่ถามคำถามอะไรเพิ่มเติม";
+		mes "เอาล่ะ ฟังให้ดี";
 		next;
 		mes "[Mayshell]";
-		mes "We are chasing a person trying to dissolve an organization.";
-		mes "We got information about a guy who looks like a town leader.";
+		mes "พวกเรากำลังตามล่าบุคคลที่พยายามจะทำลายองค์กรของเรา";
+		mes "เราได้ข้อมูลเกี่ยวกับชายคนหนึ่งที่มีลักษณะท่าทางเหมือนผู้นำเมือง";
 		next;
 		mes "[Mayshell]";
-		mes "Your task is to punish him under the cover of shadow.";
+		mes "งานของเจ้าคือการลงทัณฑ์เขาภายใต้เงามืด";
 		next;
 		mes "[Mayshell]";
-		mes "Our objective shouldn't be released to anybody.";
-		mes "Your memories should disappear in shadow.";
-		mes "Be cautious and avoid observation.";
+		mes "เป้าหมายของพวกเราต้องไม่ถูกเปิดเผยให้ใครรู้";
+		mes "ความทรงจำของเจ้าควรจะเลือนหายไปในเงามืด";
+		mes "จงระมัดระวังและหลีกเลี่ยงการถูกจ้องมอง";
 		next;
-		select("Ok...:So the task is...?");
+		select("ตกลง...:แล้วงานที่ว่านั่นคือ...?");
 		mes "[Mayshell]";
-		mes "What does he look like?";
-		mes "How do you recognize him?";
-		mes "I can't tell you.";
-		mes "That's for you to find out.";
-		next;
-		mes "[Mayshell]";
-		mes "You will need a compass.";
-		mes "You need a lamp and a light to see in the darkness.";
+		mes "เขามีรูปร่างหน้าตาเป็นอย่างไรน่ะเหรอ?";
+		mes "เจ้าจะจำเขาได้อย่างไรน่ะเหรอ?";
+		mes "ข้าบอกเจ้าไม่ได้หรอก";
+		mes "นั่นเป็นสิ่งที่เจ้าต้องไปหาคำตอบเอาเอง";
 		next;
 		mes "[Mayshell]";
-		mes "At that point, you will be able to have a drink and rest.";
+		mes "เจ้าจะต้องใช้เข็มทิศ";
+		mes "เจ้าต้องมีตะเกียงและแสงไฟเพื่อมองให้เห็นในความมืด";
 		next;
 		mes "[Mayshell]";
-		mes "Overcome the adversity.";
-		mes "It is up to you to judge.";
-		mes "We can't help you, so you must figure it out for yourself.";
+		mes "เมื่อถึงจุดนั้น เจ้าจึงจะสามารถดื่มกินและพักผ่อนได้";
 		next;
 		mes "[Mayshell]";
-		mes "We saw a stranger in this village, we are quite sure that he is the person who we are looking for your task.";
+		mes "จงก้าวข้ามอุปสรรคไปให้ได้";
+		mes "มันขึ้นอยู่กับการตัดสินใจของเจ้า";
+		mes "พวกเราไม่สามารถช่วยเจ้าได้ ดังนั้นเจ้าต้องคิดหาทางด้วยตัวเอง";
+		next;
+		mes "[Mayshell]";
+		mes "พวกเราพบคนแปลกหน้าในหมู่บ้านนี้ และเราค่อนข้างมั่นใจว่าเขาคือคนที่เรากำลังตามหาสำหรับงานของเจ้า";
 		next;
 		mes "[Mayshell]";
 		mes strcharinfo(0)+".";
-		mes "Time is not waiting for you.";
-		mes "Go ahead. Spill blood with the blade of a knife that stands for a stoic life.";
+		mes "เวลาไม่คอยท่าเจ้าหรอกนะ";
+		mes "ไปซะ จงหลั่งเลือดด้วยคมมีดที่เป็นตัวแทนของชีวิตอันเคร่งครัด";
 		set job_3rd_gc, 5;
 		changequest 7102,7103;
 		close;
 	} else if (job_3rd_gc == 5) {
-		mes "You already have your orders.";
-		mes "Even though you don't have any evidence, I trust you to do a good job.";
+		mes "เจ้าได้รับคำสั่งไปแล้วนี่";
+		mes "แม้ว่าเจ้าจะยังไม่มีหลักฐานใดๆ แต่ข้าเชื่อมั่นว่าเจ้าจะทำผลงานได้ดี";
 		next;
 		mes "[Mayshell]";
-		mes "It's a test to watch you.";
-		mes "Let me see, "+strcharinfo(0)+"...";
-		mes "Go out and think about what you have to do first.";
+		mes "นี่คือบททดสอบเพื่อเฝ้าดูเจ้า";
+		mes "ไหนข้าดูซิ "+strcharinfo(0)+"...";
+		mes "จงออกไปข้างนอกและคิดดูว่าเจ้าควรทำอะไรเป็นอันดับแรก";
 		next;
 		mes "[Mayshell]";
-		mes "Your task is finding a stranger.";
+		mes "งานของเจ้าคือการตามหาคนแปลกหน้า";
 		next;
 		mes "[Mayshell]";
-		mes "Go out search diligently.";
-		mes "I'll allow you to have some water.";
+		mes "ออกไปค้นหาอย่างขยันขันแข็งซะ";
+		mes "ข้าจะอนุญาตให้เจ้าดื่มน้ำได้บ้าง";
 		next;
 		mes "[Mayshell]";
-		mes "Meet Daora before you start.";
-		mes "She may be helpful to you.";
+		mes "ไปพบ Daora ก่อนที่เจ้าจะเริ่ม";
+		mes "เธออาจจะเป็นประโยชน์ต่อเจ้า";
 		close;
 	} else if (job_3rd_gc == 14) {
-		mes "Welcome.";
-		mes "How was your day?";
-		mes "I heard about your activity.";
+		mes "ยินดีต้อนรับ";
+		mes "วันของคุณเป็นอย่างไรบ้าง?";
+		mes "ข้าได้ยินเรื่องกิจกรรมของเจ้ามาบ้างแล้ว";
 		next;
 		mes "[Mayshell]";
-		mes "You found a key, right?";
-		mes "Huhu. I have my ways of finding out.";
+		mes "เจ้าเจอกุญแจแล้วใช่ไหม?";
+		mes "หุหุ ข้าก็มีวิธีหาคำตอบของข้าน่ะ";
 		next;
 		mes "[Mayshell]";
-		mes "Can you show me the key?";
-		mes "I'm going to check if";
-		mes "you were capable or not...";
+		mes "ขอดูมือกุญแจหน่อยได้ไหม?";
+		mes "ข้าจะตรวจสอบดูว่า";
+		mes "เจ้ามีความสามารถพอหรือไม่...";
 		next;
-		select("Give a key to him.");
+		select("มอบกุญแจให้เขา");
 		mes "[Mayshell]";
 		if (countitem(6150) == 0) {
-			mes "You didn't bring a key?";
-			mes "I'll be in lots of trouble.";
+			mes "เจ้าไม่ได้เอากุญแจมางั้นรึ?";
+			mes "ข้าจะลำบากเอานะแบบนี้";
 			close;
 		}
-		mes "I didn't expect your success without a clear target...";
-		mes "You are a man of greater ability than I thought.";
+		mes "ข้าไม่นึกเลยว่าเจ้าจะสำเร็จได้โดยไม่มีเป้าหมายที่ชัดเจน...";
+		mes "เจ้าเป็นคนที่มีความสามารถมากกว่าที่ข้าคิดไว้เสียอีก";
 		next;
 		mes "[Mayshell]";
-		mes "I think you find a target what we look for.";
-		mes "Then you handle it after finding a key's host.";
+		mes "ข้าคิดว่าเจ้าได้พบเป้าหมายที่พวกเราตามหาแล้ว";
+		mes "จากนั้นเจ้าจงจัดการมันหลังจากหาตัวเจ้าของกุญแจพบ";
 		next;
 		mes "[Mayshell]";
-		mes "Then it'll be over.";
-		mes "But you have to find the key's host by yourself.";
+		mes "แล้วมันจะจบลง";
+		mes "แต่เจ้าต้องหาตัวเจ้าของกุญแจด้วยตัวเองนะ";
 		next;
 		mes "[Mayshell]";
-		mes "When you find the mansion, there will be a person waiting for you.";
+		mes "เมื่อเจ้าพบคฤหาสน์ จะมีคนรอเจ้าอยู่ที่นั่น";
 		next;
 		mes "[Mayshell]";
-		mes "This is the last step.";
-		mes "Don't make any mistakes.";
-		delitem 6150,1; //Key_Of_The_Mansion
+		mes "นี่คือขั้นตอนสุดท้ายแล้ว";
+		mes "อย่าให้เกิดข้อผิดพลาดล่ะ";
+		delitem 6150,1; //Key_Of_The_Mansion (กุญแจคฤหาสน์)
 		set job_3rd_gc, 15;
 		changequest 7108,7109;
 		close;
 	} else if (job_3rd_gc == 15) {
-		mes "Ok, you have something to do?";
-		mes "If you are late, Renzak might get upset.";
+		mes "ตกลง เจ้ามีอะไรต้องทำอีกไหม?";
+		mes "ถ้าเจ้าไปสาย Renzak อาจจะอารมณ์เสียได้นะ";
 		close;
 	} else if (job_3rd_gc == 18 || job_3rd_gc == 19) {
-		mes "I already got a report from Renzak.";
+		mes "ข้าได้รับรายงานจาก Renzak แล้ว";
 		if (job_3rd_gc == 18) {
-			mes "You completed the task quickly.";
-			mes "That's great.";
+			mes "เจ้าทำงานเสร็จอย่างรวดเร็ว";
+			mes "ยอดเยี่ยมมาก";
 		} else {
-			mes "I'm so happy to see you.";
-			mes "But quickness is very important to us.";
+			mes "ข้าดีใจที่ได้พบเจ้า";
+			mes "แต่ความรวดเร็วนั้นสำคัญสำหรับเรามาก";
 			next;
 			mes "[Mayshell]";
-			mes "You were not punctual...";
-			mes "At least you came back alive.";
+			mes "เจ้ามาไม่ตรงเวลา...";
+			mes "แต่อย่างน้อยเจ้าก็กลับมาอย่างมีชีวิต";
 		}
 		next;
 		set .@all_wine,0;
@@ -978,78 +978,78 @@ job3_guil01,16,20,4	script	Mayshell#3rdgc03	894,{
 			if (checkquest(7091+.@i) == 1) set .@all_wine, .@all_wine+1;
 		mes "[Mayshell]";
 		if (.@all_wine < 2) {
-			mes "You did the job by yourself";
-			mes "even though there wasn't any";
-			mes "information about it, and you";
-			mes "collected it.";
+			mes "เจ้าทำงานนี้ด้วยตัวคนเดียว";
+			mes "แม้ว่าจะไม่มีข้อมูล";
+			mes "เกี่ยวกับมันเลยก็ตาม แต่เจ้าก็";
+			mes "รวบรวมมันมาได้";
 			next;
 			mes "[Mayshell]";
-			mes "You corresponded with all conditions";
-			mes "promptly and with patience.";
+			mes "เจ้าตอบสนองต่อเงื่อนไขทั้งหมด";
+			mes "อย่างฉับไวและด้วยความอดทน";
 			next;
 			mes "[Mayshell]";
 			if (job_3rd_gc == 18) {
-				mes "The evaluation of your task is... [S].";
-				mes "[S] is for 'special'.";
+				mes "คะแนนประเมินงานของเจ้าคือ... [S]";
+				mes "[S] มาจาก 'Special' (พิเศษ)";
 				set .@quest,7099;
 			} else {
-				mes "The evaluation of your task is... [A].";
-				mes "If you were punctual, you would have received higher.";
+				mes "คะแนนประเมินงานของเจ้าคือ... [A]";
+				mes "ถ้าเจ้ามาตรงเวลา เจ้าคงได้รับคะแนนสูงกว่านี้";
 				set .@quest,7096;
 			}
 			next;
 		} else {
-			mes "You made full use of Daora's advice.";
-			mes "But, didn't I mention it?";
+			mes "เจ้าใช้คำแนะนำของ Daora ได้อย่างเต็มที่";
+			mes "แต่ ข้าไม่ได้พูดถึงเรื่องนั้นงั้นรึ?";
 			next;
 			mes "[Mayshell]";
-			mes "I told you to keep it a secret...";
-			mes "Of course, I don't want to blame you.";
+			mes "ข้าบอกเจ้าแล้วว่าให้เก็บมันเป็นความลับ...";
+			mes "แน่นอน ข้าไม่ได้ต้องการจะตำหนิเจ้าหรอกนะ";
 			next;
 			mes "[Mayshell]";
-			mes "It's important not only to solve this by yourself,";
-			mes "but also to make an effort getting information.";
+			mes "มันสำคัญไม่เพียงแค่การแก้ปัญหาด้วยตัวคนเดียวเท่านั้น";
+			mes "แต่ยังรวมถึงความพยายามในการหาข้อมูลด้วย";
 			next;
 			mes "[Mayshell]";
 			if (.@all_wine > 3) {
 				if (job_3rd_gc == 18) {
-					mes "The evaluation of your task is... [B].";
+					mes "คะแนนประเมินงานของเจ้าคือ... [B]";
 					set .@quest,7097;
 				} else {
-					mes "The evaluation of your task is... [C].";
-					mes "You need to act by yourself.";
+					mes "คะแนนประเมินงานของเจ้าคือ... [C]";
+					mes "เจ้าจำเป็นต้องลงมือทำด้วยตัวเองมากกว่านี้";
 					set .@quest,7098;
 				}
 				next;
 			} else {
-				mes "You adjusted an affair with flexible points of view.";
-				mes "You were not dependent on the others and you used the surroundings properly.";
+				mes "เจ้าจัดการเรื่องราวด้วยมุมมองที่ยืดหยุ่น";
+				mes "เจ้าไม่ได้พึ่งพาคนอื่นมากเกินไปและรู้จักใช้สภาพแวดล้อมอย่างเหมาะสม";
 				next;
 				mes "[Mayshell]";
-				mes "I like that.";
+				mes "ข้าชอบนะ";
 				if (job_3rd_gc == 18) {
-					mes "The evaluation of your task is... [A].";
+					mes "คะแนนประเมินงานของเจ้าคือ... [A]";
 					set .@quest,7096;
 				} else {
-					mes "The evaluation of your task is... [B].";
+					mes "คะแนนประเมินงานของเจ้าคือ... [B]";
 					set .@quest,7097;
 				}
 				next;
 			}
 		}
 		mes "[Mayshell]";
-		mes "You got a new qualification for completing this task.";
-		mes "It's a shadow of our assasin as a shadow of the world...";
+		mes "เจ้าได้รับคุณสมบัติใหม่จากการทำภารกิจนี้สำเร็จ";
+		mes "มันคือเงาของแอสแซสซินในฐานะเงาของโลกใบนี้...";
 		next;
 		mes "[Mayshell]";
-		mes "I'm going to give you the qualification to be a ^4d4dffGuillotine Cross^000000.";
-		mes "I'm not pushing you, so you can come whenever you want to visit.";
+		mes "ข้ากำลังจะมอบสถานะการเป็น ^4d4dffGuillotine Cross^000000 ให้แก่เจ้า";
+		mes "ข้าไม่ได้บังคับเจ้านะ เจ้าสามารถแวะมาหาได้ทุกเมื่อที่เจ้าต้องการ";
 		next;
 		mes "[Mayshell]";
-		mes "I reward you for your labor, and I'm going to give you a present.";
-		mes "I got this one from guild, I hope it's helpful to you.";
+		mes "ข้าจะให้รางวัลสำหรับความเหนื่อยยากของเจ้า และจะมอบของขวัญให้";
+		mes "ข้าได้รับสิ่งนี้มาจากกิลด์ หวังว่ามันจะเป็นประโยชน์ต่อเจ้านะ";
 		set job_3rd_gc, 20;
-		getitem 12106,1; //Accessory_Box
+		getitem 12106,1; //Accessory_Box (กล่องเครื่องประดับ)
 		erasequest 7091;
 		erasequest 7092;
 		erasequest 7093;
@@ -1063,285 +1063,285 @@ job3_guil01,16,20,4	script	Mayshell#3rdgc03	894,{
 		changequest 7111,.@quest;
 		next;
 		mes "[Mayshell]";
-		mes "I want to tell you something.";
-		mes "I order you that ^4d4dffyou should not leave a document at all^000000, whatever it is.";
+		mes "ข้ามีบางอย่างจะบอกเจ้า";
+		mes "ข้าสั่งเจ้าว่า ^4d4dffเจ้าต้องไม่ทิ้งเอกสารหรือบันทึกใดๆ ไว้เลย^000000 ไม่ว่ามันจะเป็นอะไรก็ตาม";
 		next;
 		mes "[Mayshell]";
-		mes "There are two types of information:";
-		mes "Things that can be shared and those that cannot.";
+		mes "ข้อมูลมีอยู่สองประเภท:";
+		mes "สิ่งที่สามารถแบ่งปันได้ และสิ่งที่ไม่สามารถแบ่งปันได้";
 		next;
 		mes "[Mayshell]";
-		mes "And never leave records or tell anybody about a task you completed...";
-		mes "for your junior who will follow your steps.";
+		mes "และอย่าได้ทิ้งบันทึกหรือบอกใครเกี่ยวกับงานที่เจ้าทำสำเร็จไป...";
+		mes "เพื่อเห็นแก่รุ่นน้องที่จะเดินตามรอยเท้าของเจ้า";
 		next;
 		mes "[Mayshell]";
-		mes "Don't forget.";
-		mes "And the task you did is related to Rachel, Rune-Midgarts, and our assassin guild.";
-		mes "So the others should not be known. Of course, you are included, so please forget everything.";
+		mes "อย่าลืมล่ะ";
+		mes "และภารกิจที่เจ้าทำนั้นเกี่ยวข้องกับ Rachel, Rune-Midgarts และกิลด์แอสแซสซินของเรา";
+		mes "ดังนั้นคนอื่นไม่ควรได้รับรู้ แน่นอนว่ารวมถึงตัวเจ้าด้วย โปรดลืมทุกอย่างไปเสีย";
 		close;
 	} else if (job_3rd_gc == 20) {
-		mes "You are acknowledged by the guild.";
-		mes "Feel free to come whenever you want to become a Guillotine Cross.";
+		mes "เจ้าได้รับการยอมรับจากกิลด์แล้ว";
+		mes "แวะมาได้ทุกเมื่อที่เจ้าต้องการจะเป็น Guillotine Cross";
 		next;
 		mes "[Mayshell]";
-		mes "That choice means that you will have to walk a street of blood again.";
+		mes "ทางเลือกนั้นหมายความว่าเจ้าจะต้องเดินบนเส้นทางแห่งเลือดอีกครั้ง";
 		next;
 		mes "[Mayshell]";
-		mes "Bercasell is waiting in the room on the opposite side.";
-		mes "Meet him.";
+		mes "Bercasell รออยู่ที่ห้องฝั่งตรงข้าม";
+		mes "ไปพบเขาซะ";
 		close;
 	} else if (job_3rd_gc > 20) {
-		mes "Even though I gave you a qualification,";
-		mes "I don't want to celebrate that qualification.";
+		mes "แม้ว่าข้าจะมอบสถานะให้เจ้าแล้ว";
+		mes "แต่ข้าก็ไม่ได้อยากจะเฉลิมฉลองให้กับสถานะนั้นหรอกนะ";
 		next;
 		mes "[Mayshell]";
-		mes "It's a way to abandon one's mind and the way of pain, of adversity.";
-		mes "I pushed you that way.";
+		mes "มันคือหนทางแห่งการละทิ้งจิตใจ และหนทางแห่งความเจ็บปวดและอุปสรรค";
+		mes "ข้าเป็นคนผลักดันเจ้าไปสู่เส้นทางนั้นเอง";
 		next;
 		mes "[Mayshell]";
-		mes "It's funny.";
-		mes "We live for checking our comrades...";
-		mes "But it's a rule of the assasin.";
+		mes "มันก็น่าขำนะ";
+		mes "พวกเรามีชีวิตอยู่เพื่อคอยตรวจสอบสหายของตัวเอง...";
+		mes "แต่มันคือวิถีของแอสแซสซิน";
 		next;
 		mes "[Mayshell]";
-		mes "In a dark night, it's the fate of a person who is going on the shadow of the moon.";
-		mes "I wish you to store one's mind, please...";
+		mes "ในคืนที่มืดมิด มันคือโชคชะตาของบุคคลผู้ก้าวเดินไปบนเงามืดของดวงจันทร์";
+		mes "ข้าขอให้เจ้าจงรักษาจิตวิญญาณของเจ้าไว้ให้ได้ ได้โปรดเถอะ...";
 		close;
 	} else {
-		mes "You are not allowed in here.";
+		mes "เจ้าไม่ได้รับอนุญาตให้เข้ามาในนี้";
 		close;
 	}
 }
 
 ve_in,228,108,3	script	Waitress#3rdgc04	80,{
-	mes "[Waitress]";
+	mes "[พนักงานเสิร์ฟ]";
 	if (job_3rd_gc < 6) {
-		mes "Welcome~";
-		mes "Visit and take a rest~";
+		mes "ยินดีต้อนรับจ้า~";
+		mes "แวะมาพักผ่อนก่อนสิ~";
 		close;
 	} else if (job_3rd_gc == 6) {
 		if (checkquest(7091) == 1) {
 			if (checkquest(7112) == 1) {
-				mes "That's all the information that I know.";
-				mes "After that, I can't remember anything else.";
+				mes "นั่นคือข้อมูลทั้งหมดที่ข้ารู้จ้ะ";
+				mes "หลังจากนั้น ข้าก็จำอะไรไม่ได้อีกแล้ว";
 				next;
-				mes "Then can we figure it out with the information you collected?-";
+				mes "- ถ้าอย่างนั้น เราลองมาประมวลผลจากข้อมูลที่รวบรวมมาดูไหม? -";
 				next;
-				switch(select("Do it.:Stop it.")) {
+				switch(select("ลองดู:หยุดไว้ก่อน")) {
 				case 1:
 					callfunc "func_3rdgc",1;
 					close;
 				case 2:
-					mes "You stop the confirmation of information.";
+					mes "คุณหยุดการยืนยันข้อมูล";
 					close;
 				}
 			} else {
-				mes "Welcome.";
-				mes "Are you ready to order?";
+				mes "ยินดีต้อนรับจ้ะ";
+				mes "พร้อมจะสั่งอาหารหรือยัง?";
 				next;
-				switch(select("You are...:Your name is..?:Water, please.")) {
+				switch(select("คุณคือ...:คุณชื่ออะไรเหรอ?:ขอน้ำเปล่าหน่อย")) {
 				case 1:
-					mes "[Waitress]";
-					mes "What's the matter?";
-					mes "Are you ready to order?";
+					mes "[พนักงานเสิร์ฟ]";
+					mes "มีอะไรเหรอจ๊ะ?";
+					mes "พร้อมจะสั่งอาหารหรือยัง?";
 					next;
-					select("I'm looking for Madelle...");
+					select("ข้ากำลังตามหา Madelle...");
 					mes "[Madelle]";
-					mes "Ah? Madelle? Do you know about Daora?";
-					mes "I'm Madelle.";
-					mes "I think you have business because you came from Daora.";
+					mes "เอ๋? Madelle เหรอ? เจ้ารู้เรื่องของ Daora งั้นเหรอ?";
+					mes "ข้านี่แหละ Madelle";
+					mes "ข้าคิดว่าเจ้าคงมีธุระสินะ เพราะเจ้ามาจากทาง Daora";
 					next;
-					select("Was there a suspicious guest?");
+					select("มีแขกที่ดูน่าสงสัยบ้างไหม?");
 					mes "[Madelle]";
-					mes "A suspicious guest?";
-					mes "What kind of...?";
-					mes "Ah, well... we have had a few strangers.";
-					next;
-					mes "[Madelle]";
-					mes "We don't have lots of floating population because of the rough terrain in the village.";
-					mes "Almost all people have been here since they were born or adventurers who are regulars.";
+					mes "แขกน่าสงสัยเหรอ?";
+					mes "แบบไหนล่ะ...?";
+					mes "อา... ก็นะ... ช่วงนี้มีคนแปลกหน้าแวะมาบ้างเหมือนกัน";
 					next;
 					mes "[Madelle]";
-					mes "But if they are not that kind of people...";
-					mes "Yes, there were strangers.";
-					next;
-					select("Can you tell me about them?");
-					mes "[Madelle]";
-					mes "Um... One looked like a priest from Rachel.";
-					mes "A priest in this village...";
-					mes "Maybe he is a soldier, I understand.";
+					mes "หมู่บ้านเราประชากรไม่ค่อยไหลเวียนเท่าไหร่ เพราะภูมิประเทศมันลำบาก";
+					mes "เกือบทุกคนถ้าไม่เกิดที่นี่ ก็เป็นนักผจญภัยที่แวะมาประจำ";
 					next;
 					mes "[Madelle]";
-					mes "One day, there was a guy who seemed to be exhausted and bought food.";
-					mes "I remember him because he visited after closing a store.";
+					mes "แต่ถ้าไม่ใช่คนพวกนั้นล่ะก็...";
+					mes "ใช่แล้ว มีคนแปลกหน้าอยู่";
+					next;
+					select("พอจะเล่าเรื่องของพวกเขาให้ฟังได้ไหม?");
+					mes "[Madelle]";
+					mes "อืม... คนหนึ่งดูเหมือนนักบวชจาก Rachel";
+					mes "นักบวชในหมู่บ้านนี้เนี่ยนะ...";
+					mes "ถ้าเป็นทหาร ข้ายังพอเข้าใจได้นะ";
 					next;
 					mes "[Madelle]";
-					mes "I'm not sure but there was a person who was wearing a hood.";
-					mes "He seemed be exhausted and they wanted to buy a small drink and a snack.";
+					mes "วันหนึ่ง มีผู้ชายคนหนึ่งที่ดูเหนื่อยล้ามากมาซื้ออาหาร";
+					mes "ข้าจำเขาได้เพราะเขามาตอนที่ร้านใกล้จะปิดแล้ว";
 					next;
 					mes "[Madelle]";
-					mes "I haven't seen any of them since.";
-					mes "So I don't know anymore.";
+					mes "ข้าไม่แน่ใจนัก แต่มีคนหนึ่งสวมฮู้ดปิดบังใบหน้าด้วย";
+					mes "เขาดูอิดโรยและอยากจะซื้อเครื่องดื่มเล็กน้อยกับขนมขบเคี้ยว";
+					next;
+					mes "[Madelle]";
+					mes "หลังจากนั้นข้าก็ไม่เห็นพวกเขาอีกเลย";
+					mes "ข้าก็เลยไม่รู้อะไรมากกว่านี้แล้วล่ะ";
 					setquest 7112;
 					next;
-					mes "- The information of Madelle is attached on the guest board.";
-					mes "Then can we figure out what information you've collected? -";
+					mes "- ข้อมูลของ Madelle ถูกติดไว้บนกระดานข่าวแขกผู้มาเยือน";
+					mes "ลองมาประมวลผลจากข้อมูลที่รวบรวมมาดูไหม? -";
 					next;
-					switch(select("Do it.:Stop it.")) {
+					switch(select("ลองดู:หยุดไว้ก่อน")) {
 					case 1:
 						callfunc "func_3rdgc",1;
 						close;
 					case 2:
-						mes "You stop the confirmation of information.";
+						mes "คุณหยุดการยืนยันข้อมูล";
 						close;
 					}
 				case 2:
-					mes "[Waitress]";
-					mes "What? My name?";
-					mes "Are you hitting on me?";
-					mes "Don't do that.";
-					if (Sex == SEX_MALE) mes "You are not my type.";
-					else mes "I don't swing that way.";
+					mes "[พนักงานเสิร์ฟ]";
+					mes "อะไรนะ? ชื่อข้าเหรอ?";
+					mes "นี่เจ้ากำลังจีบข้าอยู่เหรอ?";
+					mes "อย่าทำแบบนั้นเลยนะ";
+					if (Sex == SEX_MALE) mes "เจ้าไม่ใช่สเปกข้าหรอก";
+					else mes "ข้าไม่ได้ชอบผู้หญิงด้วยกันน่ะ";
 					close;
 				case 3:
-					mes "[Waitress]";
-					mes "Do you want ice with that?";
+					mes "[พนักงานเสิร์ฟ]";
+					mes "เอาน้ำแข็งด้วยไหมจ๊ะ?";
 					close;
 				}
 			}
 		} else {
 			if (checkquest(7112) == 1) {
-				mes "That's all the information that I know.";
-				mes "I haven't seen them since.";
+				mes "นั่นคือข้อมูลทั้งหมดที่ข้ารู้จ้ะ";
+				mes "ข้าไม่เห็นพวกเขาอีกเลยตั้งแต่วันนั้น";
 				next;
-				mes "- I wonder if I can figure it out with the information I've collected... -";
+				mes "- ข้าสงสัยว่าข้าจะหาคำตอบจากข้อมูลที่รวบรวมมาได้หรือเปล่า... -";
 				next;
-				switch(select("Do it.:Stop it.")) {
+				switch(select("ลองดู:หยุดไว้ก่อน")) {
 				case 1:
 					callfunc "func_3rdgc",0;
 					close;
 				case 2:
-					mes "You stop the confirmation of information.";
+					mes "คุณหยุดการยืนยันข้อมูล";
 					close;
 				}
 			} else {
-				mes "Welcome.";
-				mes "Are you ready to order?";
+				mes "ยินดีต้อนรับจ้ะ";
+				mes "พร้อมจะสั่งอาหารหรือยัง?";
 				next;
-				switch(select("Suspicious people?:Which one is the best food?")) {
+				switch(select("มีคนน่าสงสัยบ้างไหม?:อาหารจานไหนเด็ดที่สุด?")) {
 				case 1:
-					mes "[Waitress]";
-					mes "A suspicious person?";
-					mes "You are a suspicious person.";
+					mes "[พนักงานเสิร์ฟ]";
+					mes "คนน่าสงสัยเหรอ?";
+					mes "เจ้านั่นแหละคือคนน่าสงสัย";
 					close;
 				case 2:
-					mes "[Waitress]";
-					mes "Umm? well...";
-					mes "If you want to have a simple dish, have a meal from our fixed menu.";
-					mes "It's 5000 zeny, Do you want it?";
+					mes "[พนักงานเสิร์ฟ]";
+					mes "หืม? ก็นะ...";
+					mes "ถ้าเจ้าอยากได้จานง่ายๆ ลองทานเมนูประจำวันของเราไหมล่ะ";
+					mes "ราคา 5000 zeny สนใจไหมจ๊ะ?";
 					next;
-					switch(select("Yes, I'll try it.:......")) {
+					switch(select("ได้ ข้าจะลองดู:......")) {
 					case 1:
 						if (Zeny > 4999) {
-							mes "[Waitress]";
-							mes "Here you are, this is a meal from the fixed menu.";
-							mes "Feel free to call me when you need.";
+							mes "[พนักงานเสิร์ฟ]";
+							mes "นี่จ้ะ ชุดอาหารเมนูประจำวัน";
+							mes "เรียกได้ตลอดนะถ้าต้องการอะไรเพิ่ม";
 							next;
-							switch(select("How's your business?:Do you have lots of guests?")) {
+							switch(select("กิจการเป็นยังไงบ้าง?:ลูกค้าเยอะไหม?")) {
 							case 1:
-								mes "[Waitress]";
-								mes "Well... not bad.";
-								mes "This is the only pub here so it's good.";
+								mes "[พนักงานเสิร์ฟ]";
+								mes "ก็นะ... ไม่เลวหรอก";
+								mes "ที่นี่เป็นผับเดียวในแถวนี้ มันก็เลยไปได้ดี";
 								break;
 							case 2:
-								mes "[Waitress]";
-								mes "Not that much lately.";
-								mes "It's so-so.";
+								mes "[พนักงานเสิร์ฟ]";
+								mes "ช่วงนี้ไม่เยอะเท่าไหร่";
+								mes "ก็เรื่อยๆ น่ะ";
 								break;
 							}
 							next;
-							mes "[Waitress]";
-							mes "A business in a village can keep up with customers.";
-							mes "Thesedays, adventurers have been visiting more often.";
+							mes "[พนักงานเสิร์ฟ]";
+							mes "ธุรกิจในหมู่บ้านก็อยู่ได้เพราะลูกค้าประจำนั่นแหละ";
+							mes "แต่ช่วงนี้ นักผจญภัยแวะเวียนมาบ่อยขึ้นนะ";
 							next;
-							select("Any suspicious visitors?");
-							mes "[Waitress]";
-							mes "Sure, I see some everyday.";
-							mes "I can recognize when I see their outfits.";
-							mes "I have to memorize their characters because of business.";
+							select("มีแขกน่าสงสัยบ้างไหม?");
+							mes "[พนักงานเสิร์ฟ]";
+							mes "มีสิจ๊ะ เห็นอยู่ทุกวันนั่นแหละ";
+							mes "ข้าแค่ดูชุดพวกเขาก็จำได้แล้ว";
+							mes "ข้าต้องจำลักษณะนิสัยพวกเขาไว้เพื่อการค้าน่ะ";
 							next;
-							select("It's boring...");
-							mes "[Waitress]";
-							mes "Yeah sometimes.";
-							mes "Everyday I have to talk";
-							mes "with same people.";
-							mes "But...";
+							select("มันน่าเบื่อนะ...");
+							mes "[พนักงานเสิร์ฟ]";
+							mes "ใช่ บางทีนะ";
+							mes "ทุกวันข้าต้องคุย";
+							mes "กับคนหน้าเดิมๆ";
+							mes "แต่...";
 							next;
-							mes "[Waitress]";
-							mes "I'm refreshed when I see guests like you.";
-							mes "I remember something that happened a few days ago.";
+							mes "[พนักงานเสิร์ฟ]";
+							mes "ข้าก็รู้สึกสดชื่นขึ้นนะเมื่อเห็นแขกอย่างเจ้า";
+							mes "ข้าจำเรื่องที่เกิดขึ้นเมื่อไม่กี่วันก่อนได้";
 							next;
-							mes "[Waitress]";
-							mes "When I closed the store,";
-							mes "he seemed be exhausted and they wanted to buy a small drink and a snack.";
+							mes "[พนักงานเสิร์ฟ]";
+							mes "ตอนที่ข้าปิดร้านแล้ว,";
+							mes "เขาดูเหนื่อยล้ามากและอยากจะซื้อเครื่องดื่มกับขนมเล็กน้อย";
 							next;
-							mes "[Waitress]";
-							mes "He was a stranger but I'm sure that he is from Rachel.";
-							mes "He looked like a priest.";
+							mes "[พนักงานเสิร์ฟ]";
+							mes "เขาเป็นคนแปลกหน้าแต่ข้าแน่ใจว่าเขามาจาก Rachel";
+							mes "เขาดูเหมือนนักบวชเลยล่ะ";
 							next;
-							mes "[Waitress]";
-							mes "I thought that a priest came here, but it's wrong.";
-							mes "I was starting to get scared.";
+							mes "[พนักงานเสิร์ฟ]";
+							mes "ข้าคิดว่านักบวชมาที่นี่ แต่ข้าคงคิดผิด";
+							mes "ตอนนั้นข้าเริ่มจะกลัวขึ้นมาแล้วสิ";
 							next;
-							mes "[Waitress]";
-							mes "I thought that I may have opened the door to a thief.";
-							mes "Ah, sorry, I must be talking too much.";
+							mes "[พนักงานเสิร์ฟ]";
+							mes "ข้านึกว่าข้าเปิดประตูรับหัวขโมยเข้าบ้านซะแล้ว";
+							mes "อา ขอโทษที ข้าคงพูดมากไปหน่อย";
 							next;
-							mes "[Waitress]";
-							mes "It was boring to talk with that old man...";
-							mes "Anyway, don't let me disturb you anymore.";
-							mes "Bon Appetit!";
+							mes "[พนักงานเสิร์ฟ]";
+							mes "มันน่าเบื่อที่ต้องคุยกับตาแก่นั่นน่ะ...";
+							mes "เอาเป็นว่า ข้าไม่กวนเจ้าแล้วดีกว่า";
+							mes "ทานให้อร่อยนะจ๊ะ!";
 							next;
-							mes "[Waitress]";
-							mes "Oh by the way, my name is Madelle.";
-							mes "I hope you remember my name.";
+							mes "[พนักงานเสิร์ฟ]";
+							mes "โอ้ อีกอย่าง ข้าชื่อ Madelle นะ";
+							mes "หวังว่าเจ้าจะจำชื่อข้าได้";
 							set Zeny, Zeny - 5000;
 							setquest 7112;
 							next;
-							mes "- Madelle's information is attached to a quest board. What information have I collected? -";
+							mes "- ข้อมูลของ Madelle ถูกติดไว้บนกระดานเควส ข้อมูลที่ฉันรวบรวมมามีอะไรบ้างนะ? -";
 							next;
-							switch(select("Check information.:Cancel.")) {
+							switch(select("ตรวจสอบข้อมูล:ยกเลิก")) {
 							case 1:
 								callfunc "func_3rdgc",0;
 								close;
 							case 2:
-								mes "You stop the confirmation of information.";
+								mes "คุณหยุดการยืนยันข้อมูล";
 								close;
 							}
 						} else {
-							mes "[Waitress]";
-							mes "A meal from our menu is 5000 zeny.";
-							mes "You have to pay.";
-							mes "It's prepay.";
+							mes "[พนักงานเสิร์ฟ]";
+							mes "ชุดอาหารราคา 5000 zeny จ้ะ";
+							mes "เจ้าต้องจ่ายก่อนนะ";
+							mes "ระบบจ่ายก่อนกินน่ะจ้ะ";
 							close;
 						}
 					case 2:
-						mes "[Waitress]";
-						mes "You feel annoyed.";
-						mes "I see. I won't push you.";
-						mes "Take a rest there.";
+						mes "[พนักงานเสิร์ฟ]";
+						mes "เจ้าดูรำคาญนะ";
+						mes "เข้าใจแล้ว ข้าไม่เซ้าซี้หรอก";
+						mes "พักผ่อนตามสบายนะจ๊ะ";
 						close;
 					}
 				}
 			}
 		}
 	} else {
-		mes "Hi~!";
-		mes "We can see often each other.";
+		mes "หวัดดีจ้า~!";
+		mes "เราคงได้เจอกันบ่อยๆ นะ";
 		next;
 		mes "[Madelle]";
-		mes "A meal? Liquor?";
-		mes "Hoho, have a good time!";
+		mes "รับอาหาร? หรือเหล้าดีจ๊ะ?";
+		mes "โฮะโฮะ ขอให้มีความสุขนะ!";
 		close;
 	}
 }
@@ -1349,186 +1349,186 @@ ve_in,228,108,3	script	Waitress#3rdgc04	80,{
 ve_in,246,303,3	script	Young Merchant#3rdgc05	930,{
 	if (job_3rd_gc < 6) {
 		mes "[Young Merchant]";
-		mes "If you want to buy stuff, go to this person.";
-		mes "I'm a distributor.";
+		mes "ถ้าคุณต้องการซื้อของ ไปหาคนโน้นเลย";
+		mes "ข้าเป็นแค่คนกระจายสินค้า";
 		close;
 	}
 	else if (job_3rd_gc == 6) {
 		if (checkquest(7091) == 1) {
 			if (checkquest(7113) == 1) {
 				mes "[Crave]";
-				mes "I already gave you all the information I have.";
-				mes "I'm quick in visual learning.";
-				mes "I can't find the other girl, only the one who matches your condition.";
+				mes "ข้าให้ข้อมูลทั้งหมดที่มีกับเจ้าไปหมดแล้ว";
+				mes "ข้าเป็นพวกเรียนรู้จากการมองเห็นได้ไว (Visual Learning)";
+				mes "ข้าหาผู้หญิงคนอื่นไม่เจอเลย เจอแต่คนที่มีลักษณะตรงตามเงื่อนไขของเจ้า";
 				next;
-				mes "Can we figure out with the information you collected?";
+				mes "เราจะมาประมวลผลจากข้อมูลที่เจ้าได้รับมาเลยไหม?";
 				next;
-				switch(select("Do it.:Stop it.")) {
+				switch(select("ทำเลย:หยุดไว้ก่อน")) {
 				case 1:
 					callfunc "func_3rdgc",1;
 					close;
 				case 2:
-					mes "You stop the confirmation of information.";
+					mes "คุณหยุดการยืนยันข้อมูล";
 					close;
 				}
 			} else {
 				mes "[Young Merchant]";
-				mes "How about increasing potion in next time...";
-				mes "Um, do you have something to tell me?";
+				mes "ครั้งหน้าจะเพิ่มจำนวน Potion ดีไหมนะ...";
+				mes "เอ่อ คุณมีอะไรจะบอกข้าหรือเปล่า?";
 				next;
-				switch(select("Do you know Crave?:Give me a potion.")) {
+				switch(select("เจ้ารู้จัก Crave ไหม?:เอา Potion ให้ข้าหน่อย")) {
 				case 1:
 					mes "[Crave]";
-					mes "I'm Crave, who are you...?";
-					//mes "You're not a usual stuff in connection.."; //FIXME: Dialogue.
+					mes "ข้าคือ Crave เอง เจ้าเป็นใครกัน...?";
+					//mes "You're not a usual stuff in connection.."; //FIXME: Dialogue. (เจ้าไม่ใช่คนในเครือข่ายปกติที่ติดต่อกันอยู่..)
 					next;
 					mes "[Crave]";
-					mes "Ah, is it about Daora?";
-					mes "Yes, what can I do for you?";
+					mes "อ้อ เรื่องของ Daora งั้นเหรอ?";
+					mes "ใช่ มีอะไรให้ข้าช่วยล่ะ?";
 					next;
-					select("Did you see a stranger these past days?");
+					select("ช่วงวันสองวันนี้เจ้าเห็นคนแปลกหน้าบ้างไหม?");
 					mes "[Crave]";
-					mes "Stranger... about Daora's business?";
-					mes "Ok. I understand what you are talking about.";
-					next;
-					mes "[Crave]";
-					mes "I found a new face while";
-					mes "watching the stores.";
-					mes "It was a girl...";
+					mes "คนแปลกหน้า... เกี่ยวกับธุระของ Daora สินะ?";
+					mes "ตกลง ข้าเข้าใจแล้วว่าเจ้ากำลังพูดถึงเรื่องอะไร";
 					next;
 					mes "[Crave]";
-					mes "She buys food and the necessities of life regularly in the morning and afternoon.";
-					mes "I wanted to know more about her, because she was pretty.";
-					mes "But there is no person who knows her residence.";
+					mes "ข้าพบหน้าใหม่คนหนึ่งในขณะที่";
+					mes "กำลังเฝ้าดูพวกแผงร้านค้าอยู่";
+					mes "เป็นเด็กผู้หญิงน่ะ...";
 					next;
 					mes "[Crave]";
-					mes "Is it a mysterious person?";
-					mes "I don't know who she is, or where she lives!";
+					mes "นางมาซื้ออาหารและของใช้ที่จำเป็นในชีวิตประจำวันเป็นปกติทั้งช่วงเช้าและช่วงบ่าย";
+					mes "ข้าอยากรู้จักนางให้มากกว่านี้ เพราะนางสวยมาก";
+					mes "แต่ไม่มีใครรู้เลยว่านางพักอยู่ที่ไหน";
 					next;
 					mes "[Crave]";
-					mes "I want to talk to her, but she runs away...";
-					mes "She must be hiding something.";
+					mes "เป็นบุคคลปริศนางั้นเหรอ?";
+					mes "ข้าไม่รู้ว่านางเป็นใคร หรืออาศัยอยู่ที่ไหนเลยสักนิด!";
+					next;
+					mes "[Crave]";
+					mes "ข้าพยายามจะเข้าไปคุยด้วย แต่นางก็วิ่งหนีไป...";
+					mes "นางต้องกำลังปิดบังอะไรบางอย่างอยู่แน่ๆ";
 					setquest 7113;
 					next;
-					mes "- The information Crave gave is attached on the quest board.";
-					mes "Then can we figure out with information you collected? -";
+					mes "- ข้อมูลที่ Crave มอบให้ถูกติดไว้บนกระดานเควส";
+					mes "ถ้าอย่างนั้น เรามาประมวลผลจากข้อมูลที่เจ้าได้รับมาเลยไหม? -";
 					next;
-					switch(select("Do it.:Stop it.")) {
+					switch(select("ทำเลย:หยุดไว้ก่อน")) {
 					case 1:
 						callfunc "func_3rdgc",1;
 						close;
 					case 2:
-						mes "You stop the confirmation of information.";
+						mes "คุณหยุดการยืนยันข้อมูล";
 						close;
 					}
 				case 2:
 					mes "[Young Merchant]";
-					mes "I carry on a wholesale trade, not a retail trade.";
-					mes "Buy that from a tool salesperson.";
+					mes "ข้าทำธุรกิจการค้าส่ง ไม่ใช่ค้าปลีก";
+					mes "ไปซื้อของพวกนั้นจากพนักงานขายของชำโน่นไป";
 					close;
 				}
 			}
 		} else {
 			if (checkquest(7113) == 1) {
 				mes "[Crave]";
-				mes "I already gave you all the information I have.";
-				mes "I'm quick in visual learning.";
-				mes "I can't find the other girl, only the one who matches your condition.";
+				mes "ข้าให้ข้อมูลทั้งหมดที่มีกับเจ้าไปหมดแล้ว";
+				mes "ข้าเป็นพวกเรียนรู้จากการมองเห็นได้ไว";
+				mes "ข้าหาผู้หญิงคนอื่นไม่เจอเลย เจอแต่คนที่มีลักษณะตรงตามเงื่อนไขของเจ้า";
 				next;
-				mes "Can we figure out with the information you collected?";
+				mes "เราจะมาประมวลผลจากข้อมูลที่เจ้าได้รับมาเลยไหม?";
 				next;
-				switch(select("Do it.:Stop it.")) {
+				switch(select("ทำเลย:หยุดไว้ก่อน")) {
 				case 1:
 					callfunc "func_3rdgc",0;
 					close;
 				case 2:
-					mes "You stop the confirmation of information.";
+					mes "คุณหยุดการยืนยันข้อมูล";
 					close;
 				}
 			} else {
 				mes "[Young Merchant]";
-				mes "What's wrong?";
-				mes "I'm a merchant, but not a retail merchant.";
-				mes "If you want to buy things, go to the others.";
+				mes "มีอะไรผิดปกติเหรอ?";
+				mes "ข้าเป็นพ่อค้าก็จริง แต่ไม่ใช่พ่อค้าปลีกนะ";
+				mes "ถ้าเจ้าอยากซื้อของ ก็ไปหาคนอื่นซะ";
 				next;
-				switch(select("Suspicious people?:I heard that you are sharp.")) {
+				switch(select("มีคนน่าสงสัยบ้างไหม?:ข้าได้ยินมาว่าเจ้าเป็นคนหูตาไวมาก")) {
 				case 1:
 					mes "[Young Merchant]";
-					mes "A suspicious person?";
-					mes "There are lots of people who are suspicious.";
+					mes "คนน่าสงสัยเหรอ?";
+					mes "มีคนเยอะแยะไปหมดที่ดูน่าสงสัย";
 					next;
 					mes "[Young Merchant]";
-					mes "It's that lame person that's suspicious, isn't it?";
+					mes "ก็น่าจะเป็นพวกท่าทางไม่ได้เรื่องนั่นแหละที่น่าสงสัย จริงไหมล่ะ?";
 					close;
 				case 2:
 					mes "[Young Merchant]";
-					mes "Hmm? It's reasonable.";
-					mes "I have to be quick in visual learning for living as a merchant.";
+					mes "หืม? ก็สมเหตุสมผลดี";
+					mes "ข้าต้องหูตาไวและจำคนเก่งเพื่อความอยู่รอดในฐานะพ่อค้า";
 					next;
 					mes "[Young Merchant]";
-					mes "I have to memorize the faces of people who do business with me so I can make a profit.";
-					mes "Then I can make steady customers.";
+					mes "ข้าต้องจำหน้าผู้คนที่มาทำธุรกิจด้วยให้ได้เพื่อผลกำไร";
+					mes "ข้าจะได้มีลูกค้าประจำยังไงล่ะ";
 					next;
-					switch(select("I'm looking for a cousin...:End conversation.")) {
+					switch(select("ข้ากำลังตามหาญาติผู้น้อง...:จบการสนทนา")) {
 					case 1:
 						mes "[Young Merchant]";
-						mes "Is she a beautiful blonde?";
+						mes "นางเป็นสาวสวยผมบลอนด์ใช่ไหม?";
 						next;
-						switch(select("No, it's a boy.:Yes, she is.")) {
+						switch(select("ไม่ใช่ เป็นเด็กผู้ชาย:ใช่แล้ว นางเอง")) {
 						case 1:
 							mes "[Young Merchant]";
-							mes "Is he?";
-							mes "I don't know.";
-							mes "I know only a mysterious blonde beauty.";
+							mes "งั้นเหรอ?";
+							mes "ข้าไม่รู้สิ";
+							mes "ข้ารู้จักแต่สาวสวยผมบลอนด์ปริศนาคนนั้นคนเดียว";
 							close;
 						case 2:
 							mes "[Crave]";
-							mes "Oh, she is?";
-							mes "I'm Crave. If you find her later, please contact me.";
+							mes "โอ้ ใช่คนนั้นจริงๆ เหรอ?";
+							mes "ข้าชื่อ Crave นะ ถ้าเจ้าพบนางในภายหลัง ช่วยติดต่อข้าด้วยล่ะ";
 							next;
 							mes "[Crave]";
-							mes "Don't give me a fierce scowl.";
-							mes "I'm a man of ability.";
+							mes "อย่าทำหน้าบึ้งใส่ข้าแบบนั้นสิ";
+							mes "ข้าเป็นคนมีความสามารถนะ";
 							next;
-							select("Where did you see her?");
+							select("เจ้าพบนางที่ไหน?");
 							mes "["+strcharinfo(0)+"]";
-							mes "A few days have passed already.";
-							mes "I want to find her as soon as possible.";
-							mes "You said you saw that child? Where did you see her?";
+							mes "นี่ก็ผ่านไปหลายวันแล้ว";
+							mes "ข้าต้องการพบนางให้เร็วที่สุด";
+							mes "เจ้าบอกว่าเห็นเด็กคนนั้นใช่ไหม? เจ้าเห็นนางที่ไหน?";
 							next;
 							mes "[Crave]";
-							mes "So... that's why we don't know her residence.";
-							mes "I can understand buying food and other supplies.";
+							mes "คือว่า... นั่นแหละเหตุผลที่เราไม่รู้ที่อยู่ของนาง";
+							mes "ข้าพอจะเข้าใจเรื่องการมาซื้ออาหารและของใช้อื่นๆ นะ";
 							next;
 							mes "[Crave]";
-							mes "She always runs away without saying anything.";
-							mes "I like her because of her mysterious atmosphere.";
+							mes "นางมักจะวิ่งหนีไปโดยไม่พูดอะไรสักคำ";
+							mes "ข้าชอบนางนะ เพราะบรรยากาศลึกลับๆ แบบนั้นน่ะ";
 							next;
 							mes "[Crave]";
-							mes "I think that she ran away from home.";
-							mes "She visits here to buy stuff every day and every night regularly.";
+							mes "ข้าคิดว่านางคงหนีออกจากบ้านมา";
+							mes "นางแวะมาซื้อของที่นี่ทุกวันทั้งเช้าและเย็นเป็นประจำ";
 							next;
 							mes "[Crave]";
-							mes "She may run away when she sees you.";
-							mes "It's probably better to hide in the alley to catch her.";
+							mes "นางอาจจะวิ่งหนีไปถ้าเห็นเจ้า";
+							mes "ทางที่ดีเจ้าน่าจะไปแอบในตรอกเพื่อดักรอนางนะ";
 							setquest 7113;
 							next;
-							mes "- Crave's information is attached to the quest board. What information have I collected? -";
+							mes "- ข้อมูลของ Crave ถูกติดไว้บนกระดานเควส ข้อมูลที่ฉันรวบรวมมามีอะไรบ้างนะ? -";
 							next;
-							switch(select("Check information.:Cancel.")) {
+							switch(select("ตรวจสอบข้อมูล:ยกเลิก")) {
 							case 1:
 								callfunc "func_3rdgc",0;
 								close;
 							case 2:
-								mes "You stop the confirmation of information.";
+								mes "คุณหยุดการยืนยันข้อมูล";
 								close;
 							}
 						}
 					case 2:
 						mes "[Young Merchant]";
-						mes "Why do you change your face while I'm talking about a steady customer?";
-						mes "Oh, you are...";
-						mes "It's a sword of darkness that can't make a profit unrelated to memorizing people's faces.";
+						mes "ทำไมเจ้าต้องเปลี่ยนสีหน้าตอนที่ข้ากำลังพูดเรื่องลูกค้าประจำด้วยล่ะ?";
+						mes "โอ้ เจ้านี่มัน...";
+						mes "เป็นคมดาบแห่งความมืดที่ทำกำไรไม่ได้เลย แถมไม่เกี่ยวอะไรกับการจำหน้าคนอีก";
 						close;
 					}
 				}
@@ -1536,8 +1536,8 @@ ve_in,246,303,3	script	Young Merchant#3rdgc05	930,{
 		}
 	} else {
 		mes "[Crave]";
-		mes "Excuse me?";
-		mes "Did you find who you were looking for?";
+		mes "ขอประทานโทษครับ?";
+		mes "เจ้าพบคนที่ตามหาหรือยังล่ะ?";
 		close;
 	}
 }
@@ -1545,373 +1545,373 @@ ve_in,246,303,3	script	Young Merchant#3rdgc05	930,{
 veins,291,215,3	script	Vigilante#3rdgc06	939,{
 	if (job_3rd_gc < 6) {
 		mes "[Vigilante]";
-		mes "Do you have any inconveniences while you are traveling?";
-		mes "At the outskirts of the city, there are many monsters. Be careful.";
+		mes "คุณมีเรื่องไม่สะดวกอะไรระหว่างการเดินทางไหม?";
+		mes "ที่ชานเมืองมีมอนสเตอร์เยอะมาก ระวังตัวด้วยล่ะ";
 		close;
 	}
 	else if (job_3rd_gc == 6) {
 		if (checkquest(7091) == 1) {
 			if (checkquest(7114) == 1) {
 				mes "[Trovan]";
-				mes "I already gave you all the information I have.";
-				mes "He's the only suspicious person that's been seen.";
-				mes "But nothing has happened yet, so I'm keeping watch.";
+				mes "ข้าให้ข้อมูลทั้งหมดที่มีกับเจ้าไปหมดแล้ว";
+				mes "เขาเป็นคนน่าสงสัยเพียงคนเดียวที่พวกเราพบ";
+				mes "แต่ยังไม่มีอะไรเกิดขึ้น ข้าเลยยังคงเฝ้าดูอยู่";
 				next;
-				mes "- What information have I collected? -";
+				mes "- ข้อมูลที่ฉันรวบรวมมามีอะไรบ้างนะ? -";
 				next;
-				switch(select("Check information.:Cancel.")) {
+				switch(select("ตรวจสอบข้อมูล:ยกเลิก")) {
 				case 1:
 					callfunc "func_3rdgc",1;
 					close;
 				case 2:
-					mes "You stop the confirmation of information.";
+					mes "คุณหยุดการยืนยันข้อมูล";
 					close;
 				}
 			} else {
 				mes "[Vigilante]";
-				mes "Hello?";
-				mes "Do you need help?";
+				mes "สวัสดี?";
+				mes "ต้องการความช่วยเหลือไหม?";
 				next;
-				switch(select("Do you know Trovan?:No thanks.")) {
+				switch(select("เจ้ารู้จัก Trovan ไหม?:ไม่ล่ะ ขอบคุณ")) {
 				case 1:
 					mes "[Vigilante]";
-					mes "Eh? I'm Trovan, a member of the vigilante corps of Veins.";
-					mes "What's the matter?";
+					mes "เอ๋? ข้านี่แหละ Trovan สมาชิกกองกำลังอาสาสมัครแห่ง Veins";
+					mes "มีเรื่องอะไรหรือเปล่า?";
 					next;
 					mes "[Trovan]";
-					mes "Ah, you were recommended by Daora.";
-					mes "I remember all of the faces of people who live in this village.";
+					mes "อ้อ เจ้าได้รับการแนะนำมาจาก Daora สินะ";
+					mes "ข้าจำหน้าผู้คนที่อาศัยอยู่ในหมู่บ้านนี้ได้ทุกคนแหละ";
 					next;
 					mes "[Trovan]";
-					mes "Maybe he is a stranger.";
-					mes "We should exclude normal adventurers.";
+					mes "บางทีเขาอาจจะเป็นคนแปลกหน้า";
+					mes "เราควรตัดพวกนักผจญภัยทั่วไปออกไปก่อน";
 					next;
 					mes "[Trovan]";
-					mes "And if Daora finds a person, he must not be a normal person.";
-					mes "So we should exclude normal guests...";
+					mes "และถ้า Daora เป็นคนหาตัวล่ะก็ เขาต้องไม่ใช่คนธรรมดาแน่";
+					mes "ดังนั้นเราควรตัดแขกปกติทั่วไปออกไปด้วย...";
 					next;
 					mes "[Trovan]";
-					mes "Then we can set limits for guessing who it is.";
-					mes "A few days ago, a priest visited this village.";
-					mes "He covered his face with a hood, so I couldn't see him too well.";
+					mes "ถ้าอย่างนั้นเราก็สามารถจำกัดวงในการเดาตัวได้";
+					mes "เมื่อไม่กี่วันก่อน มีนักบวชคนหนึ่งแวะมาที่หมู่บ้านนี้";
+					mes "เขาคลุมหน้าด้วยฮู้ด ข้าเลยมองเห็นเขาไม่ค่อยชัดเท่าไหร่";
 					next;
 					mes "[Trovan]";
-					mes "I can detect suspicious people pretty well.";
-					mes "He might be a criminal if he were hiding his face.";
+					mes "ข้าสามารถตรวจจับคนน่าสงสัยได้ค่อนข้างแม่นยำนะ";
+					mes "เขาอาจจะเป็นอาชญากรก็ได้ถ้าเขาต้องปิดบังใบหน้าแบบนั้น";
 					next;
 					mes "[Trovan]";
-					mes "Why is he suspicious?";
-					mes "He shows up here regularly, but he has no definite residence.";
-					mes "And I always lose him when I try to follow him.";
+					mes "ทำไมเขาถึงน่าสงสัยน่ะเหรอ?";
+					mes "เขามักจะปรากฏตัวที่นี่เป็นประจำ แต่ไม่มีที่อยู่อาศัยที่แน่นอน";
+					mes "และข้าก็มักจะคลาดกับเขาทุกครั้งที่พยายามจะตามไป";
 					next;
 					mes "[Trovan]";
-					mes "I can't offer any more information.";
-					mes "I always have to guard the entrance of the village, so I can't follow him for too long.";
+					mes "ข้าให้ข้อมูลมากกว่านี้ไม่ได้แล้วล่ะ";
+					mes "ข้าต้องคอยเฝ้าทางเข้าหมู่บ้านตลอดเวลา เลยตามเขาไปนานๆ ไม่ได้";
 					next;
 					mes "[Trovan]";
-					mes "Anyway. He is a only person who I suspect.";
-					mes "He hasn't been caught doing anything criminal,";
-					mes "but he's always covering himself up.";
+					mes "เอาเป็นว่า เขาเป็นคนเดียวที่ข้าสงสัย";
+					mes "เขายังไม่ถูกจับได้ว่าทำอะไรผิดกฎหมายนะ";
+					mes "แต่เขามักจะปกปิดตัวเองอยู่เสมอ";
 					setquest 7114;
 					next;
-					mes "- Trovan's information is attached to the quest board. What information have I collected? -";
+					mes "- ข้อมูลของ Trovan ถูกติดไว้บนกระดานเควส ข้อมูลที่ฉันรวบรวมมามีอะไรบ้างนะ? -";
 					next;
-					switch(select("Check information.:Cancel.")) {
+					switch(select("ตรวจสอบข้อมูล:ยกเลิก")) {
 					case 1:
 						callfunc "func_3rdgc",1;
 						close;
 					case 2:
-						mes "You stop the confirmation of information.";
+						mes "คุณหยุดการยืนยันข้อมูล";
 						close;
 					}
 				case 2:
 					mes "[Trovan]";
-					mes "Recently, I've seen many suspicious people.";
-					mes "I'm keeping strict watch.";
+					mes "ช่วงนี้ข้าเห็นคนน่าสงสัยเยอะมาก";
+					mes "ข้ากำลังเฝ้ายามอย่างเข้มงวดเลยล่ะ";
 					close;
 				}
 			}
 		} else {
 			if (checkquest(7114) == 1) {
 				mes "[Trovan]";
-				mes "I already gave you all the information I have.";
-				mes "He's the only suspicious person that's been seen.";
-				mes "But nothing has happened yet, so I'm keeping watch.";
+				mes "ข้าให้ข้อมูลทั้งหมดที่มีกับเจ้าไปหมดแล้ว";
+				mes "เขาเป็นคนน่าสงสัยเพียงคนเดียวที่พวกเราพบ";
+				mes "แต่ยังไม่มีอะไรเกิดขึ้น ข้าเลยยังคงเฝ้าดูอยู่";
 				next;
-				mes "- Should I figure out the information collected? -";
+				mes "- ข้าควรจะประมวลผลข้อมูลที่รวบรวมมาดีไหม? -";
 				next;
-				switch(select("Check the information.:Cancel.")) {
+				switch(select("ตรวจสอบข้อมูล:ยกเลิก")) {
 				case 1:
 					callfunc "func_3rdgc",0;
 					close;
 				case 2:
-					mes "You stop the confirmation of information.";
+					mes "คุณหยุดการยืนยันข้อมูล";
 					close;
 				}
 			} else {
 				mes "[Trovan]";
-				mes "I'm Trovan, a guard of Veins.";
-				mes "What's wrong?";
+				mes "ข้าคือ Trovan ยามแห่ง Veins";
+				mes "มีอะไรผิดปกติหรือเปล่า?";
 				next;
-				switch(select("Is there a wanted man?:Nothing.")) {
+				switch(select("มีชายที่ถูกประกาศจับบ้างไหม?:ไม่มีอะไร")) {
 				case 1:
 					mes "[Trovan]";
-					mes "A wanted man?";
-					mes "No, what's the matter?";
+					mes "ชายที่ถูกประกาศจับเหรอ?";
+					mes "ไม่มีนะ มีเรื่องอะไรล่ะ?";
 					next;
 					mes "[Trovan]";
-					mes "Did you find any suspicious people entering this village lately?";
-					mes "Umm...";
+					mes "เจ้าพบคนน่าสงสัยเข้ามาในหมู่บ้านนี้บ้างไหมช่วงนี้?";
+					mes "อืม...";
 					next;
 					mes "[Trovan]";
-					mes "Recently, there's been a man in this village wearing a hood.";
-					mes "He is not a traveler. He bought food and slipped out of the village.";
+					mes "ช่วงนี้มีผู้ชายคนหนึ่งในหมู่บ้านที่สวมฮู้ด";
+					mes "เขาไม่ใช่นักเดินทางนะ เขาซื้ออาหารแล้วก็แอบย่องออกจากหมู่บ้านไป";
 					next;
 					mes "[Trovan]";
-					mes "I'm wondering about his identity.";
-					mes "I think he is related to a shrine...";
-					mes "Or maybe he isn't...";
+					mes "ข้ากำลังสงสัยตัวตนของเขาอยู่";
+					mes "ข้าคิดว่าเขาน่าจะเกี่ยวข้องกับวิหาร...";
+					mes "หรือบางทีอาจจะไม่ใช่...";
 					next;
 					mes "[Trovan]";
-					mes "There is no one else like him among the people living in this village.";
-					mes "I wonder where he is from.";
+					mes "ไม่มีใครในหมู่บ้านนี้ที่มีลักษณะเหมือนเขาเลย";
+					mes "ข้าสงสัยจริงๆ ว่าเขามาจากไหน";
 					next;
 					mes "[Trovan]";
-					mes "He might still be here.";
-					mes "There are no new people except for him. I know almost all of the adventurer's faces that visit here.";
-					mes "So that's not much news.";
+					mes "เขาอาจจะยังอยู่ที่นี่";
+					mes "ไม่มีคนหน้าใหม่นอกจากเขาหรอก ข้าจำหน้านักผจญภัยที่แวะมาที่นี่ได้เกือบหมด";
+					mes "ดังนั้นมันก็ไม่ใช่ข่าวใหม่อะไรมากนัก";
 					setquest 7114;
 					next;
-					mes "- Trovan's information is attached to the quest board. What information have I collected? -";
+					mes "- ข้อมูลของ Trovan ถูกติดไว้บนกระดานเควส ข้อมูลที่ฉันรวบรวมมามีอะไรบ้างนะ? -";
 					next;
-					switch(select("Check information.:Cancel.")) {
+					switch(select("ตรวจสอบข้อมูล:ยกเลิก")) {
 					case 1:
 						callfunc "func_3rdgc",0;
 						close;
 					case 2:
-						mes "You stop the confirmation of information.";
+						mes "คุณหยุดการยืนยันข้อมูล";
 						close;
 					}
 				case 2:
 					mes "[Trovan]";
-					mes "Don't go too far away.";
+					mes "อย่าไปไกลนักล่ะ";
 					close;
 				}
 			}
 		}
 	} else {
 		mes "[Trovan]";
-		mes "How's it going?";
+		mes "เป็นยังไงบ้าง?";
 		close;
 	}
 }
 
 veins,187,143,5	script	Peddler#3rdgc07	892,{
-	mes "[Peddler]";
+	mes "[คนขายของหาบเร่]";
 	if (job_3rd_gc < 6) {
-		mes "What a huge sandstorm.";
-		mes "Are you ok?";
+		mes "พายุทรายลูกใหญ่อะไรอย่างนี้";
+		mes "คุณไม่เป็นไรนะ?";
 		close;
 	}
 	else if (job_3rd_gc == 6) {
 		if (checkquest(7091) == 1) {
-			mes "What a huge sandstorm.";
-			mes "Are you ok?";
+			mes "พายุทรายลูกใหญ่อะไรอย่างนี้";
+			mes "คุณไม่เป็นไรนะ?";
 			close;
 		} else {
 			if (checkquest(7115) == 1) {
-				mes "So, did you find that girl?";
-				mes "If you do, let her know that she has to come and visit me.";
+				mes "แล้ว สรุปว่าเจ้าเจอเด็กผู้หญิงคนนั้นหรือยัง?";
+				mes "ถ้าเจอ ช่วยบอกนางด้วยว่านางต้องกลับมาหาข้า";
 				next;
-				mes "- You can't get more information from the peddler. What information have I collected? -";
+				mes "- คุณไม่สามารถหาข้อมูลเพิ่มจากคนขายของหาบเร่ได้อีก ข้อมูลที่ฉันรวบรวมมามีอะไรบ้างนะ? -";
 				next;
-				switch(select("check information.:Cancel.")) {
+				switch(select("ตรวจสอบข้อมูล:ยกเลิก")) {
 				case 1:
 					callfunc "func_3rdgc",1;
 					close;
 				case 2:
-					mes "You stop the confirmation of information.";
+					mes "คุณหยุดการยืนยันข้อมูล";
 					close;
 				}
 			} else {
-				mes "Hey. Hey!";
-				mes "I'm talking to you!";
+				mes "เฮ้ เฮ้!";
+				mes "ข้าคุยกับเจ้าอยู่นะ!";
 				next;
-				switch(select("Ignore him.:Listen to the story.")) {
+				switch(select("เมินเขา:ฟังเรื่องที่เขาเล่า")) {
 				case 1:
-					mes "[Peddler]";
-					mes "You are too cold.";
+					mes "[คนขายของหาบเร่]";
+					mes "เจ้านี่ใจเย็นชะมัด";
 					close;
 				case 2:
-					mes "[Peddler]";
-					mes "A pretty girl just bought food.";
-					mes "You know that freshness is important when buying fish...";
+					mes "[คนขายของหาบเร่]";
+					mes "เพิ่งมีเด็กสาวสวยคนหนึ่งมาซื้ออาหารไป";
+					mes "เจ้ารู้ไหมว่าความสดน่ะสำคัญมากเวลาซื้อปลา...";
 					next;
-					mes "[Peddler]";
-					mes "But I gave the wrong fish to her.";
-					mes "Recently, she bought food from my store.";
-					mes "I can't find her, maybe she doesn't live here.";
+					mes "[คนขายของหาบเร่]";
+					mes "แต่ข้าดันหยิบปลาผิดตัวให้นางไป";
+					mes "เมื่อเร็วๆ นี้นางมาซื้ออาหารที่ร้านข้า";
+					mes "ข้าหานางไม่เจอ บางทีนางอาจจะไม่ได้อยู่ที่นี่";
 					next;
-					mes "[Peddler]";
-					mes "She looks shabby but she always buys expensive food.";
-					mes "I thought that she was a maid but we don't have a mansion that can hire maids in Veins.";
+					mes "[คนขายของหาบเร่]";
+					mes "นางดูแต่งตัวซอมซ่อแต่นางมักจะซื้ออาหารราคาแพงๆ เสมอ";
+					mes "ข้าเคยนึกว่านางเป็นสาวใช้ แต่ใน Veins เราไม่มีคฤหาสน์หรูพอจะจ้างสาวใช้หรอกนะ";
 					next;
-					mes "[Peddler]";
-					mes "Kind of suspicious, isn't it?";
-					mes "But, I gave spoiled fish to her...";
+					mes "[คนขายของหาบเร่]";
+					mes "ก็น่าสงสัยอยู่นะ จริงไหมล่ะ?";
+					mes "แต่ประเด็นคือ ข้าให้ปลาเน่านางไปนี่สิ...";
 					next;
-					mes "[Peddler]";
-					mes "So I have to find her and exchange the fish for a refund.";
+					mes "[คนขายของหาบเร่]";
+					mes "ข้าเลยต้องตามตัวนางให้เจอเพื่อเปลี่ยนปลาให้ หรือคืนเงินให้นาง";
 					next;
-					mes "[Peddler]";
-					mes "If you find her, send that message, please?";
-					mes "I can't miss a guest like her.";
+					mes "[คนขายของหาบเร่]";
+					mes "ถ้าเจ้าเจอนาง ฝากบอกนางหน่อยได้ไหม?";
+					mes "ข้าไม่อยากเสียลูกค้าแบบนางไปหรอกนะ";
 					next;
-					mes "[Peddler]";
-					mes "Ok, let's see...";
-					mes "She is blonde girl.";
-					mes "You should be able";
-					mes "to find her easily.";
+					mes "[คนขายของหาบเร่]";
+					mes "เอาล่ะ ไหนดูซิ...";
+					mes "นางเป็นเด็กผู้หญิงผมบลอนด์";
+					mes "เจ้าน่าจะ";
+					mes "หานางเจอได้ง่ายๆ เลยล่ะ";
 					next;
-					mes "[Peddler]";
-					mes "Actually, nobody knows where she's from.";
-					mes "You're an adventurer, so I'm asking you.";
+					mes "[คนขายของหาบเร่]";
+					mes "ความจริงก็คือ ไม่มีใครรู้ว่านางมาจากไหน";
+					mes "เจ้าเป็นนักผจญภัย ข้าเลยต้องขอร้องเจ้าหน่อย";
 					next;
-					select("I'll send her your message.:Hmm...");
+					select("ข้าจะบอกนางให้:อืม...");
 					mes "["+strcharinfo(0)+"]";
-					mes "- Even though I don't have time to spare, the girl mentioned by the peddler is suspicious. -";
+					mes "- ถึงแม้ข้าจะไม่มีเวลาว่างมากนัก แต่เด็กสาวที่คนขายของเอ่ยถึงก็น่าสงสัย -";
 					next;
 					mes "["+strcharinfo(0)+"]";
-					mes "- A girl who has no clear residence and buys expensive food. I have to find out. -";
+					mes "- เด็กสาวที่ไม่มีที่พำนักชัดเจนและซื้ออาหารราคาแพง ข้าต้องตรวจสอบดูเสียหน่อย -";
 					next;
-					mes "[Peddler]";
-					mes "Then send my message to her, please.";
-					mes "If I can't exchange the fish, it will spoil.";
+					mes "[คนขายของหาบเร่]";
+					mes "งั้นฝากบอกนางด้วยนะ";
+					mes "ถ้าข้าเปลี่ยนปลาไม่ได้ มันจะเน่าคาสต็อกข้าน่ะสิ";
 					setquest 7115;
 					next;
-					mes "- The peddler's information is attached to the quest board. What information have I collected? -";
+					mes "- ข้อมูลของคนขายของหาบเร่ถูกติดไว้บนกระดานเควส ข้อมูลที่ฉันรวบรวมมามีอะไรบ้างนะ? -";
 					next;
-					switch(select("Check information.:Cancel.")) {
+					switch(select("ตรวจสอบข้อมูล:ยกเลิก")) {
 					case 1:
 						callfunc "func_3rdgc",0;
 						close;
 					case 2:
-						mes "You stop the confirmation of information.";
+						mes "คุณหยุดการยืนยันข้อมูล";
 						close;
 					}
 				}
 			}
 		}
 	} else {
-		mes "Did you send my message properly?";
-		mes "Then why she hasn't she visited here to exchange the fish?";
+		mes "เจ้าฝากบอกนางเรียบร้อยแล้วใช่ไหม?";
+		mes "แล้วทำไมนางยังไม่มาเปลี่ยนปลาอีกล่ะ?";
 		close;
 	}
 }
 
 veins,235,126,3	script	Old Man#3rdgc07	945,{
-	mes "[Old Man]";
+	mes "[ชายแก่]";
 	if (job_3rd_gc < 6) {
-		mes "Haha... I can remember my past when I see a young adventurer like you...";
+		mes "ฮ่าๆ... ข้าจำอดีตของตัวเองได้เลยเมื่อเห็นนักผจญภัยหนุ่มอย่างเจ้า...";
 		close2;
 	} else if (job_3rd_gc == 6) {
 		if (checkquest(7091) == 1) {
-			mes "Haha... I can remember my past when I see a young adventurer like you...";
+			mes "ฮ่าๆ... ข้าจำอดีตของตัวเองได้เลยเมื่อเห็นนักผจญภัยหนุ่มอย่างเจ้า...";
 			close;
 		} else {
 			if (checkquest(7116) == 1) {
-				mes "Thanks for talking to me.";
+				mes "ขอบใจที่คุยกับข้านะ";
 				next;
-				mes "- I can't get anymore information from the Old Man. What information have I collected? -";
+				mes "- คุณไม่สามารถหาข้อมูลเพิ่มจากชายแก่คนนี้ได้อีก ข้อมูลที่ฉันรวบรวมมามีอะไรบ้างนะ? -";
 				next;
-				switch(select("Check information.:Cancel.")) {
+				switch(select("ตรวจสอบข้อมูล:ยกเลิก")) {
 				case 1:
 					callfunc "func_3rdgc",0;
 					close;
 				case 2:
-					mes "You stop the confirmation of information.";
+					mes "คุณหยุดการยืนยันข้อมูล";
 					close;
 				}
 			} else {
-				mes "What? What's the matter?";
-				mes "You want to talk with me?";
+				mes "อะไรนะ? มีเรื่องอะไรเหรอ?";
+				mes "เจ้าอยากคุยกับข้าเหรอ?";
 				next;
-				switch(select("Suspicious person...:You look good.")) {
+				switch(select("คนน่าสงสัย...:คุณดูสุขภาพดีนะ")) {
 				case 1:
-					mes "[Old Man]";
-					mes "A suspicious person?";
-					mes "Well, Trovan may know more about her than me.";
+					mes "[ชายแก่]";
+					mes "คนน่าสงสัยเหรอ?";
+					mes "ก็นะ Trovan น่าจะรู้เรื่องของนางดีกว่าข้าเสียอีก";
 					close;
 				case 2:
-					mes "[Old Man]";
-					mes "Thanks anyway.";
-					mes "I'll just sit down here...";
+					mes "[ชายแก่]";
+					mes "ยังไงก็ขอบใจนะ";
+					mes "ข้าจะแค่นั่งอยู่ตรงนี้แหละ...";
 					next;
-					mes "[Old Man]";
-					mes "I look around at people who pass by here all the time.";
-					mes "I can find out where they're from easily by watching what they wear.";
+					mes "[ชายแก่]";
+					mes "ข้าเฝ้ามองผู้คนเดินผ่านไปผ่านมาที่นี่ตลอดเวลา";
+					mes "ข้าสามารถบอกได้ง่ายๆ ว่าพวกเขามาจากไหนแค่ดูจากการแต่งตัว";
 					next;
-					mes "[Old Man]";
-					mes "I can't forget her at all because of her funny outfit.";
-					mes "It's not difficult to forget a person wearing a formal dress.";
+					mes "[ชายแก่]";
+					mes "ข้าลืมนางไม่ลงเลยล่ะเพราะชุดที่ดูตลกๆ ของนาง";
+					mes "มันไม่ยากหรอกที่จะจำคนที่ใส่ชุดทางการแบบนั้น";
 					next;
-					select("Then what's funny?");
-					mes "[Old Man]";
-					mes "Umm, this village is not funny anymore.";
-					mes "I know everything~ I even found out everyone's job.";
+					select("แล้วมันตลกตรงไหนล่ะ?");
+					mes "[ชายแก่]";
+					mes "อืม หมู่บ้านนี้ไม่มีอะไรน่าตลกอีกแล้วล่ะ";
+					mes "ข้ารู้ทุกอย่าง~ ข้าถึงกับรู้ว่าทุกคนทำงานอะไรกันบ้าง";
 					next;
-					mes "[Old Man]";
-					mes "But...";
-					mes "Recently, a girl showed up.";
-					mes "In the morning, she buys some food from a peddler and then disappears.";
+					mes "[ชายแก่]";
+					mes "แต่...";
+					mes "เมื่อเร็วๆ นี้ มีเด็กสาวคนหนึ่งปรากฏตัวขึ้น";
+					mes "ในช่วงเช้า นางจะซื้ออาหารจากคนขายของหาบเร่แล้วก็หายตัวไป";
 					next;
-					mes "[Old Man]";
-					mes "And in the afternoon she usually buys the necessities of life.";
-					mes "A little bit at a time.";
-					mes "And then she goes somewhere after...";
+					mes "[ชายแก่]";
+					mes "และในช่วงบ่าย นางมักจะมาซื้อของใช้ที่จำเป็น";
+					mes "ซื้อทีละนิดละหน่อย";
+					mes "แล้วนางก็จากไปที่ไหนสักแห่งหลังจากนั้น...";
 					next;
-					mes "[Old Man]";
-					mes "I figure that she must be preparing something.";
-					mes "If she buys a lot of stuff, then she can be found easily.";
+					mes "[ชายแก่]";
+					mes "ข้าคิดว่านางต้องกำลังเตรียมการอะไรบางอย่างอยู่แน่";
+					mes "ถ้าแต่นางซื้อของคราวละมากๆ นางก็จะถูกพบตัวได้ง่าย";
 					next;
-					mes "[Old Man]";
-					mes "I think she stocks up heavily on foods that help during battles.";
+					mes "[ชายแก่]";
+					mes "ข้าคิดว่านางกำลังกักตุนอาหารที่ช่วยในการต่อสู้ไว้เยอะเลยล่ะ";
 					next;
-					mes "[Old Man]";
-					mes "She just recently started this routine.";
-					mes "Is she a newcomer?";
+					mes "[ชายแก่]";
+					mes "นางเพิ่งจะเริ่มทำแบบนี้เป็นประจำเมื่อไม่นานนี้เอง";
+					mes "นางเป็นคนมาใหม่หรือเปล่านะ?";
 					next;
-					mes "[Old Man]";
-					mes "I'm going to watch you for a while.";
-					mes "Ah, why am I bothering you with this story?";
+					mes "[ชายแก่]";
+					mes "ข้ากะว่าจะเฝ้าดูเจ้าอยู่สักพักเหมือนกัน";
+					mes "อา ทำไมข้าต้องมาทำให้เจ้าลำบากใจกับเรื่องเล่าพวกนี้ด้วยนะ?";
 					setquest 7116;
 					next;
-					mes "- The information of the Old Man is attached to the quest board. What information have I collected?";
+					mes "- ข้อมูลของชายแก่ถูกติดไว้บนกระดานเควส ข้อมูลที่ฉันรวบรวมมามีอะไรบ้างนะ?";
 					next;
-					switch(select("Check information.:Cancel.")) {
+					switch(select("ตรวจสอบข้อมูล:ยกเลิก")) {
 					case 1:
 						callfunc "func_3rdgc",0;
 						close;
 					case 2:
-						mes "You stop the confirmation of information.";
+						mes "คุณหยุดการยืนยันข้อมูล";
 						close;
 					}
 				}
 			}
 		}
 	} else if (job_3rd_gc == 8) {
-		mes "You want to know something?";
-		mes "We have a marvelous girl in our village.";
+		mes "เจ้าอยากรู้อะไรไหมล่ะ?";
+		mes "เรามีเด็กผู้หญิงที่น่าอัศจรรย์คนหนึ่งในหมู่บ้านของเรา";
 		next;
-		mes "[Old Man]";
-		mes "I don't know what kind of gift she has, but she knows how to find people.";
+		mes "[ชายแก่]";
+		mes "ข้าไม่รู้ว่านางมีพรสวรรค์แบบไหน แต่นางรู้วิธีตามหาคน";
 		next;
-		mes "[Old Man]";
-		mes "If you want to find her, ask that kid.";
+		mes "[ชายแก่]";
+		mes "ถ้าเจ้าอยากพบนาง ก็ไปถามเด็กคนนั้นดูสิ";
 		close;
 	} else {
-		mes "I still don't know.";
-		mes "I'm too old...";
+		mes "ข้าก็ยังไม่รู้อยู่ดี";
+		mes "ข้าแก่เกินไปแล้ว...";
 		close;
 	}
 }
@@ -1919,170 +1919,170 @@ veins,235,126,3	script	Old Man#3rdgc07	945,{
 veins,223,180,3	script	Girl#3rdgc09	941,{
 	mes "[Melissa]";
 	if (job_3rd_gc == 8) {
-		mes "Hi?";
-		mes "What?";
-		mes "Have you lost a friend?";
+		mes "หวัดดี?";
+		mes "อะไรเหรอ?";
+		mes "เจ้าทำเพื่อนหายเหรอจ๊ะ?";
 		next;
-		switch(select("Do you know something?:No...")) {
+		switch(select("เจ้ารู้อะไรบางอย่างไหม?:เปล่า...")) {
 		case 1:
 			mes "[Melissa]";
-			mes "I have a special gift that I've had my whole life.";
-			mes "People visit me when they need to find something.";
+			mes "ข้ามีพรสวรรค์พิเศษติดตัวมาตั้งแต่เกิดเลยนะ";
+			mes "ผู้คนมักจะมาหาข้าเวลาที่พวกเขาต้องการตามหาอะไรบางอย่าง";
 			next;
 			mes "[Melissa]";
-			mes "Are looking for someone?";
-			mes "Can you tell me about their character?";
+			mes "กำลังตามหาใครอยู่เหรอ?";
+			mes "บอกลักษณะนิสัยหรือรูปร่างของเขาให้ข้าฟังหน่อยได้ไหม?";
 			next;
-			switch(select("You are joking.:Let me do it.")) {
+			switch(select("เจ้าล้อเล่นน่า:ลองดูหน่อยก็ได้")) {
 			case 1:
 				mes "[Melissa]";
-				mes "Ha! But you'll come back to me when you need to find someone.";
-				mes "I know everything.";
+				mes "ฮ่า! แต่เดี๋ยวเจ้าก็ต้องกลับมาหาข้าอยู่ดีเวลาที่ต้องการตามหาใครสักคน";
+				mes "ข้ารู้ทุกอย่างนั่นแหละ";
 				close;
 			case 2:
 				set .@ans00, 0;
 				mes "[Melissa]";
-				mes "Ok, answer my question.";
-				mes "Is it a boy or a girl?";
+				mes "ตกลง ตอบคำถามของข้านะ";
+				mes "คนนั้นเป็นผู้ชายหรือผู้หญิง?";
 				next;
-				switch(select("A boy:A girl")) {
+				switch(select("ผู้ชาย:ผู้หญิง")) {
 				case 1:
 					mes "[Melissa]";
-					mes "A boy and...";
+					mes "ผู้ชาย และ...";
 					break;
 				case 2:
 					mes "[Melissa]";
-					mes "A girl and...";
+					mes "ผู้หญิง และ...";
 					set .@ans00, .@ans00+1;
 					break;
 				}
 				next;
 				mes "[Melissa]";
-				mes "What is the hair color?";
+				mes "สีผมสีอะไรเหรอ?";
 				next;
-				switch(select("Dark:Red:Light yellowish:White")) {
+				switch(select("สีเข้ม:สีแดง:สีเหลืองอ่อน:สีขาว")) {
 				case 1:
 					mes "[Melissa]";
-					mes "Dark hair color... hmm...";
-					mes "Dark brown or black hair...";
+					mes "ผมสีเข้ม... อืม...";
+					mes "ผมสีน้ำตาลเข้มหรือสีดำสินะ...";
 					break;
 				case 2:
 					mes "[Melissa]";
-					mes "Light brown or dark orange... Red hair...";
+					mes "สีน้ำตาลอ่อนหรือส้มเข้ม... ผมสีแดง...";
 					break;
 				case 3:
 					mes "[Melissa]";
-					mes "Light orange to blonde hair.";
+					mes "สีส้มอ่อนไปจนถึงผมสีบลอนด์";
 					set .@ans00, .@ans00+1;
 					break;
 				case 4:
 					mes "[Melissa]";
-					mes "Gray... white... gold... silver hair...";
+					mes "สีเทา... ขาว... ทอง... หรือผมสีเงิน...";
 					break;
 				}
 				next;
 				mes "[Melissa]";
-				mes "Young or old?";
+				mes "อายุน้อยหรือแก่แล้วล่ะ?";
 				next;
-				switch(select("Like a child.:Young.:Middle-aged.:Very old.")) {
+				switch(select("เหมือนเด็ก:วัยรุ่น:วัยกลางคน:แก่มาก")) {
 				case 1:
 					mes "[Melissa]";
-					mes "And a child.";
+					mes "แล้วก็เป็นเด็ก";
 					break;
 				case 2:
 					mes "[Melissa]";
-					mes "A young person.";
-					mes "Like you?";
+					mes "เป็นคนหนุ่มสาว";
+					mes "เหมือนเจ้างั้นเหรอ?";
 					set .@ans00, .@ans00+1;
 					break;
 				case 3:
 					mes "[Melissa]";
-					mes "Same age as a tool salesman?";
-					mes "Middle-aged.";
+					mes "อายุเท่ากับพนักงานขายอุปกรณ์พวกนั้นไหม?";
+					mes "วัยกลางคนสินะ";
 					break;
 				case 4:
 					mes "[Melissa]";
-					mes "Yes, very old.";
+					mes "ใช่ แก่มากเลย";
 					break;
 				}
 				next;
 				mes "[Melissa]";
-				mes "Hi, "+((Sex == SEX_MALE)?"brother":"sister")+"~ Let me collect all of the information you've provided...";
+				mes "ไงจ๊ะ "+((Sex == SEX_MALE)?"พี่ชาย":"พี่สาว")+"~ เดี๋ยวข้าจะรวบรวมข้อมูลทั้งหมดที่ท่านให้มานะ...";
 				next;
-				mes "- She begins to murmur and gestures toward the sky. Her hair springs up as she says... -";
+				mes "- นางเริ่มพึมพำและทำท่าทางไปบนท้องฟ้า ผมของนางตั้งชันขึ้นในขณะที่พูดว่า... -";
 				next;
 				if (.@ans00 == 3) {
 					mes "[Melissa]";
-					mes "Got it!";
-					mes "I know her.";
-					mes "Her name is ^4d4dffEstillda^000000.";
-					mes "Right?";
+					mes "นึกออกแล้ว!";
+					mes "ข้ารู้จักนาง";
+					mes "นางชื่อ ^4d4dffEstillda^000000";
+					mes "ใช่ไหมล่ะ?";
 					next;
 					mes "[Melissa]";
-					mes "Why are you looking for her? Is she your friend?";
-					mes "She gave me candy the other day.";
+					mes "ทำไมท่านถึงตามหานางล่ะ? นางเป็นเพื่อนท่านเหรอ?";
+					mes "นางเคยให้ขนมข้าด้วยนะเมื่อวันก่อน";
 					next;
 					mes "[Melissa]";
-					mes "Umm... this girl...";
-					mes "will pass around";
-					mes "a blind alley in";
-					mes "about 1 hour!";
-					mes "Hehehe!";
+					mes "อืม... เด็กผู้หญิงคนนี้...";
+					mes "จะเดินผ่าน";
+					mes "ทางตันแถวๆ นี้";
+					mes "ในอีกประมาณ 1 ชั่วโมง!";
+					mes "อิอิ!";
 					erasequest 7103;
 					setquest 7104;
 					set job_3rd_gc, 9;
 					next;
 					mes "[Melissa]";
-					mes "She has to be who you're looking for. I'm never wrong.";
-					mes "Tell me I did a good job!";
+					mes "นางต้องเป็นคนที่ท่านตามหาแน่ๆ ข้าไม่เคยพลาด";
+					mes "ชมข้าหน่อยสิว่าข้าเก่งมาก!";
 					next;
-					switch(select("Pat Melissa on the head.:Giver her a thumbs up sign.")) {
+					switch(select("ลูบหัว Melissa:ยกนิ้วโป้งให้")) {
 					case 1:
-						mes "You pat Melissa on the head.";
-						mes "She reacts like a puppy would.";
+						mes "คุณลูบหัว Melissa";
+						mes "นางตอบสนองเหมือนกับลูกสุนัขตัวน้อย";
 						next;
 						mes "[Melissa]";
-						mes "Hehehe...";
-						mes "I'm here to help~!";
+						mes "ฮิฮิฮิ...";
+						mes "ข้าอยู่ที่นี่เพื่อช่วยนะ~!";
 						close;
 					case 2:
 						mes "[Melissa]";
-						mes "Hehehe...";
-						mes "I did good!";
+						mes "ฮิฮิฮิ...";
+						mes "ข้าทำดีใช่ไหมล่ะ!";
 						close;
 					}
 				} else {
 					mes "[Melissa]";
-					mes "Umm...";
-					mes "That person who has those characteristics is...";
+					mes "อืม...";
+					mes "คนที่มีลักษณะแบบนั้นคือ...";
 					next;
 					mes "[Melissa]";
-					mes "Wha-...? Eww, I've never been wrong.";
-					mes "I don't know why, but I can't see that person.";
+					mes "อะ...อะไรนะ? แหวะ ข้าไม่เคยพลาดนะ";
+					mes "ข้าไม่รู้ว่าทำไม แต่ข้ามองไม่เห็นคนคนนั้นเลย";
 					next;
 					mes "[Melissa]";
-					mes "Eeeahhh! Wahhh!";
+					mes "แงงงง! แงงงง!";
 					next;
-					mes "- All I can do is soothe Melissa as she cries. I have to think about the person's characteristics again. -";
+					mes "- สิ่งเดียวที่ทำได้คือปลอบ Melissa ที่กำลังร้องไห้ ฉันต้องกลับไปทบทวนลักษณะของคนคนนั้นใหม่อีกครั้ง -";
 					close;
 				}
 			}
 		case 2:
 			mes "[Melissa]";
-			mes "It's strange.";
-			mes "In this village people are always looking for someone.";
+			mes "แปลกจัง";
+			mes "ในหมู่บ้านนี้มีแต่คนตามหาใครบางคนอยู่ตลอดเลย";
 			close;
 		}
 	} else if (job_3rd_gc == 9) {
-		mes "Did you find her?";
-		mes "Say thanks to her for giving me candy the other day.";
+		mes "เจอตัวนางหรือยังจ๊ะ?";
+		mes "ฝากขอบคุณนางด้วยนะสำหรับขนมเมื่อวันก่อน";
 		close;
 	} else {
-		mes "When I'm looking for people, an angel wearing black clothes gives me information.";
+		mes "เวลาที่ข้าตามหาใครสักคน จะมีเทวดาในชุดสีดำคอยให้ข้อมูลกับข้า";
 		next;
 		mes "[Melissa]";
-		mes "I told Daora about this story, then she said to me not to do it again.";
-		mes "Maybe she isn't a good angel.";
+		mes "ข้าเคยเล่าเรื่องนี้ให้ Daora ฟัง แล้วนางก็บอกข้าว่าอย่าทำแบบนั้นอีก";
+		mes "บางทีเขาอาจจะไม่ใช่เทวดาใจดีก็ได้";
 		close;
 	}
 }
@@ -2093,107 +2093,107 @@ OnTouch:
 	if (job_3rd_gc == 9) {
 		if ((checkquest(7104,PLAYTIME) == 0) || (checkquest(7105,PLAYTIME) == 0)) {
 			mes ".....?";
-			mes "There's a sign of somebody present.";
-			mes "You still have time.";
+			mes "มีความรู้สึกเหมือนมีใครบางคนอยู่แถวนี้";
+			mes "คุณยังพอมีเวลาอยู่";
 			close;
 		} else if ((checkquest(7104,PLAYTIME) == 2) || (checkquest(7105,PLAYTIME) == 2)) {
-			mes "The blind alley that Melissa told me about must be this street.";
+			mes "ทางตันที่ Melissa บอกไว้ต้องเป็นถนนสายนี้แน่ๆ";
 			next;
-			mes "There's a sign of somebody present.";
-			mes "A blonde girl shows up!";
+			mes "มีความรู้สึกเหมือนมีใครบางคนอยู่แถวนี้";
+			mes "เด็กสาวผมบลอนด์ปรากฏตัวออกมา!";
 			donpcevent "Estillda#3rdgc10::OnEnable";
 			next;
-			select("Make a surprise attack.");
+			select("ทำการโจมตีทีเผลอ");
 			set .@c_spec, readparam(bDex)+readparam(bAspd)+readparam(bCritical);
 			if (.@c_spec > 209 || (!rand(2) && .@c_spec > 190 && .@c_spec < 210) || (!rand(3) && .@c_spec < 191)) {
-				mes "You take her by the wrist trying not to let her see you.";
-				mes "The food that she is holding falls on the floor.";
+				mes "คุณคว้าข้อมือของนางไว้ พยายามไม่ให้นางมองเห็นตัวคุณ";
+				mes "อาหารที่นางถืออยู่ร่วงลงพื้น";
 				next;
 				mes "[Estillda]";
-				mes "Ahhhh!";
-				mes "Who are you?";
-				mes "What are you doing?";
+				mes "กรี๊ดดด!";
+				mes "คุณเป็นใคร?";
+				mes "คุณกำลังจะทำอะไรน่ะ?";
 				next;
-				if(select("Who sent you?:Who's from Rachel?") == 2) {
+				if(select("ใครส่งเจ้ามา?:ใครมาจาก Rachel?") == 2) {
 					mes "[Estillda]";
-					mes "I don't know! I don't have any idea. I don't know him!";
+					mes "ข้าไม่รู้! ข้าไม่รู้เรื่องเลย ข้าไม่รู้จักเขา!";
 					next;
 				}
 				mes "[Estillda]";
-				mes "If I buy stuff for him...";
-				mes "He said that he can pay for my labor and production costs.";
+				mes "ถ้าข้าซื้อของไปให้เขา...";
+				mes "เขาบอกว่าเขาจะจ่ายค่าแรงและค่าสินค้าให้ข้า";
 				next;
 				mes "[Estillda]";
-				mes "I don't know who he is.";
-				mes "It's true.";
-				mes "Is he bad guy?";
+				mes "ข้าไม่รู้ว่าเขาเป็นใคร";
+				mes "มันคือเรื่องจริงนะ";
+				mes "เขาเป็นคนเลวงั้นเหรอ?";
 				next;
 				mes "[Estillda]";
-				mes "Help me, please?";
-				mes "Help me.";
-				mes "I'll do anything you want.";
+				mes "ได้โปรด ช่วยข้าด้วย?";
+				mes "ช่วยข้าด้วย";
+				mes "ข้าจะยอมทำทุกอย่างตามที่ท่านต้องการเลย";
 				next;
 				mes "[Estillda]";
-				mes "I didn't know anything about him, I don't know if he's a bad guy.";
-				mes "I just bought some stuff... (sobbing)...";
+				mes "ข้าไม่รู้อะไรเกี่ยวกับเขาเลย ข้าไม่รู้ด้วยซ้ำว่าเขาเป็นคนไม่ดี";
+				mes "ข้าก็แค่มาซื้อของ... (สะอึกสะอื้น)...";
 				next;
-				mes "- Estillda is in shock because she thinks that she's in trouble. -";
+				mes "- Estillda กำลังช็อกเพราะนางคิดว่านางกำลังตกที่นั่งลำบาก -";
 				next;
-				select("Calm her down.");
+				select("ปลอบให้นางสงบลง");
 				mes "["+strcharinfo(0)+"]";
-				mes "Just relax for a second.";
-				mes "I totally understand what you're saying.";
-				mes "You won't get into any trouble.";
-				next;
-				mes "["+strcharinfo(0)+"]";
-				mes "I'm looking for a guy who committed a crime and ran away.";
-				mes "I have to catch him.";
+				mes "ใจเย็นๆ ก่อนนะ";
+				mes "ข้าเข้าใจในสิ่งที่เจ้าพูดทั้งหมด";
+				mes "เจ้าจะไม่ได้รับอันตรายใดๆ ทั้งสิ้น";
 				next;
 				mes "["+strcharinfo(0)+"]";
-				mes "So who made you get those supplies?";
+				mes "ข้ากำลังตามหาชายที่ก่อคดีอาชญากรรมแล้วหนีมา";
+				mes "ข้าจำเป็นต้องจับตัวเขา";
 				next;
 				mes "["+strcharinfo(0)+"]";
-				mes "If you cooperate with me, I'm going to protect you until this is all done.";
-				mes "The Assassin Guild will protect you.";
-				next;
-				mes "[Estillda]";
-				mes "You promise, right?";
-				mes "How can I help you?";
-				next;
-				select("When are you supposed to meet?");
-				mes "[Estillda]";
-				mes "Oh, I already delivered the stuff.";
-				mes "I'm on my way back.";
-				next;
-				mes "[Estillda]";
-				mes "Ah, these are mine.";
-				mes "I got a lot of zeny.";
+				mes "แล้วใครเป็นคนสั่งให้เจ้าเตรียมเสบียงพวกนี้?";
 				next;
 				mes "["+strcharinfo(0)+"]";
-				mes "Then go straight this way and pretend that nothing happened.";
+				mes "ถ้าเจ้าให้ความร่วมมือกับข้า ข้าจะปกป้องเจ้าจนกว่าเรื่องนี้จะจบ";
+				mes "กิลด์แอสแซสซินจะคุ้มครองเจ้าเอง";
 				next;
-				mes "- I demand that she walks as usual and tell her how to get to Daora's pub. -";
+				mes "[Estillda]";
+				mes "ท่านสัญญาแล้วนะ?";
+				mes "ข้าจะช่วยท่านได้อย่างไรบ้าง?";
+				next;
+				select("พวกเจ้ามีกำหนดเจอกันเมื่อไหร่?");
+				mes "[Estillda]";
+				mes "โอ้ ข้าส่งของให้เรียบร้อยแล้วล่ะ";
+				mes "ข้ากำลังเดินกลับอยู่พอดี";
+				next;
+				mes "[Estillda]";
+				mes "อา ของพวกนี้คือของข้าเอง";
+				mes "ข้าได้ Zeny มาเยอะเลย";
+				next;
+				mes "["+strcharinfo(0)+"]";
+				mes "งั้นเจ้าจงเดินตรงไปทางนี้ และแกล้งทำเหมือนไม่มีอะไรเกิดขึ้น";
+				next;
+				mes "- ฉันสั่งให้นางเดินไปตามปกติและบอกวิธีไปยังผับของ Daora -";
 				donpcevent "Estillda#3rdgc10::OnDisable";
 				if (checkquest(7104) > -1) erasequest 7104;
 				if (checkquest(7105) > -1) erasequest 7105;
 				set job_3rd_gc, 10;
 				setquest 7106;
 				next;
-				mes "- The pub in the underground of Veins is the best place to keep her safe. -";
+				mes "- ผับใต้ดินใน Veins คือที่ที่ปลอดภัยที่สุดในการดูแลนาง -";
 				close;
 			} else {
-				mes "- I tried to take her by the wrist, but she already knew and ran away screaming. -";
+				mes "- ฉันพยายามจะคว้าข้อมือนางไว้ แต่นางรู้ตัวก่อนและวิ่งหนีไปพร้อมกับกรีดร้อง -";
 				donpcevent "Estillda#3rdgc10::OnDisable";
 				if (checkquest(7104) > -1) erasequest 7104;
 				if (checkquest(7105) > -1) erasequest 7105;
 				setquest 7105;
 				next;
-				mes "You couldn't catch Estillda.";
+				mes "คุณไม่สามารถจับตัว Estillda ได้";
 				close;
 			}
 		} else {
-			mes "An error has occurred.";
-			mes "Please contact the GM team to fix this situation.";
+			mes "เกิดข้อผิดพลาดขึ้น";
+			mes "โปรดติดต่อทีมงาน GM เพื่อแก้ไขสถานการณ์นี้";
 			close;
 		}
 	}
@@ -2212,118 +2212,118 @@ OnEnable:
 
 job3_guil01,79,15,1	script	Estillda#3rdgc11	919,{
 	if (job_3rd_gc == 11) {
-		mes "Estillda is looking around with an anxious expression on her face.";
+		mes "Estillda กำลังมองไปรอบๆ ด้วยสีหน้ากระวนกระวายใจ";
 		next;
-		switch(select("Are you ok?:Intimidate her.")) {
+		switch(select("เจ้าไม่เป็นไรนะ?:ข่มขู่ให้นางกลัว")) {
 		case 1:
 			mes "[Estillda]";
-			mes "Yes? Yes...";
-			mes "I thought assassins were scary.";
-			mes "But I don't think so...";
+			mes "คะ? ใช่ค่ะ...";
+			mes "ข้านึกว่าพวกแอสแซสซินจะน่ากลัวกว่านี้เสียอีก";
+			mes "แต่ข้าว่าไม่ใช่นะ...";
 			next;
-			select("You don't look like you're from Veins");
+			select("เจ้าดูไม่เหมือนคนแถว Veins เลยนะ");
 			mes "[Estillda]";
-			mes "Yes? Yes...";
-			mes "I'm from Rachel.";
-			mes "I'm here to make zeny.";
-			mes "I had a desolate life in Rachel.";
+			mes "คะ? ใช่ค่ะ...";
+			mes "ข้ามาจาก Rachel";
+			mes "ข้ามาที่นี่เพื่อหาเงิน";
+			mes "ข้ามีชีวิตที่แร้นแค้นมากใน Rachel";
 			next;
-			switch(select("You came here with alone?:Had a desolate life...")) {
+			switch(select("เจ้ามาที่นี่คนเดียวงั้นเหรอ?:มีชีวิตที่แร้นแค้นงั้นเหรอ...")) {
 			case 1:
 				mes "[Estillda]";
-				mes "No.";
-				mes "I don't think so.";
-				mes "I came here with a guy.";
+				mes "เปล่าค่ะ";
+				mes "ข้าไม่คิดอย่างนั้นนะ";
+				mes "ข้ามาที่นี่กับผู้ชายคนหนึ่ง";
 				next;
 				mes "[Estillda]";
-				mes "I usually come here by myself. Sometimes he checks my destination.";
-				mes "I thought that he is an important person from some company.";
+				mes "ข้ามักจะมาที่นี่ด้วยตัวเอง บางครั้งเขาก็จะคอยเช็คดูว่าข้าไปไหนบ้าง";
+				mes "ข้านึกว่าเขาเป็นคนสำคัญจากบริษัทอะไรสักอย่างเสียอีก";
 				next;
 				mes "[Estillda]";
-				mes "But I don't know who he is.";
+				mes "แต่ข้าไม่รู้จริงๆ ว่าเขาเป็นใคร";
 				break;
 			case 2:
 				mes "[Estillda]";
-				mes "I'm a native,";
-				mes "I work in his house.";
-				mes "I think it's not bad.";
-				mes "I just left my home...";
+				mes "ข้าเป็นคนท้องถิ่น";
+				mes "ข้าทำงานในบ้านของเขา";
+				mes "ข้าว่ามันก็ไม่เลวนะ";
+				mes "ข้าเพิ่งออกจากบ้านมา...";
 				next;
 				mes "[Estillda]";
-				mes "He said that he needed a maid and that he could pay me enough money.";
+				mes "เขาบอกว่าเขาต้องการสาวใช้ และเขาจะจ่ายเงินให้ข้าอย่างงาม";
 				break;
 			}
 			next;
 			mes "[Estillda]";
-			mes "Actually I don't know him well.";
-			mes "...I'll never do it.";
-			mes "I want to go home. I miss my mommy.";
+			mes "ความจริงข้าก็ไม่รู้จักเขาดีหรอกค่ะ";
+			mes "...ข้าจะไม่ทำแบบนี้อีกแล้ว";
+			mes "ข้าอยากกลับบ้าน ข้าคิดถึงแม่";
 			next;
-			switch(select("What can you tell me?:Tell me what you know!")) {
+			switch(select("เจ้าบอกอะไรข้าได้บ้าง?:บอกสิ่งที่เจ้ารู้ออกมาให้หมด!")) {
 			case 1:
 				mes "[Estillda]";
-				mes "Yes. Right?";
-				mes "I'm going to tell you everything that I know.";
+				mes "ได้ค่ะ ใช่ไหมล่ะ?";
+				mes "ข้าจะบอกทุกอย่างที่ข้ารู้ให้ท่านฟัง";
 				break;
 			case 2:
 				mes "[Estillda]";
-				mes "Sorry. I'm sorry.";
-				mes "I'm going to do what you want...";
+				mes "ขอโทษค่ะ ข้าขอโทษ";
+				mes "ข้าจะทำตามที่ท่านต้องการทุกอย่างเลย...";
 				next;
 				mes "["+strcharinfo(0)+"]";
-				mes "Your attitude is a problem.";
-				mes "Let's take up the main subject.";
+				mes "ทัศนคติของเจ้านี่เป็นปัญหานะ";
+				mes "เข้าเรื่องสำคัญกันเลยดีกว่า";
 				break;
 			}
 			next;
 			mes "[Estillda]";
-			mes "I usually supply food";
-			mes "and other life necessities.";
+			mes "ข้ามักจะคอยจัดเตรียมอาหาร";
+			mes "และของใช้ที่จำเป็นอื่นๆ ค่ะ";
 			next;
 			mes "[Estillda]";
-			mes "I buy some food to eat for myself.";
-			mes "And I buy expensive food for him everyday.";
+			mes "ข้าจะซื้ออาหารบางส่วนไว้กินเอง";
+			mes "และซื้ออาหารราคาแพงไปให้เขาทุกวัน";
 			next;
 			mes "[Estillda]";
-			mes "I think he is very fussy about food...";
-			mes "And I get money whenever I deliver food..";
+			mes "ข้าว่าเขาเป็นคนจุกจิกเรื่องอาหารมากเลยล่ะ...";
+			mes "และข้าจะได้เงินทุกครั้งที่ไปส่งอาหาร";
 			next;
-			select("Where did you sleep?");
+			select("เจ้าพักอยู่ที่ไหน?");
 			mes "[Estillda]";
-			mes "Yes? Yes, around here.";
-			mes "There is a place that soldiers stay.";
-			mes "He wants me to stay there...";
+			mes "คะ? ค่ะ แถวๆ นี้แหละ";
+			mes "มีที่พักที่พวกทหารใช้พักอาศัยอยู่";
+			mes "เขาอยากให้ข้าพักอยู่ที่นั่น...";
 			next;
-			select("When are you supposed to meet?");
+			select("พวกเจ้าจะเจอกันครั้งต่อไปเมื่อไหร่?");
 			mes "[Estillda]";
-			mes "In a couple of hours.";
-			mes "At a warehouse underground in the south.";
+			mes "ในอีกไม่กี่ชั่วโมงข้างหน้านี้ค่ะ";
+			mes "ที่โกดังใต้ดินทางทิศใต้";
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "Thanks for your cooperation.";
-			mes "Your house is in Rachel?";
-			mes "Estillda is your real name?";
-			mes "Yes, I'm going to draw his rations in Rachel.";
+			mes "ขอบใจสำหรับความร่วมมือ";
+			mes "บ้านของเจ้าอยู่ที่ Rachel สินะ?";
+			mes "Estillda นี่คือชื่อจริงของเจ้าหรือเปล่า?";
+			mes "ใช่ ข้ากำลังจะไปตัดสบียงของมันที่ Rachel";
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "To go back home without an accident.";
+			mes "จงกลับบ้านอย่างปลอดภัย อย่าให้มีอุบัติเหตุล่ะ";
 			set job_3rd_gc, 12;
 			changequest 7106,7107;
 			close;
 		case 2:
 			mes "[Estillda]";
-			mes "Yes?";
-			mes "Please...";
-			mes "Don't kill me.";
+			mes "คะ?";
+			mes "ได้โปรด...";
+			mes "อย่าฆ่าข้าเลย";
 			next;
-			mes "- Estillda looks scared. You need to change the subject. -";
+			mes "- Estillda ดูหวาดกลัวมาก คุณจำเป็นต้องเปลี่ยนหัวข้อสนทนา -";
 			close;
 		}
 	} else if (job_3rd_gc == 12) {
 		mes "[Estillda]";
-		mes "We usually meet at the same place at the same time.";
-		mes "It's in a warehouse underground in the south.";
-		mes "Don't tell him that I told you.";
+		mes "พวกเรามักจะเจอกันที่เดิมเวลาเดิมค่ะ";
+		mes "อยู่ที่โกดังใต้ดินทางทิศใต้";
+		mes "อย่าบอกเขาเด็ดขาดนะว่าข้าเป็นคนบอกท่าน";
 		close;
 	}
 	end;
@@ -2337,31 +2337,31 @@ OnInit:
 OnTouch_:
 	if (job_3rd_gc == 12) {
 		if (checkquest(7107,PLAYTIME) == 2) {
-			mes "This must be the place Estillda told me about.";
+			mes "ที่นี่ต้องเป็นที่ที่ Estillda บอกไว้แน่ๆ";
 			next;
-			switch(select("Go inside.:Observe the situation.")) {
+			switch(select("เข้าไปข้างใน:สังเกตการณ์ดูสถานการณ์ก่อน")) {
 			case 1:
 				if ($@3rdgc_room01 == 0) {
 					warp "job3_guil02",34,44;
 					set $@3rdgc_room01, 1;
 				} else {
-					mes "You tried to open the door but it's locked.";
-					mes "It doesn't show any signs of life.";
+					mes "คุณพยายามเปิดประตู แต่มันถูกล็อคไว้";
+					mes "ไม่มีวี่แววของสิ่งมีชีวิตอยู่ข้างในเลย";
 					next;
-					mes "Come back here later.";
+					mes "ลองกลับมาใหม่ภายหลัง";
 				}
 				close;
 			case 2:
-				mes "I back up to watch the situation unfold.";
+				mes "ฉันถอยออกมาเพื่อเฝ้าดูสถานการณ์ที่กำลังจะเกิดขึ้น";
 				close;
 			}
 		} else if (checkquest(7107,PLAYTIME) == 0) {
-			mes "This must be the place Estillda told me about.";
-			mes "I have enough time for meeting.";
+			mes "ที่นี่ต้องเป็นที่ที่ Estillda บอกไว้แน่ๆ";
+			mes "ฉันยังมีเวลาเหลือก่อนที่จะถึงเวลานัดหมาย";
 			close;
 		} else {
-			mes "An error has occurred.";
-			mes "Contact the GM team to resolve the situation.";
+			mes "เกิดข้อผิดพลาดขึ้น";
+			mes "โปรดติดต่อทีมงาน GM เพื่อแก้ไขสถานการณ์นี้";
 			close;
 		}
 	}
@@ -2385,7 +2385,7 @@ OnTouch_:
 		donpcevent "A man with black clothes::OnEnable";
 		disablenpc "#3rdgc_room01_mag01";
 	} else {
-		mes "You don't have to come here now.";
+		mes "เจ้ายังไม่จำเป็นต้องมาที่นี่ตอนนี้";
 		close;
 		warp "veins",178,62;
 		set $@3rdgc_room01, 0;
@@ -2393,11 +2393,11 @@ OnTouch_:
 	}
 	end;
 OnTimer295000:
-	mapannounce "job3_guil02","Dandelion: ...Ha, you are strong and sticky!",bc_map,"0xA8A8A8"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil02","Dandelion: ...หึ เจ้าแข็งแกร่งและตื๊อชะมัด!",bc_map,"0xA8A8A8"; //FW_NORMAL 12 0 0
 	donpcevent "A man with black clothes::OnReset";
 	end;
 OnTimer296000:
-	mapannounce "job3_guil02","The Dandelion ran away.",bc_map,"0x7b68ee"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil02","The Dandelion หนีไปแล้ว",bc_map,"0x7b68ee"; //FW_NORMAL 12 0 0
 	end;
 OnTimer298000:
 	mapwarp "job3_guil02","veins",186,65;
@@ -2429,34 +2429,34 @@ OnReset:
 	end;
 OnTouch_:
 	if (!.on) end;
-	mes "[A man with black clothes]";
-	mes "You just arrived here.";
-	mes "Why are you so late?";
-	mes "Put your stuff down.";
+	mes "[ชายในชุดดำ]";
+	mes "เจ้าเพิ่งมาถึงงั้นเหรอ";
+	mes "ทำไมถึงมาช้าอย่างนี้?";
+	mes "วางของลงซะ";
 	next;
 	select("......");
-	mes "[A man with black clothes]";
-	mes "May the goddess bless you eternally...";
+	mes "[ชายในชุดดำ]";
+	mes "ขอให้เทพธิดาคุ้มครองเจ้าชั่วนิรันดร์...";
 	npcskill "AL_BLESSING",10,0,0;
 	next;
 	emotion ET_SURPRISE;
-	mes "[A man with black clothes]";
-	mes "Who... who are you?!";
-	mes "A... Assassin Guild?!";
-	mes "What?!";
-	mes "When did I give you a clue?!";
+	mes "[ชายในชุดดำ]";
+	mes "ใคร... แกเป็นใครกัน?!";
+	mes "กะ... กิลด์แอสแซสซิน?!";
+	mes "อะไรกัน?!";
+	mes "ข้าไปทิ้งร่องรอยไว้ตอนไหนกัน?!";
 	next;
-	select("You lost your head...");
+	select("แกเสียสติไปแล้ว...");
 	mes "["+strcharinfo(0)+"]";
-	mes "Is this the correct target?";
-	mes "Can you talk with me for a sec?";
+	mes "นี่คือเป้าหมายที่ถูกต้องใช่ไหม?";
+	mes "ขอคุยด้วยสักครู่ได้ไหม?";
 	next;
-	mes "[A man with black clothes]";
-	mes "No way!!!!";
-	mes "You... I'll make you close your eyes forever!";
+	mes "[ชายในชุดดำ]";
+	mes "ไม่มีทาง!!!!";
+	mes "แก... ข้าจะทำให้แกหลับตาลงตลอดกาลเอง!";
 	next;
 	mes "["+strcharinfo(0)+"]";
-	mes "What?!";
+	mes "อะไรนะ?!";
 	close2;
 	donpcevent "A man with black clothes::OnDisable";
 	monster "job3_guil02",51,43,"Dandelion",2031,1,"A man with black clothes::OnMyMobDead";
@@ -2490,36 +2490,36 @@ OnTimer61000:
 
 job3_guil02,49,43,5	script	Dandelion#3rdgc12	457,{
 	if (!checkweight(1201,2)) {
-		mes "- You can't continue this quest because you have too many items. -";
+		mes "- คุณไม่สามารถดำเนินเควสนี้ต่อได้ เนื่องจากมีไอเทมในตัวมากเกินไป -";
 		close;
 	}
 	if (job_3rd_gc == 12) {
 		mes "[Dandelion]";
-		mes "Eyah!";
-		mes "You... won't find anything.";
-		mes "Everything... is guided... by the goddess...";
-		mes "Keeek!";
+		mes "อิ๊ยะ!";
+		mes "พวกแก... จะไม่มีวันได้อะไรไปทั้งนั้น";
+		mes "ทุกสิ่ง... ถูกชี้นำ... โดยองค์เทพธิดา...";
+		mes "กี้ก!";
 		next;
-		mes "- He puts something in his mouth and swallows. -";
+		mes "-เขาเอาบางอย่างใส่เข้าไปในปากและกลืนลงไป -";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "What is that?!";
-		mes "What do you have in your mouth...?";
-		mes "Why did you do that?";
+		mes "นั่นมันอะไรกัน?!";
+		mes "แกเอาอะไรใส่เข้าไปในปากน่ะ...?";
+		mes "ทำไมแกถึงทำแบบนั้น?";
 		next;
-		mes "It's too late to save him.";
-		mes "He passed away.";
-		mes "You find a key with a fancy decoration around his neck.";
+		mes "สายเกินไปที่จะช่วยชีวิตเขาแล้ว";
+		mes "เขาได้จากไปแล้ว";
+		mes "คุณพบกุญแจที่มีการตกแต่งอย่างหรูหราแขวนอยู่รอบคอของเขา";
 		set job_3rd_gc, 13;
-		getitem 6150,1; //Key_Of_The_Mansion
+		getitem 6150,1; //Key_Of_The_Mansion (กุญแจคฤหาสน์)
 		changequest 7107,7108;
 		close;
 	} else {
 		if (job_3rd_gc == 13) {
-			mes "There is nothing to do.";
-			mes "Let's get out of here.";
+			mes "ไม่มีอะไรต้องทำที่นี่แล้ว";
+			mes "ออกไปจากที่นี่กันเถอะ";
 		} else
-			mes "You are shoved by an unknown force.";
+			mes "คุณถูกผลักโดยพลังงานลึกลับบางอย่าง";
 		close2;
 		warp "veins",178,62;
 		end;
@@ -2535,131 +2535,131 @@ OnEnable:
 
 rachel,115,77,3	script	Girke#3rdgc13	85,{
 	mes "[Girke]";
-	mes "Oh~ young man.";
-	mes "I'm Girke Sara.";
-	mes "Just call me Girke.";
+	mes "โอ้~ พ่อหนุ่ม";
+	mes "ข้าชื่อ Girke Sara";
+	mes "เรียกข้าว่า Girke ก็พอ";
 	next;
-	mes "- He smells like alcohol. -";
-	next;
-	mes "[Girke]";
-	mes "You know what?";
-	mes "A man who is a legendary key artisan lives in our village.";
-	mes "Hiccup~";
+	mes "- ตัวเขามีกลิ่นเหล้าโชยออกมา -";
 	next;
 	mes "[Girke]";
-	mes "Ah~hahahaha";
-	mes "My dad likes pieces of work like that.";
-	mes "One day, he said to me.";
+	mes "เจ้ารู้อะไรไหม?";
+	mes "ชายผู้เป็นช่างทำกุญแจระดับตำนานอาศัยอยู่ในหมู่บ้านของเรานี่แหละ";
+	mes "เอื๊อก~ (เสียงสะอึก)";
 	next;
 	mes "[Girke]";
-	mes "'Girke, my wish is having a key crafted from Oresa.'";
+	mes "อา~ ฮ่าฮ่าฮ่าฮ่า";
+	mes "พ่อของข้าชอบงานฝีมือพวกนั้นมาก";
+	mes "วันหนึ่ง ท่านเคยพูดกับข้าว่า";
 	next;
 	mes "[Girke]";
-	mes "But Oresa already disappeared after handing everything over to his apprentice.";
-	mes "Finally, my dad passed away without seeing such a key...";
+	mes "'Girke ความปรารถนาของพ่อคือการได้ครอบครองกุญแจที่ประดิษฐ์โดย Oresa'";
 	next;
 	mes "[Girke]";
-	mes "You know.";
-	mes "That Oresa! He lives in our town?!";
-	mes "Hiccup~";
+	mes "แต่ Oresa ก็หายตัวไปหลังจากส่งต่องานทุกอย่างให้กับลูกศิษย์ของเขา";
+	mes "ท้ายที่สุด พ่อของข้าก็จากไปโดยที่ไม่มีโอกาสได้เห็นกุญแจแบบนั้นเลย...";
 	next;
 	mes "[Girke]";
-	mes "But he is too old...";
-	mes "But the artisan is...";
+	mes "เจ้าเชื่อมั้ย";
+	mes "Oresa คนนั้นน่ะ! เขาอาศัยอยู่ในเมืองของเราเนี่ยแหละ?!";
+	mes "เอื๊อก~";
 	next;
 	mes "[Girke]";
-	mes "...difficult to meet.";
-	mes "Like my dad... He's a bit of a loner.";
+	mes "แต่เขาแก่มากแล้วล่ะ...";
+	mes "แต่ตัวช่างศิลป์คนนั้นน่ะ...";
 	next;
 	mes "[Girke]";
-	mes "What am I talking to you about.";
-	mes "Are you drunken? Daddy... (sobbing)";
-	mes "Ah... Daddy...";
+	mes "...เข้าพบได้ยากมาก";
+	mes "เหมือนกับพ่อของข้าเลย... เขาเป็นพวกชอบสันโดษนิดหน่อย";
 	next;
-	mes "- Girke starts to cry. -";
+	mes "[Girke]";
+	mes "นี่ข้ากำลังพูดอะไรกับเจ้าอยู่เนี่ย";
+	mes "เจ้าเมาเหรอ? คุณพ่อครับ... (ร้องไห้กระซิก)";
+	mes "อา... พ่อจ๋า...";
+	next;
+	mes "- Girke เริ่มร้องไห้โฮ -";
 	close;
 }
 
 ra_in01,175,196,3	script	Oresa Rava#3rdgc13	866,{
 	mes "[Oresa Rava]";
 	if (job_3rd_gc == 13) {
-		mes "I don't know why you are visiting me, but I'm not crafting anymore.";
-		mes "I'm too old to craft.";
+		mes "ข้าไม่รู้ว่าทำไมเจ้าถึงมาหาข้า แต่ข้าเลิกทำงานฝีมือแล้วล่ะ";
+		mes "ข้าแก่เกินกว่าจะประดิษฐ์อะไรได้อีกแล้ว";
 		next;
-		select("Do you know this key?");
+		select("ท่านรู้จักกุญแจดอกนี้ไหม?");
 		mes "[Oresa Rava]";
-		mes "Hmm? Umm... Give it to me.";
-		mes "This pattern...";
-		mes "Where did you get this from?";
+		mes "หืม? อืม... ส่งมันมาให้ข้าดูหน่อย";
+		mes "ลวดลายแบบนี้มัน...";
+		mes "เจ้าไปได้มันมาจากไหนกัน?";
 		next;
-		switch(select("I just picked it up.:I have a story...")) {
+		switch(select("ข้าเพิ่งเก็บมันได้น่ะ:ข้ามีเรื่องราวจะเล่าให้ฟัง...")) {
 		case 1:
 			mes "[Oresa Rava]";
-			mes "Umm? Did you just pick it up?";
-			mes "That's impossible.";
-			mes "Did something happen in that house.";
+			mes "หืม? เจ้าเพิ่งเก็บมันได้งั้นรึ?";
+			mes "เป็นไปไม่ได้หรอก";
+			mes "มีบางอย่างเกิดขึ้นในบ้านหลังนั้นงั้นรึ";
 			next;
 			mes "[Oresa Rava]";
-			mes "So what will you do with this key?";
+			mes "แล้วเจ้าจะทำยังไงกับกุญแจดอกนี้ต่อไปล่ะ?";
 			next;
-			select("I'm going to find the owner.");
+			select("ข้ากำลังจะไปตามหาเจ้าของครับ");
 			mes "[Oresa Rava]";
-			mes "Ah~! That's why you came here to see me.";
-			mes "I gave that key to a person who was a priest.";
-			next;
-			mes "[Oresa Rava]";
-			mes "I couldn't see my home after he became a priest, but I made a key for a celebration.";
+			mes "อา~! มิน่าล่ะเจ้าถึงมาหาข้า";
+			mes "ข้ามอบกุญแจดอกนั้นให้กับคนคนหนึ่งที่เป็นนักบวช";
 			next;
 			mes "[Oresa Rava]";
-			mes "It's a key to his mansion.";
-			mes "Now I don't know where he lives.";
-			mes "But can you visit there and send over the caretaker of the summer cottage?";
+			mes "ข้าไม่ได้เห็นบ้านของตัวเองเลยหลังจากที่เขากลายเป็นนักบวช แต่ข้าได้ทำกุญแจดอกหนึ่งขึ้นเพื่อเป็นการเฉลิมฉลอง";
+			next;
+			mes "[Oresa Rava]";
+			mes "มันคือกุญแจสำหรับคฤหาสน์ของเขา";
+			mes "ตอนนี้ข้าไม่รู้แล้วว่าเขาพักอยู่ที่ไหน";
+			mes "แต่เจ้าช่วยลองไปเยี่ยมเยียนที่นั่นแล้วตามหาคนดูแลบ้านพักตากอากาศดูหน่อยได้ไหม?";
 			next;
 			break;
 		case 2:
 			mes "[Oresa Rava]";
-			mes "I don't know what's going on.";
-			mes "I gave that key to a person who was a priest.";
+			mes "ข้าไม่รู้ว่าเกิดอะไรขึ้นบ้าง";
+			mes "ข้ามอบกุญแจดอกนั้นให้กับคนคนหนึ่งที่เป็นนักบวช";
 			next;
 			mes "[Oresa Rava]";
-			mes "I couldn't see my home after he became a priest, but I made a key for a celebration.";
+			mes "ข้าไม่ได้เห็นบ้านของตัวเองเลยหลังจากที่เขากลายเป็นนักบวช แต่ข้าได้ทำกุญแจดอกหนึ่งขึ้นเพื่อเป็นการเฉลิมฉลอง";
 			next;
 			mes "[Oresa Rava]";
-			mes "It's a key to his mansion.";
-			mes "Now I don't know where he lives.";
-			mes "But can you visit there and send over the caretaker of the summer cottage?";
+			mes "มันคือกุญแจสำหรับคฤหาสน์ของเขา";
+			mes "ตอนนี้ข้าไม่รู้แล้วว่าเขาพักอยู่ที่ไหน";
+			mes "แต่เจ้าช่วยลองไปเยี่ยมเยียนที่นั่นแล้วตามหาคนดูแลบ้านพักตากอากาศดูหน่อยได้ไหม?";
 			next;
 			mes "[Oresa Rava]";
-			mes "Actually, I can't trust you...";
-			mes "But you showed up with a key. It may be an act of providence.";
+			mes "ความจริงข้าก็ไม่ค่อยอยากจะเชื่อใจเจ้าหรอกนะ...";
+			mes "แต่การที่เจ้าปรากฏตัวพร้อมกับกุญแจดอกนี้ มันอาจจะเป็นบัญชาจากสวรรค์ก็ได้";
 			next;
-			select("Sure.");
+			select("แน่นอนครับ");
 			break;
 		}
 		mes "[Oresa Rava]";
-		mes "That mansion was...";
-		mes "built in a gorge of Veins.";
-		mes "I don't know the exact location of it though.";
+		mes "คฤหาสน์หลังนั้น...";
+		mes "ถูกสร้างขึ้นในหุบเขาของเมือง Veins";
+		mes "ข้าเองก็ไม่รู้ตำแหน่งที่แน่นอนของมันเหมือนกัน";
 		next;
-		select("That should be enough.");
+		select("แค่นั้นก็น่าจะพอแล้วครับ");
 		mes "[Oresa Rava]";
-		mes "Are you sure?";
-		mes "You are so kind.";
-		mes "Send over that key.";
+		mes "เจ้าแน่ใจนะ?";
+		mes "เจ้าช่างมีน้ำใจเหลือเกิน";
+		mes "ส่งกุญแจดอกนั้นมาสิ";
 		next;
-		mes "- Find the owner of that key soon and tell Mayshell. -";
+		mes "- จงตามหาเจ้าของกุญแจดอกนั้นโดยเร็วและแจ้งให้ Mayshell ทราบ -";
 		set job_3rd_gc, 14;
 		close;
 	} else if (job_3rd_gc == 14) {
-		mes "That key is of a mansion built in a gorge of Veins.";
-		mes "I'm sure of it.";
+		mes "กุญแจดอกนั้นเป็นของคฤหาสน์ที่สร้างขึ้นในหุบเขาของ Veins";
+		mes "ข้ามั่นใจ";
 		close;
 	} else {
-		mes "It's an old story about that artisan.";
-		mes "Now... It's best to see my grandchild.";
+		mes "มันเป็นเรื่องราวเก่าแก่ของช่างฝีมือคนนั้น";
+		mes "ตอนนี้... การได้เห็นหลานของข้าคือสิ่งที่ดีที่สุดแล้วล่ะ";
 		next;
 		mes "[Oresa Rava]";
-		mes "You are laughing now, but you will understand me soon.";
+		mes "เจ้าหัวเราะตอนนี้เถอะ แต่เจ้าจะเข้าใจข้าในไม่ช้า";
 		close;
 	}
 }
@@ -2669,33 +2669,33 @@ ve_fild02,330,384,3	script	Girl#3rdgc14	466,{
 	if (job_3rd_gc > 14 && job_3rd_gc < 18) {
 		mes "[Renzak]";
 		if (job_3rd_gc == 15) {
-			mes "You are here.";
-			mes "I'm Renzak.";
-			mes "You sent here from Mayshell?";
-			//mes "I'm not dwelling on."; //FIXME: Dialogue.
+			mes "เจ้ามาถึงแล้วสินะ";
+			mes "ข้าคือ Renzak";
+			mes "Mayshell เป็นคนส่งเจ้ามาที่นี่ใช่ไหม?";
+			//mes "I'm not dwelling on."; //FIXME: Dialogue. (ข้าไม่ยึดติดกับเรื่องที่ผ่านไปแล้ว)
 			next;
 			mes "[Renzak]";
-			mes "Our final target is over there.";
-			mes "The mansion is surrounded by cliffs.";
-			mes "You must remove the target in the mansion.";
+			mes "เป้าหมายสุดท้ายของเราอยู่ทางโน้น";
+			mes "คฤหาสน์ถูกล้อมรอบด้วยหน้าผา";
+			mes "เจ้าต้องกำจัดเป้าหมายที่อยู่ในคฤหาสน์นั่นซะ";
 			next;
 			mes "[Renzak]";
-			mes "I'm going to give you 10 min.";
-			mes "Complete your task and then wait in the backdoor of the mansion.";
-			mes "I'll wait for you there.";
+			mes "ข้าจะให้เวลาเจ้า 10 นาที";
+			mes "ทำภารกิจให้สำเร็จแล้วไปรอที่ประตูหลังของคฤหาสน์";
+			mes "ข้าจะรอเจ้าอยู่ที่นั่น";
 		} else if (job_3rd_gc == 16) {
-			mes "You have to attain our goal and come out of the mansion's backdoor within 10 minutes.";
-			mes "You can do it.";
+			mes "เจ้าต้องทำตามเป้าหมายให้สำเร็จและออกมาที่ประตูหลังของคฤหาสน์ภายใน 10 นาที";
+			mes "เจ้าทำได้อยู่แล้ว";
 		} else {
-			mes "You failed.";
-			mes "You must succeed.";
+			mes "เจ้าล้มเหลว";
+			mes "เจ้าต้องทำให้สำเร็จให้ได้";
 			next;
 			mes "[Renzak]";
-			mes "You have to come out of the mansion's backdoor.";
-			mes "I'll wait for you.";
+			mes "เจ้าต้องออกมาทางประตูหลังของคฤหาสน์";
+			mes "ข้าจะรอเจ้าอยู่";
 		}
 		next;
-		switch(select("I got it.:I'll be ready.")) {
+		switch(select("รับทราบครับ:ข้าจะเตรียมตัวให้พร้อม")) {
 		case 1:
 			if ($@3rdgc_room02 == 0) {
 				erasequest ((job_3rd_gc == 17)?7110:7109);
@@ -2705,18 +2705,18 @@ ve_fild02,330,384,3	script	Girl#3rdgc14	466,{
 				warp "job3_guil03",22,70;
 			} else {
 				mes "[Renzak]";
-				mes "Wait a second.";
-				mes "Just wait until it gets dark.";
+				mes "รอสักครู่";
+				mes "รอจนกว่าจะมืดกว่านี้หน่อย";
 				next;
 				mes "[Renzak]";
-				mes "It'll be easy to infiltrate because it's covered by the cliff's shadow.";
+				mes "มันจะง่ายกว่าในการลอบเข้าไปเพราะที่นั่นจะถูกปกคลุมด้วยเงาของหน้าผา";
 				set job_3rd_gc, 16;
 			}
 			close;
 		case 2:
 			mes "[Renzak]";
-			mes "You don't have time to spare.";
-			mes "You should prepare for action.";
+			mes "เจ้าไม่มีเวลาให้เสียเที่ยวแล้วนะ";
+			mes "เจ้าควรเตรียมพร้อมสำหรับการลงมือ";
 			if (job_3rd_gc == 17) {
 				erasequest 7110;
 				setquest 7109;
@@ -2726,17 +2726,17 @@ ve_fild02,330,384,3	script	Girl#3rdgc14	466,{
 		}
 	} else if (job_3rd_gc > 18) {
 		mes "[Renzak]";
-		mes "You look good.";
-		mes "Me? I've always had the same figure.";
+		mes "เจ้าดูดีขึ้นนะ";
+		mes "ข้าเหรอ? ข้าก็มีรูปร่างหน้าตาเหมือนเดิมตลอดนั่นแหละ";
 		next;
 		mes "[Renzak]";
-		mes "I just wait for guys who will do what I ask.";
+		mes "ข้าแค่รอคอยคนที่ยอมทำตามในสิ่งที่ข้าขอ";
 		close;
 	} else {
-		mes "[Shadow-faced girl]";
+		mes "[เด็กสาวผู้มีใบหน้าอยู่ในเงา]";
 		mes "......";
-		mes "This road is blocked.";
-		mes "Go back.";
+		mes "ถนนเส้นนี้ถูกปิดกั้น";
+		mes "กลับไปซะ";
 		close;
 	}
 OnInit:
@@ -2761,14 +2761,14 @@ OnTouch_:
 		donpcevent "#3rdgc_event_master::OnEnable";
 		disablenpc "#3rdgc_event01";
 	} else {
-		mes "You don't have to come here.";
+		mes "เจ้าไม่จำเป็นต้องมาที่นี่";
 		close2;
 		warp "ve_fild02",330,379;	//Pre-RE: ve_fild05 (341,303)
 		set $@3rdgc_room02, 0;
 	}
 	end;
 OnTimer900000:
-	mapannounce "job3_guil03","Renzak : Withdraw!",bc_map,"0xA8A8A8"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil03","Renzak : ถอยทัพ!",bc_map,"0xA8A8A8"; //FW_NORMAL 12 0 0
 	end;
 OnTimer901000:
 	mapwarp "job3_guil03","ve_fild02",330,379;	//Pre-RE: ve_fild05 (341,303)
@@ -2839,11 +2839,11 @@ OnDisable:
 	disablenpc "Barbed-Wire Entanglement";
 	end;
 OnTouch_:
-	mes "There is space on the bottom of the old fence.";
+	mes "มีช่องว่างอยู่ที่ด้านล่างของรั้วเก่าๆ";
 	next;
-	if(select("Find another way.:Climb into the space.") == 2) {
-		mes "You climb into the narrow space.";
-		mes "The hole is blocked with the old barbed-wire entanglements.";
+	if(select("หาทางอื่น:มุดเข้าไปในช่องว่าง") == 2) {
+		mes "คุณมุดเข้าไปในช่องว่างแคบๆ";
+		mes "รูรั้วถูกปิดกั้นด้วยลวดหนามเก่าๆ";
 		close2;
 		warp "job3_guil03",57,79;
 		disablenpc "Barbed-Wire Entanglement";
@@ -2859,17 +2859,17 @@ OnStop:
 	stopnpctimer;
 	end;
 OnTouch_:
-	mapannounce "job3_guil03","Man's voice : Umm? Is that a shadow in the window?",bc_map,"0xA8A8A8"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil03","เสียงผู้ชาย : หืม? นั่นเงาอะไรตรงหน้าต่างน่ะ?",bc_map,"0xA8A8A8"; //FW_NORMAL 12 0 0
 	initnpctimer;
 	end;
 OnTimer2000:
 	monster "job3_guil03",97,49,"Guard",1985,1,"#3rdgc_hide01::OnMyMobDead";
 	monster "job3_guil03",98,49,"Guard",1985,1,"#3rdgc_hide01::OnMyMobDead";
 	monster "job3_guil03",99,49,"Guard Dog",1866,1,"#3rdgc_hide01::OnMyMobDead";
-	mapannounce "job3_guil03","Guards : An invader!!",bc_map,"0x7b68ee"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil03","ยาม : ผู้บุกรุก!!",bc_map,"0x7b68ee"; //FW_NORMAL 12 0 0
 	end;
 OnTimer60000:
-	mapannounce "job3_guil03","Guards : Keep strict watch!!",bc_map,"0x7b68ee"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil03","ยาม : เฝ้าระวังอย่างเข้มงวด!!",bc_map,"0x7b68ee"; //FW_NORMAL 12 0 0
 	donpcevent "#3rdgc_guard::OnEnable";
 	stopnpctimer;
 	end;
@@ -2886,17 +2886,17 @@ OnStop:
 	stopnpctimer;
 	end;
 OnTouch_:
-	mapannounce "job3_guil03","Man's voice : There is something outside!",bc_map,"0xA8A8A8"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil03","เสียงผู้ชาย : มีบางอย่างอยู่ข้างนอก!",bc_map,"0xA8A8A8"; //FW_NORMAL 12 0 0
 	initnpctimer;
 	end;
 OnTimer2000:
 	monster "job3_guil03",97,57,"Guard",1985,1,"#3rdgc_hide02::OnMyMobDead";
 	monster "job3_guil03",98,57,"Guard",1985,1,"#3rdgc_hide02::OnMyMobDead";
 	monster "job3_guil03",99,57,"Guard Dog",1866,1,"#3rdgc_hide02::OnMyMobDead";
-	mapannounce "job3_guil03","Guards : An invader!!",bc_map,"0x7b68ee"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil03","ยาม : ผู้บุกรุก!!",bc_map,"0x7b68ee"; //FW_NORMAL 12 0 0
 	end;
 OnTimer60000:
-	mapannounce "job3_guil03","Guards : Keep strict watch!!",bc_map,"0x7b68ee"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil03","ยาม : เฝ้าระวังอย่างเข้มงวด!!",bc_map,"0x7b68ee"; //FW_NORMAL 12 0 0
 	donpcevent "#3rdgc_guard::OnEnable";
 	stopnpctimer;
 	end;
@@ -2913,17 +2913,17 @@ OnStop:
 	stopnpctimer;
 	end;
 OnTouch_:
-	mapannounce "job3_guil03","Man's voice : What is that?",bc_map,"0xA8A8A8"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil03","เสียงผู้ชาย : นั่นมันอะไรน่ะ?",bc_map,"0xA8A8A8"; //FW_NORMAL 12 0 0
 	initnpctimer;
 	end;
 OnTimer2000:
 	monster "job3_guil03",97,67,"Guard",1985,1,"#3rdgc_hide03::OnMyMobDead";
 	monster "job3_guil03",98,67,"Guard",1985,1,"#3rdgc_hide03::OnMyMobDead";
 	monster "job3_guil03",99,67,"Guard Dog",1866,1,"#3rdgc_hide03::OnMyMobDead";
-	mapannounce "job3_guil03","Guards : An invader!!",bc_map,"0x7b68ee"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil03","ยาม : ผู้บุกรุก!!",bc_map,"0x7b68ee"; //FW_NORMAL 12 0 0
 	end;
 OnTimer60000:
-	mapannounce "job3_guil03","Guards : Keep strict watch!!",bc_map,"0x7b68ee"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil03","ยาม : เฝ้าระวังอย่างเข้มงวด!!",bc_map,"0x7b68ee"; //FW_NORMAL 12 0 0
 	donpcevent "#3rdgc_guard::OnEnable";
 	stopnpctimer;
 	end;
@@ -2942,7 +2942,7 @@ OnStop:
 	stopnpctimer;
 	end;
 OnTimer5000:
-	mapannounce "job3_guil03","Guards : Take strict precaution outside!",bc_map,"0x7b68ee"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil03","ยาม : ตรวจตราด้านนอกอย่างเข้มงวด!",bc_map,"0x7b68ee"; //FW_NORMAL 12 0 0
 	donpcevent "Exterior Guard#g01::OnEnable";
 	donpcevent "Exterior Guard#g02::OnEnable";
 	donpcevent "Exterior Guard#g03::OnEnable";
@@ -2951,21 +2951,21 @@ OnTimer5000:
 	donpcevent "Exterior Guard#g06::OnEnable";
 	end;
 OnTimer8000:
-	mapannounce "job3_guil03","Guards : Take strict precaution of the front gate!",bc_map,"0x7b68ee"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil03","ยาม : เฝ้าระวังบริเวณประตูหน้าอย่างเข้มงวด!",bc_map,"0x7b68ee"; //FW_NORMAL 12 0 0
 	donpcevent "Front Gate Guard#g01::OnEnable";
 	donpcevent "Front Gate Guard#g03::OnEnable";
 	donpcevent "Front Gate Guard#g04::OnEnable";
 	donpcevent "Front Gate Guard#g05::OnEnable";
 	end;
 OnTimer13000:
-	mapannounce "job3_guil03","Guards : Take strict precaution of the back gate!",bc_map,"0x7b68ee"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil03","ยาม : เฝ้าระวังบริเวณประตูหลังอย่างเข้มงวด!",bc_map,"0x7b68ee"; //FW_NORMAL 12 0 0
 	donpcevent "Back Gate Guard#g01::OnEnable";
 	donpcevent "Back Gate Guard#g03::OnEnable";
 	donpcevent "Back Gate Guard#g04::OnEnable";
 	donpcevent "Back Gate Guard#g05::OnEnable";
 	end;
 OnTimer16000:
-	mapannounce "job3_guil03","Guards : Take strict precaution of the interior!",bc_map,"0x7b68ee"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil03","ยาม : ตรวจสอบความเรียบร้อยภายในคฤหาสน์!",bc_map,"0x7b68ee"; //FW_NORMAL 12 0 0
 	donpcevent "Interior Guard#g01::OnEnable";
 	donpcevent "Interior Guard#g03::OnEnable";
 	donpcevent "Interior Guard#g04::OnEnable";
@@ -3010,10 +3010,10 @@ OnReset:
 	donpcevent "Exterior Guard#g06::OnReset";
 	end;
 OnTimer1000:
-	mapannounce "job3_guil03","Guards : Umm? I'm imagining things.",bc_map,"0x7b68ee"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil03","ยาม : หือ? สงสัยข้าคงตาฝาดไปเอง",bc_map,"0x7b68ee"; //FW_NORMAL 12 0 0
 	end;
 OnTimer4000:
-	mapannounce "job3_guil03","Guards : Let's go back.",bc_map,"0x7b68ee"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil03","ยาม : กลับไปประจำที่กันเถอะ",bc_map,"0x7b68ee"; //FW_NORMAL 12 0 0
 	end;
 OnTimer5000:
 	donpcevent "Front Gate Guard#g01::OnDisable";
@@ -3066,12 +3066,12 @@ OnTouch_:
 	disablenpc "Front Gate Guard#g03";
 	disablenpc "Front Gate Guard#g04";
 	disablenpc "Front Gate Guard#g05";
-	monster "job3_guil03",93,37,"Guard Dog",1866,1,"Front Gate Guard#g01::OnMyMobDead";
-	monster "job3_guil03",93,36,"Front Gate Guard",1985,1,"Front Gate Guard#g01::OnMyMobDead";
-	monster "job3_guil03",93,35,"Front Gate Guard",1985,1,"Front Gate Guard#g01::OnMyMobDead";
-	monster "job3_guil03",93,34,"Front Gate Guard",1985,1,"Front Gate Guard#g01::OnMyMobDead";
-	monster "job3_guil03",93,33,"Front Gate Guard",1985,1,"Front Gate Guard#g01::OnMyMobDead";
-	monster "job3_guil03",93,32,"Guard Dog",1866,1,"Front Gate Guard#g01::OnMyMobDead";
+	monster "job3_guil03",93,37,"สุนัขเฝ้ายาม",1866,1,"Front Gate Guard#g01::OnMyMobDead";
+	monster "job3_guil03",93,36,"ยามเฝ้าประตูหน้า",1985,1,"Front Gate Guard#g01::OnMyMobDead";
+	monster "job3_guil03",93,35,"ยามเฝ้าประตูหน้า",1985,1,"Front Gate Guard#g01::OnMyMobDead";
+	monster "job3_guil03",93,34,"ยามเฝ้าประตูหน้า",1985,1,"Front Gate Guard#g01::OnMyMobDead";
+	monster "job3_guil03",93,33,"ยามเฝ้าประตูหน้า",1985,1,"Front Gate Guard#g01::OnMyMobDead";
+	monster "job3_guil03",93,32,"สุนัขเฝ้ายาม",1866,1,"Front Gate Guard#g01::OnMyMobDead";
 	end;
 OnMyMobDead:
 	end;
@@ -3097,12 +3097,12 @@ OnTouch_:
 	disablenpc "Back Gate Guard#g03";
 	disablenpc "Back Gate Guard#g04";
 	disablenpc "Back Gate Guard#g05";
-	monster "job3_guil03",133,54,"Guard Dog",1866,1,"Back Gate Guard#g01::OnMyMobDead";
-	monster "job3_guil03",133,53,"Back Gate Guard",1985,1,"Back Gate Guard#g01::OnMyMobDead";
-	monster "job3_guil03",133,52,"Back Gate Guard",1985,1,"Back Gate Guard#g01::OnMyMobDead";
-	monster "job3_guil03",133,51,"Back Gate Guard",1985,1,"Back Gate Guard#g01::OnMyMobDead";
-	monster "job3_guil03",133,50,"Back Gate Guard",1985,1,"Back Gate Guard#g01::OnMyMobDead";
-	monster "job3_guil03",133,49,"Guard Dog",1866,1,"Back Gate Guard#g01::OnMyMobDead";
+	monster "job3_guil03",133,54,"สุนัขเฝ้ายาม",1866,1,"Back Gate Guard#g01::OnMyMobDead";
+	monster "job3_guil03",133,53,"ยามเฝ้าประตูหลัง",1985,1,"Back Gate Guard#g01::OnMyMobDead";
+	monster "job3_guil03",133,52,"ยามเฝ้าประตูหลัง",1985,1,"Back Gate Guard#g01::OnMyMobDead";
+	monster "job3_guil03",133,51,"ยามเฝ้าประตูหลัง",1985,1,"Back Gate Guard#g01::OnMyMobDead";
+	monster "job3_guil03",133,50,"ยามเฝ้าประตูหลัง",1985,1,"Back Gate Guard#g01::OnMyMobDead";
+	monster "job3_guil03",133,49,"สุนัขเฝ้ายาม",1866,1,"Back Gate Guard#g01::OnMyMobDead";
 	end;
 OnMyMobDead:
 	end;
@@ -3128,12 +3128,12 @@ OnTouch_:
 	disablenpc "Interior Guard#g03";
 	disablenpc "Interior Guard#g04";
 	disablenpc "Interior Guard#g05";
-	monster "job3_guil03",117,53,"Guard Dog",1866,1,"Interior Guard#g01::OnMyMobDead";
-	monster "job3_guil03",117,52,"Interior Guard",1985,1,"Interior Guard#g01::OnMyMobDead";
-	monster "job3_guil03",117,51,"Interior Guard",1985,1,"Interior Guard#g01::OnMyMobDead";
-	monster "job3_guil03",117,50,"Interior Guard",1985,1,"Interior Guard#g01::OnMyMobDead";
-	monster "job3_guil03",117,49,"Interior Guard",1985,1,"Interior Guard#g01::OnMyMobDead";
-	monster "job3_guil03",117,48,"Guard Dog",1866,1,"Interior Guard#g01::OnMyMobDead";
+	monster "job3_guil03",117,53,"สุนัขเฝ้ายาม",1866,1,"Interior Guard#g01::OnMyMobDead";
+	monster "job3_guil03",117,52,"ยามภายใน",1985,1,"Interior Guard#g01::OnMyMobDead";
+	monster "job3_guil03",117,51,"ยามภายใน",1985,1,"Interior Guard#g01::OnMyMobDead";
+	monster "job3_guil03",117,50,"ยามภายใน",1985,1,"Interior Guard#g01::OnMyMobDead";
+	monster "job3_guil03",117,49,"ยามภายใน",1985,1,"Interior Guard#g01::OnMyMobDead";
+	monster "job3_guil03",117,48,"สุนัขเฝ้ายาม",1866,1,"Interior Guard#g01::OnMyMobDead";
 	end;
 OnMyMobDead:
 	end;
@@ -3155,11 +3155,11 @@ OnReset:
 	killmonster "job3_guil03","Exterior Guard#g01::OnMyMobDead";
 	end;
 OnTouch_:
-	mapannounce "job3_guil03","Guards : Who are you?!",bc_map,"0xA8A8A8"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil03","ยาม : นั่นใครน่ะ?!",bc_map,"0xA8A8A8"; //FW_NORMAL 12 0 0
 	disablenpc "Exterior Guard#g01";
-	monster "job3_guil03",88,44,"Exterior Guard",1985,1,"Exterior Guard#g01::OnMyMobDead";
-	monster "job3_guil03",88,43,"Exterior Guard",1985,1,"Exterior Guard#g01::OnMyMobDead";
-	monster "job3_guil03",88,45,"Guard Dog",1866,1,"Exterior Guard#g01::OnMyMobDead";
+	monster "job3_guil03",88,44,"ยามภายนอก",1985,1,"Exterior Guard#g01::OnMyMobDead";
+	monster "job3_guil03",88,43,"ยามภายนอก",1985,1,"Exterior Guard#g01::OnMyMobDead";
+	monster "job3_guil03",88,45,"สุนัขเฝ้ายาม",1866,1,"Exterior Guard#g01::OnMyMobDead";
 	end;
 OnMyMobDead:
 	end;
@@ -3178,11 +3178,11 @@ OnReset:
 	killmonster "job3_guil03","Exterior Guard#g02::OnMyMobDead";
 	end;
 OnTouch_:
-	mapannounce "job3_guil03","Guards : Enemy?!",bc_map,"0xA8A8A8"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil03","ยาม : ศัตรูงั้นเหรอ?!",bc_map,"0xA8A8A8"; //FW_NORMAL 12 0 0
 	disablenpc "Exterior Guard#g02";
-	monster "job3_guil03",88,55,"Exterior Guard",1985,1,"Exterior Guard#g02::OnMyMobDead";
-	monster "job3_guil03",88,54,"Exterior Guard",1985,1,"Exterior Guard#g02::OnMyMobDead";
-	monster "job3_guil03",88,56,"Guard Dog",1866,1,"Exterior Guard#g02::OnMyMobDead";
+	monster "job3_guil03",88,55,"ยามภายนอก",1985,1,"Exterior Guard#g02::OnMyMobDead";
+	monster "job3_guil03",88,54,"ยามภายนอก",1985,1,"Exterior Guard#g02::OnMyMobDead";
+	monster "job3_guil03",88,56,"สุนัขเฝ้ายาม",1866,1,"Exterior Guard#g02::OnMyMobDead";
 	end;
 OnMyMobDead:
 	end;
@@ -3201,11 +3201,11 @@ OnReset:
 	killmonster "job3_guil03","Exterior Guard#g03::OnMyMobDead";
 	end;
 OnTouch_:
-	mapannounce "job3_guil03","Guards : An invader, remove!",bc_map,"0xA8A8A8"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil03","ยาม : ผู้บุกรุก กำจัดมันซะ!",bc_map,"0xA8A8A8"; //FW_NORMAL 12 0 0
 	disablenpc "Exterior Guard#g03";
-	monster "job3_guil03",88,64,"Exterior Guard",1985,1,"Exterior Guard#g03::OnMyMobDead";
-	monster "job3_guil03",88,63,"Exterior Guard",1985,1,"Exterior Guard#g03::OnMyMobDead";
-	monster "job3_guil03",88,65,"Guard Dog",1866,1,"Exterior Guard#g03::OnMyMobDead";
+	monster "job3_guil03",88,64,"ยามภายนอก",1985,1,"Exterior Guard#g03::OnMyMobDead";
+	monster "job3_guil03",88,63,"ยามภายนอก",1985,1,"Exterior Guard#g03::OnMyMobDead";
+	monster "job3_guil03",88,65,"สุนัขเฝ้ายาม",1866,1,"Exterior Guard#g03::OnMyMobDead";
 	end;
 OnMyMobDead:
 	end;
@@ -3224,11 +3224,11 @@ OnReset:
 	killmonster "job3_guil03","Exterior Guard#g04::OnMyMobDead";
 	end;
 OnTouch_:
-	mapannounce "job3_guil03","Guards : Who are you?!",bc_map,"0xA8A8A8"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil03","ยาม : นั่นใครน่ะ?!",bc_map,"0xA8A8A8"; //FW_NORMAL 12 0 0
 	disablenpc "Exterior Guard#g04";
-	monster "job3_guil03",73,62,"Exterior Guard",1985,1,"Exterior Guard#g04::OnMyMobDead";
-	monster "job3_guil03",73,61,"Exterior Guard",1985,1,"Exterior Guard#g04::OnMyMobDead";
-	monster "job3_guil03",73,63,"Guard Dog",1866,1,"Exterior Guard#g04::OnMyMobDead";
+	monster "job3_guil03",73,62,"ยามภายนอก",1985,1,"Exterior Guard#g04::OnMyMobDead";
+	monster "job3_guil03",73,61,"ยามภายนอก",1985,1,"Exterior Guard#g04::OnMyMobDead";
+	monster "job3_guil03",73,63,"สุนัขเฝ้ายาม",1866,1,"Exterior Guard#g04::OnMyMobDead";
 	end;
 OnMyMobDead:
 	end;
@@ -3247,11 +3247,11 @@ OnReset:
 	killmonster "job3_guil03","Exterior Guard#g05::OnMyMobDead";
 	end;
 OnTouch_:
-	mapannounce "job3_guil03","Guards : Who are you?!",bc_map,"0xA8A8A8"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil03","ยาม : นั่นใครน่ะ?!",bc_map,"0xA8A8A8"; //FW_NORMAL 12 0 0
 	disablenpc "Exterior Guard#g05";
-	monster "job3_guil03",77,51,"Exterior Guards",1985,1,"Exterior Guard#g05::OnMyMobDead";
-	monster "job3_guil03",77,50,"Exterior Guards",1985,1,"Exterior Guard#g05::OnMyMobDead";
-	monster "job3_guil03",77,49,"Guard Dog",1866,1,"Exterior Guard#g05::OnMyMobDead";
+	monster "job3_guil03",77,51,"ยามภายนอก",1985,1,"Exterior Guard#g05::OnMyMobDead";
+	monster "job3_guil03",77,50,"ยามภายนอก",1985,1,"Exterior Guard#g05::OnMyMobDead";
+	monster "job3_guil03",77,49,"สุนัขเฝ้ายาม",1866,1,"Exterior Guard#g05::OnMyMobDead";
 	end;
 OnMyMobDead:
 	end;
@@ -3270,11 +3270,11 @@ OnReset:
 	killmonster "job3_guil03","Exterior Guard#g06::OnMyMobDead";
 	end;
 OnTouch_:
-	mapannounce "job3_guil03","Guard : Who are you?!",bc_map,"0xA8A8A8"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil03","ยาม : นั่นใครน่ะ?!",bc_map,"0xA8A8A8"; //FW_NORMAL 12 0 0
 	disablenpc "Exterior Guard#g06";
-	monster "job3_guil03",73,34,"Exterior Guards",1985,1,"Exterior Guard#g06::OnMyMobDead";
-	monster "job3_guil03",73,33,"Exterior guards",1985,1,"Exterior Guard#g06::OnMyMobDead";
-	monster "job3_guil03",73,32,"Guard Dog",1866,1,"Exterior Guard#g06::OnMyMobDead";
+	monster "job3_guil03",73,34,"ยามภายนอก",1985,1,"Exterior Guard#g06::OnMyMobDead";
+	monster "job3_guil03",73,33,"ยามภายนอก",1985,1,"Exterior Guard#g06::OnMyMobDead";
+	monster "job3_guil03",73,32,"สุนัขเฝ้ายาม",1866,1,"Exterior Guard#g06::OnMyMobDead";
 	end;
 OnMyMobDead:
 	end;
@@ -3292,12 +3292,12 @@ OnReset:
 	killmonster "job3_guil03","Guard Dog#dog01::OnMyMobDead";
 	end;
 OnTouch_:
-	mapannounce "job3_guil03","You have been detected by the guard dog.",bc_map,"0x00ff00"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil03","คุณถูกตรวจพบโดยสุนัขเฝ้ายาม",bc_map,"0x00ff00"; //FW_NORMAL 12 0 0
 	disablenpc "Guard Dog#dog01";
-	monster "job3_guil03",110,27,"Guard Dog",1866,1,"Guard Dog#dog01::OnMyMobDead";
-	monster "job3_guil03",103,27,"Dog Trainer",1985,1,"Guard Dog#dog01::OnMyMobDead";
-	monster "job3_guil03",104,27,"Dog Trainer's Assistant",1985,1,"Guard Dog#dog01::OnMyMobDead";
-	monster "job3_guil03",98,27,"Guard",1985,1,"Guard Dog#dog01::OnMyMobDead";
+	monster "job3_guil03",110,27,"สุนัขเฝ้ายาม",1866,1,"Guard Dog#dog01::OnMyMobDead";
+	monster "job3_guil03",103,27,"ครูฝึกสุนัข",1985,1,"Guard Dog#dog01::OnMyMobDead";
+	monster "job3_guil03",104,27,"ผู้ช่วยครูฝึกสุนัข",1985,1,"Guard Dog#dog01::OnMyMobDead";
+	monster "job3_guil03",98,27,"ยาม",1985,1,"Guard Dog#dog01::OnMyMobDead";
 	end;
 OnMyMobDead:
 	end;
@@ -3315,12 +3315,12 @@ OnReset:
 	killmonster "job3_guil03","Guard Dog#dog02::OnMyMobDead";
 	end;
 OnTouch_:
-	mapannounce "job3_guil03","You have been detected by the guard dog.",bc_map,"0x00ff00"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil03","คุณถูกตรวจพบโดยสุนัขเฝ้ายาม",bc_map,"0x00ff00"; //FW_NORMAL 12 0 0
 	disablenpc "Guard Dog#dog02";
-	monster "job3_guil03",124,27,"Guard Dog",1866,1,"Guard Dog#dog02::OnMyMobDead";
-	monster "job3_guil03",126,27,"Dog Trainer",1985,1,"Guard Dog#dog02::OnMyMobDead";
-	monster "job3_guil03",104,27,"Trainer's Assistant",1985,1,"Guard Dog#dog02::OnMyMobDead";
-	monster "job3_guil03",131,27,"Guard",1985,1,"Guard Dog#dog02::OnMyMobDead";
+	monster "job3_guil03",124,27,"สุนัขเฝ้ายาม",1866,1,"Guard Dog#dog02::OnMyMobDead";
+	monster "job3_guil03",126,27,"ครูฝึกสุนัข",1985,1,"Guard Dog#dog02::OnMyMobDead";
+	monster "job3_guil03",104,27,"ผู้ช่วยครูฝึก",1985,1,"Guard Dog#dog02::OnMyMobDead";
+	monster "job3_guil03",131,27,"ยาม",1985,1,"Guard Dog#dog02::OnMyMobDead";
 	end;
 OnMyMobDead:
 	end;
@@ -3329,27 +3329,27 @@ OnMyMobDead:
 job3_guil03,2,1,0	script	#3rdgc_sunchal_nomal	844,{
 	end;
 OnEnable:
-	monster "job3_guil03",62,35,"Guard",1985,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
-	monster "job3_guil03",108,78,"Guard",1985,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
-	monster "job3_guil03",133,77,"Guard",1985,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
-	monster "job3_guil03",79,69,"Guard",1985,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
-	monster "job3_guil03",117,27,"Guard",1985,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
-	monster "job3_guil03",62,48,"Guard",1985,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
-	monster "job3_guil03",116,24,"Guard Dog",1866,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
-	monster "job3_guil03",137,24,"Guard Dog",1866,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
-	monster "job3_guil03",49,74,"Guard Dog",1866,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
-	monster "job3_guil03",48,50,"Guard Dog",1866,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
-	monster "job3_guil03",62,48,"Guard Dog",1866,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
-	monster "job3_guil03",61,38,"Guard Dog",1866,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
-	monster "job3_guil03",74,47,"Guard Dog",1866,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
-	monster "job3_guil03",90,34,"Guard Dog",1866,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
-	monster "job3_guil03",91,51,"Guard Dog",1866,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
-	monster "job3_guil03",155,77,"Guard Dog",1866,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
-	monster "job3_guil03",127,67,"Guard Dog",1866,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
-	monster "job3_guil03",131,43,"Guard Dog",1866,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
-	monster "job3_guil03",103,27,"Guard Dog",1866,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
-	monster "job3_guil03",63,74,"Guard Dog",1866,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
-	monster "job3_guil03",79,69,"Guard Dog",1866,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
+	monster "job3_guil03",62,35,"ยาม",1985,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
+	monster "job3_guil03",108,78,"ยาม",1985,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
+	monster "job3_guil03",133,77,"ยาม",1985,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
+	monster "job3_guil03",79,69,"ยาม",1985,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
+	monster "job3_guil03",117,27,"ยาม",1985,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
+	monster "job3_guil03",62,48,"ยาม",1985,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
+	monster "job3_guil03",116,24,"สุนัขเฝ้ายาม",1866,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
+	monster "job3_guil03",137,24,"สุนัขเฝ้ายาม",1866,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
+	monster "job3_guil03",49,74,"สุนัขเฝ้ายาม",1866,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
+	monster "job3_guil03",48,50,"สุนัขเฝ้ายาม",1866,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
+	monster "job3_guil03",62,48,"สุนัขเฝ้ายาม",1866,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
+	monster "job3_guil03",61,38,"สุนัขเฝ้ายาม",1866,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
+	monster "job3_guil03",74,47,"สุนัขเฝ้ายาม",1866,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
+	monster "job3_guil03",90,34,"สุนัขเฝ้ายาม",1866,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
+	monster "job3_guil03",91,51,"สุนัขเฝ้ายาม",1866,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
+	monster "job3_guil03",155,77,"สุนัขเฝ้ายาม",1866,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
+	monster "job3_guil03",127,67,"สุนัขเฝ้ายาม",1866,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
+	monster "job3_guil03",131,43,"สุนัขเฝ้ายาม",1866,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
+	monster "job3_guil03",103,27,"สุนัขเฝ้ายาม",1866,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
+	monster "job3_guil03",63,74,"สุนัขเฝ้ายาม",1866,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
+	monster "job3_guil03",79,69,"สุนัขเฝ้ายาม",1866,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
 	monster "job3_guil03",0,0,"Watch Light",1129,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
 	monster "job3_guil03",0,0,"Watch Light",1129,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
 	monster "job3_guil03",0,0,"Watch Light",1129,1,"#3rdgc_sunchal_nomal::OnMyMobDead";
@@ -3369,10 +3369,10 @@ OnEnable:
 	set .@i, atoi(charat(strnpcinfo(0),20));
 	setarray .@x[1],74,124,103;
 	setarray .@y[1],63, 78, 24;
-	monster "job3_guil03",.@x[.@i],.@y[.@i],"Guard",1985,1,strnpcinfo(0)+"::OnMyMobDead";
+	monster "job3_guil03",.@x[.@i],.@y[.@i],"ยาม",1985,1,strnpcinfo(0)+"::OnMyMobDead";
 	end;
 OnStop:
-	mapannounce "job3_guil03","Guard : Am I imagining things? I just heard something...",bc_map,"0xA8A8A8"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil03","ยาม : ข้าคิดไปเองรึเปล่านะ? เหมือนจะได้ยินเสียงอะไรบางอย่าง...",bc_map,"0xA8A8A8"; //FW_NORMAL 12 0 0
 	stopnpctimer;
 	end;
 OnReset:
@@ -3382,13 +3382,13 @@ OnMyMobDead:
 	initnpctimer;
 	end;
 OnTimer3000:
-	mapannounce "job3_guil03","Guard : Huh? What's that sound. Hey, what's going on?",bc_map,"0xA8A8A8"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil03","ยาม : หือ? นั่นเสียงอะไรน่ะ เฮ้ เกิดอะไรขึ้น?",bc_map,"0xA8A8A8"; //FW_NORMAL 12 0 0
 	end;
 OnTimer70000:
-	mapannounce "job3_guil03","Guard : What's the matter?",bc_map,"0xA8A8A8"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil03","ยาม : มีเรื่องอะไรกัน?",bc_map,"0xA8A8A8"; //FW_NORMAL 12 0 0
 	end;
 OnTimer10000:
-	mapannounce "job3_guil03","Guard : Something's wrong, take caution!",bc_map,"0x7b68ee"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil03","ยาม : มีบางอย่างผิดปกติ ระวังตัวด้วย!",bc_map,"0x7b68ee"; //FW_NORMAL 12 0 0
 	donpcevent "#3rdgc_guard::OnEnable";
 	stopnpctimer;
 	end;
@@ -3405,7 +3405,7 @@ OnDisable:
 	disablenpc();
 	end;
 OnStop:
-	mapannounce "job3_guil03","Guard : Am I imagining things? I just heard something.",bc_map,"0xA8A8A8"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil03","ยาม : ข้าตาฝาดไปเองรึเปล่า? เมื่อกี้เหมือนได้ยินอะไรบางอย่าง",bc_map,"0xA8A8A8"; //FW_NORMAL 12 0 0
 	stopnpctimer;
 	end;
 OnReset:
@@ -3415,9 +3415,9 @@ OnTouch_:
 	set .@i, atoi(charat(strnpcinfo(0),19));
 	setarray .@x[1],64,86,83;
 	setarray .@y[1],68,63,36;
-	mapannounce "job3_guil03","Guard : Who are you?!",bc_map,"0x7b68ee"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil03","ยาม : นั่นใครน่ะ?!",bc_map,"0x7b68ee"; //FW_NORMAL 12 0 0
 	disablenpc();
-	monster "job3_guil03",.@x[.@i],.@y[.@i],"Guard",1985,1,strnpcinfo(0)+"::OnMyMobDead";
+	monster "job3_guil03",.@x[.@i],.@y[.@i],"ยาม",1985,1,strnpcinfo(0)+"::OnMyMobDead";
 	initnpctimer;
 	end;
 OnMyMobDead:
@@ -3426,7 +3426,7 @@ OnMyMobDead:
 OnTimer5000:
 	if (strnpcinfo(0) == "#3rdgc_gojung_kill03") end;
 OnTimer10000:
-	mapannounce "job3_guil03","Guard : I need support! Take caution!",bc_map,"0x7b68ee"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil03","ยาม : ข้าต้องการกำลังเสริม! ระวังตัวด้วย!",bc_map,"0x7b68ee"; //FW_NORMAL 12 0 0
 	donpcevent "#3rdgc_guard::OnEnable";
 	stopnpctimer;
 	end;
@@ -3437,11 +3437,11 @@ job3_guil03,83,36,5	duplicate(#3rdgc_gojung_kill01)	#3rdgc_gojung_kill03	456,6,6
 job3_guil03,88,71,0	script	#3rdgc_safezone01	139,1,1,{
 	end;
 OnTouch_:
-	mes "It's a good bush to hide yourself.";
+	mes "นี่เป็นพุ่มไม้ที่เหมาะสำหรับใช้ซ่อนตัว";
 	donpcevent strnpcinfo(0)+"::OnTimer";
 	close;
 OnTimer:
-	//FIXME: This is a workaround for...
+	//FIXME: นี่เป็นการแก้ไขปัญหาชั่วคราวสำหรับ...
 	//var pccount_tt = GetNeighborPcNumber 2
 	getmapxy(.@map$,.@x,.@y,BL_NPC);
 	setarray .@x[1],.@x-2,.@x+2;
@@ -3463,29 +3463,29 @@ job3_guil03,111,51,7	script	Priest from Rachel	928,{
 	if (!.on) end;
 	mes "[Priest from Rachel]";
 	if (job_3rd_gc == 17) {
-		mes "Are you from the Assassin Guild?";
+		mes "เจ้ามาจากสมาคม Assassin งั้นรึ?";
 		next;
 		mes "[Priest from Rachel]";
-		mes "The reason that our organization was dissolved was because of you guys.";
-		mes "You are a thorough person?";
+		mes "เหตุผลที่องค์กรของเราต้องล่มสลายลง ก็เป็นเพราะพวกเจ้านั่นแหละ";
+		mes "เจ้าเป็นคนที่รอบคอบมากเลยสินะ?";
 		next;
 		mes "[Priest from Rachel]";
-		mes "Because of you, you ruined everything!";
+		mes "เพราะเจ้าคนเดียว เจ้าทำลายทุกอย่างพังหมด!";
 		setnpcdisplay(strnpcinfo(0),2030);
 		next;
 		mes "[Priest from Rachel]";
-		mes "You want to destroy us forever!";
-		mes "I can't put the Goddess to shame on a dirty Odin!";
+		mes "เจ้าต้องการจะทำลายพวกเราให้สิ้นซากตลอดกาล!";
+		mes "ข้ามิอาจปล่อยให้เทพธิดาต้องเสื่อมเสียเกียรติบนดินแดน Odin ที่โสโครกแห่งนี้ได้!";
 		next;
 		mes "[Priest from Rachel]";
-		mes "I'll never forgive you!!!";
-		mes "Pagan! Justice will be swift!";
+		mes "ข้าจะไม่มีวันยกโทษให้เจ้า!!!";
+		mes "ไอ้พวกนอกรีต! ความยุติธรรมจะตัดสินเจ้าเดี๋ยวนี้แหละ!";
 		donpcevent "Priest from Rachel::OnDisable";
 		monster "job3_guil03",111,51,"Priest from Rachel",2030,1,"Priest from Rachel::OnMyMobDead";
 		close;
 	}
-	mes "Who are you?";
-	mes "Get out of here.";
+	mes "เจ้าเป็นใคร?";
+	mes "ออกไปจากที่นี่ซะ";
 	close2;
 	warp "ve_fild02",330,379;	//Pre-RE: ve_fild05 (341,303)
 	end;
@@ -3503,15 +3503,15 @@ OnReset:
 	end;
 OnMyMobDead:
 	donpcevent "Renzak#3rdgc16::OnEnable";
-	mapannounce "job3_guil03","I... I can't die in vain...",bc_map,"0xFF0000"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil03","ข้า... ข้าจะมาตายเปล่าแบบนี้ไม่ได้...",bc_map,"0xFF0000"; //FW_NORMAL 12 0 0
 	donpcevent "#3rdgc_event01::OnStop";
 	initnpctimer;
 	end;
 OnTimer3000:
-	mapannounce "job3_guil03","Renzak : Hey! Come out!",bc_map,"0x4d4dff"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil03","Renzak : เฮ้! ออกมาได้แล้ว!",bc_map,"0x4d4dff"; //FW_NORMAL 12 0 0
 	end;
 OnTimer40000:
-	mapannounce "job3_guil03","Renzak : Don't lag!",bc_map,"0x4d4dff"; //FW_NORMAL 12 0 0
+	mapannounce "job3_guil03","Renzak : อย่าช้าสิ!",bc_map,"0x4d4dff"; //FW_NORMAL 12 0 0
 	end;
 OnTimer60000:
 	mapwarp "job3_guil03","ve_fild02",330,379;	//Pre-RE: ve_fild05 (341,303)
@@ -3557,18 +3557,18 @@ OnTimer61500:
 job3_guil03,146,70,3	script	Renzak#3rdgc16	466,{
 	mes "[Renzak]";
 	if (checkquest(7110,HUNTING) == 2) {
-		mes "My peers will come here to settle this affair.";
-		mes "Go to Mayshell for the report.";
+		mes "เพื่อนร่วมงานของข้าจะมาที่นี่เพื่อจัดการเรื่องที่เหลือเอง";
+		mes "จงไปหา Mayshell เพื่อรายงานผลซะ";
 		next;
 		mes "[Renzak]";
 		if (checkquest(7110,PLAYTIME) == 0) {
-			mes "You finished quickly.";
-			mes "Good job.";
+			mes "เจ้าทำเสร็จได้รวดเร็วมาก";
+			mes "ทำได้ดีมาก";
 			set job_3rd_gc, 18;
 		} else {
-			mes "I told you that you have to finish within 10 minutes.";
-			mes "You might be exhausted.";
-			mes "Fortunately you are ok.";
+			mes "ข้าบอกเจ้าแล้วว่าเจ้าต้องทำให้เสร็จภายใน 10 นาที";
+			mes "เจ้าอาจจะรู้สึกเหนื่อยล้า";
+			mes "แต่โชคดีที่เจ้ายังปลอดภัยดี";
 			set job_3rd_gc, 19;
 		}
 		erasequest 7110;
@@ -3577,8 +3577,8 @@ job3_guil03,146,70,3	script	Renzak#3rdgc16	466,{
 		warp "job3_guil01",51,50;
 		end;
 	}
-	mes "Get the target!";
-	mes "Actually, I'm not supposed to be here. Is something wrong with you?";
+	mes "จัดการเป้าหมายซะ!";
+	mes "อันที่จริง ข้าไม่ควรจะมาอยู่ที่นี่นะ มีอะไรผิดปกติกับเจ้ารึเปล่า?";
 	close;
 OnInit:
 	disablenpc "Renzak#3rdgc16";
@@ -3593,80 +3593,80 @@ OnDisable:
 
 job3_guil01,148,53,3	script	Bercasell#3rdgc16	467,{
 	if (!checkweight(1201,2)) {
-		mes "- You can't continue this quest because you have too many items. -";
+		mes "- คุณไม่สามารถดำเนินเควสนี้ต่อได้เนื่องจากคุณมีไอเทมมากเกินไป -";
 		close;
 	}
 	mes "[Bercasell]";
 	if (Class == Job_Assassin || Class == Job_Assassin_Cross || Class == Job_Baby_Assassin) {
 		if (job_3rd_gc == 20) {
 			if (JobLevel > 49 && SkillPoint == 0 && BaseLevel > 98) {
-				mes "I'm so tired...";
-				mes "You were sent by Mayshell?";
-				mes "Tell me why you came to see me.";
+				mes "ข้าเหนื่อยเหลือเกิน...";
+				mes "Mayshell ส่งเจ้ามางั้นรึ?";
+				mes "บอกเหตุผลที่เจ้ามาพบข้ามาสิ";
 				next;
-				switch(select("What is a Guillotine Cross?:I want to be a Guillotine Cross.:Nothing.")) {
+				switch(select("Guillotine Cross คืออะไร?:ข้าต้องการจะเป็น Guillotine Cross:ไม่มีอะไร")) {
 				case 1:
 					mes "[Bercasell]";
 					mes ".....";
 					next;
 					mes "[Bercasell]";
-					mes "So you want to know about the Guillotine Cross?";
-					mes "Get out!";
+					mes "งั้นเจ้าอยากจะรู้จัก Guillotine Cross งั้นรึ?";
+					mes "ออกไปซะ!";
 					next;
-					switch(select("Just tell me...:......")) {
+					switch(select("ช่วยบอกข้าทีเถอะ...:......")) {
 					case 1:
 						mes "[Bercasell]";
 						callsub L_Info;
 						mes "[Bercasell]";
-						mes "It's funny that I'm talking to you like this.";
-						mes "I want to stop you from becoming a Guillotine Cross because of your defiance.";
+						mes "มันน่าตลกดีนะที่ข้ามานั่งคุยกับเจ้าแบบนี้";
+						mes "ข้าอยากจะขัดขวางไม่ให้เจ้าเป็น Guillotine Cross นัก เพราะท่าทางดื้อรั้นของเจ้านี่แหละ";
 						close;
 					case 2:
 						mes "[Bercasell]";
-						mes "Yes, you don't ask questions.";
-						mes "That's good. You are qualified. What about being a Guillotine Cross?";
-						mes "Do you want to be a Guillotine Cross?";
+						mes "ใช่แล้ว เจ้าไม่จำเป็นต้องถามคำถาม";
+						mes "นั่นแหละดี เจ้ามีคุณสมบัติที่เหมาะสม แล้วเรื่องการเป็น Guillotine Cross ล่ะ?";
+						mes "เจ้าต้องการจะเป็น Guillotine Cross หรือไม่?";
 						next;
-						switch(select("Yes, change my job.:I need to think about it.")) {
+						switch(select("ใช่ เปลี่ยนอาชีพให้ข้าที:ข้าขอคิดดูอีกที")) {
 						case 1:
 							L_JobChange:
 							mes "[Bercasell]";
-							mes "You don't regret it?";
+							mes "เจ้าจะไม่เสียใจภายหลังนะ?";
 							callsub L_Info;
 							mes "[Bercasell]";
-							mes "You can become a living offensive weapon.";
-							mes "Do you really want to become a Guillotine Cross?";
+							mes "เจ้าสามารถกลายเป็นอาวุธสงครามที่มีชีวิตได้เลยนะ";
+							mes "เจ้าต้องการที่จะเป็น Guillotine Cross จริงๆ หรือเปล่า?";
 							next;
-							switch(select("Yes, change my job.:I need to rethink it.")) {
+							switch(select("ใช่ เปลี่ยนอาชีพให้ข้าที:ข้าต้องขอกลับไปคิดใหม่")) {
 							case 1:
 								mes "[Bercasell]";
 								if (ismounting()) {
-									mes "I cannot perform the job change.";
-									mes "Please remove your mount and try again.";
+									mes "ข้าไม่สามารถดำเนินการเปลี่ยนอาชีพให้ได้";
+									mes "กรุณาลงจากสัตว์ขี่แล้วลองใหม่อีกครั้ง";
 									close;
 								} else if (SkillPoint != 0) {
-									mes "You still have unspent skill points.";
-									mes "Please use all your skill points and try again.";
+									mes "เจ้ายังมี Skill Point ที่ยังไม่ได้ใช้";
+									mes "กรุณาใช้ Skill Point ให้หมดแล้วลองใหม่อีกครั้ง";
 									close;
 								}
-								mes "Is your decision final?";
-								mes "Good.";
+								mes "เจ้าตัดสินใจเด็ดขาดแล้วใช่ไหม?";
+								mes "ดีมาก";
 								next;
 								mes "[Bercasell]";
-								mes "Now, you are an assassin, yet you are not an assassin anymore.";
-								mes "You are in the shadows, but it's different from the other shadows.";
+								mes "บัดนี้ เจ้าคือ Assassin แต่ในขณะเดียวกันเจ้าก็ไม่ใช่ Assassin อีกต่อไปแล้ว";
+								mes "เจ้าสถิตอยู่ในเงามืด แต่มันช่างแตกต่างจากเงาอื่นๆ ทั่วไป";
 								next;
 								mes "[Bercasell]";
-								mes "Your enemy is everything you can see.";
-								mes "Don't forget yourself.";
-								mes "A weight of the blood on your weapons.";
+								mes "ศัตรูของเจ้าคือทุกสิ่งที่เจ้ามองเห็น";
+								mes "อย่าลืมตัวตนของเจ้าล่ะ";
+								mes "จงตระหนักถึงน้ำหนักของเลือดที่เปื้อนอยู่บนอาวุธของเจ้าด้วย";
 								next;
 								mes "[Bercasell]";
-								mes "Ok, change your clothes to your new uniform.";
-								mes "You are now a Guillotine Cross.";
+								mes "เอาล่ะ เปลี่ยนเครื่องแต่งกายเป็นชุดใหม่ของเจ้าซะ";
+								mes "ตอนนี้เจ้าคือ Guillotine Cross แล้ว";
 								next;
 								mes "[Bercasell]";
-								mes "A sword of the shadow...";
+								mes "คมดาบแห่งเงามืด...";
 								setlook 7,0;
 								jobchange roclass(eaclass()|EAJL_THIRD);
 								if (checkquest(7096) == 1) {
@@ -3686,18 +3686,18 @@ job3_guil01,148,53,3	script	Bercasell#3rdgc16	467,{
 								getitem 5755,1; //Silent_Executer
 								next;
 								mes "[Bercasell]";
-								mes "And... these are presents to celebrate your becoming a Guillotine Cross.";
+								mes "และนี่... คือของขวัญเพื่อเฉลิมฉลองการเป็น Guillotine Cross ของเจ้า";
 								close;
 							case 2:
 								mes "[Bercasell]";
-								mes "You are prudent. That's a good thing.";
-								mes "I'll wait for the day that you decide to join us as a Guillotine Cross.";
+								mes "เจ้าเป็นคนรอบคอบดีนะ นั่นเป็นเรื่องที่ดี";
+								mes "ข้าจะรอวันที่เจ้าตัดสินใจเข้าร่วมกับพวกเราในฐานะ Guillotine Cross";
 								close;
 							}
 						case 2:
 							mes "[Bercasell]";
-							mes "You are prudent. That's a good thing.";
-							mes "I'll wait for the day that you decide to join us as a Guillotine Cross.";
+							mes "เจ้าเป็นคนรอบคอบดีนะ นั่นเป็นเรื่องที่ดี";
+							mes "ข้าจะรอวันที่เจ้าตัดสินใจเข้าร่วมกับพวกเราในฐานะ Guillotine Cross";
 							close;
 						}
 					}
@@ -3705,99 +3705,99 @@ job3_guil01,148,53,3	script	Bercasell#3rdgc16	467,{
 					goto L_JobChange;
 				case 3:
 					mes "[Bercasell]";
-					mes "Don't bother me.";
+					mes "อย่ามากวนข้า";
 					close;
 				}
 			}
 			mes "......";
-			mes "What can I do for you?";
+			mes "ข้าจะช่วยอะไรเจ้าได้บ้าง?";
 			next;
-			switch(select("I want to be a Guillotine.:Nothing.")) {
+			switch(select("ข้าอยากจะเป็น Guillotine:ไม่มีอะไร")) {
 			case 1:
 				mes "[Bercasell]";
-				mes "Do you?";
-				mes "What for...?";
-				mes "Of course, you came here with your own will...";
+				mes "งั้นรึ?";
+				mes "เพื่ออะไรล่ะ...?";
+				mes "แน่นอนว่าเจ้ามาที่นี่ด้วยความสมัครใจของเจ้าเอง...";
 				next;
 				mes "[Bercasell]";
-				mes "Guillotine Cross is an enforcer of the Assassin Guild's laws.";
-				mes "Can you put a dagger in the back of one of your peers?";
+				mes "Guillotine Cross คือผู้บังคับใช้กฎของสมาคม Assassin";
+				mes "เจ้าสามารถแทงกริชลงบนหลังของเพื่อนพ้องของเจ้าเองได้หรือไม่?";
 				next;
 				mes "[Bercasell]";
-				mes "You are not ready to do it yet...";
+				mes "เจ้ายังไม่พร้อมที่จะทำมันในตอนนี้หรอก...";
 				close;
 			case 2:
 				mes "[Bercasell]";
-				mes "Don't bother me.";
+				mes "อย่ามากวนข้า";
 				close;
 			}
 		} else if (job_3rd_gc > 20) {
-			mes "Don't pursue only strength.";
-			mes "You'll get tired.";
-			mes "It's no better than living.";
-			mes "If you only seek power...";
+			mes "อย่าโหยหาเพียงแค่ความแข็งแกร่ง";
+			mes "มันจะทำให้เจ้าเหนื่อยเปล่า";
+			mes "มันไม่ได้ดีไปกว่าการใช้ชีวิตปกติหรอก";
+			mes "หากเจ้าแสวงหาแต่เพียงพลัง...";
 			next;
 			mes "[Bercasell]";
-			mes "Someday, it'll come back to you.";
-			mes "Well, I'm just a weapon, suppose I have no right to talk about life...";
+			mes "สักวันหนึ่ง มันจะย้อนกลับมาหาเจ้าเอง";
+			mes "เอาเถอะ ข้ามันก็แค่เป็นอาวุธชิ้นหนึ่ง คงไม่มีสิทธิ์ไปพูดเรื่องการใช้ชีวิตหรอก...";
 			close;
 		} else {
-			mes "What's going on with Daora?";
-			mes "Why are you in here?";
-			mes "Did I say you could come here?";
+			mes "เกิดอะไรขึ้นกับ Daora งั้นรึ?";
+			mes "ทำไมเจ้าถึงมาอยู่ที่นี่ได้?";
+			mes "ข้าเคยบอกงั้นเหรอว่าเจ้าสามารถเข้ามาที่นี่ได้?";
 			next;
 			mes "[Bercasell]";
-			mes "Or did Mayshell send you?";
-			mes "Or what, are you my fan?";
-			mes "You found the wrong place!";
+			mes "หรือว่า Mayshell ส่งเจ้ามา?";
+			mes "หรือยังไง เจ้าเป็นแฟนคลับข้าหรือไงกัน?";
+			mes "เจ้ามาผิดที่แล้วล่ะ!";
 			next;
 			mes "[Bercasell]";
-			mes "Get out of here now!!!";
+			mes "ออกไปจากที่นี่เดี๋ยวนี้เลย!!!";
 			close;
 		}
 	} else if (Class == Job_Guillotine_Cross || Class == Job_Guillotine_Cross_T || Class == Job_Baby_Guillotine_Cross) {
-		mes "Don't pursue only strength.";
-		mes "You'll get tired.";
-		mes "It's no better than living.";
-		mes "If you only seek power...";
+		mes "อย่าโหยหาเพียงแค่ความแข็งแกร่ง";
+		mes "มันจะทำให้เจ้าเหนื่อยเปล่า";
+		mes "มันไม่ได้ดีไปกว่าการใช้ชีวิตปกติหรอก";
+		mes "หากเจ้าแสวงหาแต่เพียงพลัง...";
 		next;
 		mes "[Bercasell]";
-		mes "Someday, it'll come back to you.";
-		mes "Well, I'm just a weapon, suppose I have no right to talk about life...";
+		mes "สักวันหนึ่ง มันจะย้อนกลับมาหาเจ้าเอง";
+		mes "เอาเถอะ ข้ามันก็แค่เป็นอาวุธชิ้นหนึ่ง คงไม่มีสิทธิ์ไปพูดเรื่องการใช้ชีวิตหรอก...";
 		close;
 	}
-	mes "What?";
-	mes "Hey, you aren't supposed to be here!";
-	mes "Get out now!";
+	mes "อะไรนะ?";
+	mes "เฮ้ เจ้าไม่ควรจะมาอยู่ที่นี่!";
+	mes "ออกไปเดี๋ยวนี้!";
 	close;
 
 L_Info:
-	mes "Guillotine Cross is an enforcer.";
-	mes "A living offensive weapon...";
+	mes "Guillotine Cross คือผู้บังคับใช้กฎ";
+	mes "อาวุธสังหารที่มีชีวิต...";
 	next;
 	mes "[Bercasell]";
-	mes "Who is an assassin's natural enemy?";
+	mes "ใครคือศัตรูตามธรรมชาติของ Assassin งั้นรึ?";
 	mes "Swordman? Priest?";
 	mes "Wizard?";
-	mes "Things of evil in great abundance?";
+	mes "หรือพวกสิ่งชั่วร้ายที่มีอยู่มากมายงั้นรึ?";
 	next;
 	mes "[Bercasell]";
-	mes "No, an assassin's natural enemy is other assassins.";
-	mes "The most threatening thing to us is us.";
+	mes "ไม่ใช่หรอก ศัตรูตามธรรมชาติของ Assassin ก็คือ Assassin ด้วยกันเองนี่แหละ";
+	mes "สิ่งที่คุกคามพวกเราได้มากที่สุด ก็คือพวกเราเอง";
 	next;
 	mes "[Bercasell]";
-	mes "In the darkness of the guild, in the shadows we are the Guillotine Crosses.";
-	mes "We maintain the law and order within the Assassin Guild.";
+	mes "ภายใต้ความมืดมิดของสมาคม ในเงามืดนั้นพวกเราคือ Guillotine Cross";
+	mes "พวกเราดำรงไว้ซึ่งกฎระเบียบภายในสมาคม Assassin";
 	next;
 	mes "[Bercasell]";
-	mes "Sometimes we set examples for our peers, sometimes we aim swords at our members' necks in the name of the Guild.";
-	mes "We are the Guillotine Cross, the sword of the Assassin Guild.";
+	mes "บางครั้งพวกเราก็สร้างตัวอย่างให้เพื่อนร่วมงานเห็น บางครั้งพวกเราก็จ่อคมดาบไปที่ลำคอของสมาชิกในสมาคมในนามของกิลด์";
+	mes "พวกเราคือ Guillotine Cross คมดาบแห่งสมาคม Assassin";
 	next;
 	mes "[Bercasell]";
-	mes "We have the skill to find members who are in the darkness, and you are being way too pushy.";
+	mes "พวกเรามีทักษะในการตามหาเหล่าสมาชิกที่ซ่อนตัวอยู่ในความมืด และเจ้าน่ะทำตัวจุ้นจ้านเกินไปแล้ว";
 	next;
 	mes "[Bercasell]";
-	mes "We have highly advanced combat skills.";
+	mes "พวกเรามีทักษะการต่อสู้ระดับสูง";
 	next;
 	return;
 }
@@ -3811,8 +3811,8 @@ OnTouch:
 		warp "job3_guil01",60,50;
 	else {
 		mes "[Daora]";
-		mes "Hey, there!";
-		mes "No trespassing!";
+		mes "เฮ้ หยุดอยู่ตรงนั้น!";
+		mes "ห้ามบุกรุกเด็ดขาด!";
 		close;
 	}
 	end;
@@ -3824,10 +3824,10 @@ OnTouch:
 		warp "job3_guil01",12,7;
 	else {
 		mes " [-----------------------------]";
-		mes " No trespassing without ";
-		mes " permission. ";
-		mes " I'm not a ";
-		mes " generous person. ";
+		mes " ห้ามบุกรุกโดยไม่ได้รับ ";
+		mes " อนุญาต ";
+		mes " ข้าไม่ใช่ ";
+		mes " คนใจดีหรอกนะ ";
 		mes " - Mayshell ";
 		mes " [-----------------------------]";
 		close;
@@ -3842,7 +3842,7 @@ OnTouch:
 	else if (job_3rd_gc > 19)
 		warp "job3_guil01",144,57;
 	else {
-		mes "You don't have anything to do.";
+		mes "เจ้าไม่มีธุระอะไรที่ต้องทำที่นี่";
 		close;
 	}
 	end;
@@ -3850,35 +3850,35 @@ OnTouch:
 
 job3_guil02,1,3,0	script	#GMhelper01_gc	844,{
 	callfunc "F_GM_NPC";
-	mes "What can I do for you?";
+	mes "มีอะไรให้ข้าช่วยไหม?";
 	next;
 	if (callfunc("F_GM_NPC",1854,0) == 1) {
 		set .@room01, $@3rdgc_room01;
-		mes "I check the recent situation.";
-		mes "The battle situation of storage: "+.@room01+"";
-		mes "1 : In progress. 0 : Standby status.";
+		mes "ข้ากำลังตรวจสอบสถานการณ์ล่าสุด";
+		mes "สถานะการต่อสู้ของห้องเก็บของ: "+.@room01+"";
+		mes "1 : กำลังดำเนินการ. 0 : สถานะสแตนด์บาย";
 		next;
-		switch(select("Reset a situation of storage:Stop it.")) {
+		switch(select("รีเซ็ตสถานการณ์ในห้องเก็บของ:หยุดแค่นี้")) {
 		case 1:
-			mes "Do you wish to reset a situation of storage?";
-			mes "Check the inside that there is a person or not, please.";
+			mes "เจ้าต้องการรีเซ็ตสถานการณ์ในห้องเก็บของใช่หรือไม่?";
+			mes "กรุณาตรวจสอบให้แน่ใจว่าไม่มีใครอยู่ข้างใน";
 			next;
-			switch(select("No.:Reset.")) {
+			switch(select("ไม่:รีเซ็ต")) {
 			case 1:
-				mes "I did nothing.";
+				mes "ข้าไม่ได้ทำอะไรเลย";
 				close;
 			case 2:
-				mes "Reset a situation of storage.";
+				mes "รีเซ็ตสถานการณ์ในห้องเก็บของ";
 				donpcevent "Dandelion#3rdgc12::OnDisable";
 				donpcevent "A man with black clothes::OnDisable";
 				donpcevent "#3rdgc_room01_mag01::OnEnable";
 				set $@3rdgc_room01, 0;
 				next;
-				mes "Complete a reset.";
+				mes "รีเซ็ตเสร็จสมบูรณ์";
 				close;
 			}
 		case 2:
-			mes "A management for mansion is in mansion.";
+			mes "การจัดการสำหรับคฤหาสน์อยู่ในคฤหาสน์";
 			close;
 		}
 	} else {
@@ -3889,25 +3889,25 @@ job3_guil02,1,3,0	script	#GMhelper01_gc	844,{
 
 job3_guil03,1,8,0	script	#GMhelper02_gc	844,{
 	callfunc "F_GM_NPC";
-	mes "What can I do for you?";
+	mes "มีอะไรให้ข้าช่วยไหม?";
 	next;
 	if (callfunc("F_GM_NPC",1854,0) == 1) {
 		set .@room02, $@3rdgc_room02;
-		mes "Check the recent situation.";
-		mes "The battle situation of the mansion is: "+.@room02+"";
-		mes "1 : In progress. 0 : Standby status.";
+		mes "ตรวจสอบสถานการณ์ล่าสุด";
+		mes "สถานะการต่อสู้ของคฤหาสน์คือ: "+.@room02+"";
+		mes "1 : กำลังดำเนินการ. 0 : สถานะสแตนด์บาย";
 		next;
-		switch(select("Reset the mansion:Stop it.")) {
+		switch(select("รีเซ็ตคฤหาสน์:หยุดแค่นี้")) {
 		case 1:
-			mes "Do you want to reset the mansion?";
-			mes "With completion a rest all players of inside will be expelled.";
+			mes "เจ้าต้องการจะรีเซ็ตคฤหาสน์ใช่หรือไม่?";
+			mes "เมื่อการรีเซ็ตเสร็จสิ้น ผู้เล่นทุกคนที่อยู่ข้างในจะถูกขับไล่ออกมา";
 			next;
-			switch(select("No.:Reset.")) {
+			switch(select("ไม่:รีเซ็ต")) {
 			case 1:
-				mes "I don't anything.";
+				mes "ข้าไม่ได้ทำอะไรเลย";
 				close;
 			case 2:
-				mes "Reset the mansion.";
+				mes "รีเซ็ตคฤหาสน์";
 				donpcevent "#3rdgc_guard::OnStop";
 				donpcevent "#3rdgc_guardoff::OnReset";
 				donpcevent "#3rdgc_hide01::OnStop";
@@ -3938,18 +3938,18 @@ job3_guil03,1,8,0	script	#GMhelper02_gc	844,{
 				donpcevent "Priest from Rachel::OnDisable";
 				donpcevent "Renzak#3rdgc16::OnDisable";
 				next;
-				mes "Complete a reset of NPC inside.";
-				mes "The global var is organized.";
-				mes "We start to expel by force.";
-				mes "Just put the enter button now.";
+				mes "รีเซ็ต NPC ภายในเสร็จเรียบร้อย";
+				mes "ตัวแปร Global ได้ถูกจัดระเบียบใหม่แล้ว";
+				mes "เรากำลังเริ่มทำการขับไล่ออกมาโดยบังคับ";
+				mes "ตอนนี้เพียงแค่กดปุ่มตกลง";
 				donpcevent "#3rdgc_event01::OnEnable";
 				set $@3rdgc_room02, 0;
 				close2;
-				mapwarp "job3_guil03","ve_fild02",330,379;	//Pre-RE: ve_fild05 (341,303)
+				warp "ve_fild02",330,379;	//Pre-RE: ve_fild05 (341,303)
 				end;
 			}
 		case 2:
-			mes "The management of storage is in a storage.";
+			mes "การจัดการห้องเก็บของอยู่ในส่วนของห้องเก็บของ";
 			close;
 		}
 	} else {
