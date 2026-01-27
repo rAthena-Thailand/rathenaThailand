@@ -126767,7 +126767,7 @@ Body:
             .@val += 4;
          }
       }
-      bonus2 bAddClass,Class_Normal,.@val;
+      bonus bAtkRate,.@val;
       bonus bMatkRate,.@val;
   - Id: 24286
     AegisName: S_DoramMagical_Weapon
@@ -136645,6 +136645,7 @@ Body:
     Refineable: true
     Script: |
       .@r = getrefine();
+      bonus bMaxHP,.@r*10;
       bonus bAtkRate,3;
       bonus bLongAtkRate,(.@r/2);
       bonus bShortAtkRate,(.@r/2);
@@ -136661,6 +136662,7 @@ Body:
     Refineable: true
     Script: |
       .@r = getrefine();
+      bonus bMaxHP,.@r*10;
       bonus bAtkRate,3;
       bonus bLongAtkRate,(.@r/2);
       bonus bShortAtkRate,(.@r/2);
@@ -136677,6 +136679,7 @@ Body:
     Refineable: true
     Script: |
       .@r = getrefine();
+      bonus bMaxHP,.@r*10;
       bonus bCritical,3;
       bonus bCritAtkRate,(.@r/2);
       if (.@r>=10) {
@@ -136692,6 +136695,7 @@ Body:
     Refineable: true
     Script: |
       .@r = getrefine();
+      bonus bMaxHP,.@r*10;
       bonus bCritical,3;
       bonus bCritAtkRate,(.@r/2);
       if (.@r>=10) {
@@ -136707,6 +136711,7 @@ Body:
     Refineable: true
     Script: |
       .@r = getrefine();
+      bonus bMaxHP,.@r*10;
       bonus bAtkRate,3;
       bonus bVariableCastrate,-(.@r/2);
       if (.@r>=10) {
@@ -136722,6 +136727,7 @@ Body:
     Refineable: true
     Script: |
       .@r = getrefine();
+      bonus bMaxHP,.@r*10;
       bonus bAtkRate,3;
       bonus bVariableCastrate,-(.@r/2);
       if (.@r>=10) {
@@ -136737,6 +136743,7 @@ Body:
     Refineable: true
     Script: |
       .@r = getrefine();
+      bonus bMaxHP,.@r*10;
       bonus bDef,30;
       bonus bRes,3*(.@r/2);
       if (.@r>=10) {
@@ -136752,6 +136759,7 @@ Body:
     Refineable: true
     Script: |
       .@r = getrefine();
+      bonus bMaxHP,.@r*10;
       bonus bDef,30;
       bonus bRes,3*(.@r/2);
       if (.@r>=10) {
@@ -139089,13 +139097,14 @@ Body:
     Refineable: true
     Script: |
       .@r = getrefine();
-      bonus bMatk,.@r*10;
-      if (.@r>=3)
-         bonus2 bSkillAtk,"SO_EARTHGRAVE",.@r/3;
-      if (.@r>=9)
+      bonus bMatk,(.@r/2)*10;
+      bonus2 bSkillAtk,"SO_EARTHGRAVE",(.@r/3)*12;
+      if (.@r>=9) {
          bonus bVariableCastrate,-10;
-      if (.@r>=11)
-         bonus2 bSkillCooldown,"SO_PSYCHIC_WAVE",-1000;
+         if (.@r>=11) {
+            bonus2 bSkillCooldown,"SO_PSYCHIC_WAVE",-1000;
+         }
+      }
   - Id: 26119
     AegisName: Rebeginer_SO_Rod
     Name: Beginner Sorcerer's Staff
@@ -163600,13 +163609,13 @@ Body:
       if (.@r>=7) {
          bonus bVariableCastrate,-10;
          bonus bBaseAtk,40;
-      }
-      if (.@r>=9) {
-         bonus bLongAtkRate,5;   /* note: 7 in description */
-         bonus2 bSkillAtk,"GN_CARTCANNON",15;
-      }
-      if (.@r>=11) {
-         bonus bDelayrate,-20;
+         if (.@r>=9) {
+            bonus bLongAtkRate,7;
+            bonus2 bSkillAtk,"GN_CARTCANNON",15;
+            if (.@r>=11) {
+               bonus bDelayrate,-20;
+            }
+         }
       }
   - Id: 32353
     AegisName: G_Knight_JewelSword
