@@ -18,39 +18,39 @@
 morocc,153,286,6	script	Guide#01morocc::GuideMorocc	707,{
 	cutin "moc_soldier",2;
 	mes "[Morocc Guide]";
-	mes "Welcome to ^8B4513Morocc^000000,";
-	mes "the Desert Town.";
-	mes "Do you need help navigating the town?";
+	mes "ยินดีต้อนรับสู่ ^8B4513Morocc^000000,";
+	mes "เมืองแห่งทะเลทราย";
+	mes "คุณต้องการความช่วยเหลือในการนำทางภายในเมืองไหม?";
 	F_Navi("[Morocc Guide]");
 	next;
 	while (1) {
-		switch(select("[ Main Facilities ]:[ Merchants & Helpers ]:Remove Marks from Mini-Map:Cancel")) {
+		switch(select("[ สถานที่สำคัญ ]:[ พ่อค้าและผู้ช่วย ]:ลบเครื่องหมายออกจาก Mini-Map:ยกเลิก")) {
 		case 1:
 			set .@loop,1;
 			while (.@loop) {
-				switch(select("[ Thief Guild ]:[ Sphinx Dungeon ]:[ Oasis Entrance ]:[ Forge ]:[ Weapon & Armor Shop ]:[ Inn ]:[ Tavern ]:Previous Menu")) {
+				switch(select("[ สมาคม Thief ]:[ Sphinx Dungeon ]:[ ทางเข้า Oasis ]:[ โรงตีเหล็ก ]:[ ร้านอาวุธและชุดป้องกัน ]:[ โรงแรม ]:[ ร้านเหล้า ]:เมนูก่อนหน้า")) {
 				case 1:
 					mes "[Morocc Guide]";
-					mes "The "+F_Navi("Thief Guild","morocc,26,294","^B9062F")+" is located";
-					mes "inside the ^B9062FPyramids^000000";
-					mes "that is near the ^B9062FOasis^000000.";
-					mes "Would you like to check any other locations?";
+					mes " "+F_Navi("Thief Guild","morocc,26,294","^B9062F")+" ตั้งอยู่";
+					mes "ด้านในของ ^B9062FPyramids^000000";
+					mes "ซึ่งอยู่ใกล้กับ ^B9062FOasis^000000";
+					mes "คุณต้องการตรวจสอบสถานที่อื่นๆ อีกไหม?";
 					viewpoint 1,26,294,0,0xFF0000;
 					next;
 					break;
 				case 2:
 					mes "[Morocc Guide]";
-					mes "The "+F_Navi("Sphinx Dungeon","morocc,26,164","^0000FF")+" is";
-					mes "right outside the western gate.";
-					mes "Would you like to check any other locations?";
+					mes " "+F_Navi("Sphinx Dungeon","morocc,26,164","^0000FF")+" นั้น";
+					mes "อยู่ด้านนอกประตูทางทิศตะวันตกพอดี";
+					mes "คุณต้องการตรวจสอบสถานที่อื่นๆ อีกไหม?";
 					viewpoint 1,26,164,1,0x0A82FF;
 					next;
 					break;
 				case 3:
 					mes "[Morocc Guide]";
-					mes "Let me mark the entrance to the "+F_Navi("Oasis","morocc,26,294","^FF5400");
-					mes "on your mini-map.";
-					mes "Would you like to check any other locations?";
+					mes "เดี๋ยวฉันจะทำเครื่องหมายทางเข้าของ "+F_Navi("Oasis","morocc,26,294","^FF5400");
+					mes "บน mini-map ของคุณให้";
+					mes "คุณต้องการตรวจสอบสถานที่อื่นๆ อีกไหม?";
 					viewpoint 1,26,294,2,0xFFB400;
 					next;
 					break;
@@ -66,11 +66,11 @@ morocc,153,286,6	script	Guide#01morocc::GuideMorocc	707,{
 					break;
 				case 6:
 					mes "[Morocc Guide]";
-					mes "Currently the "+F_Navi("Inn","morocc,273,269","^800080");
-					mes "has been shut down until further notice,";
-					mes "but I'll mark its location";
-					mes "on your mini-map.";
-					mes "Would you like to check any other locations?";
+					mes "ขณะนี้ "+F_Navi("Inn","morocc,273,269","^800080");
+					mes "ได้ปิดให้บริการจนกว่าจะมีการแจ้งให้ทราบภายหลัง";
+					mes "แต่ฉันจะทำเครื่องหมายตำแหน่งของมันไว้";
+					mes "บน mini-map ของคุณให้";
+					mes "คุณต้องการตรวจสอบสถานที่อื่นๆ อีกไหม?";
 					viewpoint 1,273,269,5,0xDA70D6;
 					next;
 					break;
@@ -88,7 +88,7 @@ morocc,153,286,6	script	Guide#01morocc::GuideMorocc	707,{
 		case 2:
 			set .@loop,1;
 			while (.@loop) {
-				switch(select("[ Kafra Employee ]:[ Poison Herb Salesman ]:[ Dye Maker ]:[ Seiyablem ]:Previous Menu")) {
+				switch(select("[ พนักงาน Kafra ]:[ พ่อค้าสมุนไพรพิษ ]:[ คนทำสีย้อม ]:[ Seiyablem ]:เมนูก่อนหน้า")) {
 				case 1:
 					callsub L_Mark,"^0000FFKafra Employees^000000";
 					viewpoint 1,156,97,7,0x0A82FF;
@@ -102,23 +102,23 @@ morocc,153,286,6	script	Guide#01morocc::GuideMorocc	707,{
 					break;
 				case 3:
 					mes "[Morocc Guide]";
-					mes "The "+F_Navi("Dye Maker","morocc,273,269","^7F3300")+" is";
-					mes "currently staying";
-					mes "on the 1st floor of the Inn.";
-					mes "Let me mark his location";
-					mes "on your mini-map.";
-					mes "Would you like to check any other locations?";
+					mes " "+F_Navi("Dye Maker","morocc,273,269","^7F3300")+" นั้น";
+					mes "ตอนนี้พักอยู่ที่";
+					mes "ชั้น 1 ของโรงแรม";
+					mes "เดี๋ยวฉันจะทำเครื่องหมายตำแหน่งของเขา";
+					mes "บน mini-map ของคุณให้";
+					mes "คุณต้องการตรวจสอบสถานที่อื่นๆ อีกไหม?";
 					viewpoint 1,273,269,10,0xD2691E;
 					next;
 					break;
 				case 4:
 					mes "[Morocc Guide]";
 					mes F_Navi("Seiyablem","morocc,51,41","^800080");
-					mes "is a technician";
-					mes "who can create ^0000FFslots^000000 on weapons and armors,";
-					mes "but not all equipment";
-					mes "can be slotted. Well, that's what he says.";
-					mes "Would you like to check any other locations?";
+					mes "เป็นช่างเทคนิค";
+					mes "ที่สามารถสร้าง ^0000FFช่อง (Slot)^000000 บนอาวุธและชุดป้องกันได้";
+					mes "แต่ไม่ใช่ทุกอุปกรณ์นะ";
+					mes "ที่จะเจาะช่องได้... เขาว่ามาอย่างนั้นน่ะ";
+					mes "คุณต้องการตรวจสอบสถานที่อื่นๆ อีกไหม?";
 					viewpoint 1,51,41,11,0xDA70D6;
 					next;
 					break;
@@ -130,8 +130,8 @@ morocc,153,286,6	script	Guide#01morocc::GuideMorocc	707,{
 			break;
 		case 3:
 			mes "[Morocc Guide]";
-			mes "Sure, I'll remove all marks from your mini-map.";
-			mes "Is there anything else I can do for you?";
+			mes "ได้เลย ฉันจะลบเครื่องหมายทั้งหมดออกจาก mini-map ของคุณให้";
+			mes "มีอะไรอย่างอื่นที่ฉันพอจะช่วยได้อีกไหม?";
 			viewpoint 2,1,1,0,0xFFFF00;
 			viewpoint 2,1,1,1,0x000000;
 			viewpoint 2,1,1,2,0xFF0000;
@@ -148,7 +148,7 @@ morocc,153,286,6	script	Guide#01morocc::GuideMorocc	707,{
 			break;
 		case 4:
 			mes "[Morocc Guide]";
-			mes "Be safe on your travels.";
+			mes "ขอให้เดินทางโดยสวัสดิภาพนะ";
 			close2;
 			cutin "moc_soldier",255;
 			end;
@@ -157,10 +157,10 @@ morocc,153,286,6	script	Guide#01morocc::GuideMorocc	707,{
 	end;
 L_Mark:
 	mes "[Morocc Guide]";
-	mes "Let me mark the location of the";
+	mes "เดี๋ยวฉันจะทำเครื่องหมายตำแหน่งของ";
 	mes getarg(0);
-	mes "on your mini-map.";
-	mes "Would you like to check any other locations?";
+	mes "บน mini-map ของคุณให้";
+	mes "คุณต้องการตรวจสอบสถานที่อื่นๆ อีกไหม?";
 	return;
 }
 morocc,154,38,6	duplicate(GuideMorocc)	Guide#02morocc	707
@@ -170,42 +170,42 @@ morocc,28,170,5	duplicate(GuideMorocc)	Guide#04morocc	707
 moc_ruins,159,53,3	script	Guide#01ruins::GuideMocRuins	707,{
 	cutin "moc_soldier",2;
 	mes "[Morocc Guide]";
-	mes "Welcome to ^8B4513Morocc^000000,";
-	mes "the Desert Town.";
-	mes "Do you need help navigating the town?";
+	mes "ยินดีต้อนรับสู่ ^8B4513Morocc^000000,";
+	mes "เมืองแห่งทะเลทราย";
+	mes "คุณต้องการความช่วยเหลือในการนำทางภายในเมืองไหม?";
 	F_Navi("[Morocc Guide]");
 	next;
 	while (1) {
-		switch(select("[ Main Facilities ]:[ Merchants & Helpers ]:Remove Marks from Mini-Map:Cancel")) {
+		switch(select("[ สถานที่สำคัญ ]:[ พ่อค้าและผู้ช่วย ]:ลบเครื่องหมายออกจาก Mini-Map:ยกเลิก")) {
 		case 1:
 			set .@loop,1;
 			while (.@loop) {
-				switch(select("[ Thief Guild ]:[ Sphinx Dungeon ]:[ Morocc Entrance ]:Previous Menu")) {
+				switch(select("[ สมาคม Thief ]:[ Sphinx Dungeon ]:[ ทางเข้า Morocc ]:เมนูก่อนหน้า")) {
 				case 1:
 					mes "[Morocc Guide]";
-					mes "The "+F_Navi("Thief Guild","moc_ruins,56,161","^B9062F")+" is located";
-					mes "inside the ^B9062FPyramids^000000.";
-					mes "Let me mark its location";
-					mes "on your mini-map.";
-					mes "Would you like to check any other locations?";
+					mes " "+F_Navi("Thief Guild","moc_ruins,56,161","^B9062F")+" ตั้งอยู่";
+					mes "ด้านในของ ^B9062FPyramids^000000";
+					mes "เดี๋ยวฉันจะทำเครื่องหมายตำแหน่งของมัน";
+					mes "บน mini-map ของคุณให้";
+					mes "คุณต้องการตรวจสอบสถานที่อื่นๆ อีกไหม?";
 					viewpoint 1,56,161,0,0xFF0000;
 					next;
 					break;
 				case 2:
 					mes "[Morocc Guide]";
-					mes "The "+F_Navi("Sphinx Dungeon","moc_ruins,71,19","^0000FF");
-					mes "is outside the south entrance of this Oasis.";
-					mes "Would you like to check any other locations?";
+					mes " "+F_Navi("Sphinx Dungeon","moc_ruins,71,19","^0000FF");
+					mes "อยู่ด้านนอกทางเข้าทิศใต้ของ Oasis แห่งนี้";
+					mes "คุณต้องการตรวจสอบสถานที่อื่นๆ อีกไหม?";
 					viewpoint 1,71,19,1,0x0A82FF;
 					next;
 					break;
 				case 3:
 					mes "[Morocc Guide]";
-					mes F_Navi("Morocc","moc_ruins,158,40","^FF5400")+" is";
-					mes "right outside the southeast entrance of this Oasis.";
-					mes "Let me mark its location";
-					mes "on your mini-map.";
-					mes "Would you like to check any other locations?";
+					mes F_Navi("Morocc","moc_ruins,158,40","^FF5400")+" นั้น";
+					mes "อยู่ด้านนอกทางเข้าทิศตะวันออกเฉียงใต้ของ Oasis แห่งนี้พอดี";
+					mes "เดี๋ยวฉันจะทำเครื่องหมายตำแหน่งของมัน";
+					mes "บน mini-map ของคุณให้";
+					mes "คุณต้องการตรวจสอบสถานที่อื่นๆ อีกไหม?";
 					viewpoint 1,158,40,2,0xFFB400;
 					next;
 					break;
@@ -218,7 +218,7 @@ moc_ruins,159,53,3	script	Guide#01ruins::GuideMocRuins	707,{
 		case 2:
 			set .@loop,1;
 			while (.@loop) {
-				switch(select("[ Eden Teleport Officer ]:[ Tool Dealer ]:[ Kafra Employee ]:[ Repairman ]:[ Pet Groomer ]:[ Chef Assistant ]:[ Leablem ]:Previous Menu")) {
+				switch(select("[ เจ้าหน้าที่เทเลพอร์ต Eden ]:[ พ่อค้าอุปกรณ์ ]:[ พนักงาน Kafra ]:[ ช่างซ่อม ]:[ คนดูแลสัตว์เลี้ยง ]:[ ผู้ช่วยเชฟ ]:[ Leablem ]:เมนูก่อนหน้า")) {
 				case 1:
 					callsub L_Mark, F_Navi("Eden Teleport Officer","moc_ruins,68,164","^006400");
 					viewpoint 1,68,164,3,0xAAFF00;
@@ -226,11 +226,11 @@ moc_ruins,159,53,3	script	Guide#01ruins::GuideMocRuins	707,{
 					break;
 				case 2:
 					mes "[Morocc Guide]";
-					mes "Let me mark the location of the";
+					mes "เดี๋ยวฉันจะทำเครื่องหมายตำแหน่งของ";
 					mes F_Navi("Northern Tool Dealer","moc_ruins,92,128","^800080");
-					mes "and "+F_Navi("Southern Tool Dealer","moc_ruins,114,63","^800080");
-					mes "on your mini-map.";
-					mes "Would you like to check any other locations?";
+					mes "และ "+F_Navi("Southern Tool Dealer","moc_ruins,114,63","^800080");
+					mes "บน mini-map ของคุณให้";
+					mes "คุณต้องการตรวจสอบสถานที่อื่นๆ อีกไหม?";
 					viewpoint 1,92,128,5,0xDA70D6;
 					viewpoint 1,114,63,6,0xDA70D6;
 					next;
@@ -258,11 +258,11 @@ moc_ruins,159,53,3	script	Guide#01ruins::GuideMocRuins	707,{
 				case 7:
 					mes "[Morocc Guide]";
 					mes F_Navi("Leablem","moc_ruins,154,86","^7F3300");
-					mes "is a technician";
-					mes "who can create ^0000FFslots^000000 on weapons and armors,";
-					mes "but not all equipment";
-					mes "can be slotted. Well, that's what he says.";
-					mes "Would you like to check any other locations?";
+					mes "เป็นช่างเทคนิค";
+					mes "ที่สามารถสร้าง ^0000FFช่อง (Slot)^000000 บนอาวุธและชุดป้องกันได้";
+					mes "แต่ไม่ใช่ทุกอุปกรณ์นะ";
+					mes "ที่จะเจาะช่องได้... เขาว่ามาอย่างนั้นน่ะ";
+					mes "คุณต้องการตรวจสอบสถานที่อื่นๆ อีกไหม?";
 					viewpoint 1,154,86,11,0xD2691E;
 					next;
 					break;
@@ -274,8 +274,8 @@ moc_ruins,159,53,3	script	Guide#01ruins::GuideMocRuins	707,{
 			break;
 		case 3:
 			mes "[Morocc Guide]";
-			mes "Sure, I'll remove all marks from your mini-map.";
-			mes "Is there anything else I can do for you?";
+			mes "ได้เลย ฉันจะลบเครื่องหมายทั้งหมดออกจาก mini-map ของคุณให้";
+			mes "มีอะไรอย่างอื่นที่ฉันพอจะช่วยได้อีกไหม?";
 			viewpoint 2,1,1,0,0xFFFF00;
 			viewpoint 2,1,1,1,0x000000;
 			viewpoint 2,1,1,2,0xFF0000;
@@ -292,7 +292,7 @@ moc_ruins,159,53,3	script	Guide#01ruins::GuideMocRuins	707,{
 			break;
 		case 4:
 			mes "[Morocc Guide]";
-			mes "Be safe on your travels.";
+			mes "ขอให้เดินทางโดยสวัสดิภาพนะ";
 			close2;
 			cutin "moc_soldier",255;
 			end;
@@ -301,10 +301,10 @@ moc_ruins,159,53,3	script	Guide#01ruins::GuideMocRuins	707,{
 	end;
 L_Mark:
 	mes "[Morocc Guide]";
-	mes "Let me mark the location of the";
+	mes "เดี๋ยวฉันจะทำเครื่องหมายตำแหน่งของ";
 	mes getarg(0);
-	mes "on your mini-map.";
-	mes "Would you like to check any other locations?";
+	mes "บน mini-map ของคุณให้";
+	mes "คุณต้องการตรวจสอบสถานที่อื่นๆ อีกไหม?";
 	return;
 }
 moc_ruins,70,164,3	duplicate(GuideMocRuins)	Guide#02ruins	707

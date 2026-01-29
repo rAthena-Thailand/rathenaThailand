@@ -21,18 +21,18 @@ function	script	F_Navi	{
 	if ( PACKETVER < 20111010 )
 		set .@disabled,1;
 
-	// This function takes 0 ~ 3 parameters.
+	// ฟังก์ชันนี้รับพารามิเตอร์ 0 ~ 3 ตัว
 	switch(getargcount()) {
-	case 0:	// Check if system is disabled.
+	case 0:	// ตรวจสอบว่าระบบถูกปิดใช้งานหรือไม่
 		return .@disabled;
-	case 1:	// Display information message, if enabled.
+	case 1:	// แสดงข้อความข้อมูล หากเปิดใช้งานระบบ
 		if (!.@disabled) {
 			next;
 			mes getarg(0);
-			mes "When you click on the ^B9062F[location name]^000000, you'll receive the most advanced ^B9062FNavigation^000000 services!";
+			mes "เมื่อคุณคลิกที่ ^B9062F[ชื่อสถานที่]^000000 คุณจะได้รับบริการ ^B9062Fระบบนำทาง (Navigation)^000000 ที่ทันสมัยที่สุด!";
 		}
 		return;
-	default: // Display navigation link, if enabled; else set text color, if available.
+	default: // แสดงลิงก์นำทาง หากเปิดใช้งานระบบ; มิฉะนั้นให้ตั้งค่าสีข้อความ หากมีการกำหนดไว้
 		if (!.@disabled)
 			return "<NAVI>[" + getarg(0) + "]<INFO>" + getarg(1) + ",0,000,0</INFO></NAVI>";
 		else if (getargcount() == 3)

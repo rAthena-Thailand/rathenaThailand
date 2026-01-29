@@ -17,17 +17,17 @@
 
 niflheim,201,187,3	script	Niflheim Guide#01nif	849,{
 	mes "[Niflheim Guide]";
-	mes "Welcome to.. ^8B4513Niflheim^000000...";
-	mes "the Realm of the Dead...";
-	mes "Do you need help navigating the realm...?";
+	mes "ยินดีต้อนรับสู่.. ^8B4513Niflheim^000000...";
+	mes "ดินแดนแห่งความตาย...";
+	mes "คุณต้องการความช่วยเหลือในการนำทางภายในดินแดนแห่งนี้ไหม...?";
 	if (F_Navi() == 0) {
 		next;
 		mes "[Niflheim Guide]";
-		mes "When you click on the.. ^B9062F[location name]^000000... you'll receive the most advanced ^B9062FNavigation^000000 services...!";
+		mes "เมื่อคุณคลิกที่.. ^B9062F[ชื่อสถานที่]^000000... คุณจะได้รับบริการ ^B9062FNavigation^000000 ที่ล้ำสมัยที่สุด...!";
 	}
 	while (1) {
 		next;
-		switch(select("[ Tool Shop ]:[ Pub ]:[ Weapon Shop ]:[ Witch's Castle ]:Remove Marks from Mini-Map:Cancel")) {
+		switch(select("[ ร้านขายของชำ ]:[ ผับ ]:[ ร้านอาวุธ ]:[ ปราสาทแม่มด ]:ลบเครื่องหมายออกจาก Mini-Map:ยกเลิก")) {
 		case 1:
 			callsub L_Mark, F_Navi("Tool Shop","niflheim,218,196","^0000FF");
 			viewpoint 1,218,196,0,0x0A82FF;
@@ -46,8 +46,8 @@ niflheim,201,187,3	script	Niflheim Guide#01nif	849,{
 			break;
 		case 5:
 			mes "[Niflheim Guide]";
-			mes "Sure, I'll remove all marks from your mini-map...";
-			mes "Is there anything else I can do for you...?";
+			mes "ได้เลย ฉันจะลบเครื่องหมายทั้งหมดออกจาก mini-map ของคุณให้...";
+			mes "มีอะไรอย่างอื่นที่ฉันพอจะช่วยได้อีกไหม...?";
 			viewpoint 2,1,1,0,0xFFFFFF;
 			viewpoint 2,1,1,1,0xFFFFFF;
 			viewpoint 2,1,1,2,0xFFFFFF;
@@ -55,16 +55,16 @@ niflheim,201,187,3	script	Niflheim Guide#01nif	849,{
 			break;
 		case 6:
 			mes "[Niflheim Guide]";
-			mes "......Bye~!..";
+			mes "......ลาก่อน~!..";
 			close;
 		}
 	}
 	end;
 L_Mark:
 	mes "[Niflheim Guide]";
-	mes "Let me mark the location of the";
+	mes "เดี๋ยวฉันจะทำเครื่องหมายตำแหน่งของ";
 	mes getarg(0)+"^000000...";
-	mes "on your mini-map.";
-	mes "Would you like to check any other locations?";
+	mes "บน mini-map ของคุณให้";
+	mes "คุณต้องการตรวจสอบสถานที่อื่นๆ อีกไหม?";
 	return;
 }

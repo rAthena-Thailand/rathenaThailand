@@ -21,54 +21,54 @@
 -	script	::GuideIzlude	-1,{
 	cutin "prt_soldier",2;
 	mes "[Izlude Guide]";
-	mes "Welcome to ^8B4513Izlude^000000,";
-	mes "Prontera's satellite town.";
-	mes "Do you need help navigating the town?";
+	mes "ยินดีต้อนรับสู่ ^8B4513Izlude^000000,";
+	mes "เมืองบริวารของ Prontera";
+	mes "คุณต้องการความช่วยเหลือในการนำทางภายในเมืองไหม?";
 	F_Navi("[Izlude Guide]");
 	next;
 	set .@map$, strnpcinfo(4);
 	while (1) {
-		switch(select("[ Main Facilities ]:[ Merchants & Helpers ]:Remove Marks from Mini-Map:Cancel")) {
+		switch(select("[ สถานที่สำคัญ ]:[ พ่อค้าและผู้ช่วย ]:ลบเครื่องหมายออกจาก Mini-Map:ยกเลิก")) {
 		case 1:
 			set .@loop,1;
 			while (.@loop) {
-				switch(select("[ Cryptura Academy ]:[ Marina ]:[ International Airship ]:[ Arena ]:[ Kit Shop ]:[ Swordsman Guild ]:[ Enchant Association ]:[ Forge ]:Previous Menu")) {
+				switch(select("[ Cryptura Academy ]:[ ท่าเรือ ]:[ เรือเหาะระหว่างประเทศ ]:[ Arena ]:[ ร้านขายอุปกรณ์ ]:[ สมาคม Swordsman ]:[ สมาคม Enchant ]:[ โรงตีเหล็ก ]:เมนูก่อนหน้า")) {
 				case 1:
 					mes "[Izlude Guide]";
-					mes "Novice adventurers should go to "+F_Navi("Cryptura Academy","iz_ac01,100,39")+" to receive more information and training!";
-					mes "Would you like to check any other locations?";
+					mes "นักผจญภัยมือใหม่ควรไปที่ "+F_Navi("Cryptura Academy","iz_ac01,100,39")+" เพื่อรับข้อมูลเพิ่มเติมและการฝึกฝนนะ!";
+					mes "คุณต้องการตรวจสอบสถานที่อื่นๆ อีกไหม?";
 					viewpoint 1,128,260,0,0xD2691E;
 					next;
 					break;
 				case 2:
 					mes "[Izlude Guide]";
-					mes "You can use the "+F_Navi("Marina",.@map$+",197,205","^B9062F");
-					mes "to go to ^8B4513Alberta^000000 or ^8B4513Byalan Island^000000.";
-					mes "Beware of ^8B4513Izlude Dungeon^000000";
-					mes "on Byalan Island since it is";
-					mes "filled with dreadful monsters.";
-					mes "Would you like to check any other locations?";
+					mes "คุณสามารถใช้บริการ "+F_Navi("Marina",.@map$+",197,205","^B9062F");
+					mes "เพื่อเดินทางไปยัง ^8B4513Alberta^000000 หรือ ^8B4513Byalan Island^000000";
+					mes "โปรดระวัง ^8B4513Izlude Dungeon^000000";
+					mes "บนเกาะ Byalan ด้วย เพราะที่นั่น";
+					mes "เต็มไปด้วยมอนสเตอร์ที่น่ากลัว";
+					mes "คุณต้องการตรวจสอบสถานที่อื่นๆ อีกไหม?";
 					viewpoint 1,197,205,1,0xFF0000;
 					next;
 					break;
 				case 3:
 					mes "[Izlude Guide]";
-					mes "The "+F_Navi("International Airship",.@map$+",202,75","^0000FF");
-					mes "goes to ^8B4513Juno^000000 and ^8B4513Rachel^000000.";
-					mes "Let me mark its location";
-					mes "on your mini-map.";
-					mes "Would you like to check any other locations?";
+					mes " "+F_Navi("International Airship",.@map$+",202,75","^0000FF");
+					mes "มุ่งหน้าไปยัง ^8B4513Juno^000000 และ ^8B4513Rachel^000000";
+					mes "เดี๋ยวฉันจะทำเครื่องหมายตำแหน่งของมัน";
+					mes "บน mini-map ของคุณให้";
+					mes "คุณต้องการตรวจสอบสถานที่อื่นๆ อีกไหม?";
 					viewpoint 1,210,73,2,0x0A82FF;
 					next;
 					break;
 				case 4:
 					mes "[Izlude Guide]";
-					mes "The "+F_Navi("Arena",.@map$+",213,161","^FF5400");
-					mes "is a perfect place to";
-					mes "test your combat capabilities.";
-					mes "Let me mark its location";
-					mes "on your mini-map.";
-					mes "Would you like to check any other locations?";
+					mes " "+F_Navi("Arena",.@map$+",213,161","^FF5400");
+					mes "เป็นสถานที่ที่เหมาะสำหรับ";
+					mes "การทดสอบความสามารถในการต่อสู้ของคุณ";
+					mes "เดี๋ยวฉันจะทำเครื่องหมายตำแหน่งของมัน";
+					mes "บน mini-map ของคุณให้";
+					mes "คุณต้องการตรวจสอบสถานที่อื่นๆ อีกไหม?";
 					viewpoint 1,213,161,3,0xFF5400;
 					next;
 					break;
@@ -79,10 +79,10 @@
 					break;
 				case 6:
 					mes "[Izlude Guide]";
-					mes "The "+F_Navi("Swordsman Guild",.@map$+",51,172")+" is where you can ^800080change your job to Swordsman.^000000";
-					mes "Let me mark its location";
-					mes "on your mini-map.";
-					mes "Would you like to check any other locations?";
+					mes " "+F_Navi("Swordsman Guild",.@map$+",51,172")+" คือที่ที่คุณสามารถ ^800080เปลี่ยนอาชีพเป็น Swordsman^000000 ได้";
+					mes "เดี๋ยวฉันจะทำเครื่องหมายตำแหน่งของมัน";
+					mes "บน mini-map ของคุณให้";
+					mes "คุณต้องการตรวจสอบสถานที่อื่นๆ อีกไหม?";
 					viewpoint 1,52,172,5,0xDA70D6;
 					next;
 					break;
@@ -105,14 +105,14 @@
 		case 2:
 			set .@loop,1;
 			while (.@loop) {
-				switch(select("[ Eden Teleport Officer ]:[ Kafra Employee ]:[ Hypnotist ]:[ Newlywed Helper ]:[ Mercenary Guildsman ]:[ Pet Groomer ]:Previous Menu")) {
+				switch(select("[ เจ้าหน้าที่เทเลพอร์ต Eden ]:[ พนักงาน Kafra ]:[ นักสะกดจิต ]:[ ผู้ช่วยคู่แต่งงานใหม่ ]:[ กิลด์ทหารรับจ้าง ]:[ คนดูแลสัตว์เลี้ยง ]:เมนูก่อนหน้า")) {
 				case 1:
 					mes "[Izlude Guide]";
-					mes "The "+F_Navi("Eden Teleport Officer",.@map$+",131,148","^0000FF");
-					mes "is currently staying inside";
-					mes "the Swordsman Guild building.";
-					mes "Let me mark his location on your mini-map.";
-					mes "Would you like to check any other locations?";
+					mes " "+F_Navi("Eden Teleport Officer",.@map$+",131,148","^0000FF");
+					mes "ตอนนี้พักอยู่ด้านใน";
+					mes "อาคารสมาคม Swordsman";
+					mes "เดี๋ยวฉันจะทำเครื่องหมายตำแหน่งของเขาบน mini-map ให้";
+					mes "คุณต้องการตรวจสอบสถานที่อื่นๆ อีกไหม?";
 					viewpoint 1,131,148,8,0x0A82FF;
 					next;
 					break;
@@ -128,11 +128,11 @@
 					break;
 				case 4:
 					mes "[Izlude Guide]";
-					mes "If you'd like to go on a honeymoon to";
-					mes "^8B4513Jawaii^000000, the paradise of newlyweds,";
-					mes "please speak to the ";
-					mes F_Navi("Newlywed Helper",.@map$+",180,224","^B9062F")+".";
-					mes "Would you like to check any other locations?";
+					mes "หากคุณต้องการจะไปฮันนีมูนที่";
+					mes "^8B4513Jawaii^000000 สรวงสวรรค์ของคู่แต่งงานใหม่";
+					mes "โปรดไปคุยกับ ";
+					mes F_Navi("Newlywed Helper",.@map$+",180,224","^B9062F")+" นะ";
+					mes "คุณต้องการตรวจสอบสถานที่อื่นๆ อีกไหม?";
 					viewpoint 1,180,224,11,0xFF0000;
 					next;
 					break;
@@ -154,8 +154,8 @@
 			break;
 		case 3:
 			mes "[Izlude Guide]";
-			mes "Sure, I'll remove all marks from your mini-map.";
-			mes "Is there anything else I can do for you?";
+			mes "ได้เลย ฉันจะลบเครื่องหมายทั้งหมดออกจาก mini-map ของคุณให้";
+			mes "มีอะไรอย่างอื่นที่ฉันพอจะช่วยได้อีกไหม?";
 			viewpoint 2,1,1,0,0xFFFF00;
 			viewpoint 2,1,1,1,0x000000;
 			viewpoint 2,1,1,2,0xFF0000;
@@ -174,8 +174,8 @@
 			break;
 		case 4:
 			mes "[Izlude Guide]";
-			mes "Enjoy your stay.";
-			mes "Bye~!";
+			mes "ขอให้มีความสุขกับการพักผ่อนนะ";
+			mes "บ๊ายบาย~!";
 			close2;
 			cutin "prt_soldier",255;
 			end;
@@ -185,12 +185,12 @@
 L_Mark:
 	mes "[Izlude Guide]";
 	if (getarg(1,0)) {
-		mes "Let me mark the location of the";
+		mes "เดี๋ยวฉันจะทำเครื่องหมายตำแหน่งของ";
 		mes getarg(0);
 	} else
-		mes "Let me mark the location of the "+getarg(0);
-	mes "on your mini-map.";
-	mes "Would you like to check any other locations?";
+		mes "เดี๋ยวฉันจะทำเครื่องหมายตำแหน่งของ "+getarg(0);
+	mes "บน mini-map ของคุณให้";
+	mes "คุณต้องการตรวจสอบสถานที่อื่นๆ อีกไหม?";
 	return;
 }
 

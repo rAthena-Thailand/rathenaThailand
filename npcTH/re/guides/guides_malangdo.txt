@@ -6,16 +6,16 @@
 
 malangdo,218,101,3	script	Malangdo Guide#Malangdo	4_CAT_SAILOR3,{
 	mes "[Malangdo Guide]";
-	mes "Nice to meet you, welcome to ^8C4210Malangdo^000000. The island of cat paw!";
-	mes "Need some guidance?";
+	mes "ยินดีที่ได้รู้จัก ยินดีต้อนรับสู่ ^8C4210Malangdo^000000 เกาะแห่งอุ้งเท้าแมว!";
+	mes "ต้องการคำแนะนำไหมเมี๊ยว?";
 	F_Navi("[Malangdo Guide]");
 	while(1) {
 		next;
-		switch(select("[ Major Facilities ]:[ Trader & Assistant ]:Clear Mini-Map:Cancel")) {
+		switch(select("[ สถานที่สำคัญ ]:[ ผู้ค้าและผู้ช่วย ]:ล้างหน้าจอ Mini-Map:ยกเลิก")) {
 		case 1:
 			set .@loop,1;
 			while (.@loop) {
-				switch(select("[ Cat Gamers Director ]:[ Special Vending Machine ]:[ Coin Exchanger ]:[ Starry Coral ]:Previous Menu")) {
+				switch(select("[ Cat Gamers Director ]:[ Special Vending Machine ]:[ Coin Exchanger ]:[ Starry Coral ]:เมนูก่อนหน้า")) {
 				case 1:
 					callsub L_Mark, F_Navi("Cat Gamers Director","malangdo,119,137","FF0000");
 					viewpoint 1,119,137,0,0xFF0000;
@@ -45,7 +45,7 @@ malangdo,218,101,3	script	Malangdo Guide#Malangdo	4_CAT_SAILOR3,{
 		case 2:
 			set .@loop,1;
 			while (.@loop) {
-				switch(select("[ Chief Thomas ]:[ Stinky Merchant ]:[ Wandering Merchant ]:[ Inn Owner ]:[ Storekeeper ]:[ Tool Dealer ]:[ Portali ]:[ Clink ]:[ Holink ]:[ Roving Merchant ]:Previous Menu")) {
+				switch(select("[ Chief Thomas ]:[ Stinky Merchant ]:[ Wandering Merchant ]:[ Inn Owner ]:[ Storekeeper ]:[ Tool Dealer ]:[ Portali ]:[ Clink ]:[ Holink ]:[ Roving Merchant ]:เมนูก่อนหน้า")) {
 				case 1:
 					callsub L_Mark, F_Navi("Chief Thomas","malangdo,164,163","0A9696");
 					viewpoint 1,164,163,4,0x0A9696;
@@ -104,8 +104,8 @@ malangdo,218,101,3	script	Malangdo Guide#Malangdo	4_CAT_SAILOR3,{
 			break;
 		case 3:
 			mes "[Malangdo Guide]";
-			mes "I will remove all marks from your Mini-Map.";
-			mes "Need more help?";
+			mes "ฉันจะลบเครื่องหมายทั้งหมดออกจาก Mini-Map ให้เมี๊ยว";
+			mes "ต้องการความช่วยเหลือเพิ่มเติมไหม?";
 			viewpoint 2,1,1,0,0xFFFFFF;
 			viewpoint 2,1,1,1,0xFFFFFF;
 			viewpoint 2,1,1,2,0xFFFFFF;
@@ -123,13 +123,13 @@ malangdo,218,101,3	script	Malangdo Guide#Malangdo	4_CAT_SAILOR3,{
 			break;
 		case 4:
 			mes "[Malangdo Guide]";
-			mes "I wish you a pleasant trip.";
+			mes "ฉันขอให้คุณมีการเดินทางที่แสนวิเศษนะเมี๊ยว";
 			close;
 		}
 	}
 L_Mark:
 	mes "[Malangdo Guide]";
-	mes "I will show you the location of the " + getarg(0);
-	mes "Do you need other information?";
+	mes "ฉันจะแสดงตำแหน่งของ " + getarg(0) + " ให้ดูเมี๊ยว";
+	mes "คุณต้องการข้อมูลอื่นอีกไหม?";
 	return;
 }

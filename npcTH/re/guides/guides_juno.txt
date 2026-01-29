@@ -17,16 +17,16 @@
 
 yuno,59,212,4	script	Juno Guide#yuno01::GuideJuno	700,{
 	mes "[Juno Guide]";
-	mes "A place that takes the vision of the future, and gives it form in the present. Welcome to";
-	mes "the city of ^8B4513Juno^000000!";
+	mes "สถานที่ซึ่งนำวิสัยทัศน์แห่งอนาคตมาสร้างให้เป็นรูปร่างในปัจจุบัน ยินดีต้อนรับสู่";
+	mes "นครแห่ง ^8B4513Juno^000000!";
 	F_Navi("[Juno Guide]");
 	next;
 	while (1) {
-		switch(select("[ Main Facilities ]:[ Merchants & Helpers ]:Remove marks from Mini-Map:Cancel")) {
+		switch(select("[ สถานที่สำคัญ ]:[ พ่อค้าและผู้ช่วย ]:ลบเครื่องหมายออกจาก Mini-Map:ยกเลิก")) {
 		case 1:
 			set .@loop,1;
 			while (.@loop) {
-				switch(select("[ Tool Shop ]:[ Forge ]:[ Airport ]:[ Government Building ]:[ Street of Book Stores ]:[ Inn & Pub ]:[ Sage Castle ]:[ Monster Academy ]:[ Library of the Republic ]:[ Weapon & Armor Shop ]:[ Juphero Plaza ]:[ Monster Museum ]:[ Schweicherbil Magic Academy ]:Previous Menu")) {
+				switch(select("[ ร้านขายของชำ ]:[ โรงตีเหล็ก ]:[ สนามบิน ]:[ อาคารรัฐบาล ]:[ ถนนสายร้านหนังสือ ]:[ โรงแรมและร้านเหล้า ]:[ ปราสาท Sage ]:[ สถาบันมอนสเตอร์ ]:[ ห้องสมุดแห่งสาธารณรัฐ ]:[ ร้านอาวุธและชุดป้องกัน ]:[ Juphero Plaza ]:[ พิพิธภัณฑ์มอนสเตอร์ ]:[ สถาบันเวทมนตร์ Schweicherbil ]:เมนูก่อนหน้า")) {
 				case 1:
 					callsub L_Mark, F_Navi("Tool Shop","yuno,194,140","^FF0000");
 					viewpoint 1,194,140,0,0xFF0000;
@@ -89,10 +89,10 @@ yuno,59,212,4	script	Juno Guide#yuno01::GuideJuno	700,{
 					break;
 				case 13:
 					mes "[Juno Guide]";
-					mes "I will mark the location of the";
+					mes "ฉันจะทำเครื่องหมายตำแหน่งของ";
 					mes F_Navi("Schweicherbil Magic Academy","yuno,323,280","^CD1039");
-					mes "on your mini-map.";
-					mes "Would you like to check any other locations?";
+					mes "บน mini-map ของคุณให้";
+					mes "คุณต้องการตรวจสอบสถานที่อื่นๆ อีกไหม?";
 					viewpoint 1,323,280,12,0xCD1039;
 					next;
 					break;
@@ -105,7 +105,7 @@ yuno,59,212,4	script	Juno Guide#yuno01::GuideJuno	700,{
 		case 2:
 			set .@loop,1;
 			while (.@loop) {
-				switch(select("[ Kafra Employees ]:[ Eden Teleport Officer ]:Previous Menu")) {
+				switch(select("[ พนักงาน Kafra ]:[ เจ้าหน้าที่เทเลพอร์ต Eden ]:เมนูก่อนหน้า")) {
 				case 1:
 					callsub L_Mark, "^FA8072Kafra Employees^000000";
 					viewpoint 1,152,187,13,0xFA8072;
@@ -126,8 +126,8 @@ yuno,59,212,4	script	Juno Guide#yuno01::GuideJuno	700,{
 			break;
 		case 3:
 			mes "[Juno Guide]";
-			mes "Sure, I'll remove all marks from your mini-map.";
-			mes "Is there anything else I can do for you?";
+			mes "ได้เลย ฉันจะลบเครื่องหมายทั้งหมดออกจาก mini-map ของคุณให้";
+			mes "มีอะไรอย่างอื่นที่ฉันพอจะช่วยได้อีกไหม?";
 			viewpoint 2,194,140,0,0xFFFFFF;
 			viewpoint 2,120,137,1,0xFFFFFF;
 			viewpoint 2,16,261,2,0xFFFFFF;
@@ -149,17 +149,17 @@ yuno,59,212,4	script	Juno Guide#yuno01::GuideJuno	700,{
 			break;
 		case 4:
 			mes "[Juno Guide]";
-			mes "Have fun on your adventures!";
+			mes "ขอให้สนุกกับการผจญภัยของคุณนะ!";
 			close;
 		}
 	}
 	end;
 L_Mark:
 	mes "[Juno Guide]";
-	mes "I will mark the location";
-	mes "of the "+getarg(0);
-	mes "on your mini-map.";
-	mes "Would you like to check any other locations?";
+	mes "ฉันจะทำเครื่องหมายตำแหน่ง";
+	mes "ของ "+getarg(0);
+	mes "บน mini-map ของคุณให้";
+	mes "คุณต้องการตรวจสอบสถานที่อื่นๆ อีกไหม?";
 	return;
 }
 yuno,153,47,4	duplicate(GuideJuno)	Juno Guide#yuno02	700

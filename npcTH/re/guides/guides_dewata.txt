@@ -16,16 +16,16 @@
 
 dewata,202,106,4	script	Dewata Guide#dewata01	4_M_DEWWOMAN,{
 	mes "[Dewata Guide]";
-	mes "Welcome to ^8B4513Dewata Island^000000,";
-	mes "a place with dazzling waves and charming views it's a great place to relax.";
-	mes "If you have any questions, please ask me.";
+	mes "ยินดีต้อนรับสู่ ^8B4513Dewata Island^000000,";
+	mes "สถานที่ที่มีเกลียวคลื่นอันเจิดจรัสและทิวทัศน์ที่มีเสน่ห์ เป็นสถานที่ที่เหมาะแก่การพักผ่อนอย่างยิ่ง";
+	mes "หากคุณมีคำถามใดๆ โปรดสอบถามฉันได้เลย";
 	next;
 	mes "[Dewata Guide]";
-	mes "Where can I guide you?";
+	mes "ฉันสามารถนำทางคุณไปที่ไหนได้บ้าง?";
 	F_Navi("[Dewata Guide]");
 	while (1) {
 		next;
-		switch(select("[ Kafra Employee ]:[ Weapon Dealer ]:[ Armor Dealer ]:[ Tool Dealer ]:[ Restauranteur ]:[ Krakatau Gatekeeper ]:[ Alberta Sailor ]:Remove marks from Mini-Map:Cancel")) {
+		switch(select("[ พนักงาน Kafra ]:[ พ่อค้าอาวุธ ]:[ พ่อค้าชุดป้องกัน ]:[ ร้านขายของชำ ]:[ เจ้าของภัตตาคาร ]:[ ผู้เฝ้าประตู Krakatau ]:[ กะลาสี Alberta ]:ลบเครื่องหมายออกจาก Mini-Map:ยกเลิก")) {
 		case 1:
 			callsub L_Mark, "^0000FFKafra Employee^000000";
 			viewpoint 1,202,184,0,0x000FFF;
@@ -56,8 +56,8 @@ dewata,202,106,4	script	Dewata Guide#dewata01	4_M_DEWWOMAN,{
 			break;
 		case 8:
 			mes "[Dewata Guide]";
-			mes "I'll remove all marks from your mini-map.";
-			mes "Is there anything else I can do for you?";
+			mes "ฉันจะลบเครื่องหมายทั้งหมดออกจาก mini-map ของคุณให้";
+			mes "มีอะไรอย่างอื่นที่ฉันพอจะช่วยได้อีกไหม?";
 			viewpoint 2,202,184,0,0xFFFFFF;
 			viewpoint 2,218,163,1,0xFFFFFF;
 			viewpoint 2,158,182,2,0xFFFFFF;
@@ -68,17 +68,17 @@ dewata,202,106,4	script	Dewata Guide#dewata01	4_M_DEWWOMAN,{
 			break;
 		case 9:
 			mes "[Dewata Guide]";
-			mes "Enjoy your trip!!";
+			mes "ขอให้สนุกกับการเดินทางนะ!!";
 			close;
 		}
 	}
 
 L_Mark:
 	mes "[Dewata Guide]";
-	mes "The "+getarg(0)+" is";
-	mes "marked on your mini-map.";
-	mes "Check your mini-map.";
-	mes "Is there anything else I can do for you?";
+	mes "ตำแหน่งของ "+getarg(0)+" ได้ถูก";
+	mes "ทำเครื่องหมายบน mini-map ของคุณแล้ว";
+	mes "โปรดตรวจสอบที่ mini-map ของคุณ";
+	mes "มีอะไรอย่างอื่นที่ฉันพอจะช่วยได้อีกไหม?";
 	return;
 }
 dewata,197,184,4	duplicate(Dewata Guide#dewata01)	Dewata Guide#dewata02	535

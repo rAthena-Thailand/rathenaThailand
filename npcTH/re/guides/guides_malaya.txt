@@ -15,13 +15,13 @@
 
 malaya,71,72,4	script	Port Malaya Guide#01::GuideMalaya	579,{
 	mes "[Port Malaya Guide]";
-	mes "Welcome to ^8B4513Port Malaya^000000, the Breathing Village.";
-	mes "Where cultures and legends come to life!";
-	mes "Do you need help navigating the village?";
+	mes "ยินดีต้อนรับสู่ ^8B4513Port Malaya^000000, หมู่บ้านแห่งลมหายใจ";
+	mes "ที่ซึ่งวัฒนธรรมและตำนานกลับมามีชีวิตอีกครั้ง!";
+	mes "คุณต้องการความช่วยเหลือในการนำทางภายในหมู่บ้านไหม?";
 	F_Navi("[Port Malaya Guide]");
 	while(1) {
 		next;
-		switch(select("[ Kafra Employees ]:[ Inn & Tavern ]:[ Weapon & Armor Shop ]:[ Tool Shop ]:[ Hospital ]:[ Park ]:[ Harbor ]:Remove marks from Mini-Map:Cancel")) {
+		switch(select("[ พนักงาน Kafra ]:[ โรงแรมและร้านเหล้า ]:[ ร้านอาวุธและชุดป้องกัน ]:[ ร้านขายของชำ ]:[ โรงพยาบาล ]:[ สวนสาธารณะ ]:[ ท่าเรือ ]:ลบเครื่องหมายออกจาก Mini-Map:ยกเลิก")) {
 		case 1:
 			callsub L_Mark, "^0000FFKafra Employees^000000",1;
 			viewpoint 1,71,79,0,0x0A82FF;
@@ -53,8 +53,8 @@ malaya,71,72,4	script	Port Malaya Guide#01::GuideMalaya	579,{
 			break;
 		case 8:
 			mes "[Port Malaya Guide]";
-			mes "I'll remove all marks from your mini-map.";
-			mes "Is there anything else I can do for you?";
+			mes "ได้เลย ฉันจะลบเครื่องหมายทั้งหมดออกจาก mini-map ของคุณให้";
+			mes "มีอะไรอย่างอื่นที่ฉันพอจะช่วยได้อีกไหม?";
 			viewpoint 2,1,1,0,0xFFFFFF;
 			viewpoint 2,1,1,1,0xFFFFFF;
 			viewpoint 2,1,1,2,0xFFFFFF;
@@ -66,17 +66,17 @@ malaya,71,72,4	script	Port Malaya Guide#01::GuideMalaya	579,{
 			break;
 		case 9:
 			mes "[Port Malaya Guide]";
-			mes "I hope you enjoy your journey.";
+			mes "ฉันขอให้คุณสนุกกับการเดินทางนะ";
 			close;
 		}
 	}
 	end;
 L_Mark:
 	mes "[Port Malaya Guide]";
-	mes "The "+getarg(0)+" "+((getarg(1,0))?"are":"is");
-	mes "marked on your mini-map.";
-	mes "Check your mini-map.";
-	mes "Is there anything else I can do for you?";
+	mes "ตำแหน่งของ "+getarg(0)+" ได้ถูก";
+	mes "ทำเครื่องหมายไว้บน mini-map ของคุณแล้ว";
+	mes "โปรดตรวจสอบที่ mini-map ของคุณ";
+	mes "มีอะไรอย่างอื่นที่ฉันพอจะช่วยได้อีกไหม?";
 	return;
 }
 malaya,250,83,6	duplicate(GuideMalaya)	Port Malaya Guide#02	579

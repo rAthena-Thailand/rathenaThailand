@@ -17,21 +17,21 @@
 
 amatsu,202,91,3	script	Amatsu Guide#amatsu	758,{
 	mes "[Amachang]";
-	mes "Welcome to ^8B4513Amatsu^000000,";
-	mes "the town of kind towners";
-	mes "and beautiful cherry blossoms.";
+	mes "ยินดีต้อนรับสู่ ^8B4513Amatsu^000000,";
+	mes "เมืองแห่งผู้คนที่ใจดี";
+	mes "และดอกซากุระที่สวยงาม";
 	next;
 	mes "[Amachang]";
-	mes "I'm Amachang,";
-	mes "the 13th Miss Amatsu.";
-	mes "I will guide you about town";
-	mes "as Miss Amatsu.";
-	mes "Please tell me";
-	mes "if you want to know something.";
+	mes "ฉัน Amachang ค่ะ,";
+	mes "Miss Amatsu รุ่นที่ 13";
+	mes "ฉันจะคอยแนะนำข้อมูลเกี่ยวกับเมืองนี้";
+	mes "ในฐานะ Miss Amatsu ค่ะ";
+	mes "โปรดบอกฉันนะคะ";
+	mes "หากคุณต้องการทราบข้อมูลอะไร";
 	F_Navi("[Amachang]");
 	while (1) {
 		next;
-		switch(select("[ Kafra Employee ]:[ Bar ]:[ Weapon Dealer ]:[ Tool Dealer ]:[ Amatsu Palace ]:[ Chef Assistant ]:[ Ninja Guild Building ]:[ Sea Captain ]:Remove Marks from Mini-Map:Cancel")) {
+		switch(select("[ พนักงาน Kafra ]:[ บาร์ ]:[ ร้านขายอาวุธ ]:[ ร้านขายของชำ ]:[ พระราชวัง Amatsu ]:[ ผู้ช่วยเชฟ ]:[ อาคารสมาคมนินจา ]:[ กัปตันเรือ ]:ลบเครื่องหมายออกจาก Mini-Map:ยกเลิก")) {
 		case 1:
 			callsub L_Mark, "^0000FFKafra Employee^000000";
 			viewpoint 1,102,149,0,0x0A82FF;
@@ -66,8 +66,8 @@ amatsu,202,91,3	script	Amatsu Guide#amatsu	758,{
 			break;
 		case 9:
 			mes "[Amachang]";
-			mes "I'll remove all marks from your mini-map.";
-			mes "Is there anything else I can do for you?";
+			mes "ฉันจะลบเครื่องหมายทั้งหมดออกจาก mini-map ของคุณให้ค่ะ";
+			mes "มีอะไรอย่างอื่นที่ฉันพอจะช่วยได้อีกไหมคะ?";
 			viewpoint 2,1,1,0,0xFFFFFF;
 			viewpoint 2,1,1,1,0xFFFFFF;
 			viewpoint 2,1,1,2,0xFFFFFF;
@@ -79,15 +79,15 @@ amatsu,202,91,3	script	Amatsu Guide#amatsu	758,{
 			break;
 		case 10:
 			mes "[Amachang]";
-			mes "Enjoy your trip~!!";
+			mes "ขอให้สนุกกับการเดินทางนะคะ~!!";
 			close;
 		}
 	}
 	end;
 L_Mark:
 	mes "[Amachang]";
-	mes "The "+getarg(0)+" is";
-	mes "marked on your mini-map.";
-	mes "Is there anything else I can do for you?";
+	mes "ตำแหน่งของ "+getarg(0)+" ได้ถูก";
+	mes "ทำเครื่องหมายบน mini-map ของคุณแล้วค่ะ";
+	mes "มีอะไรอย่างอื่นที่ฉันพอจะช่วยได้อีกไหมคะ?";
 	return;
 }
