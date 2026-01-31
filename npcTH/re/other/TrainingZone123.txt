@@ -9,10 +9,10 @@
 // Storage
 tra_fild01,204,110,2	script	Training Ground Warehouse Soldier#fild01_1	8W_SOLDIER,{
 	mes "[Training Ground Warehouse Soldier]";
-	mes "Would you like to use the Storage? 1000 Zeny is required to use the training ground Storage. Please select the Storage you wish to use.";
+	mes "คุณต้องการใช้คลังฝากของไหม? ต้องใช้ 1000 Zeny เพื่อใช้งานคลังฝากของในสนามฝึกหัด โปรดเลือกคลังฝากของที่คุณต้องการใช้งาน";
 	next;
-	// switch( select( "ขบ Storage 1", "ขบ Storage 2", "ขบ Storage 3", "ขบ Guild Storage", "ขบ Cancel" ) ) {
-	switch( select( "ขบ Storage 1", "", "", "ขบ Guild Storage", "ขบ Cancel" ) ) {
+	// switch( select( "?? Storage 1", "?? Storage 2", "?? Storage 3", "?? Guild Storage", "?? Cancel" ) ) {
+	switch( select( "?? Storage 1", "", "", "?? Guild Storage", "?? Cancel" ) ) {
 	case 1:
 		.@storage_num = 1;
 		break;
@@ -28,26 +28,26 @@ tra_fild01,204,110,2	script	Training Ground Warehouse Soldier#fild01_1	8W_SOLDIE
 
 		if( .@guildid == 0 ){
 			mes "[Training Ground Warehouse Soldier]";
-			mes "The guild storage is only available for guild members.";
+			mes "คลังฝากของกิลด์ให้บริการเฉพาะสมาชิกกิลด์เท่านั้น";
 			close;
 		}
 
 		if( getgdskilllv( .@guildid, "GD_GUILD_STORAGE" ) == 0 || !guild_has_permission( GUILD_PERM_STORAGE ) ){
 			mes "[Training Ground Warehouse Soldier]";
-			mes "It seems that it is not yet possible for your guild to use the guild warehouse or you do not have access permissions for the warehouse.";
-			mes "Please come back after checking the guild skill and the permission to access the warehouse.";
+			mes "ดูเหมือนว่ากิลด์ของคุณจะยังไม่สามารถใช้งานคลังกิลด์ได้ หรือคุณอาจจะไม่มีสิทธิ์ในการเข้าถึงคลังฝากของ";
+			mes "โปรดกลับมาอีกครั้งหลังจากตรวจสอบสกิลกิลด์และสิทธิ์ในการเข้าถึงคลังฝากของแล้ว";
 			close;
 		}
 
 		if( Zeny < 1000 ){
 			mes "[Training Ground Warehouse Soldier]";
-			mes "I am afraid you do not have enough money to settle the fee.";
-			mes "The fee is 1000 Zeny.";
+			mes "ฉันเกรงว่าคุณจะมีเงินไม่เพียงพอสำหรับชำระค่าธรรมเนียม";
+			mes "ค่าธรรมเนียมคือ 1000 Zeny";
 			close;
 		}
 
 		mes "[Training Ground Warehouse Soldier]";
-		mes "I will open the guild storage for you then. Have a memorable time!";
+		mes "ถ้าอย่างนั้นฉันจะเปิดคลังฝากของกิลด์ให้ ขอให้มีความสุขกับช่วงเวลานี้นะ!";
 		close2;
 
 		if( Zeny < 1000 ){
@@ -60,8 +60,8 @@ tra_fild01,204,110,2	script	Training Ground Warehouse Soldier#fild01_1	8W_SOLDIE
 			end;
 		}else{
 			mes "[Training Ground Warehouse Soldier]";
-			mes "I am afraid someone else is using the warehouse right now.";
-			mes "Please try again after a while.";
+			mes "ฉันเกรงว่าตอนนี้กำลังมีคนอื่นใช้งานคลังฝากของอยู่";
+			mes "โปรดลองใหม่อีกครั้งในภายหลัง";
 			close;
 		}
 	case 5:
@@ -70,10 +70,10 @@ tra_fild01,204,110,2	script	Training Ground Warehouse Soldier#fild01_1	8W_SOLDIE
 	// TODO (custom text)
 	if (!callfunc("F_CanOpenStorage")) {
 		mes "[Training Ground Warehouse Soldier]";
-		mes "I'm sorry, but you";
-		mes "need the Novice's";
-		mes "Basic Skill Level 6 to";
-		mes "use the Storage Service.";
+		mes "ฉันขอโทษด้วย แต่คุณ";
+		mes "จำเป็นต้องมีสกิลพื้นฐาน";
+		mes "(Basic Skill) เลเวล 6";
+		mes "เพื่อใช้งานบริการคลังฝากของ";
 		close2;
 		cutin "",255;
 		end;
@@ -81,7 +81,7 @@ tra_fild01,204,110,2	script	Training Ground Warehouse Soldier#fild01_1	8W_SOLDIE
 
 	if (Zeny < 1000) {
 		mes "[Training Ground Warehouse Soldier]";
-		mes "^4d4dff1000 Zeny is required to use the training grounds Storage.^000000";
+		mes "^4d4dffต้องใช้ 1000 Zeny เพื่อใช้งานคลังฝากของในสนามฝึกหัด^000000";
 		close;
 	}
 	Zeny -= 1000;
@@ -171,104 +171,104 @@ tra_fild03,110,57,4	duplicate(Cleaning Robot#fild01)	Cleaning Robot#fild03	EP17_
 // Chitchat
 tra_fild01,122,75,6	script	Neighborhood Grandmother#npc02	4_F_JPNOBA,{
 	mes "[Neighborhood Grandmother]";
-	mes "Hohoho- Seeing the young people sweating and working hard makes me feel a bit energized.";
+	mes "โฮะโฮะโฮะ- การได้เห็นพวกคนหนุ่มสาวเหงื่อไหลไคลย้อยและตั้งใจทำงานหนักแบบนี้ มันทำให้ฉันรู้สึกกระปรี้กระเปร่าขึ้นมาเลยล่ะ";
 	next;
 	mes "[Neighborhood Grandmother]";
-	mes "Oh, by the way. Did you know that?";
+	mes "โอ้ ว่าแต่ คุณรู้เรื่องนั้นหรือเปล่า?";
 	next;
 	mes "[Neighborhood Grandmother]";
-	mes "Dummies in the training grounds that are strong against physical attacks have a sword icon above their heads, and dummies that are strong against magic attacks have a staff icon above their heads.";
+	mes "หุ่นจำลองในสนามฝึกที่ทนทานต่อการโจมตีทางกายภาพจะมีไอคอนรูปดาบอยู่เหนือหัว และหุ่นจำลองที่ทนทานต่อการโจมตีด้วยเวทมนตร์จะมีไอคอนรูปไม้เท้าอยู่เหนือหัวของพวกมัน";
 	next;
 	mes "[Neighborhood Grandmother]";
-	mes "If you know this, you'll be able to hit them harder, right?";
+	mes "ถ้าคุณรู้เรื่องนี้ คุณก็จะสามารถโจมตีพวกมันได้แรงขึ้นใช่ไหมล่ะ?";
 	close;
 }
 
 tra_fild01,34,102,3	script	Cat#npc03	4_CAT_REST,{
-	npctalk "Meow-", "", bc_self;
+	npctalk "เมี้ยว-", "", bc_self;
 	end;
 }
 
 tra_fild01,34,120,3	script	Fress#npc05	4_M_SITDOWN,{
 	mes "[Fress]";
-	mes "If you want to go to Prontera, you can exit through the guards located throughout the area or through the warp portals at 3 and 9 o'clock. Seriously.";
+	mes "ถ้าคุณต้องการไป Prontera คุณสามารถออกไปได้ทางยามที่ประจำอยู่ตามจุดต่างๆ ทั่วพื้นที่ หรือผ่านวาร์ปพอร์ทัลที่ตำแหน่ง 3 และ 9 นาฬิกา พูดจริงๆ นะ";
 	close;
 }
 
 tra_fild01,128,142,7	script	Nine Oranges#npc04	4_F_ROGUE,{
 	mes "[Nine Oranges]";
-	mes "Remember! Once you've chosen a name, it's hard to change, so choose wisely.";
+	mes "จำไว้นะ! เมื่อคุณเลือกชื่อแล้ว มันยากที่จะเปลี่ยน ดังนั้นควรเลือกให้ดี";
 	next;
 	mes "[Nine Oranges]";
-	mes "By the way, where's the Undead Dummy?";
+	mes "ว่าแต่ หุ่นจำลอง Undead อยู่ที่ไหนล่ะ?";
 	next;
 	mes "[Nine Oranges]";
-	mes "My friend said it has a bone icon above its head...? You have to see it first.";
+	mes "เพื่อนของฉันบอกว่ามันมีไอคอนรูปกระดูกอยู่เหนือหัว...? คุณต้องไปดูมันให้ได้ก่อนนะ";
 	close;
 }
 
 tra_fild01,97,64,3	script	Village#npc01	4_M_CHN8GUEK,{
 	mes "[Village ]";
-	mes "Hi! The weather is really nice, isn't it? I came to check out the new training grounds.";
+	mes "หวัดดี! อากาศดีจริงๆ เลยว่าไหม? ฉันแวะมาดูสนามฝึกหัดแห่งใหม่น่ะ";
 	next;
 	mes "[Village ]";
-	mes "The old training grounds weren't bad, but they were actually renting space that beginners had been using for a long time, so there were some inconveniences.";
+	mes "สนามฝึกเก่าก็ไม่ได้แย่นะ แต่จริงๆ แล้วพวกเขาก็แค่เช่าพื้นที่ที่เหล่านักผจญภัยมือใหม่ใช้กันมานาน มันก็เลยมีความไม่สะดวกอยู่บ้าง";
 	next;
 	mes "[Village ]";
-	mes "But they're building such a spacious and nice new training ground. It seems like they're quite financially sound these days!";
+	mes "แต่ตอนนี้พวกเขากำลังสร้างสนามฝึกใหม่ที่กว้างขวางและดูดีขนาดนี้ ดูเหมือนว่าช่วงนี้การเงินของพวกเขาจะมั่นคงทีเดียวนะ!";
 	close;
 }
 
 tra_fild02,101,90,5	script	Jar Cat#npc09	4_CAT_SAILOR5,{
 	mes "[Jar Cat]";
-	mes "Is this your first time at the training grounds? I'll explain myself, as a veteran.";
+	mes "นี่เป็นครั้งแรกของคุณในสนามฝึกหรือเปล่า? เดี๋ยวฉันจะอธิบายให้ฟังเอง ในฐานะรุ่นพี่น่ะ";
 	next;
 	mes "[Jar Cat]";
-	mes "There are three training grounds: the basic training ground, the 1/10 training ground, and the 1/100 training ground. I'll leave the differences between each training ground for you to discover for yourself.";
+	mes "สนามฝึกมีสามแห่งด้วยกัน คือ สนามฝึกพื้นฐาน, สนามฝึก 1/10 และสนามฝึก 1/100 ส่วนความแตกต่างของแต่ละสนามนั้น ฉันจะปล่อยให้คุณค้นหาด้วยตัวเองแล้วกันนะ";
 	next;
 	mes "[Jar Cat]";
-	mes "Oh, right! To move to another training ground, you can use the warp portals at 3 o'clock and 9 o'clock. Remember!";
+	mes "อ้อ จริงด้วย! หากต้องการย้ายไปยังสนามฝึกอื่น คุณสามารถใช้พอร์ทัลวาร์ปที่ตำแหน่ง 3 นาฬิกา และ 9 นาฬิกาได้ จำไว้ล่ะ!";
 	close;
 }
 
 tra_fild02,166,46,3	script	Little One#npc06	4_M_KID2,{
 	mes "[Little One]";
-	mes "Dad told me! The Dummys with staff icons above their heads are strong against magic!";
+	mes "พ่อบอกหนูว่า! หุ่นจำลองที่มีไอคอนรูปไม้เท้าอยู่บนหัวน่ะทนทานต่อเวทมนตร์นะ!";
 	next;
 	mes "[Little One]";
-	mes "So... if you can defeat those Dummys with magic, you're truly strong, right?!";
+	mes "ดังนั้น... ถ้าคุณสามารถเอาชนะหุ่นพวกนั้นด้วยเวทมนตร์ได้ คุณก็แข็งแกร่งจริงๆ สินะ?!";
 	close;
 }
 
 tra_fild02,129,93,6	script	Kekekekereurur#npc10	4_GEFFEN_02,{
 	mes "[Kekekekereurur]";
-	mes "They say training with the Dummys with cat icons above them will help you fight Doram in PvP.";
+	mes "เขาว่ากันว่าการฝึกกับหุ่นจำลองที่มีไอคอนรูปแมวอยู่ข้างบนจะช่วยให้คุณสู้กับ Doram ใน PvP ได้นะ";
 	next;
 	mes "[Kekekekereurur]";
-	mes "I'm definitely not practicing here after getting beat up by a passing Doram. Remember!";
+	mes "ฉันไม่ได้มาฝึกที่นี่เพราะโดนพวก Doram ที่เดินผ่านไปมาอัดมาหรอกนะ จำไว้ล่ะ!";
 	close;
 }
 
 tra_fild03,98,46,7	script	Lumberjack#npc13	4_M_NOV_HUNT,{
 	mes "[Lumberjack]";
-	mes "Whoosh- Cha-Whoosh- Cha-";
+	mes "วู้บ- ฉ่า- วู้บ- ฉ่า-";
 	close;
 }
 
 tra_fild03,53,140,5	script	Dong#npc15	4_M_CACTUSMAN1,{
 	mes "[Dong]";
-	mes "Aaaah- Stop! Stop! I'm not a monster. Don't attack me.";
+	mes "อ๊าาาา- หยุดก่อน! หยุด! ฉันไม่ใช่มอนสเตอร์ อย่าโจมตีฉันนะ";
 	next;
 	mes "[Dong]";
-	mes "Whew- Thank you. Some people often mistake me for the monster Mukka, but I'm a cactus from a place called RockRidge.";
+	mes "เฮ้อ- ขอบคุณนะ บางคนมักจะเข้าใจผิดว่าฉันเป็นมอนสเตอร์ Mukka แต่จริงๆ แล้วฉันเป็นกระบองเพชรจากสถานที่ที่เรียกว่า RockRidge น่ะ";
 	next;
 	mes "[Dong]";
-	mes "If you visit RockRidge, you can meet our living, breathing Cacti, the Cactus. Come visit. Hahaha.";
+	mes "ถ้าคุณได้ไปเยี่ยมเยียน RockRidge คุณจะได้พบกับเหล่ากระบองเพชรที่มีชีวิตอย่างพวกเรา แวะไปเที่ยวบ้างนะ ฮ่าฮ่าฮ่า";
 	close;
 }
 
 tra_fild03,92,108,7	script	Cat#npc12	4_CAT_REST,{
-	npctalk "Gororong-", "", bc_self;
+	npctalk "โกร๋ง... โกร๋ง...", "", bc_self;
 	end;
 }
 

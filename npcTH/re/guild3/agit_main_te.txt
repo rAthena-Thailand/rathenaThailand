@@ -133,37 +133,37 @@ OnAgitBreak:
 	.@guild_id = getcharid(2);
 	.@map$ = strnpcinfo(4);
 
-	.@economy = getcastledata(.@map$,CD_CURRENT_ECONOMY) - 5;// Adjust economy Invest Level for Castle
+	.@economy = getcastledata(.@map$,CD_CURRENT_ECONOMY) - 5;// ปรับระดับการลงทุนด้านเศรษฐกิจ (Economy Invest Level) สำหรับปราสาท
 	if (.@economy < 1)
 		setcastledata .@map$, CD_CURRENT_ECONOMY,1;
 	else
 		setcastledata .@map$, CD_CURRENT_ECONOMY,.@economy;
-	.@defense = getcastledata(.@map$,CD_CURRENT_DEFENSE) - 5;// Adjust Defense Invest Level for Castle
+	.@defense = getcastledata(.@map$,CD_CURRENT_DEFENSE) - 5;// ปรับระดับการลงทุนด้านการป้องกัน (Defense Invest Level) สำหรับปราสาท
 	if (.@defense < 1)
 		setcastledata .@map$, CD_CURRENT_DEFENSE,1;
 	else
 		setcastledata .@map$, CD_CURRENT_DEFENSE,.@defense;
 	setcastledata .@map$,CD_GUILD_ID,.@guild_id;
 
-	// Reset Invest information and refresh castle data
+	// รีเซ็ตข้อมูลการลงทุนและรีเฟรชข้อมูลปราสาท
 	for ( .@i = CD_INVESTED_ECONOMY; .@i < CD_ENABLED_GUARDIAN00; .@i++ )
 		setcastledata .@map$,.@i,0;
-	donpcevent strnpcinfo(0) +"::OnAgitInit3";// spawn guardians / monsters
+	donpcevent strnpcinfo(0) +"::OnAgitInit3";// อัญเชิญ Guardian / มอนสเตอร์
 
-	// Erase Guardian Database information if the new owners do not have Guardian Research.
+	// ลบข้อมูลฐานข้อมูล Guardian หากเจ้าของปราสาทรายใหม่ไม่มีสกิล Guardian Research
 	if (getgdskilllv(.@guild_id,10002) == 0) {
 		for ( .@i = CD_ENABLED_GUARDIAN00; .@i < CD_MAX; .@i++ )
 			setcastledata .@map$,.@i,0;
 	}
 
-	mapannounce .@map$,"Emperium has been destroyed.",bc_map,"0x00FF00",FW_BOLD,20,0,40;
-	maprespawnguildid .@map$,.@guild_id,2;// Respawn all but new castle-occupants, don't remove monsters.
+	mapannounce .@map$,"Emperium ถูกทำลายลงแล้ว",bc_map,"0x00FF00",FW_BOLD,20,0,40;
+	maprespawnguildid .@map$,.@guild_id,2;// ส่งผู้เล่นที่ไม่ใช่สมาชิกกิลด์เจ้าของปราสาทใหม่ออกไปที่จุดเซฟ โดยไม่ลบมอนสเตอร์
 
 	sleep 500;
 	if (agitcheck3())
 		donpcevent strnpcinfo(0) +"::OnEmpSpawn";
 	sleep 7000;
-	announce "The [" + getcastlename(.@map$) + "] castle has been conquered by the [" + getguildName(.@guild_id) + "] guild.",bc_all|bc_woe;
+	announce "ปราสาท [" + getcastlename(.@map$) + "] ถูกยึดครองโดยกิลด์ [" + getguildName(.@guild_id) + "] เรียบร้อยแล้ว",bc_all|bc_woe;
 	end;
 
 OnGuildBreak:
@@ -174,7 +174,7 @@ OnGuildBreak:
 	disablenpc "Kafra Employee#"+ .@tmp$;
 	setcastledata .@map$,CD_GUILD_ID,0;
 	sleep 7000;
-	announce "Guild Base [" + getcastlename(.@map$) + "] has been abandoned.",bc_all;
+	announce "ฐานทัพกิลด์ [" + getcastlename(.@map$) + "] ถูกละทิ้งแล้ว",bc_all;
 	donpcevent strnpcinfo(0) +"::OnAgitInit3";
 	end;
 
@@ -183,24 +183,24 @@ S_Message:
 	.@guild_id = getcastledata(.@map$,CD_GUILD_ID);
 	
 	if (.@guild_id)
-		announce "The [" + getcastlename(.@map$) + "] castle is occupied by the [" + getguildname(.@guild_id) + "] guild.",bc_all,"0xFF0000",FW_NORMAL,10;
+		announce "ปราสาท [" + getcastlename(.@map$) + "] ถูกครอบครองโดยกิลด์ [" + getguildname(.@guild_id) + "]",bc_all,"0xFF0000",FW_NORMAL,10;
 	else
-		announce "The [" + getcastlename(.@map$) + "] castle is currently unoccupied.", bc_all,"0xFF0000",FW_NORMAL,10;
+		announce "ปราสาท [" + getcastlename(.@map$) + "] ยังไม่มีผู้ครอบครองในขณะนี้", bc_all,"0xFF0000",FW_NORMAL,10;
 	if (compare( .@map$,"te_alde" ))
 		.@string$ = "alde0"+ charat( .@map$,getstrlen(.@map$)-1 );
 	else
 		.@string$ = "prt0"+ charat( .@map$,getstrlen(.@map$)-1 );
-	donpcevent "#popswitch_"+ .@string$ +"::"+ getarg(0);// monsters for mission TE
+	donpcevent "#popswitch_"+ .@string$ +"::"+ getarg(0);// มอนสเตอร์สำหรับภารกิจ TE
 
 	if (.@map$ == "te_aldecas1") {
-		donpcevent "Blacksmith Cano#tegod01::OnInit";// god item TE
+		donpcevent "Blacksmith Cano#tegod01::OnInit";// ไอเทมเทพ (God item) TE
 		$2012_tegod_kafra = 0;
 		$@2012_tegirls_alde01 = 0;
 	}
 	else if (.@map$ == "te_prtcas01") {
-    	$2012_tegod_gloria = 0;
-    	$@2012_tegirls_prt01 = 0;
-    	donpcevent "Blacksmith Kai#tegod01::OnInit";
+		$2012_tegod_gloria = 0;
+		$@2012_tegirls_prt01 = 0;
+		donpcevent "Blacksmith Kai#tegod01::OnInit";
 	}
 	return;
 
@@ -217,25 +217,25 @@ OnMyMobDead:
 	cutin "kafra_01",2;
 	mes "[Kafra Employee]";
 	if (.@guild_id == getcharid(2)) {
-		mes "Welcome. ^ff0000" + .@guildname$ + "^000000 Member.";
-		mes "The Kafra Corporation will stay with you wherever you go.";
+		mes "ยินดีต้อนรับ สมาชิกกิลด์ ^ff0000" + .@guildname$ + "^000000";
+		mes "Kafra Corporation จะอยู่เคียงข้างคุณในทุกที่ที่คุณไป";
 		next;
-		switch( select( "Use Storage", "Use Teleport Service", "Rent a Pushcart", "Cancel" ) ) {
+		switch( select( "ใช้งานคลังฝากของ", "ใช้งานบริการวาร์ป", "เช่ารถเข็น (Pushcart)", "ยกเลิก" ) ) {
 		case 1:
 			if (getskilllv("NV_BASIC") > 5) {
 				mes "[Kafra Employee]";
-				mes "Here, let me open";
-				mes "your Storage for you.";
-				mes "Thank you for using";
-				mes "the Kafra Service.";
+				mes "ได้ค่ะ เดี๋ยวฉันจะเปิด";
+				mes "คลังฝากของให้คุณนะคะ";
+				mes "ขอบคุณที่ใช้บริการ";
+				mes "ของ Kafra ค่ะ";
 				close2;
 				openstorage;
 			} else {
 				mes "[Kafra Employee]";
-				mes "I'm sorry, but you";
-				mes "need the Novice's";
-				mes "Basic Skill Level 6 to";
-				mes "use the Storage Service.";
+				mes "ขออภัยด้วยค่ะ แต่คุณ";
+				mes "จำเป็นต้องมีสกิลพื้นฐาน";
+				mes "Novice Basic Skill เลเวล 6";
+				mes "เพื่อใช้งานบริการคลังฝากของค่ะ";
 				close2;
 			}
 			break;
@@ -247,32 +247,32 @@ OnMyMobDead:
 		case 3:
 			mes "[Kafra Employee]";
 			if (BaseClass != Job_Merchant) {
-				mes "I'm sorry, but the";
-				mes "Pushcart rental service";
-				mes "is only available to Merchants,";
-				mes "Blacksmiths and Alchemists.";
+				mes "ขออภัยด้วยค่ะ แต่บริการ";
+				mes "เช่ารถเข็น Pushcart นี้";
+				mes "ให้บริการเฉพาะ Merchant,";
+				mes "Blacksmith และ Alchemist เท่านั้นค่ะ";
 				close2;
 			}
 			else if (checkcart()) {
-				mes "You already have";
-				mes "a Pushcart equipped.";
-				mes "Unfortunately, we can't";
-				mes "rent more than one to";
-				mes "each customer at a time.";
+				mes "คุณมีรถเข็น Pushcart";
+				mes "ติดตั้งอยู่แล้วค่ะ";
+				mes "น่าเสียดายที่เราไม่สามารถ";
+				mes "ให้ลูกค้าเช่ามากกว่าหนึ่งคัน";
+				mes "ในเวลาเดียวกันได้ค่ะ";
 				close2;
 			}
 			else {
-				mes "The Pushcart rental";
-				mes "fee is 800 zeny. Would";
-				mes "you like to rent a Pushcart?";
+				mes "ค่าธรรมเนียมการเช่า";
+				mes "รถเข็นคือ 800 Zeny";
+				mes "คุณต้องการเช่ารถเข็นไหมคะ?";
 				next;
-				if (select( "Rent a Pushcart","Cancel" ) == 1) {
+				if (select( "เช่ารถเข็น","ยกเลิก" ) == 1) {
 					if (Zeny < 800) {
 						mes "[Kafra Employee]";
-						mes "I'm sorry, but you";
-						mes "don't have enough";
-						mes "zeny to pay the Pushcart";
-						mes "rental fee of 800 zeny.";
+						mes "ขออภัยด้วยค่ะ แต่คุณ";
+						mes "มีเงินไม่เพียงพอสำหรับ";
+						mes "จ่ายค่าเช่ารถเข็น";
+						mes "จำนวน 800 Zeny ค่ะ";
 						close2;
 					}
 					else {
@@ -285,14 +285,14 @@ OnMyMobDead:
 			break;
 		case 4:
 			mes "[Kafra Employee]";
-			mes "We, here at Kafra Corporation,";
-			mes "are always endeavoring to provide you with the best services. We hope that we meet your adventuring needs and standards of excellence.";
+			mes "พวกเราที่ Kafra Corporation";
+			mes "มุ่งมั่นที่จะมอบบริการที่ดีที่สุดให้แก่คุณเสมอ เราหวังว่าเราจะตอบสนองความต้องการและมาตรฐานความเป็นเลิศในการผจญภัยของคุณได้ค่ะ";
 			close2;
 			break;
 		}
 	}
 	else {
-		mes "I am instructed to only offer my services to the ^ff0000"+ .@guildname$ +"^000000 Guild. Please try another Kafra Employee around here. Sorry for the inconvenience.";
+		mes "ฉันได้รับคำสั่งให้ให้บริการเฉพาะกิลด์ ^ff0000"+ .@guildname$ +"^000000 เท่านั้นค่ะ โปรดลองติดต่อพนักงาน Kafra คนอื่นในบริเวณนี้นะคะ ต้องขออภัยในความไม่สะดวกด้วยค่ะ";
 		close2;
 	}
 	cutin "",255;
@@ -300,17 +300,17 @@ OnMyMobDead:
 
 S_Warp:
 	mes "[Kafra Employee]";
-	mes "Please choose";
-	mes "your destination.";
+	mes "โปรดเลือก";
+	mes "จุดหมายปลายทางของคุณค่ะ";
 	next;
-	switch( select( getarg(0) + " -> 200 z", "Cancel it" ) ) {
+	switch( select( getarg(0) + " -> 200 z", "ยกเลิก" ) ) {
 	case 1:
 		if (Zeny < 200) {
 			mes "[Kafra Employee]";
-			mes "I'm sorry, but you don't have";
-			mes "enough zeny for the Teleport";
-			mes "Service. The fee to teleport";
-			mes "to "+getarg(0)+" is 200 zeny.";
+			mes "ขออภัยด้วยค่ะ แต่คุณมี";
+			mes "เงินไม่พอสำหรับบริการวาร์ป";
+			mes "ค่าธรรมเนียมการวาร์ปไปยัง";
+			mes ""+getarg(0)+" คือ 200 Zeny ค่ะ";
 			close2;
 			cutin "",255;
 			end;
@@ -328,7 +328,7 @@ OnGuardianDied:
 	end;
 }
 
-// Castle Managers (Invest)
+// Castle Managers (Invest) (ผู้จัดการปราสาท - การลงทุน)
 //============================================================
 -	script	invest_TE	-1,{
 function GuardianData;
@@ -340,32 +340,32 @@ function GuardianData;
 
 	mes .@npc_name$;
 	if (.@guild_id == 0) {
-		mes "I have been waiting for a master to fulfill my destiny.";
-		mes "Brave soul... fate will guide you towards your future...";
+		mes "ข้ากำลังเฝ้ารอนายเหนือหัวเพื่อมาเติมเต็มโชคชะตาของข้า";
+		mes "ผู้กล้าเอ๋ย... โชคชะตาจะนำทางคุณไปสู่อนาคตเอง...";
 		close;
 	}
 	if (strcharinfo(0) != .@guildmaster$) {
-		mes "No matter how much you pester me, I'll still follow my master ^ff0000"+.@guildmaster$+"^000000. Where are the Guardians?! Send these ruffians away right now!";
+		mes "ไม่ว่าเจ้าจะรบเร้าข้าแค่ไหน ข้าก็จะยังภักดีต่อเจ้านายของข้า ^ff0000"+.@guildmaster$+"^000000 เท่านั้น พวก Guardian อยู่ไหนกันหมด?! ส่งคนเกเรพวกนี้ออกไปเดี๋ยวนี้!";
 		close;
 	}
-	mes "Welcome. My honorable master, ^ff0000"+strcharinfo(0)+"^000000...";
-	mes "Your humble servent, "+strnpcinfo(1)+", is here to serve you.";
+	mes "ยินดีต้อนรับ นายเหนือหัวผู้ทรงเกียรติของข้า ^ff0000"+strcharinfo(0)+"^000000...";
+	mes "คนรับใช้ผู้ซื่อสัตย์ของท่าน "+strnpcinfo(1)+" พร้อมรับใช้ท่านแล้วครับ";
 	next;
-	switch( select( "Castle briefing", "Invest in commercial growth", "Invest in Castle Defenses", "Summon Guardian", "Hire / Fire a Kafra Employee", "Go into Master's room" ) ) {
+	switch( select( "รายงานสถานะปราสาท", "ลงทุนเพื่อการเติบโตทางพาณิชย์", "ลงทุนเพื่อการป้องกันปราสาท", "อัญเชิญ Guardian", "จ้าง / ไล่ออก พนักงาน Kafra", "ไปยังห้องพักของนายท่าน" ) ) {
 	case 1:
 		.@economy_today = getcastledata(.@map$,CD_INVESTED_ECONOMY);
 		.@defense_today = getcastledata(.@map$,CD_INVESTED_DEFENSE);
 		mes .@npc_name$;
-		mes "I will report the Castle briefing, Master.";
+		mes "ข้าจะรายงานสถานะของปราสาทครับ นายท่าน";
 		mes " ";
-		mes "^0000ffNow, the commercial growth level is "+GetCastleData(.@map$,CD_CURRENT_ECONOMY)+".";
+		mes "^0000ffขณะนี้ ระดับการเติบโตทางพาณิชย์คือ "+GetCastleData(.@map$,CD_CURRENT_ECONOMY)+".";
 		if (.@economy_today > 0)
-			mes " You invested "+.@economy_today+" times in past 1 day.";
-		mes " Now, the Castle Defense level is "+GetCastleData(.@map$,CD_CURRENT_DEFENSE)+".^000000";
+			mes " ท่านได้ลงทุนไปแล้ว "+.@economy_today+" ครั้งในรอบ 1 วันที่ผ่านมา";
+		mes " ขณะนี้ ระดับการป้องกันปราสาทคือ "+GetCastleData(.@map$,CD_CURRENT_DEFENSE)+".^000000";
 		if (.@defense_today > 0)
-			mes " ^0000ff- You invested "+.@defense_today+" times in past 1 day.^000000";
+			mes " ^0000ff- ท่านได้ลงทุนไปแล้ว "+.@defense_today+" ครั้งในรอบ 1 วันที่ผ่านมา^000000";
 		mes " ";
-		mes "That's all I have to report, Master.";
+		mes "นั่นคือทั้งหมดที่ข้าต้องรายงานครับ นายท่าน";
 		close;
 
 	case 2:
@@ -374,7 +374,7 @@ function GuardianData;
 			55,280000, 60,335000, 65,395000, 70,460000, 75,530000, 80,605000, 85,685000, 90,770000, 95,860000, 100,955000;
 		for ( .@i = 0; .@i < getarraysize(.@eco_invest); .@i += 2 )
 			if (.@economy <= .@eco_invest[.@i]) break;
-		callsub( S_Invest, 4, .@eco_invest[.@i+1], getcastledata(.@map$,CD_INVESTED_ECONOMY), "commercial growth", "quantity of goods made by the guild will increase", "future", "economist", "riches" );
+		callsub( S_Invest, 4, .@eco_invest[.@i+1], getcastledata(.@map$,CD_INVESTED_ECONOMY), "การเติบโตทางพาณิชย์", "จำนวนสินค้าที่ผลิตโดยกิลด์จะเพิ่มมากขึ้น", "อนาคต", "นักเศรษฐศาสตร์", "ความมั่งคั่ง" );
 
 	case 3:
 		.@defense = getcastledata(.@map$,CD_CURRENT_DEFENSE);
@@ -382,124 +382,124 @@ function GuardianData;
 			55,560000, 60,670000, 65,790000, 70,920000, 75,1060000, 80,1210000, 85,1370000, 90,1540000, 95,1720000, 100,1910000;
 		for ( .@i = 0; .@i < getarraysize(.@def_invest); .@i += 2 )
 			if (.@defense <= .@def_invest[.@i]) break;
-		callsub( S_Invest, 5, .@def_invest[.@i+1], getcastledata(.@map$,CD_INVESTED_DEFENSE), "Castle Defenses", "durability of Guardians and the Emperium will increase", "coming battles", "strategist", "Defenses" );
+		callsub( S_Invest, 5, .@def_invest[.@i+1], getcastledata(.@map$,CD_INVESTED_DEFENSE), "การป้องกันปราสาท", "ความทนทานของ Guardian และ Emperium จะเพิ่มมากขึ้น", "การต่อสู้ที่กำลังจะมาถึง", "นักวางยุทธศาสตร์", "การป้องกัน" );
 
 	case 4:
 		mes .@npc_name$;
-		mes "Will you summon a Guardian? It'll be a protector to defend us loyally.";
-		mes "Please select a guardian to defend us.";
+		mes "ท่านต้องการอัญเชิญ Guardian หรือไม่? พวกมันจะเป็นผู้พิทักษ์ที่ปกป้องเราอย่างจงรักภักดี";
+		mes "โปรดเลือก Guardian ที่จะมาปกป้องเราครับ";
 		next;
 		GuardianData( .@mob_id, .@x, .@y, .@name$ );
 		for ( .@i = 0; .@i < MAX_GUARDIANS ; .@i++ ) {
 			if (guardianinfo(.@map$,.@i,0))
-				.@menu$ = .@menu$ + getmonsterinfo(.@mob_id[.@i],MOB_NAME) + " - Implemented (" + guardianinfo(.@map$,.@i,2) + "/" + guardianinfo(.@map$,.@i,1) + "):";// hp/hpmax
+				.@menu$ = .@menu$ + getmonsterinfo(.@mob_id[.@i],MOB_NAME) + " - ติดตั้งแล้ว (" + guardianinfo(.@map$,.@i,2) + "/" + guardianinfo(.@map$,.@i,1) + "):";// hp/hpmax
 			else
-				.@menu$ = .@menu$ + getmonsterinfo(.@mob_id[.@i],MOB_NAME) + " - Not Implemented:";
+				.@menu$ = .@menu$ + getmonsterinfo(.@mob_id[.@i],MOB_NAME) + " - ยังไม่ได้ติดตั้ง:";
 		}
 		.@s = select(.@menu$) -1;
 		mes .@npc_name$;
-		mes "Will you summon the chosen guardian? 10,000 zeny are required to summon a Guardian.";
+		mes "ท่านต้องการอัญเชิญ Guardian ที่เลือกไว้หรือไม่? ต้องใช้เงิน 10,000 Zeny เพื่ออัญเชิญ Guardian ครับ";
 		next;
-		if (select( "Summon","Cancel" ) == 2) {
+		if (select( "อัญเชิญ","ยกเลิก" ) == 2) {
 			mes .@npc_name$;
-			mes "I did as you ordered. But please remember if you the have money to spare, it'll be better to set it up.";
+			mes "ข้าทำตามที่ท่านสั่งครับ แต่โปรดจำไว้ว่าถ้าท่านมีเงินเหลือเฟือ การติดตั้งพวกมันไว้จะดีกว่านะครับ";
 			close;
 		}
 		mes .@npc_name$;
 		if (getgdskilllv(.@guild_id,10002) == 0) {
-			mes "Master, we have not the resources to Summon the Guardian. If you want to accumulate them, you have to learn the Guild skill. We failed to summon the Guardian.";
+			mes "นายท่าน เราไม่มีทรัพยากรเพียงพอที่จะอัญเชิญ Guardian ครับ หากท่านต้องการสะสมทรัพยากรเหล่านี้ ท่านต้องเรียนรู้สกิลกิลด์เสียก่อน การอัญเชิญ Guardian ล้มเหลวครับ";
 		}
 		else if (getcastledata( .@map$,(.@s + CD_ENABLED_GUARDIAN00) ) == 1)
-			mes "Master, you already have summoned that Guardian. We cannot summon another.";
+			mes "นายท่าน ท่านได้อัญเชิญ Guardian ตนนั้นไปแล้ว เราไม่สามารถอัญเชิญเพิ่มได้อีกครับ";
 		else if (Zeny <  10000)
-			mes "Well... I'm sorry but we don't have funds to summon the Guardian. We failed to summon the Guardian.";
+			mes "เอ่อ... ข้าขออภัยด้วยแต่เราไม่มีทุนทรัพย์เพียงพอที่จะอัญเชิญ Guardian ครับ การอัญเชิญ Guardian ล้มเหลวครับ";
 		else {
 			Zeny = Zeny - 10000;
 			setcastledata .@map$,(.@s + CD_ENABLED_GUARDIAN00),1;
 			guardian .@map$, .@x[.@s], .@y[.@s], .@name$[.@s], .@mob_id[.@s], "Kafra Employee#"+ replacestr(.@map$, "cas", "") +"::OnGuardianDied", .@s;
-			mes "We completed the summoning of the Guardian. Our defenses are now increased with it in place.";
+			mes "เราดำเนินการอัญเชิญ Guardian เสร็จสิ้นแล้ว การป้องกันของเราเพิ่มขึ้นเมื่อมีพวกมันประจำการอยู่ครับ";
 		}
 		close;
 
 	case 5:
 		mes .@npc_name$;
 		if (getcastledata(.@map$,CD_ENABLED_KAFRA) == 1) {
-			mes "We are currently hiring a Kafra Employee... Do you want to fire the Kafra Employee?";
+			mes "ขณะนี้เรากำลังจ้างพนักงาน Kafra อยู่... ท่านต้องการไล่พนักงาน Kafra ออกหรือไม่?";
 			next;
-			if (select( "Fire","Cancel" ) == 2) {
+			if (select( "ไล่ออก","ยกเลิก" ) == 2) {
 				mes .@npc_name$;
-				mes "She worked hard in my opinion. It was a good decision to keep her.";
+				mes "ในความเห็นของข้า เธอทำงานหนักมากครับ เป็นการตัดสินใจที่ดีแล้วที่รักษานางไว้";
 				close;
 			}
 			cutin "kafra_01",2;
-			mes "[ Hired Kafra Employee ]";
-			mes "I worked so hard... How can you do that, Master?... Please... Please reconsider... Check it again, Master... Please...";
+			mes "[ พนักงาน Kafra ที่ถูกจ้าง ]";
+			mes "ฉันทำงานหนักมากเลยนะ... นายท่านทำแบบนี้ได้อย่างไรคะ?... ได้โปรด... ได้โปรดทบทวนอีกครั้ง... ตรวจสอบดูอีกทีเถอะค่ะนายท่าน... ได้โปรด...";
 			next;
-			if (select( "Fire","Cancel" ) == 2) {
-				mes "[ Hired Kafra Employee ]";
-				mes "I'll work hard for you... Thank you!";
+			if (select( "ไล่ออก","ยกเลิก" ) == 2) {
+				mes "[ พนักงาน Kafra ที่ถูกจ้าง ]";
+				mes "ฉันจะตั้งใจทำงานเพื่อท่านค่ะ... ขอบคุณมากค่ะ!";
 				close3;
 			}
-			mes "[ Hired Kafra Employee ]";
-			mes "Oh, my goodness! This is nonsense!";
+			mes "[ พนักงาน Kafra ที่ถูกจ้าง ]";
+			mes "โอ้ คุณพระช่วย! นี่มันไร้สาระที่สุด!";
 			next;
 			cutin "",255;
 			disablenpc "Kafra Employee#" + replacestr(.@map$, "cas", "");
 			setcastledata .@map$,CD_ENABLED_KAFRA,0;
 			mes .@npc_name$;
 			mes "....";
-			mes "I have discharged the Kafra Employee... But... are you unsatisfied with something?";
+			mes "ข้าได้เลิกจ้างพนักงาน Kafra แล้วครับ... แต่... ท่านไม่พอใจอะไรหรือเปล่าครับ?";
 			close;
 		}
-		mes "Will you contact the kafra Main Office and Hire a Employee for our Castle?";
-		mes "^ff0000 10,000 zeny is required for their services. ";
+		mes "ท่านต้องการติดต่อสำนักงานใหญ่ Kafra เพื่อจ้างพนักงานมาประจำที่ปราสาทของเราหรือไม่?";
+		mes "^ff0000 ต้องใช้เงิน 10,000 Zeny สำหรับค่าบริการของพวกเขาครับ ";
 		next;
-		if (select( "Hire.","Cancel" ) == 2) {
+		if (select( "จ้าง","ยกเลิก" ) == 2) {
 			mes .@npc_name$;
-			mes "I did as you ordered, but some of our members will be unhappy. It will be better to hire a Kafra Employee quickly.";
+			mes "ข้าทำตามที่ท่านสั่งครับ แต่อาจมีสมาชิกบางคนไม่พอใจได้นะ จะเป็นการดีกว่าหากรีบจ้างพนักงาน Kafra โดยเร็วครับ";
 			close;
 		}
 		mes .@npc_name$;
 		if (getgdskilllv(.@guild_id,10001) == 0) {
-			mes "Master, we can't hire a Kafra Employee because we don't have a contract with the Kafra Main Office. If you want to obtain a contract with the Kafra Main Office, you will need to learn the Guild skill first.";
+			mes "นายท่าน เราไม่สามารถจ้างพนักงาน Kafra ได้เพราะเรายังไม่มีสัญญากับสำนักงานใหญ่ Kafra ครับ หากท่านต้องการทำสัญญากับสำนักงานใหญ่ ท่านต้องเรียนรู้สกิลกิลด์ก่อนครับ";
 			close;
 		}
 		if (Zeny <  10000) {
-			mes "Well... I'm sorry but we don't have enough funds to hire a Kafra Employee.";
+			mes "เอ่อ... ข้าขออภัยแต่เรามีทุนทรัพย์ไม่เพียงพอที่จะจ้างพนักงาน Kafra ครับ";
 			close;
 		}
 		Zeny = Zeny - 10000;
 		enablenpc "Kafra Employee#" + replacestr(.@map$, "cas", "");
 		setcastledata .@map$,CD_ENABLED_KAFRA,1;
 
-		mes "We obtained a contract with the kafra Main Office, and hired a Kafra Employee.";
+		mes "เราได้ทำสัญญากับสำนักงานใหญ่ Kafra และจ้างพนักงาน Kafra เรียบร้อยแล้วครับ";
 		next;
 		cutin "kafra_01",2;
-		mes "[ Hired Kafra Employee ]";
-		mes "How do you do? I was dispatched from the Main Office.";
-		mes "I'll do my best to not tarnish the reputation of the Guild.";
+		mes "[ พนักงาน Kafra ที่ถูกจ้าง ]";
+		mes "สวัสดีค่ะ ฉันถูกส่งตัวมาจากสำนักงานใหญ่ค่ะ";
+		mes "ฉันจะทำให้ดีที่สุดเพื่อไม่ให้เสียชื่อเสียงของกิลด์ค่ะ";
 		next;
 		cutin "",255;
 		mes .@npc_name$;
-		mes "The Contract terms of the hired Kafra Employee are for 1 month and after this term, you will need to pay an additional fee.";
-		mes "It will be useful for our members.";
+		mes "เงื่อนไขสัญญาของพนักงาน Kafra ที่จ้างมาคือ 1 เดือน และหลังจากครบกำหนด ท่านจะต้องจ่ายค่าธรรมเนียมเพิ่มเติมครับ";
+		mes "มันจะเป็นประโยชน์ต่อสมาชิกของเรามากครับ";
 		close;
 
 	case 6:
 		mes .@npc_name$;
-		mes "Do you want to visit the room where our valuables are stored?";
-		mes "That room is restricted to you... you are the only one with access to it.";
+		mes "ท่านต้องการไปยังห้องเก็บของมีค่าของเราหรือไม่?";
+		mes "ห้องนั้นถูกจำกัดไว้สำหรับท่าน... ท่านเป็นเพียงคนเดียวที่มีสิทธิ์เข้าถึงครับ";
 		next;
 		mes .@npc_name$;
-		mes "If you don't open the treasure box within time limits, there is a possibility of losing it when unexpected situation occurs.";
-		mes "Please make sure to remember that always, Master.";
-		mes "So, for our guild's improvement, you must find time to collect it.";
+		mes "หากท่านไม่เปิดหีบสมบัติภายในเวลาที่กำหนด มีความเป็นไปได้ที่จะสูญเสียมันไปเมื่อเกิดเหตุการณ์ไม่คาดคิดขึ้น";
+		mes "โปรดระลึกไว้เสมอครับ นายท่าน";
+		mes "ดังนั้น เพื่อการพัฒนากิลด์ของเรา ท่านต้องหาเวลาไปเก็บรวบรวมมันนะครับ";
 		next;
-		switch( select( "Go into Master's room.","Cancel" ) ) {
+		switch( select( "เข้าไปในห้องของนายท่าน","ยกเลิก" ) ) {
 		case 1:
 			mes .@npc_name$;
-			mes "I'll show you the secret path. Follow me...please.";
-			mes "When you want to return here, please press the secret switch.";
+			mes "ข้าจะแสดงทางลับให้ดู ตามข้ามา...ได้โปรด";
+			mes "เมื่อท่านต้องการกลับมาที่นี่ โปรดกดสวิตช์ลับนะครับ";
 			close2;
 			if (.@map$ == "te_aldecas1") warp "te_aldecas1",113,223;
 			else if (.@map$ == "te_aldecas2") warp "te_aldecas2",134,225;
@@ -514,8 +514,8 @@ function GuardianData;
 			end;
 		case 2:
 			mes .@npc_name$;
-			mes "Goods are produced once a day... if you don't remove them in time, they will not be produced anymore.";
-			mes "Therefore, it will be better if you check up on them from time to time.";
+			mes "สินค้าจะถูกผลิตวันละครั้ง... หากท่านไม่นำมันออกไปตามเวลา สินค้าจะไม่ถูกผลิตเพิ่มอีกครับ";
+			mes "ดังนั้น จะเป็นการดีกว่าหากท่านแวะไปตรวจสอบพวกมันเป็นระยะๆ ครับ";
 			close;
 		}
 	}
@@ -524,41 +524,41 @@ S_Invest:
 	.@cost_invest = getarg(1);
 	.@num_invest_today = getarg(2);
 	.@npc_name$ = "[ Butler "+ strnpcinfo(1) +"]";
-	if (.@num_invest_today)// Quadruple the cost of investing if you've already invested once.
+	if (.@num_invest_today)// เพิ่มต้นทุนการลงทุนเป็นสี่เท่าหากท่านได้ลงทุนไปแล้วครั้งหนึ่ง
 		.@cost_invest = .@cost_invest * 4;
 
 	mes .@npc_name$;
-	mes "If you invest in "+ getarg(3) +", the "+ getarg(4) +". Therfore, if you consider our "+ getarg(5) +", investments will be a necessity.";
+	mes "หากท่านลงทุนใน "+ getarg(3) +", จะทำให้ "+ getarg(4) +" ดังนั้น หากท่านพิจารณาถึง "+ getarg(5) +" ของเรา การลงทุนย่อมเป็นสิ่งจำเป็นครับ";
 	mes " ";
-	mes "Initially, you are able to invest just once but if you pay more money, you will be able to invest twice.";
+	mes "ในตอนแรก ท่านจะลงทุนได้เพียงครั้งเดียว แต่หากท่านจ่ายเงินเพิ่ม ท่านจะสามารถลงทุนได้เป็นครั้งที่สองครับ";
 	mes " ";
 	if (getcastledata(strnpcinfo(4),CD_CURRENT_ECONOMY) >= 100) {
-		mes "^ff0000The "+ getarg(3) +" level of our Castle is at it's highest, 100%. No more investments are needed. Just as I have expected from a great "+ getarg(6) +" like you, Master.^000000";
+		mes "^ff0000ระดับ "+ getarg(3) +" ของปราสาทเราอยู่ที่ระดับสูงสุด 100% แล้ว ไม่จำเป็นต้องลงทุนเพิ่มอีกครับ สมกับที่ข้าคาดหวังจาก "+ getarg(6) +" ผู้ยิ่งใหญ่อย่างท่านจริงๆ ครับ นายท่าน^000000";
 		close;
 	}
 	if (.@num_invest_today >= 2) {
-		mes "^ff0000You have already invested twice today. You cannot invest any more.^000000 I expect the "+ getarg(7) +" of the guild to grow at a high rate.";
+		mes "^ff0000ท่านได้ลงทุนไปสองครั้งแล้วในวันนี้ ไม่สามารถลงทุนเพิ่มได้อีกครับ^000000 ข้าคาดหวังว่า "+ getarg(7) +" ของกิลด์จะเติบโตในอัตราที่สูงครับ";
 		close;
 	}
 	if (.@num_invest_today == 0)
-		mes "The current investment amount required is ^ff0000"+.@cost_invest+"^000000 zeny. Will you invest?";
+		mes "จำนวนเงินลงทุนที่ต้องการในขณะนี้คือ ^ff0000"+.@cost_invest+"^000000 Zeny ท่านจะลงทุนหรือไม่ครับ?";
 	else
-		mes "You've invested once today... if you wish to invest once more, ^ff0000"+.@cost_invest+"^000000 more zeny will be needed.";
+		mes "ท่านลงทุนไปแล้วครั้งหนึ่งในวันนี้... หากท่านต้องการลงทุนอีกครั้ง จะต้องใช้เงินเพิ่มอีก ^ff0000"+.@cost_invest+"^000000 Zeny ครับ";
 	next;
-	switch( select( "Invest in "+ getarg(3) +".","Cancel" ) ) {
+	switch( select( "ลงทุนใน "+ getarg(3) +".","ยกเลิก" ) ) {
 	case 1:
 		mes .@npc_name$;
 		if (Zeny < .@cost_invest) {
-			mes "I'm sorry but there is not enough zeny to invest. You will have to try again when you have the funds, Master.";
+			mes "ข้าขออภัยแต่เงิน Zeny ไม่เพียงพอสำหรับการลงทุนครับ ท่านต้องลองใหม่อีกครั้งเมื่อท่านมีทุนทรัพย์ครับ นายท่าน";
 			close;
 		}
 		Zeny = Zeny - .@cost_invest;
 		setcastledata strnpcinfo(4), getarg(0), (.@num_invest_today +1);
-		mes "We finished the investment safely. I expect that our "+ getarg(3) +" level will be increased by tomorrow.";
+		mes "เราดำเนินการลงทุนเสร็จสิ้นอย่างปลอดภัย ข้าคาดว่าระดับ "+ getarg(3) +" ของเราจะเพิ่มขึ้นภายในวันพรุ่งนี้ครับ";
 		close;
 	case 2:
 		mes .@npc_name$;
-		mes "I'll do as you bid, my master... There is no hurry. We will do our best.";
+		mes "ข้าจะทำตามความประสงค์ของท่านครับ นายท่าน... ไม่ต้องรีบร้อน เราจะทำให้ดีที่สุดครับ";
 		close;
 	}
 
@@ -700,16 +700,16 @@ OnSpawnGuardians:
 	.@guild_id = getcastledata( strnpcinfo(4),CD_GUILD_ID );
 	if (.@guild_id == 0) {
 		mes "[Ringing Voice]";
-		mes "'Those who overcome an ordeal shows a great deal of bravery... and will find their way to another ordeal.'";
+		mes "'เหล่าผู้ที่ก้าวข้ามบททดสอบได้ ย่อมแสดงถึงความกล้าหาญอันยิ่งใหญ่... และจะได้พบหนทางไปสู่บททดสอบถัดไป'";
 		close;
 	}
 	mes "[Ringing Voice]";
-	mes "'Only the truly brave can take the test.'";
+	mes "'มีเพียงผู้ที่กล้าหาญอย่างแท้จริงเท่านั้นที่สามารถรับการทดสอบนี้ได้'";
 	next;
 	mes " ";
-	mes "There's a small lever. Will you pull it?";
+	mes "มีคันโยกขนาดเล็กอยู่ คุณจะดึงมันหรือไม่?";
 	next;
-	if (select( "Pull.","Don't pull." ) == 1) {
+	if (select( "ดึงคันโยก","ไม่ดึง" ) == 1) {
 		if (.@guild_id == getcharid(2)) {
 			.@npc_map$ = strnpcinfo(4);
 			if (compare( .@npc_map$,"te_alde" )) {
@@ -732,20 +732,20 @@ OnSpawnGuardians:
 		}
 		else {
 			mes " ";
-			mes "Nothing happened.";
+			mes "ไม่มีอะไรเกิดขึ้น";
 			close;
 		}
 	}
 	end;
 }
 
-// Treasure Room Exit
+// Treasure Room Exit (ทางออกห้องสมบัติ)
 //============================================================
 -	script	lever1_TE	-1,{
 	mes " ";
-	mes "There's a small lever. Will you pull it?";
+	mes "มีคันโยกขนาดเล็กอยู่ คุณจะดึงมันหรือไม่?";
 	next;
-	if ( select( "Pull.","Do not." ) == 1 ) {
+	if ( select( "ดึงคันโยก","ไม่ดึง" ) == 1 ) {
 		.@map$ = strnpcinfo(4);
 		if (.@map$ == "te_aldecas1") setarray .@coord[0],218,176;
 		else if (.@map$ == "te_aldecas2") setarray .@coord[0],51,179;
@@ -1073,27 +1073,27 @@ function	script	F_flag_woe_TE	{
 	.@castle$ = getarg(1);
 	.@guild_id = getcastledata( .@castle$,CD_GUILD_ID );
 	if (.@guild_id == 0) {
-		mes "[ Edict of the Divine Rune-Midgarts Kingdom ]";
+		mes "[ ประกาศราชโองการแห่งอาณาจักร Rune-Midgarts อันศักดิ์สิทธิ์ ]";
 		mes " ";
-		mes "1. Follow the ordinance of The Divine Rune-Midgarts Kingdom, ";
-		mes "We declare that";
-		mes "there is no formal master of this castle.";
+		mes "1. ตามบทบัญญัติแห่งอาณาจักร Rune-Midgarts อันศักดิ์สิทธิ์,";
+		mes "เราขอประกาศว่า";
+		mes "ปราสาทหลังนี้ยังไม่มีเจ้าของอย่างเป็นทางการ";
 		mes " ";
-		mes "2. To the one who can ";
-		mes "overcome all trials";
-		mes "and destroy the Emperium,";
-		mes "the king will endow the one with";
-		mes "ownership of this castle.";
+		mes "2. สำหรับผู้ที่สามารถ";
+		mes "ก้าวข้ามผ่านการทดสอบทั้งปวง";
+		mes "และทำลาย Emperium ลงได้,";
+		mes "องค์กษัตริย์จะทรงมอบ";
+		mes "กรรมสิทธิ์การครอบครองปราสาทหลังนี้ให้แก่ผู้นั้น";
 		close;
 	}
 	if (.@guild_id == getcharid(2) && getarg(0)) {
-		mes "[ Echoing Voice ]";
-		mes "Brave ones...";
-		mes "Do you wish to return to your honorable place?";
+		mes "[ เสียงก้องกังวาน ]";
+		mes "เหล่าผู้กล้าเอ๋ย...";
+		mes "เจ้าปรารถนาที่จะกลับไปยังสถานที่อันทรงเกียรติของเจ้าหรือไม่?";
 		next;
-		if (select( "Return to the guild castle.","Quit." ) == 1) {
+		if (select( "กลับไปยังปราสาทกิลด์","ออกไป" ) == 1) {
 			if (jobcanentermap(.@castle$) == 0) {
-				mes "Tertiary job class and users with expanded levels are not allowed to participate in Training Siege Battles.";
+				mes "อาชีพคลาส 3 และผู้เล่นที่มีเลเวลเกินกำหนด (Expanded Levels) ไม่ได้รับอนุญาตให้เข้าร่วมในการศึกชิงปราสาทสนามฝึก (Training Siege Battles)";
 				close;
 			}
 			if (getcastledata( getarg(1),CD_GUILD_ID ) == getcharid(2))
@@ -1103,16 +1103,16 @@ function	script	F_flag_woe_TE	{
 	}
 	.@guildname$ = getguildname(.@guild_id);
 	.@guildmaster$ = getguildmaster(.@guild_id);
-	mes "[ Edict of the Divine Rune-Midgarts Kingdom ]";
+	mes "[ ประกาศราชโองการแห่งอาณาจักร Rune-Midgarts อันศักดิ์สิทธิ์ ]";
 	mes " ";
-	mes "1. Follow the ordinance of The Divine Rune-Midgarts Kingdom, ";
-	mes "we approve that this place is in";
-	mes "the private prossession of ^ff0000"+.@guildname$+"^000000 Guild.";
+	mes "1. ตามบทบัญญัติแห่งอาณาจักร Rune-Midgarts อันศักดิ์สิทธิ์,";
+	mes "เราขอรับรองว่าสถานที่แห่งนี้อยู่ใน";
+	mes "กรรมสิทธิ์ส่วนบุคคลของกิลด์ ^ff0000"+.@guildname$+"^000000";
 	mes " ";
-	mes "2. The guild Master of ^ff0000"+.@guildname$+"^000000 Guild is";
+	mes "2. หัวหน้ากิลด์ (Guild Master) ของกิลด์ ^ff0000"+.@guildname$+"^000000 คือ";
 	mes "^ff0000"+.@guildmaster$+"^000000";
-	mes "If there is anyone who objects to this,";
-	mes "prove your strength and honor with a steel blade in your hand.";
+	mes "หากมีผู้ใดคัดค้านต่อการนี้,";
+	mes "จงพิสูจน์ความแข็งแกร่งและเกียรติยศของเจ้าด้วยดาบเหล็กกล้าในมือเถิด";
 	close;
 }
 
@@ -1136,48 +1136,48 @@ OnInit:
 // GM NPC
 //============================================================
 prt_gld,1,4,0	script	#Enterance Button prt	CLEAR_NPC,{
-	mes "password";
+	mes "รหัสผ่าน (password)";
 	next;
 	if ( callfunc( "F_GM_NPC", 1854,0, 0,9000 ) < 1 ) {
-		mes "That's not right";
+		mes "นั่นไม่ถูกต้อง";
 		close;
 	}
-	mes "What do you want to do with the Gloria-bound warp?";
+	mes "คุณต้องการทำอะไรกับจุดวาร์ปที่มุ่งหน้าไป Gloria?";
 	next;
-	switch( select( "Open it","Close it","Cancel","Rental item provided" ) ) {
+	switch( select( "เปิดใช้งาน","ปิดใช้งาน","ยกเลิก","รับไอเทมเช่า" ) ) {
 	case 1:
-		mes "Opening the warp.";
+		mes "กำลังเปิดจุดวาร์ป";
 		enablenpc "to_gloria";
 		close;
 	case 2:
-		mes "Closing the warp.";
+		mes "กำลังปิดจุดวาร์ป";
 		disablenpc "to_gloria";
 		close;
 	case 3:
 		end;
 	case 4:
-		mes "You have 300 seconds.";
+		mes "คุณมีเวลา 300 วินาที";
 		rentitem 13083,300;// TE_Woe_Knife
 		close;
 	}
 }
 
 alde_gld,1,4,0	script	#Enterance Button ald	CLEAR_NPC,{
-	mes "password";
+	mes "รหัสผ่าน (password)";
 	next;
 	if ( callfunc( "F_GM_NPC", 1854,0, 0,9000 ) < 1 ) {
-		mes "That's not right";
+		mes "นั่นไม่ถูกต้อง";
 		close;
 	}
-	mes "What do you want to do with the Kafragarten-bound warp?";
+	mes "คุณต้องการทำอะไรกับจุดวาร์ปที่มุ่งหน้าไป Kafragarten?";
 	next;
-	switch( select( "Open it","Close it","Cancel" ) ) {
+	switch( select( "เปิดใช้งาน","ปิดใช้งาน","ยกเลิก" ) ) {
 	case 1:
-		mes "Opening the warp.";
+		mes "กำลังเปิดจุดวาร์ป";
 		enablenpc "to_kafragarten";
 		close;
 	case 2:
-		mes "Closing the warp.";
+		mes "กำลังปิดจุดวาร์ป";
 		disablenpc "to_kafragarten";
 		close;
 	case 3:
@@ -1187,15 +1187,15 @@ alde_gld,1,4,0	script	#Enterance Button ald	CLEAR_NPC,{
 
 // God Item Hervor & Jormungand
 sec_in02,20,20,0	script	Test Guide	CLEAR_NPC,{
-	mes "Password?";
+	mes "รหัสผ่าน (Password)?";
 	next;
 	if (callfunc( "F_GM_NPC", 18543792,0, 0,99999999 ) < 1) {
-		mes "Aww...";
+		mes "อา... ไม่นะ...";
 		close;
 	}
-	mes "We provide material items needed for testing TE.";
+	mes "เราจัดเตรียมไอเทมวัตถุดิบที่จำเป็นสำหรับการทดสอบระบบ TE ให้";
 	next;
-	switch( select( "Materials for Hervor","Materials for Jormungand" ) ) {
+	switch( select( "วัตถุดิบสำหรับ Hervor","วัตถุดิบสำหรับ Jormungand" ) ) {
 	case 1:
 		getitem 6595,2;// Hammer_Of_Velund
 		getitem 6596,1;// Anvil_Of_Velund

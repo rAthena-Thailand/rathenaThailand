@@ -15,8 +15,8 @@ function calcexp;
 function calcjobexp;
 
 	if (!checkweight(1201,3)){
-		mes "You have too many items to proceed with the quest.";
-		mes "Please lighten your load and try again.";
+		mes "เจ้ามีไอเทมมากเกินไปที่จะดำเนินการเควสต่อ";
+		mes "กรุณาลดน้ำหนักตัวลงแล้วลองใหม่อีกครั้ง";
 		close;
 	}
 
@@ -46,34 +46,34 @@ function calcjobexp;
 		.@zoneid = 7;
 		.@edition = 3;
 	} else {
-		// Custom error message.
+		// Custom error message. (ข้อความแจ้งเตือนข้อผิดพลาด)
 		debugmes "Guild mission script called from an unknown agit region [" + .@zone$ + "].";
 		end;
 	}
 	.@npcname$ = .npcname$[.@zoneid];
 
 	mes .@npcname$;
-	mes "We provide missions and daily quests that you can complete in the region of " + .region$[.@zoneid] + ".";
-	mes "There are simple daily quests as well as missions that you have to complete within the siege hours only. So, think about it~";
+	mes "เรามีภารกิจและเควสรายวันที่เจ้าสามารถทำให้สำเร็จได้ในพื้นที่ของ " + .region$[.@zoneid] + "";
+	mes "มีทั้งเควสรายวันแบบง่ายๆ ไปจนถึงภารกิจที่เจ้าต้องทำให้สำเร็จภายในช่วงเวลา Siege (กิลด์วอร์) เท่านั้น ลองเก็บไปคิดดูนะ~";
 	next;
-	switch(select("Conquering " + .region$[.@zoneid], "Guild Dungeon Daily Quests", "About quests", "I don't need it.")){
-		case 1: // Conquering.
+	switch(select("พิชิตดินแดน " + .region$[.@zoneid], "เควสรายวัน Guild Dungeon", "เกี่ยวกับเควส", "ข้าไม่ต้องการมัน")){
+		case 1: // Conquering. (การพิชิต)
 			.@gid = getcharid(2);
 			if(.@gid && is_guild_leader() == true){
 				.@time_check1 = checkquest(.conquer_delay_questid[.@zoneid], PLAYTIME);
 				if(.@time_check1 == 0){
 					mes .@npcname$;
-					mes "It's been less than an hour since the last time we've checked!";
-					mes "Come back when the waiting time is over.";
+					mes "เพิ่งจะผ่านไปไม่ถึงชั่วโมงนับจากครั้งล่าสุดที่เราตรวจสอบเลยนะ!";
+					mes "กลับมาใหม่เมื่อเวลาพักสิ้นสุดลง";
 					next;
 					mes .@npcname$;
-					mes "If you have luck on your side, you'll have good results.";
+					mes "หากเจ้ามีโชคเข้าข้าง เจ้าจะได้รับผลลัพธ์ที่ดีแน่นอน";
 					close;
 				} else if(.@time_check1 == 2){
 					erasequest .conquer_delay_questid[.@zoneid];
 					mes .@npcname$;
-					mes "I have confirmed that the waiting time for conquering missions has ended.";
-					mes "I'll delete unnecessary records for you.";
+					mes "ข้าได้รับการยืนยันแล้วว่าเวลารอสำหรับภารกิจพิชิตดินแดนได้สิ้นสุดลงแล้ว";
+					mes "ข้าจะลบบันทึกที่ไม่จำเป็นออกให้เจ้าเอง";
 					close;
 				} else {
 					.@siege_check = (.@edition == 1 ? agitcheck() : .@edition == 2 ? agitcheck2() : agitcheck3());
@@ -82,13 +82,13 @@ function calcjobexp;
 
 					if(.@siege_check && .@after_time){
 						mes .@npcname$;
-						mes "According to ^4d4dffthe number of fortresses that your guild has conquered at this very moment,^000000 I'll give you a reward.";
-						mes "Do you want to check right now? You're aware that ^4d4dffthe number can change even as we speak,^000000 right?";
+						mes "ตาม ^4d4dffจำนวนปราสาทที่กิลด์ของเจ้าพิชิตได้ในขณะนี้^000000 ข้าจะมอบรางวัลให้แก่เจ้า";
+						mes "เจ้าต้องการตรวจสอบตอนนี้เลยไหม? เจ้าก็รู้นี่ว่า ^4d4dffจำนวนนั้นสามารถเปลี่ยนแปลงได้ตลอดเวลาแม้ในขณะที่เรากำลังคุยกันอยู่^000000 จริงไหม?";
 						next;
-						if(select("I'll come back later.","Let's check right now!") == 1){
+						if(select("ข้าจะกลับมาทีหลัง","ตรวจสอบตอนนี้เลย!") == 1){
 							mes .@npcname$;
-							mes "Right. Life is all about timing.";
-							mes "Come back when it's shining the most.";
+							mes "ถูกต้องแล้ว ชีวิตคือเรื่องของจังหวะเวลา";
+							mes "จงกลับมาในตอนที่เจ้าเจิดจรัสที่สุดเถิด";
 							close;
 						} else {
 							.@total = 0;
@@ -98,26 +98,26 @@ function calcjobexp;
 
 							if(!.@total){
 								mes .@npcname$;
-								mes "Unfortunately, there is no fortress that your guild has conquered.";
-								mes "Try again!";
+								mes "โชคร้ายหน่อยนะ ดูเหมือนจะไม่มีปราสาทที่กิลด์ของเจ้าพิชิตได้เลย";
+								mes "พยายามเข้าล่ะ!";
 								close;
 							} else {
 								mes .@npcname$;
 								if(.@total == 5)
-									mes "Incredible.";
+									mes "เหลือเชื่อจริงๆ";
 								else
-									mes "Currently, the total number of fortresses that your guild has conquered";
+									mes "ขณะนี้ จำนวนปราสาททั้งหมดที่กิลด์ของเจ้าพิชิตได้";
 								for(.@i = 0; .@i < 5; ++.@i){
-									mes getcastlename(.castle$[.@i+.@zoneid*5]) + (.@gid == getcastledata(.castle$[.@i+.@zoneid*5],CD_GUILD_ID) ? ": ^4d4dffOccupied^000000" : "");
+									mes getcastlename(.castle$[.@i+.@zoneid*5]) + (.@gid == getcastledata(.castle$[.@i+.@zoneid*5],CD_GUILD_ID) ? ": ^4d4dffครอบครองแล้ว^000000" : "");
 								}
 								if(.@total == 5)
-									mes "Your guild has conquered " + .region$[.@zoneid] + "!";
+									mes "กิลด์ของเจ้าพิชิตดินแดน " + .region$[.@zoneid] + " ได้สำเร็จ!";
 								else
-									mes "is " + .@total + "!";
+									mes "คือ " + .@total + " แห่ง!";
 								next;
 								mes .@npcname$;
-								mes "I'll give you a reward accordingly. I hope you make good use of it.";
-								mes "You have an hour of waiting time until the next report. Keep that in mind and try again.";
+								mes "ข้าจะมอบรางวัลให้ตามนั้น หวังว่าเจ้าจะใช้มันให้เกิดประโยชน์นะ";
+								mes "เจ้าจะมีเวลารอ 1 ชั่วโมงจนกว่าจะส่งรายงานครั้งถัดไปได้ จำไว้ให้ดีแล้วมาลองใหม่ล่ะ";
 								setquest .conquer_delay_questid[.@zoneid];
 								getitem 6489,.@total;
 								getitem 6615,.@total;
@@ -127,39 +127,39 @@ function calcjobexp;
 						}
 					} else {
 						mes .@npcname$;
-						mes "I'm sorry but you can complete this mission only during the siege hours. I'm afraid I can't do anything here.";
+						mes "ข้าขอโทษด้วย แต่เจ้าจะทำภารกิจนี้สำเร็จได้ในช่วงเวลา Siege เท่านั้น ข้าเกรงว่าตอนนี้ข้าคงช่วยอะไรไม่ได้";
 						close;
 					}
 				}
 			} else {
 				mes .@npcname$;
-				mes "I'm sorry but conquering missions are for guild masters only.";
-				mes "Members should try guild dungeon daily quests instead.";
+				mes "ข้าขออภัยด้วย แต่ภารกิจพิชิตดินแดนนี้มีไว้สำหรับหัวหน้ากิลด์เท่านั้น";
+				mes "สมาชิกกิลด์ควรไปลองทำเควสรายวันใน Guild Dungeon แทนนะ";
 				close;
 			}
 			break;
-		case 2: // Daily Quests
+		case 2: // Daily Quests (เควสรายวัน)
 			mes .@npcname$;
-			mes "These are missions that you can complete in guild dungeons of " + .region$[.@zoneid] + " area.";
-			mes "You can cancel them if you want to. Feel free to challenge yourself.";
+			mes "นี่คือภารกิจที่เจ้าสามารถทำให้สำเร็จได้ใน Guild Dungeon ของพื้นที่ " + .region$[.@zoneid] + "";
+			mes "เจ้าสามารถยกเลิกเควสได้ถ้าต้องการ ไม่ต้องลังเลที่จะท้าทายตัวเองล่ะ";
 			next;
 			.@cancel_index = (.@edition == 1 ? 3 : 2);
 			for(.@i = 0; .@i < 3; ++.@i){
 				if(.daily_hunting_questid[.@zoneid*3 + .@i])
-					.@menu$ = .@menu$ + .region$[.@zoneid] + " Mission " + (.@i+1) + (isbegin_quest(.daily_hunting_questid[.@zoneid*3 + .@i]) ? " ^4d4dffCheck the result^000000" : "") + ":";
+					.@menu$ = .@menu$ + .region$[.@zoneid] + " ภารกิจที่ " + (.@i+1) + (isbegin_quest(.daily_hunting_questid[.@zoneid*3 + .@i]) ? " ^4d4dffตรวจสอบผลลัพธ์^000000" : "") + ":";
 			}
 			.@sel = select(.@menu$) - 1;
 			.@index = .@zoneid*3 + .@sel;
 			if(.@sel == .@cancel_index){
 				mes .@npcname$;
-				mes "You don't need to rush since these missions take place in guild dungeons.";
-				mes "Feel free to give it a try whenever you want to.";
+				mes "เจ้าไม่จำเป็นต้องรีบร้อน เพราะภารกิจเหล่านี้อยู่ใน Guild Dungeon";
+				mes "แวะมาลองทำเมื่อไหร่ก็ได้ที่เจ้าต้องการ";
 				close;
 			}
 			if(BaseLevel < .level_req[.@index]){
 				mes .@npcname$;
-				mes "Hmm, unfortunately, this mission is limited to users with ^4d4dfflevel " + .level_req[.@index] + "^000000 or higher only.";
-				mes "Your level is not high enough.";
+				mes "หืม น่าเสียดายที่ภารกิจนี้จำกัดไว้สำหรับผู้ที่มี ^4d4dffเลเวล " + .level_req[.@index] + "^000000 ขึ้นไปเท่านั้น";
+				mes "เลเวลของเจ้ายังไม่สูงพอ";
 				close;
 			}
 			.@hunting = checkquest(.daily_hunting_questid[.@index], HUNTING);
@@ -167,26 +167,26 @@ function calcjobexp;
 			if(.@hunting > -1){
 				if(.@hunting == 2){
 					mes .@npcname$;
-					mes "Oh, you've done a good job.";
-					mes "It isn't much, but hopefully it will be helpful.";
+					mes "โอ้ เจ้าทำได้ดีมาก";
+					mes "มันอาจจะไม่มากนัก แต่หวังว่าจะเป็นประโยชน์ต่อเจ้านะ";
 					setquest .daily_delay_questid[.@index];
 					erasequest .daily_hunting_questid[.@index];
 					getexp calcexp(.@zoneid,.@index),calcjobexp(.@edition);
 					getitem 6615,1;
 				} else {
 					mes .@npcname$;
-					mes "Hmm? It seems like you haven't completed the mission yet..";
-					mes "Is there any problem?";
+					mes "หืม? ดูเหมือนว่าเจ้าจะยังทำภารกิจไม่สำเร็จนะ..";
+					mes "มีปัญหาอะไรรึเปล่า?";
 					next;
-					if(select("No.","Give up the quest.") == 1){
+					if(select("ไม่มี","ขอยอมแพ้เควสนี้") == 1){
 						mes .@npcname$;
-						mes "I'm not sure how long you can use the guild dungeon, but good luck.";
+						mes "ข้าไม่แน่ใจว่าเจ้าจะใช้ Guild Dungeon ได้นานแค่ไหน แต่ก็ขอให้โชคดีนะ";
 						close;
 					} else {
 						mes .@npcname$;
-						mes "Well, no one's forcing you.";
-						mes "Do whatever you like to do.";
-						mes "I'll cancel the mission then.";
+						mes "เอาเถอะ ไม่มีใครบังคับเจ้าอยู่แล้ว";
+						mes "ทำอะไรที่เจ้าอยากทำเถอะ";
+						mes "งั้นข้าจะยกเลิกภารกิจนี้ให้";
 						erasequest .daily_hunting_questid[.@index];
 						close;
 					}
@@ -194,61 +194,61 @@ function calcjobexp;
 			} else {
 				if(.@playtime == 0 || .@playtime == 1){
 					mes .@npcname$;
-					mes "The rule is set here so that you're only allowed to complete one mission each day.";
-					mes "I would like you to come back when the waiting time is over.";
+					mes "กฎถูกกำหนดไว้ว่าเจ้าสามารถทำภารกิจสำเร็จได้เพียงหนึ่งอย่างต่อวันเท่านั้น";
+					mes "ข้าอยากให้เจ้ากลับมาใหม่เมื่อเวลารอสิ้นสุดลง";
 					close;
 				} else if(.@playtime == 2){
 					erasequest .daily_delay_questid[.@index];
 					mes .@npcname$;
-					mes "I have confirmed that the waiting time for this mission is over.";
-					mes "I'll delete the records used for confirmation.";
-					mes "Now, give it a try to complete the quest!";
+					mes "ข้าได้รับการยืนยันแล้วว่าเวลารอสำหรับภารกิจนี้สิ้นสุดลงแล้ว";
+					mes "ข้าจะลบบันทึกที่ใช้ในการยืนยันออกให้";
+					mes "ทีนี้ ก็ลองทำเควสให้สำเร็จดูสิ!";
 					close;
 				} else {
 					mes .@npcname$;
-					mes "This is the " + .ordinal$[.@sel] + " mission in " + .region$[.@zoneid] + ".";
+					mes "นี่คือภารกิจลำดับที่ " + .ordinal$[.@sel] + " ใน " + .region$[.@zoneid] + "";
 					brief(.daily_hunting_questid[.@index]);
 					next;
 					mes .@npcname$;
 					if(mob_brief(.daily_hunting_questid[.@index]))
-						mes "I'll reward you accordingly upon completing this mission.";
+						mes "ข้าจะมอบรางวัลให้ตามนั้นเมื่อเจ้าทำภารกิจสำเร็จ";
 					else
-						mes "I'll give you experience points in return.";
+						mes "ข้าจะมอบค่าประสบการณ์ให้เป็นการตอบแทน";
 					next;
-					if(select("Accept it.","Reject it.") == 1){
+					if(select("ยอมรับ","ปฏิเสธ") == 1){
 						mes .@npcname$;
-						mes "Entrance to the guild dungeon is restricted. But it's not like you can't find a way to go there, either.";
-						mes "I'll pray for your success in fighting those monsters.";
+						mes "ทางเข้า Guild Dungeon นั้นค่อนข้างจำกัด แต่ก็ไม่ใช่ว่าเจ้าจะหาทางไปไม่ได้หรอกนะ";
+						mes "ข้าจะสวดภาวนาให้เจ้าประสบความสำเร็จในการต่อสู้กับมอนสเตอร์เหล่านั้น";
 						setquest .daily_hunting_questid[.@index];
 						close;
 					} else {
 						mes .@npcname$;
-						mes "Well, do as you wish.";
+						mes "เอาเถอะ ทำตามที่เจ้าต้องการเถอะ";
 						close;
 					}
 				}
 			}
 			break;
-		case 3: // About quests
+		case 3: // About quests (เกี่ยวกับเควส)
 			mes .@npcname$;
-			mes "It's not difficult at all.";
-			mes "I give a reward ^4d4dffdepending on how many fortresses you have conquered.^000000";
-			mes "^4d4dffThe type and quality of the reward depend on the number of conquered fortresses at the very moment I check.^000000";
+			mes "มันไม่ยากเลยสักนิด";
+			mes "ข้าจะมอบรางวัล ^4d4dffโดยขึ้นอยู่กับจำนวนปราสาทที่เจ้าพิชิตได้^000000";
+			mes "^4d4dffประเภทและคุณภาพของรางวัลจะขึ้นอยู่กับจำนวนปราสาทที่พิชิตได้ ณ วินาทีที่ข้าตรวจสอบ^000000";
 			next;
 			mes .@npcname$;
-			mes "And of course, I check during the siege hours only.";
-			mes "^4d4dffReceiving a reward is followed by an hour of waiting time. So you'd better figure out the right timing as well.^000000";
+			mes "และแน่นอน ข้าจะตรวจสอบเฉพาะในช่วงเวลา Siege เท่านั้น";
+			mes "^4d4dffหลังจากได้รับรางวัลแล้วจะมีเวลารอ 1 ชั่วโมง ดังนั้นเจ้าควรคำนวณจังหวะเวลาให้ดีด้วยนะ^000000";
 			next;
 			mes .@npcname$;
-			mes "If you are a master of a guild that is currently participating in siege battles, you should give it a try.";
+			mes "หากเจ้าเป็นหัวหน้ากิลด์ที่กำลังเข้าร่วมในการต่อสู้ช่วงกิลด์วอร์ เจ้าควรจะมาลองดูสักครั้งนะ";
 			next;
 			mes .@npcname$;
-			mes "Guild dungeon daily quests consist of combat quests that you can complete in guild dungeons.";
-			mes "It's simple.";
+			mes "เควสรายวัน Guild Dungeon ประกอบด้วยเควสการต่อสู้ที่เจ้าสามารถทำให้สำเร็จได้ใน Guild Dungeon";
+			mes "มันง่ายมาก";
 			close;
-		case 4: // I don't need it.
+		case 4: // I don't need it. (ข้าไม่ต้องการมัน)
 			mes .@npcname$;
-			mes "You're really something else~!";
+			mes "เจ้าช่างเป็นคนที่มีความมั่นใจจริงๆ~!";
 			close;
 	}
 	end;
@@ -267,15 +267,15 @@ OnInit:
 		"[Altir]","[Alshine]","[Denev]","[Tarazed]","[Mirah]","[Almark]","[Becrux]","[Acrux]";
 	setarray .region$[0],
 		"Valkyrie Realm","Greenwood Lake","Britoria","Luina","Valfreyja","Nidhoggur","Kafragarten","Gloria";
-	setarray .weekday[0], // Day of the week. 0 = Sunday, 6 = Saturday.
+	setarray .weekday[0], // Day of the week. 0 = Sunday, 6 = Saturday. (วันในสัปดาห์ 0=วันอาทิตย์, 6=วันเสาร์)
 		0,0,0,0,0,0,6,6;
 	setarray .start_time[0],
 		2200,2200,2200,2200,2200,2200,2200,2200;
 	setarray .end_time[0],
 		2230,2230,2230,2230,2230,2230,2230,2230;
-	setarray .conquer_delay_questid[0], // Quest ID for cooldowns
+	setarray .conquer_delay_questid[0], // Quest ID for cooldowns (เควสไอดีสำหรับคูลดาวน์)
 		7517,7520,7519,7518,7522,7521,7524,7523;
-	setarray .level_req[0], // Level requirement for quests. There are 2-3 quests per region
+	setarray .level_req[0], // Level requirement for quests. There are 2-3 quests per region (เลเวลที่ต้องการสำหรับเควส มี 2-3 เควสต่อพื้นที่)
 		100,120,120,	//prt
 		100,120,120,	//pay
 		100,120,120,	//gef
@@ -284,7 +284,7 @@ OnInit:
 		90,90,0,		//sch
 		70,70,0,		//tealde
 		70,70,0;		//teprt
-	setarray .max_level[0], // Exp increase cap for quests. 0 for unlimited/not exist
+	setarray .max_level[0], // Exp increase cap for quests. 0 for unlimited/not exist (จำกัดเลเวลสูงสุดสำหรับการเพิ่ม Exp. 0 คือไม่จำกัดหรือไม่ระบุ)
 		130,140,0,	//prt
 		130,140,0,	//pay
 		130,140,0,	//gef
@@ -293,7 +293,7 @@ OnInit:
 		120,120,0,	//sch
 		99,99,0,	//tealde
 		99,99,0;	//teprt
-	setarray .daily_hunting_questid[0], //Quest ID for daily quests.
+	setarray .daily_hunting_questid[0], //Quest ID for daily quests. (เควสไอดีสำหรับเควสรายวัน)
 		7525,7526,7527,	//prt
 		7534,7535,7536,	//pay
 		7531,7532,7533,	//gef
@@ -302,7 +302,7 @@ OnInit:
 		7537,7538,0,	//sch
 		7561,7562,0,	//tealde
 		7541,7542,0;	//teprt
-	setarray .daily_delay_questid[0],	//Quest ID for mob hunting check.
+	setarray .daily_delay_questid[0],	//Quest ID for mob hunting check. (เควสไอดีสำหรับตรวจสอบการล่ามอนสเตอร์)
 		7543,7544,7545,	//prt
 		7552,7553,7554,	//pay
 		7549,7550,7551,	//gef
@@ -311,7 +311,7 @@ OnInit:
 		7555,7556,0,	//sch
 		7563,7564,0,	//tealde
 		7559,7560,0;	//teprt
-	setarray .ordinal$[0],"first","second","third";
+	setarray .ordinal$[0],"แรก","ที่สอง","ที่สาม";
 	end;
 
 	function brief {
@@ -320,10 +320,10 @@ OnInit:
 			case 7530:
 			case 7533:
 			case 7536:
-				mes "It is to deal with the powerful creatures that appear in the Corridor of the Abyss.";
+				mes "มันคือการจัดการกับสิ่งมีชีวิตที่ทรงพลังซึ่งปรากฏกายใน Corridor of the Abyss";
 				break;
 			default:
-				mes "It is to eliminate the monsters that appear in the guild dungeon.";
+				mes "มันคือการกำจัดเหล่ามอนสเตอร์ที่ปรากฏกายใน Guild Dungeon";
 				break;
 		}
 		return;
@@ -332,64 +332,64 @@ OnInit:
 	function mob_brief {
 		switch(getarg(0)){
 			case 7525:
-				mes "You should hunt 50 or more Caterpillars and Creamy Fear monsters..";
+				mes "เจ้าควรจะล่า Caterpillar และ Creamy Fear อย่างละ 50 ตัวหรือมากกว่านั้น..";
 				break;
 			case 7526:
-				mes "Hunt down 30 or more of all 3 types of Abyss Kobolds.";
+				mes "กำจัด Abyss Kobold ทั้ง 3 ชนิด อย่างละ 30 ตัวหรือมากกว่านั้น";
 				break;
 			case 7527:
-				mes "^4d4dffYou should kill furious 'Pyuriel' and warrior 'Lora'.^000000";
+				mes "^4d4dffเจ้าต้องกำจัด 'Pyuriel' ผู้เกรี้ยวกราด และนักรบ 'Lora'^000000";
 				return 1;
 			case 7528:
-				mes "^4d4dffHunt 50 or more of Giant Hornets and Ancient Worms, respectively.^000000";
+				mes "^4d4dffจงล่า Giant Hornet และ Ancient Worm อย่างละ 50 ตัวขึ้นไป^000000";
 				break;
 			case 7529:
-				mes "^4d4dffHunt 40 or more of Killer Mantises and 50 or more of Angra Mantises.^000000";
+				mes "^4d4dffจงล่า Killer Mantis 40 ตัวขึ้นไป และ Angra Mantis 50 ตัวขึ้นไป^000000";
 				break;
 			case 7530:
-				mes "They are ^4d4dff'Elvira' and 'Gioia,' which is a strange mechanical creature of heroes' tears.^000000";
+				mes "พวกมันคือ ^4d4dff'Elvira' และ 'Gioia' ซึ่งเป็นจักรกลประหลาดที่เกิดจากน้ำตาของเหล่าฮีโร่^000000";
 				return 1;
 			case 7531:
-				mes "^4d4dffHunt 50 or more Zombie Masters and Wraith Deads, respectively.^000000";
+				mes "^4d4dffจงล่า Zombie Master และ Wraith Dead อย่างละ 50 ตัวขึ้นไป^000000";
 				break;
 			case 7532:
-				mes "^4d4dffHunt 50 GLD_DARK_SHADOW, 20 GLD_DARK_FRAME, and 20 GLD_DARK_PRIEST monsters.^000000";
+				mes "^4d4dffจงล่ามอนสเตอร์ GLD_DARK_SHADOW 50 ตัว, GLD_DARK_FRAME 20 ตัว และ GLD_DARK_PRIEST 20 ตัว^000000";
 				break;
 			case 7533:
-				mes "They are ^4d4dff'Kades' and 'Rudo' who wander around the dead's hill.^000000";
+				mes "พวกมันคือ ^4d4dff'Kades' และ 'Rudo' ผู้พเนจรอยู่รอบเนินเขาแห่งความตาย^000000";
 				return 1;
 			case 7534:
-				mes "^4d4dffHunt 50 or more Gullinbursti and Leib Olmai, respectively.^000000";
+				mes "^4d4dffจงล่า Gullinbursti และ Leib Olmai อย่างละ 50 ตัวขึ้นไป^000000";
 				break;
 			case 7535:
-				mes "^4d4dffHunt 45 or more Skeleton General, 20 or more Am Mut and 25 or more Gajomart, respectively.^000000";
+				mes "^4d4dffจงล่า Skeleton General 45 ตัวขึ้นไป, Am Mut 20 ตัวขึ้นไป และ Gajomart 25 ตัวขึ้นไปตามลำดับ^000000";
 				break;
 			case 7536:
-				mes "^4d4dffThey are Old Empire's General 'Daehyon' and Guard 'Soheon'.^000000";
+				mes "^4d4dffพวกมันคือแม่ทัพแห่งอาณาจักรโบราณ 'Daehyon' และองครักษ์ 'Soheon'^000000";
 				return 1;
 			case 7537:
-				mes "^4d4dffHunt 50 or more Hell Apocalypse and Zakudam, respectively.^000000";
+				mes "^4d4dffจงล่า Hell Apocalypse และ Zakudam อย่างละ 50 ตัวขึ้นไป^000000";
 				break;
 			case 7538:
-				mes "^4d4dffHunt 35 or more Heavy Metaling and Cobalt Mineral, respectively.^000000";
+				mes "^4d4dffจงล่า Heavy Metaling และ Cobalt Mineral อย่างละ 35 ตัวขึ้นไป^000000";
 				break;
 			case 7539:
-				mes "^4d4dffHunt more than 50 Banshee Masters and 30 Beholder Masters.^000000";
+				mes "^4d4dffจงล่า Banshee Master มากกว่า 50 ตัว และ Beholder Master 30 ตัว^000000";
 				break;
 			case 7540:
-				mes "^4d4dffHunt 50 Aunoes, and 20 Fanats.^000000";
+				mes "^4d4dffจงล่า Aunoe 50 ตัว และ Fanat 20 ตัว^000000";
 				break;
 			case 7541:
-				mes "^4d4dffHunt 30 or more Knight, Blacksmith, Assassin, respectively.^000000";
+				mes "^4d4dffจงล่า Knight, Blacksmith, Assassin อย่างละ 30 ตัวขึ้นไป^000000";
 				break;
 			case 7542:
-				mes "^4d4dffHunt 30 or more Wizard, Priest, Hunter respectively.^000000";
+				mes "^4d4dffจงล่า Wizard, Priest, Hunter อย่างละ 30 ตัวขึ้นไป^000000";
 				break;
 			case 7561:
-				mes "^4d4dffHunt 30 or more, Crusader, Rogue, Alchemist, respectively.^000000";
+				mes "^4d4dffจงล่า Crusader, Rogue, Alchemist อย่างละ 30 ตัวขึ้นไป^000000";
 				break;
 			case 7562:
-				mes "^4d4dffHunt 30 or more Sage, Monk, Bard, respectively.^000000";
+				mes "^4d4dffจงล่า Sage, Monk, Bard อย่างละ 30 ตัวขึ้นไป^000000";
 				break;
 		}
 		return 0;
