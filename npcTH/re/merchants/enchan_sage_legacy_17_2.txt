@@ -11,23 +11,23 @@
 
 ba_in01,87,370,3	script	Lisa#ep172_merchant	20698,{
 	if (checkweight(1201,3) == 0) {
-		mes "^ff0000It seems that the type or weight of the item you have is too much. Please organize your inventory.^000000";
+		mes "^ff0000ดูเหมือนว่าชนิดหรือน้ำหนักของไอเทมที่คุณมีจะมากเกินไป กรุณาจัดการช่องเก็บของของคุณด้วย^000000";
 		close;
 	}
 	disable_items;
 	mes "[Lisa]";
-	mes "Welcome welcome~";
+	mes "ยินดีต้อนรับ ยินดีต้อนรับ~";
 	next;
-	switch( select( "Explore Devices", "Automatic Engine Wing Enhancement", "Automatic Armor Enhancement", "Automatic Leg Enhancement", "Automatic Accessories(R) Enhancement", "Automatic Accessories(L) Enhancement" ) ) {
+	switch( select( "สอบถามข้อมูลอุปกรณ์", "เสริมพลัง Automatic Engine Wing", "เสริมพลัง Automatic Armor", "เสริมพลัง Automatic Leg", "เสริมพลัง Automatic Accessories(R)", "เสริมพลัง Automatic Accessories(L)" ) ) {
 	case 1:
 		mes "[Lisa]";
-		mes "If you bring automatic equipment and reinforcement modules, we can enchant the appropriate module on the equipment.";
+		mes "หากคุณนำอุปกรณ์ Automatic และโมดูลเสริมพลังมา เราสามารถออฟชั่นโมดูลที่เหมาะสมลงบนอุปกรณ์ให้ได้ค่ะ";
 		next;
 		mes "[Lisa]";
-		mes "This is done according to the specification module, so the equipment will not be destroyed. However, the number of upgrades can vary depending on the module.";
+		mes "ขั้นตอนนี้ทำตามโมดูลที่ระบุไว้ ดังนั้นอุปกรณ์จะไม่ถูกทำลาย อย่างไรก็ตาม จำนวนการอัปเกรดอาจแตกต่างกันไปขึ้นอยู่กับโมดูลนั้นๆ ค่ะ";
 		next;
 		mes "[Lisa]";
-		mes "Then please visit again when you need help~";
+		mes "ถ้าอย่างนั้น โปรดแวะมาใหม่เมื่อต้องการความช่วยเหลือนะคะ~";
 		close;
 	case 2:
 		.@part = EQI_GARMENT;
@@ -57,16 +57,16 @@ ba_in01,87,370,3	script	Lisa#ep172_merchant	20698,{
 		.@card[.@i] = getequipcardid(.@part,.@i);
 
 	mes "[Lisa]";
-	mes "If you bring automatic equipment and reinforcement modules, we can enchant the appropriate module on the equipment.";
+	mes "หากคุณนำอุปกรณ์ Automatic และโมดูลเสริมพลังมา เราสามารถออฟชั่นโมดูลที่เหมาะสมลงบนอุปกรณ์ให้ได้ค่ะ";
 	next;
 	mes "[Lisa]";
-	mes strcharinfo(0) + ".";
-	mes "Please select the grade of module that you want to use.";
+	mes strcharinfo(0) + " คะ";
+	mes "กรุณาเลือกระดับของโมดูลที่คุณต้องการใช้งานค่ะ";
 	next;
-	switch( select( "Cancel", "Normal Grade", "Rare Grade", "Unique Grade", "Legendary Grade", "Epic Grade 1", "Epic Grade 2", "Epic Grade 3" ) ) {
+	switch( select( "ยกเลิก", "ระดับ Normal", "ระดับ Rare", "ระดับ Unique", "ระดับ Legendary", "ระดับ Epic 1", "ระดับ Epic 2", "ระดับ Epic 3" ) ) {
 	case 1:
 		mes "[Lisa]";
-		mes "Stopping conversation.";
+		mes "จบการสนทนา";
 		close;
 	case 2:
 		setarray .@module_etc[0],1000105,1000106,1000107,1000108,1000109,1000110,1000111,1000112;
@@ -91,12 +91,12 @@ ba_in01,87,370,3	script	Lisa#ep172_merchant	20698,{
 		break;
 	}
 	.@size = getarraysize(.@module_etc);
-	.@menu$ = "Cancel:";
+	.@menu$ = "ยกเลิก:";
 
 	// Build the menu according to all the modules with the given grade in inventory
 	for ( .@i = 0; .@i < .@size; ++.@i ) {
 		if (countitem(.@module_etc[.@i]) < 1)
-			.@menu$ += "^808080(Module Amount 0)^000000" + ":";
+			.@menu$ += "^808080(จำนวนโมดูล 0)^000000" + ":";
 		else {
 			.@item_name$ = getitemname(.@module_etc[.@i]);
 			.@item_name$ = replacestr(.@item_name$, "Automatic Modification Module(", "");
@@ -107,30 +107,30 @@ ba_in01,87,370,3	script	Lisa#ep172_merchant	20698,{
 	.@s = select(.@menu$) - 2;
 	if (.@s == -1) {
 		mes "[Lisa]";
-		mes "Stopping conversation.";
+		mes "จบการสนทนา";
 		close;
 	}
 	.@module_id = .@module_etc[.@s];
 
 	if (countitem(.@module_id) < 1) {
 		mes "[Lisa]";
-		mes "You must possess a module in your inventory that matches the efficacy to proceed with the enhancement.";
+		mes "คุณต้องมีโมดูลในกระเป๋าที่ตรงกับประสิทธิภาพที่ต้องการเพื่อดำเนินการเสริมพลังค่ะ";
 		close;
 	}
 	if (.@equip_required[0] != .@equip_id && .@equip_required[1] != .@equip_id) {
 		mes "[Lisa]";
-		mes "Please make sure you have equipped the proper automatic equipment that you want to enhance.";
+		mes "กรุณาตรวจสอบให้แน่ใจว่าคุณได้สวมใส่อุปกรณ์ Automatic ที่ถูกต้องซึ่งคุณต้องการจะเสริมพลังแล้วค่ะ";
 		close;
 	}
 	if (.@card[1] > 0) {
 		mes "[Lisa]";
-		mes "This automatic equipment is already at its maximum capacity.";
-		mes "Please try another automatic equipment.";
+		mes "อุปกรณ์ Automatic ชิ้นนี้มีความสามารถเต็มขีดจำกัดแล้วค่ะ";
+		mes "กรุณาลองกับอุปกรณ์ Automatic ชิ้นอื่นนะคะ";
 		close;
 	}
 	if (.@module_id < 1000105 || .@module_id == 1000150 || .@module_id == 1000151 || (.@module_id >= 1000203 && .@module_id != 1000207 && .@module_id != 1000208)) {
 		mes "[Lisa]";
-		mes "Unknown error has occured.";
+		mes "เกิดข้อผิดพลาดที่ไม่รู้จักขึ้นค่ะ";
 		close;
 	}
 
@@ -164,7 +164,7 @@ ba_in01,87,370,3	script	Lisa#ep172_merchant	20698,{
 
 	if (.@data_index == -1) {
 		mes "[Lisa]";
-		mes "You can not enchant this module to this automatic equipment.";
+		mes "คุณไม่สามารถออฟชั่นโมดูลนี้ลงในอุปกรณ์ Automatic ชิ้นนี้ได้ค่ะ";
 		close;
 	}
 	// Max number of the selected module allowed
@@ -184,21 +184,21 @@ ba_in01,87,370,3	script	Lisa#ep172_merchant	20698,{
 	.@enchant_id = .@auto_module[.@module_id];
 	if (.@enchant_id == 0) {
 		mes "[Lisa]";
-		mes "Unknown error has occured.";
+		mes "เกิดข้อผิดพลาดที่ไม่รู้จักขึ้นค่ะ";
 		close;
 	}
 	if (countinarray(.@card[0], .@enchant_id) >= .@max_module) {
 		mes "[Lisa]";
-		mes "This automatic equipment has already maximized the enhancement from this module.";
-		mes "Please try another module.";
+		mes "อุปกรณ์ Automatic ชิ้นนี้ได้รับการเสริมพลังจากโมดูลนี้จนสูงสุดแล้วค่ะ";
+		mes "กรุณาลองโมดูลอื่นนะคะ";
 		close;
 	}
 	mes "[Lisa]";
-	mes "Are you sure you want to enchance your ^FF0000" + .@equip_name$ + "^000000 with ^0000CD" + getitemname(.@module_id) + "^000000? This process cannot be reversed.";
+	mes "คุณแน่ใจหรือไม่ว่าต้องการเสริมพลัง ^FF0000" + .@equip_name$ + "^000000 ด้วย ^0000CD" + getitemname(.@module_id) + "^000000? ขั้นตอนนี้ไม่สามารถย้อนกลับได้นะคะ";
 	next;
-	if (select( "Wait... Don't", "I'm sure. Do it." ) == 1) {
+	if (select( "เดี๋ยว... อย่าเพิ่ง", "ฉันแน่ใจ ทำเลย" ) == 1) {
 		mes "[Lisa]";
-		mes "Stopping conversation.";
+		mes "จบการสนทนา";
 		close;
 	}
 	delitem .@module_id,1;
@@ -215,7 +215,7 @@ ba_in01,87,370,3	script	Lisa#ep172_merchant	20698,{
 	delequip .@part;
 	getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
 	mes "[Lisa]";
-	mes "Woaaaah~ I can feel the power of your automatic equipment already~!";
+	mes "ว้าววว~ ฉันสัมผัสได้ถึงพลังจากอุปกรณ์ Automatic ของคุณแล้วค่ะ~!";
 	close;
 }
 
@@ -224,30 +224,30 @@ ba_in01,87,370,3	script	Lisa#ep172_merchant	20698,{
 
 ba_in01,87,386,3	script	Child Manager ฉฌ#ep172_pet	EP17_2_CHILD_ADMIN1,{
 	if (checkweight(1201,3) == 0) {
-		mes "- You have too many items.";
-		mes "Please clear your inventory and try again. -";
+		mes "- คุณมีไอเทมมากเกินไป -";
+		mes "- กรุณาจัดการช่องเก็บของแล้วลองใหม่อีกครั้ง -";
 		close;
 	}
 	mes "[Child Manager ฉฌ]";
-	mes "I have a whole bunch of little stuffs!";
+	mes "ฉันมีของกระจุกกระจิกเต็มไปหมดเลย!";
 	next;
-	switch( select( "Little Manager", "Cloud Cotton", "Little Headress", "Cancel" ) ) {
+	switch( select( "Little Manager", "Cloud Cotton", "Little Headress", "ยกเลิก" ) ) {
 	case 1:
 		mes "[Child Manager ฉฌ]";
-		mes "If you want to play with the little manager, it would cost you 30 Barmeal Tickets.";
+		mes "ถ้าคุณอยากจะเล่นกับ Little Manager ละก็ มันจะมีค่าใช้จ่าย 30 Barmeal Ticket นะ";
 		next;
-		if (select( "Exchange.", "Stop." ) == 2) {
+		if (select( "แลกเปลี่ยน", "หยุด" ) == 2) {
 			mes "[Child Manager ฉฌ]";
-			mes "Then, it's time for me to play!";
+			mes "ถ้าอย่างนั้น ก็ถึงเวลาที่ฉันต้องไปเล่นแล้ว!";
 			close;
 		}
 		if (countitem(1000103) < 30) {
 			mes "[Child Manager ฉฌ]";
-			mes "Like I said, if you want to play with the little manager, you'll need 30 Barmeal Tickets!";
+			mes "ก็บอกแล้วไง ว่าถ้าอยากเล่นกับ Little Manager คุณต้องมี 30 Barmeal Ticket!";
 			close;
 		}
 		mes "[Child Manager ฉฌ]";
-		mes "Have fun with your new friend!";
+		mes "ขอให้สนุกกับเพื่อนใหม่นะ!";
 		delitem 1000103,30;
 		getitem 9123,1;
 		close;
@@ -259,7 +259,7 @@ ba_in01,87,386,3	script	Child Manager ฉฌ#ep172_pet	EP17_2_CHILD_ADMIN1,{
 		end;
 	case 4:
 		mes "[Child Manager ฉฌ]";
-		mes "Then, it's time for me to play!";
+		mes "ถ้าอย่างนั้น ก็ถึงเวลาที่ฉันต้องไปเล่นแล้ว!";
 		close;
 	}
 	end;
@@ -270,8 +270,8 @@ ba_in01,87,386,3	script	Child Manager ฉฌ#ep172_pet	EP17_2_CHILD_ADMIN1,{
 
 ba_in01,87,376,3	script	Cube Lane#ep172cube	4_EP17_GUARD_B,{
 	mes "[Cube Lane]";
-	mes "We are offering reinforcement cubes that will refine your ^0000CD+4^000000 Illusion and Automatic Equipment to ^FF0000+7^000000 in an instant!";
-	mes "Varmundt is no doubt the best man in the world!";
+	mes "เรามีคิวบ์เสริมพลังที่จะเปลี่ยนอุปกรณ์ Illusion และ Automatic ระดับ ^0000CD+4^000000 ของคุณให้เป็น ^FF0000+7^000000 ได้ในพริบตา!";
+	mes "Varmundt นี่เป็นสุดยอดคนของโลกจริงๆ!";
 	close2;
 	callshop "ep172cubeshop00";
 	end;
@@ -288,26 +288,26 @@ ba_in01,87,383,3	script	Yeoncheong#equipment_exchange	4_EP17_CLEANER_W,{
 	if (checkweight(1201,3) == 0) {
 		cutin "ep172_omega.bmp",2;
 		mes "[Yeoncheong]";
-		mes "The bag is full. Please check the weight and number of items in your possession before talking again.";
+		mes "กระเป๋าเต็มแล้ว กรุณาตรวจสอบน้ำหนักและจำนวนไอเทมที่มีก่อนจะมาคุยใหม่อีกครั้งนะ";
 		close3;
 	}
 	disable_items;
 	cutin "ep172_omega",2;
 	mes "[Yeoncheong]";
-	mes "We accept Barmeal Tickets for upgrading your Illusion Equipment into Automatic Requipments.";
-	mes "What would you like to exchange?";
+	mes "เรารับแลก Barmeal Ticket สำหรับการอัปเกรดอุปกรณ์ Illusion ของคุณให้กลายเป็นอุปกรณ์ Automatic";
+	mes "คุณต้องการจะแลกเปลี่ยนชิ้นไหนดี?";
 	next;
-	switch( select( "Exchange Information", "Automatic Equipment Exchange", "Automatic Accessory Exchange", "Quit" ) ) {
+	switch( select( "ข้อมูลการแลกเปลี่ยน", "แลกเปลี่ยนอุปกรณ์ Automatic", "แลกเปลี่ยนเครื่องประดับ Automatic", "ออก" ) ) {
 	case 1:
 		mes "[Yeoncheong]";
-		mes "You can exchange your ^0000CD+9 Illusion Armor, Engine, or Leg and 900 Barmeal Tickets^000000 to ^FF0000Automatic Armor, Engine, or Leg^000000.";
+		mes "คุณสามารถนำ ^0000CD+9 Illusion Armor, Engine หรือ Leg และ Barmeal Ticket 900 ใบ^000000 มาแลกเป็น ^FF0000Automatic Armor, Engine หรือ Leg^000000 ได้";
 		next;
 		mes "[Yeoncheong]";
-		mes "The ^FF0000Automatic Accessories^000000 can be exchanged for ^0000CDIllusion Accessories and 1500 Barmeal Tickets^000000.";
+		mes "สำหรับ ^FF0000Automatic Accessories^000000 สามารถแลกได้ด้วย ^0000CDเครื่องประดับ Illusion และ Barmeal Ticket 1500 ใบ^000000";
 		next;
 		mes "[Yeoncheong]";
-		mes "The equipment you want to exchange must be in your inventory and talk to me.";
-		mes "^FF0000Bring only one equipment that you want to exchange and proceed.^000000";
+		mes "อุปกรณ์ที่คุณต้องการแลกต้องอยู่ในกระเป๋าแล้วค่อยมาคุยกับฉันนะ";
+		mes "^FF0000นำอุปกรณ์ที่คุณต้องการแลกมาเพียงชิ้นเดียวเพื่อดำเนินการ^000000";
 		close3;
 	case 2:
 		.@shop$ = "barter_auto_equip_1";
@@ -317,12 +317,12 @@ ba_in01,87,383,3	script	Yeoncheong#equipment_exchange	4_EP17_CLEANER_W,{
 		break;
 	case 4:
 		mes "[Yeoncheong]";
-		mes "Have a nice day, dear guest~";
+		mes "ขอให้เป็นวันที่ดีนะ ท่านแขกผู้มีเกียรติ~";
 		close3;
 	}
 	mes "[Yeoncheong]";
-	mes "^FF0000Bring only one equipment that you want to exchange and proceed.^000000";
-	mes "If there are multiple equipments in your inventory, it will be exchanged randomly if it meets the condition.";
+	mes "^FF0000นำอุปกรณ์ที่คุณต้องการแลกมาเพียงชิ้นเดียวเพื่อดำเนินการ^000000";
+	mes "หากมีอุปกรณ์หลายชิ้นในกระเป๋า มันจะถูกสุ่มแลกเปลี่ยนหากตรงตามเงื่อนไข";
 	close2;
 	cutin "",255;
 	callshop .@shop$;
@@ -334,47 +334,47 @@ ba_in01,87,380,3	script	Yecheon#ep172module_trader	4_EP17_CLEANER_W,{
 	if (checkweight(1201,3) == 0) {
 		cutin "ep172_omega",2;
 		mes "[Yecheon]";
-		mes "The bag is full. Please check the weight and number of items in your possession before talking again.";
+		mes "กระเป๋าเต็มแล้ว กรุณาตรวจสอบน้ำหนักและจำนวนไอเทมที่มีก่อนจะมาคุยใหม่อีกครั้งนะ";
 		close3;
 	}
 	disable_items;
 	cutin "ep172_omega",2;
 	mes "[Yecheon]";
-	mes "I can provide you an Automatic Module, Physical Automatic Improvement Device, and Magical Automatic Improvement Device. It will help you the improve abilites of your automatic equipments.";
+	mes "ฉันสามารถจัดหาโมดูล Automatic, อุปกรณ์ปรับปรุง Automatic สายกายภาพ และอุปกรณ์ปรับปรุง Automatic สายเวทมนตร์ให้ได้ สิ่งเหล่านี้จะช่วยเพิ่มความสามารถให้อุปกรณ์ Automatic ของคุณ";
 	next;
 	cutin "",255;
-	switch( select( "More information.", "Get Automatic Module", "Get Physical Automatic Improvement Device", "Get Magical Automatic Improvement Device", "Cancel" ) ) {
+	switch( select( "ข้อมูลเพิ่มเติม", "รับโมดูล Automatic", "รับอุปกรณ์ปรับปรุง Automatic สายกายภาพ", "รับอุปกรณ์ปรับปรุง Automatic สายเวทมนตร์", "ยกเลิก" ) ) {
 	case 1:
 		cutin "ep172_omega",2;
 		mes "[Yecheon]";
-		mes "You can get an ^FF0000automatic module^000000 for ^0000CD90 Barmeal Tickets^000000. I will give you a random automatic module excluding the epic grade modules.";
+		mes "คุณสามารถรับ ^FF0000โมดูล Automatic^000000 ได้ในราคา ^0000CDBarmeal Ticket 90ใบ^000000 ฉันจะให้โมดูล Automatic แบบสุ่มหนึ่งชิ้น ยกเว้นโมดูลระดับ Epic";
 		next;
 		mes "[Yecheon]";
-		mes "I'm also providing ^FF0000Physical Automatic Improvement Device and Magical Automatic Improvement Device^000000. You can exchange it for ^0000CD45 Barmeal Tickets^000000, or ^0000CD1500000 Zeny^000000.";
+		mes "ฉันยังมี ^FF0000อุปกรณ์ปรับปรุง Automatic สายกายภาพ และอุปกรณ์ปรับปรุง Automatic สายเวทมนตร์^000000 ให้ด้วย คุณสามารถแลกได้ด้วย ^0000CDBarmeal Ticket 45 ใบ^000000 หรือ ^0000CD1,500,000 Zeny^000000";
 		next;
 		mes "[Yecheon]";
-		mes "Then, combat-specialized guest, do safely improve your abilities.";
+		mes "ถ้าอย่างนั้น ท่านแขกผู้เชี่ยวชาญการต่อสู้ ขอให้พัฒนาความสามารถได้อย่างปลอดภัยนะ";
 		close3;
 	case 2:
 		.@price = 90;
 		cutin "ep172_omega",2;
 		mes "[Yecheon]";
-		mes "I will exchange 1 random Automatic Module excluding the epic grade modules for " + .@price + " " + mesitemlink(1000103) + ".";
+		mes "ฉันจะแลกเปลี่ยนโมดูล Automatic แบบสุ่ม 1 ชิ้น (ยกเว้นระดับ Epic) สำหรับ " + .@price + " " + mesitemlink(1000103) + " จ๊ะ";
 		next;
 		cutin "",255;
-		if (select( "Exchange Barmeal Ticket.", "Do not exchange" ) == 2) {
+		if (select( "แลกด้วย Barmeal Ticket", "ไม่แลก" ) == 2) {
 			mes "[Yecheon]";
-			mes "Transaction ended.";
+			mes "สิ้นสุดการทำรายการ";
 			close3;
 		}
 		cutin "ep172_omega",2;
 		if (countitem(1000103) < .@price) {
 			mes "[Yecheon]";
-			mes "You don't have enough Barmeal tickets for the exchange.";
+			mes "คุณมี Barmeal Ticket ไม่เพียงพอสำหรับการแลกเปลี่ยน";
 			close3;
 		}
 		mes "[Yecheon]";
-		mes "I exchanged it for one random Automatic Module.";
+		mes "ฉันแลกมันเป็นโมดูล Automatic แบบสุ่มให้แล้วนะ";
 		delitem 1000103,.@price;
 		getitem rand(1000105,1000149),1;
 		close3;
@@ -383,15 +383,15 @@ ba_in01,87,380,3	script	Yecheon#ep172module_trader	4_EP17_CLEANER_W,{
 		.@zeny = 1500000;
 		cutin "ep172_omega",2;
 		mes "[Yecheon]";
-		mes "I will exchange ^FF00001 Physical Automatic Improvement Device^000000 for " + .@price + " " + mesitemlink(1000103) + " or " + .@zeny + " Zeny.";
+		mes "ฉันจะแลกเปลี่ยน ^FF0000อุปกรณ์ปรับปรุง Automatic สายกายภาพ 1 ชิ้น^000000 สำหรับ " + .@price + " " + mesitemlink(1000103) + " หรือ " + .@zeny + " Zeny";
 		next;
 		cutin "",255;
-		switch( select( "Exchange for Barmeal Ticket.", "Exchange for 1500000 Zeny.", "Do not exchange." ) ) {
+		switch( select( "แลกด้วย Barmeal Ticket", "แลกด้วย 1,500,000 Zeny", "ไม่แลก" ) ) {
 		case 1:
 			cutin "ep172_omega",2;
 			if (countitem(1000103) < .@price) {
 				mes "[Yecheon]";
-				mes "You don't have enough Barmeal tickets for the exchange.";
+				mes "คุณมี Barmeal Ticket ไม่เพียงพอสำหรับการแลกเปลี่ยน";
 				close3;
 			}
 			delitem 1000103,.@price;
@@ -400,18 +400,18 @@ ba_in01,87,380,3	script	Yecheon#ep172module_trader	4_EP17_CLEANER_W,{
 			cutin "ep172_omega",2;
 			if (Zeny < .@zeny) {
 				mes "[Yecheon]";
-				mes "You don't have enough Zeny for the exchange.";
+				mes "คุณมี Zeny ไม่เพียงพอสำหรับการแลกเปลี่ยน";
 				close3;
 			}
 			Zeny -= .@zeny;
 			break;
 		case 3:
 			mes "[Yecheon]";
-			mes "Transaction ended.";
+			mes "สิ้นสุดการทำรายการ";
 			close3;
 		}
 		mes "[Yecheon]";
-		mes "I exchanged it for one random Physical Automatic Improvement Device.";
+		mes "ฉันแลกมันเป็นอุปกรณ์ปรับปรุง Automatic สายกายภาพแบบสุ่มให้แล้วนะ";
 		.@r = rand(100);
 		if (.@r < 50)
 			getitem 100164,1;
@@ -425,15 +425,15 @@ ba_in01,87,380,3	script	Yecheon#ep172module_trader	4_EP17_CLEANER_W,{
 		.@zeny = 1500000;
 		cutin "ep172_omega",2;
 		mes "[Yecheon]";
-		mes "I will exchange ^FF00001 Magical Automatic Improvement Device^000000 for " + .@price + " " + mesitemlink(1000103) + " or " + .@zeny + " Zeny.";
+		mes "ฉันจะแลกเปลี่ยน ^FF0000อุปกรณ์ปรับปรุง Automatic สายเวทมนตร์ 1 ชิ้น^000000 สำหรับ " + .@price + " " + mesitemlink(1000103) + " หรือ " + .@zeny + " Zeny";
 		next;
 		cutin "",255;
-		switch( select( "Exchange for Barmeal Ticket.", "Exchange for 1500000 Zeny.", "Do not exchange." ) ) {
+		switch( select( "แลกด้วย Barmeal Ticket", "แลกด้วย 1,500,000 Zeny", "ไม่แลก" ) ) {
 		case 1:
 			cutin "ep172_omega",2;
 			if (countitem(1000103) < .@price) {
 				mes "[Yecheon]";
-				mes "You don't have enough Barmeal tickets for the exchange.";
+				mes "คุณมี Barmeal Ticket ไม่เพียงพอสำหรับการแลกเปลี่ยน";
 				close3;
 			}
 			delitem 1000103,.@price;
@@ -442,18 +442,18 @@ ba_in01,87,380,3	script	Yecheon#ep172module_trader	4_EP17_CLEANER_W,{
 			cutin "ep172_omega",2;
 			if (Zeny < .@zeny) {
 				mes "[Yecheon]";
-				mes "You don't have enough Zeny for the exchange.";
+				mes "คุณมี Zeny ไม่เพียงพอสำหรับการแลกเปลี่ยน";
 				close3;
 			}
 			Zeny -= .@zeny;
 			break;
 		case 3:
 			mes "[Yecheon]";
-			mes "Transaction ended.";
+			mes "สิ้นสุดการทำรายการ";
 			close3;
 		}
 		mes "[Yecheon]";
-		mes "I exchanged it for one random Magical Automatic Improvement Device.";
+		mes "ฉันแลกมันเป็นอุปกรณ์ปรับปรุง Automatic สายเวทมนตร์แบบสุ่มให้แล้วนะ";
 		.@r = rand(100);
 		if (.@r < 50)
 			getitem 100167,1;
@@ -464,7 +464,7 @@ ba_in01,87,380,3	script	Yecheon#ep172module_trader	4_EP17_CLEANER_W,{
 		close3;
 	case 5:
 		mes "[Yecheon]";
-		mes "Transaction ended.";
+		mes "สิ้นสุดการทำรายการ";
 		close3;
 	}
 	end;
@@ -473,12 +473,12 @@ ba_in01,87,380,3	script	Yecheon#ep172module_trader	4_EP17_CLEANER_W,{
 ba_in01,87,389,2	script	Butterfly Merchant#ba_in01	4_EP17_MASTER_A,{
 	if (ep17_2_main < 8) {
 		mes "[Butterfly Merchant]";
-		mes "Sorry. Registration is required to purchase butterflies.";
+		mes "ขออภัยด้วย จำเป็นต้องมีการลงทะเบียนก่อนถึงจะซื้อผีเสื้อได้";
 		close;
 	}
 	mes "[Butterfly Merchant]";
-	mes "Welcome.";
-	mes "Do you need wings to move to Barmund Mansion?";
+	mes "ยินดีต้อนรับ";
+	mes "คุณต้องการปีกเพื่อเคลื่อนที่ไปยัง Barmund Mansion ใช่ไหม?";
 	close2;
 	callshop "barter_Teleport_Ep17_02";
 	end;

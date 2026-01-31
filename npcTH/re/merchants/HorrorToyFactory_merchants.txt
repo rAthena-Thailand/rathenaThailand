@@ -11,15 +11,15 @@
 xmas,240,291,3	script	Billy The Golden Hands#1	4_F_05,{
 	disable_items;
 	if (checkweight(1201,1) == 0) {
-		mes "The kind of items you have is too various. Retry after reducing the sort of items.";
+		mes "ชนิดของไอเทมที่คุณมีมันหลากหลายเกินไป ลองใหม่อีกครั้งหลังจากลดจำนวนชนิดของไอเทมลง";
 		close;
 	}
 	if ((MaxWeight - Weight) < 10000) {
-		mes "You are overburdened, so you cannot proceed it anymore. Please try again after reduce the weight.";
+		mes "น้ำหนักของคุณเกินขีดจำกัด ดังนั้นคุณไม่สามารถดำเนินการต่อได้ กรุณาลองใหม่อีกครั้งหลังจากลดน้ำหนักลง";
 		close;
 	}
 	mes "[Billy The Golden Hands]";
-	mes "Huhu. Did you bring some coins? I would sell anything but my soul if you have coins.";
+	mes "หึหึ นำเหรียญมาด้วยหรือเปล่า? ฉันขายได้ทุกอย่างยกเว้นวิญญาณของฉันถ้าคุณมีเหรียญมาให้";
 	next;
 
 	setarray .@xm_item[0],
@@ -34,31 +34,31 @@ xmas,240,291,3	script	Billy The Golden Hands#1	4_F_05,{
 		523,   1,		// Holy_Water
 		12020, 1;		// Water_Of_Darkness
 
-	.@s = ( select( "Cancel", "Closed Mind Box (100 Coins)", "Lush Rose (500 Coins)", "C Lush Rose (1000 Coins)", "C Santa Hairband (500 Coins)", "C Red Bonnet (500 Coins)", "Old Parasol (1000 Coins)", "Hot Tea (7 Coins)", "Sweet Canape (5 Coins)", "Holy Water (1 Coin)", "Water Of Darkness (1 Coin)" ) -2 ) * 2;
+	.@s = ( select( "ยกเลิก", "Closed Mind Box (100 Coins)", "Lush Rose (500 Coins)", "C Lush Rose (1000 Coins)", "C Santa Hairband (500 Coins)", "C Red Bonnet (500 Coins)", "Old Parasol (1000 Coins)", "Hot Tea (7 Coins)", "Sweet Canape (5 Coins)", "Holy Water (1 Coin)", "Water Of Darkness (1 Coin)" ) -2 ) * 2;
 	if (.@s == -2) {
 		mes "[Billy The Golden Hands]";
-		mes "Khaha, do you feel any scruples or something? Alright, then. Come again at anytime when you change your mind.";
+		mes "ก๊ากๆๆ คุณรู้สึกผิดหรืออะไรอย่างนั้นเหรอ? เอาล่ะ ไม่เป็นไร กลับมาใหม่ได้ทุกเมื่อที่คุณเปลี่ยนใจ";
 		close;
 	}
 	if (countitem(7642) >= .@xm_item[.@s+1]) {
 		mes "[Billy The Golden Hands]";
-		mes "You need ^0000ff" + .@xm_item[.@s+1] + "^000000 Bloody Coins to buy ^0000ff" + getitemname(.@xm_item[.@s]) + "^000000. Are you going to buy it?";
+		mes "คุณต้องใช้ ^0000ff" + .@xm_item[.@s+1] + "^000000 Bloody Coins เพื่อซื้อ ^0000ff" + getitemname(.@xm_item[.@s]) + "^000000. คุณยืนยันจะซื้อหรือไม่?";
 		next;
-		if (select( "Cancel", "Purchase" ) == 1) {
+		if (select( "ยกเลิก", "ซื้อสินค้า" ) == 1) {
 			mes "[Billy The Golden Hands]";
-			mes "Khaha, what a fickle friend you are. If you really decide to buy it, come again.";
+			mes "ก๊ากๆๆ ช่างเป็นเพื่อนที่โลเลเสียจริง ถ้าคุณตัดสินใจจะซื้อจริงๆ ค่อยกลับมาใหม่ละกัน";
 			close;
 		}
 		if (countitem(7642) >= .@xm_item[.@s+1]) {
 			delitem 7642,.@xm_item[.@s+1];// Bloody_Coin
 			getitem .@xm_item[.@s], 1;
 			mes "[Billy The Golden Hands]";
-			mes "You have paid for it. I look forward to seeing you again.!";
+			mes "คุณจ่ายเงินเรียบร้อยแล้ว ฉันหวังว่าจะได้พบคุณอีกครั้ง!";
 			close;
 		}
 	}
 	mes "[Billy The Golden Hands]";
-	mes "You need ^0000ff" + .@xm_item[.@s+1] + "^000000 Bloody Coins to buy ^0000ff" + getitemname(.@xm_item[.@s]) + "^000000. You are short of them.";
+	mes "คุณต้องใช้ ^0000ff" + .@xm_item[.@s+1] + "^000000 Bloody Coins เพื่อซื้อ ^0000ff" + getitemname(.@xm_item[.@s]) + "^000000. เหรียญของคุณไม่พอ";
 	close;
 }
 
@@ -66,39 +66,39 @@ xmas,240,291,3	script	Billy The Golden Hands#1	4_F_05,{
 xmas,240,297,3	script	Vagrant Cain#1	4_M_06,{
 	disable_items;
 	if (checkweight(1201,1) == 0) {
-		mes "The kind of items you have is too various. Retry after reducing the sort of items.";
+		mes "ชนิดของไอเทมที่คุณมีมันหลากหลายเกินไป ลองใหม่อีกครั้งหลังจากลดจำนวนชนิดของไอเทมลง";
 		close;
 	}
 	if ((MaxWeight - Weight) < 10000) {
-		mes "You are overburdened, so you cannot proceed it anymore. Please try again after reduce the weight.";
+		mes "น้ำหนักของคุณเกินขีดจำกัด ดังนั้นคุณไม่สามารถดำเนินการต่อได้ กรุณาลองใหม่อีกครั้งหลังจากลดน้ำหนักลง";
 		close;
 	}
 	mes "[Vagrant Cain]";
-	mes "Oh, I'm sure that you came here because you don't like ordinaries. Just talk to me. I will make anything if you have prepared the reasonable charge and the proper materials.";
+	mes "โอ้ ฉันมั่นใจว่าคุณมาที่นี่เพราะคุณไม่ชอบอะไรที่มันธรรมดาๆ แค่คุยกับฉันสิ ฉันจะสร้างอะไรก็ได้ถ้าคุณเตรียมค่าธรรมเนียมที่เหมาะสมและวัตถุดิบที่ถูกต้องมาให้";
 	next;
-	.@s = select( "Nothing that I want.", "I want Celine's Ribbon.", "I'm seeking Noble Cross.", "I'd like to get Evilspirit Gloves." );
+	.@s = select( "ไม่มีอะไรที่ฉันต้องการ", "ฉันต้องการ Celine's Ribbon", "ฉันกำลังมองหา Noble Cross", "ฉันอยากได้ Evilspirit Gloves" );
 	switch(.@s) {
 	case 1:
 		mes "[Vagrant Cain]";
-		mes "Yes, yes. Everyone says like you at first. See you later.";
+		mes "ใช่ๆ ทุกคนก็พูดเหมือนคุณในตอนแรกนั่นแหละ ไว้เจอกันใหม่";
 		close;
 	case 2:
-		.@string$[0] = "Ho~ You are looking for a very unique headgear, my friend. You have great discernment.";
-		.@string$[1] = "I need ^0000ff1000 ^000000Bloody Coins and ^0000ff+9 or greater Lush Rose^000000 for ^0000ffCeline's Ribbon^000000. Do you have enough materials?";
-		.@string$[2] = "You should prepare ^0000ff1000 ^000000Bloody Coins and one ^0000ff +9 or greater Lush Rose^000000 for ^0000ffCeline's Ribbon^000000. Don't forget!";
-		.@string$[3] = "Are you really going to trade them? ^ff0000The refine levels, effects, and card of the item will disappear and you cannot get a refund^000000. Please consider it!";
+		.@string$[0] = "โฮ่~ เพื่อนเอ๋ย คุณกำลังมองหาหมวกที่แสนพิเศษอยู่สินะ คุณนี่ตาถึงจริงๆ";
+		.@string$[1] = "ฉันต้องการ ^0000ff1000 ^000000Bloody Coins และ ^0000ffLush Rose ที่ตีบวก +9 ขึ้นไป^000000 สำหรับ ^0000ffCeline's Ribbon^000000. คุณมีวัตถุดิบพอไหม?";
+		.@string$[2] = "คุณควรเตรียม ^0000ff1000 ^000000Bloody Coins และ ^0000ff Lush Rose ที่ตีบวก +9 ขึ้นไป^000000 หนึ่งใบสำหรับ ^0000ffCeline's Ribbon^000000. อย่าลืมล่ะ!";
+		.@string$[3] = "คุณแน่ใจจริงๆ เหรอที่จะแลกมัน? ^ff0000ระดับการตีบวก, ออฟชั่น และการ์ดของไอเทมเดิมจะหายไป และคุณไม่สามารถขอคืนเงินได้^000000. โปรดพิจารณาให้ดี!";
 		break;
 	case 3:
-		.@string$[0] = "Ho~ You are looking for a very precious weapon, my friend. You have great discernment.";
-		.@string$[1] = "I need ^0000ff2000 ^000000Bloody Coins and one ^0000ffGrand Cross (slot)^000000 for ^0000ffNoble Cross^000000. Do you have enough materials?";
-		.@string$[2] = "You should prepare ^0000ff 2000 ^000000Bloody Coins and one ^0000ff Grand Cross (slot)^000000 for ^0000ffNoble Cross^000000. Don't forget!";
-		.@string$[3] = "Are you really going to trade them? ^ff0000The refine levels, effects, and card of the item will disappear and you cannot get a refund^000000. Please consider it!";
+		.@string$[0] = "โฮ่~ เพื่อนเอ๋ย คุณกำลังมองหาอาวุธที่ล้ำค่ามากอยู่สินะ คุณนี่ตาถึงจริงๆ";
+		.@string$[1] = "ฉันต้องการ ^0000ff2000 ^000000Bloody Coins และ ^0000ffGrand Cross (แบบมีรู)^000000 หนึ่งเล่มสำหรับ ^0000ffNoble Cross^000000. คุณมีวัตถุดิบพอไหม?";
+		.@string$[2] = "คุณควรเตรียม ^0000ff 2000 ^000000Bloody Coins และ ^0000ff Grand Cross (แบบมีรู)^000000 หนึ่งเล่มสำหรับ ^0000ffNoble Cross^000000. อย่าลืมล่ะ!";
+		.@string$[3] = "คุณแน่ใจจริงๆ เหรอที่จะแลกมัน? ^ff0000ระดับการตีบวก, ออฟชั่น และการ์ดของไอเทมเดิมจะหายไป และคุณไม่สามารถขอคืนเงินได้^000000. โปรดพิจารณาให้ดี!";
 		break;
 	case 4:
-		.@string$[0] = "Ho~ You are looking for a very rare accessory, my friend. You have great discernment.";
-		.@string$[1] = "I need ^0000ff1000 ^000000Bloody Coins, one ^0000ffHurt Mind, Kind Heart, and Red Lantern ^000000each for ^0000ffEvilspirit Gloves^000000. Do you have enough materials?";
-		.@string$[2] = "You should prepare ^0000ff1000 ^000000Bloody Coins, one ^0000ffHurt Mind, Kind Heart, and Red Lantern ^000000each for ^0000ffEvilspirit Gloves^000000. Don't forget!";
-		.@string$[3] = "Are you really going to trade them? ^ff0000The effects, and card of the item will disappear and you cannot get a refund^000000. Besides, if you have the same sort of things, I don't know which one will be chosen. Think about that.";
+		.@string$[0] = "โฮ่~ เพื่อนเอ๋ย คุณกำลังมองหาเครื่องประดับที่หายากมากอยู่สินะ คุณนี่ตาถึงจริงๆ";
+		.@string$[1] = "ฉันต้องการ ^0000ff1000 ^000000Bloody Coins, ^0000ffHurt Mind, Kind Heart, และ Red Lantern ^000000อย่างละหนึ่งชิ้นสำหรับ ^0000ffEvilspirit Gloves^000000. คุณมีวัตถุดิบพอไหม?";
+		.@string$[2] = "คุณควรเตรียม ^0000ff1000 ^000000Bloody Coins, ^0000ffHurt Mind, Kind Heart, และ Red Lantern ^000000อย่างละหนึ่งชิ้นสำหรับ ^0000ffEvilspirit Gloves^000000. อย่าลืมล่ะ!";
+		.@string$[3] = "คุณแน่ใจจริงๆ เหรอที่จะแลกมัน? ^ff0000ออฟชั่น และการ์ดของไอเทมเดิมจะหายไป และคุณไม่สามารถขอคืนเงินได้^000000. นอกจากนี้ หากคุณมีของชนิดเดียวกันหลายชิ้น ฉันไม่รู้หรอกนะว่าชิ้นไหนจะถูกเลือกไป ลองคิดดูให้ดี";
 		break;
 	}
 	mes "[Vagrant Cain]";
@@ -107,9 +107,9 @@ xmas,240,297,3	script	Vagrant Cain#1	4_M_06,{
 	mes "[Vagrant Cain]";
 	mes .@string$[1];
 	next;
-	if (select( "I don't have them now", "I will trade it right away" ) == 1) {
+	if (select( "ตอนนี้ฉันยังไม่มีของ", "ฉันจะแลกเปลี่ยนเดี๋ยวนี้เลย" ) == 1) {
 		mes "[Vagrant Cain]";
-		mes "Come back when you are ready. Let me remind you of the materials.";
+		mes "กลับมาเมื่อคุณพร้อมนะ ให้ฉันเตือนความจำเรื่องวัตถุดิบอีกครั้งละกัน";
 		next;
 		mes "[Vagrant Cain]";
 		mes .@string$[2];
@@ -118,38 +118,38 @@ xmas,240,297,3	script	Vagrant Cain#1	4_M_06,{
 	mes "[Vagrant Cain]";
 	mes .@string$[3];
 	next;
-	if (select( "I will try it next time", "Exchange them right away" ) == 1) {
+	if (select( "ไว้โอกาสหน้าละกัน", "แลกเปลี่ยนตอนนี้เลย" ) == 1) {
 		mes "[Vagrant Cain]";
-		mes "Okay, you are determined. Hope we can see each other next time, huhu.";
+		mes "โอเค คุณตัดสินใจแล้ว หวังว่าเราจะได้พบกันใหม่ครั้งหน้านะ หึหึ";
 		close;
 	}
 	switch(.@s) {
 	case 2:
 		mes "[Vagrant Cain]";
 		if (getequipid(EQI_HEAD_TOP) != 18848)// Lush_Rose
-			mes "The hat you wear is not Lush Rose. Bring me the right material that I told you, kukuku.";
+			mes "หมวกที่คุณใส่อยู่ไม่ใช่ Lush Rose นะ นำวัตถุดิบที่ถูกต้องมาให้ฉันตามที่บอกสิ คุคุคุ";
 		else if (getequiprefinerycnt(EQI_HEAD_TOP) < 9)
-			mes "The hat you wear is not refined to +9 or greater. You cannot trade with that.";
+			mes "หมวกที่คุณใส่อยู่ไม่ได้ตีบวกถึง +9 หรือมากกว่านั้น คุณไม่สามารถใช้มันแลกได้นะ";
 		else if (countitem(7642) < 1000)
-			mes "Well, you are short of Bloody Coins. You need to gather exactly 1000 of them. Less than that.. It can't be helped.";
+			mes "อืม คุณมี Bloody Coins ไม่พอ คุณต้องรวบรวมมาให้ครบ 1000 เหรียญพอดิบพอดี น้อยกว่านั้น... ก็ช่วยไม่ได้นะ";
 		else {
 			delitem 7642,1000;// Bloody_Coin
 			delequip EQI_HEAD_TOP;
 			getitem 18849,1;// Celines_Ribbon
-			mes "The deal has completed. Take a look at it.";// custom
+			mes "การแลกเปลี่ยนเสร็จสมบูรณ์ ลองดูผลงานสิ";// custom
 		}
 		close;
 	case 3:
 		mes "[Vagrant Cain]";
 		if (getequipid(EQI_HAND_R) != 1540)// Grand_Cross_
-			mes "The thing on your right hand is not Grand Cross (slot). Bring me the right thing I told you, kuku.";
+			mes "สิ่งที่อยู่ในมือขวาของคุณไม่ใช่ Grand Cross (แบบมีรู) นะ นำของที่ถูกต้องมาให้ฉันตามที่บอกสิ คุคุ";
 		else if (countitem(7642) < 2000)
-			mes "Well, you are short of Bloody Coins. You need to gather exactly 2000 of them. Less than that.. It can't be helped.";
+			mes "อืม คุณมี Bloody Coins ไม่พอ คุณต้องรวบรวมมาให้ครบ 2000 เหรียญพอดิบพอดี น้อยกว่านั้น... ก็ช่วยไม่ได้นะ";
 		else {
 			delitem 7642,2000;// Bloody_Coin
 			delequip EQI_HAND_R;
 			getitem 16029,1;// Noble_Cross
-			mes "The deal has completed. Take a look at it.";// custom
+			mes "การแลกเปลี่ยนเสร็จสมบูรณ์ ลองดูผลงานสิ";// custom
 		}
 		close;
 	case 4:
@@ -160,13 +160,13 @@ xmas,240,297,3	script	Vagrant Cain#1	4_M_06,{
 			delitem 2978,1;// KindHeart
 			delitem 2976,1;// Red_Lantern
 			getitem 2980,1;// Evilspirit_Gloves
-			mes "The deal has completed. Take a look at it.";// custom
+			mes "การแลกเปลี่ยนเสร็จสมบูรณ์ ลองดูผลงานสิ";// custom
 		}
 		else {
-			mes "You don't have enough materials.";
+			mes "คุณมีวัตถุดิบไม่เพียงพอ";
 			next;
 			mes "[Vagrant Cain]";
-			mes "You should prepare ^0000ff1000 ^000000Bloody Coins, one ^0000ffHurt Mind, Kind Heart, and Red Lantern ^000000each for ^0000ffEvilspirit Gloves^000000.";
+			mes "คุณควรเตรียม ^0000ff1000 ^000000Bloody Coins, ^0000ffHurt Mind, Kind Heart, และ Red Lantern ^000000อย่างละหนึ่งชิ้นสำหรับ ^0000ffEvilspirit Gloves^000000.";
 		}
 		close;
 	}
@@ -175,26 +175,26 @@ xmas,240,297,3	script	Vagrant Cain#1	4_M_06,{
 xmas,240,294,3	script	Black Beard Joe#pa0829	4_M_05,{
 	disable_items;
 	if (checkweight(1201,1) == 0) {
-		mes "The kind of items you have is too various. Retry after reducing the sort of items.";
+		mes "ชนิดของไอเทมที่คุณมีมันหลากหลายเกินไป ลองใหม่อีกครั้งหลังจากลดจำนวนชนิดของไอเทมลง";
 		close;
 	}
 	if ((MaxWeight - Weight) < 10000) {
-		mes "You are overburdened, so you cannot proceed it anymore. Please try again after reduce the weight.";
+		mes "น้ำหนักของคุณเกินขีดจำกัด ดังนั้นคุณไม่สามารถดำเนินการต่อได้ กรุณาลองใหม่อีกครั้งหลังจากลดน้ำหนักลง";
 		close;
 	}
 	mes "[Black Beard Joe]";
-	mes "Huhu, humanbeing's greed is naturally wantless. What do you want me to do?";
+	mes "หึหึ ความโลภของมนุษย์นั้นไม่มีที่สิ้นสุดโดยธรรมชาติอยู่แล้ว คุณอยากจะให้ฉันทำอะไรล่ะ?";
 	next;
-	switch( select( "What can you do for me?", "Enchant accessory of Toy Factory", "Enchant weapon of Toy Factory", "Enchant headgear of Toy Factory", "Enchant footwear of Toy Factory" ) ) {
+	switch( select( "คุณทำอะไรให้ฉันได้บ้าง?", "Enchant เครื่องประดับจาก Toy Factory", "Enchant อาวุธจาก Toy Factory", "Enchant หมวกจาก Toy Factory", "Enchant รองเท้าจาก Toy Factory" ) ) {
 	case 1:
 		mes "[Black Beard Joe]";
-		mes "What do I do? That's really simple. You just bring me Bloody Coins and I will get them and enchant your accessory.";
+		mes "ฉันทำอะไรน่ะเหรอ? ง่ายนิดเดียว แค่คุณนำ Bloody Coins มาให้ฉัน แล้วฉันจะรับมันไว้และทำการ Enchant เครื่องประดับให้คุณ";
 		next;
 		mes "[Black Beard Joe]";
-		mes "I will take 15 Bloody Coins for each try. I will enchant one slot amount for every 15 Coins. Of course, 3 is the maximum.";
+		mes "ฉันจะเก็บ 15 Bloody Coins สำหรับการพยายามแต่ละครั้ง ฉันจะ Enchant ให้หนึ่งช่องต่อ 15 เหรียญ แน่นอนว่าสูงสุดคือ 3 ช่อง";
 		next;
 		mes "[Black Beard Joe]";
-		mes "Well, it is so natural that the destruction rate will get higher as the upgrade level increases. I would recommend you to stop first or second try, tee-hee.";
+		mes "ก็นะ มันเป็นเรื่องธรรมชาติที่อัตราการทำลายจะสูงขึ้นเมื่อระดับการอัปเกรดเพิ่มขึ้น ฉันแนะนำให้คุณหยุดตั้งแต่ครั้งที่หนึ่งหรือสองนะ ฮี่ฮี่";
 		close;
 	case 2:
 		.@eq_num = EQI_ACC_R;
@@ -234,13 +234,13 @@ xmas,240,294,3	script	Black Beard Joe#pa0829	4_M_05,{
 		break;
 	case 16029:	// Noble_Cross
 		mes "[Black Beard Joe]";// custom
-		mes "Oh, you are equipped with ^0000ffNoble Cross^000000! This thing need to find someone else to enchant it.";
+		mes "โอ้ คุณสวมใส่ ^0000ffNoble Cross^000000 อยู่นี่! เจ้านี่คุณต้องหาคนอื่นเพื่อ Enchant มันนะ";
 		next;
 		mes "[Black Beard Joe]";
-		mes "I've tried several times, but have no luck.";
+		mes "ฉันลองมาหลายครั้งแล้ว แต่ไม่มีดวงเอาเสียเลย";
 		next;
 		mes "[Black Beard Joe]";
-		mes "If you want to enchant this weapon, find ^0000ffMayomayo^000000 in Malangdo island! He should be able to do it.";
+		mes "ถ้าคุณอยากจะ Enchant อาวุธชิ้นนี้ ไปหา ^0000ffMayomayo^000000 ที่เกาะ Malangdo สิ! เขาควรจะทำมันได้นะ";
 		close;
 	default:
 		break;
@@ -248,79 +248,79 @@ xmas,240,294,3	script	Black Beard Joe#pa0829	4_M_05,{
 	switch(.@eq_num) {
 	case EQI_ACC_R:
 		mes "[Black Beard Joe]";
-		mes "You can choose one of 2 types and the fee for each try is 15 Bloody Coins.. I will get them right before enchanting it.";
+		mes "คุณสามารถเลือกได้ 1 ใน 2 ประเภท และค่าธรรมเนียมต่อครั้งคือ 15 Bloody Coins.. ฉันจะเก็บเหรียญก่อนทำการ Enchant นะ";
 		next;
-		.@enchant_type = select( "Quit", "A random stat one among STR/AGI/DEX", "A random stat among INT/VIT/DEX" ) - 1;// enchant_type [1-2]
+		.@enchant_type = select( "ออก", "สุ่มค่าสถานะระหว่าง STR/AGI/DEX", "สุ่มค่าสถานะระหว่าง INT/VIT/DEX" ) - 1;// enchant_type [1-2]
 		mes "[Black Beard Joe]";
 		if (.@enchant_type == 0) {
-			mes "Okay, come again when you are willing to, kuku.";
+			mes "โอเค ไว้กลับมาใหม่เมื่อคุณพร้อมละกัน คุคุ";
 			close;
 		}
 		if (.@sc_type < 1) {
-			mes "This equipment is not from Toy Factory. I can handle the items from Toy Factory only.";
+			mes "อุปกรณ์ชิ้นนี้ไม่ได้มาจาก Toy Factory นะ ฉันจัดการได้เฉพาะไอเทมจาก Toy Factory เท่านั้น";
 			close;
 		}
 		if (.@card[3] == 0) {
 			.@slot_num = 3;
-			mes "Okay, let's try the first enchantment. Usually, they are not broken. About 95% success rate?";
-			.@string$ = "You blow hot and cold, this fickle friend.!";
+			mes "เอาล่ะ มาลองการ Enchant ครั้งแรกกัน โดยปกติแล้วมันไม่พังหรอก อัตราความสำเร็จประมาณ 95% ได้มั้ง?";
+			.@string$ = "คุณนี่เปลี่ยนใจง่ายจริงๆ เพื่อนเอ๋ย!";
 		}
 		else if (.@card[2] == 0) {
 			.@slot_num = 2;
-			mes "Ho~ Second enchantment. Now it became dangerous. The success rate is about 70%. Do you want continue? The whole accessory will be blown if fail.";// custom
-			.@string$ = "You blow hot and cold, this fickle friend.!";
+			mes "โฮ่~ การ Enchant ครั้งที่สอง ตอนนี้มันเริ่มอันตรายแล้วนะ อัตราความสำเร็จเหลือประมาณ 70% คุณยังอยากจะไปต่อไหม? เครื่องประดับทั้งชิ้นจะหายวับไปเลยถ้าพลาด";// custom
+			.@string$ = "คุณนี่เปลี่ยนใจง่ายจริงๆ เพื่อนเอ๋ย!";
 		}
 		else if (.@card[1] == 0) {
 			.@slot_num = 1;
-			mes "This is the last enchantment. Will you keep going? At this time, ^ff0000the success rate is below 50%^000000. Of course, it would be great if it is successfull... Hmm, I will follow your descision, but keep that in mind.";// custom
-			.@string$ = "Wise! The third enchantment is too greedy.";// custom translation
+			mes "นี่คือการ Enchant ครั้งสุดท้ายแล้วนะ จะไปต่อไหม? คราวนี้ ^ff0000อัตราความสำเร็จต่ำกว่า 50%^000000 อีกนะ แน่นอนว่ามันจะสุดยอดมากถ้าสำเร็จ... อืม ฉันจะทำตามการตัดสินใจของคุณ แต่จำเรื่องนี้ไว้ให้ดีล่ะ";// custom
+			.@string$ = "ฉลาดมาก! การ Enchant ครั้งที่สามน่ะมันโลภเกินไปหน่อย";// custom translation
 		}
 		else {
-			mes "Ho~ This has already reached the peak. It is impossible to higher enchant, so be content and use it well.";// custom
+			mes "โฮ่~ ชิ้นนี้มาถึงจุดสูงสุดแล้วล่ะ ไม่สามารถ Enchant ได้สูงกว่านี้แล้ว พอใจกับมันแล้วใช้ให้คุ้มเถอะ";// custom
 			close;
 		}
 		break;
 	case EQI_HAND_R:
 		mes "[Black Beard Joe]";
 		if (.@sc_type < 1) {
-			mes "This equipment is not from Toy Factory. I can handle the items from Toy Factory only.";
+			mes "อุปกรณ์ชิ้นนี้ไม่ได้มาจาก Toy Factory นะ ฉันจัดการได้เฉพาะไอเทมจาก Toy Factory เท่านั้น";
 			close;
 		}
 		.@enchant_type = 3;
 		.@slot_num = 3;
-		mes "I enchant weapons only once. There's no failure, so you can just think of it as the bonus effect, tee-hee.";
-		.@string$ = "You blow hot and cold, this fickle friend.!";
+		mes "ฉัน Enchant อาวุธได้แค่ครั้งเดียวเท่านั้นนะ มันไม่มีความล้มเหลวหรอก ดังนั้นคิดซะว่าเป็นผลโบนัสละกันนะ ฮี่ฮี่";
+		.@string$ = "คุณนี่เปลี่ยนใจง่ายจริงๆ เพื่อนเอ๋ย!";
 		break;
 	case EQI_HEAD_TOP:
 	case EQI_SHOES:
 		mes "[Black Beard Joe]";
 		if (.@sc_type < 1) {
-			mes "This equipment is not from Toy Factory. I can handle the items from Toy Factory only.";
+			mes "อุปกรณ์ชิ้นนี้ไม่ได้มาจาก Toy Factory นะ ฉันจัดการได้เฉพาะไอเทมจาก Toy Factory เท่านั้น";
 			close;
 		}
 		if (.@card[3] == 0) {
 			.@slot_num = 3;
 			.@enchant_type = 4;
-			mes "Good. Let's start the first enchantment. I will add one of the special battle effects. Of course, you don't have to be afraid because there's no failure, kuku.";
+			mes "ดีมาก มาเริ่มการ Enchant ครั้งแรกกัน ฉันจะเพิ่มเอฟเฟกต์การต่อสู้พิเศษให้หนึ่งอย่าง แน่นอนว่าไม่ต้องกลัวไปหรอกเพราะมันไม่มีความล้มเหลว คุคุ";
 		}
 		else if (.@card[2] == 0) {
 			.@slot_num = 2;
 			.@enchant_type = 5;
-			mes "The second enchantment. I will buff one of the previous states. There also is no failure, so don't worry, kukuku";// custom
+			mes "การ Enchant ครั้งที่สอง ฉันจะบัฟค่าสถานะก่อนหน้าให้หนึ่งอย่าง ตรงนี้ก็ไม่มีความล้มเหลวเหมือนกัน ไม่ต้องห่วงไป คุคุคุ";// custom
 		}
 		else {
-			mes "Ho~ This has already reached the peak. It is impossible to higher enchant, so be content and use it well.";// custom
+			mes "โฮ่~ ชิ้นนี้มาถึงจุดสูงสุดแล้วล่ะ ไม่สามารถ Enchant ได้สูงกว่านี้แล้ว พอใจกับมันแล้วใช้ให้คุ้มเถอะ";// custom
 			close;
 		}
-		.@string$ = "You blow hot and cold, this fickle friend.!";
+		.@string$ = "คุณนี่เปลี่ยนใจง่ายจริงๆ เพื่อนเอ๋ย!";
 		break;
 	default:
 		mes "[Black Beard Joe]";
-		mes "I don't enchant this!";// custom
+		mes "ฉันไม่ Enchant ของชิ้นนี้นะ!";// custom
 		close;
 	}
 	next;
-	if (select( "I will com back later", "Please do it" ) == 1) {
+	if (select( "เดี๋ยวฉันกลับมาใหม่", "ช่วยทำทีเถอะ" ) == 1) {
 		mes "[Black Beard Joe]";
 		mes .@string$;
 		close;
@@ -333,7 +333,7 @@ xmas,240,294,3	script	Black Beard Joe#pa0829	4_M_05,{
 	else if (.@slot_num == 1)
 		setarray .@range[0],1,1161;
 	else {
-		mes "There is a problem, please come back again!";// custom
+		mes "มีปัญหาบางอย่าง กรุณากลับมาใหม่อีกครั้ง!";// custom
 		close;
 	}
 	.@enchant = 9;
@@ -443,7 +443,7 @@ xmas,240,294,3	script	Black Beard Joe#pa0829	4_M_05,{
 		break;
 	}
 	if (.@enchant == 9) {
-		mes "There is a problem, please come back again!";// custom
+		mes "มีปัญหาบางอย่าง กรุณากลับมาใหม่อีกครั้ง!";// custom
 		close;
 	}
 	if (.@card[3] == 0 && .@sc_type < 4)
@@ -453,7 +453,7 @@ xmas,240,294,3	script	Black Beard Joe#pa0829	4_M_05,{
 	else if (.@card[1] == 0 && .@sc_type < 2)
 		.@index_slot = 1;
 	else {
-		mes "I don't know what this is, but I think this isn't thing I could handle.";// custom
+		mes "ฉันไม่รู้หรอกว่านี่คืออะไร แต่ฉันคิดว่ามันไม่ใช่สิ่งที่ฉันจะจัดการได้นะ";// custom
 		close;
 	}
 	if (countitem(7642) > 14) {// Bloody_Coin
@@ -465,17 +465,17 @@ xmas,240,294,3	script	Black Beard Joe#pa0829	4_M_05,{
 
 		delequip .@eq_num;
 		if (.@enchant == 0) {
-			mes "Ouch! Poor you, the enchantment has failed and your gear is broken, Geez!";
+			mes "โอ๊ย! น่าสงสารจัง การ Enchant ล้มเหลวและอุปกรณ์ของคุณก็พังไปซะแล้ว พับผ่าสิ!";
 			close2;
 			specialeffect2 EF_LORD;
 			end;
 		}
 		.@card[ .@index_slot ] = .@enchant;
 		getitem2 .@item_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
-		mes "Hmm.. It was successful. Take a look at it.";
+		mes "หืม.. มันสำเร็จนะเนี่ย ลองดูผลงานสิ";
 		specialeffect2 EF_REPAIRWEAPON;
 		close;
 	}
-	mes "Hmm.. By the way, you need to fill up Bloody Coins. You cannot even pay for the fee.";
+	mes "หืม.. จะว่าไป คุณต้องไปเก็บสะสม Bloody Coins มาให้ครบก่อนนะ คุณไม่มีเงินแม้แต่จะจ่ายค่าธรรมเนียมเลยด้วยซ้ำ";
 	close;
 }

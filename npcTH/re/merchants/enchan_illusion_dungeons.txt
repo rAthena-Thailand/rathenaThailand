@@ -23,40 +23,40 @@
 //============================================================
 pay_d03_i,160,45,3	script	Gemcutter#ilp20	4_TOWER_17,3,3,{
 	mes "[ Gemcutter ]";
-	mes "Do you have business with me?";
+	mes "คุณมีธุระอะไรกับฉันงั้นรึ?";
 	next;
-	switch( select( "What are you doing here?", "Upgrade equipments" ) ) {
+	switch( select( "คุณกำลังทำอะไรที่นี่?", "อัปเกรดอุปกรณ์" ) ) {
 	case 1:
 		mes "[ Gemcutter ]";
-		mes "I came to the ruined village,";
-		mes "looking for some materials. Touched some strange light, and now I'm here.";
+		mes "ฉันเดินทางมายังหมู่บ้านที่ถูกทำลายแห่งนี้,";
+		mes "เพื่อตามหาวัตถุดิบบางอย่าง แต่ดันไปสัมผัสกับแสงประหลาดเข้า แล้วจู่ๆ ก็มาโผล่ที่นี่";
 		next;
 		mes "[ Gemcutter ]";
-		mes "I've decided to stick around for a little while. Figured I'd be safe so long as I stay close to this soldier.";
-		mes "I have a proposition for you. I want some materials that can only be found in this place.";
+		mes "ฉันเลยตัดสินใจว่าจะอยู่ที่นี่ต่ออีกสักพัก คิดว่าถ้าอยู่ใกล้ๆ กับทหารคนนี้ก็น่าจะปลอดภัยดี";
+		mes "ฉันมีข้อเสนอให้คุณ ฉันต้องการวัตถุดิบบางอย่างที่หาได้จากในที่แห่งนี้เท่านั้น";
 		next;
 		mes "[ Gemcutter ]";
-		mes "Get them for me, and I'll improve your equipment in exchange. Just so you know, I can only improve certain types.";
+		mes "ไปหาพวกมันมาให้ฉัน แล้วฉันจะปรับปรุงอุปกรณ์ให้เป็นการตอบแทน แต่ขอบอกไว้ก่อนนะว่าฉันปรับปรุงได้แค่บางประเภทเท่านั้น";
 		next;
 		mes "[ Gemcutter ]";
-		mes "If you're interested, we can discuss the details of our bargain.";
+		mes "ถ้าคุณสนใจ เรามาคุยรายละเอียดเกี่ยวกับข้อตกลงของเรากันได้";
 		close;
 	case 2:
 		mes "[ Gemcutter ]";
-		mes "Make sure ^0000FFyour equipment is refined to at least +9^000000 before bringing it to me.";
-		mes "That's the minimum requirement for my upgrade service to have any visible effects on your equipment.";
+		mes "ตรวจสอบให้แน่ใจว่า ^0000FFอุปกรณ์ของคุณถูกตีบวกมาอย่างน้อย +9^000000 ก่อนจะนำมาให้ฉัน";
+		mes "นั่นคือเงื่อนไขขั้นต่ำสำหรับบริการอัปเกรดของฉัน เพื่อให้อุปกรณ์ของคุณแสดงผลลัพธ์ที่เห็นได้ชัดเจน";
 		next;
 		mes "[ Gemcutter ]";
-		mes "Make sure you're ^0000FFequipped with the item that you want to improve.^000000";
-		mes "Otherwise, I can't evaluate its condition.";
+		mes "ตรวจสอบให้ดีว่าคุณได้ ^0000FFสวมใส่ไอเทมที่ต้องการจะปรับปรุงไว้แล้ว^000000";
+		mes "ไม่อย่างนั้น ฉันจะไม่สามารถประเมินสภาพของมันได้";
 		next;
 		mes "[ Gemcutter ]";
-		mes "As you may have guessed, your equipment will transform into something new after this.";
-		mes "In other words, ^0000FFIt'll lose its current refining levels, cards and enchantments.^000000";
+		mes "อย่างที่คุณน่าจะเดาได้ อุปกรณ์ของคุณจะเปลี่ยนสภาพไปเป็นสิ่งใหม่หลังจากนี้";
+		mes "พูดอีกอย่างก็คือ ^0000FFมันจะสูญเสียระดับการตีบวกเดิม, การ์ด และออปชั่นเสริมพลังทั้งหมดไป^000000";
 		next;
 		mes "[ Gemcutter ]";
-		mes "And I need ^0000FFIllusion Stones and some other materials^000000 to upgrade your equipment.";
-		mes "Pick an item you want and I'll tell you what I need.";
+		mes "และฉันต้องการ ^0000FFIllusion Stone และวัตถุดิบอื่นๆ^000000 เพื่ออัปเกรดอุปกรณ์ของคุณ";
+		mes "เลือกไอเทมที่คุณต้องการ แล้วฉันจะบอกเองว่าต้องใช้อะไรบ้าง";
 		close2;
 		callshop( "barter_ill_moonlight" );
 		end;
@@ -65,7 +65,7 @@ pay_d03_i,160,45,3	script	Gemcutter#ilp20	4_TOWER_17,3,3,{
 
 OnTouch:
 	if (illusion_moonlight > 7)
-		npctalk "What kind of place is this?", "", bc_self;
+		npctalk "ที่นี่มันคือที่ไหนกันแน่?", "", bc_self;
 	end;
 }
 
@@ -75,56 +75,56 @@ OnTouch:
 //============================================================
 gef_dun01,139,228,3	script	Great Merchant#illgef	4_M_HUMERCHANT,{
 	mes "[Great Merchant]";
-	mes "Adventurer, do you have ^0000cdIllusion Stones^000000? If you have a ^0000cdweapon, a piece armor^000000, or ^0000cdan accessory at Refining Level 9 or higher^000000, ";
-	mes "then I can exchange it for something better at the cost of some Illusion Stones and other materials.";
+	mes "เหล่านักผจญภัย คุณมี ^0000cdIllusion Stone^000000 ไหม? หากคุณมี ^0000cdอาวุธ, ชุดเกราะ^000000 หรือ ^0000cdเครื่องประดับที่มีระดับการตีบวกตั้งแต่ +9 ขึ้นไป^000000, ";
+	mes "ฉันสามารถแลกเปลี่ยนมันให้เป็นของที่ดีกว่าเดิมได้ โดยใช้ Illusion Stone และวัตถุดิบอื่นๆ เป็นค่าตอบแทน";
 	next;
 	mes "[Great Merchant]";
-	mes "So, what do you want?";
+	mes "ว่าไงล่ะ คุณต้องการอะไร?";
 	next;
-	switch( select( "Exchange illusion equipment", "What are Illusion Stones?", "Can I strengthen the exchanged item?", "Cancel" ) ) {
+	switch( select( "แลกเปลี่ยนอุปกรณ์ Illusion", "Illusion Stone คืออะไร?", "ฉันสามารถเสริมพลังไอเทมที่แลกมาได้ไหม?", "ยกเลิก" ) ) {
 	case 1:
 		specialeffect EF_HFLIMOON3;
 		emotion ET_BEST;
 		mes "[Great Merchant]";
-		mes "Use it well and come see me later if you find more Illusion Stones! *Chuckle*";
+		mes "ใช้มันให้คุ้มค่าล่ะ แล้วถ้าเจอ Illusion Stone เพิ่มอีกก็แวะมาหาฉันได้! *หัวเราะในลำคอ*";
 		close2;
 		callshop( "barter_ill_vampire" );
 		end;
 	case 2:
 		mes "[Great Merchant]";
-		mes "What are ^0000cdIllusion Stones^000000, you ask? Well... I don't think anyone knows exactly what they are.";
+		mes "คุณถามว่า ^0000cdIllusion Stone^000000 คืออะไรน่ะเหรอ? อืม... ฉันคิดว่าคงไม่มีใครรู้แน่ชัดหรอกว่ามันคืออะไรกันแน่";
 		next;
 		mes "[Great Merchant]";
-		mes "I only know they're rare and can only be found in some special places, and I'm here to collect them for my clients.";
+		mes "ฉันรู้แค่ว่าพวกมันหายากและพบได้ในสถานที่พิเศษบางแห่งเท่านั้น และฉันก็มาที่นี่เพื่อรวบรวมพวกมันให้กับลูกค้าของฉัน";
 		next;
 		mes "[Great Merchant]";
-		mes "My clients want to figure out what these stones are. They're paying me a lot of money,";
+		mes "ลูกค้าของฉันต้องการศึกษาว่าหินพวกนี้คืออะไร พวกเขาจ่ายเงินให้ฉันอย่างงามเลยล่ะ";
 		next;
 		mes "[Great Merchant]";
-		mes "so I could offer adventurers like you ^0000cdexpensive equipment in exchange for the stones^000000, and still fetch a profit.";
+		mes "ดังนั้นฉันจึงสามารถเสนอ ^0000cdอุปกรณ์ราคาแพงให้นักผจญภัยอย่างพวกคุณเพื่อแลกกับก้อนหินพวกนี้^000000 และยังคงได้กำไรอยู่";
 		next;
 		mes "[Great Merchant]";
-		mes "Bring ^0000cda piece of refined equipment, Illusion Stones^000000, and various materials that are only found in this place. I'll ^0000cdupgrade the equipment, weapon, armor, or accessory?^000000for you.";
+		mes "แค่นำ ^0000cdอุปกรณ์ที่ตีบวกแล้ว, Illusion Stone^000000 และวัตถุดิบต่างๆ ที่หาได้เฉพาะในที่แห่งนี้มา ฉันจะ ^0000cdอัปเกรดอุปกรณ์, อาวุธ, ชุดเกราะ หรือเครื่องประดับ^000000 ให้กับคุณเอง";
 		next;
 		mes "[Great Merchant]";
-		mes "This benefits both of us. Let me know if you're interested in my proposition.";
+		mes "เรื่องนี้มันได้ประโยชน์ทั้งสองฝ่าย บอกฉันได้เลยถ้าคุณสนใจในข้อเสนอของฉัน";
 		close;
 	case 3:
 		mes "[Great Merchant]";
-		mes "So, you want to reinforce the equipment you get. You're thorough. I like that!";
+		mes "โอ้ คุณต้องการเสริมพลังให้อุปกรณ์ที่ได้รับไปสินะ รอบคอบดีนี่ ฉันชอบ!";
 		next;
 		mes "[Great Merchant]";
-		mes "A while ago, an adventurer who passed through this place told me that a chemist in Prontera refines the Illusion equipment in exchange for Illusion Stones.";
+		mes "เมื่อไม่นานมานี้ มีนักผจญภัยคนหนึ่งที่ผ่านมาทางนี้บอกฉันว่า มีนักเคมีใน Prontera รับเสริมพลังอุปกรณ์ Illusion เพื่อแลกกับ Illusion Stone อยู่";
 		next;
 		mes "[Great Merchant]";
-		mes "It seems Illusion Stones are a popular topic everywhere. Everyone wants to know about what they are.";
+		mes "ดูเหมือนว่า Illusion Stone จะเป็นหัวข้อที่ยอดนิยมไปทุกที่เลยนะ ใครๆ ก็อยากรู้ว่าพวกมันคืออะไร";
 		next;
 		mes "[Great Merchant]";
-		mes "If you want to refine your equipment, then go to the <NAVI>Illusion Enchanter<INFO>prontera,90,115,000,0,</INFO></NAVI> near the Town Office.";
+		mes "ถ้าคุณต้องการเสริมพลังให้อุปกรณ์ของคุณล่ะก็ ให้ไปหา <NAVI>Illusion Enchanter<INFO>prontera,90,115,000,0,</INFO></NAVI> แถวๆ ที่ทำการเมือง (Town Office) นะ";
 		close;
 	case 4:
 		mes "[Great Merchant]";
-		mes "Did you find anything you liked? If you need anything, please let me know at any time.";
+		mes "เจอของที่ถูกใจบ้างไหม? ถ้าต้องการอะไรก็บอกฉันได้ทุกเมื่อนะ";
 		close;
 	}
 	end;
@@ -134,126 +134,126 @@ gef_dun01,139,228,3	script	Great Merchant#illgef	4_M_HUMERCHANT,{
 //= Illusion of Frozen
 //============================================================
 
-// illusion exchange npc - trade items for illusion gears
+// illusion exchange npc - trade items for illusion gears (NPC แลกเปลี่ยน Illusion - แลกไอเทมเป็นอุปกรณ์ Illusion)
 ice_dun02,153,18,3	script	Illusion Stone Research	4_M_ALCHE_B,{
 	disable_items;
 	mes "[Illusion Stone Researcher]";
-	mes "Ah, Illusion Stones are truly mysterious...";
+	mes "อืม... Illusion Stone นี่มันช่างลึกลับจริงๆ...";
 	next;
-	switch( select( "What are you doing here?", "Upgrade equipments", "Cancel" ) ) {
+	switch( select( "คุณกำลังทำอะไรที่นี่?", "อัปเกรดอุปกรณ์", "ยกเลิก" ) ) {
 	case 1:
 		mes "[Illusion Stone Researcher]";
-		mes "I'm here to find some Illusion Stones that I need for my research.";
+		mes "ฉันมาที่นี่เพื่อตามหา Illusion Stone ที่จำเป็นสำหรับการวิจัยของฉันน่ะ";
 		next;
 		mes "[Illusion Stone Researcher]";
-		mes "This cave is very mysterious, but I'm not strong enough to explore it by myself.";
-		mes "If you go in there, could you procure some things for me?";
+		mes "ถ้ำแห่งนี้มันลึกลับมาก แต่ฉันไม่แข็งแกร่งพอที่จะสำรวจมันด้วยตัวคนเดียว";
+		mes "ถ้าคุณจะเข้าไปข้างในนั้น คุณช่วยหาของบางอย่างมาให้ฉันหน่อยได้ไหม?";
 		next;
 		mes "[Illusion Stone Researcher]";
-		mes "In exchange, I'll improve your equipment.";
-		mes "What do you say?";
+		mes "เพื่อเป็นการแลกเปลี่ยน ฉันจะปรับปรุงอุปกรณ์ให้คุณ";
+		mes "ว่าไงล่ะ?";
 		close;
 	case 2:
 		mes "[Illusion Stone Researcher]";
-		mes "Make sure ^4d4dffyour equipment is refined to at least +9^000000 before bringing it to me.";
-		mes "Make sure you're ^4d4dffequipped with the item that you want to improve^000000.";
+		mes "ตรวจสอบให้แน่ใจว่า ^4d4dffอุปกรณ์ของคุณถูกตีบวกมาอย่างน้อย +9^000000 ก่อนจะนำมาให้ฉัน";
+		mes "และต้องมั่นใจว่าคุณ ^4d4dffได้สวมใส่ไอเทมที่ต้องการจะปรับปรุงไว้แล้ว^000000";
 		next;
 		mes "[Illusion Stone Researcher]";
-		mes "As you may have guessed, your equipment will transform into something new after this.";
-		mes "In other words, ^4d4dffit'll lose its current Refining and Upgrade levels.^000000";
+		mes "อย่างที่คุณน่าจะเดาได้ อุปกรณ์ของคุณจะเปลี่ยนสภาพไปเป็นสิ่งใหม่หลังจากนี้";
+		mes "พูดอีกอย่างก็คือ ^4d4dffมันจะสูญเสียระดับการตีบวกและระดับการอัปเกรดเดิมไปทั้งหมด^000000";
 		next;
 		mes "[Illusion Stone Researcher]";
-		mes "And I need ^4d4dffIllusion Stones and some other materials^000000 to upgrade your equipment.";
-		mes "Pick an item you want. I'll tell you what I need.";
+		mes "และฉันต้องการ ^4d4dffIllusion Stone และวัตถุดิบอื่นๆ^000000 เพื่ออัปเกรดอุปกรณ์ของคุณ";
+		mes "เลือกไอเทมที่คุณต้องการ แล้วฉันจะบอกเองว่าต้องใช้อะไรบ้าง";
 		close2;
 		callshop( "barter_ill_frozen" );
 		end;
 	case 3:
 		mes "[Illusion Stone Researcher]";
-		mes "It's just hard to get..";
+		mes "มันหาได้ยากจริงๆ...";
 		close;
 	}
 	end;
 }
 
 
-// illusion enhancing - enhance the illusion gears
-// note: unknown enhance rate
+// illusion enhancing - enhance the illusion gears (การเสริมพลัง Illusion - เสริมพลังอุปกรณ์ Illusion)
+// note: unknown enhance rate (หมายเหตุ: ไม่ทราบอัตราการเสริมพลังที่แน่นอน)
 prontera,90,115,5	script	Illusion Enchanter#0	4_GEFFEN_09,3,3,{
 	if (checkweight(1201,1) == 0 || MaxWeight - Weight < 2000) {
-		mes "I'm overweight. I'd better lighten my bag first.";
+		mes "น้ำหนักเกินแล้ว ฉันควรจะไปเอาของออกจากกระเป๋าก่อนดีกว่า";
 		close;
 	}
 	disable_items;
 	if (isbegin_quest(12415) == 0) {
 		mes "[Illusion Enchanter]";
-		mes "Oh, do you have Illusion equipment?";
+		mes "โอ้ คุณมีอุปกรณ์ Illusion งั้นเหรอ?";
 		next;
-		select("No. I don't even know what Illusion equipment is.");
+		select("เปล่าเลย ฉันไม่รู้ด้วยซ้ำว่าอุปกรณ์ Illusion คืออะไร");
 		mes "[Illusion Enchanter]";
-		mes "Oops, I'm sorry. I should've introduced myself first.";
-		next;
-		mes "[Illusion Enchanter]";
-		mes "I'm a chemist specializing in the study of Illusion Stones, which have been circulating among adventurers.";
-		next;
-		select("Illusion Stones?");
-		mes "[Illusion Enchanter]";
-		mes "You don't know, don't you? They're the hottest trend these days.";
-		next;
-		select("I don't care about trends.");
-		mes "[Illusion Enchanter]";
-		mes "You must have heard about the strange places that have sprung up here and there lately. Illusion Stones are only found in those places,";
+		mes "อุ๊ย ขอโทษที ฉันควรจะแนะนำตัวก่อนสินะ";
 		next;
 		mes "[Illusion Enchanter]";
-		mes "and their atomic structure is unlike any mineral I've seen. *Blah Blah* ...Their chemical chains... *Blah Blah*";
+		mes "ฉันคือนักเคมีผู้เชี่ยวชาญด้านการศึกษา Illusion Stone ซึ่งกำลังเป็นที่โจษจันในหมู่นักผจญภัย";
 		next;
-		select("(Uh-oh, he's zoning out!)");
+		select("Illusion Stone งั้นเหรอ?");
 		mes "[Illusion Enchanter]";
-		mes "Anyway, I can enchant equipment that is exchanged for or purchased with Illusion Stones. I call them the Illusion equipment.";
+		mes "คุณไม่รู้จริงๆ เหรอนี่ย? มันเป็นเทรนด์ที่ฮอตที่สุดในตอนนี้เลยนะ";
 		next;
-		select("(He has no sense when it comes to names.)");
+		select("ฉันไม่สนใจพวกตามเทรนด์หรอก");
 		mes "[Illusion Enchanter]";
-		mes "This equipment at least responds positively to Illusion Stones, or it has the potential to be enchanted successfully.";
-		next;
-		mes "[Illusion Enchanter]";
-		mes "Explore the worlds of illusions, collect Illusion Stones, and exchange them for equipment. I can enchant the equipment for you.";
+		mes "คุณคงเคยได้ยินเกี่ยวกับสถานที่แปลกๆ ที่ผุดขึ้นมาที่นั่นที่นี่ในช่วงนี้ Illusion Stone สามารถพบได้ในที่เหล่านั้นเท่านั้น,";
 		next;
 		mes "[Illusion Enchanter]";
-		mes "This benefits both of us. I need Illusion Stones for my studies, and you need powerful equipment for your adventures.";
+		mes "และโครงสร้างอะตอมของมันไม่เหมือนกับแร่ชนิดไหนที่ฉันเคยเห็นมาเลย *บลา บลา* ...ห่วงโซ่เคมีของพวกมัน... *บลา บลา*";
+		next;
+		select("(แย่แล้ว เขาเริ่มหลุดโลกไปแล้ว!)");
+		mes "[Illusion Enchanter]";
+		mes "เอาเป็นว่า ฉันสามารถเสริมพลัง (Enchant) ให้กับอุปกรณ์ที่แลกเปลี่ยนหรือซื้อมาด้วย Illusion Stone ได้ ฉันเรียกพวกมันว่าอุปกรณ์ Illusion";
+		next;
+		select("(เขาไม่มีเซนส์ในการตั้งชื่อเอาเสียเลย)");
+		mes "[Illusion Enchanter]";
+		mes "อุปกรณ์เหล่านี้อย่างน้อยก็มีการตอบสนองในเชิงบวกต่อ Illusion Stone หรือมีศักยภาพที่จะถูกเสริมพลังได้สำเร็จ";
 		next;
 		mes "[Illusion Enchanter]";
-		mes "That said, my service is not for free. It requires a few Illusion Stones and Zeny.";
+		mes "จงไปสำรวจโลกแห่งมายา รวบรวม Illusion Stone และนำมาแลกเปลี่ยนเป็นอุปกรณ์ แล้วฉันจะเสริมพลังให้อุปกรณ์เหล่านั้นให้กับคุณเอง";
 		next;
 		mes "[Illusion Enchanter]";
-		mes "If you're interested, how'd you like to get a membership for my service? You can get discounts that way!";
+		mes "เรื่องนี้มันได้ประโยชน์ทั้งสองฝ่าย ฉันต้องการ Illusion Stone สำหรับงานวิจัยของฉัน และคุณก็ต้องการอุปกรณ์ที่ทรงพลังสำหรับการผจญภัย";
 		next;
-		if (select( "Sure!", "Not interested." ) == 2) {
+		mes "[Illusion Enchanter]";
+		mes "ที่กล่าวมานั้น บริการของฉันไม่ได้ฟรีนะ มันต้องใช้ Illusion Stone จำนวนหนึ่งและเงิน Zeny";
+		next;
+		mes "[Illusion Enchanter]";
+		mes "ถ้าคุณสนใจ อยากจะสมัครสมาชิกบริการของฉันไหมล่ะ? คุณจะได้ส่วนลดด้วยนะ!";
+		next;
+		if (select( "แน่นอน!", "ไม่สนใจ" ) == 2) {
 			mes "[Illusion Enchanter]";
-			mes "Okay, but let me know if you change your mind.";
+			mes "ตกลง แต่บอกฉันนะถ้าคุณเปลี่ยนใจ";
 			close;
 		}
 		mes "[Illusion Enchanter]";
-		mes "Alright, then I'll add you to my member list. I hope you'll have some Illusion equipment next time I see you.";
+		mes "เรียบร้อย ฉันจะเพิ่มคุณเข้าไปในรายชื่อสมาชิก หวังว่าครั้งหน้าที่เจอคุณ คุณจะมีอุปกรณ์ Illusion มาด้วยนะ";
 		setquest 12415;
 		completequest 12415;
 		close;
 	}
 	mes "[Illusion Enchanter]";
-	mes "I can enchant Illusion equipment.";
+	mes "ฉันสามารถเสริมพลังให้อุปกรณ์ Illusion ได้";
 	next;
-	switch( select( "How much do you charge?", "Add stats to Illusion equipment.", "Reset enchanted Illusion equipment." ) ) {
+	switch( select( "ค่าบริการเท่าไหร่?", "เพิ่มสถานะให้อุปกรณ์ Illusion", "รีเซ็ตออปชั่นอุปกรณ์ Illusion" ) ) {
 	case 1:
 		mes "[Illusion Enchanter]";
-		mes "First, let me tell you that I can only enchant certain types of Illusion equipment.";
+		mes "ก่อนอื่น ขอบอกไว้ก่อนว่าฉันเสริมพลังได้แค่อุปกรณ์ Illusion บางประเภทเท่านั้น";
 		next;
 		mes "[Illusion Enchanter]";
-		mes "Up to 2 sockets can be enchanted, and enchanting each socket requires 5 Illusion Stones. You can reset enchanted Illusion equipment at any time.";
+		mes "สามารถเสริมพลังได้สูงสุด 2 ช่อง และการเสริมแต่ละช่องต้องใช้ Illusion Stone 5 ก้อน คุณสามารถรีเซ็ตออปชั่นของอุปกรณ์ได้ตลอดเวลา";
 		next;
 		mes "[Illusion Enchanter]";
-		mes "Enchanting never fails, but resetting sometimes failes. Even modern science can't change that.";
+		mes "การเสริมพลัง (Enchant) จะไม่มีวันล้มเหลว แต่การรีเซ็ตนั้นบางครั้งอาจล้มเหลวได้ แม้แต่วิทยาศาสตร์สมัยใหม่ก็ยังเปลี่ยนแปลงความจริงข้อนี้ไม่ได้";
 		next;
 		mes "[Illusion Enchanter]";
-		mes "Resetting requires a different amount of Zeny depending on the success chance you choose. Select the menu if you'd like to see the available payment options.";
+		mes "การรีเซ็ตต้องใช้จำนวน Zeny ที่แตกต่างกันไปขึ้นอยู่กับโอกาสสำเร็จที่คุณเลือก เลือกเมนูดูสิถ้าคุณอยากเห็นตัวเลือกการชำระเงินที่มี";
 		close;
 	case 2:
 		.@reset = false;
@@ -263,7 +263,7 @@ prontera,90,115,5	script	Illusion Enchanter#0	4_GEFFEN_09,3,3,{
 		break;
 	}
 	setarray .@location[0], EQI_HAND_R, EQI_ARMOR, EQI_SHOES, EQI_GARMENT, EQI_ACC_R, EQI_ACC_L, EQI_HEAD_TOP, EQI_HAND_L;
-	.@s = select( "Right-handed Weapon", "Armor", "Shoes", "Garment", "Right Accessory", "Left accessory", "Helm (Upper)", "Left-handed Weapon/Shield" ) - 1;
+	.@s = select( "อาวุธมือขวา", "ชุดเกราะ", "รองเท้า", "ผ้าคลุม", "เครื่องประดับขวา", "เครื่องประดับซ้าย", "หมวก (ส่วนบน)", "อาวุธมือซ้าย/โล่" ) - 1;
 	.@loc = .@location[.@s];
 	.@eq_id = getequipid(.@loc);
 
@@ -352,17 +352,17 @@ prontera,90,115,5	script	Illusion Enchanter#0	4_GEFFEN_09,3,3,{
 			break;
 		case -1:
 			mes "[Illusion Enchanter]";
-			mes "You must be equipped with an item in the selected location to have it enchanted.";
+			mes "คุณต้องสวมใส่ไอเทมในตำแหน่งที่เลือกเพื่อทำการเสริมพลัง";
 			close;
 		default:
 			mes "[Illusion Enchanter]";
-			mes "This equipment is not from a world of fantastic illusions. I'm offended that you even showed it to me.";
+			mes "อุปกรณ์ชิ้นนี้ไม่ได้มาจากโลกแห่งมายาอันน่ามหัศจรรย์ ฉันรู้สึกเคืองนะที่คุณกล้าเอามันมาให้ฉันดูเนี่ย";
 			close;
 	}
 
 	for ( .@i = 0; .@i < MAX_ITEM_RDM_OPT-1; ++.@i ) {
 		if (getequiprandomoption(.@loc, .@i, ROA_ID) > 0) {
-			mes "^ff0000Random options are checked for that equipment. The equipment cannot be enchanted.^000000";
+			mes "^ff0000ตรวจพบ Random Option ในอุปกรณ์ชิ้นนี้ อุปกรณ์ที่มีออปชั่นสุ่มจะไม่สามารถเสริมพลังได้^000000";
 			close;
 		}
 	}
@@ -381,13 +381,13 @@ prontera,90,115,5	script	Illusion Enchanter#0	4_GEFFEN_09,3,3,{
 		break;
 	default:	// illusion weapon level 4 can't be enhanced
 		mes "[Illusion Enchanter]";
-		mes "This is the best of all Illusion equipment. There's no technology available in this day and age that can enchant it. Even the most skilled enchanter can't do that.";
+		mes "นี่คืออุปกรณ์ Illusion ที่ดีที่สุดแล้ว ไม่มีเทคโนโลยีใดในยุคสมัยนี้ที่จะสามารถเสริมพลังมันได้อีก แม้แต่นักเสริมพลังที่เก่งที่สุดก็ทำไม่ได้";
 		next;
 		mes "[Illusion Enchanter]";
-		mes "Well, not unless he's willing to risk his mental and physical health.";
+		mes "เอ่อ นอกจากว่าเขาจะยอมเสี่ยงเอาสุขภาพจิตและสุขภาพกายของตัวเองเข้าแลกน่ะนะ";
 		next;
 		mes "[Illusion Enchanter]";
-		mes "But who knows? Maybe someday you'll meet someone who is talented enough to handle this precious equipment.";
+		mes "แต่ใครจะรู้ล่ะ? บางทีสักวันหนึ่งคุณอาจจะได้พบกับใครบางคนที่มีพรสวรรค์พอที่จะจัดการกับอุปกรณ์ล้ำค่าชิ้นนี้ก็ได้";
 		close;
 	}
 
@@ -404,34 +404,34 @@ prontera,90,115,5	script	Illusion Enchanter#0	4_GEFFEN_09,3,3,{
 
 		if (.@card[2] > 0 && .@card[3] > 0) {
 			mes "[Illusion Enchanter]";
-			mes "This equipment is already enchanted to the maximum limit.";
+			mes "อุปกรณ์ชิ้นนี้ได้รับการเสริมพลังจนถึงขีดจำกัดสูงสุดแล้ว";
 			close;
 		}
 		if (.@weapon_lvl > 0) {
 			mes "[Illusion Enchanter]";
-			mes "What kind of effect would you like to add?";
+			mes "คุณต้องการเพิ่มความสามารถประเภทไหนล่ะ?";
 			next;
-			.@weapon_enchant_type = select( "Melee", "Ranged", "Magic" );
+			.@weapon_enchant_type = select( "ระยะใกล้ (Melee)", "ระยะไกล (Ranged)", "เวทมนตร์ (Magic)" );
 		}
 		mes "[Illusion Enchanter]";
 		if (.@card[3] > 0) {
 			.@slot = 2;
-			.@string$ = "second";
+			.@string$ = "ที่สอง";
 		}
 		else {
 			.@slot = 3;
-			.@string$ = "first";
+			.@string$ = "แรก";
 		}
-		mes "I'll try to enchant the " + .@string$ + " ability for your item. ^ff0000Its existing Refining level and cards will not be damaged. It will not be destroyed, even if this attempt fails.^000000 Do you want to continue?";
+		mes "ฉันจะพยายามเสริมพลังความสามารถช่อง" + .@string$ + " ให้กับไอเทมของคุณ ^ff0000ระดับการตีบวกเดิมและการ์ดของคุณจะไม่ได้รับความเสียหาย และมันจะไม่ถูกทำลายแม้ว่าการพยายามครั้งนี้จะล้มเหลวก็ตาม^000000 คุณต้องการจะไปต่อไหม?";
 		next;
-		if (select( "I'll come back later.", "Sure!" ) == 1) {
+		if (select( "เดี๋ยวค่อยกลับมาใหม่", "แน่นอน!" ) == 1) {
 			mes "[Illusion Enchanter]";
-			mes "No problem. Come back if you change your mind.";
+			mes "ไม่มีปัญหา กลับมาได้ทุกเมื่อถ้าคุณเปลี่ยนใจ";
 			close;
 		}
 		if (countitem(.@item_req) < .@item_req_count) {
 			mes "[Illusion Enchanter]";
-			mes "This item requires " + .@item_req_count + " " + getitemname(.@item_req) + ", and you don't have all that I need from you.";
+			mes "ไอเทมนี้ต้องใช้ " + .@item_req_count + " " + getitemname(.@item_req) + " แต่คุณมีไม่พอตามที่ฉันต้องการ";
 			close;
 		}
 
@@ -444,23 +444,23 @@ prontera,90,115,5	script	Illusion Enchanter#0	4_GEFFEN_09,3,3,{
 		delequip .@loc;
 		getitem2 .@eq_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
 		mes "[Illusion Enchanter]";
-		mes "It's done. Please check.";
+		mes "เสร็จเรียบร้อยแล้ว เชิญตรวจสอบดูได้";
 		specialeffect2 EF_REPAIRWEAPON;
 		close;
 
 	case true:
 		if (!F_IsCharm(.@card[2]) || !F_IsCharm(.@card[3])) {
 			mes "[Illusion Enchanter]";
-			mes "Only fully enchanted items can be reset. Please enchant it twice, and if you still want to reset it, then bring it to me.";
+			mes "เฉพาะไอเทมที่เสริมพลังครบสองช่องเท่านั้นที่สามารถรีเซ็ตได้ กรุณาเสริมพลังให้ครบสองครั้งก่อน แล้วถ้ายังอยากรีเซ็ตอยู่ค่อยนำมาหาฉันนะ";
 			close;
 		}
 		mes "[Illusion Enchanter]";
-		mes "Your resetting chance varies, depending on the amount of Zeny you pay. What would you like to do?";
+		mes "โอกาสในการรีเซ็ตจะแตกต่างกันไป ขึ้นอยู่กับจำนวน Zeny ที่คุณจ่าย คุณต้องการทำอย่างไร?";
 		next;
-		.@s = select( "I'll come back later.", "100,000 Zeny (50%)", "200,000 Zeny (60%)", "300,000 Zeny (70%)", "400,000 Zeny (80%)", "500,000 Zeny (90%)" ) - 1;
+		.@s = select( "เดี๋ยวค่อยกลับมาใหม่", "100,000 Zeny (50%)", "200,000 Zeny (60%)", "300,000 Zeny (70%)", "400,000 Zeny (80%)", "500,000 Zeny (90%)" ) - 1;
 		if (.@s == 0) {
 			mes "[Illusion Enchanter]";
-			mes "No problem. Come back if you change your mind.";
+			mes "ไม่มีปัญหา กลับมาได้ทุกเมื่อถ้าคุณเปลี่ยนใจ";
 			close;
 		}
 		.@cost = 100000 * .@s;
@@ -468,7 +468,7 @@ prontera,90,115,5	script	Illusion Enchanter#0	4_GEFFEN_09,3,3,{
 
 		if (Zeny < .@cost) {
 			mes "[Illusion Enchanter]";
-			mes "You don't have enough money.";
+			mes "คุณมีเงินไม่เพียงพอ";
 			close;
 		}
 
@@ -481,12 +481,12 @@ prontera,90,115,5	script	Illusion Enchanter#0	4_GEFFEN_09,3,3,{
 		if (rand(100) < .@rate) {
 			getitem2 .@eq_id,1,1,.@refine,0,.@card[0],.@card[1],0,0;
 			mes "[Illusion Enchanter]";
-			mes "It's done. Please check.";
+			mes "เสร็จเรียบร้อยแล้ว เชิญตรวจสอบดูได้";
 			specialeffect2 EF_REPAIRWEAPON;
 			close;
 		}
 		mes "[Illusion Enchanter]";
-		mes "Ah, that was unfortunate. Well, you can't always be lucky.";
+		mes "อา... ช่างน่าเสียดายจริงๆ เอาเถอะ คนเรามันจะโชคดีไปตลอดได้ยังไงกัน";
 		specialeffect2 EF_LORD;
 		close;
 	}
@@ -724,7 +724,7 @@ S_Enchant:
 
 OnTouch:
 	if (isbegin_quest(12415) == 0)
-		npctalk "Illusion Enchanter: Come talk to me if you're interested in the Illusion equipment!", "", bc_self;
+		npctalk "Illusion Enchanter: แวะมาคุยกับฉันสิ ถ้าคุณสนใจในอุปกรณ์ Illusion!", "", bc_self;
 	end;
 }
 
@@ -738,32 +738,32 @@ alberta,226,28,3	script	Equipment Researcher	4_TOWER_15,{
 	.@illusion_stone_name$ = getitemname(25271);
 
 	mes "[Equipment Researcher]";
-	mes "I'm the one who researches " + .@illusion_stone_name$ + " to enhance armors and weapons.";
-	mes "If you have the materials I need for my research, wouldn't you hand them over?";
-	mes "If you give me some equipment and some materials, I'll exchange them for my reinforced equipment.";
+	mes "ฉันคือผู้ที่ทำการวิจัยเรื่อง " + .@illusion_stone_name$ + " เพื่อนำมาเสริมพลังให้กับชุดเกราะและอาวุธ";
+	mes "ถ้าคุณมีวัตถุดิบที่ฉันต้องการสำหรับงานวิจัย คุณจะยอมส่งพวกมันให้ฉันได้ไหมล่ะ?";
+	mes "ถ้าคุณมอบอุปกรณ์และวัตถุดิบบางอย่างให้ฉัน ฉันจะแลกเปลี่ยนพวกมันกับอุปกรณ์ที่เสริมพลังแล้วของฉันเป็นการตอบแทน";
 	next;
-	switch( select( "What are you doing here?", "Exchange equipment" ) ) {
+	switch( select( "คุณกำลังทำอะไรที่นี่?", "แลกเปลี่ยนอุปกรณ์" ) ) {
 	case 1:
 		mes "[Equipment Researcher]";
-		mes "I'm working on how to use an " + .@illusion_stone_name$ + " to strengthen equipment.";
-		mes "I went to go to the place where " + .@illusion_stone_name$ + " was found, and I barely got back..";
+		mes "ฉันกำลังศึกษาหาวิธีใช้ " + .@illusion_stone_name$ + " เพื่อเสริมความแข็งแกร่งให้อุปกรณ์น่ะ";
+		mes "ฉันเคยพยายามจะไปยังสถานที่ที่พบ " + .@illusion_stone_name$ + " มาด้วยนะ และเกือบจะเอาชีวิตไม่รอดกลับมาแน่ะ..";
 		next;
 		mes "[Equipment Researcher]";
-		mes "I think I met a girl...";
-		mes "Anyway, after that, I couldn't find a way to go back.";
-		mes "Here, we're getting research materials from adventurers with " + .@illusion_stone_name$ + ", and I'm offering enhanced equipment instead.";
+		mes "ฉันคิดว่าฉันเจอเด็กผู้หญิงคนหนึ่ง...";
+		mes "ช่างเถอะ หลังจากนั้นฉันก็หาทางกลับไปที่นั่นไม่ได้อีกเลย";
+		mes "ที่นี่ เราจึงใช้วิธีรับวัตถุดิบวิจัยจากเหล่านักผจญภัยที่มี " + .@illusion_stone_name$ + " และฉันจะมอบอุปกรณ์ที่เสริมพลังให้เป็นการตอบแทนแทน";
 		close;
 	case 2:
 		mes "[Equipment Researcher]";
-		mes "What are the equipment I can exchange? Wait a minute. I'll let you know.";
+		mes "อุปกรณ์ที่ฉันสามารถแลกเปลี่ยนได้มีอะไรบ้างงั้นเหรอ? รอเดี๋ยวนะ ฉันจะบอกให้ทราบ";
 		next;
 		mes "[Equipment Researcher]";
-		mes "As a material, you can bring ^0000CDexisting equipment that have been refined to +9 or higher.^000000";
-		mes "And I need some ^0000CD" + .@illusion_stone_name$ + " and other materials.^000000";
+		mes "ในส่วนของวัตถุดิบ คุณสามารถนำ ^0000CDอุปกรณ์ที่มีอยู่ซึ่งถูกตีบวกมาเป็นระดับ +9 หรือสูงกว่ามาให้ฉันได้^000000";
+		mes "และฉันยังต้องการ ^0000CD" + .@illusion_stone_name$ + " รวมถึงวัตถุดิบอื่นๆ อีกจำนวนหนึ่งด้วย^000000";
 		next;
 		mes "[Equipment Researcher]";
-		mes "Of course, we're giving you new equipment, so don't forget that all the existing ^0000CDsmelting and enchantments^000000 will disappear.";
-		mes "So, what kind of weapon do you want?";
+		mes "แน่นอนว่าเราจะมอบอุปกรณ์ชิ้นใหม่ให้คุณ ดังนั้นอย่าลืมว่า ^0000CDระดับการตีบวกเดิมและออปชั่นเสริมพลังทั้งหมด^000000 จะหายไป";
+		mes "เอาล่ะ คุณต้องการอาวุธประเภทไหนล่ะ?";
 		close2;
 		callshop( "barter_ill_turtle" );
 		end;
@@ -778,15 +778,15 @@ alberta,226,28,3	script	Equipment Researcher	4_TOWER_15,{
 // Exchange npc
 com_d02_i,234,266,6	script	Village Soap#Lu	4_M_ORIENT01,{
 	mes "[Village Soap]";
-	mes "I've also rolled up my sleeves for the adventurers who work hard for the village. Can I make your equipment stronger? Is there anything on the list you want?";
+	mes "ฉันเองก็ยอมทุ่มสุดตัวเพื่อเหล่านักผจญภัยที่ทำงานหนักเพื่อหมู่บ้านนี้เหมือนกัน ฉันจะช่วยทำให้อุปกรณ์ของคุณแข็งแกร่งขึ้นได้ไหม? มีชิ้นไหนในรายการที่คุณต้องการหรือเปล่า?";
 	next;
-	if (select( "Look at the illusion equipment", "Cancel" ) == 2) {
+	if (select( "ดูอุปกรณ์ Illusion", "ยกเลิก" ) == 2) {
 		mes "[Village Soap]";
-		mes "Please come later. Just bring the ingredients and I'll make it for you.";
+		mes "ไว้ค่อยมาใหม่ทีหลังนะ แค่เตรียมวัตถุดิบมาแล้วฉันจะจัดการสร้างมันให้คุณเอง";
 		close;
 	}
 	mes "[Village Soap]";
-	mes "Who made it? It might be useful for you to take it with you.";
+	mes "ใครเป็นคนสร้างมันขึ้นมากันนะ? มันอาจจะมีประโยชน์หากคุณพกมันติดตัวไปด้วย";
 	close2;
 	callshop( "barter_ill_luanda" );
 	end;
@@ -799,23 +799,23 @@ com_d02_i,234,266,6	script	Village Soap#Lu	4_M_ORIENT01,{
 
 iz_d04_i,134,228,4	script	Horen#Horen	4_M_BIBI,{
 	if (checkweight(1201,3) == 0) {
-		mes "Conversation cannot proceed because you have too many items.";
-		mes "Please clean up your inventory and try again.";
+		mes "ไม่สามารถดำเนินบทสนทนาต่อได้เนื่องจากคุณมีไอเทมในตัวมากเกินไป";
+		mes "กรุณาจัดการช่องเก็บของของคุณให้เรียบร้อยแล้วลองใหม่อีกครั้ง";
 		close;
 	}
 	mes "[Horen]";
-	mes "Hello. If you have rare materials from this place, I can enhance your equipment.";
+	mes "สวัสดี หากคุณมีวัตถุดิบหายากจากที่แห่งนี้ ฉันสามารถเสริมพลังให้อุปกรณ์ของคุณได้นะ";
 	next;
 	mes "[Horen]";
-	mes "Would you like to see upgradeable equipment?";
+	mes "คุณอยากดูรายการอุปกรณ์ที่สามารถอัปเกรดได้ไหม?";
 	next;
-	if (select( "Yes", "No" ) == 2) {
+	if (select( "ใช่", "ไม่" ) == 2) {
 		mes "[Horen]";
-		mes "Come back if interested.";
+		mes "ถ้าสนใจก็กลับมาหาฉันใหม่นะ";
 		close;
 	}
 	mes "[Horen]";
-	mes "There are many types, so take your time. If you want something, I can enhance it right away.";
+	mes "มีหลายประเภทเลยล่ะ ค่อยๆ เลือกดูตามสบาย ถ้าคุณต้องการชิ้นไหน ฉันสามารถเสริมพลังให้ได้ทันที";
 	close2;
 	callshop( "barter_ill_underwater" );
 	end;
@@ -827,14 +827,14 @@ iz_d04_i,134,228,4	script	Horen#Horen	4_M_BIBI,{
 // ant_d02_i,175,186,3	script	From#iltw	MECHANIC,{
 ant_d02_i,175,186,3	script	From#iltw	HIDDEN_NPC,{
 	if (checkweight(1201,3) == 0) {
-		mes "- You cannot proceed with the quest because you have too many items. -";
+		mes "- คุณไม่สามารถดำเนินเควสต์ต่อได้เนื่องจากคุณมีไอเทมมากเกินไป -";
 		close;
 	}
 	mes "[From]";
-	mes "I feel like I'm going crazy.";
-	mes "It's because of my mood. I'm human and it's not like you're mistaken.";
-	mes "I'll help you if you get a lot here.";
-	mes "Do you want to enhance your equipment?";
+	mes "ฉันรู้สึกเหมือนตัวเองกำลังจะบ้าตาย";
+	mes "มันอาจจะเป็นเพราะอารมณ์ของฉันเอง ฉันเป็นมนุษย์นะ และมันไม่ใช่ว่าคุณตาฝาดไปหรอก";
+	mes "ฉันจะช่วยคุณเองถ้าคุณรวบรวมของมาได้เยอะๆ จากที่นี่";
+	mes "คุณต้องการจะเสริมพลังให้อุปกรณ์ของคุณไหมล่ะ?";
 	close2;
 	callshop( "barter_ill_twins" );
 	end;
@@ -855,18 +855,18 @@ OnInit:
 -	marketshop	market_resonance_stone	-1,100003:2000000:99999,100004:2000000:99999
 prontera,88,113,5	script	Illusion Merchant#0829	HIDDEN_NPC,{
 	mes "[Illusion Merchant]";
-	mes "I'm selling two random optional weapon grant scrolls that I made myself. You can choose the payment method you like.";
+	mes "ฉันกำลังขายคัมภีร์สุ่มออปชั่นอาวุธสองแบบที่ฉันทำขึ้นมาเอง คุณสามารถเลือกวิธีชำระเงินที่ต้องการได้เลย";
 	next;
-	switch( select( "Purchase with Zeny.", "Purchase with Illusion Stones" )) {
+	switch( select( "ซื้อด้วยเงิน Zeny", "ซื้อด้วย Illusion Stone" )) {
 		case 1:
 			mes "[Illusion Merchant]";
-			mes "I hope you like it.";
+			mes "หวังว่าคุณจะชอบมันนะ";
 			close2;
 			callshop "market_resonance_stone";
 			end;
 		case 2:
 			mes "[Illusion Merchant]";
-			mes "I hope you like it.";
+			mes "หวังว่าคุณจะชอบมันนะ";
 			close2;
 			callshop "resonance_stone_barter";
 			end;
@@ -893,44 +893,44 @@ OnInit:
 
 ein_d02_i,177,158,3	script	Bear Wanting Illusion Stone#ITB	4_NASARIAN,{
 	.@item_name$ = getitemname(25271); // IllusionStone
-	mes "[Bear Wanting " + .@item_name$ + "]";
-	mes "If you give me an " + .@item_name$ + ", I'll do something nice for you!";
+	mes "[Bear ผู้โหยหา " + .@item_name$ + "]";
+	mes "ถ้าคุณมอบ " + .@item_name$ + " ให้ฉัน ฉันจะทำสิ่งดีๆ ให้คุณเป็นการตอบแทน!";
 	next;
-	switch( select( "Reason for being here", "Good thing [Illusion equipment]", "Quit" ) ) {
+	switch( select( "เหตุผลที่มาอยู่ที่นี่", "สิ่งดีๆ [อุปกรณ์ Illusion]", "เลิกคุย" ) ) {
 	case 1:
-		mes "[Bear Wanting " + .@item_name$ + "]";
-		mes "I don't know why...!";
-		mes "The other teddy bears were in line, so I was in line too!";
-		mes "Whoaaaaaa!!!!";
-		mes "I didn't know it was here!";
+		mes "[Bear ผู้โหยหา " + .@item_name$ + "]";
+		mes "ฉันก็ไม่รู้เหมือนกันว่าทำไม...!";
+		mes "หมีเทดดี้ตัวอื่นๆ เขาต่อแถวกัน ฉันก็เลยมาต่อแถวด้วย!";
+		mes "โฮวววววว!!!!";
+		mes "ฉันไม่ยักรู้เลยว่ามันอยู่ที่นี่!";
 		next;
-		mes "[Bear Wanting " + .@item_name$ + "]";
-		mes "A teddy bear with an " + .@item_name$ + "!";
-		mes "Strong!";
-		mes "I don't have any " + .@item_name$ + "s!";
-		mes "Less... stronger...";
+		mes "[Bear ผู้โหยหา " + .@item_name$ + "]";
+		mes "หมีเทดดี้ที่มี " + .@item_name$ + "!";
+		mes "แข็งแกร่ง!";
+		mes "แต่ฉันไม่มี " + .@item_name$ + " เลยสักก้อน!";
+		mes "แข็งแกร่ง... น้อยลง...";
 		next;
-		mes "[Bear Wanting " + .@item_name$ + "]";
-		mes "What are " + .@item_name$ + "s?";
-		mes "I don't know but I want some!";
+		mes "[Bear ผู้โหยหา " + .@item_name$ + "]";
+		mes "ว่าแต่ " + .@item_name$ + " คืออะไรกันนะ?";
+		mes "ฉันไม่รู้หรอก แต่ฉันอยากได้มันจัง!";
 		close;
 	case 2:
-		mes "[Bear Wanting " + .@item_name$ + "]";
-		mes "Makes you good with what you have!";
+		mes "[Bear ผู้โหยหา " + .@item_name$ + "]";
+		mes "จะทำให้ของที่คุณมีอยู่กลายเป็นของดี!";
 		next;
-		mes "[Bear Wanting " + .@item_name$ + "]";
-		mes "If you want to do well, bring equipment refined to ^ff0000+9 or higher. It'll all disappear... haha?^000000";
+		mes "[Bear ผู้โหยหา " + .@item_name$ + "]";
+		mes "ถ้าอยากได้ของดีๆ ก็เอาอุปกรณ์ที่ตีบวก ^ff0000+9 หรือสูงกว่ามาให้ฉันสิ ของเดิมมันจะหายไปหมดเลยนะ... ฮ่าฮ่า?^000000";
 		next;
-		mes "[Bear Wanting " + .@item_name$ + "]";
-		mes "^ff0000" + .@item_name$ + "^000000!!! " + .@item_name$ + " is the most important thing, but... other materials are also needed.";
-		mes "For every good thing you need another good thing.";
+		mes "[Bear ผู้โหยหา " + .@item_name$ + "]";
+		mes "^ff0000" + .@item_name$ + "^000000!!! " + .@item_name$ + " คือสิ่งที่สำคัญที่สุด แต่... วัตถุดิบอื่นๆ ก็จำเป็นเหมือนกันนะ";
+		mes "เพราะสำหรับสิ่งดีๆ ทุกอย่าง คุณย่อมต้องใช้ของดีอย่างอื่นมาแลกเสมอ";
 		next;
 		close2;
 		callshop( "barter_ill_teddy" );
 		end;
 	case 3:
-		mes "[Bear Wanting " + .@item_name$ + "]";
-		mes "Okay...";
+		mes "[Bear ผู้โหยหา " + .@item_name$ + "]";
+		mes "โอเค...";
 		close;
 	}
 	end;

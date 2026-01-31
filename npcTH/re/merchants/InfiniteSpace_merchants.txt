@@ -14,7 +14,7 @@
 
 cmd_fild07,63,268,1	script	Emergency Food Merchant#pa0829_01	4_M_BIBI,{
 	mes "[Emergency Food Merchant]";
-	mes "I have a lot of stuff over here, of course, not for free.";
+	mes "ฉันมีของเยอะแยะเลยที่นี่ แน่นอนว่ามันไม่ได้ให้ฟรีๆ หรอกนะ";
 	close2;
 	callshop "inf_ration",1;
 	end;
@@ -23,29 +23,29 @@ cmd_fild07,63,268,1	script	Emergency Food Merchant#pa0829_01	4_M_BIBI,{
 // Warp Scroll Seller
 cmd_fild07,375,167,1	script	Ruins Black Trader#pa0829_01	4_F_JOB_HUNTER,{
 	mes "[Ruins Black Trader]";
-	mes "Hey, isn't it hard to walk in and out of here every time? For just ^0000ff20,000^000000 Zeny, you can have a scroll that will take you directly to the entrance of the ruins, what do you think?";
+	mes "เฮ้ มันไม่ลำบากแย่เหรอที่ต้องเดินเข้าเดินออกที่นี่ทุกครั้งน่ะ? แค่ ^0000ff20,000^000000 Zeny คุณก็จะได้สกรอลล์ที่จะพาคุณไปยังหน้าทางเข้าโบราณสถานได้โดยตรงเลยนะ คุณคิดว่ายังไงล่ะ?";
 Purchase:
 	next;
-	switch( select( "Give me one", "I don't think so" )) {
+	switch( select( "ขอซื้ออันหนึ่ง", "ฉันว่าไม่ดีกว่า" )) {
 		case 1:
 			if (!checkweight(22980,1) || (MaxWeight - Weight) < 1000) {
-				mes "You can't proceed with the conversation because you have a large quantity of items.";
-				mes "Please organize your items and try again.";
+				mes "คุณไม่สามารถสนทนาต่อได้เนื่องจากคุณมีจำนวนไอเทมมากเกินไป";
+				mes "กรุณาจัดระเบียบไอเทมของคุณและลองใหม่อีกครั้ง";
 				close;
 			}
 			else if (Zeny < 20000) {
 				mes "[Ruins Black Trader]";
-				mes "You don't seem to have any more money. A scroll costs 20,000 Zeny.";
+				mes "ดูเหมือนคุณจะไม่มีเงินเหลือแล้วนะ สกรอลล์ราคา 20,000 Zeny";
 				close;
 			}
 			Zeny -= 20000;
 			getitem 22980,1;
 			mes "[Ruins Black Trader]";
-			mes "It was a good deal. Need more?";
+			mes "เป็นการซื้อขายที่ดีมาก ต้องการอีกไหม?";
 			goto Purchase;
 		case 2:
 			mes "[Ruins Black Trader]";
-			mes "Come back anytime";
+			mes "กลับมาได้ทุกเมื่อนะ";
 			close;
 	}
 }
@@ -53,18 +53,18 @@ Purchase:
 // Equipment Shop
 cmd_fild07,57,275,5	script	Artifact Appraiser#pa0829_01	1_F_02,{
 	if (!checkweight(1201,1) || (MaxWeight - Weight) < 1000) {
-		mes "You can't proceed with the conversation because you have a large quantity of items.";
-		mes "Please organize your items and try again.";
+		mes "คุณไม่สามารถสนทนาต่อได้เนื่องจากคุณมีจำนวนไอเทมมากเกินไป";
+		mes "กรุณาจัดระเบียบไอเทมของคุณและลองใหม่อีกครั้ง";
 		close;
 	}
 	.@stone_id = 6905;
 	mes "[ Artifact Appraiser ]";
-	mes "Choose the type of equipment that you want to purchase. You can purchase as many as you want, as long as you have " + getitemname(.@stone_id) + ".";
+	mes "เลือกประเภทของอุปกรณ์ที่คุณต้องการซื้อ คุณสามารถซื้อได้มากเท่าที่ต้องการ ตราบใดที่คุณยังมี " + getitemname(.@stone_id) + " อยู่";
 	next;
-	switch (select("Cancel:Weapons:Armors")) {
+	switch (select("ยกเลิก:อาวุธ:ชุดเกราะ")) {
 		case 1:
 			mes "[ Artifact Appraiser ]";
-			mes "Please come back whenever you want~";
+			mes "โปรดกลับมาใหม่เมื่อคุณต้องการนะ~";
 			close;
 
 		case 2:
@@ -77,33 +77,33 @@ cmd_fild07,57,275,5	script	Artifact Appraiser#pa0829_01	1_F_02,{
 			.@price = 50;
 			break;
 	}
-	.@menu$ = "Cancel:";
+	.@menu$ = "ยกเลิก:";
 	for (.@i = 0; .@i < getarraysize(.@equip_id); .@i++)
 		.@menu$ += getitemname(.@equip_id[.@i]) + ":";
 	.@s = select(.@menu$) - 1;
 	switch (.@s) {
 		case 0:
 			mes "[ Artifact Appraiser ]";
-			mes "Please come back whenever you want~";
+			mes "โปรดกลับมาใหม่เมื่อคุณต้องการนะ~";
 			close;
 
 		default:
 			.@s--;
 			mes "[ Artifact Appraiser ]";
-			mes "You need ^0000FF" + .@price + "^000000 " + getitemname(.@stone_id) + " to purchase the " + getitemname(.@equip_id[.@s]) + "~";
+			mes "คุณต้องใช้ ^0000FF" + .@price + "^000000 " + getitemname(.@stone_id) + " เพื่อซื้อ " + getitemname(.@equip_id[.@s]) + "~";
 			next;
-			if (select("Cancel:Purchase") == 1) {
+			if (select("ยกเลิก:ซื้อสินค้า") == 1) {
 				mes "[ Artifact Appraiser ]";
-				mes "Please come back whenever you want~";
+				mes "โปรดกลับมาใหม่เมื่อคุณต้องการนะ~";
 				close;
 			}
 			if (countitem(.@stone_id) < .@price) {
 				mes "[ Artifact Appraiser ]";
-				mes "You don't have enough " + getitemname(.@stone_id) + " to purchase this item.";
+				mes "คุณมี " + getitemname(.@stone_id) + " ไม่เพียงพอที่จะซื้อไอเทมนี้";
 				close;
 			}
 			mes "[ Artifact Appraiser ]";
-			mes "Thank you for your trust. Please come back again next time.";
+			mes "ขอบคุณที่ไว้ใจ โปรดกลับมาใหม่ในครั้งหน้า";
 			delitem .@stone_id,.@price;
 			getitem .@equip_id[.@s],1;
 			close;
@@ -113,45 +113,45 @@ cmd_fild07,57,275,5	script	Artifact Appraiser#pa0829_01	1_F_02,{
 // Equipment Enchanter
 cmd_fild07,60,275,3	script	Artifact Enhancer#pa0829_01	4_F_JOB_BLACKSMITH,{
 	if (!checkweight(1201,1) || (MaxWeight - Weight) < 1000) {
-		mes "You can't proceed with the conversation because you have a large quantity of items.";
-		mes "Please organize your items and try again.";
+		mes "คุณไม่สามารถสนทนาต่อได้เนื่องจากคุณมีจำนวนไอเทมมากเกินไป";
+		mes "กรุณาจัดระเบียบไอเทมของคุณและลองใหม่อีกครั้ง";
 		close;
 	}
 	disable_items;
 	.@stone_id = 6905;
 	function equip_check;
 	mes "[ Artifact Enhancer ]";
-	mes "If you're looking to strengthen the equipment that you've obtained in the Infinite Space, you have come to the right place.";
-	mes "Do you have any " + getitemname(.@stone_id) + "?";
+	mes "ถ้าคุณกำลังมองหาวิธีเสริมความแข็งแกร่งให้อุปกรณ์ที่คุณได้รับจาก Infinite Space คุณมาถูกที่แล้วล่ะ";
+	mes "คุณมี " + getitemname(.@stone_id) + " บ้างไหม?";
 	next;
-	switch (select("How do I enchant my equipment?:Enchant equipment.:Initialize equipment's enchant.")) {
+	switch (select("วิธี Enchant อุปกรณ์ทำยังไง?:Enchant อุปกรณ์:รีเซ็ต Enchant ของอุปกรณ์")) {
 		case 1:
 			mes "[ Artifact Enhancer ]";
-			mes "You'll be able to obtain " + getitemname(.@stone_id) + ", if you explore the space under the Paros Lighthouse.";
+			mes "คุณจะสามารถหา " + getitemname(.@stone_id) + " ได้ หากคุณออกสำรวจพื้นที่ใต้ประภาคาร Paros";
 			next;
 			mes "[ Artifact Enhancer ]";
-			mes "For that material, I can reinforce the equipment that you got from the Infinite Space.";
+			mes "ด้วยวัตถุดิบนั้น ฉันสามารถเสริมพลังให้อุปกรณ์ที่คุณได้รับจาก Infinite Space ได้";
 			next;
 			mes "[ Artifact Enhancer ]";
-			mes "I can only enchant the 3rd and the 4th slot.";
+			mes "ฉันสามารถ Enchant ได้เฉพาะช่องที่ 3 และช่องที่ 4 เท่านั้น";
 			next;
 			mes "[ Artifact Enhancer ]";
-			mes "There is no chance of the equipment being destroyed during the enchanting process, but there's a high probability that it will be destroyed when initializing the enchants.";
+			mes "ไม่มีโอกาสที่อุปกรณ์จะถูกทำลายในระหว่างขั้นตอนการ Enchant แต่มีความเป็นไปได้สูงที่มันจะถูกทำลายเมื่อทำการรีเซ็ต Enchant";
 			next;
 			mes "[ Artifact Enhancer ]";
-			mes "Then come visit me when you want to enchant the equipment.";
+			mes "ถ้าอย่างนั้นก็มาหาฉันเมื่อคุณต้องการจะ Enchant อุปกรณ์นะ";
 			break;
 
 		case 2:
 			.@stone_id = 6905;
 			.@fee = 20;
 			mes "[ Artifact Enhancer ]";
-			mes "Please select the equipment that you want to enchant.";
+			mes "โปรดเลือกอุปกรณ์ที่คุณต้องการจะ Enchant";
 			next;
-			switch (select("Cancel:Weapon:Armor:Shoes:Garment:Helm")) {
+			switch (select("ยกเลิก:อาวุธ:ชุดเกราะ:รองเท้า:ผ้าคลุม:หมวก")) {
 				case 1:
 					mes "[ Artifact Enhancer ]";
-					mes "Then come visit me when you want to enchant the equipment.";
+					mes "ถ้าอย่างนั้นก็มาหาฉันเมื่อคุณต้องการจะ Enchant อุปกรณ์นะ";
 					close;
 
 				case 2:
@@ -183,7 +183,7 @@ cmd_fild07,60,275,3	script	Artifact Enhancer#pa0829_01	4_F_JOB_BLACKSMITH,{
 			}
 			if (.@card[2] > 0) {
 				mes "[ Artifact Enhancer ]";
-				mes "I can only enchant up to the third slot. Your equipment can't be further enchanted.";
+				mes "ฉันสามารถ Enchant ได้สูงสุดถึงช่องที่สามเท่านั้น อุปกรณ์ของคุณไม่สามารถ Enchant เพิ่มเติมได้แล้ว";
 				close;
 			}
 			switch (.@part) {
@@ -210,24 +210,24 @@ cmd_fild07,60,275,3	script	Artifact Enhancer#pa0829_01	4_F_JOB_BLACKSMITH,{
 			.@slot = (.@card[3] > 0 ? 2 : 3);
 			.@index = (.@slot == 3 ? 0 : 1);
 			mes "[ Artifact Enhancer ]";
-			mes "You can choose 3 types of enchant, and the enchant fee is " + .@fee + " " + getitemname(.@stone_id) + ".";
-			mes "I'll make sure it gets enchanted without a problem.";
+			mes "คุณสามารถเลือกประเภทการ Enchant ได้ 3 รูปแบบ และค่าธรรมเนียมคือ " + .@fee + " " + getitemname(.@stone_id);
+			mes "ฉันจะทำให้แน่ใจว่ามันจะถูก Enchant อย่างไม่มีปัญหาแน่นอน";
 			next;
-			.@type = select("Quit:Physical:Magical:Range") - 2;
+			.@type = select("ออก:สายกายภาพ:สายเวทมนตร์:สายโจมตีไกล") - 2;
 			mes "[ Artifact Enhancer ]";
 			if (.@slot == 3)
-				mes "Okay, let's begin the first enchantment.";
+				mes "ตกลง มาเริ่มการ Enchant ครั้งแรกกัน";
 			else
-				mes "Okay, let's proceed with the second enchantment.";
+				mes "ตกลง มาเริ่มการ Enchant ครั้งที่สองกัน";
 			next;
-			if (select("I'll return later.:Please proceed.") == 1) {
+			if (select("เดี๋ยวฉันกลับมาใหม่:ดำเนินการต่อ") == 1) {
 				mes "[ Artifact Enhancer ]";
-				mes "If you change your mind, just return to me.";
+				mes "ถ้าคุณเปลี่ยนใจ ก็กลับมาหาฉันได้นะ";
 				close;
 			}
 			if (countitem(.@stone_id) < .@fee) {
 				mes "[ Artifact Enhancer ]";
-				mes "Hm. By the way, I don't think you were listening, you don't have enough " + getitemname(.@stone_id) + ".";
+				mes "หืม.. จะว่าไป ดูเหมือนคุณจะไม่ได้ฟังที่ฉันพูดนะ คุณมี " + getitemname(.@stone_id) + " ไม่พอน่ะ";
 				close;
 			}
 			explode(.@T$,.@enchant$[.@index],":");
@@ -241,7 +241,7 @@ cmd_fild07,60,275,3	script	Artifact Enhancer#pa0829_01	4_F_JOB_BLACKSMITH,{
 			getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
 			specialeffect2 EF_REPAIRWEAPON;
 			mes "[ Artifact Enhancer ]";
-			mes "Hm. It was well done. Check your equipment at once.";
+			mes "หืม.. ทำออกมาได้ดีเลย ตรวจสอบอุปกรณ์ของคุณดูสิ";
 			break;
 		
 		case 3:
@@ -249,12 +249,12 @@ cmd_fild07,60,275,3	script	Artifact Enhancer#pa0829_01	4_F_JOB_BLACKSMITH,{
 			.@fee = 30;
 			.@break_chance = 30;
 			mes "[ Artifact Enhancer ]";
-			mes "Please select the equipment that you want to enchant.";
+			mes "โปรดเลือกอุปกรณ์ที่คุณต้องการจะรีเซ็ต Enchant";
 			next;
-			switch (select("Cancel:Weapon:Armor:Shoes:Garment:Helm")) {
+			switch (select("ยกเลิก:อาวุธ:ชุดเกราะ:รองเท้า:ผ้าคลุม:หมวก")) {
 				case 1:
 					mes "[ Artifact Enhancer ]";
-					mes "Then come visit me when you want to enchant the equipment.";
+					mes "ถ้าอย่างนั้นก็มาหาฉันเมื่อคุณต้องการจะ Enchant อุปกรณ์นะ";
 					close;
 
 				case 2:
@@ -286,20 +286,20 @@ cmd_fild07,60,275,3	script	Artifact Enhancer#pa0829_01	4_F_JOB_BLACKSMITH,{
 			}
 			if (.@card[3] == 0) {
 				mes "[ Artifact Enhancer ]";
-				mes "Your equipment doesn't have any enchant on it.";
+				mes "อุปกรณ์ของคุณยังไม่มี Enchant ใดๆ ติดอยู่เลย";
 				close;
 			}
 			mes "[ Artifact Enhancer ]";
-			mes "There is a chance that your infinite space equipment will be destroyed on the initializion process. Are you still willing to proceed?";
+			mes "มีความเป็นไปได้ที่อุปกรณ์ Infinite Space ของคุณจะถูกทำลายในกระบวนการรีเซ็ต คุณยังยินดีที่จะดำเนินการต่อไหม?";
 			next;
-			if (select("Quit:Proceed") == 1) {
+			if (select("ออก:ดำเนินการต่อ") == 1) {
 				mes "[ Artifact Enhancer ]";
-				mes "If you change your mind, just return to me.";
+				mes "ถ้าคุณเปลี่ยนใจ ก็กลับมาหาฉันได้นะ";
 				close;
 			}
 			if (countitem(.@stone_id) < .@fee) {
 				mes "[ Artifact Enhancer ]";
-				mes "Hm. By the way, I don't think you were listening, you don't have enough " + getitemname(.@stone_id) + ".";
+				mes "หืม.. จะว่าไป ดูเหมือนคุณจะไม่ได้ฟังที่ฉันพูดนะ คุณมี " + getitemname(.@stone_id) + " ไม่พอน่ะ";
 				close;
 			}
 			delitem .@stone_id,.@fee;
@@ -310,11 +310,11 @@ cmd_fild07,60,275,3	script	Artifact Enhancer#pa0829_01	4_F_JOB_BLACKSMITH,{
 				getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],0,0;
 				specialeffect2 EF_REPAIRWEAPON;
 				mes "[ Artifact Enhancer ]";
-				mes "Hm. It was well done. Check your equipment at once.";
+				mes "หืม.. ทำออกมาได้ดีเลย ตรวจสอบอุปกรณ์ของคุณดูสิ";
 			} else {
 				specialeffect2 EF_REFINEFAIL;
 				mes "[ Artifact Enhancer ]";
-				mes "Well, I did warn you. You aren't lucky, eh?";
+				mes "ก็นะ ฉันเตือนคุณแล้ว ดวงคุณไม่ดีเลยว่าไหม?";
 			}
 			break;
 	}
@@ -324,12 +324,12 @@ cmd_fild07,60,275,3	script	Artifact Enhancer#pa0829_01	4_F_JOB_BLACKSMITH,{
 		setarray .@equip_id,1994,1938,13323,13126,28703,2024,16038,21014,28105,18128,15141,22075,20779,19033;
 		if (!getarg(0)) {
 			mes "[ Artifact Enhancer ]";
-			mes "Did you take off your equipment?";
+			mes "คุณถอดอุปกรณ์ออกหรือเปล่า?";
 			close;
 		}
 		if (inarray(.@equip_id,getarg(0)) == -1) {
 			mes "[ Artifact Enhancer ]";
-			mes "This equipment is not suitable for enchanting. Don't forget that only the infinite equipment series can be enchanted.";
+			mes "อุปกรณ์นี้ไม่เหมาะสำหรับการ Enchant อย่าลืมล่ะว่ามีเพียงอุปกรณ์ชุด Infinite เท่านั้นที่สามารถ Enchant ได้";
 			close;
 		}
 		return;

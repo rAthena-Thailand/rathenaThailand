@@ -22,37 +22,37 @@
 malangdo,213,167,4	script	Mayomayo#mal	555,{
 	disable_items;
 	if (checkweight(1201,1) == 0) {
-		mes "You have too many kinds of objects. Let's try to continue after reducing those objects.";
+		mes "เจ้ามีไอเทมหลายชนิดเกินไปนะ ลองพยายามดำเนินการต่อหลังจากลดจำนวนไอเทมพวกนั้นลงหน่อยดีกว่า";
 		close;
 	}
 	if (MaxWeight - Weight < 10000) {
-		mes "Can't continue because you have too many heavy objects. Let's try to continue after reducing the weight.";
+		mes "ไม่สามารถดำเนินการต่อได้เนื่องจากเจ้าน้ำหนักตัวเยอะเกินไป ลองพยายามดำเนินการต่อหลังจากลดน้ำหนักลงหน่อยนะ";
 		close;
 	}
 	mes "[Mayomayo]";
-	mes "Wow welcome. It is new Mayomayo refinement store~ I enchant some luxury weapons including level 4 weapons.";
+	mes "โอ้ ยินดีต้อนรับ นี่คือร้านตีบวกใหม่ของ Mayomayo~ ข้าสามารถเสริมออปชั่น (Enchant) ให้อาวุธหรูหรา รวมถึงอาวุธระดับเลเวล 4 ได้ด้วยนะ";
 	next;
-	switch( select( "Any store policy changes?", "Enchant High Ranked Weapon", "Initialize Enchant (Need Silvervine Fruit)" ) ) {
+	switch( select( "มีการเปลี่ยนแปลงนโยบายร้านอะไรบ้างไหม?", "เสริมออปชั่นอาวุธระดับสูง", "ล้างออปชั่นเสริม (ใช้ Silvervine Fruit)" ) ) {
 	case 1:
 		mes "[Mayomayo]";
-		mes "When I enchant weapons, the slotted cards or refined level are dissipated sometimes. I hated it. However, one day I found how to do it without any extinction.";
+		mes "เมื่อก่อนตอนที่ข้าเสริมออปชั่นอาวุธ การ์ดที่ใส่ไว้หรือระดับการตีบวกบางครั้งมันก็หายไป ข้าเกลียดมันมากเลยล่ะ แต่อยู่มาวันหนึ่ง ข้าก็ได้พบวิธีที่จะทำมันโดยไม่มีอะไรสูญหายเลย";
 		next;
 		mes "[Mayomayo]";
-		mes "Have you ever seen a building of person of reinforcement capacity association?";
+		mes "เจ้าเคยเห็นตึกของสมาคมเสริมพลังความสามารถบ้างไหม?";
 		next;
-		if (select( "I've seen it before.", "I haven't seen it before." ) == 2) {
+		if (select( "ข้าเคยเห็นมาก่อนนะ", "ข้ายังไม่เคยเห็นเลย" ) == 2) {
 			mes "[Mayomayo]";
-			mes "That builiding is located to the southeast of where I am. Why don't you go on a field trip there?";
+			mes "ตึกนั้นตั้งอยู่ทางทิศตะวันออกเฉียงใต้จากที่ที่ข้าอยู่นี่แหละ ทำไมเจ้าไม่ลองไปทัศนศึกษาที่นั่นดูสักหน่อยล่ะ?";
 			close;
 		}
 		mes "[Mayomayo]";
-		mes "If you go to the place, there is someone who enchants the Archangel Wing. At that time that was amazing, because that was impossible ability by my own skill.";
+		mes "ถ้าเจ้าไปที่นั่น จะมีใครบางคนที่เสริมออปชั่นให้กับ Archangel Wing ได้ ตอนนั้นมันน่าทึ่งมาก เพราะมันเป็นความสามารถที่เกินกว่าทักษะของข้าจะทำได้เอง";
 		next;
 		mes "[Mayomayo]";
-		mes "Every night I became his butler and did odd jobs. That is how I learned to enchant.";
+		mes "ทุกคืนข้าจึงไปเป็นพ่อบ้านให้เขาและทำงานจิปาถะต่างๆ นั่นคือวิธีที่ทำให้ข้าเรียนรู้วิธีการเสริมออปชั่นมา";
 		next;
 		mes "[Mayomayo]";
-		mes "Several rules are changed. Well, you better have experience.";
+		mes "กฎหลายอย่างได้เปลี่ยนไปแล้ว อืม... เจ้าควรจะมาลองสัมผัสด้วยตัวเองดีกว่านะ";
 		close;
 	case 2:
 		@mal_enchant_select = 1;
@@ -64,15 +64,15 @@ malangdo,213,167,4	script	Mayomayo#mal	555,{
 
 	if (!getequipisequiped(EQI_HAND_R)) {
 		mes "[Mayomayo]";
-		mes "Did you take off your equipment?";
+		mes "เจ้ายอมถอดอุปกรณ์ออกแล้วงั้นเหรอ?";
 		@mal_enchant_select = 0;
 		close;
 	}
 	@mal_equip_id = getequipid(EQI_HAND_R);
 	.@equip_type = getiteminfo(@mal_equip_id, ITEMINFO_VIEW);
 
-	// callsub L_Socket,<cost multiplier>,<4-x enchants possible>;
-	switch(.@equip_type) {	//  Check weapon type first to speed up the checks.
+	// callsub L_Socket,<ตัวคูณราคา>,<จำนวนออปชั่นที่สามารถมีได้ 4-x>;
+	switch(.@equip_type) {	//  ตรวจสอบประเภทอาวุธก่อนเพื่อความรวดเร็วในการเช็ค
 	case 1:	// Daggers
 		switch(@mal_equip_id) {
 			case 1224: callsub L_Socket,1,2;	// Sword_Breaker
@@ -335,9 +335,9 @@ malangdo,213,167,4	script	Mayomayo#mal	555,{
 	}
 	mes "[Mayomayo]";
 	if (@mal_enchant_select == 1)
-		mes "This is not a suitable equipment for the enchant. Don't forget we only take care of high class weapons, including level 4 weapons~";
+		mes "อุปกรณ์ชิ้นนี้ไม่เหมาะสมสำหรับการเสริมออปชั่นนะ อย่าลืมสิว่าข้ารับจัดการเฉพาะอาวุธระดับสูง รวมถึงอาวุธเลเวล 4 เท่านั้น~";
 	else
-		mes "This equipment can not be initialized. Don't forget we only handle some luxury weapons, including level 4 weapons~";
+		mes "อุปกรณ์ชิ้นนี้ไม่สามารถล้างออปชั่นได้ อย่าลืมสิว่าข้ารับจัดการเฉพาะอาวุธหรูหราบางชิ้น รวมถึงอาวุธเลเวล 4 เท่านั้น~";
 	@mal_equip_id = 0;
 	@mal_enchant_select = 0;
 	close;
@@ -353,32 +353,32 @@ L_Socket:
 
 	if (.@select == 1) {
 		mes "[Mayomayo]";
-		mes "^0000ff" + .@equip_name$ + "^000000! Do you want to enchant this equipment? How will you pay for this?";
+		mes "^0000ff" + .@equip_name$ + "^000000! เจ้าต้องการเสริมออปชั่นให้อุปกรณ์ชิ้นนี้งั้นเหรอ? แล้วเจ้าจะจ่ายค่าบริการด้วยอะไรดีล่ะ?";
 		next;
 
 		.@enccost = getarg(0);
 		.@enclimit = getarg(1);
-		setarray .@coin[0],6422,6421,6420,6419,6418,6423;	//  Payment ID
-		setarray .@cost[0],  15,  10,   6,   3,   2,   1;	//  Payment multiplier
+		setarray .@coin[0],6422,6421,6420,6419,6418,6423;	//  ไอดีไอเทมสำหรับจ่าย
+		setarray .@cost[0],  15,  10,   6,   3,   2,   1;	//  ตัวคูณค่าบริการ
 
-		.@menu$ = "Stop:";
+		.@menu$ = "หยุด:";
 		.@size_coin = getarraysize(.@coin);
 		for ( .@i = 0; .@i < .@size_coin; ++.@i) {
 			.@count[.@i] = countitem(.@coin[.@i]);
 			.@total[.@i] = .@enccost * .@cost[.@i];
 			if (.@count[.@i] < .@total[.@i])
-				.@menu$ += "^999999" + getitemname(.@coin[.@i]) + " (missing " + (.@total[.@i]-.@count[.@i]) + ")^000000:";
+				.@menu$ += "^999999" + getitemname(.@coin[.@i]) + " (ขาดอีก " + (.@total[.@i]-.@count[.@i]) + ")^000000:";
 			else
-				.@menu$ += getitemname(.@coin[.@i]) + " (have " + .@count[.@i] + ", need " + .@total[.@i] + "):";
+				.@menu$ += getitemname(.@coin[.@i]) + " (มี " + .@count[.@i] + ", ต้องการ " + .@total[.@i] + "):";
 		}
 		.@coin_select = select(.@menu$) - 2;
 		if (.@coin_select == -1) {
 			mes "[Mayomayo]";
-			mes "Come back again if you change your mind.";
+			mes "กลับมาใหม่ได้นะถ้าเปลี่ยนใจแล้ว";
 			close;
 		} else if (.@count[.@coin_select] < .@total[.@coin_select]) {
 			mes "[Mayomayo]";
-			mes "You don't have enough coins. Do you want to check again?";
+			mes "เจ้ามีเหรียญไม่พอ ลองตรวจสอบดูอีกทีสิ?";
 			close;
 		}
 		switch(.@coin_select) {
@@ -397,12 +397,12 @@ L_Socket:
 		case 4:	// Agrade_Coin
 		case 5:	// Anger_Seagod
 			mes "[Mayomayo]";
-			mes "When you use the " + getitemname(.@coin[.@coin_select]) + ", you can choose the enchant type.";
+			mes "เมื่อเจ้าใช้ " + getitemname(.@coin[.@coin_select]) + " เจ้าสามารถเลือกประเภทของการเสริมออปชั่นได้นะ";
 			next;
-			switch( select( "Stop", "Short Range Type", "Long Range Type", "Caster Type") ) {
+			switch( select( "หยุด", "สายโจมตีระยะใกล้", "สายโจมตีระยะไกล", "สายเวทมนตร์") ) {
 			case 1:
 				mes "[Mayomayo]";
-				mes "Ok. If you change your mind, let me know.";
+				mes "ตกลง ถ้าเปลี่ยนใจแล้วก็บอกข้านะ";
 				close;
 			case 2:
 				.@enchant_type = ((.@coin_select == 4) ? 4 : 1);
@@ -418,27 +418,27 @@ L_Socket:
 		}
 		if (.@equip_card[3] == 0 && .@enclimit < 4) {
 			.@socket = 4;
-			.@str$ = "1st";
+			.@str$ = "ครั้งที่ 1";
 		} else if (.@equip_card[2] == 0 && .@enclimit < 3) {
 			.@socket = 3;
-			.@str$ = "2nd";
+			.@str$ = "ครั้งที่ 2";
 		} else {
 			mes "[Mayomayo]";
-			mes "This equipment is at the end of enchant. Please initialize the enchant and you will be able to enchant it again, or bring another weapon.";
+			mes "อุปกรณ์ชิ้นนี้เสริมออปชั่นจนเต็มขีดจำกัดแล้ว กรุณาล้างออปชั่นก่อนแล้วเจ้าจะสามารถเสริมพลังให้มันได้อีกครั้ง หรือจะนำอาวุธชิ้นอื่นมาก็ได้นะ";
 			close;
 		}
 		mes "[Mayomayo]";
-		mes "I'm trying for the " + .@str$ + " enchant. ^ff0000It will not touch previous refinement and cards. Also, the equipment will not be destroyed.^000000 Can I continue?";
+		mes "ข้าจะพยายามเสริมออปชั่น" + .@str$ + "ให้นะ ^ff0000มันจะไม่กระทบกับระดับการตีบวกเดิมและการ์ดที่มีอยู่ และอุปกรณ์จะไม่ถูกทำลายด้วย^000000 ให้ข้าทำต่อเลยไหม?";
 		next;
-		if (select( "I'll come back later.", "Please, continue." ) == 1) {
+		if (select( "ข้าจะกลับมาทีหลัง", "ได้โปรด ดำเนินการต่อเลย" ) == 1) {
 			mes "[Mayomayo]";
-			mes "Ok. If you change your mind, come back again.";
+			mes "ตกลง ถ้าเปลี่ยนใจเมื่อไหร่ก็กลับมานะ";
 			close;
 		}
 		switch(.@enchant_type) {
 		case 10:	// Egrade_Coin
 			.@i = rand(1,531);
-			     if (.@i < 101) .@enchant = 4787;	// Mdef4
+			     if (.@i < 101) .@enchant = 4787;	// Mdef4
 			else if (.@i < 201) .@enchant = 4792;	// Def6
 			else if (.@i < 301) .@enchant = 4801;	// SP100
 			else if (.@i < 351) .@enchant = 4795;	// HP100
@@ -454,7 +454,7 @@ L_Socket:
 			break;
 		case 9:	// Dgrade_Coin
 			.@i = rand(1,531);
-			     if (.@i < 101) .@enchant = 4795;	// HP100
+			     if (.@i < 101) .@enchant = 4795;	// HP100
 			else if (.@i < 201) .@enchant = 4796;	// HP200
 			else if (.@i < 301) .@enchant = 4819;	// Atk1
 			else if (.@i < 351) .@enchant = 4720;	// Dexterity1
@@ -470,7 +470,7 @@ L_Socket:
 			break;
 		case 8:	// Cgrade_Coin
 			.@i = rand(1,531);
-			     if (.@i < 101) .@enchant = 4720;	// Dexterity1
+			     if (.@i < 101) .@enchant = 4720;	// Dexterity1
 			else if (.@i < 201) .@enchant = 4740;	// Vitality1
 			else if (.@i < 301) .@enchant = 4750;	// Luck1
 			else if (.@i < 351) .@enchant = 4700;	// Strength1
@@ -486,7 +486,7 @@ L_Socket:
 			break;
 		case 7:	// Bgrade_Coin
 			.@i = rand(1,531);
-			     if (.@i < 101) .@enchant = 4700;	// Strength1
+			     if (.@i < 101) .@enchant = 4700;	// Strength1
 			else if (.@i < 201) .@enchant = 4730;	// Agility1
 			else if (.@i < 301) .@enchant = 4710;	// Inteligence1
 			else if (.@i < 351) .@enchant = 4701;	// Strength2
@@ -502,7 +502,7 @@ L_Socket:
 			break;
 		case 6:	// Agrade_Coin - Caster
 			.@i = rand(1,555);
-			     if (.@i < 81)  .@enchant = 4711;	// Inteligence2
+			     if (.@i < 81)  .@enchant = 4711;	// Inteligence2
 			else if (.@i < 161) .@enchant = 4721;	// Dexterity2
 			else if (.@i < 241) .@enchant = 4814;	// Spell2
 			else if (.@i < 311) .@enchant = 4712;	// Inteligence3
@@ -518,7 +518,7 @@ L_Socket:
 			break;
 		case 5:	// Agrade_Coin - Long Range
 			.@i = rand(1,555);
-			     if (.@i < 81)  .@enchant = 4731;	// Agility2
+			     if (.@i < 81)  .@enchant = 4731;	// Agility2
 			else if (.@i < 161) .@enchant = 4833;	// Expert_Archer2
 			else if (.@i < 241) .@enchant = 4817;	// Sharp2
 			else if (.@i < 311) .@enchant = 4732;	// Agility3
@@ -534,7 +534,7 @@ L_Socket:
 			break;
 		case 4:	// Agrade_Coin - Short Range
 			.@i = rand(1,555);
-			     if (.@i < 81)  .@enchant = 4731;	// Agility2
+			     if (.@i < 81)  .@enchant = 4731;	// Agility2
 			else if (.@i < 161) .@enchant = 4808;	// Fighting_Spirit4
 			else if (.@i < 241) .@enchant = 4817;	// Sharp2
 			else if (.@i < 311) .@enchant = 4732;	// Agility3
@@ -550,7 +550,7 @@ L_Socket:
 			break;
 		case 3:	// Anger_Seagod - Caster
 			.@i = rand(1,555);
-			     if (.@i < 81)  .@enchant = 4712;	// Inteligence3
+			     if (.@i < 81)  .@enchant = 4712;	// Inteligence3
 			else if (.@i < 161) .@enchant = 4722;	// Dexterity3
 			else if (.@i < 241) .@enchant = 4813;	// Spell3
 			else if (.@i < 311) .@enchant = 4713;	// Inteligence4
@@ -566,7 +566,7 @@ L_Socket:
 			break;
 		case 2:	// Anger_Seagod - Long Range
 			.@i = rand(1,555);
-			     if (.@i < 81)  .@enchant = 4732;	// Agility3
+			     if (.@i < 81)  .@enchant = 4732;	// Agility3
 			else if (.@i < 161) .@enchant = 4834;	// Expert_Archer3
 			else if (.@i < 241) .@enchant = 4843;	// Sharp4
 			else if (.@i < 311) .@enchant = 4733;	// Agility4
@@ -582,7 +582,7 @@ L_Socket:
 			break;
 		case 1:	// Anger_Seagod - Short Range
 			.@i = rand(1,555);
-			     if (.@i < 81)  .@enchant = 4732;	// Agility3
+			     if (.@i < 81)  .@enchant = 4732;	// Agility3
 			else if (.@i < 161) .@enchant = 4820;	// Fighting_Spirit5
 			else if (.@i < 241) .@enchant = 4843;	// Sharp4
 			else if (.@i < 311) .@enchant = 4733;	// Agility4
@@ -598,39 +598,39 @@ L_Socket:
 			break;
 		default:
 			mes "[Mayomayo]";
-			mes "There is something wrong. Please try again.";
+			mes "มีบางอย่างผิดปกติ กรุณาลองใหม่อีกครั้งนะ";
 			close;
 		}
 
-		// anti-hack
-		if (callfunc("F_IsEquipIDHack", EQI_HAND_R, .@equip_id) || callfunc("F_IsEquipRefineHack", EQI_HAND_R, .@equip_refine) || 
-		    callfunc("F_IsEquipCardHack", EQI_HAND_R, .@equip_card[0], .@equip_card[1], .@equip_card[2], .@equip_card[3]))
+		// ระบบป้องกันการแฮก (anti-hack)
+		if (callfunc("F_IsEquipIDHack", EQI_HAND_R, .@equip_id) || callfunc("F_IsEquipRefineHack", EQI_HAND_R, .@equip_refine) || 
+		    callfunc("F_IsEquipCardHack", EQI_HAND_R, .@equip_card[0], .@equip_card[1], .@equip_card[2], .@equip_card[3]))
 			close;
 
-		     if (.@equip_card[3] == 0 && .@enclimit < 4) .@equip_card[3] = .@enchant;
+		     if (.@equip_card[3] == 0 && .@enclimit < 4) .@equip_card[3] = .@enchant;
 		else if (.@equip_card[2] == 0 && .@enclimit < 3) .@equip_card[2] = .@enchant;
 		else if (.@equip_card[1] == 0 && .@enclimit < 2) .@equip_card[1] = .@enchant;
 		else if (.@equip_card[0] == 0 && .@enclimit < 1) .@equip_card[0] = .@enchant;
 		else {
 			mes "[Mayomayo]";
-			mes "This equipment is at the end of enchant. I provide enchant for two times maximum.";
+			mes "อุปกรณ์ชิ้นนี้ถึงขีดจำกัดการเสริมออปชั่นแล้ว ข้าสามารถเสริมให้ได้สูงสุดเพียงสองครั้งเท่านั้นนะ";
 			next;
 			mes "[Mayomayo]";
-			mes "Surely I don't enchant at card socket, therefore weapons that have 3 slots can be enchanted only 1 time. Don't forget this~";
+			mes "แน่นอนว่าข้าจะไม่เสริมออปชั่นทับในช่องที่ใส่การ์ดอยู่ ดังนั้นอาวุธที่มี 3 สล็อตจะเสริมออปชั่นได้เพียง 1 ครั้งเท่านั้น อย่าลืมข้อนี้ล่ะ~";
 			close;
 		}
-		if (.@enchant == 9) {	//  Should never happen.
+		if (.@enchant == 9) {	//  ไม่ควรเกิดขึ้น
 			specialeffect2 EF_SUI_EXPLOSION;
 			mes "[Mayomayo]";
-			mes "Oh my god!";
-			mes "This equipment is destroyed because it could not endure powerful ability. I'm so sorry.";
+			mes "โอ้พระเจ้าช่วย!";
+			mes "อุปกรณ์ชิ้นนี้ถูกทำลายลงเพราะมันไม่สามารถทนทานต่อความสามารถอันทรงพลังนี้ได้ ข้าเสียใจจริงๆ";
 			delitem .@coin[.@coin_select],.@total[.@coin_select];
 			delequip EQI_HAND_R;
 			close;
 		}
 		specialeffect2 EF_REPAIRWEAPON;
 		mes "[Mayomayo]";
-		mes "I have enchanted ^990000slot " + .@socket + "^000000 of this equipment.";
+		mes "ข้าได้เสริมออปชั่นใน ^990000ช่องที่ " + .@socket + "^000000 ของอุปกรณ์ชิ้นนี้ให้แล้วนะ";
 		delitem .@coin[.@coin_select], .@total[.@coin_select];
 		delequip EQI_HAND_R;
 
@@ -640,36 +640,36 @@ L_Socket:
 		close;
 	} else if (.@select == 2) {
 		mes "[Mayomayo]";
-		mes "I will only initialize the enchant effect without touching previous refined level and cards.";
+		mes "ข้าจะล้างผลของการเสริมออปชั่นออกเท่านั้น โดยจะไม่แตะต้องระดับการตีบวกเดิมและการ์ดที่ใส่อยู่เลย";
 		next;
-		if (select( "Stop", "Continue" ) == 1) {
+		if (select( "หยุด", "ดำเนินการต่อ" ) == 1) {
 			mes "[Mayomayo]";
-			mes "If you change your mind, come back anytime.";
+			mes "ถ้าเจ้าเปลี่ยนใจเมื่อไหร่ ก็กลับมาหาข้าได้เสมอนะ";
 			close;
 		}
 		if (countitem(6417) == 0) {
 			mes "[Mayomayo]";
-			mes "I'm sorry. You don't have Silvervine Fruit. Please check your inventory again?";
+			mes "ข้าเสียใจด้วย เจ้าไม่มี Silvervine Fruit นะ กรุณาตรวจสอบในช่องเก็บของดูอีกทีได้ไหม?";
 			close;
 		}
 		if (!getequipisequiped(EQI_HAND_R)) {
 			mes "[Mayomayo]";
-			mes "Did you take off the equipment?";
+			mes "เจ้ายอมถอดอุปกรณ์ออกแล้วงั้นเหรอ?";
 			close;
 		}
 		if (.@equip_card[3] == 0) {
 			mes "[Mayomayo]";
-			mes "This equipment has nothing to initialize. Please check again.";
+			mes "อุปกรณ์ชิ้นนี้ไม่มีอะไรให้ต้องล้างนะ กรุณาตรวจสอบดูอีกทีสิ";
 			close;
 		}
 		specialeffect2 EF_REPAIRWEAPON;
 		mes "[Mayomayo]";
-		mes "Initialize the enchant effect from the equipment.";
+		mes "ล้างผลของการเสริมออปชั่นออกจากอุปกรณ์เรียบร้อยแล้ว";
 		delitem 6417,1;	// Silvervine
 
-		// anti-hack
-		if (callfunc("F_IsEquipIDHack", EQI_HAND_R, .@equip_id) || callfunc("F_IsEquipRefineHack", EQI_HAND_R, .@equip_refine) || 
-		    callfunc("F_IsEquipCardHack", EQI_HAND_R, .@equip_card[0], .@equip_card[1], .@equip_card[2], .@equip_card[3]))
+		// ระบบป้องกันการแฮก (anti-hack)
+		if (callfunc("F_IsEquipIDHack", EQI_HAND_R, .@equip_id) || callfunc("F_IsEquipRefineHack", EQI_HAND_R, .@equip_refine) || 
+		    callfunc("F_IsEquipCardHack", EQI_HAND_R, .@equip_card[0], .@equip_card[1], .@equip_card[2], .@equip_card[3]))
 			close;
 
 		delequip EQI_HAND_R;
@@ -677,7 +677,7 @@ L_Socket:
 		// GetNonSlotItemSock2 .@equip_refine .@equip_id .@equip_card[0] .@equip_card[1] .@equip_card[2] .@equip_card[3]
 		for ( .@i = getiteminfo(.@equip_id, ITEMINFO_SLOT); .@i < MAX_SLOTS; .@i++ ) {
 			if (getiteminfo(.@equip_card[.@i], ITEMINFO_SUBTYPE) == CARD_ENCHANT)
-				.@equip_card[.@i] = 0;// Armor Enchant System
+				.@equip_card[.@i] = 0;// ระบบ Enchant ชุดเกราะ
 		}
 		getitem2 .@equip_id,1,1,.@equip_refine,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
 
