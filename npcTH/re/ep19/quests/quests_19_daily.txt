@@ -1,0 +1,5628 @@
+// ภฮฤฺต๙ภป EUC-KRทฮ ภฏม๖วฯฑโ ภงวั วัฑนพ๎ นฎภๅ.
+//===== rAthena Script =======================================
+//= Issgard Land of Snow Flowers
+//===== Description: =========================================
+//= [Walkthrough Conversion]
+//--- Daily quests for Episode 19
+//===== Changelogs: ==========================================
+//= 1.0 First version. [Capuche]
+//============================================================
+
+// Daily quest - Select Menu for Lunch
+jor_back2,250,30,0	script	Lunch Appearance#flunch	HIDDEN_WARP_NPC,20,20,{
+	end;
+OnTouch:
+	if (ep19_main == 12) {
+		cloakoffnpcself( "ep19_flunch_1" );
+		unittalk getcharid(3), "" + strcharinfo(0) + " : เอ๊ะ?! ชายหนุ่มคนนั้น?", bc_self;
+		end;
+	}
+	if (ep19_main > 12) {
+		cloakoffnpcself( "ep19_flunch_2" );
+		end;
+	}
+}
+
+jor_back2,250,30,2	script	Young man in question#flunch::ep19_flunch_1	4_EP19_LUNCH,{
+	if (ep19_main == 12) {
+		cutin "ep19_lunch01.png",2;
+		mes "[Young man in question]";
+		mes "เอ๊ะ?! ไว้เจอกันใหม่นะ!";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "อา! นายนั่นเอง เพื่อนที่เป็นร่างทดลอง!";
+		next;
+		mes "[Young man in question]";
+		mes "โอ้! นายคือเพื่อน ฉันยังใหม่สำหรับนาย เพื่อน.. ฉันชอบเพื่อนนะ";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "จริงเหรอ! ว่าแต่ นายไม่มีแม้แต่ชื่อเต็มๆ เลยเหรอ? พวกเราน่ะ นายชื่ออะไร? ฉันควรจะเรียกนายว่าอะไรดี?";
+		next;
+		mes "[Young man in question]";
+		mes "ชื่อเหรอ?";
+		next;
+		mes "[Young man in question]";
+		mes "อา! นายกำลังพูดถึงชื่ออยู่สินะ? ถ้าเป็นอย่างนั้น มันเรียกว่า HU-210426";
+		next;
+		mes "[Young man in question]";
+		mes "นายบอกได้จากการมองไปที่บาร์โค้ดที่สลักอยู่บนหัวของฉัน..";
+		next;
+		mes "[Young man in question]";
+		mes "ฉันไม่ใช่พวกนักวิทยาศาสตร์ใน Illusion ดังนั้นฉันเดาว่านายคงไม่มีอุปกรณ์แบบนั้น มันทำให้สบายใจในหลายๆ ด้านเลยล่ะ";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "อา! ฉันขอโทษ ฉันลืมไปเลยว่านายเป็นร่างทดลอง แต่มันเรียกยากนะไอ้ HU-210426 เนี่ย";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "เรียก Lunch (มื้อกลางวัน) เป็นไง? ตอนเช้า (Morning) มันดูเหมือนฮยอง (พี่ชาย) มากกว่า และถ้ามองดูแล้ว ฉันไม่คิดว่ามันจะต่างจากตอนเช้าสักเท่าไหร่?";
+		next;
+		cloakonnpcself( "ep19_flunch_1" );
+		cloakoffnpcself( "ep19_flunch_2" );
+		mes "[Young man in question]";
+		mes "Lunch.. Lunch..";
+		mes "เป็นชื่อเรียกที่ดีนะ งั้นเรียกฉันว่า Lunch ก็แล้วกัน";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "ได้เลย Lunch! และมันอาจจะเจ็บปวดหน่อยนะ แต่ช่วยบอกฉันหน่อยได้ไหมว่านายหนีออกมาได้ยังไง?";
+		next;
+		mes "[Lunch]";
+		mes "มันก็น่ารำคาญนะ จะให้เริ่มเล่าตรงไหนดีล่ะ? โอ้! งั้นเริ่มจากตรงนั้นแล้วกัน";
+		next;
+		mes "[Lunch]";
+		mes "มันเป็นวันที่เหล่านักวิทยาศาสตร์กำลังทดลองสิ่งต่างๆ ตามปกติในคฤหาสน์หลังใหญ่";
+		next;
+		mes "[Lunch]";
+		mes "แต่จู่ๆ นักวิทยาศาสตร์เหล่านั้นก็เริ่มเก็บข้าวของกัน";
+		next;
+		mes "[Lunch]";
+		mes "มีตัวอย่างการทดลองมากมายที่ถูกโยนทิ้งหรือกำจัดทิ้งในกระบวนการนั้น แต่ฉันมาที่นี่ด้วยเรือเหาะพร้อมกับพวกนักวิทยาศาสตร์";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "มันลำบากไหม?";
+		next;
+		mes "[Lunch]";
+		mes "มันลำบากนะ เป็นเรื่องปกติที่จะถูกโยนทิ้งหรือกำจัดทิ้ง ฉันจะเล่าต่อละนะ";
+		next;
+		mes "[Lunch]";
+		mes "นักวิทยาศาสตร์มาที่นี่และได้พบกับพวกตัวผอมบางพวกนี้ พวกเขาเป็นเผ่าพันธุ์ที่เรียกว่า Rgan";
+		next;
+		mes "[Lunch]";
+		mes "ฉันไม่รู้ว่านักวิทยาศาสตร์ทำอะไรกับเผ่าพันธุ์เหล่านั้นบ้าง แต่พวกเขาเริ่มหมดความสนใจในตัวอย่างที่นำมาจากคฤหาสน์หลังใหญ่ รวมถึงตัวฉันด้วย";
+		next;
+		mes "[Lunch]";
+		mes "ไม่สิ แทนที่จะบอกว่าไม่สนใจ ดูเหมือนว่าพวกเขาจะไขว่เขวไปกับการทดลองอื่นๆ จนลืมการดำรงอยู่ของพวกเราไปเลย";
+		next;
+		mes "[Lunch]";
+		mes "ก็นะ มันเป็นเรื่องปกติของนักวิทยาศาสตร์ที่หมกมุ่นอยู่กับการทดลอง";
+		next;
+		mes "[Lunch]";
+		mes "ตัวอย่างอื่นๆ ที่ถูกปล่อยปละละเลยล้มตายไปทีละคน ก็นะ ฉันเป็นสิ่งมีชีวิตที่กินอะไรก็ได้เพื่อสร้างพลังงาน...";
+		next;
+		mes "[Lunch]";
+		mes "เพราะตัวอย่างตัวอื่นๆ ทำไม่ได้น่ะ";
+		next;
+		mes "[Lunch]";
+		mes "เมื่อเวลาผ่านไป แม้แต่ตัวอย่างตัวสุดท้ายที่เหลืออยู่ก็หลับใหลและหยุดเคลื่อนไหวไป";
+		next;
+		mes "[Lunch]";
+		mes "ฉันเบื่อ ก็เลยหนีออกจากกรงโดยการกลายร่างเป็นสัตว์ตัวเล็กๆ ที่เดินผ่านมา";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "อะไรนะ? กลายเป็นสัตว์ตัวเล็กๆ งั้นเหรอ?";
+		next;
+		mes "[Lunch]";
+		mes "อา! หนึ่งในความสามารถของฉันคือความสามารถในการแปลงร่างเป็นสิ่งมีชีวิตอื่น";
+		next;
+		mes "[Lunch]";
+		mes "มันสุดยอดไปเลยใช่ไหมล่ะ?";
+		mes "มันเป็นความสามารถขั้นสูงอย่างไม่น่าเชื่อที่พวกตัวอย่างรุ่นแรกๆ ทำไม่ได้! นักวิทยาศาสตร์คงพาฉันมาที่นี่เพราะความสามารถนี้แหละ";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "นายสามารถแปลงร่างเป็นสิ่งมีชีวิตอื่นได้ด้วยหรือเปล่า?";
+		next;
+		mes "[Lunch]";
+		mes "เอ่อ.. ไม่เหมือนกับตัวฉันหรอกนะ ฉันต้องใช้วัตถุดิบบางอย่าง.. และไม่ใช่ทุกคนที่จะแปลงร่างได้..";
+		next;
+		mes "[Lunch]";
+		mes "แต่มันก็ไม่ใช่ว่าเป็นไปไม่ได้ ตัวอย่างเช่น เผ่า Rgan ไง? ใครๆ ก็สามารถแปลงร่างเป็นมันได้อย่างง่ายดาย";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "จริงเหรอ! ช่วยทำให้ฉันด้วยได้ไหม?";
+		next;
+		mes "[Lunch]";
+		mes "ถ้าคุณให้ส่วนผสมเพียงไม่กี่อย่างแก่ฉัน ประมาณ low-grade magic core 2 ชิ้น และเงินประมาณ 2,000 zeny ล่ะ?";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "Zeny? นายหมายถึงเงินงั้นเหรอ?";
+		next;
+		mes "[Lunch]";
+		mes "ใช่!! ฉันได้ยินมาว่า Prontera เป็นสถานที่ที่ใครๆ ก็อยู่ได้โดยไม่มีการแบ่งแยกตราบใดที่พวกเขามีความสามารถ";
+		next;
+		mes "[Lunch]";
+		mes "ฉันจะสะสมเงิน Zeny ให้ได้มากๆ และซื้อบ้านใน Prontera แล้วอยู่ที่นั่นไปตลอดชีวิตเลย!";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "มันคงจะยากนะ แต่ฉันจะเอาใจช่วย...";
+		next;
+		mes "[Lunch]";
+		mes "โอ้! ฉันมีเรื่องจะขอร้องเพื่อนหน่อย";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "คำขอเหรอ? คำขอของนายคืออะไรล่ะ?";
+		next;
+		mes "[Lunch]";
+		mes "ฉันจะอยู่ที่นี่สักพัก และที่นี่มีของให้กินและใช้เป็นพลังงานน้อยมาก";
+		next;
+		mes "[Lunch]";
+		mes "ประสิทธิภาพการเปลี่ยนพลังงานของน้ำแข็งมันต่ำเกินไป.. เพื่อนช่วยเตรียมอาหารให้ฉันหน่อยได้ไหม?";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "เรื่องแค่นั้นเอง ง่ายมาก";
+		next;
+		mes "[Lunch]";
+		mes "ฮิฮิ ฉันคิดไว้แล้วว่าถ้านายคือเพื่อนที่กลับมาหาฉัน นายจะช่วยทำตามคำขอของฉัน";
+		next;
+		ep19_main = 13;
+		erasequest 5983;
+		setquest 5984;
+		setquest 5985;
+		getitem 101162,1;	// Ep19_Rgan_Scroll
+		getitem 1000608,2;	// Ep19_Snow_Flower
+		mes "[Lunch]";
+		mes "นี่คือของขวัญที่ฉันมอบให้กับเพื่อนของฉัน ตั้งแต่วันพรุ่งนี้ไปช่วยดูแลฉันด้วยนะ";
+		close2;
+		navigateto("icecastle",27,126);
+		cutin "",255;
+		end;
+	}
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST, QMARK_YELLOW, "isbegin_quest(5983) == 1" );
+	cloakonnpc();
+	end;
+}
+
+jor_back2,250,30,2	script	Lunch#lunch::ep19_flunch_2	4_EP19_LUNCH,{
+	if (ep19_main < 12)
+		end;
+	if (checkweight(1000608,2) == 0) {	// Ep19_Snow_Flower
+		mes "- เดี๋ยวก่อน !! -";
+		mes "- ตอนนี้คุณถือครอง -";
+		mes "- ไอเทมมากเกินไป -";
+		mes "- กรุณาลองใหม่อีกครั้ง -";
+		mes "- หลังจากลดน้ำหนักสัมภาระลงแล้ว -";
+		close;
+	}
+
+	setpcblock PCBLOCK_NPC, true;
+	cutin "ep19_lunch01.png",2;
+
+	setarray .@data[0],	// <quest id>, <item required>
+		5986, 7158,	// Broken_Wine_Vessel
+		5987, 7162,	// Cloud_Piece
+		5988, 7299,	// Bamboo_Basket
+		5989, 7266,	// Dragon_Fang
+		5990, 7762,	// Yaga_Pestle
+		5991, 7171,	// Leopard_Skin
+		5992, 6405,	// Cendrawasih_F
+		5993, 6498,	// Jejellopy
+		5994, 25285,	// BrownRatTail
+		5995, 7150;	// Bamboo_Cut
+	.@size = getarraysize(.@data);
+
+	for ( .@i = 0; .@i < .@size; .@i += 2 ) {
+		if (isbegin_quest(.@data[.@i]) > 0)
+			break;
+	}
+
+	if (.@i < .@size) {
+		if (countitem(.@data[.@i+1]) > 9) {	// Note: condition splitted, short-circuiting not implemented yet
+			npctalk "Lunch: โอ้!", "", bc_self;
+			sleep2 1000;
+			cutin "ep19_lunch02.png",2;
+			erasequest .@data[.@i];
+			delitem .@data[.@i+1], 10;
+			setquest 5985;
+			// note: no reputation given (หมายเหตุ: ไม่มีการให้ค่าชื่อเสียง)
+			getitem 101162,1;	// Ep19_Rgan_Scroll
+			getitem 1000608,2;	// Ep19_Snow_Flower
+			sleep2 1000;
+			npctalk "Lunch: ขอบคุณสำหรับแหล่งพลังงานนะ ขอให้คุณได้รับพร", "", bc_self;
+			cutin "",255;
+			setpcblock PCBLOCK_NPC, false;
+			end;
+		}
+		npctalk .@data[.@i+1] + " : ffffffffffff";
+	}
+
+	.@playtime = checkquest(5985,PLAYTIME);
+	switch( .@playtime ) {
+	case -1:
+		break;
+	case 0:
+	case 1:
+		.@waiting$ = "[กำลังรอ]";
+		break;
+	case 2:
+		erasequest 5985;
+		.@playtime = -1;
+		sleep2 1000;
+		cutin "ep19_lunch03.png",2;
+		emotion ET_HUK;
+		emotion ET_STARE_ABOUT;
+		npctalk "k-----", "", bc_self;
+		sleep2 500;
+		emotion ET_SCRATCH;
+		sleep2 500;
+		break;
+	}
+	npctalk "Lunch: - - กค กค กกกค กก- - กก- - กค กก- - กค - กกกค - กค กค กกกกกค - - กค กกกค กค กค กค กก- กค -", "", bc_self;
+	sleep2 500;
+	emotion ET_HUK;
+	sleep2 500;
+	npctalk "Lunch: โอ้! คุณมาแล้วเหรอ?", "", bc_self;
+	setpcblock PCBLOCK_NPC, false;
+
+	if (.@i < .@size)	// quest ongoing (เควสดำเนินอยู่)
+		.@menu$ = "^777777Lunch จะดูแลคุณเอง^000000";
+	else
+		.@menu$ = .@waiting$ + "Lunch จะนำอาหารมาให้คุณ";
+
+	switch( select( .@menu$, "ฉันต้องการทำ transformation scroll..", "คุยกับ lunch" ) ) {
+	case 1:
+		if (.@i < .@size) {	// quest ongoing (เควสดำเนินอยู่)
+			npctalk "Lunch: ที่ขอ " + getitemname(.@data[.@i+1]) + " ไป ยังมีอยู่ไหม?", "", bc_self;
+			sleep2 500;
+			npctalk "Lunch: ถ้าคุณเปลี่ยนเป็นโหมดประหยัดพลังงาน คุณจะอยู่ได้เป็นปีเลยนะ แต่ข้อมูลบางอย่างอาจจะหายไป..", "", bc_self;
+			sleep2 1000;
+			npctalk "Lunch: ฉันไม่อยากทำแบบนั้นจริงๆ นะ", "", bc_self;
+			cutin "",255;
+			end;
+		}
+		if (.@playtime == 0 || .@playtime == 1) {
+			npctalk "Lunch: ฉันได้ยินมาว่าสิ่งมีชีวิตอื่นๆ กินข้าววันละ 3 มื้อ...", "", bc_self;
+			sleep2 849;
+			npctalk "Lunch: เพราะฉันเป็นร่างทดลองที่มีประสิทธิภาพน่ะ", "", bc_self;
+			sleep2 967;
+			npctalk "Lunch: ถ้าบริโภคแหล่งพลังงานวันละครั้งก็น่าจะพอแล้ว ฉันจะรับใจนายไว้เอง", "", bc_self;
+			cutin "",255;
+			end;
+		}
+		.@i = rand(.@size/2) * 2;
+		npctalk "Lunch: ตอนนี้... " + getitemname(.@data[.@i+1]) + " ฉันว่าประสิทธิภาพการเปลี่ยนพลังงานมันดีที่สุดแล้วล่ะ", "", bc_self;
+		sleep2 1000;
+		npctalk "Lunch: และฉันว่า 10 อันก็น่าจะพอ", "", bc_self;
+		if (select( "เข้าใจแล้ว", "ฉันมีธุระด่วนน่ะ" ) == 2) {
+			cutin "ep19_lunch03.png",2;
+			sleep2 500;
+			npctalk "Lunch: โอ้! ดูเหมือนนายจะยุ่งนะ", "", bc_self;
+			sleep2 1000;
+			npctalk "Lunch: งั้นเดี๋ยวฉันจะหาวิธีหาแหล่งพลังงานด้วยตัวเองแทนแล้วกัน", "", bc_self;
+			cutin "",255;
+			end;
+		}
+		unittalk getcharid(3), "" + strcharinfo(0) + " : Lunch เดี๋ยวฉันจะเอามาให้เอง", bc_self;
+		setquest .@data[.@i];
+		sleep2 1000;
+		cutin "ep19_lunch02.png",2;
+		npctalk "Lunch: งั้นฉันจะรอนะ", "", bc_self;
+		sleep2 500;
+		cutin "",255;
+		end;
+	case 2:
+		cutin "ep19_lunch02.png",2;
+		npctalk "Lunch: ฮิฮิ เดี๋ยวฉันจะทำให้ นายต้องการกี่อันล่ะ?", "", bc_self;
+		callshop "barter_Ep19_Rgan_Scroll";
+		sleep2 1000;
+		cutin "",255;
+		end;
+	case 3:
+		npctalk "Lunch: ว่าแต่ นายสนิทกับพวก Irwin ใน Ice Castle หรือเปล่า?", "", bc_self;
+		sleep2 1000;
+		unittalk getcharid(3), "" + strcharinfo(0) + " : ฉันมาจากที่นั่น บางทีอาจจะสนิทล่ะมั้ง?", bc_self;
+		sleep2 1000;
+		npctalk "Lunch: น่าอิจฉาจัง ฉันอยากรู้จักพวกเขาเพราะ Awin ก็น่ารักดี..", "", bc_self;
+		sleep2 1000;
+		unittalk getcharid(3), "" + strcharinfo(0) + " : นายแค่ต้องทำตัวเป็นมิตรเข้าไว้", bc_self;
+		sleep2 1000;
+		npctalk "Lunch: Ice Castle มีทรัพยากรเยอะมาก ฉันเลยลองพยายามย้ายไปอยู่ที่นั่นสองสามครั้ง", "", bc_self;
+		sleep2 1000;
+		cutin "ep19_lunch03.png",2;
+		sleep2 500;
+		emotion ET_CRY;
+		npctalk "Lunch: แต่เอวฉันมันยาวขึ้นเรื่อยๆ พวกเขาก็เลยเข้าใจผิดคิดว่าฉันเป็น Rgan แล้วก็โจมตีฉัน", "", bc_self;
+		sleep2 500;
+		unittalk getcharid(3), "" + strcharinfo(0) + " : โอ้..", bc_self;
+		sleep2 500;
+		cutin "",255;
+		end;
+	}
+	end;
+
+OnInit:
+	cloakonnpc();
+
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "ep19_main > 12 && checkquest(5985,PLAYTIME) == -1 && queststatus_between(5986,5995) == 0" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "checkquest(5985,PLAYTIME) == 2" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(5986) == 1 && countitem(7158) > 9" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(5987) == 1 && countitem(7162) > 9" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(5988) == 1 && countitem(7299) > 9" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(5989) == 1 && countitem(7266) > 9" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(5990) == 1 && countitem(7762) > 9" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(5991) == 1 && countitem(7171) > 9" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(5992) == 1 && countitem(6405) > 9" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(5993) == 1 && countitem(6498) > 9" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(5994) == 1 && countitem(25285) > 9" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(5995) == 1 && countitem(7150) > 9" );
+	end;
+}
+//
+
+
+
+// Daily quest : Finding an Underground Hideout (เควสรายวัน: ค้นหาแหล่งกบดานใต้ดิน)
+// (part of the Main Quest: Step 16, 61) (ส่วนหนึ่งของเควสเนื้อหลัก: ขั้นที่ 16, 61)
+icecastle,27,126,0	script	#e19ms00	HIDDEN_WARP_NPC,3,5,{
+	end;
+OnTouch:
+	if (ep19_main == 13 || ep19_main == 51 || ep19_main == 100) {
+		cloakoffnpcself( "ep19_if19msdq" );
+		end;
+	}
+	end;
+}
+
+icecastle,27,126,3	script	Horr#if19msdq::ep19_if19msdq	4_EP19_IWIN,{
+	if (ep19_main < 13)
+		end;
+	if (ep19_main == 13) {
+		cutin "ep19_iwin09.png",2;
+		mes "[Horr]";
+		mes "มนุษย์?? ทำไมถึงมีมนุษย์อยู่ที่นี่...?";
+		emotion ET_QUESTION;
+		next;
+		cutin "ep19_iwin06.png",2;
+		mes "[Horr]";
+		mes "อา!! คุณคือนักผจญภัยที่มาจากนอกบาเรียในครั้งนี้สินะ? ยินดีที่ได้รู้จัก นี่เป็นครั้งแรกที่คุณมา Isgard หรือเปล่า? คงเป็นครั้งแรกสินะ ใช่แล้ว คุณชื่ออะไรล่ะ?";
+		emotion ET_SURPRISE;
+		next;
+		cutin "",255;
+		select( "คุณเป็นใคร...?" );
+		cutin "ep19_iwin09.png",2;
+		mes "[Horr]";
+		mes "เฮ้ ฉันยังไม่ได้แนะนำตัวเลย ฉันไม่ใช่คนไร้มารยาทขนาดนั้นนะ แต่พอฉันกลับมาจากการลาดตระเวนที่ยาวนาน ฉันก็เลยตื่นเต้นไปหน่อยเพราะเห็นคนแปลกหน้า";
+		next;
+		cutin "ep19_iwin06.png",2;
+		mes "[Horr]";
+		mes "^0000cd Horr^000000 มันมีชื่อที่เป็นทางการอยู่นะ แต่มนุษย์คงจะออกเสียงยากใช่ไหมล่ะ? เรียกฉันว่า Horr ก็พอ";
+		mes "ว่าแต่ คุณจะไปไหนล่ะ? แถวนี้ไปคนเดียวก็ไม่เป็นไรหรอกนะ แต่อย่าไปไกลนัก มันอันตราย";
+		next;
+		cutin "",255;
+		select( "ฉันไปลาดตระเวนมา" );
+		cutin "ep19_iwin06.png",2;
+		mes "[Horr]";
+		mes "ลาดตระเวนเหรอ? โฮ่... คุณคิดว่าคุณเก่งพอแล้วงั้นเหรอ? งั้นตอนนี้คุณกำลังจะไปส่งรายงานใช่ไหม?";
+		mes "ฉันก็กำลังจะไปเหมือนกัน งั้นไปกับฉันสิ หลังจากฉันกินข้าวเสร็จ ฉันจะอยู่ที่ <NAVI>[restaurant]<INFO>icas_in,34,189,0,101,0</INFO></NAVI>";
+		ep19_main = 14;
+		erasequest 5984;
+		setquest 17639;
+		close2;
+		cutin "",255;
+		cloakonnpcself();
+		end;
+	}
+	if (ep19_main == 51) {
+		cutin "ep19_iwin07.png",2;
+		mes "[Horr]";
+		mes "นี่มันอะไรกัน? ทำไมคุณถึงพา Rgan มาที่นี่??";
+		next;
+		cutin "",255;
+		select( "ฉันต้องการที่เอนหลังสักหน่อย" );
+		cutin "ep19_iwin06.png",2;
+		mes "[Horr]";
+		mes "<NAVI>[บ้าน]<INFO>icas_in,247,116,0,101,0</INFO></NAVI> ของฉันอยู่ใกล้ๆ นี้เอง งั้นไปที่นั่นกันเถอะ มีแขกบางคนที่ถูกเชิญมาด้วย งั้นไปฟังกันดู" ;
+		erasequest 16661;
+		setquest 17640;
+		ep19_main = 52;
+		close2;
+		cutin "",255;
+		cloakonnpcself();
+		navigateto("icas_in",247,116);
+		end;
+	}
+	if (ep19_main != 100) {
+		cloakonnpcself();
+		end;
+	}
+
+	// daily (รายวัน)
+	if (checkweight(1000608,3) == 0) {	// Ep19_Snow_Flower
+		mes "คุณไม่สามารถสนทนาต่อได้เนื่องจากจำนวนไอเทมที่คุณมีมากเกินไป";
+		mes "กรุณาจัดการไอเทมของคุณแล้วลองใหม่อีกครั้ง";
+		close;
+	}
+	switch( checkquest(17662,PLAYTIME) ) {
+	case -1:
+		break;
+	case 0:
+	case 1:
+		cutin "ep19_iwin06.png",2;
+		mes "[Horr]";
+		mes "นักผจญภัย คุณได้พักผ่อนบ้างหรือยัง? แต่ทำไมคุณถึงมาที่นี่ล่ะ? ถ้าคุณจะมาขอ " + getitemname(1000842) + " ล่ะก็ คุณไม่ต้องกังวลไป แบตเตอรี่ยังอยู่ได้อีกยาว คุณควรไปพักผ่อนดีกว่านะ";
+		close3;
+	case 2:
+		cutin "ep19_iwin06.png",2;
+		mes "[Horr]";
+		mes "คุณคือนักผจญภัยใช่ไหม? ฉันต้องการเปลี่ยนแบตเตอรี่ของ " + getitemname(1000842) + " ก่อนที่มันจะหมด คุณช่วยฉันในวันนี้หน่อยได้ไหม?";
+		next;
+		if (select( "ตกลง", "มันเพิ่งเกิดขึ้นน่ะ" ) == 2) {
+			mes "[Horr]";
+			mes "งั้นเหรอ? คุณทำเอาชายผู้แสนยุ่งของฉันต้องชะงักเลยนะ งั้นไปเดินเล่นเถอะ ขอให้เป็นวันที่ดีนะ!";
+			close3;
+		}
+		mes "[Horr]";
+		mes "ขอบคุณสำหรับความช่วยเหลือนะ งั้นช่วยนำสิ่งนี้ไปฝังไว้ใน ^0000cd ตำแหน่งทั้ง 10 แห่ง^000000 ที่ทำเครื่องหมายไว้บน ^0000cd Frozen Scale Plains และ Glaciers^000000 ทั้งสองแห่งเป็นจุดที่พวกแก๊งเคยเข้าและออก";
+		erasequest 17662;
+		setquest 17651;
+		setquest 17652;
+		setquest 17653;
+		setquest 17654;
+		setquest 17655;
+		setquest 17656;
+		setquest 17657;
+		setquest 17658;
+		setquest 17659;
+		setquest 17660;
+		getitem 1000842,10;	// Ep19_HS_FEELER
+		close3;
+	}
+	if (isbegin_quest(17650) == 1) {	// Side quest : Surveillance for an Underground Hideout (2) (เควสรอง: การเฝ้าระวังแหล่งกบดานใต้ดิน (2))
+		cutin "ep19_iwin06.png",2;
+		mes "[Horr]";
+		mes "พวกเรายังไม่ได้ตัดสินใจว่าจะสำรวจรังงูและหาทางเข้าอื่นจากข้างนอกกันใช่ไหม?";
+		next;
+		mes "[Horr]";
+		mes "พวกเราส่งสุนัขเฝ้ายามเข้าไปข้างในรังงูแล้ว เราต้องหาทางเข้าเข้าและออกข้างนอกให้เจอ...";
+		next;
+		mes "[Horr]";
+		mes "เราพบสถานที่บางแห่งบนพื้นผิวรังงูที่เราสามารถขุดทางเข้าได้ ส่วนใหญ่อยู่บนพื้นที่ที่เปราะบาง";
+		next;
+		cutin "",255;
+		select( "เร็วมากเลยนะ" );
+		cutin "ep19_iwin06.png",2;
+		mes "[Horr]";
+		mes "ดังนั้นเราต้องค้นหาที่นั่น เนื่องจากที่นี่ไม่ได้มีแค่ที่เดียวหรือสองที่ เราจึงมีกำลังพลไม่เพียงพอ ดังนั้นเราจึงขอความช่วยเหลือจากนักผจญภัย";
+		next;
+		cutin "",255;
+		select( "ฉันขอกลับไปที่นั่นอีกครั้งได้ไหม?" );
+		cutin "ep19_iwin06.png",2;
+		mes "[Horr]";
+		mes "ไม่ คุณต้องอาศัยอยู่ที่นั่นเลย ^0000cd^000000";
+		next;
+		cutin "",255;
+		sleep2 500;
+		emotion ET_HUK, playerattached();
+		select( "อะไรนะ???" );
+		cutin "ep19_iwin08.png",2;
+		mes "[Horr]";
+		mes "คุณหมายถึงเมื่อพวกเขาจะรู้ว่าเมื่อไหร่ที่พวกเขาจะขุดทางเข้าใหม่แล้วจากไปงั้นเหรอ?";
+		cloakoffnpcself( "ep19_icecastle_25_126" );
+		cloakoffnpcself( "ep19_icecastle_29_125" );
+		next;
+		cutin "ep19_leizi01.png",0;
+		mes "[Lazy]";
+		mes "นักผจญภัย!! คุณอยู่นี่เอง ฉันมาที่นี่เพื่อช่วยเพราะคุณอยู่ในภารกิจค้นหา!";
+		next;
+		cutin "ep19_juncea04.png",2;
+		mes "[Juncea]";
+		mes "นายบอกว่าจะอยู่ที่ทางเข้าที่สันนิษฐานไว้แล้วเฝ้าดูมันเหรอ? ในอากาศหนาวๆ แบบนี้น่ะนะ?";
+		next;
+		cutin "ep19_iwin06.png",1;
+		mes "[Horr]";
+		mes "ไม่เป็นไรหรอก เพราะพวกเราไม่หนาว";
+		next;
+		cutin "ep19_juncea04.png",2;
+		mes "[Juncea]";
+		mes "ทุกคนที่อยู่ที่นี่เพี้ยนไปหมดแล้วหรือไง? นี่มันไม่หนาวเหรอ?";
+		next;
+		cutin "ep19_leizi02.png",0;
+		mes "[Lazy]";
+		mes "คุณ Juncea หมายความว่ายังไง เมื่อมนุษย์แต่งตัวบางขนาดนี้ล่ะ?";
+		next;
+		cutin "ep19_juncea03.png",2;
+		mes "[Juncea]";
+		mes "แน่นอนว่าฉันทำและติดตั้งอุปกรณ์ทำความร้อนไว้แล้ว";
+		npctalk "Juncea ของเรา มนุษย์นี่เก่งจริงๆ", "ep19_icecastle_25_126", bc_self;
+		next;
+		cutin "ep19_juncea04.png",2;
+		mes "[Juncea]";
+		mes "ชอบงั้นเหรอ? แล้วทำไมถึงใส่หนาขนาดนั้นแต่กลับแก้เสื้อข้างหน้าออกซะล่ะ?";
+		next;
+		cutin "ep19_leizi01.png",0;
+		mes "[Lazy]";
+		mes "อ๋อ อันนี้เหรอ? ฉันมีความร้อนในตัวสูงและฉันเกลียดความอึดอัดน่ะ";
+		next;
+		cutin "ep19_leizi02.png",0;
+		mes "[Lazy]";
+		mes "จริงๆ แล้ว ไม่ใส่เสื้อแบบนี้ในสภาพอากาศแบบนี้ก็ยังได้นะ แต่ฉันใส่มันเพราะกลัวว่าคนอื่นที่มองดูอยู่จะหนาว";
+		next;
+		cutin "ep19_leizi03.png",0;
+		mes "[Lazy]";
+		mes "ฉันมาอยู่ที่นี่ในสภาพอากาศแบบนี้ แต่งตัวเหมือนนักท่องเที่ยว คนที่มองดูอยู่จะไม่หนาวกว่าเหรอ?";
+		next;
+		select( "มันคงจะยากไปหน่อยนะ" );
+		cutin "ep19_leizi01.png",0;
+		mes "[Lazy]";
+		mes "นั่นแหละใช่ไหม? ฉันกำลังนึกถึงอุณหภูมิสายตาของคนอื่นอยู่ ฉันก็เลยใส่มันในขณะที่ต้องทนกับความอึดอัด ฉันเป็นคนที่ช่างดูแลคนอื่นจริงๆ";
+		next;
+		cutin "ep19_juncea03.png",2;
+		mes "[Juncea]";
+		mes "อา อา.. โอเค งั้นอย่าพูดอะไรไปมากกว่านี้เลย แค่ฟังที่นายพูดก็เหนื่อยแล้ว";
+		next;
+		cutin "ep19_juncea01.png",2;
+		mes "[Juncea]";
+		mes "แต่ฉันไม่ต้องการนาย แล้วทำไมถึงตามฉันมาล่ะ? นายไม่ได้กำลังหนีไปไหนใช่ไหม นายไม่มีทางทะลุผ่านบาเรียไปได้อยู่แล้ว ดังนั้นถ้าหนีไป นายก็คงอยู่ที่นี่แหละ นายไม่ต้องคอยเฝ้าหรอก";
+		next;
+		cutin "ep19_leizi01.png",0;
+		mes "[Lazy]";
+		mes "พูดเรื่องอะไรน่ะ? แน่นอนว่าต้องออกมาดูสิ ทำไมคุณ Juncea ถึงมาที่นี่ล่ะ? ฉันบอกว่าจะให้มันแก่คุณเหรอ?";
+		next;
+		cutin "ep19_juncea03.png",2;
+		mes "[Juncea]";
+		mes "...ก็มาอาบแดดไง";
+		next;
+		cutin "ep19_leizi02.png",0;
+		mes "[Lazy]";
+		mes "อ๋อ ใช่แล้ว Juncea มนุษย์ต้องการแสงแดดบ้าง นายอยู่ในรูนั้นมานานแค่ไหนแล้ว?";
+		npctalk "ใครจะแบ่งแสงแดดให้เขาได้บ้าง?", "ep19_icecastle_25_126", bc_self;
+		next;
+		cutin "ep19_iwin06.png",1;
+		mes "[Horr]";
+		mes "แต่ทำไมทุกคนถึงมาอยู่ที่นี่ล่ะ? ทุกคนมาที่นี่เพื่อช่วยเฝ้าระวังเหรอ?";
+		next;
+		cutin "ep19_leizi01.png",0;
+		mes "[Lazy]";
+		mes "อ๋อ ใช่ ที่นี่ คุณ Juncea มนุษย์ผู้นี้ได้ทำสิ่งที่เป็นประโยชน์เพื่อช่วยในการเฝ้าระวัง เพื่อที่จะบอกเรื่องนั้น เอาล่ะ จากนี้ไปให้ผู้เชี่ยวชาญอธิบายแล้วกัน";
+		next;
+		mes "[Lazy]";
+		mes "คนพวกนั้นที่อยู่ตรงนู้นไม่มีความรู้ทางวิทยาศาสตร์เลย ดังนั้นช่วยอธิบายเพื่อให้แม้แต่เด็กแรกเกิดที่เพิ่งเกิดในวันนี้เข้าใจด้วยนะ";
+		npctalk "จริงๆ แล้วฉันเพิ่งเกิดนะ เอ้-", "ep19_icecastle_25_126", bc_self;
+		npctalk "...ฉันเกลียดมันจริงๆ", "ep19_icecastle_29_125", bc_self;
+		next;
+		cutin "ep19_juncea01.png",2;
+		mes "[Juncea]";
+		mes "จำได้ไหมที่ฉันบอกว่าไม่มีพลังเวทมนตร์หลงเหลืออยู่ในรังของพวก Rgan มากนัก? มันคืออุปกรณ์ที่ใช้พลังงานนั้นในทางกลับกัน";
+		next;
+		mes "[Juncea]";
+		mes "มันจะตรวจจับเพียงความยาวคลื่นของเวทมนตร์ที่เป็นเอกลักษณ์ของ Rgan ฝังมันไว้ใกล้ๆ รอคอย และเมื่อ Rgan ปรากฏตัวใกล้กับอุปกรณ์นี้ มันจะจับสัญญาณและส่งสัญญาณไปหา";
+		next;
+		mes "[Juncea]";
+		mes "คุณสามารถทราบพิกัดของสถานที่ที่ฝังได้ ดังนั้นคนที่รออยู่ใกล้ๆ แถวนี้จะสามารถตอบสนองได้อย่างรวดเร็ว";
+		next;
+		cutin "ep19_iwin06.png",1;
+		mes "[Horr]";
+		mes "ถ้าคุณฝังสิ่งนี้ไว้ในที่ที่ ^0000cd Rgan จะปรากฏตัว มันจะเป็นอย่างไรเหรอ ^000000?";
+		next;
+		cutin "ep19_juncea01.png",2;
+		mes "[Juncea]";
+		mes "ใช่ แต่มีข้อเสียอยู่นะ มันเล็กน้อยมาก? อายุการใช้งานแบตเตอรี่ประมาณหนึ่งวัน";
+		npctalk "เป็นทักษะที่ยอดเยี่ยมมากที่สามารถทนทานได้ขนาดนั้นในความหนาวแบบนี้ Juncea มนุษย์ทำมันได้จริงๆ", "ep19_icecastle_25_126", bc_self;
+		npctalk "......", "ep19_icecastle_29_125", bc_self;
+		next;
+		select( "ฉันต้องเปลี่ยนอันใหม่ทุกวัน" );
+		cutin "ep19_iwin06.png",1;
+		sleep2 500;
+		npctalk "ใช่", "ep19_icecastle_29_125", bc_self;
+		mes "[Horr]";
+		mes "มันง่ายนะ มันดีกว่าการยืนเฝ้าตลอด 24 ชั่วโมง ขอบคุณมาก ขอบคุณพวกคุณที่ทำให้เราสามารถย้ายหน่วยยามของเราไปที่อื่นได้";
+		next;
+		select( "มันดูเหมือนหอยเลยนะ" );
+		cutin "ep19_juncea01.png",2;
+		mes "[Juncea]";
+		mes "ดังนั้นพวกสิ่งมีชีวิตแถวนี้จะไม่สนใจมันไง? ว่าแต่ ฉันไม่ได้ตั้งชื่อมันนะ";
+		next;
+		cutin "ep19_leizi01.png",0;
+		mes "[Lazy]";
+		mes "ฉันเป็นคนคิดชื่อเอง! ^0000cd " + getitemname(1000842) + "^000000! มันฟังดูเข้าใจง่ายใช่ไหมล่ะ? ฉันคิดว่าฉันทำให้มันเป็นชื่อที่ใครๆ ก็จะรู้ได้ทันที";
+		unittalk getcharid(3), "" + strcharinfo(0) + " : Lazy ไม่ควรไปตั้งสำนักงานรับตั้งชื่อในภายหลังนะ", bc_self;
+		npctalk "ฉันเห็นด้วย", "ep19_icecastle_29_125", bc_self;
+		npctalk "เห้! Juncea หรือมนุษย์คงจะสร้างอะไรอย่าง HSF-001 ขึ้นมาแน่ๆ!!", "ep19_icecastle_25_126", bc_self;
+		next;
+		cutin "ep19_iwin06.png",1;
+		mes "[Horr]";
+		mes "ขอบคุณมากสำหรับความช่วยเหลือของคุณ ลูกเรือสามารถแบ่งปันและฝังพวกมันได้อย่างรวดเร็ว ฉันจะขอให้ ^0000cd นักผจญภัยช่วย 10 อัน ^000000";
+		next;
+		cutin "",255;
+		select("ตกลง" );
+		cutin "ep19_iwin06.png",1;
+		mes "[Horr]";
+		mes "งั้นก็นำสิ่งนี้ไปฝังในสถานที่ที่ทำเครื่องหมายไว้บน ^0000cd Frozen Scale Plains และ Glacier^000000 ทั้งสองที่ล้วนเป็นที่ที่พวก Rgan มักจะปรากฏตัว";
+		next;
+		cutin "ep19_leizi01.png",0;
+		mes "[Lazy]";
+		mes "ลาก่อน!!";
+		completequest 17650;
+		setquest 17651;
+		setquest 17652;
+		setquest 17653;
+		setquest 17654;
+		setquest 17655;
+		setquest 17656;
+		setquest 17657;
+		setquest 17658;
+		setquest 17659;
+		setquest 17660;
+		getitem 1000842,10;	// Ep19_HS_FEELER
+		set_reputation_points(3, (get_reputation_points(3) + 5));
+		close3;
+	}
+	if (queststatus_between(17651,17660) != 0) {
+		if (countitem(1000842) < 1) {	// note: one by one only (หมายเหตุ: ทีละชิ้นเท่านั้น)
+			cutin "ep19_iwin06.png",2;
+			mes "[Horr]";
+			mes "ดูเหมือนว่าคุณจะยังฝัง " + getitemname(1000842) + " ใน ^0000cd Frozen Scale Plains^000000 ไม่ครบทั้งหมดนะ";
+			next;
+			mes "[Horr]";
+			mes "คุณมาที่นี่เพราะต้องการ " + getitemname(1000842) + " เพิ่มงั้นเหรอ?";
+			next;
+			if (select( "ไม่ล่ะ ไม่เป็นไร", "ขอเพิ่มอีกอันหนึ่ง" ) == 1) {
+				mes "[Horr]";
+				mes "ตกลง ดูแลตัวเองด้วยล่ะ";
+				close3;
+			}
+			mes "[Horr]";
+			mes "ตกลง ฉันเพิ่งได้มาพอดี คราวนี้ระวังอย่าให้หายอีกล่ะ";
+			getitem 1000842,1;	// Ep19_HS_FEELER
+			close3;
+		}
+		cutin "ep19_iwin06.png",2;
+		mes "[Horr]";
+		mes "ดูเหมือนว่าคุณจะยังฝัง " + getitemname(1000842) + " ใน ^0000cd Frozen Scale Plains^000000 ไม่ครบทั้งหมดนะ";
+		mes "กรุณาพยายามให้ดีที่สุด";
+		close3;
+	}
+	if (isbegin_quest(17661) == 1) {
+		cutin "ep19_iwin06.png",2;
+		mes "[Horr]";
+		mes "นักผจญภัย ฉันหวังว่าคุณจะอยู่ที่นี่ งานราบรื่นดีไหม? คุณทำงานหนักมากเลยนะ โปรดพักผ่อนสำหรับวันนี้และลองใหม่อีกครั้งในวันพรุ่งนี้";
+		erasequest 17661;
+		setquest 17662;
+		set_reputation_points(3, (get_reputation_points(3) + 5));
+		getitem 1000608,2;	// Ep19_Snow_Flower
+		if (get_reputation_points(3) >= 3000)
+			getitem 1000608,1;	// Ep19_Snow_Flower
+		getexp2 52243795,0;
+		getexp 0,3000000;
+		close3;
+	}
+	// (shouldn't happen) (ไม่ควรเกิดขึ้น)
+	end;
+
+OnInit:
+	cloakonnpc();
+
+	// (main quest) (เควสหลัก)
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(5984) == 1" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(16661) == 1" );
+
+	// (daily quest) (เควสรายวัน)
+	questinfo( QTYPE_QUEST, QMARK_YELLOW, "isbegin_quest(17650) == 1" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(17661) == 1" );
+
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "isbegin_quest(17650) == 2 && queststatus_between(17651,17661) == 0 && checkquest(17662,PLAYTIME) == -1" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "checkquest(17662,PLAYTIME) == 2" );
+	end;
+}
+
+
+icecastle,25,126,5	script	Lazy#if19msdq::ep19_icecastle_25_126	4_EP19_LAZY,{
+	npctalk "คุณลองสำรวจแถวนี้ดูหรือยัง?", "", bc_self;
+	end;
+OnInit:
+	cloakonnpc();
+	end;
+}
+
+icecastle,29,125,3	script	Juncea#if19msdq::ep19_icecastle_29_125	4_EP19_JUNCEA,{
+	npctalk "มันหนาวนะ แต่อากาศก็สดชื่นและสะอาดมาก", "", bc_self;
+	end;
+OnInit:
+	cloakonnpc();
+	end;
+}
+
+jor_back2,222,123,7	script	Where indicated#e19ms01::ep19_jor_back2_222_123	4_POINT_WHITE,{
+	if (isbegin_quest(17661) == 1) {
+		mes "[" + strcharinfo(0) + "]";
+		mes "<NAVI>[Horr]<INFO>icecastle,27,126,0,101,0</INFO></Let's go back to Mr. NAVI> และรายงานว่าเสาอากาศถูกฝังเรียบร้อยแล้ว";
+		close;
+	}
+	.@num = atoi( replacestr(strnpcinfo(2), "e19ms", "") );
+	.@quest_id = 17650 + .@num;
+
+	if (isbegin_quest(.@quest_id) == 1) {
+		if (countitem(1000842) < 1) {
+			unittalk getcharid(3), "" + strcharinfo(0) + " : หือ? " + getitemname(1000842) + " หายไปไหนล่ะ? ฉันต้องกลับไปขอจากคุณ Horr ใหม่ซะแล้ว", bc_self;
+			end;
+		}
+		mes "[" + strcharinfo(0) + "]";
+		mes "คุณอยู่ที่นี่เหรอ? ฉันสามารถฝัง Green Onion ไว้ตรงนี้ได้ไหม?";
+		next;
+		progressbar_npc "FFFF00",1;
+		if (rand(100) < 50) {
+			mes "[" + strcharinfo(0) + "]";
+			mes "มันขุดไม่ได้ดีอย่างที่คิดไว้แฮะ ลองอีกครั้งดีกว่า";
+			close;
+		}
+		mes "[" + strcharinfo(0) + "]";
+		mes "คุณถามฉันเรื่องนี้ได้เลย!";
+		if (countitem(1000842) < 1)	// ไม่ควรเกิดขึ้น
+			close;
+		delitem 1000842,1;	// Ep19_HS_FEELER
+		erasequest .@quest_id;
+		questinfo_refresh();
+		if (queststatus_between(17651,17660) != 0) {
+			mes "ตอนนี้ฉันต้องไปฝังมันที่อื่นต่อ";
+			close;
+		}
+		mes "ตอนนี้ฉันสามารถกลับไปหา <NAVI>[Horre]<INFO>icecastle,27,126,0,101,0</INFO></NAVI> เพื่อรายงานผลได้แล้ว";
+		setquest 17661;
+		close;
+	}
+	unittalk getcharid(3), "" + strcharinfo(0) + " : ดินแดนแห่งหิมะและน้ำแข็งสีขาว", bc_self;
+	end;
+
+OnInit:
+	.@num = atoi( replacestr(strnpcinfo(2), "e19ms", "") );
+	.@quest_id = 17650 + .@num;
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(" + .@quest_id + ") == 1" );
+	end;
+}
+jor_back2,49,175,7	duplicate(ep19_jor_back2_222_123)	Where indicated#e19ms02	4_POINT_WHITE
+jor_back2,308,99,7	duplicate(ep19_jor_back2_222_123)	Where indicated#e19ms03	4_POINT_WHITE
+jor_back2,113,235,7	duplicate(ep19_jor_back2_222_123)	Where indicated#e19ms04	4_POINT_WHITE
+jor_back2,279,307,7	duplicate(ep19_jor_back2_222_123)	Where indicated#e19ms05	4_POINT_WHITE
+jor_back3,152,359,7	duplicate(ep19_jor_back2_222_123)	Where indicated#e19ms06	4_POINT_WHITE
+jor_back3,328,277,7	duplicate(ep19_jor_back2_222_123)	Where indicated#e19ms07	4_POINT_WHITE
+jor_back3,128,138,7	duplicate(ep19_jor_back2_222_123)	Where indicated#e19ms08	4_POINT_WHITE
+jor_back3,264,133,7	duplicate(ep19_jor_back2_222_123)	Where indicated#e19ms09	4_POINT_WHITE
+jor_back3,46,324,7	duplicate(ep19_jor_back2_222_123)	Where indicated#e19ms10	4_POINT_WHITE
+//
+
+
+// Daily quest : Secret Fun (เควสรายวัน: ความสนุกที่เป็นความลับ)
+icas_in,33,53,8	script	Private Holly#in_iwp	EP19_NPC_IWIN,{
+	if (ep19_main < 11) {
+		setpcblock PCBLOCK_NPC, true;
+		cutin "ep19_iwin05.png",2;
+		sleep2 500;
+		setpcblock PCBLOCK_NPC, false;
+		npctalk "z Z zz Z..", "", bc_self;
+		mes "Iwin กำลังสลบไสลอยู่บนเตียงของเขา";
+		close3;
+	}
+	if (isbegin_quest(5980) == 0) {
+		mes "มี Iwin ตัวหนึ่งกำลังวุ่นวายอยู่คนเดียวในโรงนอนลาดตระเวนที่ Iwin ส่วนใหญ่นอนหลับอยู่ เกิดอะไรขึ้นกันนะ?";
+		next;
+		select( "ลองคุยดู" );
+		cutin "ep19_iwin08.png",2;
+		emotion ET_BLABLA;
+		npctalk "Private Holly: Private Holly!", "", bc_self;
+		sleep2 1000;
+		cutin "ep19_iwin09.png",2;
+		mes "[Private Holly]";
+		mes "โอ้! มีอะไรเหรอ คุณไม่ใช่รุ่นพี่ Iwin นี่นา... โธ่เอ๊ย...";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "เกิดอะไรขึ้นงั้นเหรอ?";
+		next;
+		cutin "ep19_iwin07.png",2;
+		emotion ET_FRET;
+		mes "[Private Holly]";
+		mes "เราเคยเจอกันมาก่อนเหรอ? ทำไมจู่ๆ ถึงมาพูดจาไร้สาระแบบนั้นล่ะ?";
+		next;
+		emotion ET_THINK;
+		sleep2 500;
+		emotion ET_THINK, playerattached();
+		sleep2 1000;
+		cutin "ep19_iwin10.png",2;
+		mes "[Private Holly]";
+		mes "ฮ่าฮ่าฮ่า ฉันแค่ล้อเล่นน่ะไม่ต้องกลัวไปหรอก นี่เป็นการทดสอบดูว่ามีความกล้าแค่ไหนน่ะ";
+		next;
+		mes "[Private Holly]";
+		mes "ฉันจะอธิบายสถานการณ์ให้ฟังสักหน่อย นักผจญภัยก็น่าจะรู้ถ้าลองมองไปรอบๆ นี้ มันมีแต่น้ำแข็งเต็มไปหมด";
+		next;
+		cutin "ep19_iwin05.png",2;
+		sleep2 500;
+		emotion ET_OTL;
+		mes "[Private Holly]";
+		mes "มองไปทางไหนก็มีแต่น้ำแข็ง! มันหนาว! หนาวเกินไปแม้ว่าจะชินกับความหนาวแล้วก็ตาม!!";
+		next;
+		cutin "ep19_iwin10.png",2;
+		mes "[Private Holly]";
+		mes "ในขณะเดียวกัน ฉันก็ได้ยินข่าวลือเรื่องนักผจญภัยที่มาจากโลกภายนอก...";
+		next;
+		cutin "ep19_iwin04.png",2;
+		mes "[Private Holly]";
+		mes "ก่อนหน้านั้น เพื่อนนักผจญภัย ฉันอยากจะถามอะไรคุณอย่างหนึ่ง... โลกภายนอกนั่นเต็มไปด้วยขนนกที่แสนอบอุ่นใช่ไหม?";
+		next;
+		emotion ET_QUESTION, playerattached();
+		mes "[" + strcharinfo(0) + "]";
+		mes "ใช่ อบอุ่น... อะไรนะ?! ขนนกเหรอ?";
+		next;
+		emotion ET_QUESTION;
+		sleep2 500;
+		cutin "ep19_iwin09.png",2;
+		mes "[Private Holly]";
+		mes "ทำไมคุณต้องทำท่าตกใจขนาดนั้นด้วยล่ะ? ก็แน่นอนอยู่แล้ว";
+		mes "ไม่ใช่ว่า [ ความอบอุ่น = ขนนก ] เป็นเรื่องพื้นฐานหรอกเหรอ?";
+		next;
+		mes "[Private Holly]";
+		mes "ช่างเถอะ! เพื่อนนักผจญภัยดูเหมือนจะสามารถเดินทางไปข้างนอกได้อย่างอิสระ ดังนั้นช่วยไปหาขนนกจากข้างนอกมาให้หน่อยสิ";
+		next;
+		cutin "ep19_iwin11.png",2;
+		mes "[Private Holly]";
+		mes "ถ้าคุณนำขนนกชนิดเดียวกันมาให้ 10 ชิ้น เราจะมอบรางวัลที่เหมาะสมให้ตามสภาพของขนนกนั้น";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "ทำไมต้อง 10 ชิ้นล่ะ?";
+		next;
+		mes "[Private Holly]";
+		mes "เพราะนั่นคือการแอบเปลี่ยนเสบียงยังไงล่ะ ใช่แล้วล่ะ อันดับแรกฉันต้องเปลี่ยนของฉันก่อน แล้วค่อยทยอยเปลี่ยนให้พวกทหารเกณฑ์ใหม่ทีละคน";
+		next;
+		mes "[Private Holly]";
+		mes "คุณคิดว่าไง? พอจะช่วยฉันได้ไหม?";
+		next;
+		if (select( "ก็แค่นั้นเอง", "ฉันยุ่งอยู่น่ะ.." ) == 2) {
+			setquest 5980;
+			completequest 5980;
+			emotion ET_HNG;
+			mes "[Private Holly]";
+			mes "ถ้าคุณยุ่งอยู่ก็ช่วยไม่ได้นะ ไว้คราวหลังค่อยมาใหม่แล้วกัน เพราะพวกเราคงต้องทนหนาวต่อไปแบบนี้แหละ";
+			close3;
+		}
+		setquest 5980;
+		completequest 5980;
+		emotion ET_HNG;
+		mes "[Private Holly]";
+		mes "ถ้าคุณยุ่งอยู่ก็ช่วยไม่ได้นะ ไว้คราวหลังค่อยมาใหม่แล้วกัน เพราะพวกเราคงต้องทนหนาวต่อไปแบบนี้แหละ";
+		close3;
+	}
+	if (checkweight(1000608,3) == 0) {	// Ep19_Snow_Flower
+		mes "- คุณไม่สามารถดำเนินการต่อได้เนื่องจากมีไอเทมมากเกินไป -";
+		close;
+	}
+	switch( checkquest(5981,PLAYTIME) ) {
+	case -1:
+		break;
+	case 0:
+	case 1:
+		cutin "ep19_iwin08.png",2;
+		mes "[Private Holly]";
+		mes "ชู่ววว! อย่าให้คนแถวนี้รู้เชียวนะว่าคุณกำลังแอบเปลี่ยนเสบียงเป็นอย่างอื่นน่ะ? พรุ่งนี้ฉันจะแอบมาหาคุณใหม่นะ";
+		close3;
+	case 2:
+		erasequest 5981;
+		emotion ET_SPARK;
+		npctalk "Private Horiryu: ชู่ววว! คุณรู้ใช่ไหมว่าต้องเป็นความลับน่ะ?", "", bc_self;
+		break;
+	}
+	switch( isbegin_quest(5982) ) {
+	case 0:
+		cutin "ep19_iwin10.png",2;
+		mes "[Private Holly]";
+		mes "คุณช่วยแอบเอาขนนกมาให้ฉันหน่อยได้ไหม?";
+		next;
+		if (select( "เดี๋ยวฉันไปหามาให้", "ฉันยุ่งอยู่" ) == 2) {
+			mes "[Private Holly]";
+			mes "ถ้าคุณยุ่งอยู่ก็ช่วยไม่ได้นะ ไว้คราวหลังค่อยมาใหม่แล้วกัน เพราะพวกเราคงต้องทนหนาวต่อไปแบบนี้แหละ";
+			close3;
+		}
+		cutin "ep19_iwin09.png",2;
+		setquest 5982;
+		mes "[Private Holly]";
+		mes "แบบลับๆ... คุณก็รู้นี่?";
+		close3;
+	case 1:
+		cutin "ep19_iwin10.png",2;
+		mes "[Private Holly]";
+		mes "เฮ้ เพื่อนนักผจญภัย เอาขนนกมาให้ฉันหรือยัง?";
+		next;
+		if (select( "เอามาแล้ว", "ยังเลย.." ) == 2) {
+			mes "[Private Holly]";
+			mes "โอเค! ขนนกแบบไหนก็ได้ ขอแค่เป็นชนิดเดียวกัน 10 ชิ้นนะ ฉันจะรอคุณ!";
+			close3;
+		}
+		cutin "ep19_iwin11.png",2;
+		mes "[Private Holly]";
+		mes "ขอฉันดูในกระเป๋าของคุณหน่อยซิ";
+
+		while(1) {
+			next;
+			cutin "ep19_iwin11.png",2;
+			// หมายเหตุ: ลำดับอาจจะผิดพลาด
+			// Round_Feather, Soft_Feather, BurningFeather, Feather_Of_Birds, Red_Feather,
+			// Cendrawasih_F, Peco_Wing_Feather, Blue_Feather, Harpy's_Feather
+			callsub( S_Item, 6393,	45713321, 2500000, "หืม... ขนนกนี่เหรอ? มันให้ความรู้สึกคล้ายๆ กับพวก Iwin ของเราเลยนะ.. พวกนี้อาศัยอยู่ในทุ่งหญ้าในป่าด้วยเหรอ? ในแง่ความอบอุ่น ถือว่าอยู่ในระดับกลางๆ" );
+			callsub( S_Item, 7063,	45713321, 2500000, "หืม... ขนนกนี่เหรอ? มันดูคลุมเครือนะ นุ่มดีแต่ระดับความอบอุ่นคงจะแค่ปานกลาง" ) ;
+			callsub( S_Item, 6691,	52243795, 3000000, "โอ้... ขนนกนี่เหรอ? แค่เห็นก็รู้สึกอุ่นแล้ว ถ้าไม่ระวังฉันอาจจะเสี่ยงโดนไฟลวกขนตัวเองได้เลยนะเนี่ย ถ้าพูดถึงความอบอุ่นล่ะก็ อยู่ในระดับดีเยี่ยมเลย" );
+			callsub( S_Item, 916,	39182846, 2000000, "อะไรนะ? ขนนกหยาบๆ นี่ไม่ต่างจากขนนกในคลังเสบียงเลย ระดับความอบอุ่นนี่ถือว่าต่ำมาก" ) ;
+			callsub( S_Item, 7440,	52243795, 3000000, "หืม... ขนนกนี่เหรอ? มันเหมือนขนนกจากนักเวทผู้อ่อนโยนคนนี้เลย ค่อนข้างอันตรายนะเนี่ย?" );
+			callsub( S_Item, 6405,	39182846, 2000000, "หืม... ขนนกนี่เหรอ? เป็นขนหางของตัวที่อยู่ในที่ชื้นๆ หรือเปล่านะ? มันสวยและน่าเป็นเจ้าของมาก แต่... ระดับความอบอุ่นถือว่าต่ำนะ" );
+			callsub( S_Item, 7101,	45713321, 2500000, "หืม... ขนนกนี่เหรอ? เป็นขนนกจากพวกที่อาศัยอยู่ในทะเลทรายหรือเปล่า? ความอบอุ่นอยู่ในระดับปานกลางนะ" );
+			callsub( S_Item, 7441,	52243795, 3000000, "หืม... ขนนกนี่เหรอ? มันเหมือนขนนกจากนักเวทผู้อ่อนโยนคนนี้เลย ค่อนข้างอันตรายนะเนี่ย?" );
+			callsub( S_Item, 7115,	45713321, 2500000, "หืม... ขนนกนี่เหรอ? นี่เป็นขนนกจากตัวที่อาศัยอยู่ในพื้นที่แห้งแล้งหรือเปล่า? ความอบอุ่นอยู่ในระดับปานกลางนะ" ) ;
+			cutin "ep19_iwin10.png",2;
+			mes "[Private Holly]";
+			mes "ดูเหมือนจะไม่มีขนนกในกระเป๋าเลยนะ ไหนมาลองดูอีกทีซิ?";
+			next;
+			if (select( "ตรวจสอบอีกครั้ง", "หยุด" ) == 2) {
+				mes "[Private Holly]";
+				mes "โอเค! ขนนกแบบไหนก็ได้ ขอแค่ 10 ชิ้นที่เหมือนกันนะ ฉันจะรอ!";
+				close3;
+			}
+		}
+	}
+	end;
+
+// มอบรางวัลตามขนนกที่พบ (หากผู้เล่นตกลง)
+
+S_Item:
+	.@item_id = getarg(0);
+	.@baseexp = getarg(1);
+	.@jobexp = getarg(2);
+	.@string$ = getarg(3);
+
+	if (countitem(.@item_id) < 10)
+		return;
+
+	mes "[Private Holly]";
+	mes .@string$;
+	next;
+	mes "[Private Holly]";
+	mes "คุณจะมอบ <ITEM>[" + getitemname(.@item_id) + "]<INFO>" + .@item_id + "</INFO></ITEM> นี่ให้ฉันได้ไหม?";
+	next;
+	if (select( "จะให้", "เอาขนนกอื่นมาด้วยน่ะ" ) == 1) {
+		erasequest 5982;
+		setquest 5981;
+		delitem .@item_id,10;
+		set_reputation_points(3, (get_reputation_points(3) + 5));
+		if (get_reputation_points(3) >= 3000)
+			getitem 1000608,1;	// Ep19_Snow_Flower
+		getitem 1000608,2;	// Ep19_Snow_Flower
+		getexp2 .@baseexp,0;
+		getexp 0,.@jobexp;
+		mes "[Private Holly]";
+		mes "<ITEM>[" + getitemname(.@item_id) + "]<INFO>" + .@item_id + "</INFO></ITEM> ที่ฉันเพิ่งได้รับมา มีค่าตอบแทนเท่านี้แหละ ไม่มีการต่อรองนะ เพราะงั้นอย่าบ่นล่ะ";
+		next;
+		cutin "ep19_iwin10.png",2;
+		mes "[Private Holly]";
+		mes "โอเค! <ITEM>[" + getitemname(.@item_id) + "]<INFO>" + .@item_id + "</INFO></ITEM> ที่คุณนำมาให้ในวันนี้ ฉันจะแลกกับเสบียงของฉันให้แล้วกัน พรุ่งนี้ค่อยมาถามใหม่นะ";
+		close3;
+	}
+	mes "[Private Holly]";
+	mes "ขนนกอื่นเหรอ...";
+	next;
+	return;
+
+OnInit:
+	setunittitle( getnpcid(0), "<Eagle Patrol>" );
+
+	questinfo( QTYPE_QUEST, QMARK_NONE, "ep19_main >= 11 && isbegin_quest(5980) == 0" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_NONE, "isbegin_quest(5980) == 2 && isbegin_quest(5982) == 0 && checkquest(5981,PLAYTIME) == -1" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_NONE, "checkquest(5981,PLAYTIME) == 2" );
+
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "isbegin_quest(5982) == 1 && countitem(6393) >= 10" );
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "isbegin_quest(5982) == 1 && countitem(7063) >= 10" );
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "isbegin_quest(5982) == 1 && countitem(6691) >= 10" );
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "isbegin_quest(5982) == 1 && countitem(916) >= 10" );
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "isbegin_quest(5982) == 1 && countitem(7440) >= 10" );
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "isbegin_quest(5982) == 1 && countitem(6405) >= 10" );
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "isbegin_quest(5982) == 1 && countitem(7101) >= 10" );
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "isbegin_quest(5982) == 1 && countitem(7441) >= 10" );
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "isbegin_quest(5982) == 1 && countitem(7115) >= 10" );
+	end;
+}
+//
+
+
+// Daily quest : Procurement of Research Materials for Vellgunde (เควสรายวัน: การจัดหาวัสดุวิจัยสำหรับ Vellgunde)
+icas_in,185,63,3	script	Vellgunde#ep19vell02	4_EP19_VELLGUNDE,{
+	if (ep19_main < 11) {
+		cutin "ep19_vellgunde01.png",2;
+		mes "[Vellgunde]";
+		mes "คุณคือนักผจญภัยที่ข้ามมาจากทวีปในครั้งนี้ใช่ไหม?";
+		mes "ฉันน่ะเหรอ? ฉันคือ Vellgunde Geoborg ฉันกำลังวิจัยเวทมนตร์ของ Jormungand ที่นี่";
+		close3;
+	}
+	if (checkweight(1000608,3) == 0) {	// Ep19_Snow_Flower
+		mes "คุณไม่สามารถดำเนินการเควสต่อได้เนื่องจากมีไอเทมมากเกินไป";
+		mes "กรุณาจัดการไอเทมของคุณและลองใหม่อีกครั้ง";
+		close;
+	}
+	.@playtime = checkquest(18131,PLAYTIME);
+	if (.@playtime == 2) {
+		erasequest 18131;
+		.@playtime = -1;
+	}
+
+	if (isbegin_quest(18130) == 1 && countitem(1000706) >= 3) {
+		cutin "ep19_vellgunde01.png",2;
+		mes "[Vellgunde]";
+		mes "มีอะไรเหรอ?";
+		mes "โอ้ คุณนำ " + getitemname(1000706) + " มาให้แล้ว!";
+		mes "ขอบคุณมากสำหรับทุกครั้งนะ";
+		mes "มันสะดวกขึ้นเยอะเลยเมื่อมีคนเก่งๆ มาช่วย";
+		next;
+		cutin "ep19_vellgunde03.png",2;
+		mes "[Vellgunde]";
+		mes "ฉันจะให้ " + getitemname(1000608) + " เป็นการตอบแทนแล้วกัน";
+		mes "คุณจำเป็นต้องใช้มันเพื่อเสริมความแข็งแกร่งให้อาวุธหรือชุดเกราะของคุณ";
+		delitem 1000706,3;	// Ep19_Purified_Core
+		erasequest 18130;
+		setquest 18131;
+		.@playtime = 1;
+		set_reputation_points(3, (get_reputation_points(3) + 5));
+		if (get_reputation_points(3) >= 3000)
+			.@bonus = 1;
+		getitem 1000608,2+.@bonus;	// Ep19_Snow_Flower
+		getexp2 52243795,0;
+		getexp 0,3000000;
+		next;
+	}
+	cutin "ep19_vellgunde01.png",2;
+	mes "[Vellgunde]";
+	mes "มีธุระอะไรเหรอ?";
+	mes "ปกติแล้วฉันจะวิจัยเวทมนตร์ของ Jormungand และ Rgan น่ะ";
+	mes "ถ้าเราช่วยกันได้ ก็มาช่วยกันเถอะ";
+	next;
+	switch( select( "การจัดหาวัสดุวิจัยของ Vellgunde", "แลกเปลี่ยน Ice Fire Mana", "สกัด Ice Fire Mana", "Snow Armor, Glacier Enchant" ) ) {
+	case 1:
+		switch( .@playtime ) {
+		case -1:
+			break;
+		case 0:
+		case 1:
+			cutin "ep19_vellgunde02.png",2;
+			mes "[Vellgunde]";
+			mes "หือ? ไม่ล่ะ ไม่เป็นไร";
+			mes "ฉันยังมี Magic Core ที่คุณนำมาให้เพียงพออยู่";
+			mes "ไว้ฉันจะขอความช่วยเหลืออีกครั้งถ้าจำเป็นนะ";
+			close3;
+		case 2:
+			end;
+		}
+		switch( isbegin_quest(18130) ) {
+		case 0:
+			cutin "ep19_vellgunde01.png",2;
+			mes "[Vellgunde]";
+			mes "สิ่งที่ฉันต้องการคือการชำระล้าง Magic Core ของ Rgan";
+			mes "หากคุณกำจัดพวก Rgan คุณจะได้รับ Rgan's low-grade magic core มา";
+			next;
+			mes "[Vellgunde]";
+			mes "นั่นเป็นการตกผลึกของพลังเวทมนตร์ที่หลงเหลืออยู่ของ Jormungand ใช่ไหม?";
+			mes "ถ้าคุณชำระล้างมันได้ดี คุณจะสามารถใช้มันได้เหมือนกับ " + getitemname(1000608) + " เลยล่ะ";
+			next;
+			cutin "ep19_vellgunde02.png",2;
+			mes "[Vellgunde]";
+			mes "แน่นอนว่ามันจะมีประสิทธิภาพน้อยกว่าและจะถูกใช้เป็นฟืนเท่านั้น";
+			mes "ฉันต้องการมันเพราะฉันกำลังวิจัยองค์ประกอบทางเวทมนตร์ของ Rgan และ Jormungand อยู่";
+			next;
+			mes "[Vellgunde]";
+			mes "ดูเหมือนอย่าง ^4d4dff Friederike^000000 ผู้รวบรวม Magic Core ระดับต่ำมาได้มากพอ เขามาจากอาสนวิหารน่ะ";
+			mes "เขาไม่รู้วิธีชำระล้าง คุณช่วยรับมันมาแล้วนำมาให้ฉันได้ไหม?";
+			mes "แค่ ^4d4dff 3 อัน ^000000 ก็น่าจะพอแล้ว";
+			next;
+			if (select( "ได้เลย", "ไว้คราวหน้า" ) == 2) {
+				cutin "ep19_vellgunde01.png",2;
+				mes "[Vellgunde]";
+				mes "ไม่เป็นไร คุณไม่ต้องกังวลไปหรอก";
+				mes "เพราะฉันให้ Lehar ทำแทนได้";
+				close3;
+			}
+			cutin "ep19_vellgunde01.png",2;
+			mes "[Vellgunde]";
+			mes "งั้นฉันจะตั้งตารอนะ";
+			setquest 18130;
+			close3;
+		case 1:
+			cutin "ep19_vellgunde01.png",2;
+			mes "[Vellgunde]";
+			mes "ดูเหมือนอย่าง ^4d4dff Friederike^000000 ผู้รวบรวม Magic Core ระดับต่ำมาได้มากพอ เขามาจากอาสนวิหารน่ะ";
+			mes "เขาไม่รู้วิธีชำระล้าง คุณช่วยรับมันมาแล้วนำมาให้ฉันได้ไหม?";
+			mes "แค่ ^4d4dff 3 อัน ^000000 ก็พอแล้ว";
+			next;
+			cutin "ep19_vellgunde02.png",2;
+			mes "[Vellgunde]";
+			mes "Lgan's low-grade magic core สามารถหาได้จากการกำจัด " + getmonsterinfo("EP19_RGAN_A", MOB_NAME) + " หรือพวก Rgan ระดับต่ำน่ะ";
+			close3;
+		case 2:
+			end;
+		}
+		end;
+	case 2:
+		cutin "ep19_vellgunde01.png",2;
+		mes "[Vellgunde]";
+		mes "คุณต้องการ Ice Fire Manastone งั้นเหรอ?";
+		mes "มันสามารถสร้างได้จาก " + getitemname(1000608) + "...";
+		mes "แต่มันต้องใช้ดวงนิดหน่อยนะ";
+		next;
+		mes "[Vellgunde]";
+		mes "ถ้าคุณยอมรับความเสี่ยงได้ ฉันก็ทำให้ได้";
+		mes "ต้องใช้ ^4d4dff 35 " + getitemname(1000608) + "^000000 นำมาบดและอัดเข้าด้วยกัน";
+		while(1) {
+			next;
+			if (select( "สกัด Ice Fire Gem", "ไม่ทำดีกว่า" ) == 2) {
+				cutin "ep19_vellgunde02.png",2;
+				mes "[Vellgunde]";
+				mes "ไว้มาหาฉันใหม่นะถ้าคุณต้องการอะไร";
+				close3;
+			}
+			if (countitem(1000608) < 35) {
+				mes "[Vellgunde]";
+				mes "ในการสร้าง Ice Flower Manastone คุณต้องใช้ ^4d4dff 35 " + getitemname(1000608) + "^000000";
+				mes "นั่นคือผลึกเวทมนตร์ใช่ไหม?";
+				mes "นั่นเป็นเหตุผลที่มันถูกนำไปใช้เป็นเชื้อเพลิงในที่ต่างๆ";
+				next;
+				mes "[Vellgunde]";
+				mes "มันยังทำหน้าที่เป็นสกุลเงินในหมู่ Iwin ด้วย ดังนั้นโปรดช่วยงานพวก Iwin รอบๆ ตัวคุณดูนะ";
+				mes "บางทีคุณอาจจะได้รับกลีบดอกไม้มา";
+				close3;
+			}
+			delitem 1000608,35;	// Ep19_Snow_Flower
+			getgroupitem(IG_ICE_F_STONE_BOX2);
+			mes "[Vellgunde]";
+			mes "เอาล่ะ นี่คือผลลัพธ์ของ Manastone";
+			mes "มันออกมาดีเท่าที่คุณต้องการหรือเปล่า?";
+			specialeffect2 EF_SPHERE;
+			next;
+			mes "[Vellgunde]";
+			mes "คุณต้องการสกัดอัญมณีเพิ่มอีกไหม?";
+		}
+		end;
+	case 3:
+		cutin "ep19_vellgunde01.png",2;
+		mes "[Vellgunde]";
+		mes "ต้องการจะสกัดเวทมนตร์แห่งน้ำแข็งงั้นเหรอ...?";
+		mes "คุณนำส่วนผสมมาครบแล้วใช่ไหม?";
+		mes "ลองใส่บางอย่างลงในเครื่องสกัดตรงนี้ดูสิ";
+		close2;
+		cutin "",255;
+		laphine_synthesis("Ice_F_Stone_Box2");
+		end;
+	case 4:
+		cutin "ep19_vellgunde01.png",2;
+		mes "[Vellgunde]";
+		mes "นั่นสิ เมื่อฉันเริ่มวิจัยพลังเวทมนตร์ของ Rgan และ Jormungand ฉันไม่คิดเลยว่าพวกเขาจะแตะต้องอาวุธแบบนี้ได้ด้วย";
+		mes "ยังไงก็ตาม คุณช่วยที่นี่ไว้มากเลย ฉันควรจะช่วยคุณบ้างดีไหม?";
+		next;
+		mes "[Vellgunde]";
+		mes "แล้วคุณอยากจะ Enchant อุปกรณ์ชิ้นไหนล่ะ?";
+		next;
+		switch( select( "Snow Flower Armor/Robe", "Snow Flower Cloak/Muffler", "Snow Flower Boots/Shoes", "Snow Flower Pendant/Necklace", "Snow Flower Ring/Earring", "Glacier Weapon" ) ) {
+		case 1:
+			mes "[Vellgunde]";
+			mes "ดีมาก ดีมาก";
+			mes "มันเป็นชุดเกราะที่ฉันทุ่มเทแรงกายแรงใจลงไปอย่างมากเลยล่ะ";
+			mes "มาเริ่มกันเลย";
+			close2;
+			cutin "",255;
+			item_enchant(26);
+			end;
+		case 2:
+			mes "[Vellgunde]";
+			mes "ดีมาก ดีมาก";
+			mes "มันเป็นสิ่งที่ฉันใส่หัวใจและวิญญาณลงไปเลยนะ";
+			mes "มาใส่อะไรบางอย่างลงไปกันเถอะ";
+			close2;
+			cutin "",255;
+			item_enchant(27);
+			end;
+		case 3:
+			mes "[Vellgunde]";
+			mes "อาฮ่า รองเท้าเหรอ?";
+			mes "แน่นอนว่ารองเท้าสำคัญมากในสถานที่แบบนี้";
+			mes "มาสิ คุณต้องการอะไรล่ะ?";
+			close2;
+			cutin "",255;
+			item_enchant(28);
+			end;
+		case 4:
+			mes "[Vellgunde]";
+			mes "จริงๆ แล้ว เครื่องประดับเป็นสิ่งที่ดีที่สุดสำหรับการ Enchant เลยล่ะ";
+			mes "อัญมณีเข้ากันได้ดีกับเวทมนตร์นะ";
+			close2;
+			cutin "",255;
+			item_enchant(29);
+			end;
+		case 5:
+			mes "[Vellgunde]";
+			mes "จริงๆ แล้ว เครื่องประดับเป็นสิ่งที่ดีที่สุดสำหรับการ Enchant เลยล่ะ";
+			mes "อัญมณีเข้ากันได้ดีกับเวทมนตร์นะ";
+			close2;
+			cutin "",255;
+			item_enchant(30);
+			end;
+		case 6:
+			mes "[Vellgunde]";
+			mes "อาวุธ Glacier ชิ้นไหนก็ได้จะได้รับพลังไป";
+			mes "อะไรก็ได้ทั้งนั้นแหละ";
+			close2;
+			cutin "",255;
+			item_enchant(31);
+			end;
+		}
+	}
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "isbegin_quest(18130) == 1 && countitem(1000706) >= 3" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_NONE, "checkquest(18131,PLAYTIME) == -1 && isbegin_quest(18130) == 0" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_NONE, "checkquest(18131,PLAYTIME) == 2" );
+	end;
+}
+//
+
+
+// Daily quest - Help Moryara Fish
+// (Kill 20x Shining Seaweed)
+
+jor_tail,48,241,3	script	Moryara#0kb20	4_EP19_MORYARA,{
+	if (ep19_main < 11) {
+		mes "[Moryara]";
+		mes "ฉันได้ยินมาว่าพวกมนุษย์กำลังมา...";
+		mes "เจ้าได้รับอนุญาตให้ออกมาข้างนอกแล้วหรือ? มันอันตรายนะที่จะเคลื่อนไหวเพียงลำพังโดยไม่ได้รับอนุญาต";
+		mes "กลับไปที่รังของเราเสียเถอะ";
+		close;
+	}
+	if (checkweight(1000608,3) == 0) {	// Ep19_Snow_Flower
+		mes "- คุณไม่สามารถดำเนินการเควสต่อได้เนื่องจากมีไอเทมมากเกินไป -";
+		close;
+	}
+	switch( checkquest(8785,PLAYTIME) ) {
+	case -1:
+		break;
+	case 0:
+	case 1:
+		mes "[Moryara]";
+		mes "วันนี้ฉันมีสาหร่ายเพียงพอแล้วล่ะ";
+		mes "พวกเด็กๆ จะต้องชอบมันแน่";
+		close;
+	case 2:
+		erasequest 8785;
+		break;
+	}
+	switch( isbegin_quest(8784) ) {
+	case 0:	// first time
+	case 1:
+		switch( checkquest(8784,HUNTING) ) {
+		case -1:
+			mes "[Moryara]";
+			mes "...";
+			mes "ชู่วว";
+			mes "หนีไปซะ เหยื่อเอ๋ย";
+			next;
+			mes "Iwin ผู้ซึ่งกำลังตกปลาอยู่พูดขึ้นเบาๆ โดยไม่หันหน้ามามองในขณะที่เจ้าเข้าไปใกล้";
+			next;
+			mes "[Moryara]";
+			mes "มนุษย์เอ๋ย ไม่ว่าเจ้าจะตัวเล็กแค่ไหน เจ้าก็ยังตัวโตกว่าปลาอยู่ดี ดังนั้นช่วยเดินเบาๆ แถวนี้หน่อย";
+			mes "Moryara กำลังตกปลาอยู่ตอนนี้";
+			next;
+			select( "ปลาตัวเล็กแค่นี้มันคุ้มที่จะกินเหรอ?", "เจ้าตกปลาเก่งหรือเปล่า?" );
+			mes "[Moryara]";
+			mes "มันสำคัญนะที่จะต้องเตรียมปลาไว้หลายๆ ชนิด แม้ว่าจะไม่ได้ทำทุกครั้งก็ตาม";
+			mes "ถ้าเพียงแต่โต๊ะอาหารจะดูมีสีสันมากกว่านี้";
+			mes "มนุษย์ เจ้าตกปลาเก่งไหม?";
+			next;
+			select("ฉันเคยทำนะ", "ฉันเคยทำมาก่อน", "นิดหน่อยน่ะ" );
+			mes "[" + strcharinfo(0) + "]";
+			mes "ในฐานะนักผจญภัย บางครั้งมันก็มีสิ่งที่ต้องทำบ้างน่ะ";
+			next;
+			mes "[Moryara]";
+			mes "เฮ้...";
+			mes "งั้นเจ้าคงต้องเคยเตรียมเหยื่อมาบ้างสิ ช่วยฉันเรื่องนี้สักประเดี๋ยวได้ไหม?";
+			next;
+			mes "จากนั้น Iwin ก็หันกลับมาและชี้ไปที่ข้างกายของเขา";
+			next;
+			mes "[Moryara]";
+			mes "เอาล่ะ ใส่เหยื่อลงที่ด้านนี้ของเบ็ดตกปลาที่ยังไม่ได้ติดตั้งตรงนี้...";
+			next;
+			mes "[Moryara]";
+			mes "แบบนี้แหละ...";
+			mes "ทำแบบนั้นน่ะ...";
+			next;
+			mes "[Moryara]";
+			mes "...";
+			next;
+			mes "มันสนุกกว่าที่ฉันคิดแฮะ";
+			mes "มันเป็นสถานที่ที่เหมาะมากสำหรับการทำจิตใจให้ผ่องใสในขณะที่มองไปยังทะเลที่หนาวเหน็บ";
+			next;
+			mes "[Moryara]";
+			mes "...!";
+			next;
+			mes "Iwin ผู้ตกปลาขยับร่างกายอันใหญ่โตด้วยความคล่องแคล่วและดึงเบ็ดตกปลาขึ้นมา";
+			next;
+			mes "[Moryara]";
+			mes "เหะ... วันนี้ฉันจับตัวใหญ่ได้ล่ะ";
+			mes "ต้องขอบคุณมนุษย์ที่มาช่วยฉันนะ";
+			mes "ทำไมพวกมนุษย์ไม่ลองตกปลาดูสักครั้งล่ะ?";
+			next;
+			select("แค่ครั้งเดียวนะ" );
+			mes "[Moryara]";
+			mes "งั้นฉันจะให้เจ้ายืมเบ็ดตกปลานี่แล้วกัน แค่ใส่เหยื่อกลับเข้าไปแล้วก็โยนมันออกไป";
+			next;
+			mes "ฉันรับเหยื่อมาตามที่ Iwin บอก และเหวี่ยงสายเบ็ดกลับลงไปในทะเล";
+			next;
+			mes "ฉันรับเหยื่อมาตามที่ Iwin บอก และเหวี่ยงสายเบ็ดกลับลงไปในทะเล";
+			mes "...";
+			next;
+			mes "ฉันรับเหยื่อมาตามที่ Iwin บอก และเหวี่ยงสายเบ็ดกลับลงไปในทะเล";
+			mes "...";
+			mes "......";
+			next;
+			mes "ฉันรับเหยื่อมาตามที่ Iwin บอก และเหวี่ยงสายเบ็ดกลับลงไปในทะเล";
+			mes "...";
+			mes "......";
+			mes ".........";
+			next;
+			mes "[" + strcharinfo(0) + "]";
+			mes "!";
+			next;
+			mes "[Moryara]";
+			mes "โอ้! นี่มัน... สาหร่าย";
+			mes "มันต้องอร่อยแน่ๆ เจ้ามีพรสวรรค์จริงๆ นะ";
+			next;
+			mes "[Moryara]";
+			mes "มันจะเป็นประโยชน์ต่อคลังเสบียงอาหารของเรามากเลยล่ะ!";
+			mes "ฉันรู้ว่าเจ้ากำลังยุ่ง แต่เจ้าอยากจะช่วยฉันอีกสักนิดไหม?";
+			next;
+			select("ฉันไม่คิดว่าฉันถนัดตกปลาหรอกนะ" );
+			mes "[" + strcharinfo(0) + "]";
+			mes "...ฉันคิดว่าฉันถนัดล่าสัตว์มากกว่าตกปลาน่ะ";
+			next;
+			mes "[Moryara]";
+			mes "โอ้! นั่นสิ แค่จับมาจากน้ำมันไม่เพียงพอหรอก อย่างที่คาดไว้เลย นักรบแห่งการต่อสู้สีขาวมีความคิดที่ต่างออกไป";
+			mes "งั้นแถวๆ นี้...";
+			mes "" + getmonsterinfo("EP19_SHINING_SEAWEED", MOB_NAME) + " กำลังขึ้นอยู่ตามธรรมชาติ ช่วยนำมาให้ฉันสัก 20 ชิ้นได้ไหม?";
+			next;
+			if (select( "ตกลง", "ฉันยุ่งอยู่น่ะ" ) == 2) {
+				mes "[Moryara]";
+				mes "ยุ่งอยู่ก็ช่วยไม่ได้สินะ";
+				mes "อา... ไม่มีใครเกิดมาพร้อมพรสวรรค์ในการเก็บสาหร่ายเลยหรือไงกัน...";
+				close;
+			}
+			mes "[Moryara]";
+			mes "ขอบคุณมากนะ!";
+			mes "พวกมันอาจจะฟังดูน่ารักนะ แต่พวกมันไม่ได้ทำตัวน่ารักหรอก ระวังตัวด้วย";
+			setquest 8784;
+			close;
+		case 0:
+		case 1:
+			mes "[Moryara]";
+			mes "สิ่งมีชีวิตพื้นเมืองแถวนี้";
+			mes "ไปกำจัด ^0000FF " + getmonsterinfo("EP19_SHINING_SEAWEED", MOB_NAME) + "^000000 จำนวน 20 ตัว";
+			close;
+		case 2:
+			mes "[Moryara]";
+			mes "โอ้ มนุษย์กลับมาแล้ว";
+			next;
+			mes "[" + strcharinfo(0) + "]";
+			mes "..." + strcharinfo(0) + ".";
+			mes "เรียกชื่อฉันเถอะ";
+			next;
+			mes "[Moryara]";
+			mes "โอ้ววว " + strcharinfo(0) + "!";
+			mes "นั่นเป็นชื่อที่เท่ไปเลยไม่ใช่หรือ?";
+			mes "เจ้าจะเรียกฉันว่า Moryara ก็ได้ แต่ถ้าออกเสียงให้มนุษย์เรียกง่ายกว่านั้น ก็คือ Asha Scarlett Baby. มันเรียกว่า Lacia Cassia Carena Eva Aloha";
+			mes "เรียกฉันตามที่เจ้าสะดวกเถอะ";
+			next;
+			mes "[Moryara]";
+			mes "เจ้าจัดการ " + getmonsterinfo("EP19_SHINING_SEAWEED", MOB_NAME) + " มาแล้วหรือ?";
+			mes "ขอบใจมากนะ อย่างที่เจ้าเห็น ฉันจับได้แต่ปลา พวกเด็กๆ ในรังจะต้องชอบมันมากแน่ๆ";
+			mes "ถ้าเจ้ามีเวลา พรุ่งนี้มาตกปลาด้วยกันอีกไหม?";
+			completequest 8784;
+			setquest 8785;
+			set_reputation_points(3, (get_reputation_points(3) + 5));
+			if (get_reputation_points(3) >= 3000)
+				getitem 1000608,1;	// Ep19_Snow_Flower
+			getitem 1000608,2;	// Ep19_Snow_Flower
+			getexp2 9280800,6821600;
+			close;
+		}
+		end;
+	case 2:	// daily
+		break;
+	}
+	switch( checkquest(8786,HUNTING) ) {
+	case -1:
+		mes "[Moryara]";
+		mes "เจ้ามาอีกแล้วหรือ " + strcharinfo(0) + "?";
+		mes "วันนี้การตกปลาเป็นอย่างไรบ้าง?";
+		mes "...ไม่ชอบเหรอ?";
+		mes "งั้นถ้าเจ้าพอมีเวลา ช่วยนำ " + getmonsterinfo("EP19_SHINING_SEAWEED", MOB_NAME) + " 20 ชิ้นที่ขึ้นอยู่ตามธรรมชาติแถวนี้มาให้ฉันหน่อยได้ไหม?";
+		next;
+		if (select( "ตกลง", "ฉันยุ่งอยู่น่ะ" ) == 2) {
+			mes "[Moryara]";
+			mes "ยุ่งอยู่ก็ช่วยไม่ได้สินะ";
+			mes "แม้แต่การตกปลาก็...";
+			mes "ไม่สิ ไม่เอาดีกว่า";
+			close;
+		}
+		mes "[Moryara]";
+		mes "ขอบคุณมากนะ!";
+		mes "พวกมันอาจจะฟังดูน่ารักนะ แต่พวกมันไม่ได้ทำตัวน่ารักหรอก ระวังตัวด้วย";
+		setquest 8786;
+		close;
+	case 0:
+	case 1:
+		mes "[Moryara]";
+		mes "สิ่งมีชีวิตพื้นเมืองแถวนี้";
+		mes "ไปกำจัด 20 ^0000FF" + getmonsterinfo("EP19_SHINING_SEAWEED", MOB_NAME) + "^000000";
+		close;
+	case 2:
+		mes "[Moryara]";
+		mes "โอ้ " + strcharinfo(0) + "! เจ้ากลับมาแล้ว";
+		next;
+		mes "[Moryara]";
+		mes "เจ้าจัดการ " + getmonsterinfo("EP19_SHINING_SEAWEED", MOB_NAME) + " มาแล้วหรือ?";
+		mes "ขอบใจมากนะ อย่างที่เจ้าเห็น ฉันจับได้แต่ปลา พวกเด็กๆ ในรังจะต้องชอบมันมากแน่ๆ";
+		mes "ถ้ามีเวลา พรุ่งนี้การตกปลา...";
+		erasequest 8786;
+		setquest 8785;
+		set_reputation_points(3, (get_reputation_points(3) + 5));
+		if (get_reputation_points(3) >= 3000)
+			getitem 1000608,1;	// Ep19_Snow_Flower
+		getitem 1000608,2;	// Ep19_Snow_Flower
+		getexp 9280800,6821600;	// (affected by drop modifier)
+		next;
+		mes "[Moryara]";
+		mes "ไว้ค่อยคิดเรื่องพรุ่งนี้กันเถอะ!";
+		close;
+	}
+	end;
+
+OnInit:
+	// first time
+	questinfo( QTYPE_QUEST, QMARK_YELLOW, "ep19_main >= 11 && isbegin_quest(8784) == 0 && checkquest(8785,PLAYTIME) == -1" );	// note: !
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(8784,HUNTING) == 2" );
+
+	// daily
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "isbegin_quest(8784) == 2 && isbegin_quest(8786) == 0 && checkquest(8785,PLAYTIME) == -1" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(8786,HUNTING) == 2" );
+
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "checkquest(8785,PLAYTIME) == 2" );
+	end;
+}
+//
+
+
+// Daily quest : For Safe Work (เควสรายวัน: เพื่อการทำงานที่ปลอดภัย)
+// (Kill 20x Limacina and 20x Calmaring) (กำจัด Limacina 20 ตัว และ Calmaring 20 ตัว)
+jor_nest,257,26,5	script	Hana the Sara Gand#ep19r	EP19_RGAN_D,{
+	if (getstatus(SC_MONSTER_TRANSFORM,1) != 21530) {
+		mes "[Hana the Sara Gand]";
+		mes "กรี๊ดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดด!! สถานที่ทำงาน!! ไม่ใช่ที่นี่!!!";
+		close2;
+		warp "jor_back3",65,321;
+		end;
+	}
+	if (ep19_main < 21) {
+		mes "[Hana the Sara Gand]";
+		mes "Yogurmansa มีชีวิตอยู่หรือ...";
+		mes "ฉันสืบทอด dasara นั้นมา...";
+		mes "เอ๊ะ...?";
+		close;
+	}
+	if (checkweight(1000608,2) == 0) {	// Ep19_Snow_Flower
+		mes "คุณไม่สามารถดำเนินการเควสต่อได้เนื่องจากมีไอเทมมากเกินไป";
+		mes "กรุณาจัดการไอเทมของคุณและลองใหม่อีกครั้ง";
+		close;
+	}
+	switch( checkquest(18144,PLAYTIME) ) {
+	case -1:
+		break;
+	case 0:
+	case 1:
+		mes "[Hana the Sara Gand]";
+		mes "ฉันจะไปขุดน้ำแข็ง ฉันจะไป";
+		mes "ปลอดภัยไหม? มันปลอดภัยหรือเปล่า ท่านนักบวช?";
+		mes "ฉันจะไปขุดน้ำแข็ง";
+		close;
+	case 2:
+		erasequest 18144;
+		break;
+	}
+	switch( checkquest(18143,HUNTING) ) {
+	case -1:
+		mes "[Hana the Sara Gand]";
+		mes "ท่านนักบวช ท่านนักบวช";
+		mes "ขอความช่วยเหลือ.. เร่งด่วน ช่วยฉันด้วย";
+		mes "มันน่ากลัวเกินไป";
+		next;
+		if (select( "เกิดอะไรขึ้น?", "ไปหานักบวชคนอื่นเถอะ" ) == 2) {
+			mes "[Hana the Sara Gand]";
+			mes "ฉันเข้าใจแล้ว";
+			mes "นักบวชคนอื่น นักบวชคนอื่น...";
+			close;
+		}
+		mes "[Hana the Sara Gand]";
+		mes "" + getmonsterinfo("EP19_LIMACINA", MOB_NAME) + " ที่อยู่หน้าทางเข้าถ้ำมันน่ากลัวมาก";
+		mes "ช่วยฉันด้วย ท่านนักบวช";
+		mes "" + getmonsterinfo("EP19_CALMARING", MOB_NAME) + " ก็น่ากลัวเหมือนกัน ท่านนักบวช";
+		next;
+		mes "[Hana the Sara Gand]";
+		mes "ช่วยคนงานที่น่าสงสารขุดน้ำแข็งที";
+		mes "" + getmonsterinfo("EP19_LIMACINA", MOB_NAME) + " และ " + getmonsterinfo("EP19_CALMARING", MOB_NAME) + " ที่แสนน่ากลัว ช่วยกำจัดพวกมันไปที";
+		next;
+		select( "เจ้าอยากให้ฉันกำจัดมอนสเตอร์ข้างนอกถ้ำงั้นเหรอ?" );
+		mes "[Hana the Sara Gand]";
+		mes "ใช่แล้ว ใช่แล้ว";
+		mes "การขุดน้ำแข็งทำให้ตายไปหนึ่ง สองคนก็ตายไปแล้ว";
+		mes "Hana the Sara อยากขุดน้ำแข็ง";
+		mes "ช่วยฉันด้วย ท่านนักบวช";
+		next;
+		if (select( "ตกลง", "ไปหานักบวชคนอื่นเถอะ" ) == 2) {
+			mes "[Hana the Sara Gand]";
+			mes "ฉันเข้าใจแล้ว";
+			mes "นักบวชคนอื่น นักบวชคนอื่น...";
+			close;
+		}
+		mes "[Hana the Sara Gand]";
+		mes "ถ้าอย่างนั้นช่วยเคลียร์ถ้ำแล้วมาบอกฉันด้วยนะ";
+		mes "ขอร้องล่ะ ฉันจำเป็นต้องไปขุดน้ำแข็ง";
+		mes "ขอร้องล่ะ ท่านนักบวช";
+		setquest 18143;
+		close;
+	case 0:
+	case 1:
+		mes "[Hana the Sara Gand]";
+		mes "" + getmonsterinfo("EP19_LIMACINA", MOB_NAME) + " ที่อยู่หน้าทางเข้าถ้ำมันน่ากลัวมาก";
+		mes "ช่วยฉันด้วย ท่านนักบวช";
+		mes "" + getmonsterinfo("EP19_CALMARING", MOB_NAME) + " ก็น่ากลัวเหมือนกัน ท่านนักบวช";
+		next;
+		mes "[Hana the Sara Gand]";
+		mes "ช่วยคนงานที่น่าสงสารขุดน้ำแข็งที";
+		mes "" + getmonsterinfo("EP19_LIMACINA", MOB_NAME) + " และ " + getmonsterinfo("EP19_CALMARING", MOB_NAME) + " ที่แสนน่ากลัว ช่วยกำจัดพวกมันไปที";
+		close;
+	case 2:
+		mes "[Hana the Sara Gand]";
+		mes "ฉันไปได้หรือยัง?";
+		mes "ท่านนักบวช ฉันไปขุดน้ำแข็งได้แล้วใช่ไหม?";
+		mes "ขอบคุณ ขอบคุณมาก";
+		mes "ฉันจะให้ของทุกอย่างที่ฉันเก็บมาได้ ขอบคุณนะ";
+		erasequest 18143;
+		setquest 18144;
+		// note: no reputation nor additional reward when the reputation is 3000 (หมายเหตุ: ไม่มีความดีความชอบหรือรางวัลเพิ่มเติมเมื่อชื่อเสียงถึง 3000)
+		getitem 1000608,2;	// Ep19_Snow_Flower
+		getexp 20508000,5000000;
+		getexp 0,5000000;	// note: 5000000 x2
+		close;
+	}
+	end;
+
+OnInit:
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "ep19_main >= 21 && checkquest(18143,HUNTING) == -1 && checkquest(18144,PLAYTIME) == -1" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "checkquest(18144,PLAYTIME) == 2" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(18143,HUNTING) == 2" );
+	end;
+}
+//
+
+
+// Daily quest : Rgan to Work (เควสรายวัน: Rgan ไปทำงาน)
+// (Kill 20x Primitive Rgan) (กำจัด Primitive Rgan 20 ตัว)
+jor_nest,239,244,5	script	Sidrgand#1	4_EP19_RGAN_SR3,{
+	if (getstatus(SC_MONSTER_TRANSFORM,1) != 21530) {
+		mes "[" + strnpcinfo(1) + "]";
+		mes "กรี๊ดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดด!! สถานที่ทำงาน!! ไม่ใช่ที่นี่!!!";
+		close2;
+		warp "jor_back3",65,321;
+		end;
+	}
+	if (ep19_main < 21) {
+		mes "มันคงลำบากถ้าถูกจับได้ว่าคุยกับ Rgan โดยไม่ระวัง";
+		mes "ฉันคงต้องลองดูหน่อยแล้ว";
+		close;
+	}
+	switch( checkquest(8797,PLAYTIME) ) {
+	case -1:
+		break;
+	case 0:
+	case 1:
+		mes "[Sidrgand]";
+		mes "ไว้เจอกันพรุ่งนี้!";
+		mes "พรุ่งนี้มาสร้างมิตรภาพเพื่อฝ่ายของเรากันต่อเถอะ";
+		close;
+	case 2:
+		erasequest 8797;
+		break;
+	}
+	if (checkweight(1000608,10) == 0) {	// Ep19_Snow_Flower
+		mes "- คุณไม่สามารถดำเนินการเควสต่อได้เนื่องจากมีไอเทมมากเกินไป -";
+		close;
+	}
+	if (isbegin_quest(8796) < 2) {
+		switch( checkquest(8796,HUNTING) ) {	// first time
+		case -1:
+			mes "[Sidrgand]";
+			mes "โอ้มายก๊อด!";
+			mes "นี่เป็นครั้งแรกเลยที่ฉันได้เห็นเขา!";
+			mes "โอ้ดูสิ~ ดูที่เกล็ดนั่นสิ มันเป็นเงางามจังเลย~";
+			mes "ฉันไม่เคยเห็นเด็กที่สะอาดขนาดนี้มาก่อนเลยนะเนี่ย~";
+			next;
+			mes "[Sidrgand]";
+			mes "ฉันชอบเจ้านะ";
+			mes "เจ้าไม่ได้มาจากโรงฟักไข่หรอกหรือ?";
+			mes "พักหลังนี้ฉันออกไปข้างนอกก็ไม่ค่อยเห็นไข่ดีๆ เลยนะ~";
+			mes "จู่ๆ เด็กที่ดูเกลี้ยงเกลาคนนี้ก็โผล่ออกมา~";
+			next;
+			mes "[Sidrgand]";
+			mes "เพราะสายตาของฉันยังมองไปได้ไกลนัก~";
+			mes "ฉันคือ Sidrgand";
+			next;
+			mes "[" + strcharinfo(0) + "]";
+			mes "ฉันคือ Sidrgand Organd";
+			next;
+			mes "[Sidrgand]";
+			mes "เจ้าขอแบ่งเกล็ดให้ฉันหน่อยได้ไหม?";
+			next;
+			mes "[" + strcharinfo(0) + "]";
+			mes "อะไรนะ??";
+			next;
+			mes "[Sidrgand]";
+			mes "ไม่ต้องกังวลไปหรอก ท่านนักบวช";
+			mes "ฉันมีตำแหน่งสูงนะ แต่นั่นไม่ได้หมายความว่าฉันจะทำอะไรบุ่มบ่าม...";
+			mes "โอ้ แล้วเรื่องเลือดล่ะเป็นไงบ้าง?";
+			next;
+			mes "[" + strcharinfo(0) + "]";
+			mes "ว่ายังไงนะ??";
+			next;
+			mes "[Sidrgand]";
+			mes "ไม่ได้งั้นเหรอ... งั้นก็ไม่ได้";
+			mes "ยังไงเจ้าก็จะลอกคราบอยู่แล้วไม่ใช่เหรอ? งั้นถ้าเป็นเปลือกคราบบูล่ะว่าไง?";
+			next;
+			mes "[Sidrgand]";
+			mes "โธ่... อย่าทำหน้าเกลียดชังกันโจ่งแจ้งขนาดนั้นสิ";
+			mes "เจ้าก็น่ารักนะ แต่ตอนนี้นิ่วหน้าจนหน้าผากย่นหมดแล้ว";
+			next;
+			mes "[Sidrgand]";
+			mes "ไม่ยอมผ่านไปง่ายๆ สินะ";
+			next;
+			select( "ถามว่าเคยได้ในสิ่งที่ต้องการบ้างไหม" );
+			mes "[" + strcharinfo(0) + "]";
+			mes "...เมื่อพิจารณาจากเรื่องเกล็ดแล้ว...";
+			mes "...เจ้ามีญาติพี่น้องบ้างไหม...?";
+			next;
+			mes "[Sidrgand]";
+			mes "ไม่มี!";
+			mes "โอ้ตายจริง เจ้าถามแบบนั้นออกมาได้ยังไงกัน!";
+			next;
+			mes "[Sidrgand]";
+			mes "ฉันบอกให้เขาเปลี่ยนเกล็ดให้ฉัน แต่เขาบอกว่าเขาไม่ชอบน่ะ!";
+			next;
+			mes "[" + strcharinfo(0) + "]";
+			mes "(ก็ต้องไม่ชอบอยู่แล้วสิ...)";
+			next;
+			mes "[Sidrgand]";
+			mes "ถึงแม้ฉันจะไม่ได้อยู่แถวนี้มาสักพักแล้ว";
+			mes "อย่างไรก็ตาม ฉันคิดว่ามันเป็นเรื่องจริงที่คนของเราอยู่ในสถานที่ที่เสียเปรียบมาก!";
+			next;
+			mes "[Sidrgand]";
+			mes "เช่นเดียวกัน มันก็น่าตลกนะที่จะพูดแบบนี้กับเจ้า ที่ดูเหมือนเพิ่งจะเกิดมา";
+			mes "เซอ-รัก-เซอ-รัก...";
+			next;
+			mes "เขาทำเสียงเหมือนงูที่เลื้อยออกมาจากปาก";
+			mes "ดูเหมือนเขากำลังยิ้มอยู่";
+			next;
+			mes "[Sidrgand]";
+			mes "เจ้าจะรู้เองเมื่อออกไปข้างนอก มันหนาวมาก!";
+			mes "มันไม่ยอดเยี่ยมหรอกหรือที่จะแสวงหาการแก้แค้นในสถานที่ที่แห้งแล้งเช่นนี้?";
+			next;
+			mes "[Sidrgand]";
+			mes "งั้นเจ้าควรทำทุกอย่างที่ทำได้!";
+			mes "เพิ่มพลังของฉัน... และผู้ที่เห็นใจฉัน...";
+			mes "เจ้าน่ะ! เจ้าจะไม่มาอยู่ภายใต้การดูแลของฉันงั้นหรือ?";
+			next;
+			mes "[Sidrgand]";
+			mes "เจ้ากำลังทำอะไรกับพวกคนแก่อยู่ล่ะ? พวกเขาเอาแต่บอกให้รอ ไม่ยอมให้เกล็ด ไม่ยอมให้เลือด...";
+			mes "แล้วเราจะทำยังไงกันดีล่ะ?";
+			next;
+			mes "[Sidrgand]";
+			mes "เกล็ดของเจ้าไม่ได้หลุดหายไปบ้างเลยเหรอ?";
+			next;
+			select("ไม่มีเลย" );
+			mes "[" + strcharinfo(0) + "]";
+			mes "...ฉันไม่รู้สิ";
+			next;
+			mes "[Sidrgand]";
+			mes "ฉันแค่ลองถูเกล็ดดูแต่มันก็ไม่ช่วยอะไร";
+			mes "งั้นลองออกไปข้างนอกแล้วไปดู และจัดการ " + getmonsterinfo("EP19_RGAN_A", MOB_NAME) + " มาแค่ 20 ตัวพอ";
+			next;
+			mes "[Sidrgand]";
+			mes "และฉันอยากให้เจ้ามาเล่าความประทับใจให้ฟังด้วยนะ";
+			mes "เซอ-รัก-เซอ-รัก...";
+			next;
+			if (select( "ตกลง", "ปฏิเสธ" ) == 2) {
+				mes "[" + strcharinfo(0) + "]";
+				mes "...ฉันขอโทษนะ";
+				next;
+				mes "[Sidrgand]";
+				mes "ไม่มีทาง!";
+				mes "เฮ้ เฮ้!";
+				mes "งั้น... แม้แต่เกล็ด...";
+				mes "...เฮ้ เจ้าจะไปไหนน่ะ?";
+				mes "เฮ้!";
+				close;
+			}
+			mes "[Sidrgand]";
+			mes "ใช่แล้ว เจ้าจะดีกว่าการถูกคนแก่บ่นพึมพำใส่ล่ะนะ!";
+			mes "ระวังตัวด้วย!";
+			setquest 8796;
+			close;
+		case 0:
+		case 1:
+			mes "[Sidrgand]";
+			mes "ฉันหวังว่าเจ้าจะจัดการ ^0000FF " + getmonsterinfo("EP19_RGAN_A", MOB_NAME) + "^000000 ได้สัก 20 ตัว แล้วมาบอกฉันว่าเจ้ารู้สึกถึงความแตกต่างอย่างไรบ้างนะ";
+			close;
+		case 2:
+			mes "[Sidrgand]";
+			mes "อ๊ะ เจ้ามาแล้วเหรอ?";
+			next;
+			mes "[Sidrgand]";
+			mes "ชายแก่คนหนึ่งเคยบอกฉันว่า ในธรรมชาติมีสัตว์มากมายที่ฆ่าพวกเดียวกันเอง";
+			mes "ทั้งฉันและชายแก่คนนั้นไม่เคยออกไปจากทวีปที่หนาวเหน็บนี้เลย ดังนั้นฉันเลยไม่รู้...";
+			mes "บางทีมนุษย์ก็อาจจะเป็นเหมือนกัน";
+			next;
+			mes "[Sidrgand]";
+			mes "มันไม่ใช่แค่นั้นเหรอ? ทรัพยากรจำเป็นต้องได้รับการอนุรักษ์ไว้นะ";
+			mes "ใช่แล้ว เจ้าจัดการ " + getmonsterinfo("EP19_RGAN_A", MOB_NAME) + " มาแล้วใช่ไหม?";
+			mes "เจ้ารู้สึกเหมือนพวกมันเป็นญาติพี่น้องไหมล่ะ?";
+			next;
+			mes "[" + strcharinfo(0) + "]";
+			mes "...ไม่ค่อยเท่าไหร่น่ะ";
+			next;
+			mes "[Sidrgand]";
+			mes "งั้นเหรอ? ฉันก็เหมือนกัน";
+			mes "แล้วพอหายไปแบบนั้น สิ่งที่เหลืออยู่ก็แค่หินเวทมนตร์ก้อนเล็กๆ แล้วเราจะเกิดมาทำไมกันนะ?";
+			mes "ถ้าฉันไปถามชายผู้สร้างแรงบันดาลใจที่ชื่อ Bernagandra ที่คอยเผยแพร่หลักคำสอนอยู่ตรงนั้น เขาจะสอนเจ้าไหมนะ?";
+			completequest 8796;
+			setquest 8797;
+			getitem 1000608,10;	// Ep19_Snow_Flower
+			getexp2 10154320,0;
+			getexp 0,7254000;
+			next;
+			mes "[Sidrgand]";
+			mes "ไว้เจอกันพรุ่งนี้!";
+			mes "พรุ่งนี้มาสร้างมิตรภาพเพื่อฝ่ายของเรากันต่อเถอะ";
+			close;
+		}
+		end;
+	}
+	switch( checkquest(8798,HUNTING) ) {
+	case -1:
+		mes "[Sidrgand]";
+		mes "ฟันของเจ้าหลุดหายไปบ้างหรือเปล่า?";
+		mes "แล้วเกล็ดล่ะ?";
+		mes "...ไม่ใช่เหรอ?";
+		next;
+		mes "[Sidrgand]";
+		mes "งั้นถ้าเป็น ^0000FF " + getmonsterinfo("EP19_RGAN_A", MOB_NAME) + "^000000 สัก 20 ตัวล่ะว่าไง?";
+		next;
+		if (select( "ตกลง", "ปฏิเสธ" ) == 2) {
+			mes "[Sidrgand]";
+			mes "เจ้ามีอะไรต้องทำงั้นเหรอ?";
+			mes "เจ้าอยากไปที่อื่นไหม?";
+			mes "อย่าทำแบบนั้นเลย มาทานข้าวกับฉันเถอะนะ ตกลงไหม?";
+			mes "เฮ้ เฮ้!";
+			mes "อย่าไปนะ! มาเล่นกันก่อน!";
+			close;
+		}
+		mes "[SidrGand]";
+		mes "ใช่แล้ว เจ้าจะดีกว่าการถูกคนแก่บ่นพึมพำใส่ล่ะนะ!";
+		mes "ระวังตัวด้วย!";
+		setquest 8798;
+		close;
+	case 0:
+	case 1:
+		mes "[Sidrgand]";
+		mes "ออกไปข้างนอกนั่นนะ";
+		mes "จัดการ ^0000FF " + getmonsterinfo("EP19_RGAN_A", MOB_NAME) + "^000000 มา 20 ตัวแล้วค่อยกลับมา";
+		close;
+	case 2:
+		mes "[Sidrgand]";
+		mes "งั้นเรามาคุยกันเรื่องความรู้สึกในการล่าพวกเดียวกันเองในวันนี้กันเถอะ...";
+		mes "เอาน่า อย่าทำหน้าเกลียดชังกันโจ่งแจ้งขนาดนั้นสิ!";
+		mes "...อา ฉันแค่อยากให้เจ้ามาเล่นด้วยน่ะ!";
+		erasequest 8798;
+		setquest 8797;
+		// note: no reputation nor additional reward when the reputation is 3000 (หมายเหตุ: ไม่มีความดีความชอบหรือรางวัลเพิ่มเติมเมื่อชื่อเสียงถึง 3000)
+		getitem 1000608,2;	// Ep19_Snow_Flower
+		getexp 10154320,7254000;	// affected by server drop rate (มีผลตามอัตราดรอปของเซิร์ฟเวอร์)
+		close;
+	}
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST, QMARK_YELLOW, "ep19_main >= 21 && isbegin_quest(8796) == 0 && checkquest(8796,HUNTING) == -1 && checkquest(8797,PLAYTIME) == -1" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "isbegin_quest(8796) == 2 && checkquest(8798,HUNTING) == -1 && checkquest(8797,PLAYTIME) == -1" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "checkquest(8797,PLAYTIME) == 2" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(8796,HUNTING) == 2" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(8798,HUNTING) == 2" );
+	end;
+}
+//
+
+
+// Daily quest : Elegant Hobbies (เควสรายวัน: งานอดิเรกที่สง่างาม)
+// (Gather items) (รวบรวมไอเทม)
+jor_nest,37,75,1	script	Berbergand#ep19r	4_EP19_RGAN_R1,{
+	if (getstatus(SC_MONSTER_TRANSFORM,1) != 21530) {
+		mes "[" + strnpcinfo(1) + "]";
+		mes "กรี๊ดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดด!! สถานที่ทำงาน!! ไม่ใช่ที่นี่!!!";
+		close2;
+		warp "jor_back3",65,321;
+		end;
+	}
+	if (isbegin_quest(18138) != 2) {	// First time quest: "Our Precious Food" required (ต้องการเควสครั้งแรก: "อาหารอันล้ำค่าของเรา")
+		mes "[Berbergand]";
+		mes "อะไรนะ? ท่านนักบวชตัวน้อย!";
+		mes "เจ้าคือตัวเอกของข่าวลือที่ว่าเจ้าฟักออกมาจากไข่ในโรงฟักระดับต่ำงั้นเหรอ?";
+		next;
+		mes "[Berbergand]";
+		mes "เจ้าจ้องมองอะไรแบบนั้นน่ะ?";
+		mes "ตรงนั้น ท่าน Mimirgand กำลังเรียกเจ้าอยู่นะ";
+		close;
+	}
+	if (checkweight(1000608,2) == 0) {	// Ep19_Snow_Flower
+		mes "คุณไม่สามารถดำเนินการเควสต่อได้เนื่องจากมีไอเทมมากเกินไป";
+		mes "กรุณาจัดการไอเทมของคุณและลองใหม่อีกครั้ง";
+		close;
+	}
+	switch( checkquest(18142,PLAYTIME) ) {
+	case -1:
+		break;
+	case 0:
+	case 1:
+		mes "[Berbergand]";
+		mes "หืมม เจ้าทำอะไรอยู่ล่ะ?";
+		mes "เข็มขัด? รองเท้า? หรือจุกนมหลอก?";
+		mes "อา ปิ่นปักผมก็น่าจะดีนะ";
+		mes "ถ้ามันทำออกมาได้ยอดเยี่ยม เจ้าควรจะซื่อสัตย์กับ Rasgand นะ";
+		next;
+		mes "[Berbergand]";
+		mes "ถ้ามีของเหลือ เจ้าอยากจะทำของเจ้าด้วยไหมล่ะ?";
+		mes "อา ฉันยุ่งอยู่น่ะ ฉันยุ่งอยู่";
+		close;
+	case 2:
+		erasequest 18142;
+		break;
+	}
+	switch( isbegin_quest(18141) ) {
+	case 0:
+		mes "[Berbergand]";
+		mes "หือ? มีอะไรยุ่งเหยิงงั้นเหรอ?";
+		mes "ไม่หรอก มันก็เกิดขึ้นบ้างเป็นบางครั้ง";
+		mes "เรากำลังจะย้ายไปยังสถานที่ที่มีพลังเวทมนตร์มากกว่าที่นี่";
+		mes "นั่นคงจะเป็นเรื่องดีนะ";
+		next;
+		mes "[Berbergand]";
+		mes "เจ้าหนู เจ้าพอจะช่วยฉันหน่อยได้ไหมถ้าเจ้ามีเวลา?";
+		mes "ฉันกำลังพยายามทำเครื่องประดับบางอย่างอยู่ แต่ส่วนผสมมันยังไม่ชัดเจนเท่าไหร่";
+		next;
+		mes "[Berbergand]";
+		mes "ฉันชอบสิ่งที่พวกนอกรีตนำมาให้นะ แต่ฉันก็ยังชอบแบบดั้งเดิมมากกว่า";
+		mes "ฉันหมายถึง งานฝีมือน่ะ";
+		next;
+		mes "[Berbergand]";
+		mes "ฉันเป็นคนทำเครื่องประดับของท่าน Mimirgand เองเลยนะ รู้ไหม?";
+		mes "เกล็ดของท่าน Jormungand นั้นสวยงามอยู่แล้ว แต่ถ้าประดับด้วยปะการังมันจะยิ่งดูหรูหราขึ้นไปอีก";
+		next;
+		mes "[Berbergand]";
+		mes "แต่ส่วนผสมที่หาได้จากที่นี่มันมีจำกัด";
+		mes "เจ้าต้องหาของจากข้างนอกเพื่อให้มันมีสีสันมากขึ้น";
+		mes "ช่วยฉันได้ไหม?";
+		next;
+		if (select( "มันเป็นอย่างนั้นเหรอ?", "ขอโทษที ตอนนี้ฉันยุ่งอยู่น่ะ" ) == 2) {
+			mes "[Berbergand]";
+			mes "ถ้าเจ้าได้ออกไปที่ธารน้ำแข็งหรือที่ราบเพื่อดื่มล่ะก็ บอกฉันด้วยนะ";
+			mes "ฉันมีเรื่องจะให้ช่วยหน่อย";
+			close;
+		}
+		mes "[Berbergand]";
+		mes "ตกลง! งั้นฉันจะบอกรายชื่อส่วนผสมที่เจ้าต้องใช้เพื่อทำเครื่องประดับที่ประณีต!";
+		mes "เจ้าสามารถหามันได้ทั้งหมดจากการกำจัดพวกที่อาศัยอยู่ในธารน้ำแข็งและที่ราบ";
+		next;
+		mes "[Berbergand]";
+		mes "10 ชิ้น " + getitemname(1000824) + " จาก " + getmonsterinfo("EP19_CALMARING", MOB_NAME) + "";
+		mes "10 ชิ้น " + getitemname(7326) + " จาก " + getmonsterinfo("EP19_LIMACINA", MOB_NAME) + "";
+		mes "10 ชิ้น " + getitemname(1000829) + " จาก Unfrost Flower";
+		mes "10 ชิ้น " + getitemname(1000830) + " จาก Ice Straw";
+		next;
+		mes "[Berbergand]";
+		mes "จำได้ไหม? อย่าลืมล่ะ?";
+		mes "ฉันจะรออยู่ที่นี่ระหว่างที่กำลังเล็มเกล็ดอยู่ เพราะงั้นไปหามาให้ได้นะ!";
+		setquest 18141;
+		close;
+	case 1:
+		if (countitem(1000824) < 10 || countitem(7326) < 10 || countitem(1000829) < 10 || countitem(1000830) < 10) {
+			mes "[Berbergand]";
+			mes "หืม? จำส่วนผสมไม่ได้เหรอ? ฟังให้ดีๆ นะ";
+			mes "10 ชิ้น " + getitemname(1000824) + " จาก " + getmonsterinfo("EP19_CALMARING", MOB_NAME) + "";
+			mes "10 ชิ้น " + getitemname(7326) + " จาก " + getmonsterinfo("EP19_LIMACINA", MOB_NAME) + "";
+			mes "10 ชิ้น " + getitemname(1000829) + " จาก Unfrost Flower";
+			mes "10 ชิ้น " + getitemname(1000830) + " จาก Ice Straw";
+			next;
+			mes "[Berbergand]";
+			mes "ของพวกนี้หาได้จากทั้งในธารน้ำแข็งและที่ราบนะ";
+			mes "มันยากไปไหม?";
+			mes "ฉันคิดว่าเจ้าน่าจะทำได้นะ ถ้าเจ้าช่วยฉัน ฉันจะให้ " + getitemname(1000608) + " ที่ฉันเก็บสะสมไว้เป็นการตอบแทน";
+			mes "มันน่าสนใจใช่ไหมล่ะ?";
+			close;
+		}
+		mes "[Berbergand]";
+		mes "Glazed Calafie!";
+		mes "ของเหลวเรืองแสงที่จะใช้เป็นสีย้อม!";
+		mes "Dongle Dongle Bellflower!";
+		mes "และแม้แต่เปลือกที่เหมาะสำหรับการถักทอ...!";
+		next;
+		mes "[Berbergand]";
+		mes "ยอดเยี่ยม ยอดเยี่ยม!";
+		mes "เจ้าก็นักบวชที่ได้รับความเมตตาอย่างล้นเหลือเหมือนกันสินะ?";
+		next;
+		mes "[Berbergand]";
+		mes "เอาล่ะ นี่เป็นข้อตกลงใช่ไหม?";
+		mes "นี่คือรางวัลสำหรับการทำงานหนักของเจ้า";
+		mes "ไว้ฉันจะขอความช่วยเหลืออีกครั้งในคราวหน้านะถ้ามีเวลา";
+		delitem 1000824,10;	// EP19_Calapy
+		delitem 7326,10;	// Fluorescent_Liquid
+		delitem 1000829,10;	// EP19_Bell_Flower
+		delitem 1000830,10;	// EP19_Thin_Shell
+		erasequest 18141;
+		setquest 18142;
+		// note: no reputation nor additional reward when the reputation is 3000 (หมายเหตุ: ไม่มีความดีความชอบหรือรางวัลเพิ่มเติมเมื่อชื่อเสียงถึง 3000)
+		getitem 1000608,2;	// Ep19_Snow_Flower
+		getexp2 32652372,0;
+		getexp 0,3000000;
+		close;
+	case 2:
+		end;
+	}
+	end;
+
+OnInit:
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "isbegin_quest(18138) == 2 && isbegin_quest(18141) == 0 && checkquest(18142,PLAYTIME) == -1" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "checkquest(18142,PLAYTIME) == 2" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(18141) == 1 && countitem(1000824) >= 10 && countitem(7326) >= 10 && countitem(1000829) >= 10 && countitem(1000830) >= 10" );
+	end;
+}
+//
+
+
+// Daily quest : Priest, Have Mercy??
+// (Gather 30 Shell of Rgan)
+jor_nest,235,57,3	script	Pabuyasavigand#1	EP19_RGAN_D,{
+	if (getstatus(SC_MONSTER_TRANSFORM,1) != 21530) {
+		mes "[Intermediate Rgan]";
+		mes "มนุษย์! มีมนุษย์ปรากฏตัวขึ้น!";
+		close2;
+		warp "jor_back3",65,321;
+		end;
+	}
+	if (ep19_main < 21) {
+		mes "[Pabuyasavigand]";
+		mes "...";
+		close;
+	}
+	if (checkweight(1000608,10) == 0) {	// Ep19_Snow_Flower
+		mes "- คุณไม่สามารถดำเนินการเควสต่อได้เนื่องจากมีไอเทมมากเกินไป -";
+		close;
+	}
+	switch( checkquest(8791,PLAYTIME) ) {
+	case -1:
+		break;
+	case 0:
+	case 1:
+		mes "[Pabuyasavigand]";
+		mes "ขอบคุณนะ ท่านนักบวช สำหรับเปลือกหอยที่ท่านช่วยเก็บไว้ให้ก่อนหน้านี้!";
+		mes "พวกเราไม่ได้กำลังกินมันอยู่ ดังนั้นไม่ต้องกังวลไป!";
+		close;
+	case 2:
+		erasequest 8791;
+		break;
+	}
+	switch( isbegin_quest(8790) ) {	// first time
+	case 0:
+		mes "[Pabuyasavigand]";
+		mes "...";
+		mes "...";
+		mes "...?";
+		mes "ท่านนักบวชที่ข้าไม่เคยเห็นหน้ามาก่อน";
+		mes "ข้าคือ Pabuyasavigand";
+		next;
+		mes "[Pabuyasavigand]";
+		mes "เป็นผู้ใต้บังคับบัญชาโดยตรงของท่าน Rasgand";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "โดยตรงงั้นหรือ?";
+		next;
+		mes "[Pabuyasavigand]";
+		mes "ข้าไม่เคยเห็นท่านมาก่อนเลย แต่สำหรับข้า...";
+		next;
+		mes "[Pabuyasavigand]";
+		mes "นี่คือ Kanurizamigand";
+		mes "และ Sumov กับ Nugand ที่ออกไปทำงาน... และผู้ใต้บังคับบัญชาโดยตรงคนอื่นๆ ด้วย โย่";
+		mes "ข้าสะสมเปลือกหอยและนำไปถวายแก่ท่าน Rasgand โย่";
+		next;
+		mes "[Pabuyasavigand]";
+		mes "ใช่แล้ว พวกเราทำสิ่งที่ช่วยได้มากเลยล่ะ โย่";
+		mes "ถึงแม้จะเป็นระดับกลางก็เถอะ...";
+		next;
+		mes "จู่ๆ Durgan ก็ดูเศร้าหมองลง";
+		next;
+		mes "[Pabuyasavigand]";
+		mes "ป้อมปราการ... ภารกิจของเรามันช่างยากลำบาก";
+		mes "พวกมนุษย์ที่ไม่ใช่ Rgan เดินเข้าออกในพื้นที่ของเรา ทำให้การเก็บสะสมเปลือกหอยเป็นไปอย่างยากลำบาก";
+		next;
+		select( "ที่นี่มีโรงฟักไข่ด้วยเหมือนกันนะ" );
+		mes "[" + strcharinfo(0) + "]";
+		mes "ที่นี่ก็มีโรงฟักไข่ด้วยเหมือนกัน";
+		next;
+		mes "[Pabuyasavigand]";
+		mes "พวกเราไม่ได้มีหน้าที่ดูแลโรงฟักไข่";
+		mes "งานของเราคือการตามหาคราบผิวหนังให้ท่าน Rasgand จากไออุ่นของเทพเจ้าอสรพิษ";
+		next;
+		mes "[Pabuyasavigand]";
+		mes "แต่ที่นั่น มนุษย์เดินเข้าออกและใช้เส้นทางที่เราพยายามทำงานกันอย่างหนักตามอำเภอใจ";
+		mes "แต่ก็นะ อย่างที่ท่านเห็น พวกเราเป็นแค่คนธรรมดา";
+		mes "ไม่มีทางที่จะหยุดมันได้เลย... และข้าก็ไม่มีกำลังพอที่จะบุกฝ่าไปมากกว่านี้แล้ว";
+		next;
+		mes "[Pabuyasavigand]";
+		mes "นี่เป็นครั้งแรกที่ข้าได้พบท่านนักบวช แต่ท่านดูแข็งแกร่งมากเลยนะ";
+		mes "บางที...";
+		mes "บางที...";
+		next;
+		mes "[Pabuyasavigand]";
+		mes "<ITEM>[Shell]<INFO>1000822</INFO></ITEM> ถ้าท่านมีเหลืออยู่บ้าง... ข้าจะเอาไปให้ท่าน Rasgand... แค่นิดเดียวเท่านั้น...";
+		mes "แค่ 30 ชิ้น...";
+		next;
+		mes "ข้าไม่รู้ว่าข้ากำลังทำตัวหน้าด้านหรือว่ากล้าหาญกันแน่";
+		next;
+		if (select( "ข้าตกลงจะแบ่งให้", "ข้าขอปฏิเสธ" ) == 2) {
+			mes "[Pabuyasavigand]";
+			mes "รัศมีของท่านนักบวชนั้นช่างเปล่งประกายและดูเท่ ข้าเลยลองเอ่ยปากขอไป...";
+			mes "ไม่ยอมฟังกันเลยนะ โย่";
+			mes "ท่าน Rasgand... ข้าขอโทษ...";
+			close;
+		}
+		mes "[Pabuyasavigand]";
+		mes "ขอบคุณมาก!";
+		mes "พวกเราจะอยู่แถวๆ ใกล้ทางเข้านี้แหละ";
+		setquest 8790;
+		close;
+	case 1:
+		if (countitem(1000822) < 30) {
+			mes "[Pabuyasavigand]";
+			mes "<ITEM>[Shell]<INFO>1000822</INFO></ITEM>...ข้าต้องการมัน...";
+			mes "ท่านนักบวช...";
+			mes "30 ชิ้น...";
+			close;
+		}
+		mes "[Pabuyasavigand]";
+		mes "ท่านนักบวช!";
+		mes "ท่านเก็บเปลือกหอยมาแล้วหรือ?";
+		mes "ให้พวกเราใช่ไหม?";
+		next;
+		mes "[Pabuyasavigand]";
+		mes "ขอบคุณมากจริงๆ!";
+		mes "ด้วยความเมตตาของ Jormungand!";
+		mes "ขอบคุณนะ!";
+		npctalk "ขอบคุณนะ!", "ep19_jor_nest_232_55", bc_self;
+		mes "ข้าต้องการมันอีกในวันพรุ่งนี้...";
+		mes "ไว้พรุ่งนี้ค่อยมาคิดเรื่องนั้นกันนะ โย่!";
+		delitem 1000822,30;	// EP19_Shell_Of_Rgan
+		completequest 8790;
+		setquest 8791;
+		getitem 1000608,10;	// Ep19_Snow_Flower
+		getexp2 52243795,0;
+		getexp 0,3000000;
+		close;
+	case 2:
+		break;
+	}
+	switch( isbegin_quest(8792) ) {
+	case 0:
+		mes "[Pabuyasavigand]";
+		mes "ท่านนักบวช... วันนี้ <ITEM>[Shell]<INFO>1000822</INFO></ITEM> ถ้ามีเหลืออยู่บ้าง... ข้าจะเอาไปให้ท่าน Rasgand... แค่นิดเดียวเท่านั้น...";
+		mes "แค่ 30 ชิ้น...";
+		next;
+		mes "ข้าไม่รู้ว่าข้ากำลังทำตัวหน้าด้านหรือว่ากล้าหาญกันแน่";
+		next;
+		if (select( "ข้าตกลงจะแบ่งให้", "ข้าขอปฏิเสธ" ) == 2) {
+			mes "[Pabuyasavigand]";
+			mes "รัศมีของท่านนักบวชนั้นช่างเปล่งประกายและดูเท่ ข้าเลยลองเอ่ยปากขอไป...";
+			mes "ไม่ยอมฟังกันเลยนะ โย่";
+			mes "ท่าน Rasgand... ข้าขอโทษ...";
+			close;
+		}
+		mes "[Pabuyasavigand]";
+		mes "ขอบคุณมาก!";
+		mes "พวกเราจะอยู่แถวๆ ใกล้ทางเข้านี้แหละ";
+		setquest 8792;
+		close;
+	case 1:
+	case 2:
+		if (countitem(1000822) < 30) {
+			mes "[Pabuyasavigand]";
+			mes "<ITEM>[Shell]<INFO>1000822</INFO></ITEM>...ข้าต้องการมัน...";
+			mes "ท่านนักบวช...";
+			mes "30 ชิ้น...";
+			close;
+		}
+		mes "[Pabuyasavigand]";
+		mes "ท่านนักบวช!";
+		mes "ท่านเก็บเปลือกหอยมาแล้วหรือ?";
+		mes "ให้พวกเราใช่ไหม?";
+		next;
+		mes "[Pabuyasavigand]";
+		mes "ขอบคุณมากจริงๆ!";
+		mes "ด้วยความเมตตาของ Jormungand!";
+		mes "ขอบคุณนะ!";
+		npctalk "ขอบคุณนะ!", "ep19_jor_nest_232_55", bc_self;
+		mes "ข้าต้องการมันอีกในวันพรุ่งนี้...";
+		mes "ไว้พรุ่งนี้ค่อยมาคิดเรื่องนั้นกันนะ โย่!";
+		delitem 1000822,30;	// EP19_Shell_Of_Rgan
+		erasequest 8792;
+		setquest 8791;
+		// note: no reputation nor additional reward when the reputation is 3000 (หมายเหตุ: ไม่มีความดีความชอบหรือรางวัลเพิ่มเติมเมื่อชื่อเสียงถึง 3000)
+		getitem 1000608,2;	// Ep19_Snow_Flower
+		getexp2 52243795,0;
+		getexp 0,3000000;
+		close;
+	}
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST, QMARK_YELLOW, "ep19_main >= 21 && isbegin_quest(8790) == 0 && checkquest(8791,PLAYTIME) == -1" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "isbegin_quest(8790) == 2 && isbegin_quest(8792) == 0 && checkquest(8791,PLAYTIME) == -1" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "checkquest(8791,PLAYTIME) == 2" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(8790) == 1 && countitem(1000822) >= 30" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(8792) == 1 && countitem(1000822) >= 30" );
+	end;
+}
+
+jor_nest,232,55,7	script	Ganurizamigand#1::ep19_jor_nest_232_55	EP19_RGAN_D,{
+	if (getstatus(SC_MONSTER_TRANSFORM,1) != 21530) {
+		mes "[Intermediate Rgan]";
+		mes "มนุษย์! มีมนุษย์ปรากฏตัวขึ้น!";
+		close;
+	}
+	mes "[Ganurizamigand]";
+	mes "ข้ายังไม่รู้เลยว่ามันคืออะไร";
+	mes "ใช่แล้ว";
+	close;
+}
+//
+
+
+// Daily quest : Our Precious Food (เควสรายวัน: อาหารอันล้ำค่าของเรา)
+// (Gather 30 Rgan's Low-Grade Magic Core) (รวบรวม Low-Grade Magic Core ของ Rgan 30 ชิ้น)
+jor_nest,34,79,5	script	Mimirgand#ep19r	4_EP19_RGAN_SR1,{
+	if (getstatus(SC_MONSTER_TRANSFORM,1) != 21530) {
+		mes "[" + strnpcinfo(1) + "]";
+		mes "กรี๊ดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดด!! สถานที่ทำงาน!! ไม่ใช่ที่นี่!!!";
+		close2;
+		warp "jor_back3",65,321;
+		end;
+	}
+	if (ep19_main < 21) {
+		mes "[Berbergand]";
+		mes "หืมมมมมมมม";
+		mes "พวกนอกรีตไม่รู้เรื่องงั้นหรือ?";
+		mes "ความเมตตาของ Jormungand...";
+		close;
+	}
+	if (checkweight(1000608,10) == 0) {	// Ep19_Snow_Flower
+		mes "คุณไม่สามารถดำเนินการเควสต่อได้เนื่องจากมีไอเทมมากเกินไป";
+		mes "กรุณาจัดระเบียบไอเทมแล้วลองใหม่อีกครั้งในภายหลัง";
+		close;
+	}
+	switch( checkquest(18140,PLAYTIME) ) {
+	case -1:
+		break;
+	case 0:
+	case 1:
+		mes "[Mimirgand]";
+		mes "นักบวชหนุ่ม";
+		mes "เจ้ามีหน้าที่นำทางเหล่าผู้ติดตามคนอื่นๆ";
+		mes "ข้าจะค่อยๆ เดินสำรวจรอบๆ รัง และดูว่าเจ้ากำลังทำอะไรเพื่อตัวเจ้าเองบ้าง";
+		close;
+	case 2:
+		erasequest 18140;
+		break;
+	}
+	switch( isbegin_quest(18138) ) {	// first time
+	case 0:
+		mes "[Mimirgand]";
+		mes "โฮ่ เจ้าคือนักบวชที่เพิ่งเกิดใหม่งั้นหรือ?";
+		mes "มานี่สิ มานั่งตรงนี้";
+		mes "เล่าเรื่องให้ข้าฟังหน่อย";
+		next;
+		mes "[Mimirgand]";
+		mes "ในสภาพแวดล้อมที่โหดร้าย ย่อมมีหนทางที่โหดร้ายในการเอาชีวิตรอด";
+		mes "พวกเราคือทายาทแห่งเวทมนตร์ของท่าน Jormungand ผู้ยิ่งใหญ่";
+		next;
+		mes "[Mimirgand]";
+		mes "เจ้ารู้ไหมว่านั่นหมายถึงอะไร?";
+		next;
+		select( "มันคือแหล่งกำเนิดชีวิตของเรา!" );
+		mes "[Mimirgand]";
+		mes "ฟังให้ดีนะ";
+		mes "บรรพบุรุษในอดีตเคยปกครองทวีป Midgard โดยอาศัยพลังเวทมนตร์ของท่าน Jormungand";
+		next;
+		mes "[Mimirgand]";
+		mes "อย่างไรก็ตาม ท่าน Jormungand ถูกผนึกไว้เพราะพวกมนุษย์ที่ชั่วร้าย";
+		mes "แต่ถึงกระนั้น ในช่วงเวลานั้น ท่าน Jormungand ก็ยังทิ้งร่างกายส่วนหนึ่งไว้เพื่อพวกเรา";
+		next;
+		mes "[Mimirgand]";
+		mes "ใช่แล้ว นั่นคือ Isgard";
+		mes "พวกเรามีรากเหง้ามาจากสายเลือดของ Rasgand ซึ่งเป็น ragan คนสุดท้ายที่ได้รับการปกป้องโดย Jormungand";
+		mes "เจ้าเติบโตขึ้นด้วยเวทมนตร์จากร่างกายที่ท่าน Jormungand ทิ้งไว้เบื้องหลัง";
+		next;
+		mes "[Mimirgand]";
+		mes "อย่างไรก็ตาม พวกเขาไม่ได้รับความเมตตาที่ประทานให้จากการสละร่างกาย ดังนั้นพวกเขาจึงเกิดมาพร้อมกัน";
+		mes "เจ้ารู้ไหมว่ามันคืออะไร?";
+		next;
+		select( "พวก Rgans ที่ต่ำต้อยกว่างั้นหรือ?" );
+		mes "[Mimirgand]";
+		mes "โอ้ สมกับเป็นนักบวชจริงๆ เลยนะ";
+		mes "เจ้ารู้คำตอบถูกต้องแล้ว";
+		mes "ใช่แล้ว ผู้ที่ไม่ได้รับความเมตตาแห่งพลังเวทมนตร์จะถูกทิ้งขว้างและกลายเป็นคนบาป";
+		next;
+		mes "[Mimirgand]";
+		mes "พวกมันกระหายในพลังเวทมนตร์ของกันและกัน และกระหายในพลังของผู้อยู่เหนือกว่า";
+		mes "เดิมที Rgan ทุกคนล้วนมีความปรารถนาในพลังเวทมนตร์ แต่พวกมันไม่สามารถแยกแยะความแตกต่างระหว่างกันได้";
+		next;
+		mes "[Mimirgand]";
+		mes "ข้าทนดูพวกชั้นต่ำที่กระหายในสิ่งที่มีค่าเพียงหางหนูต่อไปไม่ได้อีกแล้ว";
+		mes "อย่ามอบหมายงานหนักให้ข้าเลย";
+		next;
+		mes "[Mimirgand]";
+		mes "มันคือการกู้คืนพลังเวทมนตร์ของท่าน Jormungand ที่พวกคนบาปและคนพาลถือครองไว้";
+		mes "พลังเวทมนตร์ของเจ้านั้นมีจำกัด";
+		mes "นั่นไม่ใช่เวทมนตร์ที่พวกมันจะบังอาจครอบครองได้";
+		next;
+		mes "[Mimirgand]";
+		mes "พลังเวทมนตร์มีจำกัด และเราไม่สามารถสูญเสียพลังของเราไปโดยเปล่าประโยชน์หากเราต้องทำงานหนักเพื่อบรรลุเจตจำนงของท่าน Jormungand และท่าน Rasgand";
+		next;
+		mes "[Mimirgand]";
+		mes "การกู้คืนพลังเวทมนตร์ที่ถูกพวกอาชญากรแย่งชิงไป และนำมาใช้ใหม่เพื่ออนาคตของ Rgan";
+		mes "นั่นคือสิ่งที่เราทำอยู่ในตอนนี้";
+		next;
+		mes "[Mimirgand]";
+		mes "และเราต้องกู้คืนเวทมนตร์เพื่อเหล่าบุตรแห่งความเมตตาเช่นเจ้า";
+		next;
+		select( "พวกเขาไม่ใช่พวกเดียวกันหรอกหรือ?" );
+		mes "[Mimirgand]";
+		mes "ข้าไม่คิดว่าพวกมันเป็นเผ่าพันธุ์เดียวกันหรอกนะ";
+		mes "พวกมันคือบาป";
+		mes "พวกมันยังเป็นเครื่องสังเวยด้วย";
+		mes "มันเป็นเรื่องธรรมชาติที่จะกู้คืนพลังเวทมนตร์จากบาปที่ไม่พึงประสงค์";
+		next;
+		mes "[Mimirgand]";
+		mes "นี่คือหนทางที่เราจะเอาตัวรอดในดินแดนน้ำแข็งแห่งนี้";
+		mes "ดังนั้น นักบวชหนุ่มเอย";
+		mes "จงไปลงทัณฑ์พวกคนบาปและรวบรวมเวทมนตร์ของพวกมันมาเสีย";
+		setquest 18138;
+		close;
+	case 1:
+		if (countitem(1000707) < 10 || checkquest(18138,HUNTING) != 2) {
+			mes "[Mimirgand]";
+			mes "ความอยุติธรรมอยู่ที่ไหนกัน?";
+			mes "นักบวชหนุ่ม เจ้าไม่ได้บอกว่าเจ้าฟักออกมาในโรงฟักระดับต่ำหรอกหรือ?";
+			next;
+			mes "[Mimirgand]";
+			mes "ข้าหมายถึงพวกชั้นต่ำที่อาศัยอยู่ที่นั่น";
+			mes "^4d4dff " + getmonsterinfo("EP19_RGAN_A", MOB_NAME) + ", " + getmonsterinfo("EP19_RGAN_B", MOB_NAME) + "^000000 เป็นพวกที่ทำบาปและถูกทอดทิ้ง";
+			next;
+			mes "[Mimirgand]";
+			mes "มันเป็นงานของเจ้าที่จะจัดการกับพวกมันและกู้คืน ^4d4dff10 " + getitemname(1000707) + "^000000 ของ Rgan มา";
+			close;
+		}
+		mes "[Mimirgand]";
+		mes "ดูเหมือนเจ้าจะทำงานได้ดีนะ";
+		mes "มานี่สิ";
+		mes "Magic Core จะต้องถูกหมุนเวียน";
+		next;
+		mes "[Mimirgand]";
+		mes "เจ้าจะแข็งแกร่งขึ้นใช่ไหมถ้าเจ้าดูดซับ Magic Core เข้าไป?";
+		mes "มันอาจจะเป็นอย่างนั้น";
+		mes "จริงๆ แล้วมันไม่ได้มีอยู่ตรงนั้นหรอกหรือ?";
+		next;
+		select( "เจ้ากำลังพูดถึงพวก ragan ระดับต่ำงั้นเหรอ?" );
+		mes "[Mimirgand]";
+		mes "ใช่ บางครั้งก็มีพวกระดับล่างที่มีสติปัญญาอยู่บ้างนะ";
+		mes "พวกมันทำงานใช้แรงงานเพื่อชำระล้างบาปของตัวเอง";
+		next;
+		mes "[Mimirgand]";
+		mes "แต่นั่นไม่ได้หมายความว่าระดับล่างที่กินระดับล่างด้วยกันจะกลายเป็นระดับกลางได้หรอกนะ";
+		mes "ไม่ว่าในกรณีใด ขนาดของภาชนะที่แต่ละคนเกิดมานั้นแตกต่างกัน";
+		next;
+		mes "[Mimirgand]";
+		mes "นั่นหมายถึงการโยนหินลงทะเลงั้นหรือ?";
+		mes "แต่ถ้าเจ้าแกะสลักภูเขาให้กลายเป็นสระน้ำเล็กๆ ผลลัพธ์มันก็จะออกมาต่างกัน";
+		next;
+		mes "[Mimirgand]";
+		mes "เหลือเพียงสัญชาตญาณที่กระหายในพลังเวทมนตร์เท่านั้น แต่บางครั้งพวกที่กินกันเองไปเรื่อยๆ จนในที่สุดก็เติมเต็มภาชนะได้ก็มีปรากฏตัวขึ้นมาบ้าง";
+		next;
+		mes "[Mimirgand]";
+		mes "แต่มันก็ไม่ได้เปลี่ยนขนาดของภาชนะหรอกนะ";
+		mes "นั่นไม่ใช่ความแตกต่างของความเมตตาที่มีมาแต่กำเนิดหรอกหรือ?";
+		next;
+		mes "[Mimirgand]";
+		mes "แต่ข้าก็ไม่รู้ว่าท่าน Rasgand กำลังหาทางช่วยสิ่งเหล่านั้นอยู่หรือเปล่า";
+		mes "ข้าคงไม่ขออะไรมากไปกว่านี้ถ้าข้าสามารถเพิ่มขนาดความเมตตาของข้าได้";
+		next;
+		select( "แล้วเจ้าจะเอา Magic Core ไปใช้ทำอะไรล่ะ?" );
+		mes "[Mimirgand]";
+		mes "สิ่งมีชีวิตต้องการอะไรเพื่อให้ทำงานได้?";
+		mes "ใช่แล้ว ข้าต้องการรูปแบบ";
+		next;
+		mes "[Mimirgand]";
+		mes "พวกเราสร้างสิ่งนี้ขึ้นมา";
+		mes "บางส่วนจะถูกใช้สำหรับการวิจัยของท่าน Rasgand และบางส่วนจะถูกใช้เพื่อฟื้นฟูเวทมนตร์ที่ถูกใช้ไป";
+		next;
+		mes "[Mimirgand]";
+		mes "เมื่อเจ้ารู้สึกว่าพลังเวทมนตร์ของเจ้าหมดลง จงดูดซับ Magic Core เสีย";
+		mes "มันจะช่วยให้ง่ายขึ้น";
+		next;
+		mes "[Mimirgand]";
+		mes "อย่างไรก็ตาม ขอบใจมากที่ช่วยงานข้า";
+		mes "นี่คือสิ่งที่เจ้า ในฐานะนักบวช ต้องทำเช่นกัน";
+		mes "ทำได้ดีมาก";
+		delitem 1000707,10;	// Ep19_Rgan_Core_F
+		completequest 18138;
+		getitem 1000608,10;	// Ep19_Snow_Flower
+		getexp2 32652372,0;
+		getexp 0,3000000;
+		close;
+	case 2:
+		break;
+	}
+	switch( isbegin_quest(18139) ) {
+	case 0:
+		mes "[Mimirgand]";
+		mes "นักบวชหนุ่ม";
+		mes "วันนี้เจ้าจะไม่มาอุทิศตนให้กับนิกายอีกงั้นหรือ?";
+		mes "เพื่อปฏิบัติศาสนกิจอันศักดิ์สิทธิ์";
+		next;
+		if (select( "เกิดอะไรขึ้น?", "ข้ากำลังจะไปสวดมนต์น่ะ" ) == 2) {
+			mes "[Mimirgand]";
+			mes "สวดมนต์งั้นหรือ?";
+			mes "จริงเหรอ?";
+			mes "เจ้ากำลังจะประกาศศรัทธาด้วยหัวใจที่จริงใจงั้นหรือ?";
+			mes "มันไม่ควรเป็นคำโกหกนะ";
+			close;
+		}
+		mes "[Mimirgand]";
+		mes "ไปกำจัดพวกแมลงที่คลานอยู่บนไออุ่นของอสรพิษและกู้คืนเวทมนตร์ของเจ้ามาเสีย";
+		mes "เจ้าทนเห็นผู้คนที่ทำงานกันอย่างหิวโหยแบบนั้นไม่ได้หรอก";
+		next;
+		mes "[Mimirgand]";
+		mes "มันคืองานของเราอยู่แล้ว";
+		mes "ใครบางคนต้องทำมัน";
+		mes "งั้นข้าจะไปเอง";
+		setquest 18139;
+		close;
+	case 1:
+		if (countitem(1000707) < 30) {
+			mes "[Mimirgand]";
+			mes "ข้าจะรวบรวม ^4d4dff30 " + getitemname(1000707) + " ^000000 จาก Rgan";
+			mes "นั่นคือหน้าที่อันศักดิ์สิทธิ์ของเรา";
+			close;
+		}
+		mes "[Mimirgand]";
+		mes "วันนี้เจ้าก็ได้รวบรวมอาหารประจำวันมาแบบนี้สินะ";
+		mes "นี่คือเลือด หยาดเหงื่อ และเนื้อหนังของอวัยวะอื่นๆ";
+		mes "มันจะกลายเป็นเลือดของกลุ่มอื่นๆ และมันจะกลายเป็นเนื้อหนังและจิตวิญญาณ";
+		next;
+		mes "[Mimirgand]";
+		mes "บาปจะถูกชำระล้างและเกิดใหม่ด้วยเลือดใหม่";
+		mes "วันนี้เจ้าทำได้ดีที่สุดแล้ว";
+		delitem 1000707,30;	// Ep19_Rgan_Core_F
+		erasequest 18139;
+		setquest 18140;
+		// note: no reputation nor additional reward when the reputation is 3000 (หมายเหตุ: ไม่มีความดีความชอบหรือรางวัลเพิ่มเติมเมื่อชื่อเสียงถึง 3000)
+		getitem 1000608,2;	// Ep19_Snow_Flower
+		getexp2 32652372,0;
+		getexp 0,3000000;
+		close;
+	case 2:
+		end;
+	}
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST, QMARK_YELLOW, "ep19_main >= 21 && isbegin_quest(18138) == 0 && checkquest(18140,PLAYTIME) == -1" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "isbegin_quest(18138) == 2 && isbegin_quest(18139) == 0 && checkquest(18140,PLAYTIME) == -1" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "checkquest(18140,PLAYTIME) == 2" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(18138) == 1 && countitem(1000707) >= 10 && checkquest(18138,HUNTING) == 2" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(18139) == 1 && countitem(1000707) >= 30" );
+	end;
+}
+//
+
+
+// Side quest (เควสรอง)
+jor_nest,74,100,5	script	Arleigand#1	4_EP19_RGAN_SR3,{
+	if (getstatus(SC_MONSTER_TRANSFORM,1) != 21530) {
+		mes "[" + strnpcinfo(1) + "]";
+		mes "กรี๊ดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดดด!! สถานที่ทำงาน!! ไม่ใช่ที่นี่!!!";
+		close2;
+		warp "jor_back3",65,321;
+		end;
+	}
+	if (ep19_main < 21) {
+		mes "มันคงลำบากหากถูกจับได้ว่าคุยกับ Rgan โดยความผิดพลาด";
+		mes "ฉันคงต้องเข้าไปดูหน่อยแล้ว";
+		close;
+	}
+	if (checkweight(1000608,10) == 0) {	// Ep19_Snow_Flower
+		mes "- คุณไม่สามารถดำเนินการเควสต่อได้เนื่องจากมีไอเทมมากเกินไป -";
+		close;
+	}
+	switch( isbegin_quest(8794) ) {
+	case 0:
+		mes "[Arleigand]";
+		mes "...?";
+		mes "เจ้าน่ะ";
+		mes "ข้าเพิ่งเคยเห็นเจ้าเป็นครั้งแรก มานี่สิ";
+		next;
+		mes "ก่อนที่เขาจะทันพูดจบ ragan ระดับสูงสุดก็คว้าต้นแขนของเขาแล้วดึงกลับไป พร้อมกับกระแทกมันเข้ากับเขี้ยวของมัน!";
+		mes "เจ้าสังเกตเห็นไหม!?";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "โอ๊ย!";
+		next;
+		mes "[Arleigand]";
+		mes "ชิชะ แข็งจังเลยนะ";
+		mes "ข้าไม่ได้ขอ ข้าไม่ได้ขอ";
+		mes "ข้ายังไม่ได้กินอะไรเลยนะ";
+		next;
+		mes "[Arleigand]";
+		mes "เขาไม่เข้มงวดเกินไปหน่อยหรือ?";
+		mes "เจ้าดูเหมือนคนขี้ขลาดนะ เจ้ากลัว Arlegand คนนี้งั้นหรือ?";
+		next;
+		select( "ไม่น่ากลัวเลย", "ไม่น่ากลัวหรอก" );	// the selection doesn't change the dialog (ตัวเลือกไม่ได้เปลี่ยนบทสนทนา)
+		mes "[Arleigand]";
+		mes "คำตอบคือ...";
+		mes "ข้ายังไม่ได้กินอะไรเลยจริงๆ นะ";
+		next;
+		if (select( "ถามว่าทำไมเจ้าถึงทำแบบนี้", "หนีไปกันเถอะ..." ) == 2) {
+			mes "[Arleigand]";
+			mes "ฮ่า ฮ่า! ไอ้คนขี้ขลาด!";
+			close;
+		}
+		mes "[" + strcharinfo(0) + "]";
+		mes "ทำไมท่านถึงทำแบบนี้ล่ะ...?";
+		next;
+		mes "[Arleigand]";
+		mes "เจ้าเพิ่งเกิดมางั้นเหรอ? ดูไม่เหมือนเลยนะ แต่เจ้าพูดเหมือนคนธรรมดาเลย?";
+		mes "แต่คนธรรมดาก็คงไม่คิดแบบนี้หรอก เขาคงจะฉลาดทีเดียวเชียวล่ะ";
+		next;
+		mes "[Arleigand]";
+		mes "ทุกคนเกิดมาเหมือนกันภายใต้เงื่อนไขเดียวกัน แล้วทำไมพวกเขาทั้งหมดถึงมีบุคลิกและความคิดที่ต่างกันขนาดนี้ล่ะ? มันน่าสนุกมากเลยไม่ใช่หรือ!";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "????";
+		next;
+		mes "[Arleigand]";
+		mes "อะไรกัน? ข้าแค่ล้อเจ้าเล่นน่ะ";
+		mes "เจ้าทำไมถึงใสซื่อได้ขนาดนี้กันนะ?";
+		mes "จะมีใครรู้จริงๆ หรือว่าคนเราสามารถฉีกแขนใครทิ้งได้?";
+		next;
+		mes "[Arleigand]";
+		mes "ข้าหมายถึง~ ข้าไม่ทำหรอก เพราะ Gumumi Gand ไม่ทำ";
+		mes "เจ้ารู้จัก Gumumi Gand ไหม? เจ้าเคยพบเขาหรือเปล่า?";
+		mes "ข้าไม่รู้สิ? เจ้าไม่มีทางได้หรอก";
+		next;
+		mes "[Arleigand]";
+		mes "อย่างไรก็ตาม ข้ากำลังคิดหาวิธีที่จะกิน " + getmonsterinfo("EP19_RGAN_A", MOB_NAME) + " เขาเลยพูดแบบนั้นออกมา";
+		mes "ไม่ว่าเจ้าจะทำอะไร ก็ไม่มีอะไรเปลี่ยนแปลงหรอก แล้วจะไปสนใจมันทำไมกันเล่า?";
+		mes "อุ๊ย มันน่าขำสิ้นดี";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "(ฝั่งนี้ก็น่าขำเหมือนกัน...)";
+		next;
+		mes "[Arleigand]";
+		mes "ไม่ว่าเราจะอยู่ในดินแดนที่เปี่ยมไปด้วยพลังเวทมนตร์ศักดิ์สิทธิ์มากแค่ไหน... แม้ว่าเราจะถูกสร้างขึ้นด้วยสายเลือดของบรรพบุรุษและได้รับชีวิตในฐานะร่างกายเวทมนตร์เช่นนี้ เราก็แตกต่างจากสิ่งมีชีวิตอื่นๆ เล็กน้อย";
+		mes "ไม่ต้องทำให้มันเป็นหินนิวเคลียร์หรอก แค่ดูดซับมันเข้าไปเลย ไม่ดีกว่าเหรอ?";
+		next;
+		mes "[Arleigand]";
+		mes "พวกมนุษย์บอกว่าเมื่อพวกเขากินอะไรสักอย่าง พวกเขาจะปรุงมันก่อนงั้นเหรอ?";
+		mes "ข้าอยากจะลองทำแบบนั้นดูบ้างจัง~!!";
+		mes "ข้าไม่เคยทำอะไรเลยจนถึงวันนี้...";
+		next;
+		mes "[Arleigand]";
+		mes "ดังนั้น Gumumi Gand...";
+		mes "...เพราะว่า...";
+		mes "นั่นน่ะ...";
+		next;
+		mes "ข้าเคยได้ยินเรื่องราวที่น่ากลัวมาก";
+		mes "อย่างไรก็ตาม ถ้า Gumumi Gand ในเรื่องมีความคิดเหมือน Rgan ทั่วไป โดยหลักการแล้ว ดูเหมือนว่าเขาจะไม่กิน " + getmonsterinfo("EP19_RGAN_A", MOB_NAME) + " โดยตรง";
+		next;
+		mes "[Arleigand]";
+		mes "...งั้นเจ้าจงไปหา <ITEM>[Rgan's low-grade magic core]<INFO>1000707</INFO></ITEM> มาสัก 15 ชิ้น";
+		mes "ถ้าเจ้าไม่มี เจ้าก็ต้องไปหามันมา";
+		next;
+		mes "[Arleigand]";
+		mes "เร็วเข้า!";
+		setquest 8794;
+		close;
+	case 1:
+		if (countitem(1000707) < 15) {
+			mes "ข้าเคยได้ยินเรื่องราวที่น่ากลัวมาก";
+			mes "อย่างไรก็ตาม ถ้า Gumumi Gand ในเรื่องมีความคิดเหมือน Rgan ทั่วไป โดยหลักการแล้ว ดูเหมือนว่าเขาจะไม่กิน " + getmonsterinfo("EP19_RGAN_A", MOB_NAME) + " โดยตรง";
+			next;
+			mes "[Arleigand]";
+			mes "...งั้นเจ้าจงไปหา <ITEM>[Rgan's low-grade magic core]<INFO>1000707</INFO></ITEM> มาสัก 15 ชิ้น";
+			mes "ถ้าเจ้าไม่มี เจ้าก็ต้องไปหามันมา";
+			next;
+			mes "[Arleigand]";
+			mes "เร็วเข้า!";
+			close;
+		}
+		mes "[Arleigand]";
+		mes "เจ้าเอามาให้จริงๆ เหรอเนี่ย?";
+		mes "เขาจะต้องกลายเป็นคนที่ตัวใหญ่มากแน่ๆ...";
+		mes "เด็กคนนี้ออกมาได้ยังไงกันนะ?";
+		mes "เจ้าเกิดมาจากสายเลือดของใคร? ไม่ใช่ข้าใช่ไหม หรือใช่ข้ากันล่ะ?";
+		next;
+		mes "[Arleigand]";
+		mes "ว้าว... ข้าขอโทษสำหรับเรื่องนี้ด้วยนะ... เฮ้ รับไปสิ";
+		mes "ไม่ว่าเจ้าจะไปที่ไหน อย่าให้ใครบอกให้เจ้าทำตัวใสซื่อแบบนี้อีกเข้าใจไหม? ตกลงนะ?";
+		delitem 1000707,15;	// Ep19_Rgan_Core_F
+		completequest 8794;
+		getitem 1000608,10;	// Ep19_Snow_Flower
+		getexp2 32652372,0;
+		getexp 0,3000000;
+		close;
+	case 2:
+		mes "[Arleigand]";
+		mes "หุบปากซะ";
+		mes "อย่าเข้ามาใกล้ข้า";
+		mes "ข้าอารมณ์ไม่ดี";
+		close;
+	}
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST, QMARK_YELLOW, "ep19_main >= 21 && isbegin_quest(8794) == 0" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(8794) == 1 && countitem(1000707) >= 15" );
+	end;
+}
+//
+
+
+// Daily quest : Do not Feed Wildlife (เควสรายวัน: อย่าให้อาหารสัตว์ป่า)
+// (Retrieve 1 Monster's Feed from a sand pile) (เก็บ Monster's Feed 1 ชิ้นจากกองทราย)
+icecastle,97,177,4	script	Supplier#iws	EP19_NPC_IWIN_SR,{
+	if (ep19_main < 11) {
+		emotion ET_FRET;
+		mes "[Supplier Goror]";
+		mes "ไม่สิ ไอ้พวกบ้านั่นประเภทไหนกันนะที่เอาอาหารของพวกมันที่มีหนอนมาไว้ที่เนินสเกลที่หนาวเหน็บเนี่ย?";
+		next;
+		mes "[Supplier Goror]";
+		mes "หือ? เจ้าคือใครน่ะ?";
+		mes "อ๊ะ! เจ้าคือนักผจญภัยที่แห่กันเข้ามาพักหลังๆ นี้ใช่ไหม? เจ้าควรจะระวังอย่าทำอะไรไร้สาระล่ะ เพราะสายตาอันขุ่นเคืองของข้ากำลังจ้องเจ้าอยู่";
+		close;
+	}
+	if (checkweight(1000608,3) == 0) {	// Ep19_Snow_Flower
+		mes "- คุณไม่สามารถดำเนินการต่อได้เนื่องจากมีไอเทมมากเกินไป -";
+		close;
+	}
+
+	if (getstatus(SC_MONSTER_TRANSFORM,1) == 21530) {
+		setpcblock PCBLOCK_NPC, true;
+		emotion ET_HUK;
+		sleep2 500;
+		npctalk "Supplier Goror: อ๊ะ! ตกใจหมด", "", bc_self;
+		sleep2 500;
+		npctalk "Supplier Goror: หือ? มี Rgan อยู่ที่นี่งั้นเหรอ?", "", bc_self;
+		sleep2 1000;
+		emotion ET_THINK;
+		sleep2 500;
+		npctalk "Supplier Goror: ... ... ...", "", bc_self;
+		sleep2 2500;
+		emotion ET_SURPRISE;
+		sleep2 500;
+		npctalk "Supplier Goror: เจ้าคือเจ้าหน้าที่ที่แปลงร่างเป็น Rgan นี่เอง ใช่แล้ว ถ้าเจ้าเป็นเจ้าหน้าที่ เจ้าก็ควรจะทำแบบนั้นแหละ", "", bc_self;
+		setpcblock PCBLOCK_NPC, false;
+	}
+
+	switch( checkquest(5977,PLAYTIME) ) {
+	case -1:
+		break;
+	case 0:
+	case 1:
+		emotion ET_STARE_ABOUT;
+		mes "[Supplier Goror]";
+		mes "อะฮ่าฮ่า.. วันนี้อากาศอุ่นดีจัง ข้าหวังว่าเหล่านักผจญภัยจะมีวันที่ดีเหมือนกันนะ..";
+		next;
+		mes "Supplier Goror ดูเหมือนกำลังพยายามอย่างหนักที่จะแสร้งทำเป็นไม่รู้จักข้า มีกฎเกณฑ์ตายตัวไหมนะว่าห้ามรู้จักกันเวลาที่ไม่ได้ปฏิบัติภารกิจอยู่?";
+		close;
+	case 2:
+		erasequest 5977;
+		emotion ET_SPARK;
+		npctalk "Supplier Goror: ทิปกำลังมา.. ทิปกำลังมา..", "", bc_self;
+		break;
+	}
+	if (isbegin_quest(5979) == 1) {	// completed
+		if (countitem(528) < 1) {
+			emotion ET_QUESTION;
+			mes "[Supplier Goror]";
+			mes "เจ้ามาแล้วเหรอ? ใช่แล้ว เจ้าหน้าที่! แน่นอนว่าเจ้าเก็บกู้ไอเทมมาแล้วใช่ไหมล่ะ?";
+			next;
+			mes "[Supplier Goror]";
+			mes "แต่ทำไมเจ้าถึงมามือเปล่าล่ะ? เจ้าคงจะเข้าใจผิดเรื่องเจ้าหน้าที่แน่ๆ มันอาจจะเกิดขึ้นได้ระหว่างภารกิจ ข้าจะรอเจ้านะ";
+			close;
+		}
+		emotion ET_QUESTION;
+		mes "[Supplier Goror]";
+		mes "เจ้ามาแล้วเหรอ? ใช่แล้ว เจ้าหน้าที่! แน่นอนว่าเจ้าเก็บกู้ไอเทมมาแล้วใช่ไหมล่ะ?";
+		next;
+		mes "[Supplier Goror]";
+		mes "นั่นคือสิ่งที่เจ้าถืออยู่ในมืองั้นหรือ? หืมม.. มันคืออาหารที่ออกมาเมื่อวานนี้นี่นา ช่างเป็นการมีตัวตนที่ลึกลับเสียจริงที่ซ่อนสิ่งนี้ไว้";
+		next;
+		erasequest 5979;
+		setquest 5977;
+		delitem 528,1;	// Monster_Feed
+		set_reputation_points(3, (get_reputation_points(3) + 5));
+		if (get_reputation_points(3) >= 3000)
+			getitem 1000608,1;	// Ep19_Snow_Flower
+		getitem 1000608,2;	// Ep19_Snow_Flower
+		getexp2 52243795,0;
+		getexp 0,3000000;
+		mes "[Supplier Goror]";
+		mes "เพื่อเป็นการตอบแทนความทุ่มเทและความใส่ใจของเจ้า เจ้าหน้าที่ แน่นอนว่าเจ้าคงไม่อยากได้สิ่งนี้หรอก ข้ารู้ว่าเจ้ารู้สึกอย่างไร..";
+		next;
+		emotion ET_COOL;
+		mes "[Supplier Goror]";
+		mes "แต่โปรดถือว่ามันเป็นน้ำใจเล็กน้อยของข้าที่จะขอให้เจ้าช่วยอีกในวันพรุ่งนี้ด้วยนะ";
+		close;
+	}
+	if (isbegin_quest(5976) == 0) {	// first time
+		mes "[Supplier Goror]";
+		mes "เมื่อเร็วๆ นี้ พวกเราได้รับข้อมูลมาว่ามีบุคคลที่ไม่สามารถระบุตัวตนได้ นำอาหารไปให้พวกสัตว์ป่าในเนินสเกลที่หนาวเหน็บ";
+		next;
+		mes "[Supplier Goror]";
+		mes "หากปล่อยไว้แบบนี้ สถานการณ์อาจก่อให้เกิดปัญหาต่างๆ ได้ เช่น การรุมเร้าของแมลง";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "เจ้าอยู่ที่นั่นหรือเปล่า?";
+		next;
+		mes "[Supplier Goror]";
+		mes "เจ้าอาจจะให้อาหารด้วยความเห็นอกเห็นใจ และเมื่อมองแวบแรกมันอาจจะดูเหมือนเป็นการกระทำที่ดี แต่ถ้ามองในภาพรวมแล้ว มันเป็นการกระทำที่อันตรายมากที่สามารถทำลายระบบนิเวศได้เลยนะ";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "ตรงนั้น...";
+		next;
+		mes "[Supplier Goror]";
+		mes "หือ? มีเจ้าหน้าที่ว่างงานอยู่ที่นี่ราวกับว่าเขากำลังรออยู่พอดีเลย เจ้าหน้าที่! ข้าจะมอบภารกิจให้เจ้า";
+		next;
+		mes "[Supplier Goror]";
+		mes "ไปทำให้ตัวตนลึกลับนั่นเก็บกู้เหยื่อที่นำมาไว้ที่เนินสเกลที่หนาวเหน็บซะ!";
+		next;
+		select( "ข้าจะทำ", "ข้ายินดีที่จะทำ", "ข้าจะทำอะไรก็ได้ที่ข้าต้องการ", "ไม่มีสถานะตัวเลือกงั้นเหรอ?" );
+		emotion ET_STARE;
+		mes "[Supplier Goror]";
+		mes "การปฏิเสธไม่มีอยู่จริงสำหรับเจ้าหน้าที่ต้นตำรับหรอกนะ";
+		next;
+		setquest 5976;
+		completequest 5976;
+		setquest 5978;
+		mes "[Supplier Goror]";
+		mes "เจ้าหน้าที่! ข้าซาบซึ้งในความทุ่มเทของเจ้าเสมอ";
+		next;
+		mes "[Supplier Goror]";
+		mes "ภารกิจกู้คืนนี้เป็นความลับสุดยอด ไม่ว่าจะอยู่ในระหว่างภารกิจลาดตระเวนหรือการผ่านเนินสเกลที่หนาวเหน็บเป็นการส่วนตัวก็ตาม..";
+		next;
+		mes "[Supplier Goror]";
+		mes "มันขึ้นอยู่กับเจ้าแล้วล่ะ เจ้าหน้าที่ ที่จะตัดสินใจว่าจะจัดการกับมันเมื่อไหร่";
+		next;
+		emotion ET_BEST;
+		mes "[Supplier Goror]";
+		mes "ถ้าอย่างนั้น ขอให้เจ้าหน้าที่โชคดี!";
+		close;
+	}
+	switch( isbegin_quest(5978) ) {
+	case 0:
+		mes "[Supplier Goror]";
+		mes "มีข้อมูลเข้ามาว่าใครบางคนเอาอาหารมาวางไว้อีกแล้ว เจ้าอยากจะมาร่วมมือกับเราอีกครั้งไหม เจ้าหน้าที่?";
+		next;
+		if (select( "ข้าจะร่วมด้วย", "นั่นเป็นข้อมูลเท็จ" ) == 2) {
+			emotion ET_HUK;
+			mes "[Supplier Goror]";
+			mes "ฮึ่ม! ข้อมูลผิดพลาดงั้นเหรอ? ข้าเกือบจะทำความผิดพลาดครั้งใหญ่กับเรื่องนี้เสียแล้ว ข้าจะตรวจสอบให้มากขึ้นแล้วค่อยส่งมอบภารกิจให้นะ";
+			close;
+		}
+		setquest 5978;
+		mes "[Supplier Goror]";
+		mes "ข้าจะฝากทุกอย่างไว้กับเจ้าอีกครั้งนะ เจ้าหน้าที่ ขอให้โชคดี เจ้าหน้าที่!";
+		close;
+	case 1:
+		mes "[Supplier Goror]";
+		mes "ทุกอย่างเกี่ยวกับภารกิจนี้จะถูกฝากไว้กับเจ้าแต่เพียงผู้เดียว เจ้าหน้าที่";
+		next;
+		mes "[Supplier Goror]";
+		mes "อ๊ะ! ถ้ามันเป็นคำแนะนำ มันก็คือคำแนะนำ ถ้าไม่ใช่ มันก็ไม่ใช่";
+		next;
+		emotion ET_BEST;
+		mes "มันต้องถูกซ่อนไว้อย่างน่าเกลียดจากใครก็ตามที่มองดูมันด้วยความนิ่งนอนใจว่าสิ่งนี้จะไม่ถูกมองเห็น ขอให้โชคดีเจ้าหน้าที่!";
+		close;
+	case 2:
+		end;
+	}
+	end;
+
+OnInit:
+	setunittitle( getnpcid(0), "<Eagle Patrol>" );
+
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(5979) == 1 && countitem(528) > 0" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "ep19_main >= 11 && isbegin_quest(5976) == 0" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "isbegin_quest(5976) == 2 && isbegin_quest(5978) == 0 && checkquest(5977,PLAYTIME) == -1" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "checkquest(5977,PLAYTIME) == 2" );
+	end;
+}
+
+jor_back1,359,349,0	script	Something#ff01::hode_ff00	HODE,{
+	if (checkweight(1201,1) == 0) {
+		mes "- คุณไม่สามารถดำเนินการต่อได้เนื่องจากมีไอเทมมากเกินไป -";
+		close;
+	}
+	mes "^4A94F7บางสิ่งบางอย่าง^000000 ดูเหมือนจะถูกปกคลุมด้วยดินเล็กน้อย ดูเหมือนว่ามันกำลังขยับอยู่ นี่คือดินจริงๆ เหรอน่ะ?";
+	next;
+	if (select( "สำรวจมัน", "ปล่อยมันไว้อย่างนั้น" ) == 2) {
+		mes "ใช่แล้ว! บางสิ่งที่น่ากลัวอาจจะโผล่ออกมาก็ได้ ดังนั้นปล่อยมันไว้คนเดียวเถอะ";
+		close;
+	}
+	progressbar "FFFFFF",1;
+
+	.@r = rand(100);
+	if (.@r < 35 || isbegin_quest(5978) == 0) {
+		mes "อา.. มันคืออะไรกันล่ะเนี่ย แค่ดินธรรมดาเหรอ?";
+		disablenpc();
+		initnpctimer;
+		close;
+	}
+	if (.@r < 50) {
+		mes "อึ๊ก! มันคือแมลงงั้นเหรอ? นี่มันเกิดบ้าอะไรขึ้นเนี่ย?!";
+		disablenpc();
+		initnpctimer;
+		getmapxy .@map$,.@x,.@y, BL_NPC;
+		monster .@map$,.@x,.@y,"--ja--","G_THIEF_BUG__",5, strnpcinfo(0) + "::OnMobDead";
+		close;
+	}
+	erasequest 5978;
+	setquest 5979;
+	getitem 528,1;	// Monster's_Feed
+	disablenpc();
+	initnpctimer;
+	mes "มีคนพบอาหารที่นี่ ลองนำมันไปให้เจ้าหน้าที่เสบียง Goror กันเถอะ";
+	close;
+
+OnTimer30000:
+	enablenpc();
+	stopnpctimer;
+	killmonster "jor_back1", strnpcinfo(0) + "::OnMobDead";
+	end;
+
+OnMobDead:
+	end;
+}
+jor_back1,113,142,0	duplicate(hode_ff00)	Something#ff01	HODE
+jor_back1,342,292,0	duplicate(hode_ff00)	Something#ff02	HODE
+jor_back1,292,259,0	duplicate(hode_ff00)	Something#ff03	HODE
+jor_back1,265,154,0	duplicate(hode_ff00)	Something#ff04	HODE
+jor_back1,278,103,0	duplicate(hode_ff00)	Something#ff05	HODE
+jor_back1,152,60,0	duplicate(hode_ff00)	Something#ff06	HODE
+jor_back1,100,70,0	duplicate(hode_ff00)	Something#ff07	HODE
+jor_back1,136,175,0	duplicate(hode_ff00)	Something#ff08	HODE
+jor_back1,149,239,0	duplicate(hode_ff00)	Something#ff09	HODE
+//
+
+
+// Daily quest : Searching for Survivors (เควสรายวัน : ตามหาผู้รอดชีวิต)
+icas_in,42,252,5	script	Guardian Leon#ep19leon02	4_EP19_LEON,{
+	switch( isbegin_quest(18133) ) {	// side quest
+	case 0:
+		break;
+	case 1:
+		mes "[Leon]";
+		mes "เป็นเรื่องดีที่ปราสาทมีเจ้าหน้าที่เพิ่มขึ้น";
+		mes "ก่อนหน้านั้น Lehar มักจะกระตือรือร้นอยู่เพียงลำพัง";
+		mes "งั้นเราไปคุยเรื่องนี้กับ Miriam กันเถอะ";
+		close;
+	case 2:
+		cutin "ep19_leon01.png",2;
+		mes "[Leon]";
+		mes "มันไม่แปลกไปหน่อยเหรอที่มีเตาผิงอยู่ในทุ่งหิมะที่ไม่มีแม้แต่หญ้าขึ้นแบบนี้?";
+		mes "มันใช้ " + getitemname(1000608) + " เป็นเชื้อเพลิง ซึ่งเป็นคริสตัลแห่งพลังเวทมนตร์ที่พบได้เป็นครั้งคราว และแกนเวทมนตร์ที่สะสมโดยเหล่า rgan";
+		next;
+		mes "[Leon]";
+		mes "เข้ามาทำตัวให้อุ่นขึ้นสักหน่อยสิ";
+		close3;
+	}
+	switch( isbegin_quest(18132) ) {
+	case 0:
+		mes "[Leon]";
+		mes "มีอะไรที่คุณต้องการไหม?";
+		mes "คนอื่นๆ น่าจะอยู่ในหอพักหรือร้านอาหารนะ";
+		close;
+	case 1:
+		cutin "ep19_leon01.png",2;
+		mes "[Leon]";
+		mes "คุณมาที่นี่หลังจากได้รับข้อความจาก Lehar ใช่ไหม?";
+		mes "ขออภัยที่ต้องให้คุณเดินขึ้นลงไปมาในขณะที่กำลังยุ่งอยู่";
+		next;
+		cutin "ep19_leon04.png",2;
+		mes "[Leon]";
+		mes "ข้ามีเรื่องอยากจะขอร้องคุณพอดี ยินดีต้อนรับ";
+		mes "ไม่มีอะไรอื่นนอกจาก คุณได้ช่วยชีวิตเหล่าคนงานเมื่อครั้งที่ Rgan ตรวจค้นที่พำนักของเขาครั้งล่าสุดหรือไม่?";
+		next;
+		cutin "ep18_miriam_01.png",0;
+		mes "[Miriam]";
+		mes "ผู้คนที่ได้รับการช่วยเหลือในตอนนั้นต่างเดินทางกลับบ้านโดยการนำของ Maram และ Lazy...?";
+		next;
+		cutin "ep19_leon01.png",2;
+		mes "[Leon]";
+		mes "ดูเหมือนว่าจะมีบางคนที่หนีออกมาจากที่พำนักของ Rgan ได้ในตอนนั้น";
+		mes "Iwin ที่ออกลาดตระเวนดูเหมือนจะพบผู้รอดชีวิตในธารน้ำแข็งและทุ่งราบ";
+		next;
+		cutin "ep18_miriam_01.png",0;
+		mes "[Miriam]";
+		mes "ข้าเชื่อว่าคุณต้องมีความสามารถนั้นอย่างแน่นอน";
+		mes "อาจจะมีผู้รอดชีวิตอยู่หลายคน";
+		next;
+		cutin "ep19_leon01.png",2;
+		mes "[Leon]";
+		mes "หน่วยของ Iwin กำลังลาดตระเวนอยู่รอบๆ แต่มันยากที่จะตรวจสอบทุกพื้นที่อย่างละเอียดถี่ถ้วน ดังนั้นข้าจึงอยากจะขอความช่วยเหลือจากคุณ";
+		next;
+		cutin "ep19_leon05.png",2;
+		mes "[Leon]";
+		mes ".....";
+		next;
+		select( "มีอะไรที่รบกวนใจคุณอยู่เหรอ?" );
+		mes "[Leon]";
+		mes "บาเรียถูกสร้างขึ้นเพื่อแยก Midgard ออกจาก Isgard อย่างสมบูรณ์";
+		mes "พูดให้ชัดเจนก็คือ มันคือการแบ่งแยกของ Rgan...";
+		next;
+		cutin "ep19_leon01.png",2;
+		mes "[Leon]";
+		mes "ความจริงที่ว่ามีผู้คนเข้าออกโดยไม่ได้รับคำเชิญ เป็นหลักฐานที่ชัดเจนว่าบาเรียเริ่มอ่อนกำลังลง";
+		mes "ความเป็นอมตะนับร้อยปีและการดำรงอยู่ของเราที่อดทนมาเพื่อวันนี้ได้แวบเข้ามาในความคิดของข้า";
+		next;
+		select("นับร้อยปีเลยเหรอ.." );
+		cutin "ep19_leon01.png",2;
+		mes "[Leon]";
+		mes "ข้าและ Aurelie กำลังปกป้องสถานที่แห่งนี้ ตามเจตนารมณ์ของ Jormungand";
+		mes "อย่างที่คุณทราบ Jormungand ไม่ใช่จิตวิญญาณที่ชั่วร้าย";
+		next;
+		cutin "ep19_leon04.png",2;
+		mes "[Leon]";
+		mes "เหตุผลที่ Jormungand ถูกมองว่าเป็นเทพที่ชั่วร้าย ก็เพราะพวก organgan ที่เรียกตัวเองว่าลัทธิ Jormungand และทำให้ทวีปตกอยู่ในความวุ่นวาย";
+		next;
+		select( "คำสาปของ Jormungand?" );
+		cutin "ep19_leon05.png",2;
+		mes "[Leon]";
+		mes "หัวหน้าลัทธิ Jormungand ได้ร่ายคำสาปโลหิตเป็นการกระทำสุดท้าย";
+		mes "พวกเขามักจะใส่รูป jormungand ไว้บนธงของพวกเขา นั่นคือที่มาของเรื่องเล่าเหล่านั้น";
+		next;
+		cutin "ep19_leon01.png",2;
+		mes "[Leon]";
+		mes "ไม่ว่าอย่างไรก็ตาม Jormungand คือกึ่งเทพผู้ช่วยกอบกู้ทวีปโดยการสละร่างกายของตนเอง";
+		mes "Rgan จะต้องไม่ละทิ้งดินแดนแห่งนี้เพื่อสืบทอดเจตนารมณ์ของ Jormungand";
+		next;
+		cutin "ep18_miriam_01.png",0;
+		mes "[Miriam]";
+		mes "มันเป็นเรื่องราวที่หนักอึ้งทีเดียว";
+		mes "ข้าเข้าใจว่าประวัติศาสตร์ที่ถูกบันทึกไว้อาจจะไม่ใช่เรื่องจริงทั้งหมด แต่ว่า...";
+		next;
+		cutin "ep19_leon01.png",2;
+		mes "[Leon]";
+		mes "ทั้งในตอนนั้นและตอนนี้ เราแค่ต้องทำหน้าที่ให้ดีที่สุดเท่าที่จะทำได้ ใช่ไหม?";
+		mes "บาเรียจะถูกรักษาไว้โดยข้าและ Aurelieเอง";
+		next;
+		cutin "ep19_leon01.png",2;
+		mes "[Leon]";
+		mes "คุณพอจะช่วยช่วยชีวิตเหยื่อก่อนได้หรือไม่?";
+		mes "ข้าจะปล่อยให้เป็นหน้าที่ของเหล่าผู้ประสบภัย";
+		next;
+		cutin "ep19_leon03.png",2;
+		mes "[Leon]";
+		mes "แน่นอน ข้าวางแผนที่จะทำทุกอย่างโดยไม่ลังเลที่จะสนับสนุน";
+		mes "คุณมาถึงทวีปได้อย่างไร?";
+		mes "ทายาทของพวกเขาไม่ควรได้รับการปกป้องงั้นหรือ?";
+		next;
+		cutin "ep18_miriam_01.png",0;
+		mes "[Miriam]";
+		mes "ข้าเข้าใจความหมายของท่าน Leon แล้ว";
+		mes "นักผจญภัย เรามาวางแผนที่เป็นรูปธรรมกันเลยดีไหม?";
+		completequest 18132;
+		setquest 18133;
+		close3;
+	case 2:
+		end;
+	}
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "isbegin_quest(18132) == 1" );
+	end;
+}
+
+icas_in,48,252,3	script	Miriam#ep19miriam05	4_EP18_MIRIAM,{
+	switch( isbegin_quest(18133) ) {	// side quest
+	case 0:
+		cutin "ep18_miriam_01.png",0;
+		mes "[Miriam]";
+		mes "ท่าน Leon มีบางอย่างจะพูดด้วย";
+		close3;
+	case 1:
+		cutin "ep18_miriam_01.png",0;
+		mes "[Miriam]";
+		mes "ข้าคิดว่าเราควรแยกกันค้นหาในพื้นที่ธารน้ำแข็ง Frozen Scale และพื้นที่ทุ่งราบ คุณคิดว่าอย่างไร?";
+		next;
+		select( "พวกเขาได้รับการช่วยเหลือแล้วหรือยัง?" );
+		mes "[Miriam]";
+		mes "ขั้นแรก คุณควรพาเขามาที่พักในปราสาทน้ำแข็ง ให้เขาทำให้ร่างกายอบอุ่น จากนั้นค่อยส่งเขากลับไปยังทวีปผ่านทาง Maram และ Lazy";
+		next;
+		mes "[Miriam]";
+		mes "ถ้านักผจญภัยดูแลพื้นที่ส่วนหนึ่ง ข้าจะไปดูส่วนที่เหลือให้เอง";
+		mes "ข้าจะขอให้ Iwin และ Lehar ช่วยค้นหาที่พำนักของ Rgan ด้วย";
+		next;
+		mes "[Miriam]";
+		mes "ข้าคิดว่ามันจะดีกว่าสำหรับคนเหล่านั้นที่จะดูแลสถานที่ที่มีเป้าหมายชัดเจน";
+		mes "เวลาในการค้นหาจะได้สั้นลง";
+		next;
+		mes "[Miriam]";
+		mes "ข้าและนักผจญภัยควรจะกลับไปดูในสภาพแวดล้อมที่ยากลำบาก ซึ่งการค้นหาผู้รอดชีวิตเองก็ทำได้ยาก";
+		mes "คุยกับข้าเมื่อคุณพร้อมนะ";
+		completequest 18133;
+		close3;
+	case 2:
+		break;
+	}
+	switch( checkquest(18137,PLAYTIME) ) {
+	case -1:
+		break;
+	case 0:
+	case 1:
+		cutin "ep18_miriam_01.png",0;
+		mes "[Miriam]";
+		mes "คุณไม่สามารถหลงทางในหิมะได้ตลอดไปหรอกนะ";
+		mes "ข้าหวังว่าคุณจะได้พักผ่อนเพียงพอและเริ่มการค้นหาอีกครั้ง";
+		close3;
+	case 2:
+		erasequest 18137;
+		break;
+	}
+	if (isbegin_quest(18136) == 1) {	// final step
+		cutin "ep18_miriam_01.png",0;
+		mes "[Miriam]";
+		mes "ผู้รอดชีวิตที่ได้รับการช่วยเหลือจะถูกนำทางไปยังที่พักของนักผจญภัย";
+		mes "Maram จะรอคุณอยู่";
+		close3;
+	}
+	if (isbegin_quest(18134) == 1) {
+		cutin "ep18_miriam_01.png",0;
+		mes "[Miriam]";
+		mes "ตรวจสอบพื้นที่ธารน้ำแข็ง Frozen Scale Glacier Area";
+		mes "ข้าจะตรวจสอบพื้นที่ทุ่งราบเอง";
+		mes "ถ้าคุณพบผู้รอดชีวิต คุณต้องพาเขามาที่ Ice Castle Lodge";
+		close3;
+	}
+	if (isbegin_quest(18135) == 1) {
+		cutin "ep18_miriam_01.png",0;
+		mes "[Miriam]";
+		mes "ตรวจสอบพื้นที่ทุ่งราบ Frozen Scale Plains Area";
+		mes "ข้าจะตรวจสอบธารน้ำแข็งเอง";
+		mes "ถ้าคุณพบผู้รอดชีวิต คุณต้องพาเขามาที่ Ice Castle Lodge";
+		close3;
+	}
+	cutin "ep18_miriam_01.png",0;
+	mes "[Miriam]";
+	mes "ถ้าอย่างนั้นเราจะแบ่งพื้นที่ค้นหาผู้รอดชีวิตกันดีไหม?";
+	mes "เลือกอย่างใดอย่างหนึ่งระหว่างธารน้ำแข็งหรือทุ่งราบ แล้วข้าจะค้นหาพื้นที่ที่เหลือเอง";
+	next;
+	switch( select( "ค้นหาธารน้ำแข็ง", "ค้นหาทุ่งราบ" ) ) {
+	case 1:
+		mes "[Miriam]";
+		mes "งั้นให้ข้าไปตรวจสอบทุ่งราบเอง";
+		mes "ถ้าคุณพบผู้รอดชีวิต คุณสามารถพาเขามาที่ที่พักของปราสาทน้ำแข็งได้ทันที";
+		next;
+		mes "[Miriam]";
+		mes "ข้าบอก Maram ไว้ล่วงหน้าแล้ว";
+		mes "ถ้าเราพบใครสักคน เราจะทำให้มั่นใจว่าพวกเขาจะได้กลับไปทันที";
+		setquest 18134;
+		ep19_survivor = rand(1,10);	// note: the npc to talk to doesn't change (หมายเหตุ: npc ที่ต้องคุยด้วยจะไม่เปลี่ยน)
+		close3;
+	case 2:
+		cutin "ep18_miriam_01.png",0;
+		mes "[Miriam]";
+		mes "งั้นข้าจะไปดูพื้นที่ธารน้ำแข็งให้เอง";
+		mes "ถ้าคุณพบผู้รอดชีวิต คุณสามารถพาเขามาที่ที่พักของปราสาทน้ำแข็งได้ทันที";
+		next;
+		mes "[Miriam]";
+		mes "ข้าบอก Maram ไว้ล่วงหน้าแล้ว";
+		mes "ถ้าเราพบใครสักคน เราจะทำให้มั่นใจว่าพวกเขาจะได้กลับไปทันที";
+		setquest 18135;
+		ep19_survivor = rand(1,10);	// note: the npc to talk to doesn't change (หมายเหตุ: npc ที่ต้องคุยด้วยจะไม่เปลี่ยน)
+		close3;
+	}
+	end;
+
+OnInit:
+	// side quest
+	questinfo( QTYPE_QUEST, QMARK_NONE, "isbegin_quest(18133) == 1" );
+
+	questinfo( QTYPE_DAILYQUEST, QMARK_NONE, "isbegin_quest(18133) == 2 && isbegin_quest(18134) == 0 && isbegin_quest(18135) == 0 && isbegin_quest(18136) == 0 && checkquest(18137,PLAYTIME) == -1" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_NONE, "checkquest(18137,PLAYTIME) == 2" );
+	end;
+}
+
+jor_back2,365,39,3	script	Pit#ep19_2_1::ep19_jor_back2_365_39	4_CRACK,{
+	.@num = atoi( replacestr(strnpcinfo(2), "ep19_2_", "") );
+
+	if (ep19_survivor == .@num && isbegin_quest(18135) == 1) {
+		mes "มีหลุมถูกขุดผ่านหิมะ";
+		if (select( "ขุดหลุม", "กลบไว้ตามเดิม" ) == 2) {
+			mes "มันถูกกลบด้วยหิมะอย่างดี";
+			close;
+		}
+		progressbar "4D4DFF",2;
+		mes "บ้าน่า!";
+		mes "คนจากเรืออับปางกำลังนอนขดตัวอยู่ในหลุมหิมะ";
+		mes "พาเราไปที่ปราสาทน้ำแข็งและทำให้ร่างกายอบอุ่นเถอะ";
+		ep19_survivor = 0;
+		erasequest 18135;
+		setquest 18136;
+		close;
+	}
+	mes "มีร่องรอยการขุดผ่านหิมะ";
+	mes "ข้าไม่เห็นอะไรพิเศษอยู่รอบๆ เลย";
+	close;
+
+OnInit:
+	questinfo( QTYPE_CLICKME, QMARK_YELLOW, "isbegin_quest(18135) == 1" );
+	end;
+}
+jor_back2,354,53,3	duplicate(ep19_jor_back2_365_39)	Pit#ep19_2_2	4_CRACK
+jor_back2,256,197,3	duplicate(ep19_jor_back2_365_39)	Pit#ep19_2_3	4_CRACK
+jor_back2,125,295,3	duplicate(ep19_jor_back2_365_39)	Pit#ep19_2_4	4_CRACK
+jor_back2,195,161,3	duplicate(ep19_jor_back2_365_39)	Pit#ep19_2_5	4_CRACK
+jor_back2,274,178,3	duplicate(ep19_jor_back2_365_39)	Pit#ep19_2_6	4_CRACK
+jor_back2,216,336,3	duplicate(ep19_jor_back2_365_39)	Pit#ep19_2_7	4_CRACK
+jor_back2,142,91,3	duplicate(ep19_jor_back2_365_39)	Pit#ep19_2_8	4_CRACK
+jor_back2,127,34,3	duplicate(ep19_jor_back2_365_39)	Pit#ep19_2_9	4_CRACK
+jor_back2,20,130,3	duplicate(ep19_jor_back2_365_39)	Pit#ep19_2_10	4_CRACK
+
+jor_back3,344,296,3	script	Pit#ep19_3_1::ep19_jor_back3_344_296	4_CRACK,{
+	.@num = atoi( replacestr(strnpcinfo(2), "ep19_3_", "") );
+
+	if (ep19_survivor == .@num && isbegin_quest(18134) == 1) {
+		mes "มีหลุมถูกขุดผ่านหิมะ";
+		if (select( "ขุดหลุม", "กลบไว้ตามเดิม" ) == 2) {
+			mes "มันถูกกลบด้วยหิมะอย่างดี";
+			close;
+		}
+		progressbar "4D4DFF",2;
+		mes "บ้าน่า!";
+		mes "คนจากเรืออับปางกำลังนอนขดตัวอยู่ในหลุมหิมะ";
+		mes "พาเราไปที่ปราสาทน้ำแข็งและทำให้ร่างกายอบอุ่นเถอะ";
+		ep19_survivor = 0;
+		erasequest 18134;
+		setquest 18136;
+		close;
+	}
+	mes "มีร่องรอยการขุดผ่านหิมะ";
+	mes "ข้าไม่เห็นอะไรพิเศษอยู่รอบๆ เลย";
+	close;
+
+OnInit:
+	questinfo( QTYPE_CLICKME, QMARK_YELLOW, "isbegin_quest(18134) == 1" );
+	end;
+}
+jor_back3,320,208,3	duplicate(ep19_jor_back3_344_296)	Pit#ep19_3_2	4_CRACK
+jor_back3,182,305,3	duplicate(ep19_jor_back3_344_296)	Pit#ep19_3_3	4_CRACK
+jor_back3,110,269,3	duplicate(ep19_jor_back3_344_296)	Pit#ep19_3_4	4_CRACK
+jor_back3,277,208,3	duplicate(ep19_jor_back3_344_296)	Pit#ep19_3_5	4_CRACK
+jor_back3,197,178,3	duplicate(ep19_jor_back3_344_296)	Pit#ep19_3_6	4_CRACK
+jor_back3,107,298,3	duplicate(ep19_jor_back3_344_296)	Pit#ep19_3_7	4_CRACK
+jor_back3,231,68,3	duplicate(ep19_jor_back3_344_296)	Pit#ep19_3_8	4_CRACK
+jor_back3,151,74,3	duplicate(ep19_jor_back3_344_296)	Pit#ep19_3_9	4_CRACK
+jor_back3,39,322,3	duplicate(ep19_jor_back3_344_296)	Pit#ep19_3_10	4_CRACK
+
+icas_in,253,171,0	script	#ep19_evt07_	HIDDEN_WARP_NPC,2,2,{
+	end;
+OnTouch:
+	if (isbegin_quest(18136) == 1) {
+		cloakoffnpcself( "ep19_icas_in_262_179" );
+		cloakoffnpcself( "ep19_icas_in_260_180" );
+		cloakoffnpcself( "ep19_icas_in_261_186" );
+		cloakoffnpcself( "ep19_icas_in_262_184" );
+		end;
+	}
+	end;
+}
+
+icas_in,262,179,3	script	Maram#ep19maram05::ep19_icas_in_262_179	4_EP18_MARAM,{
+	if (checkweight(1000608,3) == 0) {	// Ep19_Snow_Flower
+		mes "คุณไม่สามารถดำเนินการเควสต่อได้เนื่องจากมีไอเทมมากเกินไป";
+		mes "กรุณาจัดระเบียบไอเทมแล้วลองใหม่อีกครั้ง";
+		close;
+	}
+	if (isbegin_quest(18136) == 1) {
+		cutin "ep18_maram_01.png",2;
+		mes "[Maram]";
+		mes "ผู้รอดชีวิตที่ได้รับการช่วยเหลือต่างกำลังทำร่างกายให้อบอุ่นอยู่";
+		mes "ข้ากำลังจะพาคนเหล่านี้ไปยังเรือเหาะ";
+		next;
+		cutin "ep18_miriam_01.png",0;
+		mes "[Miriam]";
+		mes "ข้าดีใจที่พบมันก่อนที่มันจะเกิดขึ้น";
+		mes "การหาเลี้ยงชีพเป็นเรื่องยาก ดังนั้นข้าเลยรู้จัก Jormungandra ในฐานะศาสนาใหม่และปฏิบัติตามนั้น ข้าคิดว่ามันมีเรื่องแบบนี้ด้วยเช่นกัน";
+		next;
+		cutin "ep18_maram_01.png",2;
+		mes "[Maram]";
+		mes "อืม อย่างไรก็ตาม ข้าและคุณ Lazy จะอ่านรายละเอียดของคนเหล่านี้และส่งพวกเขากลับบ้าน";
+		mes "นักผจญภัยเองก็ทำงานหนักเช่นกัน พักผ่อนบ้างนะ";
+		next;
+		cutin "ep18_miriam_01.png",0;
+		mes "[Miriam]";
+		mes "ใช่แล้ว";
+		mes "พักผ่อนสำหรับวันนี้เถอะ แล้วพรุ่งนี้ค่อยเริ่มการค้นหาใหม่";
+		erasequest 18136;
+		setquest 18137;
+		set_reputation_points(3, (get_reputation_points(3) + 5));
+		if (get_reputation_points(3) >= 3000)
+			.@bonus = 1;
+		getitem 1000608,2+.@bonus;	// Ep19_Snow_Flower
+		getexp2 52243795,0;
+		getexp 0,3000000;
+		close3;
+	}
+	cutin "ep18_maram_01.png",2;
+	mes "[Maram]";
+	mes "เราจะรอจนกว่าผู้รอดชีวิตจะมีอาการคงที่ก่อนที่จะออกเดินทาง";
+	mes "หากมีไอเทมที่จำเป็น ข้าจะซื้อไปพร้อมๆ กัน";
+	close3;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "isbegin_quest(18136) == 1" );
+	cloakonnpc();
+	end;
+}
+
+icas_in,260,180,5	script	Miriam#ep19miriam06::ep19_icas_in_260_180	4_EP18_MIRIAM,{
+	cutin "ep18_miriam_01.png",0;
+	mes "[Miriam]";
+	mes "การค้นหามันยากลำบากใช่ไหมล่ะ?";
+	mes "ทำไมไม่เข้ามาทำให้ร่างกายอบอุ่นสักพักล่ะ?";
+	close3;
+
+OnInit:
+	cloakonnpc();
+	end;
+}
+
+icas_in,261,186,7	script	Successor rescued#ep19_01::ep19_icas_in_261_186	4_M_SITDOWN,{
+	npctalk "..นี่มัน..ข้าคิดถึงสิ่งนี้เหลือเกิน.. รสชาติของเปลวไฟที่แสนอบอุ่น..!", "", bc_self;
+	end;
+
+OnInit:
+	cloakonnpc();
+	end;
+}
+
+icas_in,262,184,7	script	Rescued Distress#ep19_02::ep19_icas_in_262_184	4_F_SITDOWN,{
+	npctalk "กึก.. ขอบคุณที่ช่วยชีวิตข้าไว้นะ อือหือ.. ข้าคิดว่าข้าจะแข็งตายเสียแล้ว", "", bc_self;
+	end;
+
+OnInit:
+	cloakonnpc();
+	end;
+}
+//
+
+
+// Daily quest : Happy Lunch Time with Zoryara (เควสรายวัน : ช่วงเวลาอาหารเที่ยงแสนสุขกับ Zoryara)
+// (Gather 15 Tough Thin Shell) (รวบรวม Tough Thin Shell 15 ชิ้น)
+icas_in,241,66,3	script	Zoryara#ep19in::ep19_icas_in_241_66	4_EP19_ZORYARA,{
+	if (ep19_main < 11) {
+		mes "[Zoryara]";
+		mes "ข้าได้ยินมาว่าพวกมนุษย์กำลังมา...";
+		mes "เจ้าได้รับอนุญาตให้ออกไปข้างนอกแล้วหรือยัง? จะว่าไปเราอยู่ในสภาวะสงครามนะ มันอันตรายที่จะเคลื่อนไหวคนเดียวโดยไม่ได้รับอนุญาต";
+		mes "กลับไปที่รังของเราเสีย";
+		close;
+	}
+	if (checkweight(1000608,3) == 0) {	// Ep19_Snow_Flower
+		mes "- คุณไม่สามารถดำเนินการเควสต่อได้เนื่องจากมีไอเทมมากเกินไป -";
+		close;
+	}
+	switch( checkquest(8788,PLAYTIME) ) {
+	case -1:
+		break;
+	case 0:
+	case 1:
+		mes "[Zoryara]";
+		mes "เด็กๆ กำลังมีความสุข ข้าเลยประหยัดเวลาไปได้ชั่วโมงหนึ่ง";
+		mes "การที่มีเผ่าพันธุ์อื่นมาร่วมดูแลเด็กๆ ของเราแบบนี้... หึหึ";
+		close;
+	case 2:
+		erasequest 8788;
+		break;
+	}
+	switch( isbegin_quest(8787) ) {	// first time
+	case 0:
+		mes "[Zoryara]";
+		mes "เจ้าคือมนุษย์ที่มาพร้อมกับ Helock ในครั้งนี้ใช่ไหม? ยินดีที่ได้รู้จักนะ";
+		mes "ข้าคือ โจ...";
+		mes "Alvin Alexandria Adele David Cassia Harry Apollo";
+		mes "เรียกข้าตามสบายเถอะ";
+		next;
+		mes "[Horyara]";
+		mes "พี่ชายคนโตของข้าชื่อ Zoryara!";
+		mes "ข้าคือ Horya";
+		next;
+		mes "[Zoryara]";
+		mes "...Holyara!";
+		next;
+		mes "[Zoryara]";
+		mes "....";
+		mes "ผู้ช่วยของข้าทำความผิดพลาดน่ะ";
+		next;
+		mes "[Zoryara]";
+		mes "อย่างที่เจ้าเห็น ที่นี่คือห้องครัว/ห้องอาหาร";
+		mes "ห้องครัวเปิดให้ทุกคนเข้าได้ แต่ข้าเป็นคนดูแลพวกพืชพรรณเอง";
+		mes "มันคือทั้งหมดของการทำอาหาร... แต่ถ้าเจ้าต้องการจะหั่น สับ หรือใช้งานมัน ข้าจะเป็นคนทำให้เอง";
+		next;
+		mes "[Zoryara]";
+		mes "ไม่ว่ายังไงมันก็ถูกแช่แข็งอยู่แล้ว...";
+		mes "ข้าดีใจที่ไม่ต้องกังวลว่าจะได้รับบาดเจ็บ";
+		mes "และการใช้ไฟก็ช่วยลดผลผลิตลงด้วย";
+		mes "มีหลายครั้งที่ข้าต้องดูแลเรื่องปริมาณอยู่ดี";
+		next;
+		mes "[Zoryara]";
+		mes "...ข้าเอาแต่พูดอยู่คนเดียวเลย";
+		mes "ถ้า Moryara ออกไปตกปลา ข้าต้องคอยดู Horya...";
+		npctalk "Horyara: ข้ากำลังดูท่านอยู่นะ!", "ep19_icas_in_235_57", bc_self;
+		next;
+		mes "[Zoryara]";
+		mes "พ่อแม่ของข้าอยู่ในหน่วยลาดตระเวน";
+		mes "Holyara แทบจะถูกเลี้ยงดูโดยข้าและลูกชายคนที่สอง Moryara";
+		npctalk "Horyara: ข้าดูแลท่านเอง!", "ep19_icas_in_235_57", bc_self;
+		next;
+		mes "[Zoryara]";
+		mes "ผู้ช่วยของเจ้า กำลังคุยกับลูกค้าอยู่เหรอ?";
+		npctalk "Horyara: ใช่แล้ว!", "ep19_icas_in_235_57", bc_self;
+		next;
+		mes "[Zoryara]";
+		mes "โปรดเข้าใจด้วยนะ";
+		npctalk "Horyara: ข้าอยากกินหลอดน้ำแข็ง!", "ep19_icas_in_235_57", bc_self;
+		next;
+		mes "[Zoryara]";
+		mes "...";
+		next;
+		mes "[Zoryara]";
+		mes "<ITEM>[Thin and Tough Shell]<INFO>1000830</INFO></ITEM> เจ้าหมายถึง... มันหมดสต็อกแล้วล่ะ";
+		mes "จะเกิดอะไรขึ้นนะถ้ามีสัก 20 ชิ้นหรือมากกว่านั้น...";
+		npctalk "Toralung: Nadu!", "ep19_icas_in_232_59", bc_self;
+		next;
+		mes "[Zoryara]";
+		mes "...";
+		next;
+		mes "ข้าคิดว่ามันเคยเป็นเนอสเซอรี่มาก่อนนะ";
+		next;
+		if (select( "ไปล่าแทน", "ปลอบโยน" ) == 1) {
+			mes "[Zoryara]";
+			mes "มันเกิดขึ้นเสมอ...";
+			mes "ใช่ มันเกิดขึ้นเสมอ...";
+			npctalk "Toralung: Joryara เล่นกับข้าหน่อย!", "ep19_icas_in_232_59", bc_self;
+			close;
+		}
+		mes "[Zoryara]";
+		mes "ขอบคุณมากนะ!";
+		mes "เด็กๆ จะได้รับการดูแลโดยข้าเอง... อา แน่นอนว่ามนุษย์อย่างเจ้าไม่มีอะไรเกี่ยวข้องกับเด็กๆ ของเรา...";
+		mes "<ITEM>[Thin and tough shell]<INFO>1000830</INFO></ITEM> สามารถหาได้จากการล่า Ice Straw";
+		mes "ขอสักยี่สิบชิ้นนะ!";
+		setquest 8787;
+		close;
+	case 1:
+		if (countitem(1000830) < 15) {
+			mes "[Zoryara]";
+			mes "เจ้าช่วยหา <ITEM>[Thin and tough shells]<INFO>1000830</INFO></ITEM> ให้ข้าสัก 15 ชิ้นได้ไหม...";
+			mes "ข้าช่วยไม่ได้จริงๆ เพราะเด็กๆ อยากกินมัน";
+			npctalk "Holyara: Zoryara ล่าสัตว์ไม่เป็น!", "ep19_icas_in_235_57", bc_self;
+			npctalk "Toralung: ใช้ดาบของเจ้าให้ดีสิ!", "ep19_icas_in_232_59", bc_self;
+			npctalk "Zoryara: เจ้าพวกนี้นี่...", "", bc_self;
+			close;
+		}
+		mes "[Zoryara]";
+		mes "ขอบใจนะ มนุษย์!";
+		npctalk "Horyara: ขอบใจนะ มนุษย์!", "ep19_icas_in_235_57", bc_self;
+		npctalk "ขอบใจนะ มนุษย์!", "ep19_icas_in_232_59", bc_self;
+		delitem 1000830,15;	// EP19_Thin_Shell
+		completequest 8787;
+		setquest 8788;
+		set_reputation_points(3, (get_reputation_points(3) + 5));
+		if (get_reputation_points(3) >= 3000)
+			getitem 1000608,1;	// Ep19_Snow_Flower
+		getitem 1000608,2;	// Ep19_Snow_Flower
+		next;
+		mes "[Zoryara]";
+		mes "...";
+		mes "เฮ้อ...";
+		emotion ET_CRY;
+		next;
+		mes "[Zoryara]";
+		mes "เอาล่ะ... ข้าจะหั่นมันเอง ดังนั้นถอยออกไปหน่อย";
+		mes "มันอันตรายถ้าเศษน้ำแข็งกระเด็นใส่";
+		mes "มนุษย์ ถอยหลังไปนิดถ้าเจ้าจะดู";
+		mes "เอาล่ะ ลองใช้มีดดูสักหน่อยไหม...";
+		npctalk "Zoryara: ท่าไม้ตาย! ดาบไวสไตล์ผู้พิทักษ์ของ Iwin!", "", bc_self;
+		npctalk "Holyara: Joryara เท่สุดๆ!", "ep19_icas_in_235_57", bc_self;
+		npctalk "Joryara เท่สุดๆ!", "ep19_icas_in_232_59", bc_self;
+		close;
+	case 2:
+		break;
+	}
+
+	if (isbegin_quest(8789) == 1) {
+		if (countitem(1000830) < 15) {
+			mes "[Zoryara]";
+			mes "เจ้าช่วยหา <ITEM>[Thin and tough shells]<INFO>1000830</INFO></ITEM> ให้ข้าสัก 15 ชิ้นได้ไหม...";
+			mes "ข้าช่วยไม่ได้จริงๆ เพราะเด็กๆ อยากกินมัน";
+			npctalk "Holyara: Zoryara ล่าสัตว์ไม่เป็น!", "ep19_icas_in_235_57", bc_self;
+			npctalk "Toralung: ใช้ดาบของเจ้าให้ดีสิ!", "ep19_icas_in_232_59", bc_self;
+			npctalk "Zoryara: เจ้าพวกนี้นี่...", "", bc_self;
+			close;
+		}
+		mes "[Zoryara]";
+		mes "ขอบใจนะ มนุษย์!";
+		npctalk "Horyara: ขอบใจนะ มนุษย์!", "ep19_icas_in_235_57", bc_self;
+		npctalk "Toralung: ขอบใจนะ มนุษย์!", "ep19_icas_in_232_59", bc_self;
+		delitem 1000830,15;	// EP19_Thin_Shell
+		erasequest 8789;
+		setquest 8788;
+		getitem 1000608,2;	// Ep19_Snow_Flower
+		set_reputation_points(3, (get_reputation_points(3) + 5));
+		if (get_reputation_points(3) >= 3000)
+			getitem 1000608,1;	// Ep19_Snow_Flower
+		getexp2 52243795,0;
+		getexp 0,3000000;
+		next;
+		mes "[Zoryara]";
+		mes "...";
+		mes "เฮ้อ...";
+		emotion ET_CRY;
+		next;
+		mes "[Zoryara]";
+		mes "เอาล่ะ... ข้าจะหั่นมันเอง ดังนั้นถอยออกไปหน่อย";
+		mes "มันอันตรายถ้าเศษน้ำแข็งกระเด็นใส่";
+		mes "มนุษย์ ถอยหลังไปนิดถ้าเจ้าจะดู";
+		mes "เอาล่ะ ลองใช้มีดดูสักหน่อยไหม...";
+		npctalk "Zoryara: ท่าไม้ตาย! ดาบไวสไตล์ผู้พิทักษ์ของ Iwin!", "", bc_self;
+		npctalk "Holyara: Joryara เท่สุดๆ!", "ep19_icas_in_235_57", bc_self;
+		npctalk "Joryara เท่สุดๆ!", "ep19_icas_in_232_59", bc_self;
+		close;
+	}
+	mes "[Zoryara]";
+	mes "เหะ เหะ เหะ...";
+	mes "มนุษย์ ยินดีที่ได้รู้จักนะ...";
+	next;
+	select( "วันนี้คุณดูยุ่งๆ นะ" );
+	mes "[Zoryara]";
+	mes "ไม่หรอก... ก็แค่นั้นแหละ";
+	npctalk "Horyara: ข้าอยากกิน Jellopi!", "ep19_icas_in_235_57", bc_self;
+	npctalk "Toralung: ข้าด้วย!", "ep19_icas_in_232_59", bc_self;
+	next;
+	mes "[Zoryara]";
+	mes "...ก็แค่นั้นแหละ";
+	mes "ไม่ใช่ว่าจัดการสต็อกไม่ได้หรอกนะ... แต่เป็นเพราะเด็กๆ ชอบมันมากจริงๆ";
+	mes "เจ้าช่วยเอา <ITEM>[thin and tough shells]<INFO>1000830</INFO></ITEM> มาให้ข้าสัก 15 ชิ้นได้ไหม...";
+	next;
+	if (select( "ตกลง", "ข้ากำลังยุ่ง" ) == 2) {
+		mes "[Zoryara]";
+		mes "ข้าช่วยไม่ได้จริงๆ...";
+		npctalk "Horyara: กระแสน้ำกำลังมาหรือเปล่า?", "ep19_icas_in_235_57", bc_self;
+		npctalk "Toralung: ข้าอยากไปด้วย!", "ep19_icas_in_232_59", bc_self;
+		npctalk "Zoryara: เจ้ายังห่างไกลนัก! มาเถอะ มาเล่นที่นี่กัน... ที่นี่นะ", "", bc_self;
+		close;
+	}
+	mes "[Zoryara]";
+	mes "ขอบใจนะ...";
+	mes "<ITEM>[Thin and tough shell]<INFO>1000830</INFO></ITEM> สามารถหาได้จากการล่า Ice Straw";
+	npctalk "Horyara: เล่นจนกว่ามนุษย์จะกลับมา!", "ep19_icas_in_235_57", bc_self;
+	npctalk "ข้าด้วย!", "ep19_icas_in_232_59", bc_self;
+	setquest 8789;
+	close;
+
+OnInit:
+	questinfo( QTYPE_QUEST, QMARK_NONE, "isbegin_quest(8787) == 0 && ep19_main >= 11" );
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "isbegin_quest(8787) == 1 && countitem(1000830) >= 15" );
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "isbegin_quest(8789) == 1 && countitem(1000830) >= 15" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_NONE, "checkquest(8788,PLAYTIME) == -1 && isbegin_quest(8789) == 0 && isbegin_quest(8787) == 2" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_NONE, "checkquest(8788,PLAYTIME) == 2" );
+	end;
+}
+
+icas_in,235,57,3	script	Horyara#ep19in::ep19_icas_in_235_57	4_EP19_IWIN,{
+	mes "[Horyara]";
+	mes "ข้าคือ Horyara!";
+	mes "ข้าจะเป็นผู้พิทักษ์ที่ยิ่งใหญ่ในอนาคต!";
+	close;
+}
+
+icas_in,232,59,5	script	Toralung#ep19in::ep19_icas_in_232_59	4_EP19_IWIN,{
+	mes "[Toralung]";
+	mes "ข้าคือ Toralung!";
+	mes "ในอนาคต...";
+	mes "ในอนาคต... ข้าจะเป็นผู้พิทักษ์ที่ยิ่งใหญ่!";
+	mes "ข้าพูดถูกไหมเนี่ย?";
+	npctalk "Horyara: ถูกต้องแล้ว!", "ep19_icas_in_235_57", bc_self;
+	npctalk "Toralung: เฮ้อออ", "ep19_icas_in_232_59", bc_self;
+	close;
+}
+//
+
+// (cloakoff in side quest)
+// icas_in,33,112,0	script	#Internal number limit	HIDDEN_WARP_NPC,1,1,{
+
+// Daily quest : Friederike's Day
+// (Kill 10x Primitive Rgan and 10x Lowest Rgan)
+// (Gather 10 Rgan's Magic Core)
+// Side quest : Frozen Sea. Step 7, 20
+icas_in,32,123,5	script	Friederike#ep19_room	4_EP19_FRIEDERIKE,{
+	if (checkweight(1000608,3) == 0) {	// Ep19_Snow_Flower
+		mes "- เดี๋ยวก่อน!! -";
+		mes "- คุณมีไอเทมมากเกินไป -";
+		mes "- เควสไม่สามารถดำเนินการให้เสร็จสิ้นได้ -";
+		mes "- กรุณาลดน้ำหนักตัวลง -";
+		mes "- โปรดลองใหม่อีกครั้ง -";
+		close;
+	}
+	// Side quest Purification Saint (เควสรอง: นักบุญแห่งการชำระล้าง)
+	// Unlock the 2 Side Quests : Frozen Sea / Friederike's Day (ปลดล็อก 2 เควสรอง: ทะเลเยือกแข็ง / วันของ Friederike)
+	if (ep19_side_saint == 18) {
+		mes "[Friederike]";
+		mes "นี่คือห้องของฉันเหรอ?";
+		mes "น่ารักจัง!";
+		cutin "ep19_friederike03.png",2;
+		cloakoffnpcself( "ep19_healrock_4" );
+		cloakoffnpcself( "ep19_healrock_5" );
+		cloakoffnpcself( "ep19_healrock_6" );
+		cloakoffnpcself( "ep19_healrock_7" );
+		cloakoffnpcself( "ep19_healrock_8" );
+		next;
+		mes "[Voglinde]";
+		mes "ลูกๆ ของฉันอยู่ที่นี่แล้ว";
+		mes "กว่าจะมาถึงที่นี่ได้มันยากลำบากจริงๆ";
+		cutin "ep19_voglinde01.png",0;
+		cloakoffnpcself( "ep19_healrock_3" );
+		next;
+		mes "[Friederike]";
+		mes "อา!!!";
+		mes "Bocklind ฉันอยู่นี่แล้วนะ~";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Mark]";
+		mes "อา... สวัสดีครับ!";
+		mes "องค์หญิง!!!";
+		cutin "ep18_mark_01.png",0;
+		next;
+		mes "[Dew]";
+		mes "<FONT SIZE = 16><B>และ... องค์ราชินีงั้นเหรอ?!</FONT></B>";
+		cutin "ep18_dew_02.png",2;
+		next;
+		mes "[Voglinde]";
+		mes "โอ้ ตายจริง!";
+		mes "เธอคือน้องชายของ Elise สินะ";
+		mes "ไม่ต้องเกร็งขนาดนั้นก็ได้";
+		mes "เรียกฉันว่าคุณป้า Voglinde ก็พอ";
+		mes "แล้วนี่เพื่อนที่อยู่ข้างๆ กันใช่ไหมจ๊ะ?";
+		cutin "ep19_voglinde01.png",0;
+		next;
+		mes "[Mark]";
+		mes "ครับ";
+		cutin "ep18_mark_01.png",0;
+		next;
+		mes "[Voglinde]";
+		mes "ยินดีต้อนรับ!";
+		mes "ถึงอย่างนั้น ตอนนี้เราก็ยังมีคนไม่พอนะ";
+		mes "<FONT SIZE = 16><B>โฮะ โฮะ โฮะ!</FONT></B>";
+		cutin "ep19_voglinde01.png",0;
+		next;
+		mes "[Voglinde]";
+		mes "ถ้าอย่างนั้น เมื่อยืนยันได้แล้วว่า Iman Friederike อยู่ที่นี่ ฉันก็จะขอตัวกลับก่อน";
+		mes "ยังมีงานต้องทำอีกตั้งเยอะ";
+		cutin "ep19_voglinde03.png",0;
+		next;
+		mes "[Friederike]";
+		mes "อ๋า~";
+		mes "ท่านป้าจะไปแล้วเหรอคะ?";
+		cutin "ep19_friederike04.png",2;
+		npctalk "Friederike: เราเพิ่งเจอกันเองนะ!", "", bc_self;
+		next;
+		mes "[Voglinde]";
+		mes "ฉันจะเรียกหาเธอเมื่อฉันว่างนะ";
+		mes "ฉันเตรียมชากับขนมหวานแสนอร่อยไว้ให้แล้วล่ะ";
+		cutin "ep19_voglinde03.png",0;
+		next;
+		mes "[Friederike]";
+		mes "จริงเหรอคะ?";
+		cutin "ep19_friederike03.png",2;
+		next;
+		mes "[Voglinde]";
+		mes "จริงสิจ๊ะ~~";
+		mes "ฉันเตรียมสิ่งที่พิเศษไว้ให้เพราะการมาถึงของเธอเลยนะ";
+		cutin "ep19_voglinde01.png",0;
+		next;
+		mes "[Voglinde]";
+		mes "อ๊ะ!";
+		mes "เวลาป่านนี้แล้วเหรอเนี่ย!";
+		mes "ฉันต้องไปเดี๋ยวนี้เลย";
+		mes "^e5555e Lehar^000000 ฝากดูแลทางนี้ด้วยนะจ๊ะ";
+		mes "ฉันเชื่อมั่นในตัวเธอนะ";
+		cutin "ep19_voglinde01.png",0;
+		npctalk "Voglinde: พวกเธอสองคนตามฉันมา", "ep19_healrock_3", bc_self;
+		next;
+		mes "[Lehar]";
+		mes "ครับ...? ครับผม!";
+		cutin "ep19_lehar05.png",2;
+		npctalk "Dew: ครับ?!", "ep19_healrock_4", bc_self;
+		npctalk "Magi: ครับ!", "ep19_healrock_6", bc_self;
+		cloakonnpcself( "ep19_healrock_3" );
+		cloakonnpcself( "ep19_healrock_4" );
+		cloakonnpcself( "ep19_healrock_6" );
+		ep19_side_saint = 19;
+		erasequest 11810;
+		setquest 11811;
+		close3;
+	}
+	if (ep19_side_saint == 19) {
+		mes "[Friederike]";
+		mes "Lehar";
+		mes "Boklind พูดว่าอะไรเหรอ?";
+		cutin "ep19_friederike02.png",2;
+		close3;
+	}
+	if (ep19_side_saint < 20)	// the player shouldn't be able to come here without the pre-requisite quests (ผู้เล่นไม่ควรจะมาถึงที่นี่ได้โดยไม่ผ่านเควสเงื่อนไขก่อนหน้า)
+		end;
+
+	// Side quest : Frozen Sea. Step 7 (เควสรอง: ทะเลเยือกแข็ง ขั้นที่ 7)
+	if (ep19_side_sea == 7) {
+		mes "[Friederike]";
+		mes "คุณมาแล้วเหรอ?";
+		mes "ข้างนอกมันหนาวมากเลยใช่ไหมล่ะ?";
+		mes "ทุกคน เข้ามาข้างในสิ";
+		mes "ที่นี่อุ่นมากเลยนะเพราะมันถูกปูไว้ด้วยขนสัตว์";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Mark]";
+		mes "ความคิดที่จะพักผ่อนมันฟุ้งกระจายเหมือนควันบุหรี่เลยล่ะ แต่ตอนนี้ไม่ใช่เวลา";
+		cloakoffnpcself( "ep19_healrock_5" );
+		cutin "ep18_mark_01.png",0;
+		next;
+		mes "[Mark]";
+		mes "สวมเสื้อโค้ทของคุณซะ";
+		mes "ผมมีที่ที่ต้องไป";
+		next;
+		mes "[Friederike]";
+		mes "คุณจะไปไหนเหรอ?";
+		mes "จะออกไปข้างนอกเหรอ?";
+		mes "หนาวขนาดนี้เนี่ยนะ?";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Mark]";
+		mes "^e5555eถ้าคุณพบหลุมที่เต็มไปด้วยยาพิษ^000000 มันก็น่าจะเป็นเพราะ tamarin ตกลงไปในนั้น";
+		mes "ถ้าคุณไม่ชำระล้างมัน เหยื่อรายอื่นก็จะตามมา";
+		mes "แกนเวทมนตร์ของ Shururu ก็พังเสียหายด้วย";
+		cutin "ep18_mark_01.png",0;
+		npctalk "Tataring: ฉันกำลังจะตายแล้ว!!!", "ep19_healrock_2", bc_self;
+		next;
+		mes "[Friederike]";
+		mes "ในขณะที่แกนเวทมนตร์พังอยู่แบบนั้น คุณอาจจะตายได้ถ้าตกลงไป";
+		mes "เพราะฉันไม่อยากให้ใครต้องเจ็บตัว...";
+		mes "ไปกันเถอะ";
+		cutin "ep19_friederike02.png",2;
+		ep19_side_sea = 8;
+		erasequest 11820;
+		setquest 11821;
+		close2;
+		cutin "",255;
+		cloakonnpcself( "ep19_healrock_5" );
+		end;
+	}
+	if (ep19_side_sea == 8) {
+		mes "[Friederike]";
+		mes "ในขณะที่แกนเวทมนตร์พังอยู่แบบนั้น คุณอาจจะตายได้ถ้าตกลงไป";
+		mes "เพราะฉันไม่อยากให้ใครต้องเจ็บตัว...";
+		mes "ไปกันเถอะ";
+		cutin "ep19_friederike02.png",2;
+		close3;
+	}
+	// Side quest : Frozen Sea. Step final (เควสรอง: ทะเลเยือกแข็ง ขั้นสุดท้าย)
+	if (ep19_side_sea == 16) {
+		mes "[Friederike]";
+		mes "คุณมาแล้วเหรอ?";
+		mes "คุณบาดเจ็บตรงไหนหรือเปล่า?";
+		cutin "ep19_friederike02.png",2;
+		cloakoffnpcself( "ep19_healrock_5" );
+		cloakoffnpcself( "ep19_healrock_7" );
+		next;
+		mes "[Lehar]";
+		mes "ฉันดีใจจริงๆ ที่คุณปลอดภัย";
+		mes "ฉันตกใจมากเลยนะตอนที่ได้ยินข่าวจาก Magi";
+		cutin "ep19_lehar01.png",2;
+		cloakoffnpcself( "ep19_healrock_8" );
+		next;
+		mes "[Lehar]";
+		mes "แล้วข้างในเป็นยังไงบ้าง?";
+		mes "ขึ้นอยู่กับระดับของความอันตราย ถ้าคุณไม่รีบไปรายงานท่านป้าล่ะก็...";
+		cutin "ep19_lehar03.png",2;
+		next;
+		mes "[Voglinde]";
+		mes "ไม่มีทางหรอก";
+		cutin "ep19_voglinde01.png",0;
+		cloakoffnpcself( "ep19_healrock_3" );
+		cloakoffnpcself( "ep19_healrock_4" );
+		cloakoffnpcself( "ep19_healrock_6" );
+		next;
+		mes "[Lehar]";
+		mes "<FONT SIZE = 16> ท่านป้า!</FONT>";
+		mes "ได้ยังไงกัน...";
+		cutin "ep19_lehar05.png",2;
+		next;
+		mes "[Voglinde]";
+		mes "น่าภูมิใจจริงๆ ที่ Friederike มาช่วยขจัดสิ่งที่เน่าเปื่อย ^000000 ^e5555e ออกไปได้";
+		mes "ฉันก็เลยมาตรวจสอบดูว่าเกิดอะไรขึ้นบ้าง";
+		cutin "ep19_voglinde02.png",0;
+		next;
+		mes "[Voglinde]";
+		mes "ดูเหมือนว่าทุกคนจะกลับมาได้อย่างปลอดภัยนะ";
+		mes "ฉันดีใจจริงๆ ที่ไม่มีใครได้รับบาดเจ็บ";
+		cutin "ep19_voglinde01.png",0;
+		next;
+		mes "[Voglinde]";
+		mes "เราค้นพบสิ่งต่างๆ แบบนั้น และลูกๆ ของเราก็ไม่ทำให้ป้าผิดหวังจริงๆ";
+		mes "สุดยอดไปเลย!";
+		next;
+		mes "[Voglinde]";
+		mes "มันไม่ใช่ข่าวดีหรอกนะที่มีสิ่งแบบนั้นอยู่ แต่ก็ถือว่าโชคดีมากที่ได้รู้ก่อนที่จะเกิดอุบัติเหตุร้ายแรงขึ้น";
+		cutin "ep19_voglinde04.png",0;
+		next;
+		mes "[Surr]";
+		mes "<FONT SIZE = 14><B>Voglinde!</FONT></B>";
+		mes "<FONT SIZE = 14><B>หลุมนั้นข้างในค่อนข้างกว้างมากเลยล่ะครับ แต่ดูเหมือนมันจะไม่ได้เชื่อมต่อไปยังที่อื่น</FONT></B>";
+		cutin "ep19_iwin03.png",2;
+		next;
+		mes "[Surr]";
+		mes "<FONT SIZE = 14><B>แต่ผมคิดว่ามันอันตรายที่จะปล่อยมันไว้เฉยๆ เพราะมันเต็มไปด้วยพวก Rgan ที่ผิดปกติและเหล่ามอนสเตอร์!</FONT></B>";
+		next;
+		mes "[Voglinde]";
+		mes "จริงเหรอ?";
+		mes "พวกมันแตกต่างกันยังไงล่ะ?";
+		cutin "ep19_voglinde01.png",0;
+		next;
+		mes "[Surr]";
+		mes "<FONT SIZE = 14><B>พวก Rgan มีท่าทางไม่เป็นธรรมชาติและบิดเบี้ยวจนน่าสยดสยองเลยครับ</FONT></B>";
+		mes "<FONT SIZE = 14><B>ส่วนสีของพวกมอนสเตอร์ก็ดูแปลกๆ... บางตัวผมไม่เคยเห็นข้างนอกมาก่อนเลย!</FONT></B>";
+		cutin "ep19_iwin03.png",2;
+		next;
+		mes "[Voglinde]";
+		mes "Rgan ที่บิดเบี้ยวผิดธรรมชาติงั้นเหรอ...";
+		mes "ถ้าอย่างนั้น... มันอาจจะเกิดขึ้นเองตามธรรมชาติก็ได้ แต่เราก็ตัดความเป็นไปได้ไม่ได้ว่ามันคือ ^e5555e ถังขยะของพวก Rgan^000000";
+		cutin "ep19_voglinde02.png",0;
+		next;
+		select( "ถังขยะเหรอ?" );
+		mes "[Voglinde]";
+		mes "พวก Rgan มีการเลือกปฏิบัติอย่างรุนแรงต่อเผ่าพันธุ์เดียวกันที่ไม่ได้มาตรฐานตามที่ต้องการ";
+		mes "พวกเขาก็เลยทิ้งคนเหล่านั้นไปแบบนั้น";
+		cutin "ep19_voglinde04.png",0;
+		next;
+		mes "[Surr]";
+		mes "<FONT SIZE = 14><B>ผมเอาเนื้อบางส่วนกลับมาด้วยล่ะครับ</FONT></B>";
+		cutin "ep19_iwin03.png",2;
+		next;
+		mes "[Voglinde]";
+		mes "อา... จริงเหรอจ๊ะ?";
+		mes "ตายจริง... กลิ่นมันแรงมากเลยนะเนี่ย";
+		cutin "ep19_voglinde03.png",0;
+		next;
+		mes "[Voglinde]";
+		mes "ช่วยจัดการให้หน่อยได้ไหม Friederike?";
+		mes "จมูกเธอจะเบี้ยวเอาได้นะ";
+		cutin "ep19_voglinde02.png",0;
+		next;
+		mes "[Friederike]";
+		mes "ค่ะ";
+		mes "ฉันทำความสะอาดมันแล้วค่ะ";
+		cutin "ep19_friederike05.png",2;
+		next;
+		mes "[Surr]";
+		mes "ว้าว";
+		mes "เมื่อมันถูกชำระล้างแล้ว กลิ่นก็หายไป แถมเนื้อยังนุ่มและหอมมันมากเลยครับ";
+		cutin "ep19_iwin03.png",2;
+		next;
+		mes "[Dew]";
+		mes "คุณกินมันเข้าไปแล้วเหรอ?!";
+		cutin "ep18_dew_02.png",2;
+		next;
+		mes "[Voglinde]";
+		mes "ก็นะ ตามมาตรฐานของเรามันอาจจะดูแปลกนิดหน่อย แต่ตามมาตรฐานของพวกเขา Rgan ก็เป็นเพียงแค่ ^e5555e แมลง^000000 ตัวหนึ่ง ไม่มีอะไรมากไปกว่านั้น";
+		cutin "ep19_voglinde01.png",0;
+		next;
+		mes "[Surr]";
+		mes "ผมเชื่อมั่นว่าท่าน Friederike จะช่วยรักษาให้ ถ้าคุณเกิดปวดท้องขึ้นมา";
+		mes "อุ๊ปส์";
+		cutin "ep19_iwin03.png",2;
+		next;
+		mes "[Surr]";
+		mes "งั้นผมจะออกไปล่าต่อละกัน";
+		next;
+		mes "[Lehar]";
+		mes "มันจะไม่ฝืนตัวเองเกินไปหน่อยเหรอ?";
+		mes "ทำไมไม่พักผ่อนสักหน่อยล่ะ?";
+		cutin "ep19_lehar05.png",2;
+		next;
+		mes "[Surr]";
+		mes "Tataring ก็ล้มป่วยไปแล้วด้วย ถ้าเราไม่รีบทำตอนนี้ เราจะขาดแคลนอาหารเอานะ ^e5555e^000000";
+		cutin "ep19_iwin03.png",2;
+		next;
+		mes "[Lehar]";
+		mes "ฉันเข้าใจนะ แต่ว่า...";
+		cutin "ep19_lehar04.png",2;
+		next;
+		mes "[Tataring]";
+		mes "ฉันจะช่วยทันทีที่ร่างกายฟื้นตัว เพราะงั้นตอนนี้ก็พักผ่อนไปก่อนเถอะนะ";
+		cutin "ep19_tamarin01.png",2;
+		next;
+		mes "[Surr]";
+		mes "ครับ...";
+		mes "ก็ได้ครับ";
+		cutin "ep19_iwin03.png",2;
+		next;
+		mes "[Voglinde]";
+		mes "ใช่แล้วจ้ะ";
+		mes "พักผ่อนก่อนเถอะ เดี๋ยวเด็กคนอื่นๆ จะช่วยจัดหาอาหารให้เอง";
+		mes "ยังมีงานอีกมากที่รอให้เราทำ";
+		cutin "ep19_voglinde01.png",0;
+		next;
+		mes "[Voglinde]";
+		mes "ถ้าอย่างนั้นฉันต้องไปทำงานต่อแล้ว...";
+		mes "พักผ่อนให้สบายนะจ๊ะ";
+		next;
+		mes "[Lehar]";
+		mes "มันน่าจะดีนะ ถ้าไม่ใช่แค่พวกเรา แต่ท่านป้าเองก็ได้พักผ่อนบ้าง...";
+		mes "ฉันล่ะเป็นห่วงจริงๆ";
+		cutin "ep19_lehar04.png",2;
+		cloakonnpcself( "ep19_healrock_3" );
+		cloakonnpcself( "ep19_healrock_6" );
+		cloakonnpcself( "ep19_healrock_4" );
+		ep19_side_sea = 17;
+		completequest 11829;
+		getitem 1000608,10;	// Ep19_Snow_Flower
+		set_reputation_points(3, (get_reputation_points(3) + 10));
+		close2;
+		cutin "",255;
+		cloakonnpcself( "ep19_healrock_7" );
+		cloakonnpcself( "ep19_healrock_5" );
+		cloakonnpcself( "ep19_healrock_8" );
+		end;
+	}
+	//
+
+	// Daily quest - Friederike's Day (เควสรายวัน - วันของ Friederike)
+	if (checkquest(11813,HUNTING) == 2 && countitem(1000705) >= 10) {
+		mes "[Friederike]";
+		mes "คุณ " + strcharinfo(0) + " คะ!!!";
+		mes "คุณกลับมาแล้วเหรอ";
+		mes "เป็นยังไงบ้างคะ?";
+		mes "คำอวยพรได้ผลไหม?";
+		cutin "ep19_friederike01.png",2;
+		delitem 1000705,10;	// Ep19_Rgan_Core
+		erasequest 11813;
+		setquest 11814;
+		getitem 1000608,2;	// Ep19_Snow_Flower
+		set_reputation_points(3, (get_reputation_points(3) + 5));
+		if (get_reputation_points(3) >= 3000)
+			getitem 1000608,1;	// Ep19_Snow_Flower
+		getexp 10000000,7000000;	// affected by server drop rate (มีผลจากอัตราดรอปของเซิร์ฟเวอร์)
+		next;
+		mes "[Friederike]";
+		mes "ว้าว!";
+		mes "เมื่อดูจากแกนเวทมนตร์ที่คุณนำมาให้ ดูเหมือนว่ามันจะได้ผลนะ";
+		mes "มันไม่เหนียวเหนอะหนะเลย!";
+		cutin "ep19_friederike03.png",2;
+		next;
+		mes "[Friederike]";
+		mes "ด้วยแกนเวทมนตร์ที่สมบูรณ์แบบแบบนี้ คุณจะสามารถสร้างสิ่งที่น่าทึ่งได้ง่ายขึ้นมากเลยล่ะ!";
+		mes "มาเถอะ ไปบอกผลลัพธ์ของวันนี้ให้ Vellgunde รู้กัน!";
+		cutin "ep19_friederike05.png",2;
+		next;
+		mes "[Friederike]";
+		mes "ขอบคุณมากนะคะที่ช่วยเหลือ";
+		mes "คุณ " + strcharinfo(0) + " เองก็พักผ่อนให้เต็มที่นะคะ";
+		mes "ฉันจะคอยสวดภาวนาให้เสมอค่ะ";
+		cutin "ep19_friederike03.png",2;
+		close3;
+	}
+	if (isbegin_quest(11812) == 0) {
+		mes "[Friederike]";
+		mes "จะว่าไป ฉันได้ยินมาจาก Voglinde เมื่อกี้นี้เองค่ะ";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Friederike]";
+		mes "ท่าน Leon และท่าน Aurelie สามารถชำระล้างมลพิษและแกนเวทมนตร์ของ Rgan ได้ แต่พวกเขาคงต้องลำบากมากแน่ๆ เพราะมันใช้พลังเวทมนตร์สูงมาก";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Friederike]";
+		mes "ถ้าคุณชำระล้างแกนเวทมนตร์แล้ว ^e5555eVellgunde^000000...";
+		mes "เอ่อ... คุณอธิบายมันแล้วล่ะ แต่ฉันไม่ค่อยคุ้นเคยกับสาขานี้เท่าไหร่...";
+		cutin "ep19_friederike03.png",2;
+		npctalk "Friederike: ประมาณนี้นะคะ...", "", bc_self;
+		next;
+		mes "[Friederike]";
+		mes "อย่างไรก็ตาม พวกเขาสกัดมันออกมาและทำให้มันเป็นคริสตัลเวทมนตร์ต่างๆ ค่ะ";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Friederike]";
+		mes "คุณสามารถนำมันไปใช้ประโยชน์ได้หลากหลายเลยนะคะ";
+		mes "อย่างเช่นการทำอาหาร หรือการจุดไฟในห้อง...";
+		npctalk "Friederike: ใส่ไว้ในชุดเปียกน้ำ...", "", bc_self;
+		next;
+		mes "[Friederike]";
+		mes "ฉันถูก Voglinde ดุมาด้วยล่ะค่ะ ที่บอกว่ามันน่าเสียดายที่จะใช้แกนเวทมนตร์ที่ผ่านการชำระล้างอย่างยากลำบากพวกนี้";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Friederike]";
+		mes "ท่าน Voglinde บอกว่า สิ่งละอันพันละน้อยที่คุณมักจะเพลิดเพลินได้ใน Rune-Midgarts ที่อุดมสมบูรณ์ไปด้วยทรัพยากรนั้น,";
+		npctalk "Friederike: ที่นี่ไม่มีต้นไม้โตเลยล่ะค่ะ", "", bc_self;
+		next;
+		mes "[Friederike]";
+		mes "ใน Isgard การจุดไฟในห้อง การทำน้ำให้สะอาด ทุกสิ่งเล็กๆ น้อยๆ ล้วนจำเป็นต่อการดำรงชีวิตค่ะ";
+		next;
+		mes "[Friederike]";
+		mes "ดังนั้น ตั้งแต่ตอนนี้ไป ฉันจะเป็นคนรับหน้าที่แทนท่าน Leon และท่าน Aurelie ในการชำระล้างเองค่ะ!";
+		mes "แกนเวทมนตร์ได้ถูกชำระแล้ว!";
+		cutin "ep19_friederike04.png",2;
+		next;
+		mes "[Friederike]";
+		mes "ดังนั้น " + strcharinfo(0) + " ถ้าคุณได้รับ ^e5555eMagic Core^000000 จาก Rgan ก็นำมาให้ฉันนะคะ";
+		mes "ฉันจะทำความสะอาดมันแล้วคืนให้คุณเองค่ะ";
+		next;
+		mes "[Friederike]";
+		mes "อา!";
+		mes "แล้วฉันก็นึกขึ้นได้ เพราะได้ยินมาว่ามีโกดังที่มีแกนเวทมนตร์จำนวนมหาศาลที่ยังไม่ได้รับการชำระล้างอยู่ด้วยค่ะ";
+		npctalk "Friederike: นี่คือการบ้านของฉันสำหรับอนาคตค่ะ", "", bc_self;
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Friederike]";
+		mes "แกนเวทมนตร์ธรรมดาจะหาได้จากพวก Rgan^000000 ที่มีระดับ ^e5555e ต่ำกว่าค่ะ";
+		mes "มันทั้งสกปรกและยากต่อการประมวลผล...";
+		mes "มันส่งกลิ่นเหม็นและทำให้ดินรอบๆ นั้นเน่าเสียด้วยค่ะ...";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Friederike]";
+		mes "ดังนั้น ฉันจึงพยายามตรวจสอบดูว่าผลของการชำระล้างจะเป็นอย่างไร หากฉันได้รับพรแห่งการชำระล้างและได้รับ ^e5555e Rgan's low-grade magic core^000000 ค่ะ";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Friederike]";
+		mes "เพราะเพียงแค่นั้นก็จะทำให้งานของฉันง่ายขึ้นมากเลยล่ะค่ะ";
+		mes "คุณ " + strcharinfo(0) + " ถ้าคุณสนใจ อยากจะมาร่วมด้วยไหมคะ?";
+		cutin "ep19_friederike05.png",2;
+		setquest 11812;
+		completequest 11812;
+	}
+	else {
+		mes "[Friederike]";
+		mes "การสำรวจ Isgard เป็นยังไงบ้างคะ?";
+		mes "ข้างนอกหนาวมากเลยใช่ไหมล่ะ?";
+		mes "มันคงจะดีนะถ้าคุณได้พักผ่อนในห้องหลังเลิกงานค่ะ";
+		cutin "ep19_friederike02.png",2;
+	}
+	next;
+	switch( select( "ช่วย Friederike.", "ทำความสะอาดแกนเวทมนตร์ระดับต่ำ.", "ชวนคุย." ) ) {
+	case 1:
+		switch( checkquest(11814,PLAYTIME) ) {
+		case -1:
+			break;
+		case 0:
+		case 1:
+			mes "[Friederike]";
+			mes "ด้วยแกนเวทมนตร์ที่สมบูรณ์แบบแบบนี้ คุณจะสามารถสร้างสิ่งที่น่าทึ่งได้ง่ายขึ้นมากเลยล่ะ!";
+			mes "มาเถอะ ไปบอกผลลัพธ์ของวันนี้ให้ Vellgunde รู้กัน!";
+			cutin "ep19_friederike05.png",2;
+			next;
+			mes "[Friederike]";
+			mes "ขอบคุณมากนะคะที่ช่วยเหลือ";
+			mes "คุณ " + strcharinfo(0) + " เองก็พักผ่อนให้เต็มที่นะคะ";
+			mes "ฉันจะคอยสวดภาวนาให้เสมอค่ะ";
+			cutin "ep19_friederike03.png",2;
+			close3;
+		case 2:
+			erasequest 11814;
+			break;
+		}
+		switch( checkquest(11813,HUNTING) ) {
+		case -1:
+			mes "[Friederike]";
+			mes "ถ้าอย่างนั้น ช่วยกำจัด ^e5555e " + getmonsterinfo("EP19_RGAN_A", MOB_NAME) + "^000000 และ ^e5555e " + getmonsterinfo("EP19_RGAN_B", MOB_NAME) + "^000000 อย่างละ ^e5555e 10 ตัว ^000000 และนำ ^e5555e Mana Core ^000000 กลับมาให้ฉัน ^e5555e 10 ชิ้นขึ้นไปนะคะ^000000";
+			cutin "ep19_friederike01.png",2;
+			next;
+			mes "[Friederike]";
+			mes "หากการคาดการณ์ของฉันถูกต้อง คุณจะได้รับ ^e5555e Magic Core^000000 ที่ดีขึ้น ไม่ใช่แค่ ^e5555e Low-grade Magic Core^000000 ค่ะ";
+			next;
+			mes "[Friederike]";
+			mes "อย่าหักโหมเกินไปและกลับมาอย่างปลอดภัยนะ!";
+			mes "ตกลงไหมคะ?";
+			cutin "ep19_friederike04.png",2;
+			setquest 11813;
+			close3;
+		case 0:
+		case 1:
+			mes "[Friederike]";
+			mes "ถ้าอย่างนั้น ช่วยกำจัด ^e5555e " + getmonsterinfo("EP19_RGAN_A", MOB_NAME) + "^000000 และ ^e5555e " + getmonsterinfo("EP19_RGAN_B", MOB_NAME) + "^000000 อย่างละ ^e5555e 10 ตัว ^000000 และนำ ^e5555e Mana Core ^000000 กลับมาให้ฉัน ^e5555e 10 ชิ้นขึ้นไปนะคะ^000000";
+			cutin "ep19_friederike01.png",2;
+			next;
+			mes "[Friederike]";
+			mes "หากการคาดการณ์ของฉันถูกต้อง คุณจะได้รับ ^e5555e Magic Core^000000 ที่ดีขึ้น ไม่ใช่แค่ ^e5555e Low-grade Magic Core^000000 ค่ะ";
+			next;
+			mes "[Friederike]";
+			mes "อย่าหักโหมเกินไปและกลับมาอย่างปลอดภัยนะ!";
+			mes "ตกลงไหมคะ?";
+			cutin "ep19_friederike04.png",2;
+			close3;
+		case 2:
+			end;
+		}
+		end;
+	case 2:
+		if (countitem(1000707) < 10) {
+			mes "[Friederike]";
+			mes "ตกลงค่ะ!";
+			mes "ถ้าอย่างนั้นมาโชว์ฝีมือกันหน่อยดีไหม?";
+			next;
+			mes "[Friederike]";
+			mes "เอ๋...";
+			mes "^e5555e คุณจำเป็นต้องมีแกนเวทมนตร์ระดับต่ำของ Rgan 10 ชิ้นค่ะ ^e5555e^000000 ถึงจะสร้างสิ่งที่มีประโยชน์ได้";
+			cutin "ep19_friederike02.png",2;
+			next;
+			mes "[Friederike]";
+			mes "พลังเวทมนตร์มันอ่อนเกินไปหน่อยค่ะ...";
+			close3;
+		}
+		mes "[Friederike]";
+		mes "ตกลงค่ะ!";
+		mes "ถ้าอย่างนั้นมาโชว์ฝีมือกันหน่อยดีไหม?";
+		next;
+		mes "[Friederike]";
+		mes "^e5555e หากแกนเวทมนตร์ระดับต่ำของ Rgan^000000 ถูกชำระล้าง เศษซากของแกนเวทมนตร์จะถูกรวบรวมเข้าด้วยกันอย่างดีเลยล่ะ!!!";
+		mes "นี่คือ ^e5555e" + getitemname(1000706) + "^000000 ที่มีประโยชน์มากค่ะ!";
+		delitem 1000707,10;	// Ep19_Rgan_Core_F
+		getitem 1000706,1;	// Ep19_Purified_Core
+		next;
+		mes "[Friederike]";
+		mes "^e5555eนำมันไปให้ Vellgunde^000000 แล้วเขาจะชอบมันมากเลยล่ะค่ะ!";
+		cutin "ep19_friederike03.png",2;
+		close3;
+	case 3:
+		mes "[Friederike]";
+		mes "ว้าว!";
+		mes "วันนี้คุณมีเรื่องราวที่น่าสนใจอะไรจะมาเล่าให้เราฟังบ้างคะ?";
+		cutin "ep19_friederike03.png",2;
+		close3;
+	}
+	end;
+
+OnInit:
+	// Side quest : Frozen Sea. Step 7 and final (เควสรอง: ทะเลเยือกแข็ง ขั้นที่ 7 และขั้นสุดท้าย)
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "isbegin_quest(11820) == 1" );
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "isbegin_quest(11829) == 1" );
+
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "isbegin_quest(11810) == 1" );
+
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "checkquest(11813,HUNTING) == 2 && countitem(1000705) >= 10" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_NONE, "ep19_side_saint == 20 && checkquest(11814,PLAYTIME) == -1 && checkquest(11813,HUNTING) == -1" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_NONE, "checkquest(11814,PLAYTIME) == 2" );
+	end;
+}
+
+
+// Side quest : Frozen Sea (Purification Saint side quest pre-requise). Step 1
+// Daily quests : Abandoned Pit Fl 1, Abandoned Pit Fl 2, Dig and Dig
+icas_in,27,116,5	script	Surr#ep19_room::ep19_healrock_1	4_EP19_IWIN,{
+	if (checkweight(1000608,3) == 0) {	// Ep19_Snow_Flower
+		mes "- เดี๋ยวก่อน!! -";
+		mes "- คุณมีไอเทมมากเกินไป -";
+		mes "- เควสไม่สามารถดำเนินการให้เสร็จสิ้นได้ -";
+		mes "- กรุณาลดน้ำหนักตัวลง -";
+		mes "- โปรดลองใหม่อีกครั้ง -";
+		close;
+	}
+	if (ep19_side_saint < 20) {
+		mes "[Surr]";
+		mes "เวลาที่ขนเปียก ร่างกายจะหนักและทำให้เป็นหวัดได้ง่ายนะ";
+		mes "การทำให้ขนแห้งสนิทเมื่ออยู่ข้างในอาคารเป็นเรื่องสำคัญเสมอ";
+		cutin "ep19_iwin03.png",2;
+		close3;
+	}
+
+	// Side quest : Frozen Sea (เควสรอง: ทะเลเยือกแข็ง)
+	if (ep19_side_sea == 1) {
+		mes "[Surr]";
+		mes "Lehar!!";
+		mes "ฉันพามันมาให้แล้ว!";
+		cutin "ep19_iwin03.png",2;
+		cloakoffnpcself( "ep19_healrock_2" );
+		next;
+		mes "[Lehar]";
+		mes "อะไร... อะไรกัน";
+		mes "กลิ่นแปลกๆ นี่มัน...";
+		cutin "ep19_lehar03.png",2;
+		cloakoffnpcself( "ep19_healrock_8" );
+		next;
+		mes "[Surr]";
+		mes "ฉันก็ไม่รู้รายละเอียดเหมือนกัน";
+		mes "เดี๋ยวพอมันตื่นขึ้นมา เธอก็คงจะรู้เองนั่นแหละ";
+		cutin "ep19_iwin03.png",2;
+		next;
+		mes "[Lehar]";
+		mes "ท่าน Friederike ได้โปรดช่วยชำระล้างคนคนนี้ก่อนเถอะครับ...";
+		cutin "ep19_lehar03.png",2;
+		next;
+		mes "[Friederike]";
+		mes "พวกคุณชอบทำอะไรแปลกๆ อยู่เรื่อยเลย...";
+		mes "กลิ่นมัน...";
+		cutin "ep19_friederike04.png",2;
+		next;
+		mes "[???]";
+		mes "อึก...";
+		cutin "ep19_tamarin03.png",2;
+		next;
+		mes "[???]";
+		mes "<FONT SIZE = 16><B>ว้าว!!!!</FONT></B>";
+		cutin "ep19_tamarin02.png",2;
+		next;
+		mes "[Surr]";
+		mes "อารมณ์ดีพอที่จะเล่นมุก Tataring แล้วเหรอ?";
+		mes "นายไม่เป็นไรนะ!?";
+		cutin "ep19_iwin03.png",2;
+		next;
+		mes "[Surr]";
+		mes "ขอบใจนะ";
+		mes "Lehar!";
+		mes "ฟริ... เดอริเก้... ท่าน?";
+		next;
+		mes "[Tataring]";
+		mes "เฮะ เฮะ เฮะ เฮะ";
+		mes "เหมือนตายแล้วเกิดใหม่เลยล่ะ...";
+		cutin "ep19_tamarin02.png",2;
+		next;
+		mes "[Dew]";
+		mes "อ๊ะ!!!";
+		mes "Tamarin!!";
+		mes "นายมาทำอะไรที่นี่น่ะ!";
+		cutin "ep18_dew_02.png",2;
+		cloakoffnpcself( "ep19_healrock_4" );
+		next;
+		mes "[Tataring]";
+		mes "ว๊!!";
+		mes "Dew!";
+		mes "นายมาที่นี่ได้ยังไงกันเนี่ย!!!";
+		cutin "ep19_tamarin02.png",2;
+		next;
+		mes "[Dew]";
+		mes "ฉันก็ไม่รู้เหมือนกัน!!";
+		cutin "ep18_dew_01.png",2;
+		next;
+		mes "[Mark]";
+		mes "มันเกิดอะไรขึ้นกันแน่?";
+		cloakoffnpcself( "ep19_healrock_5" );
+		cutin "ep18_mark_01.png",0;
+		next;
+		mes "[Tataring]";
+		mes "มาหา Mark เหรอ?";
+		cutin "ep19_tamarin02.png",2;
+		next;
+		mes "[Lehar]";
+		mes "รู้จักกันงั้นเหรอ?";
+		mes "^e5555eIsgard ไม่ใช่ที่ที่จะเข้ามาได้โดยไม่มีคำเชิญนะ^000000 นายเข้ามาที่นี่ได้ยังไง?";
+		cutin "ep19_lehar04.png",2;
+		ep19_side_sea = 2;
+		setquest 11815;
+		close3;
+	}
+	if (ep19_side_sea == 2) {
+		mes "[Surr]";
+		mes "อารมณ์ดีพอที่จะเล่นมุก Tataring แล้วเหรอ?";
+		mes "นายไม่เป็นไรนะ!?";
+		cutin "ep19_iwin03.png",2;
+		next;
+		mes "[Surr]";
+		mes "ขอบใจนะ";
+		mes "Lehar!";
+		mes "ฟริ... เดอริเก้... ท่าน?";
+		next;
+		mes "[Tataring]";
+		mes "เฮะ เฮะ เฮะ เฮะ";
+		mes "เหมือนตายแล้วเกิดใหม่เลยล่ะ...";
+		cutin "ep19_tamarin02.png",2;
+		next;
+		mes "[Dew]";
+		mes "อ๊ะ!!!";
+		mes "Tamarin!!";
+		mes "นายมาทำอะไรที่นี่น่ะ!";
+		cutin "ep18_dew_02.png",2;
+		cloakoffnpcself( "ep19_healrock_4" );
+		next;
+		mes "[Tataring]";
+		mes "ว๊!!";
+		mes "Dew!";
+		mes "นายมาที่นี่ได้ยังไงกันเนี่ย!!!";
+		cutin "ep19_tamarin02.png",2;
+		next;
+		mes "[Dew]";
+		mes "ฉันก็ไม่รู้เหมือนกัน!!";
+		cutin "ep18_dew_01.png",2;
+		next;
+		mes "[Mark]";
+		mes "มันเกิดอะไรขึ้นกันแน่?";
+		cloakoffnpcself( "ep19_healrock_5" );
+		cutin "ep18_mark_01.png",0;
+		next;
+		mes "[Tataring]";
+		mes "มาหา Mark เหรอ?";
+		cutin "ep19_tamarin02.png",2;
+		next;
+		mes "[Lehar]";
+		mes "รู้จักกันงั้นเหรอ?";
+		mes "^e5555eIsgard ไม่ใช่ที่ที่จะเข้ามาได้โดยไม่มีคำเชิญนะ^000000 นายเข้ามาที่นี่ได้ยังไง?";
+		cutin "ep19_lehar04.png",2;
+		close3;
+	}
+	if (ep19_side_sea < 17) {	// Frozen Sea completed (ทะเลเยือกแข็ง สำเร็จแล้ว)
+		mes "[Surr]";
+		mes "เวลาที่ขนเปียก ร่างกายจะหนักและทำให้เป็นหวัดได้ง่ายนะ";
+		mes "การทำให้ขนแห้งสนิทเมื่ออยู่ข้างในอาคารเป็นเรื่องสำคัญเสมอ";
+		cutin "ep19_iwin03.png",2;
+		close3;
+	}
+
+	// daily (เควสรายวัน)
+	// quest(s) completed (เควสสำเร็จแล้ว)
+	if (checkquest(11831,HUNTING) == 2 && countitem(1000708) >= 20 || checkquest(11833,HUNTING) == 2 && countitem(1000708) >= 20 || isbegin_quest(11849) == 1) {
+		mes "[Surr]";
+		mes "กลับมาแล้วสินะ";
+		mes "ฉันดีใจจริงๆ ที่คุณปลอดภัย";
+		cutin "ep19_iwin03.png",2;
+		if (checkquest(11833,HUNTING) == 2 && countitem(1000708) >= 20) {
+			delitem 1000708,20;	// Ep19_Ice_Meat
+			erasequest 11833;
+			setquest 11834;
+			set_reputation_points(3, (get_reputation_points(3) + 5));
+			getitem 1000608,3;	// Ep19_Snow_Flower	// Note: 3 is not a mistake! (หมายเหตุ: เลข 3 ไม่ได้พิมพ์ผิด!)
+			if (get_reputation_points(3) >= 3000)
+				getitem 1000608,1;	// Ep19_Snow_Flower
+			getexp 20000000,0;	// (affected by drop modifier) (ได้รับผลจากตัวคูณดรอป)
+			getexp 0,14000000;	// unknown jexp (Job Exp ที่ไม่ระบุ)
+			next;
+			// Note: this text is only for 11833 (หมายเหตุ: ข้อความนี้สำหรับเควส 11833 เท่านั้น)
+			mes "[Surr]";
+			mes "ทุกครั้งที่คุณได้เนื้อกองโตแบบนี้มา";
+			next;
+			mes "[Surr]";
+			mes "มันเกิดการต่อสู้กันอย่างหนักในใจ ระหว่างความต้องการที่จะรักษาหลุมนั้นให้คงสภาพดี กับความต้องการที่จะรีบกลบหลุมที่น่าสะพรึงกลัวนั่นให้เต็มเร็วๆ";
+			close3;
+		}
+		if (checkquest(11831,HUNTING) == 2 && countitem(1000708) >= 20) {
+			delitem 1000708,20;	// Ep19_Ice_Meat
+			erasequest 11831;
+			setquest 11832;
+			set_reputation_points(3, (get_reputation_points(3) + 5));
+			getitem 1000608,2;	// Ep19_Snow_Flower
+			if (get_reputation_points(3) >= 3000)
+				getitem 1000608,1;	// Ep19_Snow_Flower
+			getexp 18000000,0;	// (affected by drop modifier)
+			getexp 0,14000000;
+		}
+		if (isbegin_quest(11849) == 1) {
+			erasequest 11835;
+			erasequest 11849;
+			setquest 11850;
+			set_reputation_points(3, (get_reputation_points(3) + 5));
+			getitem 1000608,2;	// Ep19_Snow_Flower
+			if (get_reputation_points(3) >= 3000)
+				getitem 1000608,1;	// Ep19_Snow_Flower
+			getexp2 52243795,0;
+			getexp 0,3000000;
+		}
+		close3;
+	}
+
+	if (isbegin_quest(11830) == 0) {
+		mes "[Surr]";
+		mes "ศฤ...";
+		mes "มันเป็นหลุมที่น่าสยดสยองมาก";
+		cutin "ep19_iwin03.png",2;
+		next;
+		mes "[Surr]";
+		mes "การเจอเรื่องแบบนี้มันน่าปวดหัวก็จริง แต่โชคดีที่ดูเหมือนจะไม่มี ^e5555e Advanced Rgan^000000 อยู่ในนั้น";
+		next;
+		mes "[Surr]";
+		mes "พวก Rgan ก็เป็นแค่สัตว์ประหลาดทั่วไปนั่นแหละถ้ามันไม่รู้จักใช้หัวคิด";
+		next;
+		mes "[Surr]";
+		mes "นอกจากนี้ ถ้าคุณไม่เห็นพวก Rgan ระดับสูง พวกมันก็คงจะไม่สนใจหลุมพวกนั้นด้วยซ้ำ,";
+		next;
+		mes "[Surr]";
+		mes "มันจะไม่แย่ไปกว่าเดิมถ้าเราปิดกั้นฝั่งของเราไว้ให้ดี";
+		mes "ถ้ามีพาหนะล่ะก็ คุณคงไม่มีทางเลือกอื่นนอกจากต้องขอยืมพลังจากท่าน Friederike";
+		next;
+		mes "[Surr]";
+		mes "ถ้าเรื่องนั้นเกิดขึ้นจริง เราก็จะมีแหล่งรวบรวมอาหารมากขึ้น ซึ่งนั่นไม่ใช่เรื่องแย่เพียงอย่างเดียวหรอกนะ";
+		next;
+		mes "[Surr]";
+		mes "ฉันจะทำการสำรวจหลุมนั้นต่อไป แต่ตอนนี้เรากำลังขาดแคลนคน ดังนั้นฉันหวังว่าพวกคุณทุกคนจะช่วยฉันเมื่อมีเวลาว่างนะ";
+		setquest 11830;
+		completequest 11830;
+	}
+	else {
+		mes "[Surr]";
+		mes "สวัสดี";
+		mes "เป็นยังไงบ้าง?";
+		cutin "ep19_iwin03.png",2;
+		next;
+		mes "[Surr]";
+		mes "ถ้าคุณมีอาการถูกพิษหรือมีจุดที่บาดเจ็บ ควรจะรีบไปรับการรักษาจะดีกว่านะ";
+	}
+	next;
+	switch( select( "สถานที่ที่ถูกทอดทิ้ง(1)-Lv.220", "สถานที่ที่น่าจะถูกทอดทิ้ง(2)-Lv.240", "ขุดแล้วก็ขุด", "คุยกัน" ) ) {
+	case 1:
+		if (BaseLevel < 220) {
+			mes "[Surr]";
+			mes "ตอนนี้มันอันตรายเกินไปที่จะไปที่นั่นนะ";
+			mes "เพราะยังมีอย่างอื่นอีกตั้งเยอะแยะให้ทำ";
+			mes "ทำไมไม่ลองทำอย่างอื่นดูก่อนล่ะ?";
+			cutin "ep19_iwin03.png",2;
+			next;
+			mes "^4d4dff เควสนี้สามารถทำได้เมื่อเลเวล 220 ขึ้นไปเท่านั้น^000000";
+			close;
+		}
+		switch( checkquest(11832,PLAYTIME) ) {
+		case -1:
+			break;
+		case 0:
+		case 1:
+			mes "[Surr]";
+			mes "วันนี้แค่นี้พอแล้วล่ะ!";
+			mes "คุณช่วยงานไปเยอะมากแล้ว ไปพักผ่อนเถอะนะ";
+			cutin "ep19_iwin03.png",2;
+			close3;
+		case 2:
+			erasequest 11832;
+			break;
+		}
+		if (checkquest(11831,HUNTING) == -1) {
+			mes "[Surr]";
+			mes "คุณอยากจะไปในที่อันตรายแบบนั้นอีกแล้วเหรอ " + strcharinfo(0) + " ฉันเองก็คงห้ามคุณไม่ได้เหมือนกัน";
+			cutin "ep19_iwin03.png",2;
+			next;
+			mes "[Surr]";
+			mes "ถ้าอย่างนั้นไปที่ ^e5555eชั้นที่ 1 ของหลุมร้าง (Abandoned Pit)^000000 กำจัดมอนสเตอร์ประมาณ ^e5555e40 ตัว^000000 และนำ ^e5555eเนื้อแช่แข็ง (Frozen Meat)^000000 มาให้ฉัน ^e5555e20 ชิ้น^000000 นะ";
+			cutin "ep19_iwin03.png",2;
+			next;
+			mes "[Surr]";
+			mes "และถ้าคุณรู้สึกว่ามันอันตราย ก็แค่กลับมา";
+			mes "ไม่มีอะไรมีค่าไปกว่าชีวิตอีกแล้วล่ะ";
+			setquest 11831;
+			close2;
+			cutin "",255;
+			navigateto("jor_ab01",113,10);
+			end;
+		}
+		// note: same text without items/hunting ongoing (หมายเหตุ: ข้อความเดิมเมื่อไม่ได้อยู่ในสถานะส่งไอเทมหรือล่า)
+		mes "[Surr]";
+		mes "^e5555eที่ชั้นที่ 1 ของหลุมร้าง^000000 กำจัดมอนสเตอร์ประมาณ ^e5555e40 ตัว^000000 และนำ ^e5555eเนื้อแช่แข็ง^000000 มาให้ฉัน ^e5555e20 ชิ้น^000000 นะ";
+		cutin "ep19_iwin03.png",2;
+		next;
+		mes "[Surr]";
+		mes "และถ้าคุณรู้สึกว่ามันอันตราย ก็แค่กลับมา";
+		mes "ไม่มีอะไรมีค่าไปกว่าชีวิตอีกแล้วล่ะ";
+		close2;
+		cutin "",255;
+		navigateto("jor_ab01",113,10);
+		end;
+	case 2:
+		if (BaseLevel < 240) {
+			mes "[Surr]";
+			mes "ตอนนี้มันอันตรายเกินไปที่จะไปที่นั่นนะ";
+			mes "เพราะยังมีอย่างอื่นอีกตั้งเยอะแยะให้ทำ";
+			mes "ทำไมไม่ลองทำอย่างอื่นดูก่อนล่ะ?";
+			cutin "ep19_iwin03.png",2;
+			next;
+			mes "^4d4dff เควสนี้สามารถทำได้เมื่อเลเวล 240 ขึ้นไปเท่านั้น^000000";
+			close3;
+		}
+		switch( checkquest(11834,PLAYTIME) ) {
+		case -1:
+			break;
+		case 0:
+		case 1:
+			mes "[Surr]";
+			mes "วันนี้แค่นี้พอแล้วล่ะ!";
+			mes "คุณช่วยงานไปเยอะมากแล้ว ไปพักผ่อนเถอะนะ";
+			cutin "ep19_iwin03.png",2;
+			close3;
+		case 2:
+			erasequest 11834;
+			break;
+		}
+		if (checkquest(11833,HUNTING) == -1) {
+			mes "[Surr]";
+			mes "คุณอยากจะไปในที่อันตรายแบบนั้นอีกแล้วเหรอ " + strcharinfo(0) + " ฉันเองก็คงห้ามคุณไม่ได้เหมือนกัน";
+			cutin "ep19_iwin03.png",2;
+			next;
+			mes "[Surr]";
+			mes "ถ้าอย่างนั้นไปที่ ^e5555eชั้นที่ 2 ของหลุมร้าง^000000 กำจัดมอนสเตอร์ประมาณ ^e5555e40 ตัว^000000 และนำ ^e5555eเนื้อแช่แข็ง^000000 มาให้ฉัน ^e5555e20 ชิ้น^000000 นะ";
+			cutin "ep19_iwin03.png",2;
+			next;
+			mes "[Surr]";
+			mes "และถ้าคุณรู้สึกว่าตัวเองกำลังตกอยู่ในอันตราย ก็แค่กลับมา";
+			mes "ไม่มีอะไรมีค่าไปกว่าชีวิตอีกแล้วล่ะ";
+			setquest 11833;
+			close2;
+			cutin "",255;
+			navigateto("jor_ab02",281,87);
+			end;
+		}
+		mes "[Surr]";
+		mes "^e5555eที่ชั้นที่ 2 ของหลุมร้าง^000000 กำจัดมอนสเตอร์ประมาณ ^e5555e40 ตัว^000000 และนำ ^e5555eเนื้อแช่แข็ง^000000 มาให้ฉัน ^e5555e20 ชิ้น^000000 นะ";
+		cutin "ep19_iwin03.png",2;
+		next;
+		mes "[Surr]";
+		mes "และถ้าคุณรู้สึกว่าตัวเองกำลังตกอยู่ในอันตราย ก็แค่กลับมา";
+		mes "ไม่มีอะไรมีค่าไปกว่าชีวิตอีกแล้วล่ะ";
+		close2;
+		cutin "",255;
+		navigateto("jor_ab02",281,87);
+		end;
+	case 3:
+		switch( checkquest(11850,PLAYTIME) ) {
+		case -1:
+			break;
+		case 0:
+		case 1:
+			mes "[Surr]";
+			mes "วันนี้แค่นี้พอแล้วล่ะ!";
+			mes "คุณช่วยงานไปเยอะมากแล้ว ไปพักผ่อนเถอะนะ";
+			cutin "ep19_iwin03.png",2;
+			close3;
+		case 2:
+			erasequest 11850;
+			break;
+		}
+		switch( isbegin_quest(11835) ) {
+		case 0:
+			mes "[Surr]";
+			mes "หลุมร้างยังไม่พบปัญหาใหญ่อะไรในตอนนี้ แต่พวกเราก็ยังสำรวจอย่างใกล้ชิดอยู่เสมอ เพราะไม่มีใครรู้ว่าจะเกิดอะไรขึ้นเมื่อไหร่";
+			cutin "ep19_iwin03.png",2;
+			next;
+			mes "[Surr]";
+			mes "วันนี้ ^e5555eAlp^000000 ได้ล่วงหน้าไปตรวจสอบก่อนแล้ว แต่มันใช้เวลานานและอันตรายที่จะทำคนเดียว ดังนั้นโปรดช่วยไปถามเขาหน่อยนะว่ามีอะไรที่คุณพอจะช่วยได้บ้าง";
+			setquest 11835;
+			close2;
+			cutin "",255;
+			navigateto("jor_ab01",115,14);
+			end;
+		case 1:
+			mes "[Surr]";
+			mes "หลุมร้างยังไม่พบปัญหาใหญ่อะไรในตอนนี้ แต่พวกเราก็ยังสำรวจอย่างใกล้ชิดอยู่เสมอ เพราะไม่มีใครรู้ว่าจะเกิดอะไรขึ้นเมื่อไหร่";
+			cutin "ep19_iwin03.png",2;
+			next;
+			mes "[Surr]";
+			mes "วันนี้ ^e5555eAlp^000000 ได้ล่วงหน้าไปตรวจสอบก่อนแล้ว แต่มันใช้เวลานานและอันตรายที่จะทำคนเดียว ดังนั้นโปรดช่วยไปถามเขาหน่อยนะว่ามีอะไรที่คุณพอจะช่วยได้บ้าง";
+			close2;
+			cutin "",255;
+			navigateto("jor_ab01",115,14);
+			end;
+		case 2:
+			mes "[Surr]";
+			mes "^e5555eคุณได้เจอ Alf หรือยัง?^000000";
+			cutin "ep19_iwin03.png",2;
+			close2;
+			cutin "",255;
+			navigateto("jor_ab01",115,14);
+			end;
+		}
+		end;
+	case 4:
+		mes "[Surr]";
+		mes "ฮะ ฮะ ฮะ ฮะ ฮะ";
+		mes "นั่นก็เพราะพวก Iwin จะดูดีขึ้นเมื่อมีขนปุยๆ มากขึ้นยังไงล่ะ";
+		cutin "ep19_iwin03.png",2;
+		close3;
+	}
+	end;
+
+OnInit:
+	cloakonnpc();
+
+	// side quest (เควสรอง)
+	questinfo( QTYPE_QUEST, QMARK_NONE, "ep19_side_saint == 20 && ep19_side_sea == 1" );
+
+	// daily (เควสรายวัน)
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "checkquest(11831,HUNTING) == 2 && countitem(1000708) >= 20" );
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "checkquest(11833,HUNTING) == 2 && countitem(1000708) >= 20" );
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "isbegin_quest(11849) == 1" );
+
+	questinfo( QTYPE_DAILYQUEST, QMARK_NONE, "isbegin_quest(11829) == 2 && isbegin_quest(11831) == 0 && checkquest(11832,PLAYTIME) == -1 && BaseLevel >= 220" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_NONE, "checkquest(11832,PLAYTIME) == 2" );
+
+	questinfo( QTYPE_DAILYQUEST, QMARK_NONE, "isbegin_quest(11829) == 2 && isbegin_quest(11833) == 0 && checkquest(11834,PLAYTIME) == -1 && BaseLevel >= 240" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_NONE, "checkquest(11834,PLAYTIME) == 2" );
+
+	questinfo( QTYPE_DAILYQUEST, QMARK_NONE, "isbegin_quest(11829) == 2 && isbegin_quest(11835) == 0 && checkquest(11850,PLAYTIME) == -1" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_NONE, "checkquest(11850,PLAYTIME) == 2" );
+	end;
+}
+
+// Side quest : Frozen Sea. Step 2 (เควสรอง: ทะเลเยือกแข็ง ขั้นที่ 2)
+// icas_in,27,122,5	script	Tataring#ep19_room::ep19_healrock_2	4_EP19_TAMARIN,{
+
+// Side quest : Frozen Sea. Step 3 (เควสรอง: ทะเลเยือกแข็ง ขั้นที่ 3)
+jor_back1,300,272,3	script	Hunting trap#ep19_1	4_ROPEPILE,{
+	if (ep19_side_sea == 4) {
+		mes "- กับดักล่าสัตว์ที่ถูกแช่แข็งด้วยความเย็น";
+		mes "ดูเหมือนจะไม่มีปัญหาอะไรนอกเสียจากว่ามันค่อนข้างเก่าแล้ว -";
+		next;
+		mes "- ฉันคิดว่าคุณควรไปสำรวจทางตอนเหนือให้มากกว่านี้ -";
+		close2;
+		cutin "",255;
+		navigateto("jor_back2",346,203);
+		end;
+	}
+	if (ep19_side_sea == 3) {
+		mes "- กับดักล่าสัตว์ที่ถูกแช่แข็งด้วยความเย็น";
+		mes "ดูเหมือนจะไม่มีปัญหาอะไรนอกเสียจากว่ามันค่อนข้างเก่าแล้ว -";
+		next;
+		mes "[Icewind Huntress]";
+		mes "นั่นใครน่ะ!";
+		mes "ฉันไม่คิดว่าคุณเป็นนักล่าหรอกนะ แล้วทำไมคุณถึงมาแตะต้องกับดักของเราล่ะ?";
+		mes "ศัตรูงั้นเหรอ?!";
+		cutin "ep19_iwin09.png",2;
+		next;
+		select( "พูดคุยเกี่ยวกับสถานการณ์" );
+		mes "[Icewind Huntress]";
+		mes "ตกลง";
+		mes "ขออภัยด้วย";
+		next;
+		mes "[Icewind Huntress]";
+		mes "รอบๆ นี้ไม่มีปัญหาอะไรหรอก";
+		mes "ฉันแค่รู้สึกว่าเหยื่อมันน้อยลงนิดหน่อย แต่ว่า...";
+		next;
+		mes "[Icewind Huntress]";
+		mes "ฉันคิดว่าไปสำรวจทางเหนือต่อจากที่นี่น่าจะดีกว่านะ";
+		mes "ช่วงนี้พวกมอนสเตอร์ดูเหมือนจะดุร้ายขึ้นจริงๆ นั่นแหละ...";
+		ep19_side_sea = 4;
+		erasequest 11816;
+		setquest 11817;
+		close2;
+		cutin "",255;
+		navigateto("jor_back2",346,203);
+		end;
+	}
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11816) == 1" );
+	end;
+}
+
+// Side quest : Frozen Sea. Step 4 (เควสรอง: ทะเลเยือกแข็ง ขั้นที่ 4)
+jor_back2,346,203,3	script	Hunting trap#ep19_2	4_ROPEPILE,{
+	if (ep19_side_sea == 5) {
+		mes "- กับดักล่าสัตว์ที่ถูกแช่แข็งด้วยความเย็น";
+		mes "ดูเหมือนจะไม่มีปัญหาอะไรนอกเสียจากว่ามันค่อนข้างเก่าแล้ว -";
+		next;
+		mes "- คุณควรจะสำรวจพื้นที่รอบๆ หลุมนั้นนะ -";
+		close2;
+		navigateto("jor_back2",260,294);
+		end;
+	}
+	if (ep19_side_sea == 4) {
+		mes "- กับดักล่าสัตว์ที่ถูกแช่แข็งด้วยความเย็น";
+		mes "ดูเหมือนจะไม่มีปัญหาอะไรนอกเสียจากว่ามันค่อนข้างเก่าแล้ว -";
+		next;
+		mes "- คุณควรจะสำรวจพื้นที่รอบๆ หลุมนั้นนะ -";
+		ep19_side_sea = 5;
+		erasequest 11817;
+		setquest 11818;
+		close2;
+		navigateto("jor_back2",260,294);
+		end;
+	}
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11817) == 1" );
+	end;
+}
+
+// Side quest : Frozen Sea. Step 5 (เควสรอง: ทะเลเยือกแข็ง ขั้นที่ 5)
+jor_back2,260,294,3	script	Hunting trap#ep19_3	4_ROPEPILE,{
+	if (ep19_side_sea == 5) {
+		mes "- กับดักล่าสัตว์ที่ถูกแช่แข็งด้วยความเย็น";
+		mes "มีร่องรอยการเน่าเสียที่ดูประหลาดอยู่ -";
+		next;
+		mes "[Alp]";
+		mes "...นี่มันยาพิษเหรอ?";
+		mes "ฉันว่ามันเป็นส่วนประกอบที่คล้ายกับอันที่อยู่บนตัวของ tamarin เลยนะ...";
+		cutin "ep18_alf_01.png",2;
+		cloakoffnpcself( "ep19_jor_back2_260_296" );
+		cloakoffnpcself( "ep19_jor_back2_258_295" );
+		next;
+		mes "[Mark]";
+		mes "มีอย่างอื่นอีกไหม?";
+		mes "สัตว์ประหลาดที่ตกลงไปในหลุมนั่นติดกับดักงั้นเหรอ...";
+		cutin "ep18_mark_01.png",0;
+		next;
+		mes "[Alp]";
+		mes "คือก็นะ ส่วนที่เชื่อมต่อกันตรงนี้...";
+		mes "ตรงนี้เป็นจุดรวมของพิษเลยล่ะ";
+		mes "เหมือนมีใครจงใจที่จะทำให้มันพัง ^e5555e โดยเจตนา^000000";
+		cutin "ep18_alf_01.png",2;
+		next;
+		mes "[Alp]";
+		mes "...ไปรายงาน Shuru ก่อนเถอะ";
+		mes "ฉันไม่รู้หรอกนะว่าใครเป็นคนทำลายกับดัก แต่ดูเหมือนมันจะมีอะไรเกี่ยวข้องกับหลุมนั่นอยู่ดี...";
+		ep19_side_sea = 6;
+		erasequest 11818;
+		setquest 11819;
+		close2;
+		cutin "",255;
+		cloakonnpcself( "ep19_jor_back2_260_296" );
+		cloakonnpcself( "ep19_jor_back2_258_295" );
+		navigateto("jor_back2",251,310);
+		end;
+	}
+	if (ep19_side_sea == 6) {
+		mes "- กับดักล่าสัตว์ที่ถูกแช่แข็งด้วยความเย็น";
+		mes "มีร่องรอยการเน่าเสียที่แปลกประหลาด";
+		mes "ไปรายงาน Shuru กันเถอะ -";
+		close2;
+		cutin "",255;
+		navigateto("jor_back2",251,310);
+		end;
+	}
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11818) == 1" );
+	end;
+}
+
+jor_back2,260,296,5	duplicate(dummy_cloaked_npc)	Alp#ep19_jor2::ep19_jor_back2_260_296	4_EP18_ALF
+jor_back2,258,295,3	duplicate(dummy_cloaked_npc)	Mark#ep19_jor2::ep19_jor_back2_258_295	4_EP18_MARK
+
+
+// Side quest : Frozen Sea. Step 6, 9, 10 (เควสรอง: ทะเลเยือกแข็ง ขั้นที่ 6, 9, 10)
+jor_back2,255,312,5	script	Surr#ep19_1	4_EP19_IWIN_DIVER,{
+	if (ep19_side_sea == 6) {
+		mes "[Surr]";
+		mes "มาแล้วสินะ";
+		mes "พิษในหลุมนั่นมันร้ายแรงกว่าที่ฉันคิดเอาไว้ซะอีก";
+		cutin "ep19_iwin_diver01.png",2;
+		next;
+		mes "[Surr]";
+		mes "ฉันนึกว่าชุดเวทมนตร์จะทนทานได้ในระดับหนึ่งนะ ^e5555e แต่ทันทีที่ลงไปในหลุม แกนเวทมนตร์ที่ติดอยู่กับชุดก็พังทันที^000000 จนต้องทิ้งมันไป";
+		next;
+		mes "[Mark]";
+		mes "หืม...";
+		mes "ฉันไม่คิดว่าการสำรวจไปมากกว่านี้จะมีประโยชน์อะไรแล้วล่ะ";
+		mes "กลับไปรับตัว ^e5555e Friederike^000000 กันเถอะ";
+		cutin "ep18_mark_01.png",0;
+		cloakoffnpcself( "ep19_jor_back2_255_312" );
+		next;
+		mes "[Mark]";
+		mes "ในเมื่อฉันล้างพิษจากตัว tamarin ได้ ฉันก็น่าจะชำระล้างหลุมนี้ได้เหมือนกัน";
+		next;
+		mes "[Mark]";
+		mes "ถ้ารู้ว่าจะเป็นแบบนี้ ฉันน่าจะพาเธอมาด้วยตั้งแต่แรกแล้วล่ะ";
+		cutin "ep18_mark_03.png",0;
+		ep19_side_sea = 7;
+		erasequest 11819;
+		setquest 11820;
+		close2;
+		cutin "",255;
+		cloakonnpcself( "ep19_jor_back2_255_312" );
+		navigateto("icas_in",32,120);
+		end;
+	}
+	if (ep19_side_sea == 7) {
+		mes "[Surr]";
+		mes "ฉันคิดว่าทางที่ดีที่สุดคือไปที่ปราสาทน้ำแข็ง (Ice Castle) แล้วรับตัว ^e5555e Friederike^000000 มา";
+		cutin "ep19_iwin_diver01.png",2;
+		close3;
+	}
+	if (ep19_side_sea == 8) {
+		mes "[Surr]";
+		mes "ท่าน Friederike ก็มาอยู่ที่นี่แล้ว งั้นเรามาทำความสะอาด ^e5555e หลุม^000000 นี้กันเถอะ!";
+		cutin "ep19_iwin_diver01.png",2;
+		close2;
+		cutin "",255;
+		navigateto("jor_back2",258,314);
+		end;
+	}
+	switch( checkquest(11822,HUNTING) ) {
+	case -1:
+		end;	// note: no text (หมายเหตุ: ไม่มีข้อความ)
+	case 0:
+	case 1:
+		mes "[Surr]";
+		mes "คนอื่นๆ รบกวนช่วยจัดการ ^000000 ไม่ให้มอนสเตอร์เข้ามาใกล้บริเวณรอบๆ ^e5555e นะครับ";
+		mes "และถ้าเป็นไปได้ ช่วยรวบรวมเนื้อแช่แข็งสัก ^e5555e 3 ชิ้น ^000000 จะได้ไหมครับ?";
+		cutin "ep19_iwin_diver01.png",2;
+		next;
+		mes "[Surr]";
+		mes "ฉันคิดว่าเราต้องสำรวจดูว่ามีมอนสเตอร์ตัวไหนได้รับผลกระทบจากหลุมนี้บ้าง";
+		close3;
+	case 2:
+		if (countitem(1000708) < 3) {
+			mes "[Surr]";
+			mes "คนอื่นๆ รบกวนช่วยจัดการ ^000000 ไม่ให้มอนสเตอร์เข้ามาใกล้บริเวณรอบๆ ^e5555e นะครับ";
+			mes "และถ้าเป็นไปได้ ช่วยรวบรวมเนื้อแช่แข็งสัก ^e5555e 3 ชิ้น ^000000 จะได้ไหมครับ?";
+			cutin "ep19_iwin_diver01.png",2;
+			next;
+			mes "[Surr]";
+			mes "ฉันคิดว่าเราต้องสำรวจดูว่ามีมอนสเตอร์ตัวไหนได้รับผลกระทบจากหลุมนี้บ้าง";
+			close3;
+		}
+		mes "[Surr]";
+		mes "ฮ้า...";
+		mes "บางทีเราอาจจะเจออะไรที่น่ากลัวเข้าให้แล้วล่ะ...";
+		cutin "ep19_iwin_diver01.png",2;
+		delitem 1000708,3;	// Ep19_Ice_Meat
+		ep19_side_sea = 10;
+		erasequest 11822;
+		setquest 11823;
+		next;
+		mes "[Surr]";
+		mes "ฉันดำลงไปในหลุมนั้น และเจอกับทางผ่านที่แคบมากพอสำหรับแค่คนเดียว และที่ปลายทางมีหินก้อนใหญ่ขวางอยู่";
+		mes "พอกำจัดหินนั่นออกและระบายน้ำไป พื้นที่กว้างใหญ่มหาศาลก็ปรากฏขึ้น";
+		next;
+		mes "[Surr]";
+		mes "^e5555e ฉันคิดว่าฉันเห็นอะไรบางอย่างที่ดูคล้ายกับพวก Rgan^000000 แต่ฉันคิดว่ามันอันตรายเกินไปที่จะสำรวจคนเดียว ก็เลยหนีออกมาอย่างระมัดระวัง";
+		next;
+		mes "[Surr]";
+		mes "ฉันอยากจะลงไป ^e5555e เพื่อทำการวิจัยอีกครั้ง^000000";
+		mes "ถ้าหลุมนี้อันตรายจริงๆ เราต้องรีบไปบอก Voglinde นะ";
+		close2;
+		cutin "",255;
+		navigateto("jor_back2",258,314);
+		end;
+	}
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11819) == 1" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(11822,HUNTING) == 2 && countitem(1000708) >= 5" );
+	end;
+}
+
+jor_back2,261,312,3	duplicate(dummy_cloaked_npc)	Mark#ep19_ab::ep19_jor_back2_255_312	4_EP18_MARK
+
+// Side quest : Frozen Sea. Step 7
+// icas_in,32,123,5	script	Friederike#ep19_room	4_EP19_FRIEDERIKE,{
+
+
+// Side quest : Frozen Sea. Step 8
+jor_back2,258,315,0	script	#to_jor_ab01	WARPNPC,1,1,{
+	end;
+OnTouch:
+	if (ep19_side_sea < 8) {
+		mes "- ไม่สามารถเข้าไปได้เนื่องจากถูกขวางกั้นด้วยของเหลวเหนียวข้นขุ่นมัว -";
+		close;
+	}
+	if (ep19_side_sea == 8) {
+		mes "[Friederike]";
+		mes "หนาวจัง...";
+		cutin "ep19_friederike02.png",2;
+		cloakoffnpcself( "ep19_jor_back2_263_311" );
+		cloakoffnpcself( "ep19_jor_back2_255_312" );
+		cloakoffnpcself( "ep19_jor_back2_260_312" );
+		next;
+		mes "[Friederike]";
+		mes "ฉันรู้สึกไม่ดีเลยที่นี่...";
+		mes "ต่อให้คุณจะชำระล้างพื้นที่ทั้งหมดนี้ พิษมันก็จะกลับมาอีก";
+		mes "ฉันสัมผัสได้ว่ามีบางอย่างที่คอยพ่นพิษออกมาจากส่วนลึกอยู่ตลอดเวลา";
+		next;
+		mes "[Surr]";
+		mes "มันเกินกำลังที่จะชำระล้างทุกอย่างแถวนี้";
+		mes "สำหรับตอนนี้ เรามาชำระล้างและตรวจสอบเฉพาะส่วนที่มีพิษของหลุมนี้กันก่อนเถอะ";
+		cutin "ep19_iwin_diver01.png",2;
+		next;
+		mes "[Friederike]";
+		mes "หลุมได้รับการชำระล้างแล้ว... อึก!";
+		cutin "ep19_friederike04.png",2;
+		next;
+		mes "[Mark]";
+		mes "อะ!";
+		mes "งั้นเราค่อยมาตรวจสอบทีหลังก็ได้ กลับกันเถอะ";
+		mes "ถ้าเธอเป็นหวัดขึ้นมา ฉันอาจจะโดนจับเข้าคุกก็ได้นะ";
+		cutin "ep18_mark_04.png",0;
+		next;
+		mes "[Friederike]";
+		mes "งั้นฉันจะกลับไปที่จุดวาร์ปก่อนนะคะ";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Friederike]";
+		mes "และฉันจะติดหนึ่งในสิ่งนี้เข้ากับชุดของแกนเวทมนตร์แต่ละอันที่ฉันชำระล้างไปก่อนหน้านี้";
+		mes "กลับมาโดยอย่าให้ได้รับบาดเจ็บนะคะ";
+		cutin "ep19_friederike03.png",2;
+		next;
+		cloakonnpcself( "ep19_jor_back2_260_312" );
+		mes "[Surr]";
+		mes "ฉันไม่รู้ว่าโชคดีแค่ไหนที่มีคนอย่าง Friederike มาที่ปราสาทน้ำแข็งแห่งนี้";
+		mes "โปรดเตรียมแกนเวทมนตร์แบบนี้ไว้ด้วย...";
+		cutin "ep19_iwin_diver01.png",2;
+		next;
+		mes "[Surr]";
+		mes "หลุมที่ดูเหมือนอ้วกเมื่อครู่นี้ กลับกลายเป็นน้ำใสสะอาดได้ยังไงกัน...";
+		next;
+		mes "[Surr]";
+		mes "...อา!";
+		mes "ฉันมัวแต่เหม่อไม่ได้แล้ว ฉันจะเข้าไปก่อนที่พิษจะพุ่งขึ้นมาอีกครั้ง";
+		next;
+		mes "[Surr]";
+		mes "คนอื่นๆ รบกวนช่วยจัดการ ^000000 เพื่อไม่ให้มอนสเตอร์เข้ามาใกล้แถวๆ นี้ ^e5555e ด้วยนะครับ";
+		mes "และถ้าเป็นไปได้ ช่วยรวบรวมเนื้อแช่แข็งสัก 3 ^000000 ชิ้น ^e5555e จะได้ไหมครับ?";
+		next;
+		mes "[Surr]";
+		mes "ฉันคิดว่าเราต้องสำรวจดูว่ามีมอนสเตอร์ตัวไหนได้รับผลกระทบจากหลุมนี้บ้าง";
+		ep19_side_sea = 9;
+		erasequest 11821;
+		setquest 11822;
+		close2;
+		cutin "",255;
+		cloakonnpcself( "ep19_jor_back2_263_311" );
+		cloakonnpcself( "ep19_jor_back2_255_312" );
+		end;
+	}
+	if (ep19_side_sea == 9) {
+		if (checkquest(11822,HUNTING) != 2 && countitem(1000708) < 5) {
+			mes "- กำจัดมอนสเตอร์รอบๆ 10 ตัว ^e5555e และรวบรวมเนื้อแช่แข็งประมาณ 3 ชิ้น^000000 เพื่อป้องกันไม่ให้มอนสเตอร์เข้ามาใกล้ในขณะที่ Shuru กำลังสำรวจ";
+			close;
+		}
+		mes "- ดูเหมือนว่า Surr จะเสร็จสิ้นการสำรวจแล้ว";
+		mes "^e5555e ไปคุยกับ Shuru ก่อนเถอะ ^000000 -";
+		close2;
+		navigateto("jor_back2",251,310);
+		end;
+	}
+	if (ep19_side_sea == 10) {
+		ep19_side_sea = 11;
+		erasequest 11823;
+		setquest 11824;
+	}
+	warp "jor_ab01",113,10;
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11821) == 1" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11823) == 1" );
+	end;
+}
+jor_back2,263,311,5	duplicate(dummy_cloaked_npc)	Alp#ep19_ab::ep19_jor_back2_263_311	4_EP18_ALF
+jor_back2,260,312,5	duplicate(dummy_cloaked_npc)	Friederike#ep19_ab::ep19_jor_back2_260_312	4_EP19_FRIEDERIKE
+
+// Side quest : Frozen Sea. Step 9, 10 (เควสรอง: ทะเลเยือกแข็ง ขั้นที่ 9, 10)
+// jor_back2,255,312,5	script	Surr#ep19_1	4_EP19_IWIN_DIVER,{
+
+
+// Side quest : Frozen Sea - Step 11 (เควสรอง: ทะเลเยือกแข็ง ขั้นที่ 11)
+jor_ab01,116,11,3	duplicate(dummy_cloaked_npc)	Surr#ep19_ab::ep19_jor_ab01_116_11	4_EP19_IWIN_DIVER
+
+jor_ab01,115,14,3	script	Alp#ep19_1_ab	4_EP18_ALF,{
+	if (ep19_side_sea == 11 || ep19_side_sea == 12) {
+		mes "[Alp]";
+		mes "พวกนี้มันคืออะไรกันหมดเนี่ย?";
+		mes "งูเหรอ?";
+		mes "ไส้เดือน??";
+		cutin "ep18_alf_01.png",2;
+		next;
+		mes "[Surr]";
+		mes "นี่คือเผ่าพันธุ์ที่เรียกว่า Rgan";
+		mes "พวกตัวแสบที่รับใช้ Jormungand ไงล่ะ";
+		cloakoffnpcself( "ep19_jor_ab01_116_11" );
+		cutin "ep19_iwin_diver01.png",2;
+		next;
+		mes "[Surr]";
+		mes "รังของพวกงูต้องอยู่ลึกเข้าไปข้างในอีกหน่อย แต่ในสถานที่แบบนี้ ก็สามารถพบกลุ่มของ organoids ได้";
+		mes "ลองเข้าไปตรวจสอบข้างในกันอีกนิดเถอะ";
+		next;
+		mes "[Surr]";
+		mes "ทางที่ดีที่สุดคืออย่าไปกระตุ้นพวก Rgan แต่จะดีกว่าถ้าเราแอบจับพวกมันสักสองสามตัว ^e5555e ในขณะที่กำลังเคลื่อนที่และทำการตรวจสอบ ^000000";
+		cutin "ep19_iwin_diver02.png",2;
+		if (ep19_side_sea == 11) {
+			ep19_side_sea = 12;
+			erasequest 11824;
+			setquest 11825;
+		}
+		close2;
+		cloakonnpcself( "ep19_jor_ab01_116_11" );
+		cutin "",255;
+		navigateto("jor_ab01",222,107);
+		end;
+	}
+	if (isbegin_quest(11835) > 0) {
+		mes "[Alp]";
+		mes "ฉันอยู่นี่...";
+		mes "งั้นฉันจะสำรวจฝั่งนี้เอง ส่วนคุณไปดูที่อื่นนะ";
+		cutin "ep18_alf_01.png",2;
+		next;
+		mes "[Alp]";
+		mes "รายงานตรงต่อ ^e5555eShurr^000000 เมื่อสำรวจหลุมร้างเสร็จสิ้น";
+		if (isbegin_quest(11835) == 1) {
+			completequest 11835;
+			setquest 11836;
+			// give 2 quests in ab01 and 2 quests in ab02 (not random) (มอบ 2 เควสใน ab01 และ 2 เควสใน ab02 แบบไม่สุ่ม)
+			switch( rand(3) ) {
+			case 0:
+				setquest 11839;
+				setquest 11840;
+				setquest 11845;
+				setquest 11846;
+				break;
+			case 1:
+				setquest 11837;
+				setquest 11838;
+				setquest 11847;
+				setquest 11848;
+				break;
+			case 2:
+				setquest 11841;
+				setquest 11842;
+				setquest 11843;
+				setquest 11844;
+				break;
+			}
+		}
+		close3;
+	}
+	if (isbegin_quest(11849) == 1) {
+		mes "[Alp]";
+		mes "เสร็จแล้วเหรอ?";
+		mes "ถ้างั้นกลับไปที่ปราสาทน้ำแข็งและรายงานตรงต่อ ^e5555eShurr^000000 นะ";
+		cutin "ep18_alf_01.png",2;
+		close2;
+		navigateto("icas_in",27,116);
+		end;
+	}
+	mes "[Alp]";
+	mes "...เอ่อ";
+	mes "มันเป็นสถานที่ที่แย่จริงๆ";
+	cutin "ep18_alf_01.png",2;
+	close3;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11824) == 1" );
+
+	// daily (เควสรายวัน)
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11835) == 1" );
+	end;
+}
+
+// Side quest : Frozen Sea - Step 12, 13 (เควสรอง: ทะเลเยือกแข็ง ขั้นที่ 12, 13)
+jor_ab01,223,107,3	script	Suspicious Trace#ep19_1_ab1	4_ENERGY_BLACK,{
+	switch( checkquest(11825,HUNTING) ) {
+	case -1:
+		end;
+	case 0:
+	case 1:
+		mes "- น่าจะลองกำจัดพวกมันดูสักนิดเพื่อตรวจสอบเหล่ามอนสเตอร์รอบๆ พื้นที่นี้นะ -";
+		close;
+	case 2:
+		mes "[Mark]";
+		mes "มีพิษรั่วออกมาจากที่นี่เหรอ?";
+		cutin "ep18_mark_01.png",0;
+		next;
+		mes "[Alp]";
+		mes "ศ...";
+		mes "ดูเหมือนว่าจะเป็นพิษจากการเน่าเสียบางอย่าง...";
+		mes "ฉันไม่รู้ว่ามันเป็นตามธรรมชาติหรือมีใครสร้างขึ้น...";
+		cutin "ep18_alf_01.png",2;
+		next;
+		mes "[Surr]";
+		mes "พวกมอนสเตอร์ดูแปลกๆ ไปจริงๆ นั่นแหละ";
+		mes "^e5555e ลองเคลื่อนที่เข้าไปอีกหน่อยในขณะที่จัดการพวกมอนสเตอร์ที่รบกวนกันเถอะ ^000000";
+		cutin "ep19_iwin_diver01.png",2;
+		ep19_side_sea = 13;
+		erasequest 11825;
+		setquest 11826;
+		close3;
+	}
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(11825,HUNTING) == 2" );
+	end;
+}
+
+// Side quest : Frozen Sea - Step 14, 15 (เควสรอง: ทะเลเยือกแข็ง ขั้นที่ 14, 15)
+jor_ab01,104,270,3	script	Suspicious Trace#ep19_1_ab2	4_ENERGY_BLACK,{
+	switch( checkquest(11826,HUNTING) ) {
+	case -1:
+		end;
+	case 0:
+	case 1:
+		end;
+	case 2:
+		mes "[Alp]";
+		mes "ที่นี่ก็เหมือนกัน...";
+		mes "พิษกำลังรั่วไหลออกมา";
+		cutin "ep18_alf_01.png",2;
+		next;
+		mes "[Surr]";
+		mes "นอกจากนี้ ตรงนี้มันใหญ่กว่าที่ฉันคิดไว้ซะอีก";
+		mes "ฉันไม่คิดว่าปัญหาขนาดนี้จะจัดการได้ง่ายๆ หรอกนะ";
+		cutin "ep19_iwin_diver01.png",2;
+		next;
+		mes "[Mark]";
+		mes "วู้ว...";
+		mes "เรื่องใหญ่แล้วล่ะ";
+		mes "ทุกคน";
+		cutin "ep18_mark_04.png",0;
+		next;
+		mes "[Surr]";
+		mes "เกิดอะไรขึ้น?";
+		cutin "ep19_iwin_diver01.png",2;
+		next;
+		mes "[Mark]";
+		mes "มีทางผ่านข้างในที่ดูเหมือนจะนำไปสู่ที่อื่นได้อีกนะ";
+		cutin "ep18_mark_04.png",0;
+		next;
+		mes "[Surr]";
+		mes "นี่ยังไม่ใช่จุดสิ้นสุดงั้นเหรอ?!";
+		mes "ไปกันเถอะ";
+		mes "ฉันอยากจะเล่าเรื่องการกลายพันธุ์ของมอนสเตอร์ให้พวกคุณฟังใจจะขาดแล้ว";
+		mes "ระหว่างทาง ฉันจะกำจัดมอนสเตอร์ ^e5555e และรวบรวมตัวอย่างเนื้อแช่แข็งไปด้วยนะ ^000000";
+		cutin "ep19_iwin_diver01.png",2;
+		next;
+		mes "[Mark]";
+		mes "นั่นน่าจะดีนะ";
+		mes "ตามฉันมาทางนี้";
+		cutin "ep18_mark_04.png",0;
+		ep19_side_sea = 14;
+		erasequest 11826;
+		setquest 11827;
+		close2;
+		cutin "",255;
+		navigateto("jor_ab01",16,235);
+		end;
+	}
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(11826,HUNTING) == 2" );
+	end;
+}
+
+// Side quest : Frozen Sea - Step 16, 17 (เควสรอง: ทะเลเยือกแข็ง ขั้นที่ 16, 17)
+jor_ab01,8,238,0	script	#to_jor_ab02	WARPNPC,1,1,{
+	end;
+OnTouch:
+	if (ep19_side_sea == 15) {
+		warp "jor_ab02",281,87;
+		navigateto("jor_ab02",28,253);
+		end;
+	}
+	if (ep19_side_sea > 15) {
+		warp "jor_ab02",281,87;
+		end;
+	}
+	switch( checkquest(11827,HUNTING) ) {
+	case -1:
+		break;
+	case 0:
+	case 1:
+		break;
+	case 2:
+		if (countitem(1000708) < 2)
+			break;
+		mes "[Mark]";
+		mes "ที่นี่แหละ";
+		mes "เห็นไหม?";
+		mes "ทางผ่านนี้...";
+		cutin "ep18_mark_01.png",0;
+		delitem 1000708,2;	// Ep19_Ice_Meat
+		ep19_side_sea = 15;
+		erasequest 11827;
+		setquest 11828;
+		next;
+		mes "[Surr]";
+		mes "เฮ้อ...";
+		mes "มันอาจจะไม่หนักเท่าตรงที่มีพิษขังอยู่ที่ทางเข้า แต่มันดูเหมือนว่าพิษกำลังค่อยๆ สะสมขึ้นทีละนิด";
+		mes "แกนเวทมนตร์น่าจะใกล้ถึงขีดจำกัดแล้ว และถ้าไปมากกว่านี้จะอันตราย ดังนั้นเราจะรีบตรวจสอบด้านล่างแล้วกลับกันทันที";
+		cutin "ep19_iwin_diver01.png",2;
+		next;
+		mes "[Surr]";
+		mes "^e5555e ในขณะที่กำจัดมอนสเตอร์ ให้รวบรวมตัวอย่างเนื้อแช่แข็งมาด้วย ^000000 แล้วไปเจอกันที่ปลายถนนนะ";
+		close3;
+	}
+	mes "- ยังไปไม่ได้";
+	mes "^e5555e ควรจะรวบรวมตัวอย่างเนื้อแช่แข็งไปพลางๆ ในขณะที่กำจัดมอนสเตอร์ ^000000 -";
+	close;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(11827,HUNTING) == 2 && countitem(1000708) >= 2" );
+	end;
+}
+
+// Side quest : Frozen Sea - Step 18, 19 (เควสรอง: ทะเลเยือกแข็ง ขั้นที่ 18, 19)
+jor_ab02,28,254,3	script	End of Pit#ep19_1_ab	4_ENERGY_BLACK,{
+	switch( checkquest(11828,HUNTING) ) {
+	case -1:
+		end;
+	case 0:
+	case 1:
+		end;
+	case 2:
+		if (countitem(1000708) < 3) {
+			end;
+		}
+		mes "[Surr]";
+		mes "ฉันว่านี่คือจุดสิ้นสุดแล้วล่ะ";
+		mes "ดูเหมือนจะไม่มีอะไรพิเศษ นอกเหนือจากความจริงที่ว่ามีมอนสเตอร์ที่คุณไม่เคยเห็นมาก่อน คุณพบอะไรบ้างไหม?";
+		cutin "ep19_iwin_diver01.png",2;
+		delitem 1000708,2;	// Ep19_Ice_Meat
+		ep19_side_sea = 16;
+		erasequest 11828;
+		setquest 11829;
+		next;
+		mes "[Mark]";
+		mes "โชคดีนะที่ฉันไม่เห็นถนนเส้นไหนที่นำไปสู่ที่อื่นอีกแล้ว";
+		cutin "ep18_mark_01.png",0;
+		next;
+		mes "[Alp]";
+		mes "...";
+		cutin "ep18_alf_01.png",2;
+		next;
+		mes "[Surr]";
+		mes "ถ้าสิ้นสุดที่นี่ ฉันก็เบาใจ...";
+		cutin "ep19_iwin_diver01.png",2;
+		next;
+		mes "[Surr]";
+		mes "งั้นกลับไปรายงาน Lehar กันเถอะ";
+		mes "ฉันไม่อยากอยู่ที่นี่อีกต่อไปแล้ว";
+		next;
+		mes "[Mark]";
+		mes "ฉันเองก็เริ่มจะรู้สึกคลื่นไส้ขึ้นมานิดหน่อยเหมือนกัน...";
+		mes "รีบกลับกันเถอะ";
+		cutin "ep18_mark_01.png",0;
+		close3;
+	}
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(11828,HUNTING) == 2 && countitem(1000708) >= 2" );
+	end;
+}
+
+jor_ab02,286,87,0	warp2	#to_jor_ab01_	1,1,jor_ab01,12,238
+
+// Side quest : Frozen Sea - Step 20 (เควสรอง: ทะเลเยือกแข็ง ขั้นที่ 20)
+// icas_in,32,123,5	script	Friederike#ep19_room	4_EP19_FRIEDERIKE,{
+//
+
+
+// Daily quest : Do We Need a Refrigerator? (เควสรายวัน: เราต้องการตู้เย็นไหม?) (Kill 20x Monsters in jor_back2 and gather 10 Frozen Meat - not 20)
+// Daily quest : Crispy Tools (เควสรายวัน: เครื่องมือที่กรอบเกรียบ)
+icas_in,27,122,5	script	Tataring#ep19_room::ep19_healrock_2	4_EP19_TAMARIN,{
+	if (checkweight(1000608,3) == 0) {	// Ep19_Snow_Flower
+		mes "- เดี๋ยวก่อน!! -";
+		mes "- คุณมีไอเทมมากเกินไป -";
+		mes "- เควสไม่สามารถดำเนินการให้เสร็จสิ้นได้ -";
+		mes "- กรุณาลดน้ำหนักตัวลง -";
+		mes "- โปรดลองใหม่อีกครั้ง -";
+		close;
+	}
+	// Side quest : Frozen Sea. Step 2 (เควสรอง: ทะเลเยือกแข็ง ขั้นที่ 2)
+	if (ep19_side_sea == 2) {
+		mes "[Tataring]";
+		mes "มันเป็นเรื่องยาวน่ะนะ...";
+		cutin "ep19_tamarin01.png",2;
+		next;
+		mes "[Tataring]";
+		mes "คือว่า...";
+		mes "มันเกิดขึ้นตอนที่ฉันกำลังทำงานอยู่ในคฤหาสน์ Barmund";
+		mes "ฉันได้ยินมาว่าทางระบายน้ำใต้ดินพังอีกแล้วก็เลยจะไปซ่อม แต่นับใดนั้นพวก ^e5555eIllusions^000000 ก็ปรากฏตัวขึ้นแล้วจู่โจมฉัน";
+		cutin "ep19_tamarin03.png",2;
+		next;
+		mes "[Tataring]";
+		mes "^e5555e เรือเหาะ^000000 ฉันคิดว่าฉันอยู่บนนั้นนะ...";
+		mes "ตอนที่ฉันตื่นขึ้นมา ^e5555eมันเหมือนถ้ำที่ส่งกลิ่นเน่าเหม็นคลุ้งไปหมด^000000";
+		next;
+		mes "[Tataring]";
+		mes "มี ^e5555e คนแบบฉัน ^000000 ถูกจับอยู่รอบๆ เต็มไปหมด บางคนก็หนีรอดไปได้ แต่ฉันก็ไม่รู้ว่าคนอื่นปลอดภัยไหม";
+		next;
+		mes "[Tataring]";
+		mes "ฉันแทบจะหนีตายออกมาจากถ้ำนั่น และในขณะที่ฉันกำลังวิ่งหนี Shuru ก็มาเจอฉันเข้าแล้วช่วยฉันไว้";
+		cutin "ep19_tamarin01.png",2;
+		next;
+		mes "[Surr]";
+		mes "อา!";
+		mes "Tataring นายไม่ได้เป็น Ice Wind หรอกเหรอ?";
+		cutin "ep19_iwin03.png",2;
+		next;
+		mes "[Tataring]";
+		mes "ไม่ใช่หรอก จากมุมมองของฉัน ฉันคือ Ice Wind ต่างหาก";
+		mes "เขามัวแต่ให้ขนกับฉันเพราะเขารู้สึกสงสารฉันด้วยเหตุผลบางอย่าง...";
+		cutin "ep19_tamarin03.png",2;
+		next;
+		mes "[Surr]";
+		mes "นั่นแหละใช่เลย!";
+		mes "เลิกพูดเรื่องไร้สาระแบบนั้นเถอะ";
+		mes "มันเกิดอะไรขึ้นกับนายกันแน่? รู้ไหมว่าฉันตกใจแค่ไหนที่จู่ๆ นายก็ล้มลงไปกองกับพื้นน่ะ?";
+		cutin "ep19_iwin03.png",2;
+		npctalk "Tataring: ไม่เห็นจะไร้สาระเลย...", "ep19_healrock_2", bc_self;
+		next;
+		mes "[Surr]";
+		mes "ใจฉันแทบไม่อยู่กับเนื้อกับตัว ร่างกายฉันเย็นเฉียบไปหมด จนฉันนึกว่าฉันจะตายซะแล้ว!";
+		next;
+		mes "[Tataring]";
+		mes "ฉันก็แค่กำลังล่า " + getmonsterinfo("EP19_LIMACINA", MOB_NAME) + " ตามปกติ...";
+		mes "จู่ๆ พื้นก็ทรุดแล้วฉันก็ตกลงไป";
+		cutin "ep19_tamarin03.png",2;
+		next;
+		mes "[Tataring]";
+		mes "ตอนแรกฉันนึกว่าแค่ตกลงไปในน้ำเพราะน้ำแข็งแตก แต่สีของน้ำมันแปลกมาก ฉันเลยรีบตะเกียกตะกายขึ้นมา";
+		mes "แล้วหลังจากนั้น... ฉันก็จำอะไรไม่ได้เลย";
+		cutin "ep19_tamarin01.png",2;
+		next;
+		mes "[Lehar]";
+		mes "อืม...";
+		mes "นั่นมันไม่อันตรายเหรอ?";
+		cutin "ep19_lehar03.png",2;
+		next;
+		mes "[Tataring]";
+		mes "นั่นแหละใช่เลย";
+		mes "พอมาลองนึกดู ^e5555e กับดักที่ฉันไปดูมาล่าสุดก่อนจะตกลงไปในหลุมก็พังเหมือนกันนะ ^000000";
+		mes "ต้องขอบคุณเรื่องนั้นเลยล่ะ เพราะเจ้า " + getmonsterinfo("EP19_LIMACINA", MOB_NAME) + " ที่ติดกับดักอยู่เลยหลุดออกมาแล้วจู่โจมฉัน";
+		cutin "ep19_tamarin02.png",2;
+		next;
+		mes "[Surr]";
+		mes "เรื่องกับดักพังมันเป็นเรื่องปกติน่า";
+		cutin "ep19_iwin03.png",2;
+		next;
+		mes "[Tataring]";
+		mes "มันไม่ใช่แบบนั้น... มันมีร่องรอยเหมือนมีใครจงใจทำลายมันน่ะ";
+		cutin "ep19_tamarin03.png",2;
+		next;
+		mes "[Surr]";
+		mes "ฉันอดไม่ได้ที่จะสงสัยเรื่องหลุมนั่นจริงๆ...";
+		cutin "ep19_iwin03.png",2;
+		next;
+		mes "[Tataring]";
+		mes "ฉันว่าเราควรจะตรวจสอบดูนะ";
+		mes "มันจะแย่เอาได้ถ้ามีคนอื่นต้องมาเจ็บตัวอีก";
+		cutin "ep19_tamarin03.png",2;
+		next;
+		mes "[Surr]";
+		mes "อย่าหักโหมนะ!";
+		mes "นายนอนพักไปเถอะ";
+		mes "เดี๋ยวฉันจะไปตรวจสอบเอง";
+		cutin "ep19_iwin03.png",2;
+		next;
+		mes "[Mark]";
+		mes "พวกเราจะช่วยด้วยอีกแรง";
+		mes "ถ้าเกิดอุบัติเหตุขึ้นตอนที่นายสำรวจอยู่คนเดียว มันจะเป็นเรื่องใหญ่เอานะ";
+		cutin "ep18_mark_01.png",0;
+		next;
+		mes "[Surr]";
+		mes "ขอบใจนะ";
+		mes "งั้นรบกวนช่วยตรวจสอบกับดักรอบๆ ตัวคุณทีนะ";
+		mes "ส่วนฉันจะไปตรวจสอบบริเวณที่ฉันพบ Tataring ก่อน";
+		cutin "ep19_iwin03.png",2;
+		next;
+		select("มันอันตรายนะ" );
+		mes "[Surr]";
+		mes "ไม่ต้องห่วง";
+		mes "^e5555e ฉันใส่ชุดดำน้ำที่เสริมพลังด้วย " + getitemname(1000706) + "^000000 อยู่ ดังนั้นฉันพอจะทนทานได้ในระดับหนึ่งล่ะ";
+		next;
+		mes "[Surr]";
+		mes "งั้น ^e5555eถ้าคุณพบอะไรบางอย่างในขณะที่ตรวจสอบกับดัก^000000 รบกวนมาหาฉันที่ทางตะวันตกเฉียงเหนือของทุ่งราบเกล็ดเยือกแข็ง (Frozen Scale Plains) นะ";
+		ep19_side_sea = 3;
+		erasequest 11815;
+		setquest 11816;
+		close2;
+		cutin "",255;
+		cloakonnpcself( "ep19_healrock_8" );
+		cloakonnpcself( "ep19_healrock_4" );
+		cloakonnpcself( "ep19_healrock_5" );
+		navigateto("jor_back1",300,272);
+		end;
+	}
+	if (ep19_side_sea == 3) {
+		mes "[Tataring]";
+		mes "พอมาลองนึกดู ^e5555e กับดักที่ฉันไปดูมาล่าสุดก่อนจะตกลงไปในหลุมก็พังเหมือนกันนะ ^000000";
+		cutin "ep19_tamarin02.png",2;
+		next;
+		mes "[Tataring]";
+		mes "มันมีสัญญาณว่ามีใครบางคนจงใจทำลายมัน";
+		cutin "ep19_tamarin03.png",2;
+		next;
+		mes "[Tataring]";
+		mes "ฉันว่าเราควรจะตรวจสอบดูนะ";
+		mes "มันจะแย่เอาได้ถ้ามีคนอื่นต้องมาเจ็บตัวอีก";
+		cutin "ep19_tamarin03.png",2;
+		close3;
+	}
+	if (ep19_side_sea < 17) {	// Frozen Sea completed (เควสทะเลเยือกแข็ง สำเร็จแล้ว)
+		mes "[Tataring]";
+		mes "เฮ้อ... ฉันกำลังจะตายแล้วล่ะ";
+		cutin "ep19_tamarin03.png",2;
+		close3;
+	}
+	// daily (เควสรายวัน)
+	if (checkquest(11852,HUNTING) == 2 && countitem(1000708) >= 10 || isbegin_quest(11858) == 1) {	// quest completed (เควสสำเร็จแล้ว)
+		mes "[Tataring]";
+		mes "อึก...";
+		mes "" + strcharinfo(0) + " คุณมาแล้ว";
+		mes "ฉันเผลอหลับไปน่ะ";
+		cutin "ep19_tamarin02.png",2;
+		if (checkquest(11852,HUNTING) == 2 && countitem(1000708) >= 10) {
+			delitem 1000708,10;	// Ep19_Ice_Meat
+			erasequest 11852;
+			setquest 11853;
+			set_reputation_points(3, (get_reputation_points(3) + 5));
+			getitem 1000608,2;	// Ep19_Snow_Flower
+			if (get_reputation_points(3) >= 3000)
+				getitem 1000608,1;	// Ep19_Snow_Flower
+			getexp 9000000,7000000;	// affected by server drop rate (ได้รับผลจากอัตราดรอปของเซิร์ฟเวอร์)
+		}
+		if (isbegin_quest(11858) == 1) {
+			erasequest 11854;
+			erasequest 11855;
+			erasequest 11856;
+			erasequest 11857;
+			erasequest 11858;
+			setquest 11859;
+			set_reputation_points(3, (get_reputation_points(3) + 5));
+			getitem 1000608,2;	// Ep19_Snow_Flower
+			if (get_reputation_points(3) >= 3000)
+				getitem 1000608,1;	// Ep19_Snow_Flower
+			getexp2 52243795,0;
+			getexp 0,3000000;
+		}
+		next;
+		mes "[Tataring]";
+		mes "คุณทำงานหนักจริงๆ นะ";
+		mes "เดี๋ยวฉันจะรีบฟื้นตัวแล้วตามไปสมทบนะ";
+		cutin "ep19_tamarin04.png",2;
+		close3;
+	}
+	if (isbegin_quest(11851) == 0) {
+		mes "[Tataring]";
+		mes "อา... ให้ตายสิ...";
+		mes "ความเร็วในการฟื้นตัวมันแย่มาก...";
+		mes "เท้าของฉันสั่นไปหมด...";
+		cutin "ep19_tamarin03.png",2;
+		next;
+		mes "[Tataring]";
+		mes "ร่างกายของคุณไม่ฟื้นตัวอย่างที่คาดไว้เลย";
+		cutin "ep19_tamarin01.png",2;
+		next;
+		mes "[Tataring]";
+		mes "ถ้าคุณไม่รีบไปล่าล่ะก็ เนื้อในตู้เย็นจะหมดลงในไม่ช้าแน่ๆ";
+		cutin "ep19_tamarin02.png",2;
+		next;
+		mes "[Tataring]";
+		mes "ท่าน Friederike บอกว่าเขาโชคดีมากนะที่ไม่ตาย...";
+		cutin "ep19_tamarin04.png",2;
+		next;
+		mes "[Tataring]";
+		mes "ตอนนี้ Shuru ไม่สามารถมาร่วมล่าได้เนื่องจากการสำรวจหลุม ส่วนนักล่าคนอื่นๆ ก็บอกว่าพวกเขางานยุ่งกันมาก";
+		next;
+		mes "[Tataring]";
+		mes "สภาพแวดล้อมเป็นแบบนี้ เครื่องมือล่าสัตว์และกับดักเลยดูเหมือนจะกรอบพังได้ง่ายและเร็วมาก";
+		cutin "ep19_tamarin01.png",2;
+		next;
+		mes "[Tataring]";
+		mes "" + strcharinfo(0) + " ถ้าคุณจับมอนสเตอร์ได้ อย่าปล่อยมันไปนะ จับพวกมันมาให้ฉันด้วย";
+		next;
+		mes "[Tataring]";
+		mes "คุณสามารถรักษาความสดของพวกมันไว้ได้นานถ้าคุณเอามันใส่ตู้เย็นนะ";
+		cutin "ep19_tamarin04.png",2;
+		setquest 11851;
+		completequest 11851;
+	}
+	else {
+		mes "[Tataring]";
+		mes "อา... ให้ตายสิ...";
+		mes "ความเร็วในการฟื้นตัวมันแย่มาก...";
+		mes "เท้าของฉันสั่นไปหมด...";
+		cutin "ep19_tamarin03.png",2;
+		next;
+		mes "[Tataring]";
+		mes "ร่างกายของคุณไม่ฟื้นตัวอย่างที่คาดไว้เลย";
+		cutin "ep19_tamarin01.png",2;
+	}
+	next;
+	switch( select( "คุณต้องการตู้เย็นไหม?", "เครื่องมือที่กรอบเกรียบ", "ฉันเป็นกังวลนะ" ) ) {
+	case 1:
+		switch( checkquest(11853,PLAYTIME) ) {
+		case -1:
+			break;
+		case 0:
+		case 1:
+			mes "[Tataring]";
+			mes "เพราะฉันมีเพียงพอสำหรับความต้องการในวันนี้แล้วล่ะ";
+			mes "อย่าหักโหมนักเลย แล้วก็พักผ่อนให้เพียงพอนะ";
+			mes "ความต้องการเนื้อของวันพรุ่งนี้ ก็เอาไว้พรุ่งนี้เถอะ!";
+			cutin "ep19_tamarin04.png",2;
+			close3;
+		case 2:
+			erasequest 11853;
+			break;
+		}
+		if (checkquest(11852,HUNTING) == -1) {
+			mes "[Tataring]";
+			mes "ตกลง!";
+			mes "ถ้าคุณทิ้งเนื้อไว้ข้างนอกในสภาพอากาศแบบนี้ มันจะแข็งจนพังทลายเป็นผงเลยล่ะ";
+			cutin "ep19_tamarin04.png",2;
+			next;
+			mes "[Tataring]";
+			mes "ฉันจะขอให้ Arwins คนอื่นๆ เอาเนื้อไปใส่ในตู้เย็นนะ " + strcharinfo(0) + " คุณแค่ต้องไปหาเนื้อมาก็พอ!";
+			next;
+			mes "[Tataring]";
+			mes "งั้นไปที่ ^e5555eทุ่งราบเกล็ดเยือกแข็ง^000000 ล่ามอนสเตอร์อย่างน้อย ^e5555e20 ตัว^000000 และหา ^e5555eเนื้อแช่แข็ง^000000 มาให้ได้ ^e5555e10 ชิ้นขึ้นไป^000000 นะ";
+			next;
+			mes "[Tataring]";
+			mes "ฉันคิดว่าฉันต้องเติมเนื้อในตู้เย็นให้เต็มหน่อย ฉันจะได้นอนเหยียดแข้งเหยียดขาพักผ่อนได้บ้าง";
+			cutin "ep19_tamarin03.png",2;
+			setquest 11852;
+			close2;
+			cutin "",255;
+			navigateto("jor_back2",211,26);
+			end;
+		}
+		// note: same text without items/hunting ongoing (หมายเหตุ: ข้อความเดิมเมื่อยังไม่มีการล่าหรือไอเทม)
+		mes "[Tataring]";
+		mes "งั้นไปที่ ^e5555eทุ่งราบเกล็ดเยือกแข็ง^000000 ล่ามอนสเตอร์อย่างน้อย ^e5555e20 ตัว^000000 และหา ^e5555eเนื้อแช่แข็ง^000000 มาให้ได้ ^e5555e10 ชิ้นขึ้นไป^000000 นะ";
+		cutin "ep19_tamarin01.png",2;
+		next;
+		mes "[Tataring]";
+		mes "ฉันคิดว่าฉันต้องเติมเนื้อในตู้เย็นให้เต็มหน่อย ฉันจะได้นอนเหยียดแข้งเหยียดขาพักผ่อนได้บ้าง";
+		close2;
+		cutin "",255;
+		navigateto("jor_back2",211,26);
+		end;
+	case 2:
+		switch( checkquest(11859,PLAYTIME) ) {
+		case -1:
+			break;
+		case 0:
+		case 1:
+			mes "[Tataring]";
+			mes "เพราะฉันมีเพียงพอสำหรับความต้องการในวันนี้แล้วล่ะ";
+			mes "อย่าหักโหมนักเลย แล้วก็พักผ่อนให้เพียงพอนะ";
+			mes "ความต้องการเนื้อของวันพรุ่งนี้ ก็เอาไว้พรุ่งนี้เถอะ!";
+			cutin "ep19_tamarin04.png",2;
+			close3;
+		case 2:
+			erasequest 11859;
+			break;
+		}
+		mes "[Tataring]";
+		mes "มันยากที่จะเชื่อ แต่มันเป็นแบบนั้นจริงๆ นะ";
+		mes "นั่นคือเหตุผลที่เราต้องคอยบำรุงรักษามันอยู่เสมอ";
+		cutin "ep19_tamarin02.png",2;
+		next;
+		mes "[Tataring]";
+		mes "ฉันเคยไปแตะกับดักที่ถูกทิ้งไว้แค่ไม่กี่วันก่อนหน้านี้ แต่มันกลับกลายเป็นผงแล้วถูกลมพัดหายไปเลย";
+		next;
+		mes "[Tataring]";
+		mes "ก่อนที่เรื่องนั้นจะเกิดขึ้น ^e5555e ไปช่วยดูพวกกับดัก^000000 ในทุ่งราบเกล็ดเยือกแข็งหน่อยนะ";
+		next;
+		mes "[Tataring]";
+		mes "ถ้ามันพังไปล่ะก็ การหาวัสดุใหม่มาสร้างมันทรมานกว่ากันเยอะเลย";
+		cutin "ep19_tamarin03.png",2;
+		if (isbegin_quest(11854) == 0)
+			setquest 11854;
+		close2;
+		cutin "",255;
+		if (isbegin_quest(11854) == 1)
+			navigateto("jor_back2",367,36);
+		else if (isbegin_quest(11855) == 1)
+			navigateto("jor_back2",84,88);
+		else if (isbegin_quest(11856) == 1)
+			navigateto("jor_back2",158,320);
+		else if (isbegin_quest(11857) == 1)
+			navigateto("jor_back2",190,184);
+		end;
+	case 3:
+		mes "[Tataring]";
+		mes "ไม่เป็นไร";
+		mes "เดี๋ยวคุณก็จะดีขึ้นในเร็วๆ นี้แหละ";
+		cutin "ep19_tamarin04.png",2;
+		close3;
+	}
+	end;
+
+OnInit:
+	cloakonnpc();
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "isbegin_quest(11815) == 1" );
+
+	// daily (เควสรายวัน)
+	questinfo( QTYPE_DAILYQUEST, QMARK_NONE, "isbegin_quest(11829) == 2 && checkquest(11852,HUNTING) == -1 && checkquest(11853,PLAYTIME) == -1" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_NONE, "checkquest(11853,PLAYTIME) == 2" );
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "checkquest(11852,HUNTING) == 2 && countitem(1000708) >= 10" );
+
+	questinfo( QTYPE_DAILYQUEST, QMARK_NONE, "isbegin_quest(11829) == 2 && isbegin_quest(11854) == 0 && checkquest(11859,PLAYTIME) == -1" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_NONE, "checkquest(11859,PLAYTIME) == 2" );
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "isbegin_quest(11858) == 1" );
+	end;
+}
+
+jor_back2,367,36,3	script	Frozen Trap#ep19_1::ep19_jor_back2_367_36	4_ROPEPILE,{
+	.@num = atoi( replacestr(strnpcinfo(2), "ep19_", "") );
+	.@quest_id = 11854 + .@num - 1;
+
+	switch( isbegin_quest(.@quest_id) ) {
+	case 0:
+		mes "- กับดักล่าสัตว์ที่ถูกแช่แข็งจนเย็นเฉียบ";
+		mes "มันเก่ามากแล้ว แต่ยังสามารถใช้งานได้หากได้รับการบำรุงรักษาอย่างเหมาะสม -";
+		close;
+	case 1:
+		mes "- กับดักล่าสัตว์ที่ถูกแช่แข็งจนเย็นเฉียบ";
+		mes "มันเก่ามากแล้ว แต่ยังสามารถใช้งานได้หากได้รับการบำรุงรักษาอย่างเหมาะสม -";
+		next;
+		progressbar "FFFF00",3;
+		mes "[" + strcharinfo(0) + "]";
+		mes "มันคงจะดีนะถ้าเจ้าทนไหว...";
+		next;
+		mes "- บำรุงรักษาเสร็จสิ้น";
+		if (.@quest_id != 11857)
+			mes "ไปดูตัวต่อไปกันเถอะ -";
+		else
+			mes "กลับไปรายงาน Tataring กันเถอะ -";
+		completequest .@quest_id;
+		setquest .@quest_id+1;
+		break;
+	case 2:
+		mes "- บำรุงรักษาเสร็จสิ้น";
+		mes "ไปดูตัวต่อไปกันเถอะ -";
+		break;
+	}
+	close2;
+	switch( .@quest_id ) {
+	case 11854:
+		navigateto("jor_back2",84,88);
+		break;
+	case 11855:
+		navigateto("jor_back2",158,320);
+		break;
+	case 11856:
+		navigateto("jor_back2",190,184);
+		break;
+	case 11857:
+		navigateto("icas_in",28,119);
+		break;
+	}
+	end;
+
+OnInit:
+	.@num = atoi( replacestr(strnpcinfo(2), "ep19_", "") );
+	.@quest_id = 11854 + .@num - 1;
+
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(" + .@quest_id + ") == 1" );
+	end;
+}
+jor_back2,84,88,3	duplicate(ep19_jor_back2_367_36)	Frozen Trap#ep19_2	4_ROPEPILE
+jor_back2,158,320,3	duplicate(ep19_jor_back2_367_36)	Frozen Trap#ep19_3	4_ROPEPILE
+jor_back2,190,184,3	duplicate(ep19_jor_back2_367_36)	Frozen Trap#ep19_4	4_ROPEPILE
+//
+
+
+// Daily quest : Dig and Dig - Step 3 (เควสรายวัน : ขุดแล้วก็ขุด - ขั้นที่ 3)
+jor_ab01,163,253,3	script	Ominous trail#ep19_1::ep19_jor_ab01_163_253	4_ENERGY_BLACK,{
+	if (isbegin_quest(11849) == 1) {
+		mes "- การสำรวจทั้งหมดเสร็จสิ้นแล้ว";
+		mes "กลับไปหา Shuru กันเถอะ -";
+		close2;
+		navigateto("icas_in",27,116);
+		end;
+	}
+	if (isbegin_quest(11836) == 0)
+		end;
+	.@num = atoi( replacestr(strnpcinfo(2), "ep19_", "") );
+	.@quest_id = 11837 + .@num - 1;
+
+	if (isbegin_quest(.@quest_id) == 1) {
+		progressbar "B04A23",3;
+		switch( .@quest_id ) {
+		case 11837:
+			unittalk getcharid(3), "" + strcharinfo(0) + " : กลิ่น... น่าขยะแขยงชะมัด...", bc_self;
+			break;
+		case 11838:
+			unittalk getcharid(3), "" + strcharinfo(0) + " : ดูเหมือนมันจะถูกฉีกออกนะ...", bc_self;
+			break;
+		case 11839:
+			unittalk getcharid(3), "" + strcharinfo(0) + " : รอยมือที่น่าสงสัย", bc_self;
+			break;
+		case 11840:
+			unittalk getcharid(3), "" + strcharinfo(0) + " : มีร่องรอยอยู่ตรงนี้", bc_self;
+			break;
+		case 11841:
+			unittalk getcharid(3), "" + strcharinfo(0) + " : อึก... มันเหนียวหนึบเลย...", bc_self;
+			break;
+		case 11842:
+			unittalk getcharid(3), "" + strcharinfo(0) + " : ร่องรอยของบางอย่างที่ถูกฝังไว้รึเปล่า?", bc_self;
+			break;
+
+		case 11843:
+			unittalk getcharid(3), "" + strcharinfo(0) + " : มีบางอย่างไหลออกมาไม่หยุดเลย?", bc_self;
+			break;
+		case 11844:
+			unittalk getcharid(3), "" + strcharinfo(0) + " : รู้สึกอยากจะอ้วกเลย...", bc_self;
+			break;
+		case 11845:
+			unittalk getcharid(3), "" + strcharinfo(0) + " : ร่องรอยของบางสิ่ง...", bc_self;
+			break;
+		case 11846:
+			unittalk getcharid(3), "" + strcharinfo(0) + " : เน่าเฟะไปหมดแล้ว...", bc_self;
+			break;
+		case 11847:
+			unittalk getcharid(3), "" + strcharinfo(0) + " : อะไรกัน?", bc_self;
+			break;
+		case 11848:
+			unittalk getcharid(3), "" + strcharinfo(0) + " : ดูเหมือนจะเป็นรอยข่วนจากเล็บนะ...", bc_self;
+			break;
+		}
+		erasequest .@quest_id;
+		questinfo_refresh();
+		if (queststatus_between(11837,11848) == 0) {// all removed (ลบออกทั้งหมดแล้ว)
+			erasequest 11836;
+			setquest 11849;
+			mes "- การสำรวจทั้งหมดเสร็จสิ้นแล้ว";
+			mes "กลับไปหา Shuru กันเถอะ -";
+			close2;
+			navigateto("icas_in",27,116);
+			end;
+		}
+		end;
+	}
+	end;
+
+OnInit:
+	.@num = atoi( replacestr(strnpcinfo(2), "ep19_", "") );
+	.@quest_id = 11837 + .@num - 1;
+
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(" + .@quest_id + ") == 1" );
+	end;
+}
+
+jor_ab01,117,141,3	duplicate(ep19_jor_ab01_163_253)	Ominous trail#ep19_2	4_ENERGY_BLACK
+jor_ab01,222,125,3	duplicate(ep19_jor_ab01_163_253)	Ominous trail#ep19_3	4_ENERGY_BLACK
+jor_ab01,196,260,3	duplicate(ep19_jor_ab01_163_253)	Ominous trail#ep19_4	4_ENERGY_BLACK
+jor_ab01,112,62,3	duplicate(ep19_jor_ab01_163_253)	Ominous trail#ep19_5	4_ENERGY_BLACK
+jor_ab01,25,265,3	duplicate(ep19_jor_ab01_163_253)	Ominous trail#ep19_6	4_ENERGY_BLACK
+
+jor_ab02,151,272,3	duplicate(ep19_jor_ab01_163_253)	Ominous trail#ep19_7	4_ENERGY_BLACK
+jor_ab02,139,148,3	duplicate(ep19_jor_ab01_163_253)	Ominous Traces#ep19_8	4_ENERGY_BLACK
+jor_ab02,182,83,3	duplicate(ep19_jor_ab01_163_253)	Ominous trail#ep19_9	4_ENERGY_BLACK
+jor_ab02,48,27,3	duplicate(ep19_jor_ab01_163_253)	Ominous Traces#ep19_10	4_ENERGY_BLACK
+jor_ab02,208,48,3	duplicate(ep19_jor_ab01_163_253)	Ominous Traces#ep19_11	4_ENERGY_BLACK
+jor_ab02,201,184,3	duplicate(ep19_jor_ab01_163_253)	Ominous trail#ep19_12	4_ENERGY_BLACK

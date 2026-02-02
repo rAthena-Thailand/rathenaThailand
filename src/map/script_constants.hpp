@@ -539,6 +539,9 @@
 	//Any Map (map_drops) [Hyroshima]
 	export_constant(MF_MAPDROPS);
 	export_constant(MF_NOMAPDROPS);
+	//EP.19
+	export_constant(MF_NOLOOTNORMALMOB);
+	export_constant(MF_NO_NPC_SELFDESTRUCTION_ON_ALL);
 
 	/* setcell types */
 	export_constant(CELL_WALKABLE);

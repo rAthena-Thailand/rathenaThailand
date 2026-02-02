@@ -1,0 +1,2190 @@
+// ภฮฤฺต๙ภป EUC-KRทฮ ภฏม๖วฯฑโ ภงวั วัฑนพ๎ นฎภๅ.
+//===== rAthena Script =======================================
+//= Issgard Land of Snow Flowers
+//===== Description: =========================================
+//= [Walkthrough Conversion]
+//--- Side quests for Episode 19
+//===== Changelogs: ==========================================
+//= 1.0 First version. [Capuche]
+//============================================================
+
+// Side Quest: Purification Saint - Step 1, 4
+icas_in,163,226,3	duplicate(dummy_cloaked_npc)	Voglinde#ep19::ep19_icas_in_163_226	4_EP19_VOGLINDE
+icas_in,162,228,5	duplicate(dummy_cloaked_npc)	Lehar#ep19_2::ep19_icas_in_163_228	4_EP19_LEHAR
+
+icas_in,162,224,0	script	#aunt errand	HIDDEN_WARP_NPC,2,2,{
+	end;
+OnTouch:
+	if (ep19_main < 10)
+		end;
+	if (ep19_side_saint == 1) {
+		if (checkweight(12322,1) == 0) {
+			mes "- เดี๋ยวก่อน !! -";
+			mes "- ตอนนี้คุณถือไอเทม -";
+			mes "- มากเกินไป -";
+			mes "- กรุณาลองใหม่อีกครั้ง -";
+			mes "- หลังจากลดน้ำหนักตัวลงแล้ว -";
+			close;
+		}
+		mes "[Voglinde]";
+		mes "โอ้ คุณพระช่วย!";
+		mes "เกิดอะไรขึ้น?";
+		mes "แล้ว Lehar ล่ะ?";
+		cloakoffnpcself( "ep19_icas_in_163_226" );
+		npctalk "Voglinde: เจ้ายังไม่เห็น Lehar อีกเหรอ?", "ep19_icas_in_163_226", bc_self;
+		cutin "ep19_voglinde01.png",0;
+		next;
+		mes "[Voglinde]";
+		mes "Lehar มีธุระอื่น เลยบอกให้ข้ามารอก่อนงั้นเหรอ?";
+		mes "ยังไงซะ เขาก็เป็นคนที่ยุ่งที่สุดจริงๆ";
+		npctalk "Voglinde: เฮ้อออ~", "ep19_icas_in_163_226", bc_self;
+		next;
+		mes "[Voglinde]";
+		mes "ข้าไม่มีเวลารอเด็กหนุ่มที่ไม่รู้ว่าจะมาเมื่อไหร่หรอกนะ และป้าก็มีเรื่องจะถามหน่อย เจ้าพอมีเวลาไหม?";
+		npctalk "Voglinde: เจ้ากำลังยุ่งอยู่หรือเปล่า?", "ep19_icas_in_163_226", bc_self;
+		next;
+		switch( select( "ตกลง", "ยุ่งอยู่" ) ) {
+		case 1:
+			mes "[Voglinde]";
+			mes "ใช่ไหมล่ะ?";
+			mes "ดีมาก";
+			mes "เจ้าคงจะหิวเพราะเดินทางมาไกล เอาสิ่งนี้ไปกินสักอันสิ";
+			ep19_side_saint = 2;
+			erasequest 18128;
+			setquest 11794;
+			getitem 12322,1;	// Chocolate_Pie
+			cutin "ep19_voglinde04.png",0;
+			next;
+			mes "[Voglinde]";
+			mes "มันไม่ใช่เรื่องใหญ่โตอะไรหรอก ตอนที่เจ้ามาด้วยเรือเหาะน่ะ";
+			mes "มีใครในทริปนั้นที่ ^e5555eมี Cardinal^000000 ผมยาวๆ และถือกระเป๋าใบใหญ่ยักษ์บ้างไหม?";
+			npctalk "Voglinde: กระเป๋ามันดูแปลกๆ ไปหน่อย", "ep19_icas_in_163_226", bc_self;
+			cutin "ep19_voglinde01.png",0;
+			next;
+			mes "[Voglinde]";
+			mes "ผมยาวประมาณนี้... หรือประมาณนี้หรือเปล่า?";
+			mes "ตั้งแต่ข้ามาที่นี่ ข้าก็ได้แต่แลกเปลี่ยนจดหมายกัน ไม่เคยเห็นตัวจริงเลย ข้าเลยไม่ค่อยแน่ใจนัก";
+			cutin "ep19_voglinde02.png",0;
+			next;
+			mes "[Voglinde]";
+			mes "นั่นแหละ... มีเด็กคนหนึ่งที่ Lehar ตกลงว่าจะไปรับมาจาก ^e5555eProntera^000000";
+			mes "แต่เจ้าไม่เห็นเขาเลยเหรอ?";
+			mes "ไม่มีรายงานว่าเจ้ามาถึงเลย...";
+			cutin "ep19_voglinde01.png",0;
+			next;
+			mes "[Voglinde]";
+			mes "มันหนาวนะ แต่เขาไม่ใช่เด็กประเภทที่จะเดินเพ่นพ่านไปทั่วได้ และเขาก็ดูโดดเด่นมากจนไม่มีทางที่คนอื่นจะไม่เห็นเขาแน่ๆ";
+			npctalk "Voglinde: เขาทำแบบนั้นไม่ได้หรอก", "ep19_icas_in_163_226", bc_self;
+			cutin "ep19_voglinde04.png",0;
+			next;
+			select( "ข้าไม่เห็นเลย" );
+			mes "[Voglinde]";
+			mes "เฮ้อ...";
+			mes "มันเจ็บปวดจริงๆ นะ";
+			mes "ข้าอุตส่าห์บอกว่าใบอนุญาตคำขอเพิ่งจะออกให้แท้ๆ แต่เด็กคนนั้นกลับหายไป";
+			npctalk "Voglinde: แค่นึกถึงความลำบากกว่าจะได้ใบอนุญาตมา!!!", "ep19_icas_in_163_226", bc_self;
+			cutin "ep19_voglinde03.png",0;
+			next;
+			mes "[Voglinde]";
+			mes "Lehar ก็หายตัวไปทันทีที่พูดจบ ข้าเลยไม่รู้ว่าเขาไปที่ไหน...";
+			mes "นี่ไม่ใช่เวลาที่จะมาทำแบบนี้...";
+			mes "อืมมม...";
+			npctalk "Voglinde: หรือว่า?", "ep19_icas_in_163_226", bc_self;
+			next;
+			mes "[Voglinde]";
+			mes "เด็กน้อย";
+			mes "เจ้าช่วยป้าสักเรื่องได้ไหม?";
+			mes "เพราะตอนนี้ป้ายุ่งเกินกว่าจะไปที่นั่นได้เอง?";
+			cutin "ep19_voglinde01.png",0;
+			next;
+			mes "[Voglinde]";
+			mes "มันไม่ใช่เรื่องใหญ่หรอก ^e5555eพวกเจ้ามาเรือเหาะกันใช่ไหม^000000?";
+			mes "ช่วยไปถามพวกเขาหน่อยได้ไหมว่าเห็น ^e5555eCardinal^000000 ในชุดสีน้ำเงิน ผมยาว และมีผ้าคลุมหน้าแบบนี้บ้างหรือเปล่า?";
+			next;
+			mes "[Voglinde]";
+			mes "ข้ายังบอกรายละเอียดตอนนี้ไม่ได้ แต่เขาสำคัญจริงๆ นะ";
+			mes "ข้าขอฝากเจ้าด้วยล่ะ";
+			close2;
+			cloakonnpcself( "ep19_icas_in_163_226" );
+			cloakoffnpcself( "ep19_icas_in_130_201" );
+			cutin "",255;
+			end;
+		case 2:
+			mes "[Voglinde]";
+			mes "งั้นเหรอ?";
+			mes "ถ้าอย่างนั้นข้าก็ช่วยไม่ได้ล่ะนะ~";
+			mes "เจ้าคงจะยุ่ง ไปทำงานเถอะ";
+			cutin "ep19_voglinde02.png",0;
+			close2;
+			cloakonnpcself( "ep19_icas_in_163_226" );
+			cutin "",255;
+			end;
+		}
+	}
+	if (ep19_side_saint == 2 || ep19_side_saint == 3) {
+		cloakoffnpcself( "ep19_icas_in_130_201" );
+		if (ep19_side_saint == 3)
+			cloakoffnpcself( "ep19_icas_in_136_197" );
+		mes "[Voglinde]";
+		mes "มันไม่ใช่เรื่องใหญ่หรอก ^e5555eพวกเจ้ามาเรือเหาะกันใช่ไหม^000000?";
+		mes "ช่วยไปถามพวกเขาหน่อยได้ไหมว่าเห็น ^e5555eCardinal ^000000 ในชุดสีน้ำเงิน ผมยาว และมีผ้าคลุมหน้าแบบนี้บ้างหรือเปล่า?";
+		cutin "ep19_voglinde01.png",0;
+		cloakoffnpcself( "ep19_icas_in_163_226" );
+		next;
+		mes "[Voglinde]";
+		mes "ข้ายังบอกรายละเอียดตอนนี้ไม่ได้ แต่เขาสำคัญจริงๆ นะ";
+		mes "ข้าขอฝากเจ้าด้วยล่ะ";
+		close2;
+		cloakonnpcself( "ep19_icas_in_163_226" );
+		cutin "",255;
+		end;
+	}
+	if (ep19_side_saint == 4) {
+		mes "[Voglinde]";
+		mes "โอ้ ตายจริง";
+		mes "" + strcharinfo(0) + " เจ้ามาแล้วเหรอ?";
+		mes "ข้างนอกนั่นหนาวมาก เจ้าคงลำบากแย่";
+		npctalk "Voglinde: ข้างนอกนั่นหนาวจริงๆ ใช่ไหม?", "ep19_icas_in_163_226", bc_self;
+		cloakoffnpcself( "ep19_icas_in_163_226" );
+		cutin "ep19_voglinde01.png",0;
+		next;
+		mes "[Voglinde]";
+		mes "ว่าไง เจอเขาไหม?";
+		next;
+		select( "บอกความจริง" );
+		mes "[Voglinde]";
+		mes "<FONT SIZE = 16><B>ไอหยา!!!</FONT></B>";
+		mes "<FONT SIZE = 16><B>ข้าจะบ้าตายจริงๆ</FONT></B>";
+		npctalk "Voglinde: อุ๊ย!", "ep19_icas_in_163_226", bc_self;
+		cutin "ep19_voglinde02.png",0;
+		next;
+		mes "[Lehar]";
+		mes "ไม่นะ!";
+		mes "มันไม่ใช่อย่างนั้นนะ ท่านป้า!";
+		cloakoffnpcself( "ep19_icas_in_163_228" );
+		npctalk "Lehar: ท่านป้า! ใจเย็นๆ ก่อน!", "ep19_icas_in_163_228", bc_self;
+		cutin "ep19_lehar05.png",2;
+		next;
+		mes "[Voglinde]";
+		mes "<FONT SIZE = 16><B>ไม่ใช่อะไรล่ะ!</FONT></B>";
+		cutin "ep19_voglinde01.png",0;
+		next;
+		mes "[Voglinde]";
+		mes "ข้าไม่ได้บอกให้เจ้าดูแลเขาให้ดีหรอกเหรอ!";
+		next;
+		mes "[Voglinde]";
+		mes "เฮ้อ...";
+		mes "...";
+		mes "เด็กน้อย";
+		mes "ข้าขอให้เจ้าช่วยป้าอีกสักเรื่องได้ไหม?";
+		next;
+		mes "[Voglinde]";
+		mes "ข้าเสียใจที่เจ้าต้องลำบากมาถึงที่นี่ แต่เจ้าช่วยกลับไปที่ ^e5555eMidgard^000000 เพื่อตามหาเขาหน่อยได้ไหม?";
+		cutin "ep19_voglinde02.png",0;
+		next;
+		mes "[Voglinde]";
+		mes "นั่นเพราะเขาเป็นเด็กที่สำคัญจริงๆ";
+		next;
+		mes "[Voglinde]";
+		mes "และตอนนี้ <B>เจ้าห้ามบอกเรื่องนี้กับใครเด็ดขาด</B>";
+		mes "เข้าใจไหม?";
+		npctalk "Voglinde: ความลับสุดยอด ระวังด้วยล่ะ", "ep19_icas_in_163_226", bc_self;
+		cutin "ep19_voglinde04.png",0;
+		next;
+		mes "[Voglinde]";
+		mes "ข้าจะบอก ^e5555eHellock^000000 เรื่องการไป Midgard ให้";
+		mes "บางทีเขาอาจจะพาเจ้าไปส่งที่ ^e5555eAldebaran^000000 ได้";
+		mes "เจ้าสามารถไปที่ ^e5555eProntera^000000 คนเดียวได้ใช่ไหม?";
+		cutin "ep19_voglinde03.png",0;
+		next;
+		mes "[Voglinde]";
+		mes "^e5555eที่ Prontera มีเด็กคนหนึ่งชื่อ Elise ที่เป็นเจ้าหน้าที่คัดลอกใช่ไหม^000000?";
+		mes "น่าจะอยู่ ^e5555eใกล้ๆ กับอาสนวิหารแห่ง Prontera^000000";
+		mes "บอกเขาว่าข้าส่งมาและพูดคำว่า <B>Saint (นักบุญ)</B> แล้วเขาจะรู้เอง";
+		npctalk "Voglinde: ข้าให้รายละเอียดมากกว่านี้ไม่ได้แล้ว", "ep19_icas_in_163_226", bc_self;
+		next;
+		mes "[Lehar]";
+		mes "<FONT SIZE = 14>ถ้าท่านป้าสั่งล่ะก็ ข้าจะทำอีกครั้งเอง!</FONT>";
+		npctalk "Lehar: ท่านป้า!!!", "ep19_icas_in_163_228", bc_self;
+		cutin "ep19_lehar07.png",2;
+		next;
+		mes "[Voglinde]";
+		mes "เจ้า... มาหาข้าแป๊บนึง";
+		mes "ตามข้ามา";
+		cutin "ep19_voglinde02.png",0;
+		next;
+		mes "[Lehar]";
+		mes "ท่านป้า!!!";
+		mes "ข้าอายจริงๆ นะ!";
+		mes "ท่านไม่ได้บอกด้วยซ้ำว่าเขาเป็นใคร!!";
+		npctalk "Lehar: ข้าไม่รู้จักทั้งหน้าและชื่อ จะให้ข้าไปตรวจสอบได้ยังไง!", "ep19_icas_in_163_228", bc_self;
+		cutin "ep19_lehar05.png",2;
+		next;
+		mes "[Voglinde]";
+		mes "ทำไมเจ้าถึงจะไม่รู้ว่าตัวเองเป็นใครกันเล่า!!";
+		mes "เจ้าก็เคยเห็นเขามาก่อนแล้วนี่!!!";
+		cutin "ep19_voglinde01.png",0;
+		npctalk "Voglinde: นั่นคือเหตุผลที่เจ้าไม่ได้ไปเจอใครเลยไง!", "ep19_icas_in_163_226", bc_self;
+		next;
+		mes "[Lehar]";
+		mes "นั่นมันตั้งหลายปีมาแล้ว!!!";
+		cutin "ep19_lehar05.png",2;
+		npctalk "Lehar: ข้าไม่ได้เห็นเขาเลยตั้งแต่เขายังเป็นแค่เด็กตัวเปี๊ยก!", "ep19_icas_in_163_228", bc_self;
+		next;
+		mes "[Voglinde]";
+		mes "ถ้าอย่างนั้น ข้าฝากเจ้าด้วยนะ";
+		mes "^e5555eHellock^000000-คุง อยู่ที่เรือเหาะเมื่อกี้ใช่ไหม?";
+		mes "ถ้าเจ้าไปที่นั่น ^e5555e จะมีกระท่อมที่ดูแปลกๆ อยู่ใช่ไหม^000000?";
+		mes "ข้าจะพักผ่อนอยู่ที่นั่นแหละ";
+		npctalk "Voglinde: หนวกหูน่า ตามข้ามาที่ห้องสวดมนต์ได้แล้ว", "ep19_icas_in_163_226", bc_self;
+		cutin "ep19_voglinde02.png",0;
+		next;
+		mes "[Lehar]";
+		mes "ท่านป้า!!";
+		mes "ใจร้าย!!";
+		mes "เดี๋ยวก่อน!!!!";
+		mes "" + strcharinfo(0) + " ท่านครับ!";
+		mes "ช่วยข้าด้วย!";
+		npctalk "Lehar: ข้าจะตายแล้ววววว!!!!!!", "ep19_icas_in_163_228", bc_self;
+		cutin "ep19_lehar03.png",2;
+		next;
+		mes "[Voglinde]";
+		mes "ใครจะไปกินเจ้ากัน?";
+		mes "ตามข้ามา!.";
+		cutin "ep19_voglinde02.png",0;
+		ep19_side_saint = 5;
+		erasequest 11796;
+		setquest 11797;
+		close2;
+		cutin "",255;
+		cloakonnpcself( "ep19_icas_in_163_226" );
+		cloakonnpcself( "ep19_icas_in_163_228" );
+		navigateto("jor_tail",211,63);
+		end;
+	}
+	if (ep19_side_saint == 5) {
+		cloakoffnpcself( "ep19_icas_in_163_226" );
+		cloakoffnpcself( "ep19_icas_in_163_228" );
+		mes "[Voglinde]";
+		mes "ถ้าอย่างนั้น ข้าฝากเจ้าด้วยนะ";
+		mes "^e5555e Hellock^000000-คุง อยู่ที่เรือเหาะเมื่อกี้ใช่ไหม?";
+		mes "ถ้าเจ้าไปที่นั่น ^e5555e จะมีกระท่อมที่ดูแปลกๆ อยู่ใช่ไหม^000000?";
+		mes "ข้าจะพักผ่อนอยู่ที่นั่นแหละ";
+		npctalk "Voglinde: หนวกหูน่า ตามข้ามาที่ห้องสวดมนต์ได้แล้ว", "ep19_icas_in_163_226", bc_self;
+		cutin "ep19_voglinde02.png",0;
+		next;
+		mes "[Lehar]";
+		mes "ท่านป้า!!";
+		mes "ใจร้าย!!";
+		mes "เดี๋ยวก่อน!!!!";
+		mes "" + strcharinfo(0) + "ท่านครับ!";
+		mes "ช่วยข้าด้วย!";
+		npctalk "Lehar: ข้าจะตายแล้ววววว!!!!!!", "ep19_icas_in_163_228", bc_self;
+		cutin "ep19_lehar03.png",2;
+		next;
+		mes "[Voglinde]";
+		mes "ใครจะไปกินเจ้ากัน?";
+		mes "ตามข้ามา!.";
+		cutin "ep19_voglinde02.png",0;
+		close2;
+		cutin "",255;
+		cloakonnpcself( "ep19_icas_in_163_226" );
+		cloakonnpcself( "ep19_icas_in_163_228" );
+		navigateto("jor_tail",211,63);
+		end;
+	}
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "isbegin_quest(18128) == 1" );
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "isbegin_quest(11796) == 1" );
+	end;
+}
+
+// Side Quest: Purification Saint - Step 2
+icas_in,130,201,5	script	Maram#ep19::ep19_icas_in_130_201	4_EP18_MARAM,{
+	if (ep19_side_saint == 2) {
+		mes "[Maram]";
+		mes "Rachel... ไม่สิ การจากทวีป Midgard มายังที่แห่งนี้ มันช่างเป็นความรู้สึกที่ซับซ้อนและละเอียดอ่อนจริงๆ";
+		npctalk "Maram: ที่นี่เทียบไม่ได้เลยกับหมู่บ้าน Gray Wolf... มันหนาวมาก", "ep19_icas_in_130_201", bc_self;
+		cutin "ep18_maram_03.png",2;
+		next;
+		mes "[Maram]";
+		mes "มันแปลกเพราะที่นี่ไม่มีอะไรเลยนอกจากน้ำแข็ง และข้าก็กังวลเพราะมีเรื่องที่ต้องรับผิดชอบมากขึ้นเรื่อยๆ...";
+		next;
+		mes "[Maram]";
+		mes "อา... ข้าไม่ได้กำลังตัดพ้อเรื่องสถานการณ์ของตัวเองหรอกนะ แค่ความรู้สึกมันแปลกๆ น่ะ อย่าใส่ใจเลย";
+		cutin "ep18_maram_02.png",2;
+		next;
+		mes "[Maram]";
+		mes "ท่านมาที่นี่เพื่อธุระอื่นนอกเหนือจากนั้นงั้นเหรอ?";
+		mes "เกิดอะไรขึ้นหรือเปล่า?";
+		cutin "ep18_maram_01.png",2;
+		next;
+		select( "ถามเกี่ยวกับ Cardinal" );
+		mes "[Maram]";
+		mes "หืมม?";
+		mes "มีคนแบบนั้นด้วยเหรอ?";
+		next;
+		mes "[Maram]";
+		mes "ถ้าเราอยู่ในเรือเหาะลำเดียวกัน ข้าคงไม่พลาดที่จะเห็นแน่ๆ...";
+		mes "คนก็ไม่ได้เยอะขนาดนั้น";
+		npctalk "Maram: มีคนอื่นนอกจากพวกเราด้วยเหรอ?", "ep19_icas_in_130_201", bc_self;
+		next;
+		mes "[Maram]";
+		mes "ถ้าเจ้าคนนั้นอยู่ในห้องพัก ก็อาจจะไม่ได้เจอกัน";
+		mes "ข้าไม่คิดว่าข้าเคยเห็นเขาเลยนะ ทั้งตอนขึ้นหรือตอนลงจากเครื่อง";
+		next;
+		mes "[Maram]";
+		mes "พูดตามตรง ข้อมูลมันน้อยเกินไปและข้าก็ไม่เคยเห็นเขาด้วย ดังนั้นมันไม่น่าจะได้คำตอบแม้ว่าเราจะคุยกันเอง จะเป็นการดีกว่าไหมถ้าไปถาม ^e5555e Lehar^000000 โดยตรง?";
+		cutin "ep18_maram_03.png",2;
+		next;
+		select( "ถามเกี่ยวกับ Lehar" );
+		mes "[Maram]";
+		mes "Lehar เหมือนจะเพิ่งออกไปเมื่อสักครู่นี่เอง...";
+		next;
+		mes "[Maram]";
+		mes "อา อยู่นั่นไง";
+		mes "Lehar!!!";
+		cutin "ep18_maram_02.png",2;
+		ep19_side_saint = 3;
+		erasequest 11794;
+		setquest 11795;
+		close2;
+		cutin "",255;
+		navigateto("icas_in",136,197);
+		cloakoffnpcself( "ep19_icas_in_136_197" );
+		end;
+	}
+	if (ep19_side_saint == 3) {
+		mes "[Maram]";
+		mes "Lehar เหมือนจะเพิ่งออกไปเมื่อสักครู่นี่เอง...";
+		next;
+		cutin "ep18_maram_01.png",2;
+		mes "[Maram]";
+		mes "อา อยู่นั่นไง";
+		mes "Lehar!!!";
+		close2;
+		cutin "",255;
+		navigateto("icas_in",136,197);
+		cloakoffnpcself( "ep19_icas_in_136_197" );
+		end;
+	}
+	end;
+
+OnInit:
+	cloakonnpc();
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "isbegin_quest(11794) == 1" );
+	end;
+}
+
+icas_in,132,201,3	duplicate(dummy_cloaked_npc)	Miriam#ep19::ep19_icas_in_132_201	4_EP18_MIRIAM
+
+// Side Quest: Purification Saint - Step 3
+icas_in,136,197,3	script	Lehar#ep19::ep19_icas_in_136_197	4_EP19_LEHAR,{
+	if (ep19_side_saint == 3) {
+		mes "[Lehar]";
+		mes "มีอะไรเหรอ?";
+		mes "ตอนนี้ข้ายุ่งมาก แต่ถ้ามันไม่ด่วน ข้าจะคุยกับเจ้าทีหลังนะ";
+		cutin "ep19_lehar01.png",2;
+		next;
+		select( "ถามเกี่ยวกับ Cardinal" );
+		mes "[Lehar]";
+		mes "^e5555eCardinal ที่ผมยาวและคลุมหน้าสีน้ำเงินงั้นเหรอ^000000?";
+		mes "พวกเจ้าก็ทักทายกันบนเรือเหาะแล้วนี่";
+		npctalk "Lehar: ทำไมเจ้าถึงถามแบบนี้ ทั้งที่พวกเจ้าก็อยู่ด้วยกันล่ะ?", "ep19_icas_in_136_197", bc_self;
+		cutin "ep19_lehar02.png",2;
+		next;
+		mes "[Maram]";
+		mes "พวกเจ้าอยู่ด้วยกันงั้นเหรอ?";
+		cutin "Pop up ep18_maram_03.png",2;
+		next;
+		mes "[Lehar]";
+		mes "ใช่";
+		mes "เจ้ารู้จัก Maram ใช่ไหม?";
+		cutin "ep19_lehar01.png",2;
+		next;
+		mes "[Miriam]";
+		mes "Maram!";
+		mes "มาทำอะไรที่นี่น่ะ!";
+		mes "นี่ไม่ใช่เวลาจะมาพักผ่อนนะ!!";
+		cutin "ep18_miriam_01.png",0;
+		cloakoffnpcself( "ep19_icas_in_132_201" );
+		next;
+		mes "[Miriam]";
+		mes "มาเถอะ เราต้องจัดตารางงานต่อไปแล้ว";
+		mes "ข้าอยากสรุปสิ่งที่ท่าน Voglinde พูดไว้ก่อนหน้านี้";
+		next;
+		mes "[Maram]";
+		mes "ใจเย็นๆ ก่อน Miriam";
+		mes "อันดับแรก ข้าต้องไปหารือกับคนอื่นๆ ก่อน";
+		cutin "ep18_maram_01.png",2;
+		next;
+		mes "[Lehar]";
+		mes "เจ้าเพิ่งจะมา...";
+		mes "^e5555e Cardinal ที่ผมยาวและคลุมหน้าสีน้ำเงิน!! ^000000.";
+		cutin "ep19_lehar02.png",2;
+		next;
+		mes "[Maram]";
+		mes "อะไรนะ...?";
+		cutin "ep18_maram_01.png",2;
+		next;
+		mes "[Miriam]";
+		mes "คะ?";
+		mes "ข้าไม่ใช่... Cardinal นะ?";
+		cutin "ep18_miriam_03.png",0;
+		next;
+		mes "[Lehar]";
+		mes "...หือ?";
+		cutin "ep19_lehar03.png",2;
+		next;
+		mes "- เหงื่อเริ่มไหลท่วมหน้าผากของ Lehar ราวกับน้ำหลาก -";
+		next;
+		mes "[Miriam]";
+		mes "Lehar ทำไมจู่ๆ เจ้าถึงเป็นแบบนี้ล่ะ?";
+		mes "หน้าตาเจ้าดูไม่ดีเลย มีอะไรผิดปกติหรือเปล่า?";
+		cutin "ep18_miriam_03.png",0;
+		npctalk "Miriam: เหงื่อท่วมเลย!!!!!", "ep19_icas_in_132_201", bc_self;
+		next;
+		mes "[Lehar]";
+		mes "เดี๋ยว... เดี๋ยวก่อนนะ Miriam คนที่อาสนวิหาร Prontera... ที่ Elise แนะนำมา...";
+		cutin "ep19_lehar03.png",2;
+		npctalk "Lehar: ความลับสุดยอด...", "ep19_icas_in_136_197", bc_self;
+		next;
+		mes "[Miriam]";
+		mes "ข้ามาจาก Rachel พร้อมกับ Maram ต่างหาก";
+		cutin "ep18_miriam_03.png",0;
+		next;
+		mes "[Lehar]";
+		mes "อา...";
+		cutin "ep19_lehar04.png",2;
+		next;
+		mes "[Lehar]";
+		mes "ข้าคิดว่าข้าคงเข้าใจเรื่องนี้ผิดไป...";
+		mes "โอ้ ข้าซวยแล้วจริงๆ...";
+		mes "...";
+		cutin "ep19_lehar03.png",2;
+		next;
+		mes "[Maram]";
+		mes "อืม...";
+		mes "ข้าไม่รู้ว่าเกิดอะไรขึ้นหรอกนะ แต่เห็น Lehar สับสนขนาดนี้ จะเป็นการดีกว่าไหมถ้าไปบอก ^e5555eBoclind^000000 ก่อน?";
+		cutin "ep18_maram_03.png",2;
+		next;
+		select( "ข้าว่าน่าจะดี" );
+		mes "[Lehar]";
+		mes "<FONT SIZE = 16><B>โอ้ ไม่นะ!! ทำไมถึงเป็นแบบนี้ไปได้!</FONT></B>";
+		cutin "ep19_lehar03.png",2;
+		next;
+		mes "[Lehar]";
+		mes "<FONT SIZE = 16><B>ข้าตายแน่ๆ!</FONT></B>";
+		mes "ท่าน " + strcharinfo(0) + "!!!!";
+		cutin "ep19_lehar04.png",2;
+		npctalk "Lehar: ไม่นะ!!!!!!!", "ep19_icas_in_136_197", bc_self;
+		ep19_side_saint = 4;
+		erasequest 11795;
+		setquest 11796;
+		close2;
+		cutin "",255;
+		cloakonnpcself( "ep19_icas_in_130_201" );
+		cloakonnpcself( "ep19_icas_in_132_201" );
+		cloakonnpcself( "ep19_icas_in_136_197" );
+		navigateto("icas_in",164,228);
+		end;
+	}
+	end;
+
+OnInit:
+	cloakonnpc();
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "isbegin_quest(11795) == 1" );
+	end;
+}
+
+// Side Quest: Purification Saint - Step 5
+jor_tail,211,63,5	script	Hellock#ep19::ep19_jor_tail_211_63	4_EP19_HEALROCK,{
+	if (ep19_side_saint == 5) {
+		mes "[Hellock]";
+		mes "โอ้~";
+		mes "<FONT SIZE = 16><B>สวัสดี</FONT></B>";
+		mes "ท่าน " + strcharinfo(0) + "!";
+		mes "ข้าได้รับเรื่องจาก Voglinde แล้ว";
+		mes "^e5555eเจ้ากำลังจะไป Midgard สินะ^000000?";
+		cutin "ep19_healrock01.png",2;
+		next;
+		mes "[Hellock]";
+		mes "ท่าน " + strcharinfo(0) + " ท่านจะไปแค่คนเดียวเหรอ?";
+		mes "มันเบาไปหน่อยนะ... ข้าควรใส่ถุงทรายเพิ่มไหมนะ...";
+		npctalk "Hellock: ถ้าท่านแค่เลื่อนไปเฉยๆ ท่านจะเสียกล้ามเนื้อได้นะ...", "", bc_self;
+		next;
+		mes "[Hellock]";
+		mes "เอาล่ะ ไปกันเลย!";
+		next;
+		select( "แล้วคนอื่นที่เหลือล่ะ?" );
+		mes "[Hellock]";
+		mes "เรือเหาะสามารถไปได้แค่ทางคฤหาสน์ Barmund เท่านั้น";
+		mes "เพราะมันไม่ใช่เรื่องที่เราจะตัดสินใจกันเองที่นี่ได้...";
+		next;
+		mes "[Hellock]";
+		mes "^e5555eAldebaran^000000 ข้ากำลังเดินทางด้วยเลื่อนของข้าเอง ดังนั้นไม่ต้องห่วง";
+		mes "เพราะไหล่กว้างๆ ของข้าจะยึดเจ้าไว้ให้แน่นเอง";
+		mes "ฮึ้บ ฮึ้บ!!!";
+		npctalk "Hellock: เจ้าก็ออกกำลังกายได้เหมือนกันนะ! นี่มันยิงปืนนัดเดียวได้นกสองตัวชัดๆ!", "", bc_self;
+		next;
+		switch( select( "ออกเดินทาง", "รอก่อน" ) ) {
+		case 1:
+			mes "[Hellock]";
+			mes "งั้นไปกันเถอะ";
+			mes "เกาะให้แน่นนะ!";
+			erasequest 11797;
+			setquest 11798;
+			ep19_side_saint = 6;
+			close2;
+			cutin "",255;
+			warp "aldebaran",104,105;
+			end;
+		case 2:
+			mes "[Hellock]";
+			mes "งั้นเหรอ?";
+			mes "ถ้าพร้อมเมื่อไหร่ก็บอกข้านะ";
+			close3;
+		}
+	}
+	if (ep19_side_saint >= 6 && ep19_side_saint <= 17) {
+		mes "[Hellock]";
+		mes "เฮ้อ...";
+		mes "อา... ข้าคือ...!!";
+		cutin "ep19_healrock03.png",2;
+		close3;
+	}
+	if (ep19_side_saint == 20) {
+		mes "[Hellock]";
+		mes "สวัสดี!!!!";
+		mes "วันนี้เจ้าจะไป Aldebaran อีกหรือเปล่า?";
+		cutin "ep19_healrock01.png",2;
+		next;
+		switch( select( "ออกเดินทาง", "รอก่อน" ) ) {
+		case 1:
+			mes "[Hellock]";
+			mes "งั้นไปกันเถอะ";
+			mes "เกาะให้แน่นนะ!";
+			close2;
+			cutin "",255;
+			warp "aldebaran",104,105;
+			end;
+		case 2:
+			mes "[Hellock]";
+			mes "งั้นเหรอ?";
+			mes "ถ้าพร้อมเมื่อไหร่ก็บอกข้านะ";
+			close3;
+		}
+	}
+	mes "[Hellock]";
+	mes "อืมมมมมมมมมมมมมมมมมมมมมม!!!!";
+	mes "ถ้าอย่างนั้น วันนี้เราก็มาพยายามฝึกกล้ามเนื้อเดลทอยด์กันเถอะ!";
+	cutin "ep19_healrock01.png",2;
+	close3;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11797) == 1" );
+	end;
+}
+
+// Side Quest: Purification Saint - Step 6, 16
+aldebaran,102,103,5	script	Helock#ep19_a	4_EP19_HEALROCK,{
+	if (ep19_side_saint == 6) {
+		mes "[Hellock]";
+		mes "อา! ท่าน " + strcharinfo(0) + "";
+		mes "ในที่สุดท่านก็ตื่นขึ้นมาแล้ว!";
+		mes "ที่นี่คือ Aldebaran นะ";
+		cutin "ep19_healrock01.png",2;
+		next;
+		mes "[Hellock]";
+		mes "ข้าไม่สามารถไป Prontera ได้เนื่องจากข้อตกลงหลายอย่าง ข้าจะรออยู่ที่นี่นะ";
+		mes "มาที่ ^e5555eAldebaran^000000 เมื่อท่านทำธุระเสร็จแล้วล่ะ";
+		npctalk "Hellock: ระหว่างที่ท่านอยู่ใน Midgard ท่านควรไปซื้อผงโปรตีนถั่วเหลืองตัวใหม่นะ!", "", bc_self;
+		erasequest 11798;
+		setquest 11799;
+		ep19_side_saint = 7;
+		close2;
+		cutin "",255;
+		navigateto("prontera",254,309);
+		end;
+	}
+	if (ep19_side_saint == 7) {
+		mes "[Hellock]";
+		mes "ข้าไม่สามารถไป Prontera ได้เนื่องจากข้อตกลงหลายอย่าง ข้าจะรออยู่ที่นี่นะ";
+		mes "มาที่ ^e5555eAldebaran^000000 เมื่อท่านทำธุระเสร็จแล้วล่ะ";
+		cutin "ep19_healrock01.png",2;
+		npctalk "Hellock: ระหว่างที่ท่านอยู่ใน Midgard ท่านควรไปซื้อผงโปรตีนถั่วเหลืองตัวใหม่นะ!", "", bc_self;
+		close2;
+		cutin "",255;
+		navigateto("prontera",254,309);
+		end;
+	}
+	if (ep19_side_saint == 8) {
+		mes "[Hellock]";
+		mes "ท่านทำธุระใน Prontera เสร็จหรือยัง?";
+		mes "มาที่ ^e5555eAldebaran^000000 เมื่อท่านทำธุระเสร็จแล้วล่ะ";
+		cutin "ep19_healrock01.png",2;
+		close3;
+	}
+	if (ep19_side_saint == 16) {
+		mes "[Hellock]";
+		mes "เจ้ามาแล้ว";
+		mes "งั้นทันทีเลย... เดี๋ยว... ข้าว่าจำนวนคนมันดูเยอะกว่าที่ท่าน Voglinde บอกไว้นะ...";
+		mes "เจ้าไม่ได้ไปกับ Cardinal หรอกเหรอ?";
+		cutin "ep19_healrock01.png",2;
+		next;
+		mes "[Hellock]";
+		mes "ในมือของทุกคนมีอะไรน่ะ?";
+		mes "เจ้ามีสัมภาระด้วยเหรอ?";
+		mes "หนึ่งกระเป๋า... สอง... เดี๋ยวสิ...";
+		mes "เปล่านะ ไม่ใช่ว่าข้ายกไม่ไหว แต่นี่มันสัมภาระของข้า...";
+		cutin "ep19_healrock02.png",2;
+		next;
+		if (select( "ออกเดินทาง", "รอก่อน" ) == 2)
+			end;
+		mes "[Dew]";
+		mes "หือออ???";
+		cutin "ep18_dew_02.png",2;
+		next;
+		mes "[Hellock]";
+		mes "งั้นเราไปกันเถอะ...";
+		mes "อึบบบบบบบบบบบบบบบบบบบบบบบบบบบบบ!!!!";
+		cutin "ep19_healrock02.png",2;
+		next;
+		mes "[Hellock]";
+		mes "เฮ้อ...";
+		mes "โอ้... ของข้า หือ...";
+		cutin "ep19_healrock03.png",2;
+		erasequest 11808;
+		setquest 11809;
+		ep19_side_saint = 17;
+		close2;
+		cutin "",255;
+		warp "jor_tail",212,60;
+		end;
+	}
+	if (ep19_side_saint == 17) {
+		mes "[Hellock]";
+		mes "เจ้ามาแล้ว";
+		mes "งั้นทันทีเลย... เดี๋ยว... ข้าว่าจำนวนคนมันดูเยอะกว่าที่ท่าน Voglinde บอกไว้นะ...";
+		mes "เจ้าไม่ได้ไปกับ Cardinal หรอกเหรอ?";
+		cutin "ep19_healrock01.png",2;
+		next;
+		mes "[Hellock]";
+		mes "ในมือของทุกคนมีอะไรน่ะ?";
+		mes "เจ้ามีสัมภาระด้วยเหรอ?";
+		mes "หนึ่งกระเป๋า... สอง... เดี๋ยวสิ...";
+		mes "เปล่านะ ไม่ใช่ว่าข้ายกไม่ไหว แต่นี่มันสัมภาระของข้า...";
+		cutin "ep19_healrock02.png",2;
+		next;
+		if (select( "ออกเดินทาง", "รอก่อน" ) == 2)
+			end;
+		mes "[Dew]";
+		mes "หือออ???";
+		cutin "ep18_dew_02.png",2;
+		next;
+		mes "[Hellock]";
+		mes "งั้นเราไปกันเถอะ...";
+		mes "อึบบบบบบบบบบบบบบบบบบบบบบบบบบบบบ!!!!";
+		cutin "ep19_healrock02.png",2;
+		next;
+		mes "[Hellock]";
+		mes "เฮ้อ...";
+		mes "โอ้... ของข้า หือ...";
+		cutin "ep19_healrock03.png",2;
+		close2;
+		cutin "",255;
+		warp "jor_tail",212,60;
+		end;
+	}
+	mes "[Hellock]";
+	mes "สวัสดี";
+	mes "นักผจญภัย อากาศหนาวมากจริงๆ ใช่ไหม?";
+	cutin "ep19_healrock01.png",2;
+	close3;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11798) == 1" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11808) == 1" );
+	end;
+}
+
+// Side Quest: Purification Saint - Step 7
+prontera,254,309,3	script	copy officer#ep19	4_F_ACOLYTE,{
+	if (ep19_side_saint == 7) {
+		mes "[Elise Copier]";
+		mes "ตายจริง!";
+		mes "สวัสดีค่ะ";
+		mes "หัวผักกาด เกิดอะไรขึ้นเหรอคะ?";
+		npctalk "Ellis: ฉันไม่คิดว่าคุณอยากจะคัดลอกนะ...", "", bc_self;
+		cutin "acact_01.bmp",2;
+		next;
+		select( "ธุระของ Voglinde" );
+		mes "[Elise Copier]";
+		mes "คุณคือ Boklind งั้นเหรอ?";
+		mes "...";
+		cutin "acact_03.bmp",2;
+		next;
+		select("Saint (นักบุญ)");
+		mes "[Elise Copier]";
+		mes "ถ้าคุณรู้ถึงขนาดนั้น ก็ไม่จำเป็นต้องปิดบังแล้วล่ะค่ะ";
+		cutin "acact_01.bmp",2;
+		next;
+		mes "[Elise Copier]";
+		mes "ถ้าหมายถึงเด็กสาวคนนั้น Lehar เป็นคนตามหาเธอ ฉันเลยส่งเธอไปยังสถานที่นัดพบแล้ว มีอะไรอย่างอื่นอีกไหมคะ?";
+		cutin "acact_03.bmp",2;
+		next;
+		select( "หายตัวไปแล้ว" );
+		mes "[Elise Copier]";
+		mes "<FONT SIZE = 16><B>อะไรนะ?!</FONT></B>";
+		mes "ไม่นะ...";
+		mes "มันไม่ใช่เหตุการณ์ที่จะหายตัวไปเฉยๆ ได้นะ!!!";
+		cutin "acact_04.bmp",2;
+		npctalk "Elise: ไม่นะ!!!!!!!!!!!!!!!!", "", bc_self;
+		next;
+		mes "[Elise Copier]";
+		mes "คุณต้องคอยจับตาดูจนกว่าจะไปถึงสิ...";
+		mes "ไม่สิ... Lehar แทนที่จะเป็น...";
+		mes "...ไม่นะ...";
+		next;
+		mes "[Elise Copier]";
+		mes "ไปที่ ^e5555e หอพัก^000000 ของเถอะค่ะ";
+		mes "เขาไม่น่าจะไปที่ไหนไกล เขาอาจจะกลับมาแล้วก็ได้";
+		mes "ถ้าไม่ล่ะก็... มันเป็นเรื่องใหญ่จริงๆ นะคะ";
+		erasequest 11799;
+		setquest 11800;
+		ep19_side_saint = 8;
+		close2;
+		cutin "",255;
+		navigateto("prt_cas",20,32);
+		end;
+	}
+	if (ep19_side_saint == 8) {
+		mes "[Elise Copier]";
+		mes "คุณต้องคอยจับตาดูจนกว่าจะไปถึงสิ...";
+		mes "ไม่สิ... Lehar แทนที่จะเป็น...";
+		mes "...ไม่นะ...";
+		cutin "acact_04.bmp",2;
+		next;
+		mes "[Elise Copier]";
+		mes "ไปที่ ^e5555e หอพัก^000000 ของเถอะค่ะ";
+		mes "เขาไม่น่าจะไปที่ไหนไกล เขาอาจจะกลับมาแล้วก็ได้";
+		mes "ถ้าไม่ล่ะก็... มันเป็นเรื่องใหญ่จริงๆ นะคะ";
+		close3;
+	}
+	if (ep19_side_saint == 9 || ep19_side_saint == 10) {
+		mes "[Elise Copier]";
+		mes "ที่นี่ไม่ใช่เรื่องหลักแล้วล่ะ คุณควรเตรียมตัวให้เร็วและออกเดินทางไป ^e5555eIsgard^000000 ใช่ไหมคะ?";
+		cutin "acact_01.bmp",2;
+		close2;
+		cutin "",255;
+		navigateto("prt_cas",20,32);
+		end;
+	}
+	mes "[Elise Copier]";
+	mes "ยินดีต้อนรับสู่อาสนวิหาร Prontera";
+	mes "เทพ Odin ต้อนรับคุณเสมอด้วยขนมพิเศษสองอย่างค่ะ";
+	cutin "acact_02.bmp",2;
+	close3;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11799) == 1" );
+	end;
+}
+
+// Side Quest: Purification Saint - Step 8
+prt_cas,22,33,3	duplicate(dummy_cloaked_npc)	Mark#ep19_cas::ep19_prt_cas_22_33	4_EP18_MARK
+prt_cas,23,32,3	duplicate(dummy_cloaked_npc)	Dew#ep19_cas::ep19_prt_cas_23_32	4_EP18_DEW
+prt_cas,24,31,3	duplicate(dummy_cloaked_npc)	Maggi#ep19_cas::ep19_prt_cas_24_31	4_4JOB_MAGGI
+prt_cas,25,31,5	duplicate(dummy_cloaked_npc)	Alp#ep19_cas::ep19_prt_cas_25_31	4_EP18_ALF
+
+prt_cas,20,32,3	script	Suitcase#ep19_1	4_EP19_SUITCASE,{
+	if (ep19_side_saint == 8) {
+		mes "[Elise Copier]";
+		mes "โอ้ ตายจริง!";
+		mes "ฉันเห็นว่ามีกระเป๋าวางอยู่ แสดงว่าคุณต้องอยู่ที่นี่แน่ๆ?";
+		cloakoffnpcself( "ep19_prt_cas_21_31" );
+		npctalk "Ellis: เฮ้อ... ฉันใช้เวลาไปตั้งสิบปีแน่ะ", "ep19_prt_cas_21_31", bc_self;
+		cutin "acact_03.bmp",2;
+		next;
+		cloakoffnpcself( "ep19_prt_cas_18_32" );
+		mes "[Saint]";
+		mes "น้องสาวคุณอยู่ที่นี่หรือเปล่า?";
+		mes "เยี่ยมเลย!";
+		mes "ชุดโค้ทสีขาวกับผ้าคลุมสีชมพู อันไหนดูน่ารักกว่ากันคะ?";
+		mes "มันน่ารักทั้งคู่เลย ฉันเลือกไม่ถูก";
+		cutin "ep19_friederike03.png",2;
+		next;
+		mes "[Elise Copier]";
+		mes "ทำไมคุณถึงมาอยู่ที่นี่ล่ะ?";
+		mes "Lehar ไม่ได้มารับคุณหรอกเหรอ?";
+		cutin "acact_04.bmp",2;
+		next;
+		mes "[Saint]";
+		mes "Lehar เหรอ?";
+		mes "เอ่อ... ฉันไปที่จุดนัดพบแล้วแต่ Lehar ไม่ได้อยู่ที่นั่น แต่มีใครบางคนให้จดหมายกับฉันมานะ?";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Elise Copier]";
+		mes "จด...หมาย...?";
+		cutin "acact_04.bmp",2;
+		next;
+		mes "[Friederike]";
+		mes "ในนั้นเขียนว่าให้มาที่คฤหาสน์ของ Barmund น่ะ";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Elise Copier]";
+		mes "แต่ทำไมคุณถึงมาอยู่ที่นี่ล่ะ?";
+		mes "คุณไม่ได้ไปหรอกเหรอ?";
+		cutin "acact_04.bmp",2;
+		next;
+		mes "[Elise Copier]";
+		mes "ไม่สิ มันไม่ควรจะไกลจากคฤหาสน์ Barmund มากไม่ใช่เหรอ?";
+		mes "คุณไม่ได้บอกให้ฉันไปที่นั่นคนเดียวเหรอ?";
+		next;
+		mes "[Saint]";
+		mes "ฉันไปมาแล้วนะ...";
+		mes "แต่ฉันเบื่อ ก็เลยเดินดูรอบๆ คฤหาสน์ Barmund...";
+		mes "ฉันเลยกลับบ้านเพราะไม่มีใครมาสักทีหลังจากรออยู่นาน";
+		cutin "ep19_friederike04.png",2;
+		next;
+		mes "[Elise Copier]";
+		mes "ทำไมคุณถึงไม่ปรากฏตัวหลังจากเรียกคนอื่นมาล่ะ!.";
+		cutin "acact_04.bmp",2;
+		next;
+		mes "[Elise Copier]";
+		mes "...";
+		next;
+		mes "[Elise Copier]";
+		mes "ยังไงฉันก็ไม่ทำแบบนี้หรอกนะ...";
+		mes "" + strcharinfo(0) + " คุณมารับฉันแล้ว ตามฉันมา";
+		mes "ท่าน Bocklind กำลังรอคุณอยู่";
+		cutin "acact_01.bmp",2;
+		next;
+		mes "[Saint]";
+		mes "Bocklind?";
+		mes "ฉันกำลังจะไปหา Boklind เหรอ?";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Saint]";
+		mes "ถ้าอย่างนั้น มาเก็บกระเป๋าเดินทางกันเถอะ!";
+		next;
+		mes "[Elise Copier]";
+		mes "สัมภาระ????";
+		mes "งั้นขอเวลาจัดของสักครู่เถอะ";
+		mes "เดี๋ยวฉันไปตามพวกพนักงานขนของมาช่วย";
+		cutin "acact_04.bmp",2;
+		next;
+		mes "[Elise Copier]";
+		mes "" + strcharinfo(0) + " ขอโทษนะคะท่าน ช่วยดูเขาเก็บของสักครู่ได้ไหม?";
+		mes "เดี๋ยวฉันกลับมา";
+		cutin "acact_01.bmp",2;
+		erasequest 11800;
+		setquest 11801;
+		ep19_side_saint = 9;
+		close2;
+		cutin "",255;
+		cloakoffnpcself( "ep19_prt_cas_21_31" );
+		end;
+	}
+	if (ep19_side_saint == 9) {
+		cloakoffnpcself( "ep19_prt_cas_18_32" );
+		mes "- ลองคุยกับ Saint ระหว่างรอ Elise -";
+		close;
+	}
+	if (ep19_side_saint >= 10 || ep19_side_saint <= 15) {
+		cloakoffnpcself( "ep19_prt_cas_21_31" );
+		cloakoffnpcself( "ep19_prt_cas_18_32" );
+		cloakoffnpcself( "ep19_prt_cas_15_31" );
+		cloakoffnpcself( "ep19_prt_cas_16_27" );
+		cloakoffnpcself( "ep19_prt_cas_26_27" );
+		cloakoffnpcself( "ep19_prt_cas_23_36" );
+		cloakoffnpcself( "ep19_prt_cas_22_30" );
+		cloakoffnpcself( "ep19_prt_cas_22_33" );
+		mes "[Elise Copier]";
+		mes "ไม่นะ ทำไมกระเป๋ามันถึงเพิ่มขึ้นล่ะ...";
+		mes "คุณคงไม่ได้อยากจะเอาทุกอย่างที่นี่ไปหรอกใช่ไหม?";
+		cutin "acact_04.bmp",2;
+		next;
+		mes "[Friederike]";
+		mes "ไม่ได้เหรอคะ?";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Elise Copier]";
+		mes "แน่นอนว่าไม่ได้!";
+		mes "เอาไปเฉพาะของที่จำเป็นเท่านั้น!";
+		cutin "acact_04.bmp",2;
+		next;
+		mes "[Friederike]";
+		mes "นี่คือของที่จำเป็นทั้งหมดเลยนะคะ";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Elise Copier]";
+		mes "" + strcharinfo(0) + " อย่ามองฉันแบบนั้นสิ";
+		mes "ถึงเธอจะเป็นแบบนี้ แต่ทักษะของเธอน่ะยอดเยี่ยมจริงๆ นะ...";
+		mes "ทักษะน่ะ...";
+		mes "จริงๆ นะ...";
+		mes "จริงๆ...";
+		cutin "acact_04.bmp",2;
+		next;
+		mes "[Elise Copier]";
+		mes "ฉันยอมไม่ได้";
+		mes "ถ้าคุณไม่เปิดมันออกแล้วเช็คดู คุณคงจะเอาของพวกนี้ทั้งหมดไปที่ Isgard จริงๆ แน่";
+		next;
+		mes "[Elise Copier]";
+		mes "มาดูกันเถอะว่ามีอะไรอยู่ในกระเป๋าบ้าง แล้วพยายามลดของให้ได้มากที่สุดดีไหม?";
+		cutin "acact_01.bmp",2;
+		close3;
+	}
+	mes "- ฉันมีกระเป๋าเดินทาง -";
+	close;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11800) == 1" );
+	end;
+}
+
+// Side Quest: Purification Saint - ขั้นตอนที่ 9
+prt_cas,18,32,5	script	Saint#ep19::ep19_prt_cas_18_32	4_EP19_FRIEDERIKE,{
+	if (ep19_side_saint == 9) {
+		mes "[Friederike]";
+		mes "สวัสดีค่ะ";
+		mes "ท่าน " + strcharinfo(0);
+		mes "ฉันชื่อ Friederike ค่ะ";
+		mes "ยินดีที่ได้รู้จักนะคะ";
+		cutin "ep19_friederike03.png",2;
+		cloakoffnpcself( "ep19_prt_cas_15_31" );
+		next;
+		mes "[Friederike]";
+		mes "ว่าแต่ " + strcharinfo(0) + " คุณมาจาก Voglinde หรือเปล่าคะ?";
+		mes "ที่ Isgard หนาวมากไหม?";
+		cutin "ep19_friederike02.png",2;
+		cloakoffnpcself( "ep19_prt_cas_16_27" );
+		next;
+		select( "มันหนาวมาก" );
+		mes "[Friederike]";
+		mes "ฉันเกลียดความหนาวจัง";
+		mes "บ้านหลังนั้นทำมาจากน้ำแข็งหรือเปล่าคะ?";
+		mes "คุณควรจะพกผ้าห่มไปด้วยนะ!";
+		cloakoffnpcself( "ep19_prt_cas_26_27" );
+		next;
+		select( "ที่นั่นมีปราสาทน้ำแข็งด้วยนะ" );
+		mes "[Friederike]";
+		mes "ว้าว!";
+		mes "มันต้องสวยแน่ๆ เลย!";
+		mes "ถ้าอย่างนั้น ชุดเดรสสีฟ้าอ่อนกับชุดเดรสสีขาว อันไหนเข้ากันมากกว่ากันคะ?";
+		cutin "ep19_friederike03.png",2;
+		cloakoffnpcself( "ep19_prt_cas_23_36" );
+		next;
+		mes "[Friederike]";
+		mes "อ๊ะ!";
+		mes "ฉันต้องเอารองเท้าที่เข้ากับชุดไปด้วย!";
+		cutin "ep19_friederike01.png",2;
+		cloakoffnpcself( "ep19_prt_cas_22_30" );
+		next;
+		mes "[Mark]";
+		mes "ทำไมเธอถึงเพิ่มของกินเรื่อยๆ เลยล่ะ!";
+		cloakoffnpcself( "ep19_prt_cas_22_33" );
+		cutin "ep18_mark_03.png",0;
+		next;
+		mes "[Mark]";
+		mes "อ๊ะ!";
+		mes "สวัสดีครับ " + strcharinfo(0);
+		cutin "ep18_mark_01.png",0;
+		next;
+		mes "[Elise Copier]";
+		mes "ไม่นะ ทำไมกระเป๋ามันถึงเพิ่มขึ้นล่ะ...";
+		mes "คุณคงไม่ได้อยากจะเอาทุกอย่างที่นี่ไปหรอกใช่ไหม?";
+		cloakoffnpcself( "ep19_prt_cas_21_31" );
+		cutin "acact_04.bmp",2;
+		next;
+		mes "[Friederike]";
+		mes "ไม่ได้เหรอคะ?";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Elise Copier]";
+		mes "แน่นอนว่าไม่ได้!";
+		mes "เอาไปเฉพาะของที่จำเป็นเท่านั้น!";
+		cutin "acact_04.bmp",2;
+		next;
+		mes "[Friederike]";
+		mes "นี่คือของที่จำเป็นทั้งหมดเลยนะคะ";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Elise Copier]";
+		mes "" + strcharinfo(0) + " อย่ามองฉันแบบนั้นสิ";
+		mes "ถึงเธอจะเป็นแบบนี้ แต่ทักษะของเธอน่ะยอดเยี่ยมจริงๆ นะ...";
+		mes "ทักษะน่ะ...";
+		mes "จริงๆ นะ...";
+		mes "จริงๆ...";
+		cutin "acact_04.bmp",2;
+		next;
+		mes "[Elise Copier]";
+		mes "ไม่มีทาง";
+		mes "ถ้าคุณไม่เปิดมันออกแล้วเช็คดู คุณคงจะเอาของพวกนี้ทั้งหมดไปที่ Isgard จริงๆ แน่";
+		next;
+		mes "[Elise Copier]";
+		mes "มาดูกันเถอะว่ามีอะไรอยู่ในกระเป๋าบ้าง แล้วพยายามลดของให้ได้มากที่สุดดีไหม?";
+		cutin "acact_01.bmp",2;
+		erasequest 11801;
+		setquest 11802;
+		ep19_side_saint = 10;
+		close3;
+	}
+	// ข้อความเริ่มต้น (default text)
+	mes "[Elise Copier]";
+	mes "ไม่นะ ทำไมกระเป๋ามันถึงเพิ่มขึ้นล่ะ...";
+	mes "คุณคงไม่ได้อยากจะเอาทุกอย่างที่นี่ไปหรอกใช่ไหม?";
+	cutin "acact_04.bmp",2;
+	next;
+	mes "[Friederike]";
+	mes "ไม่ได้เหรอคะ?";
+	cutin "ep19_friederike02.png",2;
+	next;
+	mes "[Elise Copier]";
+	mes "แน่นอนว่าไม่ได้!";
+	mes "เอาไปเฉพาะของที่จำเป็นเท่านั้น!";
+	cutin "acact_04.bmp",2;
+	next;
+	mes "[Friederike]";
+	mes "นี่คือของที่จำเป็นทั้งหมดเลยนะคะ";
+	cutin "ep19_friederike02.png",2;
+	next;
+	mes "[Elise Copier]";
+	mes "" + strcharinfo(0) + " อย่ามองฉันแบบนั้นสิ";
+	mes "ถึงเธอจะเป็นแบบนี้ แต่ทักษะของเธอน่ะยอดเยี่ยมจริงๆ นะ...";
+	mes "ทักษะน่ะ...";
+	mes "จริงๆ นะ...";
+	mes "จริงๆ...";
+	cutin "acact_04.bmp",2;
+	next;
+	mes "[Elise Copier]";
+	mes "ไม่มีทาง";
+	mes "ถ้าคุณไม่เปิดมันออกแล้วเช็คดู คุณคงจะเอาของพวกนี้ทั้งหมดไปที่ Isgard จริงๆ แน่";
+	next;
+	mes "[Elise Copier]";
+	mes "มาดูกันเถอะว่ามีอะไรอยู่ในกระเป๋าบ้าง แล้วพยายามลดของให้ได้มากที่สุดดีไหม?";
+	cutin "acact_01.bmp",2;
+	close3;
+
+OnInit:
+	cloakonnpc();
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11801) == 1" );
+	end;
+}
+
+// Side Quest: Purification Saint - ขั้นตอนที่ 10
+prt_cas,15,31,5	script	Luggage#ep19_2::ep19_prt_cas_15_31	4_EP19_SUITCASE,{
+	if (ep19_side_saint == 10) {
+		mes "- ในกระเป๋าเต็มไปด้วยชุดโค้ทหนาๆ -";
+		next;
+		mes "[Friederike]";
+		mes "ที่ Isgard มันหนาว ดังนั้นคุณต้องมีชุดโค้ทกันหนาวค่ะ";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Elise Copier]";
+		mes "ก็จริงนะ";
+		mes "งั้นอันต่อไป!";
+		cutin "acact_01.bmp",2;
+		erasequest 11802;
+		setquest 11803;
+		ep19_side_saint = 11;
+		close3;
+	}
+	mes "- ฉันมีกระเป๋าเดินทาง -";
+	close;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11802) == 1" );
+	cloakonnpc();
+	end;
+}
+
+// Side Quest: Purification Saint - ขั้นตอนที่ 11
+prt_cas,16,27,3	script	Luggage#ep19_3::ep19_prt_cas_16_27	4_EP19_SUITCASE,{
+	if (ep19_side_saint == 11) {
+		mes "- ในกระเป๋าเต็มไปด้วยชุดโค้ทหนาๆ -";
+		next;
+		mes "[Friederike]";
+		mes "Isgard มันหนาวนะคะ...";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Elise Copier]";
+		mes "มีชุดโค้ทอยู่ในกระเป๋าใบอื่นแล้วด้วย";
+		cutin "acact_01.bmp",2;
+		next;
+		mes "[Friederike]";
+		mes "แต่ว่า...";
+		cutin "ep19_friederike04.png",2;
+		next;
+		mes "[Elise Copier]";
+		mes "ยังไงคุณก็ไม่ยอมออกไปข้างนอกเพราะมันหนาวอยู่แล้วล่ะ";
+		mes "เอาไปแค่ใบนั้นพอ!";
+		mes "งั้นอันต่อไป!";
+		cutin "acact_01.bmp",2;
+		erasequest 11803;
+		setquest 11804;
+		ep19_side_saint = 12;
+		close3;
+	}
+	mes "- ฉันมีกระเป๋าเดินทาง -";
+	close;
+
+OnInit:
+	cloakonnpc();
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11803) == 1" );
+	end;
+}
+
+// Side Quest: Purification Saint - ขั้นตอนที่ 12
+prt_cas,26,27,3	script	Luggage#ep19_4::ep19_prt_cas_26_27	4_EP19_SUITCASE,{
+	if (ep19_side_saint == 12) {
+		mes "- มีตุ๊กตาหมีอยู่ในกระเป๋า -";
+		next;
+		mes "[Elise Copier]";
+		mes "...";
+		cutin "acact_01.bmp",2;
+		next;
+		mes "[Friederike]";
+		mes "ไม่นะ~!";
+		mes "ฉันนอนไม่หลับถ้าไม่มี Angelica!";
+		cutin "ep19_friederike04.png",2;
+		next;
+		mes "[Elise Copier]";
+		mes "งั้นให้เอาตุ๊กตาไปได้แค่ตัวเดียวเท่านั้นนะ";
+		cutin "acact_01.bmp",2;
+		next;
+		mes "[Friederike]";
+		mes "ค่ะ";
+		cutin "ep19_friederike03.png",2;
+		next;
+		mes "[Elise Copier]";
+		mes "งั้นอันต่อไป!";
+		cutin "acact_01.bmp",2;
+		erasequest 11804;
+		setquest 11805;
+		ep19_side_saint = 13;
+		close3;
+	}
+	mes "- ฉันมีกระเป๋าเดินทาง -";
+	close;
+
+OnInit:
+	cloakonnpc();
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11804) == 1" );
+	end;
+}
+
+// Side Quest: Purification Saint - ขั้นตอนที่ 13
+prt_cas,23,36,3	script	Luggage#ep19_5::ep19_prt_cas_23_36	4_EP19_SUITCASE,{
+	if (ep19_side_saint == 13) {
+		mes "- ในกระเป๋ามีขนมหวานอยู่ -";
+		next;
+		mes "[Elise Copier]";
+		mes "มันอาจจะหายากใน Isgard งั้นคุณเอาอันนี้ไปกับคุณได้";
+		mes "งั้นอันต่อไป!";
+		cutin "acact_01.bmp",2;
+		erasequest 11805;
+		setquest 11806;
+		ep19_side_saint = 14;
+		close3;
+	}
+	mes "- ฉันมีกระเป๋าเดินทาง -";
+	close;
+
+OnInit:
+	cloakonnpc();
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11805) == 1" );
+	end;
+}
+
+// Side Quest: Purification Saint - ขั้นตอนที่ 14
+prt_cas,22,30,5	script	Luggage#ep19_6::ep19_prt_cas_22_30	4_EP19_SUITCASE,{
+	if (ep19_side_saint == 14) {
+		mes "- มีตุ๊กตา Barmund ขนาดเท่าตัวจริงอยู่ในกระเป๋า -";
+		next;
+		mes "[Elise Copier]";
+		mes "คุณไปเอาไอ้นี่มาจากไหนเนี่ย?";
+		cutin "acact_04.bmp",2;
+		next;
+		mes "[Friederike]";
+		mes "ตอนที่ฉันไปที่คฤหาสน์ครั้งนี้ Alpha ให้ฉันมาเป็นของขวัญค่ะ";
+		cutin "ep19_friederike03.png",2;
+		next;
+		mes "[Elise Copier]";
+		mes "เอาเป็นว่า ค่อยกลับมาดูอันนี้ตอนที่กลับมาจาก Isgard แล้วกัน";
+		cutin "acact_04.bmp",2;
+		next;
+		mes "[Friederike]";
+		mes "ศþ...";
+		cutin "ep19_friederike04.png",2;
+		next;
+		mes "[Elise Copier]";
+		mes "แค่นี้ก็พอแล้วสำหรับสัมภาระของฉัน!";
+		cutin "acact_01.bmp",2;
+		erasequest 11806;
+		setquest 11807;
+		ep19_side_saint = 15;
+		close3;
+	}
+	mes "- ฉันมีกระเป๋าเดินทาง -";
+	close;
+
+OnInit:
+	cloakonnpc();
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11806) == 1" );
+	end;
+}
+
+// Side Quest: Purification Saint - ขั้นตอนที่ 15
+prt_cas,21,31,3	script	Elise#ep19::ep19_prt_cas_21_31	4_F_ACOLYTE,{
+	if (ep19_side_saint == 15) {
+		mes "[Elise Copier]";
+		mes "ศÞ!";
+		mes "ขนาดลดแล้วลดอีก มันก็ยังเยอะขนาดนี้";
+		mes "พนักงานขนของคงไม่พอแน่ๆ...";
+		cutin "acact_04.bmp",2;
+		next;
+		mes "[Dew]";
+		mes "ว้าว!";
+		mes "Mark อยู่ที่นี่เหรอ!";
+		mes "โอ้!";
+		mes "" + strcharinfo(0) + " คุณก็อยู่ด้วยเหรอ?";
+		mes "ทำไมพวกเราไม่ไปร้าน Poring ผัดเปิดใหม่ในย่านการค้าล่ะ?";
+		cloakoffnpcself( "ep19_prt_cas_23_32" );
+		cloakoffnpcself( "ep19_prt_cas_24_31" );
+		cloakoffnpcself( "ep19_prt_cas_25_31" );
+		cutin "ep18_dew_01.png",2;
+		next;
+		mes "[Friederike]";
+		mes "ฉันก็อยากกินเหมือนกัน!";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Elise Copier]";
+		mes "อ๊าาาาาา!";
+		mes "Dew!";
+		mes "Magi!";
+		mes "Alps!";
+		cutin "acact_03.bmp",2;
+		next;
+		mes "[Elise Copier]";
+		mes "ด้วยความยินดีเลย!";
+		mes "พี่สาวคนนี้จะซื้อ Poring ผัดให้กินเอง เพราะฉะนั้นช่วยฉันขนของพวกนี้หน่อยได้ไหม?";
+		cutin "acact_02.bmp",2;
+		next;
+		mes "[Dew]";
+		mes "อะไรนะ?";
+		mes "จริงเหรอ?";
+		mes "พี่สาวอาศัยอยู่ที่นั่นเหรอ?";
+		cutin "ep18_dew_05.png",2;
+		next;
+		mes "[Mark]";
+		mes "พี่ครับ!";
+		mes "นั่นมัน...";
+		mes "ผม...";
+		cutin "ep18_mark_04.png",0;
+		next;
+		mes "[Elise Copier]";
+		mes "อยู่นิ่งๆ น่า...";
+		cutin "acact_02.bmp",2;
+		next;
+		mes "[Elise Copier]";
+		mes "แน่นอนสิ!";
+		mes "ฉันจะเลี้ยงเท่าที่พวกนายอยากจะกินเลย";
+		next;
+		mes "[Dew]";
+		mes "ตกลง!";
+		mes "ฉันจะมาให้ไวเหมือนลมกรดเลย เตรียมกระเป๋าตังค์หนาๆ ไว้ล่ะ!";
+		cutin "ep18_dew_01.png",2;
+		next;
+		mes "[Elise Copier]";
+		mes "ถ้าอย่างนั้น " + strcharinfo(0) + " ฉันจะส่งพวกคุณไปที่ Aldebaran นะ";
+		mes "โปรดระวังตัวด้วยค่ะ";
+		mes "และฝากดูแล Friederike ด้วยนะคะ";
+		cutin "acact_01.bmp",2;
+		next;
+		if (select( "เคลื่อนย้าย", "หยุด" ) == 2)
+			end;
+		mes "[Friederike]";
+		mes "พี่คะ ฉันไปก่อนนะ~";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Dew]";
+		mes "หือ? Aldebaran???";
+		cutin "ep18_dew_02.png",2;
+		next;
+		mes "[Elise Copier]";
+		mes "ไปดีมาดีนะ และระวังตัวด้วย~";
+		mes "เชื่อฟังคำพูดของ Boklind ด้วยล่ะ";
+		cutin "acact_03.bmp",2;
+		erasequest 11807;
+		setquest 11808;
+		ep19_side_saint = 16;
+		close2;
+		cutin "",255;
+		cloakonnpcself( "ep19_prt_cas_22_33" );
+		cloakonnpcself( "ep19_prt_cas_21_31" );
+		cloakonnpcself( "ep19_prt_cas_18_32" );
+		cloakonnpcself( "ep19_prt_cas_15_31" );
+		cloakonnpcself( "ep19_prt_cas_16_27" );
+		cloakonnpcself( "ep19_prt_cas_26_27" );
+		cloakonnpcself( "ep19_prt_cas_23_36" );
+		cloakonnpcself( "ep19_prt_cas_22_30" );
+		cloakonnpcself( "ep19_prt_cas_23_32" );
+		cloakonnpcself( "ep19_prt_cas_24_31" );
+		cloakonnpcself( "ep19_prt_cas_25_31" );
+		warp "aldebaran",104,105;
+		end;
+	}
+	end;
+
+OnInit:
+	cloakonnpc();
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11807) == 1" );
+	end;
+}
+
+// Side Quest: Purification Saint - ขั้นตอนที่ 17
+icecastle,27,123,3	duplicate(dummy_cloaked_npc)	Lehar#ep19_3::ep19_icecastle_27_123	4_EP19_LEHAR
+icecastle,25,121,5	duplicate(dummy_cloaked_npc)	friederike#ep19entrance::ep19_icecastle_25_121	4_EP19_FRIEDERIKE
+icecastle,20,126,5	duplicate(dummy_cloaked_npc)	Dew#ep19entrance::ep19_icecastle_20_126	4_EP18_DEW
+icecastle,21,127,5	duplicate(dummy_cloaked_npc)	Mark#ep19entrance::ep19_icecastle_21_127	4_EP18_MARK
+icecastle,21,128,5	duplicate(dummy_cloaked_npc)	Maggi#ep19entrance::ep19_icecastle_21_128	4_4JOB_MAGGI
+icecastle,22,129,5	duplicate(dummy_cloaked_npc)	Alp#ep19entrance::ep19_icecastle_22_129	4_EP18_ALF
+
+icecastle,23,123,0	script	#entry Lehar	HIDDEN_WARP_NPC,3,3,{
+	end;
+OnTouch:
+	if (ep19_side_saint == 17) {
+		mes "[Lehar]";
+		mes "อ๊ะ!";
+		mes "" + strcharinfo(0) + " ในที่สุดคุณก็มาถึง!";
+		mes "Saint คือ...";
+		cutin "ep19_lehar01.png",2;
+		cloakoffnpcself( "ep19_icecastle_27_123" );
+		cloakoffnpcself( "ep19_icecastle_25_121" );
+		cloakoffnpcself( "ep19_icecastle_20_126" );
+		cloakoffnpcself( "ep19_icecastle_21_127" );
+		cloakoffnpcself( "ep19_icecastle_21_128" );
+		cloakoffnpcself( "ep19_icecastle_22_129" );
+		next;
+		mes "[Friederike]";
+		mes "Friederike ค่ะ";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Lehar]";
+		mes "สวัสดีครับ";
+		mes "Friederike";
+		mes "และคนอื่นๆ...";
+		mes "พวกคุณพยายามกันมากเลยนะที่มาจนถึง Ice Castle";
+		cutin "ep19_lehar07.png",2;
+		next;
+		mes "[Lehar]";
+		mes "ผมขอโทษที่ปล่อยให้คุณรออยู่ที่คฤหาสน์ Barmund";
+		cutin "ep19_lehar04.png",2;
+		next;
+		mes "[Friederike]";
+		mes "ไม่เป็นไรค่ะ";
+		mes "คุณโกรธ Voglinde มากหรือเปล่าคะ?";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Lehar]";
+		mes "?.";
+		mes "ผมจำมันได้ดีเลยล่ะ...";
+		cutin "ep19_lehar03.png",2;
+		next;
+		mes "[Dew]";
+		mes "หือ???";
+		mes "ที่นี่ที่ไหนเนี่ย!!!";
+		mes "มันหนาวมาก!!!";
+		mes "Poring ผัดของฉันล่ะ!!";
+		cutin "ep18_dew_02.png",2;
+		next;
+		mes "[Mark]";
+		mes "มันหนาวกว่าที่คิดแฮะ";
+		mes "ผมว่าผมควรไปตอนนี้เลยดีกว่า";
+		cutin "ep18_mark_01.png",0;
+		next;
+		mes "[Lehar]";
+		mes "อ๊ะ!! จริงด้วย";
+		mes "ที่นี่มันไม่เหมือนที่อื่นนะ ตามผมมาทางนี้ดีกว่า";
+		mes "ถ้าคุณอยู่ข้างนอกนานๆ จะเป็นหวัดเอาได้";
+		npctalk "Lehar: ตอนนี้ฉันเกลียดห้องสวดมนต์จัง...", "ep19_icecastle_27_123", bc_self;
+		cutin "ep19_lehar05.png",2;
+		erasequest 11809;
+		setquest 11810;
+		ep19_side_saint = 18;
+		close2;
+		cutin "",255;
+		cloakonnpcself( "ep19_icecastle_27_123" );
+		cloakonnpcself( "ep19_icecastle_25_121" );
+		cloakonnpcself( "ep19_icecastle_20_126" );
+		cloakonnpcself( "ep19_icecastle_21_127" );
+		cloakonnpcself( "ep19_icecastle_21_128" );
+		cloakonnpcself( "ep19_icecastle_22_129" );
+		navigateto("icecastle",59,213);
+		end;
+	}
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11809) == 1" );
+	end;
+}
+
+// Side Quest: Purification Saint - ขั้นตอนที่ 18
+icas_in,33,112,0	script	#Internal number limit	HIDDEN_WARP_NPC,1,1,{
+	end;
+OnTouch:
+	if (ep19_side_saint < 19)
+		end;
+	if (ep19_side_saint == 19) {
+		cloakoffnpcself( "ep19_healrock_5" );
+		cloakoffnpcself( "ep19_healrock_7" );
+		cloakoffnpcself( "ep19_healrock_8" );
+		end;
+	}
+	cloakoffnpcself( "ep19_healrock_1" );
+
+	if (ep19_side_sea < 2) {
+		cloakonnpcself( "ep19_healrock_2" );	// บังคับให้ซ่อนตัว
+		end;
+	}
+	if (ep19_side_sea == 2) {
+		cloakoffnpcself( "ep19_healrock_2" );
+		cloakoffnpcself( "ep19_healrock_4" );
+		cloakoffnpcself( "ep19_healrock_5" );
+		cloakoffnpcself( "ep19_healrock_8" );
+		end;
+	}
+	cloakoffnpcself( "ep19_healrock_2" );
+	end;
+}
+
+icas_in,34,121,3	duplicate(dummy_cloaked_npc)	Voglinde#ep19_room::ep19_healrock_3	4_EP19_VOGLINDE
+icas_in,27,119,5	duplicate(dummy_cloaked_npc)	Dew#ep19_room::ep19_healrock_4	4_EP18_DEW
+icas_in,30,121,5	duplicate(dummy_cloaked_npc)	Mark#ep19_room::ep19_healrock_5	4_EP18_MARK
+icas_in,29,120,5	duplicate(dummy_cloaked_npc)	Maggi#ep19_room::ep19_healrock_6	4_4JOB_MAGGI
+icas_in,26,119,5	duplicate(dummy_cloaked_npc)	Alp#ep19_room::ep19_healrock_7	4_EP18_ALF
+
+// เป็นส่วนหนึ่งของเควสรายวัน "Friederike's Day"
+// icas_in,32,123,5	script	Friederike#ep19_room	4_EP19_FRIEDERIKE,{
+
+// Side Quest: Purification Saint - ขั้นตอนที่ 19
+icas_in,35,118,3	script	Lehar#ep19_room::ep19_healrock_8	4_EP19_LEHAR,{
+	if (ep19_side_saint == 19) {
+		if (checkweight("Ep19_Snow_Flower",30) == 0) {	// Ep19_Snow_Flower
+			mes "- เดี๋ยวก่อน !! -";
+			mes "- ขณะนี้คุณพกพา -";
+			mes "- ไอเทมติดตัวมากเกินไป -";
+			mes "- โปรดลองอีกครั้ง -";
+			mes "- หลังจากคุณลดน้ำหนักตัวลง -";
+			close;
+		}
+		mes "[Lehar]";
+		mes "ถ้าอย่างนั้นคุณพักอยู่ในห้องนี้ได้นะ Friederike";
+		mes "เรียกผมได้นะถ้าคุณต้องการอะไร...";
+		mes "มันน่าจะโอเคกว่าถ้าได้อยู่กับคนที่มาพร้อมกับคุณใช่ไหม?";
+		mes "Friederike?";
+		cutin "ep19_lehar01.png",2;
+		next;
+		mes "[Friederike]";
+		mes "ค่ะ";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Lehar]";
+		mes "เดี๋ยวผมจะ...";
+		cutin "ep19_lehar01.png",2;
+		next;
+		mes "[???]";
+		mes "<FONT SIZE = 16><B>Lehar!</FONT></B>";
+		mes "<FONT SIZE = 16><B>คุณอยู่ที่นี่หรือเปล่า?</FONT></B>";
+		cutin "ep19_iwin03.png",2;
+		cloakoffnpcself( "ep19_healrock_1" );
+		next;
+		mes "[???]";
+		mes "อ๊ะ!";
+		mes "นี่คือแขกจาก Midgard เหรอครับ?";
+		mes "ขอโทษที่พรวดพราดเข้ามานะครับ";
+		mes "มันเป็นเรื่องด่วนน่ะ...";
+		next;
+		mes "[Lehar]";
+		mes "Shurr เกิดอะไรขึ้นงั้นเหรอ?";
+		cutin "ep19_lehar01.png",2;
+		next;
+		mes "[Surr]";
+		mes "อ๊ะ! คือว่า...";
+		mes "คุณพอจะมี ^e5555e purified magic core^000000 (แกนเวทมนตร์ที่ชำระล้างแล้ว) เหลืออยู่บ้างไหม?";
+		mes "เมื่อกี้ผมกำลังล่าสัตว์อยู่ แล้วเพื่อนของผมก็ตกลงไปใน ^e5555e หลุม^000000 แต่เขาไม่ยอมตื่นขึ้นมาเลยเพราะเขาตัวเปียกน้ำข้างในนั้นน่ะครับ";
+		cutin "ep19_iwin03.png",2;
+		next;
+		mes "[Surr]";
+		mes "โชคร้ายที่เพื่อนของผมไม่มีขน ก็เลยหนาวสั่นแม้ว่าเพื่อนคนอื่นๆ จะช่วยกันเก็บขนมาให้แล้วก็ตาม";
+		mes "^e5555e ถ้าคุณใช้ purified magic core^000000 เขาจะสามารถฟื้นตัวได้อย่างรวดเร็วครับ";
+		next;
+		mes "[Surr]";
+		mes "พวก ^e5555e low-level magic core^000000 ของ Rgan ผมพอจะมีอยู่บ้าง แต่ว่า...";
+		mes "^e5555e ถ้าคุณไม่ชำระล้างมัน มันก็เป็นแค่ก้อนหินที่ไร้ประโยชน์...^000000";
+		next;
+		mes "[Lehar]";
+		mes "ให้ตายสิ!";
+		mes "เพื่อนของคุณควรจะปลอดภัยนะ...";
+		mes "นี่มันเรื่องใหญ่เลยนะเนี่ย!";
+		cutin "ep19_lehar05.png",2;
+		next;
+		mes "[Lehar]";
+		mes "ถ้ามันเป็นเรื่องของแกนเวทมนตร์ เดี๋ยวคงมีอะไรบางอย่างเกิดขึ้น ดูเหมือนว่าจะเป็นอย่างนั้นนะ งั้นพาเพื่อนของคุณมาที่นี่ก่อนสิ";
+		cutin "ep19_lehar01.png",2;
+		next;
+		mes "[Surr]";
+		mes "จะดีเหรอครับ?";
+		mes "ดูเหมือนว่า ^e5555e ทั้งท่าน Leon และท่าน Aurely^000000 ตอนนี้จะไม่สามารถปลีกตัวมาได้เลย";
+		cutin "ep19_iwin03.png",2;
+		next;
+		mes "[Lehar]";
+		mes "ไม่ต้องกังวลเรื่องนั้นหรอก!";
+		cutin "ep19_lehar01.png",2;
+		next;
+		mes "[Surr]";
+		mes "<FONT SIZE = 16><B>ขอบคุณมากครับ</FONT></B>";
+		mes "เดี๋ยวผมจะพามาเดี๋ยวนี้แหละ!";
+		cutin "ep19_iwin03.png",2;
+		cloakonnpcself( "ep19_healrock_1" );
+		next;
+		mes "[Lehar]";
+		mes "เอาล่ะ Friederike";
+		cutin "ep19_lehar01.png",2;
+		next;
+		mes "[Friederike]";
+		mes "หือ?";
+		mes "ทำไมเหรอคะ?";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Lehar]";
+		mes "มานี่สิ!";
+		mes "ช่วยชำระล้างแกนเวทมนตร์อันนี้หน่อย";
+		cutin "ep19_lehar03.png",2;
+		next;
+		mes "[Friederike]";
+		mes "ไอ้ของสกปรกนี่คืออะไรคะ?";
+		mes "ต้องทำความสะอาดมันด้วยเหรอ?";
+		mes "ฉันไม่อยากสัมผัสมันเลย...";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Lehar]";
+		mes "คุณป้าของคุณขอมาน่ะ";
+		cutin "ep19_lehar03.png",2;
+		next;
+		mes "[Friederike]";
+		mes "...";
+		mes "แค่ชำระล้างก็พอใช่ไหมคะ?";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Lehar]";
+		mes "ยังไงท่าน Friederike ก็ไม่แปดเปื้อนอยู่แล้วล่ะ";
+		cutin "ep19_lehar03.png",2;
+		next;
+		mes "[Friederike]";
+		mes "แต่มันรู้สึกแย่ที่ต้องแตะต้องน่ะ...";
+		cutin "ep19_friederike04.png",2;
+		next;
+		mes "[Friederike]";
+		mes "มานี่สิ";
+		mes "ทำแบบนี้ใช่ไหม?";
+		cutin "ep19_friederike05.png",2;
+		next;
+		mes "[Lehar]";
+		mes "...";
+		mes "ผมก็คาดเอาไว้แล้วล่ะ แต่มันช่างง่ายดายจนน่าเหลือเชื่อจริงๆ";
+		cutin "ep19_lehar04.png",2;
+		next;
+		mes "[Lehar]";
+		mes "ท่าน Leon หรือท่าน Aurely สามารถชำระล้างแกนเวทมนตร์ได้ก็จริง แต่พวกเขาไม่ได้เชี่ยวชาญด้านการชำระล้างโดยเฉพาะ ดังนั้นพวกเขาจึงเปลี่ยนมันได้ทีละนิดเมื่อจำเป็นจริงๆ เท่านั้น";
+		next;
+		mes "[Lehar]";
+		mes "มันไม่ค่อยมีประสิทธิภาพเท่าไหร่เมื่อเทียบกับสิ่งอื่นๆ ที่คุณสามารถทำได้ด้วยปริมาณพลังเวทที่เท่ากัน";
+		next;
+		mes "[Lehar]";
+		mes "ผมเข้าใจอย่างถ่องแท้เลยว่าทำไมคุณป้าของคุณถึงได้ตามหา Friederike อย่างเอาเป็นเอาตายขนาดนี้";
+		cutin "ep19_lehar03.png",2;
+		next;
+		mes "[Friederike]";
+		mes "จริงเหรอคะ?";
+		mes "Voglinde ตามหาฉันมากขนาดนั้นเลยเหรอ?";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Lehar]";
+		mes "คุณป้าของคุณจะดีใจมากกว่านี้อีกนะ ถ้าคุณตั้งใจชำระล้างแกนเวทมนตร์ต่อไปเรื่อยๆ";
+		cutin "ep19_lehar01.png",2;
+		next;
+		mes "[Friederike]";
+		mes "...";
+		cutin "ep19_friederike03.png",2;
+		ep19_side_saint = 20;
+		ep19_side_sea = 1;	// // Side quest : Frozen Sea
+		completequest 11811;
+		set_reputation_points(3, (get_reputation_points(3) + 50));
+		getitem 1000608,30;	// Ep19_Snow_Flower
+		cloakoffnpcself( "ep19_healrock_1" );
+		close3;
+	}
+	end;
+
+OnInit:
+	cloakonnpc();
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11811) == 1" );
+	end;
+}
+//
+
+
+
+// Side quest : Preaching Doctrine
+jor_nest,17,97,5	script	Bernagand#1	4_EP19_RGAN_SR2,{
+	if (ep19_main < 21) {
+		mes "มันยากที่จะถูกจับได้ว่ากำลังคุยกับ Rgan โดยไม่ได้ตั้งใจ";
+		mes "ฉันคงต้องลองเข้าไปดูหน่อยแล้ว";
+		close;
+	}
+	if (checkweight("Ep19_Snow_Flower",10) == 0) {
+		mes "- คุณไม่สามารถดำเนินเควสต่อไปได้เนื่องจากมีไอเทมมากเกินไป -";
+		close;
+	}
+	switch( isbegin_quest(8795) ) {
+	case 0:
+		mes "กลุ่มคนกำลังนั่งล้อมวงฟังสิ่งที่ Rgan ระดับสูงกำลังพูดในบรรยากาศที่เงียบสงบ";
+		next;
+		if (select( "ร่วมฟังด้วยกัน", "เดินผ่านไป" ) == 2) {
+			mes "ตอนนี้ลองไปดูที่อื่นก่อนเถอะ";
+			close;
+		}
+		mes "[Bernagand]";
+		mes "...แต่ Bernagand ผู้นี้คิดต่างออกไปเล็กน้อย";
+		mes "ดังเช่นที่เหล่าผู้ศรัทธาทุกท่านที่นี่ทราบดี ว่ามีพระเจ้าเพียงองค์เดียวเท่านั้น คือ Jormungand";
+		next;
+		mes "[Bernagand]";
+		mes "ทุกคนที่อยู่ที่นี่ล้วนได้รับพรจากพระเจ้า";
+		mes "พวกเราอดไม่ได้ที่จะแตกต่างจากเผ่าพันธุ์อื่น พวกเราไม่มีพ่อแม่และไม่มีลูกหลาน แต่พวกเรากำลังสร้างชุมชนขึ้นมาตามพระประสงค์ของพระเจ้า";
+		npctalk "เจ้าคือพี่น้องที่เพิ่งเกิดใหม่รึ? ข้ากำลังเทศนาอยู่ จงฟังอย่างเงียบๆ", "ep19_jor_nest_24_97", bc_self;
+		next;
+		mes "Rgan ระดับสูงสุดผู้เรียกตนเองว่า Berna Gandrag มองมาทางนี้แล้วพยักหน้า";
+		next;
+		mes "[Bernagand]";
+		mes "มีสมาชิกใหม่เพิ่มขึ้นมาอีกหนึ่งคนแล้ว มาต้อนรับเขากันเถอะ";
+		npctalk "ยินดีต้อนรับ!", "ep19_jor_nest_24_97", bc_self;
+		npctalk "นั่งลงสิ", "ep19_jor_nest_18_92", bc_self;
+		npctalk "...", "ep19_jor_nest_23_91", bc_self;
+		next;
+		mes "[Bernagand]";
+		mes "เอ้า มานี่สิ มานี่ กลับมาเงียบกันอีกครั้ง";
+		mes "ข้าตั้งใจจะจบการเทศนาวันนี้อย่างช้าๆ แต่ในเมื่อตอนนี้พวกเรามีนักบวชเพิ่มมาแล้ว งั้นมาคุยกันต่ออีกสักนิดเถอะ";
+		next;
+		mes "[Bernagand]";
+		mes "หลังจากผ่านไปนาน... พวกเราควรจะพูดถึงท่าน Rasgand-sama กันดีไหม?";
+		next;
+		mes "[Bernagand]";
+		mes "ท่านไม่ได้ปรากฏตัวบ่อยนักเพราะตอนนี้ท่านกำลังยุ่งอยู่ แต่เพื่อการฟื้นฟูคริสตจักร Jormungand ของพวกเรา ท่าน Rasgand-nim ได้เดินทางไปทั่วดินแดนที่หนาวเหน็บแห่งนี้";
+		mes "ที่ใดที่ความโปรดปรานของพระเจ้ายังคงอยู่ พวกเราจะไม่เสียดายสิ่งใดและจะประพรมเลือดเพื่อสร้างผู้คนกลุ่มใหม่ขึ้นมา";
+		next;
+		mes "[Bernagand]";
+		mes "มนตราแห่งโลหิตของ Rasgand ผู้สืบเชื้อสายคนสุดท้ายของบรรพบุรุษของพวกเรา และมนตราแห่งดินแดนนี้ที่เต็มไปด้วยความเมตตาของพระเจ้าได้ผสมผสานกัน และชีวิตใหม่ก็ได้เริ่มสถิตอยู่";
+		mes "แต่สิ่งต่างๆ ไม่ได้เป็นไปตามแผน ไข่กลุ่มแรกนั้น...";
+		next;
+		mes "[Bernagand]";
+		mes "เพราะพวกเขาไม่ได้รับเลือกจากเหล่าทวยเทพ";
+		npctalk "ข้าขออภัย...", "ep19_jor_nest_23_91", bc_self;
+		next;
+		mes "[Bernagand]";
+		mes "ท่าน Rasgand-sama ด้วยหัวใจที่โศกเศร้า จึงเปลี่ยนพวกเขาให้กลายเป็นแกนเวทมนตร์ทีละคน";
+		mes "และหลายปีได้ผ่านไป... ในระหว่างนั้น ข้าเองก็ได้อยู่กับท่าน Rasgand-sama ด้วย...";
+		next;
+		mes "[Bernagand]";
+		mes "หลังจากหลายปีที่ทำซ้ำทั้งการประพรมเลือดและการเก็บเกี่ยวพี่น้องใหม่ ข้าก็ได้เกิดความคิดนี้ขึ้นมา";
+		next;
+		mes "[Bernagand]";
+		mes "พวกเราทุกคน ไม่ว่าจะอยู่ในลำดับชั้นใด ล้วนเป็นส่วนหนึ่งและเป็นผู้สืบเชื้อสายของ Rasgand";
+		mes "ไม่มีพ่อแม่ ไม่มีลูกหลาน";
+		next;
+		mes "[Bernagand]";
+		mes "แต่ทำไมพวกเราถึงปรากฏตัวออกมาแตกต่างกันนักล่ะ?";
+		mes "มันไม่สำคัญหรอกว่าเจ้าอยากจะไปให้ถึงจุดไหน... ข้าคิดอย่างนั้นนะ";
+		next;
+		mes "[Bernagand]";
+		mes "พวกเราไม่รู้ว่าท่าน Rasgand ต้องทนทุกข์กับอะไรบ้าง";
+		mes "และเรื่องเก่าๆ ที่ข้าเคยผ่านมา ยกตัวอย่างเช่น แม้แต่นักบวชที่เพิ่งเข้ามาใหม่ก็ไม่มีทางรู้ได้";
+		next;
+		mes "[Bernagand]";
+		mes "Rasgand กลายเป็นอมตะเนื่องจากคำสาปที่พัวพันกับมนุษย์...";
+		mes "หากพละกำลังของท่าน Rasgand-sama อ่อนโทรมลงก่อนที่ท่านจะจบการล้างแค้นต่อมนุษย์ เผ่าพันธุ์ของพวกเราก็จะมุ่งสู่ความพินาศอย่างที่เป็นอยู่";
+		next;
+		mes "[Bernagand]";
+		mes "...การแก้แค้นมนุษย์!";
+		npctalk "Jormungand จงเจริญ!", "ep19_jor_nest_24_97", bc_self;
+		npctalk "Jormungand จงเจริญ!", "ep19_jor_nest_23_91", bc_self;
+		next;
+		mes "[Bernagand]";
+		mes "ความแค้นของบรรพบุรุษ!";
+		npctalk "Rasgand จงเจริญ!", "ep19_jor_nest_24_97", bc_self;
+		npctalk "Rasgand จงเจริญ!", "ep19_jor_nest_23_91", bc_self;
+		next;
+		mes "[Bernagand]";
+		mes "ก่อนที่จะสายเกินไป... พวกเราจำเป็นต้องจัดระเบียบกองกำลังใหม่ไม่ใช่หรือ?";
+		next;
+		mes "[Bernagand]";
+		mes "ก่อนที่จะสายเกินไป...";
+		mes "พวกเราทุกคนมาเตรียมตัวกันเถอะ";
+		next;
+		mes "[Bernagand]";
+		mes "การเทศนาของวันนี้จะจบลงเพียงเท่านี้";
+		mes "ขอให้ทุกคนมีช่วงเวลาที่ดี";
+		npctalk "ข้าต้องไปทำงานแล้ว...", "ep19_jor_nest_23_91", bc_self;
+		npctalk "...", "ep19_jor_nest_18_92", bc_self;
+		next;
+		mes "[Yuramigand]";
+		mes "คุณอยากจะคุยกับฉันสักครู่ไหม?";
+		npctalk "ชู่ววว อย่ามองมาทางนี้", "ep19_jor_nest_18_92", bc_self;
+		setquest 8795;
+		close;
+	case 1:
+		mes "[Bernagand]";
+		mes "การเทศนาของวันนี้จบลงแล้ว";
+		mes "ไว้เจอกันใหม่นะ ท่านนักบวชใหม่";
+		close;
+	case 2:
+		mes "[Bernagand]";
+		mes "การเทศนาของวันนี้จบลงแล้ว";
+		mes "ไว้เจอกันใหม่นะ ท่านนักบวชใหม่";
+		close;
+	}
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST, QMARK_YELLOW, "ep19_main >= 21 && isbegin_quest(8795) == 0" );
+	end;
+}
+
+jor_nest,18,92,7	script	Yuramigand#1::ep19_jor_nest_18_92	4_EP19_RGAN_SR1,{
+	if (checkweight("Ep19_Snow_Flower",10) == 0) {
+		mes "- เดี๋ยวก่อน !! -";
+		mes "- ตอนนี้คุณกำลังพกพา -";
+		mes "- ไอเทมมากเกินไป -";
+		mes "- โปรดลองอีกครั้ง -";
+		mes "- หลังจากคุณลดน้ำหนักตัวลงแล้ว -";
+		close;
+	}
+	switch( isbegin_quest(8795) ) {
+	case 0:
+		mes "มันยากที่จะถูกจับได้ว่ากำลังคุยกับ Rgan โดยไม่ได้ตั้งใจ";
+		mes "ฉันคงต้องลองเข้าไปดูหน่อยแล้ว";
+		close;
+	case 1:
+		mes "[Yuramigand]";
+		mes "คุณอยากจะคุยกับฉันสักครู่ไหม?";
+		npctalk "ชู่ววว อย่ามองมาทางนี้", "", bc_self;
+		next;
+		select( "ครับ?", "มีเรื่องอะไรเหรอ?" );
+		mes "[Yuramigand]";
+		mes "...";
+		mes "ฉันได้ยินเรื่องนี้ทันทีหลังจากที่ฉันเกิดมา ดังนั้นฉันจึงรู้ว่ามันเป็นการกระตุ้นที่รุนแรง";
+		mes "คุณไม่จำเป็นต้องอ่านมันหรอก";
+		next;
+		mes "[Yuramigand]";
+		mes "เพราะฉันไม่รู้ว่าแผนการของ Bernagand คืออะไร";
+		mes "คุณพูดแบบนั้น แต่ฉันไม่แน่ใจว่าคุณทำเพื่อ Rasgand จริงๆ หรือเปล่า";
+		next;
+		mes "[Yuramigand]";
+		mes "คุณเข้าใจที่พูดใช่ไหม?";
+		next;
+		select("เข้าใจ", "ไม่รู้สิ" );
+		mes "[Yuramigand]";
+		mes "...เวลาจะเป็นเครื่องพิสูจน์เอง";
+		mes "อย่าทำตัวสนิทสนมกับ Bernagand เกินไปนัก";
+		mes "ท่าน Rasgand-sama ไม่ชอบใจนักหรอก";
+		next;
+		select( "จริงเหรอ?", "ครับ" );
+		mes "[Yuramigand]";
+		mes "...";
+		mes "...";
+		next;
+		mes "[Yuramigand]";
+		mes "แต่อย่างไรก็ตาม ความจงรักภักดีของ Bernagand ที่มีต่อท่าน Rasgand-sama นั้นเป็นของจริงนะ";
+		next;
+		mes "[Yuramigand]";
+		mes "...นั่นก็จริง อย่างที่ Aleigand พูดไว้ ทำไมพวกเขาถึงเกิดมาจากเลือดของท่าน Rasgand-sama เหมือนกันแต่กลับแตกต่างกันนัก?";
+		completequest 8795;
+		getitem 1000608,10;	// Ep19_Snow_Flower
+		close;
+	case 2:
+		mes "[Yuramigand]";
+		mes "ระวังอย่าตกเป็นเป้าหมายของใครเข้าล่ะ";
+		close;
+	}
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(8795) == 1" );
+	end;
+}
+
+jor_nest,21,99,3	script	Rakanorgand#1	4_EP19_RGAN_R2,{
+	mes "[Rakanorgand]";
+	mes "จงดำเนินตามคำสอนของพระเจ้า...";
+	close;
+}
+
+jor_nest,24,97,3	script	Handi Marigand#1::ep19_jor_nest_24_97	4_EP19_RGAN_R1,{
+	mes "[Handi Marigand]";
+	mes "เพราะมันเป็นการเทศนาที่อ่อนโยนซึ่งดึงดูดใจเจ้า";
+	close;
+}
+
+jor_nest,23,91,1	script	Ulnagus Dagand#1::ep19_jor_nest_23_91	EP19_RGAN_D,{
+	mes "[Ulnagus Dagand]";
+	mes "...";
+	mes "ทำ. งาน.";
+	mes "ทำงานหนัก. การชดใช้บาป.";
+	close;
+}
+//
+
+
+// Side quest : Curious Things (เควสรอง : สิ่งที่น่าสงสัย)
+jor_nest,239,239,3	script	Delfanagand#1	4_EP19_RGAN_SR1,{
+	if (checkweight("Ep19_Snow_Flower",10) == 0) {
+		mes "- คุณไม่สามารถดำเนินเควสต่อไปได้เนื่องจากมีไอเทมมากเกินไป -";
+		close;
+	}
+	if (ep19_main < 21) {
+		mes "มันยากที่จะถูกจับได้ว่ากำลังคุยกับ Rgan โดยไม่ได้ตั้งใจ";
+		mes "ฉันคงต้องลองเข้าไปดูหน่อยแล้ว";
+		close;
+	}
+	switch( isbegin_quest(8793) ) {
+	case 0:
+		mes "[Delfanagand]";
+		mes "ไม่สิ ในสถานที่แห่งนี้... คุณเป็นนักบวชคนแรกที่ข้าเคยเห็น คุณมาจากไหนกัน? แล้วคุณผ่านมาทางนี้ได้อย่างไร?";
+		mes "คุณเป็นใครกัน ที่ทำให้เขาแค่คลานออกมาจากโรงฟักไข่?";
+		mes "ใครเป็นคนดูแลอยู่กันแน่?";
+		next;
+		mes "[Delfanagand]";
+		mes "...หือ?";
+		mes "อ้าว คุณไม่ได้มาจากโรงฟักงั้นรึ?";
+		mes "ตายจริง ทำไมไม่มีใครบอกข้าเลยล่ะ?";
+		next;
+		mes "ฉันจับใจความ Rgan ระดับสูงที่จู่ๆ ก็เดินผ่านไปและเริ่มพูดกับตัวเอง";
+		next;
+		mes "[Delfanagand]";
+		mes "ข้าคือ Delfanagand";
+		mes "Rgan ทุกคนที่สื่อสารได้ล้วนรู้จักหน้าค่าตาของข้า";
+		next;
+		mes "[Delfanagand]";
+		mes "คุณอยากรู้อะไรล่ะ?";
+		next;
+		select( "อยากรู้", "ไม่อยากรู้" );
+		mes "[Delfanagand]";
+		mes "คุณเป็นเด็กที่ซื่อสัตย์นะ";
+		mes "แต่ในเมื่อมันถูกสร้างขึ้นมาแล้ว ฟังเรื่องของข้าก่อนเถอะ";
+		next;
+		mes "[Delfanagand]";
+		mes "อืม...";
+		mes "ปกติแล้ว ข้าจะรวบรวมคนหลายคนและสอนพวกเขาพร้อมกัน แต่มันแปลกนิดหน่อยที่จะลองอธิบายให้ฟังแค่คนเดียว";
+		next;
+		mes "[Delfanagand]";
+		mes "พวกเราคือเผ่าพันธุ์ที่ปกป้องดินแดนแห่งนี้ภายใต้การคุ้มครองของพญางู Jormungand ตื่นขึ้นมาจากไข่ แต่ไม่มีพ่อแม่ การฟูมฟักไข่คือมนตราของดินแดนนี้";
+		mes "ในขณะที่สิ่งมีชีวิตทั้งหมดในโลกล้วนมีพ่อแม่ แต่พวกเราถือกำเนิดขึ้นจากเจตจำนงของผู้รอดชีวิตท่าน Rasgand และเป็นรูปเป็นร่างขึ้นด้วยพลังของพญางูผู้ยิ่งใหญ่ Jormungand";
+		next;
+		mes "[Delfanagand]";
+		mes "สรรเสริญพญางูผู้ยิ่งใหญ่ Jormungand";
+		mes "จงดำเนินตามท่าน Rasgand ผู้รอดชีวิต";
+		mes "นอกจากนี้ยังเป็นความเมตตาของท่าน Rasgand-sama ที่ทำให้พวกเราตื่นขึ้นมาจากไข่พร้อมกับสติปัญญานี้";
+		mes "โลหิตของผู้ที่แข็งแกร่งจะสร้างไข่ที่แข็งแกร่ง";
+		next;
+		mes "[Delfanagand]";
+		mes "Rgan ทุกตนล้วนสืบเชื้อสายมาจากโลหิตของ Rasgand";
+		mes "ไม่มีแนวคิดเรื่องพ่อแม่และลูก แต่คุณและข้าที่ตื่นขึ้นมาแล้ว ย่อมรู้ดีว่าโลหิตที่ท่าน Rasgand-sama ผู้สืบทอดความปรารถนาทั้งหมดของบรรพบุรุษ ได้ทำให้พวกเราทุกคนตกผลึกด้วยพลังเวทมนตร์";
+		next;
+		mes "[Delfanagand]";
+		mes "Rgan ที่ดีที่สุดเพียงผู้เดียวคือท่าน Rasgand-sama";
+		mes "ถัดลงมา จงเรียกข้าว่าบิชอป Rgan ระดับสูงสุดที่โดดเด่นพอๆ กับข้า";
+		next;
+		mes "[Delfanagand]";
+		mes "คุณเกิดมาเป็นนักบวชโดยการคัดเลือกของพระเจ้า";
+		mes "พวกคนที่ดูแลไข่ตรงนั้นคือเหล่าฆราวาส";
+		mes "พวกที่ตื่นขึ้นมาโดยไม่แม้แต่จะดูดซับพลังงานเวทมนตร์ของพระเจ้าซึ่งไม่ได้ถูกมอบให้พวกเขานั้น จะมีค่าก็ต่อเมื่อพวกเขาสามารถทำงานของตนได้...";
+		next;
+		mes "[Delfanagand]";
+		mes "หากไม่เป็นเช่นนั้น มันก็เป็นเพียงแค่ทรัพยากร";
+		mes "จงใช้สติปัญญาของคุณเพื่อช่วยเหลือ Rasgand และให้คริสตจักร Jormungand ขยายอำนาจออกไปบนทวีปนี้";
+		mes "คุณอยากรู้อะไรอีกไหม?";
+		next;
+		select( "อยากรู้", "ไม่" );
+		mes "[" + strcharinfo(0) + "]";
+		mes "ไม่ครับ";
+		next;
+		mes "[Delfanagand]";
+		mes "อืม...";
+		mes "คุณดูไม่ฉลาดเท่ารูปลักษณ์ภายนอกเลยนะ";
+		mes "หรือว่าข้าสอนอะไรผิดไป?";
+		next;
+		mes "[Delfanagand]";
+		mes "เมื่อกลุ่มคนมารวมตัวกันและข้าถามว่าพวกเขามีคำถามไหม พวกเขาก็จะเริ่มถามกันเอง...";
+		next;
+		mes "[Delfanagand]";
+		mes "อย่าอายเลย ถามมาเถอะ";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "...";
+		next;
+		mes "เมื่อรวมเรื่องราวของ Delfanagand เข้าด้วยกัน ดูเหมือนว่า Rgan ที่มีระดับสติปัญญามากกว่าเกณฑ์ที่กำหนดจะมีความรู้มาตั้งแต่ต้น เช่น ความสามารถในการพูด และออกมาจากไข่เลย";
+		next;
+		mes "ฉันดีใจที่คำพูดที่ผิดพลาดบางคำจะถูกปล่อยผ่านไปได้";
+		next;
+		mes "แต่ทำไมพวกเราถึงต้องมาฟังเรื่องของคริสตจักร Jormungand ด้วยนะ?";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "ถ้าอย่างนั้นที่นั่น...";
+		next;
+		mes "[Delfanagand]";
+		mes "ใช่ๆ";
+		mes "พวกเราคือเผ่าพันธุ์ที่โดดเด่น ดังนั้นคุณย่อมสงสัยได้แน่นอนอยู่แล้ว";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "ทำไมพวกเราต้องเรียนรู้คำพูดและเรียนรู้มันทีละอย่างด้วยล่ะ?";
+		next;
+		mes "[Delfanagand]";
+		mes "โอ้ พระเจ้า ถามคำถามที่ยากอะไรอย่างนี้!";
+		mes "แต่คุณเข้าใจผิดไปหน่อยนะ";
+		mes "พวกเราไม่ได้เกิดมาเพื่อเรียนรู้การพูด";
+		next;
+		mes "[Delfanagand]";
+		mes "พวกเราแต่ละคนเป็นปัจเจกบุคคลที่แตกต่างจากท่าน Rasgand-sama แต่พวกเรามีสิ่งหนึ่งที่เหมือนกันคือ: Rgan ที่มาจากโลหิตของท่าน Rasgand-sama";
+		mes "ดังนั้นสิ่งที่คุณรู้อยู่แล้วคือเรื่องธรรมชาติสำหรับ Rgan";
+		mes "บอกสิ่งที่ท่านรู้มาสิ";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "...";
+		next;
+		select( "Rgan กิน Rgan" );
+		mes "[" + strcharinfo(0) + "]";
+		mes "Rgan กิน Rgan...";
+		next;
+		mes "[Delfanagand]";
+		mes "ใช่ พวกเราเรียนรู้สิ่งต่างๆ โดยไม่ต้องเรียน เราเกิดมาพร้อมกับรู้ทุกสิ่งที่ท่าน Rasgand-sama ถือว่าเป็นเรื่องปกติ";
+		mes "แต่หลักคำสอนของนิกายอาจเปลี่ยนแปลงไปตามพละกำลังที่เพิ่มขึ้นและประชากรที่มากขึ้นของพวกเรา";
+		next;
+		mes "[Delfanagand]";
+		mes "อืม คุณเคยได้ยินเรื่องราวยาวเหยียดของ Bernagande บ้างไหม?";
+		next;
+		setquest 8793;
+		mes "[Delfanagand]";
+		mes "งั้นข้าจะทดสอบคุณ";
+		mes "จงไปรอบๆ โรงฟักไข่ที่นี่และพูดคุยกับเหล่าฆราวาสที่ดูแลโรงฟัก";
+		mes "<NAVI>[ผู้ฟังที่ดี]<INFO>jor_nest,277,257,0,101,0</INFO></NAVI>,";
+		mes "<NAVI>[เด็กขี้เกียจ]<INFO>jor_nest,220,279,0,101,0</INFO></NAVI>,";
+		mes "<NAVI>[เด็กที่ไม่ค่อยฟังคนอื่น] <INFO>jor_nest,274,199,0,101,0</INFO></NAVI> แค่นี้น่าจะพอไหมนะ?";
+		close;
+	case 1:
+		if (isbegin_quest(8801) == 1) {
+			mes "[Delfanagand]";
+			mes "เป็นอย่างไรบ้าง? เคยมีเด็กที่... สงสัยอะไรบ้างไหม?";
+			mes "ตอนนี้คุณคงตระหนักแล้ว มันคือการทำในสิ่งที่ทุกคนทำได้";
+			mes "จงสงสัยต่อไป และพยายามอย่างเต็มที่เพื่อนิกาย";
+			completequest 8801;
+			completequest 8793;
+			getitem 1000608,10;	// Ep19_Snow_Flower
+			next;
+			mes "[Delfanagand]";
+			mes "คุณควรทำในสิ่งที่คุณทำได้";
+			close;
+		}
+		mes "[Delfanagand]";
+		mes "ไปเดินรอบๆ โรงฟักไข่และคุยกับพวกฆราวาสซะ";
+		mes "<NAVI>[ผู้ฟังที่ดี]<INFO>jor_nest,277,257,0,101,0</INFO></NAVI>,";
+		mes "<NAVI>[เด็กขี้เกียจ]<INFO>jor_nest,220,279,0,101,0</INFO></NAVI>,";
+		mes "<NAVI>[เด็กที่ไม่ค่อยฟังคนอื่น] <INFO>jor_nest,274,199,0,101,0</INFO></NAVI> แค่นี้น่าจะพอไหมนะ?";
+		close;
+	case 2:
+		mes "[Delfanagand]";
+		mes "จงสงสัยต่อไป และพยายามอย่างเต็มที่เพื่อนิกาย";
+		close;
+	}
+
+OnInit:
+	questinfo( QTYPE_QUEST, QMARK_YELLOW, "ep19_main >= 21 && isbegin_quest(8793) == 0" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(8801) == 1" );
+	end;
+}
+
+jor_nest,277,257,1	script	Yamurisnigand#1	EP19_RGAN_D,{
+	if (checkweight("Ep19_Snow_Flower",10) == 0) {
+		mes "- คุณไม่สามารถดำเนินเควสต่อไปได้เนื่องจากมีไอเทมมากเกินไป -";
+		close;
+	}
+	if (ep19_main < 21) {
+		mes "มันยากที่จะถูกจับได้ว่ากำลังคุยกับ Rgan โดยไม่ได้ตั้งใจ";
+		mes "ฉันคงต้องลองเข้าไปดูหน่อยแล้ว";
+		close;
+	}
+	if (isbegin_quest(8793) == 1) {
+		switch( isbegin_quest(8802) ) {
+		case 0:
+			mes "[Yamurisnigand]";
+			mes "คุณคือ Delfanagand เหรอ?";
+			mes "จะถามสิ่งที่รู้งั้นรึ?";
+			next;
+			mes "[Yamurisnigand]";
+			mes "...ไม่รู้สิ โย่";
+			next;
+			select("สิ่งที่ชอบ" );
+			mes "[Yamurisnigand]";
+			mes "สิ่งที่ชอบงั้นรึ?";
+			mes "สถานที่อบอุ่น...";
+			mes "ข้าเกลียดการอยู่ข้างนอก โย่";
+			next;
+			mes "ฉันไม่คิดว่าฉันจะได้ยินอะไรที่สำคัญเลย";
+			if (isbegin_quest(8800) == 1)
+				changequest 8800,8801;
+			else if (isbegin_quest(8799) == 1)
+				changequest 8799,8800;
+			else
+				setquest 8799;
+			setquest 8802;
+			completequest 8802;
+			mes "ฉันคงต้องไปหาคนงาน Rgan คนอื่นแล้วล่ะ";
+			close;
+		case 1:
+		case 2:
+			mes "[Yamurisnigand]";
+			mes "คุณไม่ชอบอะไรเหรอ?";
+			mes "ที่หนาวๆ...";
+			mes "ข้าเกลียดการอยู่ข้างนอก โย่";
+			close;
+		}
+		end;
+	}
+	mes "[Yamurisnigand]";
+	mes "คุณไม่ชอบอะไรเหรอ?";
+	mes "ที่หนาวๆ...";
+	mes "ข้าเกลียดการอยู่ข้างนอก โย่";
+	close;
+
+OnInit:
+	questinfo( QTYPE_QUEST, QMARK_YELLOW, "isbegin_quest(8793) == 1 && isbegin_quest(8802) == 0" );
+	end;
+}
+
+jor_nest,274,199,5	script	Givediusagand#1	EP19_RGAN_D,{
+	if (checkweight("Ep19_Snow_Flower",10) == 0) {
+		mes "- คุณไม่สามารถดำเนินเควสต่อไปได้เนื่องจากมีไอเทมมากเกินไป -";
+		close;
+	}
+	if (ep19_main < 21) {
+		mes "มันยากที่จะถูกจับได้ว่ากำลังคุยกับ Rgan โดยไม่ได้ตั้งใจ";
+		mes "ฉันคงต้องลองเข้าไปดูหน่อยแล้ว";
+		close;
+	}
+	if (isbegin_quest(8793) == 1) {
+		switch( isbegin_quest(8804) ) {
+		case 0:
+			mes "[Givediusagand]";
+			mes "ตกใจหมด!";
+			mes "ตกใจ... หมดเลย โย่";
+			mes "เป็นนักบวชที่ข้าไม่เคยเห็นหน้ามาก่อนเลย";
+			mes "โย่";
+			mes "ข้าไม่ได้แอบอู้นะ โย่";
+			next;
+			mes "[Givediusagand]";
+			mes "...จริงนะ ข้ากำลังดูแลเจ้าอยู่ โย่";
+			next;
+			select( "ข้อร้องเรียน" );
+			mes "[Givediusagand]";
+			mes "ข้อร้องเรียนงั้นเหรอ?";
+			mes "...ที่ผ่านมาไม่เคยมีนักบวชคนไหนพูดเรื่องแบบนี้เลย";
+			next;
+			mes "[Givediusagand]";
+			mes "พวกเราคือ... ผู้ติดตามของพระเจ้า โย่";
+			mes "...";
+			mes "มันเป็นเรื่องปกติใช่ไหม?";
+			mes "ข้าก็อยากไปเล่นนะ แต่ว่า...";
+			mes "ต้องทำงาน";
+			next;
+			mes "ฉันไม่คิดว่าฉันจะได้ยินอะไรที่สำคัญมากนัก";
+			if (isbegin_quest(8800) == 1)
+				changequest 8800,8801;
+			else if (isbegin_quest(8799) == 1)
+				changequest 8799,8800;
+			else
+				setquest 8799;
+			setquest 8804;
+			completequest 8804;
+			mes "ฉันคงต้องไปหาคนงาน Rgan คนอื่นแล้วล่ะ";
+			close;
+		case 1:
+		case 2:
+			end;
+		}
+		end;
+	}
+	mes "[Givediusagand]";
+	mes "...คุณไม่ได้ทำอย่างอื่นใช่ไหม โย่?";
+	mes "คุณไม่ได้ทำอย่างอื่นใช่ไหม โย่?";
+	close;
+
+OnInit:
+	questinfo( QTYPE_QUEST, QMARK_YELLOW, "isbegin_quest(8793) == 1 && isbegin_quest(8804) == 0" );
+	end;
+}
+
+jor_nest,220,279,1	script	Tagimi Rodigand#1	EP19_RGAN_D,{
+	if (checkweight("Ep19_Snow_Flower",10) == 0) {
+		mes "- คุณไม่สามารถดำเนินเควสต่อไปได้เนื่องจากมีไอเทมมากเกินไป -";
+		close;
+	}
+	if (ep19_main < 21) {
+		mes "มันยากที่จะถูกจับได้ว่ากำลังคุยกับ Rgan โดยไม่ได้ตั้งใจ";
+		mes "ฉันคงต้องลองเข้าไปดูหน่อยแล้ว";
+		close;
+	}
+	if (isbegin_quest(8793) == 1) {
+		switch( isbegin_quest(8803) ) {
+		case 0:
+			mes "[Tagimi Rodigand]";
+			mes "คุณคือ Delfanagand เหรอ?";
+			mes "จะถามสิ่งที่รู้งั้นรึ?";
+			next;
+			mes "[Tagimi Rodigand]";
+			mes "ข้าไม่อยากทำงานเลย...";
+			next;
+			select( "สิ่งที่คุณอยากทำ" );
+			mes "[Tagimi Rodigand]";
+			mes "คุณอยากทำอะไรเหรอ?";
+			mes "นอนแผ่บนพื้น... ในที่ที่เวทมนตร์อบอุ่น...";
+			mes "ข้าอยากนอน โย่";
+			mes "แต่ข้าต้องทำงานเพื่อการฟื้นฟูนิกาย Jormungand";
+			next;
+			mes "ดูเหมือนเขาจะไม่มีความคิดอะไรที่ลึกซึ้งเลย";
+			if (isbegin_quest(8800) == 1)
+				changequest 8800,8801;
+			else if (isbegin_quest(8799) == 1)
+				changequest 8799,8800;
+			else
+				setquest 8799;
+			setquest 8803;
+			completequest 8803;
+			mes "ฉันต้องไปรายงาน Delfanagand แล้ว";
+			close;
+		case 1:
+		case 2:
+			end;
+		}
+		end;
+	}
+	mes "[Tagimi Rodigand]";
+	mes "ข้าอยากนอนในที่ที่อบอุ่นจัง...";
+	close;
+
+OnInit:
+	questinfo( QTYPE_QUEST, QMARK_YELLOW, "isbegin_quest(8793) == 1 && isbegin_quest(8803) == 0" );
+	end;
+}

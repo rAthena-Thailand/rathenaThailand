@@ -1,0 +1,492 @@
+// ภฮฤฺต๙ภป EUC-KRทฮ ภฏม๖วฯฑโ ภงวั วัฑนพ๎ นฎภๅ.
+//===== rAthena Script =======================================
+//= 2 Instances:
+// - Bagot Laboratory
+// - Simulation Battle
+//===== Description: =========================================
+//- [Walkthrough conversion]
+//- Instance of episode 19 (same map).
+//===== Changelogs: ==========================================
+//= 1.0 First version. [Capuche]
+//============================================================
+
+// Bagot Laboratory
+// ------------------------------
+
+// Main Quest: Step 58
+jor_dun03,57,63,3	script	Juncea#ep19re2::ep19_jor_dun03_57_63	4_EP19_JUNCEA,{
+	if (ep19_main == 49) {	// ขั้นตอนที่ 58 (Step 58)
+		cutin "ep19_juncea04.png",2;
+		mes "[Juncea]";
+		mes "โอ้ ข้าอยากคุยกับเจ้าเป็นการส่วนตัวน่ะ Seneki Organd เจ้าสะดวกหรือไม่?";
+		next;
+		cutin "",255;
+		mes "- มาตั้งปาร์ตี้กับ ^0000ff1 คน และฟังเรื่องราวของ Juncea กันเถอะ^000000 -";
+		erasequest 16659;
+		setquest 16660;
+		ep19_main = 50;
+		close;
+	}
+	if (ep19_main == 50) {
+		if (is_party_leader() == false) {
+			mes "[Juncea]";
+			mes "ข้าสามารถเปิดทางลับให้ได้เฉพาะหัวหน้าปาร์ตี้เท่านั้น กรุณาให้หัวหน้าปาร์ตี้ของเจ้ามาคุยกับข้า";
+			close;
+		}
+		.@md_name$ = "Bagot Laboratory";
+		switch( select( "เตรียมตัวเข้าสู่ห้องแล็บของ Bagot", "เข้าสู่ห้องแล็บของ Bagot" ) ) {
+		case 1:
+			if (is_party_leader() == false) {
+				mes "[Juncea]";
+				mes "ข้าสามารถเปิดทางลับให้ได้เฉพาะหัวหน้าปาร์ตี้เท่านั้น กรุณาให้หัวหน้าปาร์ตี้ของเจ้ามาคุยกับข้า";
+				close;
+			}
+			mes "- ^0000ff การเตรียมการเข้าสู่พื้นที่เริ่มต้นขึ้นแล้ว หลังจากที่คุณพร้อมแล้ว ให้กดปุ่มเพื่อเข้าสู่ห้องแล็บใน Bagot^000000 -";
+			instance_create(.@md_name$);
+			close;
+		case 2:
+			if (is_party_leader() == false) {
+				mes "[Juncea]";
+				mes "ข้าสามารถเปิดทางลับให้ได้เฉพาะหัวหน้าปาร์ตี้เท่านั้น กรุณาให้หัวหน้าปาร์ตี้ของเจ้ามาคุยกับข้า";
+				close;
+			}
+			switch( instance_enter(.@md_name$) ) {
+			case IE_OTHER:
+				mes "เกิดข้อผิดพลาดที่ไม่ทราบสาเหตุ";
+				close;
+			case IE_NOINSTANCE:
+				mes "- ^0000ff ยังไม่ได้สร้าง Memorial dungeon กรุณาตรวจสอบอีกครั้ง^000000 -";
+				close;
+			case IE_NOMEMBER:
+				mes "[Juncea]";
+				mes "^ff0000เฉพาะสมาชิกของปาร์ตี้เท่านั้นที่สามารถเข้าสู่ Memorial Dungeon ได้^000000";
+				close;
+			case IE_OK:
+				// warp "1@jorlab",57,45;
+				end;
+			}
+			end;
+		}
+		end;
+	}
+	end;
+
+OnInit:
+	cloakonnpc();
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(16659) == 1" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(16660) == 1" );
+	end;
+}
+
+
+1@jorlab,1,1,0	script	#jorlab_main	-1,{
+	end;
+OnInstanceInit:
+	'map_jorlab$ = instance_mapname("1@jorlab");
+	'event = 0;
+	.@md_name$ = "Bagot Laboratory";
+
+	disablenpc instance_npcname("ep19_jorlab_58_67_B");
+
+	if (instance_live_info(ILI_NAME) == .@md_name$)	// Bagot Laboratory
+		disablenpc instance_npcname("ep19_jorlab_58_67_C");
+	else {	// การจำลอง (Simulation)
+		disablenpc instance_npcname("#jorlab_hw1");
+		disablenpc instance_npcname("ep19_jorlab_58_67_A");
+	}
+	end;
+}
+
+1@jorlab,58,45,0	script	#jorlab_hw1	HIDDEN_WARP_NPC,4,4,{
+	end;
+OnTouch:
+	disablenpc();
+	if (ep19_main == 50) {
+		if ('event != 0)
+			end;
+		if (is_party_leader() == false)
+			end;
+		enablenpc instance_npcname("ep19_jorlab_58_67_A");
+		end;
+	}
+	end;
+}
+
+// เควสต์หลัก: ขั้นตอนที่ 59 (Main Quest: Step 59)
+1@jorlab,58,67,3	script	Juncea#ep19re3::ep19_jorlab_58_67_A	4_EP19_JUNCEA,{
+	if (ep19_main != 50)
+		end;
+	if (is_party_leader() == false)
+		end;
+	.@npc_name$ = instance_npcname("ep19_jorlab_58_67_A");
+	if ('event == 0) {
+		cutin "ep19_juncea04.png",2;
+		mes "[Juncea]";
+		mes "โอ้ ข้าอยู่นี่แล้ว Senechiorgand ยินดีต้อนรับ";
+		next;
+		cutin "",255;
+		mes "[" + strcharinfo(0) + "]";
+		mes "เรื่องราวที่อยากคุยกันแค่สองคนคืออะไรเหรอครับ?";
+		mes "ผมเองก็มีคำถามเกี่ยวกับมนุษย์ของท่าน Juncea เหมือนกัน";
+		next;
+		cutin "ep19_juncea04.png",2;
+		mes "[Juncea]";
+		mes "โอ้ ข้าก็คิดไว้แล้วล่ะ";
+		mes "แต่ฟังข้าก่อนนะ";
+		next;
+		mes "[Juncea]";
+		mes "เจ้าเองก็กำลังลำบากมากเหมือนกันสินะ";
+		mes "มันคงจะยากที่จะแสร้งทำเหมือนว่าเจ้าเข้าพวกไม่ได้";
+		next;
+		cutin "",255;
+		mes "[" + strcharinfo(0) + "]";
+		mes "ท่านหมายความว่ายังไง? ทำไมถึงทำแบบนี้? มันเริ่มแปลกๆ แล้วนะ Juncea ไม่ใช่คนเดิมเลย ผมเริ่มกลัวแล้วนะ";
+		next;
+		cutin "ep19_juncea04.png",2;
+		mes "[Juncea]";
+		mes "เจ้ากลัวอะไรล่ะ? เจ้าแสดงได้ดีมาตลอดจนถึงตอนนี้ ทำไมจู่ๆ ถึงกลับมาแสดงท่าทางหวาดกลัวอีกล่ะ?";
+		next;
+		cutin "",255;
+		mes "[" + strcharinfo(0) + "]";
+		mes "ผมไม่ได้แสร้งทำเป็นเป็นมิตรนะ ผมอยากทำความรู้จักกับ Juncea และพวกมนุษย์จริงๆ";
+		next;
+		cutin "ep19_juncea04.png",2;
+		mes "[Juncea]";
+		mes "โธ่... นั่นคือเหตุผลที่เจ้าพยายามอย่างหนักกับข้าเพื่อจะนินทา Bagot งั้นเหรอ? เป็นวิธีที่ดี เป็นวิธีที่ดีมาก";
+		mes "ไม่มีวิธีไหนจะสร้างมิตรภาพได้เร็วไปกว่าการร่วมกันด่าทอคนคนเดียวกันอีกแล้ว";
+		next;
+		mes "[Juncea]";
+		mes "แต่ว่านะ เจ้าเลือกคู่ต่อสู้ผิดคนแล้วล่ะ... ช่างโง่เขลา";
+		next;
+		mes "[Juncea]";
+		mes "ท่าน... Bagot ผู้ยิ่งใหญ่... เจ้าคิดว่าท่านจะ... หลงกลกับผลงาน... ที่ตื้นเขินแบบนี้งั้นเหรอ?";
+		next;
+		cutin "",255;
+		mes "[" + strcharinfo(0) + "]";
+		mes "ท่านคือ Bagot ผู้ยิ่งใหญ่งั้นเหรอ?";
+		next;
+		cutin "ep19_juncea04.png",2;
+		mes "[Juncea]";
+		mes "ใช่... เจ้าถูกอ่านใจไปหมดแล้ว...";
+		next;
+		mes "[Juncea]";
+		mes "เจ้ารู้ทั้งรู้... ว่าเจ้ากำลังพยายามจะ... ใช้ประโยชน์จาก Juncea คนนี้";
+		next;
+		mes "[Juncea]";
+		mes "ดังนั้น ข้า...";
+		next;
+		mes "[Juncea]";
+		mes "ข้าคือ... ข้าคือใครกันแน่? นี่มัน...";
+		next;
+		cutin "",255;
+		mes "[" + strcharinfo(0) + "]";
+		mes "(Juncea ดูแปลกไป... Bagot ทำอะไรบางอย่างลงไปงั้นเหรอ?)";
+		next;
+		cutin "ep19_juncea04.png",2;
+		mes "[Juncea]";
+		mes "ต่อให้ข้าจะหนีไป... เจ้าก็ยังอยู่ในกำมือของ Bagot อยู่ดี";
+		next;
+		cutin "ep19_juncea00.png",1;
+		setnpcdisplay( .@npc_name$, 4_EP19_JUNCEA_M );
+		mes "[Juncea]";
+		mes "ตรงนี้... ข้าจะจัดการมันเอง...!";
+		next;
+		cutin "",255;
+		mes "[" + strcharinfo(0) + "]";
+		mes "(...ผมไม่มีเวลาไปขอความช่วยเหลือจากใครแล้ว! ผมต้องจัดการเรื่องนี้ด้วยตัวเอง!)";
+		if ('event == 0)
+			'event = 1;
+		close;
+	}
+	if ('event == 1) {
+		cutin "ep19_juncea04.png",2;
+		setnpcdisplay( .@npc_name$, 4_EP19_JUNCEA );
+		mes "[Juncea]";
+		mes "อ๊ากกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกก!";
+		next;
+		cutin "ep19_juncea00.png",1;
+		sleep2 500;
+		setnpcdisplay( .@npc_name$, 4_EP19_JUNCEA_M );
+		mes "[Juncea]";
+		mes "ทุกสิ่งทุกอย่างคือ... ความต้องการของ... Bagot...!";
+		next;
+		cutin "ep19_juncea04.png",2;
+		sleep2 500;
+		setnpcdisplay( .@npc_name$, 4_EP19_JUNCEA );
+		mes "[Juncea]";
+		mes "อ๊าาาาาาา!";
+		setnpcdisplay( .@npc_name$, 4_EP19_JUNCEA_M );
+		setnpcdisplay( .@npc_name$, 4_EP19_JUNCEA );
+		setnpcdisplay( .@npc_name$, 4_EP19_JUNCEA_M );
+		sleep2 500;
+		setnpcdisplay( .@npc_name$, 4_EP19_JUNCEA );
+		next;
+		cutin "ep19_juncea00.png",1;
+		sleep2 500;
+		setnpcdisplay( .@npc_name$, 4_EP19_JUNCEA_M );
+		mes "[Juncea]";
+		mes "ข้าจะลงทัณฑ์เจ้าตามความประสงค์ของท่าน!";
+		close2;
+		if ('event != 1)
+			end;
+		'event = 2;
+		cutin "",255;
+		disablenpc();
+		donpcevent instance_npcname("jorlab_boss") + "::OnStart";
+		end;
+	}
+	end;
+}
+
+1@jorlab,1,1,0	script	jorlab_boss	-1,{
+	end;
+OnStart:
+	sleep 500;
+	monster 'map_jorlab$,58,67,"--ja--",21532,1, instance_npcname("jorlab_boss") + "::OnMobDead";	// EP19_MD_JUNCEA
+	end;
+OnMobDead:
+	if ('event != 2)
+		end;
+	'event = 3;
+	enablenpc instance_npcname("ep19_jorlab_58_67_B");
+	end;
+}
+
+
+// เควสต์หลัก: ขั้นตอนที่ 60 (Main Quest: Step 60)
+1@jorlab,58,67,3	script	Juncea#ep19re4::ep19_jorlab_58_67_B	4_EP19_JUNCEA_D,{
+	if (ep19_main != 50) {
+		warp "icecastle",27,123;
+		end;
+	}
+	if ('event != 3)
+		end;
+	if (is_party_leader() == false)
+		end;
+	mes "[" + strcharinfo(0) + "]";
+	mes "(ปราบได้หวุดหวิดเลย Juncea เสียสติไปแล้ว...)";
+	next;
+	mes "[" + strcharinfo(0) + "]";
+	mes "(Bagot... แกทำอะไรกับ Juncea? แกเปลี่ยนเธอให้กลายเป็นสัตว์ประหลาดไปแล้วใช่ไหม?)";
+	next;
+	mes "[" + strcharinfo(0) + "]";
+	mes "(ถ้าเป็นไปตามแผน ผมควรจะเกลี้ยกล่อมพาเธอออกไป แต่ตอนนี้ผมคงต้องพาเธอออกไปในสภาพนี้แหละ)";
+	mapannounce 'map_jorlab$, "Bagot: โอ้ การใช้ Juncea เป็นภาชนะรองรับมันยังไม่เพียงพอสินะ", bc_map, 0xFFFF;
+	next;
+	mes "[" + strcharinfo(0) + "]";
+	mes "(ขนาด Juncea เองยังต้องใช้ม้วนคัมภีร์แปลงร่าง Rgan ตามที่วางแผนไว้ล่วงหน้า...)";
+	mapannounce 'map_jorlab$, "Bagot: ครั้งนี้ การคาดการณ์ของ Bagot ผิดพลาดไปแฮะ", bc_map, 0xFFFF;
+	next;
+	setnpcdisplay( instance_npcname("ep19_jorlab_58_67_B"), 4_EP19_RGAN_R1 );
+	mes "[" + strcharinfo(0) + "]";
+	mes "(ตอนนี้ พาเธอกลับไปที่หมู่บ้านกันก่อนเถอะ)";
+	mapannounce 'map_jorlab$, "Bagot: จะว่าไป มันมีม้วนคัมภีร์แบบนั้นอยู่ด้วยเหรอ... ข้าก็รู้อยู่หรอกว่าพวกเจ้าขี้โกง แต่การมีอยู่ของสิ่งนั้นมันน่าสนใจจริงๆ", bc_map, 0xFFFF;
+	next;
+	mes "[" + strcharinfo(0) + "]";
+	mes "(เหมือนผมได้ยินอะไรบางอย่าง... ผมคงหูฝาดไปเองมั้ง?)";
+	mapannounce 'map_jorlab$, "Bagot: หึหึ", bc_map, 0xFFFF;
+	erasequest 16660;
+	setquest 16661;
+	ep19_main = 51;
+	close2;
+	warp "icecastle",27,123;
+	end;
+
+OnInstanceInit:
+	questinfo( QTYPE_QUEST, QMARK_NONE, "checkquest(16660,HUNTING) == 2" );
+	end;
+}
+
+
+
+
+
+// การต่อสู้จำลอง (Simulation Battle)
+// ------------------------------
+
+jor_nest,66,260,3	script	Arolong#ep19re2::ep19_jor_nest_66_260	4_EP19_IWIN,{
+	if (ep19_main < 100)
+		end;
+	if (checkweight("Ep19_Snow_Flower",1) == 0) {
+		mes "[Arolong]";
+		mes " - กระเป๋าของคุณเต็มแล้ว กรุณาตรวจสอบน้ำหนักและจำนวนไอเทมที่คุณมี แล้วมาคุยกับเราอีกครั้ง -";
+		close;
+	}
+	switch( checkquest(16663,PLAYTIME) ) {
+	case -1:
+		break;
+	case 0:
+	case 1:
+		mes "[Arolong]";
+		mes "ความท้าทายของวันนี้สิ้นสุดลงแล้ว";
+		mes "ถ้าคุณกลับมาพรุ่งนี้ ผมจะให้คุณเข้าไปนะครับ";
+		next;
+		mes "[Arolong]";
+		mes "ตกลงไหม?";
+		mes "พักผ่อนให้สบายนะ แล้วพบกันใหม่พรุ่งนี้";
+		close;
+	case 2:
+		erasequest 16663;
+		break;
+	}
+	if (checkquest(16662,HUNTING) == 2) {
+		mes "[Arolong]";
+		mes "การจำลองการต่อสู้กับ Juncea";
+		mes "คุณชนะการต่อสู้แล้วกลับมาใช่ไหมล่ะ?";
+		next;
+		mes "[Arolong]";
+		mes "เจ้าหนู ไม่ต้องตอบก็ได้นะ";
+		mes "ผมเห็นเหตุการณ์ทั้งหมดจากที่นี่แล้วล่ะ";
+		next;
+		mes "[Arolong]";
+		mes "ทำได้ดีมาก";
+		mes "เป็นการคว้าชัยชนะที่ยอดเยี่ยมและกลับมาได้";
+		next;
+		mes "[Arolong]";
+		mes "ข้อมูลถูกจับคู่ไว้แล้ว ดังนั้นเหล่านักวิจัยของเราก็...";
+		mes "น่องของเธอ... (หมายเหตุ: ประโยคต้นฉบับอาจจะขาดหายหรือเป็นสำนวนเฉพาะ)";
+		next;
+		mes "[Arolong]";
+		mes "ถ้าอย่างนั้น โปรดรับรางวัลตามที่สัญญาไว้เถอะ";
+		next;
+		mes "[Arolong]";
+		mes "พักผ่อนให้สบายนะ แล้วพบกันใหม่พรุ่งนี้";
+		mes "ผมจะมาลองใหม่อีกครั้งพรุ่งนี้";
+		close2;
+		erasequest 16662;
+		setquest 16663;
+		getitem 1000811,1;	// Snow_F_Ore
+		end;
+	}
+	// หมายเหตุ: ผู้เล่นสามารถเข้าใหม่ / สร้างอินสแตนซ์ใหม่ได้จนกว่าบอสจะถูกกำจัด (Note: Player can re-enter / re-create an instance until the boss is defeated)
+	cutin "ep19_iwin01.png",2;
+	mes "[Arolong]";
+	mes "การต่อสู้กับ Juncea มันไม่น่าตื่นเต้นงั้นเหรอ?";
+	mes "คุณอยากจะสู้อีกครั้งใช่ไหมล่ะ ผมเดาถูกไหม?";
+	next;
+	cutin "",255;
+	if (select( "สู้", "ไม่สู้" ) == 2) {
+		cutin "ep19_iwin01.png",2;
+		mes "[Arolong]";
+		mes "งั้นเหรอ?";
+		mes "เสียดายจัง";
+		close3;
+	}
+	cutin "ep19_iwin01.png",2;
+	mes "[Arolong]";
+	mes "มันถูกเตรียมไว้สำหรับนักผจญภัยแบบคุณโดยเฉพาะเลยล่ะ";
+	mes "การต่อสู้จำลองสุดระทึกด้วยข้อมูลจำลองของ Juncea";
+	next;
+	mes "[Arolong]";
+	mes "ผมเตรียมมันไว้ที่ Ice Castle ดังนั้นปลอดภัยแน่นอน";
+	mes "กำจัด " + getmonsterinfo("EP19_MD_JUNCEA_S", MOB_NAME) + " วันละหนึ่งครั้ง";
+	next;
+	mes "[Arolong]";
+	mes "แต่คุณสามารถลองใหม่ได้เรื่อยๆ จนกว่าจะกำจัดมันได้นะ";
+	mes "คุณอยากจะลองดูไหมล่ะ?";
+	next;
+	.@md_name$ = "Simulation Battle";
+	if (is_party_leader() == true)
+		.@menu$ = "เตรียมตัวเข้าสู่ห้องแล็บของ Bagot";
+
+	cutin "",255;
+	switch( select( .@menu$, "เข้าสู่ห้องแล็บของ Bagot", "ไม่ต้องการท้าทาย" ) ) {
+	case 1:
+		mes "- ^0000ff การเตรียมการเข้าสู่พื้นที่เริ่มต้นขึ้นแล้ว หลังจากที่คุณพร้อมแล้ว ให้กดปุ่มเพื่อเข้าสู่ห้องแล็บใน Bagot^000000 -";
+		instance_create(.@md_name$);
+		close;
+	case 2:
+		switch( instance_enter(.@md_name$) ) {
+		case IE_OTHER:
+			mes "เกิดข้อผิดพลาดที่ไม่ทราบสาเหตุ";
+			close;
+		case IE_NOINSTANCE:
+			mes "- ^0000ff ยังไม่ได้สร้าง Memorial dungeon กรุณาตรวจสอบอีกครั้ง^000000 -";
+			close;
+		case IE_NOMEMBER:
+			mes "[Juncea]";
+			mes "^ff0000เฉพาะสมาชิกของปาร์ตี้เท่านั้นที่สามารถเข้าสู่ Memorial Dungeon ได้^000000";
+			close;
+		case IE_OK:
+			if (isbegin_quest(16662) == 0)
+				setquest 16662;
+			// warp "1@jorlab",57,45;
+			end;
+		}
+		end;
+	case 3:
+		cutin "ep19_iwin01.png",2;
+		mes "[Arolong]";
+		mes "เหอะ เป็นนักผจญภัยที่น่าเบื่อจริงๆ";
+		close3;
+	}
+	end;
+
+OnInit:
+	cloakonnpc();
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "ep19_main >= 100 && checkquest(16662,HUNTING) != 2 && checkquest(16663,PLAYTIME) == -1" );
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "checkquest(16663,PLAYTIME) == 2" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(16662,HUNTING) == 2" );
+	end;
+}
+
+1@jorlab,58,67,3	script	Summon Device#ep19re1::ep19_jorlab_58_67_C	PORTAL,{
+	if ('event == 2) {
+		mes "[Summon Device]";
+		mes "การต่อสู้เสร็จสมบูรณ์ กำลังบันทึกข้อมูล";
+		mes "กรุณากดปุ่ม 'ตกลง' เพื่อออกจากห้องแล็บ";
+		mes "กรุณากด";
+		next;
+		if (select( "ตกลง", "ไม่" ) == 2) {
+			mes "[Summon Device]";
+			mes "ยกเลิก";
+			close;
+		}
+		mes "[Summon Device]";
+		mes "3, 2, 1 พร้อมสำหรับการเคลื่อนย้าย";
+		close2;
+		warp "jor_nest",63,257;
+		end;
+	}
+	if (is_party_leader() == false || 'event != 0) {
+		mes "[Summon Device]";
+		mes "- ผมกำลังคุยกับสมาชิกปาร์ตี้คนอื่นอยู่ กรุณารอฟังด้วยกันสักครู่ -";
+		mes "- หากการสนทนาจบลงเนื่องจากข้อผิดพลาด คุณจะสามารถคุยได้อีกครั้งหลังผ่านไป 5 นาทีหลังจากเริ่มสนทนา -";
+		close;
+	}
+	mes "[Summon Device]";
+	mes "เริ่มการต่อสู้จำลอง";
+	mes "เมื่อคุณพร้อมแล้ว ให้กดปุ่ม 'ตกลง'";
+	next;
+	mes "[Summon Device]";
+	mes "คุณพร้อมหรือยัง?";
+	next;
+	if (select( "ตกลง", "ไม่" ) == 2) {
+		mes "[Summon Device]";
+		mes "ยกเลิก";
+		close;
+	}
+	mes "[Summon Device]";
+	mes "กำลังอัญเชิญ " + getmonsterinfo("EP19_MD_JUNCEA_S", MOB_NAME) + ".";
+	mes "3, 2, 1 พร้อมสำหรับการอัญเชิญ";
+	close2;
+	if ('event == 0) {
+		'event = 1;
+		disablenpc();
+		donpcevent instance_npcname("ep19_simulation_battle") + "::OnStart";
+	}
+	end;
+}
+
+1@jorlab,1,1,0	script	ep19_simulation_battle	-1,{
+	end;
+OnStart:
+	monster 'map_jorlab$,58,67,"--ja--","EP19_MD_JUNCEA_S",1, instance_npcname("ep19_simulation_battle") + "::OnBossDead";
+	end;
+OnBossDead:
+	if ('event != 1)
+		end;
+	'event = 2;
+	enablenpc instance_npcname("ep19_jorlab_58_67_C");
+	end;
+}

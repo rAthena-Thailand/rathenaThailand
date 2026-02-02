@@ -8034,6 +8034,10 @@ int32 skill_castend_nodamage_id (block_list *src, block_list *bl, uint16 skill_i
 		}
 		break;
 
+	case DE_BERSERKAIZER:
+		clif_skill_nodamage(src, *bl, skill_id, skill_lv);
+		break;
+
 	//List of self skills that give damage around caster
 	case RK_WINDCUTTER:
 	case RK_STORMBLAST:
@@ -8249,7 +8253,7 @@ int32 skill_castend_nodamage_id (block_list *src, block_list *bl, uint16 skill_i
 	case NPC_SELFDESTRUCTION:
 		//Self Destruction hits everyone in range (allies+enemies)
 		//Except for Summoned Marine spheres on non-versus maps, where it's just enemies and your own slaves.
-		if ((md == nullptr || md->special_state.ai == AI_SPHERE) && !map_flag_vs(src->m)) {
+		if ((md == nullptr || md->special_state.ai == AI_SPHERE) && !map_flag_vs(src->m)  || md && map_getmapflag(src->m, MF_NO_NPC_SELFDESTRUCTION_ON_ALL)) {
 			// Enable Marine Spheres to damage own Homunculus and summons outside PVP
 			if (battle_config.alchemist_summon_setting&8)
 				i = BCT_ENEMY|BCT_SLAVE;

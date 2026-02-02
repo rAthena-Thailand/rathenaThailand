@@ -698,6 +698,9 @@ enum e_mapflag : int16 {
 	MF_INVINCIBLE_TIME,
 	MF_MAPDROPS, //Any Map (map_drops) [Hyroshima]
 	MF_NOMAPDROPS, //Any Map (map_drops) [Hyroshima]
+	// EP.19
+	MF_NOLOOTNORMALMOB,
+	MF_NO_NPC_SELFDESTRUCTION_ON_ALL,
 	MF_MAX
 };
 
