@@ -176904,12 +176904,8 @@ Body:
             bonus bLongAtkRate,10;
             bonus2 bMagicAtkEle,Ele_All,10;
             if (.@g>=ENCHANTGRADE_B) {
-               bonus2 bAddRace,RC_All,5;
-               bonus2 bAddRace,RC_Player_Human,-5;
-               bonus2 bAddRace,RC_Player_Doram,-5;
-               bonus2 bMagicAddRace,RC_All,5;
-               bonus2 bMagicAddRace,RC_Player_Human,-5;
-               bonus2 bMagicAddRace,RC_Player_Doram,-5;
+               bonus2 bAddEle,Ele_All,5;
+               bonus2 bMagicAddEle,Ele_All,5;
                bonus bMatkRate,5;
                bonus bAtkRate,5;
                if (.@g>=ENCHANTGRADE_A) {
@@ -177416,6 +177412,7 @@ Body:
                bonus bFixedCast,-200;
                bonus bAtkRate,5;
                if (.@g>=ENCHANTGRADE_A) {
+                  bonus bCritAtkRate,15;
                   bonus bLongAtkRate,15;
                   bonus bPAtk,5;
                }
@@ -206218,6 +206215,7 @@ Body:
          bonus bAtkRate,7;
          bonus bMatkRate,7;
          if (.@r>=9) {
+            bonus bShortAtkRate,10;
             bonus2 bMagicAtkEle,Ele_Holy,10;
             if (.@r>=11) {
                bonus bFixedCast,-500;
@@ -212799,10 +212797,11 @@ Body:
       bonus bMatk,BaseLevel;
       bonus bMaxHP,BaseLevel*20;
       bonus bMaxSP,BaseLevel*2;
-      if (.@r>=5)
+      if (.@r>=5) {
          bonus2 bSubEle,Ele_Holy,80;
-      if (.@r>=7)
-         bonus2 bHPDrainRate,1000,2;
+         if (.@r>=7)
+            bonus2 bSPDrainRate,20,2;
+      }
   - Id: 480246
     AegisName: C_Valkyrie_Spear
     Name: Costume Valkyrie Spear
@@ -231046,20 +231045,20 @@ Body:
       bonus bBaseAtk,3*.@r;
       bonus bBaseAtk,3*(min(BaseLevel,195)/15);
       if (.@r>=7) {
-         bonus bDelayrate,-1*getskilllv("KO_LEFT");
-      }
-      if (.@r>=9) {
-         bonus bShortAtkRate,10;
-         bonus2 bSkillAtk,"ASC_METEORASSAULT",25;
-         bonus2 bSkillAtk,"GC_COUNTERSLASH",25;
-      }
-      if (.@r>=11) {
-         bonus2 bAddSize,Size_All,15;
-         bonus bDelayrate,-10;
-      }
-      if (.@r>=13) {
-         bonus2 bSkillAtk,"ASC_METEORASSAULT",15;
-         bonus2 bSkillAtk,"GC_COUNTERSLASH",15;
+         bonus bDelayrate,-1*getskilllv("AS_LEFT");
+         if (.@r>=9) {
+            bonus bShortAtkRate,10;
+            bonus2 bSkillAtk,"ASC_METEORASSAULT",25;
+            bonus2 bSkillAtk,"GC_COUNTERSLASH",25;
+            if (.@r>=11) {
+               bonus2 bAddSize,Size_All,15;
+               bonus bDelayrate,-10;
+               if (.@r>=13) {
+                  bonus2 bSkillAtk,"ASC_METEORASSAULT",15;
+                  bonus2 bSkillAtk,"GC_COUNTERSLASH",15;
+               }
+            }
+         }
       }
   - Id: 510018
     AegisName: MF_B_Dagger
