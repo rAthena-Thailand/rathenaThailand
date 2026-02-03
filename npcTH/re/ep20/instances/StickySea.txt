@@ -1,0 +1,1038 @@
+// ภฮฤฺต๙ภป EUC-KRทฮ ภฏม๖วฯฑโ ภงวั วัฑนพ๎ นฎภๅ.
+//===== rAthena Script =======================================
+//= Episode 20: Immortals
+//===== Description: =========================================
+//= [Walkthrough Conversion]
+//--- Instance Sticky Sea from Episode 20 (daily quest)
+//===== Changelogs: ==========================================
+//= 1.0 First version. [Capuche]
+//============================================================
+
+// Sidequest - Step 18
+jor_back4,103,264,3	duplicate(dummy_cloaked_npc)	Friederike#ep20_7::ep20_jor_back4_103_264	4_EP19_FRIEDERIKE
+
+jor_back4,101,265,3	script	Cocopo#ep20_5	EP20_NPC_COCOPO,{
+	if (ep20_sidequest_1 < 17)
+		end;	// note: no text before and after exit (หมายเหตุ: ไม่มีข้อความก่อนและหลังทางออก)
+	if (ep20_sidequest_1 == 17) {
+		mes "[Friederike]";
+		mes "อุ๊ย!!";
+		mes "มีเด็กอยู่ในที่แบบนี้ด้วย!";
+		cutin "ep19_friederike01.png",2;
+		cloakoffnpcself( "ep20_jor_back4_103_264" );
+		next;
+		mes "[Friederike]";
+		mes "ไม่เป็นไรใช่ไหม?";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Copo]";
+		mes "กฆ";
+		cutin "ep20_cocopo03.png",2;
+		next;
+		mes "[Friederike]";
+		mes "คุณบาดเจ็บตรงไหนหรือเปล่า?";
+		mes "ฉันจะรักษาให้เดี๋ยวนี้แหละ";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Copo]";
+		mes "กฆ";
+		cutin "ep20_cocopo03.png",2;
+		next;
+		mes "[Friederike]";
+		mes "คุณมาไกลขนาดนี้ได้ยังไงกัน?";
+		mes "มันอันตรายนะ";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Friederike]";
+		mes "แต่ฉันไม่คิดว่าเคยเห็นคุณในเมืองเลยนะ...";
+		next;
+		mes "[Copo]";
+		mes "กฆ";
+		cutin "ep20_cocopo03.png",2;
+		next;
+		mes "[Friederike]";
+		mes "ทำไมคุณไม่พูดอะไรเลยล่ะ?";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Copo]";
+		mes "กฆT.T";
+		cutin "ep20_cocopo03.png",2;
+		next;
+		mes "[Friederike]";
+		mes "อ้าว ทำไมจู่ๆ ถึงร้องไห้ล่ะ!!";
+		mes "โอ๋ๆ อย่าร้องนะ~";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Copo]";
+		mes "ปี๊บ...ปี๊บ";
+		cutin "ep20_cocopo03.png",2;
+		next;
+		mes "[Friederike]";
+		mes "อ๊ะ!";
+		mes "ขนนุ่มๆ นี่มันมาจาก Rorohu นี่นา!!!";
+		mes "คุณรู้ไหมว่า Rorohu อยู่ที่ไหน?";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Copo]";
+		mes "ปี๊บ";
+		cutin "ep20_cocopo03.png",2;
+		next;
+		mes "[Friederike]";
+		mes "งั้น.. หรือว่าจะมีอะไรเกิดขึ้นกับ Rorohu หรือเปล่า?";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Copo]";
+		mes "กฆ";
+		cutin "ep20_cocopo03.png",2;
+		next;
+		mes "[Friederike]";
+		mes "" + strcharinfo(0) + " ดูเหมือนคุณจะไม่สามารถสื่อสารกับเด็กๆ ได้เลยนะ และมันมีบางอย่างแปลกๆ";
+		mes "บางอย่างที่ดูเหมือนเด็กและมีขนปุกปุย...";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Copo]";
+		mes "กฆ ปี๊บ ปี๊บ";
+		cutin "ep20_cocopo03.png",2;
+		next;
+		mes "[Copo]";
+		mes "ปี๊บ กฆ T.T";
+		next;
+		mes "[Friederike]";
+		mes "หือ?";
+		mes "คุณกำลังทำอะไรน่ะ?";
+		mes "โซมิ...";
+		mes "หลุม...";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Friederike]";
+		mes "ไม่จริงน่า!";
+		mes "Rorohu อยู่ในนี้เหรอ?";
+		next;
+		mes "[Copo]";
+		mes "ปี๊บ กฆ T.T";
+		cutin "ep20_cocopo03.png",2;
+		next;
+		mes "[Friederike]";
+		mes "Rorohu เข้าไปในนั้นได้ยังไง...";
+		mes "ถ้าสิ่งที่เด็กคนนี้พูดเป็นความจริง เขาต้องตกลงไปในหลุมแน่ๆ...";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Friederike]";
+		mes "อืมมมม...";
+		mes "ไม่มีถ้ำที่มีพิษเหมือนที่ฉันเคยเห็นครั้งก่อนเลยนะ...";
+		next;
+		mes "[Friederike]";
+		mes "" + strcharinfo(0) + " สถานการณ์ดูแย่เกินกว่าจะรอพวกทหารยามไหวแล้วล่ะ";
+		mes "ถึงจะมีแค่พวกเรา แต่ลองเข้าไปดูก่อนเถอะ!";
+		next;
+		mes "[Friederike]";
+		mes "เด็กคนนี้อาจจะรู้วิธีเข้าไปข้างในก็ได้!";
+		ep20_sidequest_1 = 18;
+		erasequest 11944;
+		setquest 11945;
+		close2;
+		cutin "",255;
+		cloakonnpcself( "ep20_jor_back4_103_264" );
+		end;
+	}
+	if (ep20_sidequest_1 == 18 || (ep20_sidequest_1 == 20 && isbegin_quest(11948) > 0 && checkquest(11949,HUNTING) < 2)) {
+		if (getcharid(1) < 1) {
+			mes "[Copo]";
+			mes "ปี๊บ!!";
+			mes "ปุ๊ง!!";
+			next;
+			mes "[Copo]";
+			mes "อุ๊ย~~";
+			mes "- ^ff0000 คุณอาจจะต้องสร้างปาร์ตี้นะ^000000 -";
+			close;
+		}
+		mes "[Copo]";
+		mes "ปี๊บ!!";
+		mes "ปุ๊ง!!";
+		next;
+		.@md_name$ = "Sticky Sea";
+
+		switch( select( "มองเข้าไปที่ทางเข้าหลุม", "เข้าไปในหลุม", "ออก" ) ) {
+		case 1:
+			mes "[Copo]";
+			mes "ปี๊บ";
+			mes "- มารอกันจนกว่าทางเข้าจะเปิดเถอะ -";
+
+			if (is_party_leader() == true)	// note: members can see this menu? (หมายเหตุ: สมาชิกคนอื่นเห็นเมนูนี้ไหม?)
+				instance_create(.@md_name$);
+
+			// note: the quest is given back in this menu for each instance creation (หมายเหตุ: เควสจะถูกมอบคืนให้ในเมนูนี้สำหรับการสร้างอินสแตนซ์แต่ละครั้ง)
+			if (ep20_sidequest_1 == 18 && isbegin_quest(11946) == 1) {
+				erasequest 11946;
+				setquest 11945;
+			}
+			if (ep20_sidequest_1 == 20 && isbegin_quest(11948) == 2) {
+				if (isbegin_quest(11948) == 2)
+					erasequest 11948;
+				if (isbegin_quest(11949) > 0)
+					erasequest 11949;
+				setquest 11948;
+			}
+			close;
+		case 2:
+			switch( instance_enter(.@md_name$) ) {
+			case IE_OTHER:
+				mes "^ff0000เกิดข้อผิดพลาดที่ไม่ทราบสาเหตุ^000000";
+				close;
+			case IE_NOINSTANCE:
+			case IE_NOMEMBER:
+				mes "[Copo]";
+				mes "ปุ๊ง?";
+				mes "- ดูเหมือนว่า ^ff0000ทางเข้าจะยังไม่เปิดนะ^000000 ลองใหม่อีกครั้งเถอะ -";
+				close;
+			case IE_OK:
+				mapannounce "jor_back4", "" + strcharinfo(0) + " จากปาร์ตี้ " + getpartyname(getcharid(1)) + " กำลังจมลงสู่ " + .@md_name$ + ".", bc_map, 0xFF99;
+				// warp "1@slug",44,56;
+				end;
+			}
+			end;
+		case 3:
+			end;
+		}
+		end;
+	}
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11944) == 1" );
+
+	// daily (รายวัน)
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11948) == 1" );
+	end;
+}
+
+1@slug,40,52,0	script	#slugout	WARPNPC,2,2,{
+	end;
+OnTouch:
+	mes "- คุณสามารถออกจากดันเจี้ยนได้ -";
+	if (select( "ออกจากดันเจี้ยน", "สำรวจต่อไป" ) == 2) {
+		mes "- สำรวจดันเจี้ยนต่อไป -";
+		close;
+	}
+	mes "- ออกจากดันเจี้ยน -";
+	close2;
+	warp "jor_back4",100,253;
+	end;
+
+OnMobDead:
+	monster 'map_slug$,0,0,"--ja--","EP20_NPC_COCOPO",1, instance_npcname("#slugout") + "::OnMobDead";
+	end;
+
+OnInstanceInit:
+	'map_slug$ = instance_mapname("1@slug");
+	'step = 0;
+
+	// Spawn the mini monsters Cocopo (เรียกมอนสเตอร์ Cocopo ตัวเล็กออกมา)
+	monster 'map_slug$,0,0,"--ja--","EP20_NPC_COCOPO",80, instance_npcname("#slugout") + "::OnMobDead";
+	end;
+
+}
+
+// Step 1 (ขั้นตอนที่ 1)
+1@slug,50,61,5	duplicate(dummy_cloaked_npc)	Friederike#sl1::ep20_1slug_50_61	4_EP19_FRIEDERIKE
+
+1@slug,52,61,3	script	Rorohu#sl1	EP20_NPC_COCOPO,{
+	if (ep20_sidequest_1 == 18) {
+		if ('step == 0) {
+			mes "[Rorohu]";
+			mes "อุ๊ย!!!";
+			mes "" + strcharinfo(0) + "!";
+			mes "Friederike!!";
+			cutin "ep20_cocopo02.png",2;
+			cloakoffnpcself( instance_npcname("ep20_1slug_50_61") );
+			next;
+			mes "[Friederike]";
+			mes "Rorohu!";
+			mes "คุณปลอดภัยดีสินะ!";
+			mes "ฉันเป็นห่วงแทบแย่!";
+			cutin "ep19_friederike02.png",2;
+			next;
+			mes "[Friederike]";
+			mes "ที่นี่คือที่ไหนกัน?";
+			mes "คุณมาลงเอยในที่อันตรายแบบนี้ได้ยังไง?";
+			next;
+			mes "[Rorohu]";
+			mes "เอ่อ...";
+			mes "คือ... คือว่า...";
+			cutin "ep20_cocopo01.png",2;
+			next;
+			mes "[Friederike]";
+			mes "คุณบาดเจ็บหรือเปล่า?";
+			mes "กลับกันเถอะนะ";
+			cutin "ep19_friederike02.png",2;
+			next;
+			mes "[Rorohu]";
+			mes "เอ่อ...";
+			mes "ยังไม่ใช่ตอนนี้";
+			cutin "ep20_cocopo03.png",2;
+			next;
+			mes "[Friederike]";
+			mes "ยังไม่... แต่ว่า";
+			mes "ที่นี่มันอันตรายเกินไปนะ";
+			cutin "ep19_friederike02.png",2;
+			next;
+			mes "[Rorohu]";
+			mes "คือ... คือว่า...";
+			cutin "ep20_cocopo03.png",2;
+			next;
+			mes "[Friederike]";
+			mes "เกิดอะไรขึ้น?";
+			mes "ถ้าคุณไม่บอกฉันตามตรง ฉันจะพาคุณกลับเดี๋ยวนี้แหละ";
+			cutin "ep19_friederike04.png",2;
+			next;
+			mes "[Rorohu]";
+			mes "คือ...";
+			mes "เพื่อนกฆ *ฟืด*";
+			mes "มอนสเตอร์กฆ แย่งไปกฆ ฉกไปกฆ จับตัวไปแล้ว!";
+			cutin "ep20_cocopo03.png",2;
+			next;
+			mes "[Rorohu]";
+			mes "" + strcharinfo(0) + "กฆ";
+			mes "Friederike...";
+			mes "ช่วยเพื่อนของฉันด้วย!!!";
+			mes "อ๊าาาาาาาา!!!!";
+			next;
+			mes "[Friederike]";
+			mes "อะไรนะ?!";
+			mes "นั่นเรื่องใหญ่แล้วนะ!";
+			mes "ต้องไปช่วยแล้ว!";
+			cutin "ep19_friederike02.png",2;
+			next;
+			mes "[Friederike]";
+			mes "มอนสเตอร์ที่จับตัวเพื่อนของคุณไปไปทางไหนล่ะ Rorohu?";
+			next;
+			mes "[Rorohu]";
+			mes "*ฟืด*...";
+			mes "ทางนี้";
+			cutin "ep20_cocopo03.png",2;
+			next;
+			mes "[Friederike]";
+			mes "" + strcharinfo(0) + " ไปหาเพื่อนของ Rorohu กันเถอะ";
+			mes "ถ้าถูกมอนสเตอร์จับตัวไปแบบนี้ เราจะลังเลไม่ได้แล้ว";
+			cutin "ep19_friederike02.png",2;
+			next;
+			mes "[Friederike]";
+			mes "มันอันตรายที่จะปล่อย Rorohu ไว้คนเดียว ดังนั้นเราควรพาเขาไปด้วยจนกว่าพวกทหารยามจะมาถึง";
+			next;
+			mes "- การจะไปขั้นตอนถัดไป จำเป็นต้องให้หัวหน้าปาร์ตี้เป็นคนดำเนินการ -";
+			cloakonnpcself( instance_npcname("ep20_1slug_50_61") );
+			cutin "",255;
+			if (isbegin_quest(11945) == 1) {
+				erasequest 11945;
+				setquest 11946;
+			}
+			if ('step == 0 && is_party_leader() == true) {
+				'step = 1;
+				donpcevent instance_npcname("slug_mob_1") + "::OnStart";
+			}
+			close2;
+			navigateto("1@slug",83,127);
+			end;
+		}
+		end;
+	}
+	if (ep20_sidequest_1 < 20)
+		end;
+
+	// daily (รายวัน)
+	if (isbegin_quest(11948) == 1 || 'step == 0) {
+		mes "[Rorohu]";
+		mes "อุ๊ย!!!";
+		mes "" + strcharinfo(0) + "!";
+		mes "Friederike!!";
+		cutin "ep20_cocopo02.png",2;
+		cloakoffnpcself( instance_npcname("ep20_1slug_50_61") );
+		next;
+		mes "[Friederike]";
+		mes "Rorohu!!!!";
+		mes "ทำไมคุณถึงมาอยู่ที่นี่อีกแล้วล่ะ!";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Rorohu]";
+		mes "ฉันเป็นห่วง Friederike ก็เลยตามมาน่ะ!";
+		cutin "ep20_cocopo02.png",2;
+		next;
+		mes "[Friederike]";
+		mes "ถ้าพวกเราไม่รีบกลับไปล่ะก็ พวกเราต้องโดน Voglinde ดุแน่!";
+		cutin "ep19_friederike04.png",2;
+		next;
+		mes "[Rorohu]";
+		mes "จิกฆ ตกลง";
+		cutin "ep20_cocopo03.png",2;
+		next;
+		mes "[Friederike]";
+		mes "Rorohu เอาแต่ตามฉันมา และก็มีพวก Copo มากมายที่มาเพื่อกินทาก...";
+		mes "คุณห้ามไม่ให้พวกเขามาไม่ได้หรอก ดังนั้นคุณควรกำจัดมอนสเตอร์ที่อันตรายออกไปดีกว่า";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "- การจะไปขั้นตอนถัดไป จำเป็นต้องให้หัวหน้าปาร์ตี้เป็นคนดำเนินการ -";
+		cloakonnpcself( instance_npcname("ep20_1slug_50_61") );
+		cutin "",255;
+		if (isbegin_quest(11948) == 1) {
+			completequest 11948;
+			setquest 11949;
+		}
+		if ('step == 0 && is_party_leader() == true) {
+			'step = 1;
+			donpcevent instance_npcname("slug_mob_1") + "::OnStart";
+		}
+		close2;
+		navigateto("1@slug",83,127);
+		end;
+	}
+	end;
+
+OnInstanceInit:
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11945) == 1" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11948) == 1" );
+	end;
+}
+
+// unknown usage (ไม่ทราบการใช้งาน)
+// 1@slug,52,61,3	script	Rorohu#sl1_1	EP20_NPC_COCOPO,{
+	// end;
+// OnInstanceInit:
+	// disablenpc instance_npcname("Rorohu#sl1_1");
+	// end;
+// }
+// unknown usage (ไม่ทราบการใช้งาน)
+// 1@slug,143,313,0	script	#slsl11	HIDDEN_WARP_NPC,7,7,{
+// 1@slug,109,313,0	script	#slsl12	HIDDEN_WARP_NPC,7,7,{
+// 1@slug,106,330,0	script	#slsl13	HIDDEN_WARP_NPC,7,7,{
+// 1@slug,48,314,0	script	#slsl14	HIDDEN_WARP_NPC,7,7,{
+// 1@slug,59,315,0	script	#slsl15	HIDDEN_WARP_NPC,7,7,{
+// 1@slug,69,310,0	script	#slsl16	HIDDEN_WARP_NPC,4,4,{
+// 1@slug,55,295,0	script	#slsl17	HIDDEN_WARP_NPC,7,7,{
+// 1@slug,143,313,0	script	#slsl21	HIDDEN_WARP_NPC,7,7,{
+// 1@slug,109,313,0	script	#slsl22	HIDDEN_WARP_NPC,7,7,{
+// 1@slug,106,330,0	script	#slsl23	HIDDEN_WARP_NPC,7,7,{
+// 1@slug,48,314,0	script	#slsl24	HIDDEN_WARP_NPC,7,7,{
+// 1@slug,59,315,0	script	#slsl25	HIDDEN_WARP_NPC,7,7,{
+// 1@slug,69,310,0	script	#slsl26	HIDDEN_WARP_NPC,4,4,{
+// 1@slug,55,295,0	script	#slsl27	HIDDEN_WARP_NPC,7,7,{
+
+1@slug,83,98,0	script	#slsl01	HIDDEN_WARP_NPC,5,5,{
+	end;
+OnTouch:
+	// note: no ignoretimeout on official (หมายเหตุ: ไม่มีการตั้งค่า ignoretimeout บนเซิร์ฟเวอร์ทางการ)
+	if ('step == 0 || (ep20_sidequest_1 != 18 && ep20_sidequest_1 != 20) || (ep20_sidequest_1 == 18 && isbegin_quest(11945) == 0 && isbegin_quest(11946) == 0) || (ep20_sidequest_1 == 20 && isbegin_quest(11948) != 2)) {
+		mes "- คุณต้องทำเควสให้สำเร็จเพื่อเคลื่อนย้ายไปยังพื้นที่ถัดไป -";
+		close2;
+		warp 'map_slug$,44,56;
+		end;
+	}
+	end;
+}
+1@slug,92,95,0	duplicate(#slsl01)	#slsl02	HIDDEN_WARP_NPC,5,5
+1@slug,111,77,0	duplicate(#slsl01)	#slsl03	HIDDEN_WARP_NPC,5,5
+
+
+// Step 2 (ขั้นตอนที่ 2)
+1@slug,1,1,5	script	slug_mob_1	-1,{
+	end;
+OnStart:
+	.@event$ = instance_npcname("slug_mob_1") + "::OnMobDead";
+	monster 'map_slug$,66,69,"--ja--","G_EP20_ANGEL_ICESLUG",1, .@event$;
+	monster 'map_slug$,60,73,"--ja--","G_EP20_ANGEL_ICESLUG",1, .@event$;
+	monster 'map_slug$,61,74,"--ja--","G_EP20_ANGEL_ICESLUG",1, .@event$;
+	monster 'map_slug$,65,68,"--ja--","G_EP20_ANGEL_ICESLUG",1, .@event$;
+	monster 'map_slug$,73,82,"--ja--","G_EP20_ANGEL_ICESLUG",1, .@event$;
+	monster 'map_slug$,81,100,"--ja--","G_EP20_ANGEL_ICESLUG",1, .@event$;
+	monster 'map_slug$,86,121,"--ja--","G_EP20_ANGEL_ICESLUG",1, .@event$;
+	monster 'map_slug$,88,124,"--ja--","G_EP20_ANGEL_ICESLUG",1, .@event$;
+	end;
+OnMobDead:
+	if (mobcount( 'map_slug$, instance_npcname("slug_mob_1") + "::OnMobDead" ) > 0)
+		end;
+	enablenpc instance_npcname("ep20_1slug_83_127");
+	'step = 2;
+	end;
+}
+
+1@slug,86,127,3	duplicate(dummy_cloaked_npc)	Rorohu#sl2::ep20_1slug_86_127	EP20_NPC_COCOPO
+1@slug,85,126,3	duplicate(dummy_cloaked_npc)	Friederike#sl2::ep20_1slug_85_126	4_EP19_FRIEDERIKE
+
+1@slug,83,127,5	script(DISABLED)	Cocopo#sl2::ep20_1slug_83_127	EP20_NPC_COCOPO,{
+	if (is_party_leader() == false)
+		end;
+	if (ep20_sidequest_1 != 18 && ep20_sidequest_1 != 20)
+		end;
+	if (isbegin_quest(11948) != 2 && isbegin_quest(11946) == 0)
+		end;
+	if ('step == 2 || 'step == 3) {
+		if (ep20_sidequest_1 == 20) {
+			mes "[Copo]";
+			mes "ปี๊บ!!!";
+			mes "ปี๊บ!!!";
+			cloakoffnpcself( instance_npcname("ep20_1slug_85_126") );
+			next;
+			mes "[Friederike]";
+			mes "ที่นี่เป็นพื้นที่ที่ถูกครอบงำเหมือนกัน ดังนั้นตรวจสอบให้ดีล่ะ";
+			cutin "ep19_friederike02.png",2;
+			next;
+			cutin "",255;
+			cloakonnpcself( instance_npcname("ep20_1slug_85_126") );
+			mes "- การจะไปขั้นตอนถัดไป จำเป็นต้องให้หัวหน้าปาร์ตี้เป็นคนดำเนินการ -";
+			if ('step == 2) {
+				'step = 3;
+				donpcevent instance_npcname("slug_mob_2") + "::OnStart";
+			}
+			close2;
+			navigateto("1@slug",46,186);
+			end;
+		}
+		mes "[Copo]";
+		mes "อุ๊ย?";
+		cloakoffnpcself( instance_npcname("ep20_1slug_85_126") );
+		cloakoffnpcself( instance_npcname("ep20_1slug_86_127") );
+		next;
+		mes "[Rorohu]";
+		mes "อะไรนะ จริงเหรอ?";
+		cutin "ep20_cocopo01.png",2;
+		next;
+		mes "[Friederike]";
+		mes "คุณเข้าใจที่เขาพูดด้วยเหรอ?";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Rorohu]";
+		mes "หือ?";
+		mes "หือ?";
+		mes "นิดหน่อยกฆ...?";
+		cutin "ep20_cocopo01.png",2;
+		next;
+		mes "[Friederike]";
+		mes "เข้าใจแล้วล่ะ";
+		mes "ว่าแต่ เพื่อนที่คุณกำลังตามหาอยู่ชื่ออะไรเหรอ?";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Rorohu]";
+		mes "เอ่อ...";
+		mes "ชื่อเหรอ?";
+		cutin "ep20_cocopo01.png",2;
+		next;
+		mes "[Friederike]";
+		mes "คุณควรจะรู้ชื่อเขานะ เผื่อว่าคุณจะเจอเขาตกหล่นอยู่ที่ไหนสักที่ในภายหลังไง?";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Rorohu]";
+		mes "จริงด้วย เขาชื่อ ปี๊บ-ปี๊บ...";
+		cutin "ep20_cocopo01.png",2;
+		next;
+		mes "[Friederike]";
+		mes "ปี๊บ?";
+		mes "นั่นเป็นชื่อที่ฉันไม่เคยได้ยินมาก่อนเลย";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Rorohu]";
+		mes "บางทีคุณอาจจะไม่เคยเจอเขา...";
+		cutin "ep20_cocopo03.png",2;
+		next;
+		mes "[Friederike]";
+		mes "อย่างนั้นเหรอ?";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Rorohu]";
+		mes "ทางนี้กฆ แต่พวกทากมันขวางทางอยู่น่ะ!";
+		mes "รีบฆ่ามันแล้วไปกันเถอะ";
+		cutin "ep20_cocopo01.png",2;
+		next;
+		mes "- การจะไปขั้นตอนถัดไป จำเป็นต้องให้หัวหน้าปาร์ตี้เป็นคนดำเนินการ -";
+		cloakonnpcself( instance_npcname("ep20_1slug_86_127") );
+		cloakonnpcself( instance_npcname("ep20_1slug_85_126") );
+		cutin "",255;
+		if ('step == 2) {
+			'step = 3;
+			donpcevent instance_npcname("slug_mob_2") + "::OnStart";
+		}
+		close2;
+		navigateto("1@slug",46,186);
+		end;
+	}
+	end;
+}
+
+
+// Step 3 (ขั้นตอนที่ 3)
+1@slug,1,1,5	script	slug_mob_2	-1,{
+	end;
+OnStart:
+	.@event$ = instance_npcname("slug_mob_2") + "::OnMobDead";
+	monster 'map_slug$,68,141,"--ja--","G_EP20_ANGEL_ICESLUG",1, .@event$;
+	monster 'map_slug$,68,141,"--ja--","G_EP20_ANGEL_ICESLUG",1, .@event$;
+	monster 'map_slug$,68,141,"--ja--","G_EP20_ANGEL_ICESLUG",1, .@event$;
+	monster 'map_slug$,69,145,"--ja--","G_EP20_ANGEL_ICESLUG",1, .@event$;
+	monster 'map_slug$,62,147,"--ja--","G_EP20_ANGEL_ICESLUG",1, .@event$;
+	monster 'map_slug$,47,182,"--ja--","G_EP20_ANGEL_ICESLUG",1, .@event$;
+	monster 'map_slug$,44,181,"--ja--","G_EP20_ANGEL_ICESLUG",1, .@event$;
+	monster 'map_slug$,47,167,"--ja--","G_EP20_ANGEL_ICESLUG",1, .@event$;
+	end;
+OnMobDead:
+	if (mobcount( 'map_slug$, instance_npcname("slug_mob_2") + "::OnMobDead" ) > 0)
+		end;
+	disablenpc instance_npcname("ep20_1slug_83_127");
+	enablenpc instance_npcname("ep20_1slug_46_186");
+	'step = 4;
+	end;
+}
+
+
+1@slug,49,185,3	duplicate(dummy_cloaked_npc)	Friederike#sl3::ep20_1slug_49_185	4_EP19_FRIEDERIKE
+1@slug,50,186,3	duplicate(dummy_cloaked_npc)	Rorohu#sl3::ep20_1slug_50_186	EP20_NPC_COCOPO
+
+1@slug,46,186,5	script(DISABLED)	Cocopo#sl3::ep20_1slug_46_186	EP20_NPC_COCOPO,{
+	if (is_party_leader() == false)
+		end;
+	if (ep20_sidequest_1 != 18 && ep20_sidequest_1 != 20)
+		end;
+	if (isbegin_quest(11948) != 2 && isbegin_quest(11946) == 0)
+		end;
+	if ('step == 4 || 'step == 5) {
+		if (ep20_sidequest_1 == 20) {
+			mes "[Copo]";
+			mes "ปี๊บ ปี๊บ ปี๊บ";
+			mes "ปี๊บ";
+			cloakoffnpcself( instance_npcname("ep20_1slug_49_185") );
+			next;
+			mes "[Friederike]";
+			mes "ถึงแม้ว่ามันจะน่ารักขนาดนี้ แต่มันแข็งแกร่งกว่าที่คิดนะ เห็นว่ามันสามารถล่าทากทั่วไปได้อย่างง่ายดายเลยล่ะ";
+			mes "ที่เป็นปัญหาเนี่ย เพราะมันมีอะไรที่ไม่ธรรมดาโผล่ออกมาใช่ไหม?";
+			cutin "ep19_friederike05.png",2;
+			next;
+			cloakonnpcself( instance_npcname("ep20_1slug_49_185") );
+			mes "- จำเป็นต้องให้หัวหน้าปาร์ตี้ดำเนินการเพื่อไปสู่ขั้นต่อไป -";
+			cutin "",255;
+			if ('step == 4) {
+				'step = 5;
+				donpcevent instance_npcname("slug_mob_3") + "::OnStart";
+			}
+			close2;
+			navigateto("1@slug",159,309);
+			end;
+		}
+		mes "[Copo]";
+		mes "ปี๊บ ปี๊บ!";
+		mes "ปี๊บ ปี๊บ!";
+		cloakoffnpcself( instance_npcname("ep20_1slug_49_185") );
+		cloakoffnpcself( instance_npcname("ep20_1slug_50_186") );
+		next;
+		mes "[Rorohu]";
+		mes "มันเห็นมอนสเตอร์ไปทางนี้นะ!";
+		cutin "ep20_cocopo01.png",2;
+		next;
+		mes "[Friederike]";
+		mes "ขอบคุณที่บอกทางให้นะ";
+		cutin "ep19_friederike03.png",2;
+		next;
+		cutin "",255;
+		mes "[Copo]";
+		mes "อุ๊ย";
+		next;
+		mes "[Rorohu]";
+		mes "รีบไปกันเถอะ!";
+		cutin "ep20_cocopo01.png",2;
+		next;
+		mes "[Friederike]";
+		mes "จะว่าไปนะ";
+		mes "คุณออกมาจากเมืองได้ยังไง?";
+		mes "ทหารยามที่หน้าทางเข้าหมู่บ้านไม่ได้พูดอะไรเลยนะ";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Rorohu]";
+		mes "ฉันมั่นใจว่าเขาไม่เห็นฉันหรอก";
+		cutin "ep20_cocopo03.png",2;
+		next;
+		mes "[Rorohu]";
+		mes "คุณยังไม่รู้เลยว่าฉันกำลังจะออกไป เพราะคุณน่ะโดนหลอกโดยตัวปลอมที่ทำจากนุ่นน่ะสิ";
+		cutin "ep20_cocopo01.png",2;
+		next;
+		mes "[Friederike]";
+		mes "จริงด้วย!";
+		mes "เล่นตลกแบบนี้กับทหารยามที่กำลังยุ่งอยู่ได้ยังไงกัน!";
+		mes "คุณรู้ใช่ไหมว่าถ้าฉันกลับไปคุณต้องโดนดุน่ะ";
+		cutin "ep19_friederike04.png",2;
+		next;
+		mes "[Rorohu]";
+		mes "เฮ้...";
+		mes "ทากอีกตัวนึงแล้ว!!!";
+		cutin "ep20_cocopo03.png",2;
+		next;
+		mes "[Friederike]";
+		mes "อย่าแม้แต่จะคิดเรื่องล้อเล่นเลยนะ!";
+		cutin "ep19_friederike04.png",2;
+		next;
+		cloakonnpcself( instance_npcname("ep20_1slug_50_186") );
+		cloakonnpcself( instance_npcname("ep20_1slug_49_185") );
+		cutin "",255;
+		mes "- การจะไปขั้นตอนถัดไป จำเป็นต้องให้หัวหน้าปาร์ตี้เป็นคนดำเนินการ -";
+		if ('step == 4) {
+			'step = 5;
+			donpcevent instance_npcname("slug_mob_3") + "::OnStart";
+		}
+		close2;
+		navigateto("1@slug",159,309);
+		end;
+	}
+	end;
+}
+
+
+
+// step 4 (ขั้นตอนที่ 4)
+1@slug,1,1,5	script	slug_mob_3	-1,{
+	end;
+OnStart:
+	.@event$ = instance_npcname("slug_mob_3") + "::OnMobDead";
+	monster 'map_slug$,63,205,"--ja--","G_EP20_ANGEL_ICESLUG",1, .@event$;
+	monster 'map_slug$,68,207,"--ja--","G_EP20_ANGEL_ICESLUG",1, .@event$;
+	monster 'map_slug$,76,227,"--ja--","G_EP20_ANGEL_ICESLUG",1, .@event$;
+	monster 'map_slug$,76,234,"--ja--","G_EP20_ANGEL_ICESLUG",1, .@event$;
+	monster 'map_slug$,82,229,"--ja--","G_EP20_ANGEL_ICESLUG",1, .@event$;
+	monster 'map_slug$,81,240,"--ja--","G_EP20_ANGEL_ICESLUG",1, .@event$;
+	monster 'map_slug$,110,271,"--ja--","G_EP20_ANGEL_ICESLUG",1, .@event$;
+	monster 'map_slug$,138,282,"--ja--","G_EP20_ANGEL_ICESLUG",1, .@event$;
+	monster 'map_slug$,148,303,"--ja--","G_EP20_ANGEL_ICESLUG",1, .@event$;
+	monster 'map_slug$,152,305,"--ja--","G_EP20_ANGEL_ICESLUG",1, .@event$;
+	monster 'map_slug$,155,305,"--ja--","G_EP20_ANGEL_ICESLUG",1, .@event$;
+	monster 'map_slug$,155,307,"--ja--","G_EP20_ANGEL_ICESLUG",1, .@event$;
+	end;
+OnMobDead:
+	if (mobcount( 'map_slug$, instance_npcname("slug_mob_3") + "::OnMobDead" ) > 0)
+		end;
+	disablenpc instance_npcname("ep20_1slug_46_186");
+	enablenpc instance_npcname("ep20_1slug_159_309");
+	'step = 6;
+	end;
+}
+
+
+1@slug,157,307,5	duplicate(dummy_cloaked_npc)	Friederike#sl4::ep20_1slug_157_307	4_EP19_FRIEDERIKE
+1@slug,161,307,3	duplicate(dummy_cloaked_npc)	Rorohu#sl4::ep20_1slug_161_307	EP20_NPC_COCOPO
+
+1@slug,159,309,3	script(DISABLED)	Cocopo#sl4::ep20_1slug_159_309	EP20_NPC_COCOPO,{
+	if (is_party_leader() == false)
+		end;
+	if (ep20_sidequest_1 != 18 && ep20_sidequest_1 != 20)
+		end;
+	if (isbegin_quest(11948) != 2 && isbegin_quest(11946) == 0)
+		end;
+	if ('step == 6 || 'step == 7) {
+		if (ep20_sidequest_1 == 20) {
+			mes "[Copo]";
+			mes "ปี๊บ ปี๊บ!!!";
+			mes "ปี๊บ?";
+			cloakoffnpcself( instance_npcname("ep20_1slug_157_307") );
+			next;
+			mes "[Friederike]";
+			mes "แต่มันอร่อยพอที่จะเสี่ยงขนาดนี้เลยเหรอ?";
+			mes "ฉันคงต้องถาม Lehar ในภายหลังแล้วล่ะ";
+			cutin "ep19_friederike05.png",2;
+			next;
+			cloakonnpcself( instance_npcname("ep20_1slug_157_307") );
+			mes "- การจะไปขั้นตอนถัดไป จำเป็นต้องให้หัวหน้าปาร์ตี้เป็นคนดำเนินการ -";
+			cutin "",255;
+			if ('step == 6) {
+				donpcevent instance_npcname("slug_mob_4") + "::OnStart";
+				enablenpc instance_npcname("#slsl001");
+				enablenpc instance_npcname("#slsl002");
+				'step = 7;
+			}
+			close2;
+			navigateto("1@slug",66,336);
+			end;
+		}
+		mes "[Copo]";
+		mes "ปุ๊ง?";
+		cloakoffnpcself( instance_npcname("ep20_1slug_157_307") );
+		cloakoffnpcself( instance_npcname("ep20_1slug_161_307") );
+		next;
+		mes "[Rorohu]";
+		mes "ทางนี้!";
+		cutin "ep20_cocopo01.png",2;
+		next;
+		mes "[Friederike]";
+		mes "เดี๋ยวก่อน... นั่นมันน่าสงสัยนะ";
+		mes "Rorohu คุณกำลังปิดบังอะไรอยู่หรือเปล่า?";
+		mes "บอกฉันมาตามตรงนะ";
+		cutin "ep19_friederike05.png",2;
+		next;
+		mes "[Rorohu]";
+		mes "มีอะไรน่าสงสัยกัน!";
+		mes "ฉันไม่ได้ปิดบังอะไรทั้งนั้นแหละ";
+		cutin "ep20_cocopo01.png",2;
+		next;
+		mes "[Friederike]";
+		mes "Rorohu เวลาคุณซ่อนอะไรบางอย่าง คุณเอาแต่หลบตาฉันนะ?";
+		mes "โกหกไปก็ไม่มีประโยชน์หรอก";
+		cutin "ep19_friederike04.png",2;
+		next;
+		mes "[Rorohu]";
+		mes "...";
+		mes "คือ... คือว่า...";
+		cutin "ep20_cocopo03.png",2;
+		next;
+		mes "[Rorohu]";
+		mes "จริงๆ แล้ว...";
+		mes "กฆ";
+		next;
+		mes "[Rorohu]";
+		mes "พูดตามตรงนะ อย่าไปบอกแม่ฉันนะ?";
+		cutin "ep20_cocopo02.png",2;
+		next;
+		mes "[Friederike]";
+		mes "ตกลง";
+		cutin "ep19_friederike05.png",2;
+		next;
+		mes "[Rorohu]";
+		mes "กฆ";
+		mes "ปี๊บ-ปุ๊ง ไม่ได้อาศัยอยู่ในปราสาทน้ำแข็งหรอก เขาอาศัยอยู่ในหุบเขาน้ำแข็งโบราณน่ะ...";
+		cutin "ep20_cocopo01.png",2;
+		next;
+		mes "[Friederike]";
+		mes "อะไรนะ?";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Rorohu]";
+		mes "ถ้าพวกผู้ใหญ่รู้เรื่องนี้ ฉันก็คงจะไม่ได้เจอ ปี๊บ-ปี๊บ อีก";
+		cutin "ep20_cocopo03.png",2;
+		next;
+		mes "[Friederike]";
+		mes "เข้าใจแล้ว...";
+		mes "แต่คุณจะมาในที่อันตรายแบบนี้ไม่ได้นะ...";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Rorohu]";
+		mes "นี่เป็นครั้งแรกเลยที่ฉันได้เห็นมอนสเตอร์ที่น่ากลัวขนาดนี้";
+		mes "ปกติแล้ว มันเป็นแค่ที่ที่ผู้คนมาหาของกินกันน่ะ";
+		cutin "ep20_cocopo03.png",2;
+		next;
+		mes "[Rorohu]";
+		mes "แค่กฆ";
+		mes "ฉันแค่อยากจะกิน Poringle Chip อันใหม่กับ ปี๊บ-ปี๊บ น่ะ";
+		next;
+		mes "[Friederike]";
+		mes "Rorohuu...";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Friederike]";
+		mes "ใช่แล้ว";
+		mes "มาเถอะ ไปหา ปี๊บ-ปี๊บ แล้วกลับกัน";
+		mes "ก่อนอื่น เราต้องจัดการกับพวกทากที่ขวางทางอยู่ก่อน ใช่ไหม?";
+		cutin "ep19_friederike05.png",2;
+		next;
+		mes "- การจะไปขั้นตอนถัดไป จำเป็นต้องให้หัวหน้าปาร์ตี้เป็นคนดำเนินการ -";
+		cloakonnpcself( instance_npcname("ep20_1slug_161_307") );
+		cloakonnpcself( instance_npcname("ep20_1slug_157_307") );
+		cutin "",255;
+		if ('step == 6) {
+			donpcevent instance_npcname("slug_mob_4") + "::OnStart";
+			enablenpc instance_npcname("#slsl001");
+			enablenpc instance_npcname("#slsl002");
+			'step = 7;
+		}
+		close2;
+		navigateto("1@slug",66,336);
+		end;
+	}
+	end;
+}
+
+1@slug,148,309,0	warp2(DISABLED)	#slsl001	2,2,1@slug,88,340
+1@slug,100,340,0	warp2(DISABLED)	#slsl002	2,2,1@slug,155,300
+
+
+// step 5
+1@slug,1,1,5	script	slug_mob_4	-1,{
+	end;
+OnStart:
+	.@event$ = instance_npcname("slug_mob_4") + "::OnMobDead";
+	monster 'map_slug$,76,339,"--ja--","G_EP20_ANGEL_ICESLUG",1, .@event$;
+	monster 'map_slug$,83,339,"--ja--","G_EP20_ANGEL_ICESLUG",1, .@event$;
+	monster 'map_slug$,62,330,"--ja--","G_EP20_ANGEL_ICESLUG",1, .@event$;
+	monster 'map_slug$,58,331,"--ja--","G_EP20_ANGEL_ICESLUG",1, .@event$;
+	monster 'map_slug$,58,340,"--ja--","G_EP20_ANGEL_ICESLUG",1, .@event$;
+	monster 'map_slug$,55,336,"--ja--","G_EP20_ANGEL_ICESLUG",1, .@event$;
+	end;
+OnMobDead:
+	if (mobcount( 'map_slug$, instance_npcname("slug_mob_4") + "::OnMobDead" ) > 0)
+		end;
+	disablenpc instance_npcname("ep20_1slug_159_309");
+	enablenpc instance_npcname("ep20_1slug_66_336");
+	'step = 8;
+	end;
+}
+
+1@slug,68,337,3	duplicate(dummy_cloaked_npc)	Friederike#sl5::ep20_1slug_68_337	4_EP19_FRIEDERIKE
+1@slug,67,334,3	duplicate(dummy_cloaked_npc)	Rorohu#sl5::ep20_1slug_67_334	EP20_NPC_COCOPO
+
+1@slug,66,336,5	script(DISABLED)	Cocopo#sl5::ep20_1slug_66_336	EP20_NPC_COCOPO,{
+	if (ep20_sidequest_1 != 18 && ep20_sidequest_1 != 20)
+		end;
+	if (isbegin_quest(11948) != 2 && isbegin_quest(11946) == 0)
+		end;
+	if ('step == 8) {
+		if (is_party_leader() == false)
+			end;
+		if (ep20_sidequest_1 == 20) {
+			mes "[Beep beep]";
+			mes "ปี๊บ!";
+			cloakoffnpcself( instance_npcname("ep20_1slug_68_337") );
+			next;
+			mes "[Friederike]";
+			mes "อันตราย!";
+			mes "มอนสเตอร์ตัวนั้นปรากฏออกมาอีกแล้ว!!";
+			cutin "ep19_friederike02.png",2;
+			next;
+			mes "- การจะไปขั้นตอนถัดไป จำเป็นต้องให้หัวหน้าปาร์ตี้เป็นคนดำเนินการ -";
+			cutin "",255;
+			cloakonnpcself( instance_npcname("ep20_1slug_68_337") );
+			close2;
+			if ('step == 8) {
+				donpcevent instance_npcname("slug_mob_5") + "::OnStart";
+				'step = 9;
+			}
+			disablenpc();
+			end;
+		}
+		mes "[Rorohu]";
+		mes "ปี๊บ!!!";
+		cutin "ep20_cocopo01.png",2;
+		cloakoffnpcself( instance_npcname("ep20_1slug_68_337") );
+		cloakoffnpcself( instance_npcname("ep20_1slug_67_334") );
+		next;
+		mes "[Beep beep]";
+		mes "ปี๊บ!";
+		cutin "",255;
+		next;
+		mes "[Friederike]";
+		mes "อันตราย!";
+		mes "Rorohu!!!";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "- การจะไปขั้นตอนถัดไป จำเป็นต้องให้หัวหน้าปาร์ตี้เป็นคนดำเนินการ -";
+		cloakonnpcself( instance_npcname("ep20_1slug_68_337") );
+		cloakonnpcself( instance_npcname("ep20_1slug_67_334") );
+		cutin "",255;
+		close2;
+		if ('step == 8) {
+			donpcevent instance_npcname("slug_mob_5") + "::OnStart";
+			'step = 9;
+		}
+		disablenpc();
+		end;
+	}
+	if ('step == 10) {
+		if (ep20_sidequest_1 == 18) {
+			mes "[Rorohu]";
+			mes "ขอบคุณนะ";
+			mes "" + strcharinfo(0) + ",";
+			mes "Friederike";
+			cutin "ep20_cocopo02.png",2;
+			cloakoffnpcself( instance_npcname("ep20_1slug_68_337") );
+			cloakoffnpcself( instance_npcname("ep20_1slug_67_334") );
+			next;
+			mes "[Friederike]";
+			mes "เฮ้อกฆ";
+			mes "ดีใจจังที่พวกคุณทั้งคู่ไม่เป็นไร";
+			cutin "ep19_friederike03.png",2;
+			next;
+			mes "[Friederike]";
+			mes "คุณไม่บาดเจ็บตรงไหนใช่ไหม ถึงแม้จะส่งเสียงปี๊บแบบนั้น?";
+			cutin "ep19_friederike01.png",2;
+			next;
+			mes "[Friederike]";
+			mes "ทุกคนปลอดภัยแล้ว งั้นรีบกลับไปที่หมู่บ้านกันเถอะ";
+			mes "ที่นี่อันตรายเกินไปสำหรับเด็กๆ";
+			cutin "ep19_friederike02.png",2;
+			ep20_sidequest_1 = 19;
+			erasequest 11946;
+			setquest 11947;
+			close2;
+			cloakonnpcself( instance_npcname("ep20_1slug_68_337") );
+			cloakonnpcself( instance_npcname("ep20_1slug_67_334") );
+			cutin "",255;
+			warp "jor_back4",100,253;
+			end;
+		}
+		if (ep20_sidequest_1 == 20) {
+			if (checkquest(11949,HUNTING) == 2) {
+				if (checkweight(1001217,3) == 0) {
+					mes "- เดี๋ยวก่อน!! -";
+					mes "- คุณมีไอเทมมากเกินไป -";
+					mes "- จึงไม่สามารถดำเนินเควสต่อไปได้ -";
+					mes "- กรุณาลดน้ำหนักตัวของคุณลง -";
+					mes "- แล้วลองใหม่อีกครั้ง -";
+					close;
+				}
+				mes "[Beep beep]";
+				mes "ปี๊บ!";
+				cloakoffnpcself( instance_npcname("ep20_1slug_68_337") );
+				next;
+				mes "[Friederike]";
+				mes "ใช่แล้ว!";
+				mes "เมื่อมองเด็กพวกนี้ ถึงฉันจะไม่เข้าใจที่พวกเขาพูด แต่ฉันสัมผัสได้ด้วยหัวใจล่ะ";
+				cutin "ep19_friederike05.png",2;
+				next;
+				mes "[Friederike]";
+				mes "ฉันคิดว่าฉันเริ่มสนิทกับ Beep-Beep ขึ้นมานิดหน่อยแล้วนะ...";
+				next;
+				mes "[Beep beep]";
+				mes "ปุ๊ง!";
+				cutin "",255;
+				erasequest 11948;
+				erasequest 11949;
+				setquest 11950;
+				getitem 1001217,3;	// Ep20_Cat_Whiskers
+				if (get_reputation_points( REPU_EP20 ) >= 3000)
+					getitem 1001217,1;	// Ep20_Cat_Whiskers
+				getexp2 34152989,0;
+				getexp 0,4283013;
+				add_reputation_points( REPU_EP20, 5 );
+				close2;
+				cloakonnpcself( instance_npcname("ep20_1slug_68_337") );
+				warp "jor_back4",100,253;
+				end;
+			}
+			// (fall through) (กรณีหลุดจากเงื่อนไข)
+		}
+		// (fall through) (กรณีหลุดจากเงื่อนไข)
+	}
+	mes "[Beep beep]";
+	mes "ปู๊ว??";
+	if (select( "ออกจากดันเจี้ยน", "สำรวจต่อไป" ) == 2) {
+		mes "- สำรวจดันเจี้ยนต่อไป -";
+		close;
+	}
+	mes "- ออกจากดันเจี้ยน -";
+	close2;
+	warp "jor_back4",100,253;
+	end;
+
+OnInstanceInit:
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(11946,HUNTING) == 2" );
+
+	// daily (เควสรายวัน)
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(11949,HUNTING) == 2" );
+	end;
+}
+
+// Step 6
+1@slug,1,1,5	script	slug_mob_5	-1,{
+	end;
+OnStart:
+	.@event$ = instance_npcname("slug_mob_5") + "::OnMobDead";
+	monster 'map_slug$,50,338,"--ja--","MD_EP20_FALLENANGEL",1, .@event$;	// 21982
+	end;
+OnMobDead:
+	if (mobcount( 'map_slug$, instance_npcname("slug_mob_5") + "::OnMobDead" ) > 0)
+		end;
+	'step = 10;
+	disablenpc instance_npcname("#slsl001");
+	disablenpc instance_npcname("#slsl002");
+	enablenpc instance_npcname("ep20_1slug_66_336");
+	end;
+}

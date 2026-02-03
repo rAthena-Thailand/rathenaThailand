@@ -15649,6 +15649,26 @@ BUILDIN_FUNC(specialeffect2)
 	return SCRIPT_CMD_SUCCESS;
 }
 
+BUILDIN_FUNC(specialeffect3)
+{
+	int type = script_getnum(st, 2);
+	enum send_target target = script_hasdata(st, 3) ? (send_target)script_getnum(st, 3) : AREA;
+
+	struct block_list* bl;
+
+	if (!script_rid2bl(4, bl))
+		return SCRIPT_CMD_SUCCESS;
+
+	if( type <= EF_NONE || type >= EF_MAX ){
+		ShowError( "buildin_specialeffect3: unsupported effect id %d.\n", type );
+		return SCRIPT_CMD_FAILURE;
+	}
+
+	clif_specialeffect(bl, type, target);
+
+	return SCRIPT_CMD_SUCCESS;
+}
+
 BUILDIN_FUNC(removespecialeffect)
 {
 	const char* command = script_getfuncname(st);
@@ -19132,6 +19152,9 @@ BUILDIN_FUNC(getunitdata)
 			getunitdata_sub(UMOB_ATKMAX, md->status.rhw.atk2);
 			getunitdata_sub(UMOB_MATKMIN, md->status.matk_min);
 			getunitdata_sub(UMOB_MATKMAX, md->status.matk_max);
+#ifdef RENEWAL
+			getunitdata_sub(UMOB_MATK, md->status.rhw.matk);
+#endif
 			getunitdata_sub(UMOB_DEF, md->status.def);
 			getunitdata_sub(UMOB_MDEF, md->status.mdef);
 			getunitdata_sub(UMOB_HIT, md->status.hit);
@@ -19496,6 +19519,9 @@ BUILDIN_FUNC(setunitdata)
 			case UMOB_ATKMAX: md->base_status->rhw.atk2 = (uint16)value; calc_status = true; break;
 			case UMOB_MATKMIN: md->base_status->matk_min = (uint16)value; calc_status = true; break;
 			case UMOB_MATKMAX: md->base_status->matk_max = (uint16)value; calc_status = true; break;
+#ifdef RENEWAL
+			case UMOB_MATK: md->base_status->rhw.matk = (uint16)value; calc_status = true; break;
+#endif
 			case UMOB_DEF: md->base_status->def = (defType)value; calc_status = true; break;
 			case UMOB_MDEF: md->base_status->mdef = (defType)value; calc_status = true; break;
 			case UMOB_HIT: md->base_status->hit = (int16)value; calc_status = true; break;
@@ -19528,6 +19554,16 @@ BUILDIN_FUNC(setunitdata)
 			case UMOB_RES: md->base_status->res = (int16)value; calc_status = true; break;
 			case UMOB_MRES: md->base_status->mres = (int16)value; calc_status = true; break;
 			case UMOB_DAMAGETAKEN: md->damagetaken = (uint16)value; break;
+			case UMOB_BODYSIZE: {
+				unit_data *ud = unit_bl2ud(bl);
+				if(ud != nullptr)
+				{
+					ud->body_size = (uint8)value;	// 100 = normal size
+
+					clif_body_size(bl, ud->body_size);
+				}
+				break;
+			}
 			default:
 				ShowError("buildin_setunitdata: Unknown data identifier %d for BL_MOB.\n", type);
 				return SCRIPT_CMD_FAILURE;
@@ -19846,6 +19882,16 @@ BUILDIN_FUNC(setunitdata)
 			case UNPC_BODY2: clif_changelook(bl, LOOK_BODY2, (uint16)value); break;
 			case UNPC_DEADSIT: nd->vd.dead_sit = (char)value; unit_refresh(bl); break;
 			case UNPC_GROUP_ID: nd->ud.group_id = value; unit_refresh(bl); break;
+			case UNPC_BODYSIZE: {
+				unit_data *ud = unit_bl2ud(bl);
+				if(ud != nullptr)
+				{
+					ud->body_size = (uint8)value;
+
+					clif_body_size(bl, ud->body_size);
+				}
+				break;
+			}
 			default:
 				ShowError("buildin_setunitdata: Unknown data identifier %d for BL_NPC.\n", type);
 				return SCRIPT_CMD_FAILURE;
@@ -28146,6 +28192,7 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(npcskilleffect,"viii"), // npc skill effect [Valaris]
 	BUILDIN_DEF(specialeffect,"i??"), // npc skill effect [Valaris]
 	BUILDIN_DEF(specialeffect2,"i??"), // skill effect on players[Valaris]
+	BUILDIN_DEF(specialeffect3,"iii"), // skill effect on unit
 	BUILDIN_DEF(removespecialeffect,"i??"),
 	BUILDIN_DEF2(removespecialeffect,"removespecialeffect2","i??"),
 	BUILDIN_DEF(nude,"?"), // nude command [Valaris]

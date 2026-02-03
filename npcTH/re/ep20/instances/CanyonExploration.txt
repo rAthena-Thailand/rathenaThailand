@@ -1,0 +1,1179 @@
+//===== rAthena Script =======================================
+//= Episode 20: Immortals
+//===== Description: =========================================
+//= [Walkthrough Conversion]
+//--- Instance from Episode 20 (main quest)
+//===== Changelogs: ==========================================
+//= 1.0 First version. [Capuche]
+//============================================================
+
+// Main quest - Step 10
+icecastle,202,168,0	script	#ep20_re08	HIDDEN_WARP_NPC,5,5,{
+	end;
+OnTouch:
+	if (ep20_main == 9) {
+		cloakoffnpcself( "ep20_icecastle_201_171" );
+		end;
+	}
+	end;
+}
+
+icecastle,201,171,3	script(CLOAKED)	Lehar#ep20_re07::ep20_icecastle_201_171	4_EP19_LEHAR,{
+	if (ep20_main != 9)
+		end;
+	if (is_party_leader() == false) {
+		cutin "ep19_lehar05.png",2;
+		mes "[Lehar]";
+		mes "กรุณาเตรียมตัวให้พร้อมก่อน! ท่านสามารถมาแบบปาร์ตี้คนเดียวได้!";
+		close3;
+	}
+	.@md_name$ = "Canyon Exploration";
+
+	switch( select( "เตรียมตัว " + .@md_name$ + "", "เข้าสู่ " + .@md_name$ + "" ) ) {
+	case 1:
+		cutin "ep19_lehar01.png",2;
+		mes "[Lehar]";
+		mes "ท่านมาแล้ว! ดูเหมือนท่านจะพร้อมสำหรับการสำรวจแล้วนะ";
+		mes "ถ้าอย่างนั้นพักหายใจสักครู่และเตรียมใจให้พร้อม!";
+		if (is_party_leader() == true)
+			instance_create(.@md_name$);
+		close3;
+	case 2:
+		if (is_party_leader() == false)
+			end;
+		switch( instance_enter(.@md_name$) ) {
+		case IE_OTHER:
+			mes "^ff0000เกิดข้อผิดพลาดที่ไม่รู้จัก^000000";
+			close;
+		case IE_NOINSTANCE:
+		case IE_NOMEMBER:
+			cutin "ep19_lehar01.png",2;
+			mes "[Lehar]";
+			mes "ยังอยู่ระหว่างเตรียมการ! กรุณารอสักครู่แล้วลองเข้าใหม่อีกครั้ง";
+			close3;
+		case IE_OK:
+			// warp "1@20cn1",94,79;
+			end;
+		}
+		end;
+	}
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(16701) == 1" );
+	end;
+}
+
+
+// Step 1 (ขั้นตอนที่ 1)
+1@20cn1,95,78,0	script	#ep20MD_re00	HIDDEN_WARP_NPC,5,5,{
+	end;
+OnTouch:
+	if ('step >= 1) {	// re-enabled (เปิดใช้งานอีกครั้ง)
+		enablenpc instance_npcname("ep20_120cn1_91_80");
+		end;
+	}
+	end;
+}
+
+1@20cn1,91,80,5	script	Lehar#ep20MD_re01::ep20_120cn1_91_80	4_EP19_LEHAR,2,2,{
+	if ('step == 0) {
+		cutin "ep19_lehar01.png",2;
+		mes "[Lehar]";
+		mes "ถ้าอย่างนั้นข้าจะแยกตัวไปตรงนี้";
+		mes "ถ้าท่านเดินต่อไปอีกหน่อยทางทิศ 3 นาฬิกา ท่านจะถึงเขตพื้นที่ที่กำหนดไว้สำหรับท่าน";
+		next;
+		cutin "ep19_lehar02.png",2;
+		mes "[Lehar]";
+		mes "ลาดตระเวน! สู้เขา!";
+		emotion ET_BEST;
+		next;
+		cutin "",255;
+		sleep2 500;
+		npctalk "Lehar: สู้เขา!";
+		disablenpc();
+		if ('step == 0)
+			'step = 1;
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "เริ่มการสำรวจกันเถอะ...";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "เราควรซ่อนตัวและสังเกตอย่างระมัดระวังเพื่อจะได้ไม่ถูกโจมตีอีก";
+		navigateto("1@20cn1",171,105);
+		close;
+	}
+	cutin "ep19_lehar02.png",2;
+	mes "[Lehar]";
+	mes "ลาดตระเวน! สู้เขา!";
+	close2;
+	cutin "",255;
+	disablenpc();
+	end;
+
+OnTouch:
+	npctalk "Lehar: ท่านอยู่นี่เอง นักผจญภัย!";
+	end;
+}
+
+
+// Step 2 (ขั้นตอนที่ 2)
+1@20cn1,165,105,0	script	#ep20MD_re01	HIDDEN_WARP_NPC,5,5,{
+	end;
+OnTouch:
+	if ('step == 1) {
+		enablenpc instance_npcname("ep20_120cn1_173_103");
+		enablenpc instance_npcname("ep20_120cn1_171_105");
+		end;
+	}
+	end;
+}
+
+1@20cn1,173,103,3	script(DISABLED)	Strange Iwin#ep20MD_re02::ep20_120cn1_173_103	EP20_FAKE_IWIN_SR,{
+	emotion ET_PROFUSELY_SWEAT;
+	mes "[Strange Iwin]";
+	mes "นี่เป็นงานของพวกเราเหรอ?";
+	mes "ไม่นะ เจ้าทำไม่ได้!?";
+	close;
+
+OnInstanceInit:
+	'step = 0;
+	'map_20cn2$ = instance_mapname("1@20cn2");
+	end;
+}
+
+1@20cn1,171,105,5	script(DISABLED)	Strange Iwin#ep20MD_re01::ep20_120cn1_171_105	EP20_FAKE_IWIN_SB,2,2,{
+	if ('step < 1)
+		end;
+	if ('step == 1) {
+		mes "[Strange Iwin]";
+		mes "เดี๋ยว! ใครอยู่ตรงนั้นน่ะ!";
+		mes "ข้าเห็นหมดแล้วนะ! อย่าคิดจะซ่อนตัวเลย ออกมา!";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "ข้าพยายามเฝ้าดูอยู่... หือ?";
+		mes "Iwin? เจ้าเป็นคนดูแลที่นี่เหรอ?";
+		next;
+		mes "[Strange Iwin]";
+		mes "คนดูแลเหรอ? ใช่ ข้าเป็นคนดูแล แต่ว่า...";
+		mes "อะไรนะ! เจ้า?";
+		next;
+		mes "[Another Stranger Iwin]";
+		mes "นั่นนักผจญภัยที่ข้าเห็นในปราสาทน้ำแข็งนี่...!";
+		mes "โอ้ไม่นะ อืมมมม เกิดอะไรขึ้นที่นี่เนี่ย?";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "ดูเหมือนบางอย่างจะผิดเพี้ยนไป คุณ Lehar บอกว่านี่คือพื้นที่ของข้า";
+		mes "พวกเจ้าก็ตัดสินใจลาดตระเวนที่นี่ด้วยเหรอ? แต่ยังไงไม่รู้สิ หน้าตาดูแปลกๆ นะ";
+		next;
+		emotion ET_HUK;
+		sleep2 500;
+		emotion ET_HUK, getnpcid(0, instance_npcname("ep20_120cn1_173_103"));
+		mes "[Strange Iwin]";
+		mes "สะดุ้ง";
+		next;
+		mes "[Another Stranger Iwin]";
+		mes "ใช่ นั่นเป็นไปได้นะ ไม่ใช่เพราะพวกเราเพิ่งมาเป็นทหารหรอกเหรอ?";
+		next;
+		emotion ET_SWEAT;
+		mes "[Strange Iwin]";
+		mes "ใช่ ถูกต้องแล้ว! การเป็นทหารคือความฝันอันยาวนานของพวกเราเลยนะ";
+		mes "การเป็นทหาร~ ปกป้องทุกคน~ คือความฝันของข้า";
+		next;
+		emotion ET_SWEAT, getnpcid(0, instance_npcname("ep20_120cn1_173_103"));
+		mes "[Another Stranger Iwin]";
+		mes "ใช่เลย ใช่เลย! มนุษย์มักจะแยกแยะหน้าตาพวกเราไม่ค่อยออกน่ะ";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "(ยังไงไม่รู้แฮะ ข้ารู้สึกสงสัยนิดหน่อย แต่ก็น่าจะเป็น Iwin แหละ.... สงสัยข้าคงคิดไปเอง)";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "ถ้าอย่างนั้นมาพยายามด้วยกันเถอะ";
+		mes "ข้าจะไปตรวจสอบพื้นที่ที่ต้องลาดตระเวนอีกครั้ง...";
+		mes "ไปกันเถอะ?";
+		next;
+		mes "[Strange children]";
+		mes "โอเค ท่านนำไปก่อนเลย!";
+		mes "พวกเราก็จะเริ่มลาดตระเวนเหมือนกัน!";
+		next;
+	}
+	mes "[" + strcharinfo(0) + "]";
+	mes "....";
+	next;
+	specialeffect2 EF_MAGMA_FLOW;
+	mes "[Strange children]";
+	mes "โจมตี!";
+	close2;
+	warp 'map_20cn2$,271,138;
+	if ('step == 1)
+		'step = 2;
+	// disablenpc instance_npcname("ep20_120cn1_173_103");
+	// disablenpc instance_npcname("ep20_120cn1_171_105");
+	enablenpc instance_npcname("ep20_120cn2_271_134");
+	if ('step >= 5)	// re-enter (เข้าใหม่อีกครั้ง)
+		enablenpc instance_npcname("ep20_120cn2_269_136");
+	end;
+
+OnTouch:
+	npctalk "Stranger Iwin: ใครน่ะ!!";
+	npctalk "Stranger Iwin: หยุดอยู่ตรงนั้น!!", instance_npcname("ep20_120cn1_173_103");
+	end;
+}
+
+
+// Step 3, 4 (ขั้นตอนที่ 3, 4)
+1@20cn2,264,135,5	duplicate(dummy_disabled_npc)	Bagot#ep20MD_re01::ep20_120cn2_264_135	4_EP18_BAGOT
+
+1@20cn2,271,134,3	script(DISABLED)	Lehar#ep20MD_re02::ep20_120cn2_271_134	4_EP19_LEHAR,2,2,{
+	if ('step == 2) {
+		mes "[" + strcharinfo(0) + "]";
+		mes "....";
+		next;
+		emotion ET_THINK, playerattached();
+		mes "[" + strcharinfo(0) + "]";
+		mes "........";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "............";
+		next;
+		cutin "ep19_lehar05.png",2;
+		mes "[Lehar]";
+		mes "....เตรียมตัวให้พร้อม....!!";
+		next;
+		mes "[Lehar]";
+		mes "ใจเย็นๆ ก่อน " + strcharinfo(0) + "!!";
+		next;
+		cutin "",255;
+		sleep2 500;
+		emotion ET_KEK, playerattached();
+		mes "[" + strcharinfo(0) + "]";
+		mes "โอ๊ย! เจ็บหัวชะมัด... ท้ายทอยรู้สึกเสียวแปลบๆ เลย";
+		mes "ข้าแทบไม่อยากเชื่อเลย แต่เขาเป็นคนทรยศจริงๆ เหรอ?";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "คุณ Lehar ก็ถูกจับเหมือนกัน คุณโอเคไหมครับ คุณ Lehar!?";
+		next;
+		cutin "ep19_lehar03.png",2;
+		mes "[Lehar]";
+		mes "อึก... ข้าประมาทไปหน่อย";
+		mes "ข้าไม่เคยคิดเลยว่าจะมีคนทรยศท่ามกลางพวก Iwin เรื่องแบบนี้เกิดขึ้นได้ยังไงกัน?";
+		next;
+		cutin "",255;
+		mes "[" + strcharinfo(0) + "]";
+		mes "ข้าก็ไม่ได้คิดถึงเรื่องนั้นเหมือนกัน";
+		mes "แต่พวกเราจะอยู่แบบนี้ต่อไปไม่ได้ เราต้องหาวิธีหนี...";
+		next;
+		cutin "ep19_lehar03.png",2;
+		mes "[Lehar]";
+		mes "อืม นั่นสิ ข้าคงต้องใช้สมองระดมความคิดดูว่ามีทางหนีบ้างไหม...";
+		next;
+		cutin "ep19_lehar05.png",2;
+		mapannounce 'map_20cn2$, "Bagot: ท่าน Lasgand ท่านได้พิจารณาข้อเสนอของข้าหรือยัง?", bc_map, 0xFFFF99;
+		sleep2 500;
+		emotion ET_SURPRISE;
+		mes "[Lehar]";
+		mes "โอ้ ข้าได้ยินเสียงอะไรบางอย่างข้างนอก! ฟังกันเถอะ!";
+		next;
+		cutin "",255;
+		ignoretimeout(true);
+		// note: timer inaccurate (หมายเหตุ: ตัวจับเวลาอาจไม่แม่นยำ)
+		mapannounce 'map_20cn2$, "Bagot: ความพยายามที่จะ 'คืนชีพ' ด้วยร่างของ Jormungandr ที่ยังเหลืออยู่ในตอนนี้,", bc_map, 0xFFFF99;
+		sleep2 2000;
+		mapannounce 'map_20cn2$, "Bagot: ข้าบอกท่านแล้วว่าแม้แต่พลังเวทมนตร์ที่เหลืออยู่ก็อาจจะสูญสิ้นไป", bc_map, 0xFFFF99;
+		sleep2 2000;
+		mapannounce 'map_20cn2$, "Lasgand: ใช่ ข้าได้ยินเรื่องนั้นแล้ว", bc_map, 0xFFFF99;
+		sleep2 2000;
+		mapannounce 'map_20cn2$, "Lasgand: ที่เจ้าพูดแบบนั้นเพราะมันเหลือเพียงเปลือกงั้นรึ?", bc_map, 0xFFFF99;
+		sleep2 2000;
+		mapannounce 'map_20cn2$, "Bagot: ช่างน่าเสียดายยิ่งนัก", bc_map, 0xFFFF99;
+		sleep2 2000;
+		mapannounce 'map_20cn2$, "Bagot: มันหมายความว่าประสิทธิภาพจะต่ำกว่าเงินลงทุนที่ลงไป", bc_map, 0xFFFF99;
+		sleep2 2000;
+		mapannounce 'map_20cn2$, "Lasgand: แต่สิ่งที่เจ้าพูดมันบุ่มบ่ามเกินไป", bc_map, 0xFFFF99;
+		sleep2 2000;
+		mapannounce 'map_20cn2$, "Lasgand: เจ้าต้องการให้ข้าใช้เวทมนตร์นั้นด้วยตัวเองงั้นรึ?", bc_map, 0xFFFF99;
+		sleep2 2000;
+		mapannounce 'map_20cn2$, "Bagot: ใช่ ใช่แล้ว และท่านจะกลายเป็นพระเจ้าเสียเอง", bc_map, 0xFFFF99;
+		sleep2 2000;
+		mapannounce 'map_20cn2$, "Bagot: ทำลายกำแพงกั้นแล้วออกไปจาก Isgard และยึดครองทวีป Midgard ด้วยตัวท่านเอง!", bc_map, 0xFFFF99;
+		sleep2 2000;
+		mapannounce 'map_20cn2$, "Bagot: ในที่สุดท่านจะได้ปกครองที่นี่ในฐานะผู้พิชิตทวีปที่แท้จริง!", bc_map, 0xFFFF99;
+		sleep2 2000;
+		mapannounce 'map_20cn2$, "Bagot: ก้าวขึ้นมาเป็นผู้ปกครองโลก!", bc_map, 0xFFFF99;
+		sleep2 2000;
+		mapannounce 'map_20cn2$, "Lasgand: ....", bc_map, 0xFFFF99;
+		sleep2 2000;
+		mapannounce 'map_20cn2$, "Lasgand: เจ้านี่รู้จักวิธีเล่าเรื่องให้น่าลิ้มลองจริงๆ นะ", bc_map, 0xFFFF99;
+		sleep2 2000;
+		mapannounce 'map_20cn2$, "Bagot: หุหุ Bagot ก็เป็นเช่นนี้เสมอ", bc_map, 0xFFFF99;
+		sleep2 2000;
+		mapannounce 'map_20cn2$, "Lasgand: ตกลง ข้าจะทำตามนั้น มาเริ่มการวิจัยกัน", bc_map, 0xFFFF99;
+		sleep2 2000;
+		mapannounce 'map_20cn2$, "Bagot: ขอบพระคุณอย่างสูงสำหรับความเมตตาดุจห้วงมหาสมุทร", bc_map, 0xFFFF99;
+		sleep2 2000;
+		mapannounce 'map_20cn2$, "Bagot: ขอให้ท่าน Lasgand ได้รับพรอันประเสริฐเสมอไป", bc_map, 0xFFFF99;
+		sleep2 2000;
+		mapannounce 'map_20cn2$, "Lasgand: เหอะ.... เจ้านี่มันเก่งเรื่องใช้ปากจริงๆ", bc_map, 0xFFFF99;
+		sleep2 2000;
+		emotion ET_THINK;
+		mapannounce 'map_20cn2$, "Bagot: ท่านไปแล้วรึ?", bc_map, 0xFFFF99;
+		ignoretimeout(false);
+		sleep2 2000;
+		cutin "ep19_lehar05.png",2;
+		mes "[Lehar]";
+		mes "โอ้ ดูเหมือนมันกำลังเข้ามาในห้องแล็บแล้ว";
+		next;
+		enablenpc instance_npcname("ep20_120cn2_264_135");
+		sleep2 500;
+		cutin "ep18_bagot_02.png",2;
+		emotion ET_SCRATCH, getnpcid(0, instance_npcname("ep20_120cn2_264_135"));
+		mes "[Bagot]";
+		mes "หืมมม.... เป็นงูที่เอาใจยากจริงๆ";
+		mes "แต่เพื่อเป็นการตอบแทน ข้าก็ได้สิ่งที่ Bagot ต้องการแล้ว ดังนั้นมันก็ไม่ใช่ข้อตกลงที่แย่อะไร";
+		next;
+		cutin "ep18_bagot_01.png",2;
+		mes "[Bagot]";
+		mes "หุหุ แสร้งทำเป็นคนต่ำต้อยแต่ก็ยังอยากได้อะไรแบบนั้นอยู่";
+		mes "แต่ข้าสามารถทำมันได้ก็เพราะท่าน...!";
+		next;
+		cutin "ep18_bagot_03.png",2;
+		mes "[Bagot]";
+		mes "Bagot จะกลายเป็นตัวตนที่เหนือชั้นผู้สร้าง 'พระเจ้า'...!";
+		mes "เอาจริงนะ นี่คือปาฏิหาริย์ที่เหนือกว่ามนุษย์!";
+		next;
+		emotion ET_THINK;
+		sleep2 500;
+		cutin "ep19_lehar04.png",2;
+		mes "[Lehar]";
+		mes "ว้าว คำพูดต่อหน้ากับลับหลังนี่ต่างกันลิบลับเลยนะ";
+		next;
+		cutin "ep18_bagot_01.png",2;
+		mes "[Bagot]";
+		mes "หือ? พวกเจ้าตื่นอยู่เหรอ? ไม่สำคัญหรอก";
+		mes "ในไม่ช้าพวกเจ้าก็จะกลายเป็นวัตถุดิบสำหรับสิ่งนี้ เครื่องสังเวยของข้า";
+		next;
+		cutin "ep19_lehar03.png",2;
+		mes "[Lehar]";
+		mes "ข้าคิดไว้แล้วว่ามันต้องเหมือนเครื่องเซ่นสังเวย ปล่อยพวกเราออกไปเดี๋ยวนี้นะ!";
+		next;
+		cutin "ep18_bagot_01.png",2;
+		mes "[Bagot]";
+		mes "ข้าทำแบบนั้นไม่ได้หรอก";
+		mes "ในที่สุดพวกเราก็จับตัวตนที่แสนยุ่งยากที่คอยกวนใจพวกเรามาตลอดได้เสียที";
+		next;
+		cutin "ep18_bagot_03.png",2;
+		mes "[Bagot]";
+		mes "มานาของพวกเจ้าจะช่วยในการทดลองได้อย่างเพียงพอแน่นอน";
+		mes "Bagot มีความสุขมากจริงๆ";
+		next;
+		cutin "ep19_lehar03.png",2;
+		mes "[Lehar]";
+		mes "เจ้าคิดว่าพวกข้าจะยอมถูกทดลองง่ายๆ งั้นรึ?!";
+		next;
+		cutin "password_ep18_bagot_01.png",2;
+		mes "[Bagot]";
+		mes "แน่นอน ข้าว่าเจ้าควรจะดีใจมากกว่านะ";
+		mes "จงภูมิใจในความจริงที่ว่าเจ้าสามารถเป็นรากฐานให้กับการสร้างพระเจ้าได้";
+		next;
+		cutin "ep19_lehar05.png",2;
+		mes "[Lehar]";
+		mes "มันยากที่จะตอบโต้จริงๆ เพราะเจ้าจริงจังกับมันมากเลยใช่ไหมล่ะ? " + strcharinfo(0) + "....";
+		next;
+		cutin "ep18_bagot_03.png",2;
+		mes "[Bagot]";
+		mes "อีกไม่นานหรอกที่ข้าจะได้พูดแบบนั้น";
+		mes "ดังนั้นอย่าคิดเรื่องไร้สาระแล้วอยู่นิ่งๆ ซะ";
+		close2;
+		if ('step == 2)
+			'step = 3;
+		npctalk "Lehar: อึก เขาไปแล้ว";
+		cutin "",255;
+		disablenpc instance_npcname("ep20_120cn2_264_135");
+		end;
+	}
+	if ('step == 3) {
+		cutin "ep19_lehar03.png",2;
+		mes "[Lehar]";
+		mes "ฮะๆ คราวนี้จะทำยังไงดีล่ะ? ดูเหมือนข้าจะออกไปไม่ได้เลย";
+		next;
+		specialeffect EF_SPR_LIGHTPRINT;
+		mes "[Lehar]";
+		mes "ย้าก! ฮึ่ย! ฮ่าาาา! ร้อน!";
+		mes "มันพังยากเกินไป แถมยังถูกล็อคไว้อย่างแน่นหนาด้วย!";
+		next;
+		cutin "",255;
+		mes "[" + strcharinfo(0) + "]";
+		mes "มันต้องมีทางสิ ถ้าคุกไม่มีช่องโหว่เลย มันก็เหมือนกับการรอให้ใครสักคนเอาอาหารมาให้นั่นแหละ...";
+		next;
+		enablenpc instance_npcname("ep20_120cn2_273_136");
+		sleep2 500;
+		cutin "ep20_nyar02.png",1;
+		mes "[White Cat]";
+		mes "....";
+		next;
+		cutin "ep19_lehar04.png",2;
+		mes "[Lehar]";
+		mes "แต่มันคงจะลำบากถ้าทุกคนไม่ฟังพวกเรา แล้วเอาแต่พูดในสิ่งที่อยากจะพูดแล้วก็จากไป...";
+		next;
+		cutin "ep20_nyar03.png",1;
+		sleep2 500;
+		emotion ET_OK, getnpcid(0, instance_npcname("ep20_120cn2_273_136"));
+		mes "[White Cat]";
+		mes "....";
+		next;
+		cutin "ep19_lehar05.png",2;
+		sleep2 500;
+		emotion ET_HUK;
+		mes "[Lehar]";
+		mes "โอ๊ย! อะไรน่ะ! มีบางอย่างมาโดนขาข้า! บางอย่างที่... นุ่มมาก?";
+		next;
+		cutin "",255;
+		select( "นี่มันอะไรน่ะ?", "ไปสิ เจ้าเหมียว?" );	// note: the selection doesn't change the dialog (หมายเหตุ: ตัวเลือกไม่เปลี่ยนบทสนทนา)
+		cutin "ep20_nyar02.png",1;
+		mes "[White Cat]";
+		mes "เฮ้-อ่อง";
+		next;
+		cutin "ep19_lehar05.png",2;
+		mes "[Lehar]";
+		mes "มันดูเหมือนแมว แต่สำหรับข้ามันเหมือนกำลังร้องเมี๊ยวๆ...";
+		mes "แต่ข้าไม่เคยเห็นแมวตัวยาวขนาดนี้มาก่อนเลยนะ เออ แล้วเจ้ามาอยู่ที่นี่ตั้งแต่เมื่อไหร่เนี่ย?";
+		next;
+		cutin "ep20_nyar01.png",1;
+		mes "[White Cat]";
+		mes "?";
+		close2;
+		cutin "",255;
+		if ('step == 3) {
+			'step = 4;
+			donpcevent instance_npcname("ep20_120cn2_273_136") + "::OnStart";
+		}
+		end;
+	}
+	cutin "ep19_lehar03.png",2;
+	mes "[Lehar]";
+	mes "ข้าควรทำยังไงดี? ดูเหมือนข้าจะออกไปไม่ได้เลย";
+	close3;
+
+OnTouch:
+	npctalk "Lehar: นักผจญภัย! นักผจญภัย!";
+	end;
+}
+
+1@20cn2,273,136,3	script(DISABLED)	Cat#ep20MD_re01::ep20_120cn2_273_136	EP20_NPC_NYAR,{
+	end;
+OnStart:
+	npcspeed 200;
+	unitwalk getnpcid(0),269,136, instance_npcname("ep20_120cn2_273_136") + "::OnMove";
+	end;
+OnMove:
+	'step = 5;
+	disablenpc();
+	enablenpc instance_npcname("ep20_120cn2_269_136");
+	npctalk "Cat: แบะ", instance_npcname("ep20_120cn2_269_136");
+	end;
+}
+
+
+// Step 5 (ขั้นตอนที่ 5)
+1@20cn2,269,136,3	script(DISABLED)	Cat#ep20MD_re01_1::ep20_120cn2_269_136	EP20_NPC_NYAR,{
+	if ('step < 5)
+		end;
+	if ('step == 5) {
+		cutin "ep20_nyar01.png",1;
+		mes "[White Cat]";
+		mes "มุนเนี๊ยก";
+		next;
+		cutin "ep19_lehar05.png",2;
+		mes "[Lehar]";
+		mes "อุ๊ย ข้าว่ามันดูยาวขึ้นตอนมันเดินนะ";
+		mes "พวกมันเข้าใกล้ประตูแล้ว!";
+		next;
+		cutin "",255;
+		select( "มันส่งเสียงประหลาดๆ..." );
+		cutin "ep19_lehar05.png",2;
+		mes "[Lehar]";
+		mes "แมวก็เป็นแบบนั้นแหละ";
+		mes "หือ? อ๊ะ อ๊ะ อ๊ะ! นี่ " + strcharinfo(0) + " ดูนั่นสิ!";
+		next;
+		specialeffect 1044;
+		mes "[Lehar]";
+		mes "แมวกำลังใช้กรงเล็บข่วน... ตัวล็อคกำลังพังลง!";
+		mes "เรื่องแบบนี้เกิดขึ้นได้ยังไงกัน? มันเป็นไปได้เหรอ?";
+		next;
+		cutin "ep19_lehar01.png",2;
+		mes "[Lehar]";
+		mes "แพะเอ๊ย มันเป็นไปได้ยังไงเนี่ย?";
+		mes "เจ้าช่วยอธิบายหน่อยได้ไหม?";
+		next;
+		cutin "ep19_lehar02.png",2;
+		mes "[Lehar]";
+		mes "ว้าว ตัวล็อคหลุดออกหมดเลย!";
+		next;
+		cutin "ep20_nyar05.png",1;
+		mes "[White Cat]";
+		mes "(กระดิกหางเหมือนจะบอกให้ตามไป แล้วเดินออกจากกรง)";
+		next;
+	}
+	cutin "ep19_lehar01.png",2;
+	mes "[Lehar]";
+	mes "โอ้ ไปเถอะ ตามข้ามา!";
+	close2;
+	cutin "",255;
+	warp 'map_20cn2$,52,283;
+	navigateto("1@20cn2",62,258);
+	if ('step == 5)
+		'step = 6;
+	disablenpc;
+	disablenpc instance_npcname("ep20_120cn2_271_134");
+	enablenpc instance_npcname("ep20_120cn2_69_266");
+	enablenpc instance_npcname("ep20_120cn2_71_264");
+	enablenpc instance_npcname("ep20_120cn2_62_258");
+	enablenpc instance_npcname("ep20_120cn2_63_257");
+	end;
+}
+
+
+// Step 6 (ขั้นตอนที่ 6)
+1@20cn2,69,266,3	script(DISABLED)	Lasgand#ep20MD_re02::ep20_120cn2_69_266	EP20_NPC_LASGAND,{
+	npctalk "Lasgand: ...หืม มันกำลังไปได้สวยจริงๆ...";
+	end;
+}
+
+1@20cn2,71,264,1	script(DISABLED)	Bagot#ep20MD_re02::ep20_120cn2_71_264	4_EP18_BAGOT,{
+	npctalk "Bagot: ...งั้นเกี่ยวกับสถานที่แห่งนั้น...";
+	end;
+}
+
+1@20cn2,63,257,3	script(DISABLED)	Cat#ep20MD_re02::ep20_120cn2_63_257	EP20_NPC_NYAR,{
+	cutin "ep20_nyar03.png",1;
+	mes "[White Cat]";
+	mes "?โย้วววว";
+	close3;
+}
+
+1@20cn2,62,258,3	script(DISABLED)	Lehar#ep20MD_re03::ep20_120cn2_62_258	4_EP19_LEHAR,2,2,{
+	if ('step < 6)
+		end;
+	if ('step == 6) {
+		cutin "ep20_nyar02.png",1;
+		mes "[White Cat]";
+		mes "โย้วววว";
+		next;
+		cutin "ep19_lehar05.png",2;
+		sleep2 500;
+		emotion ET_SURPRISE;
+		mes "[Lehar]";
+		mes "อา ข้าเดาว่ามันหมายถึงให้หยุดตรงนี้ มันร้องออกมานิดเดียวเอง";
+		mes "นั่น Bagot กับ Lasgand นี่! ซ่อนตัวเร็ว!";
+		next;
+		cutin "ep18_bagot_01.png",2;
+		mes "[Bagot]";
+		mes "แผนการกำลังไปได้ดีครับ ท่าน Lasgand";
+		mes "รวมถึงแผนการสำหรับสถานที่แห่งนั้นด้วย";
+		next;
+		cutin "",255;
+		sleep2 500;
+		emotion ET_QUESTION, playerattached();
+		select( "ที่ไหนเหรอ?" );
+		cutin "ep19_lehar03.png",2;
+		mes "[Lehar]";
+		mes "ข้าหมายถึง มาฟังดูก่อนเถอะ";
+		mes "มันเต็มไปด้วยเรื่องที่ข้ายังไม่รู้อีกเยอะเลย";
+		next;
+		cutin "ep20_lasgand01.png",1;
+		mes "[Lasgand]";
+		mes "มันกำลังไปได้สวย ก่อนหน้านี้ข้ายังหามันไม่เจอเลย";
+		mes "อย่างไรก็ตาม โจมตีต่อไป ในเมื่อตอนนี้เรามีเบาะแสแล้ว เราควรบุกเข้าไปทันที";
+		next;
+		cutin "ep18_bagot_03.png",2;
+		mes "[Bagot]";
+		mes "ถึงอย่างนั้น มันก็เป็นก้าวที่ยิ่งใหญ่ตั้งแต่ท่านค้นพบการมีอยู่ของมันไม่ใช่รึ?";
+		next;
+		cutin "ep20_nyar05.png",1;
+		mes "[White Cat]";
+		mes "(กระวนกระวายยังไงชอบกล หมุนตัวอยู่กับที่)";
+		next;
+		cutin "ep19_lehar05.png",2;
+		mes "[Lehar]";
+		mes "มีบางอย่างผิดปกติกับแมวนะ เป็นอะไรไปน่ะ เจ้าเหมียว?";
+		next;
+		cutin "ep20_nyar04.png",1;
+		mes "[White Cat]";
+		mes "อ๊าววว....";
+		next;
+		cutin "ep20_lasgand03.png",1;
+		mes "[Lasgand]";
+		mes "ยังไงก็ตาม พวกเราต้องผ่านสถานที่แห่งนั้นไปให้เร็วที่สุดเท่าที่จะทำได้";
+		next;
+		cutin "ep18_bagot_02.png",2;
+		mes "[Bagot]";
+		mes "ถูกต้องแล้วครับ ถ้าอย่างนั้น ท่าน Lasgand ต่อไปคือ...";
+		next;
+		cutin "ep19_lehar05.png",2;
+		sleep2 500;
+		if ('step == 6) {
+			'step = 7;
+			disablenpc instance_npcname("ep20_120cn2_69_266");
+			disablenpc instance_npcname("ep20_120cn2_71_264");
+
+			enablenpc instance_npcname("ep20_120cn2_57_220");
+			enablenpc instance_npcname("ep20_120cn2_57_223");
+			enablenpc instance_npcname("ep20_120cn2_53_219");
+			enablenpc instance_npcname("ep20_120cn2_52_221");
+			enablenpc instance_npcname("ep20_120cn2_54_222");
+			enablenpc instance_npcname("ep20_120cn2_63_227");
+			enablenpc instance_npcname("ep20_120cn2_64_224");
+		}
+		mes "[Lehar]";
+		mes "โอ้ พวกเขาไปแล้ว";
+		next;
+		cutin "ep20_nyar02.png",1;
+		mes "[White Cat]";
+		mes "เนี๊ยวววว";
+		next;
+		cutin "ep19_lehar01.png",2;
+		mes "[Lehar]";
+		mes "แมวเริ่มเดินอีกแล้ว";
+		mes "พวกเราจะเชื่อใจแมวตัวนี้และตามมันไปได้ไหมนะ?";
+		next;
+		cutin "ep20_nyar01.png",1;
+		mes "[White Cat]";
+		mes "อุงเนี๊ยง!";
+		next;
+		cutin "ep19_lehar02.png",2;
+		mes "[Lehar]";
+		mes "อุ๊ย เจ้าตอบราวกับว่าเจ้าเข้าใจที่ข้าพูดเลยนะ";
+		mes "ตามไปกันเถอะ";
+		close2;
+		cutin "",255;
+		disablenpc();
+		disablenpc instance_npcname("ep20_120cn2_63_257");
+		navigateto("1@20cn2",64,224);
+		end;
+	}
+	cutin "ep19_lehar02.png",2;
+	mes "[Lehar]";
+	mes "โอเค ตามไปกันเถอะ";
+	close2;
+	cutin "",255;
+	disablenpc instance_npcname("ep20_120cn2_69_266");
+	disablenpc instance_npcname("ep20_120cn2_71_264");
+
+	enablenpc instance_npcname("ep20_120cn2_57_220");
+	enablenpc instance_npcname("ep20_120cn2_57_223");
+	enablenpc instance_npcname("ep20_120cn2_53_219");
+	enablenpc instance_npcname("ep20_120cn2_52_221");
+	enablenpc instance_npcname("ep20_120cn2_54_222");
+	enablenpc instance_npcname("ep20_120cn2_63_227");
+	enablenpc instance_npcname("ep20_120cn2_64_224");
+
+	disablenpc();
+	disablenpc instance_npcname("ep20_120cn2_63_257");
+	navigateto("1@20cn2",64,224);
+	end;
+
+OnTouch:
+	npctalk "Lehar: ชู่วว ทางนี้!";
+	end;
+}
+
+
+// Step 7 (ขั้นตอนที่ 7)
+1@20cn2,57,220,1	script(DISABLED)	Rgan#ep20MD_re02::ep20_120cn2_57_220	4_EP19_RGAN_SR1,{
+	npctalk "Rgan: อาฮ่าฮ่า! โค้ก โค้ก อย่าพ่นขนออกมาสิ!";
+	end;
+}
+
+1@20cn2,57,223,3	script(DISABLED)	Rgan#ep20MD_re01::ep20_120cn2_57_223	4_EP19_RGAN_SR3,{
+	npctalk "Rgan: อา... ข้าไม่อยากทำงานอย่างขยันขันแข็งเลย ข้าอยากไปนอนแผ่จัง";
+	end;
+}
+
+1@20cn2,53,219,7	script(DISABLED)	Rgan#ep20MD_re03::ep20_120cn2_53_219	4_EP19_RGAN_SR2,{
+	npctalk "Rgan: ข้าภูมิใจที่ต้องคอยฟังมนุษย์คนนั้น";
+	end;
+}
+
+1@20cn2,52,221,7	script(DISABLED)	Rgan#ep20MD_re04::ep20_120cn2_52_221	4_EP19_RGAN_SR3,{
+	npctalk "Rgan: หืมมม... เจ้าเคลื่อนไหวด้วยร่างกายแบบนั้นได้ยังไงกัน?";
+	end;
+}
+
+1@20cn2,54,222,5	script(DISABLED)	Iwin#ep20MD_re01::ep20_120cn2_54_222	EP20_FAKE_IWIN_SR,{
+	npctalk "Iwin: แค่ก แค่ก! ดูเหมือนขนจะติดอยู่ในปากเจ้าแล้วนะ";
+	end;
+}
+
+1@20cn2,63,227,3	script(DISABLED)	Cat#ep20MD_re03::ep20_120cn2_63_227	EP20_NPC_NYAR,{
+	npctalk "Cat: เนียกาลัง";
+	end;
+}
+
+1@20cn2,52,221,7	duplicate(dummy_disabled_npc)	Rgan#ep20MD_re04_1::ep20_120cn2_52_221_B	EP20_FAKE_IWIN_SR
+
+1@20cn2,64,224,3	script(DISABLED)	Lehar#ep20MD_re04::ep20_120cn2_64_224	4_EP19_LEHAR,2,2,{
+	if ('step < 7)
+		end;
+	if ('step == 7) {
+		cutin "ep20_nyar03.png",1;
+		mes "[White Cat]";
+		mes "วูงเมียะ!";
+		next;
+		cutin "ep19_lehar05.png",2;
+		mes "[Lehar]";
+		mes "หือ? แมวหยุดอีกแล้ว";
+		mes "อุ๊ย เป็นที่ที่มี Rgans อยู่เต็มไปหมดเลยแฮะ เกือบโดนจับได้แล้วถ้าออกไปสุ่มสี่สุ่มห้า!";
+		next;
+		cutin "ep19_lehar04.png",2;
+		mes "[Lehar]";
+		mes "หือ? แต่คนนั้นที่อยู่ท่ามกลางพวก Rgan ตรงนั้น...";
+		next;
+		cutin "",255;
+		select("ข้าก็เห็นเหมือนกัน" );
+		cutin "ep19_lehar05.png",2;
+		mes "[Lehar]";
+		mes "ใช่ไหมล่ะ?! นั่นไม่ใช่ Iwin รึ?";
+		mes "บ้าน่า ใครกันที่โดนจับ...!";
+		next;
+		cutin "ep20_nyar02.png",1;
+		mes "[White Cat]";
+		mes "ยูนเนี๊ยง เมี๊ยว";
+		next;
+		cutin "ep19_lehar05.png",2;
+		mes "[Lehar]";
+		mes "ชายเสื้อถูกงับและดึงไว้ ดูเหมือนมันจะบอกว่าอย่าตื่นตูมไป";
+		mes "นั่นสิ ถ้าเราวิ่งออกไปตอนนี้ เราก็โดนจับเปล่าๆ สูดหายใจลึกๆ สูดหายใจลึกๆ";
+		next;
+		cutin "ep19_lehar04.png",2;
+		mes "[Lehar]";
+		mes "เงียบๆ ไว้... มาหาช่องโหว่กันเถอะ";
+		next;
+		cutin "",255;
+		mes "[Rgan]";
+		MES "ว้าว พวกมนุษย์ชั้นต่ำกำลังทำเรื่องน่ารำคาญอยู่";
+		next;
+		mes "[Rgan]";
+		mes "แต่ข้าจะทำยังไงได้ล่ะ? เขาคิดว่าคำพูดของเขานั้นศักดิ์สิทธิ์เท่ากับคำพูดของท่าน Lasgand ผู้ยิ่งใหญ่";
+		next;
+		mes "[Iwin]";
+		mes "ถึงอย่างนั้น นี่มันอะไรกัน? มันน่าขันสิ้นดี และมันก็เดินลำบากเหลือเกิน";
+		mes "เจ้าเคลื่อนไหวด้วยร่างกายที่ใหญ่โตและเต็มไปด้วยขนแบบนี้ได้ยังไงเนี่ย?";
+		next;
+		cutin "ep19_lehar04.png",2;
+		mes "[Lehar]";
+		mes "หือ? เจ้าได้ยินที่ท่าน Iwin คนที่ถูกจับพูดไหม? มีบางอย่างแปลกๆ นะ";
+		next;
+		cutin "",255;
+		mes "[Rgan]";
+		mes "ข้าเกลียดมันจริงๆ แต่ข้าว่าข้าก็ต้องเปลี่ยนเหมือนกัน";
+		mes "เจ้าพวกนั้นทำหน้าที่ได้ดีในการแปลงร่างเป็นพวกเราแล้วเดินไปเดินมา";
+		next;
+		disablenpc instance_npcname("ep20_120cn2_52_221");
+		enablenpc instance_npcname("ep20_120cn2_52_221_B");
+		mes "[Rgan]";
+		mes "เจ้าพวกโง่ คราวนี้โดนพวกเราเล่นงานบ้างเถอะ คยัคคยัค!!";
+		next;
+		cutin "ep19_lehar05.png",2;
+		mes "[Lehar]";
+		mes "....!!!!!";
+		next;
+		cutin "ep19_lehar04.png",2;
+		mes "[Lehar]";
+		mes "Rgan ตนนั้น... กลายเป็น Iwin ไปแล้ว!";
+		mes "พวก Rgan รู้วิธีแปลงร่างเป็น Iwin เหมือนพวกเราเปี๊ยบเลย!";
+		next;
+		cutin "ep19_lehar05.png",2;
+		mes "[Lehar]";
+		mes "ว้าว นี่มันเรื่องใหญ่แล้ว!";
+		mes "ข้าต้องรีบกลับไปที่ปราสาทน้ำแข็งและรายงานเรื่องนี้!";
+		next;
+		mes "[Lehar]";
+		mes "พวกเราต้องรีบออกไปจากที่นี่แล้ว อึก ใจร้อนชะมัด";
+		close2;
+		cutin "",255;
+		if ('step == 7) {
+			'step = 8;
+			warp 'map_20cn2$,101,95;
+			navigateto("1@20cn2",107,65);
+			disablenpc instance_npcname("ep20_120cn2_57_220");
+			disablenpc instance_npcname("ep20_120cn2_57_223");
+			disablenpc instance_npcname("ep20_120cn2_53_219");
+			disablenpc instance_npcname("ep20_120cn2_52_221");
+			disablenpc instance_npcname("ep20_120cn2_54_222");
+			disablenpc instance_npcname("ep20_120cn2_63_227");
+			disablenpc instance_npcname("ep20_120cn2_64_224");
+			disablenpc instance_npcname("ep20_120cn2_52_221_B");
+
+			enablenpc instance_npcname("ep20_120cn2_107_65");
+			enablenpc instance_npcname("ep20_120cn2_109_63");
+		}
+		end;
+	}
+	cutin "ep19_lehar05.png",2;
+	mes "[Lehar]";
+	mes "ว้าว นี่มันเรื่องใหญ่แล้ว!";
+	mes "ข้าต้องรีบกลับไปที่ปราสาทน้ำแข็งและรายงานเรื่องนี้!";
+	close2;
+	cutin "",255;
+	warp 'map_20cn2$,101,95;
+	navigateto("1@20cn2",107,65);
+	disablenpc instance_npcname("ep20_120cn2_57_220");
+	disablenpc instance_npcname("ep20_120cn2_57_223");
+	disablenpc instance_npcname("ep20_120cn2_53_219");
+	disablenpc instance_npcname("ep20_120cn2_52_221");
+	disablenpc instance_npcname("ep20_120cn2_54_222");
+	disablenpc instance_npcname("ep20_120cn2_63_227");
+	disablenpc instance_npcname("ep20_120cn2_64_224");
+	disablenpc instance_npcname("ep20_120cn2_52_221_B");
+
+	if ('step >= 10) {
+		enablenpc instance_npcname("ep20_120cn2_96_65");
+		enablenpc instance_npcname("ep20_120cn2_98_63");
+	}
+	else {
+		enablenpc instance_npcname("ep20_120cn2_107_65");
+		enablenpc instance_npcname("ep20_120cn2_109_63");
+	}
+	end;
+
+OnTouch:
+	npctalk "Lehar: หือ? แมวหยุดอีกแล้ว";
+	end;
+}
+
+
+// Step 8, 9
+1@20cn2,109,63,3	script(DISABLED)	Lehar#ep20MD_re05::ep20_120cn2_109_63	4_EP19_LEHAR,{
+	npctalk "Lehar: วิ่ง!";
+	end;
+}
+
+1@20cn2,107,65,3	script(DISABLED)	Cat#ep20MD_re04::ep20_120cn2_107_65	EP20_NPC_NYAR,2,2,{
+	if ('step < 8)
+		end;
+	if ('step == 8) {
+		cutin "ep20_nyar02.png",1;
+		mes "[White Cat]";
+		mes "ยาาาาาา";
+		next;
+		cutin "ep19_lehar01.png",2;
+		mes "[Lehar]";
+		mes "โอเค ไปกันแบบเงียบๆ ค่อยๆ ย่องไป...";
+		next;
+		cutin "",255;
+		mapannounce 'map_20cn2$, "ประกาศเตือน: ฉุกเฉิน! ฉุกเฉิน!", bc_map, 0xFFFF99;
+		sleep2 2000;
+		mapannounce 'map_20cn2$, "ประกาศเตือน: พวกที่เหลือรอดจาก Ice Castle หนีไปได้!", bc_map, 0xFFFF99;
+		sleep2 2000;
+		mapannounce 'map_20cn2$, "ประกาศเตือน: ทุกคนกลับเข้าประจำที่! เพิ่มความเข้มงวดในการเฝ้าระวัง!", bc_map, 0xFFFF99;
+		sleep2 2000;
+		mes "[Rgan]";
+		mes "จู่ๆ พูดเรื่องอะไรกันน่ะ?";
+		mes "ใครหนีไปนะ?";
+		next;
+		mes "[Rgan]";
+		mes "ประกาศเตือน! ทุกคนไปประจำตำแหน่งของตัวเอง!";
+		mes "พวกมันสามารถแปลงร่างเป็นพวกเราได้! จับตาดูซึ่งกันและกันและรายงานหากมีใครหายไป!";
+		next;
+		cutin "ep19_lehar03.png",2;
+		mes "[Lehar]";
+		mes "อึก อย่างที่คิดไว้ พวกมันเตรียมพร้อมกันหมดแล้ว เราควรทำยังไงดี?!";
+		next;
+		cutin "ep20_nyar03.png",1;
+		mes "[White Cat]";
+		mes "เนี้ยนเนี้ยนเนี้ยน!";
+		next;
+		cutin "ep19_lehar05.png",2;
+		mes "[Lehar]";
+		mes "แมวเริ่มเคลื่อนไหวแล้ว! โอ้ว! เร็วเข้า รีบตามมันไป!";
+		close2;
+		cutin "",255;
+		if ('step == 8) {
+			'step = 9;
+			disablenpc instance_npcname("ep20_120cn2_109_63");
+			donpcevent instance_npcname("ep20_120cn2_107_65") + "::OnStart";
+		}
+		end;
+	}
+	end;
+
+OnTouch:
+	npctalk "Cat: ยาาาาาาาาาาาาาาาาาาาาาาาาาาาาาา";
+	end;
+
+OnStart:
+	npcspeed 200;
+	unitwalk getnpcid(0),96,65, instance_npcname("ep20_120cn2_107_65") + "::OnMove";
+	end;
+OnMove:
+	'step = 10;
+	disablenpc();
+	enablenpc instance_npcname("ep20_120cn2_96_65");
+	enablenpc instance_npcname("ep20_120cn2_98_63");
+	end;
+}
+
+
+// Step 10 (ขั้นตอนที่ 10)
+1@20cn2,95,60,5	duplicate(dummy_disabled_npc)	Rgan#ep20MD_re06::ep20_120cn2_95_60	4_EP19_RGAN_SR3
+1@20cn2,94,64,1	duplicate(dummy_disabled_npc)	Rgan#ep20MD_re07::ep20_120cn2_94_64	4_EP19_RGAN_SR1
+1@20cn2,92,62,7	duplicate(dummy_disabled_npc)	Rgan#ep20MD_re05::ep20_120cn2_92_62	4_EP19_RGAN_SR2
+
+1@20cn2,98,63,3	script(DISABLED)	Lehar#ep20MD_re05_1::ep20_120cn2_98_63	4_EP19_LEHAR,{
+	npctalk "Lehar: แมว! แมว!";
+	end;
+}
+
+1@20cn2,96,65,3	script(DISABLED)	Cat#ep20MD_re04_1::ep20_120cn2_96_65	EP20_NPC_NYAR,{
+	if ('step < 10)
+		end;
+	if ('step == 10) {
+		enablenpc instance_npcname("ep20_120cn2_95_60");
+		enablenpc instance_npcname("ep20_120cn2_94_64");
+		enablenpc instance_npcname("ep20_120cn2_92_62");
+		select( "ใครกำลังมาทางนั้นน่ะ?!" );
+		npctalk "Rgan: พวกที่หนีไป อยู่ที่ไหนกันหมด?", instance_npcname("ep20_120cn2_92_62");
+		sleep2 500;
+		npctalk "Rgan: ข้าแน่ใจว่าเขาไม่ได้ซ่อนอยู่แถวนี้ อึก น่าขนลุกชะมัด", instance_npcname("ep20_120cn2_95_60");
+		cutin "ep19_lehar05.png",2;
+		mes "[Lehar]";
+		mes "ใช่แล้ว! แมว! ใครกำลังมาทางนั้นน่ะ!?";
+		mes "แมว! แมว! ขืนเป็นแบบนี้ต่อไป เราโดนจับได้แน่!!";
+		next;
+		npctalk "Rgan: ถ้าเจ้าหามันเจอ เจ้าต้องซ้อมมันให้หนัก", instance_npcname("ep20_120cn2_92_62");
+		sleep2 500;
+		specialeffect EF_BIG_PORTAL2, AREA, instance_npcname("ep20_120cn2_92_62");
+		specialeffect EF_BIG_PORTAL2, AREA, instance_npcname("ep20_120cn2_95_60");
+		npctalk "Rgan: ถ้าเราเจอมัน Lasgand อาจจะชมพวกเราก็ได้นะ!", instance_npcname("ep20_120cn2_94_64");
+		specialeffect EF_BIG_PORTAL2, AREA, instance_npcname("ep20_120cn2_94_64");
+		cutin "ep19_lehar04.png",2;
+		mes "[Lehar]";
+		mes "....";
+		next;
+		npctalk "Rgan: เพราะฉะนั้นอย่าปล่อยให้พวกที่น่าสงสัยหลุดมือไป", instance_npcname("ep20_120cn2_94_64");
+		sleep2 500;
+		cutin "ep19_lehar05.png",2;
+		mes "[Lehar]";
+		mes "ท่านเป็นยังไงบ้าง?";
+		mes "โอ้ ข้าว่าพวกมันมองไม่เห็นเรานะ";
+		next;
+		disablenpc instance_npcname("ep20_120cn2_92_62");
+		removespecialeffect EF_BIG_PORTAL2, AREA, instance_npcname("ep20_120cn2_92_62");
+		disablenpc instance_npcname("ep20_120cn2_95_60");
+		removespecialeffect EF_BIG_PORTAL2, AREA, instance_npcname("ep20_120cn2_95_60");
+		disablenpc instance_npcname("ep20_120cn2_94_64");
+		removespecialeffect EF_BIG_PORTAL2, AREA, instance_npcname("ep20_120cn2_94_64");
+		cutin "ep19_lehar06.png",2;
+		mes "[Lehar]";
+		mes "นี่ นี่ก็เป็นความสามารถของแมวด้วยเหรอ? เหมือนกับที่เจ้าพังตัวล็อคเมื่อกี้เลย?";
+		next;
+		cutin "",255;
+		select( "ข้าว่าพวกนั้นกำลังจะมาเร็วๆ นี้" );
+		cutin "ep19_lehar06.png",2;
+		mes "[Lehar]";
+		mes "อุ๊ย เสื้อผ้าของท่านจะขาดเอาได้นะ หยุดดึงได้แล้ว เจ้าแมว!";
+		mes "ข้าไม่คิดว่าความสามารถนี้จะคงอยู่ได้นานนักหรอก";
+		next;
+		cutin "ep19_lehar02.png",2;
+		mes "[Lehar]";
+		mes "ถึงอย่างนั้น ต้องขอบคุณเจ้าจริงๆ ที่ทำให้ข้ายังมีชีวิตอยู่ เจ้าเก่งมากเลยนะ";
+		mes "เจ้าตัวเล็กที่แสนฉลาดคนนี้มาจากไหนกันเนี่ย?";
+		next;
+		cutin "ep20_nyar01.png",1;
+		mes "[White Cat]";
+		mes "(เชิดหน้าขึ้นอย่างภูมิใจ หางชี้ตรง และเริ่มวิ่งอีกครั้ง)";
+		next;
+		cutin "ep19_lehar05.png",2;
+		mes "[Lehar]";
+		mes "อา ตามข้ามา!";
+		close2;
+		cutin "",255;
+		disablenpc();
+		disablenpc instance_npcname("ep20_120cn2_98_63");
+		navigateto("1@20cn2",33,14);
+		if ('step == 10) {
+			'step = 11;
+			enablenpc instance_npcname("ep20_120cn2_34_20");
+			enablenpc instance_npcname("ep20_120cn2_32_22");
+			enablenpc instance_npcname("#ep20MD_re02");
+		}
+		end;
+	}
+	cutin "ep19_lehar05.png",2;
+	mes "[Lehar]";
+	mes "อา ตามข้ามา!";
+	close2;
+	cutin "",255;
+	disablenpc();
+	disablenpc instance_npcname("ep20_120cn2_98_63");
+	navigateto("1@20cn2",33,14);
+	if ('step == 10) {
+		'step = 11;
+		enablenpc instance_npcname("ep20_120cn2_34_20");
+		enablenpc instance_npcname("ep20_120cn2_32_22");
+		enablenpc instance_npcname("#ep20MD_re02");
+	}
+	end;
+}
+
+
+// Step 11 (ขั้นตอนที่ 11)
+1@20cn2,34,20,5	script(DISABLED)	Cat#ep20MD_re05::ep20_120cn2_34_20	EP20_NPC_NYAR,{
+	npctalk "Cat: อียาง";
+	end;
+}
+
+1@20cn2,32,22,5	script(DISABLED)	Lehar#ep20MD_re06::ep20_120cn2_32_22	4_EP19_LEHAR,2,2,{
+	if ('step == 11) {
+		cutin "ep19_lehar05.png",2;
+		mes "[Lehar]";
+		mes "นี่คือ...";
+		mes "ประตูบานนี้ ท่านคิดว่าท่านเคยเห็นมันที่ไหน?";
+		next;
+		cutin "",255;
+		select( "ข้างในรังของงู" );
+		cutin "ep19_lehar02.png",2;
+		mes "[Lehar]";
+		mes "ถูกต้องแล้ว! ข้าคิดว่าในที่สุดพวกเราก็สามารถหนีออกไปได้เสียที";
+		mes "ไหนดูซิ..., อืม! โอเค มันเปิดจากข้างในได้ง่ายเลยล่ะ";
+		next;
+		cutin "ep20_nyar04.png",1;
+		mes "[White Cat]";
+		mes "เนี๊ยววววอง~";
+		next;
+		cutin "",255;
+		select( "ขอบคุณมากจริงๆ" );
+		emotion ET_THROB;
+		sleep2 500;
+		cutin "ep19_lehar02.png",2;
+		mes "[Lehar]";
+		mes "ใช่ ขอบคุณมากนะ เจ้าแมวที่ไร้ชื่อ";
+		mes "ต้องขอบคุณเจ้า ข้าถึงมาได้ไกลถึงที่นี่อย่างปลอดภัย";
+		next;
+		emotion ET_BIGTHROB;
+		cutin "ep19_lehar01.png",2;
+		mes "[Lehar]";
+		mes "ถ้าเจ้าไม่มีที่อื่นจะไป เจ้าอยากจะไปกับพวกเราไหม?";
+		mes "ข้าจะสร้างบ้านให้เจ้าใน Ice Castle เอง";
+		next;
+		cutin "ep20_nyar03.png",1;
+		mes "[White Cat]";
+		mes "ข้าขอโทษนะ";
+		next;
+		cutin "ep19_lehar07.png",2;
+		mes "[Lehar]";
+		mes "เขาเพิ่งส่ายหน้าไปเมื่อกี้รึเปล่า? มันเป็นเรื่องบังเอิญเหรอ? หรือเขาสามารถเข้าใจได้จริงๆ กันแน่?";
+		next;
+		cutin "",255;
+		mes "[" + strcharinfo(0) + "]";
+		mes "อืม มันคงจะเป็นเรื่องบังเอิญแหละ";
+		next;
+		cutin "ep19_lehar01.png",2;
+		mes "[Lehar]";
+		mes "ต้องมีคนของฝ่ายเราที่ยังคงปฏิบัติภารกิจอยู่ในรังของงูแน่ๆ";
+		mes "ไปกันเถอะ!";
+		if ('step == 11)
+			'step = 12;
+		close3;
+	}
+	if ('step == 12) {
+		cutin "ep19_lehar01.png",2;
+		mes "[Lehar]";
+		mes "ต้องมีคนของฝ่ายเราที่ยังคงปฏิบัติภารกิจอยู่ในรังของงูแน่ๆ";
+		mes "ไปกันเถอะ!";
+		close3;
+	}
+	end;
+
+OnTouch:
+	npctalk "Lehar: โอ้ ดูนี่สิ!";
+	end;
+}
+
+
+// Step 12 (ขั้นตอนที่ 12)
+1@20cn2,31,19,5	duplicate(dummy_disabled_npc)	Lasgand#ep20MD_re03::ep20_120cn2_31_19	EP20_NPC_LASGAND
+1@20cn2,30,21,5	duplicate(dummy_disabled_npc)	Bagot#ep20MD_re03::ep20_120cn2_30_21	4_EP18_BAGOT
+
+1@20cn2,33,15,0	script(DISABLED)	#ep20MD_re02	WARPNPC,2,2,{
+	end;
+OnTouch:
+	if ('step < 12)
+		end;
+	if ('step == 12) {
+		cutin "ep19_lehar01.png",2;
+		mes "[Lehar]";
+		mes "ออกไปจากที่นี่กันเถอะ มาเร็ว!";
+		next;
+		cutin "",255;
+		select( "เอาแบบนั้นเถอะ" );
+		disablenpc instance_npcname("ep20_120cn2_34_20");
+		sleep2 500;
+		disablenpc instance_npcname("ep20_120cn2_32_22");
+		specialeffect2 EF_CLOAKING3;
+		mes "....";
+		next;
+		mes "........";
+		next;
+		mes "............";
+		next;
+		enablenpc instance_npcname("ep20_120cn2_31_19");
+		sleep2 500;
+		enablenpc instance_npcname("ep20_120cn2_30_21");
+		npctalk "Bagot: ข้าพบมันแล้ว ท่าน Lasgand", instance_npcname("ep20_120cn2_30_21");
+		emotion ET_THINK, getnpcid(0, instance_npcname("ep20_120cn2_30_21"));
+		cutin "ep18_bagot_02.png",2;
+		mes "[Bagot]";
+		mes "ร่องรอยมันทอดยาวมาจนถึงที่นี่เลยครับ";
+		mes "นี่คือประตูสู่รังของงู";
+		next;
+		mes "[Bagot]";
+		mes "ใช่ครับ มันเปิดอยู่";
+		next;
+		cutin "ep20_lasgand02.png",1;
+		mes "[Lasgand]";
+		mes "ข้าค่อนข้างมั่นใจว่ามันเข้าออกทางนี้";
+		mes "การที่มาได้ไกลขนาดนี้โดยไม่มีใครสังเกตเห็น นั่นเป็นความสามารถของผู้ที่ครอบครองร่องรอยเวทมนตร์นี้รึเปล่า?";
+		next;
+		cutin "ep18_bagot_02.png",2;
+		mes "[Bagot]";
+		mes "พลังเวทมนตร์นี้... หรือว่าจะเป็นนักบวชผมสีม่วงที่ท่านจับมาพร้อมกับนักผจญภัยคนนั้น?";
+		mes "หรือว่าจะมีผู้ช่วยคนอื่นอีกันนะ?";
+		next;
+		cutin "ep20_lasgand02.png",1;
+		mes "[Lasgand]";
+		mes "ผู้ช่วยคนอื่นเหรอ ข้าไม่อยากจะคาดเดาเรื่องที่น่ารำคาญแบบนั้นเลย";
+		mes "แต่ข้าคงต้องพิจารณาดู มันแสดงให้เห็นถึงความสามารถที่สิ่งมีชีวิตชั้นต่ำทั่วไปไม่สามารถทำได้";
+		next;
+		cutin "ep18_bagot_02.png",2;
+		mes "[Bagot]";
+		mes "ครับ ข้าเข้าใจแล้ว";
+		mes "พวกเราควรล็อคประตูที่นี่และเพิ่มการคุ้มกันดีไหมครับ?";
+		next;
+		cutin "ep20_lasgand04.png",1;
+		mes "[Lasgand]";
+		mes "ไม่จำเป็นหรอก ใช้มันเป็นเหยื่อล่อจะดีกว่า";
+		mes "เปิดประตูทิ้งไว้แบบนั้นแหละ ปล่อยให้พวกมันกลับมาเมื่อไหร่ก็ได้";
+		next;
+		mes "[Lasgand]";
+		mes "พวกมันกลับมาแน่";
+		mes "เมื่อนั้นข้าจะจับเจ้าและทำให้เจ้าต้องคุกเข่าต่อหน้าข้า";
+		next;
+		cutin "ep20_lasgand03.png",1;
+		mes "[Lasgand]";
+		mes "ข้าจะทำให้เจ้าต้องชดใช้ที่ดูหมิ่นข้า";
+		mes "จงจับตัวมันมาและพามาพบข้าให้ได้";
+		if (ep20_main == 9) {
+			ep20_main = 10;
+			erasequest 16701;
+			setquest 16702;
+		}
+		if ('step == 12)
+			'step = 13;
+		close2;
+		warp "icecastle",22,123;
+		end;
+	}
+	warp "icecastle",22,123;
+	end;
+}

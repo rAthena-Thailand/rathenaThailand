@@ -1,0 +1,1692 @@
+// ภฮฤฺต๙ภป EUC-KRทฮ ภฏม๖วฯฑโ ภงวั วัฑนพ๎ นฎภๅ.
+//===== rAthena Script =======================================
+//= Episode 20: Immortals
+//===== Description: =========================================
+//= [Walkthrough Conversion]
+//--- 2 sidequests from Episode 20
+//===== Changelogs: ==========================================
+//= 1.0 First version. [Capuche]
+//============================================================
+
+
+// Sidequest A - Step 1, 10
+// (unlocked after the final of the sidequest A, quest "Koppo's Secret Base". Starting the main quest is not required)
+// (Starting the episode 20 main quest is not required, the prerequisites are BaseLevel 215 and episode 19 completed)
+icecastle,106,241,5	duplicate(dummy_cloaked_npc)	Friederike#ep20_1::ep20_icecastle_106_241	4_EP19_FRIEDERIKE
+
+icecastle,109,241,3	script	Iwin Courier#ep20	4_EP19_IWIN,{
+	if (BaseLevel < 215) {
+		mes "[Iwin Courier]";
+		mes "อุ๊ย!";
+		mes "ขอโทษที!";
+		mes "ข้าขอตัวก่อนล่ะ!!!";
+		mes "^ff0000เควสนี้สำหรับเลเวล 215 หรือสูงกว่าเท่านั้น^000000!";
+		cutin "ep19_iwin11.png",2;
+		close3;
+	}
+	if (ep19_side_sea < 17) {	// Frozen Sea completed
+		mes "[Iwin Courier]";
+		mes "อุ๊ย!";
+		mes "ขอโทษที!";
+		mes "ข้าขอตัวก่อนล่ะ!!!";
+		cutin "ep19_iwin11.png",2;
+		close3;
+	}
+	if (ep20_sidequest_1 == 0) {
+		mes "[Iwin Courier]";
+		mes "อุ๊ย!";
+		mes "ขอโทษที!";
+		mes "ข้าขอตัวก่อนล่ะ!!!";
+		cutin "ep19_iwin11.png",2;
+		next;
+		mes "[Iwin Courier]";
+		mes "อ๊ะ!";
+		mes "นั่นใครน่ะ!";
+		mes "" + strcharinfo(0) + " นี่เจ้านั่นเอง!";
+		mes "ข้ามองไม่ค่อยเห็นเลยเพราะถือสัมภาระเยอะไปหมด!";
+		mes "โฮะ โฮะ โฮะ โฮะ!";
+		next;
+		select( "เสนอตัวช่วยเหลือ" );
+		mes "[Iwin Courier]";
+		mes "อวว";
+		mes "ไม่เป็นไร!";
+		mes "เอาเถอะ ข้ากำลังพยายามจัดการเรื่องนี้อยู่!";
+		next;
+		mes "[Iwin Courier]";
+		mes "เจ้าต้องยุ่งมากกับเรื่องอื่นๆ แน่เลย";
+		mes "แม้ในเวลาแบบนี้ เจ้าควรจะพักผ่อนนะ!";
+		next;
+		select( "ดูท่าทางมันจะหนักนะ" );
+		mes "[Iwin Courier]";
+		mes "ข้าพอจะขยับไปช้าๆ ได้อยู่";
+		next;
+		mes "[Iwin Courier]";
+		mes "หืมมม...";
+		mes "ถ้าอย่างนั้น ช่วยย้ายกล่องเล็กๆ นี่หน่อยได้ไหม";
+		next;
+		mes "[Iwin Courier]";
+		mes "ข้ากำลังจะไปที่ห้องของ Friederike";
+		mes "เจ้าแค่บอกว่า Voglinde เป็นคนส่งมาก็พอ";
+		next;
+		mes "[Iwin Courier]";
+		mes "งั้นฝากด้วยนะ~";
+		setquest 11928;
+		ep20_sidequest_1 = 1;
+		close2;
+		cutin "",255;
+		navigateto("icas_in",35,121);
+		end;
+	}
+	if (ep20_sidequest_1 == 1) {
+		mes "[Iwin Courier]";
+		mes "หืมมม...";
+		mes "ถ้าอย่างนั้น ช่วยย้ายกล่องเล็กๆ นี่หน่อยได้ไหม";
+		cutin "ep19_iwin11.png",2;
+		next;
+		mes "[Iwin Courier]";
+		mes "ข้ากำลังจะไปที่ห้องของ Friederike";
+		mes "เจ้าแค่บอกว่า Voglinde เป็นคนส่งมาก็พอ";
+		next;
+		mes "[Iwin Courier]";
+		mes "งั้นฝากด้วยนะ~";
+		close2;
+		cutin "",255;
+		navigateto("icas_in",35,121);
+		end;
+	}
+	if (ep20_sidequest_1 == 9) {
+		mes "[Iwin Courier]";
+		mes "สวัสดี";
+		mes "Friederike";
+		mes "ได้รับของหรือยัง?";
+		cutin "ep19_iwin11.png",2;
+		cloakoffnpcself( "ep20_icecastle_106_241" );
+		next;
+		mes "[Friederike]";
+		mes "ขอบคุณเจ้ามาก ข้าได้รับมันเรียบร้อยแล้ว";
+		mes "ขอบใจเจ้าเหมือนอย่างเคยนะ";
+		cutin "ep19_friederike03.png",2;
+		next;
+		mes "[Iwin Courier]";
+		mes "อะไรกัน?";
+		mes "มันเป็นหน้าที่ของข้าอยู่แล้ว";
+		cutin "ep19_iwin11.png",2;
+		next;
+		mes "[Friederike]";
+		mes "อุ๊ย!";
+		mes "เจ้าเห็น Rorohu แถวนี้บ้างไหม?";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Iwin Courier]";
+		mes "Rorohu เหรอ?";
+		mes "อืมม,";
+		mes "ข้าไม่คิดว่าข้าเห็นนะ";
+		cutin "ep19_iwin11.png",2;
+		next;
+		mes "[Friederike]";
+		mes "เขาไปอยู่ที่ไหนกันนะ?";
+		mes "คงจะหิวแย่เลย";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Friederike]";
+		mes "หืม...";
+		mes "ถ้าอย่างนั้น พวกเราไปลองหาที่อื่นกันดีไหม?";
+		mes "เริ่มจากที่ Ice Castle ก่อนแล้วกัน";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Iwin Courier]";
+		mes "" + strcharinfo(0) + " ข้าดีใจที่เจ้าอยู่ที่นี่นะ แต่ข้างนอกนั่นมันอันตราย อย่าไปไกลนักล่ะ";
+		cutin "ep19_iwin11.png",2;
+		next;
+		mes "[Friederike]";
+		mes "ตกลง";
+		cutin "ep19_friederike05.png",2;
+		ep20_sidequest_1 = 10;
+		erasequest 11936;
+		setquest 11937;
+		close2;
+		cloakonnpcself( "ep20_icecastle_106_241" );
+		cutin "",255;
+		navigateto("icas_in",113,38);
+		end;
+	}
+	if (ep20_sidequest_1 == 10) {
+		mes "[Iwin Courier]";
+		mes "Rorohu เหรอ?";
+		mes "อืมม,";
+		mes "ข้าไม่คิดว่าข้าเห็นนะ";
+		cutin "ep19_iwin11.png",2;
+		cloakoffnpcself( "ep20_icecastle_106_241" );
+		next;
+		mes "[Friederike]";
+		mes "เขาไปอยู่ที่ไหนกันนะ?";
+		mes "คงจะหิวแย่เลย";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Friederike]";
+		mes "หืม...";
+		mes "ถ้าอย่างนั้น พวกเราไปลองหาที่อื่นกันดีไหม?";
+		mes "เริ่มจากที่ Ice Castle ก่อนแล้วกัน";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Iwin Courier]";
+		mes "" + strcharinfo(0) + " ข้าดีใจที่เจ้าอยู่ที่นี่นะ แต่ข้างนอกนั่นมันอันตราย อย่าไปไกลนักล่ะ";
+		cutin "ep19_iwin11.png",2;
+		next;
+		mes "[Friederike]";
+		mes "ตกลง";
+		cutin "ep19_friederike05.png",2;
+		close2;
+		cloakonnpcself( "ep20_icecastle_106_241" );
+		cutin "",255;
+		navigateto("icas_in",113,38);
+		end;
+	}
+	mes "[Iwin Courier]";
+	mes "อุ๊ย!";
+	mes "ขอโทษที!";
+	mes "ข้าขอตัวก่อนล่ะ!!!";
+	cutin "ep19_iwin11.png",2;
+	close3;
+
+OnInit:
+	questinfo( QTYPE_QUEST, QMARK_YELLOW, "ep19_main == 100 && BaseLevel >= 215 && ep20_sidequest_1 == 0" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11936) == 1" );
+	end;
+}
+
+// Sidequest A - Step 2
+icas_in,35,121,0	script	#ep20print	HIDDEN_WARP_NPC,2,2,{
+	end;
+OnTouch:
+	if (ep20_sidequest_1 == 1) {
+		mes "- เสียงดังเอะอะ -";
+		next;
+		mes "!!!!!!!!!!!!";
+		next;
+		mes "[Friederike]";
+		mes "อุ๊ย";
+		mes "เกิดอะไรขึ้นน่ะพวกเด็กๆ จู่ๆ ก็เป็นอะไรกัน!";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Friederike]";
+		mes "อ๊ะ!";
+		mes "สวัสดี " + strcharinfo(0) + "";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Friederike]";
+		mes "พวกเด็กๆ ขี้อายพอเห็นเจ้า " + strcharinfo(0) + " ก็พากันแอบกันใหญ่เลย";
+		mes "ห้ามกันไม่อยู่จริงๆ";
+		cutin "ep19_friederike05.png",2;
+		next;
+		select( "ส่งกล่องให้" );
+		mes "[Friederike]";
+		mes "ว้าว!";
+		mes "" + strcharinfo(0) + " ขอบคุณนะที่อุตส่าห์นำมาให้ด้วยตัวเอง";
+		mes "Voglinde ให้อะไรมางั้นเหรอ?";
+		cutin "ep19_friederike03.png",2;
+		next;
+		mes "[Friederike]";
+		mes "*เสียงแกะกล่อง*";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Friederike]";
+		mes "อุ๊ย!";
+		mes "นี่มันถุงเท้าขนสัตว์ที่ข้าเคยขอนี่นา!!";
+		mes "มันฟูแล้วก็น่ารักมากเลย!!";
+		cutin "ep19_friederike03.png",2;
+		next;
+		mes "[Friederike]";
+		mes "แล้วก็มีชา Hinare...";
+		mes "กับจดหมายที่จ่าหน้าถึง Tataring ด้วย";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Friederike]";
+		mes "ขนม Foringle Chip!";
+		mes "เป็นรสชาติใหม่ซะด้วย";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Little Iwin]";
+		mes "นั่นคุกกี้เหรอ?";
+		mes "ดูน่าอร่อยจังเลย!!!";
+		mes "ไปกินกันเถอะ!";
+		cutin "ep20_cocopo02.png",2;
+		next;
+		mes "[Friederike]";
+		mes "เดี๋ยวก่อน!";
+		mes "ยังกินไม่ได้นะ!";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Little Iwin]";
+		mes "โธ่~~~";
+		cutin "ep20_cocopo03.png",2;
+		next;
+		mes "[Friederike]";
+		mes "ต้องกินข้าวเย็นก่อนถึงจะกินขนมได้";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Little Iwin]";
+		mes "พวกเรากินตอนนี้ไม่ได้เหรอ?";
+		cutin "ep20_cocopo01.png",2;
+		next;
+		mes "[Friederike]";
+		mes "ไม่ได้!";
+		mes "Voglinde จะดุเอาได้นะถ้ากินขนมก่อนกินข้าวน่ะ!";
+		cutin "ep19_friederike04.png",2;
+		next;
+		mes "[Little Iwin]";
+		mes "แต่ Friederike ก็เคยแอบกินขนมก่อนกินข้าวเหมือนกันนี่นา";
+		cutin "ep20_cocopo01.png",2;
+		next;
+		mes "[Tataring]";
+		mes "สรุปคือ Mark กับ Voglinde ดุเจ้าจริงๆ ใช่ไหม?";
+		cutin "ep19_tamarin04.png",2;
+		next;
+		mes "[Friederike]";
+		mes "อ่า...";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Little Iwin]";
+		mes "Friederike โดน Voglinde ดุด้วยแหละ";
+		cutin "ep20_cocopo03.png",2;
+		next;
+		mes "[Friederike]";
+		mes "นั่น... พูดอะไรออกมาน่ะ!";
+		mes "Tataring เองก็โดนดุเหมือนกันนั่นแหละ!";
+		cutin "ep19_friederike04.png",2;
+		next;
+		mes "[Tataring]";
+		mes "ข้าโดนดุไม่ใช่เพราะข้ากินคุกกี้ แต่เป็นเพราะ Friederike ไม่ยอมห้ามข้าต่างหาก";
+		mes "แล้วก็ไม่ใช่ Tataring นะ ข้าชื่อ Tamarin...";
+		cutin "ep19_tamarin02.png",2;
+		next;
+		mes "[Little Iwin]";
+		mes "อย่าทะเลาะกันสิ!";
+		mes "ท่านแม่บอกว่าเพื่อนกันต้องรักกันนะ";
+		cutin "ep20_cocopo01.png",2;
+		next;
+		mes "[Little Iwin]";
+		mes "งั้นก็มาทานขนมกันเถอะ";
+		mes "อย่าทะเลาะกันเลยนะ";
+		cutin "ep20_cocopo03.png",2;
+		next;
+		mes "[Tataring]";
+		mes "เจ้านี่มันเด็กจริงๆ...";
+		cutin "ep19_tamarin03.png",2;
+		next;
+		mes "[Little Iwin]";
+		mes "แต่แม่ของเธอก็บอกให้เธอเป็นมิตรกับเพื่อนๆ แต่เธอก็บอกว่าเธอไม่ควรเข้าใกล้พวก Iwin ในหุบเขางั้นเหรอ?";
+		cutin "ep20_cocopo03.png",2;
+		next;
+		select( "Iwin ในหุบเขา?" );
+		mes "[Little Iwin]";
+		mes "มีหลายอย่างเลยนะที่แม้แต่นักผจญภัยก็ยังไม่รู้!";
+		mes "มีพวก Iwin อาศัยอยู่ในหุบเขาทางเหนือเยอะเลยล่ะ";
+		cutin "ep20_cocopo02.png",2;
+		next;
+		mes "[Little Iwin]";
+		mes "พวกเราเคยอยู่ด้วยกันนานมาแล้ว แต่ตอนนี้ไม่ได้อยู่ด้วยกันแล้ว";
+		cutin "ep20_cocopo01.png",2;
+		next;
+		mes "[Little Iwin]";
+		mes "มันคงจะดีนะถ้าพวกเราได้อยู่ด้วยกัน";
+		mes "ถ้าเจ้าอาศัยอยู่ใน Ice Castle เจ้าก็จะได้มีบ้านที่อบอุ่นและได้กินขนมอร่อยๆ";
+		cutin "ep20_cocopo03.png",2;
+		next;
+		mes "[Friederike]";
+		mes "Rorohu เป็นเด็กดีนะ";
+		cutin "ep19_friederike03.png",2;
+		next;
+		mes "[Rorohu]";
+		mes "มันไม่ได้เป็นแบบนั้นซะหน่อย!";
+		cutin "ep20_cocopo03.png",2;
+		next;
+		mes "[Tataring]";
+		mes "ข้าล่ะอายแทนจริงๆ";
+		cutin "ep19_tamarin04.png",2;
+		next;
+		mes "[Rorohu]";
+		mes "จริงๆ นะ!!";
+		mes "ข้าล้อพวกเจ้าเล่นเฉยๆ น่ะ!!!";
+		mes "ข้าจะกลับบ้านไปกินข้าวแล้ว!";
+		cutin "ep20_cocopo03.png",2;
+		next;
+		mes "[Friederike]";
+		mes "อุ๊ย!";
+		mes "ดูเหมือนว่าจะถึงเวลานั้นแล้วเหรอ?";
+		mes "ถ้าอย่างนั้น เจ้าควรจะรีบส่งเด็กคนอื่นๆ กลับบ้านก่อนที่จะสายไปกว่านี้ดีกว่า";
+		cutin "ep19_friederike02.png",2;
+		erasequest 11928;
+		setquest 11929;
+		ep20_sidequest_1 = 2;
+		close2;
+		cloakoffnpcself( "ep20_icas_in_32_116" );
+		cloakoffnpcself( "ep20_icas_in_30_120" );
+		cloakoffnpcself( "ep20_icas_in_36_117" );
+		cloakoffnpcself( "ep20_icas_in_28_119" );
+		cutin "",255;
+		navigateto("icas_in",32,116);
+		end;
+	}
+	if (ep20_sidequest_1 == 2 || ep20_sidequest_1 == 3 || ep20_sidequest_1 == 4 || ep20_sidequest_1 == 5) {
+		mes "[Friederike]";
+		mes "อุ๊ย!";
+		mes "ดูเหมือนว่าจะถึงเวลานั้นแล้วเหรอ?";
+		mes "ถ้าอย่างนั้น เจ้าควรจะรีบส่งเด็กคนอื่นๆ กลับบ้านก่อนที่จะสายไปกว่านี้ดีกว่า";
+		cutin "ep19_friederike02.png",2;
+		close2;
+		if (ep20_sidequest_1 < 3)
+			cloakoffnpcself( "ep20_icas_in_32_116" );
+		if (ep20_sidequest_1 < 4)
+			cloakoffnpcself( "ep20_icas_in_30_120" );
+		if (ep20_sidequest_1 < 5)
+			cloakoffnpcself( "ep20_icas_in_36_117" );
+		cloakoffnpcself( "ep20_icas_in_28_119" );
+		cutin "",255;
+		if (ep20_sidequest_1 == 2)
+			navigateto("icas_in",32,116);
+		else if (ep20_sidequest_1 == 3)
+			navigateto("icas_in",30,120);
+		else if (ep20_sidequest_1 == 4)
+			navigateto("icas_in",36,117);
+		else if (ep20_sidequest_1 == 5)
+			navigateto("icas_in",28,119);
+		end;
+	}
+	if (ep20_sidequest_1 == 6) {
+		mes "[Friederike]";
+		mes "ช่วยไม่ได้นะ";
+		mes "ข้ารู้จักบ้านเขา เดี๋ยวข้าจะพาไปส่งเอง";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Tataring]";
+		mes "อุ๊ย!";
+		mes "เจ้ากำลังจะไปแล้วเหรอ?";
+		cutin "ep19_tamarin02.png",2;
+		next;
+		mes "[Friederike]";
+		mes "มันไม่ไกลหรอก เดี๋ยวข้าก็กลับมาแล้ว";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Tataring]";
+		mes "อืม...";
+		mes "" + strcharinfo(0) + ", ข้ากังวลที่จะให้ Friederike ไปคนเดียว เจ้าช่วยไปกับนางหน่อยได้ไหม?";
+		cutin "ep19_tamarin01.png",2;
+		next;
+		mes "[Friederike]";
+		mes "อย่างน้อยข้าก็เดินไปไหนมาไหนในหมู่บ้านคนเดียวได้น่า!";
+		cutin "ep19_friederike04.png",2;
+		next;
+		mes "[Tataring]";
+		mes "ไม่ใช่ว่าข้าไม่เชื่อเจ้านะ แต่เป็นเพราะช่วงนี้มีข่าวลือไม่ค่อยดีเท่าไหร่น่ะ";
+		mes "ขอร้องล่ะ";
+		cutin "ep19_tamarin01.png",2;
+		close2;
+		cutin "",255;
+		navigateto("icecastle",65,213);
+		end;
+	}
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "isbegin_quest(11928) == 1" );
+	end;
+}
+
+// Sidequest A - Step 3
+icas_in,32,116,3	script(CLOAKED)	Cocopo#ep20_1::ep20_icas_in_32_116	EP20_NPC_COCOPO,{
+	if (ep20_sidequest_1 == 2) {
+		mes "[Copo]";
+		mes "ถึงเวลากินข้าวแล้วเหรอ?";
+		mes "งั้นเดี๋ยวข้าจะรีบกลับบ้านนะ";
+		cutin "ep20_cocopo01.png",2;
+		next;
+		mes "[Copo]";
+		mes "เดี๋ยวแม่จะดุเอาถ้าข้ากลับสาย";
+		erasequest 11929;
+		setquest 11930;
+		ep20_sidequest_1 = 3;
+		close2;
+		cutin "",255;
+		cloakonnpcself();
+		navigateto("icas_in",30,120);
+		end;
+	}
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "isbegin_quest(11929) == 1" );
+	end;
+}
+
+// Sidequest A - Step 4
+icas_in,30,120,3	script(CLOAKED)	Cocopo#ep20_2::ep20_icas_in_30_120	EP20_NPC_COCOPO,{
+	if (ep20_sidequest_1 == 3) {
+		mes "[Copo]";
+		mes "อุ๊ย!";
+		mes "ข้ายังไม่อยากกลับบ้านเลย";
+		mes "ที่นี่อุ่นที่สุดแล้ว";
+		cutin "ep20_cocopo03.png",2;
+		next;
+		mes "[Tataring]";
+		mes "ถ้าอย่างนั้น ข้าจะโดนดุเอานะ";
+		cutin "ep19_tamarin01.png",2;
+		next;
+		mes "[Copo]";
+		mes "แฮ่...";
+		cutin "ep20_cocopo03.png",2;
+		ep20_sidequest_1 = 4;
+		erasequest 11930;
+		setquest 11931;
+		close2;
+		cutin "",255;
+		cloakonnpcself();
+		navigateto("icas_in",36,117);
+		end;
+	}
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "isbegin_quest(11930) == 1" );
+	end;
+}
+
+// Sidequest A - Step 5
+icas_in,36,117,3	script(CLOAKED)	Cocopo#ep20_3::ep20_icas_in_36_117	EP20_NPC_COCOPO,{
+	if (ep20_sidequest_1 == 4) {
+		mes "[Copo]";
+		mes "เจ้ารู้ไหมว่ามีอะไร?";
+		mes "มื้อค่ำวันนี้ที่บ้านข้าคือ Rgan เปรี้ยวหวานล่ะ";
+		cutin "ep20_cocopo02.png",2;
+		ep20_sidequest_1 = 5;
+		erasequest 11931;
+		setquest 11932;
+		close2;
+		cutin "",255;
+		cloakonnpcself();
+		navigateto("icas_in",28,119);
+		end;
+	}
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "isbegin_quest(11931) == 1" );
+	end;
+}
+
+// Sidequest A - Step 6
+icas_in,28,119,3	script(CLOAKED)	Cocopo#ep20_4::ep20_icas_in_28_119	EP20_NPC_COCOPO,{
+	if (ep20_sidequest_1 == 5) {
+		mes "[Copo]";
+		mes "...ย่องเบา...";
+		cutin "ep20_cocopo_baby.png",2;
+		next;
+		mes "[Friederike]";
+		mes "นี่คือ Capopo";
+		mes "ข้าต้องดูแลน้องสาวของ Chacoco ด้วย";
+		mes "Capopo?";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Friederike]";
+		mes "โอ้สวรรค์ เจ้าไปซะแล้วเหรอ?";
+		mes "ช่วยไม่ได้นะ";
+		mes "ข้ารู้จักบ้านเขา เดี๋ยวข้าจะพาไปส่งเอง";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Tataring]";
+		mes "อุ๊ย!";
+		mes "เจ้ากำลังจะไปแล้วเหรอ?";
+		cutin "ep19_tamarin02.png",2;
+		next;
+		mes "[Friederike]";
+		mes "มันไม่ไกลหรอก เดี๋ยวข้าก็กลับมาแล้ว";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Tataring]";
+		mes "อืม...";
+		mes "" + strcharinfo(0) + ", ข้ากังวลที่จะให้ Friederike ไปคนเดียว เจ้าช่วยไปกับนางหน่อยได้ไหม?";
+		cutin "ep19_tamarin01.png",2;
+		next;
+		mes "[Friederike]";
+		mes "อย่างน้อยข้าก็เดินไปไหนมาไหนในหมู่บ้านคนเดียวได้น่า!";
+		cutin "ep19_friederike04.png",2;
+		next;
+		mes "[Tataring]";
+		mes "ไม่ใช่ว่าข้าไม่เชื่อเจ้านะ แต่เป็นเพราะช่วงนี้มีข่าวลือไม่ค่อยดีเท่าไหร่น่ะ";
+		mes "ได้โปรดเถอะ";
+		cutin "ep19_tamarin01.png",2;
+		ep20_sidequest_1 = 6;
+		erasequest 11932;
+		setquest 11933;
+		close2;
+		cutin "",255;
+		cloakonnpcself();
+		navigateto("icecastle",65,213);
+		end;
+	}
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "isbegin_quest(11932) == 1" );
+	end;
+}
+
+// Sidequest A - Step 7, 9
+icecastle,70,216,3	duplicate(dummy_cloaked_npc)	Friederike#ep20_2::ep20_icecastle_70_216	4_EP19_FRIEDERIKE
+
+icecastle,65,213,0	script	#ep20	HIDDEN_WARP_NPC,2,2,{
+	end;
+OnTouch:
+	if (ep20_sidequest_1 == 6) {
+		mes "[Friederike]";
+		mes "ทุกคนปกป้องข้าเกินไปแล้ว!";
+		cloakoffnpcself( "ep20_icecastle_70_216" );
+		cutin "ep19_friederike04.png",2;
+		next;
+		mes "[Friederike]";
+		mes "บ้านของ Chacoco อยู่ถัดจากตรงนี้ไปนิดเดียวเอง";
+		mes "ถ้าเจ้ากลับบ้านช้า Tataring จะบ่นเอาได้นะ เพราะงั้นรีบไปกันเถอะ";
+		cutin "ep19_friederike02.png",2;
+		ep20_sidequest_1 = 7;
+		erasequest 11933;
+		setquest 11934;
+		close2;
+		cloakonnpcself( "ep20_icecastle_70_216" );
+		cutin "",255;
+		navigateto("icecastle",65,159);
+		end;
+	}
+	if (ep20_sidequest_1 == 7) {
+		mes "[Friederike]";
+		mes "ทุกคนปกป้องข้าเกินไปแล้ว!";
+		cutin "ep19_friederike04.png",2;
+		cloakoffnpcself( "ep20_icecastle_70_216" );
+		next;
+		mes "[Friederike]";
+		mes "บ้านของ Chacoco อยู่ถัดจากตรงนี้ไปนิดเดียวเอง";
+		mes "ถ้าเจ้ากลับบ้านช้า Tataring จะบ่นเอาได้นะ เพราะงั้นรีบไปกันเถอะ";
+		cutin "ep19_friederike02.png",2;
+		close2;
+		cutin "",255;
+		cloakonnpcself( "ep20_icecastle_70_216" );
+		navigateto("icecastle",65,159);
+		end;
+	}
+	if (ep20_sidequest_1 == 8) {
+		mes "[Friederike]";
+		mes "ในเมื่อเจ้ามาถึงที่นี่แล้ว อยากจะพักในห้องอุ่นๆ สักหน่อยไหม?";
+		mes "ข้ามีขนมกับชาให้ด้วยนะ";
+		cutin "ep19_friederike03.png",2;
+		cloakoffnpcself( "ep20_icecastle_70_216" );
+		next;
+		mes "[Laraha]";
+		mes "Friederike!";
+		mes "Friederike!";
+		cutin "ep19_iwin04.png",2;
+		next;
+		mes "[Friederike]";
+		mes "สวัสดี";
+		mes "มีอะไรเหรอ?";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Laraha]";
+		mes "Rorohu อยู่ในห้องไหม?";
+		cutin "ep19_iwin04.png",2;
+		next;
+		mes "[Friederike]";
+		mes "ข้าเองก็เพิ่งถึงบ้านเหมือนกัน...";
+		mes "รอประเดี๋ยวเจ้า";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Friederike]";
+		mes "Tataring!!";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Tataring]";
+		mes "หือ?";
+		mes "เจ้ามาที่นี่เหรอ?";
+		mes "มีอะไรล่ะ?";
+		mes "ข้างนอกมันหนาวนะ แต่ข้าเข้าไปไม่ได้";
+		cutin "ep19_tamarin01.png",2;
+		next;
+		mes "[Friederike]";
+		mes "เจ้าได้ไปหา Rorohu มาหรือเปล่า?";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Tataring]";
+		mes "เปล่านี่?";
+		mes "ข้าไม่เห็นนางเลยตั้งแต่ข้ากลับไปกินข้าวน่ะ";
+		cutin "ep19_tamarin01.png",2;
+		next;
+		mes "[Laraha]";
+		mes "แปลกจังเลย...";
+		mes "นั่นก็เพราะว่า... เจ้าไม่เคยกลับมาที่บ้านเลย";
+		mes "นี่มันเลยเวลากินข้าวมาแล้วนะ";
+		cutin "ep19_iwin04.png",2;
+		next;
+		mes "[Laraha]";
+		mes "เขาหายไปไหนของเขาอีกแล้วนะ?";
+		next;
+		mes "[Friederike]";
+		mes "ถ้าข้าเจอนางตอนเดินเล่น เดี๋ยวข้าจะส่งนางกลับบ้านให้เอง";
+		cutin "ep19_friederike01.png",2;
+		next;
+		select( "เดินเล่นเหรอ?" );
+		mes "[Friederike]";
+		mes "จะไปเดินเล่นด้วยกันไหม?";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Friederike]";
+		mes "ถ้าอย่างนั้น พวกเราลองไปเดินเล่นทางทิศตะวันออกดูดีไหม?";
+		mes "วู้วว";
+		cutin "ep19_friederike05.png",2;
+		ep20_sidequest_1 = 9;
+		erasequest 11935;
+		setquest 11936;
+		close2;
+		cloakonnpcself( "ep20_icecastle_70_216" );
+		cutin "",255;
+		navigateto("icecastle",109,241);
+		end;
+	}
+	if (ep20_sidequest_1 == 9) {
+		mes "[Friederike]";
+		mes "จะไปเดินเล่นด้วยกันไหม?";
+		cutin "ep19_friederike02.png",2;
+		cloakoffnpcself( "ep20_icecastle_70_216" );
+		next;
+		mes "[Friederike]";
+		mes "ถ้าอย่างนั้น พวกเราลองไปเดินเล่นทางทิศตะวันออกดูดีไหม?";
+		mes "วู้วว";
+		cutin "ep19_friederike05.png",2;
+		close2;
+		cloakonnpcself( "ep20_icecastle_70_216" );
+		cutin "",255;
+		navigateto("icecastle",109,241);
+		end;
+	}
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11933) == 1" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11935) == 1" );
+	end;
+}
+
+// Sidequest A - Step 8
+icecastle,62,160,5	duplicate(dummy_cloaked_npc)	Friederike#ep20_3::ep20_icecastle_62_160	4_EP19_FRIEDERIKE
+icecastle,63,158,3	duplicate(dummy_cloaked_npc)	Capopo#ep20_3::ep20_icecastle_63_158	EP20_NPC_COCOPO
+
+icecastle,65,159,3	script	Chacoco#ep20	4_EP19_IWIN,{
+	if (ep20_sidequest_1 == 7) {
+		mes "[Chacoco]";
+		mes "สวัสดี Friederike สวัสดี " + strcharinfo(0) + ".";
+		mes "พวกเจ้ากำลังจะไปเดินเล่นกันเหรอ?";
+		cutin "ep19_iwin06.png",2;
+		cloakoffnpcself( "ep20_icecastle_62_160" );
+		next;
+		mes "[Friederike]";
+		mes "คือว่า...";
+		mes "ที่นี่...";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Chacoco]";
+		mes "ทำไม " + strcharinfo(0) + " ถึงพา Capopo มาด้วยล่ะ?";
+		mes "เจ้าทิ้งนางไว้ที่บ้านของ Friederike อีกแล้วเหรอ?";
+		mes "Chacoco นี่จริงๆ เลยนะ..!!";
+		cutin "ep19_iwin06.png",2;
+		next;
+		mes "[Chacoco]";
+		mes "Chacoco!!!";
+		cloakoffnpcself( "ep20_icecastle_63_158" );
+		next;
+		mes "[Chacoco]";
+		mes "เอ๋?";
+		mes "ทำไมเหรอ?";
+		cutin "ep20_cocopo03.png",2;
+		next;
+		mes "[Chacoco]";
+		mes "ทำไมล่ะ!";
+		mes "เจ้าไปรบกวน Friederike อีกแล้วใช่ไหม?";
+		mes "แถมยังทิ้ง Capopo ไว้ข้างหลังอีก!";
+		cutin "ep19_iwin06.png",2;
+		next;
+		mes "[Capopo]";
+		mes "อุ๊ย!";
+		cutin "ep20_cocopo01.png",2;
+		next;
+		mes "[Capopo]";
+		mes "ข้าขอโทษ!!!";
+		cutin "ep19_iwin06.png",2;
+		next;
+		mes "[Chacoco]";
+		mes "Friederike, " + strcharinfo(0) + " ขอบคุณพวกเจ้ามากนะที่อุตส่าห์พา Capopo มาส่ง";
+		next;
+		mes "[Chacoco]";
+		mes "ข้าจะดุ Capopo ให้หนักเลยเพื่อไม่ให้เกิดเรื่องแบบนี้ขึ้นอีก";
+		mes "ขอโทษด้วยนะ";
+		next;
+		mes "[Friederike]";
+		mes "ข้าไม่เป็นไรหรอก อย่าดุนางนักเลย";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Friederike]";
+		mes "เอาล่ะ พวกเราจะกลับกันแล้วนะ";
+		next;
+		mes "[Capopo]";
+		mes "อย่าเพิ่งไปสิ Friederike!!";
+		mes "ท่านแม่ต้องดุข้าหนักแน่ๆ เลย!!!";
+		cutin "ep20_cocopo03.png",2;
+		next;
+		mes "[Chacoco]";
+		mes "คุณ Friederike เขายุ่งอยู่นะ เพราะงั้นเจ้าต้องรีบไปแล้ว";
+		mes "กลับบ้านกันเถอะ";
+		mes "โฮะ โฮะ โฮะ";
+		cutin "ep19_iwin06.png",2;
+		next;
+		mes "[Capopo]";
+		mes "แงงงงงง!!!!";
+		cutin "ep20_cocopo03.png",2;
+		ep20_sidequest_1 = 8;
+		erasequest 11934;
+		setquest 11935;
+		close2;
+		cloakonnpcself( "ep20_icecastle_62_160" );
+		sleep2 350;
+		cloakonnpcself( "ep20_icecastle_63_158" );
+		cutin "",255;
+		navigateto("icecastle",65,213);
+		end;
+	}
+	if (ep20_sidequest_1 == 8) {
+		mes "[Chacoco]";
+		mes "คุณ Friederike เขายุ่งอยู่นะ เพราะงั้นเจ้าต้องรีบไปแล้ว";
+		mes "กลับบ้านกันเถอะ";
+		mes "โฮะ โฮะ โฮะ";
+		cutin "ep19_iwin06.png",2;
+		cloakoffnpcself( "ep20_icecastle_63_158" );
+		next;
+		mes "[Capopo]";
+		mes "แงงงงงง!!!!";
+		cutin "ep20_cocopo03.png",2;
+		close2;
+		cloakonnpcself( "ep20_icecastle_63_158" );
+		sleep2 334;
+		cutin "",255;
+		navigateto("icecastle",65,213);
+		end;
+	}
+	// note: no text
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11934) == 1" );
+	end;
+}
+
+// Sidequest A - Step 9
+// icecastle,65,213,0	script	#ep20	HIDDEN_WARP_NPC,2,2,{
+
+// Sidequest A - Step 10
+// icecastle,109,241,3	script	Iwin Courier#ep20	4_EP19_IWIN,{
+
+// Sidequest A - Step 11
+icas_in,111,40,5	duplicate(dummy_cloaked_npc)	Friederike#ep20_4::ep20_icas_in_111_40	4_EP19_FRIEDERIKE
+
+icas_in,113,38,3	script	Iwin Guard#ep20_1	4_EP19_IWIN,{
+	if (ep20_sidequest_1 == 10) {
+		mes "[Iwin Guard]";
+		mes "สวัสดี";
+		mes "Friederike";
+		mes "เจ้ามาหา Voglinde เหรอน่ะ?";
+		cutin "ep19_iwin01.png",2;
+		cloakoffnpcself( "ep20_icas_in_111_40" );
+		next;
+		mes "[Friederike]";
+		mes "เปล่า ข้ากำลังตามหา Rorohu อยู่";
+		mes "เจ้าเห็นเขาบ้างไหม?";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Iwin Guard]";
+		mes "ข้าไม่คิดว่าข้าเห็นเขาในวันนี้เลยนะ แต่ในเมื่อเวลามันกระชั้นชิดแบบนี้ ข้าว่ารีบตามหาเขาให้เจอจะดีกว่า";
+		mes "ให้พวกเราติดต่อพวกทหารยามคนอื่นๆ ด้วยไหม?";
+		cutin "ep19_iwin01.png",2;
+		next;
+		mes "[Friederike]";
+		mes "มันคงจะดีนะถ้ามันไม่ใช่เรื่องใหญ่อะไร...";
+		mes "ฝากด้วยนะ";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Friederike]";
+		mes "" + strcharinfo(0) + ", พวกเราไปที่ทางเข้าหมู่บ้านกันเถอะ";
+		mes "ส่งข่าวให้ทหารยามที่ทางเข้า... มันไม่ควรจะมีอะไรเกิดขึ้นนะ...";
+		ep20_sidequest_1 = 11;
+		erasequest 11937;
+		setquest 11938;
+		close2;
+		cloakonnpcself( "ep20_icas_in_111_40" );
+		sleep2 349;
+		cutin "",255;
+		navigateto("icecastle",24,130);
+		end;
+	}
+	if (ep20_sidequest_1 == 11) {
+		mes "[Iwin Guard]";
+		mes "ข้าไม่คิดว่าข้าเห็นเขาในวันนี้เลยนะ แต่ในเมื่อเวลามันกระชั้นชิดแบบนี้ ข้าว่ารีบตามหาเขาให้เจอจะดีกว่า";
+		mes "ให้พวกเราติดต่อพวกทหารยามคนอื่นๆ ด้วยไหม?";
+		cutin "ep19_iwin01.png",2;
+		cloakoffnpcself( "ep20_icas_in_111_40" );
+		next;
+		mes "[Friederike]";
+		mes "มันคงจะดีนะถ้ามันไม่ใช่เรื่องใหญ่อะไร...";
+		mes "ฝากด้วยนะ";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Friederike]";
+		mes "" + strcharinfo(0) + ", พวกเราไปที่ทางเข้าหมู่บ้านกันเถอะ";
+		mes "ส่งข่าวให้ทหารยามที่ทางเข้า... มันไม่ควรจะมีอะไรเกิดขึ้นนะ...";
+		close2;
+		cloakonnpcself( "ep20_icas_in_111_40" );
+		cutin "",255;
+		navigateto("icecastle",24,130);
+		end;
+	}
+	// note: no text
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "isbegin_quest(11937) == 1" );
+	end;
+}
+
+// Sidequest A - Step 12
+icecastle,26,129,3	duplicate(dummy_cloaked_npc)	Friederike#ep20_5::ep20_icecastle_26_129	4_EP19_FRIEDERIKE
+
+icecastle,24,130,5	script	Iwin Guard#ep20_2	4_EP19_IWIN,{
+	if (ep20_sidequest_1 == 11) {
+		mes "[Iwin Guard]";
+		mes "สวัสดี";
+		mes "Friederike";
+		mes "มีเรื่องใหญ่อะไรหรือเปล่าที่เจ้าอุตส่าห์มาถึงที่นี่?";
+		cutin "ep19_iwin03.png",2;
+		cloakoffnpcself( "ep20_icecastle_26_129" );
+		next;
+		mes "[Friederike]";
+		mes "โอ้ มากกว่านั้นอีก";
+		mes "เจ้าเห็น Rorohu บ้างไหม?";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Iwin Guard]";
+		mes "ถ้าเป็น Rorohu ล่ะก็ เขาน่าจะอยู่แถวทางเข้านะ";
+		mes "พวกเขาอยากจะออกไปข้างนอก แต่ข้าบอกว่าไม่ได้ จากนั้นพวกเขาก็บอกว่างั้นจะขอแค่มองออกไปข้างนอกตรงทางเข้าเฉยๆ";
+		cutin "ep19_iwin03.png",2;
+		next;
+		mes "[Iwin Guard]";
+		mes "เมื่อครู่นี้เอง...";
+		next;
+		mes "[Friederike]";
+		mes "เจ้าอยู่ที่นี่เหรอ?";
+		mes "เฮ้อ... ดีจังเลย";
+		cutin "ep19_friederike03.png",2;
+		ep20_sidequest_1 = 12;
+		erasequest 11938;
+		setquest 11939;
+		close2;
+		cloakonnpcself( "ep20_icecastle_26_129" );
+		sleep2 317;
+		cutin "",255;
+		navigateto("icecastle",20,128);
+		end;
+	}
+	if (ep20_sidequest_1 == 12) {
+		mes "[Iwin Guard]";
+		mes "ถ้าเป็น Rorohu ล่ะก็ เขาน่าจะอยู่แถวทางเข้านะ";
+		mes "พวกเขาอยากจะออกไปข้างนอก แต่ข้าบอกว่าไม่ได้ จากนั้นพวกเขาก็บอกว่างั้นจะขอแค่มองออกไปข้างนอกตรงทางเข้าเฉยๆ";
+		cutin "ep19_iwin03.png",2;
+		cloakoffnpcself( "ep20_icecastle_26_129" );
+		next;
+		mes "[Iwin Guard]";
+		mes "เมื่อครู่นี้เอง...";
+		next;
+		mes "[Friederike]";
+		mes "เจ้าอยู่ที่นี่เหรอ?";
+		mes "เฮ้อ... ดีจังเลย";
+		cutin "ep19_friederike03.png",2;
+		close2;
+		cloakonnpcself( "ep20_icecastle_26_129" );
+		cutin "",255;
+		navigateto("icecastle",20,128);
+		end;
+	}
+	// note: no text
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11938) == 1" );
+	end;
+}
+
+// Sidequest A - Step 13
+icecastle,22,128,3	duplicate(dummy_cloaked_npc)	Friederike#ep20_6::ep20_icecastle_22_128	4_EP19_FRIEDERIKE
+
+// Note: strange, but the NPC is not cloaked on official
+icecastle,20,128,3	script	Cocopo#ep20_Comm	EP20_NPC_COCOPO,{
+	if (ep20_sidequest_1 == 12) {
+		mes "[Friederike]";
+		mes "อยู่นี่เอง! Rorohu";
+		mes "แม่ของเจ้าเป็นห่วงมากเลยนะ";
+		mes "กลับบ้านกันเถอะ...";
+		mes "อุ๊ย!!!";
+		cloakoffnpcself( "ep20_icecastle_22_128" );
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Friederike]";
+		mes "นี่ไม่ใช่ Rorohu นี่นา มันเป็นแค่กองปุยฝ้ายเอง";
+		next;
+		mes "[Iwin Guard]";
+		mes "อ๊าาาาา!!!!";
+		mes "เขาต้องวางกองปุยฝ้ายทิ้งไว้แล้วแอบหนีออกไปแน่ๆ!";
+		cutin "ep19_iwin03.png",2;
+		next;
+		mes "[Iwin Guard]";
+		mes "มันคงจะดีถ้าไม่มีอะไรเกิดขึ้น... แต่ในกรณีที่เราไม่รู้ ข้าว่าเจ้าออกไปตามหาเขาจะดีกว่า";
+		next;
+		mes "[Friederike]";
+		mes "ข้า... ข้าอยากไปด้วย";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Iwin Guard]";
+		mes "ข้างนอกมันอันตรายนะ ปล่อยให้เป็นหน้าที่ของทหารยามเถอะ";
+		cutin "ep19_iwin03.png",2;
+		next;
+		mes "[Friederike]";
+		mes "แต่...";
+		mes "ถ้าเขามีอาการบาดเจ็บ ข้าอาจจะช่วยอะไรได้บ้าง";
+		cutin "ep19_friederike02.png",2;
+		next;
+		mes "[Iwin Guard]";
+		mes "อืมมม...";
+		mes "งั้นเจ้าต้องห้ามห่างจากข้างกายของ " + strcharinfo(0) + " เด็ดขาดเลยนะ";
+		mes "เข้าใจไหม?";
+		cutin "ep19_iwin03.png",2;
+		next;
+		mes "[Friederike]";
+		mes "ตกลง";
+		cutin "ep19_friederike01.png",2;
+		next;
+		mes "[Iwin Guard]";
+		mes "ถ้าอย่างนั้น ฝากดูแล Friederike ให้ดีด้วยนะ";
+		mes "ข้าจะเรียกทหารยามมาเพิ่มอีก";
+		cutin "ep19_iwin03.png",2;
+		next;
+		mes "[Friederike]";
+		mes "รีบออกไปตามหา Rorohu กันเถอะ";
+		mes "มันไม่ควรจะเกิดขึ้นเลย...";
+		cutin "ep19_friederike02.png",2;
+		ep20_sidequest_1 = 13;
+		erasequest 11939;
+		setquest 11940;
+		close2;
+		cloakonnpcself( "ep20_icecastle_22_128" );
+		sleep2 350;
+		cutin "",255;
+		navigateto("jor_back1",310,245);
+		end;
+	}
+	if (ep20_sidequest_1 == 13) {
+		mes "[Iwin Guard]";
+		mes "ถ้าอย่างนั้น ฝากดูแล Friederike ให้ดีด้วยนะ";
+		mes "ข้าจะเรียกทหารยามมาเพิ่มอีก";
+		cutin "ep19_iwin03.png",2;
+		cloakoffnpcself( "ep20_icecastle_26_129" );	// strange but official
+		next;
+		mes "[Friederike]";
+		mes "รีบออกไปตามหา Rorohu กันเถอะ";
+		mes "มันไม่ควรจะเกิดขึ้นเลย...";
+		cutin "ep19_friederike02.png",2;
+		close2;
+		cloakonnpcself( "ep20_icecastle_26_129" );
+		sleep2 333;
+		cutin "",255;
+		navigateto("jor_back1",310,245);
+		end;
+	}
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11939) == 1" );
+	end;
+}
+
+// Sidequest A - Step 14
+jor_back1,310,245,3	script	Fluff#ep20_1	EP20_NPC_COCOPO,{
+	if (ep20_sidequest_1 == 13) {
+		mes "- อาจจะเป็นขนปุยของ Rorohu -";
+		mes "- เมื่อพิจารณาจากตำแหน่งที่ขนร่วงหล่น ดูเหมือนว่า Rorohu จะมุ่งหน้าไปทางเหนือ -";
+		ep20_sidequest_1 = 14;
+		erasequest 11940;
+		setquest 11941;
+		close2;
+		navigateto("jor_back1",222,392);
+		end;
+	}
+	if (ep20_sidequest_1 == 14) {
+		mes "- อาจจะเป็นขนปุยของ Rorohu -";
+		mes "- เมื่อพิจารณาจากตำแหน่งที่ขนร่วงหล่น ดูเหมือนว่า Rorohu จะมุ่งหน้าไปทางเหนือ -";
+		close2;
+		navigateto("jor_back1",222,392);
+		end;
+	}
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11940) == 1" );
+	end;
+}
+
+// Sidequest A - Step 15
+jor_back1,222,392,3	script	Fluff#ep20_2	EP20_NPC_COCOPO,{
+	if (ep20_sidequest_1 == 14) {
+		mes "- อาจจะเป็นขนปุยของ Rorohu -";
+		mes "- เมื่อพิจารณาจากตำแหน่งที่ขนร่วงหล่น ดูเหมือนว่า Rorohu จะมุ่งหน้าไปทางเหนือ -";
+		next;
+		mes "- ลองมุ่งหน้าไปทางเหนือให้ไกลกว่านี้กันเถอะ -";
+		ep20_sidequest_1 = 15;
+		erasequest 11941;
+		setquest 11942;
+		close2;
+		navigateto("jor_back2",8,242);
+		end;
+	}
+	if (ep20_sidequest_1 == 15) {
+		mes "- อาจจะเป็นขนปุยของ Rorohu -";
+		mes "- เมื่อพิจารณาจากตำแหน่งที่ขนร่วงหล่น ดูเหมือนว่า Rorohu จะมุ่งหน้าไปทางเหนือ -";
+		next;
+		mes "- ลองมุ่งหน้าไปทางเหนือให้ไกลกว่านี้กันเถอะ -";
+		close2;
+		navigateto("jor_back2",8,242);
+		end;
+	}
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11941) == 1" );
+	end;
+}
+
+// Sidequest A - Step 16
+jor_back2,8,242,3	script	Fluff#ep20_3	EP20_NPC_COCOPO,{
+	if (ep20_sidequest_1 == 15) {
+		mes "- อาจจะเป็นขนปุยของ Rorohu -";
+		mes "- เมื่อพิจารณาจากตำแหน่งที่ขนร่วงหล่น ดูเหมือนว่า Rorohu จะมุ่งหน้าไปทางเหนือ -";
+		next;
+		mes "- ลองมุ่งหน้าไปทางเหนือให้ไกลกว่านี้กันเถอะ -";
+		ep20_sidequest_1 = 16;
+		erasequest 11942;
+		setquest 11943;
+		close2;
+		navigateto("jor_back3",95,324);
+		end;
+	}
+	// note: no text
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11942) == 1" );
+	end;
+}
+
+// Sidequest A - Step 17
+jor_back3,95,324,3	script	Fluff#ep20_4	EP20_NPC_COCOPO,{
+	if (ep20_sidequest_1 == 16) {
+		mes "- อาจจะเป็นขนปุยของ Rorohu -";
+		mes "- เมื่อพิจารณาจากตำแหน่งที่ขนร่วงหล่น ดูเหมือนว่า Rorohu จะมุ่งหน้าไปทางเหนือ -";
+		next;
+		mes "- ลองมุ่งหน้าไปทางเหนือให้ไกลกว่านี้กันเถอะ -";
+		ep20_sidequest_1 = 17;
+		erasequest 11943;
+		setquest 11944;
+		close2;
+		navigateto("jor_back4",101,265);
+		end;
+	}
+	if (ep20_sidequest_1 == 17) {
+		mes "- อาจจะเป็นขนปุยของ Rorohu -";
+		mes "- เมื่อพิจารณาจากตำแหน่งที่ขนร่วงหล่น ดูเหมือนว่า Rorohu จะมุ่งหน้าไปทางเหนือ -";
+		next;
+		mes "- ลองมุ่งหน้าไปทางเหนือให้ไกลกว่านี้กันเถอะ -";
+		close2;
+		navigateto("jor_back4",101,265);
+		end;
+	}
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(11943) == 1" );
+	end;
+}
+
+// Sidequest A - Step 18 (instance creation)
+// jor_back4,101,265,3	script	Cocopo#ep20_5	EP20_NPC_COCOPO,{
+
+// Sidequest A - Step 19
+icecastle,69,217,3	duplicate(dummy_cloaked_npc)	Rorohu#ep20_e::ep20_icecastle_69_217	EP20_NPC_COCOPO
+
+// (final NPC is part of the daily quests : 'Escargot!', 'Dangerous!', 'I hope they reconcile.(1)', '[230] I wish we could reconcile (2)')
+// icecastle,67,218,5	script	Lalaha#ep20	4_EP19_IWIN,{
+
+// (End of Sidequest A)
+//---------------------------------
+
+
+
+// Sidequest B - Step 1
+// (unlocked when ep20_main = 24, main quest "Holy and Holy")
+icecastle,46,164,5	script	Iwin Soldier#20ms60	EP19_NPC_IWIN_SY,{
+	if (BaseLevel < 215) {
+		mes "[Iwin soldier]";
+		mes "นักผจญภัย!";
+		next;
+		mes "- ^0000cdเควสนี้สามารถรับได้ตั้งแต่เลเวล 215 เป็นต้นไป^000000 -";
+		close;
+	}
+	if (ep20_main < 24) {
+		npctalk "ทุกๆ วันมันช่างตึงเครียดจริงๆ...", "", bc_self;
+		end;
+	}
+	if (ep20_sidequest_2 == 0) {
+		mes "[Iwin soldier]";
+		mes "นักผจญภัย! ข้ากำลังตามหาเจ้าอยู่พอดีเลย!!";
+		mes "ข้าอยากให้เจ้ามากับข้าหน่อย";
+		next;
+		select( "เกิดอะไรขึ้น?" );
+		mes "[Iwin soldier]";
+		mes "พวก Rgan ที่ถูกจับมาโดย Horror น่ะค่อนข้างจะรับมือยาก พวกเราจัดการไม่ได้เลย นี่เป็นครั้งแรกที่เราเจอใครที่ดื้อด้านแบบนี้";
+		emotion ET_OHNO;
+		next;
+		mes "[Iwin soldier]";
+		mes "เจ้าคือนักผจญภัยผู้มีประสบการณ์ที่เคยรับมือกับคนมาหลากหลายรูปแบบ เจ้าคงรู้วิธีจัดการกับเขาเมื่อได้พบ";
+		mes "ข้าอยากให้เจ้าช่วยหน่อยนะ";
+		next;
+		if (select( "จะไปเดี๋ยวนี้แหละ", "ไว้จะไปตอนที่มีเวลาว่าง" ) == 2) {
+			mes "[Irwin soldier]";
+			mes "อา... มันกะทันหันไปเหรอ?";
+			mes "ถ้าอย่างนั้น เมื่อไหร่ที่เจ้าว่าง ข้าต้องขอรบกวนเจ้าด้วยล่ะ มันออกจะยากไปสักหน่อยน่ะ";
+			close;
+		}
+		mes "[Iwin soldier]";
+		mes "อา รอดตายแล้ว!!";
+		mes "เขาถูกแยกกักตัวไว้เพราะเป็นเชลยศึก เดี๋ยวข้าจะนำทางเจ้าไปเดี๋ยวนี้แหละ";
+		ep20_sidequest_2 = 1;
+		setquest 17712;
+		close2;
+		warp "icas_in2",33,114;
+		end;
+	}
+	mes "[Iwin soldier]";
+	mes "เจ้ากำลังจะไปดูเชลย Rgan ใช่ไหม? เดี๋ยวข้านำทางไปให้";
+	close2;
+	warp "icas_in2",33,114;
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "ep20_main >= 24 && ep20_sidequest_2 == 0" );
+	end;
+}
+
+
+icas_in2,33,114,0	script	#20ms60	HIDDEN_WARP_NPC,3,3,{
+	end;
+OnTouch:
+	if (ep20_sidequest_2 > 0 && ep20_sidequest_2 < 5) {
+		cloakoffnpcself( "ep20_icas_in2_31_116" );
+		cloakoffnpcself( "ep20_icas_in2_37_118" );
+		cloakoffnpcself( "ep20_icas_in2_29_114" );
+		cloakoffnpcself( "ep20_icas_in2_27_118" );
+		cloakoffnpcself( "ep20_icas_in2_37_115" );
+		end;
+	}
+	if (ep20_sidequest_2 == 5 || ep20_sidequest_2 == 6) {
+		cloakoffnpcself( "ep20_icas_in2_31_116" );
+		cloakoffnpcself( "ep20_icas_in2_37_118" );
+		cloakoffnpcself( "ep20_icas_in2_29_114" );
+		cloakoffnpcself( "ep20_icas_in2_27_118" );
+		cloakoffnpcself( "ep20_icas_in2_37_115" );
+		cloakoffnpcself( "ep20_icas_in2_32_120" );
+		end;
+	}
+	end;
+}
+
+icas_in2,37,118,3	script(CLOAKED)	Iwin Soldier#20ms61::ep20_icas_in2_37_118	4_EP19_IWIN,{
+	npctalk "ข้าทำอะไรผิดนักหนาถึงต้องมาเจอเรื่องแบบนี้?", "", bc_self;
+	end;
+}
+
+// note: not cloaked
+icas_in2,34,117,3	script	Iwin Soldier#20ms62::ep20_icas_in2_34_117	4_EP19_IWIN,{ 
+	npctalk "หือ- ไม่ง่ายเลย... ไม่ง่ายเลยจริงๆ...", "", bc_self;
+	end;
+}
+
+icas_in2,29,114,1	script(CLOAKED)	Iwin Soldier#20ms63::ep20_icas_in2_29_114	4_EP19_IWIN,{
+	npctalk "เจ้าก็รู้ใช่ไหมว่าพวก Rgan น่ะบ้ากันไปหมดแล้ว?", "ep20_icas_in2_29_114", bc_self;
+	end;
+}
+
+icas_in2,27,118,1	script(CLOAKED)	Iwin Soldier#20ms64::ep20_icas_in2_27_118	4_EP19_IWIN,{
+	npctalk "เจ้าคงไม่ได้คิดจะอยู่ที่นี่ตลอดไปหรอกนะ...", "", bc_self;
+	end;
+}
+
+icas_in2,37,115,3	script(CLOAKED)	Iwin Soldier#20ms65::ep20_icas_in2_37_115	4_EP19_IWIN,{
+	npctalk "มีชีวิตอยู่มาถึงป่านนี้ ข้าได้เห็นมาหมดทุกอย่างแล้วจริงๆ เห็นมาหมดแล้ว", "", bc_self;
+	end;
+}
+
+
+// Sidequest B - Step 2, 5
+// (part of the daily quest 'Taste of hobby')
+// icas_in2,30,121,5	script	Nadyagand#20ms60::ep20_icas_in2_30_121	4_EP19_RGAN_SR2,{
+
+
+// Sidequest B - Step 3
+icas_in2,31,116,1	script(CLOAKED)	Horr#20ms60::ep20_icas_in2_31_116	4_EP19_IWIN,{
+	if (ep20_sidequest_2 == 2) {
+		cutin "ep19_iwin09.png",2;
+		mes "[Horr]";
+		mes "อา แบบนี้มันลำบากนะ...";
+		mes "ข้าพยายามจะให้เขายอมเปิดปากบอกอะไรบางอย่าง";
+		next;
+		cutin "",255;
+		mes "[Nadyagand]";
+		mes "เจ้าจะถอนฟันข้าออกหมดเลยเหรอ? ฝันไปเถอะ!!";
+		next;
+		mes "[Iwin soldier]";
+		mes "ถ้าเป็นแบบนี้ต่อไป ข้าว่าเจ้า Rgan นี่คงจะอดตายไปก่อนที่จะได้ข้อมูลอะไรแน่ๆ";
+		npctalk "ทำไม... เราต้องหาข้อมูลจากคนที่ไม่ให้ความร่วมมือแบบนี้ด้วยนะ?", "ep20_icas_in2_37_118", bc_self;
+		npctalk "งั้นเหรอ? มันจำเป็นจริงๆ ใช่ไหม?", "ep20_icas_in2_29_114", bc_self;
+		next;
+		mes "[Nadyagand]";
+		mes "อะไรนะ? ก็เพื่อช่วยตัวข้าผู้ล้ำค่าคนนี้ยังไงล่ะ";
+		next;
+		cutin "ep19_iwin09.png",2;
+		mes "[Horr]";
+		mes "เจ้าควรจะให้ " + getitemname(1001154) + " กับข้า ถ้าเจ้าพอใจนะ";
+		next;
+		cutin "",255;
+		mes "[Iwin soldier]";
+		mes "เจ้าไปเอามาจากไหนน่ะ? ข้ายังไม่รู้เลยว่ามันคืออะไร";
+		next;
+		cutin "ep19_iwin09.png",2;
+		mes "[Horr]";
+		mes "พวก Rgan เรียกร้องหามัน เจ้าก็ไปถามเขาเอาเองสิ";
+		mes "เจ้าไปหาเจ้า " + getitemname(1001154) + " พวกนั้นมาจากไหนล่ะ?";
+		next;
+		cutin "",255;
+		mes "[Nadyagand]";
+		mes "นั่น ข้าก็ไม่รู้เหมือนกัน";
+		mes "ข้าไม่รู้?";
+		npctalk "แล้วเจ้ารู้อะไรบ้างล่ะ?", "ep20_icas_in2_29_114", bc_self;
+		next;
+		mes "[Iwin soldier]";
+		mes "เจ้าสามารถเอาสิ่งที่พวกเราไม่รู้จักมาให้พวกเราได้ไหม?";
+		npctalk "เราทำเป็นแกล้งไม่ได้ยินไม่ได้เหรอ?", "ep20_icas_in2_27_118", bc_self;
+		next;
+		mes "[Nadyagand]";
+		mes "พวกนักบวชเป็นคนจัดการน่ะ ข้าจะไปรู้ได้ยังไง?";
+		next;
+		mes "[Iwin soldier]";
+		mes "นี่มันอะไรกัน? เจ้านี่มันเด็กน้อยหรือไง?";
+		npctalk "นี่มันเป็นสังคมที่มีลำดับขั้นอย่างเคร่งครัดนะ เห็นได้ชัดเลยว่าเจ้าไม่เคยทำงาน", "ep20_icas_in2_37_118", bc_self;
+		npctalk "ไม่หรอก แต่ถ้ามันเข้าปากเจ้าไปแล้ว เจ้าก็ไม่จำเป็นต้องรู้หรอกว่ามันมาจากไหน", "ep20_icas_in2_37_115", bc_self;
+		npctalk "เจ้าจำเป็นต้องให้อาหารเขาจริงๆ เหรอ?", "ep20_icas_in2_27_118", bc_self;
+		next;
+		mes "[Nadyagand]";
+		mes "ข้าได้ยินเรื่องที่เสียมารยาทเกี่ยวกับข้าเต็มไปหมดเลยนะ แต่พวกเขาก็ไม่ใช่...";
+		next;
+		mes "[Iwin soldier]";
+		mes "เสียมารยาทอะไรกัน เจ้าคิดว่าเจ้าเป็นใครกันห๊ะ?";
+		npctalk "ทำอะไรก็ได้นะ คนทำแจกัน หรือพวกไร้สามัญสำนึก?", "ep20_icas_in2_34_117", bc_self;
+		next;
+		select( "มีอะไรผิดปกติเหรอ?" );
+		cutin "ep19_iwin09.png",2;
+		mes "[Horr]";
+		mes "อา นักผจญภัย ยินดีต้อนรับ! เจ้าช่วยยืดเวลาให้ข้าได้เป็นชั่วโมงเลยนะ";
+		mes "Rgan ที่ข้าพามาหาข้อมูลน่ะ กำลังประท้วงอดอาหาร บอกว่าเขาจะไม่เปิดปากพูดจนกว่าข้าจะให้สิ่งที่เขาต้องการ";
+		next;
+		cutin "",255;
+		mes "[Iwin soldier]";
+		mes "เจ้ายอกว่าเจ้าพาเชลยมา แต่มันรู้สึกแปลกๆ เหมือนกำลังปรนนิบัตินายท่านอยู่เลยใช่ไหมล่ะ?";
+		npctalk "ฟิ้วว ช่วยข้าได้เป็นชั่วโมงเลย", "ep20_icas_in2_29_114", bc_self;
+		next;
+		mes "[Iwin soldier]";
+		mes "มันเป็นเรื่องใหญ่แล้ว เรื่องใหญ่นะเนี่ย ดูท่าทางข้าจะได้มี Rgan เป็นเจ้านายซะแล้ว ชิชิ โลกมันเป็นไปได้ขนาดนี้เลยเหรอ?";
+		npctalk "ข้าต้องรีบทำอะไรสักอย่างแล้ว ข้าจะทนดูแบบนั้นไม่ได้หรอก", "ep20_icas_in2_27_118", bc_self;
+		next;
+		mes "[Nadyagand]";
+		mes "ใครก็ได้ช่วยฟังคำสั่งเสียสุดท้ายของข้าที?";
+		mes "ทำไมพวกเจ้าถึงปฏิบัติต่อผู้คนแบบนี้ล่ะ?";
+		next;
+		select( "เจ้าต้องการอะไรเป็นพิเศษ?" );
+		cutin "ep19_iwin09.png",2;
+		mes "[Horr]";
+		mes "Iza บอกว่าเขาจะไม่กินอะไรเลยนอกจากป่า " + getitemname(1001154) + ". แต่มันเป็นปัญหาเพราะไม่มีใครรู้ว่าป่า " + getitemname(1001154) + " มันหาจากที่ไหนน่ะสิ";
+		next;
+		cutin "",255;
+		mes "[Iwin soldier]";
+		mes "ใช่เลย เขาจะไม่ยอมเปิดปากพูดจนกว่าเจ้าจะเอาสิ่งที่เรียกว่า " + getitemname(1001154) + " มาให้ ซึ่งเจ้าของสิ่งนี้เจ้าก็ไม่เคยได้ยินชื่อมาก่อนด้วยซ้ำ";
+		npctalk "นักผจญภัยก็คงโกรธเหมือนกันใช่ไหม?", "ep20_icas_in2_34_117", bc_self;
+		next;
+		select( "ข้ารู้จักนะว่า " + getitemname(1001154) + " คืออะไร" );
+		unittalk getcharid(3), "" + strcharinfo(0) + " : ของโปรดสุดๆ ของพวก Rgan เลยล่ะ", bc_self;
+		mes "[Nadyagand]";
+		mes "โอ้ ถูกต้องแล้ว ข้าชอบมันที่สุดเลยล่ะ";
+		next;
+		mes "[Iwin soldier]";
+		mes "โอ้โห! สมแล้วที่เป็นนักผจญภัย ผู้ซึ่งรู้ไปหมดทุกอย่าง!!";
+		npctalk "ข้าเชื่อใจเจ้าแล้ว!!", "ep20_icas_in2_37_115", bc_self;
+		next;
+		select( "เจ้าต้องการกี่อันล่ะ?" );
+		mes "[Nadyagand]";
+		mes "10 อัน! ข้าอยากกิน ^0000cd10 " + getitemname(1001154) + "^000000 !!!";
+		next;
+		mes "[Iwin soldier]";
+		mes "เฮ้อ- ข้าต้องทำถึงขนาดนี้เลยเหรอ...";
+		npctalk "คอยดูข้าสิ เจ้าบอกว่าเจ้ารออยู่ใช่ไหม", "ep20_icas_in2_37_118", bc_self;
+		npctalk "นายท่าน นายท่านของข้า","ep20_icas_in2_34_117", bc_self;
+		npctalk "เชลยก็คือเชลย", "ep20_icas_in2_27_118", bc_self;
+		next;
+		mes "[Nadyagand]";
+		mes "นี่คือสิ่งที่ควรจะมอบให้ข้าในฐานะบิชอปนะ";
+		npctalk "มันก็แค่เต็มปากเต็มคำน่ะ", "ep20_icas_in2_29_114", bc_self;
+		next;
+		cutin "ep19_iwin09.png",2;
+		mes "[Horr]";
+		mes "ฝากด้วยนะ";
+		ep20_sidequest_2 = 3;
+		erasequest 17713;
+		setquest 17714;
+		close3;
+	}
+	cutin "ep19_iwin09.png",2;
+	mes "[Horr]";
+	mes "ถ้าข้ารู้ล่วงหน้าว่าเจ้าจะเป็นคนที่สร้างความลำบากขนาดนี้ ข้าคงใช้วิธีอื่นไปแล้ว";
+	close3;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "isbegin_quest(17713) == 1" );
+	end;
+}
+
+
+// Sidequest B - Step 4
+// (npcs are parts of the main quest - Step 23)
+
+// Sidequest B - Step 5
+// icas_in2,30,121,5	script	Nadyagand#20ms60::ep20_icas_in2_30_121	4_EP19_RGAN_SR2,{
+
+
+// Sidequest B - Step 6, 7 (final)
+icas_in2,32,120,3	script(CLOAKED)	Lazy#20ms60::ep20_icas_in2_32_120	4_EP19_LAZY,{
+	if (checkweight(1001217,10) == 0) {	// custom
+		mes "เจ้าไม่สามารถดำเนินเควสต่อไปได้เนื่องจากมีไอเทมมากเกินไป";
+		mes "กรุณาเคลียร์ช่องเก็บของแล้วลองใหม่อีกครั้ง";
+		close;
+	}
+	if (ep20_sidequest_2 == 5) {
+		cutin "ep19_leizi02.png",0;
+		mes "[Lazy]";
+		mes "อุ๊ย! มีพวก Rgan อยู่ที่นี่ด้วย มีคนบอกว่าข้าอยู่ที่นี่เหรอ?";
+		mes "สวัสดี ข้าเหรอ?";
+		next;
+		cutin "",255;
+		mes "[Nadyagand]";
+		mes "เจ้านั่นเอง";
+		next;
+		cutin "ep19_leizi02.png",0;
+		mes "[Lazy]";
+		mes "ขอบคุณเจ้ามากที่ทำให้ข้ามีชีวิตอยู่ได้ ขอบคุณจริงๆ ข้าจะตอบแทนบุญคุณนี้ได้ยังไงนะ?";
+		mes "ข้าไม่รู้จะทำยังไงดี งั้นรับหัวใจของข้าไปแล้วกัน";
+		next;
+		cutin "",255;
+		mes "[Nadyagand]";
+		mes "เอาเถอะ ขอบคุณพวกเจ้าเหมือนกัน ข้าไม่ต้องทำงานหนักแล้ว มันดีมากเลย ถือว่าพวกเราช่วยซึ่งกันและกันแล้วกันนะ";
+		next;
+		mes "[Nadyagand]";
+		mes "เอาล่ะ ตอนนี้ช่วยนวดขาให้ข้าหน่อยสิ";
+		npctalk "จู่ๆ ก็เนี่ยนะ??", "ep20_icas_in2_29_114", bc_self;
+		npctalk "นี่คือสิ่งที่เจ้าต้องการเหรอ?", "ep20_icas_in2_27_118", bc_self;
+		next;
+		mes "[Iwin soldier]";
+		mes "เจ้าพูดเรื่องอะไรน่ะ? ไปทำอะไรสักอย่างสิ";
+		npctalk "ครับ!! ทำงานได้ดีมาก!", "ep20_icas_in2_37_118", bc_self;
+		next;
+		mes "[Nadyagand]";
+		mes "เจ้าปฏิบัติต่อข้าแบบนี้เหรอ? เจ้ากล้ายงไงกับบิชอปห๊ะ?";
+		next;
+		mes "[Iwin soldier]";
+		mes "ที่นั่นอาจจะมีบิชอป แต่ที่นี่เจ้าก็แค่ Rgan ตัวหนึ่งเท่านั้นแหละ";
+		npctalk "ใช่แล้ว แค่ Rgan ตัวเดียว", "ep20_icas_in2_37_115", bc_self;
+		next;
+		mes "[Iwin soldier]";
+		mes "เจ้า ไปซะเถอะ เดี๋ยวพวกเราจะไปส่งเอง";
+		npctalk "แค่ไปทิ้งไว้แถวๆ นั้นแหละ", "ep20_icas_in2_34_117", bc_self;
+		next;
+		mes "[Nadyagand]";
+		mes "ข้าไม่ไป!!";
+		next;
+		mes "[Iwin soldier]";
+		mes "โอ๊ย น่าหงุดหงิดชะมัด บ้าไปแล้วแน่ๆ";
+		npctalk "สุดยอดไปเลย!!", "ep20_icas_in2_37_115", bc_self;
+		next;
+		cutin "ep19_leizi03.png",0;
+		mes "[Lazy]";
+		mes "นักผจญภัย เขาเป็นแบบนี้มาตลอดเลยเหรอ?";
+		next;
+		select( "ใช่ เขาเป็นแบบนี้แหละ" );
+		cutin "ep19_leizi02.png",0;
+		mes "[Lazy]";
+		mes "พวกนกน้อยทั้งหลาย มาคุยกับข้าประเดี๋ยวสิ";
+		mes "ดูเหมือนข้าจะเจอปัญหาเข้าให้แล้วล่ะ";
+		next;
+		cutin "ep19_iwin09.png",2;
+		mes "[Horr]";
+		mes "ก็อย่างที่พูดนั่นแหละ!";
+		npctalk "เป็นแค่นายท่าน นายท่านจริงๆ", "ep20_icas_in2_31_116", bc_self;
+		next;
+		cutin "ep19_leizi02.png",0;
+		mes "[Lazy]";
+		mes "เพราะบิชอป Rgan คนนี้ไม่เคยต้องหยิบจับอะไรเองเลยจนเติบโตมาได้ขนาดนี้ ข้าคงช่วยเขาด้วยท่าทางแบบนั้นไม่ได้หรอกนะ";
+		next;
+		cutin "ep19_leizi03.png",0;
+		mes "[Lazy]";
+		mes "คนประเภทนั้นไม่ใช่คนที่จะแก้ได้เพียงแค่การคอยช่วยเหลืออยู่ข้างๆ หรอก";
+		mes "ทำไมเหรอ? ก็เพราะเขาถูกเลี้ยงดูมาแบบนั้นไงล่ะ";
+		next;
+		cutin "ep19_iwin09.png",2;
+		mes "[Horr]";
+		mes "งั้นข้าควรจะจัดการกับตัวปัญหาคนนี้ยังไงดีล่ะ? ข้าว่าปล่อยเขาไปเฉยๆ ดีกว่า";
+		npctalk "เจ้าจะบอกว่าเจ้าต้องอดทนกับเรื่องนั้นเหรอ?", "ep20_icas_in2_29_114", bc_self;
+		npctalk "อุ๊ย!", "ep20_icas_in2_34_117", bc_self;
+		next;
+		cutin "ep19_leizi03.png",0;
+		mes "[Lazy]";
+		mes "แต่มันยากที่จะส่งเขาไปที่นั่นนะ ปฏิบัติการของพวกเรายังไม่จบ และถ้าเราส่งเขาไปตอนนี้ เราอาจจะกลายเป็นฝ่ายให้ข้อมูลจากฝั่งนี้แทน";
+		next;
+		cutin "ep19_iwin09.png",2;
+		mes "[Horr]";
+		mes "แล้วยังไงล่ะ?";
+		next;
+		cutin "ep19_leizi02.png",0;
+		mes "[Lazy]";
+		mes "ก็ตามใจเขาสิ ตามใจเขาไปให้สุดๆ เลย";
+		next;
+		cutin "ep19_iwin09.png",2;
+		mes "[Horr]";
+		mes "เจ้าจะจัดการกับคนที่แม้แต่มือยังไม่ยอมยกขึ้นมาทำอะไรเลยได้ยังไง? เจ้าไม่เห็นตอนที่เขาใช้คำพูดเหรอ?";
+		npctalk "นักผจญภัยอุตส่าห์ไปถึงรังงู เก็บสตรอว์เบอร์รีมาให้ แล้วเขายังมาเสนอแบบนี้อีก", "ep20_icas_in2_37_115", bc_self;
+		next;
+		cutin "ep19_leizi03.png",0;
+		mes "[Lazy]";
+		mes "อืม... ใช่ ข้าเห็นแล้วล่ะว่าปัญหาคืออะไร ทัศนคติคือปัญหาใช่ไหมล่ะ?";
+		mes "งั้นให้ข้าคุยสักครู่สิ";
+		next;
+		cutin "ep19_leizi02.png",0;
+		mes "[Lazy]";
+		mes "เฮ้ นายท่าน มาคุยกับข้าสักครู่ได้ไหม?";
+		next;
+		cutin "",255;
+		mes "[Nadyagand]";
+		mes "ตอนนี้ข้าก็ไม่มีอะไรทำอยู่พอดี ตามสบายสิ";
+		next;
+		mes "[Lazy]";
+		mes "งานคือ...";
+		next;
+		mes "[Nadyagand]";
+		mes "...แต่ว่า...";
+		npctalk "คุยเรื่องอะไรกันอยู่เหรอ?", "ep20_icas_in2_29_114", bc_self;
+		emotion ET_THINK, getnpcid(0,"ep20_icas_in2_30_121");
+		next;
+		mes "[Lazy]";
+		mes "ความคิด...";
+		next;
+		mes "[Nadyagand]";
+		mes "อา... เป็นยังไงบ้างล่ะ?";
+		npctalk "ข้าสงสัยจังเลย เขาจะยอมเชื่องั้นเหรอ?", "ep20_icas_in2_37_118", bc_self;
+		next;
+		mes "[Lazy]";
+		mes "ใช่... ใช่ ถูกต้องแล้วล่ะ";
+		emotion ET_OK, getnpcid(0,"ep20_icas_in2_32_120");
+		next;
+		mes "[Nadyagand]";
+		mes "จริงๆ แล้ว...";
+		npctalk "บรรยากาศเปลี่ยนไปหรือเปล่านะ?", "ep20_icas_in2_37_115", bc_self;
+		next;
+		mes "[Lazy]";
+		mes "บ้าน่า...";
+		next;
+		mes "[Nadyagand]";
+		mes "ขอบคุณสำหรับคำแนะนำนะ";
+		emotion ET_BEST, getnpcid(0,"ep20_icas_in2_30_121");
+		next;
+		cutin "ep19_leizi02.png",0;
+		mes "[Lazy]";
+		mes "เรียบร้อย!";
+		npctalk "อะไรนะ??!!", "ep20_icas_in2_34_117", bc_self;
+		next;
+		cutin "ep19_iwin09.png",2;
+		mes "[Horr]";
+		mes "อะไรนะ? เรียบร้อยอะไรน่ะ?";
+		next;
+		cutin "ep19_leizi03.png",0;
+		mes "[Lazy]";
+		mes "มันก็หมายถึงทุกอย่างคลี่คลายแล้วไงล่ะ ข้าจะพูดอะไรได้ล่ะ~";
+		npctalk "เรียบร้อยจริงๆ เหรอ? ในเวลาสั้นๆ แค่นี้เนี่ยนะ?", "ep20_icas_in2_29_114", bc_self;
+		ep20_sidequest_2 = 6;
+		erasequest 17715;
+		setquest 17716;
+		close3;
+	}
+	if (ep20_sidequest_2 == 6) {
+		cutin "ep19_leizi02.png",0;
+		mes "[Lazy]";
+		mes "ข้าแก้ปัญหาให้แล้ว เพราะงั้นข้าขอตัวก่อนล่ะ";
+		next;
+		cutin "ep19_iwin09.png",2;
+		mes "[Horr]";
+		mes "เดี๋ยวสิ!! รอเดี๋ยว! เจ้าพูดอะไรไปน่ะที่ทำให้หน้าของเจ้านั่นบานเป็นจานเชิงแบบนั้น?";
+		mes "เขาจะไม่ปฏิบัติกับพวกเราด้วยท่าทางโอหังแบบนั้นอีกในอนาคตใช่ไหม?";
+		npctalk "เจ้าสัญญาสิ่งนั้นแล้วเหรอ?", "ep20_icas_in2_37_118", bc_self;
+		next;
+		cutin "ep19_leizi01.png",0;
+		mes "[Lazy]";
+		mes "พวกนกใจร้อนทั้งหลาย คอยดูสิ ตัวตนใหม่ของข้าไงล่ะ";
+		next;
+		emotion ET_DELIGHT, getnpcid(0,"ep20_icas_in2_30_121");
+		cutin "",255;
+		mes "[Nadyagand]";
+		mes "เฮ้! เอาเบ็ดตกปลามาให้ข้าที! เดี๋ยวข้าจะสอนวิธีซ่อมแหให้ทีหลังนะ";
+		next;
+		mes "[Nadyagand]";
+		mes "ข้าเคยคิดว่าการทำอาหารเป็นเรื่องของชนชั้นต่ำเท่านั้น แต่จากคำบอกเล่าของเจ้าที่นี่ ไม่มีวิทยาศาสตร์ใดที่จะละเอียดอ่อนและลึกซึ้งเท่านี้อีกแล้ว มันจริงไหมล่ะ?";
+		mes "ต้องตัดตามความยาวและทำให้สำเร็จด้วยการวัดที่แม่นยำ...";
+		next;
+		mes "[Nadyagand]";
+		mes "มันไม่เลวเลยนะที่จะเริ่มต้นชีวิตใหม่ด้วยงานอดิเรกที่ยอดเยี่ยมแบบนี้";
+		mes "ข้าตั้งตารอจริงๆ เลย เอาล่ะ ข้าควรไปที่ไหนดี? ข้าอยากลองไปตกปลาก่อนเลย";
+		next;
+		mes "[Iwin soldier]";
+		mes "เอ่อ เอ่อ... เดี๋ยวข้านำทางเจ้าไปเอง ไปกันเถอะ";
+		npctalk "โอ้พระเจ้าช่วย??", "ep20_icas_in2_29_114", bc_self;
+		next;
+		cutin "ep19_iwin09.png",2;
+		mes "[Horr]";
+		mes "เจ้าไปทำอะไรลงไปกันแน่เนี่ย?";
+		next;
+		cutin "ep19_leizi01.png",0;
+		mes "[Lazy]";
+		mes "นั่นคือวิธีที่ข้าใช้ทำมาหากินน่ะ";
+		next;
+		cutin "ep19_iwin09.png",2;
+		mes "[Horr]";
+		mes "คารมของเจ้านี่มันสุดยอดจริงๆ ในเวลาสั้นๆ แค่นี้ ทั้งๆ ที่หลายคนพยายามเกลี้ยกล่อม ปลอบประโลม และข่มขู่มาตั้งนานก็ยังไม่เป็นผลเลย";
+		npctalk "เจ้าหมายความว่ายังไงกันแน่?", "ep20_icas_in2_34_117", bc_self;
+		npctalk "เจ้ากำลังทำอะไรอยู่?", "ep20_icas_in2_27_118", bc_self;
+		next;
+		cutin "ep19_leizi01.png",0;
+		mes "[Lazy]";
+		mes "ก็แค่ ข้าแค่ให้คำแนะนำเล็กน้อยให้เขามองการกระทำในมุมมองที่ต่างออกไปน่ะ...";
+		npctalk "นั่นคืออะไรน่ะ?", "ep20_icas_in2_31_116", bc_self;
+		next;
+		cutin "ep19_leizi03.png",0;
+		mes "[Lazy]";
+		mes "เดิมที แรงงานกับงานอดิเรกมันต่างกันแค่เพียงกระดาษแผ่นเดียวเท่านั้นแหละ มันขึ้นอยู่กับว่าเจ้าจะห่อหุ้มมันยังไง";
+		mes "การทำความสะอาดแหคือกรรมวิธีที่สูงส่งในการขัดเกลาจิตใจ การตกปลาคือวิธีสัมผัสถึงรสชาติแห่งฝีมือ และการทำอาหารคือเวทมนตร์ที่ถือกำเนิดจากปลายนิ้วของเจ้า";
+		next;
+		cutin "",255;
+		mes "[Iwin soldier]";
+		mes "ไฮโก้... พวกเราต้องระวังเวลาคุยกับเจ้านี่หน่อยแล้วล่ะ";
+		mes "แม้แต่คนที่มีสติสมบูรณ์แบบข้าก็คงโดนหลอกเอาได้ง่ายๆ เลยนะเนี่ย";
+		npctalk "ข้าเริ่มจะกลัวหน่อยๆ แล้วล่ะ", "ep20_icas_in2_37_118", bc_self;
+		next;
+		cutin "ep19_leizi03.png",0;
+		mes "[Lazy]";
+		mes "นักผจญภัย ช่วยเก็บ " + getitemname(1001154) + " มาให้ข้าทุกวันหน่อยนะ";
+		mes "เจ้าจะใจร้ายกับคนที่ทำงานหนักเพื่อเจ้าได้ยังไงล่ะ";
+		next;
+		select( "ตกลง ข้าจะทำ" );
+		cutin "ep19_leizi01.png",0;
+		mes "[Lazy]";
+		mes "นี่คือสิ่งที่ข้าทำในวันนี้ล่ะ";
+		mes "ข้าทำสำเร็จอีกครั้งแล้ว";
+		next;
+		cutin "ep19_leizi02.png",0;
+		mes "[Lazy]";
+		mes "งั้นข้าขอตัวล่ะ";
+		next;
+		cutin "ep19_iwin09.png",2;
+		mes "[Horr]";
+		mes "ดูเหมือนว่าเรื่องต่างๆ จะถูกจัดระเบียบเรียบร้อยแล้วนะ เพราะงั้นพวกเราก็ไปทำงานของพวกเราต่อได้แล้ว";
+		mes "นักผจญภัยต้องทำงานหนักตั้งแต่วันพรุ่งนี้นะ ขอบคุณมาก";
+		ep20_sidequest_2 = 7;
+		erasequest 17716;
+		setquest 17717;
+		getitem 1001217,10;	// Ep20_Cat_Whiskers
+		getexp2 68305979,0;
+		getexp 0,8566027;
+		// note: no reputation
+		close2;
+		cutin "",255;
+		cloakonnpcself( "ep20_icas_in2_32_120" );
+		end;
+	}
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "isbegin_quest(17715) == 1" );
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "isbegin_quest(17716) == 1" );
+	end;
+}
+// (End of Sidequest B)
+//---------------------------------

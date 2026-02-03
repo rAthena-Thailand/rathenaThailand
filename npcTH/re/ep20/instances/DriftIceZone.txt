@@ -1,0 +1,1364 @@
+// ภฮฤฺต๙ภป EUC-KRทฮ ภฏม๖วฯฑโ ภงวั วัฑนพ๎ นฎภๅ.
+//===== rAthena Script =======================================
+//= Episode 20: Immortals
+//===== Description: =========================================
+//= [Walkthrough Conversion]
+//--- Instance Drift Ice Zone from Episode 20 (main quest)
+//===== Changelogs: ==========================================
+//= 1.0 First version. [Capuche]
+//============================================================
+
+// Main quest - Step 33, 34
+// jor_maze,140,68,0	script	#20ms43	HIDDEN_WARP_NPC,5,5,{
+jor_maze,140,68,0	script	#20ms43_drift_zone	HIDDEN_WARP_NPC,5,5,{
+	end;
+OnTouch:
+	if (ep20_main == 32 || ep20_main == 33) {
+		cloakoffnpcself( "ep20_jor_maze_140_72" );
+		end;
+	}
+	end;
+}
+
+jor_maze,140,72,3	script(CLOAKED)	Shaky Wall#20ms40::ep20_jor_maze_140_72	GATE_SKYBLUE,{
+	if (ep20_main == 32) {
+		mes "[" + strcharinfo(0) + "]";
+		mes "เส้นทางเริ่มซับซ้อนเกินไปแล้ว... ข้าจะกลับไปได้ไหมนะ?";
+		mes "นี่มันคือ...?";
+		next;
+		mes "เมื่อมองดูที่พื้น พบร่องรอยของใครบางคนเพิ่งผ่านทางนี้ไป";
+		next;
+		select( "มองไปรอบๆ", "มองดูรอบๆ พื้น" );
+		mes "[" + strcharinfo(0) + "]";
+		mes "กำแพง... กำลังสั่นงั้นเหรอ? ^0000cdดูเหมือนจะเป็นอุปกรณ์ที่ทำให้การรับรู้ทางด้านมิติพร่ามัว^000000 คนเดียวที่สามารถสร้างอะไรแบบนี้ได้คือ Bagot... มันอยู่เหนือกว่าสิ่งนี้งั้นเหรอ?";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "ลองสัมผัสอุปกรณ์ดูสิ...";
+		ep20_main = 33;
+		erasequest 17706;
+		setquest 17707;
+		close;
+	}
+	if (ep20_main == 33) {
+		// Todo: transform required? (ต้องมีการแปลงร่างก่อนหรือไม่?)
+		if (getcharid(1) < 1) {
+			mes "[Stealth device]";
+			mes "กรุณาเข้าร่วมปาร์ตี้ หรือสร้างปาร์ตี้ตั้งแต่ 1 คนขึ้นไป แล้วลองใหม่อีกครั้ง";
+			close;
+		}
+		// note: multiple players allowed to enter (หมายเหตุ: อนุญาตให้ผู้เล่นหลายคนเข้าได้)
+		.@md_name$ = "Drift Ice Zone";
+
+		if (is_party_leader() == true)
+			.@menu$ = "Create device";
+
+		switch( select( .@menu$, "Go inside", "Cancel" ) ) {
+		case 1:
+			mes "[Stealth device]";
+			mes "ยืนยันผู้ใช้งานแล้ว กรุณาไปได้";
+			if (is_party_leader() == true)
+				instance_create(.@md_name$);
+			close;
+		case 2:
+			switch( instance_enter(.@md_name$) ) {
+			case IE_OTHER:
+				mes "^ff0000เกิดข้อผิดพลาดที่ไม่รู้จัก^000000";
+				close;
+			case IE_NOINSTANCE:
+			case IE_NOMEMBER:
+				mes "[Stealth device]";
+				mes "การยืนยันตัวตนผู้ใช้และการสร้างอุปกรณ์ยังไม่เสร็จสิ้น โปรดยืนยันตัวตนผู้ใช้ก่อนแล้วจึงสร้างอุปกรณ์";
+				close;
+			case IE_OK:
+				mes "[Stealth device]";
+				mes "การยืนยันตัวตนผู้ใช้เสร็จสมบูรณ์ คุณสามารถเคลื่อนย้ายได้";
+				mapannounce "jor_maze", "" + strcharinfo(0) + " จากปาร์ตี้ " + getpartyname(getcharid(1)) + " เข้าสู่ " + .@md_name$ + ".", bc_map, 0xFF99;
+				// warp "1@twsd",318,76;
+				close;
+			}
+			end;
+		case 3:
+			mes "[" + strcharinfo(0) + "]";
+			mes "คุณอาจจะอยากสำรวจมันให้มากกว่านี้อีกสักหน่อย";
+			close;
+		}
+		end;
+	}
+	end;
+
+OnInit:
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(17706) == 1" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(17707) == 1" );
+	end;
+}
+
+
+
+
+1@twsd,318,77,0	script	#20msn00	HIDDEN_WARP_NPC,5,5,{
+	end;
+OnTouch:
+	if ('step == 0) {
+		navigateto("1@twsd",314,94);
+		end;
+	}
+	end;
+
+OnInstanceInit:
+	'step = 0;
+	'map_twsd$ = instance_mapname("1@twsd");
+	end;
+}
+
+
+// Step 1 (ขั้นตอนที่ 1)
+1@twsd,311,93,3	duplicate(dummy_npc)	Rgan Bishop#20msd01::ep20_1twsd_311_93	4_EP19_RGAN_SR3
+1@twsd,309,96,5	duplicate(dummy_npc)	Rgan Bishop#20msd02::ep20_1twsd_309_96	4_EP19_RGAN_SR1
+1@twsd,317,98,3	duplicate(dummy_disabled_npc)	Heart hunter#20msd00::ep20_1twsd_317_98	EP20_MD_HEARTHUNTER1
+1@twsd,319,95,3	duplicate(dummy_disabled_npc)	Heart hunter#20msd01::ep20_1twsd_319_95	EP20_MD_HEARTHUNTER1
+
+1@twsd,314,94,5	script	Rgan Bishop#20msd00	4_EP19_RGAN_SR2,5,5,{
+	if (is_party_leader() == false)
+		end;
+	if ('step == 0) {
+		mes "[Rgan Bishop]";
+		mes "อายุ เจ้าจะกลับมาที่นี่บ่อยๆ แบบนี้ไปเพื่ออะไร!";
+		npctalk "อายุ เจ้าจะกลับมาที่นี่บ่อยๆ แบบนี้ไปเพื่ออะไร!";
+		npctalk "เร็วเข้า เอามันออกไป!", instance_npcname("ep20_1twsd_311_93");
+		next;
+		select( "เจ้าต้องการพนักงานทำความสะอาดไหม?" );
+		mes "[Rgan Bishop]";
+		mes "เจ้าเป็นนักบวชแบบไหนกัน? นี่เป็นครั้งแรกที่ข้าเห็นเจ้า?";
+		unittalk getcharid(3), "" + strcharinfo(0) + " : ต้องการพนักงานทำความสะอาดไหม?";
+		npctalk "เจ้าเป็นนักบวชแบบไหนกัน? ข้าไม่เคยเห็นเจ้ามาก่อนเลย?", instance_npcname("ep20_1twsd_309_96");
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "ข้าเพิ่งกลับมาจากคณะสำรวจ ท่าน Lord Sarekgandh ส่งข้ามา";
+		unittalk getcharid(3), "" + strcharinfo(0) + " : ข้าเพิ่งกลับมาจากคณะสำรวจในครั้งนี้ Sarekgandh ส่งข้ามา";
+		next;
+		mes "[Rgan Bishop]";
+		mes "อ้อ งั้นเจ้ามาที่นี่เพื่อทำความสะอาดงั้นรึ? แต่ที่นี่มีพื้นที่ที่กำหนดไว้อยู่แล้วนะ กลับไปซะ";
+		npctalk "งั้นเจ้ามาที่นี่เพื่อทำความสะอาดงั้นรึ? แต่ที่นี่มีพื้นที่ที่กำหนดไว้อยู่แล้ว กลับไปซะ";
+		next;
+		select( "Salekgandh ให้ทำความสะอาดที่นี่ด้วย..." );
+		mes "[Rgan Bishop]";
+		mes "อะไรนะ? เจ้าไม่ได้พูดลอยๆ ใช่ไหม?";
+		unittalk getcharid(3), "" + strcharinfo(0) + " : Sarekgand ให้ข้ามาทำความสะอาดที่นี่ด้วย";
+		npctalk "อะไรนะ? เจ้าไม่ได้พูดลอยๆ ใช่ไหม?", instance_npcname("ep20_1twsd_311_93");
+		npctalk "งั้นเหรอ? ข้าไม่เคยได้ยินเรื่องนี้มาก่อนเลยนะ?", instance_npcname("ep20_1twsd_309_96");
+		next;
+		mes "[Rgan Bishop]";
+		mes "เมื่อเจ้าได้รับรู้แล้ว ก็กลับไปซะ เจ้าสามารถมารู้เรื่องสถานการณ์ในภายหลังได้";
+		npctalk "เมื่อเจ้าได้รับรู้แล้ว ก็กลับไปซะ เจ้ามารู้เรื่องทีหลังได้";
+		next;
+		mes "[Rgan Bishop]";
+		mes "บุคคลที่ไม่ได้รับอนุญาตไม่ได้รับสิทธิ์ให้ย่างกรายเข้ามาที่นี่";
+		npctalk "ห้ามบุคคลที่ไม่ได้รับอนุญาตย่างกรายเข้ามาที่นี่", instance_npcname("ep20_1twsd_311_93");
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "ความจริงแล้ว ข้าหลงทางน่ะ ทางมันซับซ้อนเกินไปจนข้าหาทางไม่เจอ...";
+		unittalk getcharid(3), "" + strcharinfo(0) + " : ความจริงแล้ว ข้าหลงทาง ทางมันซับซ้อนเกินไปจนหาทางไม่เจอ...";
+		next;
+		mes "[Rgan Bishop]";
+		mes "แค่กลับไปทางเดิมที่เจ้ามานั่นแหละ";
+		npctalk "แค่กลับไปทางเดิมที่เจ้ามานั่นแหละ", instance_npcname("ep20_1twsd_309_96");
+		npctalk "มันไม่ง่ายอย่างนั้นรึไง?", instance_npcname("ep20_1twsd_311_93");
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "ทำไมเราไม่ไปทำงานด้วยกันก่อนแล้วค่อยกลับด้วยกันล่ะ? เดินคนเดียวมันค่อนข้างน่ากลัวน่ะ...";
+		unittalk getcharid(3), "" + strcharinfo(0) + " : เราช่วยกันทำงานแล้วกลับด้วยกันได้ไหม? เดินคนเดียวมันน่ากลัวนิดหน่อย...";
+		next;
+		enablenpc instance_npcname("ep20_1twsd_317_98");
+		enablenpc instance_npcname("ep20_1twsd_319_95");
+		specialeffect EF_HIT1, AREA, instance_npcname("ep20_1twsd_317_98");
+		specialeffect EF_HIT1, AREA, instance_npcname("ep20_1twsd_319_95");
+		mes "[Heart hunter]";
+		mes "เสียงเอะอะอะไรกัน?";
+		npctalk "เอะอะอะไรกัน?", instance_npcname("ep20_1twsd_317_98");
+		next;
+		mes "[Rgan Bishop]";
+		mes "มนุษย์ ยินดีต้อนรับ พอดีนักบวชคนนี้หลงทางในการเดินทางครั้งแรกของเขา พามันกลับไปที";
+		npctalk "นี่คือนักบวชที่หลงทางในการเดินทางครั้งแรกของเขา พามันกลับไปที";
+		next;
+		mes "[Heart hunter]";
+		mes "หืม... นั่นสิ ทำไม ต้องตอนนี้ล่ะ?";
+		npctalk "หืม... นั่นสิ ทำไม ต้องตอนนี้ล่ะ?", instance_npcname("ep20_1twsd_317_98");
+		npctalk "น่ารำคาญ...", instance_npcname("ep20_1twsd_319_95");
+		next;
+		mes "[Rgan Bishop]";
+		mes "ใช่ นั่นสิ ทำไม ต้องตอนนี้";
+		npctalk "ใช่ นั่นสิ ทำไม ต้องตอนนี้";
+		npctalk "นี่เจ้ากำลังถามเรื่องที่เห็นกันชัดๆ อยู่เหรอ?", instance_npcname("ep20_1twsd_311_93");
+		npctalk "ดูจากความโอหังของเจ้า ดูเหมือนเจ้าจะยังไม่เคยโดนดุสินะ เดี๋ยวข้าจะบอกเรื่องนี้กับมนุษย์", instance_npcname("ep20_1twsd_309_96");
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "มนุษย์งั้นเหรอ? มนุษย์โสโครกมาทำอะไรที่นี่?";
+		mes "พวกเจ้ากำลังโดนมนุษย์ข่มขู่อยู่รึเปล่า?";
+		unittalk getcharid(3), "" + strcharinfo(0) + " : มนุษย์? เกิดอะไรขึ้นที่นี่? พวกเจ้าโดนมนุษย์ข่มขู่อยู่เหรอ?";
+		next;
+		mes "[Rgan Bishop]";
+		mes "ไม่นะ ไอ้นี่? เจ้าเห็นตรงไหนว่าพวกเราโดนข่มขู่?";
+		npctalk "ไม่นะ เจ้านี่? มันเห็นตรงไหนว่าพวกเราโดนข่มขู่?", instance_npcname("ep20_1twsd_309_96");
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "เหล่า Bishops ถ้าพวกเจ้าโดนข่มขู่ ให้กระดิกหางสิ ข้าจะช่วยพวกเจ้าเอง";
+		unittalk getcharid(3), "" + strcharinfo(0) + " : ถ้าพวกเจ้าโดนข่มขู่ ให้กระดิกหางซะ ข้าจะช่วยพวกเจ้าเอง";
+		next;
+		mes "[Rgan Bishop]";
+		mes "เฮ้ เฮ้! กลายเป็นว่า เจ้าเป็นนักบวชที่บ้าไปแล้ว!";
+		npctalk "ขะ-ข้า! กลายเป็นว่าเจ้าคือนักบวชบ้า!", instance_npcname("ep20_1twsd_309_96");
+		next;
+		mes "[Rgan Bishop]";
+		mes "เดี๋ยวเขาก็กลับมาแล้ว รีบกลับไปซะ วอนหาเรื่องจริงๆ นักบวชสมัยนี้...";
+		npctalk "เดี๋ยวเขาก็กลับมาแล้ว รีบกลับไปซะ วอนหาเรื่องจริงๆ นักบวชสมัยนี้...", instance_npcname("ep20_1twsd_311_93");
+		next;
+		mes "[Rgan Bishop]";
+		mes "ไหนเจ้าบอกว่า Sarekgandh พามาไง? ข้าคงต้องตรวจสอบให้แน่ใจว่าพวกเขาได้รับการฝึกฝนมาอย่างดี";
+		npctalk "ข้าจะไปบอก Sarekgandh ให้ฝึกฝนเขาให้ดีกว่านี้";
+		next;
+		mes "[Heart hunter]";
+		mes "ฟังดูน่าสงสัยนะ กำจัดทิ้งเลยดีไหม นักบวชที่ไม่รู้ว่าต้องทำอะไรในสถานที่นี้และในเวลาช่วงนี้ของปี";
+		npctalk "ฟังดูน่าสงสัย กำจัดทิ้งเลยดีกว่า", instance_npcname("ep20_1twsd_317_98");
+		next;
+		mes "[Heart hunter]";
+		mes "มนุษย์ที่ป้วนเปี้ยนอยู่อาจจะแปลงร่างมาก็ได้";
+		npctalk "มนุษย์ที่ป้วนเปี้ยนอยู่อาจจะแปลงร่างมา", instance_npcname("ep20_1twsd_319_95");
+		next;
+		mes "[Rgan Bishop]";
+		mes "งั้นเหรอ???!!! แต่เจ้าก็ไม่แน่ใจใช่ไหม? ให้ข้าเรียกหมอผีมาดีไหม?";
+		npctalk "งั้นเหรอ???!!! แต่ข้าก็ไม่แน่ใจ ควรเรียกหมอผีมาไหม?", instance_npcname("ep20_1twsd_311_93");
+		next;
+		mes "[Heart hunter]";
+		mes "ถ้าทำแบบนั้นมันจะเสียเวลา จัดการให้มันจบๆ แล้วค่อยตรวจสอบเถอะ";
+		npctalk "งั้นมันจะเสียเวลา จัดการให้จบแล้วค่อยตรวจดูดีกว่า", instance_npcname("ep20_1twsd_317_98");
+		next;
+		mes "[Rgan Bishop]";
+		mes "นั่นก็ดีนะ มันเร็วกว่าและสะอาดกว่าเยอะเลย";
+		npctalk "ดี มันเร็วกว่าและสะอาดกว่าแบบนั้นแหละ";
+		next;
+		mes "[Rgan Bishop]";
+		mes "แต่พวกเขาบอกว่าได้รับการรับรองจาก Sarekgandh นะ ถ้ามันเป็นเรื่องจริงล่ะก็...";
+		npctalk "แต่ว่า Sarekgandh รับรองมานะ...", instance_npcname("ep20_1twsd_309_96");
+		next;
+		mes "[Heart hunter]";
+		mes "เจ้าจะไปเชื่อเรื่องนั้นได้ยังไงกัน ท่าน Lord Sarekgandh ไม่ได้อยู่ที่นี่ในตอนนี้สักหน่อย";
+		npctalk "เจ้าเชื่อเรื่องนั้นได้ยังไง ท่าน Lord Sarekgandh ไม่อยู่ที่นี่ตอนนี้", instance_npcname("ep20_1twsd_319_95");
+		next;
+		mes "[Heart hunter]";
+		mes "หืม ใครจะสนล่ะถ้าข้าจะกำจัดนักบวชไปสักคน แค่กำจัดมันซะ ท่าน Lord Lasgand จะกลับมาเร็วๆ นี้แล้ว";
+		npctalk "ใครจะสนถ้าข้ากำจัดนักบวชสักคน Lasgand จะกลับมาแล้ว เจ้ามีเวลางั้นเหรอ?", instance_npcname("ep20_1twsd_317_98");
+		next;
+		mes "[Heart hunter]";
+		mes "ถ้าเจ้าลังเล พวกเราจะทำเอง เรียกหมอผีมา ปล่อย Guardian ที่คอยสะกดอยู่ออกมา";
+		npctalk "ถ้าเจ้าลังเล พวกเราจัดการเอง เรียกหมอผีมา ผู้คุ้มกันที่สะกดอยู่... กรุณาปลดปล่อยตราประทับออก", instance_npcname("ep20_1twsd_319_95");
+		next;
+		mes "[Rgan Bishop]";
+		mes "งั้น... ข้าเชื่อละกัน!";
+		npctalk "งั้น... ข้าเชื่อละกัน!";
+		npctalk "ไม่ว่าจะมองยังไง ดูเหมือนเจ้าจะขี้เกียจทำเองใช่ไหมล่ะ?", instance_npcname("ep20_1twsd_311_93");
+		npctalk "มันไม่ใช่ธุระของพวกเรา ไปกันเถอะ", instance_npcname("ep20_1twsd_309_96");
+		close2;
+		if ('step == 0) {
+			'step = 1;
+			donpcevent instance_npcname("ep20_1twsd_307_95") + "::OnStart";
+			disablenpc instance_npcname("ep20_1twsd_317_98");
+			disablenpc instance_npcname("ep20_1twsd_319_95");
+			sleep 1000;
+			disablenpc();
+			disablenpc instance_npcname("ep20_1twsd_311_93");
+			disablenpc instance_npcname("ep20_1twsd_309_96");
+			end;
+		}
+		end;
+	}
+	end;
+
+OnTouch:
+	if ('step == 0) {
+		specialeffect EF_NPC_STOP, AREA, instance_npcname("ep20_1twsd_307_95");
+		specialeffect EF_NPC_STOP, AREA, instance_npcname("ep20_1twsd_308_94");
+		specialeffect EF_NPC_STOP, AREA, instance_npcname("ep20_1twsd_306_93");
+		npctalk "ใครอยู่ตรงนั้นน่ะ!!";
+		end;
+	}
+	end;
+}
+
+1@twsd,307,95,5	script	Jormungand Guardian#ms00::ep20_1twsd_307_95	EP20_JORMUNGUARD1,{
+	end;
+OnStart:
+	.@event$ = instance_npcname("ep20_1twsd_307_95") + "::OnMobDead";
+	monster 'map_twsd$,317,98,"--ja--","EP20_MD_HEARTHUNTER1",1, .@event$;
+	monster 'map_twsd$,319,95,"--ja--","EP20_MD_HEARTHUNTER1",1, .@event$;
+	end;
+OnMobDead:
+	if (mobcount('map_twsd$, instance_npcname("ep20_1twsd_307_95") + "::OnMobDead") > 0)
+		end;
+	disablenpc instance_npcname("ep20_1twsd_307_95");
+	disablenpc instance_npcname("ep20_1twsd_308_94");
+	disablenpc instance_npcname("ep20_1twsd_306_93");
+	removespecialeffect EF_NPC_STOP, AREA, instance_npcname("ep20_1twsd_307_95");
+	removespecialeffect EF_NPC_STOP, AREA, instance_npcname("ep20_1twsd_308_94");
+	removespecialeffect EF_NPC_STOP, AREA, instance_npcname("ep20_1twsd_306_93");
+	donpcevent instance_npcname("twsd_mobs_1") + "::OnStart";
+	end;
+}
+1@twsd,308,94,5	duplicate(dummy_npc)	Jormungand Guardian#ms01::ep20_1twsd_308_94	EP20_JORMUNGUARD2
+1@twsd,306,93,5	duplicate(dummy_npc)	Jormungand Guardian#ms02::ep20_1twsd_306_93	EP20_JORMUNGUARD1
+
+1@twsd,1,1,5	script	twsd_mobs_1	-1,{
+	end;
+OnStart:
+	.@event$ = instance_npcname("twsd_mobs_1") + "::OnMobDead";
+	monster 'map_twsd$,307,95,"--ja--","MD_EP20_JOR_G_P",1, .@event$;
+	monster 'map_twsd$,308,94,"--ja--","MD_EP20_JOR_G_Y",1, .@event$;
+	monster 'map_twsd$,306,93,"--ja--","MD_EP20_JOR_G_P",1, .@event$;
+	end;
+OnMobDead:
+	if (mobcount('map_twsd$, instance_npcname("twsd_mobs_1") + "::OnMobDead") > 0)
+		end;
+	if ('step == 1)
+		'step = 2;
+	enablenpc instance_npcname("ep20_1twsd_319_100");
+	enablenpc instance_npcname("ep20_1twsd_312_100");
+	npctalk "หนวกหูนิดหน่อยนะ...", instance_npcname("ep20_1twsd_319_100");
+	end;
+}
+
+
+// Step 2 (ขั้นตอนที่ 2)
+1@twsd,312,100,5	duplicate(dummy_disabled_npc)	Rgan Shaman#20msd1::ep20_1twsd_312_100	EP20_JORGAN_WARLOCK
+
+1@twsd,319,100,3	script(DISABLED)	Rgan Shaman#20msd00::ep20_1twsd_319_100	EP20_JORGAN_WARLOCK,{
+	if ('step == 2) {
+		setpcblock PCBLOCK_NPC, true;
+		npctalk "เสียงเอะอะอะไรกัน?";
+		sleep2 1500;
+		npctalk "ท่าน Bishop เรียกข้ามาอย่างด่วน พวกมนุษย์ที่นี่หายไปไหนกันหมด?", instance_npcname("ep20_1twsd_312_100");
+		sleep2 1500;
+		npctalk "ข้าได้ยินว่ามีนักบวชที่น่าสงสัยโผล่มา! เจ้าใช่ไหม?";
+		sleep2 1500;
+		npctalk "เดี๋ยวนะ? แปลกจัง? อาจจะเป็นมนุษย์ก็ได้ ข้าควรตรวจสอบดูดีไหม?", instance_npcname("ep20_1twsd_312_100");
+		sleep2 1500;
+		specialeffect2 EF_4WAYBODY;
+		specialeffect2 EF_ELECTRIC;
+		specialeffect2 EF_BLUECASTING;
+		sleep2 1500;
+		sc_end SC_MONSTER_TRANSFORM;
+		npctalk "มนุษย์!!! เจ้ามาที่นี่ได้ยังไง?";
+		sleep2 1000;
+		npctalk "เมื่อเจ้าจับมันได้แล้ว!", instance_npcname("ep20_1twsd_312_100");
+		setpcblock PCBLOCK_NPC, false;
+		if ('step == 2) {
+			'step = 3;
+			disablenpc();
+			disablenpc instance_npcname("ep20_1twsd_312_100");
+			donpcevent instance_npcname("twsd_mobs_2") + "::OnStart";
+			end;
+		}
+		end;
+	}
+	end;
+}
+
+1@twsd,1,1,5	script	twsd_mobs_2	-1,{
+	end;
+OnStart:
+	.@event$ = instance_npcname("twsd_mobs_2") + "::OnMobDead";
+	monster 'map_twsd$,319,100,"--ja--","MD_EP20_JOR_WARLOCK",1, .@event$;
+	monster 'map_twsd$,312,100,"--ja--","MD_EP20_JOR_WARLOCK",1, .@event$;
+	end;
+OnMobDead:
+	if (mobcount('map_twsd$, instance_npcname("twsd_mobs_2") + "::OnMobDead") > 0)
+		end;
+	if ('step == 3)
+		'step = 4;
+	mapannounce 'map_twsd$, "แรงม้า... สูง... ไปนิด...", bc_map, 0xFFCC;
+	enablenpc instance_npcname("#20msn01");
+	enablenpc instance_npcname("#20w00");
+	end;
+}
+
+
+// Step 3 (ขั้นตอนที่ 3)
+1@twsd,311,101,0	script(DISABLED)	#20msn01	HIDDEN_WARP_NPC,5,5,{
+	end;
+OnTouch:
+	navigateto("1@twsd",294,115);
+	end;
+}
+
+1@twsd,294,115,0	script(DISABLED)	#20w00	WARPNPC,2,2,{
+	end;
+OnTouch:
+	if ('step >= 4) {
+		unittalk getcharid(3), "" + strcharinfo(0) + " : ข้าได้ยินเสียงจากตรงนี้นะ?";
+		warp 'map_twsd$,261,119;
+		end;
+	}
+	end;
+}
+
+1@twsd,260,119,0	script	#20msd00	HIDDEN_WARP_NPC,5,5,{
+	end;
+OnTouch:
+	if ('step == 4) {
+		'step = 5;
+		unittalk getcharid(3), "" + strcharinfo(0) + " : ทางนี้รึเปล่า?";
+		navigateto("1@twsd",262,146);
+		donpcevent instance_npcname("twsd_mobs_3") + "::OnStart";
+		end;
+	}
+	end;
+}
+
+1@twsd,1,1,5	script	twsd_mobs_3	-1,{
+	end;
+OnStart:
+	.@event$ = instance_npcname("twsd_mobs_3") + "::OnMobDead";
+	monster 'map_twsd$,258,131,"--ja--","MD_EP20_JOR_WARLOCK",1, .@event$;
+	monster 'map_twsd$,251,117,"--ja--","MD_EP20_JOR_WARLOCK",1, .@event$;
+	monster 'map_twsd$,268,145,"--ja--","MD_EP20_JOR_WARLOCK",1, .@event$;
+	monster 'map_twsd$,257,149,"--ja--","MD_EP20_JOR_WARLOCK",1, .@event$;
+	end;
+OnMobDead:
+	if (mobcount('map_twsd$, instance_npcname("twsd_mobs_3") + "::OnMobDead") > 0)
+		end;
+	if ('step == 5)
+		'step = 6;
+	mapannounce 'map_twsd$, "แรงสะท้อนกลับ... ?...", bc_map, 0xFFCC;
+	enablenpc instance_npcname("#20w10");
+	enablenpc instance_npcname("#20msn02");
+	enablenpc instance_npcname("#20msn03");
+	enablenpc instance_npcname("ep20_1twsd_161_198");
+	enablenpc instance_npcname("ep20_1twsd_164_197");
+	enablenpc instance_npcname("ep20_1twsd_160_196");
+	enablenpc instance_npcname("ep20_1twsd_166_193");
+	enablenpc instance_npcname("ep20_1twsd_168_197");
+	enablenpc instance_npcname("ep20_1twsd_166_200");
+	enablenpc instance_npcname("ep20_1twsd_163_190");
+	end;
+}
+
+1@twsd,262,146,0	script(DISABLED)	#20msn02	HIDDEN_WARP_NPC,5,5,{
+	end;
+OnTouch:
+	navigateto("1@twsd",220,154);
+	end;
+}
+
+1@twsd,220,154,0	warp2(DISABLED)	#20w10	2,2,1@twsd,196,208
+
+1@twsd,196,209,0	script(DISABLED)	#20msn03	HIDDEN_WARP_NPC,5,5,{
+	end;
+OnTouch:
+	navigateto("1@twsd",163,190);
+	end;
+}
+
+
+// Step 4 (ขั้นตอนที่ 4)
+1@twsd,161,198,5	duplicate(dummy_disabled_npc)	Rgan Shaman#20msd10::ep20_1twsd_161_198	EP20_JORGAN_WARLOCK
+1@twsd,160,196,3	duplicate(dummy_disabled_npc)	Jormungand Guardian#ms11::ep20_1twsd_160_196	EP20_JORMUNGUARD2
+1@twsd,166,193,3	duplicate(dummy_disabled_npc)	Rgan Bishop#20msd11::ep20_1twsd_166_193	4_EP19_RGAN_SR1
+1@twsd,168,197,3	duplicate(dummy_disabled_npc)	Rgan Bishop#20msd12::ep20_1twsd_168_197	4_EP19_RGAN_SR3
+1@twsd,166,200,5	duplicate(dummy_disabled_npc)	Rgan Shaman#20msd11::ep20_1twsd_166_200	EP20_JORGAN_WARLOCK
+	
+1@twsd,163,190,5	script(DISABLED)	Rgan Bishop#20msd10::ep20_1twsd_163_190	4_EP19_RGAN_SR2,5,5,{
+	if ('step == 6) {
+		mes "[Rgan Bishop]";
+		mes "เกิดอะไรขึ้นกับนักบวชบ้าที่ตาใสซื่อนั่น? ทำไมถึงไม่มีข่าวคราวจากหมอผีที่ออกไปตรวจสอบเลยล่ะ?";
+		npctalk "เกิดอะไรขึ้นกับนักบวชบ้า? ทำไมไม่มีข่าวคราวจากหมอผีที่ข้าให้ไปตรวจสอบเลย?", instance_npcname("ep20_1twsd_161_198");
+		next;
+		mes "[Rgan Shaman]";
+		mes "ข้าจะนำทางเจ้าไปยังสถานที่ศักดิ์สิทธิ์ ข้าต้องการความช่วยเหลือ...";
+		npctalk "ข้าจะนำทางเจ้าไปที่สถานศักดิ์สิทธิ์ ข้าต้องการความช่วยเหลือ...", instance_npcname("ep20_1twsd_161_198");
+		next;
+		mes "[Rgan Bishop]";
+		mes "นั่นใช่มนุษย์รึเปล่าน่ะ?";
+		npctalk "นั่นมนุษย์ใช่ไหม?", instance_npcname("ep20_1twsd_166_193");
+		next;
+		mes "[Rgan Bishop]";
+		mes "ถ้าเป็นมนุษย์ที่โผล่มาในสถานการณ์ปัจจุบัน... งั้นนักบวชบ้านั่นก็เป็นมนุษย์ที่แปลงร่างมางั้นเหรอ?";
+		npctalk "งั้น นักบวชวิกลจริตนั่นเป็นมนุษย์ที่แปลงร่างมางั้นเหรอ?", instance_npcname("ep20_1twsd_161_198");
+		npctalk "คนที่ไปทั้งหมดโดนทำร้ายงั้นเหรอ? บ้าไปแล้ว ข้าจะบ้าตาย!", instance_npcname("ep20_1twsd_168_197");
+		next;
+		mes "[Rgan Bishop]";
+		mes "^0000cdท่าน Lasgand กำลังจะมาถึงเร็วๆ นี้แล้ว!!^000000 มาจัดการมันแบบเงียบๆ กันเถอะ!!";
+		npctalk "Lasgand กำลังจะมาแล้ว!! มาจัดการมันเงียบๆ เถอะ!!", instance_npcname("ep20_1twsd_166_193");
+		next;
+		select( "Lasgand? เขาอยู่ที่นี่งั้นเหรอ?" );
+		mes "[Rgan Bishop]";
+		mes "เจ้ามาไกลถึงขนาดนี้โดยไม่รู้เรื่องอะไรเลยงั้นรึ...?!";
+		unittalk getcharid(3), "" + strcharinfo(0) + " : Lasgand? เขาอยู่ที่นี่เหรอ?";
+		npctalk "เจ้ามาไกลขนาดนี้โดยไม่รู้อะไรเลยเรอะ...?!", instance_npcname("ep20_1twsd_168_197");
+		next;
+		mes "[Rgan Bishop]";
+		mes "ใจเย็นๆ ดูเหมือนว่าข้าจะยังไม่รู้อีกด้านหนึ่ง ระวังปากไว้แล้วมาทำกันเงียบๆ!";
+		npctalk "ดูเหมือนข้าจะยังไม่รู้อีกด้าน ระวังปากไว้แล้วทำเงียบๆ!", instance_npcname("ep20_1twsd_161_198");
+		next;
+		mes "[Rgan Bishop]";
+		mes "^0000cdคนโอหังคนนั้น^000000 ออกไปขอความช่วยเหลือ แต่ถ้าเราทำแบบนี้ เราจะเสียหน้านะ!";
+		npctalk "ไอ้คนอวดดีนั่นออกไปขอความไว้วางใจ แต่พวกเรากลับเสียหน้า!", instance_npcname("ep20_1twsd_166_193");
+		npctalk "จะว่าไป มนุษย์หน้าไม่อายคนนั้นก็เป็นคนบ้าเหมือนกัน มนุษย์ทุกคนเป็นคนบ้ากันหมดเลยรึเปล่านะ??", instance_npcname("ep20_1twsd_168_197");
+		next;
+		select( "อา! ที่นี่มีบาร์ด้วยเหรอ?" );
+		emotion ET_FRET, getnpcid(0, instance_npcname("ep20_1twsd_161_198"));
+		mes "[Rgan Bishop]";
+		mes "... ทุกคน ห้ามเปิดปากพูดหลังจากเวลานี้ไป ^0000cdพิธีกรรมศักดิ์สิทธิ์ของท่าน Lord Lasgand^000000 จะต้องไม่ถูกรบกวน เงียบเข้าไว้...";
+		unittalk getcharid(3), "" + strcharinfo(0) + " : อา! ที่นี่มีบาร์ด้วยเหรอ?";
+		npctalk "ทุกคน ห้ามเปิดปาก ห้ามรบกวนพิธีกรรมศักดิ์สิทธิ์ของ Lasgand เงียบเข้าไว้...", instance_npcname("ep20_1twsd_161_198");
+		next;
+		select( "พวกเจ้าสองคนกำลังทำอะไรอยู่? นั่นคือด้านหลังรึเปล่า?" );
+		emotion ET_FRET, getnpcid(0, instance_npcname("ep20_1twsd_166_193"));
+		next;
+		mes "[Rgan Bishop]";
+		mes "บ้าไปแล้ว! พวกเรากำลังหลุดข้อมูลสำคัญออกมาเองเลยนะเนี่ย!!";
+		unittalk getcharid(3), "" + strcharinfo(0) + " : เจ้าสองคนทำอะไรด้วยกันน่ะ? นั่นคือด้านหลังเหรอ?";
+		npctalk "บ้าไปแล้ว! พวกเราหลุดข้อมูลสำคัญออกมาเองซะงั้น!!", instance_npcname("ep20_1twsd_166_193");
+		next;
+		mes "[Rgan Bishop]";
+		mes "แปด! นี่คือชัยชนะที่แน่นอน!";
+		npctalk "แปด! ชนะแน่นอน!", instance_npcname("ep20_1twsd_168_197");
+		npctalk "ในเมื่อมันเป็นแบบนี้ ข้าก็ไม่มีทางเลือกนอกจากต้องปิดปากเจ้าไปตลอดกาล!!", instance_npcname("ep20_1twsd_161_198");
+		next;
+		mes "[Rgan Shaman]";
+		mes "รอเดี๋ยว ครั้งนี้พวกเราจะลงมือเอง จับตาดู Guardian ไว้ให้ดีและรายงานสถานการณ์ที่อื่นด้วย";
+		npctalk "ครั้งนี้พวกเราจะจัดการเอง ดูแลผู้คุ้มกันไว้และรายงานสถานการณ์ที่อื่นด้วย", instance_npcname("ep20_1twsd_166_200");
+		next;
+		mes "[Rgan Bishop]";
+		mes "ถูกต้องแล้ว!";
+		npctalk "ใช่ ใช่!", instance_npcname("ep20_1twsd_161_198");
+		close2;
+		if ('step == 6) {
+			'step = 7;
+			disablenpc instance_npcname("ep20_1twsd_161_198");
+			disablenpc instance_npcname("ep20_1twsd_166_200");
+			donpcevent instance_npcname("ep20_1twsd_164_197") + "::OnStart";
+			npctalk "เราควรเข้าร่วมด้วยไหม?", instance_npcname("ep20_1twsd_161_198");
+			npctalk "ข้าบอกให้รอไง ถ้ามันไม่ได้ผลเราค่อยปลดล็อคผู้คุ้มกัน!", instance_npcname("ep20_1twsd_166_193");
+			sleep 1000;
+			disablenpc instance_npcname("ep20_1twsd_168_197");
+			end;
+		}
+		end;
+	}
+	end;
+
+OnTouch:
+	if ('step == 6) {
+		specialeffect EF_NPC_STOP, AREA, instance_npcname("ep20_1twsd_164_197");
+		specialeffect EF_NPC_STOP, AREA, instance_npcname("ep20_1twsd_160_196");
+		npctalk "ไม่ดีแน่...", instance_npcname("ep20_1twsd_161_198");
+		end;
+	}
+	end;
+}
+
+1@twsd,164,197,3	script(DISABLED)	Jormungand Guardian#ms10::ep20_1twsd_164_197	EP20_JORMUNGUARD1,{
+	end;
+OnStart:
+	.@event$ = instance_npcname("ep20_1twsd_164_197") + "::OnMobDead";
+	monster 'map_twsd$,161,198,"--ja--","MD_EP20_JOR_WARLOCK",1, .@event$;
+	monster 'map_twsd$,166,200,"--ja--","MD_EP20_JOR_WARLOCK",1, .@event$;
+	end;
+OnMobDead:
+	if (mobcount('map_twsd$, instance_npcname("ep20_1twsd_164_197") + "::OnMobDead") > 0)
+		end;
+	npctalk "ข้าทำไม่ได้! หนีกันก่อนเถอะตอนนี้!", instance_npcname("ep20_1twsd_161_198");
+	npctalk "กะรัต! ปรสิต!!!", instance_npcname("ep20_1twsd_166_193");
+	
+	disablenpc instance_npcname("ep20_1twsd_164_197");
+	disablenpc instance_npcname("ep20_1twsd_160_196");
+	disablenpc instance_npcname("ep20_1twsd_161_198");
+	disablenpc instance_npcname("ep20_1twsd_166_193");
+	disablenpc instance_npcname("ep20_1twsd_163_190");
+	removespecialeffect EF_NPC_STOP, AREA, instance_npcname("ep20_1twsd_164_197");
+	removespecialeffect EF_NPC_STOP, AREA, instance_npcname("ep20_1twsd_160_196");
+	donpcevent instance_npcname("twsd_mobs_4") + "::OnStart";
+	end;
+}
+
+1@twsd,1,1,5	script	twsd_mobs_4	-1,{
+	end;
+OnStart:
+	.@event$ = instance_npcname("twsd_mobs_4") + "::OnMobDead";
+	monster 'map_twsd$,164,197,"--ja--","MD_EP20_JOR_G_P",1, .@event$;
+	monster 'map_twsd$,160,196,"--ja--","MD_EP20_JOR_G_Y",1, .@event$;
+	end;
+OnMobDead:
+	if (mobcount('map_twsd$, instance_npcname("twsd_mobs_4") + "::OnMobDead") > 0)
+		end;
+	if ('step == 7)
+		'step = 8;
+	enablenpc instance_npcname("#20msn04");
+	mapannounce 'map_twsd$, "ในทันที...", bc_map, 0xFFCC;
+	donpcevent instance_npcname("twsd_mobs_4") + "::OnStart2";
+	end;
+
+OnStart2:
+	.@event$ = instance_npcname("twsd_mobs_4") + "::OnMobDead2";
+	monster 'map_twsd$,149,214,"--ja--","MD_EP20_JOR_WARLOCK",1, .@event$;
+	monster 'map_twsd$,151,235,"--ja--","MD_EP20_JOR_WARLOCK",1, .@event$;
+	end;
+OnMobDead2:
+	if (mobcount('map_twsd$, instance_npcname("twsd_mobs_4") + "::OnMobDead2") > 0)
+		end;
+	if ('step == 8)
+		'step = 9;
+	enablenpc instance_npcname("ep20_1twsd_162_245");
+	specialeffect EF_HIT1, AREA, instance_npcname("ep20_1twsd_162_245");
+	mapannounce 'map_twsd$, "นักผจญภัย! นักผจญภัย~ เจ้าอยู่ที่ไหน...?", bc_map, 0xFFCC;
+	end;
+}
+
+
+// Step 5 (ขั้นตอนที่ 5)
+1@twsd,165,197,0	script(DISABLED)	#20msn04	HIDDEN_WARP_NPC,5,5,{
+	end;
+OnTouch:
+	navigateto("1@twsd",162,245);
+	end;
+}
+
+1@twsd,162,245,3	script	Lehar#20msd10::ep20_1twsd_162_245	4_EP19_LEHAR,5,5,{
+	if ('step == 9) {
+		cutin "ep19_lehar01.png",0;
+		mes "[Lehar]";
+		mes "เจ้าอยู่นี่เอง! เฮ้อ- ข้าเพิ่งหามันเจอ";
+		npctalk "ท่านนักผจญภัย!!! เฮ้อ - ในที่สุดข้าก็หาเจอ", instance_npcname("ep20_1twsd_162_245");
+		next;
+		select( "Lehar? มาได้ยังไง?" );
+		cutin "ep19_lehar02.png",0;
+		mes "[Lehar]";
+		mes "Lazy บอกว่ามันคงจะดีถ้าได้รวบรวมข้อมูลที่ได้มาจนถึงตอนนี้ และแบ่งปันความคิดเห็นกันใน Ice Castle";
+		unittalk getcharid(3), "" + strcharinfo(0) + " : คุณ Lehar? ยังไงกัน?";
+		npctalk "ข้าได้ยินว่ามันเป็นการดีที่จะมีการพูดคุยกันใน Ice Castle", instance_npcname("ep20_1twsd_162_245");
+		next;
+		cutin "ep19_lehar03.png",0;
+		mes "[Lehar]";
+		mes "Lazy กับ Miriam ล่วงหน้าไปก่อนแล้ว ส่วนข้ามาตามหานักผจญภัยเพื่อจะไปด้วยกัน แต่ทางไหนกันนะ...";
+		npctalk "Lazy และ Miriam ล่วงหน้าไปก่อนแล้ว ข้าเลยมาตามหานักผจญภัยเพื่อจะได้ไปด้วยกัน", instance_npcname("ep20_1twsd_162_245");
+		next;
+		cutin "ep19_lehar01.png",0;
+		mes "[Lehar]";
+		mes "เขาบอกว่ามันจะดีกว่าถ้ารวบรวมข้อมูลใหม่แล้วค่อยกลับมาอีกครั้ง";
+		npctalk "เขาบอกว่ามันจะดีกว่าถ้าจะจัดระบบใหม่แล้วค่อยกลับมา", instance_npcname("ep20_1twsd_162_245");
+		next;
+		cutin "",255;
+		mes "[" + strcharinfo(0) + "]";
+		mes "ข้ายังไม่พบข้อมูลใดๆ เกี่ยวกับเรื่องนี้เลย";
+		mes "และข้าเดาว่านี่คือสิ่งที่ Lasgand กับ Bagot พูดถึงกัน";
+		unittalk getcharid(3), "" + strcharinfo(0) + " : ข้าเดาว่านี่คือสิ่งที่ Lasgand และ Bagot พูดถึงกัน";
+		next;
+		cutin "ep19_lehar01.png",0;
+		mes "[Lehar]";
+		mes "นักผจญภัยปลดอุปกรณ์ตรงหน้าท่านรึเปล่า? มันมีไว้เพื่ออะไรกัน หืม?";
+		npctalk "นักผจญภัยได้ปลดอุปกรณ์ข้างหน้าท่านรึเปล่า? มันมีไว้ทำอะไรเหรอ หืม?", instance_npcname("ep20_1twsd_162_245");
+		next;
+		cutin "",255;
+		mes "[" + strcharinfo(0) + "]";
+		mes "งั้นเรามาสำรวจข้างหน้ากันเร็วๆ เถอะ ข้าสัมผัสได้ถึงพลังเวทมนตร์อันมหาศาลเมื่อสักครู่นี้";
+		unittalk getcharid(3), "" + strcharinfo(0) + " : งั้นเราลองไปดูข้างหน้าแล้วค่อยไปกันเถอะ ข้ารู้สึกถึงเวทมนตร์มากมายเมื่อครู่นี้เอง";
+		next;
+		cutin "ep19_lehar01.png",0;
+		mes "[Lehar]";
+		mes "ข้างหน้าเหรอ? ตกลง! มีทางแยกมากมาย ดังนั้นมันจะดีกว่าถ้าเราแยกกันหา";
+		npctalk "จากตรงนี้เหรอ? โอเค! มันมีทางแยกเยอะแยะ แยกกันหาจะดีกว่านะ", instance_npcname("ep20_1twsd_162_245");
+		next;
+		mes "[Lehar]";
+		mes "ถ้าผ่านไปสักพักแล้วยังไม่มีเบาะแส เราค่อยกลับมาเจอกันที่นี่แล้วกลับไปที่ Ice Castle เพื่อเตรียมตัวกันใหม่และกลับมาพร้อมกัน";
+		npctalk "ถ้าผ่านไปสักพักยังไม่มีเบาะแส เราจะกลับมาเจอกันที่นี่แล้วกลับไปที่ Ice Castle", instance_npcname("ep20_1twsd_162_245");
+		close2;
+		cutin "",255;
+		if ('step == 9) {
+			'step = 10;
+			disablenpc();
+			navigateto("1@twsd",164,260);
+			enablenpc instance_npcname("#20w11");
+			enablenpc instance_npcname("#20msd10");
+			end;
+		}
+		end;
+	}
+	end;
+OnTouch:
+	npctalk "นักผจญภัย!!!";
+	end;
+OnInstanceInit:
+	disablenpc instance_npcname("ep20_1twsd_162_245");
+	end;
+}
+
+1@twsd,164,260,0	warp2(DISABLED)	#20w11	2,2,1@twsd,154,299
+
+
+1@twsd,154,300,0	script(DISABLED)	#20msd10	HIDDEN_WARP_NPC,5,5,{
+	end;
+OnTouch:
+	if ('step == 10) {
+		'step = 11;
+		donpcevent instance_npcname("twsd_mobs_5") + "::OnStart";
+	}
+	navigateto("1@twsd",48,326);
+	end;
+}
+
+1@twsd,1,1,5	script	twsd_mobs_5	-1,{
+	end;
+OnStart:
+	.@event$ = instance_npcname("twsd_mobs_5") + "::OnMobDead";
+	monster 'map_twsd$,148,310,"--ja--","MD_EP20_JOR_WARLOCK",1, .@event$;
+	monster 'map_twsd$,113,326,"--ja--","MD_EP20_JOR_WARLOCK",1, .@event$;
+	monster 'map_twsd$,85,336,"--ja--","MD_EP20_JOR_WARLOCK",1, .@event$;
+	end;
+OnMobDead:
+	if (mobcount('map_twsd$, instance_npcname("twsd_mobs_5") + "::OnMobDead") > 0)
+		end;
+	if ('step == 11)
+		'step = 12;
+	mapannounce 'map_twsd$, "ลองใหม่อีกครั้งกันเถอะ", bc_map, 0xFFCC;
+	enablenpc instance_npcname("ep20_1twsd_48_326");
+	enablenpc instance_npcname("ep20_1twsd_46_328");
+	enablenpc instance_npcname("ep20_1twsd_43_326");
+	enablenpc instance_npcname("ep20_1twsd_49_330");
+	enablenpc instance_npcname("ep20_1twsd_55_333");
+	enablenpc instance_npcname("ep20_1twsd_62_334");
+	enablenpc instance_npcname("ep20_1twsd_45_322");
+	enablenpc instance_npcname("ep20_1twsd_54_321");
+	enablenpc instance_npcname("ep20_1twsd_50_323");
+	enablenpc instance_npcname("ep20_1twsd_53_330");
+	enablenpc instance_npcname("ep20_1twsd_57_323");
+	end;
+}
+
+
+// Step 6 (ขั้นตอนที่ 6)
+1@twsd,50,323,1	duplicate(dummy_disabled_npc)	Rgan Bishop#20msd20::ep20_1twsd_50_323	4_EP19_RGAN_SR1
+1@twsd,53,330,3	duplicate(dummy_disabled_npc)	Rgan Bishop#20msd21::ep20_1twsd_53_330	4_EP19_RGAN_SR2
+1@twsd,57,323,1	duplicate(dummy_disabled_npc)	Rgan Bishop#20msd22::ep20_1twsd_57_323	4_EP19_RGAN_SR3
+1@twsd,49,330,5	duplicate(dummy_disabled_npc)	Heart hunter#20msd20::ep20_1twsd_49_330	EP20_MD_HEARTHUNTER1
+1@twsd,55,333,5	duplicate(dummy_disabled_npc)	Heart hunter#20msd21::ep20_1twsd_55_333	EP20_MD_HEARTHUNTER1
+1@twsd,62,334,5	duplicate(dummy_disabled_npc)	Heart hunter#20msd22::ep20_1twsd_62_334	EP20_MD_HEARTHUNTER1
+1@twsd,45,322,3	duplicate(dummy_disabled_npc)	Heart hunter#20msd23::ep20_1twsd_45_322	EP20_MD_HEARTHUNTER1,5,0
+1@twsd,54,321,5	duplicate(dummy_disabled_npc)	Heart hunter#20msd24::ep20_1twsd_54_321	EP20_MD_HEARTHUNTER1
+1@twsd,51,327,5	duplicate(dummy_disabled_npc)	Rgan Shaman#20msd20::ep20_1twsd_51_327	MD_EP20_JOR_WARLOCK
+1@twsd,56,332,3	duplicate(dummy_disabled_npc)	Rgan Shaman#20msd21::ep20_1twsd_56_332	EP20_JORGAN_WARLOCK
+1@twsd,61,324,1	duplicate(dummy_disabled_npc)	Rgan Shaman#20msd22::ep20_1twsd_61_324	EP20_JORGAN_WARLOCK
+
+1@twsd,53,327,3	script(DISABLED)	White cat#20ms20::ep20_1twsd_53_327	4_EP20_NYAR,{
+	npctalk "ทำไมล่ะ?";
+	end;
+OnMove:
+	npcspeed 200;
+	unitwalk getnpcid(0),57,317;
+	end;
+}
+
+1@twsd,43,326,5	script(DISABLED)	Lasgand#20msd20::ep20_1twsd_43_326	4_EP20_LASGAND,{
+	npctalk "......";
+	end;
+}
+
+1@twsd,48,326,5	script(DISABLED)	Salekgandh#20msd20::ep20_1twsd_48_326	4_EP19_RGAN_SR1,5,5,{
+	if ('step == 12) {
+		mes "[Salekgandh]";
+		mes "มนุษย์!!! ทำไมมันยังใช้ไม่ได้อีกล่ะ? ข้าทำอะไรผิดตรงไหนหรือเปล่า?";
+		npctalk "มนุษย์!!! ทำไมมันยังใช้ไม่ได้อีกล่ะ? ข้าทำอะไรผิดตรงไหนหรือเปล่า?";
+		next;
+		cutin "ep18_bagot_01.png",2;
+		mes "[Bagot]";
+		mes "พูดแบบนั้นต่อหน้า Lasgand จะดีเหรอ?";
+		npctalk "พูดแบบนั้นต่อหน้า Lasgand จะดีเหรอ?", instance_npcname("ep20_1twsd_46_328");
+		next;
+		cutin "",255;
+		mes "[Salekgandh]";
+		mes "ก็ไหนเจ้าคุยโวไว้ไง! ว่าเจ้าแค่ต้องทำลายบาเรีย่นั่นให้ได้!";
+		npctalk "ก็ไหนเจ้าโม้ไว้ไง! ว่าเจ้าแค่ต้องทำลายโล่นั่นให้ได้!";
+		next;
+		cutin "ep18_bagot_02.png",2;
+		mes "[Bagot]";
+		mes "เจ้าก็กำลังร่วมมือกับท่าน Lasgand อย่างหนักอยู่ไม่ใช่รึ? จะบ่นอะไรอีก?";
+		npctalk "เจ้าก็ทำงานหนักกับ Lasgand อยู่แล้วนี่? บ่นอะไรของเจ้า?", instance_npcname("ep20_1twsd_46_328");
+		next;
+		cutin "",255;
+		select( "ทุกคนอยู่ที่นี่กันหมดเลย! งั้นก็นี่ไง..." );
+		unittalk getcharid(3), "" + strcharinfo(0) + " : ทุกคนมาอยู่ที่นี่กันหมดเลย! งั้นก็นี่ไง...";
+		mes "[Salekgandh]";
+		mes "พวกมนุษย์?! ทำไมพวกมนุษย์ถึงมาอยู่ที่นี่ได้? ทำไมไม่มีใครหยุดพวกมันไม่ให้เข้ามาที่นี่เลย!";
+		npctalk "พวกมนุษย์?! ทำไมพวกมนุษย์ถึงมาอยู่ที่นี่ได้? ทำไมไม่มีใครหยุดพวกมันไม่ให้เข้ามาที่นี่เลย!";
+		next;
+		cutin "ep18_bagot_02.png",2;
+		mes "[Bagot]";
+		mes "ข้าขอบอกเจ้าไว้อย่างนะ พวกมนุษย์น่ะแข็งแกร่ง เจ้าก็น่าจะประมวลผลทุกอย่างแล้วไม่ใช่รึ? ถึงเจ้าจะไม่มีสมอง แต่ก็น่าจะเข้าใจเรื่องแค่นี้ได้ถ้าลองคิดดูสักนิด";
+		npctalk "พวกมนุษย์ เจ้าแข็งแกร่งนะ เจ้าประมวลผลทุกอย่างไปหมดแล้วใช่ไหม? ต่อให้ไม่มีสมอง ก็น่าจะคิดออกได้ถ้าใช้หัวคิดนิดหน่อย", instance_npcname("ep20_1twsd_46_328");
+		npctalk "หุบปากไปเลย!";
+		next;
+		cutin "ep18_bagot_01.png",2;
+		mes "[Bagot]";
+		mes "^0000cdแน่นอนว่า Lasgand พูดถูก ถ้าเจ้าเปิดประตูทิ้งไว้^000000 มันก็จะกลับมา";
+		npctalk "แน่นอน Lasgand พูดถูกที่ว่าถ้าเปิดประตูทิ้งไว้ มันจะกลับมา", instance_npcname("ep20_1twsd_46_328");
+		next;
+		select( "เจ้าจงใจเปิดทิ้งไว้เหรอ? ทำไมล่ะ?" );
+		cutin "ep18_bagot_03.png",2;
+		mes "[Bagot]";
+		mes "เพราะข้าต้องการมันไงล่ะ ข้าไม่ได้คาดคิดว่าจะเห็นเจ้าที่นี่ ใช่ไหมล่ะ?";
+		unittalk getcharid(3), "" + strcharinfo(0) + " : เจ้าจงใจเปิดทิ้งไว้เหรอ? ทำไมล่ะ?";
+		npctalk "ข้าต้องการมัน ข้าไม่นึกว่าจะเห็นมันที่นี่จริงไหม?", instance_npcname("ep20_1twsd_46_328");
+		next;
+		select( "นั่นคือ 'สถานที่แห่งนั้น' ที่เจ้าพูดถึงเหรอ?" );
+		cutin "",255;
+		mes "[Salekgandh]";
+		mes "เจ้ารู้เรื่องนั้นได้ยังไง?";
+		unittalk getcharid(3), "" + strcharinfo(0) + " : นั่นคือ... 'สถานที่แห่งนั้น' ที่เจ้าพูดถึงรึเปล่า?";
+		npctalk "เจ้ารู้เรื่องนั้นได้ยังไง?";
+		next;
+		cutin "ep18_bagot_02.png",2;
+		mes "[Bagot]";
+		mes "เจ้ารู้ไหมว่าเจ้าเป็นคนให้คำตอบนั้นเอง? เจ้าคงแอบฟังบทสนทนาสินะ Bagot ไม่ชอบใจเรื่องนั้นเลย";
+		npctalk "ข้าต้องแอบได้ยินบทสนทนามาแน่ๆ Bagot ไม่ชอบแบบนั้นเลย", instance_npcname("ep20_1twsd_46_328");
+		next;
+		cutin "ep20_lasgand01.png",0;
+		mes "[Lasgand]";
+		mes "นั่นคือนักผจญภัย";
+		npctalk "นั่นคือนักผจญภัย", instance_npcname("ep20_1twsd_43_326");
+		next;
+		cutin "",255;
+		mes "[Salekgandh]";
+		mes "ละ.. ท่าน Lasgand ข้า.. ในส่วนของข้า อย่างน้อยข้าก็...!";
+		npctalk "ละ.. ท่าน Lasgand ข้า.. ในแบบของข้าเอง...!";
+		next;
+		cutin "ep20_lasgand01.png",0;
+		mes "[Lasgand]";
+		mes "แต่ข้าสัมผัสไม่ได้ถึง ^0000cd'พลัง'^000000";
+		npctalk "แต่ข้าสัมผัสไม่ได้ถึง 'พลัง'", instance_npcname("ep20_1twsd_43_326");
+		next;
+		cutin "ep18_bagot_03.png",2;
+		mes "[Bagot]";
+		mes "เจ้าบอกว่ามันเป็นความแข็งแกร่งของอีกฝ่ายงั้นรึ? คนๆ นั้นไม่มีออร่าพิเศษอะไรตอนที่ทดสอบเลยนะ มันดูปกติแต่แข็งแกร่งมาก";
+		mes "อีกด้านที่ยังไม่ได้ตรวจสอบอาจจะเป็นคนที่มีพลังนั้น";
+		npctalk "อีกด้านที่ยังไม่ได้ตรวจสอบอาจจะเป็นคนที่มีพลังนั้น", instance_npcname("ep20_1twsd_46_328");
+		next;
+		select( "พลังนั่นเหรอ?" );
+		cutin "ep18_bagot_01.png",2;
+		mes "[Bagot]";
+		mes "ใช่ ^0000cdพลังที่เจ้าใช้หลบหนีไปไงล่ะ^000000 แล้วคนนั้นอยู่ที่ไหน? ยัยผมม่วงนั่นน่ะ";
+		unittalk getcharid(3), "" + strcharinfo(0) + " : พลังนั่นเหรอ?";
+		npctalk "พลังที่เจ้าใช้หนีไปไงล่ะ แล้วมันอยู่ที่ไหน? ยัยหัวม่วงนั่นน่ะ", instance_npcname("ep20_1twsd_46_328");
+		next;
+		cutin "ep18_bagot_03.png",2;
+		mes "[Bagot]";
+		mes "เอาเถอะ ไม่สิ มนุษย์คนนี้ก็เป็นแหล่งพลังเวทมนตร์ที่ดีมากเหมือนกัน ดังนั้นเจ้าควรจับมันซะ ถ้าเจ้าจับมันได้ มนุษย์คนนั้นจากอีกฝั่งจะมาช่วยคนๆ นี้เอง";
+		mes "ยิ่งมีพลังมากเท่าไหร่ก็ยิ่งดี Hearthunter เคลื่อนกำลังได้";
+		npctalk "มนุษย์คนนั้นเป็นแหล่งพลังเวทที่ดีมาก ข้าควรจะจับเขาก่อน Hearthunter เคลื่อนกำลัง", instance_npcname("ep20_1twsd_46_328");
+		close2;
+		cutin "",255;
+		if ('step == 12) {
+			'step = 13;
+			donpcevent instance_npcname("twsd_mobs_6") + "::OnStart";
+			disablenpc instance_npcname("ep20_1twsd_49_330");
+			disablenpc instance_npcname("ep20_1twsd_55_333");
+			disablenpc instance_npcname("ep20_1twsd_62_334");
+			disablenpc instance_npcname("ep20_1twsd_45_322");
+			disablenpc instance_npcname("ep20_1twsd_54_321");
+			end;
+		}
+		end;
+	}
+	if ('step == 13) {
+		mes "[Salekgandh]";
+		mes "คุ... พวกเจ้ามันไม่เท่เลย! อย่างที่คิดไว้... พวกมนุษย์... ข้าไม่ชอบพวกมันเลย";
+		close;
+	}
+	if ('step == 14) {
+		mes "[Salekgandh]";
+		mes "คู... แข็งแกร่งกว่าที่คิดไว้...! จิ ตอนนี้ข้า...!";
+		npctalk "คุ แข็งแกร่งกว่าที่คิด...! จิ ตอนนี้ข้า...!", instance_npcname("ep20_1twsd_48_326");
+		next;
+		cutin "ep20_lasgand01.png",0;
+		mes "[Lasgand]";
+		mes "หยุดซะ เขาแข็งแกร่งจริงๆ แต่เขาไม่ใช่แบบนั้น ข้าคิดว่าเขาซ่อนพลังเอาไว้";
+		npctalk "หยุดซะ เขาแข็งแกร่งจริงๆ แต่เขายังไม่ใช่ ข้าคิดว่าเขาซ่อนพลังไว้", instance_npcname ("ep20_1twsd_43_326");
+		next;
+		cutin "ep18_bagot_01.png",2;
+		mes "[Bagot]";
+		mes "ใช่แล้ว Bagot บอกไว้แล้ว ถ้าเจ้าจับมันได้ พวกพ้องของมันจะมาตามหา แล้วเราก็จะจับพวกมันได้อีกครั้ง";
+		npctalk "ถูกต้อง Bagot บอกไว้แล้ว ถ้าเจ้าจับมันได้ พวกพ้องของมันจะมาตามหา แล้วเราก็จะจับพวกมันได้อีก", instance_npcname("ep20_1twsd_46_328");
+		next;
+		enablenpc instance_npcname("ep20_1twsd_58_327");
+		sleep2 500;
+		specialeffect EF_HIT1, AREA, instance_npcname("ep20_1twsd_58_327");
+		cutin "ep19_lehar05.png",2;
+		mes "[Lehar]";
+		mes "นักผจญภัย!!";
+		mes "พวกมันมารวมตัวกันที่นี่หมดเลยรึ? นั่นคือนักวิทยาศาสตร์ใช่ไหม? แล้วข้างๆ กันนั่นก็คือคนที่อ้างว่าเป็นมือขวาสินะ";
+		npctalk "พวกเจ้ามารวมตัวกันที่นี่หมดเลยเหรอ? นั่นคือนักวิทยาศาสตร์ใช่ไหม? แล้วข้างๆ กันนั่นก็คือคนที่อ้างว่าเป็นมือขวาสินะ", instance_npcname("ep20_1twsd_58_327");
+		npctalk "อ้างตัวงั้นเหรอ! เสียมารยาทที่สุด!!", instance_npcname("ep20_1twsd_48_326");
+		next;
+		cutin "ep19_lehar03.png",2;
+		mes "[Lehar]";
+		mes "แล้วหลังจากนั้น... คือคนคนนั้นเหรอ...?";
+		npctalk "แล้วหลังจากนั้น... คือคนคนนั้นเหรอ...?", instance_npcname("ep20_1twsd_58_327");
+		next;
+		select( "นั่นคือ Lasgand" );
+		cutin "ep19_lehar05.png",2;
+		mes "[Lehar]";
+		mes "นี่เป็นครั้งแรกที่ข้าได้เห็นตัวจริงเลยนะเนี่ย!! ตัวจริงเสียงจริง! ข้ารู้สึกเหมือนตัวละครในตำนานปรากฏตัวขึ้นมาจริงๆ เลย!";
+		mes "เจ้าดูดีกว่าที่ข้าคิดไว้นะ?";
+		unittalk getcharid(3), "" + strcharinfo(0) + " : นี่คือ Lasgand";
+		npctalk "ตัวจริงเสียงจริงเลย! รู้สึกเหมือนคนในตำนานปรากฏตัวขึ้นมาจริงๆ เลย!", instance_npcname("ep20_1twsd_58_327");
+		npctalk "หุบปากไปเลย!!!", instance_npcname("ep20_1twsd_48_326");
+		next;
+		cutin "ep18_bagot_01.png",1;
+		mes "[Bagot]";
+		mes "อา แน่นอน ข้าจับนักผจญภัยไว้แล้วพวกเขาก็มาช่วยทันควัน รวดเร็วดีนะ แต่เจ้ามาคนเดียวงั้นรึ?";
+		npctalk "เป็นไปตามคาด ข้าจับนักผจญภัยไว้แล้วพวกเขาก็มาช่วย รวดเร็วดี แต่เจ้ามาคนเดียวรึ?", instance_npcname("ep20_1twsd_46_328");
+		next;
+		cutin "ep20_lasgand01.png",0;
+		mes "[Lasgand]";
+		mes "นั่นคือคนเดียวกับที่เจ้าพูดถึงเหรอ?";
+		mes "แต่เขาก็ไม่ใช่ ^0000cdคนที่แข็งแกร่งคนนั้น แม้ว่าเขาจะเก่งก็ตาม^000000";
+		npctalk "เจ้านั่นคือคนที่เจ้าบอกเหรอ? ถึงจะแข็งแกร่ง แต่เขาก็ไม่มีพลังนั่น", instance_npcname ("ep20_1twsd_43_326");
+		next;
+		cutin "ep20_lasgand04.png",0;
+		mes "[Lasgand]";
+		mes "ข้าคิดว่าข้าจะรู้ได้ถ้าได้พบเจ้า";
+		mes "แต่ ^0000cdข้ากลับสัมผัสได้ถึงพลังที่คุ้นเคย^000000 เก่าแก่... อย่างนี้นี่เอง";
+		npctalk "แต่เขาก็มีพลังที่คุ้นเคย เก่าแก่... อย่างนี้นี่เอง", instance_npcname("ep20_1twsd_43_326");
+		next;
+		cutin "ep19_lehar05.png",2;
+		mes "[Lehar]";
+		mes "พลังนั่น? เขาพูดถึงเรื่องอะไรกัน?";
+		npctalk "พลังนั่น? เขาพูดถึงเรื่องอะไรกัน?", instance_npcname("ep20_1twsd_58_327");
+		next;
+		cutin "ep18_bagot_03.png",1;
+		mes "[Bagot]";
+		mes "พลังที่ทำให้พวกโง่อย่างพวกเจ้าหนีไปได้อย่างปลอดภัยตอนที่ถูกจับได้ไงล่ะ";
+		npctalk "พลังที่ทำให้พวกโง่อย่างพวกเจ้าหนีไปได้อย่างปลอดภัยตอนที่ถูกจับได้ไงล่ะ", instance_npcname("ep20_1twsd_46_328");
+		next;
+		cutin "ep19_lehar03.png",2;
+		mes "[Lehar]";
+		mes "เจ้าเรียกคนที่ปล่อยให้พวกเราหนีไปได้ว่าพวกโง่งั้นเหรอ?";
+		npctalk "แล้วเจ้าจะเรียกพวกที่ทำพวกเราหลุดมือไปว่าอะไรล่ะ เจ้าคนโง่?", instance_npcname("ep20_1twsd_58_327");
+		next;
+		cutin "ep18_bagot_02.png",1;
+		mes "[Bagot]";
+		mes "พวกเจ้าไม่รู้จริงๆ เหรอ?? แปลกจังนะ? ร่องรอยของพลังนั่นช่วยพวกโง่พวกนั้นไว้แน่นอน";
+		mes "อืม... โอ๊ะ หรือว่าจะเป็นอุปกรณ์หรืออะไรสักอย่าง? สมองของเรื่องนั้นอยู่ตรงโน้น... อ๊ะ! เจ้าช่วยงั้นรึ? Jungkea";
+		npctalk "พลังนั่นช่วยพวกโง่พวกนั้นไว้แน่ๆ? หรือจะเป็นอุปกรณ์บางอย่าง? อ๊ะ! เจ้าช่วยเหรอ? Jungkea", instance_npcname("ep20_1twsd_46_328");
+		next;
+		cutin "ep19_lehar02.png",2;
+		mes "[Lehar]";
+		mes "พูดเรื่องอะไรของเจ้า? คุณ Jungkea ถูกส่งตัวไปที่ทวีปตั้งนานแล้วนะ? ไม่มีเหตุผลที่จะต้องเก็บอาชญากรไว้กับเจ้าหรอก";
+		npctalk "คุณ Jungkea ถูกส่งตัวไปที่ทวีปนานแล้วนะ? ไม่มีเหตุผลที่จะต้องเก็บอาชญากรไว้กับเขาหรอก", instance_npcname("ep20_1twsd_58_327");
+		next;
+		cutin "ep18_bagot_01.png",1;
+		mes "[Bagot]";
+		mes "ถ้าอย่างนั้น เจ้ามีผู้ช่วยงั้นรึ? บอกข้ามาเถอะ Bagot คนนี้จะใช้ประโยชน์จากมันอย่างดีเลย";
+		mes "ผู้ช่วยเหรอ เจ้าเรียกสิ่งนั้นว่าอะไรนะ?";
+		npctalk "งั้นก็มีผู้ช่วยด้วยสินะ? บอกข้ามาสิ เจ้าเรียกพวกนั้นว่าผู้ช่วยเหรอ?", instance_npcname("ep20_1twsd_46_328");
+		next;
+		cutin "ep19_lehar01.png",2;
+		mes "[Lehar]";
+		mes "ข้าไม่เข้าใจจริงๆ ว่าเจ้าหมายถึงอะไร นักผจญภัย เจ้าเข้าใจไหม?";
+		npctalk "ข้าไม่เข้าใจจริงๆ ว่าเจ้าหมายถึงอะไร นักผจญภัย เจ้ารู้เรื่องไหม?", instance_npcname("ep20_1twsd_58_327");
+		next;
+		select( "ตกลง" );
+		cutin "ep18_bagot_03.png",1;
+		mes "[Bagot]";
+		mes "ใช่ ไม่เป็นไร ข้าไม่ได้หวังว่าเจ้าจะเปิดปากง่ายๆ อยู่แล้ว ข้าถูกจับได้ง่ายไปหน่อย";
+		unittalk getcharid(3), "" + strcharinfo(0) + " : เอ่อ";
+		npctalk "ข้าไม่ได้หวังว่าเจ้าจะยอมบอกง่ายๆ อยู่แล้ว ข้าถูกจับได้ง่ายไปนิด", instance_npcname("ep20_1twsd_46_328");
+		next;
+		cutin "",255;
+		mes "[Salekgandh]";
+		mes "เฮ้ พวกจอมเวท!";
+		npctalk "เฮ้ พวกจอมเวท!", instance_npcname("ep20_1twsd_48_326");
+		sleep2 500;
+		enablenpc instance_npcname("ep20_1twsd_51_327");
+		enablenpc instance_npcname("ep20_1twsd_56_332");
+		enablenpc instance_npcname("ep20_1twsd_61_324");
+		npctalk "จัดการกับมนุษย์ที่เจ้าเล่ห์นั่นซะ!", instance_npcname("ep20_1twsd_48_326");
+		close2;
+		if ('step == 14) {
+			'step = 15;
+			donpcevent instance_npcname("twsd_mobs_6") + "::OnStart2";
+			disablenpc instance_npcname("ep20_1twsd_51_327");
+			disablenpc instance_npcname("ep20_1twsd_56_332");
+			disablenpc instance_npcname("ep20_1twsd_61_324");
+			end;
+		}
+		end;
+	}
+	if ('step == 16) {
+		mes "[Salekgandh]";
+		mes "อย่างที่คิดไว้ ข้าไม่ได้พูดถึงเรื่องของมนุษย์ ข้าน่าจะพูดให้มันหนักแน่นกว่านี้!";
+		close;
+	}
+	end;
+
+OnTouch:
+	npctalk "ข้าสังหรณ์ใจไม่ดีเลย...";
+	end;
+}
+
+
+1@twsd,1,1,5	script	twsd_mobs_6	-1,{
+	end;
+OnStart:
+	.@event$ = instance_npcname("twsd_mobs_6") + "::OnMobDead";
+	monster 'map_twsd$,49,330,"--ja--","EP20_MD_HEARTHUNTER1",1, .@event$;
+	monster 'map_twsd$,55,333,"--ja--","EP20_MD_HEARTHUNTER1",1, .@event$;
+	monster 'map_twsd$,62,334,"--ja--","EP20_MD_HEARTHUNTER1",1, .@event$;
+	monster 'map_twsd$,45,322,"--ja--","EP20_MD_HEARTHUNTER1",1, .@event$;
+	monster 'map_twsd$,54,321,"--ja--","EP20_MD_HEARTHUNTER1",1, .@event$;
+	end;
+OnMobDead:
+	if (mobcount('map_twsd$, instance_npcname("twsd_mobs_6") + "::OnMobDead") > 0)
+		end;
+	if ('step == 13)
+		'step = 14;
+	npctalk "โอ้ พระเจ้าช่วย!", instance_npcname("ep20_1twsd_48_326");
+	end;
+
+OnStart2:
+	.@event$ = instance_npcname("twsd_mobs_6") + "::OnMobDead2";
+	monster 'map_twsd$,51,327,"--ja--","MD_EP20_JOR_WARLOCK",1, .@event$;
+	monster 'map_twsd$,56,332,"--ja--","MD_EP20_JOR_WARLOCK",1, .@event$;
+	monster 'map_twsd$,61,324,"--ja--","MD_EP20_JOR_WARLOCK",1, .@event$;
+	end;
+OnMobDead2:
+	if (mobcount('map_twsd$, instance_npcname("twsd_mobs_6") + "::OnMobDead2") > 0)
+		end;
+	if ('step == 15)
+		'step = 16;
+	npctalk "เหมือนกับ...", instance_npcname("ep20_1twsd_46_328");
+	end;
+}
+
+
+// ขั้นตอนที่ 7
+1@twsd,46,328,5	script(DISABLED)	Bagot#20msd20::ep20_1twsd_46_328	4_EP18_BAGOT,{
+	if ('step < 16) {
+		cutin "ep18_bagot_01.png",2;
+		mes "[Bagot]";
+		mes "เจ้ามาที่นี่ได้ยังไง?";
+		close3;
+	}
+	if ('step == 16) {
+		cutin "ep18_bagot_03.png",1;
+		mes "[Bagot]";
+		mes "ในระหว่างนี้ เจ้าแข็งแกร่งขึ้นงั้นรึ? เรื่องนี้น่าสนใจขึ้นเรื่อยๆ แล้วสิ";
+		npctalk "ในระหว่างนี้ เจ้าแข็งแกร่งขึ้นงั้นรึ? เรื่องนี้น่าสนใจขึ้นเรื่อยๆ แล้วสิ";
+		next;
+		cutin "ep19_lehar05.png",2;
+		mes "[Lehar]";
+		mes "เจ้าเพิ่งจะรู้ตัวงั้นเหรอ?!";
+		mes "นักผจญภัยของพวกเราน่ะแข็งแกร่งจริงๆ นะ!!";
+		npctalk "นักผจญภัยของพวกเราแข็งแกร่งมาก!!", instance_npcname("ep20_1twsd_58_327");
+		next;
+		cutin "ep18_bagot_01.png",1;
+		mes "[Bagot]";
+		mes "ข้าต้องการมากกว่านี้ หรือว่าการตั้งค่ากลุ่มตัวอย่างทดสอบในตอนแรกจะผิดพลาดไป?";
+		npctalk "ข้าต้องการมากกว่านี้ เป็นไปได้ไหมว่าข้ากำหนดค่าตัวอย่างทดสอบผิดไปตั้งแต่แรก?", instance_npcname("ep20_1twsd_46_328");
+		next;
+		select( "จะทำยังไงดี?" );
+		cutin "ep19_lehar01.png",2;
+		mes "[Lehar]";
+		mes "ในเมื่อเราเผชิญหน้ากันแล้ว เราควรจัดการเรื่องนี้ด้วยตัวเองไหม? เราไม่ได้นับอยู่ใช่ไหม?";
+		mes "อา แต่ข้าคิดว่ามันจะดีกว่าถ้าพวกเรากลับไปด้วยกันอย่างปลอดภัย... ยังไงซะเราก็บรรลุเป้าหมายแล้ว";
+		unittalk getcharid(3), "" + strcharinfo(0) + " : แล้วจะเอายังไงล่ะ?";
+		npctalk "เราเผชิญหน้ากันแล้ว จะให้จัดการเลยไหม? เราไม่ได้นับอยู่ใช่ไหม?", instance_npcname("ep20_1twsd_58_327");
+		next;
+		mes "[Lehar]";
+		mes "ที่นั่นมีเจ้านั่นอยู่ใช่ไหม? ข้าหมายถึง 'สถานที่แห่งนั้น' น่ะ มันจะไม่ดีกว่าเหรอถ้าพวกเราออกไปแล้วสืบหาความจริงด้วยกัน?";
+		npctalk "มันจะดีกว่าไหมถ้าพวกเราออกไปแล้วสืบหาความจริงด้วยกัน?", instance_npcname("ep20_1twsd_58_327");
+		next;
+		cutin "ep18_bagot_01.png",1;
+		mes "[Bagot]";
+		mes "เจ้าเอาความมั่นใจแบบไหนมาพูดเสียงดังใส่ข้าตอนนี้กัน?";
+		npctalk "เจ้าเอาความมั่นใจมาจากไหนถึงได้มาพูดเสียงดังใส่ข้าตอนนี้?";
+		next;
+		cutin "ep19_lehar02.png",2;
+		mes "[Lehar]";
+		mes "ก็เพราะพวกเราแข็งแกร่งไงล่ะ!";
+		npctalk "ก็เพราะพวกเราแข็งแกร่งยังไงล่ะ!", instance_npcname("ep20_1twsd_58_327");
+		next;
+		cutin "ep18_bagot_02.png",1;
+		mes "[Bagot]";
+		mes "มันก็ดีอยู่ที่แข็งแกร่ง เพราะยังไงเจ้าก็จะถูกจับอยู่ดี แต่การจะกลับมาที่นี่อีกครั้งมันลำบากหน่อยนะ";
+		npctalk "มันก็ดีที่แข็งแกร่งเพราะเจ้าจะต้องถูกจับอยู่ดี แต่การจะกลับมาที่นี่มันยากนิดหน่อย";
+		next;
+		cutin "ep18_bagot_03.png",2;
+		mes "[Bagot]";
+		mes "ท่าน Lasgand? ท่านสามารถใช้พลังของท่านได้หรือไม่?";
+		npctalk "ท่าน Lasgand? ท่านสามารถใช้พลังของท่านได้หรือไม่?";
+		next;
+		cutin "ep20_lasgand01.png",0;
+		mes "[Lasgand]";
+		mes "น่ารำคาญ";
+		npctalk "น่ารำคาญ", instance_npcname("ep20_1twsd_43_326");
+		next;
+		cutin "",255;
+		mes "[Salekgandh]";
+		mes "อา! ท่าน Lasgand ข้า.. ข้าจะ...!";
+		npctalk "อา! ท่าน Lasgand ข้า.. ข้าจะ...!", instance_npcname("ep20_1twsd_48_326");
+		next;
+		specialeffect EF_TETRACASTING, AREA, instance_npcname("ep20_1twsd_43_326");
+		specialeffect2 EF_BOTTOM_ANI;
+		specialeffect EF_BOTTOM_ANI, AREA, instance_npcname("ep20_1twsd_58_327");
+		cutin "ep19_lehar03.png",2;
+		mes "[Lehar]";
+		mes "เอ่อ พลังงานนั่นมัน... ค่อนข้างจะรุนแรงไปหรือเปล่า...? พวกเรา จะไม่เป็นไรใช่ไหม?";
+		npctalk "เอ่อ พลังนั่น... แรงไปไหม...? พวกเรา... โอเคใช่ไหม?", instance_npcname("ep20_1twsd_58_327");
+		next;
+		cutin "ep18_bagot_01.png",1;
+		mes "[Bagot]";
+		mes "ทุกอย่างมันก็ดีนะ แต่มันไม่ควรจะแย่ลงสิ นี่มันของดีเลยนะ";
+		npctalk "ทุกอย่างดูดีนะ แต่มันไม่ควรจะพังนะ นี่ของพรีเมียมเลย";
+		next;
+		specialeffect EF_PORTAL4, AREA, instance_npcname("ep20_1twsd_43_326");
+		sleep2 500;
+		specialeffect EF_ASURABODY, AREA, instance_npcname("ep20_1twsd_43_326");
+		specialeffect2 EF_SHOCKWAVE2;
+		specialeffect EF_SHOCKWAVE2, AREA, instance_npcname("ep20_1twsd_58_327");
+		cutin "ep19_lehar03.png",2;
+		mes "[Lehar]";
+		mes "เอ่อ นักผจญภัย.. มันจะดีเหรอ? เจ้าโอเคไหม?";
+		npctalk "เอ่อ นักผจญภัย เราโอเคใช่ไหม...? เราจะไม่เป็นไรใช่ไหม?", instance_npcname("ep20_1twsd_58_327");
+		next;
+		cutin "",255;
+		mes "[Salekgandh]";
+		mes "โอ้ อย่างที่คิดไว้ ท่าน Lasgand...! แต่ท่านสูงส่งเกินกว่าจะถูกใช้งานโดยพวกคนชั้นต่ำแบบนี้...";
+		npctalk "โอ้ ตามที่คาดไว้ Lasgand...! แต่เขาสูงส่งเกินกว่าจะมาถูกพวกคนสกปรกพวกนี้ใช้งาน...", instance_npcname("ep20_1twsd_48_326");
+		next;
+		enablenpc instance_npcname("ep20_1twsd_53_327");
+		specialeffect EF_HIT1, AREA, instance_npcname("ep20_1twsd_53_327");
+		cutin "ep20_nyar02.png",1;
+		mes "[แมวสีขาว]";
+		mes "ทำไม-";
+		npctalk "ทำไม-", instance_npcname("ep20_1twsd_53_327");
+		next;
+		mes "[Salekgandh]";
+		mes "^0000cdแมว^000000?! แมวอะไรกัน?";
+		npctalk "แมว?! แมวที่ไหนเนี่ย?", instance_npcname("ep20_1twsd_48_326");
+		next;
+		cutin "ep18_bagot_01.png",0;
+		mes "[Bagot]";
+		mes "แมวนั่นมันอะไรกัน?";
+		mes "มันโผล่มาจากไหนไม่รู้";
+		npctalk "แมวตัวนั้นคืออะไร? โผล่มาเฉยเลย";
+		npctalk "แมวตัวนั้น...!", instance_npcname("ep20_1twsd_58_327");
+		emotion ET_SURPRISE, getnpcid(0, instance_npcname("ep20_1twsd_43_326"));
+		next;
+		cutin "ep18_bagot_01.png",0;
+		mes "[Bagot]";
+		mes "...?! นั่นมัน... พอนึกดูแล้ว...";
+		npctalk "...?! นั่นมัน... พอนึกดูแล้ว...";
+		next;
+		cutin "ep20_lasgand02.png",0;
+		mes "[Lasgand]";
+		mes "นั่นไงล่ะ จับมันซะ";
+		npctalk "นั่นแหละ จับตัวนั้นไว้", instance_npcname("ep20_1twsd_43_326");
+		npctalk "ตาข่าย!!!", instance_npcname("ep20_1twsd_48_326");
+		npctalk "เร็วเข้า!!!", instance_npcname("ep20_1twsd_50_323");
+		npctalk "เร็วเข้า!!!", instance_npcname("ep20_1twsd_53_330");
+		npctalk "เร็วเข้า!!!", instance_npcname("ep20_1twsd_57_323");
+		next;
+		specialeffect EF_DOUBLEGUMGANG2, AREA, instance_npcname("ep20_1twsd_43_326");
+		sleep2 500;
+		specialeffect EF_DARKCASTING, AREA, instance_npcname("ep20_1twsd_43_326");
+		specialeffect EF_GI_EXPLOSION, AREA, instance_npcname("ep20_1twsd_43_326");
+		specialeffect2 EF_SPR_MASH;
+		specialeffect EF_SPR_MASH, AREA, instance_npcname("ep20_1twsd_58_327");
+		cutin "",255;
+		mes "[Salekgandh]";
+		mes "ทุกคนล้อมมันไว้!!! ช่วยท่าน Lasgand!!!";
+		npctalk "ทุกคนล้อมมันไว้!!! ช่วย Lasgand!!!", instance_npcname("ep20_1twsd_48_326");
+		next;
+		specialeffect EF_ITEM_LIGHT, AREA, instance_npcname("ep20_1twsd_53_327");
+		sleep2 500;
+		specialeffect EF_HIT1, AREA, instance_npcname("ep20_1twsd_53_327");
+		cutin "ep20_nyar03.png",1;
+		mes "[แมวสีขาว]";
+		mes "เนี๊ยยยยยย!!";
+		npctalk "เนี๊ยยยยย!!", instance_npcname("ep20_1twsd_53_327");
+		next;
+		removespecialeffect EF_SHOCKWAVE2, AREA, instance_npcname("ep20_1twsd_58_327");
+		sleep2 500;
+		removespecialeffect EF_SPR_MASH, AREA, instance_npcname("ep20_1twsd_58_327");
+		cutin "ep18_bagot_01.png",0;
+		mes "[Bagot]";
+		mes "เอ๊ะ...? นี่มันอะไรกัน...";
+		npctalk "เอ๊ะ...? นี่มันอะไรกัน...";
+		emotion ET_SURPRISE, getnpcid(0, instance_npcname("ep20_1twsd_43_326"));
+		specialeffect EF_BIG_PORTAL2, AREA, instance_npcname("ep20_1twsd_48_326");
+		specialeffect EF_BIG_PORTAL2, AREA, instance_npcname("ep20_1twsd_46_328");
+		specialeffect EF_BIG_PORTAL2, AREA, instance_npcname("ep20_1twsd_43_326");
+		specialeffect EF_BIG_PORTAL2, AREA, instance_npcname("ep20_1twsd_50_323");
+		specialeffect EF_BIG_PORTAL2, AREA, instance_npcname("ep20_1twsd_53_330");
+		specialeffect EF_BIG_PORTAL2, AREA, instance_npcname("ep20_1twsd_57_323");
+		next;
+		mes "[Bagot]";
+		mes "บ้าน่า!! พวกเรากำลัง...---!!";
+		npctalk "บ้าน่า!! พวกเรากำลัง...---!!";
+		close2;
+		cutin "",255;
+		if ('step == 16)
+			'step = 17;
+		specialeffect EF_HIT1, AREA, instance_npcname("ep20_1twsd_48_326");
+		specialeffect EF_HIT1, AREA, instance_npcname("ep20_1twsd_46_328");
+		specialeffect EF_HIT1, AREA, instance_npcname("ep20_1twsd_43_326");
+		specialeffect EF_HIT1, AREA, instance_npcname("ep20_1twsd_50_323");
+		specialeffect EF_HIT1, AREA, instance_npcname("ep20_1twsd_53_330");
+		specialeffect EF_HIT1, AREA, instance_npcname("ep20_1twsd_57_323");
+		removespecialeffect EF_BIG_PORTAL2, AREA, instance_npcname("ep20_1twsd_58_327");
+		removespecialeffect EF_BIG_PORTAL2, AREA, instance_npcname("ep20_1twsd_48_326");
+		removespecialeffect EF_BIG_PORTAL2, AREA, instance_npcname("ep20_1twsd_46_328");
+		removespecialeffect EF_BIG_PORTAL2, AREA, instance_npcname("ep20_1twsd_43_326");
+		removespecialeffect EF_BIG_PORTAL2, AREA, instance_npcname("ep20_1twsd_50_323");
+		removespecialeffect EF_BIG_PORTAL2, AREA, instance_npcname("ep20_1twsd_53_330");
+		removespecialeffect EF_BIG_PORTAL2, AREA, instance_npcname("ep20_1twsd_57_323");
+		disablenpc instance_npcname("ep20_1twsd_48_326");
+		disablenpc instance_npcname("ep20_1twsd_46_328");
+		disablenpc instance_npcname("ep20_1twsd_43_326");
+		disablenpc instance_npcname("ep20_1twsd_50_323");
+		disablenpc instance_npcname("ep20_1twsd_53_330");
+		disablenpc instance_npcname("ep20_1twsd_57_323");
+		end;
+	}
+	end;
+}
+
+
+// ขั้นตอนที่ 8
+1@twsd,58,327,3	script(DISABLED)	Lehar#20msd20::ep20_1twsd_58_327	4_EP19_LEHAR,{
+	if ('step == 16) {
+		cutin "ep19_lehar01.png",1;
+		mes "[Lehar]";
+		mes "พวกเราสามารถจัดการพวกมันได้ทั้งหมดเลย ใช่ไหมล่ะ?";
+		close3;
+	}
+	if ('step == 17) {
+		mes "[Lehar]";
+		mes "หายไปแล้ว... หายไปไหนกันหมด?";
+		mes "เมี้ยว?";
+		npctalk "หายไปแล้ว... หายไปเหรอ? เมี้ยว เมี้ยว?";
+		next;
+		cutin "ep20_nyar04.png",1;
+		mes "[แมวสีขาว]";
+		mes "......";
+		npctalk "......", instance_npcname("ep20_1twsd_53_327");
+		next;
+		cutin "ep19_lehar05.png",2;
+		mes "[Lehar]";
+		mes "...แมวเหรอ?";
+		npctalk "...แมว?";
+		next;
+		cutin "ep20_nyar02.png",1;
+		mes "[แมวสีขาว]";
+		mes "เนี๊ยยย-";
+		npctalk "เนี๊ยยย-", instance_npcname("ep20_1twsd_53_327");
+		next;
+		cutin "ep19_lehar01.png",2;
+		mes "[Lehar]";
+		mes "เจ้าแมว เจ้าช่วยพวกเราไว้อีกครั้งแล้วงั้นเหรอ?";
+		npctalk "เจ้าแมว เจ้าช่วยพวกเราไว้อีกแล้วเหรอ?";
+		next;
+		cutin "ep20_nyar02.png",1;
+		mes "[แมวสีขาว]";
+		mes "เนี๊ย-";
+		npctalk "เนี๊ยยยย-", instance_npcname("ep20_1twsd_53_327");
+		next;
+		cutin "ep19_lehar02.png",2;
+		mes "[Lehar]";
+		mes "อื้ม ใช่แล้วล่ะ! ขอบใจนะ";
+		npctalk "อื้ม ใช่แล้วล่ะ! ขอบใจนะ";
+		next;
+		emotion ET_QUESTION, playerattached();
+		select( "เจ้าฟังมันรู้เรื่องเหรอ?" );
+		cutin "ep19_lehar06.png",2;
+		mes "[Lehar]";
+		mes "เปล่าหรอก ข้าแค่เดาน่ะ";
+		unittalk getcharid(3), "" + strcharinfo(0) + " : เจ้าเข้าใจที่มันพูดด้วยเหรอ??";
+		npctalk "เปล่าหรอก ข้าแค่คิดเอาเองน่ะ";
+		next;
+		emotion ET_SWEAT, playerattached();
+		cutin "ep19_lehar01.png",2;
+		mes "[Lehar]";
+		mes "พวกนั้นถูกส่งไปที่ไหนกันนะ?";
+		npctalk "เจ้าส่งพวกนั้นไปที่ไหนล่ะ?";
+		next;
+		cutin "ep20_nyar02.png",1;
+		mes "[แมวสีขาว]";
+		mes "ทำไมล่ะ?";
+		npctalk "ทำไมเหรอ?", instance_npcname("ep20_1twsd_53_327");
+		next;
+		select( "มันพูดว่าอะไรนะ?" );
+		cutin "ep19_lehar03.png",2;
+		mes "[Lehar]";
+		mes "ข้าเองก็ไม่รู้เหมือนกันว่าเจ้าหมายถึงอะไร";
+		mes "แต่ถ้าพวกเราพาเจ้าแมวนี่ไปด้วย อาจจะมีบางคนรู้ก็ได้นะ!";
+		unittalk getcharid(3), "" + strcharinfo(0) + " : มันพูดว่าอะไรนะ?";
+		npctalk "ถ้าพาแมวตัวนี้ไปด้วย ใครบางคนอาจจะรู้ก็ได้!";
+		next;
+		cutin "ep19_lehar02.png",2;
+		mes "[Lehar]";
+		mes "เจ้าแมว อยากจะไปกับพวกเราไหมล่ะ? ข้าอยากจะตอบแทนเจ้าหน่อยน่ะ";
+		npctalk "เจ้าแมว อยากไปกับพวกเราไหม? ข้าอยากตอบแทนเจ้าน่ะ";
+		next;
+		cutin "ep20_nyar03.png",1;
+		mes "[แมวสีขาว]";
+		mes "เนี๊ย?!";
+		npctalk "เนี๊ย?!", instance_npcname("ep20_1twsd_53_327");
+		next;
+		specialeffect EF_BIG_PORTAL2, AREA, instance_npcname("ep20_1twsd_58_327");
+		sleep2 500;
+		emotion ET_SURPRISE;
+		cutin "ep19_lehar05.png",2;
+		mes "[Lehar]";
+		mes "โอ้ ข้าไม่ชอบแบบนี้เลย- อ้าว เฮ้ย?";
+		mes "ที่ไหน ที่ไหนกัน?? แบบนี้ พวกเราก็ต้องโดนแบบนี้ด้วยเหรอ??";
+		npctalk "ที่ไหน ที่ไหน?? แบบนี้ พวกเราก็โดนเหมือนกันเหรอ??";
+		next;
+		removespecialeffect EF_BIG_PORTAL2, AREA, instance_npcname("ep20_1twsd_58_327");
+		specialeffect EF_HIT1, AREA, instance_npcname("ep20_1twsd_58_327");
+		disablenpc instance_npcname("ep20_1twsd_58_327");
+		if ('step == 17)
+			'step = 18;
+		cutin "ep20_nyar05.png",1;
+		mes "[แมวสีขาว]";
+		mes "เนี๊ยยยยย--- -- --- - -";
+		npctalk "เนี๊ยยยยย--- -- --- - -", instance_npcname("ep20_1twsd_53_327");
+		next;
+		select( "Lehar? Lehar อยู่ที่ไหน...?" );
+		cutin "ep20_nyar04.png",1;
+		mes "[แมวสีขาว]";
+		mes "จริงสิ---";
+		npctalk "จริงสิ---", instance_npcname("ep20_1twsd_53_327");
+		next;
+		cutin "",255;
+		mes "- แมวสีขาวจ้องมองมาที่ข้าอยู่ครู่ใหญ่ แล้วเริ่มเดินออกไปช้าๆ -";
+		mes "- ข้าคิดว่ามันหมายถึงให้เดินตามมันไป -";
+		unittalk getcharid(3), "" + strcharinfo(0) + " : เจ้าแมวสีขาวเริ่มเดินนำไปราวกับจะให้ตามไป";
+		specialeffect EF_HIT1, AREA, instance_npcname("#20w21");
+		enablenpc instance_npcname("#20w21");
+		close2;
+		donpcevent instance_npcname("ep20_1twsd_53_327") + "::OnMove";
+		end;
+	}
+	end;
+}
+
+
+1@twsd,56,315,0	script(DISABLED)	#20w21	WARPNPC,2,2,{
+	if ('step < 18)
+		end;
+	if (ep20_main == 33) {
+		ep20_main = 34;
+		erasequest 17707;
+		setquest 17708;
+	}
+	warp "jor_back1",363,222;
+	end;
+}
