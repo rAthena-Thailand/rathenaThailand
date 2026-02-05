@@ -18783,6 +18783,37 @@ BUILDIN_FUNC(getmonsterinfo)
 		case MOB_MODE:       script_pushint(st, mob->status.mode); break;
 		case MOB_MVPEXP:     script_pushint(st, mob->mexp); break;
 		case MOB_ID:         script_pushint(st, mob->id); break;
+		case MOB_MAP_COUNT: {
+			std::vector<spawn_info> spawns = mob_get_spawns(mob->id);
+			script_pushint(st, (int)spawns.size());
+			break;
+		}
+		case MOB_MAP: {
+					int index = script_getnum(st, 4); // ดึงพารามิเตอร์ตัวที่ 3 จากสคริปต์
+					std::vector<spawn_info> spawns = mob_get_spawns(mob->id);
+					if (index < 0 || index >= (int)spawns.size()) {
+						script_pushconststr(st, "");
+					} else {
+						int16 mapid = map_mapindex2mapid(spawns[index].mapindex);
+						if (mapid >= 0)
+							script_pushstrcopy(st, map_getmapdata(mapid)->name);
+						else
+							script_pushconststr(st, "");
+					}
+					break;
+				}
+		// เพิ่ม Case ใหม่เพื่อดึงจำนวนมอนสเตอร์ (เช่น Case 32)
+		case 32: { 
+			int index = script_getnum(st, 4);
+			std::vector<spawn_info> spawns = mob_get_spawns(mob->id);
+			if (index < 0 || index >= (int)spawns.size()) {
+				script_pushint(st, 0);
+			} else {
+				// ดึงค่า spawn.qty เหมือนใน @whereis
+				script_pushint(st, spawns[index].qty); 
+			}
+			break;
+		}
 		default:
 			ShowError( "buildin_getmonsterinfo: Invalid getmonsterinfo type '%d'.\n", type );
 			st->state = END;
@@ -28294,7 +28325,7 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(disguise,"i?"), //disguise player. Lupus
 	BUILDIN_DEF(undisguise,"?"), //undisguise player. Lupus
 	BUILDIN_DEF(getrandmobid, "i??"),
-	BUILDIN_DEF(getmonsterinfo,"vi"), //Lupus
+	BUILDIN_DEF(getmonsterinfo,"vi*"), //Lupus
 	BUILDIN_DEF(addmonsterdrop,"vii??"), //Akinari [Lupus]
 	BUILDIN_DEF(delmonsterdrop,"vi"), //Akinari [Lupus]
 	BUILDIN_DEF(axtoi,"s"),
