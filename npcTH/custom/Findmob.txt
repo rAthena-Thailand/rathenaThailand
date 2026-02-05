@@ -1,0 +1,194 @@
+prontera,149,187,6	script	FinderNPC	117,{
+
+    set .@price, 2000; 
+    mes "[ Finder & Database ]";
+    mes "ยินดีต้อนรับค่ะ บริการค้นหาข้อมูลมอนสเตอร์และไอเทม";
+    mes "ค่าบริการครั้งละ ^FF0000 " + .@price + " ^000000 Zeny";
+	if (BaseLevel <= 50) { // 2. เลเวล 1-50 ฟรี
+			set .Price, 0;
+			set .Status$, "^00FF00[LV 1-50 Free]^000000";
+		}else {
+			if (Zeny < .@price) {
+			mes "เงินไม่พอจ่ายค่าบริการ " + .@price + " Zeny";
+			close;
+		}
+	}
+    set .@mode, select("?? ค้นหาด้วย ID มอนสเตอร์:?? ค้นหาด้วย ID ไอเทม (ดูตัวที่ดรอป):?? วาปไปเมืองฟรี ");
+function Go {
+	set lastwarp$, getarg(0);
+	set lastwarpx, getarg(1,0);
+	set lastwarpy, getarg(2,0);
+	warp getarg(0),getarg(1,0),getarg(2,0);
+	end;
+}
+    if (.@mode == 3) {
+// --------------------------------------------------
+	Towns:
+// --------------------------------------------------
+menu	"Prontera",T1, "Alberta",T2, "Aldebaran",T3, "Amatsu",T4, "Ayothaya",T5,
+    	"Brasilis",T6, "Comodo",T7, "Dewata",T8, "Eclage",T9, "Einbech",T10,
+		"Einbroch",T11, "El Dicastes",T12, "Geffen",T13, "Hugel",T14, "Ice Castle",T15,
+		"Izlude",T16, "Jawaii",T17, "Juno",T18, "Kunlun",T19, "Lasagna",T20,
+		"Lighthalzen",T21, "Luoyang",T22, "Lutie",T23, "Malangdo",T24, "Malaya",T25,
+		"Manuk",T26, "Midgarts Expedition Camp",T27, "Mora",T28, "Morocc",T29, "Moscovia",T30,
+		"Nameless Island (Day)",T31, "Nameless Island (Night)",T32, "Niflheim",T33, "Payon",T34, "Rachel",T35,
+		"Rockridge",T36, "Special Security Area, Cor",T37, "Splendide",T38, "Thor Camp",T39, "Umbala",T40,
+		"Varmundt's Mansion",T41, "Veins",T42, "Verus Findspot",T43, "Wolf Village",T44;
+
+T1: Go("prontera",155,183);
+T2: Go("alberta",28,234);
+T3: Go("aldebaran",140,131);
+T4: Go("amatsu",198,84);
+T5: Go("ayothaya",208,166);
+T6: Go("brasilis",196,217);
+T7: Go("comodo",209,143);
+T8: Go("dewata",200,180);
+T9: Go("ecl_in01",48,53);
+T10: Go("einbech",63,35);
+T11: Go("einbroch",64,200);
+T12: Go("dicastes01",198,187);
+T13: Go("geffen",119,59);
+T14: Go("hugel",96,145);
+T15: Go("icecastle",185,212);
+T16: Go("izlude",128,(checkre(3)?146:114));
+T17: Go("jawaii",251,132);
+T18: Go("yuno",157,51);
+T19: Go("gonryun",160,120);
+T20: Go("lasagna",193,182);
+T21: Go("lighthalzen",158,92);
+T22: Go("louyang",217,100);
+T23: Go("xmas",147,134);
+T24: Go("malangdo",140,114);
+T25: Go("malaya",231,200);
+T26: Go("manuk",282,138);
+T27: Go("mid_camp",210,288);
+T28: Go("mora",55,146);
+T29: Go("morocc",156,93);
+T30: Go("moscovia",223,184);
+T31: Go("nameless_i",256,215);
+T32: Go("nameless_n",256,215);
+T33: Go("niflheim",202,174);
+T34: Go("payon",179,100);
+T35: Go("rachel",130,110);
+T36: Go("harboro1",298,206);
+T37: Go("sp_cor",160,166);
+T38: Go("splendide",201,147);
+T39: Go("thor_camp",246,68);
+T40: Go("umbala",97,153);
+T41: Go("ba_maison",72,146);
+T42: Go("veins",216,123);
+T43: Go("verus04",123,250);
+T44: Go("wolfvill",144,144);
+    }
+
+    if (.@mode == 1) {
+        // --- โหมดค้นหามอนสเตอร์ ---
+        mes "กรุณาใส่ ID มอนสเตอร์ที่ต้องการหา";
+        input .@mob_id;
+        callsub OnSearchMob, .@mob_id;
+} else {
+        // --- โหมดค้นหาไอเทม (เวอร์ชั่นแปลง ID เป็น Aegis Name) ---
+        mes "กรุณาใส่ ID ไอเทมที่ต้องการหา";
+        input .@item_id;
+        
+        // 1. ดึง Aegis Name จาก item_db_re
+        set .@item_name$, getitemname(.@item_id);
+        if (.@item_name$ == "null") {
+            mes "ไม่พบไอเทมไอดีนี้ในฐานข้อมูล";
+            close;
+        }
+
+        // ดึงชื่อ Aegis Name จริงๆ จาก SQL (เพราะ getitemname อาจได้ชื่อแสดงผล)
+        query_sql "SELECT name_aegis FROM `item_db_re` WHERE `id` = "+.@item_id, .@aegis_name$;
+
+        if (.@aegis_name$ == "") {
+            mes "ไม่พบชื่อโปรแกรม (Aegis Name) ของไอเทมนี้";
+            close;
+        }
+
+        // 2. ค้นหาจาก mob_db_re โดยใช้ชื่อ Aegis Name ที่ได้มา
+        set .@m_count, query_sql("SELECT id, "+
+            "CASE "+
+            "WHEN drop1_item = '"+.@aegis_name$+"' THEN drop1_rate "+
+            "WHEN drop2_item = '"+.@aegis_name$+"' THEN drop2_rate "+
+            "WHEN drop3_item = '"+.@aegis_name$+"' THEN drop3_rate "+
+            "WHEN drop4_item = '"+.@aegis_name$+"' THEN drop4_rate "+
+            "WHEN drop5_item = '"+.@aegis_name$+"' THEN drop5_rate "+
+            "WHEN drop6_item = '"+.@aegis_name$+"' THEN drop6_rate "+
+            "WHEN drop7_item = '"+.@aegis_name$+"' THEN drop7_rate "+
+            "WHEN drop8_item = '"+.@aegis_name$+"' THEN drop8_rate "+
+            "WHEN drop9_item = '"+.@aegis_name$+"' THEN drop9_rate "+
+            "WHEN drop10_item = '"+.@aegis_name$+"' THEN drop10_rate "+
+            "ELSE 0 END as rate "+
+            "FROM `mob_db_re` WHERE "+
+            "drop1_item = '"+.@aegis_name$+"' OR drop2_item = '"+.@aegis_name$+"' OR drop3_item = '"+.@aegis_name$+"' OR "+
+            "drop4_item = '"+.@aegis_name$+"' OR drop5_item = '"+.@aegis_name$+"' OR drop6_item = '"+.@aegis_name$+"' OR "+
+            "drop7_item = '"+.@aegis_name$+"' OR drop8_item = '"+.@aegis_name$+"' OR drop9_item = '"+.@aegis_name$+"' OR "+
+            "drop10_item = '"+.@aegis_name$+"' ORDER BY rate DESC LIMIT 10", .@m_ids, .@m_rates);
+
+        if (.@m_count > 0) {
+            mes "ไอเทม ^0000FF" + .@item_name$ + "^000000 (" + .@aegis_name$ + ")";
+            mes "ดรอปจากมอนสเตอร์ดังนี้:";
+            
+            set .@menu_m$, "";
+            for (set .@i, 0; .@i < .@m_count; set .@i, .@i + 1) {
+                set .@r, .@m_rates[.@i];
+                set .@menu_m$, .@menu_m$ + " > " + getmonsterinfo(.@m_ids[.@i], 1) + " [" + .@r/100 + "." + ((.@r%100 < 10) ? "0":"") + .@r%100 + " %]:";
+            }
+            
+            set .@target_idx, select(.@menu_m$);
+            next;
+            callsub OnSearchMob, .@m_ids[.@target_idx-1]; 
+        } else {
+            mes "ไม่พบมอนสเตอร์ที่ดรอปไอเทม " + .@aegis_name$ + " ใน SQL";
+            close;
+        }
+    }
+    end;
+
+OnSearchMob:
+    set .@m_id, getarg(0);
+    set .@m_name$, getmonsterinfo(.@m_id, 1);
+    
+    if (.@m_name$ == "null" || .@m_name$ == "") {
+        mes "ไม่พบข้อมูลมอนสเตอร์ไอดี " + .@m_id;
+        return;
+    }
+
+    set Zeny, Zeny - .@price;
+
+    mes "มอนสเตอร์: ^0000FF" + .@m_name$ + "^000000";
+    
+    // แสดงจุดเกิดและจำนวนตัว
+    set .@count, getmonsterinfo(.@m_id, 30);
+    if (.@count <= 0) {
+        mes "มอนสเตอร์ตัวนี้ไม่มีจุดเกิดตามธรรมชาติ";
+        close;
+    }
+
+    mes "พบจุดเกิดทั้งหมด ^FF0000" + .@count + "^000000 แห่ง:";
+    set .@menu$, "";
+    for (set .@j, 0; .@j < .@count; set .@j, .@j + 1) {
+        set .@menu$, .@menu$ + " > " + getmonsterinfo(.@m_id, 31, .@j) + " (" + getmonsterinfo(.@m_id, 32, .@j) + " ตัว):";
+    }
+
+    set .@selection, select(.@menu$);
+    set .@target_map$, getmonsterinfo(.@m_id, 31, .@selection - 1);
+
+    mes "กำลังวาร์ปไปที่ " + .@target_map$ + "...";
+    close2;
+    warp .@target_map$, 0, 0;
+    return;
+
+OnInit:
+    delwaitingroom;
+    .s_msg$ = " --- ค้นหามอนสเตอร์! --- ";
+    while(1) {
+        delwaitingroom;
+        waitingroom .s_msg$, 0;
+        .s_msg$ = delchar(.s_msg$ + charat(.s_msg$, 0), 0);
+        sleep 450;
+    }
+    end;
+}
+
