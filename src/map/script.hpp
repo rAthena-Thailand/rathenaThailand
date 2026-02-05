@@ -387,6 +387,8 @@ enum e_monsterinfo_types : uint8 {
 	MOB_MODE,
 	MOB_MVPEXP,
 	MOB_ID,
+	MOB_MAP_COUNT, // --
+	MOB_MAP,       // --
 };
 
 enum petinfo_types {
