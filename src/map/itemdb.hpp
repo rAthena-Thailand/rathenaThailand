@@ -3223,6 +3223,8 @@ enum e_random_item_group {
 	IG_SELECT_DEC_PACK1,
 	IG_SELECT_DEC_PACK2,
 	IG_SELECT_DEC_PACK3,
+	IG_YOR_CARD,
+	IG_TAN_BOX,
 
 	IG_MAX
 };

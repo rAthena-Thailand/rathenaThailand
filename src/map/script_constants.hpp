@@ -2011,6 +2011,7 @@
 	export_constant(SC_WATER_CHARM_POWER);
 	export_constant(SC_WIND_CHARM_POWER);
 	export_constant(SC_GROUND_CHARM_POWER);
+	export_constant(SC_GROGGY_ON);
 
 /// Do not modify code below this, until the end of the API hook, since it will be automatically generated again
 /// @APIHOOK_START(EFST_CONST)
@@ -7410,6 +7411,8 @@
 	export_constant(IG_SELECT_DEC_PACK1);
 	export_constant(IG_SELECT_DEC_PACK2);
 	export_constant(IG_SELECT_DEC_PACK3);
+	export_constant(IG_YOR_CARD);
+	export_constant(IG_TAN_BOX);
 
 	/* unit stop walking */
 	export_constant(USW_NONE);

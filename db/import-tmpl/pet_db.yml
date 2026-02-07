@@ -578,4 +578,29 @@ Body:
          bonus bMatkRate,3;
          bonus bSpl,2;
       }
+###########################################################################
+##          EP.21
+###########################################################################
+  - Mob: EP21_ICESEAHORSE
+    TameItem: Ep21_Fatty_Shrimp
+    EggItem: ICESEAHORSE_Egg
+    FoodItem: Pet_Food
+    Fullness: 3
+    HungryDelay: 120   # unknown
+    IntimacyFed: 10
+    CaptureRate: 500
+    SpecialPerformance: false
+    AllowAutoFeed: true
+    Script: >
+      .@i = getpetinfo(PETINFO_INTIMATE);
+
+      if (.@i >= PET_INTIMATE_LOYAL) {
+         bonus bRes,5;
+         bonus bResRate,5;
+      }
+      else if (.@i >= PET_INTIMATE_CORDIAL) {
+         bonus bRes,10;
+         bonus bResRate,10;
+      }
+
 

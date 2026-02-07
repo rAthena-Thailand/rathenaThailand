@@ -1,0 +1,1572 @@
+1@wtgs,1,1,0	script	#EP21_GS_control	-1,{
+	end;
+
+OnInstanceInit:
+	set_instance_var("map$", instance_mapname("1@wtgs"));
+	set_instance_var("mps", 0);
+	set_instance_var("event_control", 0);
+	set_instance_var("summon", 0);
+	set_instance_var("ds", 0);
+	set_instance_var("control$",instance_npcname(strnpcinfo(0)));
+	instance_enable("#ep21_rw10",true);
+end;
+
+OnEvent:
+	set_instance_var("event_control",get_instance_var("event_control") + 1);
+	instance_event(strnpcinfo(0),"OnEvent" + (get_instance_var("event_control") > 9 ? get_instance_var("event_control") : ("0" + get_instance_var("event_control"))),false);
+end;
+
+OnEvent01:
+	set_instance_var("mps", 1);
+	instance_enable("Maristella Walter#ep21_rwi01",true);
+	npctalk "Maristella Walter : สถานที่แห่งนี้เป็นที่ที่ฉันจำได้แน่นอน แต่ฉันก็ไม่ค่อยแน่ใจเต็มร้อยนัก",instance_npcname("Maristella Walter#ep21_rwi01");
+end;
+
+OnEvent02:
+	set_instance_var("mps", 2);
+	instance_enable("Maristella Walter#ep21_rwi01",false);
+	instance_enable("Yohan#ep21_rw04",false);
+	instance_enable("Tan#ep21_rw02",false);
+	instance_enable("Iana Operta#ep21_rwi01",false);
+	instance_enable("Sternlight#ep21_rw01",true);
+	instance_enable("Mast Traces#ep21_rw02",true);
+	instance_enable("Old Box#ep21_rw03",true);
+	instance_enable("Crumpled Documents#ep21_rw",true);
+	instance_enable("Rusty Fountain Pen#ep21_rw05",true);
+	instance_enable("Box Under a Bed#ep21_rw0",true);
+	instance_event(strnpcinfo(0),"OnSummon",false);
+end;
+
+OnEvent03:
+	set_instance_var("mps", 9);
+	instance_enable("Maristella Walter#ep21_rwi02",false);
+	instance_enable("Yohan#ep21_rw05",false);
+	instance_enable("Tan#ep21_rw03",false);
+	instance_enable("Iana Operta#ep21_rwi02",false);
+	instance_enable("Ghostship Captain#ep21_rw01",true);
+end;
+
+OnEvent04:
+	set_instance_var("mps", 10);
+	instance_enable("Ghostship Captain#ep21_rw02",true);
+end;
+
+OnEvent05:
+	set_instance_var("mps", 11);
+	instance_enable("Howell Megas Walter#ep21_r",true);
+	instance_enable("Iana Operta#ep21_rwi04",true);
+	instance_enable("Tan#ep21_rw05",true);
+	instance_enable("Yohan#ep21_rw07",true);
+	instance_enable("Maristella Walter#ep21_rwi04",true);
+	mapwarp get_instance_var("map$"),get_instance_var("map$"),309,25;
+	instance_enable("Ghostship Captain#ep21_rw02",false);
+	instance_enable("Maristella Walter#ep21_rwi03",false);
+	instance_enable("Yohan#ep21_rw06",false);
+	instance_enable("Tan#ep21_rw04",false);
+	instance_enable("Iana Operta#ep21_rwi03",false);
+end;
+
+OnEvent06:
+	set_instance_var("mps", 12);
+	instance_enable("Howell Megas Walter#ep21_r",false);
+	instance_enable("Maristella Walter#ep21_rwi04",false);
+	instance_enable("Yohan#ep21_rw07",false);
+	instance_enable("Tan#ep21_rw05",false);
+	instance_enable("Iana Operta#ep21_rwi04",false);
+	instance_enable("Maristella Walter#ep21_rwi05",true);
+	instance_enable("Iana Operta#ep21_rwi05",true);
+	instance_enable("Tan#ep21_rw06",true);
+	instance_enable("Yohan#ep21_rw08",true);
+	instance_enable("#ep21_rwarp06",true);
+end;
+
+OnEvent07:
+	set_instance_var("mps", 13);
+	instance_enable("#ep21_rwarp07",true);
+end;
+
+OnSummon:
+	.@var = get_instance_var("summon") + 1;
+	.@event$ = get_instance_var("control$") + "::OnMobKill";
+	set_instance_var("summon", .@var);
+	switch(.@var){
+		case 1:
+			.@map$ = get_instance_var("map$");
+			setarray .@mob$,
+				67,314,22369,"Ghostship Crew",
+				67,312,22369,"Ghostship Crew",
+				67,308,22369,"Ghostship Crew",
+				64,310,22369,"Ghostship Crew",
+				64,313,22369,"Ghostship Crew",
+				61,312,22369,"Ghostship Crew";
+			break;
+
+		case 2:
+			.@map$ = get_instance_var("map$");
+			setarray .@mob$,
+				67,329,22369,"Ghostship Crew",
+				67,327,22369,"Ghostship Crew",
+				70,330,22369,"Ghostship Crew",
+				70,328,22369,"Ghostship Crew";
+			break;
+
+		case 3:
+			.@map$ = get_instance_var("map$");
+			setarray .@mob$,
+				114,315,22369,"Ghostship Crew",
+				117,317,22369,"Ghostship Crew",
+				114,311,22369,"Ghostship Crew",
+				110,310,22369,"Ghostship Crew",
+				110,307,22369,"Ghostship Crew";
+			break;
+
+		case 4:
+			.@map$ = get_instance_var("map$");
+			setarray .@mob$,
+				47,24,22369,"Ghostship Crew",
+				52,25,22369,"Ghostship Crew",
+				47,27,22369,"Ghostship Crew",
+				52,22,22369,"Ghostship Crew",
+				52,29,22369,"Ghostship Crew";
+			break;
+
+		case 5:
+			.@map$ = get_instance_var("map$");
+			setarray .@mob$,
+				//RIGHT
+				185,94,22369,"Ghostship Crew",
+				185,98,22369,"Ghostship Crew",	
+				185,101,22369,"Ghostship Crew",
+				//CENTER
+				152,98,22369,"Ghostship Crew",
+				151,101,22369,"Ghostship Crew",
+				149,98,22369,"Ghostship Crew",
+				147,101,22369,"Ghostship Crew",
+				149,94,22369,"Ghostship Crew",
+				//LEFT
+				111,119,22369,"Ghostship Crew",
+				111,114,22369,"Ghostship Crew",
+				107,114,22369,"Ghostship Crew",
+				107,109,22369,"Ghostship Crew",
+				111,109,22369,"Ghostship Crew",
+				107,119,22369,"Ghostship Crew",
+				110,104,22369,"Ghostship Crew";
+			break;
+	}
+	for(.@i = 0; .@i < getarraysize(.@mob$); .@i += 4)
+		monster .@map$,atoi(.@mob$[.@i]),atoi(.@mob$[.@i+1]),.@mob$[.@i+3],atoi(.@mob$[.@i+2]),1,.@event$;
+end;
+
+OnMobKill:
+	if(mobcount(get_instance_var("map$"),get_instance_var("control$") + "::OnMobKill")) end;
+	switch(get_instance_var("summon")){
+		case 1:
+		case 2:
+			instance_event(strnpcinfo(0),"OnSummon",false);
+			break;
+
+		case 3:
+			instance_enable("#ep21_rwarp01",true);
+			instance_enable("#ep21_rwarp02",true);
+			instance_event(strnpcinfo(0),"OnSummon",false);
+			break;
+
+		case 4:
+			instance_enable("#ep21_rwarp03",true);
+			instance_enable("#ep21_rwarp04",true);
+			instance_event(strnpcinfo(0),"OnSummon",false);
+			break;
+
+		case 5:
+			instance_enable("#ep21_rwarp05",true);
+			break;
+	}
+end;
+
+OnBossSummon:
+	if(get_instance_var("daily") != true)
+		monster get_instance_var("map$"),170,25,"Ghostship Captain",22370,1,instance_npcname(strnpcinfo(0)) + "::OnBossKill";
+	else
+		monster get_instance_var("map$"),170,25,"Ghostship Captain",22372,1,instance_npcname(strnpcinfo(0)) + "::OnBossKill";
+end;
+
+OnBossKill:
+	if(get_instance_var("daily") != true)
+		instance_event("#EP21_GS_control","OnEvent",false);
+	else {
+		set_instance_var("ds",3);
+		instance_enable("Maristella Walter#ep21_rwi03",true);
+		instance_enable("Maristella Walter#ep21_rwi04",true);
+		instance_enable("Maristella Walter#ep21_rwi05",true);
+		instance_enable("#ep21_rwarp06",true);
+		instance_enable("#ep21_rwarp07",true);
+	}
+end;
+}
+
+1@wtgs,86,307,0	script(DISABLED)	#ep21_rw10	HIDDEN_WARP_NPC,4,4,{
+	end;
+	
+OnTouch:
+	if(is_party_leader() && get_instance_var("daily") == true){
+		instance_enable("Maristella Walter#ep21_rwdaily",true);
+		end;
+	}
+	if(is_party_leader() && get_instance_var("mps") == 0)
+		instance_event("#EP21_GS_control","OnEvent",false);
+end;
+}
+
+//Event 1
+1@wtgs,84,311,3	script(DISABLED)	Maristella Walter#ep21_rwdaily	4_EP21_MARISTELLA,{
+	if(is_party_leader() && isbegin_quest(16826) == 1 && !get_instance_var("ds")){
+		set_instance_var("ds",1);
+		instance_event("#EP21_GS_control","OnSummon",false);
+		sleep 500;
+		instance_enable("Maristella Walter#ep21_rwdaily",false);
+		end;
+	}
+	if(is_party_leader() && !get_instance_var("ds")){
+		cutin "ep21_maristella03.png",1;
+		mes "[Maristella Walter]";
+		mes "พ่อมดคนนั้นพูดถูกจริงๆ มันเป็นอย่างที่เขาคิดเลย มันกำลังฉายซ้ำ";
+		npctalk "Maristella Walter : พ่อมดคนนั้นพูดถูกจริงๆ มันเป็นอย่างที่เขาคิดเลย มันกำลังฉายซ้ำ";
+		next;
+		mes "[Maristella Walter]";
+		next;
+		cutin "ep21_maristella01.png",1;
+		mes "[Maristella Walter]";
+		mes "บางทีนี่อาจจะเป็นเหตุผลที่ฉันมาอยู่ที่นี่ด้วยตัวเอง เอาล่ะ เดินหน้ากันต่อเถอะ";
+		npctalk "Maristella Walter : บางทีนี่อาจจะเป็นเหตุผลที่ฉันมาอยู่ที่นี่ด้วยตัวเอง เอาล่ะ เดินหน้ากันต่อเถอะ";
+		instance_enable("Maristella Walter#ep21_rwdaily",false);
+		close2;
+		cutin "",255;
+		set_instance_var("ds",1);
+		instance_event("#EP21_GS_control","OnSummon",false);
+	}
+	end;
+}
+
+1@wtgs,84,311,3	script(DISABLED)	Maristella Walter#ep21_rwi01	4_EP21_MARISTELLA,{
+	if(is_party_leader() && get_instance_var("mps") == 1){
+		instance_enable("Yohan#ep21_rw04",true);
+		instance_enable("Tan#ep21_rw02",true);
+		instance_enable("Iana Operta#ep21_rwi01",true);
+		cutin "ep21_maristella01.png",1;
+		mes "[Maristella Walter]";
+		next;
+		mes "[Maristella Walter]";
+		mes "เอาล่ะ เดินทางต่ออย่างระมัดระวังกันเถอะ";
+		npctalk "Maristella Walter : เอาล่ะ เดินทางต่ออย่างระมัดระวังกันเถอะ";
+		next;
+		cutin "ep21_iana01.png",1;
+		mes "[Iana Operta]";
+		mes "จ้าๆ ฉันได้ยินมาว่ามันไม่ได้โจมตีเรือของเราก็จริง แต่บางอย่างอาจจะเกิดขึ้นถ้าเราเข้าไปลึกกว่านี้";
+		npctalk "Iana Operta : จ้าๆ ฉันได้ยินมาว่ามันไม่ได้โจมตีเรือของเราก็จริง แต่บางอย่างอาจจะเกิดขึ้นถ้าเราเข้าไปลึกกว่านี้",instance_npcname("Iana Operta#ep21_rwi01");
+		next;
+		cutin "ep21_maristella01.png",1;
+		mes "[Maristella Walter]";
+		mes "ถูกต้องที่สุด ระวังตัวให้ดีขณะที่เราเดินหน้าไป และคอยมองหาเบาะแสที่อาจจะยืนยันได้ว่าเรือลำนี้คือเรือ Walter";
+		npctalk "Maristella Walter : ถูกต้องที่สุด ระวังตัวให้ดีขณะที่เราเดินหน้าไป และคอยมองหาเบาะแสที่อาจจะยืนยันได้ว่าเรือลำนี้คือเรือ Walter";
+		next;
+		cutin "ep21_yohan01.png",2;
+		mes "[Yohan]";
+		next;
+		cutin "ep21_yohan03.png",2;
+		mes "[Yohan]";
+		next;
+		cutin "ep21_iana02.png",1;
+		mes "[Iana Operta]";
+		mes "เฮ้อ Yohan ฉันเข้าใจว่านายรู้สึกยังไงนะ แต่ใจเย็นๆ ก่อน";
+		npctalk "Iana Operta : เฮ้อ Yohan ฉันเข้าใจว่านายรู้สึกยังไงนะ แต่ใจเย็นๆ ก่อน",instance_npcname("Iana Operta#ep21_rwi01");
+		next;
+		cutin "ep21_tan01.png",1;
+		mes "[Tan]";
+		mes "กลาสีชั้นผู้น้อยมาขึ้นเสียงแบบนั้น ความมีระเบียบวินัยของลูกเรือ Walter นี่เห็นชัดเลยนะ";
+		npctalk "Tan : กลาสีชั้นผู้น้อยมาขึ้นเสียงแบบนั้น ความมีระเบียบวินัยของลูกเรือ Walter นี่เห็นชัดเลยนะ",instance_npcname("Tan#ep21_rw02");
+		next;
+		cutin "ep21_iana03.png",1;
+		mes "[Iana Operta]";
+		mes "ตายจริง ผู้บัญชาการ Tan ท่านกังวลเรื่องการรักษาเกียรติของกัปตันเราขนาดนั้นเลยเหรอคะ?";
+		npctalk "Iana Operta : ตายจริง ผู้บัญชาการ Tan ท่านกังวลเรื่องการรักษาเกียรติของกัปตันเราขนาดนั้นเลยเหรอคะ?",instance_npcname("Iana Operta#ep21_rwi01");
+		next;
+		cutin "ep21_tan02.png",1;
+		mes "[Tan]";
+		next;
+		cutin "ep21_iana02.png",1;
+		mes "[Iana Operta]";
+		mes "ได้ยินแล้วใช่ไหม Yohan? ระวังตัวให้มากกว่านี้หน่อย";
+		npctalk "Iana Operta : ได้ยินแล้วใช่ไหม Yohan? ระวังตัวให้มากกว่านี้หน่อย",instance_npcname("Iana Operta#ep21_rwi01");
+		next;
+		cutin "ep21_maristella01.png",1;
+		mes "[Maristella Walter]";
+		instance_event("#EP21_GS_control","OnEvent",false);
+		close3;
+	}
+	end;
+}
+
+1@wtgs,81,312,5	script(DISABLED)	Yohan#ep21_rw04	4_EP21_YOHAN,{
+	cutin "ep21_yohan03.png",2;
+	mes "[Yohan]";
+	close3;
+}
+
+1@wtgs,86,313,3	script(DISABLED)	Tan#ep21_rw02	4_EP21_TAN,{
+	cutin "ep21_tan02.png",1;
+	mes "[Tan]";
+	mes "นี่ กัปตันแห่ง Walter คุณควรจะคุมลูกเรือของคุณให้ดีกว่านี้นะ";
+	close3;
+}
+
+1@wtgs,89,309,3	script(DISABLED)	Iana Operta#ep21_rwi01	4_EP21_IANA,{
+	cutin "ep21_iana03.png",1;
+	mes "[Iana Operta]";
+	mes "ผู้บัญชาการของเราช่างใจดีจังเลยเนอะ~";
+	close3;
+}
+
+//= Event 1
+1@wtgs,48,320,3	script(DISABLED)	Sternlight#ep21_rw01	4_POINT_RED,3,3,{
+	if(!is_party_leader()) end;
+	instance_enable("Maristella Walter#ep21_rwi06",true);
+	instance_enable("Yohan#ep21_rw09",true);
+	instance_enable("Tan#ep21_rw07",true);
+	instance_enable("Iana Operta#ep21_rwi06",true);
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	next;
+	cutin "ep21_yohan01.png",2;
+	mes "[Yohan]";
+	next;
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	mes "ฉันเห็นด้วยนะ Yohan ไฟท้ายเรือของ Walter จากความทรงจำของฉันมันไม่ได้เป็นสีฟ้าแบบนี้ แต่มันเป็นสีที่ดูอบอุ่นกว่านี้มาก";
+	npctalk "Maristella Walter : ฉันเห็นด้วยนะ Yohan ไฟท้ายเรือของ Walter จากความทรงจำของฉันมันไม่ได้เป็นสีฟ้าแบบนี้ แต่มันเป็นสีที่ดูอบอุ่นกว่านี้มาก",instance_npcname("Maristella Walter#ep21_rwi06");
+	next;
+	mes "[Maristella Walter]";
+	mes "แต่ตำแหน่งและรูปร่างมันรู้สึกคุ้นเคย นั่นคือเหตุผลที่มันคุ้มค่าที่จะพิจารณาดู";
+	npctalk "Maristella Walter : แต่ตำแหน่งและรูปร่างมันรู้สึกคุ้นเคย นั่นคือเหตุผลที่มันคุ้มค่าที่จะพิจารณาดู",instance_npcname("Maristella Walter#ep21_rwi06");
+	next;
+	cutin "ep21_yohan01.png",2;
+	mes "[Yohan]";
+	next;
+	cutin "ep21_iana01.png",1;
+	mes "[Iana Operta]";
+	mes "เอาล่ะ เรายังแน่ใจไม่ได้เพียงแค่ดูจากไฟท้ายเรือหรอก เข้าไปข้างในเรือกันต่อเถอะ";
+	npctalk "Iana Operta : เอาล่ะ เรายังแน่ใจไม่ได้เพียงแค่ดูจากไฟท้ายเรือหรอก เข้าไปข้างในเรือกันต่อเถอะ",instance_npcname("Iana Operta#ep21_rwi06");
+	next;
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	mes "'อสูรกายสีฟ้าสามตา' เรือ Walter ไม่เคยเป็นเรือที่จะถูกเรียกด้วยชื่ออะไรแบบนั้นเลยนะ";
+	npctalk "Maristella Walter : 'อสูรกายสีฟ้าสามตา' เรือ Walter ไม่เคยเป็นเรือที่จะถูกเรียกด้วยชื่ออะไรแบบนั้นเลยนะ",instance_npcname("Maristella Walter#ep21_rwi06");
+	next;
+	cutin "ep21_yohan03.png",2;
+	mes "[Yohan]";
+	next;
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	next;
+	mes "[Maristella Walter]";
+	mes "เข้าไปลึกกว่านี้กันเถอะ";
+	npctalk "Maristella Walter : เข้าไปลึกกว่านี้กันเถอะ",instance_npcname("Maristella Walter#ep21_rwi06");
+	instance_enable("Sternlight#ep21_rw01",false);
+	instance_enable("Maristella Walter#ep21_rwi06",false);
+	instance_enable("Yohan#ep21_rw09",false);
+	instance_enable("Tan#ep21_rw07",false);
+	instance_enable("Iana Operta#ep21_rwi06",false);
+	set_instance_var("mps", get_instance_var("mps") + 1);
+	close3;
+
+OnTouch:
+	if(is_party_leader())
+		npctalk "!!!";
+end;
+}
+
+1@wtgs,52,316,1	script(DISABLED)	Yohan#ep21_rw09	4_EP21_YOHAN,{
+	cutin "ep21_yohan01.png",2;
+	mes "[Yohan]";
+	close3;
+}
+
+1@wtgs,52,319,3	script(DISABLED)	Iana Operta#ep21_rwi06	4_EP21_IANA,{
+	cutin "ep21_iana02.png",1;
+	mes "[Iana Operta]";
+	mes "มันไม่ได้เหมือนกับที่ฉันจำได้เป๊ะๆ หรอกนะ~ แต่ฉันก็จำลักษณะที่คุ้นเคยบางอย่างได้ประปรายที่นี่";
+	close3;
+}
+
+1@wtgs,49,316,1	script(DISABLED)	Maristella Walter#ep21_rwi06	4_EP21_MARISTELLA,{
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	close3;
+}
+
+1@wtgs,48,318,7	script(DISABLED)	Tan#ep21_rw07	4_EP21_TAN,{
+	cutin "ep21_tan01.png",1;
+	mes "[Tan]";
+	mes "ก็นะ ฉันพูดอะไรมากไม่ได้หรอก เพราะฉันไม่รู้จริงๆ ว่าเรือของพ่อค้า Walter ในอดีตมีหน้าตาเป็นยังไง";
+	close3;
+}
+
+//= Event 2
+1@wtgs,112,325,3	script(DISABLED)	Mast Traces#ep21_rw02	4_POINT_RED,3,3,{
+	if(!is_party_leader()) end;
+	instance_enable("Maristella Walter#ep21_rwi07",true);
+	instance_enable("Yohan#ep21_rw10",true);
+	instance_enable("Tan#ep21_rw08",true);
+	instance_enable("Iana Operta#ep21_rwi07",true);
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	next;
+	cutin "ep21_maristella03.png",1;
+	mes "[Maristella Walter]";
+	next;
+	cutin "ep21_iana01.png",1;
+	mes "[Iana Operta]";
+	mes "บนเสากระโดงหลักเหรอ? น่าสนใจจัง ใครกันนะที่กล้าหาญทำอะไรแบบนั้น?";
+	npctalk "Iana Operta : บนเสากระโดงหลักเหรอ? น่าสนใจจัง ใครกันนะที่กล้าหาญทำอะไรแบบนั้น?",instance_npcname("Iana Operta#ep21_rwi07");
+	next;
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	next;
+	cutin "ep21_tan01.png",1;
+	mes "[Tan]";
+	mes "เมื่อกี้ฉันได้ยินไม่ค่อยชัดน่ะ";
+	npctalk "Tan : เมื่อกี้ฉันได้ยินไม่ค่อยชัดน่ะ",instance_npcname("Tan#ep21_rw08");
+	next;
+	cutin "ep21_maristella03.png",1;
+	mes "[Maristella Walter]";
+	next;
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	mes "ตอนที่พวกเขาอนุญาตให้ฉันปีนขึ้นไปบนเสากระโดงหลักเป็นครั้งแรก ฉันตื่นเต้นมากจนสลักชื่อย่อของตัวเองไว้บนนั้นน่ะ";
+	npctalk "Maristella Walter : ตอนที่พวกเขาอนุญาตให้ฉันปีนขึ้นไปบนเสากระโดงหลักเป็นครั้งแรก ฉันตื่นเต้นมากจนสลักชื่อย่อของตัวเองไว้บนนั้นน่ะ",instance_npcname("Maristella Walter#ep21_rwi07");
+	next;
+	cutin "ep21_iana04.png",1;
+	mes "[Iana Operta]";
+	next;
+	cutin "ep21_tan02.png",1;
+	mes "[Tan]";
+	next;
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	next;
+	cutin "ep21_yohan02.png",2;
+	mes "[Yohan]";
+	next;
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	instance_enable("Mast Traces#ep21_rw02",false);
+	instance_enable("Maristella Walter#ep21_rwi07",false);
+	instance_enable("Yohan#ep21_rw10",false);
+	instance_enable("Tan#ep21_rw08",false);
+	instance_enable("Iana Operta#ep21_rwi07",false);
+	set_instance_var("mps", get_instance_var("mps") + 1);
+	close3;
+	
+OnTouch:
+	npctalk "!!!";
+end;
+}
+
+1@wtgs,116,326,3	script(DISABLED)	Maristella Walter#ep21_rwi07	4_EP21_MARISTELLA,{
+	cutin "ep21_maristella03.png",1;
+	mes "[Maristella Walter]";
+	close3;
+}
+
+1@wtgs,114,328,3	script(DISABLED)	Yohan#ep21_rw10	4_EP21_YOHAN,{
+	cutin "ep21_yohan02.png",2;
+	mes "[Yohan]";
+	close3;
+}
+
+1@wtgs,110,327,5	script(DISABLED)	Tan#ep21_rw08	4_EP21_TAN,{
+	cutin "ep21_tan02.png",1;
+	mes "[Tan]";
+	mes "อะแฮ่ม ฉันควรจะระวังคำพูดหน่อยแล้วสิ";
+	close3;
+}
+
+1@wtgs,109,326,5	script(DISABLED)	Iana Operta#ep21_rwi07	4_EP21_IANA,{
+	cutin "ep21_iana04.png",1;
+	mes "[Iana Operta]";
+	mes "อะเฮะเฮะ นั่นแหละคือเหตุผลที่ฉันพูดเสมอว่า Mari น่ะน่ารักใช่ไหมล่ะ?";
+	close3;
+}
+
+//= Event 3
+1@wtgs,142,314,3	script(DISABLED)	Old Box#ep21_rw03	4_WOODBOX,3,3,{
+	if(!is_party_leader()) end;
+	instance_enable("Maristella Walter#ep21_rwi08",true);
+	instance_enable("Yohan#ep21_rw11",true);
+	instance_enable("Tan#ep21_rw09",true);
+	instance_enable("Iana Operta#ep21_rwi08",true);
+	cutin "ep21_yohan02.png",2;
+	mes "[Yohan]";
+	next;
+	cutin "ep21_tan01.png",1;
+	mes "[Tan]";
+	mes "มองทางด้วยสิเจ้าหนู";
+	npctalk "Tan : มองทางด้วยสิเจ้าหนู",instance_npcname("Tan#ep21_rw09");
+	next;
+	cutin "ep21_yohan02.png",2;
+	mes "[Yohan]";
+	next;
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	mes "มีอะไรเหรอ? Yohan";
+	npctalk "Maristella Walter : มีอะไรเหรอ? Yohan",instance_npcname("Maristella Walter#ep21_rwi08");
+	next;
+	cutin "ep21_yohan01.png",2;
+	mes "[Yohan]";
+	next;
+	mes "[Yohan]";
+	next;
+	cutin "ep21_tan01.png",1;
+	mes "[Tan]";
+	mes "มันสำคัญด้วยเหรอ";
+	npctalk "Tan : มันสำคัญด้วยเหรอ",instance_npcname("Tan#ep21_rw09");
+	next;
+	cutin "ep21_yohan01.png",2;
+	mes "[Yohan]";
+	next;
+	mes "[Yohan]";
+	next;
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	next;
+	cutin "ep21_yohan01.png",2;
+	mes "[Yohan]";
+	instance_enable("Old Box#ep21_rw03",false);
+	instance_enable("Maristella Walter#ep21_rwi08",false);
+	instance_enable("Yohan#ep21_rw11",false);
+	instance_enable("Tan#ep21_rw09",false);
+	instance_enable("Iana Operta#ep21_rwi08",false);
+	set_instance_var("mps", get_instance_var("mps") + 1);
+	close3;
+	
+OnTouch:
+	if(is_party_leader())
+		npctalk "!!!";
+end;
+}
+
+1@wtgs,138,313,5	script(DISABLED)	Yohan#ep21_rw11	4_EP21_YOHAN,{
+	cutin "ep21_yohan01.png",2;
+	mes "[Yohan]";
+	close3;
+}
+
+1@wtgs,139,316,5	script(DISABLED)	Tan#ep21_rw09	4_EP21_TAN,{
+	cutin "ep21_tan02.png",1;
+	mes "[Tan]";
+	mes "ทำไม อย่ามองฉันแบบนั้นสิ";
+	close3;
+}
+
+1@wtgs,142,316,3	script(DISABLED)	Maristella Walter#ep21_rwi08	4_EP21_MARISTELLA,{
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	close3;
+}
+
+1@wtgs,141,312,7	script(DISABLED)	Iana Operta#ep21_rwi08	4_EP21_IANA,{
+	cutin "ep21_iana02.png",1;
+	mes "[Iana Operta]";
+	mes "พวกนี้ทำให้ฉันนึกถึงตอนที่ฉันจงใจทิ้งเศษไม้ไว้บนดาดเรือ Walter เลยล่ะ";
+	close3;
+}
+
+//= Event 4
+1@wtgs,66,37,3	script(DISABLED)	Crumpled Documents#ep21_rw	4_EP18_PAPERS,3,3,{
+	if(!is_party_leader()) end;
+	instance_enable("Maristella Walter#ep21_rwi09",true);
+	instance_enable("Yohan#ep21_rw12",true);
+	instance_enable("Tan#ep21_rw10",true);
+	instance_enable("Iana Operta#ep21_rwi09",true);
+	cutin "ep21_iana02.png",1;
+	mes "[Iana Operta]";
+	mes "โอ๊ะ ทั้งหมดนี่คืออะไรกันเนี่ย?";
+	npctalk "Iana Operta : โอ๊ะ ทั้งหมดนี่คืออะไรกันเนี่ย?",instance_npcname("Iana Operta#ep21_rwi09");
+	next;
+	cutin "ep21_iana01.png",1;
+	mes "[Iana Operta]";
+	mes "เข้าใจแล้วๆ ดูเหมือนจะเป็นใบสั่งเสบียงนะ ไหนดูซิ... สิ่งที่เขียนไว้อ่านแทบไม่ออกเลยเพราะรอยเลอะจากน้ำ";
+	npctalk "Iana Operta : เข้าใจแล้วๆ ดูเหมือนจะเป็นใบสั่งเสบียงนะ ไหนดูซิ... สิ่งที่เขียนไว้อ่านแทบไม่ออกเลยเพราะรอยเลอะจากน้ำ",instance_npcname("Iana Operta#ep21_rwi09");
+	next;
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	next;
+	mes "[Maristella Walter]";
+	next;
+	cutin "ep21_yohan01.png",2;
+	mes "[Yohan]";
+	next;
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	mes "Yohan นายเป็นคนที่ได้รับมอบหมายให้ปีนขึ้นไปบนยอดเสากระโดงเพื่อเป็นหน่วยระวังหลัง นายไม่น่าจะมีปัญหาในการมองเห็นมันด้วยสายตาที่ดีของนายนี่นา";
+	npctalk "Maristella Walter : Yohan นายเป็นคนที่ได้รับมอบหมายให้ปีนขึ้นไปบนยอดเสากระโดงเพื่อเป็นหน่วยระวังหลัง นายไม่น่าจะมีปัญหาในการมองเห็นมันด้วยสายตาที่ดีของนายนี่นา",instance_npcname("Maristella Walter#ep21_rwi09");
+	next;
+	cutin "ep21_yohan03.png",2;
+	mes "[Yohan]";
+	next;
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	instance_enable("Crumpled Documents#ep21_rw",false);
+	instance_enable("Maristella Walter#ep21_rwi09",false);
+	instance_enable("Yohan#ep21_rw12",false);
+	instance_enable("Tan#ep21_rw10",false);
+	instance_enable("Iana Operta#ep21_rwi09",false);
+	set_instance_var("mps", get_instance_var("mps") + 1);
+	close3;
+	
+OnTouch:
+	if(is_party_leader())
+		npctalk "!!!";
+end;
+}
+
+1@wtgs,65,35,7	script(DISABLED)	Tan#ep21_rw10	4_EP21_TAN,{
+	cutin "ep21_tan01.png",1;
+	mes "[Tan]";
+	close3;
+}
+
+1@wtgs,63,37,7	script(DISABLED)	Maristella Walter#ep21_rwi09	4_EP21_MARISTELLA,{
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	mes "Yohan คนนั้นน่ะ บางครั้งการดื้อรั้นไปมันก็ไม่มีประโยชน์อะไรหรอกนะ";
+	close3;
+}
+
+1@wtgs,65,39,5	script(DISABLED)	Yohan#ep21_rw12	4_EP21_YOHAN,{
+	cutin "ep21_yohan03.png",2;
+	mes "[Yohan]";
+	close3;
+}
+
+1@wtgs,68,34,1	script(DISABLED)	Iana Operta#ep21_rwi09	4_EP21_IANA,{
+	cutin "ep21_iana01.png",1;
+	mes "[Iana Operta]";
+	mes "ก็นะ บางทีมันอาจจะเป็นไปได้ที่จะมองไม่เห็นอะไรเลย?";
+	close3;
+}
+
+//= Event 5
+1@wtgs,184,128,3	script(DISABLED)	Rusty Fountain Pen#ep21_rw05	4_POINT_RED,3,3,{
+	if(!is_party_leader()) end;
+	instance_enable("Maristella Walter#ep21_rwi10",true);
+	instance_enable("Yohan#ep21_rw13",true);
+	instance_enable("Tan#ep21_rw11",true);
+	instance_enable("Iana Operta#ep21_rwi10",true);
+	cutin "ep21_tan01.png",1;
+	mes "[Tan]";
+	mes "มีบางอย่างอยู่บนพื้นตรงนี้";
+	npctalk "Tan : มีบางอย่างอยู่บนพื้นตรงนี้",instance_npcname("Tan#ep21_rw11");
+	next;
+	mes "[Tan]";
+	next;
+	cutin "ep21_yohan02.png",2;
+	mes "[Yohan]";
+	next;
+	cutin "ep21_tan01.png",1;
+	mes "[Tan]";
+	mes "ทำไม นายจำมันได้งั้นเหรอ??";
+	npctalk "Tan : ทำไม นายจำมันได้งั้นเหรอ??",instance_npcname("Tan#ep21_rw11");
+	next;
+	cutin "ep21_yohan01.png",2;
+	mes "[Yohan]";
+	next;
+	mes "[Yohan]";
+	next;
+	cutin "ep21_iana02.png",1;
+	mes "[Iana Operta]";
+	mes "ช่างเครื่องฝึกหัดแห่ง Walter คนนั้นน่ะเหรอ Mariposa?";
+	npctalk "Iana Operta : ช่างเครื่องฝึกหัดแห่ง Walter คนนั้นน่ะเหรอ Mariposa?",instance_npcname("Iana Operta#ep21_rwi10");
+	next;
+	cutin "ep21_yohan01.png",2;
+	mes "[Yohan]";
+	next;
+	mes "[Yohan]";
+	next;
+	cutin "ep21_yohan03.png",2;
+	mes "[Yohan]";
+	next;
+	cutin "ep21_iana02.png",1;
+	mes "[Iana Operta]";
+	mes "Yohan";
+	npctalk "Iana Operta : Yohan",instance_npcname("Iana Operta#ep21_rwi10");
+	next;
+	cutin "ep21_maristella03.png",1;
+	mes "[Maristella Walter]";
+	mes "Yohan นายไม่ใช่คนขี้ขลาด กัปตันเป็นคนตัดสินใจให้นายหนีออกมาเอง นายกำลังจะบอกว่ากัปตันเป็นคนขี้ขลาดงั้นเหรอ?";
+	npctalk "Maristella Walter : Yohan นายไม่ใช่คนขี้ขลาด กัปตันเป็นคนตัดสินใจให้นายหนีออกมาเอง นายกำลังจะบอกว่ากัปตันเป็นคนขี้ขลาดงั้นเหรอ?",instance_npcname("Maristella Walter#ep21_rwi10");
+	next;
+	cutin "ep21_yohan03.png",2;
+	mes "[Yohan]";
+	next;
+	cutin "ep21_maristella03.png",1;
+	mes "[Maristella Walter]";
+	mes "ต้องขอบคุณสิ่งที่คุณส่งต่อมาให้ ทำให้เราสามารถรับรู้ข้อมูลเกี่ยวกับสิ่งที่เกิดขึ้นและสามารถหาเบาะแสเพื่อตามรอยเรือ Walter ได้";
+	npctalk "Maristella Walter : ต้องขอบคุณสิ่งที่คุณส่งต่อมาให้ ทำให้เราสามารถรับรู้ข้อมูลเกี่ยวกับสิ่งที่เกิดขึ้นและสามารถหาเบาะแสเพื่อตามรอยเรือ Walter ได้",instance_npcname("Maristella Walter#ep21_rwi10");
+	next;
+	mes "[Maristella Walter]";
+	mes "ไม่ว่าอะไรจะเกิดขึ้นก็ตาม การรอดชีวิตจากพายุและยังมีชีวิตอยู่เป็นสิ่งที่น่าขอบคุณในฐานะกลาสีเรือคนหนึ่งนะ";
+	npctalk "Maristella Walter : ไม่ว่าอะไรจะเกิดขึ้นก็ตาม การรอดชีวิตจากพายุและยังมีชีวิตอยู่เป็นสิ่งที่น่าขอบคุณในฐานะกลาสีเรือคนหนึ่งนะ",instance_npcname("Maristella Walter#ep21_rwi10");
+	next;
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	mes "Yohan นายไม่ต้องแบกความรู้สึกผิดไว้อีกต่อไปแล้ว";
+	npctalk "Maristella Walter : Yohan นายไม่ต้องแบกความรู้สึกผิดไว้อีกต่อไปแล้ว",instance_npcname("Maristella Walter#ep21_rwi10");
+	next;
+	cutin "ep21_yohan01.png",2;
+	mes "[Yohan]";
+	next;
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	next;
+	mes "[Maristella Walter]";
+	mes "ถึงเวลาเผชิญหน้ากับความจริงแล้ว ไปที่ห้องพักกัปตันกันเถอะ";
+	npctalk "Maristella Walter : ถึงเวลาเผชิญหน้ากับความจริงแล้ว ไปที่ห้องพักกัปตันกันเถอะ",instance_npcname("Maristella Walter#ep21_rwi10");
+	instance_enable("Rusty Fountain Pen#ep21_rw05",false);
+	instance_enable("Maristella Walter#ep21_rwi10",false);
+	instance_enable("Yohan#ep21_rw13",false);
+	instance_enable("Tan#ep21_rw11",false);
+	instance_enable("Iana Operta#ep21_rwi10",false);
+	set_instance_var("mps", get_instance_var("mps") + 1);
+	close3;
+}
+
+1@wtgs,185,125,1	script(DISABLED)	Yohan#ep21_rw13	4_EP21_YOHAN,{
+	cutin "ep21_yohan03.png",2;
+	mes "[Yohan]";
+	close3;
+}
+
+1@wtgs,187,127,3	script(DISABLED)	Tan#ep21_rw11	4_EP21_TAN,{
+	cutin "ep21_tan02.png",1;
+	mes "[Tan]";
+	close3;
+}
+
+1@wtgs,186,129,3	script(DISABLED)	Iana Operta#ep21_rwi10	4_EP21_IANA,{
+	cutin "ep21_iana02.png",1;
+	mes "[Iana Operta]";
+	mes "Yohan ไม่เป็นไรนะ";
+	close3;
+}
+
+1@wtgs,183,126,7	script(DISABLED)	Maristella Walter#ep21_rwi10	4_EP21_MARISTELLA,{
+	cutin "ep21_maristella03.png",1;
+	mes "[Maristella Walter]";
+	close3;
+}
+
+//= Event 6
+1@wtgs,145,129,3	script(DISABLED)	Box Under a Bed#ep21_rw0	4_POINT_RED,3,3,{
+	if(!is_party_leader()) end;
+	cutin "ep21_iana01.png",1;
+	instance_enable("Maristella Walter#ep21_rwi11",true);
+	instance_enable("Yohan#ep21_rw14",true);
+	instance_enable("Tan#ep21_rw12",true);
+	instance_enable("Iana Operta#ep21_rwi11",true);
+	mes "[Iana Operta]";
+	mes "กล่องนี้ยังคงสภาพสมบูรณ์ ไม่มีการสึกหรอหรือเสียหายเลยแฮะ";
+	npctalk "Iana Operta : กล่องนี้ยังคงสภาพสมบูรณ์ ไม่มีการสึกหรอหรือเสียหายเลยแฮะ",instance_npcname("Iana Operta#ep21_rwi11");
+	next;
+	mes "[Iana Operta]";
+	mes "เราควรเปิดมันดูไหม? เราไม่รู้ว่าข้างในอาจจะมีอะไรอยู่";
+	npctalk "Iana Operta : เราควรเปิดมันดูไหม? เราไม่รู้ว่าข้างในอาจจะมีอะไรอยู่",instance_npcname("Iana Operta#ep21_rwi11");
+	next;
+	cutin "ep21_tan01.png",1;
+	mes "[Tan]";
+	mes "มันคงจะดีกว่าถ้าให้กัปตัน Walter เป็นคนตัดสินใจนะ";
+	npctalk "Tan : มันคงจะดีกว่าถ้าให้กัปตัน Walter เป็นคนตัดสินใจนะ",instance_npcname("Tan#ep21_rw12");
+	next;
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	mes "ลองเช็คดูว่ามีอะไรเหลืออยู่ข้างในบ้างเถอะ";
+	npctalk "Maristella Walter : ลองเช็คดูว่ามีอะไรเหลืออยู่ข้างในบ้างเถอะ",instance_npcname("Maristella Walter#ep21_rwi11");
+	next;
+	cutin "ep21_iana04.png",1;
+	mes "[Iana Operta]";
+	next;
+	cutin "ep21_iana01.png",1;
+	mes "[Iana Operta]";
+	mes "ฉันขอโทษเจ้าของบันทึกเล่มนี้ด้วยนะ ฉันจะลองอ่านดูละกัน ดีกว่าถ้าเราเริ่มอ่านจากตอนจบ";
+	npctalk "Iana Operta : ฉันขอโทษเจ้าของบันทึกเล่มนี้ด้วยนะ ฉันจะลองอ่านดูละกัน ดีกว่าถ้าเราเริ่มอ่านจากตอนจบ",instance_npcname("Iana Operta#ep21_rwi11");
+	next;
+	mes "[Iana Operta]";
+	mes "'พวกเราจัดการให้กัปตัน Maristella หนีไปได้อย่างปลอดภัย แต่เรือของเราลอยเท้งเต้งอยู่ในทะเลเปิด ต่อจากนี้จะเกิดอะไรขึ้นกันนะ?'";
+	npctalk "Iana Operta : 'พวกเราจัดการให้กัปตัน Maristella หนีไปได้อย่างปลอดภัย แต่เรือของเราลอยเท้งเต้งอยู่ในทะเลเปิด ต่อจากนี้จะเกิดอะไรขึ้นกันนะ?'",instance_npcname("Iana Operta#ep21_rwi11");
+	next;
+	cutin "ep21_iana02.png",1;
+	mes "[Iana Operta]";
+	next;
+	mes "[Iana Operta]";
+	mes "'หล่อนเป็นแม่มดงั้นเหรอ? หรืออาจจะเป็นพระเจ้ากันนะ? บนเรือที่ลอยอยู่นั้น หล่อนถามว่ากัปตันปรารถนาสิ่งใดมากที่สุด'";
+	npctalk "Iana Operta : 'หล่อนเป็นแม่มดงั้นเหรอ? หรืออาจจะเป็นพระเจ้ากันนะ? บนเรือที่ลอยอยู่นั้น หล่อนถามว่ากัปตันปรารถนาสิ่งใดมากที่สุด'",instance_npcname("Iana Operta#ep21_rwi11");
+	next;
+	mes "[Iana Operta]";
+	next;
+	mes "[Iana Operta]";
+	mes "'พวกเราไม่เสียใจเลย สิ่งที่กัปตันปรารถนามันก็คือสิ่งเดียวกับที่พวกเราต้องการนั่นแหละ'";
+	npctalk "Iana Operta : 'พวกเราไม่เสียใจเลย สิ่งที่กัปตันปรารถนามันก็คือสิ่งเดียวกับที่พวกเราต้องการนั่นแหละ'",instance_npcname("Iana Operta#ep21_rwi11");
+	next;
+	mes "[Iana Operta]";
+	mes "'แต่ฉันก็รู้สึกไม่สบายใจ ความทรงจำของฉันค่อยๆ เลือนหายไปทีละนิด สหายของฉันบางคนกลายร่างเป็นสัตว์ประหลาดไปโดยสมบูรณ์แล้ว'";
+	npctalk "Iana Operta : 'แต่ฉันก็รู้สึกไม่สบายใจ ความทรงจำของฉันค่อยๆ เลือนหายไปทีละนิด สหายของฉันบางคนกลายร่างเป็นสัตว์ประหลาดไปโดยสมบูรณ์แล้ว'",instance_npcname("Iana Operta#ep21_rwi11");
+	next;
+	mes "[Iana Operta]";
+	next;
+	mes "[Iana Operta]";
+	next;
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	mes "ผู้หญิงประหลาดคนนั้นจะเป็นใครไปได้นะ?";
+	npctalk "Maristella Walter : ผู้หญิงประหลาดคนนั้นจะเป็นใครไปได้นะ?",instance_npcname("Maristella Walter#ep21_rwi11");
+	next;
+	cutin "ep21_yohan01.png",2;
+	mes "[Yohan]";
+	next;
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	mes "ฉันนึกไม่ออกเลยว่าคำอธิษฐานแบบไหนที่กัปตันขอไปแล้วจะทำให้เรือกลายเป็นแบบนี้";
+	npctalk "Maristella Walter : ฉันนึกไม่ออกเลยว่าคำอธิษฐานแบบไหนที่กัปตันขอไปแล้วจะทำให้เรือกลายเป็นแบบนี้",instance_npcname("Maristella Walter#ep21_rwi11");
+	next;
+	cutin "ep21_maristella03.png",1;
+	mes "[Maristella Walter]";
+	mes "แต่ตอนนี้พวกเรามั่นใจแล้ว เรารู้แล้วว่าเรือลำนี้คืออะไร";
+	npctalk "Maristella Walter : แต่ตอนนี้พวกเรามั่นใจแล้ว เรารู้แล้วว่าเรือลำนี้คืออะไร",instance_npcname("Maristella Walter#ep21_rwi11");
+	instance_enable("Box Under a Bed#ep21_rw0",false);
+	instance_enable("Maristella Walter#ep21_rwi11",false);
+	instance_enable("Yohan#ep21_rw14",false);
+	instance_enable("Tan#ep21_rw12",false);
+	instance_enable("Iana Operta#ep21_rwi11",false);
+	set_instance_var("mps", get_instance_var("mps") + 1);
+	close3;
+}
+
+1@wtgs,147,124,1	script(DISABLED)	Iana Operta#ep21_rwi11	4_EP21_IANA,{
+	cutin "ep21_iana03.png",1;
+	mes "[Iana Operta]";
+	mes "หือ? ทำไมมองฉันแบบนั้นล่ะ? กุญแจมันพังทันทีที่ฉันแตะเลยเพราะมันผุอยู่แล้วต่างหาก ไม่ใช่เพราะฉันแข็งแรงหรืออะไรแบบนั้นหรอกนะ";
+	close3;
+}
+
+1@wtgs,149,126,1	script(DISABLED)	Yohan#ep21_rw14	4_EP21_YOHAN,{
+	cutin "ep21_yohan03.png",2;
+	mes "[Yohan]";
+	close3;
+}
+
+1@wtgs,149,129,3	script(DISABLED)	Maristella Walter#ep21_rwi11	4_EP21_MARISTELLA,{
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	close3;
+}
+
+1@wtgs,147,130,3	script(DISABLED)	Tan#ep21_rw12	4_EP21_TAN,{
+	cutin "ep21_tan02.png",1;
+	mes "[Tan]";
+	mes "หืม ถือว่ามีประโยชน์มากเลยที่มีคนทิ้งบันทึกไว้ให้แบบนี้";
+	close3;
+}
+
+//= WARP
+1@wtgs,122,318,0	script(DISABLED)	#ep21_rwarp01	WARPNPC,2,2,{
+	end;
+	
+OnTouch:
+	switch(atoi(replacestr(strnpcinfo(2),"ep21_rwarp0",""))){
+		case 1:
+			.@x = 39; 
+			.@y = 30; 
+			break;
+			
+		case 2:
+			.@x = 118; 
+			.@y = 318; 
+			break;
+
+		case 3:
+			.@x = 211; 
+			.@y = 110; 
+			break;
+
+		case 4:
+			.@x = 56; 
+			.@y = 30; 
+			break;
+
+		case 5:
+			if(is_party_leader() && get_instance_var("daily") == true && get_instance_var("ds") == 1){
+				instance_enable("Maristella Walter#ep21_rwi02",true);
+				cutin "ep21_maristella01.png",1;
+				mes "[Maristella Walter]";
+				mes "ในที่สุดเราก็มาถึงที่นี่... ห้องกัปตัน";
+				npctalk "Maristella Walter : ในที่สุดเราก็มาถึงที่นี่... ห้องกัปตัน";
+				next;
+				cutin "ep21_maristella03.png",1;
+				mes "[Maristella Walter]";
+				next;
+				cutin "ep21_maristella01.png",1;
+				mes "[Maristella Walter]";
+				mes "เราจำเป็นต้องสลายพลังเวทที่นี่ด้วย ไปที่ห้องกัปตันกันเถอะ";
+				npctalk "Maristella Walter : เราจำเป็นต้องสลายพลังเวทที่นี่ด้วย ไปที่ห้องกัปตันกันเถอะ";
+				close2;
+				cutin "",255;
+				instance_enable("Maristella Walter#ep21_rwi02",false);
+				set_instance_var("ds",2);
+				instance_event("#EP21_GS_control","OnBossSummon",false);
+				.@x = 152;
+				.@y = 16;
+				break;
+			}
+			if(get_instance_var("ds") == 2){
+				.@x = 152;
+				.@y = 16;
+				break;
+			}
+			if(get_instance_var("daily") == true) end;
+			if(get_instance_var("mps") < 9 && !is_party_leader()) end;
+			if(get_instance_var("mps") < 8){
+				instance_enable("Maristella Walter#ep21_rwi02",true);
+				cutin "ep21_maristella01.png",1;
+				mes "[Maristella Walter]";
+				mes "ดูเหมือนว่ายังมีบางอย่างที่เราต้องตรวจสอบ ฉันอยากจะสำรวจเพิ่มเติมอีกสักหน่อยก่อนที่เราจะไปต่อ";
+				npctalk "Maristella Walter : ดูเหมือนว่ายังมีบางอย่างที่เราต้องตรวจสอบ ฉันอยากจะสำรวจเพิ่มเติมอีกสักหน่อยก่อนที่เราจะไปต่อ",instance_npcname("Maristella Walter#ep21_rwi02");
+				next;
+				mes "[Maristella Walter]";
+				mes "เราควรสำรวจรอบๆ เรืออีกสักนิด ก่อนที่จะมุ่งหน้าเข้าไปในห้องกัปตัน";
+				npctalk "Maristella Walter : เราควรสำรวจรอบๆ เรืออีกสักนิด ก่อนที่จะมุ่งหน้าเข้าไปในห้องกัปตัน",instance_npcname("Maristella Walter#ep21_rwi02");
+				next;
+				cutin "ep21_maristella03.png",1;
+				mes "[Maristella Walter]";
+				close2;
+				cutin "",255;
+				instance_enable("Maristella Walter#ep21_rwi02",false);
+				end;
+			}
+			if(get_instance_var("mps") == 8){
+				cutin "ep21_maristella01.png",1;
+				instance_enable("Maristella Walter#ep21_rwi02",true);
+				instance_enable("Yohan#ep21_rw05",true);
+				instance_enable("Tan#ep21_rw03",true);
+				instance_enable("Iana Operta#ep21_rwi02",true);
+				mes "[Maristella Walter]";
+				mes "ดูเหมือนว่าเราจะพบทุกอย่างที่หาได้ในเรือลำนี้แล้ว แต่ตอนนี้ เราต้องยอมรับความจริง";
+				npctalk "Maristella Walter : ดูเหมือนว่าเราจะพบทุกอย่างที่หาได้ในเรือลำนี้แล้ว แต่ตอนนี้ เราต้องยอมรับความจริง",instance_npcname("Maristella Walter#ep21_rwi02");
+				next;
+				cutin "ep21_maristella03.png",1;
+				mes "[Maristella Walter]";
+				next;
+				cutin "ep21_yohan03.png",2;
+				mes "[Yohan]";
+				next;
+				cutin "ep21_maristella01.png",1;
+				mes "[Maristella Walter]";
+				mes "ฉันไม่สงสัยเลยว่าเรือลำนี้คือ Walter ที่หายสาบสูญไป ถึงอย่างนั้นเราก็ยังไม่รู้ว่ามันมาอยู่ในสภาพนี้ได้อย่างไร";
+				npctalk "Maristella Walter : ฉันไม่สงสัยเลยว่าเรือลำนี้คือ Walter ที่หายสาบสูญไป ถึงอย่างนั้นเราก็ยังไม่รู้ว่ามันมาอยู่ในสภาพนี้ได้อย่างไร",instance_npcname("Maristella Walter#ep21_rwi02");
+				next;
+				mes "[Maristella Walter]";
+				next;
+				cutin "ep21_maristella03.png",1;
+				mes "[Maristella Walter]";
+				mes "แน่นอน";
+				npctalk "Maristella Walter : แน่นอน",instance_npcname("Maristella Walter#ep21_rwi02");
+				next;
+				cutin "ep21_tan02.png",1;
+				mes "[Tan]";
+				mes "ท่านพ่อของกัปตัน... อดีตกัปตัน Howell Megas Walter";
+				npctalk "Tan : ท่านพ่อของกัปตัน... อดีตกัปตัน Howell Megas Walter",instance_npcname("Tan#ep21_rw03");
+				next;
+				cutin "ep21_yohan03.png",2;
+				mes "[Yohan]";
+				next;
+				cutin "ep21_maristella01.png",1;
+				mes "[Maristella Walter]";
+				mes "ใช่... เช่นเดียวกับพวกทหารเรือผีดิบ มีความเป็นไปได้สูงที่กัปตันจะจำพวกเราไม่ได้";
+				npctalk "Maristella Walter : ใช่... เช่นเดียวกับพวกทหารเรือผีดิบ มีความเป็นไปได้สูงที่กัปตันจะจำพวกเราไม่ได้",instance_npcname("Maristella Walter#ep21_rwi02");
+				next;
+				mes "[Maristella Walter]";
+				mes "เราอาจจะต้องสู้";
+				npctalk "Maristella Walter : เราอาจจะต้องสู้",instance_npcname("Maristella Walter#ep21_rwi02");
+				next;
+				cutin "ep21_iana01.png",1;
+				mes "[Iana Operta]";
+				mes "เรายังไม่รู้แน่ชัดหรอก ตามบันทึกบอกไว้ว่ามีบางคนที่ยังคงรักษาความสติสัมปชัญญะเอาไว้ได้";
+				npctalk "Iana Operta : เรายังไม่รู้แน่ชัดหรอก ตามบันทึกบอกไว้ว่ามีบางคนที่ยังคงรักษาความสติสัมปชัญญะเอาไว้ได้",instance_npcname("Iana Operta#ep21_rwi02");
+				next;
+				cutin "ep21_iana02.png",1;
+				mes "[Iana Operta]";
+				mes "ไปกันเถอะ ไปที่ห้องกัปตัน ไปเห็นมันด้วยตาของเราเอง";
+				npctalk "Iana Operta : ไปกันเถอะ ไปที่ห้องกัปตัน ไปเห็นมันด้วยตาของเราเอง",instance_npcname("Iana Operta#ep21_rwi02");
+				next;
+				cutin "ep21_maristella01.png",1;
+				mes "[Maristella Walter]";
+				mes "ใช่ และยังมีเรื่องอื่นๆ ที่เราต้องยืนยันอีก";
+				npctalk "Maristella Walter : ใช่ และยังมีเรื่องอื่นๆ ที่เราต้องยืนยันอีก",instance_npcname("Maristella Walter#ep21_rwi02");
+				next;
+				mes "[Maristella Walter]";
+				next;
+				mes "[Maristella Walter]";
+				mes "ทำไม Walter ถึงยังคงล่องลอยอยู่ในทะเลและโจมตีเรือของพวกลัทธิต่อไป แม้ว่าจะกลายเป็นแบบนี้ไปแล้วก็ตาม";
+				npctalk "Maristella Walter : ทำไม Walter ถึงยังคงล่องลอยอยู่ในทะเลและโจมตีเรือของพวกลัทธิต่อไป แม้ว่าจะกลายเป็นแบบนี้ไปแล้วก็ตาม",instance_npcname("Maristella Walter#ep21_rwi02");
+				next;
+				mes "[Maristella Walter]";
+				close2;
+				instance_event("#EP21_GS_control","OnEvent",false);
+			}
+			.@x = 152;
+			.@y = 16;
+			break;
+
+		case 6:
+			.@x = 272;
+			.@y = 315;
+			break;
+
+		case 7:
+			warp "jor_albe",191,182;
+			end;
+	}
+	warp get_instance_var("map$"),.@x,.@y;
+end;
+}
+
+1@wtgs,35,30,0	duplicate(#ep21_rwarp01)	#ep21_rwarp02	WARPNPC,2,2
+1@wtgs,60,30,0	duplicate(#ep21_rwarp01)	#ep21_rwarp03	WARPNPC,2,2
+1@wtgs,215,110,0	duplicate(#ep21_rwarp01)	#ep21_rwarp04	WARPNPC,2,2
+1@wtgs,105,110,0	duplicate(#ep21_rwarp01)	#ep21_rwarp05	WARPNPC,2,2
+1@wtgs,336,26,0	duplicate(#ep21_rwarp01)	#ep21_rwarp06	WARPNPC,2,2
+1@wtgs,283,306,0	duplicate(#ep21_rwarp01)	#ep21_rwarp07	WARPNPC,2,2
+
+1@wtgs,109,111,3	script(DISABLED)	Iana Operta#ep21_rwi02	4_EP21_IANA,{
+	cutin "ep21_iana02.png",1;
+	mes "[Iana Operta]";
+	mes "ไปกันเถอะทุกคน ระวังตัวด้วยนะ";
+	close3;
+}
+
+1@wtgs,104,113,3	script(DISABLED)	Yohan#ep21_rw05	4_EP21_YOHAN,{
+	cutin "ep21_yohan03.png",2;
+	mes "[Yohan]";
+	close3;
+}
+
+1@wtgs,105,115,3	script(DISABLED)	Tan#ep21_rw03	4_EP21_TAN,{
+	cutin "ep21_tan01.png",1;
+	mes "[Tan]";
+	close3;
+}
+
+1@wtgs,107,113,3	script(DISABLED)	Maristella Walter#ep21_rwi02	4_EP21_MARISTELLA,{
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	mes "ไปที่ห้องกัปตันกันเถอะ ไม่ว่าอะไรจะรออยู่ ฉันก็พร้อมที่จะเผชิญหน้ากับมัน";
+	close3;
+}
+
+1@wtgs,170,25,3	script(DISABLED)	Ghostship Captain#ep21_rw01	4_EP21_HOWELL_S,{
+	if(!is_party_leader() || get_instance_var("mps") < 9) end;
+	instance_enable("Maristella Walter#ep21_rwi03",true);
+	instance_enable("Yohan#ep21_rw06",true);
+	instance_enable("Tan#ep21_rw04",true);
+	instance_enable("Iana Operta#ep21_rwi03",true);
+	cutin "ep21_howell_u02.png",0;
+	mes "[Ghostship Captain]";
+	next;
+	cutin "ep21_maristella03.png",1;
+	mes "[Maristella Walter]";
+	next;
+	cutin "ep21_yohan03.png",2;
+	mes "[Yohan]";
+	next;
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	next;
+	cutin "ep21_yohan03.png",2;
+	mes "[Yohan]";
+	next;
+	cutin "ep21_iana02.png",1;
+	mes "[Iana Operta]";
+	mes "เราจะไม่ทำอะไรทั้งนั้น แต่มีบางอย่างที่เราต้องทำนะ Yohan";
+	npctalk "Iana Operta : เราจะไม่ทำอะไรทั้งนั้น แต่มีบางอย่างที่เราต้องทำนะ Yohan",instance_npcname("Iana Operta#ep21_rwi03");
+	next;
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	next;
+	cutin "ep21_yohan03.png",2;
+	mes "[Yohan]";
+	next;
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	mes "Yohan นายควรจะเตรียมใจสำหรับเรื่องนี้ไว้ตั้งแต่ตอนที่ก้าวขึ้นเรือลำนี้แล้วนะ";
+	npctalk "Maristella Walter : Yohan นายควรจะเตรียมใจสำหรับเรื่องนี้ไว้ตั้งแต่ตอนที่ก้าวขึ้นเรือลำนี้แล้วนะ",instance_npcname("Maristella Walter#ep21_rwi03");
+	next;
+	mes "[Maristella Walter]";
+	mes "ถ้านายทำใจลำบาก ก็ถอยไปซะ";
+	npctalk "Maristella Walter : ถ้านายทำใจลำบาก ก็ถอยไปซะ",instance_npcname("Maristella Walter#ep21_rwi03");
+	next;
+	cutin "ep21_yohan03.png",2;
+	mes "[Yohan]";
+	next;
+	cutin "ep21_maristella03.png",1;
+	mes "[Maristella Walter]";
+	mes "ฉันรู้! ฉันรู้ดี... ไม่ใช่แค่นายหรอกที่กำลังเจ็บปวดในตอนนี้ Yohan";
+	npctalk "Maristella Walter : ฉันรู้! ฉันรู้ดี... ไม่ใช่แค่นายหรอกที่กำลังเจ็บปวดในตอนนี้ Yohan",instance_npcname("Maristella Walter#ep21_rwi03");
+	next;
+	cutin "ep21_howell_u02.png",0;
+	mes "[Ghostship Captain]";
+	next;
+	cutin "ep21_maristella03.png",1;
+	mes "[Maristella Walter]";
+	mes "ถึงแม้จะไม่ได้แลกเปลี่ยนคำพูดใดๆ ถึงแม้การค้นพบความจริงจะทำให้รู้ว่าเขาคือพ่อของฉัน... ฉันก็ยิ่งจำเป็นต้องชูอาวุธขึ้นมา!";
+	npctalk "Maristella Walter : ถึงแม้จะไม่ได้แลกเปลี่ยนคำพูดใดๆ ถึงแม้การค้นพบความจริงจะทำให้รู้ว่าเขาคือพ่อของฉัน... ฉันก็ยิ่งจำเป็นต้องชูอาวุธขึ้นมา!",instance_npcname("Maristella Walter#ep21_rwi03");
+	next;
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	mes "พวกเราทุกคนต่างก็รักกัปตันในแบบของตัวเอง มันเป็นเรื่องธรรมดาที่จะรู้สึกทรมาน";
+	npctalk "Maristella Walter : พวกเราทุกคนต่างก็รักกัปตันในแบบของตัวเอง มันเป็นเรื่องธรรมดาที่จะรู้สึกทรมาน",instance_npcname("Maristella Walter#ep21_rwi03");
+	next;
+	cutin "ep21_yohan03.png",2;
+	mes "[Yohan]";
+	next;
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	mes "Iana ฝากดูแล Yohan ด้วย ดูเหมือนเขาคงจะสู้ไม่ไหวแล้วล่ะ";
+	npctalk "Maristella Walter : Iana ฝากดูแล Yohan ด้วย ดูเหมือนเขาคงจะสู้ไม่ไหวแล้วล่ะ",instance_npcname("Maristella Walter#ep21_rwi03");
+	next;
+	cutin "ep21_iana02.png",1;
+	mes "[Iana Operta]";
+	mes "ตกลง ไม่ต้องห่วงนะ";
+	npctalk "Iana Operta : ตกลง ไม่ต้องห่วงนะ",instance_npcname("Iana Operta#ep21_rwi03");
+	next;
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	mes "ถ้าอย่างนั้น " + strcharinfo(0) + " มาเตรียมตัวสู้กันเถอะ โจมตีทันทีที่ฉันให้สัญญาณนะ";
+	npctalk "Maristella Walter : ถ้าอย่างนั้น มาเตรียมตัวสู้กันเถอะ โจมตีทันทีที่ฉันให้สัญญาณนะ",instance_npcname("Maristella Walter#ep21_rwi03");
+	next;
+	cutin "ep21_maristella03.png",1;
+	mes "[Maristella Walter]";
+	close2;
+	cutin "",255;
+	instance_enable("Ghostship Captain#ep21_rw01",false);
+	instance_enable("Maristella Walter#ep21_rwi03",false);
+	instance_enable("Yohan#ep21_rw06",false);
+	instance_enable("Tan#ep21_rw04",false);
+	instance_enable("Iana Operta#ep21_rwi03",false);
+	instance_event("#EP21_GS_control","OnBossSummon",false);
+	end;	
+}
+
+1@wtgs,170,25,3	script(DISABLED)	Ghostship Captain#ep21_rw02	4_EP21_HOWELL_S,{
+	if(!is_party_leader() || get_instance_var("mps") < 10) end;
+	instance_enable("Maristella Walter#ep21_rwi03",true);
+	instance_enable("Yohan#ep21_rw06",true);
+	instance_enable("Tan#ep21_rw04",true);
+	instance_enable("Iana Operta#ep21_rwi03",true);
+	cutin "ep21_maristella03.png",1;
+	mes "[Maristella Walter]";
+	next;
+	mes "[Maristella Walter]";
+	next;
+	cutin "ep21_howell_u02.png",0;
+	mes "[Ghostship Captain]";
+	next;
+	cutin "ep21_maristella03.png",1;
+	mes "[Maristella Walter]";
+	mes "เดี๋ยวก่อน... เมื่อกี้เขาเพิ่งจะพูดอะไรบางอย่างหรือเปล่า? " + strcharinfo(0) + "! รอสักครู่!";
+	npctalk "Maristella Walter : เดี๋ยวก่อน... เมื่อกี้เขาเพิ่งจะพูดอะไรบางอย่างหรือเปล่า? รอสักครู่!",instance_npcname("Maristella Walter#ep21_rwi03");
+	next;
+	cutin "ep21_howell_u02.png",0;
+	mes "[Ghostship Captain]";
+	next;
+	cutin "ep21_maristella03.png",1;
+	mes "[Maristella Walter]";
+	mes "ท่านพ่อ!";
+	npctalk "Maristella Walter : ท่านพ่อ!",instance_npcname("Maristella Walter#ep21_rwi03");
+	next;
+	cutin "ep21_tan01.png",1;
+	mes "[Tan]";
+	next;
+	cutin "ep21_iana02.png",1;
+	mes "[Iana Operta]";
+	next;
+	cutin "ep21_yohan03.png",2;
+	mes "[Yohan]";
+	mes "กัปตัน! ทะ-ท่านกลับมาแล้ว! นี่ผมเอง Yohan! ผมเองครับ!";
+	npctalk "Yohan : กัปตัน! ทะ-ท่านกลับมาแล้ว! นี่ผมเอง Yohan! ผมเองครับ!",instance_npcname("Yohan#ep21_rw06");
+	next;
+	cutin "ep21_howell_u02.png",0;
+	mes "[Ghostship Captain]";
+	next;
+	mes "[Ghostship Captain]";
+	next;
+	setnpcdisplay(instance_npcname("Ghostship Captain#ep21_rw02"),4_EP21_HOWELL);
+	cutin "ep21_howell01.png",0;
+	mes "[Howell Megas Walter]";
+	mes "ทุกสิ่งที่พ่อปรารถนาในชีวิตได้กลายเป็นจริงแล้ว พ่อไม่มีอะไรต้องเสียใจอีก";
+	npctalk "Howell Megas Walter : ทุกสิ่งที่พ่อปรารถนาในชีวิตได้กลายเป็นจริงแล้ว พ่อไม่มีอะไรต้องเสียใจอีก";
+	next;
+	cutin "ep21_maristella03.png",1;
+	mes "[Maristella Walter]";
+	mes "โอ้ ท่านพ่อ... ทั้งหมดนี้... มันเกิดอะไรขึ้นคะ?";
+	npctalk "Maristella Walter : โอ้ ท่านพ่อ... ทั้งหมดนี้... มันเกิดอะไรขึ้นคะ?",instance_npcname("Maristella Walter#ep21_rwi03");
+	next;
+	mes "[Maristella Walter]";
+	next;
+	cutin "ep21_howell01.png",0;
+	mes "[Howell Megas Walter]";
+	mes "มันเป็นเรื่องยาวน่ะ";
+	npctalk "Howell Megas Walter : มันเป็นเรื่องยาวน่ะ";
+	next;
+	mes "[Howell Megas Walter]";
+	mes "บนเรือที่ลอยเคว้งคว้าง มีตัวตนหนึ่งปรากฏขึ้นในขณะที่ความตายกำลังใกล้เข้ามา... อาจจะเป็นเทพเจ้า หรืออาจจะเป็นปีศาจ";
+	npctalk "Howell Megas Walter : บนเรือที่ลอยเคว้งคว้าง มีตัวตนหนึ่งปรากฏขึ้นในขณะที่ความตายกำลังใกล้เข้ามา... อาจจะเป็นเทพเจ้า หรืออาจจะเป็นปีศาจ";
+	next;
+	mes "[Howell Megas Walter]";
+	mes "พวกพ้องและพ่อมีความปรารถนาเพียงอย่างเดียว";
+	npctalk "Howell Megas Walter : พวกพ้องและพ่อมีความปรารถนาเพียงอย่างเดียว";
+	next;
+	mes "[Howell Megas Walter]";
+	mes "<B>แม้ในความตาย พวกเราก็ยังปรารถนาที่จะปกป้องท้องทะเลที่กองเรือ Walter ล่องผ่าน พวกเราต้องการจมเรือของพวกลัทธิทุกลำที่ขวางทางลูก</B>";
+	npctalk "Howell Megas Walter : แม้ในความตาย พวกเราก็ยังปรารถนาที่จะปกป้องท้องทะเลที่กองเรือ Walter ล่องผ่าน พวกเราต้องการจมเรือของพวกลัทธิทุกลำที่ขวางทางลูก";
+	next;
+	mes "[Howell Megas Walter]";
+	mes "แต่ดูเหมือนว่าเวลานั้นได้สิ้นสุดลงแล้ว";
+	npctalk "Howell Megas Walter : แต่ดูเหมือนว่าเวลานั้นได้สิ้นสุดลงแล้ว";
+	next;
+	setnpcdisplay(instance_npcname("Ghostship Captain#ep21_rw02"),4_EP21_HOWELL_S);
+	cutin "ep21_maristella03.png",1;
+	mes "[Maristella Walter]";
+	next;
+	setnpcdisplay(instance_npcname("Ghostship Captain#ep21_rw02"),4_EP21_HOWELL);
+	cutin "ep21_howell01.png",0;
+	mes "[Howell Megas Walter]";
+	mes "พ่อสัมผัสได้ว่าพลังที่รั้งพวกเราไว้ที่นี่กำลังจางหายไป";
+	npctalk "Howell Megas Walter : พ่อสัมผัสได้ว่าพลังที่รั้งพวกเราไว้ที่นี่กำลังจางหายไป";
+	next;
+	mes "[Howell Megas Walter]";
+	mes "บางทีพลังอาจจะอ่อนแรงลง พ่อถึงขั้นสลัดร่างผีดิบนี้ทิ้งและให้ลูกเห็นตัวจริงของพ่อได้ แม้จะเป็นเพียงชั่วครู่ก็ตาม";
+	npctalk "Howell Megas Walter : บางทีพลังอาจจะอ่อนแรงลง พ่อถึงขั้นสลัดร่างผีดิบนี้ทิ้งและให้ลูกเห็นตัวจริงของพ่อได้ แม้จะเป็นเพียงชั่วครู่ก็ตาม";
+	next;
+	mes "[Howell Megas Walter]";
+	next;
+	mes "[Howell Megas Walter]";
+	mes "มันอาจจะเป็นเพียงเรื่องบังเอิญที่ลูกมาอยู่ที่นี่ในตอนนี้ แต่พ่อก็ดีใจนะ Maristella";
+	npctalk "Howell Megas Walter : มันอาจจะเป็นเพียงเรื่องบังเอิญที่ลูกมาอยู่ที่นี่ในตอนนี้ แต่พ่อก็ดีใจนะ Maristella";
+	close2;
+	cutin "",255;
+	instance_event("#EP21_GS_control","OnEvent",false);
+	end;
+}
+
+1@wtgs,165,27,5	script(DISABLED)	Maristella Walter#ep21_rwi03	4_EP21_MARISTELLA,{
+	if(isbegin_quest(16821) == 1){
+		cutin "ep21_maristella01.png",1;
+		mes "[Maristella Walter]";
+		mes "หลังจากได้สู้กัน ฉันก็มั่นใจมากขึ้น... นั่นไม่ใช่กัปตัน";
+		next;
+		mes "[Maristella Walter]";
+		mes "มันอาจจะดูเหมือนกัปตัน แต่มันเป็นเพียงตัวตนที่ไร้สติสัมปชัญญะอย่างสิ้นเชิง แน่นอนว่าสิ่งที่เราคุยกันก่อนหน้านี้ยังไม่ได้เกิดขึ้น";
+		next;
+		mes "[Maristella Walter]";
+		mes "ฉันเริ่มรู้สึกไม่ค่อยดีแล้วล่ะ รีบออกไปข้างนอกกันเถอะ";
+		next;
+		mes "[Maristella Walter]";
+		completequest 16821;
+		setquest 16822;
+		setquest 16823;
+		if(isbegin_quest(16825) == 1){
+			completequest 16825;
+			getitem "EP21_Wigner_Ticket",10;
+			add_reputation_points(13,5);
+		}
+		close2;
+		cutin "",255;
+		warp get_instance_var("map$"),309,25;
+		end;
+	}
+	if(isbegin_quest(16826) == 1 || isbegin_quest(16824) == 1){
+		mes "[Maristella Walter]";
+		mes "เฮ้อ ในที่สุดก็จบลงเสียที ออกไปกันเถอะ บอกตามตรงฉันรู้สึกใจคอไม่ค่อยดียังไงไม่รู้";
+		next;
+		mes "[Maristella Walter]";
+		mes "แต่นี่เป็นสิ่งที่เราต้องทำต่อไป ฉันไม่ได้ตั้งใจจะหลบเลี่ยงมันหรอกนะ";
+		next;
+		mes "[Maristella Walter]";
+		mes "ออกไปข้างนอกกันเถอะ ฉันได้ยินเสียงอะไรบางอย่างจากทางโน้น น่าจะเป็นเสียงประตูเปิดนะ";
+		next;
+		mes "[Maristella Walter]";
+		mes "ในเมื่อวันนี้เสร็จงานแล้ว พักผ่อนให้เต็มที่นะ "+strcharinfo(0)+" ขอบคุณมากสำหรับวันนี้";
+		if(isbegin_quest(16824) == 1)
+			erasequest 16824;
+		if(isbegin_quest(16826) == 1)
+			erasequest 16826;
+		getitem "EP21_Wigner_Ticket",10;
+		add_reputation_points(13,5);
+		close;
+	}
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	mes "พวกเราเชื่อมถึงกัน ท่านจะอยู่ในใจของหนูตลอดไปค่ะท่านพ่อ... ตลอดไป";
+	close3;
+}
+
+1@wtgs,164,23,5	script(DISABLED)	Yohan#ep21_rw06	4_EP21_YOHAN,{
+	cutin "ep21_yohan03.png",2;
+	mes "[Yohan]";
+	mes "อึก... ผมจะให้กัปตันเห็นผมในสภาพนี้ไม่ได้";
+	close3;
+}
+
+1@wtgs,168,23,7	script(DISABLED)	Iana Operta#ep21_rwi03	4_EP21_IANA,{
+	cutin "ep21_iana02.png",1;
+	mes "[Iana Operta]";
+	mes "เอาล่ะ มาทำสิ่งที่ต้องทำกันเถอะ";
+	close3;
+}
+
+1@wtgs,166,21,7	script(DISABLED)	Tan#ep21_rw04	4_EP21_TAN,{
+	cutin "ep21_tan01.png",1;
+	mes "[Tan]";
+	mes "เราอาจจะยังมีปริศนาที่ต้องแก้อีกมาก แต่เรื่องนั้นเอาไว้ทีหลังเถอะ";
+	close3;
+}
+
+1@wtgs,312,25,3	script(DISABLED)	Howell Megas Walter#ep21_r	4_EP21_HOWELL,{
+	if(!is_party_leader() || get_instance_var("mps") < 11) end;
+	cutin "ep21_howell01.png",0;
+	mes "[Howell Megas Walter]";
+	mes "พ่อเป็นหนึ่งในผู้ตายที่นี่ เส้นทางของพ่อต่างจากพวกเจ้า ดูเหมือนเวลาของพ่อกำลังจะหมดลงแล้ว";
+	npctalk "Howell Megas Walter : พ่อเป็นหนึ่งในผู้ตายที่นี่ เส้นทางของพ่อต่างจากพวกเจ้า ดูเหมือนเวลาของพ่อกำลังจะหมดลงแล้ว",instance_npcname("Howell Megas Walter#ep21_r");
+	next;
+	cutin "ep21_yohan03.png",2;
+	mes "[Yohan]";
+	mes "เป็นเพราะพวกเรามาที่นี่หรือเปล่าครับ? พวกเราเป็นต้นเหตุที่ทำให้มันเป็นแบบนี้หรือเปล่า?";
+	npctalk "Yohan : เป็นเพราะพวกเรามาที่นี่หรือเปล่าครับ? พวกเราเป็นต้นเหตุที่ทำให้มันเป็นแบบนี้หรือเปล่า?",instance_npcname("Yohan#ep21_rw07");
+	next;
+	cutin "ep21_howell01.png",0;
+	mes "[Howell Megas Walter]";
+	mes "อย่ากังวลไปเลย Yohan มันไม่ใช่เพราะพวกเจ้ามาที่นี่หรอก พ่อเป็นห่วงเจ้ามาตลอดเพราะเจ้าชอบกังวลมากเกินไปเนี่ยแหละ เจ้าเด็กดื้อ";
+	npctalk "Howell Megas Walter : อย่ากังวลไปเลย Yohan มันไม่ใช่เพราะพวกเจ้ามาที่นี่หรอก พ่อเป็นห่วงเจ้ามาตลอดเพราะเจ้าชอบกังวลมากเกินไปเนี่ยแหละ เจ้าเด็กดื้อ",instance_npcname("Howell Megas Walter#ep21_r");
+	next;
+	mes "[Howell Megas Walter]";
+	mes "มานาที่คอยประคองเรือลำนี้เอาไว้กำลังจะหมดลง";
+	npctalk "Howell Megas Walter : มานาที่คอยประคองเรือลำนี้เอาไว้กำลังจะหมดลง",instance_npcname("Howell Megas Walter#ep21_r");
+	next;
+	cutin "ep21_maristella03.png",1;
+	mes "[Maristella Walter]";
+	next;
+	cutin "ep21_howell01.png",0;
+	mes "[Howell Megas Walter]";
+	mes "ไม่เป็นไรหรอก ต่อให้สิ่งที่เจ้าพูดจะเป็นความจริง... Maristella จงเชื่อมั่นในการตัดสินใจของตัวเองให้มากกว่านี้";
+	npctalk "Howell Megas Walter : ไม่เป็นไรหรอก ต่อให้สิ่งที่เจ้าพูดจะเป็นความจริง... Maristella จงเชื่อมั่นในการตัดสินใจของตัวเองให้มากกว่านี้",instance_npcname("Howell Megas Walter#ep21_r");
+	next;
+	mes "[Howell Megas Walter]";
+	mes "ถ้าวันเวลาผ่านไปโดยที่ไม่ได้พบพวกเจ้า พ่ออาจจะยังรั้งอยู่ที่นี่ต่ออีกสักนิด และอาจจะจมเรือพวกลัทธิได้มากกว่านี้";
+	npctalk "Howell Megas Walter : ถ้าวันเวลาผ่านไปโดยที่ไม่ได้พบพวกเจ้า พ่ออาจจะยังรั้งอยู่ที่นี่ต่ออีกสักนิด และอาจจะจมเรือพวกลัทธิได้มากกว่านี้",instance_npcname("Howell Megas Walter#ep21_r");
+	next;
+	mes "[Howell Megas Walter]";
+	mes "แต่หลังจากนั้น พ่ออาจจะกลายเป็นสัตว์ร้ายที่คอยโจมตีเรือทุกลำที่ขวางหน้าโดยไม่มีเหตุผล";
+	npctalk "Howell Megas Walter : แต่หลังจากนั้น พ่ออาจจะกลายเป็นสัตว์ร้ายที่คอยโจมตีเรือทุกลำที่ขวางหน้าโดยไม่มีเหตุผล",instance_npcname("Howell Megas Walter#ep21_r");
+	next;
+	mes "[Howell Megas Walter]";
+	mes "มานาได้หมดลงก่อนที่เรื่องแบบนั้นจะเกิดขึ้น และพ่อก็ได้มีโอกาสพบเจ้า พ่อถือว่ามันคือพรที่ได้รับแล้วล่ะ";
+	npctalk "Howell Megas Walter : มานาได้หมดลงก่อนที่เรื่องแบบนั้นจะเกิดขึ้น และพ่อก็ได้มีโอกาสพบเจ้า พ่อถือว่ามันคือพรที่ได้รับแล้วล่ะ",instance_npcname("Howell Megas Walter#ep21_r");
+	next;
+	mes "[Howell Megas Walter]";
+	mes "จริงด้วย " + strcharinfo(0) + " มันเป็นพรอย่างหนึ่งเหมือนกันนะ ที่เจ้ามีสหายที่ดีแบบนี้";
+	npctalk "Howell Megas Walter : จริงด้วย มันเป็นพรอย่างหนึ่งเหมือนกันนะ ที่เจ้ามีสหายที่ดีแบบนี้",instance_npcname("Howell Megas Walter#ep21_r");
+	next;
+	mes "[Howell Megas Walter]";
+	mes "ฝากความเคารพของพ่อไปถึง Epesto ด้วยล่ะ พ่อคิดว่าที่เขามาที่นี่ไม่ได้คงเป็นเพราะเขามัวแต่ยุ่งกับการปกป้องลูกเรือของเจ้าล่ะสิ Maristella";
+	npctalk "Howell Megas Walter : ฝากความเคารพของพ่อไปถึง Epesto ด้วยล่ะ พ่อคิดว่าที่เขามาที่นี่ไม่ได้คงเป็นเพราะเขามัวแต่ยุ่งกับการปกป้องลูกเรือของเจ้าล่ะสิ Maristella",instance_npcname("Howell Megas Walter#ep21_r");
+	next;
+	mes "[Howell Megas Walter]";
+	mes "การมีผู้คนดีๆ อยู่เคียงข้างเจ้าแบบนี้ มันทำให้พ่อมั่นใจว่าเจ้าจะไปได้สวยแม้ไม่มีพ่ออยู่ข้างกาย";
+	npctalk "Howell Megas Walter : การมีผู้คนดีๆ อยู่เคียงข้างเจ้าแบบนี้ มันทำให้พ่อมั่นใจว่าเจ้าจะไปได้สวยแม้ไม่มีพ่ออยู่ข้างกาย",instance_npcname("Howell Megas Walter#ep21_r");
+	next;
+	cutin "ep21_maristella03.png",1;
+	mes "[Maristella Walter]";
+	next;
+	cutin "ep21_howell01.png",0;
+	mes "[Howell Megas Walter]";
+	mes "อย่าทำหน้าแบบนั้นสิ! เอาล่ะ... พ่ออยากจะใช้ช่วงเวลาสุดท้ายนี้เพียงลำพัง พ่ออาจจะสั่งให้พวกเจ้าออกไปในฐานะกัปตันแห่ง Walter ก็ได้นะ!";
+	npctalk "Howell Megas Walter : อย่าทำหน้าแบบนั้นสิ! เอาล่ะ... พ่ออยากจะใช้ช่วงเวลาสุดท้ายนี้เพียงลำพัง พ่ออาจจะสั่งให้พวกเจ้าออกไปในฐานะกัปตันแห่ง Walter ก็ได้นะ!",instance_npcname("Howell Megas Walter#ep21_r");
+	next;
+	mes "[Howell Megas Walter]";
+	mes "แต่พ่อจะขอร้องแทนก็แล้วกัน ทางออกอยู่ตรงทิศสามนาฬิกา ช่วยเว้นที่ว่างตรงนี้ให้พ่อหน่อยได้ไหม?";
+	npctalk "Howell Megas Walter : แต่พ่อจะขอร้องแทนก็แล้วกัน ทางออกอยู่ตรงทิศสามนาฬิกา ช่วยเว้นที่ว่างตรงนี้ให้พ่อหน่อยได้ไหม?",instance_npcname("Howell Megas Walter#ep21_r");
+	next;
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	next;
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	mes "หนูได้เห็นและเข้าใจแล้วว่าท่านปกป้องเรือลำนี้มาอย่างไร จากนี้ไป หนูจะเป็นผู้รับหน้าที่นั้นด้วยชีวิตของหนูเองค่ะ!";
+	npctalk "Maristella Walter : หนูได้เห็นและเข้าใจแล้วว่าท่านปกป้องเรือลำนี้มาอย่างไร จากนี้ไป หนูจะเป็นผู้รับหน้าที่นั้นด้วยชีวิตของหนูเองค่ะ!",instance_npcname("Maristella Walter#ep21_rw");
+	next;
+	mes "[Maristella Walter]";
+	mes "หนูจะไม่ทำให้ท่านต้องเป็นห่วง! เพราะฉะนั้น ได้โปรด...";
+	npctalk "Maristella Walter : หนูจะไม่ทำให้ท่านต้องเป็นห่วง! เพราะฉะนั้น ได้โปรด...",instance_npcname("Maristella Walter#ep21_rw");
+	next;
+	mes "[Maristella Walter]";
+	mes "หลับให้สบายนะคะ";
+	npctalk "Maristella Walter : หลับให้สบายนะคะ",instance_npcname("Maristella Walter#ep21_rw");
+	next;
+	cutin "ep21_yohan03.png",2;
+	mes "[Yohan]";
+	mes "ปล่อยให้กองเรือ Walter เป็นหน้าที่ของพวกเราเองครับ!";
+	npctalk "Yohan : ปล่อยให้กองเรือ Walter เป็นหน้าที่ของพวกเราเองครับ!",instance_npcname("Yohan#ep21_rw07");
+	next;
+	cutin "ep21_iana02.png",1;
+	mes "[Iana Operta]";
+	mes "ฉันจะคอยคุมพวกนี้ให้ดีไม่ให้บุ่มบ่ามออกไปลุยแบบไม่คิด กัปตันไม่ต้องเป็นห่วงนะคะ";
+	npctalk "Iana Operta : ฉันจะคอยคุมพวกนี้ให้ดีไม่ให้บุ่มบ่ามออกไปลุยแบบไม่คิด กัปตันไม่ต้องเป็นห่วงนะคะ",instance_npcname("Iana Operta#ep21_rw");
+	next;
+	cutin "ep21_howell01.png",0;
+	mes "[Howell Megas Walter]";
+	close2;
+	cutin "",255;
+	instance_event("#EP21_GS_control","OnEvent",false);
+	end;
+}
+
+1@wtgs,308,21,7	script(DISABLED)	Tan#ep21_rw05	4_EP21_TAN,{
+	cutin "ep21_tan01.png",1;
+	mes "[Tan]";
+	mes "เราอาจจะยังมีปริศนาที่ต้องแก้อีกมาก แต่เรื่องนั้นเอาไว้ทีหลังเถอะ";
+	close3;
+}
+
+1@wtgs,306,23,5	script(DISABLED)	Yohan#ep21_rw07	4_EP21_YOHAN,{
+	cutin "ep21_yohan03.png",2;
+	mes "[Yohan]";
+	mes "อึก... ผมจะให้กัปตันเห็นผมในสภาพนี้ไม่ได้";
+	close3;
+}
+
+1@wtgs,307,27,5	script(DISABLED)	Maristella Walter#ep21_rwi04	4_EP21_MARISTELLA,{
+	if(get_instance_var("daily") != true){
+		cutin "ep21_maristella01.png",1;
+		mes "[Maristella Walter]";
+		mes "พวกเราเชื่อมถึงกัน ท่านจะอยู่ในใจของหนูตลอดไปค่ะท่านพ่อ... ตลอดไป";
+		close3;
+	} else
+		npctalk "Maristella Walter : ออกไปกันเถอะ";
+	end;
+}
+
+1@wtgs,310,23,7	script(DISABLED)	Iana Operta#ep21_rwi04	4_EP21_IANA,{
+	cutin "ep21_iana02.png",1;
+	mes "[Iana Operta]";
+	mes "เอาล่ะ มาทำสิ่งที่ต้องทำกันเถอะ";
+	close3;
+}
+
+1@wtgs,280,311,3	script(DISABLED)	Maristella Walter#ep21_rwi05	4_EP21_MARISTELLA,{
+	if(get_instance_var("daily") == true){
+		cutin "ep21_maristella01.png",1;
+		mes "[Maristella Walter]";
+		mes "ไม่มีอะไรต้องทำที่นี่แล้วล่ะ กลับ Alberta กันเถอะ เตรียมตัวลงจากเรือกัน";
+		close3;
+	}
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	mes "ฉันได้เห็นมันแล้ว... วาระสุดท้ายของ Walter เจตจำนงของพวกเขาไม่ได้จางหายไปเลยแม้แต่นิดเดียว";
+	npctalk "Maristella Walter : ฉันได้เห็นมันแล้ว... วาระสุดท้ายของ Walter เจตจำนงของพวกเขาไม่ได้จางหายไปเลยแม้แต่นิดเดียว";
+	next;
+	mes "[Maristella Walter]";
+	mes "อย่างที่กัปตันบอก เรือลำนี้จะหายไปในไม่ช้า ลงจากเรือก่อนที่เรื่องนั้นจะเกิดขึ้นกันเถอะ";
+	npctalk "Maristella Walter : อย่างที่กัปตันบอก เรือลำนี้จะหายไปในไม่ช้า ลงจากเรือก่อนที่เรื่องนั้นจะเกิดขึ้นกันเถอะ";
+	next;
+	mes "[Maristella Walter]";
+	mes "ลงจากเรือและก้าวเดินต่อไปเพื่อทำสิ่งที่เราจำเป็นต้องทำกันเถอะ";
+	npctalk "Maristella Walter : ลงจากเรือและก้าวเดินต่อไปเพื่อทำสิ่งที่เราจำเป็นต้องทำกันเถอะ";
+	next;
+	cutin "ep21_tan01.png",1;
+	mes "[Tan]";
+	mes "เธอจำเป็นต้องยอมรับและอยู่กับความจริงทุกอย่างให้ได้นะ";
+	npctalk "Tan : เธอจำเป็นต้องยอมรับและอยู่กับความจริงทุกอย่างให้ได้นะ",instance_npcname("Tan#ep21_rw06");
+	next;
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	mes "พูดแบบนั้นฟังดูเหมือนพวกเราถ่อมาตั้งไกลเพียงเพื่อให้ฉันมาจัดการความรู้สึกตัวเองอย่างนั้นแหละ";
+	npctalk "Maristella Walter : พูดแบบนั้นฟังดูเหมือนพวกเราถ่อมาตั้งไกลเพียงเพื่อให้ฉันมาจัดการความรู้สึกตัวเองอย่างนั้นแหละ";
+	next;
+	cutin "ep21_tan01.png",1;
+	mes "[Tan]";
+	mes "ก็นั่นแหละคือสิ่งที่เราทำกันเป๊ะเลย";
+	npctalk "Tan : ก็นั่นแหละคือสิ่งที่เราทำกันเป๊ะเลย",instance_npcname("Tan#ep21_rw06");
+	next;
+	cutin "ep21_iana03.png",1;
+	mes "[Iana Operta]";
+	mes "Mari ท่านรองกัปตันเขากังวลว่าเธอจะจัดการกับอารมณ์ของตัวเองได้หรือเปล่าน่ะ!";
+	npctalk "Iana Operta : Mari ท่านรองกัปตันเขากังวลว่าเธอจะจัดการกับอารมณ์ของตัวเองได้หรือเปล่าน่ะ!",instance_npcname("Iana Operta#ep21_rwi05");
+	next;
+	cutin "ep21_tan01.png",1;
+	mes "[Tan]";
+	next;
+	cutin "ep21_yohan01.png",2;
+	mes "[Yohan]";
+	next;
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	mes "Yohan... นายน่าจะรู้ว่าการได้พูดคุยกับกัปตันในวันนี้มันคือโชคดีที่เหลือเชื่อขนาดไหน";
+	npctalk "Maristella Walter : Yohan... นายน่าจะรู้ว่าการได้พูดคุยกับกัปตันในวันนี้มันคือโชคดีที่เหลือเชื่อขนาดไหน";
+	next;
+	mes "[Maristella Walter]";
+	mes "พวกเราได้รับมามากพอแล้ว... มากจนถ้าจะขออะไรไปมากกว่านี้มันคงจะเป็นการโลภเกินไป";
+	npctalk "Maristella Walter : พวกเราได้รับมามากพอแล้ว... มากจนถ้าจะขออะไรไปมากกว่านี้มันคงจะเป็นการโลภเกินไป";
+	next;
+	cutin "ep21_maristella02.png",1;
+	mes "[Maristella Walter]";
+	mes "กัปตันจะไม่เป็นไร... นายเห็นสีหน้าของท่านก่อนที่เราจะออกมาแล้วนี่";
+	npctalk "Maristella Walter : กัปตันจะไม่เป็นไร... นายเห็นสีหน้าของท่านก่อนที่เราจะออกมาแล้วนี่";
+	next;
+	mes "[Maristella Walter]";
+	mes "เพื่อเห็นแก่กัปตัน เราจะอยู่ที่นี่ต่อไม่ได้ เราจำเป็นต้องออกไปจากที่นี่";
+	npctalk "Maristella Walter : เพื่อเห็นแก่กัปตัน เราจะอยู่ที่นี่ต่อไม่ได้ เราจำเป็นต้องออกไปจากที่นี่";
+	next;
+	cutin "ep21_maristella01.png",1;
+	mes "[Maristella Walter]";
+	mes "เอาล่ะ " + strcharinfo(0) + " ท่านรองกัปตัน Iana Yohan... ลงจากเรือกันเถอะ กลับ Alberta กัน";
+	npctalk "Maristella Walter : เอาล่ะ ท่านรองกัปตัน Iana Yohan... ลงจากเรือกันเถอะ กลับ Alberta กัน";
+	if(isbegin_quest(16816) == 1){
+		completequest 16816;
+		setquest 16817;
+	}
+	if(get_instance_var("mps") < 13)
+		instance_event("#EP21_GS_control","OnEvent",false);
+	close3;
+
+OnInstanceInit:
+	questinfo QTYPE_QUEST,QMARK_NONE,"isbegin_quest(16816) == 1";
+end;
+}
+
+1@wtgs,285,309,3	script(DISABLED)	Iana Operta#ep21_rwi05	4_EP21_IANA,{
+	cutin "ep21_iana02.png",1;
+	mes "[Iana Operta]";
+	mes "เอาล่ะๆ เข้มแข็งเข้าไว้นะ กลับไปหาอะไรอุ่นๆ ดื่มกันเถอะ";
+	close3;
+}
+
+1@wtgs,282,313,3	script(DISABLED)	Tan#ep21_rw06	4_EP21_TAN,{
+	cutin "ep21_tan01.png",1;
+	mes "[Tan]";
+	mes "เฮ้อ... ลมทะเลมันเย็นจริงๆ นะ";
+	close3;
+}
+
+1@wtgs,277,312,3	script(DISABLED)	Yohan#ep21_rw08	4_EP21_YOHAN,{
+	cutin "ep21_yohan01.png",2;
+	mes "[Yohan]";
+	close3;
+}

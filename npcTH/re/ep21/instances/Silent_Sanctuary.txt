@@ -1,0 +1,171 @@
+1@twbs2,1,1,0	script	#EP21_sanctuary_control	-1,{
+	end;
+
+OnInstanceInit:
+	set_instance_var("map$", instance_mapname("1@twbs2"));
+	set_instance_var("control$",instance_npcname(strnpcinfo(0)));
+	set_instance_var("sanc", 0);
+	set_instance_var("event_control", 0);
+end;
+
+OnEvent:
+	set_instance_var("event_control",get_instance_var("event_control") + 1);
+	instance_event(strnpcinfo(0),"OnEvent" + (get_instance_var("event_control") > 9 ? get_instance_var("event_control") : ("0" + get_instance_var("event_control"))),false);
+end;
+
+OnEvent01:
+	instance_enable("Aurelie#aurelie01",false);
+	set_instance_var("sanc", 1);
+end;
+
+OnEvent02:
+	set_instance_var("sanc", 2);
+	npctalk "..บา..กอท... ถูก... ถูกจับได้เหรอ?... นี่คือ... ความรักของพระเจ้า??..ข้า..ไม่..?",instance_npcname("Lasgand#lasgand01");
+	sleep 2000;
+	npctalk "อา... น่าสม..เพช.. กลอุบายเหรอ?..ถูกผนึก..??. ถูกกักขัง..?? ข้า??.. เจ้า..?กำลัง.. ?? เฝ้าดู..?",instance_npcname("Lasgand#lasgand01");
+	specialeffect EF_DQ9_CHARGE3,AREA,instance_npcname("Lasgand#lasgand01");
+	sleep 2000;
+	specialeffect EF_MAGICCRASHER,AREA,instance_npcname("Lasgand#lasgand01");
+	sleep 1000;
+	npctalk "... เจ้า... มา... เปิด...",instance_npcname("Lasgand#lasgand01");
+	sleep 1000;
+	specialeffect EF_DQ9_CHARGE4,AREA,instance_npcname("Lasgand#lasgand01");
+	npctalk "...ปลดปล่อย...ข้า ...จากสถานที่..โสโครกนี่...!!",instance_npcname("Lasgand#lasgand01");
+	sleep 1000;
+	specialeffect EF_MAGICCRASHER,AREA,instance_npcname("Lasgand#lasgand01");
+	instance_enable("Lasgand#lasgand01",false);
+	removespecialeffect EF_DQ9_CHARGE3,AREA,instance_npcname("Lasgand#lasgand01");
+	removespecialeffect EF_DQ9_CHARGE4,AREA,instance_npcname("Lasgand#lasgand01");
+	instance_event(strnpcinfo(0),"OnSummon",false);
+	
+end;
+
+OnEvent03:
+	set_instance_var("sanc", 3);
+	instance_enable("Lasgand#lasgand01",true);
+	setnpcdisplay(instance_npcname("Lasgand#lasgand01"),4_EP20_LASGAND);
+	specialeffect EF_SELFSCROLL,AREA,instance_npcname("Lasgand#lasgand01");
+end;
+
+OnEvent04:
+	set_instance_var("sanc", 4);
+	npctalk "..Bagot... ถูก... ถูกจับได้เหรอ?... นี่คือ... ความรักของพระเจ้า??..ข้าไม่..รู้..?",instance_npcname("Lasgand#lasgand01");
+	sleep 2000;
+	npctalk "อา.. ช่างเป็นกลอุบายที่น่าสมเพช เจ้าผนึก... กักขัง... เฝ้าดูข้า",instance_npcname("Lasgand#lasgand01");
+	specialeffect EF_DQ9_CHARGE3,AREA,instance_npcname("Lasgand#lasgand01");
+	sleep 2000;
+	specialeffect EF_MAGICCRASHER,AREA,instance_npcname("Lasgand#lasgand01");
+	sleep 1000;
+	npctalk ".. เจ้า... มา... เพื่อเปิดทางอย่างนั้นเหรอ...",instance_npcname("Lasgand#lasgand01");
+	sleep 1000;
+	specialeffect EF_DQ9_CHARGE4,AREA,instance_npcname("Lasgand#lasgand01");
+	npctalk "...ปลดปล่อย...ข้า ...จาก.. สถานที่โสโครกนี่...!!",instance_npcname("Lasgand#lasgand01");
+	sleep 1000;
+	specialeffect EF_MAGICCRASHER,AREA,instance_npcname("Lasgand#lasgand01");
+	instance_enable("Lasgand#lasgand01",false);
+	removespecialeffect EF_DQ9_CHARGE3,AREA,instance_npcname("Lasgand#lasgand01");
+	removespecialeffect EF_DQ9_CHARGE4,AREA,instance_npcname("Lasgand#lasgand01");
+	instance_event(strnpcinfo(0),"OnSummon",false);
+end;
+
+OnEvent05:
+	set_instance_var("sanc", 5);
+	instance_enable("Lasgand#lasgand01",true);
+	setnpcdisplay(instance_npcname("Lasgand#lasgand01"),4_EP20_LASGAND);
+	specialeffect EF_SELFSCROLL,AREA,instance_npcname("Lasgand#lasgand01");
+end;
+
+OnEvent06:
+	set_instance_var("sanc", 6);
+	npctalk "Bagot ถูก... จับได้เหรอ? ความรักของพระเจ้า... มันช่างท่วมท้นเหลือเกิน .. ข้าไม่รู้ว่าจะหนีไปที่ไหนดี",instance_npcname("Lasgand#lasgand01");
+	sleep 2000;
+	npctalk "กลอุบายที่น่าสมเพชอะไรเช่นนี้ที่เจ้ากำลังเล่นอยู่... หากเจ้าคิดจะผนึกและกักขังข้าไว้ที่นี่... เจ้าก็ไม่ควรมาเฝ้ามองข้าอย่างสบายใจแบบนี้",instance_npcname("Lasgand#lasgand01");
+	specialeffect EF_DQ9_CHARGE3,AREA,instance_npcname("Lasgand#lasgand01");
+	sleep 2000;
+	specialeffect EF_MAGICCRASHER,AREA,instance_npcname("Lasgand#lasgand01");
+	sleep 1000;
+	npctalk "..ในที่สุดเจ้าก็มา.. เจ้าคือคนที่จะปลดปล่อยข้าสินะ",instance_npcname("Lasgand#lasgand01");
+	sleep 2000;
+	specialeffect EF_DQ9_CHARGE4,AREA,instance_npcname("Lasgand#lasgand01");
+	npctalk "เปิดทางเดี๋ยวนี้!!",instance_npcname("Lasgand#lasgand01");
+	sleep 1000;
+	specialeffect EF_MAGICCRASHER,AREA,instance_npcname("Lasgand#lasgand01");
+	instance_enable("Lasgand#lasgand01",false);
+	removespecialeffect EF_DQ9_CHARGE3,AREA,instance_npcname("Lasgand#lasgand01");
+	removespecialeffect EF_DQ9_CHARGE4,AREA,instance_npcname("Lasgand#lasgand01");
+	instance_event(strnpcinfo(0),"OnSummon",false);
+end;
+
+OnEvent07:
+	set_instance_var("sanc", 7);
+	instance_enable("Lasgand#lasgand01",true);
+	setnpcdisplay(instance_npcname("Lasgand#lasgand01"),4_EP20_LASGAND);
+	specialeffect EF_SELFSCROLL,AREA,instance_npcname("Lasgand#lasgand01");
+	instance_enable("Aurelie#aurelie01",true);
+end;
+
+OnSummon:
+	monster get_instance_var("map$"),96,80,"Lasgand??",21979,1,get_instance_var("control$") + "::OnEvent";
+end;
+}
+
+1@twbs2,99,77,4	script	Aurelie#aurelie01	4_EP19_AURELIE,3,3,{
+	if(is_party_leader() && get_instance_var("sanc") == 0){
+		cutin "ep19_aurelie01.png",2;
+		mes "[Aurelie]";
+		mes "เหมือนก่อนหน้านี้ ข้ามาที่นี่เพื่อทำหน้าที่เป็นสื่อกลาง ร่างของข้าที่นี่เป็นเพียงภาพฉายเท่านั้น";
+		npctalk "เหมือนก่อนหน้านี้ ข้ามาที่นี่เพื่อทำหน้าที่เป็นสื่อกลาง ร่างของข้าที่นี่เป็นเพียงภาพฉายเท่านั้น",instance_npcname("Aurelie#aurelie01");
+		next;
+		mes "[Aurelie]";
+		mes "พลังที่ท่วมท้นของเขาหายไปอย่างแน่นอน มานาที่กำลังคลุ้มคลั่งอยู่แถวนี้ต้องเป็นเศษเสี้ยวของหัวใจ Ymir ที่ล้มเหลวในการหลอมรวมกับเขาใช่ไหม?";
+		npctalk "พลังที่ท่วมท้นของเขาหายไปอย่างแน่นอน มานาที่กำลังคลุ้มคลั่งอยู่แถวนี้ต้องเป็นเศษเสี้ยวของหัวใจ Ymir ที่ล้มเหลวในการหลอมรวมกับเขาใช่ไหม?",instance_npcname("Aurelie#aurelie01");
+		next;
+		mes "[Aurelie]";
+		mes "เรามาเปิดเผยตัวตนที่แท้จริงของสิ่งนั้นที่ใช้ร่างกายของ Lasgand อยู่ดีไหม? จงระมัดระวังด้วย";
+		npctalk "เรามาเปิดเผยตัวตนที่แท้จริงของสิ่งนั้นที่ใช้ร่างกายของ Lasgand อยู่ดีไหม? จงระมัดระวังด้วย",instance_npcname("Aurelie#aurelie01");
+		close2;
+		cutin "",255;
+		instance_event("#EP21_sanctuary_control","OnEvent",false);
+		end;
+	}
+	if(get_instance_var("sanc") >= 7){
+		cutin "ep19_aurelie01.png",2;
+		mes "[Aurelie]";
+		mes "มันทำให้ข้านึกถึงครั้งแรกที่ Lasgand อยู่ที่นี่ มันกำลังเลียนแบบสิ่งที่เขาทำในตอนนั้นทุกประการ";
+		next;
+		mes "[Aurelie]";
+		mes "สิ่งนี้ยืนยันได้แล้ว มันกำลังวิวัฒนาการโดยการแยกตัวและเลียนแบบร่างต้น";
+		next;
+		mes "[Aurelie]";
+		mes "มันเริ่มมีความซับซ้อนมากขึ้น เศษเสี้ยวของหัวใจ Ymir.. มันเป็นสิ่งที่อันตรายจริงๆ";
+		next;
+		mes "[Aurelie]";
+		mes "กลับกันเถอะ";
+		if(isbegin_quest(18358) == 1){
+			completequest 18358;
+			setquest 18359;
+		}
+		close2;
+		cutin "",255;
+		warp "jor_twig",122,158;
+	}
+	end;
+}
+
+1@twbs2,94,84,3	script	Lasgand#lasgand01	21979,{
+	if(is_party_leader() && get_instance_var("sanc") == 1){
+		instance_event("#EP21_sanctuary_control","OnEvent",false);
+		end;
+	}
+	if(is_party_leader() && get_instance_var("sanc") == 3){
+		instance_event("#EP21_sanctuary_control","OnEvent",false);
+		end;
+	}
+	if(is_party_leader() && get_instance_var("sanc") == 5){
+		instance_event("#EP21_sanctuary_control","OnEvent",false);
+		end;
+	}
+	if(get_instance_var("sanc") == 7)
+		npctalk "ท่านนักผจญภัย! ข้าว่าเราตรวจสอบมามากพอแล้ว! กลับกันเถอะ!",instance_npcname("Aurelie#aurelie01");
+	end;
+}

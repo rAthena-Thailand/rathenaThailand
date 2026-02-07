@@ -1,0 +1,2406 @@
+1@mdtem,1,1,0	script	#EP21_gimli_control	-1,{
+	end;
+
+OnInstanceInit:
+	set_instance_var("map$", instance_mapname("1@mdtem"));
+	set_instance_var("map2$", instance_mapname("2@mdtem"));
+	set_instance_var("gc", 0);
+	set_instance_var("event_control", 0);
+	set_instance_var("summon", 0);
+	set_instance_var("control$",instance_npcname(strnpcinfo(0)));
+	instance_enable("#21ms30i", true);
+end;
+
+OnEvent:
+	set_instance_var("event_control",get_instance_var("event_control") + 1);
+	instance_event(strnpcinfo(0),"OnEvent" + (get_instance_var("event_control") > 9 ? get_instance_var("event_control") : ("0" + get_instance_var("event_control"))),false);
+end;
+
+OnEvent01:
+	set_instance_var("gc", 1);
+	instance_enable("Nadoyo#ms00",true);
+	instance_enable("Ivan#ms00",true);
+	instance_enable("Yohan#ms00",true);
+	instance_enable("Tan#ms00",true);
+	instance_enable("Wilhelm#ms00",true);
+end;
+
+OnEvent02:
+	set_instance_var("gc", 2);
+	instance_enable("Nadoyo#ms00",false);
+	instance_enable("Ivan#ms00",false);
+	instance_enable("Yohan#ms00",false);
+	instance_enable("Tan#ms00",false);
+	instance_enable("Wilhelm#ms00",false);
+	instance_enable("Wilhelm#ms01",true);
+	instance_enable("Tan#ms01",true);
+	instance_enable("Wilhelm#ms200",true);
+	instance_enable("Tan#ms200",true);
+	instance_enable("Believer#ms200",true);
+	instance_enable("Believer#ms201",true);
+end;
+
+OnEvent03:
+	set_instance_var("gc", 3);
+	instance_enable("Wilhelm#ms200",false);
+	instance_enable("Tan#ms200",false);
+	instance_enable("Believer#ms200",false);
+	instance_enable("Believer#ms201",false);
+end;
+
+OnEvent04:
+	set_instance_var("gc", 4);
+	instance_enable("Wilhelm#ms01",false);
+	instance_enable("Tan#ms01",false);
+	instance_enable("Wilhelm#ms10",true);
+	instance_enable("Tan#ms10",true);
+	instance_enable("Tan#ms210",true);
+	instance_enable("Wilhelm#ms210",true);
+	instance_enable("Believer#ms210",true);
+	instance_enable("Believer#ms211",true);
+	instance_enable("Believer#ms212",true);
+end;
+
+OnEvent05:
+	set_instance_var("gc", 6);
+	npctalk "เฮ้ เจ้าไม่คิดว่ามีบางอย่างผิดปกติไปหน่อยเหรอ?",instance_npcname("Believer#ms210");
+end;
+
+OnEvent06:
+	set_instance_var("gc", 7);
+	instance_enable("Tan#ms210",false);
+	instance_enable("Wilhelm#ms210",false);
+	instance_enable("Believer#ms210",false);
+	instance_enable("Believer#ms211",false);
+	instance_enable("Believer#ms212",false);
+end;
+
+OnEvent07:
+	set_instance_var("gc", 8);
+	instance_enable("Tan#ms10",false);
+	instance_enable("Wilhelm#ms10",false);
+	instance_enable("Guard#ms20", true);
+	instance_enable("Guard#ms21", true);
+	instance_enable("Tan#ms20", true);
+	instance_enable("Wilhelm#ms20", true);
+end;
+
+OnEvent08:
+	set_instance_var("gc", 10);
+	npctalk "เฮ้อ- ถ้าเราทิ้งพวกมันไว้ตรงนี้คนอื่นจะสังเกตเห็นแน่ ลากพวกมันเข้าไปข้างในด้วยกันเถอะ",instance_npcname("Wilhelm#ms20");
+	instance_enable("Believer#ms220", true);
+	instance_enable("Tan#ms220", true);
+	instance_enable("Wilhelm#ms220", true);
+	instance_enable("Believer#ms221", true);
+	instance_enable("Believer#ms222", true);
+	instance_enable("#21ms20i",true);
+end;
+
+OnEvent09:
+	set_instance_var("gc", 12);
+	instance_enable("#21ms20i", false);
+	instance_enable("Believer#ms220", false);
+	instance_enable("Tan#ms220", false);
+	instance_enable("Wilhelm#ms220", false);
+	instance_enable("Believer#ms221", false);
+	instance_enable("Believer#ms222", false);
+end;
+
+OnEvent10:
+	set_instance_var("gc", 13);
+	instance_enable("Tan#ms20", false);
+	instance_enable("Wilhelm#ms20", false);
+	instance_enable("Tan#ms30", true);
+	instance_enable("Wilhelm#ms30", true);
+end;
+
+OnEvent11:
+	set_instance_var("gc", 15);
+	instance_enable("Guard#ms30",true);
+	instance_enable("Guard#ms31",true);
+	npctalk "นี่มันอะไรกัน?",instance_npcname("Guard#ms30");
+end;
+
+OnEvent12:
+	set_instance_var("gc", 16);
+	instance_enable("Tan#ms30",false);
+	instance_enable("Wilhelm#ms30",false);
+	instance_enable("Guard#ms30",false);
+	instance_enable("Guard#ms31",false);
+	instance_enable("Guard#ms32",false);
+	instance_enable("Guard#ms33",false);
+	instance_enable("Guard#ms34",false);
+	instance_enable("Guard#ms35",false);
+	instance_enable("Guard#ms36",false);
+	instance_enable("Wilhelm#ms230",true);
+	instance_enable("Tan#ms230",true);
+	instance_enable("Guard#ms230", true);
+	instance_enable("Guard#ms231", true);
+end;
+
+OnEvent13:
+	set_instance_var("gc", 17);
+	instance_enable("Suspicious Place#ms230",true);
+	instance_enable("Suspicious Place#ms231",true);
+	instance_enable("Suspicious Place#ms232",true);
+	instance_enable("Suspicious Place#ms233",true);
+	instance_enable("Suspicious Place#ms234",true);
+end;
+
+OnEvent14:
+	set_instance_var("gc", 18);
+	instance_enable("Suspicious Place#ms230",false);
+	instance_enable("Suspicious Place#ms231",false);
+	instance_enable("Suspicious Place#ms232",false);
+	instance_enable("Suspicious Place#ms233",false);
+	instance_enable("Suspicious Place#ms234",false);
+	instance_enable("Wilhelm#ms230",false);
+	instance_enable("Tan#ms230",false);
+	instance_enable("#21ms40i", true);
+end;
+
+OnEvent15:
+	set_instance_var("gc", 19);
+	instance_enable("#21ms40i", false);
+	instance_enable("Tan#ms40",true);
+	instance_enable("Wilhelm#ms40",true);
+	instance_enable("Carmigand#ms40",true);
+end;
+
+OnEvent16:
+	set_instance_var("gc", 21);
+	npctalk "ให้ตายสิ ฉันเบื่อเรื่องพวกนี้เต็มทนแล้ว",instance_npcname("Wilhelm#ms40");
+end;
+
+OnEvent17:
+	set_instance_var("gc", 22);
+	instance_enable("#21ms50i",true);
+	mapwarp get_instance_var("map$"),get_instance_var("map$"),38,206;
+end;
+
+OnEvent18:
+	set_instance_var("gc", 23);
+	instance_enable("Tan#ms50",true);
+	instance_enable("Wilhelm#ms50",true);
+	instance_enable("Carmigand#ms50",true);
+	npctalk "ยังหรอก",instance_npcname("Tan#ms50");
+end;
+
+OnEvent19:
+	set_instance_var("gc", 25);
+	npctalk "ถ้ายังเป็นแบบนี้ต่อไป มันไม่มีวันจบสิ้นแน่",instance_npcname("Tan#ms50",true);
+end;
+
+OnEvent20:
+	set_instance_var("gc", 26);
+	instance_enable("#21ms70", true);
+end;
+
+OnEvent21:
+	set_instance_var("gc", 27);
+	instance_enable("Tan#ms60",true);
+	instance_enable("Wilhelm#ms60",true);
+	instance_enable("Carmigand#ms60",true);
+	npctalk "เฮ้อ- การหลบหนีนี่มันยากจริงๆ",instance_npcname("Wilhelm#ms60");
+end;
+
+OnEvent22:
+	set_instance_var("gc", 29);
+	npctalk "เจ้าเห็นมันหรือยัง?",instance_npcname("Wilhelm#ms60");
+end;
+
+OnEvent23:
+	set_instance_var("gc", 30);
+	instance_enable("Guard#ms60",false);
+	instance_enable("Guard#ms61",false);
+	instance_enable("Guard#ms62",false);
+	instance_event("#EP21_gimli_control","OnSummon",false);
+	sleep 700;
+	instance_enable("Guard#ms65",false);
+	instance_enable("Guard#ms66",false);
+	sleep 700;
+	instance_enable("Guard#ms67",false);
+	instance_enable("Guard#ms68",false);
+	sleep 700;
+	instance_enable("Guard#ms69",false);
+	instance_enable("Guard#ms70",false);
+end;
+
+OnEvent24:
+	set_instance_var("gc", 31);
+	npctalk "พวกมันยังมากันอีกเหรอ?",instance_npcname("Tan#ms60");
+end;
+
+OnEvent25:
+	set_instance_var("gc", 32);
+	instance_enable("#21ms60i",true);
+end;
+
+OnSummon:
+	.@var = get_instance_var("summon") + 1;
+	.@event$ = get_instance_var("control$") + "::OnMobKill";
+	set_instance_var("summon", .@var);
+	switch(.@var){
+		case 1:
+			.@map$ = get_instance_var("map2$");
+			setarray .@mob$,
+				143,122,22356,"Guard",
+				142,120,22356,"Guard";
+			break;
+		case 2:
+			.@map$ = get_instance_var("map$");
+			setarray .@mob$,
+				38,46,22355,"Guard",
+				41,43,22356,"Guard";
+			break;
+
+		case 3:
+			.@map$ = get_instance_var("map$");
+			setarray .@mob$,
+				128,34,22355,"Guard",
+				126,31,22357,"Guard";
+			break;
+
+		case 4:
+			.@map$ = get_instance_var("map$");
+			setarray .@mob$,
+				265,97,22356,"Guard",
+				263,95,22359,"Guard";
+			break;
+		
+		case 5:
+			.@map$ = get_instance_var("map$");
+			setarray .@mob$,
+				38,201,22356,"Guard",0,
+				34,200,22357,"Guard",700,
+				38,208,22358,"Guard",0,
+				33,208,22359,"Guard",0;
+			.@total = getarraysize(.@mob$) / 5;
+			.@type = true;
+			.@event$ = get_instance_var("control$") + "::OnMobDead";
+			break;
+
+		case 6:
+			.@map$ = get_instance_var("map$");
+			setarray .@mob$,
+				144,243,22356,"Guard",
+				155,243,22357,"Guard",
+				148,249,22358,"Guard";
+			break;
+
+		case 7:
+			.@map$ = get_instance_var("map$");
+			setarray .@mob$,
+				144,243,22355,"Guard",0,
+				155,243,22356,"Guard",0,
+				148,249,22357,"Guard",700,
+				153,248,22358,"Guard",0,
+				155,236,22359,"Guard",700,
+				144,236,22358,"Guard",0,
+				145,230,22359,"Guard",700,	
+				154,230,22358,"Guard",0,
+				150,232,22359,"Guard",0;
+			.@total = getarraysize(.@mob$) / 5;
+			.@type = true;
+			.@event$ = get_instance_var("control$") + "::OnMobDead";
+			break;
+	}
+	if(.@type) {
+		set_instance_var("c", .@total);
+		for(.@i = 0; .@i < getarraysize(.@mob$); .@i += 5){
+			monster .@map$,atoi(.@mob$[.@i]),atoi(.@mob$[.@i+1]),.@mob$[.@i+3],atoi(.@mob$[.@i+2]),1,.@event$;
+			if(atoi(.@mob$[.@i+4]))
+				sleep atoi(.@mob$[.@i+4]);
+		}
+	} else {
+		for(.@i = 0; .@i < getarraysize(.@mob$); .@i += 4)
+			monster .@map$,atoi(.@mob$[.@i]),atoi(.@mob$[.@i+1]),.@mob$[.@i+3],atoi(.@mob$[.@i+2]),1,.@event$;
+	}
+end;
+
+OnMobKill:
+	switch(get_instance_var("summon")){
+		case 1:
+			.@map$ = get_instance_var("map2$");
+			break;
+		default:
+			.@map$ = get_instance_var("map$");
+			break;
+	}
+	if(mobcount(.@map$,get_instance_var("control$") + "::OnMobKill")) end;
+	instance_event(strnpcinfo(0),"OnEvent",true);
+end;
+
+OnMobDead:
+	.@count = get_instance_var("c") - 1;
+	set_instance_var("c", .@count);
+	if(.@count != 0) end;
+	instance_event(strnpcinfo(0),"OnEvent",true);
+end;
+}
+
+1@mdtem,266,174,0	script(DISABLED)	#21ms30i	HIDDEN_WARP_NPC,3,3,{
+	end;
+
+OnTouch:
+	if(!get_instance_var("gc") && is_party_leader()){
+		instance_event("#EP21_gimli_control","OnEvent",false);
+		end;
+	}
+	if(get_instance_var("gc") == 1 && is_party_leader())
+		npctalk "ทางนี้!",instance_npcname("Nadoyo#ms00"),bc_self;
+end;
+}
+
+1@mdtem,258,179,5	script(DISABLED)	Nadoyo#ms00	4_EP21_NADOYO,5,5,{
+	if(get_instance_var("gc") == 1 && is_party_leader()){
+		cutin "ep21_nadoyo01.png",0;
+		mes "[Nadoyo]";
+		mes "ฉันดีใจที่พวกเราทุกคนมาถึงอย่างปลอดภัย มีปัญหาอะไรไหม? ฉันคิดไว้แล้วเชียวว่าพวก Rgans คงไม่สังเกตว่า Carmigand คือคนอื่น";
+		npctalk "ฉันดีใจที่พวกเราทุกคนมาถึงอย่างปลอดภัย มีปัญหาอะไรไหม? ฉันคิดไว้แล้วเชียวว่าพวก Rgans คงไม่สังเกตว่า Carmigand คือคนอื่น";
+		next;
+		cutin "ep21_wilhelm02.png",1;
+		mes "[Wilhelm]";
+		mes "อย่าเอาฉันไปเปรียบเทียบกับคนอื่น มันน่ารำคาญ";
+		npctalk "อย่าเอาฉันไปเปรียบเทียบกับคนอื่น มันน่ารำคาญ",instance_npcname("Wilhelm#ms00");
+		next;
+		cutin "ep21_nadoyo02.png",0;
+		mes "[Nadoyo]";
+		mes "ไม่ต้องห่วง เจ้าดูไม่เหมือนเขาสักเท่าไหร่หรอก คนนั้นเขามีเสน่ห์ดึงดูดมากกว่าเจ้าอีก";
+		npctalk "ไม่ต้องห่วง เจ้าดูไม่เหมือนเขาสักเท่าไหร่หรอก คนนั้นเขามีเสน่ห์ดึงดูดมากกว่าเจ้าอีก";
+		npctalk "นั่นยิ่งน่ารำคาญเข้าไปใหญ่",instance_npcname("Wilhelm#ms00");
+		npctalk "นั่นเป็นวิธีการทักทายที่น่าสนใจดีนะ",instance_npcname("Yohan#ms00");
+		next;
+		cutin "ep21_ivan02.png",1;
+		mes "[Ivan]";
+		mes "จะว่าไป ที่นี่มันวุ่นวายขนาดนี้เลยเหรอ?";
+		npctalk "จะว่าไป ที่นี่มันวุ่นวายขนาดนี้เลยเหรอ?",instance_npcname("Ivan#ms00");
+		next;
+		cutin "ep21_nadoyo03.png",0;
+		mes "[Nadoyo]";
+		mes "ใช่แล้ว ตอนนี้ไม่ใช่เวลามาพูดเล่น เจ้าพูดถูก ที่นี่วุ่นวายกว่าปกติ นั่นคือสาเหตุที่ฉันเข้ามาตรวจสอบที่นี่ก่อนที่พวกเจ้าจะเข้ามา";
+		mes "ดูเหมือนว่าข่าวลือเกี่ยวกับแผนการหลบหนีของ Carmigand จะรั่วไหลออกไป และตอนนี้เขาถูกกักขังอยู่";
+		npctalk "ดูเหมือนว่าข่าวลือเกี่ยวกับแผนการหลบหนีของ Carmigand จะรั่วไหลออกไป และตอนนี้เขาถูกกักขังอยู่";
+		next;
+		cutin "ep21_ivan02.png",1;
+		mes "[Ivan]";
+		mes "อะไรนะ?? ถ้าอย่างนั้น Wilhelm ก็ควรหลีกเลี่ยงการเปิดเผยใบหน้าสิ?";
+		npctalk "อะไรนะ?? ถ้าอย่างนั้น Wilhelm ก็ควรหลีกเลี่ยงการเปิดเผยใบหน้าสิ?",instance_npcname("Ivan#ms00");
+		next;
+		cutin "ep21_nadoyo01.png",0;
+		mes "[Nadoyo]";
+		mes "เขาควรทำเช่นนั้น ดูเหมือนว่าทางลัทธิกำลังพยายามปิดข่าวเงียบ ข่าวยังไม่แพร่ออกไป";
+		mes "แม้แต่ทหารยามที่ปล่อยพวกเราเข้ามาก็ยังไม่รู้เรื่องนี้ แต่เราควรเคลื่อนไหวอย่างระมัดระวังมากขึ้น";
+		npctalk "ดูเหมือนว่าทางลัทธิกำลังพยายามปิดข่าวเงียบ ข่าวยังไม่แพร่ออกไป แต่เราควรเคลื่อนไหวอย่างระมัดระวังมากขึ้น";
+		next;
+		cutin "ep21_tan01.png",2;
+		mes "[Tan]";
+		mes "หากข่าวแพร่ออกไปถึงชั้น 1 มันก็เป็นแค่เรื่องของเวลาเท่านั้น ก่อนที่พวกเขาจะรู้ว่า Carmigand ตัวปลอมได้เข้ามาแล้ว";
+		npctalk "หากข่าวแพร่ออกไปถึงชั้น 1 มันก็เป็นแค่เรื่องของเวลาเท่านั้น ก่อนที่พวกเขาจะรู้ว่า Carmigand ตัวปลอมได้เข้ามาแล้ว",instance_npcname("Tan#ms00");
+		next;
+		cutin "ep21_ivan01.png",1;
+		mes "[Ivan]";
+		mes "เราต้องรีบจัดการเรื่องนี้ให้เสร็จโดยเร็ว เราจะตามหาคนที่ต้องการหลบหนี ระบุตำแหน่งของ Carmigand และรวบรวมข้อมูล";
+		npctalk "เราต้องรีบจัดการเรื่องนี้ให้เสร็จโดยเร็ว เราจะตามหาคนที่ต้องการหลบหนี ระบุตำแหน่งของ Carmigand และรวบรวมข้อมูล",instance_npcname("Ivan#ms00");
+		npctalk "ว้าว... ฉันตั้งตารอเรื่องนี้จริงๆ... รู้สึกเหมือนตัวเองเป็นยอดมนุษย์เลย...",instance_npcname("Yohan#ms00");
+		next;
+		cutin "ep21_nadoyo02.png",0;
+		mes "[Nadoyo]";
+		mes "ทางลัทธิกำลังวุ่นวายอยู่กับการตามหาคนอื่นๆ ที่ต้องการหลบหนี ดังนั้นเรามาฉวยโอกาสจากเรื่องนั้นกันเถอะ";
+		npctalk "ทางลัทธิกำลังวุ่นวายอยู่กับการตามหาคนอื่นๆ ที่ต้องการหลบหนี ดังนั้นเรามาฉวยโอกาสจากเรื่องนั้นกันเถอะ";
+		next;
+		cutin "ep21_nadoyo05.png",0;
+		mes "[Nadoyo]";
+		mes "ฉันจะให้บางคนไปกับฉันและแสร้งทำเป็นผู้ศรัทธาเพื่อดึงความสนใจ ส่วนที่เหลือให้ค้นหา Carmigand มองหาคนที่มีลักษณะคล้ายกับชายคนนี้";
+		npctalk "ฉันจะให้บางคนไปกับฉันเพื่อดึงความสนใจ ส่วนที่เหลือให้ค้นหา Carmigand มองหาคนที่มีลักษณะคล้ายกับชายคนนี้";
+		next;
+		cutin "ep21_nadoyo01.png",0;
+		mes "[Nadoyo]";
+		mes "เจ้าสองคน มากับฉัน ส่วนพวกเจ้าทั้งสามควรเน้นไปที่การค้นหาห้องสวดมนต์";
+		npctalk "เจ้าสองคน มากับฉัน ส่วนพวกเจ้าทั้งสามควรเน้นไปที่การค้นหาห้องสวดมนต์";
+		next;
+		cutin "ep21_nadoyo05.png",0;
+		mes "[Nadoyo]";
+		mes "หากพวกเขากักขังเจ้าหน้าที่ระดับสูงไว้ ก็คงไม่มีที่อื่นนอกจากที่นั่น การตามหา Carmigand คือภารกิจหลักของเรา เขาคือผู้กุมข้อมูลทั้งหมด";
+		npctalk "หากพวกเขากักขังเจ้าหน้าที่ระดับสูงไว้ ก็คงไม่มีที่อื่นนอกจากที่นั่น การตามหา Carmigand คือภารกิจหลักของเรา เขาคือผู้กุมข้อมูลทั้งหมด";
+		next;
+		cutin "ep21_wilhelm02.png",1;
+		mes "[Wilhelm]";
+		mes "เจ้าบอกว่าเจ้าจะรู้ว่าเราจะพบคนคนนั้นได้ที่ไหนทันทีที่มาถึงที่นี่ แต่สุดท้ายมันก็กลับเป็นแบบนี้ ฉันควรจะไปได้แล้ว";
+		npctalk "เจ้าบอกว่าเจ้าจะรู้ว่าเราจะพบคนคนนั้นได้ที่ไหนทันทีที่มาถึงที่นี่ แต่สุดท้ายมันก็กลับเป็นแบบนี้ ฉันควรจะไปได้แล้ว",instance_npcname("Wilhelm#ms00");
+		next;
+		cutin "ep21_ivan03.png",1;
+		mes "[Ivan]";
+		mes "ไม่มีใครคาดคิดหรอกว่าจะเกิดเรื่องแบบนี้ขึ้น การตามหา Carmigand น่าจะเป็นเบาะแสพาเจ้าไปพบกับคนคนนั้นที่เจ้ากำลังตามหาอยู่";
+		npctalk "ไม่มีใครคาดคิดหรอกว่าจะเกิดเรื่องแบบนี้ขึ้น การตามหา Carmigand น่าจะเป็นเบาะแสพาเจ้าไปพบกับคนคนนั้นที่เจ้ากำลังตามหาอยู่",instance_npcname("Ivan#ms00");
+		next;
+		cutin "ep21_nadoyo01.png",0;
+		mes "[Nadoyo]";
+		mes "นั่นน่าจะถูกต้องแล้ว ไม่เกินจริงเลยที่จะบอกว่าผู้ศรัทธาที่เป็นมนุษย์ทั้งหมดอยู่ภายใต้เขตอำนาจของเขา";
+		npctalk "นั่นน่าจะถูกต้องแล้ว ไม่เกินจริงเลยที่จะบอกว่าผู้ศรัทธาที่เป็นมนุษย์ทั้งหมดอยู่ภายใต้เขตอำนาจของเขา";
+		next;
+		cutin "ep21_tan01.png",2;
+		mes "[Tan]";
+		mes "รีบจัดการให้เสร็จเถอะ นักผจญภัย ตามฉันมาให้ทันล่ะ";
+		npctalk "รีบจัดการให้เสร็จเถอะ นักผจญภัย ตามฉันมาให้ทันล่ะ",instance_npcname("Tan#ms00");
+		next;
+		cutin "ep21_nadoyo02.png",0;
+		mes "[Nadoyo]";
+		mes "ไปเจอกันที่ Raised Land หลังจากเสร็จสิ้นทุกอย่างแล้วนะ";
+		npctalk "ไปเจอกันที่ Raised Land หลังจากเสร็จสิ้นทุกอย่างแล้วนะ";
+		npctalk "ไปกันเถอะ!",instance_npcname("Ivan#ms00");
+		close2;
+		cutin "",255;
+		instance_event("#EP21_gimli_control","OnEvent",false);
+		navigateto("1@mdtem",260,259);
+	}
+	end;
+
+OnTouch:
+	if(get_instance_var("gc") == 1 && is_party_leader())
+		npctalk "ทางนี้!";
+end;
+}
+
+1@mdtem,263,179,3	script(DISABLED)	Tan#ms00	4_EP21_TAN,5,5,{ 
+	end; 
+
+OnTouch:
+	if(get_instance_var("gc") == 1 && is_party_leader())
+		npctalk "ทางนี้!",instance_npcname("Nadoyo#ms00"),bc_self;
+end;
+}
+
+1@mdtem,262,176,1	script(DISABLED)	Ivan#ms00	4_EP21_IVAN,{ end; }
+1@mdtem,260,175,1	script(DISABLED)	Yohan#ms00	4_EP21_YOHAN,{ end; }
+1@mdtem,257,176,5	script(DISABLED)	Wilhelm#ms00	4_EP21_WILHELM,{ end; }
+
+1@mdtem,260,259,3	script(DISABLED)	Tan#ms01	4_EP21_TAN,3,3,{
+	if(get_instance_var("gc") == 2 && is_party_leader()){
+		npctalk "ดูเหมือนว่าจะมีบางอย่างอยู่แถวนี้";
+		pcblock(true);
+		sleep2 1000;
+		pcblock(false);
+		mapwarp get_instance_var("map$"),get_instance_var("map2$"),60,120;	
+		end;
+	}
+	if(get_instance_var("gc") == 3 && is_party_leader()){
+		npctalk "เราควรไปตรวจสอบห้องสวดมนต์ห้องอื่นกันต่อ";
+		pcblock(true);
+		sleep2 1000;
+		pcblock(false);
+		instance_event("#EP21_gimli_control","OnEvent",false);
+		navigateto("1@mdtem",41,260);
+	}
+	end;
+
+OnTouch:
+	if(get_instance_var("gc") == 2 && is_party_leader()){
+		npctalk "อยู่แถวนี้งั้นเหรอ?";
+		end;
+	}
+	if(get_instance_var("gc") == 3 && is_party_leader())
+		npctalk "ฉันไม่คิดว่ามันอยู่ที่นี่นะ";
+end;
+}
+
+1@mdtem,261,257,3	script(DISABLED)	Wilhelm#ms01	4_EP21_WILHELM,{ end; }
+
+2@mdtem,63,123,1	script	Wilhelm#ms200	4_EP21_WILHELM,5,5,{
+	if(get_instance_var("gc") == 2 && is_party_leader()){
+		cutin "ep21_wilhelm01.png",2;
+		mes "[Wilhelm]";
+		mes "ที่นี่เหรอ? ใช่ที่นี่หรือเปล่า? ที่นี่ดูเหมือนห้องสำหรับสวดมนต์ นี่ต้องเป็นห้องสวดมนต์แน่ๆ ใช่ไหม?";
+		mes "นี่ฉันหาเจอทันทีเลยเหรอ? ฉันเคยโชคดีขนาดนี้มาก่อนไหมนะ?";
+		npctalk "ที่นี่เหรอ? ใช่ที่นี่หรือเปล่า? ที่นี่ดูเหมือนห้องสำหรับสวดมนต์ นี่ต้องเป็นห้องสวดมนต์แน่ๆ ใช่ไหม?";
+		next;
+		cutin "ep21_tan01.png",0;
+		mes "[Tan]";
+		mes "ที่นี่มันดูเปิดโล่งเกินกว่าจะเป็นที่นั่นนะ";
+		npctalk "ที่นี่มันดูเปิดโล่งเกินกว่าจะเป็นที่นั่นนะ",instance_npcname("Tan#ms200");
+		next;
+		cutin "ep21_wilhelm01.png",2;
+		mes "[Wilhelm]";
+		mes "งั้นเหรอ? ฉันไม่ค่อยคุ้นเคยกับเรื่องศาสนาเท่าไหร่ เราควรไปถามพวกผู้ศรัทธาข้างในดู";
+		mes "ฉันควรแสร้งทำเป็น Carmigand ต่อไปดีไหม?";
+		npctalk "เราควรไปถามพวกผู้ศรัทธาข้างในดู ฉันควรแสร้งทำเป็น Carmigand ต่อไปดีไหม?";
+		next;
+		cutin "ep21_tan01.png",0;
+		mes "[Tan]";
+		mes "ถ้าเจ้ายังแกล้งทำเป็นเขาต่อไป เราก็ไม่มีวันหา Carmigand ตัวจริงเจอหรอก";
+		mes "พี่ชาย ขอโทษนะ?";
+		npctalk "ถ้าเจ้ายังแกล้งทำเป็นเขาต่อไป เราก็ไม่มีวันหา Carmigand ตัวจริงเจอหรอก ขอโทษนะ?",instance_npcname("Tan#ms200");
+		next;
+		cutin "ep21_worker_om_04.png",1;
+		mes "[Believer]";
+		mes "... โปรดประทานความเมตตาแก่เราด้วย โอ้ ใครกัน... พวกท่านเป็นใคร? เราเคยพบกันมาก่อนหรือเปล่า?";
+		npctalk "... โปรดประทานความเมตตาแก่เราด้วย โอ้ ใครกัน... พวกท่านเป็นใคร? เราเคยพบกันมาก่อนหรือเปล่า?",instance_npcname("Believer#ms200");
+		next;
+		cutin "ep21_tan03.png",0;
+		mes "[Tan]";
+		mes "วันนี้เป็นวันที่เต็มไปด้วยความเมตตาของ Jormungandr พี่ชาย พอจะทราบไหมว่าท่าน Carmigand อยู่ที่ไหน? หรือถ้าไม่ทราบ พอจะแนะนำเราให้รู้จักกับคนที่รู้เรื่องนี้ได้ไหม?";
+		npctalk "เปลี่ยนบุคลิกได้กะทันหันจริงๆ";
+		npctalk "พี่ชาย พอจะทราบไหมว่าท่าน Carmigand อยู่ที่ไหน?",instance_npcname("Tan#ms200");
+		next;
+		cutin "ep21_worker_m_07.png",1;
+		mes "[Believer]";
+		mes "ท่าน Carmigand? เขาก็อยู่ข้างๆ ท่านนี่ไง...";
+		mes "เอ๊ะ...? หรือว่าเป็นคนอื่น? เขาดูเปลี่ยนไปนิดหน่อยนะ ว่าไหม?";
+		npctalk "ท่าน Carmigand? เขาก็อยู่ข้างๆ ท่านนี่ไง... หรือว่าเป็นคนอื่น?",instance_npcname("Believer#ms200");
+		npctalk "เขาดูเปลี่ยนไปนิดหน่อยนะ ว่าไหม?",instance_npcname("Believer#ms201");
+		next;
+		cutin "ep21_wilhelm01.png",2;
+		mes "[Wilhelm]";
+		mes "ฉันเป็นผู้ศรัทธาหน้าใหม่น่ะ!!";
+		mes "ฉันอยากพบท่าน Carmigand ก่อนเริ่มพิธีรับศีลจุ่ม";
+		npctalk "ฉันเป็นผู้ศรัทธาหน้าใหม่น่ะ!! ฉันอยากพบท่าน Carmigand ก่อนเริ่มพิธีรับศีลจุ่ม";
+		next;
+		cutin "ep21_worker_om_04.png",1;
+		mes "[Believer]";
+		mes "โอ้ ท่านดูเหมือนเขามากเลย ถ้าเป็นเขาล่ะก็...";
+		mes "อืม เมื่อวานฉันเห็นเขาอยู่ไกลๆ กำลังพบปะกับผู้ศรัทธามนุษย์คนอื่นๆ แต่สำหรับวันนี้...";
+		npctalk "อืม เมื่อวานฉันเห็นเขาอยู่ไกลๆ กำลังพบปะกับผู้ศรัทธามนุษย์คนอื่นๆ แต่สำหรับวันนี้...",instance_npcname("Believer#ms200");
+		next;
+		cutin "ep21_worker_m_07.png",1;
+		mes "[Believer]";
+		mes "เขาไม่ได้ออกมาทำกิจกรรมสาธารณะมาได้หลายปีแล้ว และเขามักจะอยู่ตัวคนเดียว...";
+		mes "เมื่อไม่นานมานี้ เขาเริ่มออกไปพบปะผู้ศรัทธามนุษย์คนอื่นๆ บ่อยขึ้น ฉันก็ดีใจที่ได้เห็นแบบนั้นนะ แต่ดูเหมือนวันนี้เขาจะไม่อยู่";
+		npctalk "เมื่อไม่นานมานี้ เขาเริ่มออกไปพบปะผู้ศรัทธามนุษย์คนอื่นๆ บ่อยขึ้น ฉันก็ดีใจที่ได้เห็นแบบนั้นนะ แต่ดูเหมือนวันนี้เขาจะไม่อยู่",instance_npcname("Believer#ms201");
+		next;
+		cutin "ep21_worker_om_04.png",1;
+		mes "[Believer]";
+		mes "ท่านควรลองไปดูที่ห้องสวดมนต์ของมหาปุโรหิตนะ เป็นที่ที่ท่าน Carmigand มักจะพักอยู่ มีอะไรเกิดขึ้นหรือเปล่า? เขาป่วยเหรอ? หรือแค่ยุ่ง?";
+		npctalk "ท่านควรลองไปดูที่ห้องสวดมนต์ของมหาปุโรหิตนะ เป็นที่ที่ท่าน Carmigand มักจะพักอยู่ มีอะไรเกิดขึ้นหรือเปล่า?",instance_npcname("Believer#ms200");
+		next;
+		cutin "ep21_tan01.png",0;
+		mes "[Tan]";
+		mes "ห้องสวดมนต์ของมหาปุโรหิตอยู่ที่ไหนงั้นเหรอ?";
+		npctalk "ห้องสวดมนต์ของมหาปุโรหิตอยู่ที่ไหนงั้นเหรอ?",instance_npcname("Tan#ms200");
+		next;
+		cutin "ep21_worker_m_07.png",1;
+		mes "[Believer]";
+		mes "ท่านก็เป็นผู้ศรัทธาหน้าใหม่เหมือนกันเหรอ? ทำไมถึงไม่รู้ล่ะ? มันอยู่ในพื้นที่ด้านในสุดน่ะ";
+		npctalk "ท่านก็เป็นผู้ศรัทธาหน้าใหม่เหมือนกันเหรอ? ทำไมถึงไม่รู้ล่ะ? มันอยู่ในพื้นที่ด้านในสุดน่ะ",instance_npcname("Believer#ms201");
+		next;
+		cutin "ep21_wilhelm01.png",2;
+		mes "[Wilhelm]";
+		mes "พี่ชาย ท่านใจดีจริงๆ ขอบคุณมากนะ";
+		mes "โอ้ อีกเรื่องหนึ่ง ท่านเคยพบหรือเคยได้ยินชื่อใครที่ชื่อ Reinhardt ไหม?";
+		npctalk "อีกเรื่องหนึ่ง ท่านเคยพบหรือเคยได้ยินชื่อใครที่ชื่อ Reinhardt ไหม?";
+		next;
+		cutin "ep21_worker_m_07.png",1;
+		mes "[Believer]";
+		mes "Reindhardt? ฉันไม่เคยได้ยินชื่อนั้นมาก่อนเลย ไม่รู้สิ เขามีหน้าตายังไงล่ะ?";
+		npctalk "Reindhardt? ฉันไม่เคยได้ยินชื่อนั้นมาก่อนเลย ไม่รู้สิ เขามีหน้าตายังไงล่ะ?",instance_npcname("Believer#ms200");
+		next;
+		cutin "ep21_wilhelm01.png",2;
+		mes "[Wilhelm]";
+		mes "เขามีผมสีดำ สูงประมาณฉันนี่แหละ...";
+		mes "ฉันได้ยินมาว่าเขาเข้าร่วมลัทธิมานานแล้ว";
+		npctalk "เขามีผมสีดำ สูงประมาณฉันนี่แหละ... ฉันได้ยินมาว่าเขาเข้าร่วมลัทธิมานานแล้ว";
+		next;
+		mes "[Believer]";
+		mes "อืม... ฉันอยู่ในลัทธิมาหลายปีแล้ว แต่ฉันไม่รู้จักเขาเลยนะ";
+		mes "คนตัวสูงผมดำมีไม่มากหรอก แต่ฉันไม่เคยได้ยินชื่อเขามาก่อนเลย";
+		npctalk "อืม... ฉันอยู่ในลัทธิมาหลายปีแล้ว แต่ฉันไม่รู้จักเขาเลยนะ",instance_npcname("Believer#ms201");
+		next;
+		cutin "ep21_tan01.png",0;
+		mes "[Tan]";
+		mes "พี่ชายคนนี้ดูเหมือนจะไม่รู้แฮะ เราควรไปลองถามคนอื่นดู..";
+		npctalk "พี่ชายคนนี้ดูเหมือนจะไม่รู้แฮะ เราควรไปลองถามคนอื่นดู..",instance_npcname("Tan#ms200");
+		next;
+		cutin "ep21_wilhelm01.png",2;
+		mes "[Wilhelm]";
+		mes "พี่ชาย ถ้าหากท่านรู้สึกเสื่อมศรัทธาต่อเรื่องทั้งหมดนี้เมื่อไหร่ ได้โปรดบอกพวกเรานะ";
+		mes "พวกเราจะช่วยท่านเอง";
+		npctalk "ถ้าหากท่านรู้สึกเสื่อมศรัทธาต่อเรื่องทั้งหมดนี้เมื่อไหร่ ได้โปรดบอกพวกเรานะ พวกเราจะช่วยท่านเอง";
+		next;
+		cutin "ep21_worker_om_04.png",1;
+		mes "[Believer]";
+		mes "เสื่อมศรัทธา? ไม่ล่ะ ไม่เคยแม้แต่ครั้งเดียว ท่านพูดเรื่องอะไรกัน...?";
+		mes "ฉันต้องสวดมนต์ให้เสร็จ เพราะฉะนั้นช่วยเงียบหน่อย";
+		npctalk "เสื่อมศรัทธา? ไม่ล่ะ ไม่เคยแม้แต่ครั้งเดียว ท่านพูดเรื่องอะไรกัน...?",instance_npcname("Believer#ms200");
+		next;
+		cutin "ep21_wilhelm01.png",2;
+		mes "[Wilhelm]";
+		mes "ดูเหมือนจะเป็นผู้ศรัทธาที่เคร่งครัดมากเลยแฮะ ไม่ดูเหมือนคนที่จะยอมออกจากลัทธิเลย";
+		npctalk "ดูเหมือนจะเป็นผู้ศรัทธาที่เคร่งครัดมากเลยแฮะ ไม่ดูเหมือนคนที่จะยอมออกจากลัทธิเลย";
+		next;
+		cutin "ep21_tan01.png",0;
+		mes "[Tan]";
+		mes "พวกเขาบอกว่า Carmigand ออกไปพบปะผู้ศรัทธามนุษย์คนอื่นๆ บ่อยขึ้น บางทีเขาอาจจะกำลังตามหาผู้ศรัทธาคนอื่นที่ต้องการจะหนีไปเหมือนกันก็ได้นะ?";
+		mes "และในการทำเช่นนั้น แผนการของเขาคงจะถูกเปิดโปง..";
+		npctalk "Carmigand ตามหาผู้ศรัทธาคนอื่นที่อยากจะหนีไปงั้นเหรอ? และในการทำเช่นนั้น แผนการของเขาคงจะถูกเปิดโปง..",instance_npcname("Tan#ms200");
+		next;
+		cutin "ep21_tan02.png",0;
+		mes "[Tan]";
+		mes "พวกเขาบอกว่าวันนี้เขาไม่อยู่ที่นี่ ดูเหมือนว่าเขาจะถูกกักขังอยู่จริงๆ ไปตรวจสอบห้องสวดมนต์ด้านในสุดกันเถอะ";
+		npctalk "พวกเขาบอกว่าวันนี้เขาไม่อยู่ที่นี่ ดูเหมือนว่าเขาจะถูกกักขังอยู่จริงๆ ไปตรวจสอบห้องสวดมนต์ด้านในสุดกันเถอะ",instance_npcname("Tan#ms200");
+		next;
+		cutin "ep21_wilhelm01.png",2;
+		mes "[Wilhelm]";
+		mes "ฉันอยากแยกกันไปตรวจแฮะ การเดินไปไหนมาไหนกันเป็นกลุ่มแบบนี้ รู้สึกเหมือนเสียเวลาเปล่า";
+		mes "และตอนแรกฉันก็ไม่คิดว่าจะมีอะไรให้ฉันทำที่นี่อยู่แล้วด้วย";
+		npctalk "ฉันอยากแยกกันไปตรวจแฮะ การเดินไปไหนมาไหนกันเป็นกลุ่มแบบนี้ รู้สึกเหมือนเสียเวลาเปล่า";
+		next;
+		cutin "ep21_tan04.png",0;
+		mes "[Tan]";
+		mes "เจ้าอยากเดินไปเดินมาด้วยใบหน้าแบบนั้นน่ะเหรอ? ด้วยใบหน้าของคนที่ถูกกักขังอยู่ ท่ามกลางวิหารของลัทธิเนี่ยนะ?";
+		npctalk "เจ้าอยากเดินไปเดินมาด้วยใบหน้าแบบนั้นน่ะเหรอ? ด้วยใบหน้าของคนที่ถูกกักขังอยู่ ท่ามกลางวิหารของลัทธิเนี่ยนะ?",instance_npcname("Tan#ms200");
+		next;
+		cutin "ep21_wilhelm01.png",2;
+		mes "[Wilhelm]";
+		mes "แล้วตอนแรกพวกเจ้าจะพาฉันมาด้วยทำไมกันล่ะ? ฉันมาที่นี่ก็เพราะพวกเจ้าต้องการฉัน แต่ทุกอย่างมันพังตั้งแต่เริ่มต้นแล้ว!";
+		npctalk "แล้วตอนแรกพวกเจ้าจะพาฉันมาด้วยทำไมกันล่ะ? ฉันมาที่นี่ก็เพราะพวกเจ้าต้องการฉัน แต่ทุกอย่างมันพังตั้งแต่เริ่มต้นแล้ว!";
+		next;
+		select("ไปต่อกันก่อนเถอะ");
+		pctalk "ไปต่อกันก่อนเถอะ";
+		cutin "ep21_tan01.png",0;
+		mes "[Tan]";
+		mes "จะบ่นอะไรก็รอให้พวกเราออกไปจากที่นี่ได้อย่างปลอดภัยก่อนเถอะ ไม่ว่าเจ้าจะชอบหรือไม่ เจ้าก็ต้องอยู่ติดกับพวกเราจนกว่าจะถึงตอนนั้น..";
+		npctalk "จะบ่นอะไรก็รอให้พวกเราออกไปจากที่นี่ได้อย่างปลอดภัยก่อนเถอะ ไม่ว่าเจ้าจะชอบหรือไม่ เจ้าก็ต้องอยู่ติดกับพวกเราจนกว่าจะถึงตอนนั้น..",instance_npcname("Tan#ms200");
+		next;
+		cutin "ep21_wilhelm01.png",2;
+		mes "[Wilhelm]";
+		mes "หน็อย ถ้าเจ้าไม่ใช่ผู้บัญชาการล่ะก็ ฉันไม่ปล่อยเรื่องนี้ไว้แน่!";
+		npctalk "หน็อย ถ้าเจ้าไม่ใช่ผู้บัญชาการล่ะก็ ฉันไม่ปล่อยเรื่องนี้ไว้แน่!";
+		close2;
+		cutin "",255;
+		instance_event("#EP21_gimli_control","OnEvent",false);
+		mapwarp get_instance_var("map2$"),get_instance_var("map$"),262,255;
+	}
+	end;
+
+OnTouch:
+	if(get_instance_var("gc") == 2 && is_party_leader())
+		npctalk "ที่นี่มันดูไม่กว้างขวางเกินไปหน่อยเหรอ?";
+end;
+}
+
+2@mdtem,57,124,7	script(DISABLED)	Tan#ms200	4_EP21_TAN,{ end; }
+2@mdtem,61,130,3	script(DISABLED)	Believer#ms200	4_EP21_M_WORKER_B,{ end; }
+2@mdtem,58,130,5	script(DISABLED)	Believer#ms201	4_EP21_M_WORKER_A,{ end; }
+
+1@mdtem,41,260,5	script(DISABLED)	Tan#ms10	4_EP21_TAN,3,3,{
+	if(get_instance_var("gc") == 4 && is_party_leader()){
+		npctalk "ห้องสวดมนต์อีกห้องหนึ่งแล้ว มาสำรวจที่นี่กันเถอะ";
+		pcblock(true);
+		sleep2 1000;
+		pcblock(false);
+		mapwarp get_instance_var("map$"),get_instance_var("map2$"),138,120;
+		end;
+	}
+	if(get_instance_var("gc") == 7 && is_party_leader()){
+		pcblock(true);
+		npctalk "ที่นี่ไม่มีอะไรพิเศษเลย ไปสำรวจห้องสวดมนต์ห้องอื่นกันต่อเถอะ";
+		sleep2 1000;
+		pcblock(false);
+		instance_event("#EP21_gimli_control","OnEvent",false);
+		navigateto("1@mdtem",38,46);
+	}
+	end;
+
+OnTouch:
+	if(get_instance_var("gc") == 4 && is_party_leader()){
+		npctalk "ที่นี่ดูน่าสงสัยนะ";
+		end;
+	}
+	if(get_instance_var("gc") == 7 && is_party_leader())
+		npctalk "ทางตันอีกแล้วงั้นเหรอ?";
+end;
+}
+
+1@mdtem,39,259,5	script(DISABLED)	Wilhelm#ms10	4_EP21_WILHELM,{
+	end;
+}
+
+2@mdtem,142,128,3	script	Believer#ms210	4_EP21_F_WORKER_B,{
+	if(get_instance_var("gc") == 4 && is_party_leader()){
+		cutin "ep21_worker_f_03.png",2;
+		mes "[Believer]";
+		mes "วันนี้บรรยากาศมันดูน่าขนลุกแปลกๆ ว่าไหม?";
+		mes "เกิดอะไรขึ้นกันแน่...";
+		npctalk "วันนี้บรรยากาศมันดูน่าขนลุกแปลกๆ ว่าไหม?";
+		next;
+		cutin "ep21_wilhelm03.png",0;
+		mes "[Wilhelm]";
+		mes "โอ้ พวกคุณมารวมตัวกันที่นี่พอดี ยินดีที่ได้รู้จักครับ โชคดีจริงๆ ที่ยังมีมนุษย์คนอื่นอยู่ที่นี่ ผมโชคดีมากเลย";
+		npctalk "โอ้ พวกคุณมารวมตัวกันที่นี่พอดี ยินดีที่ได้รู้จักครับ โชคดีจริงๆ ที่ยังมีมนุษย์คนอื่นอยู่ที่นี่ ผมโชคดีมากเลย",instance_npcname("Wilhelm#ms210");
+		next;
+		cutin "ep21_worker_m_02.png",1;
+		mes "[Believer]";
+		mes "ท่าน Carmigand...!! ไม่ใช่สิ ไม่ใช่เขา ทำไมคุณถึงหน้าตาเหมือนเขาขนาดนี้?";
+		mes "พวกคุณเป็นใครกัน? นี่คือห้องสวดมนต์ที่สงวนไว้สำหรับนักบวชชั้นสูงนะ";
+		npctalk "ท่าน Carmigand...!! ไม่ใช่สิ ไม่ใช่เขา ทำไมคุณถึงหน้าตาเหมือนเขาขนาดนี้? พวกคุณเป็นใครกัน? นี่คือห้องสวดมนต์ที่สงวนไว้สำหรับนักบวชชั้นสูงนะ",instance_npcname("Believer#ms211");
+		next;
+		cutin "ep21_wilhelm01.png",0;
+		mes "[Wilhelm]";
+		mes "ผมจะเข้าเรื่องเลยละกัน พวกคุณพอจะรู้ไหมว่าท่าน Carmigand อยู่ที่ไหน? หรืออย่างน้อยมีใครที่พอจะรู้บ้างไหม?";
+		npctalk "พวกคุณพอจะรู้ไหมว่าท่าน Carmigand อยู่ที่ไหน? หรืออย่างน้อยมีใครที่พอจะรู้บ้างไหม?",instance_npcname("Wilhelm#ms210");
+		next;
+		cutin "ep21_worker_om_06.png",0;
+		mes "[Believer]";
+		mes "คุณตามหาเขาทำไม?";
+		npctalk "คุณตามหาเขาทำไม?",instance_npcname("Believer#ms212");
+		next;
+		cutin "ep21_worker_f_03.png",2;
+		mes "[Believer]";
+		mes "อ๊ะ ฉันคิดว่าฉันรู้นะ ฉันเพิ่งเจอเขาเมื่อวานนี้เอง";
+		mes "เขาถามฉันว่าการใช้ชีวิตที่นี่มีปัญหาอะไรไหม เขากำลังวางแผนจะกลับมาทำกิจกรรมของเขาอีกครั้งงั้นเหรอ?";
+		npctalk "เขาถามฉันว่าการใช้ชีวิตที่นี่มีปัญหาอะไรไหม เขากำลังวางแผนจะกลับมาทำกิจกรรมของเขาอีกครั้งงั้นเหรอ?";
+		next;
+		cutin "ep21_worker_om_06.png",0;
+		mes "[Believer]";
+		mes "ใช่ ฉันเองก็มีกำหนดการเข้าปรึกษาเรื่องการใช้ชีวิตที่นี่ในวันอื่นเหมือนกัน";
+		npctalk "ใช่ ฉันเองก็มีกำหนดการเข้าปรึกษาเรื่องการใช้ชีวิตที่นี่ในวันอื่นเหมือนกัน",instance_npcname("Believer#ms212");
+		next;
+		cutin "ep21_worker_m_02.png",1;
+		mes "[Believer]";
+		mes "มันคงยากที่จะดึงความเชื่อมั่นของฝูงชนกลับมา เรื่องมันจะแย่ลงไปอีกไหม? มีคนกี่คนแล้วที่ถูกผู้ชายคนนั้นหลอก";
+		npctalk "มันคงยากที่จะดึงความเชื่อมั่นของฝูงชนกลับมา เรื่องมันจะแย่ลงไปอีกไหม? มีคนกี่คนแล้วที่ถูกผู้ชายคนนั้นหลอก",instance_npcname("Believer#ms211");
+		next;
+		cutin "ep21_worker_f_03.png",2;
+		mes "[Believer]";
+		mes "ชู่... เบาเสียงหน่อย! อิทธิพลของเขายังมองข้ามไม่ได้นะ แถวนี้มีหูตาอยู่เต็มไปหมด";
+		npctalk "ชู่... เบาเสียงหน่อย! อิทธิพลของเขายังมองข้ามไม่ได้นะ แถวนี้มีหูตาอยู่เต็มไปหมด";
+		next;
+		cutin "ep21_worker_m_02.png",1;
+		mes "[Believer]";
+		mes "ให้พวกมันได้ยินไปเลย! ไม่มีอะไรต้องกลัว! ยังไงฉันก็จะไปจากที่นี่เร็วๆ นี้อยู่แล้ว! ทุกคนก็แค่เงียบไว้ แต่หลายคนก็หนีออกไปกันหมดแล้ว";
+		npctalk "ให้พวกมันได้ยินไปเลย! ไม่มีอะไรต้องกลัว! ยังไงฉันก็จะไปจากที่นี่เร็วๆ นี้อยู่แล้ว! ทุกคนก็แค่เงียบไว้ แต่หลายคนก็หนีออกไปกันหมดแล้ว",instance_npcname("Believer#ms211");
+		next;
+		cutin "ep21_worker_om_06.png",0;
+		mes "[Believer]";
+		mes "ก็จริง จะมีคนอยากออกจากที่นี่เพิ่มขึ้นเรื่อยๆ แน่นอน";
+		npctalk "ก็จริง จะมีคนอยากออกจากที่นี่เพิ่มขึ้นเรื่อยๆ แน่นอน",instance_npcname("Believer#ms212");
+		next;
+		cutin "ep21_tan01.png",0;
+		mes "[Tan]";
+		mes "พวกคุณกำลังพูดเรื่องอะไรกัน?";
+		npctalk "พวกคุณกำลังพูดเรื่องอะไรกัน?",instance_npcname("Tan#ms210");
+		next;
+		cutin "ep21_worker_f_03.png",2;
+		mes "[Believer]";
+		mes "โอ๊ะ การสนทนานี้ไม่เหมาะสมงั้นเหรอ? ดูเหมือนคุณจะเป็นสมาชิกใหม่นะ";
+		mes "คุณมาที่นี่เพราะข่าวลือเรื่อง Carmigand เหมือนกันงั้นเหรอ? ถ้าอย่างนั้นหัวข้อนี้อาจจะไม่เหมาะกับคุณเท่าไหร่";
+		npctalk "ดูเหมือนคุณจะเพิ่งเข้ามาใหม่นะ คุณมาที่นี่เพราะข่าวลือเรื่อง Carmigand เหมือนกันงั้นเหรอ? ถ้าอย่างนั้นหัวข้อนี้อาจจะไม่เหมาะกับคุณเท่าไหร่";
+		next;
+		cutin "ep21_worker_m_02.png",1;
+		mes "[Believer]";
+		mes "ไม่สิ ยิ่งเป็นมือใหม่ยิ่งต้องรู้ไว้ มีหลายคนที่เข้าร่วมคริสตจักรเพราะคำสอนของ Carmigand แต่พวกเราทุกคนถูกหักหลัง ใช่ไหมล่ะ?";
+		mes "เขาบอกว่าภาคี Jormungandr จะช่วยให้มนุษย์พ้นจากความทุกข์";
+		mes "บอกว่าคริสตจักรไม่มีการแบ่งแยกมนุษย์และพวก Rgan";
+		npctalk "ไม่สิ ยิ่งเป็นมือใหม่ยิ่งต้องรู้ไว้ มีหลายคนที่เข้าร่วมคริสตจักรเพราะคำสอนของ Carmigand แต่พวกเราทุกคนถูกหักหลัง ใช่ไหมล่ะ?",instance_npcname("Believer#ms211");
+		next;
+		cutin "ep21_worker_om_06.png",0;
+		mes "[Believer]";
+		mes "การได้เห็น Carmigand ก้าวขึ้นสู่ตำแหน่งสูงในคริสตจักรเป็นสัญญาณแห่งความหวัง มนุษย์จำนวนมากจึงเข้าร่วมเพราะเหตุนั้น";
+		npctalk "การได้เห็น Carmigand ก้าวขึ้นสู่ตำแหน่งสูงในคริสตจักรเป็นสัญญาณแห่งความหวัง มนุษย์จำนวนมากจึงเข้าร่วมเพราะเหตุนั้น",instance_npcname("Believer#ms212");
+		next;
+		cutin "ep21_worker_m_02.png",1;
+		mes "[Believer]";
+		mes "ถูกต้องที่สุด! ทั้งหมดมันคือเรื่องโกหก";
+		mes "เรื่องโกหกทั้งเพ! 'ถ้าคุณเข้าร่วม คุณอาจจะได้เลื่อนตำแหน่งเหมือนกัน' พวกเขาหลอกลวงมนุษย์ไปกี่คนแล้วด้วยคำพูดนั้น?";
+		mes "แล้วดูสิว่ามนุษย์ที่เข้าร่วมได้รับการปฏิบัติยังไง? ดูพวกเราสิ";
+		npctalk "ถ้าคุณเข้าร่วม คุณอาจจะได้เลื่อนตำแหน่งเหมือนกัน! พวกเขาหลอกลวงมนุษย์ไปกี่คนแล้วด้วยคำพูดนั้น? แล้วดูสิว่ามนุษย์ที่เข้าร่วมได้รับการปฏิบัติยังไง? ดูพวกเราสิ",instance_npcname("Believer#ms211");
+		next;
+		cutin "ep21_worker_m_02.png",1;
+		mes "[Believer]";
+		mes "พวกเราทำงาน 120 ชั่วโมงต่อสัปดาห์! แล้วดูวิหารนี่สิ?";
+		mes "พวกเขาสร้างมันให้ยิ่งใหญ่และหรูหราตามรสนิยมของมนุษย์ ก็เพื่อล่อลวงมนุษย์ให้มาติดกับมากขึ้น ไม่เห็นเหรอ?";
+		npctalk "แล้ววิหารนี่ล่ะ?",instance_npcname("Believer#ms211");
+		next;
+		cutin "ep21_worker_m_02.png",1;
+		mes "[Believer]";
+		mes "ที่นี่ถูกสร้างขึ้นจากการกดขี่แรงงานมนุษย์ คุณยังมองหาคนที่ร่วมสร้างวิหารนี้ในคริสตจักรเจอไหมล่ะ? ไม่มีทางเจอหรอก";
+		mes "ทำไมล่ะ? คนพวกนั้นหายไปไหนหมด? ทรัพย์สินที่พวกเขาพกติดตัวมาด้วยหายไปไหน?";
+		npctalk "คุณยังมองหาคนที่ร่วมสร้างวิหารนี้ในคริสตจักรเจอไหมล่ะ? ไม่มีทางเจอหรอก ทรัพย์สินที่พวกเขาพกติดตัวมาด้วยหายไปไหน?",instance_npcname("Believer#ms211");
+		npctalk "โอ้ จริงเหรอเนี่ย? ฉันตกใจมากเลย! ขนลุกไปหมดแล้ว!",instance_npcname("Wilhelm#ms210");
+		next;
+		cutin "ep21_worker_f_03.png",2;
+		mes "[Believer]";
+		mes "คือ... มันก็จริง... Carmigand เคยให้ความสนใจกับมนุษย์ในคริสตจักรอยู่บ้าง";
+		npctalk "คือ... มันก็จริง... Carmigand เคยให้ความสนใจกับมนุษย์ในคริสตจักรอยู่บ้าง";
+		next;
+		cutin "ep21_worker_m_02.png",1;
+		mes "[Believer]";
+		mes "นั่นก็เพียงเพราะมันช่วยเสริมตำแหน่งของเขาในคริสตจักรให้มั่นคงเท่านั้นแหละ";
+		mes "เฮ้อ ฉันจะไปจากที่นี่เร็วๆ นี้ ใครจะไปกับฉันบ้าง?";
+		npctalk "นั่นก็เพียงเพราะมันช่วยเสริมตำแหน่งของเขาในคริสตจักรให้มั่นคงเท่านั้นแหละ ฉันจะไปจากที่นี่เร็วๆ นี้ ใครจะไปกับฉันบ้าง?",instance_npcname("Believer#ms211");
+		next;
+		cutin "ep21_worker_om_06.png",0;
+		mes "[Believer]";
+		mes "อืม... ฉันเองก็เริ่มลังเลกับการกระทำล่าสุดของคริสตจักรเหมือนกัน แต่การออกจากที่นี่มันไม่ใช่เรื่องง่ายเลยนะ...";
+		mes "ปัญหาแรกคือการออกไปจากที่นี่... ถ้าเราถูกจับได้...";
+		npctalk "การออกจากที่นี่มันไม่ใช่เรื่องง่ายเลยนะ... ปัญหาแรกคือการออกไปจากที่นี่... ถ้าเราถูกจับได้...",instance_npcname("Believer#ms212");
+		next;
+		cutin "ep21_wilhelm01.png",0;
+		mes "[Wilhelm]";
+		mes "โอ้ พวกคุณกำลังคิดจะออกจากคริสตจักรกันงั้นเหรอ?";
+		npctalk "โอ้ พวกคุณกำลังคิดจะออกจากคริสตจักรกันงั้นเหรอ?",instance_npcname("Wilhelm#ms210");
+		next;
+		cutin "ep21_worker_m_02.png",1;
+		mes "[Believer]";
+		mes "โธ่เอ๊ย ปากพล่อยจริงๆ เลยเรา!! ถ้าคุณคิดจะไปรายงานพวกนั้นล่ะก็...!";
+		npctalk "โธ่เอ๊ย ปากพล่อยจริงๆ เลยเรา!! ถ้าคุณคิดจะไปรายงานพวกนั้นล่ะก็...!",instance_npcname("Believer#ms211");
+		next;
+		cutin "ep21_wilhelm02.png",0;
+		mes "[Wilhelm]";
+		mes "ไม่ ไม่ใช่อย่างนั้นครับ เข้าใจผิดแล้ว ถ้าพวกคุณคิดจะออกไป พวกเราช่วยได้ นั่นคือเหตุผลที่เรามาที่นี่";
+		npctalk "ไม่ ไม่ใช่อย่างนั้นครับ เข้าใจผิดแล้ว ถ้าพวกคุณคิดจะออกไป พวกเราช่วยได้ นั่นคือเหตุผลที่เรามาที่นี่",instance_npcname("Wilhelm#ms210");
+		next;
+		cutin "ep21_worker_m_02.png",2;
+		mes "[Believer]";
+		mes "คุณกำลังพูดเรื่องอะไร...?";
+		mes "เราเพิ่งจะรู้จักกัน ทำไมเราต้องเชื่อใจคุณด้วย?";
+		npctalk "คุณกำลังพูดเรื่องอะไร...? เราเพิ่งจะรู้จักกัน ทำไมเราต้องเชื่อใจคุณด้วย?",instance_npcname("Believer#ms211");
+		next;
+		cutin "ep21_wilhelm01.png",0;
+		mes "[Wilhelm]";
+		mes "อา คือตอนนี้พวกเรากำลังรีบ ผมคงอธิบายรายละเอียดไม่ได้มาก ถ้าคุณกำลังพิจารณาจะออกจากคริสตจักร ทำไมไม่ลองแกล้งทำเป็นโดนหลอกดูสักครั้งแล้วมุ่งหน้าไปที่หน้าวิหารล่ะ";
+		mes "จะมีคนที่ช่วยพวกคุณได้รออยู่ที่นั่น";
+		npctalk "ถ้าคุณกำลังพิจารณาจะออกจากคริสตจักร ทำไมไม่ลองแกล้งทำเป็นโดนหลอกดูสักครั้งแล้วมุ่งหน้าไปที่หน้าวิหารล่ะ จะมีคนที่ช่วยพวกคุณได้รออยู่ที่นั่น",instance_npcname("Wilhelm#ms210");
+		next;
+		select("คุณฟังดูน่าสงสัยมาก");
+		pctalk "คุณฟังดูน่าสงสัยมาก";
+		cutin "ep21_tan01.png",0;
+		mes "[Tan]";
+		mes "พวกเรากำลังช่วยเหลือคนที่กำลังหลบหนีอยู่ในจุดอื่นแล้ว";
+		npctalk "พวกเรากำลังช่วยเหลือคนที่กำลังหลบหนีอยู่ในจุดอื่นแล้ว",instance_npcname("Tan#ms210");
+		next;
+		cutin "ep21_worker_f_03.png",2;
+		mes "[Believer]";
+		mes "เอ๊ะ...? คุณคือคนที่ช่วยคนพวกนั้นหลบหนีเหรอ...?";
+		mes "เดี๋ยวก่อน ฉันเคยได้ยินเรื่องนี้มาก่อน คนที่หนีไปได้เมื่ออาทิตย์ก่อนพูดถึงความช่วยเหลือถ้าคุณลงไปข้างล่างนั่น เรื่องจริงงั้นเหรอ?";
+		npctalk "คุณคือคนที่ช่วยคนพวกนั้นหลบหนีเหรอ...? ฉันเคยได้ยินเรื่องนี้มาก่อน คนที่หนีไปได้เมื่ออาทิตย์ก่อนพูดถึงความช่วยเหลือถ้าคุณลงไปข้างล่างนั่น เรื่องจริงงั้นเหรอ?";
+		next;
+		cutin "ep21_wilhelm03.png",0;
+		mes "[Wilhelm]";
+		mes "ใช่ครับ ใช่! ที่นั่นแหละ คุณคุ้นเคยกับมันอยู่แล้ว! พวกเรามาจากที่นั่น! เรามาที่นี่เพื่อมารับคนที่ไม่สามารถหนีออกไปได้ด้วยตัวเอง—";
+		npctalk "ใช่ครับ ใช่! ที่นั่นแหละ คุณคุ้นเคยกับมันอยู่แล้ว! พวกเรามาจากที่นั่น! เรามาที่นี่เพื่อมารับคนที่ไม่สามารถหนีออกไปได้ด้วยตัวเอง—",instance_npcname("Wilhelm#ms210");
+		next;
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms210");
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms211");
+		setnpcdisplay(instance_npcname("Guard#ms210"),22356);
+		setnpcdisplay(instance_npcname("Guard#ms211"),22357); 
+		instance_enable("Guard#ms210",true);
+		instance_enable("Guard#ms211",true);
+		cutin "ep21_yordos.png",1;
+		mes "[Guard]";
+		mes "ฉันแวะมาดูเพราะได้ยินเสียงดัง พวกมนุษย์มาทำอะไรกันที่นี่? นี่คือห้องสวดมนต์ที่สงวนไว้สำหรับนักบวช!";
+		npctalk "ฉันแวะมาดูเพราะได้ยินเสียงดัง พวกมนุษย์มาทำอะไรกันที่นี่? นี่คือห้องสวดมนต์ที่สงวนไว้สำหรับนักบวช!",instance_npcname("Guard#ms210");
+		next;
+		cutin "ep21_worker_f_03.png",2;
+		mes "[Believer]";
+		mes "อ๊ะ พวกเรากำลังจะทำความสะอาดเสร็จและกำลังจะออกไปแล้วค่ะ";
+		npctalk "อ๊ะ พวกเรากำลังจะทำความสะอาดเสร็จและกำลังจะออกไปแล้วค่ะ";
+		next;
+		cutin "ep21_yordos.png",1;
+		mes "[Guard]";
+		mes "เริ่มตั้งแต่วันนี้ ห้ามมนุษย์รวมตัวกันเกินสองคน!!";
+		npctalk "เริ่มตั้งแต่วันนี้ ห้ามมนุษย์รวมตัวกันเกินสองคน!!",instance_npcname("Guard#ms210");
+		next;
+		cutin "ep21_worker_m_02.png",1;
+		mes "[Believer]";
+		mes "จู่ๆ พูดเรื่องอะไรน่ะ? แล้วจะให้พวกเราทำงานยังไง?";
+		mes "ในสถานที่กว้างขวางขนาดนี้ คนเดียวเนี่ยนะ?";
+		npctalk "จู่ๆ พูดเรื่องอะไรน่ะ? แล้วจะให้พวกเราทำงานยังไง? ในสถานที่กว้างขวางขนาดนี้ คนเดียวเนี่ยนะ?",instance_npcname("Believer#ms211");
+		next;
+		cutin "ep21_yordos.png",1;
+		mes "[Guard]";
+		mes "มีปัญหาอะไร? แกก็ทำคนเดียวได้นิ!";
+		mes "...? ผู้ชายคนนั้น! Carmigand?";
+		mes "พวกนั้นส่งเขามาขังไว้ผิดห้องสวดมนต์งั้นเหรอ?";
+		npctalk "...? ผู้ชายคนนั้น! Carmigand? พวกนั้นส่งเขามาขังไว้ผิดห้องสวดมนต์งั้นเหรอ?",instance_npcname("Guard#ms210");
+		next;
+		cutin "ep21_yordos.png",1;
+		mes "[Guard]";
+		mes "ไม่ใช่ นี่มันคนละห้องสวดมนต์กัน ข้อมูลผิดพลาดงั้นเหรอ?";
+		npctalk "ไม่ใช่ นี่มันคนละห้องสวดมนต์กัน ข้อมูลผิดพลาดงั้นเหรอ?",instance_npcname("Guard#ms211");
+		next;
+		cutin "ep21_yordos.png",1;
+		mes "[Guard]";
+		mes "ขนาดถูกกักบริเวณ เขาก็ยังติดต่อและชักจูงพวกผู้ศรัทธามนุษย์ให้หลงผิดอีกเหรอ!!";
+		mes "ไอ้คนนอกรีต Carmigand หันหน้าเข้าหากำแพงซะ ส่วนพวกมนุษย์ที่เหลือแยกย้ายกันไปได้แล้ว!";
+		npctalk "ขนาดถูกกักบริเวณ เขาก็ยังติดต่อและชักจูงพวกผู้ศรัทธามนุษย์ให้หลงผิดอีกเหรอ!! ไอ้คนนอกรีต Carmigand หันหน้าเข้าหากำแพงซะ ส่วนพวกมนุษย์ที่เหลือแยกย้ายกันไปได้แล้ว!",instance_npcname("Guard#ms210");
+		next;
+		cutin "ep21_wilhelm01.png",0;
+		mes "[Wilhelm]";
+		mes "ดูเหมือนว่าทุกอย่างจะดำเนินไปอย่างราบรื่น... ในทิศทางที่ผิดสุดๆ เลยว่าไหม?";
+		npctalk "ดูเหมือนว่าทุกอย่างจะดำเนินไปอย่างราบรื่น... ในทิศทางที่ผิดสุดๆ เลยว่าไหม?",instance_npcname("Wilhelm#ms210");
+		close2;
+		cutin "",255;
+		set_instance_var("gc", 5);
+		instance_enable("Guard#ms210",false);
+		instance_enable("Guard#ms211",false);
+		instance_event("#EP21_gimli_control","OnSummon",false);
+		end;
+	}
+	if(get_instance_var("gc") == 6 && is_party_leader()){
+		cutin "ep21_worker_f_03.png",2;
+		mes "[Believer]";
+		mes "โอ้ วุ่นวายชะมัด";
+		mes "นี่! คุณบอกว่าจะช่วยพวกเราหนีใช่ไหม? ฉันเบื่อเต็มทนกับที่นี่แล้ว เราต้องออกไปจากที่นี่เดี๋ยวนี้";
+		npctalk "นี่! คุณบอกว่าจะช่วยพวกเราหนีใช่ไหม? ฉันเบื่อเต็มทนกับที่นี่แล้ว เราต้องออกไปจากที่นี่เดี๋ยวนี้";
+		npctalk "ฉันด้วย ฉันด้วย!",instance_npcname("Believer#ms211");
+		next;
+		cutin "ep21_tan01.png",0;
+		mes "[Tan]";
+		mes "แยกย้ายกันเงียบๆ แล้วไปรวมตัวกันที่หน้าวิหาร";
+		npctalk "แยกย้ายกันเงียบๆ แล้วไปรวมตัวกันที่หน้าวิหาร",instance_npcname("Tan#ms210");
+		next;
+		cutin "ep21_wilhelm01.png",0;
+		mes "[Wilhelm]";
+		mes "จะว่าไป พวกคุณพอจะรู้จักหรือเคยเห็นใครที่ชื่อ Reinhardt บ้างไหม เขามีผมสีดำ สูงพอๆ กับผม และเข้าร่วมคริสตจักรมานานมากแล้ว";
+		npctalk "พวกคุณพอจะรู้จักหรือเคยเห็นใครที่ชื่อ Reinhardt บ้างไหม เขามีผมสีดำ สูงพอๆ กับผม และเข้าร่วมคริสตจักรมานานมากแล้ว",instance_npcname("Wilhelm#ms210");
+		next;
+		cutin "ep21_worker_f_03.png",2;
+		mes "[Believer]";
+		mes "เอ่อ... ฉันไม่เคยได้ยินชื่อเขานะ คุณล่ะ?";
+		npctalk "เอ่อ... ฉันไม่เคยได้ยินชื่อเขานะ คุณล่ะ?";
+		npctalk "...ฉันเหรอ? ฉันก็ไม่เคยได้ยินเหมือนกัน",instance_npcname("Believer#ms211");
+		next;
+		cutin "ep21_tan01.png",0;
+		mes "[Tan]";
+		mes "เราไม่มีเวลาแล้ว รีบเคลื่อนย้ายเถอะ";
+		npctalk "เราไม่มีเวลาแล้ว รีบเคลื่อนย้ายเถอะ",instance_npcname("Tan#ms210");
+		close2;
+		cutin "",255;
+		instance_event("#EP21_gimli_control","OnEvent",false);
+		mapwarp get_instance_var("map2$"),get_instance_var("map$"),36,253;
+	}
+	end;
+}
+
+2@mdtem,137,123,7	script(DISABLED)	Tan#ms210	4_EP21_TAN,5,5,{ 
+	end;
+	
+OnTouch:
+	if(get_instance_var("gc") == 4 && is_party_leader()){
+		npctalk "คุณรู้ไหม มีบางอย่างรู้สึกไม่ค่อยปกติเลย?",instance_npcname("Believer#ms210");
+		end;
+	}
+end;
+}
+
+2@mdtem,136,125,7	script(DISABLED)	Wilhelm#ms210	4_EP21_WILHELM,{ end; }
+2@mdtem,139,132,5	script(DISABLED)	Believer#ms211	4_EP21_M_WORKER_A,{ end; }
+2@mdtem,137,130,5	script(DISABLED)	Believer#ms212	4_EP21_M_WORKER_B,{ end; }
+2@mdtem,143,122,1	script(DISABLED)	Guard#ms210	CLEAR_NPC,{ end; }
+2@mdtem,142,120,1	script(DISABLED)	Guard#ms211	CLEAR_NPC,{ end; }
+
+1@mdtem,38,46,7	script(DISABLED)	Guard#ms20	22355,3,3,{
+	if(get_instance_var("gc") == 8 && is_party_leader()){
+		cutin "ep21_tan01.png",0;
+		mes "[Tan]";
+		mes "นี่เป็นห้องสวดมนต์อีกห้องเหรอ?";
+		npctalk "นี่เป็นห้องสวดมนต์อีกห้องเหรอ?",instance_npcname("Tan#ms20");
+		next;
+		cutin "ep21_yordos.png",1;
+		mes "[Guard]";
+		mes "นั่นใครน่ะ! บริเวณนี้ถูกจำกัด... หือ...?!";
+		mes "Carmigand?! แกควรจะถูก... หือ... พวกเขาปล่อยตัวแกแล้วเหรอ?";
+		npctalk "นั่นใครน่ะ! บริเวณนี้ถูกจำกัด... หือ...?! Carmigand?! แกควรจะถูก... หือ... พวกเขาปล่อยตัวแกแล้วเหรอ?",instance_npcname("Guard#ms20");
+		next;
+		mes "[Guard]";
+		mes "ฉันไม่เห็นได้ยินเรื่องนี้เลย เกิดอะไรขึ้นเนี่ย?";
+		npctalk "ฉันไม่เห็นได้ยินเรื่องนี้เลย เกิดอะไรขึ้นเนี่ย?",instance_npcname("Guard#ms21");
+		next;
+		select("พูดอะไรสักอย่างสิ");
+		pctalk "พูดอะไรสักอย่างสิ";
+		cutin "ep21_wilhelm01.png",2;
+		mes "[Wilhelm]";
+		mes "ข้าเอง Carmigand เกิดอะไรขึ้นข้างในนั่น?";
+		npctalk "ข้าเอง Carmigand เกิดอะไรขึ้นข้างในนั่น?",instance_npcname("Wilhelm#ms20");
+		next;
+		cutin "ep21_yordos.png",1;
+		mes "[Guard]";
+		mes "พวกเราควบคุมตัวมนุษย์บางคนที่วางแผนจะหลบหนีไว้...";
+		mes "แต่... Carmigand ทำไมท่านถึง...";
+		npctalk "พวกเราควบคุมตัวมนุษย์บางคนที่วางแผนจะหลบหนีไว้... แต่... Carmigand ทำไมท่านถึง...",instance_npcname("Guard#ms20");
+		next;
+		cutin "ep21_wilhelm01.png",2;
+		mes "[Wilhelm]";
+		mes "......";
+		npctalk "......",instance_npcname("Wilhelm#ms20");
+		npctalk "......",instance_npcname("Tan#ms20");
+		next;
+		select("พวกเราถูกจับได้แล้วเหรอ?");
+		pctalk "พวกเราถูกจับได้แล้วเหรอ?";
+		cutin "ep21_wilhelm02.png",2;
+		mes "[Wilhelm]";
+		mes "ดาบแห่งความยุติธรรม!!";
+		npctalk "ดาบแห่งความยุติธรรม!!",instance_npcname("Wilhelm#ms20");
+		next;
+		specialeffect EF_STRETCH,AREA,instance_npcname("Guard#ms20");
+		select("โจมตีกะทันหันเหรอ?");
+		pctalk "โจมตีกะทันหันเหรอ?";
+		cutin "ep21_wilhelm04.png",2;
+		mes "[Wilhelm]";
+		mes "เวลาที่ดีที่สุดในการโจมตีคือตอนที่พวกมันไม่ระวังตัว! ถ้าเรามัวแต่ดึงเวลา พวกมันก็จะยิ่งสงสัย!";
+		npctalk "เวลาที่ดีที่สุดในการโจมตีคือตอนที่พวกมันไม่ระวังตัว! ถ้าเรามัวแต่ดึงเวลา พวกมันก็จะยิ่งสงสัย!",instance_npcname("Wilhelm#ms20");
+		next;
+		cutin "ep21_yordos.png",1;
+		mes "[Guard]";
+		mes "?! ฉันว่าแล้วเชียวว่าต้องมีอะไรพิรุธ! มนุษย์พวกนี้ไว้ใจไม่ได้จริงๆ!";
+		npctalk "?! ฉันว่าแล้วเชียวว่าต้องมีอะไรพิรุธ! มนุษย์พวกนี้ไว้ใจไม่ได้จริงๆ!",instance_npcname("Guard#ms20");
+		next;
+		mes "[Guard]";
+		mes "ไอ้คนทรยศสกปรก!!! กล้าดียังไงมาทรยศคริสตจักรที่เลี้ยงแกมาจนถึงตำแหน่งนี้!";
+		npctalk "ไอ้คนทรยศสกปรก!!! กล้าดียังไงมาทรยศคริสตจักรที่เลี้ยงแกมาจนถึงตำแหน่งนี้!",instance_npcname("Guard#ms21");
+		next;
+		cutin "ep21_wilhelm04.png",2;
+		mes "[Wilhelm]";
+		mes "จัดการพวกมันก่อนที่คนอื่นจะแห่กันมามากกว่านี้!";
+		npctalk "จัดการพวกมันก่อนที่คนอื่นจะแห่กันมามากกว่านี้!",instance_npcname("Wilhelm#ms20");
+		close2;
+		cutin "",255;
+		set_instance_var("gc", 9);
+		instance_enable("Guard#ms20",false);
+		instance_enable("Guard#ms21",false);
+		instance_event("#EP21_gimli_control","OnSummon",false);
+		end;
+	}
+	end;
+	
+OnTouch:
+	npctalk "เมื่อไหร่เรื่องนี้จะจบสักที...";
+end;
+}
+
+1@mdtem,35,50,5	script(DISABLED)	Tan#ms20	4_EP21_TAN,5,5,{ 
+	if(get_instance_var("gc") == 12 && is_party_leader()){
+		npctalk "เราควรไปตรวจค้นห้องสวดมนต์อื่นก่อนที่พวกมันจะมามากกว่านี้";
+		pcblock(true);
+		sleep2 1000;
+		pcblock(false);
+		instance_event("#EP21_gimli_control","OnEvent",false);
+	}
+	end;
+}
+
+1@mdtem,40,49,3	script(DISABLED)	Wilhelm#ms20	4_EP21_WILHELM,{ end; }
+1@mdtem,41,43,7	script(DISABLED)	Guard#ms21	22356,{ end;}
+
+1@mdtem,40,44,0	script(DISABLED)	#21ms20i	WARPNPC,2,2,{
+	end;
+
+OnTouch:
+	if(get_instance_var("gc") == 10)
+		warp get_instance_var("map2$"),60,59;
+	if(get_instance_var("gc") == 11 && is_party_leader())
+		instance_event("#EP21_gimli_control","OnEvent",false);
+end;
+}
+
+2@mdtem,60,73,3	script(DISABLED)	Believer#ms220	4_EP21_F_WORKER_B,{
+	if(get_instance_var("gc") == 10 && is_party_leader()){
+		cutin "ep21_worker_of_08.png",1;
+		mes "[Believer]";
+		mes "มันเปิดแล้ว! ...เดี๋ยวก่อน นั่นอะไรน่ะ? พวก Rgan เหรอ?";
+		mes "เกิดอะไรขึ้น? พวกเขามาช่วยพวกเราเหรอ?";
+		mes "เดี๋ยวสิ นั่นดูเหมือน Carmigand เลย?";
+		npctalk "เกิดอะไรขึ้น? พวกเขามาช่วยพวกเราเหรอ? เดี๋ยวสิ นั่นดูเหมือน Carmigand เลย?";
+		next;
+		cutin "ep21_worker_f_07.png",0;
+		mes "[Believer]";
+		mes "ไม่สิ ดูให้ดีๆ เขาสั้นกว่าและล่ำกว่า Carmigand นิดหน่อย";
+		mes "ดูเด็กกว่าด้วย";
+		npctalk "ไม่สิ ดูให้ดีๆ เขาสั้นกว่าและล่ำกว่า Carmigand นิดหน่อย",instance_npcname("Believer#ms221");
+		next;
+		cutin "ep21_worker_om_01.png",2;
+		mes "[Believer]";
+		mes "พวกเขาพาเขามาเพื่อหลอกพวก Rgan หรือเปล่า?";
+		mes "ขอโทษนะคะ พวกคุณมาช่วยพวกเราหรือเปล่า? ถ้าไม่ใช่ พวกเราแย่แน่ๆ";
+		npctalk "ขอโทษนะคะ พวกคุณมาช่วยพวกเราหรือเปล่า? ถ้าไม่ใช่ พวกเราแย่แน่ๆ",instance_npcname("Believer#ms222");
+		next;
+		cutin "ep21_wilhelm03.png",0;
+		mes "[Wilhelm]";
+		mes "ใช่ครับ! พวกเรามาเพื่อช่วยคุณ";
+		mes "คุณถูกจับเพราะแผนการหลบหนีจากคริสตจักรถูกจับได้ ใช่ไหม??";
+		npctalk "ใช่ครับ! พวกเรามาเพื่อช่วยคุณ คุณถูกจับเพราะแผนการหลบหนีจากคริสตจักรถูกจับได้ ใช่ไหม??",instance_npcname("Wilhelm#ms220");
+		next;
+		cutin "ep21_worker_of_08.png",1;
+		mes "[Believer]";
+		mes "ใช่ ถูกต้องแล้ว!";
+		mes "ฉันยังสงสัยอยู่เลยว่าเราจะเป็นยังไงต่อ แต่ขอบคุณท่าน Jormungandr จริงๆ";
+		npctalk "ใช่ ถูกต้องแล้ว! ฉันยังสงสัยอยู่เลยว่าเราจะเป็นยังไงต่อ แต่ขอบคุณท่าน Jormungandr จริงๆ";
+		next;
+		cutin "ep21_worker_f_07.png",0;
+		mes "[Believer]";
+		mes "ยัยโง่! แม้จะเกิดเรื่องขนาดนี้แล้ว เธอยังจะแสวงหาความเมตตาจาก Jormungandr อีกเหรอ?";
+		npctalk "ยัยโง่! แม้จะเกิดเรื่องขนาดนี้แล้ว เธอยังจะแสวงหาความเมตตาจาก Jormungandr อีกเหรอ?",instance_npcname("Believer#ms221");
+		next;
+		cutin "ep21_worker_of_08.png",1;
+		mes "[Believer]";
+		mes "ไม่สิ พวก Rgan ต่างหากที่เลวร้าย ไม่ใช่ Jormungandr ฉันพูดผิดตรงไหน?";
+		npctalk "ไม่สิ พวก Rgan ต่างหากที่เลวร้าย ไม่ใช่ Jormungandr ฉันพูดผิดตรงไหน?";
+		next;
+		cutin "ep21_worker_f_07.png",0;
+		mes "[Believer]";
+		mes "ให้ตายเถอะ... ฉันไม่รู้ด้วยแล้ว!";
+		mes "เพราะฉะนั้น ได้โปรดพาฉันออกไปจากที่นี่ที";
+		mes "ฉันขอร้องล่ะ ฉันไม่อยากอยู่ที่นี่แม้แต่วินาทีเดียว";
+		npctalk "ฉันด้วย... ได้โปรดพาฉันออกไปจากที่นี่ที ฉันขอร้องล่ะ ฉันไม่อยากอยู่ที่นี่แม้แต่วินาทีเดียว",instance_npcname("Believer#ms221");
+		next;
+		select("ที่นี่มีห้องสวดมนต์กี่ห้อง?");
+		pctalk "ที่นี่มีห้องสวดมนต์กี่ห้อง?";
+		cutin "ep21_worker_of_08.png",1;
+		mes "[Believer]";
+		mes "ฉันก็ไม่แน่ใจเหมือนกัน? มีห้องสวดมนต์มากมายสำหรับผู้ศรัทธาทั่วไป แต่มีไม่กี่ห้องสำหรับนักบวชชั้นสูง คุณถามทำไมเหรอ?";
+		mes "หรือว่า Carmigand ถูกคุมขังอยู่ด้วย?";
+		npctalk "ห้องสวดมนต์สำหรับนักบวชชั้นสูงมีไม่มากนัก หรือว่า Carmigand ถูกคุมขังอยู่ด้วย?";
+		next;
+		cutin "ep21_worker_f_07.png",0;
+		mes "[Believer]";
+		mes "ฉันว่าแล้วเชียว! เราไม่ได้บอกแผนการกับใครเลย แต่พวกมันกลับล่าเรายังกับหนู";
+		mes "ผู้ชายคนนั้นต้องทรยศมนุษย์อีกแล้วแน่ๆ!";
+		npctalk "ฉันว่าแล้วเชียว! ผู้ชายคนนั้นต้องทรยศมนุษย์อีกแล้วแน่ๆ!",instance_npcname("Believer#ms221");
+		next;
+		cutin "ep21_worker_of_08.png",1;
+		mes "[Believer]";
+		mes "เธอยังไม่แน่ใจเลยนะ ระวังคำพูดด้วย ถึงจะสงสัยในตัวเขา แต่อย่าลืมว่าเขาก็ดูแลเรามาเยอะ...";
+		npctalk "เธอยังไม่แน่ใจเลยนะ ระวังคำพูดด้วย ถึงจะสงสัยในตัวเขา แต่อย่าลืมว่าเขาก็ดูแลเรามาเยอะ...",instance_npcname("Believer#ms222");
+		next;
+		cutin "ep21_worker_f_07.png",0;
+		mes "[Believer]";
+		mes "ถ้าไม่ใช่เพราะเขา ฉันก็คงไม่มาที่นี่ตั้งแต่แรก! ฉันมันตาบอดเองที่มองไม่เห็นความจริง";
+		npctalk "ถ้าไม่ใช่เพราะเขา ฉันก็คงไม่มาที่นี่ตั้งแต่แรก! ฉันมันตาบอดเองที่มองไม่เห็นความจริง",instance_npcname("Believer#ms221");
+		next;
+		cutin "ep21_wilhelm01.png",0;
+		mes "[Wilhelm]";
+		mes "จะว่าไป พวกคุณพอจะรู้จักใครที่ชื่อ Reinhardt ไหม เขาผมสีดำ อายุมากกว่าผมหน่อย และเข้าร่วมคริสตจักรมานานแล้ว";
+		mes "ได้โปรดบอกผมทีว่าคุณรู้จักเขา";
+		npctalk "จะว่าไป พวกคุณพอจะรู้จักใครที่ชื่อ Reinhardt ไหม เขาผมสีดำ อายุมากกว่าผมหน่อย และเข้าร่วมคริสตจักรมานานแล้ว",instance_npcname("Wilhelm#ms220");
+		next;
+		cutin "ep21_worker_f_07.png",0;
+		mes "[Believer]";
+		mes "ฉันไม่รู้จักใครชื่อนั้นหรอก ถ้าเขาเข้ามานานแล้ว บางทีเขาอาจจะตายเพราะความทุกข์ทรมานไปแล้วก็ได้?";
+		npctalk "ฉันไม่รู้จักใครชื่อนั้นหรอก ถ้าเขาเข้ามานานแล้ว บางทีเขาอาจจะตายเพราะความทุกข์ทรมานไปแล้วก็ได้?",instance_npcname("Believer#ms221");
+		next;
+		cutin "ep21_worker_om_01.png",2;
+		mes "[Believer]";
+		mes "นี่ ทำไมพูดจาแบบนั้นล่ะ! โดยเฉพาะต่อหน้าคนที่กำลังตามหาอย่างมีความหวังแบบนี้!";
+		npctalk "นี่ ทำไมพูดจาแบบนั้นล่ะ! โดยเฉพาะต่อหน้าคนที่กำลังตามหาอย่างมีความหวังแบบนี้!";
+		next;
+		cutin "ep21_worker_f_07.png",0;
+		mes "[Believer]";
+		mes "อะไรล่ะ ฉันก็แค่... มันมีความเป็นไปได้สูงนี่นา เราไม่รู้สถานการณ์สักหน่อย เตรียมใจเผื่อไว้สำหรับเรื่องที่แย่ที่สุดมันไม่ดีกว่าเหรอ?";
+		mes "ถ้าเขายังมีชีวิตอยู่ที่ไหนสักแห่ง เธอก็ถือว่าโชคดีไป";
+		npctalk "อะไรล่ะ ฉันก็แค่... ถ้าเขายังมีชีวิตอยู่ที่ไหนสักแห่ง เธอก็ถือว่าโชคดีไป",instance_npcname("Believer#ms221");
+		npctalk "โอ้ ฉันไม่เถียงด้วยแล้ว ฉันควรจะอยู่ห่างจากเธอจริงๆ ท่าน Jormungandr... ได้โปรดอภัยให้ชายผู้โง่เขลาคนนี้ด้วย...",instance_npcname("Believer#ms222");
+		npctalk "คำพูดนั้นมันแรงเกินไป ฉันขอโทษแทนเขาด้วยนะ";
+		next;
+		cutin "ep21_wilhelm04.png",0;
+		mes "[Wilhelm]";
+		mes "ว้าว... ว้าว เป็นคำพูดที่ให้กำลังใจได้ดีจริงๆ ซึ้งจนน้ำตาจะไหลเลยครับ";
+		mes "นี่มันเกิดอะไรขึ้นเนี่ย...";
+		npctalk "ว้าว... ว้าว เป็นคำพูดที่ให้กำลังใจได้ดีจริงๆ ซึ้งจนน้ำตาจะไหลเลยครับ นี่มันเกิดอะไรขึ้นเนี่ย...",instance_npcname("Wilhelm#ms220");
+		next;
+		cutin "ep21_tan01.png",2;
+		mes "[Tan]";
+		mes "มุ่งหน้าไปที่หน้าวิหารเงียบๆ ทีละคน";
+		mes "จะมีคนรอแนะนำทางอยู่ที่นั่น";
+		npctalk "มุ่งหน้าไปที่หน้าวิหารเงียบๆ ทีละคน จะมีคนรอแนะนำทางอยู่ที่นั่น",instance_npcname("Tan#ms220");
+		next;
+		cutin "ep21_worker_om_01.png",2;
+		mes "[Believer]";
+		mes "อา! Jormungandr ทรงเฝ้าดูพวกเราอยู่จริงๆ!";
+		npctalk "อา! Jormungandr ทรงเฝ้าดูพวกเราอยู่จริงๆ!";
+		npctalk "ฉันต้องออกไปก่อน ฉันรับไม่ได้กับการอยู่ที่นี่อีกต่อไปแล้ว!",instance_npcname("Believer#ms221");
+		npctalk "เฮ้ อย่าดันสิ! อย่าเบียดฉัน!",instance_npcname("Believer#ms222");
+		next;
+		cutin "ep21_wilhelm02.png",0;
+		mes "[Wilhelm]";
+		mes "ทางตันอีกแล้วเหรอเนี่ย แต่มองในแง่ดีคือเหลือห้องสวดมนต์ให้ตรวจอีกไม่กี่ห้องแล้ว";
+		npctalk "ทางตันอีกแล้วเหรอเนี่ย แต่มองในแง่ดีคือเหลือห้องสวดมนต์ให้ตรวจอีกไม่กี่ห้องแล้ว",instance_npcname("Wilhelm#ms220");
+		next;
+		cutin "ep21_tan01.png",2;
+		mes "[Tan]";
+		mes "เรารีบเคลื่อนย้ายกันเถอะ";
+		npctalk "เรารีบเคลื่อนย้ายกันเถอะ",instance_npcname("Tan#ms220");
+		close2;
+		cutin "",255;
+		set_instance_var("gc", 11);
+		mapwarp get_instance_var("map2$"),get_instance_var("map$"),40,45;
+		navigateto("1@mdtem",125,36);
+		end;
+	}
+	end;
+}
+
+2@mdtem,61,63,1	script(DISABLED)	Tan#ms220	4_EP21_TAN,5,5,{ 
+	end;
+	
+OnTouch:
+	if(get_instance_var("gc") == 10 && is_party_leader())
+		npctalk "อีกนิดเดียวเท่านั้น รู้สึกเหมือนเราเกือบจะถึงแล้ว...",instance_npcname("Believer#ms220");
+end;
+}
+
+2@mdtem,56,65,7	script(DISABLED)	Wilhelm#ms220	4_EP21_WILHELM,{ end; }
+2@mdtem,58,70,5	script(DISABLED)	Believer#ms221	4_EP21_F_WORKER_A,{ end; }
+2@mdtem,62,68,3	script(DISABLED)	Believer#ms222	4_EP21_M_WORKER_B,{ end; }
+
+1@mdtem,125,36,5	script(DISABLED)	Tan#ms30	4_EP21_TAN,3,3,{
+	if(get_instance_var("gc") == 13 && is_party_leader()){
+		cutin "ep21_tan01.png",1;
+		mes "[Tan]";
+		mes "มีห้องสวดมนต์เหลืออีกห้องหนึ่งอยู่ข้างหน้า..";
+		npctalk "มีห้องสวดมนต์เหลืออีกห้องหนึ่งอยู่ข้างหน้า..",instance_npcname("Tan#ms30");
+		next;
+		setnpcdisplay(instance_npcname("Guard#ms30"),22355);
+		setnpcdisplay(instance_npcname("Guard#ms31"),22357);
+		instance_enable("Guard#ms30",true);
+		instance_enable("Guard#ms31",true);
+		cutin "ep21_yordos.png",2;
+		mes "[Guard]";
+		mes "มีรายงานเกี่ยวกับกิจกรรมที่น่าสงสัย";
+		npctalk "มีรายงานเกี่ยวกับกิจกรรมที่น่าสงสัย",instance_npcname("Guard#ms30");
+		npctalk "ฉันก็ได้ยินมาเหมือนกัน พวกเนรคุณเอ๊ย",instance_npcname("Guard#ms31");
+		next;
+		cutin "ep21_tan01.png",1;
+		mes "[Tan]";
+		mes "พวก Rgan... ทำตัวให้เป็นธรรมชาติที่สุดเท่าที่จะทำได้";
+		mes "Wilhelm พยายามหลบหน้าไม่ให้พวกมันเห็นนะ";
+		npctalk "พวก Rgan... ทำตัวให้เป็นธรรมชาติที่สุดเท่าที่จะทำได้ Wilhelm พยายามหลบหน้าไม่ให้พวกมันเห็นนะ",instance_npcname("Tan#ms30");
+		next;
+		cutin "ep21_wilhelm02.png",0;
+		mes "[Wilhelm]";
+		mes "มันจะเป็นไปได้เหรอครับ? ผมจะซ่อนหน้ายังไงไหว...";
+		npctalk "มันจะเป็นไปได้เหรอครับ? ผมจะซ่อนหน้ายังไงไหว...",instance_npcname("Wilhelm#ms30");
+		next;
+		cutin "ep21_yordos.png",2;
+		mes "[Guard]";
+		mes "แก! มานี่สิ";
+		npctalk "แก! มานี่สิ",instance_npcname("Guard#ms30");
+		next;
+		cutin "ep21_tan03.png",1;
+		mes "[Tan]";
+		mes "มีปัญหาอะไรหรือเปล่า? พวกเรากำลังจะไปทำความสะอาดห้องสวดมนต์ ถ้าเราไปไม่ถึงเร็วๆ นี้ พวกเราจะเดือดร้อนนะ";
+		npctalk "มีปัญหาอะไรหรือเปล่า? พวกเรากำลังจะไปทำความสะอาดห้องสวดมนต์ ถ้าเราไปไม่ถึงเร็วๆ นี้ พวกเราจะเดือดร้อนนะ",instance_npcname("Tan#ms30");
+		next;
+		cutin "ep21_yordos.png",2;
+		mes "[Guard]";
+		mes "ช่วงนี้มีกิจกรรมที่น่าสงสัยเกิดขึ้นท่ามกลางพวกมนุษย์...";
+		mes "เดี๋ยวนะ หน้าตาคนนั้นดูคุ้นๆ? ไหนให้ฉันดูหน้าหน่อยซิ";
+		npctalk "ช่วงนี้มีกิจกรรมที่น่าสงสัยเกิดขึ้นท่ามกลางพวกมนุษย์... เดี๋ยวนะ หน้าตาคนนั้นดูคุ้นๆ? ไหนให้ฉันดูหน้าหน่อยซิ",instance_npcname("Guard#ms30");
+		next;
+		cutin "ep21_tan03.png",1;
+		mes "[Tan]";
+		mes "คนนี้เขาเป็นคนขี้อายมากๆ น่ะ";
+		mes "ไม่เคยได้ยินเรื่องมนุษย์ที่ขี้อายสุดๆ บ้างเหรอ? หรือว่าแกไม่รู้เรื่องพวกนี้เพราะเป็น Rgan กันแน่?";
+		npctalk "คนนี้เขาเป็นคนขี้อายมากๆ น่ะ ไม่เคยได้ยินเรื่องมนุษย์ที่ขี้อายสุดๆ บ้างเหรอ? หรือว่าแกไม่รู้เรื่องพวกนี้เพราะเป็น Rgan กันแน่?",instance_npcname("Tan#ms30");
+		next;
+		cutin "ep21_yordos.png",2;
+		mes "[Guard]";
+		mes "เลิกพูดไร้สาระแล้วเงยหน้าขึ้นมา!";
+		npctalk "เลิกพูดไร้สาระแล้วเงยหน้าขึ้นมา!",instance_npcname("Guard#ms30");
+		next;
+		mes "[Guard]";
+		mes "นั่นมัน Carmigand!!!";
+		mes "แกหลุดออกมาได้ยังไง!!";
+		npctalk "นั่นมัน Carmigand!!! แกหลุดออกมาได้ยังไง!!",instance_npcname("Guard#ms31");
+		next;
+		cutin "ep21_wilhelm04.png",0;
+		mes "[Wilhelm]";
+		mes "พวกนั้นคิดว่าผมเป็น Carmigand จริงๆ ด้วย เฮ้อ—";
+		mes "ที่คุณบอกว่าต้องการตัวผมในงานนี้ เพราะอยากจะเพิ่มงานหรืออยากให้มันยากขึ้นกันแน่ครับ?";
+		npctalk "พวกนั้นคิดว่าผมเป็น Carmigand จริงๆ ด้วย ที่คุณบอกว่าต้องการตัวผมในงานนี้ เพราะอยากจะเพิ่มงานหรืออยากให้มันยากขึ้นกันแน่ครับ?",instance_npcname("Wilhelm#ms30");
+		next;
+		select("พวกเราเป็นแค่ผู้ศรัทธาทั่วไป");
+		pctalk "พวกเราเป็นแค่ผู้ศรัทธาทั่วไป";
+		cutin "ep21_wilhelm02.png",0;
+		mes "[Wilhelm]";
+		mes "ใช่เลย! ผมเป็นแค่คนที่มีหน้าตาคล้ายกันเฉยๆ!";
+		mes "ดูความต่างนี่สิ! พวกคุณจำผิดเป็นเขาได้ยังไงกัน!";
+		npctalk "ใช่เลย! ผมเป็นแค่คนที่มีหน้าตาคล้ายกันเฉยๆ! ดูความต่างนี่สิ! พวกคุณจำผิดเป็นเขาได้ยังไงกัน!",instance_npcname("Wilhelm#ms30");
+		next;
+		cutin "ep21_yordos.png",2;
+		mes "[Guard]";
+		mes "หยุดพล่ามไร้สาระได้แล้ว! มันไม่มีทางหรอกที่จะมีคนสองคนหน้าตาเหมือนกันเป๊ะขนาดนี้!";
+		mes "ทีนี้ ไปที่ห้องคุมขังซะ! ตามฉันมา!";
+		npctalk "หยุดพล่ามไร้สาระได้แล้ว! มันไม่มีทางหรอกที่จะมีคนสองคนหน้าตาเหมือนกันเป๊ะขนาดนี้! ทีนี้ ไปที่ห้องคุมขังซะ! ตามฉันมา!",instance_npcname("Guard#ms31");
+		next;
+		cutin "ep21_wilhelm01.png",0;
+		mes "[Wilhelm]";
+		mes "เอาไงดีล่ะ ผมขอกลับตอนนี้เลยได้ไหม?";
+		npctalk "เอาไงดีล่ะ ผมขอกลับตอนนี้เลยได้ไหม?",instance_npcname("Wilhelm#ms30");
+		next;
+		cutin "ep21_tan04.png",1;
+		specialeffect EF_HIT1,AREA,instance_npcname("Guard#ms30");
+		mes "[Tan]";
+		mes "การรุกคือการป้องกันที่ดีที่สุด";
+		npctalk "การรุกคือการป้องกันที่ดีที่สุด",instance_npcname("Tan#ms30");
+		npctalk "ทำไมคุณต้องทำอะไรสุดโต่งขนาดนั้นด้วย... อ๊ากก!! ทำไมเรื่องแบบนี้ต้องมาเกิดกับผมด้วย!!",instance_npcname("Wilhelm#ms30");
+		close2;
+		cutin "",255;
+		set_instance_var("gc", 14);
+		instance_enable("Guard#ms30",false);
+		instance_enable("Guard#ms31",false);
+		instance_event("#EP21_gimli_control","OnSummon",false);
+		end;
+	}
+	end;
+	
+OnTouch:
+	if(get_instance_var("gc") == 13 && is_party_leader())
+		npctalk "อยู่ทางโน้น";
+end;
+}
+
+1@mdtem,128,34,1	script(DISABLED)	Guard#ms30	CLEAR_NPC,{
+	if(get_instance_var("gc") == 15 && is_party_leader()){
+		cutin "ep21_yordos.png",2;
+		mes "[Guard]";
+		mes "ทำไมแกถึงแข็งแกร่งขนาดนี้ ทำไมมนุษย์ถึงได้แข็งแกร่งขนาดนี้?";
+		mes "พวกเขาไปหาคนที่มีพลังมหาศาลขนาดนี้มาจากไหนกัน?";
+		npctalk "ทำไมแกถึงแข็งแกร่งขนาดนี้ ทำไมมนุษย์ถึงได้แข็งแกร่งขนาดนี้? พวกเขาไปหาคนที่มีพลังมหาศาลขนาดนี้มาจากไหนกัน?";
+		next;
+		mes "[Guard]";
+		mes "หรือว่าพวกมันแอบติดต่อคนจากภายนอกเพื่อหลบหนีกันแน่?";
+		npctalk "หรือว่าพวกมันแอบติดต่อคนจากภายนอกเพื่อหลบหนีกันแน่?";
+		npctalk "ใครอยู่เบื้องหลังเรื่องนี้?",instance_npcname("Guard#ms31");
+		next;
+		cutin "ep21_tan01.png",1;
+		mes "[Tan]";
+		mes "ข้าไม่รับคำสั่งจากใครทั้งนั้น";
+		npctalk "ข้าไม่รับคำสั่งจากใครทั้งนั้น",instance_npcname("Tan#ms30");
+		npctalk "ฝากไว้ก่อนเถอะ!",instance_npcname("Guard#ms31");
+		next;
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms32");
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms33");
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms34");
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms35");
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms36");
+		setnpcdisplay(instance_npcname("Guard#ms32"),22355);
+		setnpcdisplay(instance_npcname("Guard#ms33"),22356);
+		setnpcdisplay(instance_npcname("Guard#ms34"),22357);
+		setnpcdisplay(instance_npcname("Guard#ms35"),22355);
+		setnpcdisplay(instance_npcname("Guard#ms36"),22356);
+		instance_enable("Guard#ms32",true);
+		instance_enable("Guard#ms33",true);
+		instance_enable("Guard#ms34",true);
+		instance_enable("Guard#ms35",true);
+		instance_enable("Guard#ms36",true);
+		cutin "",255;
+		mes "[Guard]";
+		mes "นี่มันเกิดอะไรขึ้นกันเนี่ย?!";
+		npctalk "นี่มันเกิดอะไรขึ้นกันเนี่ย?!",instance_npcname("Guard#ms32");
+		npctalk "นั่นมัน Carmigand นี่!!",instance_npcname("Guard#ms33");
+		npctalk "เขาควรจะถูกขังเดี่ยวอยู่ไม่ใช่เหรอ?",instance_npcname("Guard#ms34");
+		npctalk "Carmigand!",instance_npcname("Guard#ms35");
+		next;
+		cutin "ep21_wilhelm04.png",0;
+		mes "[Wilhelm]";
+		mes "เรื่องนี้มันชวนประสาทเสียจริงๆ ตอนนี้ฉันเริ่มอยากรู้แล้วสิว่าหน้าตาฉันเหมือนเขาขนาดไหน";
+		mes "พวกเราเหมือนกันจริงๆ หรือแค่เจ้าพวกนี้แยกแยะไม่ออกกันแน่";
+		npctalk "เรื่องนี้มันชวนประสาทเสียจริงๆ ตอนนี้ฉันเริ่มอยากรู้แล้วสิว่าหน้าตาฉันเหมือนเขาขนาดไหน พวกเราเหมือนกันจริงๆ หรือแค่เจ้าพวกนี้แยกแยะไม่ออกกันแน่",instance_npcname("Wilhelm#ms30");
+		next;
+		select("พวกเราจะทำยังไงต่อดี?");
+		pctalk "พวกเราจะทำยังไงต่อดี?";
+		cutin "ep21_tan05.png",1;
+		mes "[Tan]";
+		mes "จำนวนทหารยามอาจจะมากเกินไปที่จะรับมือไหว";
+		npctalk "จำนวนทหารยามอาจจะมากเกินไปที่จะรับมือไหว",instance_npcname("Tan#ms30");
+		next;
+		cutin "ep21_wilhelm03.png",0;
+		mes "[Wilhelm]";
+		mes "นี่ ฉันคิดอะไรดีๆ ออกแล้ว";
+		mes "ถ้าเรายอมโดนจับตอนนี้ พวกเขาก็ต้องพาเราไปในที่ที่เรากำลังจะไปอยู่แล้วไม่ใช่เหรอ?";
+		mes "นายคิดว่าใครจะอยู่ที่นั่นล่ะ?";
+		npctalk "นี่ ฉันคิดอะไรดีๆ ออกแล้ว ถ้าเรายอมโดนจับตอนนี้ พวกเขาก็ต้องพาเราไปในที่ที่เรากำลังจะไปอยู่แล้วไม่ใช่เหรอ? นายคิดว่าใครจะอยู่ที่นั่นล่ะ?",instance_npcname("Wilhelm#ms30");
+		next;
+		select("Carmigand ตัวจริง...!");
+		pctalk "Carmigand ตัวจริง...!";
+		cutin "ep21_tan01.png",1;
+		mes "[Tan]";
+		mes "...ยอมโดนจับเพื่อเข้าไปในห้องคุมขังสินะ นั่นคงช่วยประหยัดเวลาในการตามหาตัวเขาได้เยอะเลย";
+		mes "ข้าไม่ค่อยชอบวิธีนี้เท่าไหร่ แต่มันก็น่าจะเวิร์ก";
+		npctalk "...ยอมโดนจับเพื่อเข้าไปในห้องคุมขังสินะ นั่นคงช่วยประหยัดเวลาในการตามหาตัวเขาได้เยอะเลย ข้าไม่ค่อยชอบวิธีนี้เท่าไหร่ แต่มันก็น่าจะเวิร์ก",instance_npcname("Tan#ms30");
+		next;
+		cutin "ep21_wilhelm03.png",0;
+		mes "[Wilhelm]";
+		mes "ใช่ไหมล่ะ? มันมีประสิทธิภาพกว่าการเดินเตร่ไปมาในที่กว้างๆ แบบนี้ตั้งเยอะ";
+		npctalk "ใช่ไหมล่ะ? มันมีประสิทธิภาพกว่าการเดินเตร่ไปมาในที่กว้างๆ แบบนี้ตั้งเยอะ",instance_npcname("Wilhelm#ms30");
+		next;
+		cutin "ep21_yordos.png",2;
+		mes "[Guard]";
+		mes "พวกแกกระซิบกระซาบอะไรกัน? ตามพวกเรามาเงียบๆ!";
+		npctalk "พวกแกกระซิบกระซาบอะไรกัน? ตามพวกเรามาเงียบๆ!",instance_npcname("Guard#ms35");
+		npctalk "ครับผม!!",instance_npcname("Wilhelm#ms30");
+		close2;
+		cutin "",255;
+		instance_event("#EP21_gimli_control","OnEvent",false);
+		mapwarp get_instance_var("map$"),get_instance_var("map2$"),140,61;
+		end;
+	}
+	end; 
+}
+
+1@mdtem,126,31,1	script(DISABLED)	Guard#ms31	CLEAR_NPC,{ end; }
+1@mdtem,127,38,3	script(DISABLED)	Guard#ms32	CLEAR_NPC,{ end; }
+1@mdtem,120,34,5	script(DISABLED)	Guard#ms33	CLEAR_NPC,{ end; }
+1@mdtem,122,31,7	script(DISABLED)	Guard#ms36	CLEAR_NPC,{ end; }
+1@mdtem,123,39,5	script(DISABLED)	Guard#ms34	CLEAR_NPC,{ end; }
+1@mdtem,119,38,5	script(DISABLED)	Guard#ms35	CLEAR_NPC,{ end;}
+1@mdtem,123,34,5	script(DISABLED)	Wilhelm#ms30	4_EP21_WILHELM,{ end; }
+
+2@mdtem,142,68,3	script(DISABLED)	Wilhelm#ms230	4_EP21_WILHELM,5,5,{
+	if(get_instance_var("gc") == 16 && is_party_leader()){
+		cutin "ep21_yordos.png",1;
+		mes "[Guard]";
+		mes "เข้าไป!";
+		mes "มันจะดีที่สุดสำหรับพวกแกถ้าพวกแกอยู่นิ่งๆ!";
+		npctalk "มันจะดีที่สุดสำหรับพวกแกถ้าพวกแกอยู่นิ่งๆ!",instance_npcname("Guard#ms230");
+		next;
+		instance_enable("Guard#ms230",false);
+		instance_enable("Guard#ms231",false);
+		setnpcdisplay(instance_npcname("Guard#ms230"),CLEAR_NPC);
+		setnpcdisplay(instance_npcname("Guard#ms231"),CLEAR_NPC);
+		cutin "ep21_wilhelm01.png",2;
+		mes "[Wilhelm]";
+		mes "ที่นี่เหรอ? ไม่เห็นมีใครอยู่เลย?";
+		mes "ฉันนึกว่า Carmigand จะอยู่ที่นี่เสียอีก ฉันเข้าใจอะไรผิดไปหรือเปล่า?";
+		npctalk "ที่นี่เหรอ? ไม่เห็นมีใครอยู่เลย? ฉันนึกว่า Carmigand จะอยู่ที่นี่เสียอีก ฉันเข้าใจอะไรผิดไปหรือเปล่า?";
+		next;
+		instance_enable("Carmigand#ms230",true);
+		cutin "ep21_reinhardt01.png",0;
+		mes "[Carmigand]";
+		mes "นั่นใครน่ะ?";
+		npctalk "นั่นใครน่ะ?",instance_npcname("Carmigand#ms230");
+		next;
+		cutin "ep21_wilhelm02.png",2;
+		mes "[Wilhelm]";
+		mes "ว้าก! คุณทำฉันตกใจหมดเลย! โผล่มาเหมือนกับผี... เดี๋ยวสิ อะไรเนี่ย...?!";
+		mes "..........?";
+		mes "คุณคือ Carmigand ใช่ไหม...?";
+		npctalk "..........? คุณคือ Carmigand ใช่ไหม...?";
+		next;
+		select("พวกเขาหน้าตาเหมือนกันจริงๆ ด้วย");
+		pctalk "พวกเขาหน้าตาเหมือนกันจริงๆ ด้วย";
+		cutin "ep21_tan01.png",1;
+		mes "[Tan]";
+		mes "ตอนนี้ข้าเข้าใจแล้วว่าทำไม Nadoyo ถึงระบุลักษณะเฉพาะแบบนั้นมา";
+		npctalk "ตอนนี้ข้าเข้าใจแล้วว่าทำไม Nadoyo ถึงระบุลักษณะเฉพาะแบบนั้นมา",instance_npcname("Tan#ms230");
+		next;
+		cutin "ep21_reinhardt01.png",0;
+		mes "[Carmigand]";
+		mes "การที่พวกเจ้าพูดถึงซิสเตอร์ Nadoyo แสดงว่าพวกเจ้าถูกส่งมาโดยนางสินะ";
+		npctalk "การที่พวกเจ้าพูดถึงซิสเตอร์ Nadoyo แสดงว่าพวกเจ้าถูกส่งมาโดยนางสินะ",instance_npcname("Carmigand#ms230");
+		next;
+		cutin "ep21_wilhelm01.png",2;
+		mes "[Wilhelm]";
+		mes "ใช่... ถูกต้องแล้ว...";
+		mes "แต่... บ้าน่า... ฉันหมายถึง......";
+		npctalk "ใช่... ถูกต้องแล้ว... แต่... บ้าน่า... ฉันหมายถึง......";
+		next;
+		cutin "ep21_tan01.png",1;
+		mes "[Tan]";
+		mes "Nadoyo ต้องการพาคุณออกไป นางเลยหาคนที่หน้าเหมือนคุณมาเพื่อปลอมตัวเป็นคุณ";
+		mes "แต่เรื่องมันยุ่งยากขึ้นเมื่อคุณดันถูกคุมขังก่อนที่เราจะทันได้ลงมือ";
+		npctalk "พวกเรามาที่นี่เพื่อพาคุณออกไป แต่เรื่องมันยุ่งยากขึ้นเมื่อคุณดันถูกคุมขังก่อนที่เราจะทันได้ลงมือ",instance_npcname("Tan#ms230");
+		next;
+		cutin "ep21_wilhelm03.png",2;
+		mes "[Wilhelm]";
+		mes "ฮ่าๆๆ! นั่นแหละคือเหตุผลที่เรามาลงเอยที่นี่เหมือนกัน อย่างน้อยคุณก็จะไม่เหงาแล้วใช่ไหมล่ะ?";
+		npctalk "ฮ่าๆๆ! นั่นแหละคือเหตุผลที่เรามาลงเอยที่นี่เหมือนกัน อย่างน้อยคุณก็จะไม่เหงาแล้วใช่ไหมล่ะ?";
+		next;
+		cutin "ep21_reinhardt06.png",0;
+		mes "[Carmigand]";
+		mes "...Wil?";
+		mes "Wilhelm นั่นเจ้าจริงๆ หรือ?";
+		npctalk "...Wil? Wilhelm นั่นเจ้าจริงๆ หรือ?",instance_npcname("Carmigand#ms230");
+		next;
+		cutin "ep21_wilhelm02.png",2;
+		mes "[Wilhelm]";
+		mes "...? ....!!";
+		mes "ฉันสังหรณ์ใจอยู่แล้ว... เป็นพี่จริงๆ เหรอ...? พี่ Reinhardt?";
+		npctalk "ฉันสังหรณ์ใจอยู่แล้ว... เป็นพี่จริงๆ เหรอ...? พี่ Reinhardt?";
+		next;
+		select("นี่คือคนที่คุณกำลังตามหาอยู่เหรอ?");
+		pctalk "นี่คือคนที่คุณกำลังตามหาอยู่เหรอ?";
+		cutin "ep21_tan01.png",1;
+		mes "[Tan]";
+		mes "ถ้าคนนี้คือคนที่เจ้าตามหามาตลอด ทำไมถึงไม่มีใครรู้เลยล่ะ?";
+		mes "เขาไม่ใช่คนสำคัญในศาสนจักรหรอกหรือ?";
+		npctalk "ถ้าคนนี้คือคนที่เจ้าตามหามาตลอด ทำไมถึงไม่มีใครรู้เลยล่ะ?",instance_npcname("Tan#ms230");
+		next;
+		cutin "ep21_reinhardt05.png",0;
+		mes "[Carmigand]";
+		mes "Wil เจ้า... เจ้าหาข้าเจอได้อย่างไร? นานแค่ไหนแล้ว?";
+		npctalk "Wil เจ้า... เจ้าหาข้าเจอได้อย่างไร? นานแค่ไหนแล้ว?",instance_npcname("Carmigand#ms230");
+		next;
+		cutin "ep21_wilhelm01.png",2;
+		mes "[Wilhelm]";
+		mes "ตั้งแต่พี่หายตัวไปจากบ้านไง! แต่ พี่เป็นพี่ชายฉันจริงๆ ใช่ไหม?";
+		mes "นานมาแล้ว... ตั้งแต่ตอนที่พี่เข้าร่วมลัทธิ Jormungandr...";
+		npctalk "ตั้งแต่พี่หายตัวไปจากบ้านไง! แต่ พี่เป็นพี่ชายฉันจริงๆ ใช่ไหม? นานมาแล้ว... ตั้งแต่ตอนที่พี่เข้าร่วมลัทธิ Jormungandr...";
+		next;
+		cutin "ep21_wilhelm05.png",2;
+		mes "[Wilhelm]";
+		mes "ฉันตามหาพี่ทุกหนทุกแห่ง... แต่ไม่มีใครรู้จักพี่เลย... ฉันเลยคิดว่าเกิดเรื่องร้ายแรงกับพี่ไปแล้ว...";
+		npctalk "ฉันตามหาพี่ทุกหนทุกแห่ง... แต่ไม่มีใครรู้จักพี่เลย... ฉันเลยคิดว่าเกิดเรื่องร้ายแรงกับพี่ไปแล้ว...";
+		next;
+		cutin "ep21_wilhelm01.png",2;
+		mes "[Wilhelm]";
+		mes "แต่ทำไมพี่ถึงมาเป็นหัวหน้าพระสงฆ์ที่นี่... คอยหลอกลวงผู้บริสุทธิ์... พาพวกเขาไปสู่เส้นทางแห่งความเจ็บปวด...";
+		mes "พี่คือ... Carmigand คนนั้นที่ใครต่อใครพูดถึงจริงๆ น่ะเหรอ?";
+		npctalk "แต่ทำไมพี่ถึงมาเป็นหัวหน้าพระสงฆ์ที่นี่... คอยหลอกลวงผู้บริสุทธิ์... พี่คือ... Carmigand คนนั้นที่ใครต่อใครพูดถึงจริงๆ น่ะเหรอ?";
+		next;
+		cutin "ep21_reinhardt05.png",0;
+		mes "[Carmigand]";
+		mes "เจ้าโตขึ้นมากเลยนะ Wil";
+		mes "ครั้งสุดท้ายที่ข้าเห็นเจ้า เจ้ายังสูงไม่ถึงครึ่งของข้าเลย";
+		npctalk "เจ้าโตขึ้นมากเลยนะ Wil ครั้งสุดท้ายที่ข้าเห็นเจ้า เจ้ายังสูงไม่ถึงครึ่งของข้าเลย",instance_npcname("Carmigand#ms230");
+		next;
+		cutin "ep21_wilhelm05.png",2;
+		mes "[Wilhelm]";
+		mes "มันเป็นเรื่องจริงสินะ...";
+		mes "พ่อแม่เป็นห่วงพี่มากเลยนะ... พวกท่านเป็นห่วงจริงๆ...";
+		npctalk "มันเป็นเรื่องจริงสินะ... พ่อแม่เป็นห่วงพี่มากเลยนะ... พวกท่านเป็นห่วงจริงๆ...";
+		next;
+		cutin "ep21_reinhardt07.png",0;
+		mes "[Carmigand]";
+		mes "ท่านพ่อท่านแม่... พวกท่านสบายดีไหม?";
+		npctalk "ท่านพ่อท่านแม่... พวกท่านสบายดีไหม?",instance_npcname("Carmigand#ms230");
+		next;
+		cutin "ep21_wilhelm05.png",2;
+		mes "[Wilhelm]";
+		mes "... พวกท่านเสียชีวิตไปหลายปีแล้ว หลังจากต้องเผชิญกับชีวิตที่ยากลำบาก พวกท่านทุกข์ทรมานมาก... จริงๆ นะ...";
+		mes "ฉันตามหาพี่มาตลอดเพื่อที่จะบอกข่าวนี้... ตอนนี้เหลือแค่เราสองคนแล้ว...";
+		npctalk "... พวกท่านเสียชีวิตไปหลายปีแล้ว ฉันตามหาพี่มาตลอดเพื่อที่จะบอกข่าวนี้...";
+		npctalk "......",instance_npcname("Carmigand#ms230");
+		next;
+		cutin "ep21_wilhelm04.png",2;
+		mes "[Wilhelm]";
+		mes "ก็ยังดีนะ ที่พวกท่านไม่ได้มีชีวิตอยู่จนทันมาเห็นพี่เป็นแบบนี้";
+		npctalk "ก็ยังดีนะ ที่พวกท่านไม่ได้มีชีวิตอยู่จนทันมาเห็นพี่เป็นแบบนี้";
+		next;
+		cutin "ep21_tan01.png",1;
+		mes "[Tan]";
+		mes "เดี๋ยวก่อน ข้าไม่ได้อยากขัดจังหวะการกลับมาเจอกันของพี่น้องหรอกนะ แต่ตอนนี้ไม่ใช่เวลา";
+		mes "ตอนนี้พวกเราติดอยู่ที่นี่ และเราต้องรีบหนีออกไปให้เร็วที่สุด ไว้ค่อยคุยกันตอนที่เราออกไปได้แล้วเถอะ";
+		npctalk "เดี๋ยวก่อน ตอนนี้พวกเราติดอยู่ที่นี่ และเราต้องรีบหนีออกไปให้เร็วที่สุด",instance_npcname("Tan#ms230");
+		next;
+		cutin "ep21_wilhelm04.png",2;
+		mes "[Wilhelm]";
+		mes "พี่พูดถูก แล้วเราจะออกไปจากที่นี่ได้ยังไง? พี่ต้องรู้อะไรบ้างสิในเมื่อพี่เป็นถึงหัวหน้าพระสงฆ์ ใช่ไหม?";
+		npctalk "พี่พูดถูก แล้วเราจะออกไปจากที่นี่ได้ยังไง? พี่ต้องรู้อะไรบ้างสิในเมื่อพี่เป็นถึงหัวหน้าพระสงฆ์ ใช่ไหม?";
+		next;
+		cutin "ep21_tan01.png",1;
+		mes "[Tan]";
+		mes "ต้องมีทหารยามประจำการอยู่ข้างนอกแน่ และพวกเขาน่าจะเพิ่มกำลังขึ้นด้วย พวกเขาคงคิดว่าคุณเคยหนีออกไปได้แล้วครั้งหนึ่ง เรื่องนี้ไม่ง่ายแน่";
+		npctalk "ต้องมีทหารยามประจำการอยู่ข้างนอกแน่ และพวกเขาน่าจะเพิ่มกำลังขึ้นด้วย พวกเขาคงคิดว่าคุณเคยหนีออกไปได้แล้วครั้งหนึ่ง เรื่องนี้ไม่ง่ายแน่",instance_npcname("Tan#ms230");
+		next;
+		cutin "ep21_reinhardt01.png",0;
+		mes "[Carmigand]";
+		mes "ที่นี่คือห้องสวดมนต์สำหรับหัวหน้าพระสงฆ์";
+		mes "มันยังใช้เป็นห้องอธิษฐานส่วนตัว ห้องประชุม และบางครั้งก็เป็นห้องทำงานด้วย";
+		npctalk "ที่นี่คือห้องสวดมนต์สำหรับหัวหน้าพระสงฆ์",instance_npcname("Carmigand#ms230");
+		next;
+		cutin "ep21_reinhardt01.png",0;
+		mes "[Carmigand]";
+		mes "มันมีทางลับอยู่";
+		npctalk "มันมีทางลับอยู่",instance_npcname("Carmigand#ms230");
+		next;
+		cutin "ep21_tan01.png",1;
+		mes "[Tan]";
+		mes "ข้าสงสัยว่าลัทธินี้จะไม่รู้เรื่องทางลับนั่นเหรอ";
+		npctalk "ข้าสงสัยว่าลัทธินี้จะไม่รู้เรื่องทางลับนั่นเหรอ",instance_npcname("Tan#ms230");
+		next;
+		cutin "ep21_reinhardt04.png",0;
+		mes "[Carmigand]";
+		mes "พวกเขาน่าจะไม่รู้ วิหารแห่งนี้ถูกสร้างโดยมนุษย์ ตามสถาปัตยกรรมของมนุษย์";
+		mes "ข้าเคยได้ยินว่ามีคนใช้มันหนีออกไปหลายคนแล้ว";
+		npctalk "พวกเขาน่าจะไม่รู้ วิหารแห่งนี้ถูกสร้างโดยมนุษย์ ตามสถาปัตยกรรมของมนุษย์ ข้าเคยได้ยินว่ามีคนใช้มันหนีออกไปหลายคนแล้ว",instance_npcname("Carmigand#ms230");
+		next;
+		cutin "ep21_tan01.png",1;
+		mes "[Tan]";
+		mes "แล้วทางเข้ามันอยู่ตรงไหนล่ะ??";
+		npctalk "แล้วทางเข้ามันอยู่ตรงไหนล่ะ??",instance_npcname("Tan#ms230");
+		next;
+		cutin "ep21_reinhardt01.png",0;
+		mes "[Carmigand]";
+		mes "เราต้องช่วยกันหามัน";
+		npctalk "เราต้องช่วยกันหามัน",instance_npcname("Carmigand#ms230");
+		next;
+		cutin "ep21_wilhelm04.png",2;
+		mes "[Wilhelm]";
+		mes "สถานการณ์เยี่ยมยอดจริงๆ";
+		mes "เป็นถึงหัวหน้าพระสงฆ์แท้ๆ แต่กลับไม่รู้อะไรเลย ทั้งหมดนี้เพื่ออะไรกัน...";
+		npctalk "เป็นถึงหัวหน้าพระสงฆ์แท้ๆ แต่กลับไม่รู้อะไรเลย ทั้งหมดนี้เพื่ออะไรกัน...";
+		next;
+		cutin "ep21_tan01.png",1;
+		mes "[Tan]";
+		mes "พอได้แล้ว มาเริ่มค้นหาในห้องนี้กันเถอะ";
+		npctalk "พอได้แล้ว มาเริ่มค้นหาในห้องนี้กันเถอะ",instance_npcname("Tan#ms230");
+		instance_event("#EP21_gimli_control","OnEvent",false);
+		close3;
+	}
+	end;
+}
+
+2@mdtem,138,69,5	script(DISABLED)	Tan#ms230	4_EP21_TAN,{ end; }
+2@mdtem,138,66,7	script(DISABLED)	Carmigand#ms230	4_EP21_REINHARDT,{ end; }
+2@mdtem,141,61,7	script(DISABLED)	Guard#ms230	22355,{ end; }
+2@mdtem,138,61,7	script(DISABLED)	Guard#ms231	22357,{ end; }
+
+2@mdtem,148,63,3	script(DISABLED)	Suspicious Place#ms230	4_POINT_WHITE,{
+	if(get_instance_var("gc") == 17 && is_party_leader())
+		pctalk "มันดูน่าสงสัยนะ แต่ก็ไม่มีอะไรผิดปกติ";
+	end;
+}
+
+2@mdtem,134,68,3	script(DISABLED)	Suspicious Place#ms231	4_POINT_WHITE,{
+	if(get_instance_var("gc") == 17 && is_party_leader())
+		pctalk "อยู่ตรงนี้หรือเปล่า? ไม่ใช่แฮะ...";
+	end;
+}
+
+2@mdtem,140,77,3	script(DISABLED)	Suspicious Place#ms232	4_POINT_WHITE,{
+	if(get_instance_var("gc") == 17 && is_party_leader())
+		pctalk "ไม่มีอะไรตรงนี้เลย มันมีอยู่จริงหรือเปล่าเนี่ย?";
+	end;
+}
+
+2@mdtem,132,80,3	script(DISABLED)	Suspicious Place#ms233	4_POINT_WHITE,{
+	if(get_instance_var("gc") == 17 && is_party_leader()){
+		pctalk "สัญชาตญาณบอกฉันว่า! มันต้องอยู่ตรงนี้!";
+		pcblock(true);
+		sleep2 700;
+		pcblock(false);
+		pctalk "หรือว่าไม่ใช่...";
+		end;
+	}
+}
+
+2@mdtem,148,80,3	script(DISABLED)	Suspicious Place#ms234	4_POINT_WHITE,{
+	if(get_instance_var("gc") == 17 && is_party_leader()){
+		pcblock(true);
+		npctalk "คลิก-";
+		sleep2 500;
+		pcblock(false);
+		select("ฉันได้ยินเสียงเหมือนอะไรบางอย่างคลิกตรงนี้");
+		pctalk "ฉันได้ยินเสียงเหมือนอะไรบางอย่างคลิกตรงนี้";
+		cutin "ep21_wilhelm02.png",2;
+		mes "[Wilhelm]";
+		mes "ไหนๆ! อยู่ตรงนี้เหรอ?";
+		mes "มีอะไรบางอย่างเหมือนทางผ่านอยู่หลังกำแพงนี้ ใช่เลย! เจอแล้ว!";
+		npctalk "ไหนๆ! อยู่ตรงนี้เหรอ? มีอะไรบางอย่างเหมือนทางผ่านอยู่หลังกำแพงนี้ ใช่เลย! เจอแล้ว!",instance_npcname("Wilhelm#ms230");
+		next;
+		cutin "ep21_tan01.png",0;
+		mes "[Tan]";
+		mes "ถ้าเจ้าตะโกนแบบนั้น พวกทหารยามข้างนอกก็รู้หมดพอดีว่าพวกเราทำอะไรกันอยู่";
+		mes "รีบเคลื่อนย้ายกันเร็วเข้า และทำตัวเงียบๆ ด้วย";
+		next;
+		cutin "ep21_wilhelm01.png",2;
+		mes "[Wilhelm]";
+		mes "พี่คิดว่าทางนี้จะไปโผล่ที่ไหนเหรอ?";
+		npctalk "พี่คิดว่าทางนี้จะไปโผล่ที่ไหนเหรอ?",instance_npcname("Wilhelm#ms230");
+		close2;
+		cutin "",255;
+		instance_event("#EP21_gimli_control","OnEvent",false);
+		mapwarp get_instance_var("map2$"),get_instance_var("map$"),266,106;
+		end;
+	}
+}
+
+1@mdtem,264,105,0	script(DISABLED)	#21ms40i	HIDDEN_WARP_NPC,3,3,{
+	end;
+	
+OnTouch:
+	if(get_instance_var("gc") == 18 && is_party_leader())
+		instance_event("#EP21_gimli_control","OnEvent",false);
+end;
+}
+
+1@mdtem,266,98,3	script(DISABLED)	Wilhelm#ms40	4_EP21_WILHELM,3,3,{
+	if(get_instance_var("gc") == 19 && is_party_leader()){
+		cutin "ep21_wilhelm02.png",2;
+		mes "[Wilhelm]";
+		mes "ทำไมทางผ่านนี้มันถึงซับซ้อนเหมือนเขาวงกตแบบนี้ล่ะ?";
+		mes "มันเป็นเขาวงกตจริงๆ หรือเปล่า?";
+		npctalk "ทำไมทางผ่านนี้มันถึงซับซ้อนเหมือนเขาวงกตแบบนี้ล่ะ? มันเป็นเขาวงกตจริงๆ หรือเปล่า?";
+		next;
+		cutin "ep21_tan01.png",0;
+		mes "[Tan]";
+		mes "ทำไมพวกเราถึงมาโผล่ที่นี่?";
+		npctalk "ทำไมพวกเราถึงมาโผล่ที่นี่?",instance_npcname("Tan#ms40");
+		next;
+		cutin "ep21_reinhardt01.png",1;
+		mes "[Carmigand]";
+		mes "ถ้าเจ้าลองคิดดูดีๆ ห้องสวดมนต์แต่ละห้องต่างก็มีทางลับเป็นของตัวเอง ดังนั้นมันจึงไม่แปลกที่เราจะมาจบลงที่นี่";
+		npctalk "ถ้าเจ้าลองคิดดูดีๆ ห้องสวดมนต์แต่ละห้องต่างก็มีทางลับเป็นของตัวเอง ดังนั้นมันจึงไม่แปลกที่เราจะมาจบลงที่นี่",instance_npcname("Carmigand#ms40");
+		npctalk "มันให้ความรู้สึกเหมือนเป็นเส้นทางหนีฉุกเฉินมากกว่าจะเป็นทางลับนะ",instance_npcname("Tan#ms40");
+		npctalk "ข้าก็คิดอย่างนั้น ที่นี่ดูเหมือนจะเป็นทางเดินบริการที่ใช้สำหรับขนส่งวัสดุอย่างรวดเร็วในระหว่างการก่อสร้าง";
+		next;
+		mes "[Carmigand]";
+		mes "ในเมื่อห้องสวดมนต์ดูเหมือนจะเชื่อมต่อกัน งั้นลองพยายามหาทางออกผ่านห้องอื่นดู";
+		mes "ข้าได้ยินมาว่ามีห้องหนึ่งที่เชื่อมต่อออกไปข้างนอกได้โดยตรง";
+		npctalk "ในเมื่อห้องสวดมนต์ดูเหมือนจะเชื่อมต่อกัน งั้นลองพยายามหาทางออกผ่านห้องอื่นดู ข้าได้ยินมาว่ามีห้องหนึ่งที่เชื่อมต่อออกไปข้างนอกได้โดยตรง",instance_npcname("Carmigand#ms40");
+		next;
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms40");
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms41");
+		setnpcdisplay(instance_npcname("Guard#ms40"),22356);
+		setnpcdisplay(instance_npcname("Guard#ms41"),22359);
+		instance_enable("Guard#ms40",true);
+		instance_enable("Guard#ms41",true);
+		cutin "ep21_yordos.png",1;
+		mes "[Guard]";
+		mes "Carmigand!!! แกหนีออกมาได้ยังไงอีกแล้ว?";
+		npctalk "Carmigand!!! แกหนีออกมาได้ยังไงอีกแล้ว?",instance_npcname("Guard#ms40");
+		next;
+		mes "[Guard]";
+		mes "เดี๋ยวสิ ทำไมมี Carmigand สองคน??!";
+		mes "นี่มันเกิดอะไรขึ้นกันแน่?";
+		npctalk "เดี๋ยวสิ ทำไมมี Carmigand สองคน??! นี่มันเกิดอะไรขึ้นกันแน่?",instance_npcname("Guard#ms41");
+		next;
+		mes "[Guard]";
+		mes "จับตัวพวกมันไว้ทั้งคู่!";
+		npctalk "จับตัวพวกมันไว้ทั้งคู่!",instance_npcname("Guard#ms40");
+		npctalk "ทำไมไม่มีเรื่องไหนที่มันง่ายๆ บ้างเลย!!";
+		close2;
+		cutin "",255;
+		set_instance_var("gc", 20);
+		instance_enable("Guard#ms40",false);
+		instance_enable("Guard#ms41",false);
+		setnpcdisplay(instance_npcname("Guard#ms40"),CLEAR_NPC);
+		setnpcdisplay(instance_npcname("Guard#ms41"),CLEAR_NPC);
+		instance_event("#EP21_gimli_control","OnSummon",false);
+		end;
+	}
+	if(get_instance_var("gc") == 21 && is_party_leader()){
+		cutin "ep21_wilhelm02.png",2;
+		mes "[Wilhelm]";
+		mes "รีบออกไปจากที่นี่กันเถอะ";
+		mes "ฉันทนที่นี่ไม่ไหวแล้ว!";
+		npctalk "รีบออกไปจากที่นี่กันเถอะ ฉันทนที่นี่ไม่ไหวแล้ว!",instance_npcname("Wilhelm#ms40");
+		close2;
+		cutin "",255;
+		instance_event("#EP21_gimli_control","OnEvent",false);
+		end;
+	}
+	end;
+	
+OnTouch:
+	if(get_instance_var("gc") == 19 && is_party_leader()){
+		npctalk "ตอนนี้เราอยู่ที่ไหนกันแล้ว?";
+		end;
+	}
+	if(get_instance_var("gc") == 21 && is_party_leader())
+		npctalk "ฉันทนเรื่องแบบนี้ไม่ไหวแล้วจริงๆ นะ";
+end;
+}
+
+1@mdtem,261,99,5	script(DISABLED)	Tan#ms40	4_EP21_TAN,{ end; }
+1@mdtem,264,100,5	script(DISABLED)	Carmigand#ms40	4_EP21_REINHARDT,{ end; }
+1@mdtem,265,97,1	script(DISABLED)	Guard#ms40	CLEAR_NPC,{ end; }
+1@mdtem,263,95,1	script(DISABLED)	Guard#ms41	CLEAR_NPC,{ end; }
+
+1@mdtem,36,204,0	script(DISABLED)	#21ms50i	HIDDEN_WARP_NPC,3,3,{
+	end;
+	
+OnTouch:
+	if(get_instance_var("gc") == 22 && is_party_leader())
+		instance_event("#EP21_gimli_control","OnEvent",false);
+end;
+}
+
+1@mdtem,33,204,5	script(DISABLED)	Tan#ms50	4_EP21_TAN,3,3,{
+	if(get_instance_var("gc") == 23 && is_party_leader()){
+		cutin "ep21_tan01.png",0;
+		mes "[Tan]";
+		mes "มีพวกลาดตระเวนเดินกันให้เต็มไปหมด..";
+		mes "เราต้องระวังตัวกันให้มาก";
+		npctalk "มีพวกลาดตระเวนเดินกันให้เต็มไปหมด.. เราต้องระวังตัวกันให้มาก";
+		next;
+		cutin "ep21_wilhelm04.png",2;
+		mes "[Wilhelm]";
+		mes "ฉันสังเกตเห็นตั้งแต่ก่อนหน้านี้แล้วว่าการเคลื่อนไหวของพี่ช้าลงนะ พี่ชาย ถ้าเราต้องสู้กัน พี่คอยอยู่หลังฉันไว้เถอะ";
+		npctalk "ฉันสังเกตเห็นตั้งแต่ก่อนหน้านี้แล้วว่าการเคลื่อนไหวของพี่ช้าลงนะ พี่ชาย ถ้าเราต้องสู้กัน พี่คอยอยู่หลังฉันไว้เถอะ",instance_npcname("Wilhelm#ms50");
+		next;
+		cutin "ep21_reinhardt01.png",1;
+		mes "[Carmigand]";
+		mes "......";
+		npctalk "......",instance_npcname("Carmigand#ms50");
+		next;
+		cutin "ep21_wilhelm04.png",2;
+		mes "[Wilhelm]";
+		mes "อะไรล่ะ? พี่ไม่พอใจเหรอที่เด็กอ่อนแอในวันนั้น ตอนนี้กลับกลายมาเป็นคนปกป้องพี่น่ะ?";
+		npctalk "อะไรล่ะ? พี่ไม่พอใจเหรอที่เด็กอ่อนแอในวันนั้น ตอนนี้กลับกลายมาเป็นคนปกป้องพี่น่ะ?",instance_npcname("Wilhelm#ms50");
+		next;
+		cutin "ep21_reinhardt04.png",1;
+		mes "[Carmigand]";
+		mes "ข้าแค่ตระหนักได้ว่าเจ้าเติบโตขึ้นมากแค่ไหน ข้าหวังว่าข้าจะได้มีโอกาสเห็นมันกับตาในช่วงที่มันเกิดขึ้น";
+		npctalk "ข้าแค่ตระหนักได้ว่าเจ้าเติบโตขึ้นมากแค่ไหน ข้าหวังว่าข้าจะได้มีโอกาสเห็นมันกับตาในช่วงที่มันเกิดขึ้น",instance_npcname("Carmigand#ms50");
+		next;
+		cutin "ep21_tan01.png",0;
+		mes "[Tan]";
+		mes "ไม่มีเวลามาคุยเรื่องสัพเพเหระแล้ว พวกมันมากันแล้ว!";
+		npctalk "ไม่มีเวลามาคุยเรื่องสัพเพเหระแล้ว พวกมันมากันแล้ว!";
+		next;
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms50");
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms51");
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms52");
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms53");
+		setnpcdisplay(instance_npcname("Guard#ms50"),22356);
+		setnpcdisplay(instance_npcname("Guard#ms51"),22357);
+		setnpcdisplay(instance_npcname("Guard#ms52"),22358);
+		setnpcdisplay(instance_npcname("Guard#ms53"),22359);
+		instance_enable("Guard#ms50",true);
+		instance_enable("Guard#ms51",true);
+		instance_enable("Guard#ms52",true);
+		instance_enable("Guard#ms53",true);
+		cutin "ep21_yordos.png",1;
+		mes "[Guard]";
+		mes "ทางนี้!!! พวกนักโทษแหกคุกอยู่นี่!!!";
+		npctalk "ทางนี้!!! พวกนักโทษแหกคุกอยู่นี่!!!",instance_npcname("Guard#ms50");
+		npctalk "นี่ยังมีมาเพิ่มอีกเหรอเนี่ย?",instance_npcname("Wilhelm#ms50");
+		close2;
+		cutin "",255;
+		instance_enable("Guard#ms50",false);
+		instance_enable("Guard#ms51",false);
+		instance_enable("Guard#ms52",false);
+		instance_enable("Guard#ms53",false);
+		setnpcdisplay(instance_npcname("Guard#ms50"),CLEAR_NPC);
+		setnpcdisplay(instance_npcname("Guard#ms51"),CLEAR_NPC);
+		setnpcdisplay(instance_npcname("Guard#ms52"),CLEAR_NPC);
+		setnpcdisplay(instance_npcname("Guard#ms53"),CLEAR_NPC);
+		set_instance_var("gc", 24);
+		instance_event("#EP21_gimli_control","OnSummon",false);
+		end;
+	}
+	if(get_instance_var("gc") == 25 && is_party_leader()){
+		cutin "ep21_tan05.png",1;
+		mes "[Tan]";
+		mes "ฟิ้ว- นี่คุณไม่รู้จริงๆ หรือว่าทางออกมันอยู่ตรงไหน?";
+		npctalk "ฟิ้ว- นี่คุณไม่รู้จริงๆ หรือว่าทางออกมันอยู่ตรงไหน?",instance_npcname("Tan#ms50");
+		next;
+		cutin "ep21_reinhardt01.png",0;
+		mes "[Carmigand]";
+		mes "ข้าไม่รู้";
+		npctalk "ข้าไม่รู้",instance_npcname("Carmigand#ms50");
+		next;
+		cutin "ep21_wilhelm01.png",2;
+		mes "[Wilhelm]";
+		mes "จะมาถามหาอะไรเอาป่านนี้ล่ะ?";
+		mes "รีบๆ ช่วยกันหามันให้เจอเถอะ";
+		npctalk "จะมาถามหาอะไรเอาป่านนี้ล่ะ? รีบๆ ช่วยกันหามันให้เจอเถอะ",instance_npcname("Wilhelm#ms50");
+		close2;
+		cutin "",255;
+		instance_event("#EP21_gimli_control","OnEvent",false);
+		mapwarp get_instance_var("map$"),get_instance_var("map$"),152,239;
+		end;
+	}
+	end;
+	
+OnTouch:
+	if(get_instance_var("gc") == 23 && is_party_leader()){
+		npctalk "มันยังไม่จบหรอกนะ";
+		end;
+	}
+	if(get_instance_var("gc") == 25 && is_party_leader())
+		npctalk "ขืนเป็นแบบนี้ต่อไป มันไม่มีวันจบแน่";
+end;
+}
+
+1@mdtem,38,206,3	script(DISABLED)	Wilhelm#ms50	4_EP21_WILHELM,{ end; }
+1@mdtem,36,208,3	script(DISABLED)	Carmigand#ms50	4_EP21_REINHARDT,{ end; }
+1@mdtem,38,201,1	script(DISABLED)	Guard#ms50	CLEAR_NPC,{ end; }
+1@mdtem,34,200,7	script(DISABLED)	Guard#ms51	CLEAR_NPC,{ end; }
+1@mdtem,38,208,3	script(DISABLED)	Guard#ms52	CLEAR_NPC,{ end; }
+1@mdtem,33,208,5	script(DISABLED)	Guard#ms53	CLEAR_NPC,{ end; }
+
+1@mdtem,150,238,0	script(DISABLED)	#21ms70	HIDDEN_WARP_NPC,3,3,{
+	end;
+OnTouch:
+	if(get_instance_var("gc") == 26 && is_party_leader())
+		instance_event("#EP21_gimli_control","OnEvent",false);
+end;
+}
+
+1@mdtem,153,240,1	script(DISABLED)	Wilhelm#ms60	4_EP21_WILHELM,3,3,{
+	if(get_instance_var("gc") == 27 && is_party_leader()){
+		cutin "ep21_wilhelm04.png",2;
+		mes "[Wilhelm]";
+		mes "ตอนนี้เราอยู่ที่ไหนกันแล้วเนี่ย? เราต้องกลับไปเริ่มใหม่ตั้งแต่ต้นเลยหรือเปล่า?";
+		mes "รู้สึกเหมือนเราแค่กำลังดันทุรังฝ่าความวุ่นวายนี้ไปดื้อๆ เลยแฮะ";
+		npctalk "ตอนนี้เราอยู่ที่ไหนกันแล้วเนี่ย? เราต้องกลับไปเริ่มใหม่ตั้งแต่ต้นเลยหรือเปล่า?";
+		next;
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms60");
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms61");
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms62");
+		setnpcdisplay(instance_npcname("Guard#ms60"),22355);
+		setnpcdisplay(instance_npcname("Guard#ms61"),22356);
+		setnpcdisplay(instance_npcname("Guard#ms62"),22357);
+		instance_enable("Guard#ms60",true);
+		instance_enable("Guard#ms61",true);
+		instance_enable("Guard#ms62",true);
+		cutin "ep21_yordos.png",1;
+		mes "[Guard]";
+		mes "อยู่นั่นไง! อย่าขยับนะ!";
+		npctalk "อยู่นั่นไง! อย่าขยับนะ!",instance_npcname("Guard#ms60");
+		next;
+		cutin "ep21_wilhelm02.png",2;
+		mes "[Wilhelm]";
+		mes "อ๊ะ...! อีกแล้วเหรอเนี่ย!!";
+		mes "เฮ้อ- ห้องสวดมนต์นั่น...! ถ้าเราผ่านตรงนี้ไปได้ ฉันคิดว่าเราจะออกไปข้างนอกได้นะ! แต่ดูเหมือนพวกมันคงไม่ยอมปล่อยให้เราผ่านไปง่ายๆ สินะ ใช่ไหมล่ะ?";
+		npctalk "ห้องสวดมนต์นั่น...! ถ้าเราผ่านตรงนี้ไปได้ ฉันคิดว่าเราจะออกไปข้างนอกได้นะ! แต่ดูเหมือนพวกมันคงไม่ยอมปล่อยให้เราผ่านไปง่ายๆ สินะ ใช่ไหมล่ะ?";
+		next;
+		cutin "ep21_yordos.png",1;
+		mes "[Guard]";
+		mes "แกพล่ามไร้สาระอะไรของแก?";
+		npctalk "แกพล่ามไร้สาระอะไรของแก?",instance_npcname("Guard#ms61");
+		next;
+		cutin "ep21_wilhelm04.png",2;
+		mes "[Wilhelm]";
+		mes "กะไว้แล้วเชียว รีบจัดการให้มันจบๆ ไปเถอะ";
+		mes "เดี๋ยวฉันกับผู้บัญชาการจะแสดงให้พวกแกเห็นเองว่าพวกเราเหนือกว่าแค่ไหน";
+		npctalk "กะไว้แล้วเชียว รีบจัดการให้มันจบๆ ไปเถอะ เดี๋ยวฉันกับผู้บัญชาการจะแสดงให้พวกแกเห็นเองว่าพวกเราเหนือกว่าแค่ไหน";
+		next;
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms63");
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms64");
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Hyasagand#ms60");
+		specialeffect EF_FLOWERCAST,AREA,instance_npcname("Hyasagand#ms60");
+		setnpcdisplay(instance_npcname("Hyasagand#ms60"),22360);
+		setnpcdisplay(instance_npcname("Guard#ms63"),22358);
+		setnpcdisplay(instance_npcname("Guard#ms64"),22359);
+		instance_enable("Guard#ms63",true);
+		instance_enable("Guard#ms64",true);
+		instance_enable("Hyasagand#ms60",true);
+		cutin "ep21_yortus_a.png",1;
+		mes "[Hyasagand]";
+		mes "Carmigand";
+		mes "ข้ารอเจ้าอยู่เลย ได้ยินว่าเจ้าหนีออกมาได้สินะ";
+		npctalk "Carmigand ข้ารอเจ้าอยู่เลย ได้ยินว่าเจ้าหนีออกมาได้สินะ",instance_npcname("Hyasagand#ms60");
+		next;
+		cutin "ep21_reinhardt01.png",2;
+		mes "[Carmigand]";
+		mes "Hyasagand";
+		npctalk "Hyasagand",instance_npcname("Carmigand#ms60");
+		next;
+		cutin "ep21_yortus_a.png",1;
+		mes "[Hyasagand]";
+		mes "ข้าเฝ้ารอวันที่เจ้าจะล่มจมมานานแล้ว";
+		mes "และข้าจะเป็นคนทำให้มันเกิดขึ้นด้วยมือของข้าเอง!";
+		npctalk "ข้าเฝ้ารอวันที่เจ้าจะล่มจมมานานแล้ว และข้าจะเป็นคนทำให้มันเกิดขึ้นด้วยมือของข้าเอง!",instance_npcname("Hyasagand#ms60");
+		npctalk "นั่นมันมือจริงๆ เหรอ? พวกงูนี่มีรยางค์ด้วยเหรอ?";
+		next;
+		mes "[Hyasagand]";
+		mes "มีคำสั่งเสียอะไรไหม? ข้าจะยอมฟังให้ซักครั้ง แค่ครั้งนี้เท่านั้นนะ";
+		npctalk "มีคำสั่งเสียอะไรไหม? ข้าจะยอมฟังให้ซักครั้ง แค่ครั้งนี้เท่านั้นนะ",instance_npcname("Hyasagand#ms60");
+		next;
+		cutin "ep21_reinhardt02.png",2;
+		mes "[Carmigand]";
+		mes "ในอดีต ข้าเคยเห็นผู้คนที่บอบช้ำจากความจริงอันโหดร้ายของชีวิต";
+		mes "แต่ข้ากลับพบว่าตัวเองมีความสามารถจำกัดในการที่จะช่วยเหลือพวกเขา";
+		npctalk "ในอดีต ข้าเคยเห็นผู้คนที่บอบช้ำจากความจริงอันโหดร้ายของชีวิต แต่ข้ากลับพบว่าตัวเองมีความสามารถจำกัดในการที่จะช่วยเหลือพวกเขา",instance_npcname("Carmigand#ms60");
+		next;
+		cutin "ep21_reinhardt01.png",2;
+		mes "[Carmigand]";
+		mes "จากนั้นข้าก็ได้เรียนรู้เกี่ยวกับคำสอนของ Jormungandr ซึ่งให้คำมั่นว่าจะมอบความสบายใจและสันติสุขแก่ผู้ที่ทุกข์ยากทุกคน ข้าจึงอุทิศตนให้กับศาสนจักรโดยไม่ลังเล";
+		npctalk "จากนั้นข้าก็ได้เรียนรู้เกี่ยวกับคำสอนของ Jormungandr ซึ่งให้คำมั่นว่าจะมอบความสบายใจและสันติสุขแก่ผู้ที่ทุกข์ยากทุกคน ข้าจึงอุทิศตนให้กับศาสนจักรโดยไม่ลังเล",instance_npcname("Carmigand#ms60");
+		next;
+		cutin "ep21_reinhardt02.png",2;
+		mes "[Carmigand]";
+		mes "แต่ในทางกลับกัน ศาสนจักรปฏิบัติกับผู้คนอย่างไร?";
+		npctalk "แต่ในทางกลับกัน ศาสนจักรปฏิบัติกับผู้คนอย่างไร?",instance_npcname("Carmigand#ms60");
+		next;
+		mes "[Carmigand]";
+		mes "ศาสนจักร Jormungandr ก็เป็นเพียงเปลือกนอกที่ห่อหุ้มการเอารัดเอาเปรียบเอาไว้ไม่ใช่หรือ?";
+		mes "แม้แต่หลักคำสอนที่ดูรุ่งโรจน์นั่น ก็เป็นเพียงแค่ฉากบังหน้าไม่ใช่หรือไง?";
+		npctalk "ศาสนจักรก็เป็นเพียงเปลือกนอกที่ห่อหุ้มการเอารัดเอาเปรียบเอาไว้ไม่ใช่หรือ?",instance_npcname("Carmigand#ms60");
+		npctalk "แกมันไอ้คนลบหลู่ดูหมิ่น!!",instance_npcname("Guard#ms60");
+		npctalk "แกพูดเรื่องอะไรของแกน่ะ ไอ้คนนอกรีต!!",instance_npcname("Guard#ms61");
+		next;
+		cutin "ep21_yortus_a.png",1;
+		mes "[Hyasagand]";
+		mes "พวกเจ้าได้ยินไหม? ชายผู้นี้ไม่ใช่พระของ Jormungandr อีกต่อไป แต่เป็นไอ้คนทรยศที่โสโครก!";
+		mes "จับตัวไอ้คนนอกรีตที่บังอาจพ่นวาจาอันชั่วร้ายเช่นนี้ซะ!!";
+		npctalk "พวกเจ้าได้ยินไหม? ชายผู้นี้ไม่ใช่พระของ Jormungandr อีกต่อไป แต่เป็นไอ้คนทรยศที่โสโครก! จับตัวไอ้คนนอกรีตซะ!!",instance_npcname("Hyasagand#ms60");
+		next;
+		mes "[Hyasagand]";
+		mes "พวกแกจะทำร้ายมันแค่ไหนก็ได้ตามใจชอบ แต่ต้องแน่ใจว่ามันยังมีชีวิตอยู่!";
+		mes "ใครก็ตามที่ฆ่ามันจะต้องชดใช้ให้กับข้า!";
+		npctalk "พวกแกจะทำร้ายมันแค่ไหนก็ได้ตามใจชอบ แต่ต้องแน่ใจว่ามันยังมีชีวิตอยู่! ใครก็ตามที่ฆ่ามันจะต้องชดใช้ให้กับข้า!",instance_npcname("Hyasagand#ms60");
+		next;
+		cutin "ep21_wilhelm03.png",2;
+		mes "[Wilhelm]";
+		mes "โอ้ นี่แกจะไม่ลงมือเองงั้นเหรอ? ฝีมือการต่อสู้ไม่เท่าไหร่ล่ะสิท่า?";
+		npctalk "โอ้ นี่แกจะไม่ลงมือเองงั้นเหรอ? ฝีมือการต่อสู้ไม่เท่าไหร่ล่ะสิท่า?";
+		next;
+		cutin "ep21_yortus_a.png",1;
+		mes "[Hyasagand]";
+		mes "เหอะ ข้าจะไม่ขอต่อความยาวสาวความยืดกับการยั่วยุอันหยาบคายของเด็กน้อยหรอกนะ";
+		mes "โจมตีเดี๋ยวนี้!";
+		npctalk "เหอะ ข้าจะไม่ขอต่อความยาวสาวความยืดกับการยั่วยุอันหยาบคายของเด็กน้อยหรอกนะ โจมตีเดี๋ยวนี้!",instance_npcname("Hyasagand#ms60");
+		close2;
+		cutin "",255;
+		set_instance_var("gc", 28);
+		instance_enable("Guard#ms60",false);
+		instance_enable("Guard#ms61",false);
+		instance_enable("Guard#ms62",false);
+		instance_event("#EP21_gimli_control","OnSummon",false);
+		end;
+	}
+	if(get_instance_var("gc") == 29 && is_party_leader()){
+		cutin "ep21_wilhelm03.png",2;
+		mes "[Wilhelm]";
+		mes "ในที่สุดก็คิดจะลงมือเองแล้วเหรอ? หรือว่าควรจะทำแบบนั้นตั้งนานแล้วนะ?";
+		npctalk "ในที่สุดก็คิดจะลงมือเองแล้วเหรอ? หรือว่าควรจะทำแบบนั้นตั้งนานแล้วนะ?";
+		next;
+		cutin "ep21_yortus_a.png",1;
+		mes "[Hyasagand]";
+		mes "ไม่จำเป็นหรอก เพราะพวกเรามีจำนวนที่มากกว่าเห็นๆ";
+		npctalk "ไม่จำเป็นหรอก เพราะพวกเรามีจำนวนที่มากกว่าเห็นๆ",instance_npcname("Hyasagand#ms60");
+		next;
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms60");
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms61");
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms62");
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms65");
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms66");
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms67");
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms68");
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms69");
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms70");
+		setnpcdisplay(instance_npcname("Guard#ms60"),22355);
+		setnpcdisplay(instance_npcname("Guard#ms61"),22356);
+		setnpcdisplay(instance_npcname("Guard#ms62"),22357);
+		setnpcdisplay(instance_npcname("Guard#ms65"),22358);
+		setnpcdisplay(instance_npcname("Guard#ms66"),22359);
+		setnpcdisplay(instance_npcname("Guard#ms67"),22358);
+		setnpcdisplay(instance_npcname("Guard#ms68"),22359);
+		setnpcdisplay(instance_npcname("Guard#ms69"),22358);
+		setnpcdisplay(instance_npcname("Guard#ms70"),22359);
+		instance_enable("Guard#ms60",true);
+		instance_enable("Guard#ms61",true);
+		instance_enable("Guard#ms62",true);
+		instance_enable("Guard#ms65",true);
+		instance_enable("Guard#ms66",true);
+		instance_enable("Guard#ms67",true);
+		instance_enable("Guard#ms68",true);
+		instance_enable("Guard#ms69",true);
+		instance_enable("Guard#ms70",true);
+		cutin "ep21_wilhelm04.png",2;
+		mes "[Wilhelm]";
+		mes "งานหนักแล้วสิ... คุณคิดว่าไง? รับมือพวกมันไหวไหม? หรือต้องให้ฉันออกโรงด้วย?";
+		npctalk "คุณคิดว่าไง? รับมือพวกมันไหวไหม? หรือต้องให้ฉันออกโรงด้วย?";
+		next;
+		select("คราวนี้พวกเราจะไม่ยอมโดนขังง่ายๆ อีกแล้ว");
+		pctalk "คราวนี้พวกเราจะไม่ยอมโดนขังง่ายๆ อีกแล้ว";
+		instance_enable("Believer#ms60",true);
+		instance_enable("Believer#ms61",true);
+		instance_enable("Believer#ms62",true);
+		cutin "ep21_worker_of_08.png",1;
+		mes "[Believer]";
+		mes "เกิดอะไรขึ้นน่ะ? คนพวกนี้เป็นใครกัน??";
+		npctalk "เกิดอะไรขึ้นน่ะ? คนพวกนี้เป็นใครกัน??",instance_npcname("Believer#ms60");
+		next;
+		cutin "ep21_worker_f_07.png",1;
+		mes "[Believer]";
+		mes "นั่น Carmigand นี่!";
+		mes "Hyasagand ก็อยู่ที่นี่ด้วย!";
+		npctalk "นั่น Carmigand นี่! Hyasagand ก็อยู่ที่นี่ด้วย!",instance_npcname("Believer#ms61");
+		next;
+		cutin "ep21_worker_m_02.png",1;
+		mes "[Believer]";
+		mes "มันเป็นเรื่องจริงสินะ? ข่าวลือที่ว่าพวกนักบวช Rgan กำลังกดขี่ข่มเหง Carmigand เป็นเรื่องจริง!";
+		mes "ท่าน Jormungandr...";
+		npctalk "มันเป็นเรื่องจริงสินะ? ข่าวลือที่ว่าพวกนักบวช Rgan กำลังกดขี่ข่มเหง Carmigand เป็นเรื่องจริง! ท่าน Jormungandr...",instance_npcname("Believer#ms62");
+		next;
+		cutin "ep21_yortus_a.png",1;
+		mes "[Hyasagand]";
+		mes "เหล่ามนุษย์ผู้ศรัทธาทั้งหลาย! ฟังข้า! ชายผู้นั้นคือผู้ทรยศต่อศาสนจักร!";
+		mes "เขาได้บิดเบือนเจตจำนงของ Jormungandr และใช้อำนาจเพื่อประโยชน์ส่วนตนด้วยคำพูดหลอกลวงของเขา!";
+		mes "ข้าจะเป็นผู้สืบทอดเจตจำนงของ Jormungandr และพิพากษาเขาด้วยตัวเอง!";
+		npctalk "ชายผู้นั้นคือผู้ทรยศต่อศาสนจักร! เขาได้บิดเบือนเจตจำนงของ Jormungandr และใช้อำนาจเพื่อประโยชน์ส่วนตนด้วยคำพูดหลอกลวงของเขา!",instance_npcname("Hyasagand#ms60");
+		next;
+		select("พวกเราจะทำยังไงกันดี? พวกเรามีจำนวนน้อยกว่านะ");
+		pctalk "พวกเราจะทำยังไงกันดี? พวกเรามีจำนวนน้อยกว่านะ";
+		cutin "ep21_tan01.png",0;
+		mes "[Tan]";
+		mes "พวกเราเคยมีแผนการก่อนจะบุกเข้าไปด้วยเหรอ";
+		mes "ไปกันเถอะ!!";
+		npctalk "พวกเราเคยมีแผนการก่อนจะบุกเข้าไปด้วยเหรอ ไปกันเถอะ!!",instance_npcname("Carmigand#ms60");
+		instance_event("#EP21_gimli_control","OnEvent",false);
+		close3;
+	}
+	end;
+	
+OnTouch:
+	if(get_instance_var("gc") == 27 && is_party_leader()){
+		npctalk "เฮ้อ- การหนีนี่มันไม่ง่ายเลยจริงๆ";
+		end;
+	}
+	if(get_instance_var("gc") == 29 && is_party_leader())
+		npctalk "พวกคุณเห็นนั่นไหม?";
+end;
+}
+
+1@mdtem,147,239,7	script(DISABLED)	Tan#ms60	4_EP21_TAN,{ 
+	if(get_instance_var("gc") == 31 && is_party_leader()){
+		cutin "ep21_tan01.png",0;
+		mes "[Tan]";
+		mes "?- พวกมันมีจำนวนมากเกินไป พวกเรากำลังตกเป็นรอง";
+		npctalk "?- พวกมันมีจำนวนมากเกินไป พวกเรากำลังตกเป็นรอง";
+		next;
+		cutin "ep21_yortus_a.png",1;
+		mes "[Hyasagand]";
+		mes "คุยไว้ตั้งเยอะ มีปัญญาทำได้แค่นี้เองเหรอ?";
+		mes "พวกเจ้าช่างอกตัญญูต่อตำแหน่งที่มนุษย์ทั่วไปไม่สามารถเอื้อมถึงได้! นี่คือขีดจำกัดของพวกเจ้าแล้ว ไอ้พวกคนเนรคุณ!";
+		mes "Jormungandr อยู่ข้างพวกเราเหล่า Rgan!";
+		npctalk "นี่คือขีดจำกัดของพวกเจ้าแล้ว ไอ้พวกคนเนรคุณ! Jormungandr อยู่ข้างพวกเราเหล่า Rgan!",instance_npcname("Hyasagand#ms60");
+		npctalk "เหอะ... ช่างกล้าพูดนะ ฉันรู้สึกอายแทนจริงๆ ที่ต้องมาทนฟังอะไรแบบนี้",instance_npcname("Wilhelm#ms60");
+		next;
+		specialeffect EF_HIT1,AREA,instance_npcname("Ivan#ms60");
+		specialeffect EF_HIT1,AREA,instance_npcname("Yohan#ms60");
+		instance_enable("Ivan#ms60",true);
+		instance_enable("Yohan#ms60",true);
+		npctalk "นี่ ทางนี้ ตามมาสิ~",instance_npcname("Ivan#ms60");
+		specialeffect EF_HIT1,AREA,instance_npcname("Believer#ms63");
+		specialeffect EF_HIT1,AREA,instance_npcname("Believer#ms64");
+		instance_enable("Believer#ms63",true);
+		instance_enable("Believer#ms64",true);
+		npctalk "ที่นี่ที่ไหนกัน...? โอ๊ะ!",instance_npcname("Believer#ms63");
+		npctalk "คุณแน่ใจนะว่าพวกเราจะไม่ถูกจับน่ะ?",instance_npcname("Believer#ms64");
+		specialeffect EF_HIT1,AREA,instance_npcname("Believer#ms65");
+		specialeffect EF_HIT1,AREA,instance_npcname("Believer#ms66");
+		specialeffect EF_HIT1,AREA,instance_npcname("Believer#ms67");
+		instance_enable("Believer#ms65",true);
+		instance_enable("Believer#ms66",true);
+		instance_enable("Believer#ms67",true);
+		npctalk "นี่ ช้าลงหน่อยสิ!",instance_npcname("Believer#ms65");
+		npctalk "ฉันเริ่มเหนื่อยแล้วนะ...",instance_npcname("Believer#ms66");
+		npctalk "เราควรจะกลับกันดีไหม...?",instance_npcname("Believer#ms67");
+		specialeffect EF_HIT1,AREA,instance_npcname("Believer#ms68");
+		specialeffect EF_HIT1,AREA,instance_npcname("Believer#ms69");
+		instance_enable("Believer#ms68",true);
+		instance_enable("Believer#ms69",true);
+		npctalk "พวกมันตามเรามาไม่ถึงที่นี่หรอก",instance_npcname("Believer#ms68");
+		npctalk "เร็วเข้า...!",instance_npcname("Believer#ms69");
+		cutin "ep21_ivan01.png",1;
+		mes "[Ivan]";
+		mes "อ๋อ ที่แท้ทุกคนก็อยู่ที่นี่เอง เดี๋ยว... หือ? นั่นมัน...";
+		npctalk "อ๋อ ที่แท้ทุกคนก็อยู่ที่นี่เอง เดี๋ยว... หือ? นั่นมัน...",instance_npcname("Ivan#ms60");
+		next;
+		cutin "ep21_yohan02.png",0;
+		mes "[Yohan]";
+		mes "มี Wilhelm สองคน...!";
+		npctalk "มี Wilhelm สองคน...!",instance_npcname("Yohan#ms60");
+		npctalk "ไม่สิ ดูดีๆ สิ อีกคนหนึ่งดูสง่ากว่าตั้งเยอะ",instance_npcname("Ivan#ms60");
+		npctalk "นี่นายกำลังหาเรื่องฉันอยู่เหรอ?",instance_npcname("Wilhelm#ms60");
+		npctalk "นั่นท่าน Carmigand ไม่ใช่เหรอ?",instance_npcname("Believer#ms63");
+		npctalk "เดี๋ยว ทำไมถึงมีสองคนล่ะ? นี่มันเกิดอะไรขึ้น?",instance_npcname("Believer#ms67");
+		next;
+		cutin "ep21_yortus_a.png",1;
+		mes "[Hyasagand]";
+		mes "หึ! ในที่สุดพวกมนุษย์ชั้นต่ำก็รวมหัวกันจนได้ ข้าเดาว่าคงคิดจะทรยศกันสินะ?";
+		mes "Carmigand ข้ารู้อยู่แล้วว่าสักวันเจ้าต้องเปิดเผยเจตจำนงอันชั่วร้ายออกมา! นี่คือเหตุผลที่ข้าพูดเสมอว่า เราจะแสดงความเมตตาให้กับพวกมนุษย์ไม่ได้";
+		npctalk "ในที่สุดพวกมนุษย์ชั้นต่ำก็รวมหัวกันจนได้ ข้าเดาว่าคงคิดจะทรยศกันสินะ? นี่คือเหตุผลที่ข้าพูดเสมอว่าเราจะแสดงความเมตตาให้กับพวกมนุษย์ไม่ได้",instance_npcname("Hyasagand#ms60");
+		npctalk "อี๊ย! นั่นมัน Hyasagand!",instance_npcname("Believer#ms62");
+		next;
+		cutin "ep21_ivan01.png",1;
+		mes "[Ivan]";
+		mes "เกิดอะไรขึ้นน่ะ? กำลังคุมเชิงกันอยู่เหรอ? ให้พวกเราช่วยไหม?";
+		mes "Yohan บุกเลย!";
+		npctalk "เกิดอะไรขึ้นน่ะ? กำลังคุมเชิงกันอยู่เหรอ? ให้พวกเราช่วยไหม? Yohan บุกเลย!",instance_npcname("Ivan#ms60");
+		npctalk "ตกลงว่าคนพวกนี้กำลังหลอกลวงพวกเราอยู่เหรอ?",instance_npcname("Believer#ms69");
+		npctalk "ไม่ใช่หรอก ดูดีๆ สิ พวกเขาเป็นพวกเดียวกับเรา ส่วนพวกนั้นคือพวกคนเลว",instance_npcname("Believer#ms60");
+		next;
+		specialeffect EF_IGN_STR,AREA,instance_npcname("Guard#ms63");
+		cutin "ep21_yoscopus.png",2;
+		mes "[Guard]";
+		mes "?- พวกมนุษย์แข็งแกร่งเกินไปแล้ว! เราต้องการกำลังเสริม!!";
+		npctalk "?- พวกมนุษย์แข็งแกร่งเกินไปแล้ว! เราต้องการกำลังเสริม!!",instance_npcname("Guard#ms63");
+		npctalk "แค่ลำพังสองคนนั้นเราก็รับมือแทบไม่ไหวแล้ว ตอนนี้ยังมีมนุษย์พวกใหม่ที่แข็งแกร่งโผล่มาอีก ขืนเป็นแบบนี้ต่อไป...!",instance_npcname("Guard#ms64");
+		npctalk "มันจะเกิดอะไรขึ้นน่ะ?",instance_npcname("Believer#ms69");
+		next;
+		cutin "ep21_yortus_a.png",1;
+		mes "[Hyasagand]";
+		mes "บังอาจพูดออกมาได้ยังไง! นั่นใช่คำพูดที่ผู้พิทักษ์วิหารควรจะพูดเหรอ!";
+		mes "จับพวกมันให้ได้ทั้งหมด ต่อให้ต้องแลกด้วยชีวิตก็ตาม!";
+		npctalk "บังอาจพูดออกมาได้ยังไง! นั่นใช่คำพูดที่ผู้พิทักษ์วิหารควรจะพูดเหรอ! จับพวกมันให้ได้ทั้งหมด ต่อให้ต้องแลกด้วยชีวิตก็ตาม!",instance_npcname("Hyasagand#ms60");
+		npctalk "ถ้ามองดูดีๆ จะเห็นว่าพวกเขากำลังคุมเชิงกันอยู่นะ...",instance_npcname("Believer#ms67");
+		next;
+		cutin "ep21_yoscopus.png",0;
+		mes "[Guard]";
+		mes "หน้าที่ของเราไม่ใช่แค่ปกป้องวิหารเท่านั้น แต่ยังต้องปกป้องท่านด้วย ท่าน Hyasagand";
+		mes "ได้โปรด หาที่หลบก่อนเถอะครับ!";
+		npctalk "หน้าที่ของเราไม่ใช่แค่ปกป้องวิหารเท่านั้น แต่ยังต้องปกป้องท่านด้วย ท่าน Hyasagand ได้โปรด หาที่หลบก่อนเถอะครับ!",instance_npcname("Guard#ms63");
+		npctalk "พ-พวกเราควรถอยกันดีไหม?",instance_npcname("Believer#ms65");
+		npctalk "ได้ยินที่พวกมันพูดไหม? เขาบอกให้พวกนั้นจับเราต่อให้ต้องแลกด้วยชีวิตเลยนะ...",instance_npcname("Believer#ms66");
+		next;
+		cutin "ep21_yortus_a.png",1;
+		mes "[Hyasagand]";
+		mes "นั่นไม่ใช่ทางเลือก!";
+		mes "ข้าเฝ้ารอคอยที่จะได้เห็นความพินาศของมันมานานเกินไปแล้ว!";
+		npctalk "นั่นไม่ใช่ทางเลือก! ข้าเฝ้ารอคอยที่จะได้เห็นความพินาศของมันมานานเกินไปแล้ว!",instance_npcname("Hyasagand#ms60");
+		npctalk "เดี๋ยวก่อน ดูเหมือนว่าเราจะเป็นฝ่ายได้เปรียบนะ จะเกิดอะไรขึ้นต่อล่ะ?",instance_npcname("Believer#ms67");
+		next;
+		cutin "ep21_yoscopus.png",2;
+		mes "[Guard]";
+		mes "เราคงไม่ยอมทิ้งชีวิตไปเฉยๆ เพียงเพื่อจัดการกับคนนอกรีตแค่คนเดียวหรอก ใช่ไหมครับ?";
+		mes "คิดเสียว่าเป็นกุศโลบายการถอยเพื่อรุกในภายหลังเถอะครับ";
+		npctalk "เราคงไม่ยอมทิ้งชีวิตไปเฉยๆ เพียงเพื่อจัดการกับคนนอกรีตแค่คนเดียวหรอก ใช่ไหมครับ? คิดเสียว่าเป็นกุศโลบายการถอยเพื่อรุกในภายหลังเถอะครับ",instance_npcname("Guard#ms64");
+		npctalk "โอ้...? ตอนนี้พวกมันกำลังเถียงกันเองเหรอ?",instance_npcname("Believer#ms61");
+		npctalk "เกิดอะไรขึ้นที่นี่กันแน่?",instance_npcname("Believer#ms64");
+		npctalk "พวกเราก็จะช่วยด้วย!",instance_npcname("Believer#ms68");
+		next;
+		cutin "ep21_yoscopus.png",0;
+		mes "[Guard]";
+		mes "นอกจากนั้น ยังมีสายตาจับจ้องมากเกินไป ถ้าพวกมนุษย์รวมตัวกันและเริ่มก่อจลาจลล่ะก็...";
+		npctalk "นอกจากนั้น ยังมีสายตาจับจ้องมากเกินไป ถ้าพวกมนุษย์รวมตัวกันและเริ่มก่อจลาจลล่ะก็...",instance_npcname("Guard#ms63");
+		npctalk "ใช่แล้ว! มาวัดกันไปเลย!!",instance_npcname("Believer#ms62");
+		npctalk "พวกเรามาไกลขนาดนี้แล้ว ไม่มีทางหันหลังกลับแล้วใช่ไหม?",instance_npcname("Believer#ms67");
+		next;
+		cutin "ep21_yortus_a.png",1;
+		mes "[Hyasagand]";
+		mes "?...";
+		mes "Carmigand! ข้าจะตามหาเจ้าให้เจอไม่ว่าจะอยู่ที่ไหน! และเมื่อข้าเจอเจ้า ข้าจะทำให้เจ้าต้องชดใช้ในบาปที่แกก่อเอาไว้!";
+		npctalk "?... Carmigand! ข้าจะตามหาเจ้าให้เจอไม่ว่าจะอยู่ที่ไหน! และเมื่อข้าเจอเจ้า ข้าจะทำให้เจ้าต้องชดใช้ในบาปที่แกก่อเอาไว้!",instance_npcname("Hyasagand#ms60");
+		npctalk "มาสิ! เข้ามาเลย!!!",instance_npcname("Believer#ms60");
+		next;
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms60");
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms61");
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms62");
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms63");
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms64");
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms65");
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms66");
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms67");
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms68");
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms69");
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Guard#ms70");
+		specialeffect EF_HAMICASTLE,AREA,instance_npcname("Hyasagand#ms60");
+		specialeffect EF_FLOWERCAST,AREA,instance_npcname("Hyasagand#ms60");
+		instance_enable("Guard#ms63",false);
+		instance_enable("Guard#ms64",false);
+		instance_enable("Hyasagand#ms60",false);
+		setnpcdisplay(instance_npcname("Guard#ms60"),CLEAR_NPC);
+		setnpcdisplay(instance_npcname("Guard#ms61"),CLEAR_NPC);
+		setnpcdisplay(instance_npcname("Guard#ms62"),CLEAR_NPC);
+		setnpcdisplay(instance_npcname("Guard#ms63"),CLEAR_NPC);
+		setnpcdisplay(instance_npcname("Guard#ms64"),CLEAR_NPC);
+		setnpcdisplay(instance_npcname("Guard#ms65"),CLEAR_NPC);
+		setnpcdisplay(instance_npcname("Guard#ms66"),CLEAR_NPC);
+		setnpcdisplay(instance_npcname("Guard#ms67"),CLEAR_NPC);
+		setnpcdisplay(instance_npcname("Guard#ms68"),CLEAR_NPC);
+		setnpcdisplay(instance_npcname("Guard#ms69"),CLEAR_NPC);
+		setnpcdisplay(instance_npcname("Guard#ms70"),CLEAR_NPC);
+		setnpcdisplay(instance_npcname("Hyasagand#ms60"),CLEAR_NPC);
+		next;
+		cutin "ep21_yohan01.png",0;
+		mes "[Yohan]";
+		mes "พวกเราจะ... โอเคไหม?";
+		mes "ถ้าเรายังคงทำแบบนี้ต่อไป พวกมันตามล่าเราแน่... จะดีกว่าไหมถ้าเราจัดการพวกมันซะที่นี่ตอนนี้เลย...?";
+		npctalk "ถ้าเรายังคงทำแบบนี้ต่อไป พวกมันตามล่าเราแน่... จะดีกว่าไหมถ้าเราจัดการพวกมันซะที่นี่ตอนนี้เลย...?",instance_npcname("Yohan#ms60");
+		npctalk "ตอนนี้นายพูดจาเหมือนตัวร้ายโดยธรรมชาติเลยนะเนี่ย แต่นี่เป็นครั้งแรกเลยที่ฉันเห็นด้วยกับนาย",instance_npcname("Wilhelm#ms60");
+		npctalk "พวกนั้นหายตัวไปแล้ว...",instance_npcname("Believer#ms63");
+		npctalk "เมื่อกี้ฉันพูดซะดิบดี แต่จริงๆ แล้วฉันกลัวมากเลย... โล่งอกไปที",instance_npcname("Believer#ms68");
+		next;
+		cutin "ep21_reinhardt01.png",2;
+		mes "[Carmigand]";
+		mes "ตอนนี้ศาสนจักรยังไม่มีทรัพยากรเพียงพอที่จะตามล่าเหล่าคนทรยศหรอก";
+		mes "พวกเรายังมีเวลามากพอที่จะหนีและวางแผนต่อไป";
+		npctalk "ตอนนี้ศาสนจักรยังไม่มีทรัพยากรเพียงพอที่จะตามล่าเหล่าคนทรยศหรอก พวกเรายังมีเวลามากพอที่จะหนีและวางแผนต่อไป",instance_npcname("Carmigand#ms60");
+		npctalk "นั่นเรื่องจริงเหรอ ท่าน Carmigand?",instance_npcname("Believer#ms61");
+		npctalk "ฉันรู้อยู่แล้ว ท่าน Carmigand คอยช่วยเหลือพวกเรามาโดยตลอด!",instance_npcname("Believer#ms66");
+		next;
+		cutin "ep21_ivan01.png",1;
+		mes "[Ivan]";
+		mes "จริงเหรอ? งั้นเราจะมัวรออะไรกันอยู่ล่ะ? รีบพาพวกคุณออกไปจากที่นี่กันเถอะ";
+		npctalk "จริงเหรอ? งั้นเราจะมัวรออะไรกันอยู่ล่ะ? รีบพาพวกคุณออกไปจากที่นี่กันเถอะ",instance_npcname("Ivan#ms60");
+		npctalk "ใช่แล้ว! รีบไปกันเถอะ!!",instance_npcname("Believer#ms63");
+		next;
+		cutin "ep21_worker_m_03.png",1;
+		mes "[Believer]";
+		mes "เอ่อ พวกเราจะออกไปได้โดยไม่มีปัญหาอะไรใช่ไหม? พวกมันจะไม่ตามมาแก้แค้นเราทีหลังใช่ไหม?";
+		npctalk "เอ่อ พวกเราจะออกไปได้โดยไม่มีปัญหาอะไรใช่ไหม? พวกมันจะไม่ตามมาแก้แค้นเราทีหลังใช่ไหม?",instance_npcname("Believer#ms64");
+		npctalk "เอ่อ ฉันคิดว่าฉันจะอยู่ที่นี่ต่อดีกว่า ถ้าเขาเป็นคนทรยศจริงๆ ขึ้นมาล่ะ...",instance_npcname("Believer#ms67");
+		next;
+		cutin "ep21_reinhardt01.png",2;
+		mes "[Carmigand]";
+		mes "พี่น้องทั้งหลาย พวกคุณทุกคนมาที่ศาสนจักร Jormungandr แห่งนี้ด้วยเหตุผลบางอย่าง";
+		mes "ศาสนจักรเคยให้สัญญากับพวกคุณถึงสรวงสวรรค์บนดินแห่งนี้และยื่นมือเข้ามาหาพวกคุณ";
+		npctalk "ศาสนจักรเคยให้สัญญากับพวกคุณถึงสรวงสวรรค์บนดินแห่งนี้และยื่นมือเข้ามาหาพวกคุณ",instance_npcname("Carmigand#ms60");
+		next;
+		mes "[Carmigand]";
+		mes "พวกคุณพยายามหาที่พึ่งพิงให้หัวใจที่เหนื่อยล้าซึ่งแบกรับความเจ็บปวดและความยากลำบาก ภายใต้ความเมตตาของศาสนจักร";
+		mes "แต่ศาสนจักรกลับหันหลังให้กับความทุกข์ยากของพวกคุณ และยังซ้ำเติมบาดแผลให้ยิ่งใหญ่กว่าเดิม";
+		npctalk "แต่ศาสนจักรกลับหันหลังให้กับความทุกข์ยากของพวกคุณ และยังซ้ำเติมบาดแผลให้ยิ่งใหญ่กว่าเดิม",instance_npcname("Carmigand#ms60");
+		next;
+		cutin "ep21_reinhardt07.png",2;
+		mes "[Carmigand]";
+		mes "ในฐานะคนที่เคยยืนอยู่ ณ จุดศูนย์กลางของศาสนจักร เป็นคนนำทางพวกคุณเข้ามาและผลักดันพวกคุณไปสู่ความทุกข์ทรมาน ข้าขอรับผิดชอบต่อเรื่องนี้อย่างใหญ่หลวง";
+		mes "ข้าไม่สามารถเพิกเฉยต่อความเจ็บปวดนั้นได้อีกต่อไป ข้าจึงตัดสินใจที่จะลงมือทำอะไรบางอย่างเสียที ถึงแม้ว่ามันจะสายไปหน่อยก็ตาม";
+		npctalk "ข้าไม่สามารถเพิกเฉยต่อความเจ็บปวดนั้นได้อีกต่อไป ข้าจึงตัดสินใจที่จะลงมือทำอะไรบางอย่างเสียที ถึงแม้ว่ามันจะสายไปหน่อยก็ตาม",instance_npcname("Carmigand#ms60");
+		next;
+		cutin "ep21_reinhardt04.png",2;
+		mes "[Carmigand]";
+		mes "ข้าไม่สามารถให้สัญญากับพวกคุณถึงสรวงสวรรค์ได้";
+		mes "แต่ข้าให้สัญญากับพวกคุณได้ว่าชีวิตของคุณจะดีกว่าที่เป็นอยู่ในตอนนี้";
+		mes "ได้โปรด เชื่อใจข้าและตามข้ามาอีกสักครั้งเถอะ";
+		npctalk "ข้าให้สัญญากับพวกคุณได้ว่าชีวิตของคุณจะดีกว่าที่เป็นอยู่ในตอนนี้ ได้โปรด เชื่อใจข้าและตามข้ามาอีกสักครั้งเถอะ",instance_npcname("Carmigand#ms60");
+		npctalk "คำพูดกล้าหาญดีนะ ฉันเดาว่านั่นคงเป็นสิ่งที่ต้องมีถ้าจะเป็นนักบวชล่ะนะ",instance_npcname("Ivan#ms60");
+		npctalk "......",instance_npcname("Wilhelm#ms60");
+		npctalk "ฉันไม่รู้หรอกว่าจะเกิดอะไรขึ้น แต่ฉันเชื่อใจคุณ!!",instance_npcname("Believer#ms60");
+		npctalk "ฉันเชื่อมั่นในตัวคุณมาตลอด!",instance_npcname("Believer#ms61");
+		npctalk "ฉันจะเชื่อคุณนะ เพราะฉะนั้นได้โปรด...!",instance_npcname("Believer#ms62");
+		npctalk "ฉันจะตามคุณไปทุกที่เลย!",instance_npcname("Believer#ms63");
+		npctalk "ช-ใช่! ฉันจะเชื่อใจคุณ!",instance_npcname("Believer#ms64");
+		npctalk "เราจะเชื่อใจเขาได้จริงๆ เหรอ...",instance_npcname("Believer#ms65");
+		npctalk "ฉันรู้สึกโล่งใจขึ้นเยอะเลย",instance_npcname("Believer#ms66");
+		npctalk "รีบไปจากที่นี่กันเถอะ!",instance_npcname("Believer#ms68");
+		npctalk "ท่าน Carmigand...! ฉันจะไปกับคุณด้วย!",instance_npcname("Believer#ms69");
+		next;
+		cutin "ep21_worker_m_08.png",1;
+		mes "[Believer]";
+		mes "วู้ว ฮ่า!! ในที่สุดฉันก็ได้ออกไปจากที่นี่สักที! ในที่สุด!!!!";
+		npctalk "วู้ว ฮ่า!! ในที่สุดฉันก็ได้ออกไปจากที่นี่สักที! ในที่สุด!!!!",instance_npcname("Believer#ms61");
+		instance_event("#EP21_gimli_control","OnEvent",false);
+		close2;
+		cutin "",255;
+		navigateto("1@mdtem",150,244);
+		end;
+	}
+	end;
+}
+
+1@mdtem,150,244,0	script(DISABLED)	#21ms60i	WARPNPC,2,2,{
+	end;
+	
+OnTouch:
+	if(isbegin_quest(17764) == 1){
+		completequest 17764;
+		setquest 17765;
+	}
+	warp "jor_raise1",318,66;
+end;
+}
+
+1@mdtem,149,239,7	script(DISABLED)	Ivan#ms60	4_EP21_IVAN,{ end; }
+1@mdtem,145,240,7	script(DISABLED)	Yohan#ms60	4_EP21_YOHAN,{ end; }
+1@mdtem,152,238,1	script(DISABLED)	Carmigand#ms60	4_EP21_REINHARDT,{ end; }
+1@mdtem,149,244,5	script(DISABLED)	Hyasagand#ms60	CLEAR_NPC,{ end; }
+1@mdtem,144,243,5	script(DISABLED)	Guard#ms60	CLEAR_NPC,{ end; }
+1@mdtem,155,243,3	script(DISABLED)	Guard#ms61	CLEAR_NPC,{ end; }
+1@mdtem,148,249,5	script(DISABLED)	Guard#ms62	CLEAR_NPC,{ end; }
+1@mdtem,151,246,5	script(DISABLED)	Guard#ms63	CLEAR_NPC,{ end; }
+1@mdtem,145,246,5	script(DISABLED)	Guard#ms64	CLEAR_NPC,{ end; }
+1@mdtem,153,248,5	script(DISABLED)	Guard#ms65	CLEAR_NPC,{ end; }
+1@mdtem,155,236,1	script(DISABLED)	Guard#ms66	CLEAR_NPC,{ end; }
+1@mdtem,144,236,1	script(DISABLED)	Guard#ms67	CLEAR_NPC,{ end; }
+1@mdtem,145,230,7	script(DISABLED)	Guard#ms68	CLEAR_NPC,{ end; }
+1@mdtem,154,230,1	script(DISABLED)	Guard#ms69	CLEAR_NPC,{ end; }
+1@mdtem,150,232,1	script(DISABLED)	Guard#ms70	CLEAR_NPC,{ end; }
+1@mdtem,147,234,7	script(DISABLED)	Believer#ms60	4_EP21_M_WORKER_A,{ end; }
+1@mdtem,150,233,1	script(DISABLED)	Believer#ms61	4_EP21_M_WORKER_B,{ end; }
+1@mdtem,155,234,1	script(DISABLED)	Believer#ms62	4_EP21_F_WORKER_A,{ end; }
+1@mdtem,143,233,7	script(DISABLED)	Believer#ms63	4_EP21_F_WORKER_B,{ end; }
+1@mdtem,150,237,1	script(DISABLED)	Believer#ms64	4_EP21_M_WORKER_A,{ end; }
+1@mdtem,155,238,1	script(DISABLED)	Believer#ms65	4_EP21_WORKER_KID_A,{ end; }
+1@mdtem,152,235,1	script(DISABLED)	Believer#ms66	4_EP21_F_WORKER_A,{ end; }
+1@mdtem,143,239,7	script(DISABLED)	Believer#ms67	4_EP21_WORKER_KID_B,{ end; }
+1@mdtem,146,237,7	script(DISABLED)	Believer#ms68	4_EP21_M_WORKER_B,{ end; }
+1@mdtem,148,233,7	script(DISABLED)	Believer#ms69	4_EP21_M_WORKER_A,{ end; }
