@@ -17,94 +17,94 @@
 
 prt_church,173,23,4	script	Cleric	79,{
 	mes "[Acolyte Klift]";
-	mes "Ahh . Brothers ! Does the task of";
-	mes "caring for out lost sheep burden";
-	mes "and tire you ?";
-	mes "I am here to assist you.";
+	mes "อา... เหล่าพี่น้องของข้า! ภารกิจใน";
+	mes "การดูแลเหล่าแกะที่หลงทางนั้นทำให้";
+	mes "ท่านรู้สึกหนักอึ้งและเหนื่อยล้าบ้างไหม?";
+	mes "ข้ามาที่นี่เพื่อช่วยเหลือท่าน";
 	next;
-	switch (select("^3355FF' About acolyte's hidden ability '^000000 ..:^3355FF' Holy light '^000000 training:End conversation")) {
+	switch (select("^3355FF' เกี่ยวกับความสามารถที่ซ่อนอยู่ของ acolyte '^000000 ..:^3355FF' การฝึกฝน Holy light '^000000:จบการสนทนา")) {
 	case 1:
 		mes "[Acolyte Klift]";
-		mes "Our members of the clergy";
-		mes "naturally learn a skill as";
-		mes "as they mature. As they approach ";
-		mes "their senior years as an acolyte";
-		mes "this special skill.";
+		mes "เหล่าสมาชิกในคณะนักบวชของเรา";
+		mes "จะเรียนรู้ทักษะตามธรรมชาติ";
+		mes "เมื่อพวกเขามีความชำนาญมากขึ้น เมื่อพวกเขา";
+		mes "เข้าใกล้ช่วงปีที่อาวุโสขึ้นในฐานะ acolyte";
+		mes "ทักษะพิเศษนี้ก็จะปรากฏขึ้น";
 		next;
 		mes "[Acolyte Klift]";
-		mes "Faced with great danger and";
-		mes "an endless struggle with evil,";
-		mes "our brethren are much in need of assistance.";
-		mes "^3355FF' Holy Light '^000000 is that skill.";
-		mes "To gain this ability for yourself,";
-		mes "takes some work.";
+		mes "เมื่อต้องเผชิญกับอันตรายครั้งใหญ่และการ";
+		mes "ต่อสู้กับความชั่วร้ายที่ไม่มีวันสิ้นสุด";
+		mes "พี่น้องของเราจำเป็นต้องได้รับความช่วยเหลืออย่างมาก";
+		mes "^3355FF' Holy Light '^000000 คือทักษะที่ว่านั้น";
+		mes "การที่จะได้รับความสามารถนี้มาด้วยตัวท่านเอง";
+		mes "จำเป็นต้องอาศัยความพยายามเสียหน่อย";
 		next;
 		mes "[Acolyte Klift]";
-		mes "To gain the skill, you must find these items.";
-		mes "^FF33551 Opal^000000";
-		mes "^FF33551 Crystal Blue^000000";
-		mes "^FF33551 Rosary^000000 ";
+		mes "ในการเรียนรู้ทักษะนี้ ท่านต้องหาไอเทมเหล่านี้มา";
+		mes "^FF3355Opal 1 ชิ้น^000000";
+		mes "^FF3355Crystal Blue 1 ชิ้น^000000";
+		mes "^FF3355Rosary 1 ชิ้น^000000 ";
 		next;
 		mes "[Acolyte Klift]";
-		mes "In order to be able to even use this skill,";
-		mes "one must be have sufficient experience.";
-		mes "^FF3355 Job Level 30^000000";
-		mes "is required to learn this skill.";
+		mes "เพื่อที่จะสามารถใช้งานทักษะนี้ได้";
+		mes "ท่านจะต้องมีประสบการณ์ที่เพียงพอเสียก่อน";
+		mes "^FF3355Job Level 30^000000";
+		mes "คือระดับที่ต้องการเพื่อเรียนรู้ทักษะนี้";
 		next;
 		mes "[Acolyte Klift]";
-		mes "As for a priest, because of their";
-		mes "already vast amount of experience,";
-		mes "they are able to gain this skill at any";
-		mes "job level.";
+		mes "สำหรับ priest นั้น เนื่องจากพวกเขามี";
+		mes "ประสบการณ์ที่มากมายอยู่แล้ว";
+		mes "พวกเขาจึงสามารถรับทักษะนี้ได้ใน";
+		mes "Job Level ใดก็ได้";
 		close;
 	case 2:
 		if (getskilllv("AL_HOLYLIGHT") == 1) {
 			mes "[Acolyte Klift]";
-			mes "Brother, you already possess";
-			mes "the skill of ` Holy Light '.";
-			mes "You cannot gain a skill you";
-			mes "already possess ..";
-			mes "I pray that you are using";
-			mes "this skill for the work of good . .";
+			mes "ท่านพี่น้อง ท่านได้ครอบครอง";
+			mes "ทักษะ ` Holy Light ' อยู่แล้ว";
+			mes "ท่านไม่สามารถรับทักษะที่ท่าน";
+			mes "มีอยู่แล้วได้อีก ..";
+			mes "ข้าขอภาวนาให้ท่านใช้ทักษะนี้";
+			mes "เพื่อวิถีทางแห่งความดี . .";
 			close;
 		}
 		if ((countitem(727) > 0) && (countitem(991) > 0) && (countitem(2608) > 0) && (JobLevel > 29 || (BaseJob == Job_Priest || BaseJob == Job_Monk)) && (BaseClass == Job_Acolyte)) {
 			mes "[Acolyte Klift]";
-			mes "Your faith has proven worthy";
-			mes "for you to gain the ' Holy Light ' skill.";
-			mes "Your skill is adequate";
-			mes "to use this skill.";
-			mes "Use it wisely. . .";
+			mes "ศรัทธาของท่านได้รับการพิสูจน์แล้วว่าคู่ควร";
+			mes "ที่จะได้รับทักษะ ' Holy Light '";
+			mes "ทักษะของท่านนั้นเหมาะสมแล้ว";
+			mes "ที่จะใช้งานมัน";
+			mes "จงใช้มันอย่างชาญฉลาด . . .";
 			next;
 			delitem 727,1; //White_Jewel
 			delitem 991,1; //Crystal_Blue
 			delitem 2608,1; //Rosary
 			skill "AL_HOLYLIGHT",1,SKILL_PERM;
 			mes "[Acolyte Klift]";
-			mes "You now know ' Holy Light '";
-			mes "May you use this skill only in the";
-			mes "best conduct . . . . .";
+			mes "ตอนนี้ท่านรู้จัก ' Holy Light ' แล้ว";
+			mes "ขอให้ท่านใช้ทักษะนี้ในทางที่";
+			mes "เหมาะสมที่สุดเท่านั้น . . . . .";
 			close;
 		}
 		mes "[Acolyte Klift]";
-		mes "Oh, it is clear. . .";
-		mes "You are not yet ready to";
-		mes "receive the ' Holy Light ' skill.";
+		mes "โอ้ มันชัดเจนมาก . . .";
+		mes "ท่านยังไม่พร้อมที่จะ";
+		mes "รับทักษะ ' Holy Light ' ในตอนนี้";
 		next;
 		mes "[Acolyte Klift]";
-		mes "You should listen carefully to what";
-		mes "is necessary for this skill.";
-		mes "If you listen closely,";
-		mes "you may learn what you lack.";
-		mes "So that you may improve upon yourself.";
+		mes "ท่านควรฟังอย่างตั้งใจว่าสิ่งใดบ้าง";
+		mes "ที่จำเป็นสำหรับทักษะนี้";
+		mes "หากท่านฟังให้ดี";
+		mes "ท่านอาจจะรู้ว่าท่านยังขาดสิ่งใดไป";
+		mes "เพื่อที่ท่านจะได้พัฒนาตนเองให้ดีขึ้น";
 		close;
 	case 3:
 		mes "[Acolyte Klift]";
 		mes ". . . . .";
-		mes "I understand your zeal.";
-		mes "You have much time yet to";
-		mes "practice and gain experience.";
-		mes "Blessings upon you . . . . .";
+		mes "ข้าเข้าใจในความกระตือรือร้นของท่าน";
+		mes "ท่านยังมีเวลาอีกมากที่จะ";
+		mes "ฝึกฝนและเก็บเกี่ยวประสบการณ์";
+		mes "ขออวยพรแก่ท่าน . . . . .";
 		close;
 	}
 }
