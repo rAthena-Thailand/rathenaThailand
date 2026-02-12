@@ -22,50 +22,50 @@
 //============================================================
 gonryun,149,189,0	script	Yotang#Flower_Of_Fairy	50,{
 	mes "[Yotang]";
-	mes "There lives a fairy on the 3rd floor of Kunlun.";
-	mes "She is so famous for her beauty";
-	mes "that she even got a fan club.";
+	mes "มีนางฟ้าตนหนึ่งอาศัยอยู่ที่ชั้น 3 ของ Kunlun";
+	mes "นางมีชื่อเสียงโด่งดังมากในเรื่องความสวย";
+	mes "จนถึงขนาดที่มีแฟนคลับเป็นของตัวเองเลยล่ะ";
 	next;
 	mes "[Yotang]";
-	mes "Of course, I am the master of the fan club.";
-	mes "How about joining the fairy fan club?";
+	mes "แน่นอนว่า ข้านี่แหละคือประธานกลุ่มแฟนคลับ";
+	mes "สนใจจะเข้าร่วมกลุ่มแฟนคลับนางฟ้าหน่อยไหม?";
 	next;
-	if(select("I'm not that interested!!:I'll join it right away!!") == 1) {
+	if(select("ฉันไม่ค่อยสนใจเท่าไหร่!!:ฉันจะเข้าร่วมเดี๋ยวนี้เลย!!") == 1) {
 		mes "[Yotang]";
-		mes "What! I'm going to tell on you!";
+		mes "อะไรนะ! ฉันจะไปฟ้องนางฟ้าแน่!";
 		close;
 	}
 	if (countitem(7165) > 99 && countitem(7166) > 99 && countitem(745) > 0 && countitem(981) > 0 && countitem(2211) > 0) {
 		mes "[Yotang]";
-		mes "Oh, aren't those....!";
-		mes "the materials for the Flower of Fairy?";
-		mes "Have we met before? You already know everything...";
+		mes "โอ้ นั่นมันไม่ใช่....!";
+		mes "วัตถุดิบสำหรับทำ Flower of Fairy หรอกเหรอ?";
+		mes "เราเคยเจอกันมาก่อนหรือเปล่า? เจ้ารู้ทุกอย่างอยู่แล้วนี่นา...";
 		next;
 		mes "[Yotang]";
-		mes "Anyway, do you want me to make the Flower of Fairy?";
+		mes "เอาเถอะ เจ้าอยากให้ข้าทำ Flower of Fairy ให้เลยไหม?";
 		next;
 		mes "[Yotang]";
-		mes "^FF0000Please be aware that";
-		mes "the refinement on the materials will all disappear";
-		mes "if you once combine those.^000000";
+		mes "^FF0000โปรดระวังไว้ว่า";
+		mes "ค่าการตีบวกของวัตถุดิบทั้งหมดจะหายไป";
+		mes "หากเจ้าตกลงผสมพวกมันเข้าด้วยกัน^000000";
 		next;
-		if(select("No, next time.:Make it right now!!") == 1) {
+		if(select("ไม่ล่ะ ไว้วันหลัง:ทำเลยตอนนี้แหละ!!") == 1) {
 			mes "[Yotang]";
-			mes "You'll regret it!";
+			mes "เจ้าจะต้องเสียใจ!";
 			close;
 		}
 		callsub L_CheckWeight;
 		mes "[Yotang]";
-		mes "You're speedy!";
-		mes "You deserve to be a master of the fanclub for the next term.";
+		mes "เจ้านี่รวดเร็วทันใจจริงๆ!";
+		mes "เจ้าคู่ควรที่จะได้เป็นประธานแฟนคลับคนต่อไปในสมัยหน้าเลยนะ";
 		next;
 		emotion ET_SWEAT;
-		mes "Combining... ... ...";
+		mes "กำลังผสม... ... ...";
 		next;
 		if (countitem(7165) > 99 && countitem(7166) > 99 && countitem(745) > 0 && countitem(981) > 0 && countitem(2211) > 0) {
 			callsub L_CheckWeight;
 			mes "[Yotang]";
-			mes "Here, the Flower of Fairy.";
+			mes "นี่ไง Flower of Fairy";
 			delitem 7165,100; //Limpid_Celestial_Robe
 			delitem 7166,100; //Soft_Silk_Cloth
 			delitem 745,1; //Wedding_Bouquet
@@ -75,82 +75,82 @@ gonryun,149,189,0	script	Yotang#Flower_Of_Fairy	50,{
 			emotion ET_BEST;
 			next;
 			mes "[Yotang]";
-			mes "See you on the fan meeting!";
+			mes "แล้วเจอกันที่งานมิตติ้งแฟนคลับนะ!";
 			close;
 		}
 		mes "[Yotang]";
-		mes "Huh? You don't have enough";
-		mes "materials for it..";
-		mes "Aren't you wearing Bandana?";
-		mes "Check it out!";
+		mes "หืม? เจ้ามีวัตถุดิบ";
+		mes "ไม่เพียงพอนะ..";
+		mes "เจ้าไม่ได้สวม Bandana อยู่ใช่ไหม?";
+		mes "ลองเช็คดูสิ!";
 		next;
 		mes "[Yotang]";
-		mes "Bring me all the materials,";
-		mes "if you want to get the Flower of Fairy.";
+		mes "นำวัตถุดิบทั้งหมดมาให้ข้า";
+		mes "ถ้าเจ้าต้องการ Flower of Fairy";
 		next;
 		mes "[Yotang]";
-		mes "If you bring me ^0000FF100 Transparent Celestial Robes, 100 Soft Silk Cloth,";
+		mes "ถ้าเจ้านำ ^0000FF100 Transparent Celestial Robes, 100 Soft Silk Cloth,";
 		mes "1 Wedding Bouquet, 1 Violet Dyestuffs";
-		mes "and ^0000FF1 Bandana^000000 which you can find at a store,";
-		mes "I will make you a ^0000FFFlower of Fairy^000000.";
+		mes "และ ^0000FF1 Bandana^000000 ซึ่งเจ้าหาซื้อได้ตามร้านค้ามาให้ข้า";
+		mes "ข้าจะทำ ^0000FFFlower of Fairy^000000 ให้เจ้า";
 		close;
 	}
 	mes "[Yotang]";
-	mes "You can meet the fairy soon";
-	mes "for there will be a fan meeting";
-	mes "in the near future.";
-	mes "The Flower of Fairy is necessary";
-	mes "for joining the fan meeting. Everyone wears it.";
+	mes "เจ้าจะได้พบนางฟ้าเร็วๆ นี้";
+	mes "เพราะกำลังจะมีงานมิตติ้งแฟนคลับ";
+	mes "ในอนาคตอันใกล้นี้";
+	mes "Flower of Fairy เป็นสิ่งจำเป็นมาก";
+	mes "สำหรับการเข้าร่วมงานมิตติ้ง ใครๆ เขาก็ใส่กันทั้งนั้น";
 	next;
 	mes "[Yotang]";
-	mes "If you bring me some materials";
-	mes "I'll make it for you.";
+	mes "ถ้าเจ้านำวัตถุดิบมาให้";
+	mes "ข้าจะทำมันให้เจ้าเอง";
 	next;
 	mes "[Yotang]";
-	mes "I need ^0000FF100 Transparent Celestial Robes, 100 Soft Silk Cloth,";
+	mes "ข้าต้องการ ^0000FF100 Transparent Celestial Robes, 100 Soft Silk Cloth,";
 	mes "1 Wedding Bouquet, 1 Violet Dyestuffs";
-	mes "and ^0000FF1 Bandana^000000 which you can find at a store,";
+	mes "และ ^0000FF1 Bandana^000000 ซึ่งเจ้าหาซื้อได้ตามร้านค้า";
 	next;
 	mes "[Yotang]";
-	mes "If you bring me ^0000FF100 Transparent Celestial Robes, 100 Soft Silk Cloth,";
+	mes "ถ้าเจ้านำ ^0000FF100 Transparent Celestial Robes, 100 Soft Silk Cloth,";
 	mes "1 Wedding Bouquet, 1 Violet Dyestuffs";
-	mes "and ^0000FF1 Bandana^000000 which you can find at a store,";
-	mes "I will make you a ^0000FFFlower of Fairy^000000.";
+	mes "และ ^0000FF1 Bandana^000000 ซึ่งเจ้าหาซื้อได้ตามร้านค้ามาให้ข้า";
+	mes "ข้าจะทำ ^0000FFFlower of Fairy^000000 ให้เจ้า";
 	next;
 	mes "[Yotang]";
-	mes "^FF0000Please be aware that";
-	mes "the refinement on the materials will all disappear";
-	mes "if you once combine those.^000000";
+	mes "^FF0000โปรดระวังไว้ว่า";
+	mes "ค่าการตีบวกของวัตถุดิบทั้งหมดจะหายไป";
+	mes "หากเจ้าตกลงผสมพวกมันเข้าด้วยกัน^000000";
 	next;
-	if(select("I won't do it.:Here, I have the materials!") == 1) {
+	if(select("ฉันไม่ทำหรอก:นี่ไง ฉันมีวัตถุดิบแล้ว!") == 1) {
 		mes "[Yotang]";
-		mes "You'll regret it!";
+		mes "เจ้าจะต้องเสียใจ!";
 		close;
 	}
 	mes "[Yotang]";
-	mes "Huh? Are you kidding me?";
+	mes "หือ? นี่ล้อเล่นกันใช่ไหม?";
 	next;
 	mes "[Yotang]";
-	mes "I need ^0000FF100 Transparent Celestial Robes, 100 Soft Silk Cloth,";
+	mes "ข้าต้องการ ^0000FF100 Transparent Celestial Robes, 100 Soft Silk Cloth,";
 	mes "1 Wedding Bouquet, 1 Violet Dyestuffs";
-	mes "and ^0000FF1 Bandana^000000 which you can find at a store";
-	mes "to make a ^0000FFFlower of Fairy^000000.";
+	mes "และ ^0000FF1 Bandana^000000 ซึ่งหาได้ตามร้านค้า";
+	mes "เพื่อทำ ^0000FFFlower of Fairy^000000";
 	close;
 
 L_CheckWeight:
 	if (MaxWeight - Weight < 200) {
 		mes "[Yotang]";
-		mes "Your bag is too heavy, isn't it?";
-		mes "Come to me again";
-		mes "after emptying your bag.";
+		mes "กระเป๋าเจ้าหนักเกินไปหรือเปล่า?";
+		mes "กลับมาหาข้าอีกครั้ง";
+		mes "หลังจากที่เจ้าจัดการกระเป๋าให้ว่างลงแล้ว";
 		close;
 	}
 	if (checkweight(5437,1) == 0) {
-		mes "- Wait !! -";
-		mes "- You have too many items, so it's -";
-		mes "- impossible to have more. -";
-		mes "- Come to me again -";
-		mes "- after emptying some of it. -";
+		mes "- เดี๋ยว !! -";
+		mes "- เจ้ามีไอเทมมากเกินไป -";
+		mes "- ไม่สามารถถือเพิ่มได้อีก -";
+		mes "- กลับมาหาข้าอีกครั้ง -";
+		mes "- หลังจากที่เจ้าทิ้งของบางส่วนไปแล้ว -";
 		close;
 	}
 	return;
@@ -158,59 +158,59 @@ L_CheckWeight:
 
 lhz_in02,276,281,1	script	Drunken Man#Necktie	748,{
 	mes "[Drunken Man]";
-	mes "Hey... you wanna fight?!";
+	mes "เฮ้... แกอยากมีเรื่องเหรอ?!";
 	next;
-	mes "He seems to be drunken badly. What should I do?";
+	mes "เขาดูเหมือนจะเมาหนักมาก ฉันควรทำอย่างไรดี?";
 	next;
-	if(select("Just ignore him.:Fight!") == 1) {
+	if(select("เมินเขาไป:สู้สิ!") == 1) {
 		mes "[Drunken Man]";
-		mes "Why are you ignoring me?";
-		mes "Are you afraid of me?";
+		mes "ทำไมแกต้องเมินข้าด้วย?";
+		mes "แกกลัวข้าล่ะสิ?";
 		close;
 	}
 	if (BaseLevel < 65) {
 		mes "[Drunken Man]";
-		mes "What... you're weaker than me.";
-		mes "Go and reach the higher level!";
+		mes "อะไรกัน... แกอ่อนแอกว่าข้าอีก";
+		mes "ไปเก็บเลเวลให้สูงกว่านี้ไป!";
 		emotion ET_GO;
 		close;
 	}
 	mes "[Drunken Man]";
-	mes "Hold! I need some armor to wear.";
-	mes "That's it, Necktie, Necktie...";
+	mes "เดี๋ยว! ข้าต้องการชุดเกราะมาใส่";
+	mes "นั่นแหละ เนคไท เนคไท...";
 	next;
 	mes "[Drunken Man]";
-	mes "Once I wear the Necktie on my head,";
-	mes "I will be no match for you!";
-	mes "You must be nervous.";
-	mes "Hmm! Where is the Necktie?";
+	mes "เมื่อไหร่ที่ข้าเอาเนคไทมาโพกหัว";
+	mes "ข้าจะไร้เทียมทานจนแกสู้ไม่ได้เลยล่ะ!";
+	mes "แกต้องตัวสั่นแน่ๆ";
+	mes "หืม! แล้วเนคไทมันอยู่ที่ไหนล่ะ?";
 	next;
 	if (countitem(978) > 0 && countitem(7151) > 29 && countitem(1059) > 99 && countitem(7217) > 19) {
 		mes "[Drunken Man]";
-		mes "Oh, you're having the materials for Necktie! give them to me!!";
+		mes "โอ้ แกมีวัตถุดิบสำหรับทำเนคไทนี่! เอามาให้ข้าเดี๋ยวนี้!!";
 		next;
-		if(select("No way!:Here you are.") == 1) {
+		if(select("ไม่มีทาง!:นี่ไง เอาไปเลย") == 1) {
 			mes "[Drunken Man]";
-			mes "Ohh, you are scared!";
-			mes "I won again!!";
+			mes "โอ้โฮ แกปอดแหกนี่หว่า!";
+			mes "ข้าชนะอีกแล้ว!!";
 			close;
 		}
 		callsub L_CheckWeight;
 		mes "[Drunken Man]";
-		mes "Great, wait for a moment!";
+		mes "เยี่ยม รอสักประเดี๋ยวนะ!";
 		next;
-		mes "Combining... ch...ch... ...";
+		mes "กำลังผสม... ฉึก...ฉึก... ...";
 		emotion ET_SWEAT;
 		next;
 		mes "[Drunken Man]";
-		mes "Drunk...drunk.... Zzzzz...";
+		mes "เมา...เมาแล้ว.... ครอก...ฟี้...";
 		emotion ET_QUESTION, playerattached();
 		next;
 		if (countitem(978) > 0 && countitem(7151) > 29 && countitem(1059) > 99 && countitem(7217) > 19) {
 			callsub L_CheckWeight;
-			mes "He zonked out as soon as";
-			mes "he finished it.";
-			mes "Let's just take the Necktie.";
+			mes "เขาหลับปุ๋ยไปทันทีที่";
+			mes "เขาทำมันเสร็จ";
+			mes "งั้นเราก็หยิบเนคไทไปเลยละกัน";
 			delitem 978,1; //Cobaltblue_Dyestuffs
 			delitem 7151,30; //Oil_Paper
 			delitem 1059,100; //Transparent_Cloth
@@ -219,45 +219,45 @@ lhz_in02,276,281,1	script	Drunken Man#Necktie	748,{
 			close;
 		}
 		mes "[Drunken Man]";
-		mes "Huh? Where are all the materials gone?";
-		mes "Did you take it back that you're so afraid of me?";
+		mes "หือ? วัตถุดิบหายไปไหนหมด?";
+		mes "แกแอบเอาคืนไปเพราะกลัวข้าใช่ไหมล่ะ?";
 		close;
 	}
 	mes "[Drunken Man]";
-	mes "Hey, go and get";
+	mes "เฮ้ ไปหาไอ้พวกนี้มา";
 	mes "^FF00001 Cobaltblue Dyestuff, 30 Oil Papers, 100 Fabrics, 20 Spools^000000!";
 	next;
 	mes "[Drunken Man]";
-	mes "I will beat you off wearing the legendary Necktie!";
+	mes "ข้าจะอัดแกให้เละด้วยเนคไทในตำนานนี้!";
 	next;
-	if(select("I won't.:Let's go and get them.") == 1) {
+	if(select("ฉันไม่เอาด้วย:ไปหามาให้ก็ได้") == 1) {
 		mes "[Drunken Man]";
-		mes "Are you dropping out?";
-		mes "Did I win again?";
+		mes "แกจะถอนตัวเหรอ?";
+		mes "นี่ข้าชนะอีกแล้วใช่ไหม?";
 		close;
 	}
 	mes "[Drunken Man]";
-	mes "I'm telling you once more";
-	mes "for you might forget it, dumbhead!";
+	mes "ข้าจะบอกแกอีกครั้งหนึ่ง";
+	mes "เผื่อแกจะลืมนะ ไอ้บื้อ!";
 	next;
 	mes "[Drunken Man]";
 	mes "^FF00001 Cobaltblue Dyestuff, 30 Oil Papers, 100 Fabrics, 20 Spools^000000!";
-	mes "Hurry! I'll be futzing around with others.";
+	mes "เร็วเข้า! ข้าจะได้ไปหาเรื่องคนอื่นต่อ";
 	emotion ET_GO;
 	close;
 
 L_CheckWeight:
 	if (MaxWeight - Weight < 100) {
-		mes "Necktie is heavier than I thought.";
-		mes "Seems like the very legendary Necktie.";
+		mes "เนคไทนี่มันหนักกว่าที่ข้าคิดแฮะ";
+		mes "สมกับเป็นเนคไทในตำนานจริงๆ";
 		close;
 	}
 	if (checkweight(5442,1) == 0) {
-		mes "- Wait !! -";
-		mes "- You have too many items, so it's -";
-		mes "- impossible to have more. -";
-		mes "- Come to me again -";
-		mes "- after emptying some of it. -";
+		mes "- เดี๋ยว !! -";
+		mes "- เจ้ามีไอเทมมากเกินไป -";
+		mes "- ไม่สามารถถือเพิ่มได้อีก -";
+		mes "- กลับมาหาข้าอีกครั้ง -";
+		mes "- หลังจากที่เจ้าทิ้งของบางส่วนไปแล้ว -";
 		close;
 	}
 	return;
@@ -265,52 +265,52 @@ L_CheckWeight:
 
 comodo,236,164,0	script	Hat Girl#Hair_Brush	69,{
 	mes "[Hat Girl]";
-	mes "Isn't the unique hat much better";
-	mes "than the common hairbands?";
+	mes "หมวกที่มีเอกลักษณ์ไม่ดีกว่า";
+	mes "พวกที่คาดผมธรรมดาๆ หรอกเหรอ?";
 	next;
-	if(select("I still prefer hairbands!:Hat is the best!") == 1) {
+	if(select("ฉันยังชอบที่คาดผมมากกว่าอยู่ดี!:หมวกนี่แหละเจ๋งที่สุด!") == 1) {
 		mes "[Hat Girl]";
-		mes "Wear your boring hairband for the whole lifetime!";
+		mes "งั้นก็ใส่ที่คาดผมเชยๆ นั่นไปตลอดชีวิตเลยไป!";
 		emotion ET_HNG;
 		close;
 	}
 	mes "[Hat Girl]";
-	mes "You have a good sense!";
-	mes "I thought I would make";
-	mes "a trendy hat.";
+	mes "เจ้ามีรสนิยมดีนี่!";
+	mes "ข้ากะว่าจะทำ";
+	mes "หมวกที่ทันสมัยสุดๆ ออกมาสักใบพอดี";
 	next;
 	mes "[Hat Girl]";
-	mes "I will give you an honor,";
-	mes "to be a fashion superstar,";
-	mes "if you bring me the materials for it.";
+	mes "ข้าจะมอบเกียรติให้เจ้า";
+	mes "ได้เป็นซูเปอร์สตาร์แห่งแฟชั่น";
+	mes "ถ้าเจ้านำวัตถุดิบสำหรับทำมันมาให้ข้า";
 	next;
 	if (countitem(974) > 0 && countitem(975) > 0 && countitem(943) > 49 && countitem(985) > 4 && countitem(1302) > 0) {
 		mes "[Hat Girl]";
-		mes "Oh! you're bringing ^0000FFthe materials for Hair Brush^000000.";
-		mes "Do you want me to make it now?";
+		mes "โอ้! เจ้านำ ^0000FFวัตถุดิบสำหรับทำ Hair Brush^000000 มาแล้วนี่นา";
+		mes "เจ้าอยากให้ข้าทำเลยตอนนี้ไหม?";
 		next;
-		if(select("I think the hairband is better...:Yes, please make it!") == 1) {
+		if(select("ฉันว่าที่คาดผมดูดีกว่านะ...:ใช่ ช่วยทำมันให้หน่อย!") == 1) {
 			mes "[Hat Girl]";
-			mes "Wear your boring hairband for the whole lifetime!";
+			mes "งั้นก็ใส่ที่คาดผมเชยๆ นั่นไปตลอดชีวิตเลยไป!";
 			emotion ET_HNG;
 			close;
 		}
 		callsub L_CheckWeight;
 		mes "[Hat Girl]";
-		mes "Okay, I'll do it right away!";
+		mes "โอเค ข้าจะทำเดี๋ยวนี้แหละ!";
 		next;
-		mes "Ch ch ch... combining...ch ch.";
+		mes "ฉึก ฉึก ฉึก... กำลังผสม...ฉึก ฉึก";
 		emotion ET_PROFUSELY_SWEAT, playerattached();
 		next;
 		mes "[Hat Girl]";
-		mes "Here, it's done!";
-		mes "Now you're the fashionista!";
+		mes "นี่ไง เสร็จแล้ว!";
+		mes "ตอนนี้เจ้าคือแฟชั่นนิสต้าตัวจริง!";
 		next;
 		if (countitem(974) > 0 && countitem(975) > 0 && countitem(943) > 49 && countitem(985) > 4 && countitem(1302) > 0) {
 			callsub L_CheckWeight;
 			mes "[" + strcharinfo(0) + "]";
-			mes "I got the Hair Brush.";
-			mes "...but it makes me sad.";
+			mes "ฉันได้รับ Hair Brush มาแล้ว";
+			mes "...แต่มันทำให้ฉันรู้สึกเศร้ายงัยไม่รู้";
 			delitem 974,1; //Mixture
 			delitem 975,1; //Scarlet_Dyestuffs
 			delitem 943,50; //Solid_Shell
@@ -320,38 +320,38 @@ comodo,236,164,0	script	Hat Girl#Hair_Brush	69,{
 			close;
 		}
 		mes "[Hat Girl]";
-		mes "Huh? Don't you want to be";
-		mes "the best fashionista?";
-		mes "You don't have enough materials?";
+		mes "หือ? เจ้าไม่อยากเป็น";
+		mes "แฟชั่นนิสต้าที่ดูดีที่สุดหรอกเหรอ?";
+		mes "เจ้ามีวัตถุดิบไม่พอใช่ไหม?";
 		close;
 	}
 	mes "[Hat Girl]";
-	mes "To make the latest style ^0000FFHair Brush^000000,";
-	mes "I need ^0000FF1 Mixture, 1 Scarlet Dyestuffs,";
+	mes "ในการทำ ^0000FFHair Brush^000000 สไตล์ล่าสุด";
+	mes "ข้าต้องการ ^0000FF1 Mixture, 1 Scarlet Dyestuffs,";
 	mes "50 Solid Shells, 5 Eluniums,^000000";
-	mes "also 1 ^0000FFAxe^000000 with 4 sockets on it.";
+	mes "และก็ ^0000FFAxe^000000 ที่มี 4 รูด้วยนะ";
 	next;
 	mes "[Hat Girl]";
-	mes "What are you doing? Hurry!";
+	mes "มัวทำอะไรอยู่ล่ะ? เร็วเข้า!";
 	next;
 	mes "[Hat Girl]";
-	mes "Here is one tip for you.";
-	mes "You can easily get Solid Shells and Elunium from the monsters.";
+	mes "ข้ามีเคล็ดลับจะบอกเจ้าอย่างหนึ่ง";
+	mes "เจ้าสามารถหา Solid Shells และ Elunium ได้ง่ายๆ จากพวกมอนสเตอร์นะ";
 	close;
 
 L_CheckWeight:
 	if (MaxWeight - Weight < 100) {
 		mes "[Hat Girl]";
-		mes "You're carrying too much stuff.";
-		mes "Come again after emptying your bag.";
+		mes "เจ้าแบกของเยอะเกินไปแล้วนะ";
+		mes "กลับมาอีกครั้งหลังจากจัดการกระเป๋าให้ว่างลงเถอะ";
 		close;
 	}
 	if (checkweight(5443,1) == 0) {
-		mes "- Wait !! -";
-		mes "- You have too many items, so it's -";
-		mes "- impossible to have more. -";
-		mes "- Come to me again -";
-		mes "- after emptying some of it. -";
+		mes "- เดี๋ยว !! -";
+		mes "- เจ้ามีไอเทมมากเกินไป -";
+		mes "- ไม่สามารถถือเพิ่มได้อีก -";
+		mes "- กลับมาหาข้าอีกครั้ง -";
+		mes "- หลังจากที่เจ้าทิ้งของบางส่วนไปแล้ว -";
 		close;
 	}
 	return;
@@ -361,49 +361,49 @@ alberta,151,78,0	script	Bebete#Baby_Angel	96,{
 	if (isequipped(5074) > 0 || isequipped(2254) > 0 || isequipped(5210) > 0) {
 		if (BaseLevel < 65) {
 			mes "[Bebete]";
-			mes "A fake angel? Go away!";
+			mes "นางฟ้าตัวปลอมเหรอ? ไปให้พ้นเลย!";
 			next;
 			mes "[Bebete]";
-			mes "The real angel";
-			mes "is not as weak as you.";
+			mes "นางฟ้าตัวจริงน่ะ";
+			mes "ไม่อ่อนแอเหมือนเจ้าหรอก";
 			close;
 		}
 		if (isequipped(5443) > 0) {
 			mes "[Bebete]";
-			mes "Oh, the angel came again.";
-			mes "Are you quite satisfied with ^FF0000Statue Of Baby Angel^000000, aren't you?";
+			mes "โอ้ ท่านนางฟ้ากลับมาอีกแล้ว";
+			mes "ท่านพอใจกับ ^FF0000Statue Of Baby Angel^000000 มากเลยใช่ไหมล่ะ?";
 			close;
 		}
 		if (countitem(523) > 0 && countitem(916) > 499 && countitem(7292) > 9 && countitem(2282) > 0 && countitem(640) > 0) {
 			mes "[Bebete]";
-			mes "Ah! Hey, angel~ angel~";
+			mes "อา! เฮ้ ท่านนางฟ้า~ ท่านนางฟ้า~";
 			next;
 			mes "[Bebete]";
-			mes "Please show me the Statue of Baby Angel!";
-			mes "I heard every angel has it!";
+			mes "โปรดแสดง Statue of Baby Angel ให้ข้าดูหน่อยได้ไหม!";
+			mes "ข้าได้ยินมาว่านางฟ้าทุกคนต้องมีมันนะ!";
 			next;
 			select("Statue of Baby Angel?");
 			mes "[Bebete]";
-			mes "Did you lose it?";
-			mes "Do you want me to make it for you?";
+			mes "ท่านทำมันหายงั้นเหรอ?";
+			mes "ท่านอยากให้ข้าทำให้ท่านใหม่ไหมล่ะ?";
 			next;
-			if(select("No, thanks.:Yes, I want it now.") == 1) {
+			if(select("ไม่ล่ะ ขอบใจ:ใช่ ฉันต้องการมันตอนนี้เลย") == 1) {
 				mes "[Bebete]";
-				mes "Oh... it's not easy to make a living!";
+				mes "โอ้... การหาเลี้ยงชีพนี่มันไม่ง่ายเลยจริงๆ!";
 				close;
 			}
 			callsub L_CheckWeight;
 			mes "[Bebete]";
-			mes "Wow, you already know all the materials, angel.";
+			mes "ว้าว ท่านรู้เรื่องวัตถุดิบทั้งหมดอยู่แล้วนี่ท่านนางฟ้า";
 			emotion ET_BIGTHROB;
 			next;
 			mes "[Bebete]";
-			mes "You're lucky. I have one statue on going.";
-			mes "So you don't need to wait for long.";
+			mes "ท่านโชคดีนะ ข้ามีรูปปั้นที่กำลังทำค้างไว้อยู่พอดี";
+			mes "ท่านเลยไม่ต้องรอนาน";
 			next;
 			if (countitem(523) > 0 && countitem(916) > 499 && countitem(7292) > 9 && countitem(2282) > 0 && countitem(640) > 0) {
 				callsub L_CheckWeight;
-				mes "I got the ^FF0000Statue of Baby Angel^000000.";
+				mes "ฉันได้รับ ^FF0000Statue of Baby Angel^000000 มาแล้ว";
 				delitem 916,500; //Feather_Of_Birds
 				delitem 523,1; //Holy_Water
 				delitem 7292,10; //Muscovite
@@ -412,77 +412,77 @@ alberta,151,78,0	script	Bebete#Baby_Angel	96,{
 				getitem 5443,1; //Status_Of_Baby_Angel
 				next;
 				mes "[Bebete]";
-				mes "See you again, my angel~!";
+				mes "แล้วพบกันใหม่นะ ท่านนางฟ้าของข้า~!";
 				emotion ET_THANKS;
 				next;
 				mes "[" + strcharinfo(0) + "]";
 				mes "... ...";
 				next;
 				mes "[" + strcharinfo(0) + "]";
-				mes "Hmm... I guess I was fooled by that little kid.";
+				mes "หืม... ฉันว่าฉันโดนไอ้เด็กนั่นหลอกเข้าให้แล้วล่ะ";
 				close;
 			}
 			mes "[Bebete]";
-			mes "Hey, I don't see";
-			mes "any materials in your bag..";
+			mes "เฮ้ ข้าไม่เห็นว่าจะมี";
+			mes "วัตถุดิบอยู่ในกระเป๋าท่านเลยนะ..";
 			emotion ET_CRY;
 			close;
 		}
 		mes "[Bebete]";
-		mes "Hey, angel...";
+		mes "เฮ้ ท่านนางฟ้า...";
 		next;
 		mes "[Bebete]";
-		mes "Wow, the angel!";
+		mes "ว้าว ท่านนางฟ้าจริงๆ ด้วย!";
 		emotion ET_HUK;
 		next;
 		mes "[Bebete]";
-		mes "Are you a real angel? Have you been to heaven?";
+		mes "ท่านเป็นนางฟ้าจริงๆ หรือเปล่า? เคยไปสวรรค์มาไหม?";
 		next;
-		if(select("What bullshit!:Let's keep the childhood innocence!") == 1) {
+		if(select("เพ้อเจ้ออะไรเนี่ย!:รักษาความไร้เดียงสาแบบวัยเด็กไว้เถอะ!") == 1) {
 			mes "[" + strcharinfo(0) + "]";
-			mes "Angel and heaven? It's all made up! ";
+			mes "นางฟ้ากับสวรรค์งั้นเหรอ? มันเป็นเรื่องแต่งทั้งนั้นแหละ! ";
 			next;
 			mes "[" + strcharinfo(0) + "]";
-			mes "There's nothing. Everything is lie!";
+			mes "มันไม่มีอยู่จริงหรอก ทุกอย่างคือคำโกหก!";
 			emotion ET_KIK, playerattached();
 			next;
 			mes "[Bebete]";
-			mes "You're a devil! a monster! an idiot!";
+			mes "เจ้ามันปีศาจ! ไอ้สัตว์ประหลาด! ไอ้คนบ้า!";
 			emotion ET_OHNO;
 			close;
 		}
 		mes "[" + strcharinfo(0) + "]";
-		mes "Of course. I used to dance with the dragon and zebra";
-		mes "on the vanilla-taste clouds.";
+		mes "แน่นอนสิ ฉันเคยไปเต้นระบำกับมังกรและม้าลาย";
+		mes "บนก้อนเมฆรสวานิลลามาแล้วด้วยนะ";
 		next;
 		mes "[Bebete]";
-		mes "That's just what I've been imagining!";
+		mes "นั่นคือสิ่งที่ข้าจินตนาการไว้เลย!";
 		next;
 		mes "[Bebete]";
-		mes "Please show me the Statue of Baby Angel!";
-		mes "I heard every angel has it!";
+		mes "โปรดแสดง Statue of Baby Angel ให้ข้าดูหน่อยสิ!";
+		mes "ข้าได้ยินมาว่านางฟ้าทุกคนต้องมีมันนะ!";
 		next;
 		mes "[Bebete]";
-		mes "Oops, did you lose it?";
-		mes "Do you want me to make one for you?";
+		mes "อุ๊ย ท่านทำมันหายไปแล้วเหรอ?";
+		mes "ท่านอยากให้ข้าทำอันใหม่ให้ไหม?";
 		next;
 		mes "[Bebete]";
-		mes "I made it several times before";
-		mes "for the angels like you.";
+		mes "ข้าเคยทำมันมาหลายครั้งแล้วล่ะ";
+		mes "สำหรับเหล่านางฟ้าอย่างท่าน";
 		next;
 		mes "[Bebete]";
-		mes "I can make it with ^FF0000500 Feather Of Birds, 1 Holy Water, 10 Muscovite, 1 Heaven Ring and 1 Shining Stone^000000.";
+		mes "ข้าสามารถทำมันได้ด้วย ^FF0000500 Feather Of Birds, 1 Holy Water, 10 Muscovite, 1 Heaven Ring และ 1 Shining Stone^000000";
 		next;
 		mes "[Bebete]";
-		mes "Okay, hurry!";
+		mes "โอเค รีบไปหามานะ!";
 		close;
 	} else {
 		mes "[Bebete]";
-		mes "A fake angel? Go away!!";
+		mes "นางฟ้าตัวปลอมเหรอ? ไปให้พ้นเลย!!";
 		next;
 		mes "[Bebete]";
-		mes "The real angel has";
-		mes "the wings on the head!";
+		mes "นางฟ้าตัวจริงน่ะต้องมี";
+		mes "ปีกอยู่บนหัวด้วยสิ!";
 		close;
 	}
 	end;
@@ -490,17 +490,17 @@ alberta,151,78,0	script	Bebete#Baby_Angel	96,{
 L_CheckWeight:
 	if (MaxWeight - Weight < 600) {
 		mes "[Bebete]";
-		mes "What are you carrying that much, angel?";
-		mes "I can't give you the item";
-		mes "because your bag is too full.";
+		mes "ท่านแบกอะไรเยอะแยะขนาดนั้น ท่านนางฟ้า?";
+		mes "ข้าให้ไอเทมท่านไม่ได้";
+		mes "เพราะกระเป๋าท่านเต็มเกินไปแล้ว";
 		close;
 	}
 	if (checkweight(5443,1) == 0) {
-		mes "- Wait !! -";
-		mes "- You have too many items, so it's -";
-		mes "- impossible to have more. -";
-		mes "- Come to me again -";
-		mes "- after emptying some of it. -";
+		mes "- เดี๋ยว !! -";
+		mes "- เจ้ามีไอเทมมากเกินไป -";
+		mes "- ไม่สามารถถือเพิ่มได้อีก -";
+		mes "- กลับมาหาข้าอีกครั้ง -";
+		mes "- หลังจากที่เจ้าทิ้งของบางส่วนไปแล้ว -";
 		close;
 	}
 	return;
@@ -510,62 +510,62 @@ gef_fild07,108,161,4	script	Roda Frog#Frog_Cap	1012,1,1,{
 	if (!.Active) end;
 	if (hat_2009 == 0) {
 		mes "[???]";
-		mes "Hmm..Hm..";
-		mes "It seems my transformation into the child's appearance is successful.";
+		mes "อืม..หืม..";
+		mes "ดูเหมือนว่าการจำแลงกายเป็นมนุษย์เด็กของข้าจะประสบความสำเร็จนะ";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "... ... ... ...";
 		next;
 		mes "[???]";
-		mes "Human! I am here to ask you some help.";
+		mes "มนุษย์! ข้ามาที่นี่เพื่อขอความช่วยเหลือจากเจ้า";
 		next;
 		if (BaseLevel < 65) {
 			mes "[???]";
 			mes "... ... ...";
 			next;
 			mes "[???]";
-			mes "I am the great King Froggie VII!";
+			mes "ข้าคือราชา Froggie ที่ 7 ผู้ยิ่งใหญ่!";
 			next;
 			mes "[King Froggie VII]";
-			mes "but I think you're not strong enough to help us.";
-			mes "Go and train more!";
+			mes "แต่ข้าว่าเจ้ายังแข็งแกร่งไม่พอที่จะช่วยพวกเราหรอกนะ";
+			mes "ไปฝึกฝนมาให้มากกว่านี้ไป!";
 			next;
 			mes "[King Froggie VII]";
-			mes "Over lvl 65 human will be fine for us.";
+			mes "มนุษย์ที่มีเลเวลมากกว่า 65 ถึงจะช่วยพวกเราได้";
 			close2;
 			donpcevent "Roda Frog#Frog_Cap::OnDisable";
 			end;
 		} else {
 			mes "[???]";
-			mes "I am the great king, Froggie VII..";
-			mes "I need your help!";
+			mes "ข้าคือราชาผู้ยิ่งใหญ่ Froggie ที่ 7..";
+			mes "ข้าต้องการความช่วยเหลือจากเจ้า!";
 			next;
-			if(select("Just ignore it.:Let's help him.") == 1) {
+			if(select("เมินไปซะ:ลองช่วยเขาดูหน่อย") == 1) {
 				mes "[" + strcharinfo(0) + "]";
-				mes "Talking frog...";
+				mes "กบพูดได้งั้นเหรอ...";
 				next;
 				mes "[" + strcharinfo(0) + "]";
-				mes "Now I've seen everything.";
+				mes "โลกนี้มันมีอะไรแปลกๆ เยอะจริงๆ";
 				next;
 				mes "[King Froggie VII]";
-				mes "Croaking...Croaking...";
+				mes "อบต๊อบ...อบต๊อบ...";
 				close2;
 				donpcevent "Roda Frog#Frog_Cap::OnDisable";
 				end;
 			}
 			mes "[" + strcharinfo(0) + "]";
-			mes "What can I help you?";
+			mes "มีอะไรให้ข้าช่วยล่ะ?";
 			next;
 			mes "[King Froggie VII]";
-			mes "Our great frog race is now endangered because many travellers came here and take our eggs as a kind of souvenirs. I even heard there are many left on the ground here and there, so I need your help. Please bring back ^FF0000100 Spawn^000000.";
+			mes "เผ่าพันธุ์กบผู้ยิ่งใหญ่ของเรากำลังตกอยู่ในอันตราย เพราะมีนักเดินทางมากมายมาที่นี่แล้วเอาไข่ของพวกเราไปทำเป็นของที่ระลึก ข้าได้ยินมาว่ามีไข่ถูกทิ้งไว้ตามพื้นตรงโน้นตรงนี้เต็มไปหมด ข้าเลยต้องการความช่วยเหลือจากเจ้า โปรดช่วยนำไข่กบ ^FF0000100 Spawn^000000 กลับมาให้ข้าที";
 			setquest 5000;
 			set hat_2009,1;
 			next;
 			mes "[" + strcharinfo(0) + "]";
-			mes "Sure, I will.";
+			mes "ได้สิ เดี๋ยวจัดให้";
 			next;
 			mes "[King Froggie VII]";
-			mes "I will be waiting for you!";
+			mes "ข้าจะรอเจ้านะ!";
 			close2;
 			donpcevent "Roda Frog#Frog_Cap::OnDisable";
 			end;
@@ -573,39 +573,39 @@ gef_fild07,108,161,4	script	Roda Frog#Frog_Cap	1012,1,1,{
 	} else if (hat_2009 == 1) {
 		if (countitem(908) < 100) {
 			mes "[King Froggie VII]";
-			mes "What are you doing here?";
-			mes "Go and get ^FF0000100 Spawn^000000!";
+			mes "เจ้ามัวมาทำอะไรที่นี่?";
+			mes "ไปหา ^FF0000100 Spawn^000000 มาได้แล้ว!";
 			close2;
 			donpcevent "Roda Frog#Frog_Cap::OnDisable";
 			end;
 		} else {
 			mes "[King Froggie VII]";
-			mes "Oh, you brought all of them!";
+			mes "โอ้ เจ้านำมาคืนจนครบหมดแล้ว!";
 			next;
 			mes "[King Froggie VII]";
-			mes "Thank you so much, " + strcharinfo(0) + ".";
+			mes "ขอบใจเจ้ามากนะ " + strcharinfo(0) + ".";
 			emotion ET_THANKS;
 			next;
 			mes "[King Froggie VII]";
-			mes "By the way, we have another urgent matter. So I would ask you one more help.";
+			mes "แต่ว่า เรายังมีเรื่องด่วนอีกเรื่องหนึ่ง ข้าเลยอยากจะขอให้เจ้าช่วยอีกสักอย่าง";
 			next;
 			mes "[King Froggie VII]";
-			mes "Frogs are healthy food to the snakes.";
+			mes "พวกกบน่ะเป็นอาหารบำรุงสุขภาพสำหรับพวกงู";
 			next;
 			mes "[" + strcharinfo(0) + "]";
-			mes "I know well.";
+			mes "เรื่องนั้นข้ารู้ดี";
 			next;
 			mes "[King Froggie VII]";
-			mes "Well, that's good. Aren't you feel sorry for our race?";
+			mes "อืม ก็ดีแล้ว เจ้าไม่รู้สึกสงสารเผ่าพันธุ์พวกเราบ้างเหรอ?";
 			next;
 			mes "[King Froggie VII]";
-			mes "So, I hereby ask you to take revenge on them. Kill ^FF000050 Side Winders^000000 for us.";
+			mes "ดังนั้น ข้าจึงขอร้องให้เจ้าช่วยล้างแค้นให้พวกเราที ช่วยไปกำจัด ^FF000050 Side Winders^000000 เพื่อพวกเราด้วย";
 			delitem 908,100; //Spawn
 			changequest 5000,5001;
 			set hat_2009,2;
 			next;
 			mes "[King Froggie VII]";
-			mes "I'll be waiting for your news!";
+			mes "ข้าจะรอฟังข่าวดีจากเจ้านะ!";
 			close2;
 			donpcevent "Roda Frog#Frog_Cap::OnDisable";
 			end;
@@ -614,36 +614,36 @@ gef_fild07,108,161,4	script	Roda Frog#Frog_Cap	1012,1,1,{
 		set .@hunting, checkquest(5001,HUNTING);
 		if (.@hunting == 0 || .@hunting == 1) {
 			mes "[King Froggie VII]";
-			mes "I'm waiting for your good news.";
-			mes "It would be a piece of cake for you";
-			mes "to kill ^FF000050 Side Winders^000000. Keep it up!";
+			mes "ข้ากำลังรอข่าวดีจากเจ้าอยู่นะ";
+			mes "มันน่าจะเป็นเรื่องกล้วยๆ สำหรับเจ้า";
+			mes "ในการกำจัด ^FF000050 Side Winders^000000 สู้เขาล่ะ!";
 			close2;
 			donpcevent "Roda Frog#Frog_Cap::OnDisable";
 			end;
 		} else if (.@hunting == 2) {
 			mes "[" + strcharinfo(0) + "]";
-			mes "I'm back.";
+			mes "ข้ากลับมาแล้ว";
 			next;
 			mes "[King Froggie VII]";
-			mes "You seemingly killed all the Side Winders!";
+			mes "ดูเหมือนว่าเจ้าจะกำจัด Side Winders ไปจนเกลี้ยงแล้วสินะ!";
 			next;
 			mes "[King Froggie VII]";
-			mes "You became an example for the young frogs. Thank you again.";
+			mes "เจ้ากลายเป็นตัวอย่างที่ดีให้แก่พวกกบหนุ่มสาวทั้งหลาย ขอบใจเจ้าอีกครั้ง";
 			emotion ET_THANKS;
 			next;
 			mes "[King Froggie VII]";
-			mes "Therefore, I'm considering adding your outstanding exploit to our frog's history book. But I need your evidence for your work.";
+			mes "ด้วยเหตุนี้ ข้าจึงกำลังพิจารณาที่จะจารึกวีรกรรมอันโดดเด่นของเจ้าลงในหนังสือประวัติศาสตร์ของพวกกบ แต่ข้าต้องการหลักฐานการทำงานของเจ้าด้วย";
 			next;
 			mes "[King Froggie VII]";
-			mes "Please bring me ^FF0000 100 ^000000 ^FF0000Venom Canines^000000 from the snakes.";
+			mes "โปรดนำ ^FF0000 100 ^000000 ^FF0000Venom Canines^000000 จากพวกงูมาให้ข้าที";
 			changequest 5001,5002;
 			set hat_2009,3;
 			next;
 			mes "[" + strcharinfo(0) + "]";
-			mes "I'm happy to be added in the history book. I'll go and get them.";
+			mes "ข้ายินดีมากที่จะได้ถูกจารึกไว้ในหนังสือประวัติศาสตร์ เดี๋ยวข้าไปหามาให้เดี๋ยวนี้แหละ";
 			next;
 			mes "[King Froggie VII]";
-			mes "Obedient, hard-working... I hope I have a loyal frog like you.";
+			mes "ช่างเชื่อฟังและขยันขันแข็งจริงๆ... ข้าหวังว่าข้าจะมีกบผู้ซื่อสัตย์แบบเจ้าสักตัว";
 			close2;
 			donpcevent "Roda Frog#Frog_Cap::OnDisable";
 			end;
@@ -651,36 +651,36 @@ gef_fild07,108,161,4	script	Roda Frog#Frog_Cap	1012,1,1,{
 	} else if (hat_2009 == 3) {
 		if (countitem(937) < 100) {
 			mes "[King Froggie VII]";
-			mes "How about ^FF0000100 Venom Canines^000000?";
-			mes "Hurry, it's a rare opportunity to be added in the frog history book!";
+			mes "เรื่อง ^FF0000100 Venom Canines^000000 ไปถึงไหนแล้วล่ะ?";
+			mes "เร็วเข้าล่ะ นี่เป็นโอกาสหายากที่จะได้เข้าสู่หนังสือประวัติศาสตร์กบเชียวนะ!";
 			close2;
 			donpcevent "Roda Frog#Frog_Cap::OnDisable";
 			end;
 		} else {
 			mes "[King Froggie VII]";
-			mes "Oh, you brought Venom Canines! Now, I'm able to put you in the frog history book officially.";
+			mes "โอ้ เจ้านำ Venom Canines มาแล้ว! ทีนี้ข้าก็สามารถจารึกชื่อเจ้าลงในหนังสือประวัติศาสตร์กบได้อย่างเป็นทางการเสียที";
 			next;
 			mes "[" + strcharinfo(0) + "]";
-			mes "That's good for me.";
+			mes "นั่นเป็นเรื่องดีสำหรับข้าเลยล่ะ";
 			next;
 			mes "[King Froggie VII]";
-			mes "I have a better news!";
+			mes "ข้ายังมีข่าวที่ดียิ่งกว่านั้นอีก!";
 			next;
 			mes "[King Froggie VII]";
-			mes "I found a great method to keep our race while I was looking up the history book!";
+			mes "ข้าพบวิธีการอันยอดเยี่ยมที่จะรักษาเผ่าพันธุ์ของพวกเราไว้ ในขณะที่ข้ากำลังค้นคว้าหนังสือประวัติศาสตร์อยู่!";
 			next;
 			mes "[King Froggie VII]";
-			mes "The answer was in the frog history book. In the old days, the great King Froggie III made a secret medicine enabling us to use a hiding skill from the snakes.";
+			mes "คำตอบมันอยู่ในหนังสือประวัติศาสตร์กบนี่แหละ ในสมัยโบราณ ราชา Froggie ที่ 3 ผู้ยิ่งใหญ่ได้ปรุงยาลับที่ทำให้พวกเราสามารถใช้ทักษะการซ่อนตัวจากพวกงูได้";
 			next;
 			mes "[King Froggie VII]";
-			mes "I should have known this earlier...";
-			mes "Please get me ^FF000050 Scaled Shells^000000.";
+			mes "ข้าน่าจะรู้เรื่องนี้ให้เร็วกว่านี้...";
+			mes "โปรดช่วยหา ^FF000050 Scaled Shells^000000 มาให้ข้าที";
 			delitem 937,100; //Posionous_Canine
 			changequest 5002,5003;
 			set hat_2009,4;
 			next;
 			mes "[King Froggie VII]";
-			mes "It's not easy to get, but I'm sure you can do it.";
+			mes "มันไม่ง่ายเลยที่จะหามาได้ แต่ข้าเชื่อมั่นว่าเจ้าทำได้แน่นอน";
 			close2;
 			donpcevent "Roda Frog#Frog_Cap::OnDisable";
 			end;
@@ -688,31 +688,31 @@ gef_fild07,108,161,4	script	Roda Frog#Frog_Cap	1012,1,1,{
 	} else if (hat_2009 == 4) {
 		if (countitem(936) < 50) {
 			mes "[King Froggie VII]";
-			mes "Still here? Go and get ^FF000050 Scaled Shells^000000! Please hurry!";
+			mes "ยังอยู่นี่อีกเหรอ? ไปหา ^FF000050 Scaled Shells^000000 มาได้แล้ว! เร็วๆ เข้า!";
 			close2;
 			donpcevent "Roda Frog#Frog_Cap::OnDisable";
 			end;
 		} else {
 			mes "[King Froggie VII]";
-			mes "Excellent!";
-			mes "You're like the great King Froggie III in his young days!";
+			mes "ยอดเยี่ยมมาก!";
+			mes "เจ้าดูเหมือนราชา Froggie ที่ 3 ผู้ยิ่งใหญ่ในสมัยที่เขายังหนุ่มเลย!";
 			next;
 			mes "[King Froggie VII]";
-			mes "You are already the hero for our frogs! If I have a child, I would marry you up with my child.";
+			mes "ตอนนี้เจ้าคือฮีโร่ของพวกเราเหล่ากบแล้ว! ถ้าข้ามีลูกสาว ข้าคงจะให้เจ้าแต่งงานกับลูกของข้าไปแล้วล่ะ";
 			next;
 			mes "[" + strcharinfo(0) + "]";
-			mes "Ah... No, thanks.";
-			mes "^FF0000(Are you telling me to marry a frog???)^000000";
+			mes "อา... ไม่ล่ะ ขอบใจ";
+			mes "^FF0000(นี่แกจะให้ข้าแต่งงานกับกบงั้นเหรอ???)^000000";
 			next;
 			mes "[King Froggie VII]";
-			mes "Thanks to you, the population of frog has increased but we're short of food.";
+			mes "ต้องขอบคุณเจ้าที่ทำให้ประชากรกบเพิ่มขึ้นมาก แต่ทีนี้เราเลยขาดแคลนอาหาร";
 			next;
 			mes "[King Froggie VII]";
-			mes "The best food for us is ^FF0000Argiope^000000.";
+			mes "อาหารที่ดีที่สุดสำหรับพวกเราคือ ^FF0000Argiope^000000";
 			next;
 			mes "[King Froggie VII]";
-			mes "Now, what are you doing, our hero?";
-			mes "Go and get ^FF000050 Argiopes^000000!";
+			mes "เอาล่ะ มัวรออะไรอยู่ล่ะท่านฮีโร่ของเรา?";
+			mes "ไปกำจัด ^FF000050 Argiopes^000000 มาให้พวกเราที!";
 			delitem 936,50; //Scales_Shell
 			set hat_2009,5;
 			changequest 5003,5004;
@@ -724,48 +724,48 @@ gef_fild07,108,161,4	script	Roda Frog#Frog_Cap	1012,1,1,{
 		set .@hunting, checkquest(5004,HUNTING);
 		if (.@hunting == 0 || .@hunting == 1) {
 			mes "[King Froggie VII]";
-			mes "My hero, are you going to starve us to death?";
-			mes "Go and bring us ^FF000050 Argiopes^000000!";
+			mes "ฮีโร่ของข้า เจ้ากำลังจะปล่อยให้พวกเราอดตายงั้นเหรอ?";
+			mes "ไปจัดการ ^FF000050 Argiopes^000000 มาให้พวกเราซะ!";
 			close2;
 			donpcevent "Roda Frog#Frog_Cap::OnDisable";
 			end;
 		} else if (.@hunting == 2) {
 			mes "[King Froggie VII]";
-			mes "I think I saw you a while ago, but now you became the hero for the frogs...";
+			mes "ข้าจำได้ว่าเพิ่งเห็นเจ้าเมื่อไม่นานมานี้เอง แต่ตอนนี้เจ้าได้กลายเป็นฮีโร่ของเหล่ากบไปเสียแล้ว...";
 			next;
 			mes "[King Froggie VII]";
-			mes "It was really lucky for me to ask you a favor.";
+			mes "เป็นโชคดีของข้าจริงๆ ที่ได้ขอให้เจ้าช่วย";
 			next;
 			if (MaxWeight - Weight < 500) {
 				mes "[King Froggie VII]";
-				mes "I'd like to give you a reward, our hero. But your bag is now too heavy.";
+				mes "ข้าอยากจะให้รางวัลแก่เจ้า ฮีโร่ของเรา แต่กระเป๋าเจ้าตอนนี้มันหนักเกินไป";
 				close2;
 				donpcevent "Roda Frog#Frog_Cap::OnDisable";
 				end;
 			}
 			if (checkweight(5447,1) == 0) {
-				mes "- Wait !! -";
-				mes "- You have too many items, so it's -";
-				mes "- impossible to have more. -";
-				mes "- Come to me again -";
-				mes "- after emptying some of it. -";
+				mes "- เดี๋ยว !! -";
+				mes "- เจ้ามีไอเทมมากเกินไป -";
+				mes "- ไม่สามารถถือเพิ่มได้อีก -";
+				mes "- กลับมาหาข้าอีกครั้ง -";
+				mes "- หลังจากที่เจ้าทิ้งของบางส่วนไปแล้ว -";
 				close;
 			}
 			mes "[King Froggie VII]";
-			mes "Frogs, do you have any objection";
-			mes "to give our hero, " + strcharinfo(0) + "";
-			mes "a Frog Hat which is one of our precious treasures?";
+			mes "เหล่ากบเอ๋ย พวกเจ้ามีใครคัดค้านไหม";
+			mes "หากข้าจะมอบ Frog Hat ซึ่งเป็นหนึ่งในสมบัติล้ำค่าของพวกเรา";
+			mes "ให้แก่ฮีโร่ของพวกเรา " + strcharinfo(0) + "?";
 			next;
-			mes "[Sounds from somewhere]";
-			mes "Croak...croak...";
-			mes "croooooaaaaak~~~";
-			mes "Croak croak";
-			next;
-			mes "[King Froggie VII]";
-			mes "Hmm, there is no objection.";
+			mes "[เสียงจากที่ไหนสักแห่ง]";
+			mes "อบต๊อบ...อบต๊อบ...";
+			mes "อ๊บๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆ~~~";
+			mes "อบต๊อบ อบต๊อบ";
 			next;
 			mes "[King Froggie VII]";
-			mes "I hereby give " + strcharinfo(0) + ", our hero, this Frog Hat.";
+			mes "อืม ไม่มีใครคัดค้าน";
+			next;
+			mes "[King Froggie VII]";
+			mes "ข้าขอมอบ Frog Hat ใบนี้ให้แก่ " + strcharinfo(0) + " ฮีโร่ของพวกเรา";
 			specialeffect2 EF_MAPPILLAR2;
 			specialeffect2 EF_BLESSING;
 			erasequest 5004;
@@ -773,15 +773,15 @@ gef_fild07,108,161,4	script	Roda Frog#Frog_Cap	1012,1,1,{
 			getitem 5447,1; //Frog_Cap
 			next;
 			mes "[King Froggie VII]";
-			mes "You are always welcome.";
-			mes "Visit here at any time.";
+			mes "เจ้ายินดีต้อนรับเสมอ";
+			mes "แวะมาเยี่ยมที่นี่ได้ทุกเมื่อเลยนะ";
 			close2;
 			donpcevent "Roda Frog#Frog_Cap::OnDisable";
 			end;
 		}
 	} else if (hat_2009 == 6) {
 		mes "[King Froggie VII]";
-		mes "All the frogs in the world, praise " + strcharinfo(0) + ", our eternal hero!";
+		mes "เหล่ากบทั่วทุกมุมโลก จงสรรเสริญ " + strcharinfo(0) + " ฮีโร่ตลอดกาลของพวกเรา!";
 		emotion ET_THANKS;
 		close2;
 		donpcevent "Roda Frog#Frog_Cap::OnDisable";
@@ -792,16 +792,16 @@ gef_fild07,108,161,4	script	Roda Frog#Frog_Cap	1012,1,1,{
 //	setnpcdisplay "Roda Frog#Frog_Cap",1012; //RODA_FROG
 //	end;
 OnEnable:
-	setnpcdisplay "Roda Frog#Frog_Cap",716; //4_M_KID2
-	set .Active,1;
+	setnpcdisplay "Roda Frog#Frog_Cap", 716; //4_M_KID2
+	set .Active, 1;
 	end;
 OnDisable:
-	set .Active,0;
+	set .Active, 0;
 	disablenpc "Roda Frog#Frog_Cap";
 	initnpctimer;
 	end;
 OnReset:
-	setnpcdisplay "Roda Frog#Frog_Cap",1012; //RODA_FROG
+	setnpcdisplay "Roda Frog#Frog_Cap", 1012; //RODA_FROG
 	enablenpc "Roda Frog#Frog_Cap";
 	end;
 OnTimer2000:
@@ -810,25 +810,25 @@ OnTimer2000:
 	end;
 OnTouch:
 	if (.Active) end;
-	mes "There is a frog. What should I do?";
+	mes "มีกบอยู่ตัวหนึ่ง ฉันควรทำอย่างไรดี?";
 	next;
-	switch(select("Throw it a stone.:Have a conversation.")) {
+	switch(select("ขว้างหินใส่มัน.:เข้าไปคุยกับมัน.")) {
 	case 1:
 		donpcevent "Roda Frog#Frog_Cap::OnDisable";
-		mes "Ouch~";
+		mes "โอ๊ยยย~";
 		close;
 	case 2:
 		donpcevent "Roda Frog#Frog_Cap::OnEnable";
 		if (hat_2009 > 0) {
 			emotion ET_THINK, playerattached();
 			mes "[" + strcharinfo(0) + "]";
-			mes "It's so amazing to see";
-			mes "the frog which transforms itself.";
+			mes "มันน่าทึ่งมากที่เห็นกบตัวนี้";
+			mes "จำแลงกายเป็นมนุษย์ได้";
 			close;
 		} else {
 			emotion ET_HUK, playerattached();
 			mes "[" + strcharinfo(0) + "]";
-			mes "Oh my.. the frog transformed into a child...";
+			mes "โอ้แม่เจ้า.. กบตัวนั้นแปลงร่างเป็นเด็ก...";
 			close;
 		}
 	}
@@ -838,45 +838,45 @@ OnTouch:
 alberta,120,206,3	script	Alonie#Solo_Play_Box	787,{
 	if (hat_1_2009 == 0) {
 		mes "[Alonie]";
-		mes "I am an expert at playing alone.";
-		mes "I'm trying my best to play alone!";
+		mes "ฉันคือผู้เชี่ยวชาญในการเล่นคนเดียว";
+		mes "ฉันพยายามอย่างเต็มที่เพื่อที่จะเล่นคนเดียวให้ได้ดีที่สุด!";
 		next;
 		mes "[Alonie]";
-		mes "HuHu, Yapyap!";
-		mes "I can feel your admiration for me.";
-		mes "Wanna be my student?";
+		mes "หุหุ ยะปะยะป้า!";
+		mes "ฉันสัมผัสได้ถึงความเลื่อมใสที่นายมีต่อฉันนะ";
+		mes "อยากมาเป็นลูกศิษย์ฉันไหมล่ะ?";
 		next;
-		switch(select("You're out of your mind!:Please let me be your disciple!")) {
+		switch(select("คุณมันบ้าไปแล้ว!:โปรดรับผมเป็นศิษย์ด้วยเถอะ!")) {
 		case 1:
 			mes "[Alonie]";
-			mes "Yes, I'm out of my mind.";
-			mes "Huhu, Yapyap!";
+			mes "ใช่ ฉันมันบ้าไปแล้ว";
+			mes "หุหุ ยะปะยะป้า!";
 			close;
 		case 2:
 			mes "[Alonie]";
-			mes "I can feel you are lack of affection. Okay!";
-			mes "Now, let's start the training!";
+			mes "ฉันรู้สึกได้ว่านายขาดความอบอุ่นนะ โอเค!";
+			mes "เอาล่ะ มาเริ่มการฝึกฝนกันเลย!";
 			next;
 			mes "[Alonie]";
-			mes "The special training, to play alone in Sphinx Dungeon!";
-			mes "For make it";
-			mes "the fruitful training,";
-			mes "Get around and kill";
-			mes "^FF000020 Zeroms, 20 Requiems^000000!";
-			mes "Hurry!";
+			mes "การฝึกพิเศษ คือการเล่นคนเดียวใน Sphinx Dungeon!";
+			mes "เพื่อให้มันเป็น";
+			mes "การฝึกที่ได้ผลลัพธ์ที่งดงาม";
+			mes "จงออกไปกำจัด";
+			mes "^FF000020 Zeroms และ 20 Requiems^000000 ซะ!";
+			mes "เร็วเข้า!";
 			next;
-			switch(select("What bullshit!:Let's go!")) {
+			switch(select("ไร้สาระน่า!:ลุยเลย!") {
 			case 1:
 				mes "[Alonie]";
-				mes "Of course, I don't care.";
-				mes "Huhu, Yapyap!";
+				mes "แน่นอน ฉันไม่แคร์หรอก";
+				mes "หุหุ ยะปะยะป้า!";
 				close;
 			case 2:
 				mes "[Alonie]";
-				mes "Hurry up, my student.";
-				mes "I am so capricious";
-				mes "so I don't know what I will";
-				mes "give you as a reward!";
+				mes "รีบไปซะล่ะศิษย์รัก";
+				mes "ฉันเป็นคนเจ้าอารมณ์และเอาแน่เอานอนไม่ได้";
+				mes "เพราะงั้นฉันก็ไม่รู้เหมือนกันนะว่า";
+				mes "จะให้อะไรเป็นรางวัลแก่นายดี!";
 				setquest 1100;
 				setquest 1101;
 				set hat_1_2009,1;
@@ -886,29 +886,29 @@ alberta,120,206,3	script	Alonie#Solo_Play_Box	787,{
 	} else if (hat_1_2009 == 1) {
 		if (checkquest(1100,HUNTING) == 2 && checkquest(1101,HUNTING) == 2) {
 			mes "[Alonie]";
-			mes "Already finished?";
-			mes "Good, here is the next training";
-			mes "to be a playing-alone expert!";
+			mes "เสร็จแล้วเหรอ?";
+			mes "ดีมาก นี่คือการฝึกขั้นต่อไป";
+			mes "เพื่อจะเป็นผู้เชี่ยวชาญการเล่นคนเดียว!";
 			next;
 			mes "[Alonie]";
-			mes "The special training, to play alone at Clock Tower!";
-			mes "For make it";
-			mes "the fruitful training,";
-			mes "Get around and kill";
-			mes "^FF000040 Arclouses and 30 High Orcs^000000!";
+			mes "การฝึกพิเศษ คือการเล่นคนเดียวที่ Clock Tower!";
+			mes "เพื่อให้มันเป็น";
+			mes "การฝึกที่ได้ผลลัพธ์ที่งดงาม";
+			mes "จงออกไปกำจัด";
+			mes "^FF000040 Arclouses และ 30 High Orcs^000000!";
 			next;
-			switch(select("What Bullshit!:Let's go!")) {
+			switch(select("ไร้สาระน่า!:ลุยเลย!")) {
 			case 1:
 				mes "[Alonie]";
-				mes "Of course, I don't care.";
-				mes "Huhu, Yapyap!";
+				mes "แน่นอน ฉันไม่แคร์หรอก";
+				mes "หุหุ ยะปะยะป้า!";
 				close;
 			case 2:
 				mes "[Alonie]";
-				mes "Hurry up, my student.";
-				mes "I am so capricious";
-				mes "so I don't know what I will";
-				mes "give you as a reward!";
+				mes "รีบไปซะล่ะศิษย์รัก";
+				mes "ฉันเป็นคนเจ้าอารมณ์และเอาแน่เอานอนไม่ได้";
+				mes "เพราะงั้นฉันก็ไม่รู้เหมือนกันนะว่า";
+				mes "จะให้อะไรเป็นรางวัลแก่นายดี!";
 				changequest 1100,1102;
 				changequest 1101,1103;
 				set hat_1_2009,2;
@@ -916,39 +916,39 @@ alberta,120,206,3	script	Alonie#Solo_Play_Box	787,{
 			}
 		} else {
 			mes "[Alonie]";
-			mes "Hmm, it's not enough.";
-			mes "Playing alone is not that easy!";
-			mes "Go and kill";
-			mes "^FF000020 Zeroms, 20 Requiems^000000!";
+			mes "หืม ยังไม่พอนะ";
+			mes "การเล่นคนเดียวมันไม่ได้ง่ายขนาดนั้นหรอก!";
+			mes "ไปกำจัด";
+			mes "^FF000020 Zeroms และ 20 Requiems^000000 ซะ!";
 			close;
 		}
 	} else if (hat_1_2009 == 2) {
 		if (checkquest(1102,HUNTING) == 2 && checkquest(1103,HUNTING) == 2) {
 			mes "[Alonie]";
-			mes "You're really good at playing alone...!";
-			mes "Are you lonely?";
-			mes "Well, here is the next training";
-			mes "to be a playing-alone expert!";
+			mes "นายนี่เก่งเรื่องการเล่นคนเดียวจริงๆ เลยนะ...!";
+			mes "นายรู้สึกเหงาบ้างไหม?";
+			mes "เอาล่ะ นี่คือการฝึกขั้นต่อไป";
+			mes "เพื่อจะเป็นผู้เชี่ยวชาญการเล่นคนเดียว!";
 			next;
 			mes "[Alonie]";
-			mes "The special training, to play alone in Luoyang!";
-			mes "For make it";
-			mes "the fruitful training,";
-			mes "Get around and kill";
-			mes "^FF000020 Green Maidens and 50 Mao Guais^000000!";
+			mes "การฝึกพิเศษ คือการเล่นคนเดียวใน Luoyang!";
+			mes "เพื่อให้มันเป็น";
+			mes "การฝึกที่ได้ผลลัพธ์ที่งดงาม";
+			mes "จงออกไปกำจัด";
+			mes "^FF000020 Green Maidens และ 50 Mao Guais^000000!";
 			next;
-			switch(select("What Bullshit!:Let's go!")) {
+			switch(select("ไร้สาระน่า!:ลุยเลย!")) {
 			case 1:
 				mes "[Alonie]";
-				mes "Of course, I don't care.";
-				mes "Huhu, Yapyap!";
+				mes "แน่นอน ฉันไม่แคร์หรอก";
+				mes "หุหุ ยะปะยะป้า!";
 				close;
 			case 2:
 				mes "[Alonie]";
-				mes "Hurry up, my student.";
-				mes "I am so capricious";
-				mes "so I don't know what I will";
-				mes "give you as a reward!";
+				mes "รีบไปซะล่ะศิษย์รัก";
+				mes "ฉันเป็นคนเจ้าอารมณ์และเอาแน่เอานอนไม่ได้";
+				mes "เพราะงั้นฉันก็ไม่รู้เหมือนกันนะว่า";
+				mes "จะให้อะไรเป็นรางวัลแก่นายดี!";
 				changequest 1102,1108;
 				changequest 1103,1105;
 				set hat_1_2009,3;
@@ -956,39 +956,39 @@ alberta,120,206,3	script	Alonie#Solo_Play_Box	787,{
 			}
 		} else {
 			mes "[Alonie]";
-			mes "Hmm, It's not enough.";
-			mes "Playing alone is not that easy!";
-			mes "Go and kill";
-			mes "^FF000040 Arclouses and 30 High Orcs^000000!";
+			mes "หืม ยังไม่พอนะ";
+			mes "การเล่นคนเดียวมันไม่ได้ง่ายขนาดนั้นหรอก!";
+			mes "ไปกำจัด";
+			mes "^FF000040 Arclouses และ 30 High Orcs^000000 ซะ!";
 			close;
 		}
 	} else if (hat_1_2009 == 3) {
 		if (checkquest(1108,HUNTING) == 2 && checkquest(1105,HUNTING) == 2) {
 			mes "[Alonie]";
-			mes "Great job.";
-			mes "How lonely you are!";
-			mes "Okay, here is the last training";
-			mes "to be a real playing-alone expert!";
+			mes "ทำได้ดีมาก";
+			mes "นายนี่มันเหงาได้โล่จริงๆ!";
+			mes "โอเค นี่คือการฝึกขั้นสุดท้าย";
+			mes "เพื่อที่จะเป็นผู้เชี่ยวชาญการเล่นคนเดียวตัวจริง!";
 			next;
 			mes "[Alonie]";
-			mes "The special training, to play alone in Amatsu Dungeon!";
-			mes "For make it";
-			mes "the fruitful training,";
-			mes "Get around and kill";
-			mes "^FF000020 The Papers and 40 Firelock Soldiers^000000!";
+			mes "การฝึกพิเศษ คือการเล่นคนเดียวใน Amatsu Dungeon!";
+			mes "เพื่อให้มันเป็น";
+			mes "การฝึกที่ได้ผลลัพธ์ที่งดงาม";
+			mes "จงออกไปกำจัด";
+			mes "^FF000020 The Papers และ 40 Firelock Soldiers^000000!";
 			next;
-			switch(select("What Bullshit!:Let's go!")) {
+			switch(select("ไร้สาระน่า!:ลุยเลย!")) {
 			case 1:
 				mes "[Alonie]";
-				mes "Of course, I don't care.";
-				mes "huhu, Yapyap!";
+				mes "แน่นอน ฉันไม่แคร์หรอก";
+				mes "หุหุ ยะปะยะป้า!";
 				close;
 			case 2:
 				mes "[Alonie]";
-				mes "Hurry up, my student!";
-				mes "I am so capricious";
-				mes "so I don't know what I will";
-				mes "give you as a reward!";
+				mes "รีบไปซะล่ะศิษย์รัก!";
+				mes "ฉันเป็นคนเจ้าอารมณ์และเอาแน่เอานอนไม่ได้";
+				mes "เพราะงั้นฉันก็ไม่รู้เหมือนกันนะว่า";
+				mes "จะให้อะไรเป็นรางวัลแก่นายดี!";
 				changequest 1108,1106;
 				changequest 1105,1107;
 				set hat_1_2009,4;
@@ -996,30 +996,30 @@ alberta,120,206,3	script	Alonie#Solo_Play_Box	787,{
 			}
 		} else if (checkquest(1104,HUNTING) == 2 && checkquest(1105,HUNTING) == 2) {
 			mes "[Alonie]";
-			mes "Great job.";
-			mes "How lonely you are!";
-			mes "Okay, here is the last training";
-			mes "to be a real playing-alone expert!";
+			mes "ทำได้ดีมาก";
+			mes "นายนี่มันเหงาได้โล่จริงๆ!";
+			mes "โอเค นี่คือการฝึกขั้นสุดท้าย";
+			mes "เพื่อที่จะเป็นผู้เชี่ยวชาญการเล่นคนเดียวตัวจริง!";
 			next;
 			mes "[Alonie]";
-			mes "The special training, to play alone in Amatsu Dungeon!";
-			mes "For make it";
-			mes "the fruitful training,";
-			mes "Get around and kill";
-			mes "^FF000020 The Papers and 40 Firelock Soldiers^000000!";
+			mes "การฝึกพิเศษ คือการเล่นคนเดียวใน Amatsu Dungeon!";
+			mes "เพื่อให้มันเป็น";
+			mes "การฝึกที่ได้ผลลัพธ์ที่งดงาม";
+			mes "จงออกไปกำจัด";
+			mes "^FF000020 The Papers และ 40 Firelock Soldiers^000000!";
 			next;
-			switch(select("What Bullshit!:Let's go!")) {
+			switch(select("ไร้สาระน่า!:ลุยเลย!")) {
 			case 1:
 				mes "[Alonie]";
-				mes "Of course, I don't care.";
-				mes "huhu, Yapyap!";
+				mes "แน่นอน ฉันไม่แคร์หรอก";
+				mes "หุหุ ยะปะยะป้า!";
 				close;
 			case 2:
 				mes "[Alonie]";
-				mes "Hurry up, my student!";
-				mes "I am so capricious";
-				mes "so I don't know what I will";
-				mes "give you as a reward!";
+				mes "รีบไปซะล่ะศิษย์รัก!";
+				mes "ฉันเป็นคนเจ้าอารมณ์และเอาแน่เอานอนไม่ได้";
+				mes "เพราะงั้นฉันก็ไม่รู้เหมือนกันนะว่า";
+				mes "จะให้อะไรเป็นรางวัลแก่นายดี!";
 				changequest 1104,1106;
 				changequest 1105,1107;
 				set hat_1_2009,4;
@@ -1027,10 +1027,10 @@ alberta,120,206,3	script	Alonie#Solo_Play_Box	787,{
 			}
 		} else {
 			mes "[Alonie]";
-			mes "Hmm, It's not enough.";
-			mes "Playing alone is not that easy!";
-			mes "Go and kill";
-			mes "^FF000020 Green Maidens and 50 Mao Guais^000000!";
+			mes "หืม ยังไม่พอนะ";
+			mes "การเล่นคนเดียวมันไม่ได้ง่ายขนาดนั้นหรอก!";
+			mes "ไปกำจัด";
+			mes "^FF000020 Green Maidens และ 50 Mao Guais^000000 ซะ!";
 			if (checkquest(1104,HUNTING) == 1) {
 				erasequest 1104;
 				setquest 1108;
@@ -1040,67 +1040,67 @@ alberta,120,206,3	script	Alonie#Solo_Play_Box	787,{
 	} else if (hat_1_2009 == 4) {
 		if (MaxWeight - Weight < 300) {
 			mes "[Alonie]";
-			mes "Playing outside with this heavy bag?";
-			mes "You are the real";
-			mes "expert to play alone!";
+			mes "เล่นข้างนอกด้วยกระเป๋าที่หนักขนาดนี้เนี่ยนะ?";
+			mes "นายคือผู้เชี่ยวชาญ";
+			mes "การเล่นคนเดียวตัวจริงเลยล่ะ!";
 			next;
 			mes "[Alonie]";
-			mes "If you want the reward, empty your bag, first!";
+			mes "ถ้าอยากได้รางวัล ก็ไปทำให้กระเป๋าว่างก่อนสิ!";
 			close;
 		}
 		if (checkquest(1106,HUNTING) == 2 && checkquest(1107,HUNTING) == 2) {
 			mes "[Alonie]";
-			mes "Finally you did it.";
-			mes "My affection-lacked student!";
-			mes "This is the end of your training!";
+			mes "ในที่สุดนายก็ทำสำเร็จ";
+			mes "ศิษย์รักผู้ขาดความอบอุ่นของฉัน!";
+			mes "นี่คือจุดสิ้นสุดของการฝึกฝนของนายแล้ว!";
 			next;
 			if (gettime(DT_HOUR) < 12) {
-				set .@item,5448; //Solo_Play_Box1
-				set .@time$,"AM";
+				set .@item, 5448; //Solo_Play_Box1
+				set .@time$, "ช่วงเช้า (AM)";
 			} else {
-				set .@item,5449; //Solo_Play_Box2
-				set .@time$,"PM";
+				set .@item, 5449; //Solo_Play_Box2
+				set .@time$, "ช่วงบ่าย (PM)";
 			}
 			if (checkweight(.@item,1) == 0) {
 				mes "[Alonie]";
-				mes "Playing outside with this heavy bag?";
-				mes "You are the real";
-				mes "expert to play alone!";
+				mes "เล่นข้างนอกด้วยกระเป๋าที่หนักขนาดนี้เนี่ยนะ?";
+				mes "นายคือผู้เชี่ยวชาญ";
+				mes "การเล่นคนเดียวตัวจริงเลยล่ะ!";
 				next;
 				mes "[Alonie]";
-				mes "If you want the reward, empty your bag, first!";
+				mes "ถ้าอยากได้รางวัล ก็ไปทำให้กระเป๋าว่างก่อนสิ!";
 				close;
 			}
 			mes "[Alonie]";
-			mes "Here! The solo play box";
-			mes "the most effective at " + .@time$ + "!";
-			mes "After putting on this box,";
-			mes "you're the best lonely being!";
+			mes "นี่ไง! Solo Play Box";
+			mes "ที่ให้ประสิทธิภาพดีที่สุดใน" + .@time$ + "!";
+			mes "หลังจากสวมกล่องใบนี้แล้ว";
+			mes "นายจะเป็นสิ่งมีชีวิตที่เหงาได้เท่ที่สุดเลยล่ะ!";
 			next;
 			mes "[Alonie]";
 			emotion ET_BEST;
-			mes "Fight back your tears!";
-			mes "Huhu, Yapyap!";
+			mes "กลั้นน้ำตาเอาไว้ให้ได้ล่ะ!";
+			mes "หุหุ ยะปะยะป้า!";
 			completequest 1106;
 			completequest 1107;
-			set hat_1_2009,5;
-			getitem .@item,1;
+			set hat_1_2009, 5;
+			getitem .@item, 1;
 			close;
 		} else {
 			mes "[Alonie]";
-			mes "Hmmm, It's not enough.";
-			mes "Playing alone is not that easy thing!";
-			mes "Go and kill";
-			mes "^FF000020 The Papers and 40 Firelock Soldiers^000000!";
+			mes "หืมมม ยังไม่พอนะ";
+			mes "การเล่นคนเดียวมันไม่ใช่เรื่องง่ายๆ หรอก!";
+			mes "ไปกำจัด";
+			mes "^FF000020 The Papers และ 40 Firelock Soldiers^000000 ซะ!";
 			close;
 		}
 	} else if (hat_1_2009 == 5) {
 		mes "[Alonie]";
-		mes "I am the playing-alone expert.";
-		mes "Always trying my best to play alone!";
+		mes "ฉันคือผู้เชี่ยวชาญในการเล่นคนเดียว";
+		mes "พยายามเล่นคนเดียวให้ดีที่สุดอยู่เสมอ!";
 		next;
 		mes "[Alonie]";
-		mes "Huhu, Yapyap!";
+		mes "หุหุ ยะปะยะป้า!";
 		close;
 	}
 	end;
