@@ -21,64 +21,64 @@
 //============================================================
 geffen_in,144,166,4	script	Blacksmith	63,{
 	mes "[Blacksmith]";
-	mes "You've never heard of me? Why, I'm the Veteran Blacksmith of this land. I've spent 30 years in this hot and bloody hellfire, bending steel to my iron will!";
+	mes "คุณไม่เคยได้ยินชื่อเสียงของข้ามาก่อนรึ? โธ่เอ๋ย ข้านี่แหละคือช่างตีเหล็กระดับตำนานแห่งดินแดนนี้ ข้าใช้เวลากว่า 30 ปีในเปลวเพลิงที่ร้อนระอุและนองเลือดนี้ เพื่อดัดเหล็กกล้าด้วยเจตจำนงที่แข็งแกร่งดั่งเหล็กของข้า!";
 	next;
 	mes "[Blacksmith]";
-	mes "But...";
-	mes "I am growing older and my prowess begins to fade with age. So I've invented something for young, hot, upcoming Blacksmiths, in hopes that they too will master my craft...";
+	mes "แต่ว่า...";
+	mes "ข้าเริ่มแก่ตัวลงและความสามารถของข้าก็เริ่มจางหายไปตามกาลเวลา ข้าจึงได้ประดิษฐ์บางอย่างขึ้นมาสำหรับเหล่าช่างตีเหล็กหน้าใหม่ที่มีไฟแรง ด้วยความหวังว่าพวกคุณจะสามารถเชี่ยวชาญในงานฝีมือของข้าได้เช่นกัน...";
 	next;
-	switch(select("What is it?:...")) {
+	switch(select("มันคืออะไรเหรอ?:...")) {
 	case 1:
 		mes "[Blacksmith]";
-		mes "We Blacksmiths must always manipulate steel under extreme heat, and the hot air and melted metals are more than most people can stand.";
+		mes "พวกเราเหล่า Blacksmith ต้องจัดการกับเหล็กภายใต้ความร้อนที่สูงมากเสมอ และอากาศที่ร้อนระอุรวมถึงโลหะที่หลอมละลายนั้นมันเกินกว่าที่คนทั่วไปจะทนทานได้";
 		next;
 		mes "[Blacksmith]";
-		mes "For the sake of our craft, our beautiful, yet masculine faces are put at risk...";
+		mes "เพื่อเห็นแก่งานฝีมือของเรา ใบหน้าที่หล่อเหลาและดูแมนเข้มของเราจึงต้องตกอยู่ในความเสี่ยง...";
 		next;
 		mes "[Blacksmith]";
-		mes "But with this wonder of technology, there's no need to worry! Behold, the ^3355FFWelding Mask^000000 !!";
+		mes "แต่ด้วยสิ่งมหัศจรรย์ทางเทคโนโลยีนี้ คุณไม่จำเป็นต้องกังวลอีกต่อไป! จงดูนี่สิ ^3355FFWelding Mask^000000 !!";
 		next;
 		mes "[Blacksmith]";
-		mes "It works by covering your face with a fat metal plate. Truly, it's an item that everyone should want! If not yourself, it'd be a good idea to give this to a friend who is studying smithing.";
+		mes "มันทำงานโดยการปกปิดใบหน้าของคุณด้วยแผ่นโลหะหนา บอกตามตรงว่ามันเป็นไอเทมที่ทุกคนควรจะต้องการ! ถ้าไม่ใช่สำหรับตัวคุณเอง มันก็น่าจะเป็นความคิดที่ดีที่จะมอบสิ่งนี้ให้เพื่อนที่กำลังศึกษาด้านการตีเหล็กอยู่";
 		next;
 		mes "[Blacksmith]";
-		mes "So how about it ? If you give me ^2244FF50 Steel^000000 and ^4422FFonly 2000 Zeny^000000, I will make it for you right away~!!";
+		mes "แล้วว่าเป็นยังไงล่ะ? ถ้าคุณมอบ ^2244FF50 Steel^000000 และเงิน ^4422FFเพียง 2000 Zeny^000000 ให้ข้า ข้าจะทำมันให้คุณทันทีเลย~!!";
 		next;
-		switch(select("Hm... Not bad. Alright.:How does it work again?")) {
+		switch(select("อืม... ก็ไม่เลว ตกลงครับ/ค่ะ:มันทำงานยังไงนะขออีกรอบ?")) {
 		case 1:
 			if ((countitem(999) > 49) && (Zeny > 1999)){
 				mes "[Blacksmith]";
-				mes "Ah, I see that you appreciate a Blacksmith's work! Alright, I'll do it right away !!";
+				mes "อา ข้าเห็นแล้วว่าคุณเห็นคุณค่าในงานของ Blacksmith! ตกลง ข้าจะทำให้เดี๋ยวนี้เลย !!";
 				next;
-				delitem 999,50;  //Steel
+				delitem 999,50; //Steel
 				set Zeny,Zeny-2000;
 				getitem 2292,1; // Welding_Mask
 				mes "[Blacksmith]";
-				mes "Hahaha~! Make good use of that!";
+				mes "ฮ่าๆๆ~! ใช้มันให้คุ้มค่าล่ะ!";
 				close;
 			}
 			else {
 				mes "[Blacksmith]";
-				mes "Hmmm...";
-				mes "You do not have the items I require.";
+				mes "หืมมม...";
+				mes "คุณไม่มีไอเทมตามที่ข้าต้องการ";
 				next;
 				mes "[Blacksmith]";
-				mes "A common Blacksmith would interpret this as a sign of disrepect, but I will forgive you. Just don't forget what I need if you want me to make you this mask.";
+				mes "ถ้าเป็น Blacksmith ทั่วไปอาจจะมองว่านี่เป็นการไม่ให้เกียรติกัน แต่ข้าจะยกโทษให้คุณละกัน แต่อย่าลืมสิ่งที่ข้าต้องการล่ะถ้าคุณอยากจะให้ข้าทำหน้ากากนี้ให้";
 				close;
 			}
 		case 2:
 			mes "[Blacksmith]";
-			mes "The ^3355FFWelding Mask^000000 protects your face by covering it with a fat metal plate. This invention is the result of 30 years of endless toil at the hammer and anvil.";
+			mes "เจ้า ^3355FFWelding Mask^000000 นี้จะปกป้องใบหน้าของคุณด้วยแผ่นโลหะหนา การประดิษฐ์นี้เป็นผลมาจากความเหนื่อยยากตลอด 30 ปีที่อยู่หน้าค้อนและทั่งตีเหล็ก";
 			close;
 		}
 	case 2:
 		mes "[Blacksmith]";
-		mes "Ah...!";
-		mes "I guess this is the first time you've met a Blacksmith as great as me, and you're just speechless with awe. Please, take your time and speak up when you are ready.";
+		mes "อา...!";
+		mes "ข้าเดาว่านี่คงเป็นครั้งแรกที่คุณได้พบกับ Blacksmith ที่ยิ่งใหญ่ขนาดข้า จนคุณถึงกับพูดไม่ออกด้วยความเลื่อมใส ไม่ต้องรีบนะ ค่อยๆ ใช้เวลาแล้วพูดออกมาเมื่อคุณพร้อม";
 		next;
-		mes "^3355FFThis guy seems";
-		mes "a little full";
-		mes "of himself.^000000";
+		mes "^3355FFหมอนี่ดูท่าทางจะ";
+		mes "หลงตัวเอง";
+		mes "อยู่ไม่น้อยเลยนะ^000000";
 		close;
 	}
 }
@@ -87,41 +87,41 @@ geffen_in,144,166,4	script	Blacksmith	63,{
 //============================================================
 geffen_in,30,71,4	script	Eric	83,{
 	mes "[Eric]";
-	mes "Please listen";
-	mes "to my story";
-	mes "of my blessed";
-	mes "grandfather.";
+	mes "ได้โปรดฟัง";
+	mes "เรื่องราวของ";
+	mes "คุณปู่ผู้ล่วงลับ";
+	mes "ของผมหน่อยนะครับ";
 	next;
-	switch(select("Talk:Ask about Items needed:Manufacture:Quit")) {
+	switch(select("คุยเรื่องราว:ถามเรื่องไอเทมที่ต้องใช้:เริ่มการผลิต:ยกเลิก")) {
 	case 1:
 		mes "[Eric]";
-		mes "My Grandfather, who passed away a few years ago, was special to me. He always stayed with me, and took care of me. He was much better than my old man, who was always busy working.";
+		mes "คุณปู่ของผมที่จากไปเมื่อไม่กี่ปีที่แล้ว ท่านเป็นคนพิเศษสำหรับผมมาก ท่านอยู่กับผมเสมอและคอยดูแลผม ท่านดีกว่าพ่อของผมที่มักจะยุ่งอยู่กับการทำงานตลอดเวลาเสียอีก";
 		next;
 		mes "[Eric]";
-		mes "To me, Grandfather's library was always like a fantasy land where I could escape. I spent most of my time there.";
+		mes "สำหรับผม ห้องสมุดของคุณปู่เปรียบเสมือนดินแดนในจินตนาการที่ผมสามารถหลบหนีไปได้ ผมใช้เวลาส่วนใหญ่ของผมที่นั่นครับ";
 		next;
 		mes "[Eric]";
-		mes "I learned a lot of things from his books in the Library. Grandfather was interested in Alchemy and Music, and his Library was filled with many mysterious old books.";
+		mes "ผมได้เรียนรู้สิ่งต่างๆ มากมายจากหนังสือในห้องสมุดของท่าน คุณปู่สนใจในเรื่องการแปรธาตุและดนตรี และห้องสมุดของท่านก็เต็มไปด้วยหนังสือเก่าแก่ที่น่าพิศวงมากมาย";
 		next;
 		mes "[Eric]";
-		mes "One day...";
-		mes "As usual, I went to the Library and discovered an interesting schematic.";
+		mes "อยู่มาวันหนึ่ง...";
+		mes "เหมือนเช่นเคย ผมเข้าไปในห้องสมุดและได้พบกับแผนผังที่น่าสนใจเข้า";
 		next;
 		mes "[Eric]";
-		mes "It showed some instrument which looked like Ear Muffs that, when worn on the head, could transmit music or whispers to the ears through a thin wire.";
+		mes "มันแสดงให้เห็นเครื่องมือบางอย่างที่ดูเหมือน Ear Muffs ซึ่งเมื่อสวมไว้บนศีรษะ จะสามารถส่งผ่านเสียงดนตรีหรือเสียงกระซิบไปยังหูผ่านสายไฟเส้นเล็กๆ ได้";
 		next;
 		mes "[Eric]";
-		mes "I guess...";
-		mes "It is my grand father's unfinished work. I met a few Alchemists and asked them to produce it, but they rejected my offer...";
+		mes "ผมเดาว่า...";
+		mes "มันคืองานที่ยังทำไม่เสร็จของคุณปู่ ผมเคยไปพบ Alchemist สองสามคนเพื่อขอให้พวกเขาช่วยผลิตมันขึ้นมา แต่พวกเขาก็ปฏิเสธข้อเสนอของผม...";
 		next;
 		mes "[Eric]";
-		mes "In the end, I thought 'I've gotta make it myself.' So I researched for a few years, and now I fully understand how to make that thing. But, I could never gather the materials to make it!";
+		mes "สุดท้าย ผมเลยคิดว่า 'ฉันต้องทำมันด้วยตัวเอง' ผมจึงค้นคว้าอยู่หลายปี และตอนนี้ผมเข้าใจวิธีทำสิ่งนั้นอย่างถ่องแท้แล้ว แต่ปัญหาคือ ผมไม่สามารถรวบรวมวัตถุดิบเพื่อสร้างมันได้เลย!";
 		next;
 		mes "[Eric]";
-		mes "If I can get those articles, I would build it right away. If you are interested in my idea, would you bring them for me?";
+		mes "ถ้าผมได้สิ่งของเหล่านั้นมา ผมจะสร้างมันขึ้นมาทันที ถ้าคุณสนใจในไอเดียของผม คุณจะช่วยนำสิ่งของเหล่านั้นมาให้ผมได้ไหมครับ?";
 		next;
 		mes "[Eric]";
-		mes "All I wanna do is build this thing in honor of my grandfather and finish the work he started. If you ask me to keep it, I wouldn't mind.";
+		mes "ทั้งหมดที่ผมต้องการทำคือสร้างสิ่งนี้ขึ้นมาเพื่อเป็นเกียรติแก่คุณปู่และสานต่องานที่ท่านเริ่มไว้ให้สำเร็จ ถ้าคุณอยากจะได้มันไว้เอง ผมก็ไม่รังเกียจหรอกครับ";
 		close;
 	case 2:
 		mes "[Eric]";
@@ -129,7 +129,7 @@ geffen_in,30,71,4	script	Eric	83,{
 		mes "1 ^3355FFOridecon^000000";
 		mes "1 ^3355FFAlcohol^000000";
 		mes "1 ^3355FFCoal^000000";
-		mes "These are the things I need for Grandfather's masterpiece.";
+		mes "นี่คือสิ่งของที่ผมต้องการสำหรับผลงานชิ้นเอกของคุณปู่ครับ";
 		close;
 	case 3:
 		if ((countitem(999) > 39) && (countitem(984) > 0) && (countitem(970) > 0) && (countitem(1003) > 0)) {
@@ -138,28 +138,28 @@ geffen_in,30,71,4	script	Eric	83,{
 			delitem 970,1; //Alchol
 			delitem 1003,1; //Coal
 			getitem 5001,1; //Headset
-			mes "*Tap! Tap! Tap!*";
+			mes "*ตอก! ตอก! ตอก!*";
 			next;
 			mes "[Eric]";
-			mes "Thank you.";
-			mes "Because of you, I could accomplish my grandfather's wish. He would be happy if he looked down on me from Heaven.";
+			mes "ขอบคุณครับ";
+			mes "เพราะคุณแท้ๆ ผมถึงทำตามความปรารถนาของคุณปู่ได้สำเร็จ ท่านคงจะมีความสุขหากมองลงมาจากสวรรค์";
 			next;
 			mes "[Eric]";
-			mes "As I said, please take this. I am just proud that I can make this by myself.";
+			mes "อย่างที่ผมบอกไป ได้โปรดรับสิ่งนี้ไว้เถอะครับ ผมแค่ภูมิใจที่สามารถสร้างสิ่งนี้ขึ้นมาได้ด้วยตัวเอง";
 			close;
 		}
 		else {
 			mes "[Eric]";
-			mes "Thank you for trying to help me, but you didn't bring all the items I need. I think you will find them all soon though.";
+			mes "ขอบคุณที่พยายามช่วยผมนะครับ แต่คุณยังนำไอเทมมาไม่ครบตามที่ผมต้องการ แต่ผมคิดว่าคุณคงจะหามันมาจนครบได้ในเร็วๆ นี้แหละครับ";
 			close;
 		}
 	case 4:
 		mes "[Eric]";
-		mes "N-no?";
-		mes "Well...";
-		mes "You have your own";
-		mes "worries, I suppose.";
-		mes "Farewell.";
+		mes "มะ-ไม่เหรอครับ?";
+		mes "อืม...";
+		mes "คุณคงจะมีเรื่อง";
+		mes "ให้ต้องกังวลอยู่เหมือนกันสินะ";
+		mes "ลาก่อนครับ";
 		close;
 	}
 }
@@ -168,80 +168,77 @@ geffen_in,30,71,4	script	Eric	83,{
 //============================================================
 geffen,122,77,4	script	Nia#yagu	700,{
 	mes "[Nia]";
-	mes "Hello, I'm Nia, the fifth";
-	mes "disciple of Mawong, the";
-	mes "gaming mastermind. Now,";
-	mes "how would you like to play a";
-	mes "Number Match game with me?";
+	mes "สวัสดีค่ะ ฉันชื่อ Nia เป็น";
+	mes "ลูกศิษย์คนที่ห้าของ Mawong";
+	mes "เจ้าแห่งเกมการเล่น เอาล่ะค่ะ";
+	mes "คุณสนใจจะเล่นเกมทายตัวเลข";
+	mes "(Number Match) กับฉันไหมคะ?";
 	next;
-	switch(select("Number Match Game?:Practice Number Match:Play Number Match:Record Holder:Cancel")) {
+	switch(select("เกม Number Match คืออะไร?:ลองเล่นโหมดฝึกซ้อม:เริ่มเล่นจริง:ดูเจ้าของสถิติ:ยกเลิก")) {
 	case 1:
 		mes "[Nia]";
-		mes "Ah, well, the objective of";
-		mes "the Number Match game is to";
-		mes "guess the number I'm thinking";
-		mes "of. Of course, there are a few";
-		mes "rules that limit the numbers";
-		mes "that I can choose from.";
+		mes "อา สำหรับจุดประสงค์ของ";
+		mes "เกม Number Match คือการ";
+		mes "ทายตัวเลขที่ฉันกำลังคิดอยู่ค่ะ";
+		mes "แน่นอนว่ามีกฎบางอย่างที่จำกัด";
+		mes "ตัวเลขที่ฉันสามารถเลือกได้";
 		next;
 		mes "[Nia]";
-		mes "All the numbers that I make";
-		mes "up must be 3 digits, I can't";
-		mes "use 0 for any of the digits,";
-		mes "and I can't use the same";
-		mes "number for any of the digits";
-		mes "more than once.";
+		mes "ตัวเลขทั้งหมดที่ฉันตั้งขึ้น";
+		mes "ต้องมี 3 หลัก และฉันไม่สามารถ";
+		mes "ใช้เลข 0 ในหลักใดก็ได้ รวมถึง";
+		mes "ฉันไม่สามารถใช้ตัวเลขซ้ำกัน";
+		mes "ในแต่ละหลักมากกว่าหนึ่งครั้งค่ะ";
 		next;
 		mes "[Nia]";
-		mes "So, for example, I can't";
-		mes "use the numbers 103, 112,";
-		mes "252, or 701. Those numbers";
-		mes "either have a 0, or they use";
-		mes "the same number in the digits";
-		mes "more than once. Got it now?";
+		mes "ยกตัวอย่างเช่น ฉันไม่สามารถ";
+		mes "ใช้เลข 103, 112, 252, หรือ 701";
+		mes "ตัวเลขเหล่านั้นอาจจะมีเลข 0";
+		mes "หรือมีการใช้ตัวเลขซ้ำในหลักต่างๆ";
+		mes "มากกว่าหนึ่งครั้ง เข้าใจหรือยังคะ?";
 		next;
 		mes "[Nia]";
-		mes "Now, you only get 5 guesses,";
-		mes "and after each guess, I'll tell";
-		mes "you how many digits you guessed";
-		mes "correctly, followed by the number of correctly guessed digits in";
-		mes "the correct digit place.";
+		mes "เอาล่ะ คุณจะมีโอกาสทายแค่ 5 ครั้ง";
+		mes "และหลังจากทายแต่ละครั้ง ฉันจะ";
+		mes "บอกคุณว่ามีกี่หลักที่คุณทายถูก";
+		mes "ตามด้วยจำนวนหลักที่ทายตัวเลขถูก";
+		mes "และวางอยู่ในตำแหน่งที่ถูกต้องค่ะ";
 		next;
 		mes "[Nia]";
-		mes "For example, let's say the";
-		mes "number I come up with is 168.";
-		mes "If your first guess is 678, then you guessed two of the digits,";
-		mes "6 and 8, correctly. However,";
-		mes "only 8 is in the correct place.";
+		mes "ตัวอย่างเช่น สมมติว่าตัวเลข";
+		mes "ที่ฉันคิดไว้คือ 168";
+		mes "ถ้าคุณทายครั้งแรกเป็น 678 แสดงว่าคุณทายตัวเลขถูกสองหลักคือ";
+		mes "6 และ 8 แต่ว่ามีเพียงเลข 8 เท่านั้น";
+		mes "ที่อยู่ในตำแหน่งที่ถูกต้องค่ะ";
 		next;
 		mes "[Nia]";
-		mes "You know, it'd be a good idea";
-		mes "if you try the Practice Mode";
-		mes "first. Then, when you're more";
-		mes "comfortable, play the actual";
-		mes "Number Match game. Don't forget that speed counts for your score!";
+		mes "จริงสิ มันจะเป็นการดีนะถ้าคุณ";
+		mes "ลองเล่นโหมดฝึกซ้อมก่อน";
+		mes "จากนั้นพอเริ่มคล่องแล้ว ค่อย";
+		mes "มาเล่นเกม Number Match ของจริง";
+		mes "อย่าลืมว่าความเร็วมีผลต่อคะแนนด้วยนะ!";
 		next;
 		mes "[Nia]";
-		mes "Ah, if you happen to";
-		mes "make a new record in the";
-		mes "Number Match game, you'll";
-		mes "have your name recorded,";
-		mes "so don't miss this chance for";
-		mes "fame and maybe even fortune~";
+		mes "อ้อ ถ้าคุณบังเอิญทำสถิติ";
+		mes "ใหม่ในเกม Number Match ได้";
+		mes "ชื่อของคุณจะถูกบันทึกไว้ค่ะ";
+		mes "อย่าพลาดโอกาสที่จะมีชื่อเสียง";
+		mes "และอาจจะได้โชคลาภด้วยนะคะ~";
 		close;
 	case 2:
 		mes "[Nia]";
-		mes "Great, let's do a practice";
-		mes "Number Match game. Please";
-		mes "try to guess my number, okay?";
-		mes "If you want to cancel, then please enter a number greater than 1,000.";
+		mes "เยี่ยมเลย มาลองเล่นโหมดฝึกซ้อม";
+		mes "กันค่ะ โปรดลองทายตัวเลขของฉันดูนะ";
+		mes "ถ้าต้องการยกเลิก ให้ใส่ตัวเลข";
+		mes "ที่มากกว่า 1,000 ค่ะ";
 		set .@practice,1;
 		break;
 	case 3:
 		mes "[Nia]";
-		mes "Great, let's play Number Match!";
-		mes "You will have 5 chances to guess the number that I'm thinking of.";
-		mes "If you want to cancel, then please enter a number greater than 1,000.";
+		mes "เยี่ยมเลย มาเล่น Number Match กัน!";
+		mes "คุณจะมีโอกาส 5 ครั้งในการทายตัวเลขที่ฉันกำลังคิดอยู่ค่ะ";
+		mes "ถ้าต้องการยกเลิก ให้ใส่ตัวเลข";
+		mes "ที่มากกว่า 1,000 ค่ะ";
 		set .@practice,0;
 		break;
 	case 4:
@@ -252,18 +249,18 @@ geffen,122,77,4	script	Nia#yagu	700,{
 		set .@score_min, .@score_record / 60;
 		set .@score_sec, .@score_record % 60;
 		mes "[Nia]";
-		mes "^ff0000" + .@name_record$ + "^000000 is the";
-		mes "record holder for the Number";
-		mes "Match game with a time of";
-		mes "^ff0000" + .@score_min + " minutes, " + .@score_sec + " seconds^000000.";
+		mes "^ff0000" + .@name_record$ + "^000000 คือ";
+		mes "เจ้าของสถิติเกม Number Match";
+		mes "ด้วยเวลา";
+		mes "^ff0000" + .@score_min + " นาที " + .@score_sec + " วินาที^000000 ค่ะ";
 		close;
 	case 5:
 		mes "[Nia]";
-		mes "Take care of yourself,";
-		mes "adventurer. If you ever";
-		mes "feel like playing a Number";
-		mes "Match game, come and talk";
-		mes "to me, alright? See you~";
+		mes "ดูแลตัวเองด้วยนะคะ นักเดินทาง";
+		mes "ถ้าคุณรู้สึกอยากเล่นเกม";
+		mes "Number Match เมื่อไหร่ ก็แวะมา";
+		mes "คุยกับฉันได้เสมอเลยนะ ตกลงไหม?";
+		mes "แล้วเจอกันค่ะ~";
 		close;
 	}
 	next;
@@ -291,8 +288,8 @@ geffen,122,77,4	script	Nia#yagu	700,{
 		while(1) {
 			if (input(.@input,100,999) != 0) {
 				mes "[Nia]";
-				mes "You've canceled the";
-				mes "Number Match game.";
+				mes "คุณได้ยกเลิกการเล่น";
+				mes "เกม Number Match แล้วค่ะ";
 				close;
 			}
 			set .@input100, .@input / 100;
@@ -303,20 +300,19 @@ geffen,122,77,4	script	Nia#yagu	700,{
 					break;
 			}
 			mes "[Nia]";
-			mes "You entered one of the";
-			mes "digits as 0, or input the";
-			mes "same numerical value in";
-			mes "the digits more than once.";
-			mes "Please enter another guess.";
+			mes "คุณใส่ตัวเลขหลักใดหลักหนึ่ง";
+			mes "เป็นเลข 0 หรือใส่ตัวเลขซ้ำกัน";
+			mes "ในแต่ละหลักมากกว่าหนึ่งครั้งค่ะ";
+			mes "โปรดลองทายใหม่อีกครั้งนะคะ";
 			next;
 		}
 
 		set .@retry, .@retry+1;
 		mes "[Nia]";
 		mes "^ff0000"+strcharinfo(0)+"^000000,";
-		mes "your guess is ^0000ff"+.@input+"^000000.";
-		mes "Give me a moment to";
-		mes "come up with your results.";
+		mes "คุณทายว่า ^0000ff"+.@input+"^000000";
+		mes "รอสักครู่เพื่อให้ฉันคำนวณ";
+		mes "ผลลัพธ์ของคุณนะคะ";
 		next;
 
 		// Correct digits in correct locations.
@@ -340,12 +336,11 @@ geffen,122,77,4	script	Nia#yagu	700,{
 		if (.@strike == 3) {
 			if (.@practice) {
 				mes "[Nia]";
-				mes "Yes, the number that";
-				mes "I guessed was ^ff0000"+.@yagu+"^000000!";
-				mes "Congratulations, you";
-				mes "just won this practice";
-				mes "game! Now you should be";
-				mes "ready for the real thing~";
+				mes "ใช่แล้วค่ะ ตัวเลขที่";
+				mes "ฉันทายไว้คือ ^ff0000"+.@yagu+"^000000!";
+				mes "ยินดีด้วยนะคะ คุณเพิ่งชนะ";
+				mes "ในเกมโหมดฝึกซ้อมนี้! ตอนนี้";
+				mes "คุณน่าจะพร้อมสำหรับของจริงแล้วนะ~";
 				close;
 			} else {
 
@@ -367,61 +362,59 @@ geffen,122,77,4	script	Nia#yagu	700,{
 					set $050908_minus1_yagu$, strcharinfo(0);
 					set $050908_minus1_yagu, .@total_time;
 					mes "[Nia]";
-					mes "Great! You guessed";
-					mes "my number, which was";
-					mes "^ff0000" + .@yagu + "^000000. You finished in";
-					mes "^ff0000" + .@total_min + " minutes, " + .@total_sec + " seconds^000000,";
-					mes "breaking the previous record";
-					mes "of ^ff0000" + .@score_min + " minutes, " + .@score_sec + " seconds^000000.";
+					mes "สุดยอด! คุณทายตัวเลข";
+					mes "ของฉันถูก ซึ่งก็คือ";
+					mes "^ff0000" + .@yagu + "^000000 คุณทำเวลาไป";
+					mes "^ff0000" + .@total_min + " นาที " + .@total_sec + " วินาที^000000";
+					mes "ซึ่งทำลายสถิติเดิมที่ทำไว้";
+					mes "^ff0000" + .@score_min + " นาที " + .@score_sec + " วินาที^000000 ค่ะ";
 					next;
 					mes "[Nia]";
 					mes "^ff0000" + .@name_record$ + "^000000";
-					mes "set that old record,";
-					mes "but now you are the";
-					mes "new person to beat in the";
-					mes "Match Game. Congratulations";
-					mes "for setting a new record!";
+					mes "เป็นคนทำสถิติเก่าไว้นั้น";
+					mes "แต่ตอนนี้คุณคือคนใหม่ที่";
+					mes "ทุกคนต้องมาโค่นในเกม";
+					mes "Match Game นี้ ยินดีด้วยนะคะ";
+					mes "สำหรับการสร้างสถิติใหม่!";
 					close;
 				}
 				mes "[Nia]";
-				mes "Nice work, you guessed";
-				mes "my number! The answer, of";
-				mes "course, was ^ff0000" + .@yagu + "^000000. You managed";
-				mes "to guess this number correctly";
-				mes "in ^ff0000" + .@total_min + " minutes, " + .@total_sec + " seconds^000000.";
+				mes "ทำได้ดีมากค่ะ คุณทายตัวเลข";
+				mes "ของฉันถูก! คำตอบแน่นอนว่า";
+				mes "คือ ^ff0000" + .@yagu + "^000000 คุณสามารถ";
+				mes "ทายตัวเลขนี้ได้ถูกต้องในเวลา";
+				mes "^ff0000" + .@total_min + " นาที " + .@total_sec + " วินาที^000000 ค่ะ";
 				next;
 				mes "[Nia]";
-				mes "^ff0000" + .@name_record$ + "^000000 is";
-				mes "the current Number Match";
-				mes "record holder with a time";
-				mes "of ^ff0000" + .@score_min + " minutes, " + .@score_sec + " seconds^000000.";
-				mes "Good luck, and hopefully you";
-				mes "can break this record someday~";
+				mes "^ff0000" + .@name_record$ + "^000000 คือ";
+				mes "เจ้าของสถิติ Number Match";
+				mes "คนปัจจุบันด้วยเวลา";
+				mes "^ff0000" + .@score_min + " นาที " + .@score_sec + " วินาที^000000 ค่ะ";
+				mes "ขอให้โชคดี และหวังว่าคุณจะ";
+				mes "ทำลายสถิตินี้ได้ในสักวันนะคะ~";
 				close;
 			}
 		} else {
 			if (.@practice) {
 				mes "[Nia]";
-				mes "Your guess has ^ff0000" + .@ball + "^000000 of the";
-				mes "correct numbers. ^ff0000" + .@strike + "^000000 of the";
-				mes "digits in your guess have";
-				mes "the correct number in the";
-				mes "correct digit placement.";
-				mes "Alright, try it again~";
+				mes "ในคำทายของคุณมีตัวเลขที่ถูกอยู่ ^ff0000" + .@ball + "^000000 ตัว";
+				mes "และมีตัวเลข ^ff0000" + .@strike + "^000000 หลักที่คุณทาย";
+				mes "ตัวเลขได้ถูกต้องและวางอยู่";
+				mes "ในตำแหน่งที่ถูกต้องค่ะ";
+				mes "เอาล่ะ ลองใหม่อีกครั้งนะ~";
 				next;
 			} else {
 				mes "[Nia]";
-				mes "Your last guess had ^ff0000" + .@ball + "^000000";
-				mes "of the correct numbers,";
-				mes "and ^ff0000" + .@strike + "^000000 digits in your guess";
-				mes "had the correct number in";
-				mes "the correct digit placement.";
+				mes "คำทายล่าสุดของคุณมีตัวเลขที่ถูก ^ff0000" + .@ball + "^000000 ตัว";
+				mes "และมี ^ff0000" + .@strike + "^000000 หลักในคำทายของคุณ";
+				mes "ที่มีตัวเลขถูกต้องและวางอยู่ใน";
+				mes "ตำแหน่งหลักที่ถูกต้องค่ะ";
 				switch(.@retry) {
-					case 1: mes "You have four guesses left."; break;
-					case 2: mes "You have three guesses left."; break;
-					case 3: mes "You have two guesses left."; break;
-					case 4: mes "You only have one guess left..."; break;
-					case 5: mes "The answer was ^ff0000" + .@yagu + "^000000."; close;
+					case 1: mes "คุณเหลือโอกาสทายอีกสี่ครั้งค่ะ"; break;
+					case 2: mes "คุณเหลือโอกาสทายอีกสามครั้งค่ะ"; break;
+					case 3: mes "คุณเหลือโอกาสทายอีกสองครั้งค่ะ"; break;
+					case 4: mes "คุณเหลือโอกาสทายอีกแค่ครั้งเดียวแล้วนะคะ..."; break;
+					case 5: mes "คำตอบคือ ^ff0000" + .@yagu + "^000000 ค่ะ"; close;
 				}
 				next;
 			}
