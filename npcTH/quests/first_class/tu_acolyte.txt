@@ -30,95 +30,94 @@ prt_church,179,15,1	script	Priest Praupin	4_M_MINISTER,{
 	mes "[Priest Praupin]";
 	if(BaseJob != Job_Acolyte){
 		if(tu_acolyte01 == 25){
-			mes "Oh...!";
-			mes "You're "+strcharinfo(0)+" !";
-			mes "You've grown so much!";
-			mes "I'm truly proud of you.";
+			mes "โอ้...!";
+			mes "คุณคือ "+strcharinfo(0)+" นี่เอง !";
+			mes "คุณเติบโตขึ้นมากเลยนะ!";
+			mes "ฉันภูมิใจในตัวคุณจริงๆ";
 		} else {
-			mes "May you";
-			mes "always be blessed...";
+			mes "ขอให้คุณ";
+			mes "ได้รับพรเสมอไป...";
 		}
 		close;
 	}
 	switch(tu_acolyte01){
 	case 0:
-		mes "Welcome, little one.";
-		mes "Fate must have brought";
-		mes "us together so that we'd";
-		mes "meet today. It's nice to meet you.";
+		mes "ยินดีต้อนรับ เจ้าตัวน้อย";
+		mes "โชคชะตาต้องนำพา";
+		mes "พวกเราให้มาพบกัน";
+		mes "ในวันนี้แน่ๆ ยินดีที่ได้รู้จักนะ";
 		next;
 		mes "[Priest Praupin]";
-		mes "But I am concerned that";
-		mes "you may not know what to do";
-		mes "as an Acolyte from here on...";
+		mes "แต่ฉันกังวลว่า";
+		mes "คุณอาจจะไม่รู้ว่าต้องทำอย่างไร";
+		mes "ในฐานะ Acolyte ต่อจากนี้ไป...";
 		next;
-		switch(select("I'm not worried.:What should I do?")){
+		switch(select("ฉันไม่กังวลหรอกค่ะ/ครับ.:ฉันควรทำอย่างไรดี?")){
 		case 1:
 			mes "[Priest Praupin]";
-			mes "Seeing your eyes filled with such determination assures me. But if you run into any trouble, feel free to ask me for help. Good bye for now, blessed child.";
+			mes "การได้เห็นแววตาที่เต็มไปด้วยความมุ่งมั่นของคุณทำให้ฉันมั่นใจ แต่ถ้าคุณพบปัญหาใดๆ อย่าลังเลที่จะมาขอความช่วยเหลือจากฉัน ลาก่อนนะ เด็กน้อยผู้ได้รับพร";
 			close;
 		case 2:
 			mes "[Priest Praupin]";
-			mes "There is a convent northeast";
-			mes "of Prontera called the Saint Capitolina Convent. Go there and look for ^3131FF Sister Asthe^000000. She is a sweet and gentle soul who has";
-			mes "much to teach you.";
+			mes "มีคอนแวนต์อยู่ทางตะวันออกเฉียงเหนือ";
+			mes "ของ Prontera ที่เรียกว่า Saint Capitolina Convent ไปที่นั่นแล้วมองหา ^3131FF Sister Asthe ^000000 นะ เธอเป็นคนที่มีจิตใจอ่อนโยนและใจดี";
+			mes "ซึ่งมีหลายสิ่งที่จะสอนคุณ";
 			next;
 			mes "[Priest Praupin]";
-			mes "I look forward to seeing you";
-			mes "become a better Acolyte after learning from Sister Asthe's instructions. If you like, I can send you to the convent.";
+			mes "ฉันหวังว่าจะได้เห็นคุณ";
+			mes "กลายเป็น Acolyte ที่เก่งขึ้นหลังจากเรียนรู้จากคำแนะนำของ Sister Asthe หากคุณต้องการ ฉันสามารถส่งคุณไปที่คอนแวนต์ได้";
 			tu_acolyte01 = 1;
 			next;
-			if(select("Go to the convent.:Do not go.")==1){
+			if(select("ไปยังคอนแวนต์.:ไม่ไป.")==1){
 				mes "[Priest Praupin]";
-				mes "Please say hello";
-				mes "to Sister Asthe for me.";
-				mes "Have a safe trip, little one...";
+				mes "ฝากทักทาย";
+				mes "Sister Asthe แทนฉันด้วยนะ";
+				mes "ขอให้เดินทางโดยสวัสดิภาพ เจ้าตัวน้อย...";
 				close2;
 				warp "prt_monk",30,250;
 				end;
 			} else {
 				mes "[Priest Praupin]";
-				mes "If you'd like,";
-				mes "I can send you to";
-				mes "the convent at anytime.";
-				mes "Whenever you feel like";
-				mes "you need help, come to me.";
+				mes "ถ้าคุณต้องการ";
+				mes "ฉันสามารถส่งคุณไป";
+				mes "ที่คอนแวนต์ได้ทุกเมื่อ";
+				mes "เมื่อใดก็ตามที่คุณรู้สึกว่า";
+				mes "ต้องการความช่วยเหลือ มาหาฉันได้นะ";
 				close;
 			}
 		}
 	case 7:
-		mes "You're looking for someone";
-		mes "that handles things with Archers";
-		mes "at the church? Hmm...";
+		mes "คุณกำลังมองหาใครบางคน";
+		mes "ที่ดูแลเรื่องเกี่ยวกับ Archers";
+		mes "ที่โบสถ์งั้นเหรอ? อืม...";
 		next;
 		mes "[Priest Praupin]";
-		mes "Ah, he's away at the convent right now. If you want to meet Bishop Maugins in the Saint Capitolina Convent, travel ^3131FFnorth^000000, ^3131FFeast^000000, ^3131FFeast^000000 and then ^3131FFeast^000000 from Prontera.";
+		mes "อา เขาอยู่ที่คอนแวนต์ในตอนนี้ หากคุณต้องการพบ Bishop Maugins ที่ Saint Capitolina Convent ให้เดินทางไปทาง ^3131FFเหนือ^000000, ^3131FFตะวันออก^000000, ^3131FFตะวันออก^000000 และ ^3131FFตะวันออก^000000 จาก Prontera";
 		close;
 	case 22:
 		if(countitem(7181) > 0){// Receipt_01
 			emotion ET_SURPRISE;
-			mes "Oh my, you seem";
-			mes "to be growing quickly";
-			mes "into your role as an Acolyte.";
-			mes "Was the training difficult?";
+			mes "โอ้ คุณดูเหมือน";
+			mes "จะเติบโตขึ้นอย่างรวดเร็ว";
+			mes "ในบทบาทของ Acolyte นะ";
+			mes "การฝึกฝนมันยากไหม?";
 			next;
 			mes "[Priest Praupin]";
-			mes "You have something";
-			mes "to give me? Oh yes, the";
-			mes "receipt! I was wondering";
-			mes "what had happened. Thank";
-			mes "you for all of your trouble.";
+			mes "คุณมีบางอย่าง";
+			mes "จะให้ฉันงั้นเหรอ? โอ่ ใช่แล้ว";
+			mes "ใบเสร็จนี่เอง! ฉันกำลังสงสัยอยู่พอดี";
+			mes "ว่าเกิดอะไรขึ้น ขอบคุณมากนะ";
+			mes "สำหรับความลำบากทั้งหมดนี้";
 			next;
 			mes "[Priest Praupin]";
-			mes "Oh my, oh my.";
-			mes "It's been a while.";
-			mes "I wonder if there is";
-			mes "anything I can give you?";
+			mes "พับผ่าสิ ไม่ได้เจอกันนานเลย";
+			mes "ฉันสงสัยจังว่า";
+			mes "มีอะไรที่ฉันจะพอให้คุณได้บ้าง?";
 			next;
 			mes "[Priest Praupin]";
-			mes "How about one of these?";
-			mes "I know I'm not offering much,";
-			mes "but they were quite helpful to me when I was a young Acolyte like yourself.";
+			mes "รับสิ่งนี้ไปหน่อยเป็นไง?";
+			mes "ฉันรู้ว่ามันอาจจะไม่มากนัก";
+			mes "แต่มันเคยช่วยฉันได้มากตอนที่ฉันยังเป็น Acolyte ฝึกหัดเหมือนคุณ";
 			next;
 			if (select("Wand:Flail") == 1)
 				getitem 1604,1; //Wand
@@ -128,42 +127,42 @@ prt_church,179,15,1	script	Priest Praupin	4_M_MINISTER,{
 			tu_acolyte01 = 23;
 			close;
 		} else {
-			mes "You are such a good person,";
-			mes "a true child of the light. I hope that many others will benefit from the purity of your heart and mind.";
+			mes "คุณเป็นคนดีจริงๆ";
+			mes "เป็นบุตรแห่งแสงสว่างที่แท้จริง ฉันหวังว่าคนอื่นๆ จะได้รับประโยชน์จากความบริสุทธิ์ของหัวใจและจิตใจของคุณนะ";
 			close;
 		}
 	case 25:
-		mes "You must now find";
-		mes "your own path and become";
-		mes "a better Acolyte using";
-		mes "your own strength.";
+		mes "ตอนนี้คุณต้องค้นหา";
+		mes "เส้นทางของตัวเองและเป็น";
+		mes "Acolyte ที่ดีขึ้นโดยใช้";
+		mes "พละกำลังของคุณเอง";
 		next;
 		mes "[Priest Praupin]";
-		mes "I am worried, but I trust in your courage and affection. May you always be protected and may";
-		mes "you always be blessed.";
+		mes "ฉันอาจจะกังวล แต่ฉันเชื่อมั่นในความกล้าหาญและความรักของคุณ ขอให้คุณได้รับการปกป้องและขอให้";
+		mes "คุณได้รับพรเสมอไป";
 		close;
 	}
-	mes "Sister Asthe in the Saint Capitolina Convent is such";
-	mes "a sincere and loving person.";
+	mes "Sister Asthe ที่ Saint Capitolina Convent เป็นคน";
+	mes "ที่จริงใจและเปี่ยมไปด้วยความรักมาก";
 	next;
 	mes "[Priest Praupin]";
-	mes "Would you like me to send you to the convent so that you can learn from this wonderful teacher?";
+	mes "คุณอยากให้ฉันส่งคุณไปที่คอนแวนต์เพื่อที่คุณจะได้เรียนรู้จากอาจารย์ที่แสนวิเศษคนนี้ไหม?";
 	next;
-	if(select("Yes, please.:No thanks.")==1){
+	if(select("ได้ โปรดส่งฉันไป.:ไม่ล่ะ ขอบคุณ.")==1){
 		mes "[Priest Praupin]";
-		mes "Please say hello";
-		mes "to Sister Asthe for me.";
-		mes "Have a safe trip, little one...";
+		mes "ฝากทักทาย";
+		mes "Sister Asthe แทนฉันด้วยนะ";
+		mes "ขอให้เดินทางโดยสวัสดิภาพ เจ้าตัวน้อย...";
 		close2;
 		warp "prt_monk",30,250;
 		end;
 	} else {
 		mes "[Priest Praupin]";
-		mes "If you'd like,";
-		mes "I can send you to";
-		mes "the convent at anytime.";
-		mes "Whenever you feel like";
-		mes "you need help, come to me.";
+		mes "ถ้าคุณต้องการ";
+		mes "ฉันสามารถส่งคุณไป";
+		mes "ที่คอนแวนต์ได้ทุกเมื่อ";
+		mes "เมื่อใดก็ตามที่คุณรู้สึกว่า";
+		mes "ต้องการความช่วยเหลือ มาหาฉันได้นะ";
 	}
 	close;
 }
@@ -174,112 +173,112 @@ prt_monk,230,106,3	script	Asthe#tu	1_F_PRIEST,{
 	mes "[Asthe]";
 	switch(tu_acolyte01){
 	case 1:
-		mes "Oh my...";
-		mes "How did such";
-		mes "a young Acolyte";
-		mes "manage to reach";
-		mes "this remote place?";
+		mes "โอ้ ตายจริง...";
+		mes "Acolyte อายุน้อย";
+		mes "ขนาดนี้จัดการ";
+		mes "ตัวเองให้มาถึงสถานที่";
+		mes "ห่างไกลแบบนี้ได้อย่างไรกัน?";
 		next;
-		if(select("I came for fun.:Priest Praupin suggested I come here.")==1){
+		if(select("ฉันมาเที่ยวเล่นน่ะค่ะ/ครับ.:Priest Praupin แนะนำให้ฉันมาที่นี่ค่ะ/ครับ.")==1){
 			mes "[Asthe]";
-			mes "This convent is always quiet and peaceful. Sitting on the benches and feeling the almighty presense all around you is such a relaxing, meditative experience.";
+			mes "คอนแวนต์แห่งนี้เงียบสงบเสมอ การได้นั่งบนม้านั่งและสัมผัสถึงการมีอยู่ของผู้ทรงมหิทธิฤทธิ์รอบตัวคุณ เป็นประสบการณ์ที่ผ่อนคลายและเป็นการทำสมาธิที่ดีมากเลยล่ะ";
 		}
 		else {
 			mes "[Asthe]";
-			mes "Priest Praupin?";
-			mes "He's a very kind man";
-			mes "who's always thinking";
-			mes "about others. So he's";
-			mes "sent you to me for training?";
+			mes "Priest Praupin งั้นเหรอ?";
+			mes "เขาเป็นคนที่ใจดีมาก";
+			mes "และนึกถึงผู้อื่นเสมอ";
+			mes "เขาเลยส่งคุณมาหาฉัน";
+			mes "เพื่อรับการฝึกฝนสินะ?";
 			next;
 			mes "[Asthe]";
-			mes "Before we begin,";
-			mes "why don't you rest";
-			mes "for a little bit? You must be tired after traveling all the way here. When you're ready, just come";
-			mes "see me, okay?";
+			mes "ก่อนที่เราจะเริ่ม";
+			mes "ทำไมคุณไม่พักผ่อน";
+			mes "สักหน่อยล่ะ? คุณคงเหนื่อยจากการเดินทางไกลมาที่นี่ เมื่อคุณพร้อมแล้ว ก็แค่มา";
+			mes "หาฉันนะ ตกลงไหม?";
 			tu_acolyte01 = 2;
 		}
 		close;
 	case 2:
-		mes "This castle, Saint Capitolina Convent, is a beautiful and peaceful place that brings";
-		mes "calm to any heart.";
+		mes "ปราสาทแห่งนี้ Saint Capitolina Convent เป็นสถานที่ที่สวยงามและสงบสุข ซึ่งจะนำพา";
+		mes "ความสงบมาสู่จิตใจของทุกคน";
 		next;
 		mes "[Asthe]";
-		mes "Well then...";
-		mes "Shall we begin";
-		mes "the lessons?";
+		mes "เอาล่ะ...";
+		mes "พวกเรามาเริ่ม";
+		mes "บทเรียนกันเลยไหม?";
 		next;
 		mes "[Asthe]";
 		mes ""+strcharinfo(0)+",";
-		mes "have you thought about what kind of Acolyte you would like to become? It's very important that you plan for the future that you want.";
+		mes "คุณเคยคิดไหมว่าคุณอยากจะเป็น Acolyte แบบไหน? มันสำคัญมากที่คุณต้องวางแผนสำหรับอนาคตที่คุณต้องการ";
 		next;
-		if(select("One that supports others.:One that punishes evil.")==1){
+		if(select("สายสนับสนุนผู้อื่น.:สายลงทัณฑ์ความชั่วร้าย.")==1){
 			mes "[Asthe]";
-			mes "Ah, you have such";
-			mes "a generous heart!";
-			mes "Healing the pain of others and supporting your comrades in battle. You must have become an Acolyte in order to become a ^3131FFPriest^000000.";
+			mes "อา คุณมีหัวใจที่";
+			mes "กว้างขวางมากเลยนะ!";
+			mes "รักษาความเจ็บปวดของผู้อื่นและสนับสนุนสหายของคุณในการต่อสู้ คุณต้องมาเป็น Acolyte เพื่อที่จะเป็น ^3131FFPriest^000000 แน่ๆ";
 			next;
 			mes "[Asthe]";
-			mes "Priests have great supportive abilities and the power to battle evil. They use weapons to battle monsters like other fighters, but are ^3131FFforbidden from using blades^000000.";
+			mes "Priest มีความสามารถในการสนับสนุนที่ยอดเยี่ยมและมีพลังในการต่อสู้กับความชั่วร้าย พวกเขาใช้อาวุธในการต่อสู้กับมอนสเตอร์เหมือนนักสู้คนอื่น แต่ ^3131FFถูกสั่งห้ามไม่ให้ใช้ของมีคม^000000";
 		} else {
 			mes "[Asthe]";
-			mes "We call those who use their fists as tools of divine punishment Monks. They deliver our message";
-			mes "of love and peace in a more... colorful manner.";
+			mes "เราเรียกผู้ที่ใช้กำปั้นเป็นเครื่องมือในการลงทัณฑ์จากสวรรค์ว่า Monk พวกเขาถ่ายทอดข้อความ";
+			mes "แห่งความรักและสันติภาพในรูปแบบที่... มีสีสันกว่าเล็กน้อย";
 			next;
 			mes "[Asthe]";
-			mes "But the path towards becoming";
-			mes "a Monk will require great patience and self-restraint. You'll often see Monks training their minds";
-			mes "and bodies throughout the land.";
+			mes "แต่เส้นทางสู่การเป็น";
+			mes "Monk จะต้องใช้ความอดทนและการยับยั้งชั่งใจอย่างสูง คุณมักจะได้เห็น Monk ฝึกฝนจิตใจ";
+			mes "และร่างกายอยู่ทั่วดินแดน";
 		}
 		next;
 		mes "[Asthe]";
-		mes "Well, you still have a long way to go. The best thing to do would be to take your time planning and consider your future seriously.";
+		mes "อย่างไรก็ตาม คุณยังอีกไกลนัก สิ่งที่ดีที่สุดที่ควรทำคือใช้เวลาวางแผนและพิจารณาอนาคตของคุณอย่างจริงจัง";
 		next;
 		mes "[Asthe]";
-		mes "Now,";
+		mes "ทีนี้";
 		mes ""+strcharinfo(0)+"...";
-		mes "What do you think";
-		mes "is the most necessary";
-		mes "skill for an Acolyte?";
+		mes "คุณคิดว่าอะไร";
+		mes "คือทักษะที่จำเป็น";
+		mes "ที่สุดสำหรับ Acolyte?";
 		next;
 		switch(select("Heal:Aqua Benedicta:Teleport")){
 		case 1:
 			mes "[Asthe]";
-			mes "Ah, yes.";
-			mes "^3131FFHeal ^000000 is a basic, yet important skill for people like us. It can recover your own health as";
-			mes "well as that of others.";
+			mes "อา ใช่แล้ว";
+			mes "^3131FFHeal ^000000 เป็นทักษะพื้นฐานที่สำคัญสำหรับคนอย่างพวกเรา มันสามารถฟื้นฟูพลังชีวิตของตัวเองได้";
+			mes "เช่นเดียวกับผู้อื่น";
 			break;
 		case 2:
 			mes "[Asthe]";
-			mes "^3131FFAqua Benedicta^000000 blesses";
-			mes "normal water and turns it into Holy Water. This is an important skill, but not considered one of the essentials that all Acolytes";
-			mes "should know.";
+			mes "^3131FFAqua Benedicta^000000 จะให้พร";
+			mes "แก่น้ำธรรมดาและเปลี่ยนให้เป็นน้ำมนต์ (Holy Water) นี่เป็นทักษะที่สำคัญ แต่ไม่ถือว่าเป็นทักษะพื้นฐานที่ Acolyte ทุกคน";
+			mes "ควรจะต้องรู้";
 			next;
 			mes "[Asthe]";
-			mes "In my opinion,";
-			mes "^3131FFHeal^000000 is the most important";
-			mes "skill that an Acolyte can learn. It's a special ability that can save others and defeat the";
-			mes "monsters borne of darkness.";
+			mes "ในความคิดของฉัน";
+			mes "^3131FFHeal^000000 คือทักษะที่สำคัญที่สุด";
+			mes "ที่ Acolyte สามารถเรียนรู้ได้ มันเป็นความสามารถพิเศษที่ช่วยชีวิตผู้อื่นและกำจัด";
+			mes "เหล่ามอนสเตอร์ที่เกิดจากความมืดมิด";
 			break;
 		case 3:
 			mes "[Asthe]";
-			mes "^3131FFTeleport^000000 allows you to instantly move to another place. It is a great skill, but it's difficult to consider it necessary for all Acolytes.";
+			mes "^3131FFTeleport^000000 ช่วยให้คุณเคลื่อนที่ไปยังที่อื่นได้ทันที มันเป็นทักษะที่ยอดเยี่ยม แต่มันยากที่จะถือว่ามันจำเป็นสำหรับ Acolyte ทุกคน";
 			next;
 			mes "[Asthe]";
-			mes "In my opinion,";
-			mes "^3131FFHeal^000000 is the most important skill that an Acolyte can learn. It's a special ability that can save others and defeat the";
-			mes "monsters borne of darkness.";
+			mes "ในความคิดของฉัน";
+			mes "^3131FFHeal^000000 คือทักษะที่สำคัญที่สุดที่ Acolyte สามารถเรียนรู้ได้ มันเป็นความสามารถพิเศษที่ช่วยชีวิตผู้อื่นและกำจัด";
+			mes "เหล่ามอนสเตอร์ที่เกิดจากความมืดมิด";
 			break;
 		}
 		next;
 		mes "[Asthe]";
-		mes "You can use the holy power";
-		mes "in the Heal skill to attack Undead monsters (^3131FFShift + Heal^000000). The light of truth protects the righteous and destroys the wicked.";
+		mes "คุณสามารถใช้พลังศักดิ์สิทธิ์";
+		mes "ในทักษะ Heal เพื่อโจมตีมอนสเตอร์ประเภท Undead ได้ (^3131FFShift + Heal^000000) แสงแห่งความจริงจะปกป้องผู้ชอบธรรมและทำลายล้างผู้ชั่วร้าย";
 		next;
 		mes "[Asthe]";
-		mes "Just gather the";
-		mes "strength within your";
-		mes "heart into your hands...";
+		mes "เพียงแค่รวบรวม";
+		mes "ความแข็งแกร่งภายใน";
+		mes "หัวใจของคุณมาไว้ที่มือ...";
 		next;
 		mes "[Asthe]";
 		mes "HEAL !!";
@@ -291,37 +290,37 @@ prt_monk,230,106,3	script	Asthe#tu	1_F_PRIEST,{
 		}
 		close;
 	case 3:
-		mes "I would like to give you an assignment, but what do you";
-		mes "think? I believe learning the basics is your most important";
-		mes "task for now.";
+		mes "ฉันอยากจะมอบหมายงานให้คุณ แต่คุณ";
+		mes "คิดว่าอย่างไร? ฉันเชื่อว่าการเรียนรู้พื้นฐานคืองาน";
+		mes "ที่สำคัญที่สุดสำหรับคุณในตอนนี้";
 		next;
 		if(getskilllv("AL_HEAL") < 3){
 			mes "[Asthe]";
-			mes "Well then, learn";
-			mes "the Heal skill up to";
-			mes "^3131FFLevel 3 ^000000 and then";
-			mes "return to me.";
+			mes "เอาล่ะ เรียนรู้";
+			mes "ทักษะ Heal จนถึง";
+			mes "^3131FFLevel 3 ^000000 แล้วค่อย";
+			mes "กลับมาหาฉัน";
 			next;
 			mes "[Asthe]";
-			mes "Your strength is undeveloped,";
-			mes "so fight weaker monsters for now.";
-			mes "I will lend you a Mace from the church, so use it well and ^3131FFreturn it^000000 when you're done, alright?";
+			mes "พละกำลังของคุณยังไม่พัฒนา";
+			mes "ดังนั้นให้ต่อสู้กับมอนสเตอร์ที่อ่อนแอกว่าไปก่อนในตอนนี้";
+			mes "ฉันจะให้คุณยืม Mace จากโบสถ์ ดังนั้นจงใช้มันให้ดีและ ^3131FFนำมาคืน^000000 เมื่อคุณทำเสร็จแล้ว ตกลงไหม?";
 			next;
 			mes "[Asthe]";
-			mes "First ^0033FFstart fighting monsters around each town such as Prontera^000000. It'd be more convenient to fight the monsters here, but they might be too strong for you right now.";
+			mes "ก่อนอื่น ^0033FFให้เริ่มต่อสู้กับมอนสเตอร์รอบๆ เมืองอย่าง Prontera^000000 มันจะสะดวกกว่าถ้าสู้กับมอนสเตอร์แถวนี้ แต่มันอาจจะแข็งแกร่งเกินไปสำหรับคุณในตอนนี้";
 			next;
 			mes "[Asthe]";
-			mes "I'll change your Save Point so that you will respawn in the convent. Once you've learned Level 3 Heal, you can use a Butterfly Wing to return here.";
+			mes "ฉันจะเปลี่ยนจุด Save Point ของคุณเพื่อให้คุณมาเกิดใหม่ที่คอนแวนต์ เมื่อคุณเรียนรู้ Heal Level 3 แล้ว คุณสามารถใช้ Butterfly Wing เพื่อกลับมาที่นี่ได้";
 			next;
 			mes "[Asthe]";
-			mes "You can also speak to ^3131FFPriest Praupin at the Prontera Church^000000";
-			mes "and he will send you back here.";
-			mes "He takes special care in helping young Acolytes.";
+			mes "คุณยังสามารถคุยกับ ^3131FFPriest Praupin ที่ Prontera Church^000000";
+			mes "และเขาจะส่งคุณกลับมาที่นี่";
+			mes "เขาดูแลเป็นพิเศษในการช่วยเหลือ Acolyte อายุน้อย";
 			next;
 			mes "[Asthe]";
-			mes "Well then,";
-			mes "I hope you";
-			mes "have a safe trip.";
+			mes "เอาล่ะ";
+			mes "ฉันหวังว่าคุณจะ";
+			mes "เดินทางโดยสวัสดิภาพ";
 			tu_acolyte01 = 4;
 			getitem 1504,1; //Mace
 			getitem 602,1; //Wing_Of_Butterfly
@@ -329,47 +328,47 @@ prt_monk,230,106,3	script	Asthe#tu	1_F_PRIEST,{
 		}
 		else {
 			mes "[Asthe]";
-			mes "Oh my!";
-			mes "You've already";
-			mes "learned how to";
-			mes "properly use the";
-			mes "Heal skill. Very good!";
+			mes "โอ้ ตายจริง!";
+			mes "คุณได้";
+			mes "เรียนรู้วิธีการ";
+			mes "ใช้งานทักษะ Heal";
+			mes "อย่างถูกต้องแล้ว เก่งมาก!";
 			next;
 			mes "[Asthe]";
-			mes "I believe you're";
-			mes "ready for me to discuss";
-			mes "the next subject. Now,";
-			mes "let's see... Hmm...";
+			mes "ฉันเชื่อว่าคุณ";
+			mes "พร้อมแล้วที่จะให้ฉันคุย";
+			mes "ถึงบทเรียนต่อไป เอาล่ะ";
+			mes "มาดูกัน... อืม...";
 			tu_acolyte01 = 5;
 		}
 		close;
 	case 4:
 		if(getskilllv("AL_HEAL") > 2){
 			if(countitem(1504) > 0){// Mace
-				mes "Oh my!";
-				mes "Welcome back~";
-				mes "I see that you've";
-				mes "completed the assignment";
-				mes "already. Good work!";
+				mes "โอ้ ตายจริง!";
+				mes "ยินดีต้อนรับกลับมา~";
+				mes "ฉันเห็นว่าคุณ";
+				mes "ทำงานที่มอบหมาย";
+				mes "เสร็จเรียบร้อยแล้ว งานดีมาก!";
 				next;
 				mes "[Asthe]";
-				mes "Now, I would like to have the Mace back, if you don't mind.";
-				mes "By any chance, do you carry ^FF0000any other Mace with an elemental Property^000000?";
-				mes "If so, please store the mace somewhere first.";
-				mes "I am afraid that my sight is too bad to distinguish the difference...Hoho.";
+				mes "ตอนนี้ ฉันอยากจะขอ Mace คืนหน่อย ถ้าคุณไม่ว่าอะไร";
+				mes "แล้วคุณได้พก ^FF0000Mace อื่นๆ ที่มีคุณสมบัติธาตุ^000000 มาด้วยหรือเปล่า?";
+				mes "ถ้าใช่ ได้โปรดเก็บมันไว้ที่อื่นก่อนนะ";
+				mes "ฉันเกรงว่าสายตาของฉันจะแย่เกินกว่าจะแยกความแตกต่างได้... โฮะโฮะ";
 				next;
 				mes "[Asthe]";
-				mes "Would you like me to take the mace away from your inventory now?";
+				mes "คุณต้องการให้ฉันนำ Mace ออกจากกระเป๋าของคุณตอนนี้เลยไหม?";
 				next;
-				if(select("Sure.:Let me check again.") == 2) {
+				if(select("แน่นอนค่ะ/ครับ.:ขอกลับไปตรวจสอบอีกครั้ง.") == 2) {
 					mes "[Asthe]";
-					mes "Okay, no problem.";
-					mes "Please make sure that you do not carry any ^FF0000Mace with an elemental Property^000000.";
+					mes "ตกลง ไม่มีปัญหา";
+					mes "โปรดตรวจสอบให้แน่ใจว่าคุณไม่ได้พก ^FF0000Mace ที่มีคุณสมบัติธาตุ^000000 มาด้วย";
 					close;
 				}
 				mes "[Asthe]";
-				mes "Thank you so much.";
-				mes "You have returned the Mace.";
+				mes "ขอบคุณมากนะ";
+				mes "คุณได้คืน Mace แล้ว";
 				emotion ET_SMILE;
 				tu_acolyte01 = 5;
 				delitem 1504,1; //Mace
@@ -380,304 +379,304 @@ prt_monk,230,106,3	script	Asthe#tu	1_F_PRIEST,{
 				specialeffect2 EF_CONE;
 			}
 			else {
-				mes "Oh my!";
-				mes "Welcome back~";
-				mes "I see that you've";
-				mes "completed the assignment.";
+				mes "โอ้ ตายจริง!";
+				mes "ยินดีต้อนรับกลับมา~";
+				mes "ฉันเห็นว่าคุณ";
+				mes "ทำงานที่มอบหมายเสร็จสิ้นแล้ว";
 				next;
 				mes "[Asthe]";
-				mes "But you must have forgotten the Mace I've lent you. Would you bring it back so that I can return it to the church?";
+				mes "แต่คุณคงลืม Mace ที่ฉันให้ยืมไปแน่ๆ ช่วยนำมันกลับมาให้ฉันได้ไหม เพื่อที่ฉันจะได้นำมันไปคืนที่โบสถ์?";
 			}
 			close;
 		}
-		mes "Are you having";
-		mes "a hard time training";
-		mes "to learn Level 3 Heal?";
-		mes "Please don't be discouraged.";
+		mes "คุณกำลัง";
+		mes "ลำบากในการฝึก";
+		mes "เพื่อเรียนรู้ Heal Level 3 งั้นเหรอ?";
+		mes "อย่าเพิ่งท้อแท้ไปเลยนะ";
 		next;
 		mes "[Asthe]";
-		mes "The basics are crucial to gaining mastery of the more advanced skills that you'll learn later. Just keep in mind that all of your efforts and suffering will become glory";
-		mes "and happiness.";
+		mes "พื้นฐานเป็นสิ่งสำคัญอย่างยิ่งในการจะช่ำชองทักษะขั้นสูงที่คุณจะได้เรียนรู้ในภายหลัง แค่จำไว้ว่าความพยายามและความทุกข์ยากทั้งหมดของคุณจะกลายเป็นเกียรติยศ";
+		mes "และความสุขในที่สุด";
 		close;
 	case 5:
-		mes "I suppose I can tell you a little more about the Acolyte job. You already know that Novices must train and go to Prontera Church to become an Acolyte, your First Job Class.";
+		mes "ฉันคิดว่าฉันสามารถบอกคุณเกี่ยวกับอาชีพ Acolyte ได้มากกว่านี้อีกหน่อย คุณรู้อยู่แล้วว่า Novice ต้องฝึกฝนและไปที่ Prontera Church เพื่อเป็น Acolyte ซึ่งเป็นอาชีพคลาสแรกของคุณ";
 		next;
 		mes "[Asthe]";
-		mes "After you become an Acolyte";
-		mes "at ^3131FFJob Level 40^000000, you will have the opportunity to change to a more specialized Second Job Class.";
+		mes "หลังจากที่คุณเป็น Acolyte";
+		mes "จนถึง ^3131FFJob Level 40^000000 คุณจะมีโอกาสเปลี่ยนเป็นอาชีพคลาสที่สองที่เฉพาะทางมากขึ้น";
 		next;
 		mes "[Asthe]";
-		mes "When changing";
-		mes "to the Second Jobs,";
-		mes "Acolytes can become ^3131FFPriests^000000,";
-		mes "the apostles of mercy, or ^3131FFMonks^000000";
-		mes "who carry out God's wrath.";
+		mes "เมื่อเปลี่ยน";
+		mes "เป็นอาชีพคลาสที่สอง";
+		mes "Acolyte สามารถเป็น ^3131FFPriest^000000,";
+		mes "อัครสาวกแห่งความเมตตา หรือ ^3131FFMonk^000000";
+		mes "ผู้ดำเนินการตามพระพิโรธของพระเจ้า";
 		next;
 		mes "[Asthe]";
-		mes "Priests and Monks can";
-		mes "change to the Transcendent Class";
-		mes "by visiting Valkyrie in Valhalla. Priests can become ^3131FFHigh Priests^000000 and Monks can become ^3131FFChampions^000000.";
+		mes "Priest และ Monk สามารถ";
+		mes "เปลี่ยนเป็น High Class ได้";
+		mes "โดยการไปพบ Valkyrie ใน Valhalla โดย Priest จะกลายเป็น ^3131FFHigh Priest^000000 และ Monk จะกลายเป็น ^3131FFChampion^000000";
 		next;
 		mes "[Asthe]";
-		mes "Did you undertand all that?";
-		mes "Ho ho ho~ No need to try to remember everything right now. You'll get the hang of it.";
+		mes "คุณเข้าใจทั้งหมดนั่นไหม?";
+		mes "โฮะ โฮะ โฮะ~ ไม่จำเป็นต้องจำทุกอย่างในตอนนี้หรอก เดี๋ยวคุณก็จะเริ่มคุ้นเคยกับมันเอง";
 		tu_acolyte01 = 6;
 		close;
 	case 6:
 		mes ""+strcharinfo(0)+",";
-		mes "I just received this letter, but it seems to have been a mistake.";
-		mes "It's actually addressed";
-		mes "to Priest Gardron.";
+		mes "ฉันเพิ่งได้รับจดหมายฉบับนี้มา แต่ดูเหมือนว่าจะเกิดความผิดพลาดขึ้น";
+		mes "จริงๆ แล้วมันจ่าหน้าซองถึง";
+		mes "Priest Gardron น่ะ";
 		next;
 		mes "[Asthe]";
-		mes "However, I'm a little busy with";
-		mes "my work right now, so would you deliver this to Priest Gardron in the next building for me?";
+		mes "อย่างไรก็ตาม ตอนนี้ฉันยุ่งอยู่กับ";
+		mes "งานของฉันนิดหน่อย คุณช่วยนำไปส่งให้ Priest Gardron ที่ตึกข้างๆ แทนฉันหน่อยได้ไหม?";
 		tu_acolyte01 = 7;
 		getitem 7148,1; //Mother_Letter
 		close;
 	case 7:
-		mes "Would you please";
-		mes "deliver this letter";
-		mes "to Priest Gardron for me?";
-		mes "You can find him in the";
-		mes "building nearby.";
+		mes "คุณช่วยกรุณา";
+		mes "นำจดหมายฉบับนี้";
+		mes "ไปส่งให้ Priest Gardron แทนฉันทีนะ?";
+		mes "คุณสามารถพบเขาได้ใน";
+		mes "ตึกที่อยู่ใกล้ๆ นี้ล่ะ";
 		close;
 	case 9:
-		mes "You went to "+(checkre(0)?"Prontera":"Payon")+" on behalf of the convent for Priest Gardron? That must have been tough...";
+		mes "คุณไปที่ "+(checkre(0)?"Prontera":"Payon")+" ในนามของคอนแวนต์เพื่อ Priest Gardron งั้นเหรอ? นั่นคงจะลำบากแย่เลย...";
 		next;
 		mes "[Asthe]";
-		mes "Blessing!";
+		mes "จงได้รับพร!";
 		npcskill "AL_BLESSING",10,0,0;
 		next;
 		mes "[Asthe]";
-		mes "Now I'm going to teach you";
-		mes "about ^FF0000Blessing^000000. This is a holy skill that delivers the blessing of God. Blessing will temporarily raise ^3131FFSTR^000000,^3131FFINT^000000,^3131FFDEX^000000 and remove ^3131FFCurse^000000.";
+		mes "ตอนนี้ฉันจะสอนคุณ";
+		mes "เกี่ยวกับ ^FF0000Blessing^000000 ทักษะศักดิ์สิทธิ์นี้จะมอบพรอันศักดิ์สิทธิ์จากพระเจ้า Blessing จะช่วยเพิ่มค่า ^3131FFSTR^000000,^3131FFINT^000000,^3131FFDEX^000000 ชั่วคราว และแก้สถานะ ^3131FFCurse^000000";
 		next;
 		mes "[Asthe]";
-		mes "Like Heal,";
-		mes "Blessing can be used";
-		mes "against Undead monsters.";
+		mes "เช่นเดียวกับ Heal";
+		mes "Blessing สามารถใช้";
+		mes "ใส่พวกมอนสเตอร์ Undead ได้";
 		mes "(^3131FFSHIFT + Blessing^000000)";
-		mes "Blessing will actually";
-		mes "place a curse on the Undead.";
+		mes "จริงๆ แล้ว Blessing จะ";
+		mes "ทำให้พวก Undead ติดคำสาปแทน";
 		next;
 		mes "[Asthe]";
-		mes "Blessing can be learned after you learn Level 5 ^3131FFDivine Protection^000000. That's the skill that will increase your resistance to damage from Undead and Demon monsters.";
+		mes "Blessing สามารถเรียนรู้ได้หลังจากที่คุณเรียนรู้ Level 5 ^3131FFDivine Protection^000000 นั่นคือทักษะที่จะเพิ่มความต้านทานต่อความเสียหายจากมอนสเตอร์ Undead และ Demon";
 		next;
 		mes "[Asthe]";
-		mes "Being able to serve God and";
-		mes "bless others with his glory is a great honor. Well, that's all for this lesson.";
+		mes "การได้ปรนนิบัติพระเจ้าและ";
+		mes "ให้พรผู้อื่นด้วยสิริรุ่งโรจน์ของพระองค์เป็นเกียรติอย่างยิ่ง เอาล่ะ จบแล้วสำหรับบทเรียนนี้";
 		next;
 		mes "[Asthe]";
-		mes "Oh, yes...!";
-		mes "In the cemetary northwest";
-		mes "of here, I've been taking care of a lost dog. Right now, it's time to feed him.";
+		mes "โอ้ ใช่แล้ว...!";
+		mes "ในสุสานทางทิศตะวันตกเฉียงเหนือ";
+		mes "ของที่นี่ ฉันได้คอยดูแลสุนัขหลงทางตัวหนึ่ง ตอนนี้ได้เวลาให้อาหารเขาแล้วล่ะ";
 		next;
 		mes "[Asthe]";
-		mes "Sorry for the hassle,";
-		mes "but would you go and";
-		mes "feed the dog for me?";
+		mes "ขอโทษที่ต้องรบกวนนะ";
+		mes "แต่คุณช่วยไป";
+		mes "ให้อาหารสุนัขตัวนั้นแทนฉันทีได้ไหม?";
 		next;
-		mes "^3355FFSister Asthe gives";
-		mes "you some dog food.^000000";
+		mes "^3355FFSister Asthe มอบ";
+		mes "อาหารสุนัขให้คุณ^000000";
 		tu_acolyte01 = 10;
 		close;
 	case 11:
 	case 12:
-		mes "How to expel";
-		mes "an evil spirit?";
-		mes "Why, it's the same";
-		mes "way that you would";
-		mes "remove a curse...";
+		mes "วิธีการขับไล่";
+		mes "วิญญาณชั่วร้ายงั้นเหรอ?";
+		mes "อ้าว มันก็คือ";
+		mes "วิธีเดียวกับที่คุณจะ";
+		mes "แก้คำสาปนั่นแหละ...";
 		next;
 		mes "[Asthe]";
-		mes "Ah...";
-		mes "I believe";
-		mes "this is a test";
-		mes "given to you by God.";
+		mes "อา...";
+		mes "ฉันเชื่อว่า";
+		mes "นี่คือบททดสอบ";
+		mes "ที่พระเจ้าประทานให้คุณ";
 		next;
 		mes "[Asthe]";
-		mes "You already";
-		mes "know the answer.";
-		mes "Think carefully";
-		mes "and it will come.";
+		mes "คุณรู้";
+		mes "คำตอบอยู่แล้ว";
+		mes "ลองคิดดูให้ดี";
+		mes "แล้วมันจะนึกออกเอง";
 		tu_acolyte01 = 12;
 		close;
 	case 13:
-		mes "You remember that";
-		mes "you can learn Divine";
-		mes "Protection after learning";
-		mes "Blessing, right?";
+		mes "คุณจำได้ใช่ไหมว่า";
+		mes "คุณสามารถเรียนรู้ Divine";
+		mes "Protection ได้หลังจากเรียนรู้";
+		mes "Blessing แล้ว?";
 		next;
 		mes "[Asthe]";
-		mes "When you open the";
-		mes "Skill Window, you'll see that you can also learn ^3131FFDemon Bane^000000 and ^3131FFAngelus^000000, depending on your level of Divine Protection.";
+		mes "เมื่อคุณเปิด";
+		mes "Skill Window คุณจะเห็นว่าคุณสามารถเรียนรู้ ^3131FFDemon Bane^000000 และ ^3131FFAngelus^000000 ได้ด้วย ขึ้นอยู่กับเลเวลของ Divine Protection ของคุณ";
 		next;
 		mes "[Asthe]";
-		mes "Now, ^3131FFDemon Bane^000000 increases your Attack Strength against Undead and Demon monsters, so it's useful for those of us who serve God by expelling evil.";
+		mes "ทีนี้ ^3131FFDemon Bane^000000 จะเพิ่มพลังโจมตีของคุณต่อมอนสเตอร์ Undead และ Demon ดังนั้นมันจึงมีประโยชน์สำหรับพวกเราที่ปรนนิบัติพระเจ้าโดยการขับไล่สิ่งชั่วร้าย";
 		next;
 		mes "[Asthe]";
-		mes "Once you have learned Level 3 Demon Bane, you can learn ^3131FFSignum Crucis^000000 which decreases the defense of the targeted Undead or Ghost monster.";
+		mes "เมื่อคุณเรียนรู้ Level 3 Demon Bane แล้ว คุณจะสามารถเรียนรู้ ^3131FFSignum Crucis^000000 ซึ่งจะลดพลังป้องกันของมอนสเตอร์ Undead หรือ Ghost ที่เป็นเป้าหมาย";
 		specialeffect EF_SIGNUM;
 		next;
 		mes "[Asthe]";
-		mes "^3131FFAngelus^000000 increases the defense in your party, including yourself. It is affected by the VIT stat, so the higher your VIT, the better it works.";
+		mes "^3131FFAngelus^000000 จะเพิ่มพลังป้องกันให้สมาชิกในปาร์ตี้ รวมถึงตัวคุณเองด้วย มันได้รับผลจากค่า VIT ดังนั้นยิ่ง VIT ของคุณสูงขึ้น ผลของมันก็จะยิ่งดีขึ้น";
 		specialeffect EF_ANGELUS;
 		next;
 		mes "[Asthe]";
-		mes "That's about it";
-		mes "for Divine Protection.";
-		mes "Let's take a break before";
-		mes "we proceed to the next lesson,";
-		mes "alright? I'll be right here.";
+		mes "นั่นคือทั้งหมด";
+		mes "สำหรับ Divine Protection";
+		mes "พักสักหน่อยก่อนที่";
+		mes "เราจะเริ่มบทเรียนถัดไป";
+		mes "ตกลงไหม? ฉันจะอยู่ตรงนี้ล่ะ";
 		tu_acolyte01 = 14;
 		close;
 	case 14:
-		mes "Now it's time";
-		mes "for your next lesson.";
-		mes "Let's talk about the";
-		mes "^3131FFIncrease AGI^000000 skill which is";
-		mes "part of the Heal skill tree.";
+		mes "ตอนนี้ถึงเวลา";
+		mes "สำหรับบทเรียนถัดไปแล้ว";
+		mes "มาคุยกันเรื่องทักษะ";
+		mes "^3131FFIncrease AGI^000000 ซึ่งเป็น";
+		mes "ส่วนหนึ่งของสายทักษะ Heal";
 		next;
 		mes "[Asthe]";
-		mes "You can learn Increase AGI after you learn Level 3 ^3131FFHeal^000000. True to its name, Increase AGI temporarily increases the ^3131FFagility (AGI)^000000 of its target.";
+		mes "คุณสามารถเรียนรู้ Increase AGI ได้หลังจากเรียนรู้ Level 3 ^3131FFHeal^000000 ตามชื่อของมันเลย Increase AGI จะช่วยเพิ่มค่า ^3131FFagility (AGI)^000000 ให้กับเป้าหมายชั่วคราว";
 		next;
 		mes "[Asthe]";
 		mes "Increase AGI";
-		mes "also increases";
+		mes "ยังเพิ่มค่า";
 		mes "^3131FFDodge Rate^000000,";
 		mes "^3131FFAttack Speed^000000,";
-		mes "and ^3131FFMovement Speed^000000.";
+		mes "และ ^3131FFMovement Speed^000000";
 		next;
 		mes "[Asthe]";
-		mes "Try it for";
-		mes "yourself, okay?";
+		mes "ลองใช้มันด้วย";
+		mes "ตัวเองดูนะ ตกลงไหม?";
 		tu_acolyte01 = 15;
 		npcskill "AL_INCAGI",10,0,0;
 		close;
 	case 15:
-		mes "Once you learn";
-		mes "Level 1 Increase AGI,";
-		mes "you can begin learning";
-		mes "^3131FFDecrease AGI^000000.";
+		mes "เมื่อคุณเรียนรู้";
+		mes "Level 1 Increase AGI";
+		mes "คุณจะเริ่มเรียนรู้";
+		mes "^3131FFDecrease AGI^000000 ได้";
 		next;
 		mes "[Asthe]";
-		mes "Like you'd expect, Decrease AGI slows down enemies, reducing their agility, Movement Speed, Dodge Rate and Attack Speed. Its effect is the exact reverse of Increase AGI.";
+		mes "อย่างที่คุณคาดไว้ Decrease AGI จะทำให้ศัตรูช้าลง ลดค่า agility, Movement Speed, Dodge Rate และ Attack Speed ผลของมันคือขั้วตรงข้ามของ Increase AGI เลยล่ะ";
 		tu_acolyte01 = 15;
 		next;
 		mes "[Asthe]";
-		mes "The last skill in the Heal skill tree is ^3131FFCure^000000. You can learn Cure after learning Level 2 Heal.";
+		mes "ทักษะสุดท้ายในสายทักษะ Heal คือ ^3131FFCure^000000 คุณสามารถเรียนรู้ Cure ได้หลังจากเรียนรู้ Level 2 Heal";
 		next;
 		mes "[Asthe]";
-		mes "Cure can remove irregular";
-		mes "statuses like ^3131FFSilence^000000, ^3131FFCurse^000000,";
-		mes "and ^3131FFStone Curse^000000. When used on Undead monsters, Cure will";
-		mes "actually curse them.";
+		mes "Cure สามารถแก้สถานะผิดปกติ";
+		mes "อย่าง ^3131FFSilence^000000, ^3131FFCurse^000000,";
+		mes "และ ^3131FFStone Curse^000000 ได้ เมื่อใช้กับมอนสเตอร์ Undead ทักษะ Cure จะ";
+		mes "ทำให้พวกมันติดคำสาปแทน";
 		specialeffect EF_CURE;
 		next;
 		mes "[Asthe]";
-		mes "For now, don't forget that the Increase AGI, Decrease AGI and";
-		mes "Cure skills can only be learned";
-		mes "by learning the Heal skill.";
+		mes "สำหรับตอนนี้ อย่าลืมว่าทักษะ Increase AGI, Decrease AGI และ";
+		mes "Cure สามารถเรียนรู้ได้";
+		mes "จากการเรียนรู้ทักษะ Heal เท่านั้น";
 		tu_acolyte01 = 16;
 		close;
 	case 16:
-		mes "You've been learning";
-		mes "really quickly. I'm glad";
-		mes "that we've gotten to this";
-		mes "point already.";
+		mes "คุณเรียนรู้ได้";
+		mes "รวดเร็วมากจริงๆ ฉันดีใจ";
+		mes "ที่เรามาถึงจุดนี้";
+		mes "กันแล้วนะ";
 		next;
 		mes "[Asthe]";
-		mes "Once you become";
-		mes "an Acolyte, you can";
-		mes "learn the ^3131FFRuwach^000000 skill.";
+		mes "เมื่อคุณกลายเป็น";
+		mes "Acolyte คุณสามารถ";
+		mes "เรียนรู้ทักษะ ^3131FFRuwach^000000 ได้";
 		next;
 		mes "[Asthe]";
-		mes "Ruwach is used to detect ^3131FFhidden enemies^000000. Mages have a similar skill called Sight, but only it can only detect enemies. Ruwach will simultaneously detect and";
-		mes "damage hidden enemies.";
+		mes "Ruwach ใช้เพื่อตรวจหา ^3131FFศัตรูที่ซ่อนตัวอยู่^000000 พวก Mages จะมีทักษะคล้ายกันที่ชื่อว่า Sight แต่มันทำได้แค่ตรวจหาเท่านั้น Ruwach จะตรวจหาและ";
+		mes "สร้างความเสียหายให้ศัตรูที่ซ่อนอยู่ไปพร้อมๆ กัน";
 		specialeffect EF_RUWACH;
 		next;
 		mes "[Asthe]";
-		mes "After you have learned Ruwach,";
-		mes "you can learn ^3131FFTeleport^000000. Teleport will instantly send you to a random spot on the map or to your Save Point.";
+		mes "หลังจากเรียนรู้ Ruwach แล้ว";
+		mes "คุณจะสามารถเรียนรู้ ^3131FFTeleport^000000 ได้ Teleport จะส่งคุณไปยังจุดสุ่มบนแผนที่หรือจุด Save Point ของคุณทันที";
 		next;
 		mes "[Asthe]";
-		mes "After learning Level 2 Teleport, you can learn ^3131FFWarp Portal^000000 which will allow you to warp to a Memo Point, or saved destination, by consuming ^FF00001 Blue Gemstone^000000.";
+		mes "หลังจากเรียนรู้ Level 2 Teleport คุณจะสามารถเรียนรู้ ^3131FFWarp Portal^000000 ซึ่งช่วยให้คุณวาร์ปไปยังจุด Memo หรือจุดหมายที่บันทึกไว้ โดยใช้ ^FF00001 Blue Gemstone^000000";
 		next;
 		mes "[Asthe]";
-		mes "Once you have mastered Warp Portal you can ^3131FFremember three Memo Points^000000. You can't save Memo Points in most fields or dungeons, but you can use the ^FF0000/memo^000000 command in";
-		mes "towns and certain fields.";
+		mes "เมื่อคุณชำนาญ Warp Portal แล้ว คุณสามารถ ^3131FFจำจุด Memo ได้สามจุด^000000 คุณไม่สามารถบันทึกจุด Memo ในแมพฟิลด์หรือดันเจี้ยนส่วนใหญ่ได้ แต่คุณสามารถใช้คำสั่ง ^FF0000/memo^000000 ใน";
+		mes "เมืองและแมพฟิลด์บางแห่ง";
 		next;
 		mes "[Asthe]";
-		mes "Was that confusing?";
-		mes "Just think that Teleport";
-		mes "and Warp Portal allow servants";
-		mes "of God to move swiftly from place";
-		mes "to place.";
+		mes "มันน่าสับสนไหม?";
+		mes "แค่คิดว่า Teleport";
+		mes "และ Warp Portal ช่วยให้ผู้รับใช้";
+		mes "ของพระเจ้าเคลื่อนที่ได้อย่างรวดเร็ว";
+		mes "จากที่หนึ่งไปยังอีกที่หนึ่ง";
 		next;
 		mes "[Asthe]";
-		mes "I have my home and the convent saved as Memo Points, so I simply warp back and forth between work and home.";
+		mes "ฉันบันทึกจุดที่บ้านและคอนแวนต์ไว้เป็นจุด Memo ดังนั้นฉันเลยวาร์ปไปมาเพื่อมาทำงานและกลับบ้านได้ง่ายๆ เลยล่ะ";
 		next;
 		mes "[Asthe]";
-		mes "Now...";
-		mes "The last skill";
-		mes "of the Ruwach tree";
-		mes "is called ^3131FFPneuma^000000.";
+		mes "ทีนี้...";
+		mes "ทักษะสุดท้าย";
+		mes "ในสาย Ruwach";
+		mes "คือ ^3131FFPneuma^000000";
 		next;
 		mes "[Asthe]";
-		mes "Pneuma shields characters";
-		mes "within a 3*3 block, or a 9 cell area, from ^FF0000long range attacks^000000. If you party with Archers or other Bow users, be careful since you might accidentally block their attacks.";
+		mes "Pneuma จะปกป้องตัวละคร";
+		mes "ในระยะ 3*3 ช่อง หรือพื้นที่ 9 ช่อง จาก ^FF0000การโจมตีระยะไกล^000000 หากคุณปาร์ตี้กับพวก Archer หรือผู้ใช้ธนูคนอื่น จงระวังเพราะคุณอาจจะไปบล็อกการโจมตีของพวกเขาโดยไม่ได้ตั้งใจ";
 		specialeffect2 EF_PNEUMA;
 		next;
 		mes "[Asthe]";
-		mes "There are some Undead monsters";
-		mes "that can attack from a distance, so protecting yourself with Pneuma and attacking with Heal would be a good strategy.";
+		mes "มีมอนสเตอร์ Undead บางชนิด";
+		mes "ที่สามารถโจมตีจากระยะไกลได้ ดังนั้นการป้องกันตัวเองด้วย Pneuma และโจมตีด้วย Heal จึงเป็นกลยุทธ์ที่ดี";
 		next;
 		mes "[Asthe]";
-		mes "Now, we've covered some";
-		mes "pretty complicated material in this lesson. Would you like to hear this again?";
+		mes "เอาล่ะ เราได้ครอบคลุมเนื้อหา";
+		mes "ที่ค่อนข้างซับซ้อนในบทเรียนนี้ คุณอยากจะฟังอีกรอบไหม?";
 		next;
-		if(select("Listen again.:Move to the next topic.")==1){
+		if(select("ฟังอีกรอบค่ะ/ครับ.:ไปยังหัวข้อถัดไป.")==1){
 			mes "[Asthe]";
-			mes "Alright,";
-			mes "give me a moment";
-			mes "to catch my breath~";
+			mes "ตกลงจ้ะ";
+			mes "ขอเวลาให้ฉันได้";
+			mes "พักหายใจสักครู่เถอะนะ~";
 		} else {
 			mes "[Asthe]";
-			mes "Ho ho!";
-			mes "What a smart Acolyte~";
+			mes "โฮะ โฮะ!";
+			mes "ช่างเป็น Acolyte ที่ฉลาดจริงๆ~";
 			tu_acolyte01 = 17;
 		}
 		close;
 	case 17:
-		mes "Oh dear...!";
-		mes "All of these things were delivered to me by accident! And some of these packages were supposed to";
-		mes "be sent to the Prontera Sanctuary!";
+		mes "โอ้ ตายจริง...!";
+		mes "สิ่งของพวกนี้ทั้งหมดถูกส่งมาให้ฉันโดยผิดพลาดน่ะ! และพัสดุบางอย่างควรจะ";
+		mes "ถูกส่งไปที่ Prontera Sanctuary!";
 		next;
 		mes "[Asthe]";
-		mes "Would you do another favor for me again? Please distribute the mail here and to Prontera Church since";
-		mes "I simply don't have the time.";
+		mes "คุณจะช่วยฉันอีกแรงได้ไหม? โปรดช่วยแจกจ่ายจดหมายที่นี่และที่ Prontera Church ที";
+		mes "เพราะฉันไม่มีเวลาเลยจริงๆ";
 		next;
 		mes "[Asthe]";
-		mes "It seems that some of these are more urgent than others, so would you please deliver them in a certain order?";
+		mes "ดูเหมือนว่าบางชิ้นจะเร่งด่วนกว่าชิ้นอื่นๆ คุณช่วยนำไปส่งตามลำดับที่กำหนดหน่อยได้ไหม?";
 		next;
 		mes "[Asthe]";
-		mes "The first is a package to a worker in the north. His name is ^3131FFVeiner^000000. The next delivery is for ^3131FFHedrick^000000, who's near the convent entrance.";
+		mes "ชิ้นแรกคือพัสดุสำหรับคนงานที่อยู่ทางเหนือ เขาชื่อว่า ^3131FFVeiner^000000 ชิ้นถัดไปสำหรับ ^3131FFHedrick^000000 ที่อยู่ใกล้ทางเข้าคอนแวนต์";
 		next;
 		mes "[Asthe]";
-		mes "The third one is from the Blacksmith Guild to the ^3131FFBlacksmith^000000 who makes weapons and armor for Monks. The fourth delivery goes to ^3131FFPriest Karven^000000 in the next building.";
+		mes "ชิ้นที่สามมาจาก Blacksmith Guild ส่งถึง ^3131FFBlacksmith^000000 ผู้สร้างอาวุธและชุดเกราะให้พวก Monk ชิ้นที่สี่ส่งถึง ^3131FFPriest Karven^000000 ที่ตึกข้างๆ";
 		next;
 		mes "[Asthe]";
-		mes "Oh, and this last delivery is a receipt for ^3131FFPriest Praupin^000000, the priest who told you about me.";
-		mes "Here you go, the letters and packages...";
+		mes "อ้อ และชิ้นสุดท้ายคือใบเสร็จสำหรับ ^3131FFPriest Praupin^000000 บาทหลวงที่แนะนำคุณให้มารู้จักฉันไงล่ะ";
+		mes "นี่จ้ะ จดหมายและพัสดุ...";
 		if(MaxWeight - Weight < 2430){
 			next;
 			mes "[Asthe]";
-			mes "Oh...!";
-			mes "You don't seem to";
-			mes "have enough space";
-			mes "to carry everything.";
-			mes "Why don't you put some of your things in Kafra Storage first?";
+			mes "โอ้...!";
+			mes "ดูเหมือนคุณจะ";
+			mes "ไม่มีพื้นที่พอ";
+			mes "ที่จะพกพาทุกอย่างไป";
+			mes "ทำไมคุณไม่เอาของบางอย่างไปฝากไว้ใน Kafra Storage ก่อนล่ะ?";
 		} else {
 			tu_acolyte01 = 18;
 			getitem 7183,1; //Sister_Letter
@@ -691,57 +690,56 @@ prt_monk,230,106,3	script	Asthe#tu	1_F_PRIEST,{
 	case 20:
 	case 21:
 	case 22:
-		mes "Okay, don't";
-		mes "forget the order";
-		mes "in which you need";
-		mes "to deliver the letters";
-		mes "and packages. That's";
-		mes "very important.";
+		mes "ตกลง อย่า";
+		mes "ลืมลำดับ";
+		mes "ที่คุณต้อง";
+		mes "ส่งจดหมาย";
+		mes "และพัสดุนะ นั่น";
+		mes "สำคัญมากเลยล่ะ";
 		next;
 		mes "[Asthe]";
-		mes "The first is a package to a worker in the north. His name is ^3131FFVeiner^000000. The next delivery is for ^3131FFHedrick^000000, who's near the convent entrance.";
+		mes "ชิ้นแรกคือพัสดุสำหรับคนงานที่อยู่ทางเหนือ เขาชื่อว่า ^3131FFVeiner^000000 ชิ้นถัดไปสำหรับ ^3131FFHedrick^000000 ที่อยู่ใกล้ทางเข้าคอนแวนต์";
 		next;
 		mes "[Asthe]";
-		mes "The third one is from the Blacksmith Guild to the ^3131FFBlacksmith^000000 who makes weapons and armor for Monks. The fourth delivery goes to ^3131FFPriest Karven^000000 in the next building.";
+		mes "ชิ้นที่สามมาจาก Blacksmith Guild ส่งถึง ^3131FFBlacksmith^000000 ผู้สร้างอาวุธและชุดเกราะให้พวก Monk ชิ้นที่สี่ส่งถึง ^3131FFPriest Karven^000000 ที่ตึกข้างๆ";
 		next;
 		mes "[Asthe]";
-		mes "Oh, and this last delivery is a receipt for ^3131FFPriest Praupin^000000, the priest who told you about me. Alright, have a safe trip~";
+		mes "อ้อ และชิ้นสุดท้ายคือใบเสร็จสำหรับ ^3131FFPriest Praupin^000000 บาทหลวงที่แนะนำคุณมาหาฉัน เอาล่ะ ขอให้เดินทางปลอดภัยนะ~";
 		close;
 	case 23:
-		mes "Ah, you're finishing";
-		mes "making all of those deliveries? Thank you very much! How was it meeting Priest Praupin after such";
-		mes "a long time?";
+		mes "อา คุณส่งของพวกนั้นเสร็จสิ้นแล้วเหรอ? ขอบคุณมากเลยนะ! เป็นอย่างไรบ้างที่ได้พบ Priest Praupin หลังจาก";
+		mes "ไม่ได้เจอกันตั้งนาน?";
 		next;
 		mes "[Asthe]";
-		mes "We make relationships with other people throughout our lives and our memories of them live on in our hearts, you know.";
+		mes "เราร้างความสัมพันธ์กับผู้คนมากมายตลอดชีวิต และความทรงจำเกี่ยวกับพวกเขาก็จะคงอยู่ในใจของเราเสมอนะ";
 		next;
 		mes "[Asthe]";
-		mes "When you feel lonely, let those memories shine through your dark gloom. Just thinking about the people you care about can heal your emotional wounds when times are rough.";
+		mes "เมื่อคุณรู้สึกโดดเดี่ยว จงให้ความทรงจำเหล่านั้นส่องประกายผ่านความมืดมิดในใจ แค่คิดถึงคนที่คุณห่วงใยก็สามารถเยียวยาบาดแผลทางใจได้ในยามที่ยากลำบาก";
 		next;
 		mes "[Asthe]";
-		mes "Those who can cherish the present can form lasting relationships. They're the first who will embrace happiness in the future. Remember that.";
+		mes "ผู้ที่หวงแหนปัจจุบันจะสามารถสร้างความสัมพันธ์ที่ยั่งยืนได้ พวกเขาจะเป็นกลุ่มแรกที่จะโอบกอดความสุขในอนาคต จำไว้นะ";
 		next;
 		mes "[Asthe]";
-		mes "I get the feeling that you have become a good friend to Priest Praupin. I hope that Priest Praupin continues to be a good friend to you as well.";
+		mes "ฉันรู้สึกว่าคุณได้กลายเป็นเพื่อนที่ดีต่อ Priest Praupin ฉันหวังว่า Priest Praupin จะยังคงเป็นเพื่อนที่ดีต่อคุณเช่นกัน";
 		next;
 		mes "[Asthe]";
-		mes "Alright then,";
-		mes "the next time we";
-		mes "meet, I will give";
-		mes "you my final lesson.";
+		mes "เอาล่ะ";
+		mes "ในครั้งหน้าที่";
+		mes "เราพบกัน ฉันจะ";
+		mes "มอบบทเรียนสุดท้ายให้คุณ";
 		tu_acolyte01 = 24;
 		close;
 	case 24:
-		mes "The last skill";
-		mes "I will teach you";
-		mes "about is ^3131FFAqua Benedicta^000000.";
+		mes "ทักษะสุดท้าย";
+		mes "ที่ฉันจะสอนคุณ";
+		mes "คือ ^3131FFAqua Benedicta^000000";
 		next;
 		mes "[Asthe]";
-		mes "Water is so commonplace that";
-		mes "we forget that it's at the center of nature. It's very basic, but essential.";
+		mes "น้ำเป็นสิ่งที่หาได้ทั่วไปจน";
+		mes "เราลืมไปว่ามันคือศูนย์กลางของธรรมชาติ มันเป็นพื้นฐานที่สำคัญมากเลยล่ะ";
 		next;
 		mes "[Asthe]";
-		mes "Place the water into a cup like so and focus all of your holy energy like this... And then...";
+		mes "เทน้ำใส่ถ้วยแบบนี้และรวบรวมพลังศักดิ์สิทธิ์ทั้งหมดของคุณแบบนี้... และจากนั้น...";
 		next;
 		specialeffect EF_AQUA;
 		mes "[Asthe]";
@@ -749,20 +747,20 @@ prt_monk,230,106,3	script	Asthe#tu	1_F_PRIEST,{
 		mes "Benedicta!";
 		next;
 		mes "[Asthe]";
-		mes "This is how you create ^3131FFHoly Water^000000. Remember that your ^3131FFfeet must be touching water^000000 in order to use the Aqua Benedicta skill.";
+		mes "นี่คือวิธีการสร้าง ^3131FF Holy Water ^000000 จำไว้ว่า ^3131FF เท้าของคุณต้องสัมผัสน้ำ ^000000 เพื่อที่จะใช้ทักษะ Aqua Benedicta นะ";
 		next;
 		mes "[Asthe]";
-		mes "Ho ho~";
-		mes "Well, that's all";
-		mes "I have to teach you.";
-		mes "It may have been rough,";
-		mes "but you did a good job.";
+		mes "โฮะ โฮะ~";
+		mes "เอาล่ะ นั่นคือทั้งหมด";
+		mes "ที่ฉันจะสอนคุณ";
+		mes "มันอาจจะหนักหนาหน่อย";
+		mes "แต่คุณทำได้ดีมากเลยล่ะ";
 		next;
 		mes "[Asthe]";
-		mes "Oh! If you go back to the Prontera Sanctuary, I believe you can learn a secret skill. It couldn't hurt to stop by and check.";
+		mes "โอ้! ถ้าคุณกลับไปที่ Prontera Sanctuary ฉันเชื่อว่าคุณจะได้เรียนรู้ทักษะลับบางอย่าง ไม่เสียหายหรอกที่จะลองไปตรวจสอบดูนะ";
 		next;
 		mes "[Asthe]";
-		mes "Well, please don't forget what I've taught you. I hope you look back with fondness at our time together amongst these beautiful flowers. May God bless you~";
+		mes "เอาล่ะ ได้โปรดอย่าลืมสิ่งที่ฉันสอนคุณไปล่ะ ฉันหวังว่าคุณจะมองย้อนกลับมาด้วยความสุขในเวลาที่เราได้อยู่ร่วมกันท่ามกลางดอกไม้ที่สวยงามเหล่านี้ ขอให้พระเจ้าอวยพรคุณนะ~";
 		tu_acolyte01 = 25;
 		if (checkre(3))
 			getexp 1000,1000;
@@ -771,17 +769,17 @@ prt_monk,230,106,3	script	Asthe#tu	1_F_PRIEST,{
 		specialeffect2 EF_CONE;
 		close;
 	}
-	mes "If you get into an";
-	mes "argument with someone,";
-	mes "talk it over while sharing";
-	mes "a nice, warm meal.";
+	mes "ถ้าคุณเกิด";
+	mes "ทะเลาะกับใครบางคน";
+	mes "ลองคุยกันไปพร้อมกับแบ่งปัน";
+	mes "มื้ออาหารที่อร่อยและอบอุ่นดูสิ";
 	next;
 	mes "[Asthe]";
-	mes "With such warm delicious food in your body, all angry feelings will melt away like the snow.";
+	mes "ด้วยอาหารที่อร่อยและอบอุ่นในร่างกายของคุณ ความรู้สึกโกรธเคืองทั้งหมดจะละลายหายไปเหมือนกับหิมะเลยล่ะ";
 	next;
 	mes "[Asthe]";
-	mes "I'm not joking!";
-	mes "If you happen to get in a fight with someone close to you, this might help. I'm speaking from life experience, you know.";
+	mes "ฉันไม่ได้ล้อเล่นนะ!";
+	mes "หากคุณเกิดทะเลาะกับคนที่สนิทด้วยล่ะก็ วิธีนี้อาจจะช่วยได้ ฉันพูดจากประสบการณ์ชีวิตเลยนะเนี่ย";
 	close;
 }
 
@@ -792,54 +790,54 @@ monk_in,18,38,6	script	Priest Gardron#tu	4_M_MINISTER,{
 	mes "[Priest Gardron]";
 	if(tu_acolyte01 == 7){
 		if(countitem(7148) >= 1){// Mother_Letter
-			mes "Hmm...?";
-			mes "What's that?";
-			mes "You have something for me?";
+			mes "หืม...?";
+			mes "นั่นอะไรน่ะ?";
+			mes "คุณมีบางอย่างจะให้ผมงั้นเหรอ?";
 			next;
 			emotion ET_SURPRISE;
 			mes "[Priest Gardron]";
-			mes "Oh! This is a letter from my mother back home. Thank you for bringing this to me, young Acolyte.";
+			mes "โอ้! นี่มันจดหมายจากแม่ของผมที่บ้านเกิดนี่นา ขอบคุณมากที่นำมาให้ผมนะ Acolyte น้อย";
 			next;
 			mes "[Priest Gardron]";
-			mes "I've worried about";
-			mes "her, especially since";
-			mes "she is getting old now, but I'm relieved to hear that her health";
-			mes "is good. We are truly blessed...";
+			mes "ผมเป็นห่วง";
+			mes "ท่านมากเลยล่ะ โดยเฉพาะ";
+			mes "ตอนนี้ท่านก็เริ่มแก่ชราลงแล้ว แต่ผมก็เบาใจที่ได้ยินว่าสุขภาพของท่าน";
+			mes "ยังแข็งแรงดี พวกเราได้รับพรจริงๆ...";
 			delitem 7148,1; //Mother_Letter
 			tu_acolyte01 = 8;
 		} else {
-			mes "Hmm...?";
-			mes "What's that?";
-			mes "You have something for";
-			mes "me? A letter you say?";
+			mes "หืม...?";
+			mes "นั่นอะไรน่ะ?";
+			mes "คุณมีบางอย่างจะให้";
+			mes "ผมงั้นเหรอ? จดหมายอย่างนั้นเหรอ?";
 			next;
 			mes "[Priest Gardron]";
-			mes "Well, it seems that";
-			mes "you must have forgotten";
-			mes "it or misplaced it somewhere.";
+			mes "อืม ดูเหมือนว่า";
+			mes "คุณคงจะลืมมันไว้";
+			mes "หรือทำหายไว้ที่ไหนสักแห่งนะ";
 		}
 		close;
 	} else if(tu_acolyte01 == 8){
 		if(countitem((checkre(0)?939:957)) > 4){// Bee_Sting
-			mes "Oh...!";
-			mes "You've returned!";
-			mes "Let's see... One...";
-			mes "Two... Three...";
+			mes "โอ้...!";
+			mes "คุณกลับมาแล้ว!";
+			mes "ไหนดูซิ... หนึ่ง...";
+			mes "สอง... สาม...";
 			next;
 			mes "[Priest Gardron]";
-			mes "Thank you very much!";
-			mes "You've done a great job";
-			mes "on behalf of the convent,";
-			mes "not to mention the fact that";
-			mes "you've protected the citizens";
-			mes "of "+(checkre(0)?"Prontera":"Payon")+" from danger.";
+			mes "ขอบคุณมากครับ!";
+			mes "คุณทำหน้าที่ได้ยอดเยี่ยมมาก";
+			mes "ในนามของคอนแวนต์";
+			mes "ยังไม่รวมถึงความจริงที่ว่า";
+			mes "คุณได้ปกป้องชาวเมือง";
+			mes "ของ "+(checkre(0)?"Prontera":"Payon")+" จากอันตราย";
 			next;
 			mes "[Priest Gardron]";
-			mes "May you always";
-			mes "be blessed. Now, you";
-			mes "should return to Sister";
-			mes "Asthe to continue your";
-			mes "Acolyte training.";
+			mes "ขอให้คุณได้รับ";
+			mes "พระพรเสมอไป ตอนนี้คุณ";
+			mes "ควรกลับไปหา Sister";
+			mes "Asthe เพื่อฝึกฝนการเป็น";
+			mes "Acolyte ต่อไป";
 			tu_acolyte01 = 9;
 			percentheal 100,100;
 			if (checkre(3))
@@ -851,49 +849,49 @@ monk_in,18,38,6	script	Priest Gardron#tu	4_M_MINISTER,{
 			close;
 		} else {
 			if (checkre(0)) {
-				mes "A few days ago, a sister in Prontera";
-				mes "sent me a telegram that citizens had been harmed";
-				mes "by Hornets in the western field,";
-				mes "so she asked the abbey to help with them.";
+				mes "เมื่อไม่กี่วันก่อน ซิสเตอร์ใน Prontera";
+				mes "ส่งโทรเลขมาบอกผมว่าชาวเมืองได้รับบาดเจ็บ";
+				mes "จากพวก Hornet ในทุ่งทางทิศตะวันตก";
+				mes "เธอจึงขอให้อารามช่วยจัดการพวกมัน";
 				next;
 				mes "[Priest Gardron]";
-				mes "But at this time,";
-				mes "we are also short of hands...";
-				mes "so it's a big problem.";
+				mes "แต่ในตอนนี้";
+				mes "พวกเราก็ขาดแคลนคนอยู่เหมือนกัน...";
+				mes "มันจึงเป็นปัญหาใหญ่เลยล่ะ";
 				next;
 				mes "[Priest Gardron]";
 				mes "....!";
 				emotion ET_SURPRISE;
 				next;
 				mes "[Priest Gardron]";
-				mes "May I entrust you, acolyte "+strcharinfo(0)+",";
-				mes "this urgent matter?";
-				mes "Please dispose of Hornets";
-				mes "which are causing trouble on ^FF0000the western field of Prontera^000000.";
+				mes "ผมขอฝากคุณได้ไหม acolyte "+strcharinfo(0)+",";
+				mes "กับเรื่องเร่งด่วนนี้?";
+				mes "โปรดช่วยกำจัดพวก Hornet";
+				mes "ที่กำลังสร้างความเดือดร้อนใน ^FF0000ทุ่งทางทิศตะวันตกของ Prontera^000000 ทีนะ";
 				next;
 				mes "[Priest Gardron]";
-				mes "I know that you are undergoing the discipline,";
-				mes "So I will give you something to help you";
-				mes "if you bring me ^3131FF 5^000000 ^3131FFBee Sting^000000.";
+				mes "ผมรู้ว่าคุณกำลังอยู่ระหว่างการฝึกวินัย";
+				mes "ดังนั้นผมจะมีบางอย่างมอบให้เพื่อเป็นการช่วยเหลือ";
+				mes "ถ้าคุณนำ ^3131FF 5^000000 ^3131FFBee Sting^000000 มาให้ผม";
 				next;
 				mes "[Priest Gardron]";
-				mes "Will you go to Prontera?";
+				mes "คุณจะไปที่ Prontera ไหม?";
 				next;
-				if(select("Let's go to Prontera!:I'll be back after doing some preparation.") == 1) {
+				if(select("ไป Prontera กันเลย!:เดี๋ยวผมกลับมาหลังจากเตรียมตัวเสร็จครับ") == 1) {
 					mes "[Priest Gardron]";
-					mes "Okay, I will send you to Prontera.";
-					mes "Please dispose of Hornets and bring me 5 Bee Stings for confirmation.";
-					mes "My Lord, please protect this acolyte from evil monsters.";
+					mes "ตกลง ผมจะส่งคุณไปที่ Prontera";
+					mes "โปรดกำจัดพวก Hornet และนำ Bee Sting 5 อันมาให้ผมเพื่อเป็นการยืนยัน";
+					mes "ข้าแต่พระผู้เป็นเจ้า โปรดคุ้มครอง acolyte ผู้นี้จากมอนสเตอร์ที่ชั่วร้ายด้วยเถิด";
 					close2;
 					warp "prontera",116,72;
 					end;
 				}
 			} else {
-				mes "A little while ago, the Payon Elder sent me a message. Apparently,";
-				mes "the residents of Payon are being attacked by Zombies.";
+				mes "เมื่อสักครู่นี้ ผู้เฒ่าแห่ง Payon ส่งข้อความมาหาผม ดูเหมือนว่า";
+				mes "ชาวเมือง Payon กำลังถูกพวก Zombie โจมตี";
 				next;
 				mes "[Priest Gardron]";
-				mes "He has requested the convent for help, but we've got a big problem. We're running out of people here that can deal with this situation...";
+				mes "เขาขอความช่วยเหลือมาที่คอนแวนต์ แต่เรามีปัญหาใหญ่ คือเรามีคนไม่พอที่จะจัดการกับสถานการณ์นี้...";
 				next;
 				mes "[Priest Gardron]";
 				mes "....!";
@@ -901,25 +899,25 @@ monk_in,18,38,6	script	Priest Gardron#tu	4_M_MINISTER,{
 				next;
 				mes "[Priest Gardron]";
 				mes ""+strcharinfo(0)+",";
-				mes "may I ask";
-				mes "you to take care";
-				mes "of this task? Exterminate the Skeletons and Zombies in the";
-				mes "First Floor of Payon Dungeon.";
+				mes "ผมขอวาน";
+				mes "ให้คุณช่วยรับภารกิจ";
+				mes "นี้ไปจัดการได้ไหม? ช่วยไปกำจัด Skeleton และ Zombie ใน";
+				mes "Payon Dungeon ชั้นที่ 1 ที";
 				next;
 				mes "[Priest Gardron]";
-				mes "Since you're still in basic training, I will give you some";
-				mes "help if you return with";
-				mes "^3131FF5 Decayed Nails^000000.";
+				mes "เนื่องจากคุณยังอยู่ในการฝึกขั้นพื้นฐาน ผมจะมีรางวัล";
+				mes "ตอบแทนให้บ้างเล็กน้อยถ้าคุณกลับมาพร้อมกับ";
+				mes "^3131FF5 Decayed Nails^000000";
 				next;
 				mes "[Priest Gardron]";
-				mes "Now then...";
-				mes "Will you go to Payon?";
+				mes "เอาล่ะ...";
+				mes "คุณจะไปที่ Payon ไหม?";
 				next;
-				if(select("Let's go to Payon!:Um, let me get ready first.")==1) {
+				if(select("ไป Payon กันเลย!:เอ่อ ขอผมไปเตรียมตัวก่อนครับ")==1) {
 					mes "[Priest Gardron]";
-					mes "Good, good.";
-					mes "I shall send you";
-					mes "there to fight the monsters in Payon Dungeon so that you can return with 5 Decayed Nails. May God bless you...";
+					mes "ดีมาก ดีมาก";
+					mes "ผมจะส่งคุณ";
+					mes "ไปต่อสู้กับมอนสเตอร์ใน Payon Dungeon เพื่อที่คุณจะได้กลับมาพร้อมกับ Decayed Nails 5 อัน ขอพระเจ้าอวยพรคุณ...";
 					close2;
 					warp "payon",161,58;
 					end;
@@ -928,12 +926,12 @@ monk_in,18,38,6	script	Priest Gardron#tu	4_M_MINISTER,{
 			close;
 		}
 	}
-	mes "May light always";
-	mes "come and illuminate";
-	mes "the darkness. In times";
-	mes "of hardship, remind us";
-	mes "that there are no miracles";
-	mes "without hope...";
+	mes "ขอให้แสงสว่างจง";
+	mes "สาดส่องและขับไล่";
+	mes "ความมืดมิด ในยามที่";
+	mes "ยากลำบาก โปรดเตือนใจเรา";
+	mes "ว่าไม่มีปาฏิหาริย์ใดเกิดขึ้นได้";
+	mes "หากปราศจากความหวัง...";
 	close;
 }
 
@@ -941,43 +939,43 @@ monk_in,18,38,6	script	Priest Gardron#tu	4_M_MINISTER,{
 //============================================================
 prt_monk,235,245,5	script	Dog#tu	4_DOG01,{
 	mes "[Dog]";
-	mes "^CDB79EBark bark!";
-	mes "Woof woof!^000000";
+	mes "^CDB79Eโฮ่ง โฮ่ง!";
+	mes "บรู๋ววว!^000000";
 	next;
 	if(tu_acolyte01 == 10){
 		while(1) {
-			switch(select("Give a treat.:Pet the dog.:End actions.")){
+			switch(select("ให้อาหาร.:ลูบหัวสุนัข.:จบการกระทำ.")){
 			case 1:
 				.@dog_food++;
 				if(.@dog_food > 4){
 					mes "[Dog]";
-					mes "^CDB79EGrrrrrr...!^000000";
+					mes "^CDB79Eแฮ่รรรรร...!^000000";
 					emotion ET_FRET;
 					next;
-					mes "^3355FFThe dog grinds";
-					mes "its teeth and glares";
-					mes "at you menacingly.^000000";
+					mes "^3355FFสุนัขแยกเขี้ยว";
+					mes "และจ้องมองคุณ";
+					mes "อย่างน่ากลัว^000000";
 				} else {
 					mes "[Dog]";
-					mes "^CDB79ERoof roof!^000000";
+					mes "^CDB79Eโฮ่ง โฮ่ง!^000000";
 					emotion ET_THROB;
 				}
 				break;
 			case 2:
 				mes "[Dog]";
-				mes "^CDB79ERoof roof~^000000";
+				mes "^CDB79Eโฮ่ง โฮ่ง~^000000";
 				emotion ET_THROB;
 				break;
 			case 3:
 				mes "[Dog]";
-				mes "^CDB79ERoof roof!^000000";
+				mes "^CDB79Eโฮ่ง โฮ่ง!^000000";
 				break;
 			}
 			next;
 		}
 	}
 	mes "["+strcharinfo(0)+"]";
-	mes "So cute~!";
+	mes "น่ารักจังเลย~!";
 	close;
 }
 
@@ -987,8 +985,8 @@ prt_monk,243,238,5	script	Boy#boy_voi	HIDDEN_WARP_NPC,5,5,{
 OnTouch_:
 	if(tu_acolyte01 != 10) end;
 	mes "[??]";
-	mes "^333333*Sniff*^000000";
-	mes "Sister...";
+	mes "^333333*ฟืดฟัด*^000000";
+	mes "พี่สาวครับ...";
 	close;
 }
 
@@ -997,121 +995,121 @@ OnTouch_:
 prt_monk,226,257,6	script	Ill Girl#tu	4_F_04,{
 	mes "[Angelic]";
 	if(tu_acolyte01 > 12){
-		mes "Thanks for helping me.";
-		mes "I'm sad my older sister is no longer with me, but I oughta";
-		mes "cheer up, right? I'll try my best!";
+		mes "ขอบคุณที่ช่วยหนูนะคะ";
+		mes "หนูเสียใจที่พี่สาวไม่อยู่กับหนูแล้ว แต่หนูควรจะ";
+		mes "ร่าเริงเข้าไว้ใช่ไหมคะ? หนูจะพยายามให้ดีที่สุดค่ะ!";
 		emotion ET_SMILE;
 		close;
 	}
-	mes "Sister, don't go...";
-	mes "^333333*Sniff* *Cough cough!*^000000";
-	mes "It h-hurts so... much...!";
-	mes "Sis...ter...";
+	mes "พี่สาว อย่าไปนะ...";
+	mes "^333333*ฟืดฟัด* *แคก แคก!*^000000";
+	mes "มัน ท-ทรมาน... เหลือเกิน...!";
+	mes "พี่... สาว...";
 	if(tu_acolyte01 == 10){
 		next;
 		mes "[Angelic]";
-		mes "^333333*Sniff...*^000000";
-		mes "Are you from";
-		mes "the convent?";
+		mes "^333333*ฟืดฟัด...*^000000";
+		mes "คุณมาจาก";
+		mes "คอนแวนต์เหรอคะ?";
 		next;
 		mes "[Angelic]";
 		mes "...";
 		mes "......";
 		next;
 		mes "[Angelic]";
-		mes "Save...";
-		mes "My sister...";
+		mes "ช่วย...";
+		mes "พี่สาวของหนูด้วย...";
 		next;
 		mes "[Angelic]";
-		mes "^333333*Sniff sniff*";
-		mes "^333333*Cough cough*";
-		mes "H-hurts...";
+		mes "^333333*ฟืดฟัด ฟืดฟัด*";
+		mes "^333333*แคก แคก*";
+		mes "ท-ทรมาน...";
 		next;
-		select("Are you alright?");
+		select("หนูเป็นอะไรไหม?");
 		mes "[Angelic]";
-		mes "My sister...";
-		mes "She was so beautiful...";
-		mes "She was such a nice girl.";
-		mes "But then, one day...";
-		next;
-		mes "[Angelic]";
-		mes "This disgusting looking";
-		mes "person was coated in this icky stuff and attacked her. She was poisoned and her body became";
-		mes "colder and... ^333333*Sniff*^000000";
+		mes "พี่สาวของหนู...";
+		mes "เธอสวยมากเลยนะคะ...";
+		mes "เธอเป็นเด็กดีมากเลย";
+		mes "แต่แล้ว วันหนึ่ง...";
 		next;
 		mes "[Angelic]";
-		mes "I was with her and I got sick too. I wasn't poisoned as badly, but";
-		mes "my whole body feels heavy and I've been having these nightmares...";
+		mes "มีคนรูปร่างน่าเกลียด";
+		mes "ตัวเต็มไปด้วยเมือกแหวะๆ มาโจมตีเธอ เธอถูกพิษและร่างกายของเธอก็";
+		mes "เย็นลงเรื่อยๆ และ... ^333333*ฟืดฟัด*^000000";
 		next;
 		mes "[Angelic]";
-		mes "^333333*Cough cough!*^000000";
-		mes "Will I join my";
-		mes "sister like this?";
+		mes "หนูอยู่กับเธอ หนูก็เลยป่วยไปด้วย หนูไม่ได้ถูกพิษหนักเท่า แต่";
+		mes "ร่างกายหนูหนักอึ้งไปหมด และหนูก็ฝันร้ายตลอดเลย...";
 		next;
-		mes "^3355FFThis girl looks";
-		mes "really sick. Maybe you";
-		mes "should take a better look";
-		mes "and see what's wrong.^000000";
+		mes "[Angelic]";
+		mes "^333333*แคก แคก!*^000000";
+		mes "หนูต้องไปอยู่กับ";
+		mes "พี่สาวแบบนี้เหรอคะ?";
+		next;
+		mes "^3355FFเด็กสาวคนนี้ดู";
+		mes "ป่วยหนักมาก บางทีคุณ";
+		mes "ควรจะลองตรวจดูใกล้ๆ";
+		mes "ว่ามีอะไรผิดปกติ^000000";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Are you alright?";
+		mes "หนูโอเคไหม?";
 		mes "................";
 		next;
 		specialeffect EF_CURSEATTACK;
 		soundeffectall "_curse.wav",0;
 		emotion ET_HUK;
 		mes "["+strcharinfo(0)+"]";
-		mes "This is....!";
-		mes "A cursed spirit";
-		mes "is tormenting this";
-		mes "poor young girl!";
+		mes "นี่มัน....!";
+		mes "วิญญาณต้องสาป";
+		mes "กำลังตามรังควาน";
+		mes "เด็กสาวผู้น่าสงสารคนนี้!";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "I'll cure you...";
-		mes "For sure.";
+		mes "ฉันจะรักษาหนูเอง...";
+		mes "แน่นอน";
 		tu_acolyte01 = 11;
 	}
 	else if(tu_acolyte01 == 11){
 		next;
 		mes "[Angelic]";
-		mes "It hurts...!";
-		mes "I... I can't...!";
+		mes "มันเจ็บ...!";
+		mes "หนู... หนูไม่ไหวแล้ว...!";
 	}
 	else if(tu_acolyte01 == 12){
 		next;
-		mes "^3355FFYou go towards";
-		mes "the girl, place your hands";
-		mes "on her back and perform";
-		mes "a holy spell...^000000";
+		mes "^3355FFคุณเดินเข้าไปหา";
+		mes "เด็กสาว วางมือลง";
+		mes "บนหลังของเธอและร่าย";
+		mes "เวทมนตร์ศักดิ์สิทธิ์...^000000";
 		next;
 		switch(select("Heal!:Blessing!:Cure!:Recovery!:Signum Crucis!:B.S Sacramenti!")){
 		case 1:
 			mes "["+strcharinfo(0)+"]";
-			mes "H...";
+			mes "ฮ...";
 			mes "Heal !!";
 			specialeffect EF_HEAL;
 			next;
-			mes "^3355FFNothing happened.";
-			mes "It doesn't look like";
-			mes "that skill will work.^000000";
+			mes "^3355FFไม่มีอะไรเกิดขึ้น";
+			mes "ดูเหมือนว่าสกิลนี้";
+			mes "จะไม่ได้ผล^000000";
 			close;
 		case 2:
 			if(getskilllv("AL_BLESSING") > 0){
 				mes "["+strcharinfo(0)+"]";
-				mes "B...";
+				mes "บ...";
 				mes "Blessing!";
 				next;
 				if(rand(100) < getskilllv("AL_BLESSING")*10){
 					specialeffect EF_BLESSING;
 					mes "["+strcharinfo(0)+"]";
-					mes "I...";
-					mes "I did it!!";
+					mes "ฉัน...";
+					mes "ฉันทำได้แล้ว!!";
 					next;
-					mes "^3355FFWhat a great";
-					mes "chance for you to";
-					mes "practice your abilities!";
-					mes "It seemed that this good";
-					mes "deed has improved your skills.^000000";
+					mes "^3355FFเป็นโอกาสที่ดี";
+					mes "ที่คุณจะได้ฝึกฝน";
+					mes "ความสามารถของตนเอง!";
+					mes "ดูเหมือนว่าความดีนี้";
+					mes "จะช่วยขัดเกลาทักษะของคุณ^000000";
 					tu_acolyte01 = 13;
 					if (checkre(3))
 						getexp 0,500;
@@ -1122,71 +1120,71 @@ prt_monk,226,257,6	script	Ill Girl#tu	4_F_04,{
 					break;
 				} else {
 					mes "["+strcharinfo(0)+"]";
-					mes "Huh...?";
-					mes "It's not working...";
-					mes "Maybe it's because";
-					mes "I'm still learning?";
+					mes "หืม...?";
+					mes "มันไม่ได้ผล...";
+					mes "อาจจะเป็นเพราะ";
+					mes "ฉันยังฝึกมาไม่พอ?";
 					close;
 				}
 			} else {
-				mes "^3355FFYou didn't learn";
-				mes "this skill yet, so you're";
-				mes "not able to use it for now.^000000";
+				mes "^3355FFคุณยังไม่ได้เรียนรู้";
+				mes "สกิลนี้ ดังนั้นคุณจึง";
+				mes "ไม่สามารถใช้มันได้ในตอนนี้^000000";
 				close;
 			}
 		case 3:
 			if(getskilllv("AL_CURE") > 0){
 				mes "["+strcharinfo(0)+"]";
-				mes "C-Cure...!";
+				mes "ค-Cure...!";
 				specialeffect EF_CURE;
 				next;
-				mes "^3355FFNothing happened.";
-				mes "It doesn't look like";
-				mes "that skill will work.^000000";
+				mes "^3355FFไม่มีอะไรเกิดขึ้น";
+				mes "ดูเหมือนว่าสกิลนี้";
+				mes "จะไม่ได้ผล^000000";
 			}
 			else {
-				mes "^3355FFYou didn't learn";
-				mes "this skill yet, so you're";
-				mes "not able to use it for now.^000000";
+				mes "^3355FFคุณยังไม่ได้เรียนรู้";
+				mes "สกิลนี้ ดังนั้นคุณจึง";
+				mes "ไม่สามารถใช้มันได้ในตอนนี้^000000";
 			}
 			close;
 		case 4:
-			mes "^3355FFThis isn't a skill";
-			mes "that Acolytes can use...^000000";
+			mes "^3355FFนี่ไม่ใช่สกิล";
+			mes "ที่ Acolyte สามารถใช้ได้...^000000";
 			close;
 		case 5:
 			if(getskilllv("AL_CRUCIS") > 0){
 				mes "["+strcharinfo(0)+"]";
-				mes "S-Signum...";
+				mes "ซ-Signum...";
 				mes "Signum Crucis!";
 				specialeffect EF_SIGNUM;
 				next;
-				mes "^3355FFNothing happened.";
-				mes "It doesn't look like";
-				mes "that skill will work.^000000";
+				mes "^3355FFไม่มีอะไรเกิดขึ้น";
+				mes "ดูเหมือนว่าสกิลนี้";
+				mes "จะไม่ได้ผล^000000";
 			}
 			else {
-				mes "^3355FFYou didn't learn";
-				mes "this skill yet, so you're";
-				mes "not able to use it for now.^000000";
+				mes "^3355FFคุณยังไม่ได้เรียนรู้";
+				mes "สกิลนี้ ดังนั้นคุณจึง";
+				mes "ไม่สามารถใช้มันได้ในตอนนี้^000000";
 			}
 			close;
 		case 6:
-			mes "^3355FFThis isn't a skill";
-			mes "that Acolytes can use...^000000";
+			mes "^3355FFนี่ไม่ใช่สกิล";
+			mes "ที่ Acolyte สามารถใช้ได้...^000000";
 			close;
 		}
 		mes "[Angelic]";
-		mes "Ah...";
-		mes "I feel...";
-		mes "So relaxed.";
-		mes "So much lighter...";
+		mes "อา...";
+		mes "หนูรู้สึก...";
+		mes "ผ่อนคลายจังเลยค่ะ";
+		mes "ตัวเบาขึ้นตั้งเยอะ...";
 		next;
 		mes "[Angelic]";
-		mes "Did you";
-		mes "do this?";
-		mes "Is this the";
-		mes "power of God?";
+		mes "คุณเป็นคน";
+		mes "ทำเหรอคะ?";
+		mes "นี่คือพลังของ";
+		mes "พระเจ้าใช่ไหมคะ?";
 	}
 	close;
 }
@@ -1196,42 +1194,42 @@ prt_monk,226,257,6	script	Ill Girl#tu	4_F_04,{
 prt_monk,197,228,3	script	Veiner	4_M_ORIENT02,{
 	mes "[Veiner]";
 	if(countitem(1081) && tu_acolyte01 == 18){// Merchant_Box_1
-		mes "So very exhausted...";
-		mes "Should I just go back home?";
+		mes "หมดเรี่ยวหมดแรง...";
+		mes "ฉันควรจะกลับบ้านเลยดีไหมนะ?";
 		next;
 		mes "[Veiner]";
-		mes "What's that?";
-		mes "You have a delivery";
-		mes "for me? Why, what";
-		mes "ever could it be?";
+		mes "นั่นอะไรน่ะ?";
+		mes "คุณมีของมาส่ง";
+		mes "งั้นเหรอ? เอ๊ะ แล้วมัน";
+		mes "จะเป็นอะไรกันนะ?";
 		next;
 		mes "[Veiner]";
-		mes "This is...!";
-		mes "It's Handmade Chocolate";
-		mes "from my honey bunny!";
-		mes "Oh Bibi! You're the best!";
+		mes "นี่มัน...!";
+		mes "ช็อกโกแลตแฮนด์เมด";
+		mes "จากยัยกระต่ายน้อยของฉันนี่นา!";
+		mes "โอ้ บีบี้! เธอคือที่สุดเลย!";
 		specialeffect EF_VALLENTINE;
 		specialeffect EF_HEARTCASTING;
 		next;
 		mes "[Veiner]";
-		mes "Oh right!";
-		mes "Thank you very much for delivering this to me. Sorry, but I'm always excited to hear from my cutie pie~";
+		mes "จริงสิ!";
+		mes "ขอบคุณมากนะที่นำมาส่งให้ผม โทษทีนะ พอดีผมตื่นเต้นทุกครั้งเลยที่ได้รับข่าวจากสุดที่รักน่ะ~";
 		emotion ET_THANKS;
 		tu_acolyte01 = 19;
 		delitem 1081,1; //Merchant_Box_1
 	}
 	else if(tu_acolyte01 > 18){
-		mes "I can't wait";
-		mes "to see her again!";
-		mes "Bibi...! I loooove you!";
+		mes "แทบรอไม่ไหว";
+		mes "ที่จะได้เจอเธออีก!";
+		mes "บีบี้...! ผมร๊าาากคุณ!";
 		emotion ET_CHUPCHUP;
 	}
 	else {
-		mes "So very";
-		mes "exhausted...";
-		mes "Would you help";
-		mes "me carry my stuff?";
-		mes "P-please...";
+		mes "เหนื่อยสาย";
+		mes "ตัวแทบขาด...";
+		mes "ช่วยผมแบก";
+		mes "ของพวกนี้หน่อยได้ไหม?";
+		mes "ด-ได้โปรด...";
 	}
 	close;
 }
@@ -1240,32 +1238,32 @@ prt_monk,197,228,3	script	Veiner	4_M_ORIENT02,{
 //============================================================
 prt_monk,28,260,5	script	Hedrick	1_M_04,{
 	mes "[Hedrick]";
-	mes "^333333*Whew!*^000000";
-	mes "Man I worked hard today!";
-	mes "And so efficiently too!";
-	mes "Awesome job as usual,";
-	mes "Hedrick. You're number one!";
+	mes "^333333*เฮ้อ!*^000000";
+	mes "วันนี้ทำงานหนักชะมัด!";
+	mes "แถมยังทำออกมาได้เนี๊ยบสุดๆ ด้วย!";
+	mes "ยอดเยี่ยมเหมือนเดิมเลยนะ";
+	mes "Hedrick นายมันที่หนึ่ง!";
 	if(countitem(7148)==0 || tu_acolyte01 != 19) close;// Mother_Letter
 	next;
 	mes "[Hedrick]";
-	mes "Oh...?";
-	mes "Is this letter for me?";
-	mes "I wonder who it's from.";
-	mes "Ah, it's from my mom!";
+	mes "โอ้...?";
+	mes "จดหมายนี่ให้ผมเหรอ?";
+	mes "อยากรู้จังว่ามาจากใคร";
+	mes "อา มาจากแม่ผมนี่เอง!";
 	next;
 	mes "[Hedrick]";
-	mes "Whoa...!";
-	mes "Holy cow!";
-	mes "This letter is";
-	mes "full of the energy";
-	mes "of motherly love!";
+	mes "โห...!";
+	mes "พระเจ้าช่วย!";
+	mes "จดหมายฉบับนี้";
+	mes "เต็มไปด้วยพลัง";
+	mes "แห่งความรักของแม่!";
 	specialeffect EF_STEELBODY;
 	next;
 	mes "[Hedrick]";
-	mes "Thanks a lot!";
-	mes "Here, why don't";
-	mes "you have one of the";
-	mes "cookies she sent me?";
+	mes "ขอบใจมากนะ!";
+	mes "เอ้า เอาไป";
+	mes "ทำไมคุณไม่ลองชิม";
+	mes "คุกกี้ที่แม่ส่งมาให้ผมดูล่ะ?";
 	delitem 7148,1; //Mother_Letter
 	tu_acolyte01 = 20;
 	getitem 538,1; //Well_Baked_Cookie
@@ -1278,13 +1276,13 @@ prt_monk,136,261,0	script	Weapon Merchant#tu	HIDDEN_WARP_NPC,9,9,{
 OnTouch_:
 	if(tu_acolyte01 != 20 || countitem(1081) == 0) end;// Merchant_Box_1
 	mes "[Weapon Merchant]";
-	mes "The stuff I requested from the guild is finally here!";
-	mes "It's pretty tough to keep everything in stock since this is such a remote place.";
+	mes "ของที่ฉันสั่งจากกิลด์ในที่สุดก็มาถึงสักที!";
+	mes "มันค่อนข้างยากเลยล่ะที่จะรักษาสต็อกของให้ครบ เพราะที่นี่มันห่างไกลเหลือเกิน";
 	next;
 	mes "[Weapon Merchant]";
-	mes "Hey, thanks so much!";
-	mes "Oh, and come here if";
-	mes "you need anything, okay?";
+	mes "เฮ้ ขอบใจมากนะ!";
+	mes "โอ้ แล้วถ้าอยากได้";
+	mes "อะไรก็แวะมาหาฉันได้นะ โอเคไหม?";
 	delitem 1081,1; //Merchant_Box_1
 	tu_acolyte01 = 21;
 	close;
@@ -1294,33 +1292,33 @@ OnTouch_:
 //============================================================
 monk_in,103,176,7	script	Karven	1_M_PASTOR,{
 	mes "[Karven]";
-	mes "May you rest";
+	mes "ขอให้เจ้าพักผ่อน";
 	if(tu_acolyte01 == 21 && countitem(7183)){
 		delitem 7183, 1;// Sister_Letter
 		tu_acolyte01 = 22;
-		mes "in peace forever...";
+		mes "อย่างสงบตลอดกาล...";
 		next;
 		mes "[Karven]";
-		mes "I'm saying prayers";
-		mes "for the recently departed.";
-		mes "If it's not urgent, please";
-		mes "come again at another time.";
+		mes "ข้ากำลังสวดภาวนา";
+		mes "ให้แก่ผู้ที่เพิ่งล่วงลับไป";
+		mes "ถ้าไม่ใช่เรื่องด่วน โปรด";
+		mes "กลับมาใหม่ในภายหลังนะ";
 		next;
 		mes "[Karven]";
-		mes "A letter?";
-		mes "Oh. It must be from";
-		mes "my younger sister.";
-		mes "What could she want";
-		mes "this time?";
+		mes "จดหมายงั้นรึ?";
+		mes "โอ้ คงมาจาก";
+		mes "น้องสาวของข้าสินะ";
+		mes "คราวนี้เธอต้องการ";
+		mes "อะไรอีกล่ะ?";
 		next;
 		mes "[Karven]";
-		mes "I hope she realizes";
-		mes "the word of God and returns";
-		mes "to living a good life once";
-		mes "again. Thank you very much.";
+		mes "ข้าหวังว่าเธอจะตระหนัก";
+		mes "ถึงพระวจนะของพระเจ้าและกลับมา";
+		mes "ใช้ชีวิตที่ดีงามอีก";
+		mes "ครั้งหนึ่ง ขอบใจเจ้ามาก";
 		close;
 	}
-	mes "rest in peace...";
+	mes "พักผ่อนอย่างสงบเถิด...";
 	close;
 }
 
@@ -1329,71 +1327,71 @@ monk_in,103,176,7	script	Karven	1_M_PASTOR,{
 prt_monk,219,164,3	script	Gloria#tu	4_F_SISTER,{
 	mes "[Gloria]";
 	if(BaseJob != Job_Acolyte){
-		mes "Hi, hi~";
-		mes "I'm Gloria.";
-		mes "You wanna know";
-		mes "something neat";
-		mes "about my name?";
+		mes "ไฮ ไฮ~";
+		mes "ฉันชื่อ Gloria ค่ะ";
+		mes "คุณอยากรู้อะไร";
+		mes "เจ๋งๆ เกี่ยวกับ";
+		mes "ชื่อของฉันไหม?";
 		next;
 		mes "[Gloria]";
-		mes "My father was a Blacksmith in Geffen, and supposedly he finished an incredible weapon on the day";
-		mes "I was born. He thought it was a sign of good luck, so he named";
-		mes "the weapon after me!";
+		mes "พ่อของฉันเป็น Blacksmith ใน Geffen และเห็นว่าท่านตีอาวุธที่สุดยอดชิ้นหนึ่งสำเร็จในวันที่";
+		mes "ฉันเกิดพอดี ท่านคิดว่าเป็นลางดี ก็เลยตั้งชื่อ";
+		mes "อาวุธชิ้นนั้นตามชื่อของฉันเลยล่ะ!";
 		next;
 		mes "[Gloria]";
-		mes "It's a little strange knowing that there's a weapon named after";
-		mes "you, but I like my name very much. I mean, it's not like my parents named me after that weapon, right?";
+		mes "มันรู้สึกแปลกๆ นิดหน่อยที่รู้ว่ามีอาวุธที่ใช้ชื่อเดียวกับ";
+		mes "เรา แต่ฉันก็ชอบชื่อตัวเองมากเลยนะ หมายถึง พ่อแม่ฉันไม่ได้ตั้งชื่อฉันตามอาวุธชิ้นนั้นใช่ไหมล่ะ?";
 		close;
 	}
 	if(tu_acolyte01 > 0 && tu_acolyte01 < 25){
-		mes "I'm still";
-		mes "a young Acolyte";
-		mes "in training and I'm";
-		mes "always making mistakes!";
+		mes "ฉันยังเป็นแค่";
+		mes "Acolyte ฝึกหัด";
+		mes "และฉันก็มักจะ";
+		mes "ทำผิดพลาดอยู่เสมอเลย!";
 		next;
 		mes "[Gloria]";
-		mes "^333333*Sniff*^000000";
-		mes "And I get scolded";
-		mes "almost all the time...";
-		mes "But there's one thing";
-		mes "that I can do really well!";
+		mes "^333333*ฟืดฟัด*^000000";
+		mes "แล้วฉันก็ถูกดุ";
+		mes "แทบจะตลอดเวลาเลย...";
+		mes "แต่มีสิ่งหนึ่ง";
+		mes "ที่ฉันทำได้ดีมากเลยนะ!";
 		next;
 		mes "[Gloria]";
-		mes "Warp portal!";
-		mes "I know Level 2 Warp Portal!";
-		mes "One of my Memo Points is here";
-		mes "and the other is in Prontera.";
+		mes "Warp portal ค่ะ!";
+		mes "ฉันใช้ Warp Portal เลเวล 2 ได้นะ!";
+		mes "จุด Memo จุดหนึ่งของฉันอยู่ที่นี่";
+		mes "และอีกจุดอยู่ที่ Prontera";
 		next;
 		mes "[Gloria]";
-		mes "Anyway, whenever";
-		mes "you need to, I can";
-		mes "send you to Prontera.";
-		mes "Just let me know, okay?";
+		mes "อย่างไรก็ตาม เมื่อไหร่";
+		mes "ที่คุณต้องการ ฉันสามารถ";
+		mes "ส่งคุณไปที่ Prontera ได้นะ";
+		mes "แค่บอกฉันมาก็พอ โอเคไหม?";
 		next;
-		switch(select("I'm okay for now.:Send me to Prontera.")){
+		switch(select("ตอนนี้ยังไม่เป็นไรครับ.:ส่งผมไปที่ Prontera ที.")){
 		case 1:
 			mes "[Gloria]";
-			mes "In order to use";
-			mes "Warp Portal, you need";
-			mes "one ^3131FFBlue Gemstone^000000.";
-			mes "Is this to help me?";
-			mes "Wow, I'm touched!";
+			mes "ในการใช้";
+			mes "Warp Portal คุณต้องมี";
+			mes "^3131FFBlue Gemstone^000000 1 ก้อนนะคะ";
+			mes "นี่คือการช่วยฉันงั้นเหรอ?";
+			mes "ว้าว ฉันซึ้งใจจัง!";
 			emotion ET_CRY;
 			close;
 		case 2:
 			mes "[Gloria]";
-			mes "Leave it to me!";
-			mes "Here we go~!!";
-			mes "W-warp Portal!";
+			mes "ไว้ใจฉันได้เลย!";
+			mes "เอาล่ะนะ~!!";
+			mes "ว-Warp Portal!";
 			close2;
 			warp "prontera",116,72;
 			end;
 		}
 	}
-	mes "Wow...";
-	mes "Did you learn all that from Asthe? That's so great...";
-	mes "You must be so much better than me that I can't even brag about warping to";
-	mes "Prontera anymore. ^333333*Sniff*^000000";
+	mes "ว้าว...";
+	mes "คุณเรียนรู้ทั้งหมดนั่นจาก Asthe แล้วเหรอ? สุดยอดไปเลย...";
+	mes "คุณต้องเก่งกว่าฉันมากแน่ๆ จนฉันไม่กล้าคุยโวเรื่องวาร์ปไป";
+	mes "Prontera อีกแล้วล่ะ ^333333*ฟืดฟัด*^000000";
 	close;
 }
 
@@ -1404,171 +1402,171 @@ prt_monk,153,210,3	script	Cleope Verce	4_F_SISTER,{
 	if(BaseJob == Job_Acolyte){
 		if (JobLevel < 40) {
 			if (BaseLevel < 26) {
-				mes "Oh my.. ";
-				mes "A newbie Acolyte?";
-				mes "It doesn't even seem";
-				mes "like you've learned";
-				mes "that many skills?";
+				mes "ตายจริง.. ";
+				mes "Acolyte หน้าใหม่เหรอจ๊ะ?";
+				mes "ดูเหมือนว่าเจ้า";
+				mes "ยังไม่ได้เรียนรู้";
+				mes "ทักษะอะไรมากมายเลยนะ?";
 				next;
 				mes "[Cleope Verce]";
-				mes "Ho ho~!";
-				mes "In my days";
-				mes "as an Acolyte,";
+				mes "โฮ่ โฮ่~!";
+				mes "ในสมัยที่ข้า";
+				mes "ยังเป็น Acolyte น่ะนะ";
 				switch(rand(1,4)){
 				case 1:
-					mes "I trained by attacking";
-					mes "^3131FFgreen frogs^000000 till my knuckles";
-					mes "bled from all the punching!";
+					mes "ข้าฝึกฝนด้วยการโจมตี";
+					mes "^3131FFกบเขียว^000000 จนกระทั่งข้อนิ้ว";
+					mes "ของข้าเลือดซิบจากการต่อยเลยล่ะ!";
 					break;
 				case 2:
-					mes "I beat up ^3131FFwooden sticks";
-					mes "about to collapse^000000 and these";
-					mes "^3131FFhuge mushrooms^000000 all the time!";
+					mes "ข้าทุบตี ^3131FFท่อนไม้ที่";
+					mes "ใกล้จะพัง^000000 และเจ้าพวก";
+					mes "^3131FFเห็ดยักษ์^000000 พวกนี้อยู่ตลอดเวลาเลย!";
 					break;
 				case 3:
-					mes "I trained by fighting those ^3131FFdisgusting cockroaches^000000.";
+					mes "ข้าฝึกฝนโดยการต่อสู้กับพวก ^3131FFแมลงสาบที่น่ารังเกียจ^000000 พวกนั้น";
 					next;
 					mes "[Cleope Verce]";
-					mes "Ugh...";
-					mes "Actually, that's not such a good memory when I think about it.";
+					mes "อึ๋ย...";
+					mes "จริงๆ แล้ว พอนึกดูอีกที มันก็ไม่ใช่ความทรงจำที่ดีเท่าไหร่น่ะนะ";
 					break;
 				case 4:
-					mes "I trained by fighting ^3131FFZombies^000000 in the dungeon of that town with all of those trees.";
+					mes "ข้าฝึกฝนโดยการต่อสู้กับ ^3131FFZombie^000000 ในดันเจี้ยนของเมืองที่มีต้นไม้เยอะๆ เมืองนั้นน่ะ";
 					break;
 				}
 				next;
 				mes "[Cleope Verce]";
-				mes "You'll have to go through a lot until you reach the point where I'm at right now. Ho ho ho! You still have a looong way to go~";
+				mes "เจ้ายังต้องผ่านอะไรอีกเยอะกว่าจะมาถึงจุดที่ข้ายืนอยู่ในตอนนี้ โฮ่ โฮ่ โฮ่! เจ้ายังเหลือทางอีกยาวววไกลเลยล่ะ~";
 				next;
 				emotion ET_KIK;
 				mes "[Cleope Verce]";
-				mes "Good luck...";
-				mes "Rookie.";
+				mes "โชคดีนะ...";
+				mes "เจ้าเด็กใหม่";
 				close;
 			} else if(BaseLevel < 36){
-				mes "Oh my.. ";
-				mes "A young Acolyte?";
-				mes "You seem to have just";
-				mes "started learning your skills?";
+				mes "ตายจริง.. ";
+				mes "Acolyte หนุ่มน้อย?";
+				mes "ดูเหมือนเจ้าเพิ่งจะ";
+				mes "เริ่มเรียนรู้สกิลของเจ้าเองนะ?";
 				next;
 				mes "[Cleope Verce]";
-				mes "Ho ho~!";
-				mes "When I was";
-				mes "around your age,";
+				mes "โฮ่ โฮ่~!";
+				mes "ตอนที่ข้า";
+				mes "อายุรุ่นราวคราวเดียวกับเจ้าน่ะ";
 				switch(rand(1,5)){
 				case 1:
-					mes "I'd fight with those ^3131FFwhite";
-					mes "mice^000000 and ^3131FFbig roaches^000000~";
+					mes "ข้าสู้กับพวก ^3131FFหนู";
+					mes "ขาว^000000 และ ^3131FFแมลงสาบยักษ์^000000~";
 					break;
 				case 2:
-					mes "I'd walk straight into the";
-					mes "^3131FFdepths of the ocean^000000 to find monsters to hunt.";
+					mes "ข้ามักจะเดินตรงดิ่งเข้าไปใน";
+					mes "^3131FFส่วนที่ลึกที่สุดของมหาสมุทร^000000 เพื่อตามหามอนสเตอร์มาล่าล่ะ";
 					break;
 				case 3:
-					mes "I used to fight ^3131FFcreepy";
-					mes "looking tree monsters^000000.";
+					mes "ข้าเคยต่อสู้กับ ^3131FFมอนสเตอร์ต้นไม้";
+					mes "ที่ดูน่าขนลุก^000000 ด้วยนะ";
 					break;
 				case 4:
-					mes "I used to fight hundreds";
-					mes "of ^3131FFuuuuuug~ly orcs^000000.";
+					mes "ข้าเคยสู้กับเจ้าพวก ^3131FFออร์คที่น่า";
+					mes "เกลี๊ยดดดดดน่าเกลียด^000000 เป็นร้อยๆ ตัวเลย";
 					break;
 				case 5:
-					mes "I would fight the ^3131FFmonkeys";
-					mes "in front of the convent^000000.";
+					mes "ข้าไปสู้กับพวก ^3131FFลิง";
+					mes "ที่หน้าคอนแวนต์^000000 มาด้วยล่ะ";
 					break;
 				}
 				next;
 				mes "[Cleope Verce]";
-				mes "Those were";
-				mes "bad memories.";
-				mes "If someone told me";
-				mes "to go there again,";
-				mes "I'd go insane.";
+				mes "นั่นมันเป็น";
+				mes "ความทรงจำที่แย่มาก";
+				mes "ถ้ามีใครบอกให้ข้า";
+				mes "กลับไปที่นั่นอีกครั้ง";
+				mes "ข้าคงจะเป็นบ้าแน่ๆ";
 				next;
 				mes "[Cleope Verce]";
-				mes "Still, it seems you";
-				mes "have a long way to go";
-				mes "until you become a well";
-				mes "experienced Acolyte. Ho ho~";
+				mes "แต่อย่างไรก็ตาม ดูเหมือนเจ้า";
+				mes "ยังคงต้องเดินทางอีกไกล";
+				mes "กว่าจะได้เป็น Acolyte ที่มี";
+				mes "ประสบการณ์สูงนะ โฮ่ โฮ่~";
 				next;
 				emotion ET_KIK;
 				mes "[Cleope Verce]";
-				mes "Good luck,";
-				mes "young friend.";
+				mes "โชคดีนะ";
+				mes "เพื่อนรุ่นเยาว์";
 				close;
 			} else if(BaseLevel < 46){
-				mes "Well, well, well~";
-				mes "Hello, young Acolyte.";
-				mes "You're still kind of";
-				mes "green, but I guess you're";
-				mes "not exactly a beginner either.";
+				mes "แหม แหม แหม~";
+				mes "สวัสดีจ้ะ Acolyte หนุ่มน้อย";
+				mes "เจ้ายังดูเหมือนจะ";
+				mes "อ่อนหัดอยู่บ้าง แต่ข้าว่าเจ้า";
+				mes "ก็ไม่ใช่ระดับมือใหม่อีกต่อไปแล้วนะ";
 				next;
 				mes "[Cleope Verce]";
-				mes "I remember that when";
-				mes "I was your age, I used to";
+				mes "ข้าจำได้ว่าตอนที่";
+				mes "ข้าอายุเท่าเจ้า ข้าเคย";
 				switch(rand(1,6)){
 				case 1:
-					mes "fight these ^3131FFfearsome evil spirits^000000 all the time in that castle ^3131FFwest of Geffen^000000. I wonder how I survived";
-					mes "all that?";
+					mes "ต่อสู้กับ ^3131FFวิญญาณชั่วร้ายที่น่ากลัว^000000 อยู่ตลอดเวลาในปราสาททาง ^3131FFตะวันตกของ Geffen^000000 ข้ายังสงสัยอยู่เลยว่าข้ารอดชีวิต";
+					mes "มาจากที่นั่นได้ยังไงกันนะ?";
 					break;
 				case 2:
-					mes "play with these ^3131FFcute";
-					mes "Poporings^000000 all the time!";
+					mes "เล่นกับพวก ^3131FFPoporing";
+					mes "ที่น่ารัก^000000 พวกนี้ตลอดเลยล่ะ!";
 					next;
 					mes "[Cleope Verce]";
-					mes "Still, I had to be careful from their attacks. At that time they were pretty strong!";
+					mes "แต่อย่างนั้น ข้าก็ยังต้องระวังการโจมตีของพวกมันนะ ตอนนั้นพวกมันแข็งแกร่งมากเลยล่ะ!";
 					break;
 				case 3:
-					mes "fight with ^3131FFgun shooting ghosts!^000000 Sure, they were scary, but beating them was a piece of cake if you have Pneuma!";
+					mes "ต่อสู้กับ ^3131FFผีที่ยิงปืนได้!^000000 แน่นอนว่าพวกมันน่ากลัว แต่การจัดการพวกมันน่ะกล้วยๆ เลยถ้าเจ้ามี Pneuma!";
 					break;
 				case 4:
-					mes "beat up those ^3131FFarrow shooting devils^000000 almost everyday in the castle west of Geffen. Boy, was there a lot of them back then.";
+					mes "ทุบตีเจ้าพวก ^3131FFปีศาจที่ยิงธนู^000000 เกือบทุกวันที่ปราสาททางตะวันตกของ Geffen แหม ตอนนั้นน่ะมีพวกมันอยู่เยอะแยะไปหมดเลยล่ะ";
 					break;
 				case 5:
-					mes "battle these really ^3131FFfat pigs^000000. They were pretty strong, so they always gave me a hard time.";
+					mes "ต่อสู้กับเจ้าพวก ^3131FFหมูอ้วน^000000 จริงๆ พวกมันแข็งแกร่งมากเลยนะ ข้าเลยต้องลำบากอยู่เสมอเวลาเจอพวกมัน";
 					break;
 				case 6:
-					mes "beat up these ^3131FFliving chunks of";
-					mes "sand in the desert^000000. I swear, they were alive!";
+					mes "ทุบตีเจ้าพวก ^3131FFก้อนทรายที่มี";
+					mes "ชีวิตในทะเลทราย^000000 ข้าสาบานได้เลยว่าพวกมันมีชีวิตจริงๆ นะ!";
 					break;
 				}
 				next;
 				mes "[Cleope Verce]";
-				mes "^333333*Sigh*^000000";
-				mes "Ah, memories~";
-				mes "Of course, if I had";
-				mes "the chance to do it all";
-				mes "over again, I don't know";
-				mes "if I would take it...";
+				mes "^333333*เฮ้อ*^000000";
+				mes "อา ความทรงจำอันแสนหวาน~";
+				mes "แน่นอนว่า ถ้าข้ามี";
+				mes "โอกาสที่จะกลับไปทำมัน";
+				mes "ใหม่อีกรอบ ข้าก็ไม่รู้หรอกนะ";
+				mes "ว่าข้าจะรับโอกาสนั้นไหม...";
 				next;
 				mes "[Cleope Verce]";
-				mes "Anyway, you have";
-				mes "plenty of adventures";
-				mes "waiting for you. I hope";
-				mes "you'll make many fond";
-				mes "memories when you're";
-				mes "still an Acolyte.";
+				mes "อย่างไรก็ตาม เจ้ายังมี";
+				mes "การผจญภัยอีกมากมาย";
+				mes "ที่รอเจ้าอยู่ ข้าหวังว่า";
+				mes "เจ้าจะสร้างความทรงจำ";
+				mes "ที่น่าประทับใจมากมาย";
+				mes "ในตอนที่เจ้ายังเป็น Acolyte นะ";
 				next;
 				emotion ET_KIK;
 				mes "[Cleope Verce]";
-				mes "Good luck,";
-				mes "young friend~";
+				mes "โชคดีนะ";
+				mes "เพื่อนรุ่นเยาว์~";
 				close;
 			}
 		}
-		mes "Hmmm?";
-		mes "It looks like you've";
-		mes "learned quite a lot as";
-		mes "an Acolyte! I hate to admit it,";
-		mes "but you're too good for me to";
-		mes "call you a rookie anymore~";
+		mes "หืมมม?";
+		mes "ดูเหมือนว่าเจ้าจะได้";
+		mes "เรียนรู้อะไรมาเยอะมากในฐานะ";
+		mes "Acolyte นะ! ข้าไม่อยากจะยอมรับเลย";
+		mes "แต่เจ้าเก่งเกินกว่าที่ข้าจะ";
+		mes "เรียกเจ้าว่าเด็กใหม่ได้แล้วล่ะ~";
 		close;
 	}
-	mes "Hello hello.";
-	mes "The sun is very";
-	mes "warm today, don't";
-	mes "think? Very pleasant";
-	mes "weather today...";
+	mes "สวัสดีจ้ะ สวัสดี";
+	mes "แสงแดดวันนี้ช่าง";
+	mes "อบอุ่นจริงๆ เจ้าไม่";
+	mes "คิดอย่างนั้นเหรอ? วันนี้";
+	mes "อากาศดีมากเลยนะ...";
 	close;
 }
 // Range NPC
@@ -1580,12 +1578,12 @@ OnTouch_:
 		case 4:
 		case 10:
 		case 25:
-			mes "[Sound by Window]";
+			mes "[เสียงจากทางหน้าต่าง]";
 			mes "...";
 			next;
-			mes "^3355FFThere's some kind";
-			mes "of noise coming from";
-			mes "yonder window...^000000";
+			mes "^3355FFดูเหมือนจะมีเสียง";
+			mes "อะไรบางอย่างดังมาจาก";
+			mes "หน้าต่างตรงโน้นนะ...^000000";
 			close;
 		}
 	}
@@ -1596,174 +1594,174 @@ OnTouch_:
 //============================================================
 prt_monk,223,123,3	script	Eavesdrop#tu	HIDDEN_NPC,{
 	if(BaseJob != Job_Acolyte){
-		mes "^3355FFThere's nothing here.^000000";
+		mes "^3355FFไม่มีอะไรอยู่ที่นี่^000000";
 		close;
 	}
 	if(tu_acolyte01 > 3 && tu_acolyte01 < 10){
-		mes "[Voices from Window]";
-		mes "^A68064Sir...";
-		mes "Something doesn't";
-		mes "seem right at the palace.^000000";
+		mes "[เสียงสนทนาจากหน้าต่าง]";
+		mes "^A68064ท่านครับ...";
+		mes "ดูเหมือนจะมีบางอย่าง";
+		mes "ไม่ค่อยถูกต้องในพระราชวังครับ^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^CD6600What's wrong?";
-		mes "Did something happen?^000000";
+		mes "[เสียงสนทนาจากหน้าต่าง]";
+		mes "^CD6600มีอะไรผิดปกติงั้นรึ?";
+		mes "เกิดอะไรขึ้นหรือเปล่า?^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^A68064I'm not sure.";
-		mes "I can't explain exactly what it is, but the officials seem frightened about something. Maybe there";
-		mes "was some sort of accident?^000000";
+		mes "[เสียงสนทนาจากหน้าต่าง]";
+		mes "^A68064ผมก็ไม่แน่ใจครับ";
+		mes "ผมอธิบายไม่ถูกเหมือนกันว่าเป็นเรื่องอะไร แต่พวกข้าราชสำนักดูหวาดกลัวอะไรบางอย่าง บางทีอาจจะ";
+		mes "เกิดอุบัติเหตุอะไรขึ้นหรือเปล่าครับ?^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^CD6600Hmm, I wouldn't know.";
-		mes "Why don't we just wait and see";
-		mes "what happens? I'm sure the truth will come out one way or another.^000000";
+		mes "[เสียงสนทนาจากหน้าต่าง]";
+		mes "^CD6600หืม ข้าก็ไม่รู้เหมือนกัน";
+		mes "ทำไมเราไม่รอดูไปก่อนล่ะ";
+		mes "ว่าจะมีอะไรเกิดขึ้น? ข้าเชื่อว่าความจริงคงจะปรากฏออกมาไม่ทางใดก็ทางหนึ่งแหละ^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^A68064 Alright, sir.";
-		mes "Still, I can't help";
-		mes "but feel uneasy...^000000";
+		mes "[เสียงสนทนาจากหน้าต่าง]";
+		mes "^A68064 รับทราบครับท่าน";
+		mes "แต่ถึงอย่างนั้น ผมก็อด";
+		mes "รู้สึกไม่สบายใจไม่ได้เลย...^000000";
 	}
 	else if(tu_acolyte01 > 9 && tu_acolyte01 < 25){
-		mes "[Voices from Window]";
-		mes "^A68064I heard from an";
-		mes "official at the palace";
-		mes "that they're requesting";
-		mes "us for an exorcism.^000000";
+		mes "[เสียงสนทนาจากหน้าต่าง]";
+		mes "^A68064ผมได้ยินมาจาก";
+		mes "ข้าราชสำนักในวังว่า";
+		mes "พวกเขากำลังร้องขอ";
+		mes "ให้เราไปช่วยทำพิธีไล่ผีครับ^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^CD6600Exorcism?";
-		mes "Did Zombies attack";
-		mes "the kingdom or something?^000000";
+		mes "[เสียงสนทนาจากหน้าต่าง]";
+		mes "^CD6600พิธีไล่ผีงั้นรึ?";
+		mes "มีพวก Zombie บุก";
+		mes "อาณาจักรหรือยังไงกัน?^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^A68064No, I don't think";
-		mes "that's the case, but";
-		mes "they are requesting";
-		mes "a highly skilled holy person...^000000";
+		mes "[เสียงสนทนาจากหน้าต่าง]";
+		mes "^A68064เปล่าครับ ผมไม่คิดว่า";
+		mes "จะเป็นอย่างนั้น แต่";
+		mes "พวกเขากำลังต้องการ";
+		mes "ผู้มีพลังศักดิ์สิทธิ์ขั้นสูงน่ะครับ...^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^CD6600Hmm...";
-		mes "I wonder what";
-		mes "exactly is going on...^000000";
+		mes "[เสียงสนทนาจากหน้าต่าง]";
+		mes "^CD6600หืม...";
+		mes "ข้าสงสัยจังว่า";
+		mes "มันเกิดอะไรขึ้นกันแน่...^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^A68064I will inform you";
-		mes "as soon as I hear";
-		mes "something.^000000";
+		mes "[เสียงสนทนาจากหน้าต่าง]";
+		mes "^A68064ผมจะรีบแจ้งให้ท่านทราบ";
+		mes "ทันทีที่ผมได้ยิน";
+		mes "ข่าวคราวคืบหน้าครับ^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^CD6600Thank you...^000000";
+		mes "[เสียงสนทนาจากหน้าต่าง]";
+		mes "^CD6600ขอบใจมาก...^000000";
 	}
 	else if(tu_acolyte01 > 24){
-		mes "[Voices from Window]";
-		mes "^A68064...Sir, do you know anything about the ^855E42curse of the Gaebolg family^A68064?^000000";
+		mes "[เสียงสนทนาจากหน้าต่าง]";
+		mes "^A68064...ท่านครับ ท่านพอจะรู้อะไรเกี่ยวกับ ^855E42คำสาปของตระกูล Gaebolg^A68064 บ้างไหมครับ?^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^CD6600The Gaebolg?";
-		mes "Are you telling me";
-		mes "there's a curse on";
-		mes "the royal family?^000000";
+		mes "[เสียงสนทนาจากหน้าต่าง]";
+		mes "^CD6600ตระกูล Gaebolg งั้นรึ?";
+		mes "เจ้ากำลังจะบอกข้าว่า";
+		mes "มีคำสาปติดตัว";
+		mes "ราชวงศ์อยู่อย่างนั้นรึ?^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^A68064Yes...";
-		mes "That may be why his";
-		mes "highness, King Tristam III,";
-		mes "and his courtiers have been";
-		mes "acting strangely lately...^000000";
+		mes "[เสียงสนทนาจากหน้าต่าง]";
+		mes "^A68064ครับ...";
+		mes "นั่นอาจเป็นเหตุผลที่";
+		mes "องค์เหนือหัว King Tristam III";
+		mes "และเหล่าราชบริพารมีท่าที";
+		mes "แปลกๆ ไปในช่วงนี้ครับ...^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^A68064You see...";
-		mes "Yormungard is";
-		mes "said to have cursed";
-		mes "the Gaebolg family when Rune-Midgarts was first established.^000000";
+		mes "[เสียงสนทนาจากหน้าต่าง]";
+		mes "^A68064นั่นก็เพราะว่า...";
+		mes "ว่ากันว่า Yormungard";
+		mes "เป็นผู้สาปแช่ง";
+		mes "ตระกูล Gaebolg มาตั้งแต่เมื่อครั้งสถาปนา Rune-Midgarts ใหม่ๆ แล้วครับ^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^CD6600Yormungard?!";
-		mes "How can we hope";
-		mes "to combat its magic?";
-		mes "Not even the Asgardians";
-		mes "could deal with that";
-		mes "giant serpent's power!^000000";
+		mes "[เสียงสนทนาจากหน้าต่าง]";
+		mes "^CD6600Yormungard งั้นรึ?!";
+		mes "เราจะหวังไปต่อกร";
+		mes "กับมนตราของมันได้ยังไงกัน?";
+		mes "แม้แต่ชาว Asgardian";
+		mes "ยังรับมือกับพลังของ";
+		mes "งูยักษ์นั่นแทบไม่ได้เลย!^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^A68064It's horrible...";
-		mes "Because of the curse,";
-		mes "the first child of every generation of the Gaebolg family will supposedly die an early death...^000000";
+		mes "[เสียงสนทนาจากหน้าต่าง]";
+		mes "^A68064มันน่าสยดสยองมากครับ...";
+		mes "เพราะคำสาปนั่น";
+		mes "บุตรคนแรกของตระกูล Gaebolg ในทุกๆ รุ่น จะต้องจบชีวิตลงตั้งแต่อายุยังน้อยครับ...^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^CD6600Are you saying that all of the first princes and princesses";
-		mes "have died to this day? If this is true, it'd cause trouble if word got out...^000000";
+		mes "[เสียงสนทนาจากหน้าต่าง]";
+		mes "^CD6600เจ้ากำลังบอกว่าเจ้าชายและเจ้าหญิงองค์โตทุกคน";
+		mes "สิ้นพระชนม์มาจนถึงทุกวันนี้งั้นรึ? ถ้าเรื่องนี้เป็นความจริง มันจะกลายเป็นเรื่องใหญ่แน่ถ้าข่าวรั่วไหลออกไป...^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^CD6600Is that what happened";
-		mes "in the palace? Did the eldest prince pass away recently?^000000";
+		mes "[เสียงสนทนาจากหน้าต่าง]";
+		mes "^CD6600นั่นคือสิ่งที่เกิดขึ้น";
+		mes "ในพระราชวังงั้นรึ? เจ้าชายองค์โตเพิ่งจะสิ้นพระชนม์ไปเมื่อไม่นานมานี้ใช่ไหม?^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^A68064 No...";
-		mes "Actually, the second";
-		mes "eldest prince passed";
-		mes "away, not the first.^000000";
+		mes "[เสียงสนทนาจากหน้าต่าง]";
+		mes "^A68064 เปล่าครับ...";
+		mes "จริงๆ แล้วเป็นเจ้าชาย";
+		mes "องค์รองครับที่สิ้นพระชนม์";
+		mes "ไม่ใช่เจ้าชายองค์โต^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^CD6600What!?^000000";
+		mes "[เสียงสนทนาจากหน้าต่าง]";
+		mes "^CD6600อะไรนะ!?^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^A68064L-lower your voice!^000000";
+		mes "[เสียงสนทนาจากหน้าต่าง]";
+		mes "^A68064บ-เบาเสียงหน่อยครับ!^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^CD6600So...";
-		mes "How did it happen?";
-		mes "Was it an accident?^000000";
+		mes "[เสียงสนทนาจากหน้าต่าง]";
+		mes "^CD6600แล้ว...";
+		mes "มันเกิดขึ้นได้ยังไง?";
+		mes "เป็นอุบัติเหตุรึเปล่า?^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^A68064 They haven't determined";
-		mes "the exact reason of the death yet. But the court officials want us to see if we can undo Yormungard's curse once and for all.^000000";
+		mes "[เสียงสนทนาจากหน้าต่าง]";
+		mes "^A68064 พวกเขายังระบุสาเหตุ";
+		mes "การสิ้นพระชนม์ที่แน่ชัดไม่ได้ครับ แต่พวกข้าราชสำนักต้องการให้เราไปดูว่าจะสามารถแก้คำสาปของ Yormungard ให้หมดไปได้หรือไม่ครับ^000000";
 		next;
-		mes "[Voices from Window]";
-		mes "^CD6600Yormungard's curse?";
-		mes "Is it possible to remove it after so many years? Such ancient";
-		mes "magic may be too powerful for";
-		mes "any of us in the Church...^000000";
+		mes "[เสียงสนทนาจากหน้าต่าง]";
+		mes "^CD6600คำสาปของ Yormungard งั้นรึ?";
+		mes "มันจะเป็นไปได้รึที่จะถอนมันหลังจากผ่านไปหลายปีขนาดนี้? มนตรา";
+		mes "โบราณแบบนั้นอาจจะทรงพลังเกินกว่า";
+		mes "ที่พวกเราในศาสนจักรจะรับมือไหว...^000000";
 		next;
-		mes "[Voice from Window]";
-		mes "^A68064This task is monumentally huge!";
-		mes "And if we should fail, we'd lose the faith of our constituents. The Church and the Royal Court truly need a miracle...^000000";
+		mes "[เสียงจากหน้าต่าง]";
+		mes "^A68064ภารกิจนี้มันยิ่งใหญ่เกินตัวมากครับ!";
+		mes "และถ้าเราล้มเหลว เราจะสูญเสียความศรัทธาจากเหล่าศาสนิกชนไป ทั้งศาสนจักรและราชสำนักต่างต้องการปาฏิหาริย์จริงๆ ครับ...^000000";
 		next;
-		mes "[Voice from Window]";
-		mes "^CD6600Well, what's the Church's response? Are we really going to send someone to lift the curse of a monster that can challenge the Asgardians?^000000";
+		mes "[เสียงจากหน้าต่าง]";
+		mes "^CD6600แล้วทางศาสนจักรตอบรับว่ายังไง? เราจะส่งใครไปถอนคำสาปของมอนสเตอร์ที่สามารถท้าทายชาว Asgardian ได้จริงๆ อย่างนั้นรึ?^000000";
 		next;
-		mes "[Voice from Window]";
-		mes "^A68064I'm not quite sure.";
-		mes "Those that might have";
-		mes "the necessary skill are";
-		mes "too old. Still, they're";
-		mes "not giving up hope...^000000";
+		mes "[เสียงจากหน้าต่าง]";
+		mes "^A68064ผมไม่ค่อยแน่ใจครับ";
+		mes "คนที่มีทักษะเพียงพอ";
+		mes "ก็น่าจะแก่ชรากันหมดแล้ว";
+		mes "แต่ถึงอย่างนั้น พวกเขาก็ยัง";
+		mes "ไม่ยอมสิ้นหวังหรอกครับ...^000000";
 		next;
-		mes "[Voice from Window]";
-		mes "^A68064This situation is very important to the reputation of the royal family and stability of the kingdom, so everyone's been very careful";
-		mes "about keeping quiet.^000000";
+		mes "[เสียงจากหน้าต่าง]";
+		mes "^A68064สถานการณ์นี้สำคัญต่อชื่อเสียงของราชวงศ์และความมั่นคงของอาณาจักรมาก ดังนั้นทุกคนจึงต้องระมัดระวัง";
+		mes "อย่างยิ่งที่จะเก็บเรื่องนี้เป็นความลับครับ^000000";
 		next;
-		mes "[Voice from Window]";
-		mes "^A68064For now, I'll return to the kingdom and let you know if I hear of any other news. Still, since everyone needs to be so careful, it may be";
-		mes "a while until I learn anything new.^000000";
+		mes "[เสียงจากหน้าต่าง]";
+		mes "^A68064ตอนนี้ผมจะกลับไปที่อาณาจักรก่อน และจะแจ้งให้ท่านทราบหากได้ยินข่าวอื่นเพิ่มเติม แต่เนื่องจากทุกคนต้องระวังตัวมาก มันอาจจะ";
+		mes "กินเวลาสักพักกว่าผมจะได้รู้อะไรใหม่ๆ ครับ^000000";
 		next;
-		mes "[Voice from Window]";
-		mes "^CD6600Thank you very much.";
-		mes "I'll be waiting to hear";
-		mes "from you again.^000000";
+		mes "[เสียงจากหน้าต่าง]";
+		mes "^CD6600ขอบใจเจ้ามาก";
+		mes "ข้าจะรอฟังข่าว";
+		mes "จากเจ้าอีกครั้งนะ^000000";
 		next;
-		mes "[Voice from Window]";
-		mes "^CD6600Oh dear God.";
-		mes "Please expel the darkness that approaches the Rune-Midgarts Kingdom. Please protect us with your light and compassion.^000000";
+		mes "[เสียงจากหน้าต่าง]";
+		mes "^CD6600โอ้ พระเจ้าข้า";
+		mes "โปรดช่วยขับไล่ความมืดมิดที่กำลังคืบคลานเข้าสู่อาณาจักร Rune-Midgarts ด้วยเถิด โปรดปกป้องพวกเราด้วยแสงสว่างและความเมตตาของท่านด้วยเทอญ^000000";
 	}
 	close;
 }
 
 sec_in02,17,156,3	script	1st Job Quest Reset	4_F_JOB_BLACKSMITH,{
 	callfunc "F_GM_NPC";
-	mes "[1st Job Quest]";
-	mes "Which would you like to reset?";
+	mes "[รีเซ็ตเควสเปลี่ยนอาชีพ Class 1]";
+	mes "คุณต้องการรีเซ็ตเควสของอาชีพไหนคะ?";
 	next;
 	switch(select("Swordsman:Merchant:Archer:Acolyte:Thief:Mage")) {
 	case 1:
@@ -1786,6 +1784,6 @@ sec_in02,17,156,3	script	1st Job Quest Reset	4_F_JOB_BLACKSMITH,{
 		tu_magician01 = 0;
 		break;
 	}
-	mes "Completed.";
+	mes "ดำเนินการเสร็จสิ้น";
 	close;
 }
