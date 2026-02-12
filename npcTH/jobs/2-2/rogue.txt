@@ -1,2125 +1,2023 @@
-//===== rAthena Script =======================================
+//===== rAthena Script ======================================= 
 //= Rogue Job Quest
-//===== By: ==================================================
+//===== By: ================================================== 
 //= kobra_k88
-//===== Current Version: =====================================
+//===== Current Version: ===================================== 
 //= 2.9
-//===== Compatible With: =====================================
+//===== Compatible With: ===================================== 
 //= rAthena Project
-//===== Description: =========================================
+//===== Description: ========================================= 
 //= [Official Conversion]
 //= Job quest for Rogue classes
-//===== Additional Comments: =================================
+//===== Additional Comments: ================================= 
 //= 2.4 Rescripted to Aegis 10.3 stadards. [L0ne_W0lf]
-//=     No longer uses function "f_blockhigh"
+//=     No longer uses function "F_BlockHigh"
 //= 2.4a Deleted unused variables. [Samuray22]
-//= 2.4b Changed a Problem with JobLevel what made
+//= 2.4b Changed a Problem with JobLevel what made 
 //=     impossible get a Gladius [3]. (bugreport:481) [Samuray22]
-//= 2.4c Corrected a Typo error "-" and a typo error with "รูจ". (bugreport:909) [Samuray22]
+//= 2.4c Corrected a Typo error ";;" and a typo error with "rouge". (bugreport:909) [Samuray22]
 //= 2.5 Added dummy "OnMyMobDead" labels. (bugreport:1100) [L0ne_W0lf]
 //= 2.6 Fixed a few bugs in the Rogue Guildsman. [L0ne_W0lf]
 //= 2.7 Fixed a bug on Markie question 5, bugreport:1600 [Brainstorm]
 //= 2.8 Moved "Thug" to Morocc Ruins. [L0ne_W0lf]
 //= 2.9 Added Quest Log commands. [Kisuka]
-//============================================================
-
+//============================================================ 
 
 moc_ruins,86,103,1	script	Thug#rg	118,{
 	mes "[Thug]";
-		mes "*ถอนหายใจ ...*";
-		mes "ชีวิตคืออะไร?";
-		mes "และสิ่งที่ใช้";
-		mes "เป็นเงิน?...สาปแช่ง.";
-		mes "ไอ้ชีวิตไร้ค่านี้!";
-		next;
-		mes "[อันธพาล]";
-		mes "เฮ้เด็ก";
-		mes "อะไรนรก";
-		mes "คุณมองไปที่?";
-		next;
-		if (select("ฉัน?n-nothing! ': ........") == 1) {
+	mes "*เฮ้อ...*";
+	mes "ชีวิตคืออะไรกันนะ?";
+	mes "แล้วเงินทองน่ะ";
+	mes "มันจะมีประโยชน์อะไร? ...บัดซบ";
+	mes "ช่างเป็นชีวิตที่ไร้ค่าสิ้นดี!";
+	next;
+	mes "[Thug]";
+	mes "เฮ้ ไอหนู";
+	mes "แกจ้องบ้าอะไร";
+	mes "ของแกวะ?";
+	next;
+	if (select("ฉันเหรอ? ปะ-เปล่านี่!:........") == 1) {
 		mes "[Thug]";
-				mes "จากนั้นรับไฟล์";
-				mes "นรกออกมาจากใบหน้าของฉัน!";
-				mes "คุณไม่ได้ยินฉันเหรอ?";
-				mes "หลงทาง!";
-				close;
-		}
-		mes "[อันธพาล]";
-		mes "อืม...";
-		mes "บางทีฉันอาจจะแกว่งไปที่ ^0000ffrogu Guild ^000000 ในประภาคาร ^0000FFPAROS ^000000 ...";
-		next;
-		mes "[อันธพาล]";
-		mes "ฉันต้องการเงินของฉัน";
-		mes "และพวกเขามีดีที่สุด ...";
+		mes "ถ้าอย่างนั้นก็ไสหัวไป";
+		mes "ให้พ้นหน้าฉันซะ!";
+		mes "ไม่ได้ยินที่พูดหรือไง?";
+		mes "ไปให้พ้น!";
 		close;
+	}
+	mes "[Thug]";
+	mes "หืมมม...";
+	mes "บางทีฉันอาจจะแวะไปที่ ^0000FFRogue Guild^000000 ใน ^0000FFParos Lighthouse^000000 สักหน่อย...";
+	next;
+	mes "[Thug]";
+	mes "ฉันต้องการเงินของฉันคืน";
+	mes "และพวกมันควรจะมีจ่ายให้ฉันด้วย...";
+	close;
 }
-
 
 in_rogue,363,122,4	script	Rogue Guildsman#rg	747,{
-		if (Upper == 1) {
-				mes "[Markie]";
-				mes "เอ๊ะ?คุณ ... คุณ ... ?!";
-				mes "เฮ้เราไม่เคยพบมาก่อนเหรอ?";
-				next;
-				mes "[Markie]";
-				mes "-";
-				mes "awww, ^ff0000i ฉันขออภัย ^000000!ฉันคิดว่าฉันเข้าใจผิดคุณจากคนที่ฉันรู้จัก";
-				next;
-				mes "[Markie]";
-				mes "-";
-				mes "........ มันแปลกอืม";
-				next;
-				mes "[Markie]";
-				mes "ฉันไม่เคยเข้าใจผิดคน ... โอ้ดีอยู่แล้ว!";
-				close;
+	if (Upper == 1) {
+		mes "[Markie]";
+		mes "เอ๋? คุณ...คุณ...?!";
+		mes "เฮ้ เราเคยเจอกันมาก่อนหรือเปล่า?";
+		next;
+		mes "[Markie]";
+		mes "..............";
+		mes "อ๊าว ^FF0000ฉันขอโทษที^000000! ฉันคิดว่าฉันจำคุณสลับกับคนที่ฉันรู้จักน่ะ";
+		next;
+		mes "[Markie]";
+		mes ".......";
+		mes "........มันแปลกแฮะ อืมม";
+		next;
+		mes "[Markie]";
+		mes "ฉันไม่เคยจำคนผิดเลยนะ... เอาเถอะ ยังไงก็ขอให้ปลอดภัยนะ!";
+		close;
+	}
+	if (BaseJob == Job_Thief) {
+		if (SkillPoint) {
+			mes "[Rogue Guildsman]";
+			mes "โย่ นายทำอะไรอยู่เนี่ย?!";
+			mes "นายเปลี่ยนอาชีพไม่ได้ถ้ายังมี Skill Point ที่ไม่ได้ใช้ ดังนั้นไปใช้ให้หมดซะ เช็กตัวเองให้ดีก่อนจะเสียเที่ยวนะเพื่อน";
+			close;
 		}
-		if (BaseJob == Job_Thief) {
-				if (SkillPoint) {
-						mes "[Rogue Guildsman]";
-						mes "โย่คุณทำอะไร?!";
-						mes "คุณไม่สามารถเปลี่ยนงานของคุณได้หากคุณได้รับคะแนนทักษะที่ไม่ได้ใช้ดังนั้นให้ใช้พวกเขาทั้งหมดคุณ bettah ตรวจสอบ yo-self ก่อนที่คุณจะทำลายตัวเอง";
-						close;
+		if (JobLevel > 39) {
+			if (ROGUE_Q == 0) {
+				mes "[Rogue Guildsman]";
+				mes "แล้วเด็กอย่างนาย";
+				mes "มาทำอะไรที่นี่ล่ะ?";
+				if (Sex == SEX_MALE) {
+					mes "อ้อ ฉันเข้าใจละ...";
+					mes "พ่อหนุ่มน้อยอยาก";
 				}
-				if (JobLevel > 39) {
-						if (ROGUE_Q == 0) {
-								mes "[Rogue Guildsman]";
-								mes "แล้วเด็กคืออะไร";
-								mes "เหมือนคุณทำที่นี่?";
-								if (Sex == SEX_MALE) {
-										mes "โอ้ฉันเข้าใจแล้ว ...";
-										mes "เด็กชาย widdle ต้องการ";
-								}
-								else {
-										mes "โอ้ฉันเห็น ...";
-										mes "Lil 'Cutie ต้องการ";
-								}
-								mes "เป็น ^800000Rogue ^000000";
-								next;
-								mes "[Rogue Guildsman]";
-								mes "เอ๊ะการพบกันที่ดี 'คุณฉันเดาฉันมาร์กี้และฉันทำงานให้กับ Rogue Guild, Philanthro- * Ahem * A ^800000 ผู้ใจบุญ ^000000 กลุ่มอย่างที่คุณเห็นคุณชื่ออะไร?";
-								next;
-								mes "[Markie]";
+				else {
+					mes "อ้อ ฉันเห็นละ...";
+					mes "แม่สาวน้อยสุดสวยอยาก";
+				}
+				mes "จะเป็น ^800000Rogue^000000 ล่ะสิ";
+				next;
+				mes "[Rogue Guildsman]";
+				mes "เออ ยินดีที่ได้รู้จักละกัน ฉันชื่อ Markie ทำงานให้ Rogue Guild กลุ่มผู้ใจบุญ-- *อะแฮ่ม* กลุ่ม ^800000feelanthropist^000000 อย่างที่นายเห็นนี่แหละ แล้วนายชื่ออะไรล่ะ?";
+				next;
+				mes "[Markie]";
 				mes "..." + strcharinfo(0) + "?";
-								mes "เฮ้!ชื่อเจ๋ง ๆ";
-								mes "ถ้ามันเป็น dorky เราก็จะ";
-								mes "ทำให้คุณเปลี่ยนมัน";
-								mes "คุณโชคดี";
-								next;
-								mes "[Markie]";
-				mes "So why you wanna join up with the Rogues? I guess you gave me your real name, so you'd be an honest Rogue. Not many of those around, heh heh~";
-								next;
-								mes "[Markie]";
-								mes "กฎหมายเลข 1 สำหรับ Rogues ...";
-								mes "อย่าให้อัตลักษณ์ที่แท้จริงของคุณกับคนส่วนใหญ่ส่วนใหญ่มันเป็นเพียงการสำรองข้อมูลเล็กน้อยที่เราต้องการใช้";
-								next;
-								mes "[Markie]";
-								mes "ขวา.ฉันรับใบสมัครอย่างเป็นทางการดังนั้นตอนนี้คุณต้องทำการทดสอบอย่าเหงื่อออกอันแรกนี้เป็นเรื่องง่ายจริงๆ";
-								next;
-								mes "[Markie]";
-								mes "ใช้ได้...";
-								mes "เริ่มต้นกันเถอะ!";
-								next;
-						}
-						else if (ROGUE_Q == 1) {
-								mes "[Markie]";
-								mes "คุณอีกครั้ง?";
-								mes "โอเคคุณอาจจะเมาครั้งสุดท้าย 'เพราะคุณรู้สึกประหม่าเกินไปดังนั้นแค่ทำใจให้สบายและผ่าน";
-								mes "การทดสอบนี้โอเค?";
-								next;
-						}
-						else if (ROGUE_Q == 2) {
-								mes "[Markie]";
-								mes "ไปคุยกับสมิ ธการทดสอบของเขาอาจจะค่อนข้างยากเขาเป็นหนึ่งในคนที่ทำให้แน่ใจว่าผู้คนจ่ายหนี้ให้เราใช่เขาอาจจะเป็นกรณีที่ยากลำบาก";
-								next;
-								mes "[Markie]";
-								mes "ใช่...";
-								mes "ผู้ชายคนนั้นสามารถทวารหนักได้ แต่เราต้องการผู้ชายอย่างเขาในกิลด์ของเราอย่างไรก็ตามระวังโชคดีมากสำหรับคุณเพื่อน";
-								close;
-						}
-						else if (ROGUE_Q > 2 && ROGUE_Q < 16) {
-								mes "[Markie]";
-								mes "เฮ้ยอ ...";
-								mes "ทำดีที่สุด";
-								next;
-								mes "[Markie]";
-								mes "เฮ้เฮ้ ...";
-								mes "เนื้อสดนี่จะเป็น";
-								mes "cinch to-รอ!เอ่อฉันไม่ได้พูดถึงคุณ!ฉันหมายถึงเนื้อสดอื่น ๆ ~";
-								close;
-						}
-						else if (ROGUE_Q == 16 || ROGUE_Q == 17) {
-								changequest 2026,2027;
-								mes "[Markie]";
-								if (ROGUE_Q == 16) {
-										mes "โอ้เฮ้คุณ!";
-										mes "คุณทำได้ดีมากผู้ชาย";
-										mes "ตอนนี้ Lemme เปลี่ยนไฟล์";
-										mes "งานกับคนโกงคุณได้รับมัน!";
-										next;
-										mes "[Markie]";
-										mes "ขอแสดงความยินดี ~!";
-										mes "คุณมอง";
-										mes "SOOO DOPE!";
-								}
-								else {
-										mes "โอ้!คุณเป็นคุณ!";
-										mes "คุณสามารถทนกับผู้ชายคนนั้นได้จริงเหรอ?สิ่งดีๆ!ต้องมีเวลาคร่าวๆรวบรวมสิ่งของเหล่านั้นทั้งหมดใช่มั้ย";
-										next;
-										mes "[Markie]";
-										mes "เฮ้เฮ้ ~";
-										mes "ยินดีด้วย!";
-										mes "คุณเคยเป็น";
-										mes "ทำได้ดีมาก ~";
-								}
-								set .@jlevel,JobLevel;
-								callfunc "job_change",Job_Rogue;
-								callfunc "f_clearjobvar";
-								completequest 2027;
-								next;
-								mes "[Markie]";
-								mes "ตอนนี้...";
-								mes "ถึงเวลาแล้ว";
-								mes "เพื่อให้ฉันทำ";
-								mes "คำพูด ~ *อะแฮ่ม *";
-								next;
-								mes "[Markie]";
-								mes "เพลิดเพลินไปกับอิสรภาพของคุณในฐานะคนโกงเพียงจำไว้ว่าคุณต้องเป็นอิสระและรับผิดชอบในเวลาเดียวกันดังนั้นปฏิบัติต่อคนอื่นในแบบที่คุณอยากได้รับการปฏิบัติเคย์?เอาล่ะรอบ Seeya";
-								close2;
-								if (.@jlevel == 50) {
-										getitem 1220,1; //Gladius_
-								} else {
-										getitem 1219,1; //Gladius
-								}
-								end;
-						}
-						if (select("ฉันพร้อม: โฮลด์ฉันต้องเตรียมพร้อม!") == 2) {
-								mes "[Markie]";
-								mes "เตรียมพร้อม ... ?";
-								mes "สบายดี";
-								mes "ใช้ความหวานของคุณ";
-								mes "เวลาทำไมคุณไม่?";
-								mes "แต่รีบและ";
-								mes "กลับมาได้ไหม";
-								close;
-						}
-						next;
-						mes "[Markie]";
-						mes "ฟังอย่างระมัดระวังและ";
-						mes "เลือกคำตอบที่ถูกต้อง";
-						mes "เค้ก?ตอนนี้ Lemme";
-						mes "อ่านคำถามเหล่านี้ ...";
-						next;
-						switch(rand(1,3)) {
-						case 1:
-								mes "[Markie]";
-				mes "1. Choose the skill necessary for learning ^880000Stalk^000000.";
-								next;
-				if (select("^880000Hiding^000000:^880000Steal^000000:^880000Improve Dodge^000000:^880000Bash^000000") == 1)
-										set .@assassin_t,.@assassin_t+10;
-
-
-								mes "[Markie]";
-								mes "2. เมื่อเปรียบเทียบกับทักษะระดับ 10 ^880000Discount ^000000 ทักษะส่วนลดมากแค่ไหนในแง่ของเปอร์เซ็นต์ Rogue สามารถได้รับระดับ 10 ^880000HAGGLE ^000000 ทักษะ?";
-								next;
-								if (select("3 %: 2 %: 1 %: 0 %") == 3)
-										set .@assassin_t,.@assassin_t+10;
-
-
-								mes "[Markie]";
-								mes "3. คำอธิบายที่ถูกต้องสำหรับทักษะคืออะไร ^880000MUG ^000000?";
-								next;
-								if (select("ขโมยไอเท็มจากผู้เล่น: ขโมยไอเท็มจากสัตว์ประหลาด: ขโมย Zeny จากสัตว์ประหลาด: ขโมย Zeny จากผู้เล่น") == 3)
-										set .@assassin_t,.@assassin_t+10;
-
-
-								mes "[Markie]";
-								mes "4. ต้องใช้สองคนในการเปิดใช้งานทักษะ ^880000SLYNESS ^000000?";
-								next;
-								if (select("1 Rogues + 2 Assassin: 1 Thief + 2 Rogue: 4 Thieves: 2 Rogues") == 4)
-										set .@assassin_t,.@assassin_t+10;
-
-
-								mes "[Markie]";
-								mes "5. เลือกทักษะที่คุณสามารถเรียนรู้ได้ที่ระดับ 5 ^88000000 HELM ^000000";
-								next;
-								if (select("^880000Envenom^000000:^880000STRIP TEASE^000000:^880000Venom Splasher^000000:^88000000Divest Shield^000000") == 4)
-										set .@assassin_t,.@assassin_t+10;
-
-
-								mes "[Markie]";
-								mes "6. เลือกทักษะที่ช่วยให้ผู้ใช้ย้ายขณะซ่อนตัว";
-								next;
-								if (select("^880000Hiding^000000:^880000Back Slide^000000:^880000STALK^000000:^880000SAND ATTACTION^000000") == 3)
-										set .@assassin_t,.@assassin_t+10;
-
-
-								mes "[Markie]";
-								mes "7. เลือกการ์ดที่เพิ่มอัตราความแม่นยำของเจ้าของ";
-								next;
-								if (select("การ์ด Andre: การ์ดฟามิลี่: การ์ดมัมมี่: การ์ดมารีนา") == 3)
-										set .@assassin_t,.@assassin_t+10;
-
-
-								mes "[Markie]";
-								mes "8. เลือกมอนสเตอร์ที่ได้รับความเสียหายมากขึ้นเมื่อถูกโจมตีด้วยอาวุธด้วยการ์ด Vadon (ความเสียหายมากขึ้น 20 % จากคุณสมบัติไฟไหม้)";
-								next;
-								if (select("Vadon: Deviruchi: Elder Willow: Baphomet") == 3)
-										set .@assassin_t,.@assassin_t+10;
-
-
-								mes "[Markie]";
-								mes "9. ทักษะการโจมตี ^880000-weble มี SP เท่าไหร่ ^000000 ต้องการเมื่อใช้กับกริช?";
-								next;
-								if (select("15: ทักษะแบบพาสซีฟไม่จำเป็นต้องใช้ SP: ทักษะการผ่าน, 10 sp: 54") == 2)
-										set .@assassin_t,.@assassin_t+10;
-
-
-								mes "[Markie]";
-								mes "10. เลือกกริชที่มีประสิทธิภาพมากที่สุดที่จะใช้ใน Byalan Dungeon";
-								next;
-								if (select("Wind Main-Gauche: Ice Main-Gauche: Earth Main-Gauche: Fire Main-Gauche") == 1)
-										set .@assassin_t,.@assassin_t+10;
-								break;
-						case 2:
-								mes "[Markie]";
-								mes "1. มอนสเตอร์ตัวไหนลดลง gladius slotted?";
-								next;
-								if (select("Bug Thief: Peco Peco: Desert Wolf: Kobold") == 4)
-										set .@assassin_t,.@assassin_t+10;
-
-
-								mes "[Markie]";
-								mes "2. มอนสเตอร์ตัวไหนลดลง main-gauche slotted?";
-								next;
-								if (select("Hornet: Desert Wolf: Marionette: Myst") == 1)
-										set .@assassin_t,.@assassin_t+10;
-
-
-								mes "[Markie]";
-								mes "3. เลือกคลาสที่สามารถสร้างยาที่ไม่ซ้ำกันได้";
-								next;
-								if (select("พ่อค้า: นักเล่นแร่แปรธาตุ: ช่างตีเหล็ก: นักบวช") == 2)
-										set .@assassin_t,.@assassin_t+10;
-
-
-								mes "[Markie]";
-								mes "4. เลือกอาวุธที่ไม่อนุญาตให้ใช้ Rogues";
-								next;
-								if (select("Gakkung: Crossbow: Gladius: Katar") == 4)
-										set .@assassin_t,.@assassin_t+10;
-
-
-								mes "[Markie]";
-								mes "5. เลือกคุณสมบัติที่สัตว์ประหลาด Hode ครอบครอง";
-								next;
-								if (select("น้ำ: ไฟ: ลม: โลก") == 4)
-										set .@assassin_t,.@assassin_t+10;
-
-
-								mes "[Markie]";
-								mes "6. เลือกสัตว์ประหลาดที่ไม่สามารถเชื่องเป็นสัตว์เลี้ยงที่น่ารักได้";
-								next;
-								if (select("Poporing: Creamy: Orc: Poison Spore") == 2)
-										set .@assassin_t,.@assassin_t+10;
-
-
-								mes "[Markie]";
-								mes "7. เลือกสัตว์ประหลาดที่ได้รับความเสียหายมากขึ้นจากกริชด้วยคุณสมบัติไฟ";
-								next;
-								if (select("Dagger Goblin: Mace Goblin: Morning Star Goblin: Hammer Goblin") == 4)
-										set .@assassin_t,.@assassin_t+10;
-
-
-								mes "[Markie]";
-								mes "8. เลือกเมืองที่ไม่มีปราสาทกิลด์";
-								next;
-								if (select("Prontera: Al de Baran: Alberta: Payon") == 3)
-										set .@assassin_t,.@assassin_t+10;
-
-
-								mes "[Markie]";
-								mes "9. เลือกพืชที่หยดสมุนไพรสีน้ำเงิน";
-								next;
-								switch(select("พืชสีเขียว: พืชสีเหลือง: พืชสีน้ำเงิน: โรงงานส่องแสง")) {
-								default:
-										break;
-								case 3:
-										set .@assassin_t,.@assassin_t+10;
-										break;
-								case 4:
-										set .@assassin_t,.@assassin_t+10;
-										break;
-								}
-								mes "[Markie]";
-								mes "10. เลือกสัตว์ประหลาดที่ไม่มีคุณสมบัติ Undead";
-								next;
-								if (select("Zombie: Megalodon: คุ้นเคย: Khalitzburg") == 3)
-										set .@assassin_t,.@assassin_t+10;
-								break;
-						case 3:
-								mes "[Markie]";
-								mes "1. อัตราการหลบหนีเพิ่มขึ้นเป็นเปอร์เซ็นต์เมื่อโจรมาสเตอร์ ^880000Improve Dodge ^000000?";
-								next;
-								if (select("30: 40: 160: 20") == 1)
-										set .@assassin_t,.@assassin_t+10;
-
-
-								mes "[Markie]";
-								mes "2. เลือกสัตว์ประหลาดที่ตรวจจับตัวละครโดยใช้ทักษะการซ่อนหรือปิดบัง";
-								next;
-								if (select("Worm Tail: Argos: Mummy: Soldier Skeleton") == 2)
-										set .@assassin_t,.@assassin_t+10;
-
-
-								mes "[Markie]";
-								mes "3. เลือกสถานที่ที่โจรสามารถเปลี่ยนงานเป็น Rogues";
-								next;
-								if (select("Comodo: Kokomo Beach: Paros Lighthouse: Morocc") == 3)
-										set .@assassin_t,.@assassin_t+10;
-
-
-								mes "[Markie]";
-								mes "4. ในเมืองใดที่สามารถเปลี่ยนงานของพวกเขาเป็นโจรได้ในเมืองใด?";
-								next;
-								if (select("Comodo: Lutie: Alberta: Morocc") == 4)
-										set .@assassin_t,.@assassin_t+10;
-
-
-								mes "[Markie]";
-								mes "5. เลือกการ์ดที่ไม่ส่งผลกระทบต่อสถิติ DEX";
-								next;
-								if (select("Rocker Card: Mummy Card: Zerom Card: Drops Card") == 2)
-										set .@assassin_t,.@assassin_t+10;
-
-
-								mes "[Markie]";
-								mes "6. แล้วการเป็นคนโกงคืออะไร?";
-								next;
-								select("เป็นคนเลวโดยสิ้นเชิง: เสื้อผ้าสไตล์: การโทรหาคนอื่น 'foo' ': ความแข็งแกร่งของการโจมตีที่ยอดเยี่ยม");
-								set .@assassin_t,.@assassin_t+10;
-
-
-								mes "[Markie]";
-								mes "7. เมื่อไหร่ที่จะเปลี่ยนงานจากขโมยเป็น Rogue?";
-								next;
-								switch(select("ที่ระดับงาน 30: ที่ระดับงาน 35: ที่ระดับงาน 40: ที่ระดับงาน 50")) {
-								default:
-										break;
-								case 3:
-										set .@assassin_t,.@assassin_t+10;
-										break;
-								case 4:
-										set .@assassin_t,.@assassin_t+10;
-										break;
-								}
-								mes "[Markie]";
-								mes "8. คุณต้องการย้อมผมสีฟ้าคุณไปเมืองอะไรและไปในทิศทางใดด้วยนาฬิกา 12 o 'อยู่ทางเหนือ";
-								next;
-								if (select("Morocc, 7 นาฬิกา: Prontera, 7 นาฬิกา: Morocc, 5 นาฬิกา: Prontera, 1 นาฬิกา") == 2)
-										set .@assassin_t,.@assassin_t+10;
-
-
-								mes "[Markie]";
-								mes "9. เลือกเห็ดที่จำเป็นในภารกิจเปลี่ยนงานขโมย";
-								next;
-								switch(select("เห็ดเหนอะหน")) {
-								default:
-										break;
-								case 1:
-								case 3:
-										set .@assassin_t,.@assassin_t+10;
-										break;
-								}
-								mes "[Markie]";
-								mes "10. เลือกการ์ดที่เป็นประโยชน์ต่อคลาส Rogue น้อยที่สุด";
-								next;
-								if (select("การ์ด Whisper: Elder Willow Card: Zerom Card: Matyr Card") == 2)
-										set .@assassin_t,.@assassin_t+10;
-						}
-						mes "[Markie]";
-						mes "*ว้าว ~*";
-						mes "ในที่สุด.";
-						mes "เราทำเสร็จแล้ว";
-						next;
-						mes "[Markie]";
-						mes "มาดูกัน";
-						mes "คุณมี ...";
-						mes "" + .@assassin_t + "คะแนน.";
-						if (.@assassin_t > 80) {
-								set ROGUE_Q,2;
-								setquest 2017;
-								mes "ดี.คุณผ่าน";
-								mes "เราไม่ต้อง";
-								mes "ทำอีกครั้ง";
-								next;
-								mes "[Markie]";
-								mes "แต่ยังไม่สบายเกินไปคุณได้รับการทดสอบเหล่านี้มากขึ้นคนต่อไปของคุณจะมาจากสมิ ธ";
-								next;
-								mes "[Markie]";
-								mes "ดังนั้น...";
-								mes "ไปหาสมิ ธ และจบการทดสอบนี้ใช่ไหมระวังแม้ว่าสมิ ธ เป็นคนที่น่ารัก";
-								close;
-						}
-						else {
-								set ROGUE_Q,1;
-								mes "อ๊ะ ... คุณล้มเหลว!";
-								next;
-								mes "[Markie]";
-								mes "ผู้ชายคุณควรเรียนรู้มากขึ้นเมื่อคุณมีโอกาสขอบคุณที่เสียเวลา";
-								next;
-								mes "[Markie]";
-								mes "* ถอนหายใจ ...* lemme ให้เคล็ดลับกับคุณใช่มั้ยฉันควรจะบอกคุณเกี่ยวกับ ^990000iro.ragnarokonline.com ^000000 เพื่อช่วยให้คุณเรียนรู้สิ่งที่คุณต้องรู้";
-								next;
-								mes "[Markie]";
-								mes "แน่นอนฉันไม่รู้ว่ามันหมายถึงอะไร แต่ถ้าคุณเข้าใจมันอาจจะช่วยคุณได้มาก";
-								close;
-						}
-				}
-				else if (JobLevel < 40) {
-						mes "[Rogue Guildsman]";
-						mes "โอ้โฮช้าลงมือใหม่เรายอมรับเฉพาะคนที่เป็นโจรอย่างน้อยระดับ 40 ฉันไม่ได้เสี่ยงตัวเองโดยปล่อยให้คุณเข้ามาก่อนที่คุณจะพร้อมเข้าใจแล้ว?";
-						close;
-				}
-		}
-		else if (BaseJob == Job_Assassin) {
-				mes "[Rogue Guildsman]";
-				mes "ฮะ...?";
-				mes "นักฆ่าที่นี่คืออะไร?เอ่อคุณยังไม่ได้รับมอบหมายให้ฆ่าใครบางคนในกิลด์อันธพาลใช่มั้ย";
+				mes "เหอะๆ! ชื่อเจ๋งดีนี่";
+				mes "ถ้าชื่อมันเห่ยกว่านี้";
+				mes "เราคงต้องบังคับให้นายเปลี่ยนชื่อไปแล้ว";
+				mes "ถือนายว่าโชคดีนะ";
 				next;
-				mes "[Rogue Guildsman]";
-				mes "ไม่ว่าในกรณีใดอย่ายุ่งกับเรา!คุณจับฉันไม่ได้ ... ฉันเป็นอาชญากรที่ราบรื่น!";
-				next;
-				mes "[Rogue Guildsman]";
-				mes "ไม่เข้าใจเหรอ?เป็นสิ่งที่ฉันเคยพูดกับฮิวอี้เสมอหากคุณอยู่ในสมาคม Assassin คุณได้พบเขา ...";
-				close;
-		}
-		else if (BaseJob == Job_Rogue) {
 				mes "[Markie]";
-				mes "เฮ้เฮ้ ~";
-				mes "ไม่เห็นนาน";
-				mes "เอ๊ะตอนนี้เราไม่ทำ";
-				mes "คำขอใด ๆ จากไฟล์";
-				mes "กิลด์สำหรับคุณดังนั้นแค่";
-				mes "กลับมาตรวจสอบอีกครั้งในภายหลัง";
+				mes "แล้วทำไมถึงอยากเข้าร่วมกับพวก Rogue ล่ะ? ฉันเดาว่านายคงบอกชื่อจริงกับฉัน นายคงจะเป็น Rogue ที่ซื่อสัตย์สินะ ซึ่งมันไม่ค่อยจะมีคนแบบนั้นเท่าไหร่หรอก เหอะๆ~";
+				next;
+				mes "[Markie]";
+				mes "กฎข้อที่ 1 สำหรับ Rogue...";
+				mes "อย่าบอกตัวตนที่แท้จริงกับคนส่วนใหญ่ ในเกือบจะทุกเวลา มันเป็นแค่มาตรการสำรองเล็กๆ น้อยๆ ที่เราชอบใช้กันน่ะ";
+				next;
+				mes "[Markie]";
+				mes "เอาล่ะ ฉันรับใบสมัครของนายอย่างเป็นทางการแล้ว ทีนี้ก็ต้องทำบททดสอบ ไม่ต้องกังวลไป อันแรกน่ะมันง่ายสุดๆ";
+				next;
+				mes "[Markie]";
+				mes "เอาล่ะ...";
+				mes "มาเริ่มกันเลย!";
+				next;
+			}
+			else if (ROGUE_Q == 1) {
+				mes "[Markie]";
+				mes "นายอีกแล้วเหรอ?";
+				mes "โอเค คราวที่แล้วนายคงทำพลาดเพราะตื่นเต้นเกินไปล่ะมั้ง คราวนี้ก็แค่ใจเย็นๆ แล้วผ่าน";
+				mes "บททดสอบนี้ให้ได้ โอเคไหม?";
+				next;
+			}
+			else if (ROGUE_Q == 2) {
+				mes "[Markie]";
+				mes "ไปคุยกับ Smith ซะ บททดสอบของเขาน่ะอาจจะยากหน่อย เขาเป็นหนึ่งในคนที่คอยดูแลให้คนจ่ายหนี้ให้กับพวกเรา ดังนั้น ใช่ เขาอาจจะเป็นพวกเข้มงวดและน่ารำคาญนิดหน่อย";
+				next;
+				mes "[Markie]";
+				mes "ใช่...";
+				mes "หมอนั่นน่ะจู้จี้สุดๆ แต่เราก็ต้องการคนแบบเขาในกิลด์ เอาเป็นว่าระวังตัวด้วยล่ะ โชคดีนะเพื่อน";
 				close;
-		}
-		else {
-				mes "[Rogue Guildsman]";
-				mes "เฮ้คุณ ...";
-				mes "รับความน่าเกลียดของคุณ";
-				mes "ลาออกจากที่นี่";
-				mes "ก่อนที่ฉันจะตกแต่งใหม่";
-				mes "ใบหน้าของคุณ!";
+			}
+			else if (ROGUE_Q > 2 && ROGUE_Q < 16) {
+				mes "[Markie]";
+				mes "เฮ้ โย่...";
+				mes "พยายามเข้านะ";
+				next;
+				mes "[Markie]";
+				mes "เหอะๆ...";
+				mes "เด็กใหม่แกะกล่อง งานนี้คง";
+				mes "ง่ายเหมือนปอกกล้วย-- เดี๋ยว! เอ้อ ฉันไม่ได้หมายถึงนาย! ฉันหมายถึงเด็กใหม่คนอื่นน่ะ~";
 				close;
+			}
+			else if (ROGUE_Q == 16 || ROGUE_Q == 17) {
+				changequest 2026,2027;
+				mes "[Markie]";
+				if (ROGUE_Q == 16) {
+					mes "โอ้ เฮ้ เป็นนายนี่เอง!";
+					mes "นายทำได้ดีมากเพื่อน";
+					mes "ทีนี้ ให้ฉันเปลี่ยน";
+					mes "อาชีพให้นายเป็น Rogue นะ นายคู่ควรกับมันแล้ว!";
+					next;
+					mes "[Markie]";
+					mes "ยินดีด้วย~!";
+					mes "นายดู";
+					mes "เท่สุดๆ ไปเลย!";
+				}
+				else {
+					mes "โอ้! เป็นนายนี่เอง!";
+					mes "นายทนยัยหมอนั่นได้จริงๆ เหรอ? เยี่ยมมาก! คงจะลำบากแย่เลยนะตอนสะสมไอเทมพวกนั้นน่ะ หือ?";
+					next;
+					mes "[Markie]";
+					mes "เฮ้ เฮ้~";
+					mes "ยินดีด้วย!";
+					mes "นายทำผลงานได้";
+					mes "ยอดเยี่ยมมากเลยนะ~";
+				}
+				set .@jlevel,JobLevel;
+				callfunc "Job_Change",Job_Rogue;
+				callfunc "F_ClearJobVar";
+				completequest 2027;
+				next;
+				mes "[Markie]";
+				mes "เอาล่ะ...";
+				mes "ได้เวลา";
+				mes "ที่ฉันจะกล่าว";
+				mes "สุนทรพจน์สักหน่อย~ *อะแฮ่ม*";
+				next;
+				mes "[Markie]";
+				mes "จงสนุกกับอิสระในฐานะ Rogue แต่อย่าลืมว่านายต้องมีอิสระและมีความรับผิดชอบไปพร้อมๆ กันด้วยล่ะ ปฏิบัติต่อคนอื่นเหมือนที่นายอยากให้คนอื่นทำกับนายนะ โอเคไหม? เอาล่ะ ไว้เจอกัน";
+				close2;
+				if (.@jlevel == 50) {
+					getitem 1220,1; //Gladius_ [3]
+				} else {
+					getitem 1219,1; //Gladius [2]
+				}
+				end;
+			}
+			if (select("ฉันพร้อมแล้ว.:เดี๋ยวก่อน ขอเวลาเตรียมตัวหน่อย!") == 2) {
+				mes "[Markie]";
+				mes "เตรียมตัวงั้นเหรอ...?";
+				mes "ได้ๆ";
+				mes "ตามสบายเลย";
+				mes "เอาที่นายสบายใจ";
+				mes "แต่รีบหน่อยละกัน";
+				mes "แล้วกลับมาล่ะ เข้าใจไหม?";
+				close;
+			}
+			next;
+			mes "[Markie]";
+			mes "ฟังให้ดี";
+			mes "แล้วเลือกคำตอบที่ถูกต้อง";
+			mes "เข้าใจนะ? เอาล่ะ";
+			mes "ฉันจะอ่านคำถามพวกนี้ละ...";
+			next;
+			switch(rand(1,3)) {
+			case 1:
+				mes "[Markie]";
+				mes "1. จงเลือกทักษะที่จำเป็นในการเรียนรู้ ^880000Stalk^000000";
+				next;
+				if (select("^880000Hiding^000000:^880000Steal^000000:^880000Improve Dodge^000000:^880000Bash^000000") == 1)
+					set .@assassin_t,.@assassin_t+10;
+
+				mes "[Markie]";
+				mes "2. เมื่อเทียบกับทักษะ ^880000Discount^000000 เลเวล 10 ของ Merchant แล้ว ทักษะ ^880000Haggle^000000 เลเวล 10 ของ Rogue จะได้รับส่วนลดเพิ่มขึ้นกี่เปอร์เซ็นต์?";
+				next;
+				if (select("3 %:2 %:1 %:0 %") == 3)
+					set .@assassin_t,.@assassin_t+10;
+
+				mes "[Markie]";
+				mes "3. ข้อใดคือคำอธิบายที่ถูกต้องของทักษะ ^880000Mug^000000?";
+				next;
+				if (select("ขโมยไอเทมจากผู้เล่น:ขโมยไอเทมจากมอนสเตอร์:ขโมยเงิน Zeny จากมอนสเตอร์:ขโมยเงิน Zeny จากผู้เล่น") == 3)
+					set .@assassin_t,.@assassin_t+10;
+
+				mes "[Markie]";
+				mes "4. ต้องใช้ Rogue กี่คนในการเปิดใช้งานทักษะ ^880000Slyness^000000?";
+				next;
+				if (select("1 Rogue + 2 Assassin:1 Thief + 2 Rogue:4 Thief:2 Rogue") == 4)
+					set .@assassin_t,.@assassin_t+10;
+
+				mes "[Markie]";
+				mes "5. จงเลือกทักษะที่นายสามารถเรียนได้เมื่อมี ^880000Divest Helm^000000 เลเวล 5";
+				next;
+				if (select("^880000Envenom^000000:^880000Strip Tease^000000:^880000Venom Splasher^000000:^880000Divest Shield^000000") == 4)
+					set .@assassin_t,.@assassin_t+10;
+
+				mes "[Markie]";
+				mes "6. จงเลือกทักษะที่อนุญาตให้ผู้ใช้เคลื่อนที่ได้ในขณะที่ซ่อนตัว (Hiding)";
+				next;
+				if (select("^880000Hiding^000000:^880000Back Slide^000000:^880000Stalk^000000:^880000Sand Attack^000000") == 3)
+					set .@assassin_t,.@assassin_t+10;
+
+				mes "[Markie]";
+				mes "7. จงเลือกการ์ดที่ช่วยเพิ่มอัตราความแม่นยำ (Accuracy) ให้กับเจ้าของ";
+				next;
+				if (select("Andre Card.:Familiar Card.:Mummy Card.:Marina Card.") == 3)
+					set .@assassin_t,.@assassin_t+10;
+
+				mes "[Markie]";
+				mes "8. มอนสเตอร์ตัวใดที่ได้รับความเสียหายมากขึ้นเมื่อถูกโจมตีด้วยอาวุธที่ใส่การ์ด Vadon (สร้างความเสียหายต่อธาตุไฟเพิ่มขึ้น 20%)";
+				next;
+				if (select("Vadon:Deviruchi:Elder Willow:Baphomet") == 3)
+					set .@assassin_t,.@assassin_t+10;
+
+				mes "[Markie]";
+				mes "9. ทักษะ ^880000Double Attack^000000 ต้องใช้ SP เท่าไหร่เมื่อใช้ร่วมกับมีด (Dagger)?";
+				next;
+				if (select("15:เป็นทักษะติดตัว ไม่ต้องใช้ SP:เป็นทักษะติดตัว ใช้ 10 SP:54") == 2)
+					set .@assassin_t,.@assassin_t+10;
+
+				mes "[Markie]";
+				mes "10. จงเลือกมีดที่มีประสิทธิภาพมากที่สุดในการใช้ใน Byalan Dungeon";
+				next;
+				if (select("Wind Main-Gauche:Ice Main-Gauche:Earth Main-Gauche:Fire Main-Gauche") == 1)
+					set .@assassin_t,.@assassin_t+10;
+				break;
+			case 2:
+				mes "[Markie]";
+				mes "1. มอนสเตอร์ตัวใดดรอป Gladius แบบมีรู [Slot]?";
+				next;
+				if (select("Thief Bug:Peco Peco:Desert Wolf:Kobold") == 4)
+					set .@assassin_t,.@assassin_t+10;
+
+				mes "[Markie]";
+				mes "2. มอนสเตอร์ตัวใดดรอป Main-Gauche แบบมีรู [Slot]?";
+				next;
+				if (select("Hornet:Desert Wolf:Marionette:Myst") == 1)
+					set .@assassin_t,.@assassin_t+10;
+
+				mes "[Markie]";
+				mes "3. จงเลือกอาชีพที่สามารถสร้างยาชนิดพิเศษได้";
+				next;
+				if (select("Merchant:Alchemist:Blacksmith:Priest") == 2)
+					set .@assassin_t,.@assassin_t+10;
+
+				mes "[Markie]";
+				mes "4. จงเลือกอาวุธที่ Rogue ไม่ได้รับอนุญาตให้ใช้งาน";
+				next;
+				if (select("Gakkung:Crossbow:Gladius:Katar") == 4)
+					set .@assassin_t,.@assassin_t+10;
+
+				mes "[Markie]";
+				mes "5. จงเลือกธาตุของมอนสเตอร์ที่ชื่อว่า Hode";
+				next;
+				if (select("น้ำ:ไฟ:ลม:ดิน") == 4)
+					set .@assassin_t,.@assassin_t+10;
+
+				mes "[Markie]";
+				mes "6. จงเลือกมอนสเตอร์ที่ไม่สามารถนำมาเลี้ยงเป็นสัตว์เลี้ยง (Cute Pet) ได้";
+				next;
+				if (select("Poporing:Creamy:Orc:Poison Spore") == 2)
+					set .@assassin_t,.@assassin_t+10;
+
+				mes "[Markie]";
+				mes "7. มอนสเตอร์ตัวใดได้รับความเสียหายมากขึ้นจากมีดธาตุไฟ";
+				next;
+				if (select("Dagger Goblin:Mace Goblin:Morning Star Goblin:Hammer Goblin") == 4)
+					set .@assassin_t,.@assassin_t+10;
+
+				mes "[Markie]";
+				mes "8. จงเลือกเมืองที่ไม่มีปราสาทกิลด์วอร์ (Guild Castle)";
+				next;
+				if (select("Prontera:Al De Baran:Alberta:Payon") == 3)
+					set .@assassin_t,.@assassin_t+10;
+
+				mes "[Markie]";
+				mes "9. จงเลือกพืชที่ดรอป Blue Herb";
+				next;
+				switch(select("Green Plant:Yellow Plant:Blue Plant:Shining Plant")) {
+				default:
+					break;
+				case 3:
+					set .@assassin_t,.@assassin_t+10;
+					break;
+				case 4:
+					set .@assassin_t,.@assassin_t+10;
+					break;
+				}
+				mes "[Markie]";
+				mes "10. จงเลือกมอนสเตอร์ที่ไม่ได้เป็นธาตุวิญญาณ (Undead)";
+				next;
+				if (select("Zombie:Megalodon:Familiar:Khalitzburg") == 3)
+					set .@assassin_t,.@assassin_t+10;
+				break;
+			case 3:
+				mes "[Markie]";
+				mes "1. อัตราการหลบหลีก (Flee) จะเพิ่มขึ้นกี่เปอร์เซ็นต์เมื่อ Thief อัปทักษะ ^880000Improve Dodge^000000 จนเต็ม?";
+				next;
+				if (select("30:40:160:20") == 1)
+					set .@assassin_t,.@assassin_t+10;
+
+				mes "[Markie]";
+				mes "2. จงเลือกมอนสเตอร์ที่สามารถตรวจจับตัวละครที่ใช้ทักษะ Hiding หรือ Cloaking ได้";
+				next;
+				if (select("Worm Tail:Argos:Mummy:Soldier Skeleton") == 2)
+					set .@assassin_t,.@assassin_t+10;
+
+				mes "[Markie]";
+				mes "3. จงเลือกสถานที่ที่ Thief สามารถไปเปลี่ยนอาชีพเป็น Rogue ได้";
+				next;
+				if (select("Comodo:Kokomo Beach:Paros Lighthouse:Morocc") == 3)
+					set .@assassin_t,.@assassin_t+10;
+
+				mes "[Markie]";
+				mes "4. เมืองใดที่ Novice สามารถไปเปลี่ยนอาชีพเป็น Thief ได้?";
+				next;
+				if (select("Comodo:Lutie:Alberta:Morocc") == 4)
+					set .@assassin_t,.@assassin_t+10;
+
+				mes "[Markie]";
+				mes "5. จงเลือกการ์ดที่ไม่มีผลต่อค่าสถานะ DEX";
+				next;
+				if (select("Rocker Card:Mummy Card:Zerom Card:Drops Card") == 2)
+					set .@assassin_t,.@assassin_t+10;
+
+				mes "[Markie]";
+				mes "6. การเป็น Rogue มันเจ๋งยังไง?";
+				next;
+				select("ดูเป็นพวกนอกคอกที่เท่สุดๆ:เสื้อผ้าและสไตล์การแต่งตัว:ได้เรียกคนอื่นว่า 'ไอเห่ย':มีพลังโจมตีที่ยอดเยี่ยม");
+				set .@assassin_t,.@assassin_t+10;
+
+				mes "[Markie]";
+				mes "7. สามารถเปลี่ยนอาชีพจาก Thief เป็น Rogue ได้ตอนไหน?";
+				next;
+				switch(select("ตอน Job Level 30:ตอน Job Level 35:ตอน Job Level 40:ตอน Job Level 50")) {
+				default:
+					break;
+				case 3:
+					set .@assassin_t,.@assassin_t+10;
+					break;
+				case 4:
+					set .@assassin_t,.@assassin_t+10;
+					break;
+				}
+				mes "[Markie]";
+				mes "8. คุณต้องการย้อมผมสีฟ้า คุณต้องไปเมืองอะไร และไปในทิศทางไหน โดยให้ 12 นาฬิกาคือทิศเหนือ";
+				next;
+				if (select("Morocc ทิศ 7 นาฬิกา:Prontera ทิศ 7 นาฬิกา:Morocc ทิศ 5 นาฬิกา:Prontera ทิศ 1 นาฬิกา") == 2)
+					set .@assassin_t,.@assassin_t+10;
+
+				mes "[Markie]";
+				mes "9. จงเลือกเห็ดที่จำเป็นต้องใช้ในเควสต์เปลี่ยนอาชีพ Thief";
+				next;
+				switch(select("Orange Gooey Mushroom:Red Hairy Mushroom:Orange Net Mushroom:Orange Sticky Mushroom")) {
+				default:
+					break;
+				case 1:
+				case 3:
+					set .@assassin_t,.@assassin_t+10;
+					break;
+				}
+				mes "[Markie]";
+				mes "10. จงเลือกการ์ดที่มีประโยชน์น้อยที่สุดสำหรับอาชีพ Rogue";
+				next;
+				if (select("Whisper Card:Elder Willow Card:Zerom Card:Matyr Card") == 2)
+					set .@assassin_t,.@assassin_t+10;
+			}
+			mes "[Markie]";
+			mes "*เห้อ~*";
+			mes "ในที่สุด";
+			mes "ก็เสร็จสิ้น";
+			next;
+			mes "[Markie]";
+			mes "ไหนดูซิ";
+			mes "นายได้...";
+			mes "" + .@assassin_t + " คะแนน";
+			if (.@assassin_t > 80) {
+				set ROGUE_Q,2;
+				setquest 2017;
+				mes "ดีมาก นายผ่านแล้ว";
+				mes "เราจะได้ไม่ต้อง";
+				mes "ทำแบบนี้กันอีก";
+				next;
+				mes "[Markie]";
+				mes "แต่อย่าเพิ่งชะล่าใจไป นายยังมีบททดสอบแบบนี้อีกเยอะ บททดสอบต่อไปของนายจะมาจาก Smith";
+				next;
+				mes "[Markie]";
+				mes "เพราะฉะนั้น...";
+				mes "ไปหา Smith แล้วทำบททดสอบนี้ให้เสร็จซะ โอเคไหม? ระวังหน่อยล่ะ Smith น่ะเขาเป็นพวกจู้จี้สุดๆ เลย";
+				close;
+			}
+			else {
+				set ROGUE_Q,1;
+				mes "อ้าวพังละ... นายสอบตก!";
+				next;
+				mes "[Markie]";
+				mes "พับผ่าสิ นายควรจะเรียนรู้ให้มากกว่านี้ตอนที่มีโอกาสนะ ขอบใจที่มาทำให้ฉันเสียเวลา";
+				next;
+				mes "[Markie]";
+				mes "*เฮ้อ...* งั้นฉันให้คำแนะนำนายหน่อยละกัน ฉันต้องบอกให้นายลองไปดูที่ ^990000iro.ragnarokonline.com^000000 เพื่อช่วยให้นายเรียนรู้ในสิ่งที่นายจำเป็นต้องรู้";
+				next;
+				mes "[Markie]";
+				mes "แน่นอนว่าฉันเองก็ไม่รู้หรอกว่ามันแปลว่าอะไร แต่ถ้านายเข้าใจมัน มันก็น่าจะช่วยนายได้เยอะเลยล่ะ";
+				close;
+			}
 		}
+		else if (JobLevel < 40) {
+			mes "[Rogue Guildsman]";
+			mes "โว้ว ช้าก่อนเจ้าหนู เรารับเฉพาะคนที่อย่างน้อยเป็น Thief Job Level 40 เท่านั้น ฉันไม่ยอมเสี่ยงให้เจ้าผ่านไปหรอกถ้าเจ้ายูังไม่พร้อม เข้าใจนะ?";
+			close;
+		}
+	}
+	else if (BaseJob == Job_Assassin) {
+		mes "[Rogue Guildsman]";
+		mes "หือ...?";
+		mes "Assassin มาทำอะไรที่นี่น่ะ? เอ้อ นายคงไม่ได้ถูกจ้างมาให้ฆ่าใครใน Rogue Guild หรอกนะ ใช่ไหม?";
+		next;
+		mes "[Rogue Guildsman]";
+		mes "ไม่ว่าจะยังไง อย่ามาแหยมกับพวกเรานะ! นายจับฉันไม่ได้หรอก... เพราะฉันน่ะคืออาชญากรที่ลื่นไหลสุดๆ (Smooth Criminal)!";
+		next;
+		mes "[Rogue Guildsman]";
+		mes "ไม่เข้าใจมุกที่พูดล่ะสิ? มันเป็นสิ่งที่ฉันชอบพูดกับ Huey บ่อยๆ น่ะ ถ้าอยู่กิลด์ Assassin นายก็น่าจะเคยเจอเขานะ...";
+		close;
+	}
+	else if (BaseJob == Job_Rogue) {
+		mes "[Markie]";
+		mes "เฮ้ เฮ้~";
+		mes "ไม่ได้เจอกันนานเลย";
+		mes "เอ่อ ตอนนี้เรายังไม่มี";
+		mes "คำร้องขออะไรจากกิลด์";
+		mes "ให้นายทำนะ ดังนั้น";
+		mes "ค่อยแวะมาใหม่ทีหลังละกัน";
+		close;
+	}
+	else {
+		mes "[Rogue Guildsman]";
+		mes "เฮ้ นายน่ะ...";
+		mes "ไสหัวเน่าๆ";
+		mes "ของนายออกไปจากที่นี่";
+		mes "ก่อนที่ฉันจะตกแต่ง";
+		mes "ใบหน้าของนายใหม่!";
+		close;
+	}
 }
 
-
 in_rogue,376,23,1	script	Mr. Smith#rg	57,{
-		if (ROGUE_Q == 2) {
-				mes "[นาย.สมิ ธ ]";
-				mes "ยินดีต้อนรับ";
-				mes "กิลด์อันธพาล";
-				mes "จากที่นี่ฉันจะ";
-				mes "ตรวจสอบคุณสมบัติของคุณ";
-				next;
-				mes "[นาย.สมิ ธ ]";
-				mes "ก่อนที่เราจะเริ่มต้น";
-		mes "I want you to know";
-				mes "เกี่ยวกับบางสิ่งบางอย่าง ...";
-				next;
-				mes "[นาย.สมิ ธ ]";
-				mes "Rogues ใหม่ทั้งหมดจะต้องจ่ายค่าธรรมเนียมการสมัครดังนั้นฉันหวังว่าคุณจะดูแลก่อน";
-				next;
-				mes "[นาย.สมิ ธ ]";
-				mes "สิ่งที่คุณต้องเข้าใจคือกิลด์อันธพาลทำธุรกิจมากมาย ^666666Sometimes ผิดกฎหมาย ^000000 ซึ่งต้องการการสำรองข้อมูลทางการเงิน";
-				next;
-				set .@item_need,rand(1,15);
-				if (.@item_need > 0 && .@item_need < 6) callsub S_Req,"10 กระดูก","6 สมุนไพรสีน้ำเงิน","10 เล็บผุพัง","10 ปากที่น่ากลัว",3;
-				else if (.@item_need > 5 && .@item_need < 11) callsub S_Req,"10 สมุนไพรสีเขียว","เปลือกปู 10 ตัว","10 สเกลงู","10 การ์เล็ต",4;
-				else if (.@item_need > 10 && .@item_need < 15) callsub S_Req,"10 สมุนไพรสีเหลือง","10 เชลล์","10 ขาของตั๊กแตน","10 footskin ของหมี",5;
-				else if (.@item_need == 15) {
-						mes "[นาย.สมิ ธ ]";
-						mes "ฉันจะแจ้งให้คุณทราบ ...";
-						set ROGUE_Q,6;
-						changequest 2017,2021;
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "ฉันจะแจ้งให้คุณทราบ ......";
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "ฉันจะแจ้งให้คุณทราบ ........";
-						mes "อนึ่ง.....";
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "โอ้มนุษย์ ...";
-						mes "นี่คือ ...";
-						mes "สาปแช่ง...";
-						mes "น่ารำคาญ!";
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "-";
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "-";
-						mes "-";
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "-";
-						mes "-";
-						mes "-";
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "วันนี้ฉันอยู่ในอารมณ์ที่โกรธแค้นคุณรู้ว่าทำไม!ฉันยังไม่ได้รวบรวมตั๋วเงินใด ๆ !พระเจ้า!ขโมยคนโง่มาหาฉันตลอดเวลาอยากกลายเป็นคนโกง!";
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "พระเยซู!ตอนนี้ฉันเข้าใจแล้วว่าทำไมผู้นำของเราบอกเราว่าการทำงานเป็นฝ่ายสนับสนุนลูกค้าแย่มาก";
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "ท่านอาจารย์ God Damn Guild มอบหมายให้ฉันทำงานที่น่ารังเกียจนี้ฉันดีกว่างาน f $@king!";
-						mapannounce "in_rogue","ท่านอาจารย์ God Damn Guild มอบหมายให้ฉันทำงานที่น่ารังเกียจนี้!ไอ้นั่น!",bc_map;
-						mes "ไอ้นั่นควรไปที่ F $@King Hell ฉันจะเตะแม่ F $@Kers Ass!f#%k f#%k f#%k !!!";
-						mapannounce "in_rogue","ไอ้นั่นควรไปที่ F $@King Hell ฉันจะเตะแม่ F $@Kers Ass!f#%k f#%k f#%k !!!",bc_map;
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "dipshit ที่เพิ่งพยายามเปลี่ยนงานของเขาก่อนที่คุณจะ ...";
-						mapannounce "in_rogue","dipshit ที่เพิ่งพยายามเปลี่ยนงานของเขาก่อนที่คุณจะ ...",bc_map;
-						mes "คุณรู้ไหมว่า F#@k ที่เขาคุยกับฉันเกี่ยวกับอะไร!?";
-						mapannounce "in_rogue","คุณรู้ไหมว่า F#@k ที่เขาคุยกับฉันเกี่ยวกับอะไร!?",bc_map;
-						mes "f#$@%#$*#$%@#$ !!";
-						mapannounce "in_rogue","f#$@%#$*#$%@#$ !!",bc_map;
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "อะไร-?!ตัวกรองแชทนี้คืออะไร!หยุด #*!@$ ing ฉัน!คุณโง่ f#$%*!ให้ฉันคุย !!!";
-						mapannounce "in_rogue","อะไร-?!ตัวกรองแชทนี้คืออะไร!หยุด #*!@$ ing ฉัน!คุณโง่ f#$%*!ให้ฉันคุย !!!",bc_map;
-						next;
-						mes "[นาย.สมิ ธ ]";
-			mes "What the f#@k you looking at...? " + strcharinfo(0) + "? That's your name!?";
-						mapannounce "in_rogue","คุณกำลังมองหาอะไร ... ?" + strcharinfo(0) + "-นั่นคือชื่อของคุณ!?",bc_map;
-						mes " ";
-						mes "-" + strcharinfo(0) + "-";
-						mes "อืม ...";
-						mes "ท่าน...?";
-						mes "ฉันไม่ได้ตั้งใจจะทำให้คุณอารมณ์เสียฉันเพิ่งมาที่นี่เพื่อที่ฉันจะได้กลายเป็นคนโกง";
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "อึศักดิ์สิทธิ์บนไม้สิ่งที่ f#$ k คืออะไรฉันแค่ f! #king พูดถึงคุณปัญญาอ่อน!";
-						mapannounce "in_rogue","อึศักดิ์สิทธิ์บนไม้สิ่งที่ f#$ k คืออะไรฉันแค่ f! #king พูดถึงคุณปัญญาอ่อน!",bc_map;
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "ปล่อยให้ฉันอยู่คนเดียว!แค่ทิ้งไว้คนเดียว!ปล่อยให้ฉันอยู่คนเดียว!";
-						mapannounce "in_rogue","ปล่อยให้ฉันอยู่คนเดียว!แค่ทิ้งไว้คนเดียว!ปล่อยให้ฉันอยู่คนเดียว!",bc_map;
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "ทำอะไรก็ได้ที่คุณต้องการโอเค?แค่ทำอะไรก็ได้ที่คุณต้องการ ... !! !!";
-						mapannounce "in_rogue","ทำอะไรก็ได้ที่คุณต้องการโอเค?แค่ทำอะไรก็ได้ที่คุณต้องการ ... !! !!",bc_map;
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "ค่าธรรมเนียมการสมัครของคุณ ... ^ff000010,000 Zeny ^000000 !!";
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "^ff00005 Crysalis^000000!";
-						mes "^ff00005 ขวดเปล่า^000000!";
-						mes "^ff00005 แร่เหล็ก^000000!";
-						mes "^ff00005 หัวใจหิน^000000 !!";
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "^ff00005 สมุนไพรสีแดง^000000!";
-						mes "^ff00005 สัตว์สัตว์^000000 !!";
-						mes "^ff00005 อัญมณีสีเหลือง^000000 !!";
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "^ff00005 ฟันของค้างคาว^000000!";
-						mes "^ff00005 Scorpion Tail^000000 !!";
-						mes "^ff00005 yoyo tail^000000 !!";
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "^ff00005 ฟีดของมอนสเตอร์^000000!";
-						mes "^ff00005 fluff^000000 !!";
-						mes "^ff00005 Clover^000000 !!";
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "^ff00005 ขนนกของนก^000000!";
-						mes "^ff00005 Talon^000000 !!";
-						mes "^ff00005 วางไข่^000000 !!";
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "อย่าคิดว่าจะกลับมาจนกว่าคุณจะได้รับสิ่งเหล่านั้นทั้งหมดหรือฉันจะฆ่าคุณในที่ที่คุณยืนอยู่";
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "F $@K คืออะไร?คุณแค่บอกว่าฉันทำให้คุณรำคาญ?หุบปากคุณทิ่มแทง!";
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "ฉันเพิ่งเพิ่ม ^ff000010 Raccoon Leaf ^000000 ลงในรายการคุณดีกว่า!";
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "f%$#*&#@$%#@$@#$%@$%&*K!คุณไม่เคยคิดเลยว่าจะเป็น NPC ยากแค่ไหน!?!";
-						mapannounce "in_rogue","f%$#*&#@$%#@$@#$%@$%&*K!คุณไม่เคยคิดเลยว่าจะเป็น NPC ยากแค่ไหน!?!",bc_map;
-						close;
-				}
+	if (ROGUE_Q == 2) {
+		mes "[Mr. Smith]";
+		mes "ยินดีต้อนรับสู่";
+		mes "Rogue Guild";
+		mes "จากนี้ไป ผมจะเป็นคน";
+		mes "ตรวจสอบคุณสมบัติของคุณเอง";
+		next;
+		mes "[Mr. Smith]";
+		mes "ก่อนที่เราจะเริ่มกัน";
+		mes "ผมอยากให้คุณรู้อะไร";
+		mes "บางอย่างก่อน...";
+		next;
+		mes "[Mr. Smith]";
+		mes "Rogue หน้าใหม่ทุกคนจำเป็นต้องจ่ายค่าธรรมเนียมการสมัคร ดังนั้นผมหวังว่าคุณจะจัดการเรื่องนั้นก่อนเป็นอันดับแรก";
+		next;
+		mes "[Mr. Smith]";
+		mes "สิ่งที่คุณต้องเข้าใจก็คือ Rogue Guild มีธุรกิจมากมาย ^666666ซึ่งบางครั้งก็ผิดกฎหมาย^000000 ที่จำเป็นต้องมีเงินทุนสำรอง";
+		next;
+		set .@item_need,rand(1,15);
+		if (.@item_need > 0 && .@item_need < 6) callsub S_Req,"10 Skel-bone","6 Blue Herb","10 Decayed Nail","10 Horrendous Mouth",3;
+		else if (.@item_need > 5 && .@item_need < 11) callsub S_Req,"10 Green Herb","10 Crab Shell","10 Snake Scale","10 Garlet",4;
+		else if (.@item_need > 10 && .@item_need < 15) callsub S_Req,"10 Yellow Herb","10 Shell","10 Grasshopper's Leg","10 Bear's Footskin",5;
+		else if (.@item_need == 15) {
+			mes "[Mr. Smith]";
+			mes "ผมจะบอกให้คุณรู้...";
+			set ROGUE_Q,6;
+			changequest 2017,2021;
+			next;
+			mes "[Mr. Smith]";
+			mes "ผมจะบอกให้คุณรู้......";
+			next;
+			mes "[Mr. Smith]";
+			mes "ผมจะบอกให้คุณรู้........";
+			mes "จะว่าไปแล้ว.....";
+			next;
+			mes "[Mr. Smith]";
+			mes "โอ้ พับผ่าสิ...";
+			mes "นี่มัน...";
+			mes "บัดซบ...";
+			mes "น่ารำคาญฉิบหาย!";
+			next;
+			mes "[Mr. Smith]";
+			mes "...";
+			next;
+			mes "[Mr. Smith]";
+			mes "...";
+			mes "......";
+			next;
+			mes "[Mr. Smith]";
+			mes "...";
+			mes "......";
+			mes ".........";
+			next;
+			mes "[Mr. Smith]";
+			mes "วันนี้ฉันอารมณ์เสียสุดๆ รู้ไหมว่าเพราะอะไร?! ฉันยังเก็บเงินไม่ได้เลยสักแดงเดียว! พระเจ้า! พวก Thief ปัญญาอ่อนก็เอาแต่มาหาฉันตลอดเวลา อยากจะเป็น Rogue กันอยู่นั่นแหละ!";
+			next;
+			mes "[Mr. Smith]";
+			mes "พระเยซูช่วย! ตอนนี้ฉันเข้าใจแล้วว่าทำไมหัวหน้าของเราถึงบอกว่างานฝ่ายสนับสนุนลูกค้านี่มันห่วยแตกสิ้นดี";
+			next;
+			mes "[Mr. Smith]";
+			mes "ไอ้กิลด์มาสเตอร์เฮงซวยนั่นมอบหมายงานขยะนี่ให้ฉัน ฉันมีความสามารถมากกว่างานสารเลวนี่นะโว้ย!";
+			mapannounce "in_rogue","ไอ้กิลด์มาสเตอร์เฮงซวยนั่นมอบหมายงานขยะนี่ให้ฉัน! ไอ้ชาติชั่ว!",bc_map;
+			mes "ไอ้เวรนั่นควรจะไปลงนรกซะ ฉันจะไปเตะก้นมัน! แม่งเอ๊ย แม่งเอ๊ย แม่งเอ๊ย !!!";
+			mapannounce "in_rogue","ไอ้เวรนั่นควรจะไปลงนรกซะ ฉันจะไปเตะก้นมัน! แม่งเอ๊ย แม่งเอ๊ย แม่งเอ๊ย !!!",bc_map;
+			next;
+			mes "[Mr. Smith]";
+			mes "ไอ้เศษสอยที่เพิ่งพยายามจะมาเปลี่ยนอาชีพก่อนหน้านาย...";
+			mapannounce "in_rogue","ไอ้เศษสอยที่เพิ่งพยายามจะมาเปลี่ยนอาชีพก่อนหน้านาย...",bc_map;
+			mes "นายรู้ไหมว่ามันพูดเรื่องอะไรกับฉันบ้าง?!?";
+			mapannounce "in_rogue","นายรู้ไหมว่ามันพูดเรื่องอะไรกับฉันบ้าง?!?",bc_map;
+			mes "ฟักเอ๊ย#$@%#$*#$%@#$!!";
+			mapannounce "in_rogue","ฟักเอ๊ย#$@%#$*#$%@#$!!",bc_map;
+			next;
+			mes "[Mr. Smith]";
+			mes "นี่มันอะไรกัน--?! ไอ้ระบบเซนเซอร์นี่มันอะไรกันนักหนาวะ?! เลิกเซนเซอร์คำพูดฉันสักที! ไอ้โง่! ปล่อยให้ฉันพูด!!!";
+			mapannounce "in_rogue","นี่มันอะไรกัน--?! ไอ้ระบบเซนเซอร์นี่มันอะไรกันนักหนาวะ?! เลิกเซนเซอร์คำพูดฉันสักที! ไอ้โง่! ปล่อยให้ฉันพูด!!!",bc_map;
+			next;
+			mes "[Mr. Smith]";
+			mes "จ้องบ้าอะไรวะ...? " + strcharinfo(0) + "? นั่นชื่อนายเหรอ!?";
+			mapannounce "in_rogue","จ้องบ้าอะไรวะ...? " + strcharinfo(0) + "? นั่นชื่อนายเหรอ!?",bc_map;
+			mes " ";
+			mes "[" + strcharinfo(0) + "]";
+			mes "เอ่อ...";
+			mes "คุณครับ...?";
+			mes "ผมไม่ได้ตั้งใจจะทำให้คุณอารมณ์เสียนะ ผมแค่มาที่นี่เพื่อจะเปลี่ยนอาชีพเป็น Rogue น่ะครับ";
+			next;
+			mes "[Mr. Smith]";
+			mes "ขี้หมาเอ๊ย เมื่อกี้ฉันเพิ่งพูดบ้าอะไรไปวะ ไอ้โง่นี่!";
+			mapannounce "in_rogue","ขี้หมาเอ๊ย เมื่อกี้ฉันเพิ่งพูดบ้าอะไรไปวะ ไอ้โง่นี่!",bc_map;
+			next;
+			mes "[Mr. Smith]";
+			mes "ไปให้พ้นหน้าฉัน! ปล่อยฉันไว้คนเดียว! ไปไกลๆ เลย!";
+			mapannounce "in_rogue","ไปให้พ้นหน้าฉัน! ปล่อยฉันไว้คนเดียว! ไปไกลๆ เลย!",bc_map;
+			next;
+			mes "[Mr. Smith]";
+			mes "อยากจะทำอะไรก็ทำไปเถอะ โอเคไหม? อยากจะทำบ้าอะไรก็เชิญเลย...!!";
+			mapannounce "in_rogue","อยากจะทำอะไรก็ทำไปเถอะ โอเคไหม? อยากจะทำบ้าอะไรก็เชิญเลย...!!",bc_map;
+			next;
+			mes "[Mr. Smith]";
+			mes "ค่าธรรมเนียมการสมัครของคุณ... ^FF000010,000 Zeny^000000!!";
+			next;
+			mes "[Mr. Smith]";
+			mes "^FF0000Crysalis 5 ชิ้น^000000!";
+			mes "^FF0000Empty Bottle 5 ชิ้น^000000!";
+			mes "^FF0000Iron Ore 5 ชิ้น^000000!";
+			mes "^FF0000Stone Heart 5 ชิ้น^000000!!";
+			next;
+			mes "[Mr. Smith]";
+			mes "^FF0000Red Herb 5 ชิ้น^000000!";
+			mes "^FF0000Animal Skin 5 ชิ้น^000000!!";
+			mes "^FF0000Yellow Gemstone 5 ชิ้น^000000!!";
+			next;
+			mes "[Mr. Smith]";
+			mes "^FF0000Tooth of Bat 5 ชิ้น^000000!";
+			mes "^FF0000Scorpion Tail 5 ชิ้น^000000!!";
+			mes "^FF0000Yoyo Tail 5 ชิ้น^000000!!";
+			next;
+			mes "[Mr. Smith]";
+			mes "^FF0000Monster's Feed 5 ชิ้น^000000!";
+			mes "^FF0000Fluff 5 ชิ้น^000000!!";
+			mes "^FF0000Clover 5 ชิ้น^000000!!";
+			next;
+			mes "[Mr. Smith]";
+			mes "^FF0000Feather of Birds 5 ชิ้น^000000!";
+			mes "^FF0000Talon 5 ชิ้น^000000!!";
+			mes "^FF0000Spawn 5 ชิ้น^000000!!";
+			next;
+			mes "[Mr. Smith]";
+			mes "อย่าได้คิดจะกลับมาจนกว่าจะหามาได้ครบทั้งหมด ไม่งั้นฉันจะฆ่านายตรงที่นายยืนอยู่นี่แหละ";
+			next;
+			mes "[Mr. Smith]";
+			mes "ฟักเอ๊ย? เมื่อกี้แกเพิ่งบอกว่าฉันน่ารำคาญเหรอ? หุบปากไปเลย ไอ้คนไม่รู้จักบุญคุณ!";
+			next;
+			mes "[Mr. Smith]";
+			mes "ฉันเพิ่งเพิ่ม ^FF0000Raccoon Leaf 10 ชิ้น^000000 เข้าไปในรายการด้วย ไปหามาให้ได้ล่ะ!";
+			next;
+			mes "[Mr. Smith]";
+			mes "บัดซบเอ๊ย! แกเคยคิดบ้างไหมว่าการเป็น NPC มันลำบากแค่ไหน!?!";
+			mapannounce "in_rogue","บัดซบเอ๊ย! แกเคยคิดบ้างไหมว่าการเป็น NPC มันลำบากแค่ไหน!?!",bc_map;
+			close;
 		}
-		else if (ROGUE_Q < 2) {
-				mes "[นาย.สมิ ธ ]";
-				mes "สามพันสองร้อยเจ็ดสิบสองสามพันสองร้อยเจ็ดสิบสามสามพันสองร้อยเจ็ดสิบสี่ ...";
+	}
+	else if (ROGUE_Q < 2) {
+		mes "[Mr. Smith]";
+		mes "สามพันสองร้อยเจ็ดสิบสอง สามพันสองร้อยเจ็ดสิบสาม สามพันสองร้อยเจ็ดสิบสี่...";
+		next;
+		mes "[Mr. Smith]";
+		mes "โอ๊ย...";
+		mes "ปวดหัว...";
+		mes "มีเงิน Zeny ให้ต้อง";
+		mes "นับเยอะเกินไปแล้ว";
+		next;
+		mes "[Mr. Smith]";
+		mes "หือ...?";
+		mes "คุณมาทำอะไรที่นี่น่ะ? ถ้าจะมาคุยเรื่องเปลี่ยนอาชีพ คุณต้องไปคุยกับอีกคนก่อนนะ";
+		next;
+		mes "[Mr. Smith]";
+		mes "...เวรแล้ว!";
+		mes "ฉันนับหลงจนได้!";
+		close;
+	}
+	else if (ROGUE_Q > 2) {
+		if (ROGUE_Q == 3) callsub S_CheckItems,510,6,932,10,957,10,958,10;
+		else if (ROGUE_Q == 4) callsub S_CheckItems,511,10,910,10,926,10,964,10;
+		else if (ROGUE_Q == 5) callsub S_CheckItems,508,10,948,10,935,10,940,10;
+		else if (ROGUE_Q == 6) {
+			if (Zeny > 9999 && countitem(915) > 4 && countitem(713) > 4 && countitem(1002) > 4 &&
+			countitem(953) > 4 && countitem(507) > 4 && countitem(919) > 4 && countitem(715) > 4 &&
+			countitem(913) > 4 && countitem(904) > 4 && countitem(942) > 4 && countitem(528) > 4 &&
+			countitem(914) > 4 && countitem(705) > 4 && countitem(916) > 4 && countitem(917) > 4 &&
+			countitem(908) > 4 && countitem(945) > 4) {
+				mes "[Mr. Smith]";
+				mes "อืมมม... ไหนดูซิ...";
+				set Zeny, Zeny-10000;
+				delitem 915,5; //Chrysalis
+				delitem 713,5; //Empty_Bottle
+				delitem 1002,5; //Iron_Ore
+				delitem 953,5; //Stone_Heart
+				delitem 507,5; //Red_Herb
+				delitem 919,5; //Animal's_Skin
+				delitem 715,5; //Yellow_Gemstone
+				delitem 913,5; //Tooth_Of_Bat
+				delitem 904,5; //Scorpion's_Tail
+				delitem 942,5; //Yoyo_Tail
+				delitem 528,5; //Monster's_Feed
+				delitem 914,5; //Fluff
+				delitem 705,5; //Clover
+				delitem 916,5; //Feather_Of_Birds
+				delitem 917,5; //Talon
+				delitem 908,5; //Spawn
+				delitem 945,5; //Raccoon_Leaf
+				set ROGUE_Q,8;
 				next;
-				mes "[นาย.สมิ ธ ]";
-				mes "เอ่อ ...";
-				mes "ปวดศีรษะ...";
-				mes "นี่มันมากเกินไป";
-				mes "Zeny นับ";
+				mes "[Mr. Smith]";
+				mes "โห คุณเอาของทุกอย่างที่ผมสั่งมาให้ครบเลยนะเนี่ย ทำได้ดีมาก... ผมขอคารวะคุณเลย";
 				next;
-				mes "[นาย.สมิ ธ ]";
-				mes "เอ่อ ... ?";
-				mes "คุณมาทำอะไรที่นี่?หากคุณกำลังจะพูดคุยเกี่ยวกับการเปลี่ยนแปลงงานคุณต้องคุยกับผู้ชายคนอื่นก่อน";
+				mes "^CCCCCC- (ชูนิ้วกลาง) -^000000'";
+				mes "*แสยะยิ้ม*";
+				set ROGUE_Q,8;
+				changequest 2021,2025;
 				next;
-				mes "[นาย.สมิ ธ ]";
-				mes "...อึ!";
-				mes "ฉันสูญเสียการนับ!";
+				mes "[Mr. Smith]";
+				mes "ในเมื่อคุณแสดงให้เห็นถึงความพยายามที่ยอดเยี่ยม ผมจะเขียนจดหมายแนะนำตัวให้คุณละกัน ปกติผมไม่ทำให้ใครหรอกนะ คุณก็รู้";
+				next;
+				mes "[Mr. Smith]";
+				mes "แต่ผมมั่นใจว่าคุณจะเป็นทรัพยากรที่มีค่าของ Rogue Guild อืม พอดีผมไม่มีกระดาษเปล่าติดตัวเลย เอาไอ้นี่ไปแทนละกันนะ...";
+				getitem 1097,1; //Worn_Out_Page
+				next;
+				mes "[Mr. Smith]";
+				mes "*เฮ้อ...*";
+				mes "ผมรู้ ผมรู้ ผมควรจะควบคุมตัวเองในที่ทำงาน การระเบิดอารมณ์โกรธมันเป็นนิสัยที่ไม่ดีเลย...";
+				next;
+				mes "[Mr. Smith]";
+				mes "*พึมพำ พึมพำ...*";
+				mes "ผมเป็นแบบนั้นได้ไง... *พึมพำ...*";
+				mes "ผมจะไป... จำได้ยังไง...";
+				mes "*เฮ้อ* ทั้งหมดมันเป็นเพราะอารมณ์ร้ายของผมแท้ๆ!";
+				next;
+				mes "[Mr. Smith]";
+				mes "ว้ากกกก....!!!";
+				next;
+				mes "^3355FFมันน่าจะเป็นความคิดที่";
+				mes "ดีกว่าถ้าจะกลับมาทีหลัง^000000";
 				close;
-		}
-		else if (ROGUE_Q > 2) {
-				if (ROGUE_Q == 3) callsub S_CheckItems,510,6,932,10,957,10,958,10;
-				else if (ROGUE_Q == 4) callsub S_CheckItems,511,10,910,10,926,10,964,10;
-				else if (ROGUE_Q == 5) callsub S_CheckItems,508,10,948,10,935,10,940,10;
-				else if (ROGUE_Q == 6) {
-						if (Zeny > 9999 && countitem(915) > 4 && countitem(713) > 4 && countitem(1002) > 4 &&
-						countitem(953) > 4 && countitem(507) > 4 && countitem(919) > 4 && countitem(715) > 4 &&
-						countitem(913) > 4 && countitem(904) > 4 && countitem(942) > 4 && countitem(528) > 4 &&
-						countitem(914) > 4 && countitem(705) > 4 && countitem(916) > 4 && countitem(917) > 4 &&
-						countitem(908) > 4 && countitem(945) > 4) {
-								mes "[นาย.สมิ ธ ]";
-								mes "อืม ... มาดูกัน ...";
-								set Zeny, Zeny-10000;
-								delitem 915,5; //Chrysalis
-								delitem 713,5; //Empty_Bottle
-								delitem 1002,5; //Iron_Ore
-								delitem 953,5; //Stone_Heart
-								delitem 507,5; //Red_Herb
-								delitem 919,5; //Animal's_Skin
-								delitem 715,5; //Yellow_Gemstone
-								delitem 913,5; //Tooth_Of_Bat
-								delitem 904,5; //Scorpion's_Tail
-								delitem 942,5; //Yoyo_Tail
-								delitem 528,5; //Monster's_Feed
-								delitem 914,5; //Fluff
-								delitem 705,5; //Clover
-								delitem 916,5; //Feather_Of_Birds
-								delitem 917,5; //Talon
-								delitem 908,5; //Spawn
-								delitem 945,5; //Raccoon_Leaf
-								set ROGUE_Q,8;
-								next;
-								mes "[นาย.สมิ ธ ]";
-								mes "ว้าวคุณได้นำทุกสิ่งที่ฉันขอให้คุณทำได้ดี ... ฉันทักทายคุณ";
-								next;
-								mes "^cccccc- นิ้วกลาง -^000000 '";
-								mes "*ยิ้ม*";
-								set ROGUE_Q,8;
-								changequest 2021,2025;
-								next;
-								mes "[นาย.สมิ ธ ]";
-								mes "เนื่องจากคุณแสดงความพยายามอย่างมากฉันจะเขียนจดหมายแนะนำให้คุณฉันมักจะไม่ทำอย่างนั้นคุณก็รู้";
-								next;
-								mes "[นาย.สมิ ธ ]";
-								mes "แต่ฉันแน่ใจว่าคุณจะเป็นทรัพย์สินที่ยอดเยี่ยมสำหรับกิลด์อันธพาลอืมตอนนี้ฉันไม่มีกระดาษเปล่าเลยลองทำแทน ...";
-								getitem 1097,1; //Worn_Out_Page
-								next;
-								mes "[นาย.สมิ ธ ]";
-								mes "*ถอนหายใจ ...*";
-								mes "ฉันรู้ฉันรู้ฉันควรจะควบคุมตัวเองในที่ทำงานการได้รับความโกรธแค้นเป็นนิสัยที่ไม่ดี ...";
-								next;
-								mes "[นาย.สมิ ธ ]";
-								mes "*Mumble Mumble ...*";
-								mes "ฉันเป็นอย่างไร ... *พึมพำ ... *";
-								mes "ฉันจำได้อย่างไร ...";
-								mes "* ถอนหายใจ* มันเป็นเพราะอารมณ์ไม่ดีของฉัน!";
-								next;
-								mes "[นาย.สมิ ธ ]";
-								mes "วา .... !!!";
-								next;
-								mes "^3355ffit อาจจะดีกว่า";
-								mes "ความคิดที่จะกลับมาในภายหลัง^000000";
-								close;
-						}
+			}
 			mes "[Mr. Smith]";
-						mes "ฟังครั้งนี้!";
-			mes "Application fee:";
-			mes "^FF000010000 zeny^000000,";
-						mes "^ff00005 Crysalis^000000!";
-						mes "^ff00005 ขวดเปล่า^000000!";
-						mes "^ff00005 แร่เหล็ก^000000!";
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "^ff00005 หัวใจหิน^000000 !!";
-						mes "^ff00005 สมุนไพรสีแดง^000000!";
-						mes "^ff00005 สัตว์สัตว์^000000 !!";
-						mes "^ff00005 อัญมณีสีเหลือง^000000 !!";
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "^ff00005 ฟันของค้างคาว^000000!";
-						mes "^ff00005 Scorpion Tail^000000 !!";
-						mes "^ff00005 yoyo tail^000000 !!";
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "^ff00005 ฟีดของมอนสเตอร์^000000!";
-						mes "^ff00005 fluff^000000 !!";
-						mes "^ff00005 Clover^000000 !!";
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "^ff00005 ขนนกของนก^000000!";
-			mes "^FF00005 Talon^000000!!";
-						mes "^ff00005 วางไข่^000000 !!";
-						mes "^ff000010 Raccoon Leaf^000000 !!";
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "ไม่คิดด้วยซ้ำ";
-						mes "กลับมา";
-						mes "ไม่มีพวกเขา!";
-						close;
-				}
-				else if (ROGUE_Q == 7) {
-						mes "[นาย.สมิ ธ ]";
-						mes "ให้ฉันดู ...";
-						mes "ใครควรจะ";
-						mes "ฉันส่งคุณไปที่ ... ?";
-						switch(rand(1,3)) {
-						case 1:
-								set ROGUE_Q,9;
-								if(checkquest(2018) != -1) {
-										changequest 2018,2022;
-								}
-								else if(checkquest(2019) != -1) {
-										changequest 2019,2022;
-								}
-								else {
-										changequest 2020,2022;
-								}
-								next;
-								mes "[นาย.สมิ ธ ]";
-								mes "ขวา!ฉันรู้";
-								mes "แค่ผู้ชาย ~!";
-								next;
-								mes "[นาย.สมิ ธ ]";
-								mes "ไปเยี่ยมชม Aragham Junior ที่อาศัยอยู่ทางใต้ของป้อมปราการ Sandarmanพื้นที่นั้นตั้งอยู่หนึ่งสนามทางตะวันออกจากที่นี่";
-								next;
-								mes "[นาย.สมิ ธ ]";
-								mes "เขาเป็นคนดีมากคุณรู้ไหมเขาทำงานหนักและเก่งในการรวบรวมบิล";
-								next;
-								mes "[นาย.สมิ ธ ]";
-								mes "ก่อนที่เขาจะเข้าร่วมกับกิลด์อันธพาลผู้คนพยายามฆ่าเขาเพราะสิ่งที่พ่อของเขาทำในอดีตดังนั้นเขาจึงกลายเป็นคนหลบหนี";
-								next;
-								mes "[นาย.สมิ ธ ]";
-								mes "อย่างไรก็ตามนั่นคือเหตุผลที่เขาอยู่กับเราเราช่วยเขาซ่อนตัวจากศัตรูของเขา";
-								next;
-								mes "[นาย.สมิ ธ ]";
-								mes "อ่าคุณอาจต้องการจดจำรหัสผ่านหากคุณต้องการพบเขาเขาไม่ปล่อยให้ใครอยู่ในบ้านของเขาโดยไม่มีรหัสผ่าน";
-								next;
-								mes "[นาย.สมิ ธ ]";
-								mes "รหัสผ่านคือ ^0000ffaragham ไม่เคยสะสมรายการอัพเกรด ^000000";
-								next;
-								mes "[นาย.สมิ ธ ]";
-								mes "ฉันจะขอให้คุณโชคดีสถานที่ของเขาไม่ไกลจากที่นี่ดังนั้นกลับมาโดยเร็วที่สุดเป็นอย่างรวดเร็ว ... นั่นคือจิตวิญญาณของคนโกง";
-								close;
-						case 2:
-								set ROGUE_Q,10;
-								if(checkquest(2018) != -1) {
-										changequest 2018,2023;
-								}
-								else if(checkquest(2019) != -1) {
-										changequest 2019,2023;
-								}
-								else {
-										changequest 2020,2023;
-								}
-								next;
-								mes "[นาย.สมิ ธ ]";
-								mes "อืม...";
-								mes "ผู้ชายคนนี้อาจจะเป็น";
-								mes "ดีสำหรับคุณ แต่ ...";
-								mes "เขาอันตรายเล็กน้อย";
-								next;
-								mes "[นาย.สมิ ธ ]";
-								mes "ฉันต้องการให้คุณพบกับอันโตนิโอจูเนียร์บุตรชายของอันโตนิโอคนแรกด้วยเหตุผลบางอย่างที่ผู้คนพยายามฆ่าเขาเพราะสิ่งที่พ่อของเขาทำในอดีต";
-								next;
-								mes "[นาย.สมิ ธ ]";
-								mes "เขาถูกเลี้ยงดูมาใน Payon แต่เขาพักอยู่ในบ้านที่ว่างเปล่าใกล้กับหาด Kokomo ในขณะนี้";
-								next;
-								mes "[นาย.สมิ ธ ]";
-								mes "ฉันได้ยินเมื่อเร็ว ๆ นี้ว่าเขาบ่นมากเกี่ยวกับเสียงรบกวนนอกบ้านของเขาและเขากลัวความพยายามลอบสังหารถึงอย่างไร...";
-								next;
-								mes "[นาย.สมิ ธ ]";
-								mes "เขาตึงเครียดดังนั้นเขาจึงขว้างกริชใส่ใครก็ตามที่เข้าใกล้บ้านของเขาเขามีบุคลิกที่รุนแรง";
-								next;
-								mes "[นาย.สมิ ธ ]";
-								mes "อย่างไรก็ตามเขามีทักษะทางธุรกิจที่งดงามและเขาก็รักการพนันเมื่อคุณรู้จักเขาเขาจะดูแลการฝึกฝนการโกงของคุณเป็นอย่างดี";
-								next;
-								mes "[นาย.สมิ ธ ]";
-								mes "อ่าคุณอาจต้องการจดจำรหัสผ่านเพื่อพบเขาด้วยตนเองรหัสผ่านคือ ^0000ffantonio ไม่สนุกกับการทำลายรายการอัพเกรด ^000000";
-								close;
-						case 3:
-								set ROGUE_Q,11;
-								if(checkquest(2018) != -1) {
-										changequest 2018,2024;
-								}
-								else if(checkquest(2019) != -1) {
-										changequest 2019,2024;
-								}
-								else {
-										changequest 2020,2024;
-								}
-								next;
-								mes "[นาย.สมิ ธ ]";
-								mes "อืม...";
-								mes "ผู้ชายคนนี้อาจจะเป็น";
-								mes "ดีสำหรับคุณ แต่ ...";
-								mes "เขาอันตรายเล็กน้อย";
-								next;
-								mes "[นาย.สมิ ธ ]";
-								mes "ชื่อของเขาคือ";
-								mes "Hollgrehenn Junior";
-								mes "อัจฉริยะในการจัดการ";
-								next;
-								mes "[นาย.สมิ ธ ]";
-								mes "อย่างไรก็ตามเนื่องจากบางสิ่งบางอย่างที่พ่อของเขาทำมานานแล้วผู้คนจึงพยายามฆ่าเขาด้วยเหตุนี้เขาจึงมีอาการเครียดสูงมากและจะโยนมีดสั้นไปที่คนที่เขาไม่ไว้ใจ";
-								next;
-								mes "[นาย.สมิ ธ ]";
-								mes "ผู้นำของเราสามารถให้เขาเข้าร่วมกิลด์ของเราและจิตใจที่ยอดเยี่ยมของเขาเป็นทรัพย์สินสำหรับเราเมื่อคุณรู้จักเขาเขาจะดูแลการฝึกฝนการโกงของคุณเป็นอย่างดี";
-								next;
-								mes "[นาย.สมิ ธ ]";
-								mes "อ่าคุณอาจต้องการจดจำรหัสผ่านเพื่อพบเขาด้วยตนเองรหัสผ่านคือ ^0000ffmy พ่อไม่เคยสะสมรายการอัพเกรด ^000000";
-								close;
-						}
-				}
-				else if (ROGUE_Q == 8) {
-						mes "[นาย.สมิ ธ ]";
-						mes "เอาล่ะ ... ตอนนี้ฉันสงบลงแล้วฉันสามารถแจ้งให้คุณทราบถึงจุดหมายต่อไปของคุณ*วู";
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "ไปหา Hermanthorn Junior ที่อาศัยอยู่ใกล้กับจุดตรวจสอบ ^0000ffhe ของ Paros Lighthouse ^000000 ซึ่งอยู่ที่ชายแดนระหว่างโมร็อกโกและโคโด";
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "อ่า ... เกือบลืมจำไว้ว่าไม่ต้องพูดถึงอะไรเกี่ยวกับการอัพเกรดรายการสิ่งนี้สำคัญมาก";
-						close;
-				}
-				else if (ROGUE_Q == 9) {
+			mes "ครั้งนี้ฟังให้ดีนะ!";
+			mes "ค่าธรรมเนียมสมัคร:";
+			mes "^FF000010,000 Zeny^000000,";
+			mes "^FF0000Crysalis 5 ชิ้น^000000!";
+			mes "^FF0000Empty Bottle 5 ชิ้น^000000!";
+			mes "^FF0000Iron Ore 5 ชิ้น^000000!";
+			next;
 			mes "[Mr. Smith]";
-						mes "อะไร...?";
-						mes "คุณแค่";
-						mes "บอกว่าคุณ";
-						mes "ลืมไปว่าจะไปที่ไหน?";
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "มุ่งหน้าไปทางทิศตะวันออกและเข้าสู่อาคารที่อยู่ทางใต้ของป้อมปราการ Sandarman เพื่อพบกับ Aragham Junior";
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "รหัสผ่านคือ ^0000ffaragham ไม่เคยสะสมรายการอัพเกรด ^000000";
-						close;
-				}
-				else if (ROGUE_Q == 10) {
-						mes "[นาย.สมิ ธ ]";
-						mes "อะไร...?";
-						mes "คุณแค่";
-						mes "บอกว่าคุณ";
-						mes "ลืมไปว่าจะไปที่ไหน?";
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "ไปที่อาคาร";
-						mes "ที่ Kokomo Beach";
-						mes "ซึ่งอยู่ระหว่างทาง";
-						mes "ถึง Comodo เพื่อพบกัน";
-						mes "อันโตนิโอจูเนียร์";
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "รหัสผ่านคือ ^0000ff'antonio ไม่สนุกกับการทำลายรายการอัพเกรด ' ^000000";
-						close;
-				}
-				else if (ROGUE_Q == 11) {
-						mes "[นาย.สมิ ธ ]";
-						mes "อะไร...?";
-						mes "คุณแค่";
-						mes "บอกว่าคุณ";
-						mes "ลืมไปว่าจะไปที่ไหน?";
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "ไปที่สนามทางใต้ของป้อมปราการ Sandarman ซึ่งกำลังเดินทางไปโมร็อกโกจากที่นี่เพื่อพบกับ Hollgrehenn Junior";
-						next;
-						mes "[นาย.สมิ ธ ]";
-						mes "รหัสผ่านคือ ^0000ffmy พ่อไม่เคยสะสมรายการอัพเกรด ^000000";
-						close;
-				}
-				else if (ROGUE_Q > 11) {
-						mes "[นาย.สมิ ธ ]";
-						mes "อืม...?";
-						mes "คุณไม่มี";
-						mes "ไปที่ไหนสักแห่ง";
-						mes "อย่างอื่นให้เสร็จสมบูรณ์";
-						mes "การฝึกโกงของคุณ?";
-						close;
-				}
+			mes "^FF0000Stone Heart 5 ชิ้น^000000!!";
+			mes "^FF0000Red Herb 5 ชิ้น^000000!";
+			mes "^FF0000Animal Skin 5 ชิ้น^000000!!";
+			mes "^FF0000Yellow Gemstone 5 ชิ้น^000000!!";
+			next;
+			mes "[Mr. Smith]";
+			mes "^FF0000Tooth of Bat 5 ชิ้น^000000!";
+			mes "^FF0000Scorpion Tail 5 ชิ้น^000000!!";
+			mes "^FF0000Yoyo Tail 5 ชิ้น^000000!!";
+			next;
+			mes "[Mr. Smith]";
+			mes "^FF0000Monster's Feed 5 ชิ้น^000000!";
+			mes "^FF0000Fluff 5 ชิ้น^000000!!";
+			mes "^FF0000Clover 5 ชิ้น^000000!!";
+			next;
+			mes "[Mr. Smith]";
+			mes "^FF0000Feather of Birds 5 ชิ้น^000000!";
+			mes "^FF0000Talon 5 ชิ้น^000000!!";
+			mes "^FF0000Spawn 5 ชิ้น^000000!!";
+			mes "^FF0000Raccoon Leaf 10 ชิ้น^000000!!";
+			next;
+			mes "[Mr. Smith]";
+			mes "อย่าได้ริอ่านกลับมา";
+			mes "ถ้ายังได้ของไม่ครบ!";
+			close;
 		}
-
-
+		else if (ROGUE_Q == 7) {
+			mes "[Mr. Smith]";
+			mes "ให้ผมดูหน่อยซิ...";
+			mes "ผมควรจะส่งคุณ";
+			mes "ไปหาใครดีนะ...?";
+			switch(rand(1,3)) {
+			case 1:
+				set ROGUE_Q,9;
+				if(checkquest(2018) != -1) {
+					changequest 2018,2022;
+				}
+				else if(checkquest(2019) != -1) {
+					changequest 2019,2022;
+				}
+				else {
+					changequest 2020,2022;
+				}
+				next;
+				mes "[Mr. Smith]";
+				mes "ใช่แล้ว! ผมนึกออก";
+				mes "แล้วว่าควรเป็นใคร~!";
+				next;
+				mes "[Mr. Smith]";
+				mes "ไปพบ Aragham Junior ที่อาศัยอยู่ทางใต้ของ Sandarman Fortress พื้นที่นั้นอยู่ถัดไปหนึ่งแผนที่ทางทิศตะวันออกจากที่นี่";
+				next;
+				mes "[Mr. Smith]";
+				mes "เขาเป็นคนค่อนข้างดีนะ คุณรู้ไหม เขาทำงานหนักและเก็บเงินเก่งมาก";
+				next;
+				mes "[Mr. Smith]";
+				mes "ก่อนที่เขาจะมาเข้าร่วมกับ Rogue Guild มีคนพยายามจะฆ่าเขาเพราะสิ่งที่พ่อของเขาทำไว้ในอดีต ดังนั้นเขาจึงต้องกลายเป็นคนหลบหนี";
+				next;
+				mes "[Mr. Smith]";
+				mes "ก็นะ นั่นคือเหตุผลที่เขามาอยู่กับเรา เราช่วยเขาซ่อนตัวจากพวกศัตรูน่ะ";
+				next;
+				mes "[Mr. Smith]";
+				mes "อ้อ คุณอาจจะต้องจำรหัสผ่านไว้ด้วยถ้าอยากจะพบเขา เขาไม่ยอมให้ใครเข้าบ้านโดยไม่มีรหัสผ่านหรอก";
+				next;
+				mes "[Mr. Smith]";
+				mes "รหัสผ่านคือ ^0000FFAragham never hoarded upgrade items^000000";
+				next;
+				mes "[Mr. Smith]";
+				mes "เอาล่ะ ผมขอให้คุณโชคดี ที่พักของเขาอยู่ไม่ไกลจากที่นี่นักหรอก ดังนั้นรีบกลับมาให้เร็วที่สุดล่ะ ความรวดเร็ว... นั่นแหละคือจิตวิญญาณของ Rogue";
+				close;
+			case 2:
+				set ROGUE_Q,10;
+				if(checkquest(2018) != -1) {
+					changequest 2018,2023;
+				}
+				else if(checkquest(2019) != -1) {
+					changequest 2019,2023;
+				}
+				else {
+					changequest 2020,2023;
+				}
+				next;
+				mes "[Mr. Smith]";
+				mes "อืมมม...";
+				mes "หมอนี่อาจจะ";
+				mes "เหมาะกับคุณ แต่...";
+				mes "เขาค่อนข้างอันตรายนิดหน่อยนะ";
+				next;
+				mes "[Mr. Smith]";
+				mes "ผมอยากให้คุณไปพบ Antonio Junior ลูกชายของ Antonio รุ่นแรก ด้วยเหตุผลบางอย่าง มีคนพยายามจะฆ่าเขาเพราะสิ่งที่พ่อของเขาเคยทำไว้ในอดีต";
+				next;
+				mes "[Mr. Smith]";
+				mes "เขาเติบโตมาในเมือง Payon แต่ตอนนี้เขากำลังพักอยู่ในบ้านร้างแถวๆ Kokomo Beach น่ะ";
+				next;
+				mes "[Mr. Smith]";
+				mes "ช่วงนี้ผมได้ยินมาว่าเขาบ่นบ่อยมากเรื่องเสียงดังนอกบ้าน และเขาก็กลัวโดนลอบสังหารด้วย ยังไงก็เถอะ...";
+				next;
+				mes "[Mr. Smith]";
+				mes "เขาเป็นพวกที่ตึงเครียดตลอดเวลา ดังนั้นเขาจะปามีดใส่ใครก็ตามที่เข้าใกล้บ้านของเขา เขาเป็นคนที่มีนิสัยรุนแรงพอสมควร";
+				next;
+				mes "[Mr. Smith]";
+				mes "แต่อย่างไรก็ตาม เขามีทักษะทางธุรกิจที่ยอดเยี่ยมมาก และเขาก็ชอบการพนันสุดๆ ถ้าคุณทำความรู้จักกับเขาได้ เขาจะช่วยฝึกสอนการเป็น Rogue ให้คุณได้อย่างดีเลยล่ะ";
+				next;
+				mes "[Mr. Smith]";
+				mes "อ้อ คุณต้องจำรหัสผ่านเพื่อที่จะได้พบเขาเป็นการส่วนตัว รหัสผ่านคือ ^0000FFAntonio doesn't enjoy destroying upgrade items^000000";
+				close;
+			case 3:
+				set ROGUE_Q,11;
+				if(checkquest(2018) != -1) {
+					changequest 2018,2024;
+				}
+				else if(checkquest(2019) != -1) {
+					changequest 2019,2024;
+				}
+				else {
+					changequest 2020,2024;
+				}
+				next;
+				mes "[Mr. Smith]";
+				mes "อืมมม...";
+				mes "หมอนี่อาจจะ";
+				mes "เหมาะกับคุณ แต่...";
+				mes "เขาค่อนข้างอันตรายนิดหน่อยนะ";
+				next;
+				mes "[Mr. Smith]";
+				mes "เขาชื่อว่า";
+				mes "Hollgrehenn Junior";
+				mes "เขาเป็นอัจฉริยะด้านการโน้มน้าวใจ";
+				next;
+				mes "[Mr. Smith]";
+				mes "แต่อย่างไรก็ตาม เพราะสิ่งที่พ่อของเขาทำไว้เมื่อนานมาแล้ว ทำให้มีคนพยายามจะฆ่าเขา ด้วยเหตุนี้เขาจึงเป็นพวกที่เส้นประสาทตึงเขม็ง และจะปามีดใส่คนที่เขาไม่ไว้ใจ";
+				next;
+				mes "[Mr. Smith]";
+				mes "หัวหน้าของเราสามารถกล่อมให้เขามาเข้าร่วมกิลด์ได้ และสติปัญญาอันชาญฉลาดของเขาก็เป็นทรัพยากรที่มีค่าของพวกเรา ถ้าคุณได้รู้จักเขา เขาจะช่วยฝึกการเป็น Rogue ให้คุณอย่างดีเลยล่ะ";
+				next;
+				mes "[Mr. Smith]";
+				mes "อ้อ คุณควรจะจำรหัสผ่านเพื่อที่จะเข้าพบเขา รหัสผ่านคือ ^0000FFMy father never hoarded upgrade items^000000";
+				close;
+			}
+		}
+		else if (ROGUE_Q == 8) {
+			mes "[Mr. Smith]";
+			mes "เอาล่ะ... ตอนนี้ผมใจเย็นลงแล้ว ผมสามารถบอกจุดหมายต่อไปของคุณได้สักที *เฮ้อ*";
+			next;
+			mes "[Mr. Smith]";
+			mes "ไปหา Hermanthorn Junior ที่อาศัยอยู่แถวๆ ^0000FFจุดตรวจของ Paros Lighthouse^000000 ซึ่งเป็นเขตแดนระหว่างเมือง Morocc และ Comodo";
+			next;
+			mes "[Mr. Smith]";
+			mes "อ้อ... เกือบจะลืมไป จำไว้นะว่าห้ามพูดอะไรก็ตามที่เกี่ยวกับการอัปเกรดไอเทมเด็ดขาด นี่เป็นเรื่องที่สำคัญมากนะ";
+			close;
+		}
+		else if (ROGUE_Q == 9) {
+			mes "[Mr. Smith]";
+			mes "อะไรนะ...?";
+			mes "คุณเพิ่งจะบอกว่า";
+			mes "คุณลืมไปแล้วเหรอ";
+			mes "ว่าต้องไปที่ไหน?";
+			next;
+			mes "[Mr. Smith]";
+			mes "มุ่งหน้าไปทางทิศตะวันออกหนึ่งแผนที่ แล้วเข้าไปในอาคารที่อยู่ทางใต้ของ Sandarman Fortress เพื่อพบกับ Aragham Junior";
+			next;
+			mes "[Mr. Smith]";
+			mes "รหัสผ่านคือ ^0000FFAragham never hoarded upgrade items^000000";
+			close;
+		}
+		else if (ROGUE_Q == 10) {
+			mes "[Mr. Smith]";
+			mes "อะไรนะ...?";
+			mes "คุณเพิ่งจะบอกว่า";
+			mes "คุณลืมไปแล้วเหรอ";
+			mes "ว่าต้องไปที่ไหน?";
+			next;
+			mes "[Mr. Smith]";
+			mes "ไปที่อาคาร";
+			mes "ที่ Kokomo Beach";
+			mes "ซึ่งอยู่ระหว่างทาง";
+			mes "ที่จะไป Comodo เพื่อ";
+			mes "พบกับ Antonio Junior";
+			next;
+			mes "[Mr. Smith]";
+			mes "รหัสผ่านคือ ^0000FF'Antonio doesn't enjoy destroying upgrade items'^000000";
+			close;
+		}
+		else if (ROGUE_Q == 11) {
+			mes "[Mr. Smith]";
+			mes "อะไรนะ...?";
+			mes "คุณเพิ่งจะบอกว่า";
+			mes "คุณลืมไปแล้วเหรอ";
+			mes "ว่าต้องไปที่ไหน?";
+			next;
+			mes "[Mr. Smith]";
+			mes "ไปที่แผนที่ทางใต้ของ Sandarman Fortress ซึ่งอยู่ระหว่างทางที่จะไป Morocc จากที่นี่ เพื่อพบกับ Hollgrehenn Junior";
+			next;
+			mes "[Mr. Smith]";
+			mes "รหัสผ่านคือ ^0000FFMy father never hoarded upgrade items^000000";
+			close;
+		}
+		else if (ROGUE_Q > 11) {
+			mes "[Mr. Smith]";
+			mes "หืมมม...?";
+			mes "คุณไม่ต้องไป";
+			mes "ที่อื่นเพื่อทำการ";
+			mes "ฝึกฝนเป็น Rogue";
+			mes "ให้เสร็จหรอกเหรอ?";
+			close;
+		}
+	}
 
 
 S_Req:
-		mes "[นาย.สมิ ธ ]";
-		mes "ก่อนอื่น";
-		mes "ค่าธรรมเนียมการสมัคร:";
-		mes "^ff000010,000 Zeny^000000";
-		next;
-		mes "[นาย.สมิ ธ ]";
-		mes "เรายังต้องการ";
-		mes "คุณจะนำ";
-		mes "^ff0000"+getarg(0)+"^000000";
-		mes "^ff0000"+getarg(1)+"^000000";
-		mes "^ff0000"+getarg(2)+"^000000 และ";
-		mes "^ff0000"+getarg(3)+"^000000";
-		.@var = getarg(4);
-		ROGUE_Q = .@var;
-		if (.@var == 3) {
-				changequest 2017,2018;
-		}
-		else if (.@var == 4) {
-				changequest 2017,2019;
-		}
-		else {
-				changequest 2017,2020;
-		}
-		next;
 	mes "[Mr. Smith]";
-		mes "อืม...?";
-		mes "นั่นคืออะไร?";
-		mes "คุณแค่พูดแบบนั้น";
-		mes "คุณเต็มใจที่จะบริจาค";
-		mes "เพิ่มเติมสำหรับกิลด์?";
-		next;
-		mes "[นาย.สมิ ธ ]";
-		mes "ฟังดูหวาน";
-		mes "ฉันซาบซึ้งที่";
-		mes "แต่กลับมาเมื่อ";
-		mes "คุณพร้อม";
-		close;
-
-
+	mes "อย่างแรกเลยคือ";
+	mes "ค่าธรรมเนียมการสมัคร:";
+	mes "^FF000010,000 zeny^000000.";
+	next;
+	mes "[Mr. Smith]";
+	mes "เรายังต้องการ";
+	mes "ให้เจ้าหาของ";
+	mes "^FF0000"+getarg(0)+"^000000,";
+	mes "^FF0000"+getarg(1)+"^000000,";
+	mes "^FF0000"+getarg(2)+"^000000 และ";
+	mes "^FF0000"+getarg(3)+"^000000 มาด้วย";
+	.@var = getarg(4);
+	ROGUE_Q = .@var;
+	if (.@var == 3) {
+		changequest 2017,2018;
+	}
+	else if (.@var == 4) {
+		changequest 2017,2019;
+	}
+	else {
+		changequest 2017,2020;
+	}
+	next;
+	mes "[Mr. Smith]";
+	mes "หืม...?";
+	mes "เมื่อกี้ว่าอะไรนะ?";
+	mes "เจ้าเพิ่งบอกว่า";
+	mes "เจ้าเต็มใจที่จะบริจาค";
+	mes "ให้กิลด์เพิ่มอย่างนั้นรึ?";
+	next;
+	mes "[Mr. Smith]";
+	mes "ฟังดูดีนี่";
+	mes "ข้าซาบซึ้งใจจริงๆ";
+	mes "แต่กลับมาหาข้าตอนที่";
+	mes "เจ้าพร้อมแล้วกันนะ";
+	close;
 
 
 S_CheckItems:
-		setarray .@item_req[0], getarg(0), getarg(2), getarg(4), getarg(6);
-		setarray .@amount[0], getarg(1), getarg(3), getarg(5), getarg(7);
+	setarray .@item_req[0], getarg(0), getarg(2), getarg(4), getarg(6);
+	setarray .@amount[0], getarg(1), getarg(3), getarg(5), getarg(7);
 
-
-		if (Zeny > 9999 && countitem(.@item_req[0]) >= .@amount[0] && countitem(.@item_req[1]) >= .@amount[1] && countitem(.@item_req[2]) >= .@amount[2] && countitem(.@item_req[3]) >= .@amount[3]) {
-				mes "[นาย.สมิ ธ ]";
-				mes "โอเคเรามีค่าธรรมเนียมการสมัคร ^ff000010,000 Zeny ^000000"+ .@amount[0] +" "+ getitemname(.@item_req[0]) +"-"+ .@amount[1] +" "+ getitemname(.@item_req[1]) +"-"+ .@amount[2] +" "+ getitemname(.@item_req[2]) +"และ"+ .@amount[3] +" "+ getitemname(.@item_req[3]) +"-";
-				set Zeny, Zeny-10000;
-				delitem .@item_req[0],.@amount[0];
-				delitem .@item_req[1],.@amount[1];
-				delitem .@item_req[2],.@amount[2];
-				delitem .@item_req[3],.@amount[3];
-				set ROGUE_Q,7;
-				next;
-				mes "[นาย.สมิ ธ ]";
-				mes "เยี่ยมมาก ...";
-				mes "ฉันคิดว่าคุณ";
-				mes "นำทุกอย่าง";
-				set ROGUE_Q,7;
-				next;
-				mes "[นาย.สมิ ธ ]";
-				mes "เอาล่ะรอสักครู่";
-				mes "ฉันเตรียมสิ่งเหล่านี้มาดูกัน ... การทดสอบครั้งต่อไปของคุณคือ ...";
-				close;
-		}
-		mes "[นาย.สมิ ธ ]";
-		mes "F $@k!?คุณไม่ได้นำสิ่งของที่จำเป็นทั้งหมดมา!คุณบอกฉันว่าคุณต้องตรวจสอบข้อกำหนดอีกครั้ง!?";
+	if (Zeny > 9999 && countitem(.@item_req[0]) >= .@amount[0] && countitem(.@item_req[1]) >= .@amount[1] && countitem(.@item_req[2]) >= .@amount[2] && countitem(.@item_req[3]) >= .@amount[3]) {
+		mes "[Mr. Smith]";
+		mes "โอเค เราได้ค่าสมัครแล้ว ^FF000010,000 zeny^000000, แล้วก็ "+ getitemname(.@item_req[0]) +" "+ .@amount[0] +" อัน, "+ getitemname(.@item_req[1]) +" "+ .@amount[1] +" อัน, "+ getitemname(.@item_req[2]) +" "+ .@amount[2] +" อัน และ "+ getitemname(.@item_req[3]) +" "+ .@amount[3] +" อัน...";
+		set Zeny, Zeny-10000;
+		delitem .@item_req[0],.@amount[0];
+		delitem .@item_req[1],.@amount[1];
+		delitem .@item_req[2],.@amount[2];
+		delitem .@item_req[3],.@amount[3];
+		set ROGUE_Q,7;
 		next;
-		mes "[นาย.สมิ ธ ]";
-		mes "ตอนนี้ฟัง ... !";
-		mes "นำ ^ff000010,000 Zeny ^000000";
-		mes "และรายการต่อไปนี้ ...";
+		mes "[Mr. Smith]";
+		mes "เยี่ยมมาก เยี่ยม...";
+		mes "ข้าคิดว่าเจ้า";
+		mes "เอามาครบทุกอย่างแล้วนะ";
+		set ROGUE_Q,7;
 		next;
-		mes "[นาย.สมิ ธ ]";
-		mes "^ff0000"+ .@amount[0] +" "+ getitemname(.@item_req[0]) +"^000000";
-		mes "^ff0000"+ .@amount[1] +" "+ getitemname(.@item_req[1]) +"^000000";
-		mes "^ff0000"+ .@amount[2] +" "+ getitemname(.@item_req[2]) +"^000000";
-		mes "^ff0000"+ .@amount[3] +" "+ getitemname(.@item_req[3]) +"^000000";
-		mes "คุณเข้าใจแล้วเหรอ?";
+		mes "[Mr. Smith]";
+		mes "เอาล่ะ รอสักครู่ในขณะที่";
+		mes "ข้าเตรียมของพวกนี้ดูซิ... บททดสอบต่อไปของเจ้าคือ...";
 		close;
+	}
+	mes "[Mr. Smith]";
+	mes "อะไรกันวะเธียเนี่ย!? เจ้าไม่ได้เอาไอเทมมาให้ครบงั้นรึ?! นี่จะบอกข้าว่าเจ้าต้องไปเช็ครายการของใหม่อีกรอบงั้นรึ!?";
+	next;
+	mes "[Mr. Smith]";
+	mes "ฟังนะ...!";
+	mes "ไปเอา ^FF000010,000 zeny^000000 มา";
+	mes "พร้อมกับไอเทมพวกนี้...";
+	next;
+	mes "[Mr. Smith]";
+	mes "^FF0000 "+ getitemname(.@item_req[0]) +" "+ .@amount[0] +" อัน^000000,";
+	mes "^FF0000 "+ getitemname(.@item_req[1]) +" "+ .@amount[1] +" อัน^000000,";
+	mes "^FF0000 "+ getitemname(.@item_req[2]) +" "+ .@amount[2] +" อัน^000000,";
+	mes "^FF0000 "+ getitemname(.@item_req[3]) +" "+ .@amount[3] +" อัน^000000,";
+	mes "คราวนี้เข้าใจหรือยัง?";
+	close;
 }
-
 
 cmd_fild09,106,195,0	script	Warp#1	45,1,1,{
 OnTouch_:
-		mes "-";
-		mes "ใครอยู่ที่นั่น!";
-		mes "ใครจะกล้า";
-		mes "บุกรุกดินแดนของฉัน?";
-		next;
-		switch(select("พ่อของฉัน: Aragham: Aragon: Legolas")) {
-		case 1:
-				mes "-" + strcharinfo(0) + "-";
-				mes "พ่อของฉัน";
-				break;
-		case 2:
-				mes "-" + strcharinfo(0) + "-";
-				mes "Aragham";
-				set .@rogue_t,.@rogue_t+10;
-				break;
-		case 3:
-				mes "-" + strcharinfo(0) + "-";
-				mes "Aragon";
-				break;
-		case 4:
-				mes "-" + strcharinfo(0) + "-";
-				mes "Legolas";
-				break;
-		}
-		switch(select("ไม่ได้: ไม่: ไม่เคย: เคย")) {
-		case 1: mes "ไม่ได้"; break;
-		case 2: mes "ไม่ได้"; break;
-		case 3:
-				mes "ไม่เคย";
-				set .@rogue_t,.@rogue_t+10;
-				break;
-		case 4: mes "เคย"; break;
-		}
-		switch(select("Hoard: Hoarded: Hide: Take: Take")) {
-		case 1: mes "กักตุน"; break;
-		case 2:
-				mes "ถูกกักตุน";
-				set .@rogue_t,.@rogue_t+10;
-				break;
-		case 3: mes "ซ่อน"; break;
-		case 4: mes "เอามา"; break;
-		case 5: mes "เอา"; break;
-		}
-		switch(select("อัพเกรดรายการ: forging items.: refining item. : upgrade item")) {
-		case 1:
-				mes "อัพเกรดรายการ";
-				set .@rogue_t,.@rogue_t+10;
-				break;
-		case 2: mes "การปลอมรายการ"; break;
-		case 3: mes "รายการกลั่น"; break;
-		case 4: mes "อัพเกรดรายการ"; break;
-		}
-		next;
-		if (.@rogue_t > 30) {
-				mes "^3355FF*CREEEEEAK*";
-				mes "ประตูเปิดช้า^000000";
-				close2;
-				warp "in_rogue",246,25;
-				end;
-		}
-		else {
-				mes "-";
-				mes "อะไร ... ?";
-				mes "หลงทาง!";
-				close;
-		}
+	mes "[???]";
+	mes "นั่นใครน่ะ?!";
+	mes "ใครบังอาจ";
+	mes "บุกรุกเข้ามาในถิ่นของข้า?";
+	next;
+	switch(select("พ่อของข้า (My father):Aragham:Aragon:Legolas")) {
+	case 1:
+		mes "[" + strcharinfo(0) + "]";
+		mes "พ่อของข้า";
+		break;
+	case 2:
+		mes "[" + strcharinfo(0) + "]";
+		mes "Aragham";
+		set .@rogue_t,.@rogue_t+10;
+		break;
+	case 3:
+		mes "[" + strcharinfo(0) + "]";
+		mes "Aragon";
+		break;
+	case 4:
+		mes "[" + strcharinfo(0) + "]";
+		mes "Legolas";
+		break;
+	}
+	switch(select("ไม่เคย (did not):ไม่เคย (didn't):ไม่เคยเลย (never):เคย (ever)")) {
+	case 1: mes "ไม่เคย (did not)"; break;
+	case 2: mes "ไม่เคย (didn't)"; break;
+	case 3:
+		mes "ไม่เคยเลย (never)";
+		set .@rogue_t,.@rogue_t+10;
+		break;
+	case 4: mes "เคย (ever)"; break;
+	}
+	switch(select("สะสม (hoard):สะสมแล้ว (hoarded):ซ่อน (hide):เอาไป (took):เอาไป (take)")) {
+	case 1: mes "สะสม (hoard)"; break;
+	case 2:
+		mes "สะสมแล้ว (hoarded)";
+		set .@rogue_t,.@rogue_t+10;
+		break;
+	case 3: mes "ซ่อน (hide)"; break;
+	case 4: mes "เอาไป (took)"; break;
+	case 5: mes "เอาไป (take)"; break;
+	}
+	switch(select("ไอเทมอัพเกรด (upgrade items.):ไอเทมตีบวก (forging items.):ไอเทมตีบวก (refining item.):ไอเทมอัพเกรด (upgrade item.)")) {
+	case 1:
+		mes "ไอเทมอัพเกรด (upgrade items.)";
+		set .@rogue_t,.@rogue_t+10;
+		break;
+	case 2: mes "ไอเทมตีบวก (forging items.)"; break;
+	case 3: mes "ไอเทมตีบวก (refining item.)"; break;
+	case 4: mes "ไอเทมอัพเกรด (upgrade item.)"; break;
+	}
+	next;
+	if (.@rogue_t > 30) {
+		mes "^3355FF*เอี๊ยดดดด*";
+		mes "ประตูค่อยๆ เปิดออก^000000";
+		close2;
+		warp "in_rogue",246,25;
+		end;
+	}
+	else {
+		mes "[???]";
+		mes "อะไรกัน...?";
+		mes "ไสหัวไปซะ!";
+		close;
+	}
 }
-
 
 cmd_fild09,335,143,0	script	Warp#2	45,1,1,{
 OnTouch_:
-		mes "-";
-		mes "ใครอยู่ที่นั่น!";
-		mes "ใครจะกล้า";
-		mes "บุกรุกดินแดนของฉัน?";
-		next;
-		switch(select("พ่อของฉัน: Aragham: Aragon: Legolas")) {
-		case 1:
-				mes "-" + strcharinfo(0) + "-";
-				mes "พ่อของฉัน";
-				set .@rogue_t,.@rogue_t+10;
-				break;
-		case 2:
-				mes "-" + strcharinfo(0) + "-";
-				mes "Aragham";
-				break;
-		case 3:
-				mes "-" + strcharinfo(0) + "-";
-				mes "Aragon";
-				break;
-		case 4:
-				mes "-" + strcharinfo(0) + "-";
-				mes "Legolas";
-				break;
-		}
-		switch(select("ไม่ได้: ไม่: ไม่เคย: เคย")) {
-		case 1: mes "ไม่ได้"; break;
-		case 2: mes "ไม่ได้"; break;
-		case 3:
-				mes "ไม่เคย";
-				set .@rogue_t,.@rogue_t+10;
-				break;
-		case 4: mes "เคย"; break;
-		}
-		switch(select("Hoard: Take: Hide: Take: Hoarded")) {
-		case 1: mes "กักตุน"; break;
-		case 2: mes "ใช้เวลา"; break;
-		case 3: mes "ซ่อน"; break;
-		case 4: mes "เอามา"; break;
-		case 5:
-				mes "ถูกกักตุน";
-				set .@rogue_t,.@rogue_t+10;
-				break;
-		}
-		switch(select("อัพเกรดรายการ: forging items.: refining item. : upgrade item")) {
-		case 1:
-				mes "อัพเกรดรายการ";
-				set .@rogue_t,.@rogue_t+10;
-				break;
-		case 2: mes "การปลอมรายการ"; break;
-		case 3: mes "รายการกลั่น"; break;
-		case 4: mes "อัพเกรดรายการ"; break;
-		}
-		next;
-		if (.@rogue_t > 30) {
-				mes "^3355FF*CREEEEEAK*";
-				mes "ประตูเปิดช้า^000000";
-				close2;
-				warp "in_rogue",169,34;
-				end;
-		}
-		else {
-				mes "-";
-				mes "อะไร ... ?";
-				mes "หลงทาง!";
-				close;
-		}
+	mes "[???]";
+	mes "นั่นใครน่ะ?!";
+	mes "ใครบังอาจ";
+	mes "บุกรุกเข้ามาในถิ่นของข้า?";
+	next;
+	switch(select("พ่อของข้า (My father):Aragham:Aragon:Legolas")) {
+	case 1:
+		mes "[" + strcharinfo(0) + "]";
+		mes "พ่อของข้า";
+		set .@rogue_t,.@rogue_t+10;
+		break;
+	case 2:
+		mes "[" + strcharinfo(0) + "]";
+		mes "Aragham";
+		break;
+	case 3:
+		mes "[" + strcharinfo(0) + "]";
+		mes "Aragon";
+		break;
+	case 4:
+		mes "[" + strcharinfo(0) + "]";
+		mes "Legolas";
+		break;
+	}
+	switch(select("ไม่เคย (did not):ไม่เคย (didn't):ไม่เคยเลย (never):เคย (ever)")) {
+	case 1: mes "ไม่เคย (did not)"; break;
+	case 2: mes "ไม่เคย (didn't)"; break;
+	case 3:
+		mes "ไม่เคยเลย (never)";
+		set .@rogue_t,.@rogue_t+10;
+		break;
+	case 4: mes "เคย (ever)"; break;
+	}
+	switch(select("สะสม (hoard):เอาไป (takes):ซ่อน (hide):เอาไป (took):สะสมแล้ว (hoarded)")) {
+	case 1: mes "สะสม (hoard)"; break;
+	case 2: mes "เอาไป (takes)"; break;
+	case 3: mes "ซ่อน (hide)"; break;
+	case 4: mes "เอาไป (took)"; break;
+	case 5:
+		mes "สะสมแล้ว (hoarded)";
+		set .@rogue_t,.@rogue_t+10;
+		break;
+	}
+	switch(select("ไอเทมอัพเกรด (upgrade items.):ไอเทมตีบวก (forging items.):ไอเทมตีบวก (refining item.):ไอเทมอัพเกรด (upgrade item.)")) {
+	case 1:
+		mes "ไอเทมอัพเกรด (upgrade items.)";
+		set .@rogue_t,.@rogue_t+10;
+		break;
+	case 2: mes "ไอเทมตีบวก (forging items.)"; break;
+	case 3: mes "ไอเทมตีบวก (refining item.)"; break;
+	case 4: mes "ไอเทมอัพเกรด (upgrade item.)"; break;
+	}
+	next;
+	if (.@rogue_t > 30) {
+		mes "^3355FF*เอี๊ยดดดด*";
+		mes "ประตูค่อยๆ เปิดออก^000000";
+		close2;
+		warp "in_rogue",169,34;
+		end;
+	}
+	else {
+		mes "[???]";
+		mes "อะไรกัน...?";
+		mes "ไสหัวไปซะ!";
+		close;
+	}
 }
-
 
 cmd_fild04,304,180,0	script	Warp#3	45,1,1,{
 OnTouch_:
-		mes "-";
-		mes "ใครอยู่ที่นั่น!";
-		mes "ใครจะกล้า";
-		mes "บุกรุกดินแดนของฉัน?";
-		next;
-		switch(select("อันโตนิโอ: Aragham: Antonio: Hollgrehenn")) {
-		case 1:
-				mes "-" + strcharinfo(0) + "-";
-				mes "Anntonio";
-				break;
-		case 2:
-				mes "-" + strcharinfo(0) + "-";
-				mes "Aragham";
-				break;
-		case 3:
-				mes "-" + strcharinfo(0) + "-";
-				mes "Antonio";
-				set .@rogue_t,.@rogue_t+10;
-				break;
-		case 4:
-				mes "-" + strcharinfo(0) + "-";
-				mes "Hollgrehenn";
-				break;
-		}
-		switch(select("สนุก: ไม่สนุก: ชอบ: ไม่ชอบ")) {
-		case 1: mes "สนุก"; break;
-		case 2:
-				mes "ไม่สนุก";
-				set .@rogue_t,.@rogue_t+10;
-				break;
-		case 3: mes "ชอบ"; break;
-		case 4: mes "ไม่ชอบ"; break;
-		}
-		switch(select("ความเสียหาย: การทำลาย: การแก้ไข: การปลอมแปลง")) {
-		case 1: mes "การทำลาย"; break;
-		case 2:
-				mes "การทำลาย";
-				set .@rogue_t,.@rogue_t+10;
-				break;
-		case 3: mes "การแก้ไข"; break;
-		case 4: mes "การปลอมแปลง"; break;
-		}
-		switch(select("การปลอมรายการ: refining items.: upgrade items.: refined items.: upgraded items.: forged รายการ")) {
-		case 1: mes "รายการปลอม"; break;
-		case 2: mes "การกลั่นรายการ"; break;
-		case 3:
-				mes "อัพเกรดรายการ";
-				set .@rogue_t,.@rogue_t+10;
-				break;
-		case 4: mes "รายการกลั่น"; break;
-		case 5: mes "อัพเกรดรายการ"; break;
-		case 6: mes "รายการปลอมแปลง"; break;
-		}
-		next;
-		if (.@rogue_t > 30) {
-				mes "^3355FF*CREEEEEAK*";
-				mes "ประตูเปิดช้า^000000";
-				close2;
-				warp "in_rogue",164,106;
-				end;
-		}
-		else {
-				mes "-";
-				mes "..... หลงทาง!";
-				close;
-		}
+	mes "[???]";
+	mes "นั่นใครน่ะ?!";
+	mes "ใครบังอาจ";
+	mes "บุกรุกเข้ามาในถิ่นของข้า?";
+	next;
+	switch(select("Anntonio:Aragham:Antonio:Hollgrehenn")) {
+	case 1:
+		mes "[" + strcharinfo(0) + "]";
+		mes "Anntonio";
+		break;
+	case 2:
+		mes "[" + strcharinfo(0) + "]";
+		mes "Aragham";
+		break;
+	case 3:
+		mes "[" + strcharinfo(0) + "]";
+		mes "Antonio";
+		set .@rogue_t,.@rogue_t+10;
+		break;
+	case 4:
+		mes "[" + strcharinfo(0) + "]";
+		mes "Hollgrehenn"; 
+		break;
+	}
+	switch(select("สนุกกับ (enjoys):ไม่สนุกกับ (doesn't enjoy):ชอบ (likes):ไม่ชอบ (doesn't like)")) {
+	case 1: mes "สนุกกับ (enjoys)"; break;
+	case 2:
+		mes "ไม่สนุกกับ (doesn't enjoy)";
+		set .@rogue_t,.@rogue_t+10;
+		break;
+	case 3: mes "ชอบ (likes)"; break;
+	case 4: mes "ไม่ชอบ (doesn't like)"; break;
+	}
+	switch(select("การทำความเสียหาย (damaging):การทำลาย (destroying):การซ่อมแซม (fixing):การตีบวก (forging)")) {
+	case 1: mes "การทำความเสียหาย (damaging)"; break;
+	case 2:
+		mes "การทำลาย (destroying)";
+		set .@rogue_t,.@rogue_t+10;
+		break;
+	case 3: mes "การซ่อมแซม (fixing)"; break;
+	case 4: mes "การตีบวก (forging)"; break;
+	}
+	switch(select("ไอเทมตีบวก (forging item.):ไอเทมตีบวก (refining items.):ไอเทมอัพเกรด (upgrade items.):ไอเทมที่ตีบวกแล้ว (refined items.):ไอเทมที่อัพเกรดแล้ว (upgraded items.):ไอเทมที่ทำขึ้นมา (forged items.)")) {
+	case 1: mes "ไอเทมตีบวก (forging item.)"; break;
+	case 2: mes "ไอเทมตีบวก (refining items.)"; break;
+	case 3:
+		mes "ไอเทมอัพเกรด (upgrade items.)";
+		set .@rogue_t,.@rogue_t+10;
+		break;
+	case 4: mes "ไอเทมที่ตีบวกแล้ว (refined items.)"; break;
+	case 5: mes "ไอเทมที่อัพเกรดแล้ว (upgraded items.)"; break;
+	case 6: mes "ไอเทมที่ทำขึ้นมา (forged items.)"; break;
+	}
+	next;
+	if (.@rogue_t > 30) {
+		mes "^3355FF*เอี๊ยดดดด*";
+		mes "ประตูค่อยๆ เปิดออก^000000";
+		close2;
+		warp "in_rogue",164,106;
+		end;
+	}
+	else {
+		mes "[???]";
+		mes ".....ไสหัวไปซะ!";
+		close;
+	}
 }
-
 
 in_rogue,272,135,1	script	Hermanthorn Jr#rg	85,{
-		if (ROGUE_Q == 8) {
-				mes "[Hermanthornjr.]";
-				mes "ฉันเห็น...";
-				mes "คุณต้องมาจาก";
-				mes "กิลด์อันธพาล";
-				mes "คุณต้องเป็นหนึ่งใน";
-				mes "มิสเตอร์สมิ ธ ไม่ได้";
-				mes "มีความสุขมากเกินไป ...";
-				next;
-				mes "[Hermanthornjr.]";
-				mes "เขาโยนพอดีและคุณนำสิ่งของทั้งหมดที่เขาขอมาให้เขาใช่มั้ยฉันเห็นว่าคุณยังคงไร้เดียงสาอยู่ฮ่าฮ่าฮ่า ~";
-				next;
-				mes "[Hermanthornjr.]";
-				mes "ฉันคิดว่าเขาดูดคุณไปรวบรวมสิ่งของเหล่านั้นแล้วส่งคุณไปหาฉันเศร้าจริงๆ";
-				next;
-				mes "[Hermanthornjr.]";
-				mes "เพราะคุณถูกทรมานเขาฉันจะพยายามเป็นคนใจกว้างโดยเฉพาะอย่างยิ่งการทดสอบของฉันสำหรับคุณจะเรียบง่ายง่ายมาก";
-				next;
-				mes "[Hermanthornjr.]";
-				mes "สิ่งที่คุณต้องทำคือผ่านอุโมงค์ใต้ดินแล้วเดินกลับไปที่กิลด์อันธพาล";
-				next;
-				mes "[Hermanthornjr.]";
-				mes "มีสิ่งหนึ่งที่ฉันควรบอกคุณคุณอาจต้องการระวังภายในใช่ไหม?";
-				next;
-				mes "[Hermanthornjr.]";
-				mes "พัดพัดพากิ่งที่ตายแล้วและคัดเลือกนักแสดง Hocus Pocus ไปทั่วสถานที่";
-				next;
-				mes "[Hermanthornjr.]";
-				mes "ดี...";
-				mes "เพียงแค่ทำให้มันกลับไปที่ Rogue Guild ยังมีชีวิตอยู่นั่นคือทั้งหมดที่คุณต้องทำ!";
-				set ROGUE_Q,12;
-				changequest 2025,2026;
-				close;
-		}
-		else if (ROGUE_Q == 12) {
-				mes "[Hermanthornjr.]";
-				mes "ใช่แล้ว.สิ่งนี้สำคัญมากคุณต้องใช้รหัสผ่านเพื่อเข้าสู่อุโมงค์ในการปลดล็อกประตูการรวมกันสี่หมายเลขคือ ^0000ff3019 ^000000";
-				close;
-		}
-		else {
-				mes "[Hermanthornjr.]";
-				mes "ฮะ...?";
-				mes "อะไรนรก";
-				mes "คุณมาที่นี่";
-				mes "Scram ทำไมคุณไม่?";
-				close;
-		}
+	if (ROGUE_Q == 8) {
+		mes "[HermanthornJr.]";
+		mes "ข้าเข้าใจแล้ว...";
+		mes "เจ้าต้องมาจาก";
+		mes "กิลด์ Rogue แน่ๆ";
+		mes "เจ้าคงจะเป็นหนึ่งในคนที่";
+		mes "Mr. Smith ไม่ค่อย";
+		mes "พอใจด้วยเท่าไหร่ล่ะสิ...";
+		next;
+		mes "[HermanthornJr.]";
+		mes "เขาคงสติหลุดแล้วเจ้าก็เอาไอเทมทุกอย่างที่เขาขอไปให้เขาล่ะสิ ใช่ไหม? เฮ้อ ข้าเห็นได้เลยว่าเจ้ายังใสซื่ออยู่มาก ฮ่าๆๆ~";
+		next;
+		mes "[HermanthornJr.]";
+		mes "ข้าเดาว่าเขาหลอกให้เจ้าไปเก็บรวบรวมไอเทมพวกนั้น แล้วก็ส่งเจ้าต่อมาให้ข้า น่าเศร้าจริงๆ";
+		next;
+		mes "[HermanthornJr.]";
+		mes "เอาเถอะ ในเมื่อเจ้าโดนเขาทรมานมา ข้าจะพยายามใจดีกับเจ้าเป็นพิเศษละกัน บททดสอบของข้าสำหรับเจ้าน่ะง่ายแสนง่าย";
+		next;
+		mes "[HermanthornJr.]";
+		mes "สิ่งเดียวที่เจ้าต้องทำคือเดินผ่านอุโมงค์ใต้ดินนี้ และเดินกลับไปให้ถึงกิลด์ Rogue";
+		next;
+		mes "[HermanthornJr.]";
+		mes "มีอยู่อย่างหนึ่งที่ข้าควรบอกเจ้าล่ะนะ เจ้าอาจจะต้องระวังตัวหน่อยตอนที่อยู่ข้างใน โอเคไหม?";
+		next;
+		mes "[HermanthornJr.]";
+		mes "พวกงี่เง่ากลุ่มหนึ่งชอบมาโยน Dead Branch แล้วก็ร่ายเวท Hocus Pocus ไปทั่วแถวนั้น...";
+		next;
+		mes "[HermanthornJr.]";
+		mes "เอาล่ะ...";
+		mes "แค่กลับไปที่กิลด์ Rogue ให้ได้แบบมีชีวิตรอด นั่นคือทั้งหมดที่เจ้าต้องทำ!";
+		set ROGUE_Q,12;
+		changequest 2025,2026;
+		close;
+	}
+	else if (ROGUE_Q == 12) {
+		mes "[HermanthornJr.]";
+		mes "อ้อ ใช่ เรื่องนี้สำคัญมาก เจ้าต้องมีรหัสผ่านเพื่อเข้าสู่อุโมงค์ เพื่อปลดล็อคประตู รหัสรวมตัวเลขสี่ตัวคือ ^0000FF3019^000000";
+		close;
+	}
+	else {
+		mes "[HermanthornJr.]";
+		mes "หือ...?";
+		mes "เจ้ามาทำบ้า";
+		mes "อะไรที่นี่";
+		mes "ไปให้พ้นๆ เลยได้ไหม?";
+		close;
+	}
 }
-
 
 in_rogue,270,130,0	script	he_to_rogue#rg	45,1,1,{
 OnTouch_:
-		mes "^3355ffthe ประตูถูกล็อคคุณจะต้องป้อนการรวมตัวเลขสี่ชุดเพื่อเปิด^000000";
-		next;
-		input .@input;
-		if (.@input < 1 || .@input > 10000) {
-				if (ROGUE_Q == 12)
-						mes "^3355ffit ไม่ทำงานโปรดป้อนการรวมกันสี่ครั้งอีกครั้ง^000000";
-				else
-						mes "^3355ffplease ป้อนการรวมกันของสี่ตัวเลข^000000";
-				close;
-		}
-		else if (.@input == 3019) {
-				if (ROGUE_Q == 12) {
-						mes "^3355ffthe ประตู";
-						mes "ได้เปิดแล้ว^000000";
-						close2;
-						warp "in_rogue",10,21;
-						set ROGUE_Q,12;
-						end;
-				}
-				else {
-						mes "[Hermanthornjr.]";
-						mes "ดี...";
-						mes "ฉันไม่ได้บอกคุณ";
-						mes "ที่ฉันเปลี่ยนไฟล์";
-						mes "รหัสผ่าน?*ขยิบตาวิงค์*";
-						close;
-				}
+	mes "^3355FFประตูถูกล็อคอยู่ เจ้าต้องใส่รหัสตัวเลขสี่หลักเพื่อเปิดมัน^000000";
+	next;
+	input .@input;
+	if (.@input < 1 || .@input > 10000) {
+		if (ROGUE_Q == 12)
+			mes "^3355FFมันไม่ได้ผล กรุณาใส่รหัสตัวเลขสี่หลักอีกครั้ง^000000";
+		else 
+			mes "^3355FFกรุณาใส่รหัสรวมตัวเลขสี่ตัว^000000";
+		close;
+	}
+	else if (.@input == 3019) {
+		if (ROGUE_Q == 12) {
+			mes "^3355FFประตู";
+			mes "เปิดออกแล้ว^000000";
+			close2;
+			warp "in_rogue",10,21;
+			set ROGUE_Q,12;
+			end;
 		}
 		else {
-				mes "^3355ffthe ประตู";
-				mes "ยังคงล็อคอยู่^000000";
-				close;
+			mes "[HermanthornJr.]";
+			mes "เอ่อ...";
+			mes "ข้าไม่ได้บอกเจ้าหรอกรึ";
+			mes "ว่าข้าเปลี่ยน";
+			mes "รหัสผ่านไปแล้ว? *วิงค์ วิงค์*";
+			close;
 		}
+	}
+	else {
+		mes "^3355FFประตู";
+		mes "ยังคงล็อคอยู่^000000";
+		close;
+	}
 }
-
 
 in_rogue,200,389,0	script	gen_ro#1	-1,3,3,{
 OnTouch_:
-		if (BaseJob == Job_Thief) {
-				monster "in_rogue",200,389,"Zombie",1015,1,"gen_ro#1::OnMyMobDead";
-				monster "in_rogue",201,389,"Zombie",1015,1,"gen_ro#1::OnMyMobDead";
-				donpcevent "gen_ro#2::OnDisable";
-				donpcevent "gen_ro#3::OnDisable";
-				donpcevent "gen_ro#4::OnDisable";
-		}
-		else
-				warp "mag_dun02",181,176;
-		end;
-
+	if (BaseJob == Job_Thief) {
+		monster "in_rogue",200,389,"Zombie",1015,1,"gen_ro#1::OnMyMobDead";
+		monster "in_rogue",201,389,"Zombie",1015,1,"gen_ro#1::OnMyMobDead";
+		donpcevent "gen_ro#2::OnDisable";
+		donpcevent "gen_ro#3::OnDisable";
+		donpcevent "gen_ro#4::OnDisable";
+	}
+	else
+		warp "mag_dun02",181,176;
+	end;
 
 OnDisable:
-		killmonster "in_rogue","gen_ro#1::OnMyMobDead";
-		end;
-
+	killmonster "in_rogue","gen_ro#1::OnMyMobDead";
+	end;
 
 OnMyMobDead:
-		end;
+	end;
 }
-
 
 in_rogue,100,389,0	script	gen_ro#2	-1,3,3,{
 OnTouch_:
-		if (BaseJob == Job_Thief) {
-				monster "in_rogue",100,389,"Mummy",1041,1,"gen_ro#2::OnMyMobDead";
-				donpcevent "gen_ro#1::OnDisable";
-		}
-		else
-				warp "mag_dun02",181,176;
-		end;
-
+	if (BaseJob == Job_Thief) {
+		monster "in_rogue",100,389,"Mummy",1041,1,"gen_ro#2::OnMyMobDead";
+		donpcevent "gen_ro#1::OnDisable";
+	}
+	else
+		warp "mag_dun02",181,176;
+	end;
 
 OnDisable:
-		killmonster "in_rogue","gen_ro#2::OnMyMobDead";
-		end;
-
+	killmonster "in_rogue","gen_ro#2::OnMyMobDead";
+	end;
 
 OnMyMobDead:
-		end;
+	end;
 }
-
 
 in_rogue,150,389,0	script	gen_ro#3	-1,3,3,{
 OnTouch_:
-		if (BaseJob == Job_Thief) {
-				monster "in_rogue",145,389,"Zombie",1015,1,"gen_ro#3::OnMyMobDead";
-				monster "in_rogue",143,389,"Mummy",1041,1,"gen_ro#3::OnMyMobDead";
-				donpcevent "gen_ro#2::OnDisable";
-		}
-		else
-				warp "mag_dun02",181,176;
-		end;
-
+	if (BaseJob == Job_Thief) {
+		monster "in_rogue",145,389,"Zombie",1015,1,"gen_ro#3::OnMyMobDead";
+		monster "in_rogue",143,389,"Mummy",1041,1,"gen_ro#3::OnMyMobDead";
+		donpcevent "gen_ro#2::OnDisable";
+	}
+	else
+		warp "mag_dun02",181,176;
+	end;
 
 OnDisable:
-		killmonster "in_rogue","gen_ro#3::OnMyMobDead";
-		end;
-
+	killmonster "in_rogue","gen_ro#3::OnMyMobDead";
+	end;
 
 OnMyMobDead:
-		end;
+	end;
 }
-
 
 in_rogue,250,389,0	script	gen_ro#4	-1,3,3,{
 OnTouch_:
-		if (BaseJob == Job_Thief) {
-				monster "in_rogue",200,389,"Abysmal Knight",1219,1,"gen_ro#4::OnMyMobDead";
-				donpcevent "gen_ro#3::OnDisable";
-		}
-		else
-				warp "mag_dun02",181,176;
-		end;
-
+	if (BaseJob == Job_Thief) {
+		monster "in_rogue",200,389,"Abysmal Knight",1219,1,"gen_ro#4::OnMyMobDead";
+		donpcevent "gen_ro#3::OnDisable";
+	}
+	else
+		warp "mag_dun02",181,176;
+	end;
 
 OnDisable:
-		killmonster "in_rogue","gen_ro#4::OnMyMobDead";
-		end;
-
+	killmonster "in_rogue","gen_ro#4::OnMyMobDead";
+	end;
 
 OnMyMobDead:
-		end;
+	end;
 }
-
 
 in_rogue,9,389,0	script	oneway_to_gu	45,1,1,{
 OnTouch_:
-		donpcevent "gen_ro#4::OnDisable";
-		set ROGUE_Q,17;
-		warp "in_rogue",367,10;
-		end;
+	donpcevent "gen_ro#4::OnDisable";
+	set ROGUE_Q,17;
+	warp "in_rogue",367,10;
+	end;
 }
-
 
 in_rogue,244,39,1	script	Aragham Junior#rg	99,{
-		if (ROGUE_Q == 9) {
-				mes "[Aragham Jr. ]";
-				mes "โอ้คุณต้องเป็น";
-				mes "จาก Rogue Guild ...";
-				next;
-				mes "[Aragham Jr. ]";
-				mes "ชื่อของฉันคือ";
-				mes "Aragham Junior";
-				mes "Rogue of the Desert";
-				mes "คุณพร้อมที่จะเรียนรู้หรือยัง";
-				mes "จะเป็นคนโกงได้อย่างไร?";
-				next;
-				mes "[Aragham Jr. ]";
-				mes "ดูว่าเป็นคนโกงคำขวัญของเราคือ '^0000FFAVOID ที่แข็งแกร่ง!เป็นอันตรายต่อผู้อ่อนแอ!^000000 'กฎนั้นเป็นจริงสำหรับสัตว์ประหลาด";
-				next;
-				mes "[Aragham Jr. ]";
-				mes "หลีกเลี่ยงความแข็งแกร่ง!";
-				mes "เป็นอันตรายต่อคนอ่อนแอ!";
-				mes "เป็นกฎง่ายๆ ...";
-				next;
-				mes "[Aragham Jr. ]";
-				mes "ตอนนี้โปรดจำไว้ว่ามันเมื่อคุณผ่าน ^0000ffthe อุโมงค์ใต้ดิน ^000000พยายามเดินไปจนถึงกิลด์อันธพาล";
-				next;
-				mes "[Aragham Jr. ]";
-				mes "จะมีสัตว์ประหลาดไม่กี่ตัว แต่ไม่ต้องกังวลฉันรู้ว่าคุณแข็งแกร่งเอาล่ะคุณพร้อมที่จะไปหรืออะไร?";
-				next;
-				if (select("ใช่ไปกันเถอะ: nah~") == 1) {
-						mes "[Aragham Jr. ]";
-						mes "ใช้ได้...";
-						mes "ขอให้โชคดี";
-						close2;
-						warp "in_rogue",15,105;
-						set ROGUE_Q,13;
-						changequest 2022,2026;
-						end;
-				}
-				mes "[Aragham Jr. ]";
-				mes "สบายดี";
-				mes "ใช้เวลาของคุณ";
-				mes "และกลับมา";
-				mes "เมื่อคุณพร้อม";
-				close;
+	if (ROGUE_Q == 9) {
+		mes "[Aragham Jr.]";
+		mes "โอ้ เจ้าต้องมาจาก";
+		mes "กิลด์ Rogue แน่ๆ...";
+		next;
+		mes "[Aragham Jr.]";
+		mes "ข้าชื่อว่า";
+		mes "Aragham Junior,";
+		mes "จอมโจรแห่งทะเลทราย";
+		mes "เจ้าพร้อมหรือยังที่จะเรียนรู้";
+		mes "การเป็น Rogue?";
+		next;
+		mes "[Aragham Jr.]";
+		mes "ฟังนะ ในฐานะ Rogue คติพจน์ของเราคือ '^0000FFหลีกเลี่ยงผู้ที่แข็งแกร่ง! รังแกผู้ที่อ่อนแอ!^000000' กฎข้อนั้นใช้ได้ผลดีเป็นพิเศษกับพวกมอนสเตอร์";
+		next;
+		mes "[Aragham Jr.]";
+		mes "หลีกเลี่ยงผู้ที่แข็งแกร่ง!";
+		mes "รังแกผู้ที่อ่อนแอ!";
+		mes "มันเป็นกฎที่ง่ายมาก...";
+		next;
+		mes "[Aragham Jr.]";
+		mes "ทีนี้ จงจำมันให้ขึ้นใจขณะที่เจ้าเดินผ่าน ^0000FFอุโมงค์ใต้ดิน^000000 จงพยายามเดินไปให้ถึงกิลด์ Rogue";
+		next;
+		mes "[Aragham Jr.]";
+		mes "จะมีมอนสเตอร์อยู่บ้าง แต่ไม่ต้องห่วง ข้ารู้ว่าเจ้าแข็งแกร่ง เอาล่ะ เจ้าพร้อมจะไปหรือยังล่ะ?";
+		next;
+		if (select("ครับ/ค่ะ ไปกันเลย:ไม่ล่ะ~") == 1) {
+			mes "[Aragham Jr.]";
+			mes "เอาล่ะ...";
+			mes "งั้นก็โชคดีนะ";
+			close2;
+			warp "in_rogue",15,105;
+			set ROGUE_Q,13;
+			changequest 2022,2026;
+			end;
 		}
-		else if (ROGUE_Q == 13) {
-				mes "[Aragham Jr. ]";
-				mes "โอ้คุณกลับมาแล้ว";
-				mes "ฉันคิดว่าคุณจะทำได้ดีในครั้งนี้คำขวัญอีกตัวหนึ่งคือ '^0000fffailure สอนความสำเร็จ^000000'แล้วอีกครั้ง ...";
-				next;
-				if (select("ทดสอบใหม่: ยกเลิก") == 1) {
-						mes "[Aragham Jr. ]";
-						mes "ขอให้โชคดี.";
-						close2;
-						warp "in_rogue",15,105;
-						end;
-				}
-				mes "[Aragham Jr. ]";
-				mes "สบายดี";
-				mes "ใช้เวลาของคุณ";
-		mes "and come back";
-				mes "เมื่อคุณพร้อม";
-				close;
+		mes "[Aragham Jr.]";
+		mes "ก็ได้ ก็ได้";
+		mes "ใช้เวลาตามที่ต้องการ";
+		mes "แล้วค่อยกลับมา";
+		mes "เมื่อเจ้าพร้อม";
+		close;
+	}
+	else if (ROGUE_Q == 13) {
+		mes "[Aragham Jr.]";
+		mes "อ้าว เจ้ากลับมาแล้ว";
+		mes "ข้าคิดว่าคราวนี้เจ้าจะทำได้ดี อีกหนึ่งคติพจน์ที่ชาว Rogue มีคือ '^0000FFความล้มเหลวสอนให้เกิดความสำเร็จ^000000' เอาล่ะ งั้นลองอีกครั้ง...";
+		next;
+		if (select("เริ่มการทดสอบใหม่:ยกเลิก") == 1) {
+			mes "[Aragham Jr.]";
+			mes "โชคดี";
+			close2;
+			warp "in_rogue",15,105;
+			end;
 		}
-		else if (BaseJob != Job_Rogue) {
-				mes "[Aragham Jr. ]";
-				mes "ฮะ...?";
-				mes "คุณเป็นใคร!";
-				mes "คุณไม่ได้มาจาก";
-				mes "The Rogue Guild !!";
-				next;
-				mes "[Aragham Jr. ]";
-				mes "คุณมาที่นี่เพื่อฆ่าฉันใช่มั้ยn-no!ฉันยังตายไม่ได้!หลงทาง!ไม่งั้นฉันจะฆ่าคุณก่อน!";
-				close;
-		}
-		else {
-				mes "[Aragham Jr. ]";
-				mes "เฮ้...";
-				mes "สิ่งที่นำมา";
-				mes "คุณกลับมาที่นี่?";
-				mes "ทำไมคุณไม่";
-				mes "พักผ่อน";
-				mes "ก่อนออกเดินทาง?";
-				close;
-		}
+		mes "[Aragham Jr.]";
+		mes "ก็ได้ ก็ได้";
+		mes "ใช้เวลาตามที่ต้องการ";
+		mes "แล้วค่อยกลับมา";
+		mes "เมื่อเจ้าพร้อม";
+		close;
+	}
+	else if (BaseJob != Job_Rogue) {
+		mes "[Aragham Jr.]";
+		mes "หือ...?";
+		mes "เจ้าเป็นใคร?!";
+		mes "เจ้าไม่ได้มาจาก";
+		mes "กิลด์ Rogue นี่!!";
+		next;
+		mes "[Aragham Jr.]";
+		mes "เจ้ามาที่นี่เพื่อจะฆ่าข้าล่ะสิ ใช่ไหม? มะ-ไม่! ข้ายังตายไม่ได้! ไสหัวไปซะ! ไม่เช่นนั้น ข้าจะฆ่าเจ้าก่อน!";
+		close;
+	}
+	else {
+		mes "[Aragham Jr.]";
+		mes "เฮ้...";
+		mes "มีอะไร";
+		mes "ถึงกลับมาที่นี่ล่ะ?";
+		mes "ทำไมเจ้าไม่";
+		mes "พักผ่อนสักหน่อย";
+		mes "ก่อนจะไปล่ะ?";
+		close;
+	}
 }
-
 
 in_rogue,160,34,1	script	Hollgrehenn junior#rg	85,{
-		if (ROGUE_Q == 11) {
-				mes "[Hollgrehenn Jr. ]";
-				mes "ฮะ...";
-				mes "จาก";
-				mes "Rogue Guild เหรอ?";
-				next;
-				mes "[Hollgrehenn Jr. ]";
-				mes "ฉันเป็น Hollgrehenn Juniorฉันมักจะทำธุรกิจใต้ดินของเรามากมายคุณพร้อมที่จะทำการทดสอบของฉันหรือยัง?";
-				next;
-				mes "[Hollgrehenn Jr. ]";
-				mes "เรา Rogues แบ่งปันคำขวัญนี้: ^0000FFAVOID The Strong!เป็นอันตรายต่อผู้อ่อนแอ!^000000 กฎนี้ใช้กับภัยคุกคามใด ๆ โดยเฉพาะสัตว์ประหลาด";
-				next;
-				mes "[Hollgrehenn Jr. ]";
-				mes "จำได้ง่าย";
-				mes "อย่าลืมที่จะนำไปใช้ในทางปฏิบัติคุณเข้าใจแล้ว?";
-				next;
-				mes "[Hollgrehenn Jr. ]";
-				mes "สำหรับการทดสอบของฉันคุณจะต้องผ่านอุโมงค์ ^0000ffunderground ^000000ติดตามมันตลอดทางกลับไปที่ Rogue Guild";
-				next;
-				mes "[Hollgrehenn Jr. ]";
-				mes "มีสัตว์ประหลาดอยู่บ้าง แต่นั่นจะเป็นส่วนหนึ่งของการฝึกอบรมของคุณตอนนี้คุณพร้อมที่จะไปหรือไม่?";
-				next;
-				if (select("ใช่ฉันคือ.: nah~") == 1) {
-						mes "[Hollgrehenn Jr. ]";
-						mes "ขอให้โชคดี.";
-						close2;
-						warp "in_rogue",15,105;
-						set ROGUE_Q,15;
-						changequest 2024,2026;
-						end;
-				}
-				mes "[Hollgrehenn Jr. ]";
-				mes "ใช้เวลาของคุณ";
-				mes "กลับมาที่นี่";
-				mes "เมื่อคุณพร้อม";
-				close;
+	if (ROGUE_Q == 11) {
+		mes "[Hollgrehenn Jr.]";
+		mes "หือ...";
+		mes "มาจาก";
+		mes "กิลด์ Rogue งั้นรึ?";
+		next;
+		mes "[Hollgrehenn Jr.]";
+		mes "ข้าคือ Hollgrehenn Junior ข้าดูแลธุรกิจใต้ดินของเราอยู่มากมาย แล้วเจ้าพร้อมที่จะรับบททดสอบของข้าหรือยัง?";
+		next;
+		mes "[Hollgrehenn Jr.]";
+		mes "พวกเราชาว Rogue มีคติพจน์ร่วมกันคือ: ^0000FFหลีกเลี่ยงผู้ที่แข็งแกร่ง! รังแกผู้ที่อ่อนแอ!^000000 กฎนี้ใช้ได้กับภัยคุกคามทุกอย่าง โดยเฉพาะพวกมอนสเตอร์";
+		next;
+		mes "[Hollgrehenn Jr.]";
+		mes "มันจำง่ายออก";
+		mes "แต่อย่าลืมนำไปใช้จริงด้วยล่ะ เข้าใจไหม?";
+		next;
+		mes "[Hollgrehenn Jr.]";
+		mes "สำหรับบททดสอบของข้า เจ้าจะต้องเดินผ่าน ^0000FFอุโมงค์ใต้ดิน^000000 ตามมันไปเรื่อยๆ จนกลับไปถึงกิลด์ Rogue";
+		next;
+		mes "[Hollgrehenn Jr.]";
+		mes "ที่นั่นมีมอนสเตอร์อยู่บ้าง แต่นั่นก็เป็นส่วนหนึ่งของการฝึกฝนของเจ้า เอาล่ะ พร้อมจะไปหรือยัง?";
+		next;
+		if (select("ครับ/ค่ะ พร้อมแล้ว:ไม่ล่ะ~") == 1) {
+			mes "[Hollgrehenn Jr.]";
+			mes "โชคดีนะ";
+			close2;
+			warp "in_rogue",15,105;
+			set ROGUE_Q,15;
+			changequest 2024,2026;
+			end;
 		}
-		else if (ROGUE_Q == 15) {
-				mes "[Hollgrehenn Jr. ]";
-				mes "ฮะ.";
-				mes "คุณล้มเหลว";
-				mes "จะลองอีกครั้ง?";
-				next;
-				if (select("ทดสอบใหม่: ยกเลิก") == 1) {
-						mes "[Hollgrehenn Jr. ]";
-						mes "ขอให้โชคดี.";
-						close2;
-						warp "in_rogue",15,105;
-						end;
-				}
-				mes "[Hollgrehenn Jr. ]";
-				mes "ใช้เวลาของคุณ";
-				mes "กลับมาที่นี่";
-				mes "เมื่อคุณพร้อม";
-				close;
+		mes "[Hollgrehenn Jr.]";
+		mes "ใช้เวลาให้เต็มที่";
+		mes "แล้วค่อยกลับมาที่นี่";
+		mes "เมื่อเจ้าพร้อม";
+		close;
+	}
+	else if (ROGUE_Q == 15) {
+		mes "[Hollgrehenn Jr.]";
+		mes "หึ";
+		mes "เจ้าสอบตก";
+		mes "จะลองอีกครั้งไหมล่ะ?";
+		next;
+		if (select("เริ่มการทดสอบใหม่:ยกเลิก") == 1) {
+			mes "[Hollgrehenn Jr.]";
+			mes "โชคดีนะ";
+			close2;
+			warp "in_rogue",15,105;
+			end;
 		}
-		else if (BaseJob != Job_Rogue) {
-				mes "[Hollgrehenn Jr. ]";
-				mes "ฮะ...?";
-				mes "คุณไม่ได้มาจาก";
-				mes "The Rogue Guild ...";
-				next;
-				mes "[Hollgrehenn Jr. ]";
-				mes "คุณควรออกไปข้างนอก";
-				mes "ของที่นี่ตอนนี้";
-				mes "ถ้าคุณรู้ว่าอะไร";
-				mes "ดีสำหรับคุณ ...";
-				next;
-				mes "[Hollgrehenn Jr. ]";
-				mes "ตอนนี้...";
-				mes "เอาชนะมันก่อน";
-				mes "ฉันเปลี่ยนใจ";
-				mes "เกี่ยวกับการฆ่าคุณ";
-				close;
-		}
-		else {
-				mes "[Hollgrehenn Jr. ]";
-				mes "เฮ้...";
-				mes "มาเยี่ยม?";
-				mes "เรา Rogues ต้อง";
-				mes "ติดกันเหรอ?";
-				close;
-		}
+		mes "[Hollgrehenn Jr.]";
+		mes "ใช้เวลาให้เต็มที่";
+		mes "แล้วค่อยกลับมาที่นี่";
+		mes "เมื่อเจ้าพร้อม";
+		close;
+	}
+	else if (BaseJob != Job_Rogue) {
+		mes "[Hollgrehenn Jr.]";
+		mes "หือ...?";
+		mes "เจ้าไม่ได้มาจาก";
+		mes "กิลด์ Rogue นี่...";
+		next;
+		mes "[Hollgrehenn Jr.]";
+		mes "เจ้าควรออกไป";
+		mes "จากที่นี่ซะเดี๋ยวนี้";
+		mes "ถ้าเจ้ายังอยาก";
+		mes "มีชีวิตที่ดีอยู่...";
+		next;
+		mes "[Hollgrehenn Jr.]";
+		mes "ทีนี้...";
+		mes "ไสหัวไปก่อนที่";
+		mes "ข้าจะเปลี่ยนใจ";
+		mes "เรื่องที่จะฆ่าเจ้าซะ";
+		close;
+	}
+	else {
+		mes "[Hollgrehenn Jr.]";
+		mes "เฮ้...";
+		mes "แวะมาเยี่ยมรึ?";
+		mes "พวกเราชาว Rogue ต้อง";
+		mes "สามัคคีกันไว้ ใช่ไหมล่ะ?";
+		close;
+	}
 }
-
 
 in_rogue,177,109,1	script	Antonio junior#rg	88,{
-		if (ROGUE_Q == 10) {
-				mes "[อันโตนิโอจูเนียร์]";
-				mes "คุณมาจาก";
-				mes "The Rogue Guild?";
-				mes "ถ้าคุณต้องการเรียนรู้";
-				mes "เกี่ยวกับการกลายเป็นคนโกง";
-				mes "จากนั้นหุบปากและอยู่ต่อไป";
-				next;
-				mes "[อันโตนิโอจูเนียร์]";
-				mes "^0000ffavoid The Strong!เป็นอันตรายต่อคนอ่อนแอ!^000000 นั่นคือคำขวัญของเราสำหรับการต่อสู้กับสัตว์ประหลาด";
-				next;
-				mes "[อันโตนิโอจูเนียร์]";
-				mes "ไม่แสดงความเมตตาเมื่อคุณต่อสู้กับสัตว์ประหลาดที่อ่อนแอกว่าและพยายามหลีกเลี่ยงสัตว์ประหลาดที่แข็งแกร่งขึ้น";
-				next;
-				mes "[อันโตนิโอจูเนียร์]";
-				mes "ตอนนี้ฉันต้องการให้คุณเดินไปจนถึงกิลด์อันธพาลผ่านอุโมงค์ใต้ดิน ^0000ff ^000000";
-				next;
-				mes "[อันโตนิโอจูเนียร์]";
-				mes "มีสัตว์ประหลาดอยู่ที่นั่น แต่ถ้าคุณหลีกเลี่ยงความแข็งแกร่งและเป็นอันตรายต่อผู้อ่อนแอคุณจะสบายดี";
-				next;
-				if (select("ไปกันเถอะ!: W-Wait ~") == 1) {
-						mes "[อันโตนิโอจูเนียร์]";
-						mes "ฉันหวังว่าคุณจะทำ";
-						mes "ไม่ล้มเหลวในการทดสอบนี้";
-						mes "คุณสามารถเป็นได้เท่านั้น";
-						mes "Rogue ถ้าคุณผ่าน ...";
-						close2;
-						warp "in_rogue",15,105;
-						set ROGUE_Q,14;
-						changequest 2023,2026;
-						end;
-				}
-				mes "[อันโตนิโอจูเนียร์]";
-				mes "ฉันไม่มีเวลา";
-				mes "ที่จะหลอกไปรอบ ๆ";
-				mes "คุณ.รีบไปรับ";
-				mes "พร้อมใช้";
-				mes "การทดสอบ";
-				close;
+	if (ROGUE_Q == 10) {
+		mes "[Antonio Jr.]";
+		mes "เจ้ามาจาก";
+		mes "กิลด์ Rogue งั้นรึ?";
+		mes "ถ้าเจ้าอยากจะเรียนรู้";
+		mes "เรื่องการเป็น Rogue";
+		mes "งั้นก็หุบปากแล้วอยู่เฉยๆ ซะ";
+		next;
+		mes "[Antonio Jr.]";
+		mes "^0000FFหลีกเลี่ยงผู้ที่แข็งแกร่ง! รังแกผู้ที่อ่อนแอ!^000000 นั่นคือคติพจน์ของเราในการสู้กับมอนสเตอร์";
+		next;
+		mes "[Antonio Jr.]";
+		mes "อย่าปรานีเมื่อเจ้าสู้กับมอนสเตอร์ที่อ่อนแอกว่า และพยายามอยู่ห่างจากมอนสเตอร์ที่แข็งแกร่งกว่า";
+		next;
+		mes "[Antonio Jr.]";
+		mes "เอาล่ะ ข้าต้องการให้เจ้าเดินไปให้ถึงกิลด์ Rogue ผ่านทาง ^0000FFอุโมงค์ใต้ดิน^000000 นี้";
+		next;
+		mes "[Antonio Jr.]";
+		mes "ที่นั่นมีมอนสเตอร์อยู่ แต่ถ้าเจ้าหลีกเลี่ยงคนแข็งแล้วรังแกคนอ่อน เจ้าก็จะไม่เป็นไร";
+		next;
+		if (select("ไปกันเลย!:ร-รอก่อน~") == 1) {
+			mes "[Antonio Jr.]";
+			mes "ข้าหวังว่าเจ้าจะ";
+			mes "ไม่สอบตกนะ";
+			mes "เจ้าจะเป็น Rogue ได้";
+			mes "ก็ต่อเมื่อสอบผ่านเท่านั้น...";
+			close2;
+			warp "in_rogue",15,105;
+			set ROGUE_Q,14;
+			changequest 2023,2026;
+			end;
 		}
-		else if (ROGUE_Q == 14) {
-				mes "[อันโตนิโอจูเนียร์]";
-				mes "คุณล้มเหลว ... ?";
-				mes "ฉันเดาว่านั่นคือชีวิต";
-				mes "คุณจะลอง";
-				mes "อีกครั้งหรืออะไร?";
-				next;
-				if (select("ทดสอบใหม่: ยกเลิก") == 1) {
-						mes "[อันโตนิโอจูเนียร์]";
-						mes "จำไว้ว่าฉันกำลังทำอยู่";
-						mes "คุณชอบที่นี่ ...";
-						mes "ตอนนี้อย่ากลับมา";
-						mes "จนกว่าคุณจะเป็นคนโกง";
-						close2;
-						warp "in_rogue",15,105;
-						end;
-				}
-				mes "[อันโตนิโอจูเนียร์]";
-				mes "ฉันไม่มีเวลา";
-				mes "ที่จะหลอกไปรอบ ๆ";
-				mes "คุณ.รีบไปรับ";
-				mes "พร้อมใช้";
-				mes "การทดสอบ";
-				close;
+		mes "[Antonio Jr.]";
+		mes "ข้าไม่มีเวลามา";
+		mes "ล้อเล่นกับเจ้าหรอกนะ";
+		mes "เร็วเข้า เตรียมตัวให้";
+		mes "พร้อม แล้วไปรับ";
+		mes "การทดสอบซะ";
+		close;
+	}
+	else if (ROGUE_Q == 14) {
+		mes "[Antonio Jr.]";
+		mes "เจ้าสอบตกงั้นรึ...?";
+		mes "ข้าว่ามันก็เป็นเรื่องธรรมดาล่ะนะ";
+		mes "เจ้าจะลองใหม่อีกครั้ง";
+		mes "หรือจะยังไง?";
+		next;
+		if (select("เริ่มการทดสอบใหม่:ยกเลิก") == 1) {
+			mes "[Antonio Jr.]";
+			mes "จำไว้นะ ข้ากำลัง";
+			mes "ช่วยเจ้าอยู่นะเนี่ย...";
+			mes "เอาล่ะ อย่ากลับมา";
+			mes "จนกว่าเจ้าจะเป็น Rogue";
+			close2;
+			warp "in_rogue",15,105;
+			end;
 		}
-		else if (BaseJob != Job_Rogue) {
-				mes "ฮะ...?";
-				mes "คุณเป็นใคร!";
-				mes "คุณไม่ได้มาจาก";
-				mes "The Rogue Guild !!";
-				next;
-				mes "[อันโตนิโอจูเนียร์]";
-				mes "คุณมาที่นี่เพื่อฆ่าฉัน!ฉันจะไม่ปล่อยให้คุณ !!มาเถอะให้ภาพที่ดีที่สุดของคุณ!คุณไม่สามารถต่อสู้ได้ถ้าฉันฉีกตาของคุณ!";
-				close;
-		}
-		else {
-				mes "[อันโตนิโอจูเนียร์]";
-				mes "เฮ้มันเป็นยังไงบ้าง?";
-				mes "ใช้ง่ายและเพียงแค่";
-				mes "ผ่อนคลายก่อนออกเดินทาง";
-				close;
-		}
+		mes "[Antonio Jr.]";
+		mes "ข้าไม่มีเวลามา";
+		mes "ล้อเล่นกับเจ้าหรอกนะ";
+		mes "เร็วเข้า เตรียมตัวให้";
+		mes "พร้อม แล้วไปรับ";
+		mes "การทดสอบซะ";
+		close;
+	}
+	else if (BaseJob != Job_Rogue) {
+		mes "หือ...?";
+		mes "เจ้าเป็นใคร?!";
+		mes "เจ้าไม่ได้มาจาก";
+		mes "กิลด์ Rogue นี่!!";
+		next;
+		mes "[Antonio Jr.]";
+		mes "เจ้ามาที่นี่เพื่อจะฆ่าข้าล่ะสิ?! ข้าไม่ยอมหรอก!! เข้ามาเลย เอาให้เต็มที่! เจ้าสู้ไม่ได้หรอกถ้าข้าควักลูกตาเจ้าออกมา!";
+		close;
+	}
+	else {
+		mes "[Antonio Jr.]";
+		mes "เฮ้ เป็นไงบ้างล่ะ?";
+		mes "ใจเย็นๆ แล้วก็แค่";
+		mes "พักผ่อนก่อนที่เจ้าจะไปนะ";
+		close;
+	}
 }
-
 
 in_rogue,370,320,0	script	quest_out	45,1,1,{
 OnTouch_:
-		set ROGUE_Q,16;
-		warp "in_rogue",378,113;
-		end;
+	set ROGUE_Q,16;
+	warp "in_rogue",378,113;
+	end;
 }
-
 
 in_rogue,15,184,0	script	mob_rogue#1	-1,8,1,{
 OnTouch_:
-		if (BaseJob == Job_Thief) {
-				monster "in_rogue",14,187,"Zombie",1015,1,"mob_rogue#1::OnMyMobDead";
-				monster "in_rogue",15,188,"Zombie",1015,1,"mob_rogue#1::OnMyMobDead";
-				monster "in_rogue",16,189,"Zombie",1015,1,"mob_rogue#1::OnMyMobDead";
-				monster "in_rogue",17,187,"Zombie",1015,1,"mob_rogue#1::OnMyMobDead";
-				monster "in_rogue",18,188,"Zombie",1015,1,"mob_rogue#1::OnMyMobDead";
-				monster "in_rogue",19,189,"Zombie",1015,1,"mob_rogue#1::OnMyMobDead";
-		}
-		else
-				warp "mag_dun02",181,176;
-		end;
-
+	if (BaseJob == Job_Thief) {
+		monster "in_rogue",14,187,"Zombie",1015,1,"mob_rogue#1::OnMyMobDead";
+		monster "in_rogue",15,188,"Zombie",1015,1,"mob_rogue#1::OnMyMobDead";
+		monster "in_rogue",16,189,"Zombie",1015,1,"mob_rogue#1::OnMyMobDead";
+		monster "in_rogue",17,187,"Zombie",1015,1,"mob_rogue#1::OnMyMobDead";
+		monster "in_rogue",18,188,"Zombie",1015,1,"mob_rogue#1::OnMyMobDead";
+		monster "in_rogue",19,189,"Zombie",1015,1,"mob_rogue#1::OnMyMobDead";
+	}
+	else
+		warp "mag_dun02",181,176;
+	end;
 
 OnDisable:
-		killmonster "in_rogue","mob_rogue#1::OnMyMobDead";
-		end;
-
+	killmonster "in_rogue","mob_rogue#1::OnMyMobDead";
+	end;
 
 OnMyMobDead:
-		end;
+	end;
 }
-
 
 in_rogue,15,273,0	script	mob_rogue#2	-1,8,1,{
 OnTouch_:
-		if (BaseJob == Job_Thief) {
-				monster "in_rogue",15,276,"Mummy",1041,1,"mob_rogue#2::OnMyMobDead";
-				monster "in_rogue",13,276,"Mummy",1041,1,"mob_rogue#2::OnMyMobDead";
-				monster "in_rogue",11,276,"Mummy",1041,1,"mob_rogue#2::OnMyMobDead";
-		}
-		else
-				warp "mag_dun02",181,176;
-		end;
-
+	if (BaseJob == Job_Thief) {
+		monster "in_rogue",15,276,"Mummy",1041,1,"mob_rogue#2::OnMyMobDead";
+		monster "in_rogue",13,276,"Mummy",1041,1,"mob_rogue#2::OnMyMobDead";
+		monster "in_rogue",11,276,"Mummy",1041,1,"mob_rogue#2::OnMyMobDead";
+	}
+	else
+		warp "mag_dun02",181,176;
+	end;
 
 OnDisable:
-		killmonster "in_rogue","mob_rogue#2::OnMyMobDead";
-		end;
-
+	killmonster "in_rogue","mob_rogue#2::OnMyMobDead";
+	end;
 
 OnMyMobDead:
-		end;
+	end;
 }
-
 
 in_rogue,15,333,0	script	mob_rogue#3	-1,8,1,{
 OnTouch_:
-		if (BaseJob == Job_Thief) {
-				monster "in_rogue",15,336,"Zombie",1015,1,"mob_rogue#3::OnMyMobDead";
-				monster "in_rogue",15,336,"Zombie",1015,1,"mob_rogue#3::OnMyMobDead";
-				monster "in_rogue",15,336,"Zombie",1015,1,"mob_rogue#3::OnMyMobDead";
-				monster "in_rogue",15,336,"Zombie",1015,1,"mob_rogue#3::OnMyMobDead";
-				donpcevent "mob_rogue#4::OnDisable";
-				donpcevent "mob_rogue#7::OnDisable";
-				donpcevent "mob_rogue#8::OnDisable";
-		}
-		else
-				warp "mag_dun02",181,176;
-		end;
-
+	if (BaseJob == Job_Thief) {
+		monster "in_rogue",15,336,"Zombie",1015,1,"mob_rogue#3::OnMyMobDead";
+		monster "in_rogue",15,336,"Zombie",1015,1,"mob_rogue#3::OnMyMobDead";
+		monster "in_rogue",15,336,"Zombie",1015,1,"mob_rogue#3::OnMyMobDead";
+		monster "in_rogue",15,336,"Zombie",1015,1,"mob_rogue#3::OnMyMobDead";
+		donpcevent "mob_rogue#4::OnDisable";
+		donpcevent "mob_rogue#7::OnDisable";
+		donpcevent "mob_rogue#8::OnDisable";
+	}
+	else
+		warp "mag_dun02",181,176;
+	end;
 
 OnDisable:
-		killmonster "in_rogue","mob_rogue#3::OnMyMobDead";
-		end;
-
+	killmonster "in_rogue","mob_rogue#3::OnMyMObDead";
+	end;
 
 OnMyMobDead:
-		end;
+	end;
 }
-
 
 in_rogue,39,341,0	script	mob_rogue#4	-1,1,8,{
 OnTouch_:
-		if (BaseJob == Job_Thief) {
-				monster "in_rogue",39,341,"Mummy",1041,1,"mob_rogue#4::OnMyMobDead";
-				monster "in_rogue",40,341,"Ghoul",1036,1,"mob_rogue#4::OnMyMobDead";
-				monster "in_rogue",41,341,"Abysmal Knight",1219,1,"mob_rogue#4::OnMyMobDead";
-				monster "in_rogue",42,341,"Mummy",1041,1,"mob_rogue#4::OnMyMobDead";
-		}
-		else
-				warp "mag_dun02",181,176;
-		end;
-
+	if (BaseJob == Job_Thief) {
+		monster "in_rogue",39,341,"Mummy",1041,1,"mob_rogue#4::OnMyMobDead";
+		monster "in_rogue",40,341,"Ghoul",1036,1,"mob_rogue#4::OnMyMobDead";
+		monster "in_rogue",41,341,"Abysmal Knight",1219,1,"mob_rogue#4::OnMyMobDead";
+		monster "in_rogue",42,341,"Mummy",1041,1,"mob_rogue#4::OnMyMobDead";
+	}
+	else
+		warp "mag_dun02",181,176;
+	end;
 
 OnDisable:
-		killmonster "in_rogue","mob_rogue#4::OnMyMobDead";
-		end;
-
+	killmonster "in_rogue","mob_rogue#4::OnMyMobDead";
+	end;
 
 OnMyMobDead:
-		end;
+	end;
 }
-
 
 in_rogue,102,334,0	script	mob_rogue#5	-1,1,4,{
 OnTouch_:
-		if (BaseJob == Job_Thief) {
-				monster "in_rogue",92,334,"Khalitzburg",1132,1,"mob_rogue#5::OnMyMobDead";
-				donpcevent "mob_rogue#1::OnDisable";
-				donpcevent "mob_rogue#2::OnDisable";
-				donpcevent "mob_rogue#3::OnDisable";
-		}
-		else
-				warp "mag_dun02",181,176;
-		end;
-
+	if (BaseJob == Job_Thief) {
+		monster "in_rogue",92,334,"Khalitzburg",1132,1,"mob_rogue#5::OnMyMobDead";
+		donpcevent "mob_rogue#1::OnDisable";
+		donpcevent "mob_rogue#2::OnDisable";
+		donpcevent "mob_rogue#3::OnDisable";
+	}
+	else
+		warp "mag_dun02",181,176;
+	end;
 
 OnDisable:
-		killmonster "in_rogue","mob_rogue#5::OnMyMobDead";
-		end;
-
+	killmonster "in_rogue","mob_rogue#5::OnMyMobDead";
+	end;
 
 OnMyMobDead:
-		end;
+	end;
 }
-
 
 in_rogue,58,309,0	script	mob_rogue#6	-1,4,1,{
 OnTouch_:
-		if (BaseJob == Job_Thief) {
-				monster "in_rogue",57,301,"Khalitzburg",1132,1,"mob_rogue#6::OnMyMobDead";
-				donpcevent "mob_rogue#1::OnDisable";
-				donpcevent "mob_rogue#2::OnDisable";
-				donpcevent "mob_rogue#3::OnDisable";
-		}
-		else
-				warp "mag_dun02",181,176;
-		end;
-
+	if (BaseJob == Job_Thief) {
+		monster "in_rogue",57,301,"Khalitzburg",1132,1,"mob_rogue#6::OnMyMobDead";
+		donpcevent "mob_rogue#1::OnDisable";
+		donpcevent "mob_rogue#2::OnDisable";
+		donpcevent "mob_rogue#3::OnDisable";
+	}
+	else
+		warp "mag_dun02",181,176;
+	end;
 
 OnDisable:
-		killmonster "in_rogue","mob_rogue#6::OnMyMobDead";
-		end;
-
+	killmonster "in_rogue","mob_rogue#6::OnMyMobDead";
+	end;
 
 OnMyMobDead:
-		end;
+	end;
 }
-
 
 in_rogue,101,264,0	script	mob_rogue#7	-1,5,5,{
 OnTouch_:
-		if (BaseJob == Job_Thief) {
-				monster "in_rogue",101,264,"Abysmal Knight",1219,1,"mob_rogue#7::OnMyMobDead";
-				monster "in_rogue",102,264,"Abysmal Knight",1219,1,"mob_rogue#7::OnMyMobDead";
-		}
-		else
-				warp "mag_dun02",181,176;
-		end;
-
+	if (BaseJob == Job_Thief) {
+		monster "in_rogue",101,264,"Abysmal Knight",1219,1,"mob_rogue#7::OnMyMobDead";
+		monster "in_rogue",102,264,"Abysmal Knight",1219,1,"mob_rogue#7::OnMyMobDead";
+	}
+	else
+		warp "mag_dun02",181,176;
+	end;
 
 OnDisable:
-		killmonster "in_rogue","mob_rogue#7::OnMyMobDead";
-		end;
-
+	killmonster "in_rogue","mob_rogue#7::OnMyMobDead";
+	end;
 
 OnMyMobDead:
-		end;
+	end;
 }
-
 
 in_rogue,140,312,0	script	mob_rogue#8	-1,5,5,{
 OnTouch_:
-		if (BaseJob == Job_Thief)
-				monster "in_rogue",140,312,"Abysmal Knight",1219,1,"mob_rogue#8::OnMyMobDead";
-		else
-				warp "mag_dun02",181,176;
-		end;
-
+	if (BaseJob == Job_Thief)
+		monster "in_rogue",140,312,"Abysmal Knight",1219,1,"mob_rogue#8::OnMyMobDead";
+	else
+		warp "mag_dun02",181,176;
+	end;
 
 OnDisable:
-		killmonster "in_rogue","mob_rogue#8::OnMyMobDead";
-		end;
-
+	killmonster "in_rogue","mob_rogue#8::OnMyMobDead";
+	end;
 
 OnMyMobDead:
-		end;
+	end;
 }
-
 
 in_rogue,139,246,0	script	mob_rogue#9	-1,4,4,{
 OnTouch_:
-		if (BaseJob == Job_Thief) {
-				monster "in_rogue",139,246,"Zombie",1015,1,"mob_rogue#9::OnMyMobDead";
-				monster "in_rogue",149,246,"Zombie",1015,1,"mob_rogue#9::OnMyMobDead";
-				monster "in_rogue",140,246,"Zombie",1015,1,"mob_rogue#9::OnMyMobDead";
-				monster "in_rogue",141,246,"Zombie",1015,1,"mob_rogue#9::OnMyMobDead";
-				monster "in_rogue",150,246,"Zombie",1015,1,"mob_rogue#9::OnMyMobDead";
-				monster "in_rogue",151,246,"Zombie",1015,1,"mob_rogue#9::OnMyMobDead";
-		}
-		else
-				warp "mag_dun02",181,176;
-		end;
-
+	if (BaseJob == Job_Thief) {
+		monster "in_rogue",139,246,"Zombie",1015,1,"mob_rogue#9::OnMyMobDead";
+		monster "in_rogue",149,246,"Zombie",1015,1,"mob_rogue#9::OnMyMobDead";
+		monster "in_rogue",140,246,"Zombie",1015,1,"mob_rogue#9::OnMyMobDead";
+		monster "in_rogue",141,246,"Zombie",1015,1,"mob_rogue#9::OnMyMobDead";
+		monster "in_rogue",150,246,"Zombie",1015,1,"mob_rogue#9::OnMyMobDead";
+		monster "in_rogue",151,246,"Zombie",1015,1,"mob_rogue#9::OnMyMobDead";
+	}
+	else
+		warp "mag_dun02",181,176;
+	end;
 
 OnDisable:
-		killmonster "in_rogue","mob_rogue#9::OnMyMobDead";
-		end;
-
+	killmonster "in_rogue","mob_rogue#9::OnMyMobDead";
+	end;
 
 OnMyMobDead:
-		end;
+	end;
 }
-
 
 in_rogue,197,249,0	script	mob_rogue#10	-1,1,8,{
 OnTouch_:
-		if (BaseJob == Job_Thief) {
-				monster "in_rogue",176,211,"Ghoul",1036,1,"mob_rogue#10::OnMyMobDead";
-				monster "in_rogue",176,212,"Zombie",1015,1,"mob_rogue#10::OnMyMobDead";
-				monster "in_rogue",176,213,"Zombie",1015,1,"mob_rogue#10::OnMyMobDead";
-				monster "in_rogue",177,214,"Abysmal Knight",1219,1,"mob_rogue#10::OnMyMobDead";
-				monster "in_rogue",177,211,"Zombie",1015,1,"mob_rogue#10::OnMyMobDead";
-				monster "in_rogue",177,212,"Zombie",1015,1,"mob_rogue#10::OnMyMobDead";
-				monster "in_rogue",177,213,"Zombie",1015,1,"mob_rogue#10::OnMyMobDead";
-				monster "in_rogue",177,214,"Zombie",1015,1,"mob_rogue#10::OnMyMobDead";
-				monster "in_rogue",178,211,"Zombie",1015,1,"mob_rogue#10::OnMyMobDead";
-				monster "in_rogue",178,212,"Zombie",1015,1,"mob_rogue#10::OnMyMobDead";
-				monster "in_rogue",178,213,"Zombie",1015,1,"mob_rogue#10::OnMyMobDead";
-				monster "in_rogue",178,214,"Archer Skeleton",1016,1,"mob_rogue#10::OnMyMobDead";
-				monster "in_rogue",179,211,"Zombie",1015,1,"mob_rogue#10::OnMyMobDead";
-				monster "in_rogue",179,212,"Zombie",1015,1,"mob_rogue#10::OnMyMobDead";
+	if (BaseJob == Job_Thief) {
+		monster "in_rogue",176,211,"Ghoul",1036,1,"mob_rogue#10::OnMyMobDead";
+		monster "in_rogue",176,212,"Zombie",1015,1,"mob_rogue#10::OnMyMobDead";
+		monster "in_rogue",176,213,"Zombie",1015,1,"mob_rogue#10::OnMyMobDead";
+		monster "in_rogue",177,214,"Abysmal Knight",1219,1,"mob_rogue#10::OnMyMobDead";
+		monster "in_rogue",177,211,"Zombie",1015,1,"mob_rogue#10::OnMyMobDead";
+		monster "in_rogue",177,212,"Zombie",1015,1,"mob_rogue#10::OnMyMobDead";
+		monster "in_rogue",177,213,"Zombie",1015,1,"mob_rogue#10::OnMyMobDead";
+		monster "in_rogue",177,214,"Zombie",1015,1,"mob_rogue#10::OnMyMobDead";
+		monster "in_rogue",178,211,"Zombie",1015,1,"mob_rogue#10::OnMyMobDead";
+		monster "in_rogue",178,212,"Zombie",1015,1,"mob_rogue#10::OnMyMobDead";
+		monster "in_rogue",178,213,"Zombie",1015,1,"mob_rogue#10::OnMyMobDead";
+		monster "in_rogue",178,214,"Archer Skeleton",1016,1,"mob_rogue#10::OnMyMobDead";
+		monster "in_rogue",179,211,"Zombie",1015,1,"mob_rogue#10::OnMyMobDead";
+		monster "in_rogue",179,212,"Zombie",1015,1,"mob_rogue#10::OnMyMobDead";
 		monster "in_rogue",179,213,"Zombie",1015,1,"mob_rogue#10::OnMyMobDead";
-				monster "in_rogue",179,214,"Zombie",1015,1,"mob_rogue#10::OnMyMobDead";
-				donpcevent "mob_rogue#4::OnDisable";
-				donpcevent "mob_rogue#5::OnDisable";
-				donpcevent "mob_rogue#6::OnDisable";
-		}
-		else
-				warp "mag_dun02",181,176;
-		end;
-
+		monster "in_rogue",179,214,"Zombie",1015,1,"mob_rogue#10::OnMyMobDead";
+		donpcevent "mob_rogue#4::OnDisable";
+		donpcevent "mob_rogue#5::OnDisable";
+		donpcevent "mob_rogue#6::OnDisable";
+	}
+	else
+		warp "mag_dun02",181,176;
+	end;
 
 OnDisable:
-		killmonster "in_rogue","mob_rogue#10::OnMyMobDead";
-		end;
-
+	killmonster "in_rogue","mob_rogue#10::OnMyMobDead";
+	end;
 
 OnMyMobDead:
-		end;
+	end;
 }
-
 
 in_rogue,96,205,0	script	mob_rogue#11	-1,1,8,{
 OnTouch_:
-		if (BaseJob == Job_Thief) {
-				donpcevent "mob_rogue#7::OnDisable";
-				donpcevent "mob_rogue#8::OnDisable";
-				donpcevent "mob_rogue#9::OnDisable";
-				donpcevent "mob_rogue#10::OnDisable";
-		}
-		else
-				warp "mag_dun02",181,176;
-		end;
+	if (BaseJob == Job_Thief) {
+		donpcevent "mob_rogue#7::OnDisable";
+		donpcevent "mob_rogue#8::OnDisable";
+		donpcevent "mob_rogue#9::OnDisable";
+		donpcevent "mob_rogue#10::OnDisable";
+	}
+	else
+		warp "mag_dun02",181,176;
+	end;
 }
-
 
 in_rogue,86,187,0	script	mob_rogue#12	-1,1,8,{
 OnTouch_:
-		if (BaseJob == Job_Thief) {
-				monster "in_rogue",90,187,"Mummy",1041,1,"mob_rogue#12::OnMyMobDead";
-				monster "in_rogue",90,183,"Mummy",1041,1,"mob_rogue#12::OnMyMobDead";
-				monster "in_rogue",90,190,"Mummy",1041,1,"mob_rogue#12::OnMyMobDead";
-		}
-		else
-				warp "mag_dun02",181,176;
-		end;
-
+	if (BaseJob == Job_Thief) {
+		monster "in_rogue",90,187,"Mummy",1041,1,"mob_rogue#12::OnMyMobDead";
+		monster "in_rogue",90,183,"Mummy",1041,1,"mob_rogue#12::OnMyMobDead";
+		monster "in_rogue",90,190,"Mummy",1041,1,"mob_rogue#12::OnMyMobDead";
+	}
+	else
+		warp "mag_dun02",181,176;
+	end;
 
 OnDisable:
-		killmonster "in_rogue","mob_rogue#12::OnMyMobDead";
-		end;
-
+	killmonster "in_rogue","mob_rogue#12::OnMyMobDead";
+	end;
 
 OnMyMobDead:
-		end;
+	end;
 }
-
 
 in_rogue,223,187,0	script	mob_rogue#13	-1,1,8,{
 OnTouch_:
-		if (BaseJob == Job_Thief) {
-				monster "in_rogue",236,186,"Abysmal Knight",1219,1,"mob_rogue#13::OnMyMobDead";
-				monster "in_rogue",238,186,"Abysmal Knight",1219,1,"mob_rogue#13::OnMyMobDead";
-				monster "in_rogue",234,186,"Abysmal Knight",1219,1,"mob_rogue#13::OnMyMobDead";
-				donpcevent "mob_rogue#12::OnDisable";
-		}
-		else
-				warp "mag_dun02",181,176;
-		end;
-
+	if (BaseJob == Job_Thief) {
+		monster "in_rogue",236,186,"Abysmal Knight",1219,1,"mob_rogue#13::OnMyMobDead";
+		monster "in_rogue",238,186,"Abysmal Knight",1219,1,"mob_rogue#13::OnMyMobDead";
+		monster "in_rogue",234,186,"Abysmal Knight",1219,1,"mob_rogue#13::OnMyMobDead";
+		donpcevent "mob_rogue#12::OnDisable";
+	}
+	else
+		warp "mag_dun02",181,176;
+	end;
 
 OnDisable:
-		killmonster "in_rogue","mob_rogue#13::OnMyMobDead";
-		end;
-
+	killmonster "in_rogue","mob_rogue#13::OnMyMobDead";
+	end;
 
 OnMyMobDead:
-		end;
+	end;
 }
-
 
 in_rogue,233,207,0	script	mob_rogue#14	-1,8,3,{
 OnTouch_:
-		if (BaseJob == Job_Thief)
-				donpcevent "mob_rogue#13::OnDisable";
-		else
-				warp "mag_dun02",181,176;
-		end;
+	if (BaseJob == Job_Thief)
+		donpcevent "mob_rogue#13::OnDisable";
+	else
+		warp "mag_dun02",181,176;
+	end;
 }
-
 
 in_rogue,244,319,0	script	mob_rogue#15	-1,1,8,{
 OnTouch_:
-		if (BaseJob == Job_Thief) {
-				monster "in_rogue",240,319,"Mummy",1041,1,"mob_rogue#15::OnMyMobDead";
-				monster "in_rogue",259,319,"Archer Skeleton",1016,1,"mob_rogue#15::OnMyMobDead";
-				monster "in_rogue",259,320,"Ghoul",1036,1,"mob_rogue#15::OnMyMobDead";
-				monster "in_rogue",240,319,"Mummy",1041,1,"mob_rogue#15::OnMyMobDead";
-				monster "in_rogue",259,319,"Archer Skeleton",1016,1,"mob_rogue#15::OnMyMobDead";
-				monster "in_rogue",259,320,"Ghoul",1036,1,"mob_rogue#15::OnMyMobDead";
-		}
-		else
-				warp "mag_dun02",181,176;
-		end;
-
+	if (BaseJob == Job_Thief) {
+		monster "in_rogue",240,319,"Mummy",1041,1,"mob_rogue#15::OnMyMobDead";
+		monster "in_rogue",259,319,"Archer Skeleton",1016,1,"mob_rogue#15::OnMyMobDead";
+		monster "in_rogue",259,320,"Ghoul",1036,1,"mob_rogue#15::OnMyMobDead";
+		monster "in_rogue",240,319,"Mummy",1041,1,"mob_rogue#15::OnMyMobDead";
+		monster "in_rogue",259,319,"Archer Skeleton",1016,1,"mob_rogue#15::OnMyMobDead";
+		monster "in_rogue",259,320,"Ghoul",1036,1,"mob_rogue#15::OnMyMobDead";
+	}
+	else
+		warp "mag_dun02",181,176;
+	end;
 
 OnDisable:
-		killmonster "in_rogue","mob_rogue#15::OnMyMobDead";
-		end;
-
+	killmonster "in_rogue","mob_rogue#15::OnMyMobDead";
+	end;
 
 OnMyMobDead:
-		end;
+	end;
 }
-
 
 in_rogue,334,319,0	script	mob_rogue#16	-1,8,8,{
 OnTouch_:
-		if (BaseJob == Job_Thief)
-				donpcevent "mob_rogue#15::OnDisable";
-		else
-				warp "mag_dun02",181,176;
-		end;
+	if (BaseJob == Job_Thief)
+		donpcevent "mob_rogue#15::OnDisable";
+	else
+		warp "mag_dun02",181,176;
+	end;
 }
-
 
 in_rogue,3,3,0	script	resetter#rogue	-1,{
 OnTimer500000:
-		donpcevent "mob_rogue#1::OnDisable";
-		donpcevent "mob_rogue#2::OnDisable";
-		donpcevent "mob_rogue#3::OnDisable";
-		donpcevent "mob_rogue#4::OnDisable";
-		donpcevent "mob_rogue#5::OnDisable";
-		donpcevent "mob_rogue#6::OnDisable";
-		donpcevent "mob_rogue#7::OnDisable";
-		donpcevent "mob_rogue#8::OnDisable";
-		donpcevent "mob_rogue#9::OnDisable";
-		donpcevent "mob_rogue#10::OnDisable";
-		donpcevent "mob_rogue#12::OnDisable";
-		donpcevent "mob_rogue#13::OnDisable";
-		donpcevent "mob_rogue#15::OnDisable";
-		initnpctimer;
-		end;
-
+	donpcevent "mob_rogue#1::OnDisable";
+	donpcevent "mob_rogue#2::OnDisable";
+	donpcevent "mob_rogue#3::OnDisable";
+	donpcevent "mob_rogue#4::OnDisable";
+	donpcevent "mob_rogue#5::OnDisable";
+	donpcevent "mob_rogue#6::OnDisable";
+	donpcevent "mob_rogue#7::OnDisable";
+	donpcevent "mob_rogue#8::OnDisable";
+	donpcevent "mob_rogue#9::OnDisable";
+	donpcevent "mob_rogue#10::OnDisable";
+	donpcevent "mob_rogue#12::OnDisable";
+	donpcevent "mob_rogue#13::OnDisable";
+	donpcevent "mob_rogue#15::OnDisable";
+	initnpctimer;
+	end;
 
 OnEnable:
-		initnpctimer;
-		end;
-
+	initnpctimer;
+	end;
 
 OnInit:
-		donpcevent "resetter#rogue::OnEnable";
-		end;
+	donpcevent "resetter#rogue::OnEnable";
+	end;
 }
-
 
 in_rogue,399,286,1	script	switch#rogreset	88,{
-		mes "^f08080Tah dah ~";
-		mes ",มอนสเตอร์สำหรับ";
-		mes "เปลี่ยนอาชีพ Rogue";
-		mes "ได้รับการรีเซ็ต^000000";
-		donpcevent "mob_rogue#1::OnDisable";
-		donpcevent "mob_rogue#2::OnDisable";
-		donpcevent "mob_rogue#3::OnDisable";
-		donpcevent "mob_rogue#4::OnDisable";
-		donpcevent "mob_rogue#5::OnDisable";
-		donpcevent "mob_rogue#6::OnDisable";
-		donpcevent "mob_rogue#7::OnDisable";
-		donpcevent "mob_rogue#8::OnDisable";
-		donpcevent "mob_rogue#9::OnDisable";
-		donpcevent "mob_rogue#10::OnDisable";
-		donpcevent "mob_rogue#12::OnDisable";
-		donpcevent "mob_rogue#13::OnDisable";
-		donpcevent "mob_rogue#15::OnDisable";
-		donpcevent "resetter#rogue::OnEnable";
-		close;
+	mes "^F08080ทา ดา~";
+	mes "มอนสเตอร์สำหรับ";
+	mes "การเปลี่ยนอาชีพ Rogue";
+	mes "ได้รับการรีเซ็ตแล้ว^000000.";
+	donpcevent "mob_rogue#1::OnDisable";
+	donpcevent "mob_rogue#2::OnDisable";
+	donpcevent "mob_rogue#3::OnDisable";
+	donpcevent "mob_rogue#4::OnDisable";
+	donpcevent "mob_rogue#5::OnDisable";
+	donpcevent "mob_rogue#6::OnDisable";
+	donpcevent "mob_rogue#7::OnDisable";
+	donpcevent "mob_rogue#8::OnDisable";
+	donpcevent "mob_rogue#9::OnDisable";
+	donpcevent "mob_rogue#10::OnDisable";
+	donpcevent "mob_rogue#12::OnDisable";
+	donpcevent "mob_rogue#13::OnDisable";
+	donpcevent "mob_rogue#15::OnDisable";
+	donpcevent "resetter#rogue::OnEnable";
+	close;
 }
 
-
-//============================================================
+//============================================================ 
 // Old changelog
-//============================================================
+//============================================================ 
 //= 1.1 fixed 3 wrong questions, added missing lines [Lupus]
 //= 1.3 Baby Class Support + 40/50 JobLevel Item fix [Lupus]
 //= 1.5 Fixed possible EXP abuse [Lupus]
@@ -2133,4 +2031,4 @@ in_rogue,399,286,1	script	switch#rogreset	88,{
 //=     to enter Rogue guild as there's a NPC inside [SinSloth]
 //= 2.3a fixed test4 person interaction, let BABY thieves pass
 //=     the test, too [Lupus]
-//============================================================
+//============================================================ 
