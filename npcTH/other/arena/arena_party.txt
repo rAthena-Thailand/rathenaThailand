@@ -45,25 +45,25 @@ prt_are_in,76,87,3	script	Helper#party	67,4,4,{
 		set $arn_partywait,1;
 		emotion ET_SURPRISE;
 		mes "[Helper Iriff]";
-		mes "Good day, challengers!";
-		mes "You are in the party arena waiting room.";
+		mes "สวัสดี เหล่านักท้าทาย!";
+		mes "พวกเจ้าอยู่ในห้องรอสำหรับปาร์ตี้อารีน่า";
 		next;
 		mes "[Helper Iriff]";
-		mes "Only one person at a time is allowed to stay in this waiting room.";
-		mes "Would you like to start a battle now?";
+		mes "อนุญาตให้มีเพียงคนเดียวเท่านั้นที่พำนักอยู่ในห้องรอนี้ในแต่ละครั้ง";
+		mes "เจ้าต้องการที่จะเริ่มการต่อสู้เลยหรือไม่?";
 		next;
-		switch( select( "No","Yes" ) ) {
+		switch( select( "ไม่","ใช่" ) ) {
 		case 1:
 			set $arn_partywait,0;
 			mes "[Helper Iriff]";
-			mes "I see.";
-			mes "However, please remember you have only a limited amount of time.";
+			mes "ข้าเข้าใจแล้ว";
+			mes "อย่างไรก็ตาม โปรดจำไว้ว่าเจ้ามีเวลาที่จำกัดเท่านั้น";
 			close;
 		case 2:
 			mes "[Helper Iriff]";
-			mes "Thank you, let me start a battle.";
-			mes "A warp portal leading to the arena room will be open.";
-			mes "I hope you will survive until the end of the battle and engrave your name on the list of honor...";
+			mes "ขอบคุณ ให้ข้าเริ่มการต่อสู้เถอะ";
+			mes "วาร์ปพอร์ทัลที่นำไปสู่ห้องอารีน่าจะเปิดออก";
+			mes "ข้าหวังว่าพวกเจ้าจะรอดชีวิตจนจบการต่อสู้และจารึกชื่อลงในรายนามแห่งเกียรติยศ...";
 			close2;
 			donpcevent "toarena#party::OnEnter";
 			donpcevent "Helper#party::OnStop";
@@ -154,79 +154,79 @@ OnStart:
 	end;
 
 OnTimer2000:
-	mapannounce "force_1-2","Good day, my name is Slipslowrun! I am here to assist you in the party arena battles!",bc_all;
+	mapannounce "force_1-2","สวัสดี ข้าชื่อ Slipslowrun! ข้ามาที่นี่เพื่อช่วยเหลือพวกเจ้าในการต่อสู้ปาร์ตี้อารีน่า!",bc_all;
 	//Official "arena_compass" script is extremely buggy, so we aren't using it.
 	//donpcevent "arena_compass::OnStart";
 	end;
 
 OnTimer3000:
-	mapannounce "force_1-2","The goal of the party arena is eliminating every monster in each room.",bc_all;
+	mapannounce "force_1-2","เป้าหมายของปาร์ตี้อารีน่าคือกำจัดมอนสเตอร์ทุกตัวในแต่ละห้อง",bc_all;
 	end;
 
 OnTimer4000:
-	mapannounce "force_1-2","There is no order to enter one among 3 rooms at 3 direction. But remember you will eliminate all monsters in a room in order to procceed to the next step.",bc_all;
+	mapannounce "force_1-2","ไม่มีลำดับในการเข้าห้องใดห้องหนึ่งในบรรดา 3 ห้องจาก 3 ทิศทาง แต่จำไว้ว่าเจ้าต้องกำจัดมอนสเตอร์ทั้งหมดในห้องเพื่อดำเนินการในขั้นตอนต่อไป",bc_all;
 	end;
 
 OnTimer5000:
-	mapannounce "force_1-2","You have 10 minutes from now. I expect you will do your best! ",bc_all;
+	mapannounce "force_1-2","พวกเจ้ามีเวลา 10 นาทีเริ่มจากตอนนี้ ข้าคาดหวังว่าพวกเจ้าจะทำให้ดีที่สุด! ",bc_all;
 	end;
 
 OnTimer60000:
 	if (getmapusers("force_1-2") == 0)
 		donpcevent "Slipslowrun#party::OnFail";
-	mapannounce "force_1-2","Remaining Time : 9 minutes ",bc_all;
+	mapannounce "force_1-2","เวลาที่เหลือ : 9 นาที ",bc_all;
 	end;
 
 OnTimer120000:
 	if (getmapusers("force_1-2") == 0)
 		donpcevent "Slipslowrun#party::OnFail";
-	mapannounce "force_1-2","Remaining Time : 8 minutes ",bc_all;
+	mapannounce "force_1-2","เวลาที่เหลือ : 8 นาที ",bc_all;
 	end;
 
 OnTimer180000:
 	if (getmapusers("force_1-2") == 0)
 		donpcevent "Slipslowrun#party::OnFail";
-	mapannounce "force_1-2","Remaining Time : 7 minutes ",bc_all;
+	mapannounce "force_1-2","เวลาที่เหลือ : 7 นาที ",bc_all;
 	end;
 
 OnTimer240000:
 	if (getmapusers("force_1-2") == 0)
 		donpcevent "Slipslowrun#party::OnFail";
-	mapannounce "force_1-2","Remaining Time : 6 minutes ",bc_all;
+	mapannounce "force_1-2","เวลาที่เหลือ : 6 นาที ",bc_all;
 	end;
 
 OnTimer300000:
 	if (getmapusers("force_1-2") == 0)
 		donpcevent "Slipslowrun#party::OnFail";
-	mapannounce "force_1-2","Remaining Time : 5 minutes ",bc_all;
+	mapannounce "force_1-2","เวลาที่เหลือ : 5 นาที ",bc_all;
 	end;
 
 OnTimer360000:
 	if (getmapusers("force_1-2") == 0)
 		donpcevent "Slipslowrun#party::OnFail";
-	mapannounce "force_1-2","Remaining Time : 4 minutes ",bc_all;
+	mapannounce "force_1-2","เวลาที่เหลือ : 4 นาที ",bc_all;
 	end;
 
 OnTimer420000:
 	if (getmapusers("force_1-2") == 0)
 		donpcevent "Slipslowrun#party::OnFail";
-	mapannounce "force_1-2","Remaining Time : 3 minutes ",bc_all;
+	mapannounce "force_1-2","เวลาที่เหลือ : 3 นาที ",bc_all;
 	end;
 
 OnTimer480000:
 	if (getmapusers("force_1-2") == 0)
 		donpcevent "Slipslowrun#party::OnFail";
-	mapannounce "force_1-2","Remaining Time : 2 minutes ",bc_all;
+	mapannounce "force_1-2","เวลาที่เหลือ : 2 นาที ",bc_all;
 	end;
 
 OnTimer540000:
 	if (getmapusers("force_1-2") == 0)
 		donpcevent "Slipslowrun#party::OnFail";
-	mapannounce "force_1-2","Remaining Time : 1 minute ",bc_all;
+	mapannounce "force_1-2","เวลาที่เหลือ : 1 นาที ",bc_all;
 	end;
 
 OnTimer600000:
-	mapannounce "force_1-2","Time is over! Please make sure you do not leave anything behind you before you leave .",bc_all;
+	mapannounce "force_1-2","หมดเวลาแล้ว! โปรดตรวจสอบให้แน่ใจว่าเจ้าไม่ได้ทิ้งสิ่งใดไว้เบื้องหลังก่อนที่จะจากไป",bc_all;
 	end;
 
 OnTimer605000:
@@ -263,55 +263,55 @@ OnTimerOff:
 	end;
 
 On01_End:
-	mapannounce "force_1-2","A door to the east room has opened!",bc_all;
+	mapannounce "force_1-2","ประตูสู่ห้องทางทิศตะวันออกเปิดออกแล้ว!",bc_all;
 	end;
 
 On02_End:
-	mapannounce "force_1-2","A door to the west room has opened!",bc_all;
+	mapannounce "force_1-2","ประตูสู่ห้องทางทิศตะวันตกเปิดออกแล้ว!",bc_all;
 	end;
 
 On03_End:
-	mapannounce "force_1-2","A door to the south room has opened!",bc_all;
+	mapannounce "force_1-2","ประตูสู่ห้องทางทิศใต้เปิดออกแล้ว!",bc_all;
 	end;
 
 On04_Start:
-	mapannounce "force_1-2","A door to the 4th room at the east has opened!",bc_all;
+	mapannounce "force_1-2","ประตูสู่ห้องที่ 4 ทางทิศตะวันออกเปิดออกแล้ว!",bc_all;
 	end;
 
 On04_End1:
-	mapannounce "force_1-2","A warp portal at the west has opened! Please clear the 5th room at the end of the west hall! ",bc_all;
+	mapannounce "force_1-2","วาร์ปพอร์ทัลทางทิศตะวันตกเปิดออกแล้ว! โปรดกำจัดมอนสเตอร์ในห้องที่ 5 ณ สุดโถงทางเดินทิศตะวันตก! ",bc_all;
 	end;
 
 On04_End2:
-	mapannounce "force_1-2","A warp portal at the west north room has opened! ",bc_all;
+	mapannounce "force_1-2","วาร์ปพอร์ทัลที่ห้องทิศตะวันตกเฉียงเหนือเปิดออกแล้ว! ",bc_all;
 	end;
 
 On05_End1:
-	mapannounce "force_1-2","A door to the east room has opened~",bc_all;
+	mapannounce "force_1-2","ประตูสู่ห้องทางทิศตะวันออกเปิดออกแล้ว~",bc_all;
 	end;
 
 On05_End2:
-	mapannounce "force_1-2","A door to the north room has opened~",bc_all;
+	mapannounce "force_1-2","ประตูสู่ห้องทางทิศเหนือเปิดออกแล้ว~",bc_all;
 	end;
 
 On06_End:
-	mapannounce "force_1-2","A door to the east room has opened~",bc_all;
+	mapannounce "force_1-2","ประตูสู่ห้องทางทิศตะวันออกเปิดออกแล้ว~",bc_all;
 	end;
 
 On07_End:
-	mapannounce "force_1-2","A door at the north has opened~",bc_all;
+	mapannounce "force_1-2","ประตูทางทิศเหนือเปิดออกแล้ว~",bc_all;
 	end;
 
 On08_End:
-	mapannounce "force_1-2","A door to the west hall has opened~",bc_all;
+	mapannounce "force_1-2","ประตูสู่โถงทางเดินทิศตะวันตกเปิดออกแล้ว~",bc_all;
 	end;
 
 On09_End:
-	mapannounce "force_1-2","A west exit has opened!",bc_all;
+	mapannounce "force_1-2","ทางออกทิศตะวันตกเปิดออกแล้ว!",bc_all;
 	end;
 
 On10_End:
-	mapannounce "force_1-2","Boss stage cleared! An exit at the east has opened! Thank you.",bc_all;
+	mapannounce "force_1-2","ผ่านด่านบอสแล้ว! ทางออกทางทิศตะวันออกเปิดออกแล้ว! ขอบคุณ",bc_all;
 	end;
 }
 
@@ -953,19 +953,19 @@ OnMyMobDead:
 
 prt_are_in,181,135,3	script	Staff#party-1	67,{
 	mes "[Staff]";
-	mes "You did a good job.";
-	mes "Even if you have failed to clear a time attack battle, I will reward you with a small amount of arena points.";
+	mes "คุณทำได้ดีมาก";
+	mes "แม้ว่าคุณจะล้มเหลวในการผ่านการต่อสู้แบบ time attack แต่ฉันจะมอบรางวัลเป็นแต้ม arena จำนวนเล็กน้อยให้คุณ";
 	next;
 	if (arena_point == 30000) {
 		mes "[Staff]";
-		mes "Uh huh!";
-		mes "You already have enough arena points.";
-		mes "Please spend some arena points later. When I see you next time, I will make sure to give you some reward.";
+		mes "อา ฮ่ะ!";
+		mes "คุณมีแต้ม arena เพียงพออยู่แล้ว";
+		mes "โปรดใช้แต้ม arena ออกไปบ้างในภายหลัง เมื่อฉันพบคุณครั้งหน้า ฉันจะมอบรางวัลให้คุณอย่างแน่นอน";
 		next;
 	}
 	else set arena_point, arena_point + 1;
 	mes "[Staff]";
-	mes "Let me guide you outside. I hope you had a good time.";
+	mes "ให้ฉันนำทางคุณออกไปด้านนอก หวังว่าคุณจะมีช่วงเวลาที่ดีนะ";
 	close2;
 	specialeffect2 EF_HIT5;
 	warp "arena_room",100,75;
@@ -992,45 +992,45 @@ prt_are_in,77,135,3	script	Staff#party-2	67,{
 	}
 	set @gappt,(60 * $top_ptmin + $top_ptsec) - (60 * @record_minpt + @record_secpt);
 	mes "[Staff]";
-	mes "Wow, you did a good job~ ";
-	mes "Your name is...^3131FF" + strcharinfo(0) +"^000000, isn't it?";
-	mes "^3131FF"+ strcharinfo(0) +"^000000, total time you spent to pass the battle..";
+	mes "ว้าว คุณทำได้ดีมากเลยนะ~ ";
+	mes "คุณชื่อ...^3131FF" + strcharinfo(0) +"^000000, ใช่ไหม?";
+	mes "^3131FF"+ strcharinfo(0) +"^000000, เวลาทั้งหมดที่คุณใช้ไปในการผ่านการต่อสู้คือ..";
 	next;
 	mes "[Staff]";
-	mes "is "+@record_minpt+"minutes "+@record_secpt+"seconds.";
-	mes "Congratulations!";
+	mes "คือ "+@record_minpt+" นาที "+@record_secpt+" วินาที";
+	mes "ขอแสดงความยินดีด้วย!";
 	next;
 	mes "[Staff]";
-	mes "The fastest party among people who cleared party arena time force battle is ^3131FF"+$arena_pttopn$+"^000000.";
+	mes "ปาร์ตี้ที่เร็วที่สุดในบรรดาคนที่ผ่าน party arena time force battle คือ ^3131FF"+$arena_pttopn$+"^000000";
 	next;
 	mes "[Staff]";
-	mes "^3131FF"+$arena_pttopn$+"^000000's running time was ^3131FF"+$top_ptmin+"^000000minutes ^3131FF"+$top_ptsec+"^000000seconds.";
+	mes "เวลาของ ^3131FF"+$arena_pttopn$+"^000000 คือ ^3131FF"+$top_ptmin+"^000000 นาที ^3131FF"+$top_ptsec+"^000000 วินาที";
 	next;
 	if (@gappt < 0) {
 		mes "[Staff]";
-		mes "Although you failed to make a new record, I hope you will succeed next time.";
+		mes "แม้ว่าคุณจะทำลายสถิติใหม่ไม่สำเร็จ แต่ฉันหวังว่าคุณจะทำได้ในครั้งหน้า";
 		next;
 		if (arena_point > 29980) {
 			mes "[Staff]";
-			mes "Then let me reward you with some arena points....eh?";
-			mes "Your arena points have exceeded the maximum amount. I cannot give you more points until you spend some points.";
+			mes "ถ้าอย่างนั้นให้ฉันมอบรางวัลเป็นแต้ม arena ให้คุณสักหน่อย....เอ๊ะ?";
+			mes "แต้ม arena ของคุณเกินจำนวนสูงสุดที่กำหนดไว้ ฉันไม่สามารถมอบแต้มให้คุณเพิ่มได้จนกว่าคุณจะใช้แต้มออกไปบ้าง";
 			next;
 			mes "[Staff]";
-			mes "You can check the amount of arena points you have in the arena waiting room.";
+			mes "คุณสามารถตรวจสอบจำนวนแต้ม arena ที่คุณมีได้ในห้องรอ arena";
 			next;
 			mes "[Staff]";
-			mes "I hope you had a good time and let me guide you to the entrance of arena.";
-			mes "Thank you.";
+			mes "หวังว่าคุณจะมีช่วงเวลาที่ดี และให้ฉันนำทางคุณไปยังทางเข้า arena";
+			mes "ขอบคุณครับ";
 			close2;
 		} else {
 			set arena_point, arena_point + 40;
 			mes "[Staff]";
-			mes "Let me reward you some arena points.";
-			mes "If you wish to check the amount of arena points you have, please go talk to ^3131FFVendigos^000000 at the arena entrance.";
+			mes "ให้ฉันมอบรางวัลเป็นแต้ม arena ให้คุณ";
+			mes "หากคุณต้องการตรวจสอบจำนวนแต้ม arena ที่คุณมี โปรดไปคุยกับ ^3131FFVendigos^000000 ที่ทางเข้า arena";
 			next;
 			mes "[Staff]";
-			mes "Let me guide you to the entrance of arena.";
-			mes "See you later~";
+			mes "ให้ฉันนำทางคุณไปยังทางเข้า arena";
+			mes "แล้วเจอกันใหม่นะ~";
 			close2;
 		}
 		if (is_party_leader() == true) {
@@ -1039,76 +1039,76 @@ prt_are_in,77,135,3	script	Staff#party-2	67,{
 			donpcevent "Ponox::OnStart";
 		}
 		specialeffect2 EH_HIT5;
- 		donpcevent "cast#pt::OnNomal1";
+		donpcevent "cast#pt::OnNomal1";
 		warp "arena_room",100,75;
 		end;
 	} else {
 		emotion ET_HUK;
 		mes "[Staff]";
-		mes "Wow! You have renewed the record!";
-		mes "What a great job!";
+		mes "ว้าว! คุณได้สร้างสถิติใหม่!";
+		mes "ทำได้ยอดเยี่ยมมาก!";
 		next;
 		if (is_party_leader() == true) {
 			mes "[Staff]";
-			mes "You can record you and your party members on ^FF0000the hall of Arena Time Force Battle party ^000000.";
-			mes "When you enter a name, the name will be remained on the top unless someone make a new record.";
+			mes "คุณสามารถบันทึกชื่อของคุณและสมาชิกในปาร์ตี้ลงใน ^FF0000หอเกียรติยศของ Arena Time Force Battle party^000000";
+			mes "เมื่อคุณกรอกชื่อ ชื่อนั้นจะคงอยู่เป็นอันดับสูงสุดจนกว่าจะมีใครทำลายสถิติใหม่ได้";
 			next;
 			mes "[Staff]";
-			mes "Please enter a name within 10 letters which can represent you and your party members.";
+			mes "โปรดกรอกชื่อที่ใช้แทนตัวคุณและสมาชิกในปาร์ตี้ ภายในความยาวไม่เกิน 10 ตัวอักษร";
 			next;
-			switch( select( "Ok.","Let me think." ) )  {
+			switch( select( "ตกลง","ขอคิดดูก่อน" ) ) {
 			case 1:
 				input .@arnparty$;
 				mes "[Staff]";
-				mes "You have entered ^3131FF"+.@arnparty$+"^000000. Is it correct?";
+				mes "คุณได้กรอกชื่อ ^3131FF"+.@arnparty$+"^000000 ถูกต้องหรือไม่?";
 				next;
-				switch( select( "Yes","No" ) ) {
+				switch( select( "ใช่","ไม่ใช่" ) ) {
 				case 1:
 					set $top_ptmin, @record_minpt;
 					set $top_ptsec, @record_secpt;
 					set $arena_pttopn$,.@arnparty$;
 					donpcevent "Vendigos::OnLineRec_pt";
 					mes "[Staff]";
-					mes "Your record has been entered.";
+					mes "บันทึกสถิติของคุณเรียบร้อยแล้ว";
 					next;
 					break;
 				case 2:
 					mes "[Staff]";
-					mes "Please take your time and think up a nice name.";
+					mes "เชิญตามสบายและค่อยๆ คิดชื่อที่ดูดีมานะ";
 					close;
 				}
 				break;
 			case 2:
 				mes "[Staff]";
-				mes "Please take your time and think up a nice name.";
+				mes "เชิญตามสบายและค่อยๆ คิดชื่อที่ดูดีมานะ";
 				close;
 			}
 		}
 		if (arena_point > 29900) {
 			mes "[Staff]";
-			mes "Then let me reward you with some arena points....eh?";
-			mes "Your arena points have exceeded the maximum amount. I cannot give you more points until you spend some points.";
+			mes "ถ้าอย่างนั้นให้ฉันมอบรางวัลเป็นแต้ม arena ให้คุณสักหน่อย....เอ๊ะ?";
+			mes "แต้ม arena ของคุณเกินจำนวนสูงสุดที่กำหนดไว้ ฉันไม่สามารถมอบแต้มให้คุณเพิ่มได้จนกว่าคุณจะใช้แต้มออกไปบ้าง";
 			next;
 			mes "[Staff]";
-			mes "You can check the amount of arena points you have in the arena waiting room.";
+			mes "คุณสามารถตรวจสอบจำนวนแต้ม arena ที่คุณมีได้ในห้องรอ arena";
 			next;
 			mes "[Staff]";
-			mes "I hope you had a good time and let me guide you to the entrance of arena.";
-			mes "Thank you.";
+			mes "หวังว่าคุณจะมีช่วงเวลาที่ดี และให้ฉันนำทางคุณไปยังทางเข้า arena";
+			mes "ขอบคุณครับ";
 			close2;
 		} else {
 			mes "[Staff]";
-			mes "Let me reward you with some arena points.";
-			mes "At the same time, since you have renewed the record you will receive an extra amount of the points this time.";
+			mes "ให้ฉันมอบรางวัลเป็นแต้ม arena ให้คุณ";
+			mes "ในขณะเดียวกัน เนื่องจากคุณได้สร้างสถิติใหม่ คุณจะได้รับแต้มพิเศษเพิ่มขึ้นในครั้งนี้ด้วย";
 			next;
 			set arena_point, arena_point + 100;
 			mes "[Staff]";
-			mes "Let me reward you some arena points.";
-			mes "If you wish to check the amount of arena points you have, please go talk to ^3131FFVendigos^000000 at the arena entrance.";
+			mes "ให้ฉันมอบรางวัลเป็นแต้ม arena ให้คุณ";
+			mes "หากคุณต้องการตรวจสอบจำนวนแต้ม arena ที่คุณมี โปรดไปคุยกับ ^3131FFVendigos^000000 ที่ทางเข้า arena";
 			next;
 			mes "[Staff]";
-			mes "Let me guide you to the entrance of arena.";
-			mes "See you later~";
+			mes "ให้ฉันนำทางคุณไปยังทางเข้า arena";
+			mes "แล้วเจอกันใหม่นะ~";
 			close2;
 		}
 		if (is_party_leader() == true) {
@@ -1128,19 +1128,19 @@ OnEnter:
 	end;
 
 OnTimer2000:
-	mapannounce "prt_are_in","This broadcast informs you about the restriction for party arena.",0,0xFFCE00;
+	mapannounce "prt_are_in","การประกาศนี้เพื่อแจ้งให้ทราบเกี่ยวกับข้อจำกัดสำหรับ party arena",0,0xFFCE00;
 	end;
 
 OnTimer3000:
-	mapannounce "prt_are_in","For a smooth game play, exit warp portal will be activated in 1 minute.",0,0xFFCE00;
+	mapannounce "prt_are_in","เพื่อให้การเล่นเกมราบรื่น warp portal ทางออกจะถูกเปิดใช้งานใน 1 นาที",0,0xFFCE00;
 	end;
 
 OnTimer4000:
-	mapannounce "prt_are_in","Please proceed your battle quickly as possible in order to avoid disadvantage. Thank you for your cooperation.",0,0xFFCE00;
+	mapannounce "prt_are_in","โปรดดำเนินภารกิจการต่อสู้ของคุณให้เร็วที่สุดเท่าที่จะทำได้เพื่อหลีกเลี่ยงการเสียสิทธิ์ ขอบคุณในความร่วมมือ",0,0xFFCE00;
 	end;
 
 OnTimer60000:
- 	donpcevent "cast#pt::OnTimeOver2";
+	donpcevent "cast#pt::OnTimeOver2";
 	donpcevent "arn_warp_pt::OnOut";
 	donpcevent "#arn_timer_pt::OnStop";
 	donpcevent "alloff#pt::OnEnable";
@@ -1149,7 +1149,7 @@ OnTimer60000:
 
 OnStop:
 	stopnpctimer;
-	end; 
+	end;
 }
 
 -	script	arn_warp_pt	-1,{
@@ -1160,19 +1160,19 @@ OnOut:
 
 -	script	cast#pt	-1,{
 OnTimeOver1:
-	mapannounce "force_2-1","Arena will be reactivated due to an error occurred during battle.",0,0xFFCE00;
+	mapannounce "force_2-1","Arena จะเริ่มทำงานใหม่เนื่องจากเกิดข้อผิดพลาดขึ้นระหว่างการต่อสู้",0,0xFFCE00;
 	end;
 
 OnNomal1:
-	mapannounce "force_2-1","Arena will be reactivated.",0,0xFFCE00;
+	mapannounce "force_2-1","Arena จะเริ่มทำงานใหม่อีกครั้ง",0,0xFFCE00;
 	end;
 
 OnNomal2:
-	mapannounce "force_2-1","Arena will be reactivated.",0,0xFFCE00;
+	mapannounce "force_2-1","Arena จะเริ่มทำงานใหม่อีกครั้ง",0,0xFFCE00;
 	end;
 
 OnTimeOver2:
-	mapannounce "force_2-1","Arena will be reactivated due to an error occurred in the waiting room.",0,0xFFCE00;
+	mapannounce "force_2-1","Arena จะเริ่มทำงานใหม่เนื่องจากเกิดข้อผิดพลาดขึ้นในห้องรอ",0,0xFFCE00;
 	end;
 }
 
