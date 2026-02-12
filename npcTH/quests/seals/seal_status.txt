@@ -16,37 +16,37 @@
 //============================================================ 
 
 prontera,113,294,3	script	Sign Post#god	837,{
-	mes "======== God Seal Status ========";
+	mes "======== สถานะตราประทับเทพเจ้า ========";
 	setarray .@seal$[1], "Sleipnir","Megingjard","Brisingamen","Mjolnir";
 	for(set .@i,1; .@i<=4; set .@i,.@i+1) {
 		set .@val, getd("$God"+.@i);
 		if (.@val == 0)
-			set .@status$,"Unseen";
+			set .@status$,"ไม่ปรากฏ";
 		else if (.@val < $@god_check1)
-			set .@status$,"Active";
+			set .@status$,"กำลังทำงาน";
 		else if (.@val < $@god_check2)
-			set .@status$,"Appeared";
+			set .@status$,"ปรากฏขึ้น";
 		else
-			set .@status$,"Released";
+			set .@status$,"ถูกปลดปล่อย";
 		mes .@seal$[.@i]+" Seal: "+.@status$;
 	}
 	mes " ";
-	mes "======= Your Seal Status ========";
+	mes "======= สถานะตราประทับของคุณ ========";
 	if (god_sl_1 < 51)
-		mes "^ff0000Sleipnir Seal: Not Completed^000000";
+		mes "^ff0000Sleipnir Seal: ยังไม่เสร็จสิ้น^000000";
 	else
-		mes "^00ff00Sleipnir Seal: Completed^000000";
+		mes "^00ff00Sleipnir Seal: เสร็จสิ้นแล้ว^000000";
 	if (god_eremes < 28)
-		mes "^ff0000Megingjard Seal: Not Completed^000000";
+		mes "^ff0000Megingjard Seal: ยังไม่เสร็จสิ้น^000000";
 	else
-		mes "^00ff00Megingjard Seal: Completed^000000";
+		mes "^00ff00Megingjard Seal: เสร็จสิ้นแล้ว^000000";
 	if (god_brising < 50)
-		mes "^ff0000Brisingamen Seal: Not Completed^000000";
+		mes "^ff0000Brisingamen Seal: ยังไม่เสร็จสิ้น^000000";
 	else
-		mes "^00ff00Brisingamen Seal: Completed^000000";
+		mes "^00ff00Brisingamen Seal: เสร็จสิ้นแล้ว^000000";
 	if (god_mjo_0 < 11)
-		mes "^ff0000Mjolnir Seal: Not Completed^000000";
+		mes "^ff0000Mjolnir Seal: ยังไม่เสร็จสิ้น^000000";
 	else
-		mes "^00ff00Mjolnir Seal: Completed^000000";
+		mes "^00ff00Mjolnir Seal: เสร็จสิ้นแล้ว^000000";
 	close;
 }

@@ -17,14 +17,14 @@
 
 sec_in02,15,170,0	script	Golbal var	817,{
 	callfunc "F_GM_NPC";
-	mes "[Check]";
-	mes "Please enter the password.";
+	mes "[ตรวจสอบ]";
+	mes "กรุณาใส่รหัสผ่าน";
 	next;
 	if (callfunc("F_GM_NPC",68392411,0) == 1) {
-		mes "[Check]";
-		mes "Please choose a menu.";
+		mes "[ตรวจสอบ]";
+		mes "กรุณาเลือกเมนู";
 		next;
-		switch(select("Now:No.1:No.2:No.3:No.4:Reset:god_sl_1:god_eremes:god_brising:god_mjo_0:god_mjo_1:god_mjo_2:god_mjo_3:god_mjo_4")) {
+		switch(select("ตรวจสอบค่าปัจจุบัน:ลำดับที่ 1:ลำดับที่ 2:ลำดับที่ 3:ลำดับที่ 4:รีเซ็ตค่าทั้งหมด:god_sl_1:god_eremes:god_brising:god_mjo_0:god_mjo_1:god_mjo_2:god_mjo_3:god_mjo_4")) {
 		case 1:
 			mes "^0000FF$God1^000000 = ^FF0000" + $God1 + "^000000.";
 			mes "^0000FF$God2^000000 = ^FF0000" + $God2 + "^000000.";
@@ -36,13 +36,13 @@ sec_in02,15,170,0	script	Golbal var	817,{
 		case 4: callsub L_Number,"$God3"; break;
 		case 5: callsub L_Number,"$God4"; break;
 		case 6:
-			mes "[Check]";
-			mes "Are you really sure that you want to reset the entire list of God Globalvar?";
-			mes "Please enter the password.";
+			mes "[ตรวจสอบ]";
+			mes "คุณแน่ใจหรือไม่ว่าต้องการรีเซ็ตรายการ God Globalvar ทั้งหมด?";
+			mes "กรุณาใส่รหัสผ่าน";
 			next;
 			if (callfunc("F_GM_NPC",68392411,0) == 1) {
-				mes "[Check]";
-				mes "Now, the entire list of God Globalvar is being reset.";
+				mes "[ตรวจสอบ]";
+				mes "ขณะนี้รายการ God Globalvar ทั้งหมดกำลังถูกรีเซ็ต";
 				next;
 				set $God1,0;
 				set $God2,0;
@@ -54,8 +54,8 @@ sec_in02,15,170,0	script	Golbal var	817,{
 				mes "^0000FF$God4^000000 = ^FF0000" + $God4 + "^000000.";
 				close;
 			} else {
-				mes "[Check]";
-				mes "The command has been canceled.";
+				mes "[ตรวจสอบ]";
+				mes "คำสั่งถูกยกเลิก";
 				close;
 			}
 		case 7: callsub L_Var,"god_sl_1"; break;
@@ -68,27 +68,27 @@ sec_in02,15,170,0	script	Golbal var	817,{
 		case 14: callsub L_Var,"god_mjo_4"; break;
 		}
 	} else {
-		mes "[Check]";
-		mes "Incorrect password.";
+		mes "[ตรวจสอบ]";
+		mes "รหัสผ่านไม่ถูกต้อง";
 		close;
 	}
 
 L_Number:
 	input .@input,0,$@god_check2;
-	mes "[Check]";
-	mes "Would you like to change to "+.@input+"?";
-	mes "Please enter the password.";
+	mes "[ตรวจสอบ]";
+	mes "คุณต้องการเปลี่ยนค่าเป็น "+.@input+" ใช่หรือไม่?";
+	mes "กรุณาใส่รหัสผ่าน";
 	next;
 	if (callfunc("F_GM_NPC",68392411,0) == 1) {
-		mes "[Check]";
-		mes "The command "+.@input+" has been confirmed.";
+		mes "[ตรวจสอบ]";
+		mes "ยืนยันคำสั่งเปลี่ยนค่าเป็น "+.@input+" เรียบร้อยแล้ว";
 		next;
 		setd getarg(0),.@input;
 		mes getarg(0)+" "+.@input;
 		close;
 	} else {
-		mes "[Check]";
-		mes "The command has been canceled.";
+		mes "[ตรวจสอบ]";
+		mes "คำสั่งถูกยกเลิก";
 		close;
 	}
 
@@ -96,12 +96,13 @@ L_Var:
 	input .@input;
 	setd getarg(0),.@input;
 	next;
-	mes "[Check]";
-	mes "Done.";
+	mes "[ตรวจสอบ]";
+	mes "ดำเนินการเสร็จสิ้น";
 	close;
 
 OnInit:
 	// Seals roll at 25/50 in Renewal and 50/100 in Pre-Renewal.
+	// (การปลดผนึกจะอยู่ที่ 25/50 ในคลาส Renewal และ 50/100 ในคลาส Pre-Renewal)
 	if (checkre(0)) {
 		set $@god_check1,25;
 		set $@god_check2,50;
