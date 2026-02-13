@@ -1,1364 +1,1361 @@
-//===== rAthena Script =======================================
+//===== rAthena Script ======================================= 
 //= Homunculus S Mutation Quest
-//===== By: ==================================================
+//===== By: ================================================== 
 //= Euphy
-//===== Current Version: =====================================
+//===== Current Version: ===================================== 
 //= 1.2
-//===== Compatible With: =====================================
+//===== Compatible With: ===================================== 
 //= rAthena Project
-//===== Description: =========================================
+//===== Description: ========================================= 
 //= [Official Conversion]
 //= Genetic quest to mutate a level 99 evolved Homunculus
 //= into a Homunculus S.
-//===== Additional Comments: =================================
+//===== Additional Comments: ================================= 
 //= 1.0 First Version, entirely custom. [Masao]
 //= 1.1 Cleaning. [Euphy]
 //= 1.2 Replaced with official script. [Euphy]
 //= 1.3 Fixed Job Class for after Genetic. [Mazvi & Lemongrass]
-//============================================================
+//============================================================ 
 
 // Main NPCs :: Homun_S
 //============================================================
 job3_gen01,12,44,3	script	Viorel#job3_gen01	542,{
-		if (countitem(6415)) {
-				if ((eaclass()&EAJ_THIRDMASK)==EAJ_GENETIC) {
-						disable_items;
-						if (checkquest(4159) == -1 && checkquest(4160) == -1) {
-								mes "[วิโอเรล]";
-								mes "คุณมาที่นี่ทำไม?";
-								mes "คุณไม่ควรอยู่ที่บ้านของ ^005DFFJeyna^000000 หรือไง?";
-								close2;
-								for(set .@i,4154; .@i<=4160; set .@i,.@i+1) {
-										if (checkquest(.@i) > -1)
-												erasequest .@i;
-								}
-								setquest 4154;
-								setquest 4159;
-								morphembryo;
-								if (countitem(6415) == 0)
-										getitem 6415,1; //Strange_Embryo
-								else if (countitem(6415) > 1)
-										delitem 6415, (countitem(6415) - 1); //Strange_Embryo
-								warp "que_house_s",63,41;
-								end;
-						}
-						enable_items;
-				} else if (Class == Job_Novice_High || Class == Job_Merchant_High || Class == Job_Alchemist || Class == Job_Creator) {
-						emotion ET_QUESTION;
-						mes "[วิโอเรล]";
-						mes "ฉันไม่รู้ว่าเกิดอะไรขึ้น แต่เท่าที่ฉันจำได้ คุณควรมีคุณสมบัติในการทำวิจัย ^FF4800Homunculus^000000";
-						next;
-						mes "[วิโอเรล]";
-						mes "ไม่ว่าด้วยเหตุผลใดก็ตาม คุณไม่สามารถดำเนินการวิจัยต่อใน ^FF4800Homunculus^000000 ได้";
-						mes "กลับมาหลังจากที่คุณกลายเป็น ^005DFFGenetic^000000 และได้รับ ^0000FFBioethics^000000";
-						close;
-				} else {
-						delitem 6415, countitem(6415); //Strange_Embryo
-						mes "[วิโอเรล]";
-						mes "เดี๋ยวก่อน ตัวอ่อนที่คุณมีดูแปลกนิดหน่อย";
-						next;
-						mes "[วิโอเรล]";
-						mes "เว้นแต่คุณจะมีงานค้นคว้า ^FF4800Homunculus^000000....";
-						mes "มันจะไม่มีประโยชน์กับคุณเลย";
-						next;
-						mes "[วิโอเรล]";
-						mes "ฉันเป็นผู้รับผิดชอบการจัดการ ^0000FFStrange Embryo^000000 ดังนั้นฉันจะดูแลเรื่องนั้นให้กับคุณเอง";
-						mes "ไม่ต้องโกรธ และฉันไม่ได้ทำอะไรเลวร้ายที่นี่";
-						close;
+	if (countitem(6415)) {
+		if ((eaclass()&EAJ_THIRDMASK)==EAJ_GENETIC) {
+			disable_items;
+			if (checkquest(4159) == -1 && checkquest(4160) == -1) {
+				mes "[Viorel]";
+				mes "เจ้ามาทำอะไรที่นี่?";
+				mes "เจ้าควรจะอยู่ที่บ้านของ ^005DFFJeyna^000000 ไม่ใช่รึ?";
+				close2;
+				for(set .@i,4154; .@i<=4160; set .@i,.@i+1) {
+					if (checkquest(.@i) > -1)
+						erasequest .@i;
 				}
+				setquest 4154;
+				setquest 4159;
+				morphembryo;
+				if (countitem(6415) == 0)
+					getitem 6415,1; //Strange_Embryo
+				else if (countitem(6415) > 1)
+					delitem 6415, (countitem(6415) - 1); //Strange_Embryo
+				warp "que_house_s",63,41;
+				end;
+			}
+			enable_items;
+		} else if (Class == Job_Novice_High || Class == Job_Merchant_High || Class == Job_Alchemist || Class == Job_Creator) {
+			emotion ET_QUESTION;
+			mes "[Viorel]";
+			mes "ข้าไม่รู้ว่าเกิดอะไรขึ้นนะ แต่ตามความจำของข้า เจ้าควรจะเป็นผู้ที่มีคุณสมบัติในการวิจัย ^FF4800Homunculus^000000";
+			next;
+			mes "[Viorel]";
+			mes "ไม่ว่าจะด้วยเหตุผลอะไรก็ตาม เจ้ายังไม่สามารถทำการวิจัยเกี่ยวกับ ^FF4800Homunculus^000000 ต่อไปได้";
+			mes "จงกลับมาหลังจากที่เจ้ากลายเป็น ^005DFFGenetic^000000 และได้รับสกิล ^0000FFBioethics^000000 มาแล้ว";
+			close;
+		} else {
+			delitem 6415, countitem(6415); //Strange_Embryo
+			mes "[Viorel]";
+			mes "เดี๋ยวก่อน ตัวอ่อน (Embryo) ที่เจ้ามีอยู่นั่นดูแปลกๆ นะ";
+			next;
+			mes "[Viorel]";
+			mes "นอกเสียจากว่าเจ้าจะมีอาชีพที่ทำการวิจัยเกี่ยวกับ ^FF4800Homunculus^000000....";
+			mes "มันจะไม่มีประโยชน์อะไรกับเจ้าเลยแม้แต่น้อย";
+			next;
+			mes "[Viorel]";
+			mes "ข้ามีหน้าที่ดูแลจัดการ ^0000FFStrange Embryo^000000 เพราะงั้นข้าจะดูแลมันให้เจ้าเอง";
+			mes "ไม่ได้จะก้าวร้าวนะ และข้าก็ไม่ได้ทำเรื่องไม่ดีอะไรด้วย";
+			close;
 		}
-		if (((eaclass()&EAJ_THIRDMASK)==EAJ_GENETIC) && (checkquest(4154) > -1)) {
-				if ((checkquest(4155) > -1) || (checkquest(4160) > -1)) {
-						mes "[วิโอเรล]";
-						mes "อากาศดีมาก";
-						next;
-						callsub L_CheckHomunculus;
-						mes "[วิโอเรล]";
-						mes "พร้อมไปบ้านฉันหรือยัง?";
-						next;
-						switch(select("Go to ^005DFFViorel^000000's house.:Don't go.")) {
-						case 1:
-								mes "[วิโอเรล]";
-								mes "เลือกที่ดี.";
-								mes "ตอนนี้หลับตาของคุณซักครู่...";
-								close2;
-								warp "que_house_s",19,42;
-								end;
-						case 2:
-								mes "[วิโอเรล]";
-								mes "กลับมาเมื่อคุณพร้อม";
-								mes "คุณจะต้องมาพร้อมกับ ^FF4800Homunculus^000000";
-								close;
-						}
-				} else {
-						mes "[วิโอเรล]";
-						mes "คุณมาที่นี่ทำไม?";
-						mes "คุณไม่ควรอยู่ที่บ้านของ ^005DFFJeyna^000000 หรือไง?";
-						next;
-						callsub L_CheckHomunculus;
-						mes "[วิโอเรล]";
-						mes "ตอนนี้คุณพร้อมที่จะไปที่ ^005DFFJeyna^000000 แล้วหรือยัง?";
-						next;
-						switch(select("Go to ^005DFFJeyna^000000's room.:Don't go.")) {
-						case 1:
-								mes "[วิโอเรล]";
-								mes "เลือกที่ดี.";
-								mes "ตอนนี้หลับตาของคุณซักครู่...";
-								close2;
-								warp "que_house_s",63,41;
-								end;
-						case 2:
-								mes "[วิโอเรล]";
-								mes "กลับมาเมื่อคุณพร้อม";
-								mes "คุณจะต้องมาพร้อมกับ ^FF4800Homunculus^000000";
-								close;
-						}
-				}
-		}
-		if (BaseJob == Job_Merchant) {
-				mes "[วิโอเรล]";
-				mes "ฉันเคยเป็นพ่อค้าเช่นเดียวกับคุณมาก่อน";
-				mes "ฉันกำลังค้นคว้าเรื่อง ^FF4800Homunculus^000000";
-				next;
-				mes "[วิโอเรล]";
-				mes "หากคุณสนใจ ^FF4800Homunculus^000000 จงมาเป็น ^005DFFAlchemist^000000 หรือ ^005DFFCreator^000000";
+	}
+	if (((eaclass()&EAJ_THIRDMASK)==EAJ_GENETIC) && (checkquest(4154) > -1)) {
+		if ((checkquest(4155) > -1) || (checkquest(4160) > -1)) {
+			mes "[Viorel]";
+			mes "อากาศดีจังเลยนะ";
+			next;
+			callsub L_CheckHomunculus;
+			mes "[Viorel]";
+			mes "พร้อมจะไปที่บ้านของข้าหรือยัง?";
+			next;
+			switch(select("ไปที่บ้านของ ^005DFFViorel^000000:ไม่ไป")) {
+			case 1:
+				mes "[Viorel]";
+				mes "เลือกได้ดีนี่";
+				mes "เอาล่ะ หลับตาลงสักครู่นะ...";
+				close2;
+				warp "que_house_s",19,42;
+				end;
+			case 2:
+				mes "[Viorel]";
+				mes "กลับมาเมื่อเจ้าพร้อมนะ";
+				mes "เจ้าต้องมาพร้อมกับ ^FF4800Homunculus^000000 ด้วยล่ะ";
 				close;
- 	 	} else if (BaseJob == Job_Alchemist && Class < Job_Genetic) {
-				mes "[วิโอเรล]";
-				mes "ฉันทุ่มเทเวลาและพลังงานให้กับโฮมุนคูลัสเป็นอย่างมาก";
-				mes "หากคุณรู้สึกว่าคุณอยู่ที่ทางตัน กลับมาครั้งหน้าพร้อมกับ ^FF4800Homunculus^000000";
-				next;
-				mes "[วิโอเรล]";
-				mes "โอ้ แน่นอนว่าคุณต้องมีศักยภาพที่เหมาะสม คุณอาจพิสูจน์ตัวเองได้เมื่อคุณกลายเป็น ^FF4800Genetic^000000";
+			}
+		} else {
+			mes "[Viorel]";
+			mes "เจ้ามาทำอะไรที่นี่?";
+			mes "เจ้าควรจะอยู่ที่บ้านของ ^005DFFJeyna^000000 ไม่ใช่รึ?";
+			next;
+			callsub L_CheckHomunculus;
+			mes "[Viorel]";
+			mes "เอาล่ะ พร้อมจะไปหา ^005DFFJeyna^000000 หรือยัง?";
+			next;
+			switch(select("ไปที่ห้องของ ^005DFFJeyna^000000:ไม่ไป")) {
+			case 1:
+				mes "[Viorel]";
+				mes "เลือกได้ดีนี่";
+				mes "เอาล่ะ หลับตาลงสักครู่นะ...";
+				close2;
+				warp "que_house_s",63,41;
+				end;
+			case 2:
+				mes "[Viorel]";
+				mes "กลับมาเมื่อเจ้าพร้อมนะ";
+				mes "เจ้าต้องมาพร้อมกับ ^FF4800Homunculus^000000 ด้วยล่ะ";
 				close;
-		} else if ((eaclass()&EAJ_THIRDMASK)==EAJ_GENETIC) {
-				if (gethominfo(6) >= 99 && (gethominfo(1) >= 6009 && gethominfo(1) <= 6016)) { // Level 99+ evolved Homunculus
-						mes "[วิโอเรล]";
-						mes "โอ้เยี่ยมเลย~!";
-						mes "คุณมี ^FF4800Homunculus^000000";
-						mes "ด้วยความหลงใหลที่ลงทุนในการวิจัย เราสามารถปรับปรุงให้ดียิ่งขึ้นได้";
-						next;
-						mes "[วิโอเรล]";
-						mes "ฉันต้องคุยกับคุณเป็นการส่วนตัว คุณช่วยไปบ้านฉันกับฉันหน่อยได้ไหม";
-						next;
-						switch(select("Go to ^005DFFViorel^000000's home.:Stay here.")) {
-						case 1:
-								mes "[วิโอเรล]";
-								mes "เลือกที่ดี.";
-								mes "ตอนนี้หลับตาของคุณซักครู่...";
-								close2;
-								setquest 4154;
-								setquest 4155;
-								warp "que_house_s",19,42;
-								end;
-						case 2:
-								mes "[วิโอเรล]";
-								mes "หากคุณรู้สึกว่าคุณอยู่ที่ทางตัน กลับมาครั้งหน้าพร้อมกับ ^FF4800Homunculus^000000";
-								close;
-						}
-				} else if (gethominfo(6) >= 99 && (gethominfo(1) >= 6048 && gethominfo(1) <= 6052)) { // Level 99+ mutated Homunculus-S
-						mes "[วิโอเรล]";
-						mes "สวัสดีอีกครั้งครับ.";
-						mes "บางทีคุณอาจจะสนใจ";
-						mes "ใน ^FF4800Homunculus^000000 ที่เพิ่งสร้างใหม่";
-						mes "เกิดจาก ^006400Homunculus Mutation System^000000 ใหม่?";
-						next;
-						switch(select("Nope. Good bye.:Please, I'm busy.:That's exactly what I wanted to hear.:Why are you always standing there?")) {
-						case 1:
-								emotion ET_SMILE;
-								mes "[วิโอเรล]";
-								mes "ตกลง.";
-								mes "ดีใจที่ได้พบคุณ";
-								mes "ลาแล้วนะ~!";
-								close;
-						case 2:
-								emotion ET_HUK;
-								mes "[วิโอเรล]";
-								mes "-";
-								mes "ฉัน... ฉันเห็นแล้ว";
-								mes "ฉันคิดว่าคุณมาที่นี่เพื่อพบฉัน";
-								close;
-						case 3:
-								emotion ET_AHA;
-								mes "[วิโอเรล]";
-								mes "เหมือนอย่างที่ฉันคิดไว้เลย";
-								mes "มาดูบันทึกที่เจย์น่าเพื่อนรักของฉันฝากไว้กันดีกว่า";
-								next;
-								playbgm "30.mp3"; // One Step Closer
-								callfunc "F_HomMutateInfo","[Memo Pad Notes]";
-								mes "[วิโอเรล]";
-								mes "อืม.";
-								mes "เอาล่ะ แค่นั้นแหละที่เป็นอยู่";
-								mes "ขึ้นอยู่กับคุณที่จะหาข้อมูลเพิ่มเติม";
-								close2;
-								playbgm "08.mp3"; // Theme of Prontera
-								end;
-						case 4:
-								emotion ET_SWEAT;
-								mes "[วิโอเรล]";
-								mes "ไม่ ฉันไม่ได้ยืนอยู่ที่นี่ทุกวัน";
-								mes "แต่ทำไมคุณถึงยืนอยู่ตรงนั้นทุกวัน?";
-								next;
-								mes "[วิโอเรล]";
-								mes "อะไร";
-								mes "ไม่หรอก อย่างที่ฉันเห็น";
-								mes "คุณดูเหมือนจะอยู่ที่นี่ทุกครั้งที่ฉันมาที่นี่";
-								close;
-						}
-				} else {
-						if (gethominfo(1) >= 6009) { // Evolved Homunculus
-								mes "[วิโอเรล]";
-								mes "อืม คุณดูเหมือนจะมีความผูกพันพิเศษกับ ^FF4800Homunculus^000000 ของคุณนะ";
-								next;
-								mes "[วิโอเรล]";
-								mes "กลับมาหาฉันเมื่อ ^FF4800Homunculus^000000 ถึง ^0000FFระดับ 99^000000";
-								close;
-						} else {
-								mes "[วิโอเรล]";
-								mes "คุณยังไม่ได้รับ ^FF4800Homunculus^000000 ที่พัฒนาแล้ว...";
-								mes "ตามที่คุณอาจทราบเกี่ยวกับวิวัฒนาการ:";
-								next;
-								mes "[วิโอเรล]";
-								mes "การใช้ ^0000FFStone of Sage^000000 เมื่อระดับความใกล้ชิดอยู่เหนือ ^006400Intimate^000000 ^FF4800Homunculus^000000 จะเข้าสู่ ^006400Evolution^000000";
-								close;
-						}
-				}
+			}
 		}
-		mes "[วิโอเรล]";
-		mes "^FF4800Homunculus^000000 การวิจัยต้องใช้เวลาและเงินทุนเป็นจำนวนมาก";
-		mes "อย่างไรก็ตาม ฉันเชื่อว่าความหลงใหลเป็นปัจจัยที่สำคัญที่สุด";
+	}
+	if (BaseJob == Job_Merchant) {
+		mes "[Viorel]";
+		mes "ข้าเองก็เคยเป็นพ่อค้าเหมือนกับเจ้ามาก่อน";
+		mes "ข้ากำลังทำวิจัยเกี่ยวกับ ^FF4800Homunculus^000000 อยู่";
 		next;
-		switch(select("End conversation.:What are you talking about?:Why are you always standing there?")) {
-		case 1:
-				mes "[วิโอเรล]";
-				mes "ลาก่อนนะ~!";
+		mes "[Viorel]";
+		mes "ถ้าเจ้าสนใจเรื่อง ^FF4800Homunculus^000000 ก็จงเป็น ^005DFFAlchemist^000000 หรือ ^005DFFCreator^000000 เสียก่อน";
+		close;
+	} else if (BaseJob == Job_Alchemist && Class < Job_Genetic) {
+		mes "[Viorel]";
+		mes "ข้าใช้เวลาและพลังงานไปอย่างมากกับเรื่อง Homunculus";
+		mes "ถ้าเจ้าเริ่มรู้สึกว่าเจอทางตัน ก็จงกลับมาหาข้าในคราวหน้าพร้อมกับ ^FF4800Homunculus^000000";
+		next;
+		mes "[Viorel]";
+		mes "โอ้ แน่นอนว่าเจ้าจำเป็นต้องมีศักยภาพที่เหมาะสมด้วย เจ้าคงจะพิสูจน์ตัวเองได้เมื่อกลายเป็น ^FF4800Genetic^000000";
+		close;
+	} else if ((eaclass()&EAJ_THIRDMASK)==EAJ_GENETIC) {
+		if (gethominfo(6) >= 99 && (gethominfo(1) >= 6009 && gethominfo(1) <= 6016)) { // Level 99+ evolved Homunculus
+			mes "[Viorel]";
+			mes "โอ้ ยอดเลย~!";
+			mes "เจ้ามี ^FF4800Homunculus^000000 แล้วนี่";
+			mes "ด้วยความมุ่งมั่นที่ทุ่มเทให้กับการวิจัย เราจะสามารถทำให้พวกมันเก่งขึ้นได้";
+			next;
+			mes "[Viorel]";
+			mes "ข้าต้องคุยกับเจ้าเป็นการส่วนตัว เจ้าจะรังเกียจไหมที่จะไปที่บ้านของข้ากับข้า?";
+			next;
+			switch(select("ไปที่บ้านของ ^005DFFViorel^000000:อยู่ที่นี่แหละ")) {
+			case 1:
+				mes "[Viorel]";
+				mes "เลือกได้ดีนี่";
+				mes "เอาล่ะ หลับตาลงสักครู่นะ...";
+				close2;
+				setquest 4154;
+				setquest 4155;
+				warp "que_house_s",19,42;
+				end;
+			case 2:
+				mes "[Viorel]";
+				mes "ถ้าเจ้าเริ่มรู้สึกว่าเจอทางตัน ก็จงกลับมาหาข้าในคราวหน้าพร้อมกับ ^FF4800Homunculus^000000";
 				close;
-		case 2:
-				mes "[วิโอเรล]";
-				mes "คุณเห็นมั้ยว่า ^006400นักเล่นแร่แปรธาตุ^000000 มีนิสัยอยากรู้อยากเห็น";
-				mes "โดยเฉพาะคนอย่างผมยังคิดที่จะสร้างชีวิตขึ้นมาด้วย";
-				next;
-				mes "[วิโอเรล]";
-				mes "คุณจะต้องค้นคว้า ^FF4800Homunculus^000000 เพื่อที่จะเข้าใจ";
-				mes "ตอนนี้ขอตัวก่อนนะคะ~!";
-				close;
-		case 3:
-				emotion ET_SWEAT;
-				mes "[วิโอเรล]";
-				mes "อะไร มันแปลกมากที่ได้เห็นนักเล่นแร่แปรธาตุอยู่ในห้องแล็บของตัวเอง?";
-				mes "เป็นอย่างนั้นเหรอ?";
-				close;
-		}
-		end;
-L_CheckHomunculus:
-		if (gethominfo(6) < 99 || (gethominfo(1) < 6009 || gethominfo(1) > 6016)) { // Not level 99+ evolved Homunculus
-				mes "[วิโอเรล]";
-				mes "ฮะ?";
-				mes "^FF4800Homunculus^000000 ที่คุณเคยมีอยู่ไหน?";
-				mes "บางทีฉันอาจจะเข้าใจผิดว่าเป็นอย่างอื่น...";
-				next;
-				mes "[วิโอเรล]";
-				mes "-";
-				mes " ";
-				mes "(เหมือนกำลังคิดอะไรอยู่)";
-				next;
+			}
+		} else if (gethominfo(6) >= 99 && (gethominfo(1) >= 6048 && gethominfo(1) <= 6052)) { // Level 99+ mutated Homunculus-S
+			mes "[Viorel]";
+			mes "สวัสดีอีกครั้ง";
+			mes "บางทีเจ้าอาจจะสนใจ";
+			mes "ใน ^FF4800Homunculus^000000 ที่ถูกสร้างขึ้นมาใหม่";
+			mes "ที่เกิดมาจากระบบใหม่อย่าง ^006400Homunculus Mutation System^000000 สินะ?";
+			next;
+			switch(select("ไม่ล่ะ ลาก่อน:ขอโทษที ข้ากำลังยุ่งอยู่:นั่นแหละคือสิ่งที่ข้าอยากได้ยินเลย:ทำไมท่านถึงยืนอยู่ที่นี่ตลอดเวลาเลยล่ะ?")) {
+			case 1:
 				emotion ET_SMILE;
-				mes "[วิโอเรล]";
-				mes "ฮ่าฮ่า~";
-				mes "ฉันคิดว่าฉันเข้าใจผิดคิดว่าคุณเป็นคนอื่น";
-				mes "ถ้าคุณจะกรุณาฉันขอตัว";
+				mes "[Viorel]";
+				mes "โอเค";
+				mes "ดีใจที่ได้พบเจ้านะ";
+				mes "ลาก่อนล่ะ~!";
 				close;
+			case 2:
+				emotion ET_HUK;
+				mes "[Viorel]";
+				mes "!!!!";
+				mes "ขะ... ข้าเข้าใจแล้ว";
+				mes "ข้าก็นึกว่าเจ้ามาที่นี่เพื่อมาหาข้าซะอีก";
+				close;
+			case 3:
+				emotion ET_AHA;
+				mes "[Viorel]";
+				mes "อย่างที่ข้าคิดไว้เลย";
+				mes "มาลองดูบันทึกที่ Jeyna เพื่อนรักของข้าทิ้งไว้กันเถอะ";
+				next;
+				playbgm "30.mp3"; // One Step Closer
+				callfunc "F_HomMutateInfo","[บันทึกในแผ่นกระดาษ]";
+				mes "[Viorel]";
+				mes "อืมม";
+				mes "ก็นั่นแหละ ทั้งหมดมีแค่นั้น";
+				mes "ที่เหลือก็ขึ้นอยู่กับเจ้าแล้วล่ะที่จะค้นหาข้อมูลเพิ่มเติม";
+				close2;
+				playbgm "08.mp3"; // Theme of Prontera
+				end;
+			case 4:
+				emotion ET_SWEAT;
+				mes "[Viorel]";
+				mes "เปล่าหรอก ข้าไม่ได้มายืนตรงนี้ทุกวันหรอกนะ";
+				mes "แต่ทำไมเจ้าถึงมายืนตรงนี้ทุกวันกันล่ะ?";
+				next;
+				mes "[Viorel]";
+				mes "อะไรนะ?";
+				mes "ไม่หรอก ในมุมมองของข้าน่ะ";
+				mes "ดูเหมือนว่าเจ้าจะอยู่ที่นี่ทุกครั้งที่ข้าอยู่ที่นี่เลยนะ";
+				close;
+			}
+		} else {
+			if (gethominfo(1) >= 6009) { // Evolved Homunculus
+				mes "[Viorel]";
+				mes "หืมม ดูเหมือนเจ้าจะมีความผูกพันที่พิเศษกับ ^FF4800Homunculus^000000 ของเจ้านะ";
+				next;
+				mes "[Viorel]";
+				mes "จงกลับมาหาข้าเมื่อ ^FF4800Homunculus^000000 ตัวนั้นมี ^0000FFเลเวลถึง 99^000000";
+				close;
+			} else {
+				mes "[Viorel]";
+				mes "เจ้ายังไม่มี ^FF4800Homunculus^000000 ที่วิวัฒนาการแล้วเลยนะ...";
+				mes "อย่างที่เจ้าก็น่าจะรู้เรื่องเกี่ยวกับการวิวัฒนาการดี:";
+				next;
+				mes "[Viorel]";
+				mes "การใช้ ^0000FFStone of Sage^000000 เมื่อระดับความสนิทสนมสูงกว่า ^006400Intimate^000000 จะทำให้ ^FF4800Homunculus^000000 ก้าวข้ามไปสู่การ ^006400Evolution (วิวัฒนาการ)^000000";
+				close;
+			}
 		}
-		return;
+	}
+	mes "[Viorel]";
+	mes "การวิจัย ^FF4800Homunculus^000000 นั้นต้องใช้ทั้งเวลาและทุนทรัพย์มหาศาล";
+	mes "อย่างไรก็ตาม ข้าเชื่อว่าความมุ่งมั่นนั่นแหละคือปัจจัยที่สำคัญที่สุด";
+	next;
+	switch(select("จบการสนทนา:ท่านกำลังพูดเรื่องอะไรน่ะ?:ทำไมท่านถึงยืนอยู่ที่นี่ตลอดเวลาเลยล่ะ?")) {
+	case 1:
+		mes "[Viorel]";
+		mes "ไว้เจอกันใหม่~!";
+		close;
+	case 2:
+		mes "[Viorel]";
+		mes "เจ้าก็เห็นนี่ ว่าพวก ^006400Alchemist^000000 น่ะมีธรรมชาติที่ชอบสืบเสาะค้นหา";
+		mes "โดยเฉพาะคนอย่างข้า ที่คิดจะสร้างแม้กระทั่งสิ่งมีชีวิตขึ้นมาเองเลยล่ะ";
+		next;
+		mes "[Viorel]";
+		mes "เจ้าต้องลองวิจัยเกี่ยวกับ ^FF4800Homunculus^000000 ดูถึงจะเข้าใจ";
+		mes "ตอนนี้ ข้าขอตัวก่อนล่ะ!";
+		close;
+	case 3:
+		emotion ET_SWEAT;
+		mes "[Viorel]";
+		mes "อะไรกัน มันแปลกมากเลยเหรอที่จะเห็น Alchemist อยู่ในห้องแล็บของตัวเองน่ะ?";
+		mes "ทำไมเป็นงั้นไปล่ะ?";
+		close;
+	}
+	end;
+L_CheckHomunculus:
+	if (gethominfo(6) < 99 || (gethominfo(1) < 6009 || gethominfo(1) > 6016)) { // Not level 99+ evolved Homunculus
+		mes "[Viorel]";
+		mes "หือ?";
+		mes "Homunculus ที่เจ้าเคยมีอยู่ไหนซะแล้วล่ะ?";
+		mes "บางทีข้าอาจจะจำสลับกับคนอื่นก็ได้มั้ง...";
+		next;
+		mes "[Viorel]";
+		mes ".......";
+		mes " ";
+		mes "(ดูเหมือนเขากำลังคิดอะไรบางอย่างอยู่)";
+		next;
+		emotion ET_SMILE;
+		mes "[Viorel]";
+		mes "ฮะ ฮะ~";
+		mes "ข้าว่าข้าจำเจ้าสลับกับคนอื่นจริงๆ นั่นแหละ";
+		mes "งั้นข้าขอตัวก่อนนะ";
+		close;
+	}
+	return;
 }
 
 que_house_s,24,47,3	script	Viorel#homun_s	542,{
-		if (checkquest(4155) > -1) {
-				emotion ET_HUM;
-				mes "[วิโอเรล]";
-				mes "ดี.";
-				mes "ฉันเห็นว่าคุณหมายถึงธุรกิจ";
-				next;
-				playbgm "33.mp3"; // Yuna Song
-				mes "[วิโอเรล]";
-				mes "บางทีคุณอาจจะเห็นด้วย";
-				mes "ขณะนี้ ^FF4800Homunculus^000000 ของคุณไม่ได้อยู่ในสถานะสมบูรณ์แบบ";
-				next;
-				mes "[วิโอเรล]";
-				mes "ในปัจจุบันมีการศึกษาเกี่ยวกับการเจริญเติบโตของ ^FF4800Homunculus^000000 กำลังเกิดขึ้นอย่างต่อเนื่อง";
-				mes "แต่ฉันเชื่อว่าฉันได้พบกับสิ่งพิเศษบางอย่าง";
-				next;
-				mes "[วิโอเรล]";
-				mes "เพื่อที่จะทำลายข้อจำกัดปัจจุบันของ ^FF4800Homunculus^000000 การกลายพันธุ์จะต้องเกิดขึ้น";
-				next;
-				switch(select("Like, biological experiments...?!:Well, yeah, naturally.:I don't want to hurt my Homunculus!")) {
-				case 1:
-						emotion ET_PROFUSELY_SWEAT;
-						mes "[วิโอเรล]";
-						mes "อย่าแสดงท่าแปลกใจมากนัก";
-						mes "ตอนนี้จริยธรรมในทางชีววิทยาค่อนข้างจะคลุมเครือใช่ไหม?";
-						mes "ฉันหมายถึง...";
-						next;
-						mes "[วิโอเรล]";
-						mes "หน้าที่ของฉันคือศึกษาศักยภาพที่แท้จริงของ ^FF4800Homunculus^000000";
-						next;
-						mes "[วิโอเรล]";
-						mes "จนถึงตอนนี้ โฮมุนคูลัสยังไม่ได้แสดงศักยภาพของมันออกมาเต็มที่ แต่ฉันรู้ว่าฉันใกล้จะประสบความสำเร็จแล้ว";
-						next;
-						break;
-				case 2:
-						emotion ET_OHNO;
-						mes "[วิโอเรล]";
-						mes "ใช่.";
-						mes "ฉันดีใจที่คุณไม่อารมณ์เสีย";
-						mes "การกลายพันธุ์,";
-						mes "คำที่ปลุกปั่นความชั่วร้ายในจิตใจของคนธรรมดา";
-						mes "ซึ่งทำให้การวิจัยของฉันดำเนินการได้ยากมาก";
-						next;
-						mes "[วิโอเรล]";
-						mes "คุณจำได้ไหม?";
-						mes "^005DFFKellasus^000000 แห่ง ^8B4513Lighthalzen^000000 ผู้บุกเบิกการวิจัย ^FF4800Homunculus^000000";
-						next;
-						mes "[วิโอเรล]";
-						mes "ฉันเชื่อว่างานวิจัยชิ้นนี้เป็นไปตามคำสัญญาที่ให้ไว้กับ ^005DFFKellasus^000000 ผู้ให้ความรู้และความเชื่อ";
-						next;
-						break;
-				case 3:
-						emotion ET_SWEAT;
-						mes "[วิโอเรล]";
-						mes "ฉันเข้าใจความกังวลของคุณ";
-						mes "แต่ฉันต้องการรับรองกับคุณว่าการกลายพันธุ์นี้ไม่ได้เป็นอันตรายหรือทำร้าย ^FF4800Homunculus^000000 ของคุณ";
-						next;
-						mes "[วิโอเรล]";
-						mes "ในทางตรงกันข้าม ^FF4800Homunculus^000000 ในปัจจุบันกำลังประสบกับความเจ็บปวดจากความไม่สมบูรณ์แบบ ไม่สามารถใช้ศักยภาพที่พวกเขามีได้อย่างเต็มที่";
-						mes "ยิ่งกว่านั้น ^FF4800Homunculus^000000 เหล่านั้นมักถูกละทิ้ง";
-						next;
-						mes "[วิโอเรล]";
-						mes "อย่าเข้าใจฉันผิด ฉันศึกษา ^FF4800Homunculus^000000 เพราะฉันรักพวกมัน";
-						next;
-						break;
-				}
-				mes "[วิโอเรล]";
-				mes "เอาละ...ยังไงก็ตาม...";
-				mes "ฉันพบว่าการกลายพันธุ์ใหม่นี้ค่อนข้างเสถียร";
-				next;
-				mes "[วิโอเรล]";
-				mes "^006400เทคโนโลยีมีอยู่";
-				mes "และพวกเขาก็จะมีใหม่";
-				mes "ทักษะเมื่อกลายพันธุ์...^000000";
-				next;
-				mes "[วิโอเรล]";
-				mes "ผลข้างเคียงเล็กน้อย...";
-				mes "^006400รูปลักษณ์ของพวกเขาจะเปลี่ยนไป^000000";
-				mes "แต่ผมคิดว่าคุณจะพบว่ามันน่าพอใจมากทีเดียว";
-				next;
-				mes "[วิโอเรล]";
-				mes "ฉันอ้างอิงจาก ^005DFFKassibian^000000 ผู้เชี่ยวชาญด้านเทคนิค ^FF4800Homunculus^000000";
-				mes "^006400ความจริงไม่ได้อยู่แค่รูปแบบเดียว~!^000000";
-				mes "ฮ่า.";
-				next;
-				emotion ET_SPARK;
-				mes "[วิโอเรล]";
-				mes "ฉันรู้ว่ามันกะทันหันไปหน่อยแต่...";
-				mes "จะเป็นอย่างไรหากคุณเปลี่ยน ^FF4800Homunculus^000000 ของคุณให้เป็นสิ่งที่น่าทึ่งด้วยความสำเร็จอันมหัศจรรย์ของฉัน นั่นก็คือ ^006400Homunculus Mutation System^000000?";
-				next;
-				switch(select("Explore the ^006400Homunculus Mutation System^000000.:Cancel.")) {
-				case 1:
-						emotion ET_BEST;
-						mes "[วิโอเรล]";
-						mes "เลือกที่ดี.";
-						mes "ความสำเร็จซ่อนอยู่นอกกรอบความคิดแบบเดิมๆ ใช่ไหม?";
-						next;
-						mes "[วิโอเรล]";
-						mes "คนแรกที่จะมาช่วยวิจัยคือ ^005DFFJeyna^000000";
-						mes "ฉันจะส่งคุณไปที่ ^005DFFJeyna^000000";
-						mes "ที่นั่น คุณจะได้เรียนรู้เพิ่มเติมเกี่ยวกับ ^0000FFHomunculus^000000 ใหม่";
-						close2;
-						setquest 4156;
-						erasequest 4155;
-						warp "que_house_s",63,41;
-						end;
-				case 2:
-						emotion ET_THINK;
-						mes "[วิโอเรล]";
-						mes "ฉันไม่เห็นว่าทำไมคุณถึงลังเล";
-						mes "ฉันไม่ได้พยายามที่จะหลอกลวงคุณ";
-						mes "บางทีคุณอาจต้องการเวลาสักหน่อยเพื่อคิดเกี่ยวกับเรื่องนี้?";
-						next;
-						switch(select("Think about it.:I'm just going to walk away.")) {
-						case 1:
-								mes "[วิโอเรล]";
-								mes "เราจะคุยกันอีกครั้งในอีกสักครู่";
-								close;
-						case 2:
-								emotion ET_OTL;
-								mes "[วิโอเรล]";
-								mes "ความอัปยศ.";
-								mes "อย่างไรก็ตามฉันเคารพความคิดเห็นของคุณ";
-								mes "ฉันจะส่งคุณกลับไปที่ ^8B4513Laboratory^000000";
-								close2;
-								erasequest 4154;
-								erasequest 4155;
-								warp "job3_gen01",12,47;
-								end;
-						}
-				}
-		} else if (checkquest(4160) > -1) {
-				playbgm "33.mp3"; // Yuna Song
-				mes "[วิโอเรล]";
-				mes "^FF4800Homunculus^000000 ที่ฉันเห็นก่อนหน้านี้ได้กลับคืนสู่สถานะ ^0000FFembryo^000000 แล้ว";
-				mes "แปลกนิดหน่อยแต่...";
-				mes "คุณไม่จำเป็นต้องกังวลเรื่องนั้น";
-				next;
-				mes "[วิโอเรล]";
-				mes "อนึ่ง...";
-				mes "ฉันลืมบอกคุณบางอย่าง";
-				mes "เพื่อให้กระบวนการกลายพันธุ์มีเสถียรภาพ ฉันต้องมีวัสดุบางอย่างก่อน";
-				next;
-				mes "[วิโอเรล]";
-				mes "โชคดีที่คุณไม่จำเป็นต้องค้นหามันด้วยตัวเองเพราะฉันมีมันอยู่ที่นี่แล้ว";
-				mes "แต่ฉันจะต้องมี ^FF000050,000 zeny^000000 นะรู้ไหม มันเป็นค่าบริการ";
-				next;
-				mes "[วิโอเรล]";
-				mes "ฉันอยากจะทำมันฟรีๆ แต่ว่าฉันก็ไม่ได้มีเงินมากมายหรอกนะ";
-				mes "นอกจากนี้ฉันยังขาดนักลงทุนที่จะสนับสนุนการวิจัยของฉันในขณะนี้";
-				next;
-				mes "[วิโอเรล]";
-				mes "จริงๆ แล้ว ถ้าฉันมีเงินมากพอที่จะทำการวิจัยต่อ ฉันก็สามารถแก้ไขปัญหาต่างๆ ของฉันได้มาก...";
-				next;
-				mes "[วิโอเรล]";
-				mes "คุณสามารถลองทำสิ่งนี้ได้โดยมีหรือไม่มีกระบวนการทำให้เสถียรก็ได้ ขึ้นอยู่กับคุณ";
-				next;
-				mes "[วิโอเรล]";
-				mes "หากคุณเลือกสิ่งที่ไม่มั่นคง";
-				mes "การกลายพันธุ์ ฉันไม่สามารถรับประกันได้ว่าคุณจะได้รับโฮมุนคูลัสประเภทไหน";
-				mes "ยังไงก็ตามก็ขึ้นอยู่กับคุณ";
-				next;
-				switch(select("Mutation stabilization (50,000 zeny):Unstable mutation")) {
-				case 1:
-						if (Zeny < 50000) {
-								mes "[วิโอเรล]";
-								mes "ฉันไม่คิดว่าคุณจะมีเงิน ^FF000050 พัน Zeny^000000 อยู่กับตัวตอนนี้";
-								mes "กรุณานำเงิน Zeny มาเพียงพอ";
-								mes "ฉันจะรอ.";
-								mes "อยากให้ฉันส่งคุณกลับไปที่ ^8B4513Laboratory^000000 ไหม?";
-								next;
-								switch(select("No thanks.:Yes. Send me back to the Lab.")) {
-								case 1:
-										mes "[วิโอเรล]";
-										mes "ใช้ได้.";
-										mes "เจอกันใหม่ในอีกสักครู่";
-										close;
-								case 2:
-										mes "[วิโอเรล]";
-										mes "ใช้ได้.";
-										mes "ฉันจะรออยู่ที่ ^8B4513ห้องปฏิบัติการ^000000";
-										close2;
-										warp "job3_gen01",12,47;
-										end;
-								}
-						}
-						emotion ET_BEST;
-						playbgm "19.mp3"; // Under the Ground
-						mes "[วิโอเรล]";
-						mes "เลือกที่ดี.";
-						mes "เลือกจากประเภทที่แตกต่างกันของ ^0000FFHomunculus^000000";
-						next;
-						switch(select("Eira:Sera:Dieter:Bayeri:Eleanor")) {
-						case 1:
-								cutin "Mer_Eira_Card",3;
-								set .@Homunculus,6048; //MER_EIRA
-								break;
-						case 2:
-								cutin "Mer_Sera_Card",3;
-								set .@Homunculus,6050; //MER_SERA
-								break;
-						case 3:
-								cutin "Mer_Dieter_Card",3;
-								set .@Homunculus,6051; //MER_DIETER
-								break;
-						case 4:
-								cutin "Mer_Bayeri_Card",3;
-								set .@Homunculus,6049; //MER_BAYERI
-								break;
-						case 5:
-								cutin "Mer_Eleanor_Card",3;
-								set .@Homunculus,6052; //MER_ELEANOR
-								break;
-						}
-						mes "[วิโอเรล]";
-						mes "คุณแน่ใจมั้ย?";
-						next;
-						if(select("Yes.:No.") == 2) {
-								cutin "",255;
-								playbgm "33.mp3"; // Yuna Song
-								mes "[วิโอเรล]";
-								mes "ฉันเห็น.";
-								mes "ให้เวลาคิดมากขึ้น";
-								close;
-						}
-						cutin "",255;
-						mes "[วิโอเรล]";
-						mes "ยอดเยี่ยม!";
-						mes "มาเริ่มกันเลยดีกว่า";
-						next;
-						specialeffect2 EF_BASH;
-						mes "[วิโอเรล]";
-						mes "ตอนนี้โฟกัสก่อน~!";
-						mes "คุณ...ต้องการ...";
-						mes "... ความเข้มข้น.";
-						next;
-						specialeffect2 EF_PROVIDENCE;
-						mes "[วิโอเรล]";
-						mes "ดี.เกือบเสร็จแล้ว!";
-						next;
-						specialeffect2 EF_SUI_EXPLOSION;
-						set Zeny, Zeny - 50000;
-						hommutate .@Homunculus;
-						break;
-				case 2:
-						emotion ET_SCRATCH;
-						mes "[วิโอเรล]";
-						mes "ดังนั้นทางเลือกของคุณคือกระบวนการกลายพันธุ์ที่ไม่เสถียร";
-						mes "คุณเชื่อเรื่องโชคชะตามั้ย?";
-						mes "อย่างจริงจัง...";
-						mes "คุณต้องการดำเนินการต่อจริงๆหรือไม่";
-						mes "ด้วยกระบวนการผลลัพธ์แบบสุ่ม?";
-						next;
-						if(select("Go ahead. (Random Mutation):Cancel.") == 2) {
-								playbgm "33.mp3"; // Yuna Song
-								mes "[วิโอเรล]";
-								mes "ฉันเห็น.";
-								mes "ให้เวลาคิดมากขึ้น";
-								close;
-						}
-						emotion ET_THINK;
-						mes "[วิโอเรล]";
-						mes "อืม...";
-						mes "การสำรวจความรู้";
-						mes "เต็มไปด้วยความประหลาดใจ";
-						mes "-";
-						next;
-						emotion ET_SMILE;
-						mes "[วิโอเรล]";
-						mes "ฮ่า.";
-						mes "เฮ้ ฉันรู้สึกเหมือนเป็นช่างตีเหล็ก!";
-						mes "ตอนนี้เรามาเริ่มกันเลย";
-						next;
-						specialeffect2 EF_BASH;
-						mes "[วิโอเรล]";
-						mes "ตอนนี้โฟกัสก่อน~!";
-						mes "คุณ...ต้องการ...";
-						mes "... ความเข้มข้น.";
-						next;
-						specialeffect2 EF_PRESSURE;
-						mes "[วิโอเรล]";
-						mes "ตั้งใจเพิ่มอีกนิด!";
-						next;
-						specialeffect2 EF_PROVIDENCE;
-						mes "[วิโอเรล]";
-						mes "ดี.เกือบเสร็จแล้ว!";
-						next;
-						specialeffect2 EF_SUI_EXPLOSION;
-						hommutate;
-						break;
-				}
-				erasequest 4160;
-				erasequest 4154;
-				emotion ET_DELIGHT;
-				playbgm "64.mp3"; // One Fine Day
-				mes "[วิโอเรล]";
-				mes "โอเค การกลายพันธุ์เสร็จสมบูรณ์";
-				mes "โอ้โห...หัวใจไม่เต้นแรงสักจังหวะเลยใช่ไหมล่ะ?";
-				next;
-				mes "[วิโอเรล]";
-				mes "จำสิ่งที่ ^005DFFKellasus^000000 พูดได้ไหม?";
-				mes "สู่ประตูแห่งความจริง...";
-				mes "เราจะต้องดูด้วยตัวเราเอง";
-				mes "เส้นทางที่นำไปสู่สิ่งนั้น";
-				next;
-				mes "[วิโอเรล]";
-				mes "^0000ฟฟ" + strcharinfo(0) + "^000000,";
-				mes "ฉันไม่รู้จักคุณ";
-				mes "เป็นเวลานานมากแล้ว";
-				mes "แต่ฉันรู้สึกว่า";
-				mes "คุณจะประสบความสำเร็จอย่างยิ่งใหญ่";
-				next;
-				mes "[วิโอเรล]";
-				mes "ขอให้โชคดีกับการผจญภัยของคุณ";
-				mes "ฉันหวังว่า ^FF4800Homunculus^000000 ใหม่ของคุณจะโดดเด่นภายใต้การดูแลของคุณ";
-				next;
-				mes "[วิโอเรล]";
-				mes "และอย่าลืม...";
-				mes "การวิจัยของเรา";
-				mes "เพิ่งจะเริ่มต้นเท่านั้น~!";
+	if (checkquest(4155) > -1) {
+		emotion ET_HUM;
+		mes "[Viorel]";
+		mes "ดี";
+		mes "ข้าเห็นแล้วว่าเจ้าเอาจริง";
+		next;
+		playbgm "33.mp3"; // Yuna Song
+		mes "[Viorel]";
+		mes "บางทีเจ้าอาจจะเห็นด้วยนะ";
+		mes "ในตอนนี้ ^FF4800Homunculus^000000 ของเจ้ายังไม่อยู่ในสถานะที่สมบูรณ์ที่สุด";
+		next;
+		mes "[Viorel]";
+		mes "ในทุกวันนี้ การศึกษาเกี่ยวกับการเติบโตของ ^FF4800Homunculus^000000 กำลังดำเนินไปอย่างเข้มข้น";
+		mes "แต่ข้าเชื่อว่าข้าได้ค้นพบบางสิ่งที่แสนพิเศษเข้าให้แล้ว";
+		next;
+		mes "[Viorel]";
+		mes "เพื่อที่จะก้าวข้ามขีดจำกัดปัจจุบันของ ^FF4800Homunculus^000000 การกลายพันธุ์ (Mutation) จำเป็นต้องเกิดขึ้น";
+		next;
+		switch(select("เหมือนการทดลองทางชีวภาพ...?!:ก็ใช่แหละ มันเป็นเรื่องธรรมชาติ:ข้าไม่อยากทำร้าย Homunculus ของข้านะ!")) {
+		case 1:
+			emotion ET_PROFUSELY_SWEAT;
+			mes "[Viorel]";
+			mes "อย่าทำหน้าตกใจขนาดนั้นสิ";
+			mes "จริยธรรมทางชีววิทยาในตอนนี้มันค่อนข้างคลุมเครืออยู่แล้วไม่ใช่รึ?";
+			mes "ข้าหมายถึง...";
+			next;
+			mes "[Viorel]";
+			mes "มันเป็นหน้าที่ของข้าที่จะต้องศึกษาศักยภาพที่แท้จริงของ ^FF4800Homunculus^000000";
+			next;
+			mes "[Viorel]";
+			mes "ที่ผ่านมา Homunculus ยังไม่ได้แสดงศักยภาพสูงสุดออกมา แต่ข้ารู้ว่าข้าใกล้จะค้นพบทางออกที่ยิ่งใหญ่แล้ว";
+			next;
+			break;
+		case 2:
+			emotion ET_OHNO;
+			mes "[Viorel]";
+			mes "ใช่";
+			mes "ข้าดีใจที่เจ้าไม่โกรธเคือง";
+			mes "การกลายพันธุ์ (Mutation)";
+			mes "คำที่มักจะกระตุ้นความรู้สึกเลวร้ายในใจของคนทั่วไป";
+			mes "ซึ่งนั่นทำให้งานวิจัยของข้าดำเนินไปได้ยากมาก";
+			next;
+			mes "[Viorel]";
+			mes "เจ้าจำได้ไหม?";
+			mes "^005DFFKellasus^000000 แห่ง ^8B4513Lighthalzen^000000 ผู้บุกเบิกการวิจัย ^FF4800Homunculus^000000";
+			next;
+			mes "[Viorel]";
+			mes "ข้าเชื่อว่างานวิจัยนี้จะช่วยเติมเต็มคำสัญญาที่เคยให้ไว้กับ ^005DFFKellasus^000000 ผู้มอบความรู้และความเชื่อมั่น";
+			next;
+			break;
+		case 3:
+			emotion ET_SWEAT;
+			mes "[Viorel]";
+			mes "ข้าเข้าใจในความกังวลของเจ้า";
+			mes "แต่ข้าอยากให้เจ้ามั่นใจว่าการกลายพันธุ์นี้จะไม่ทำอันตรายหรือทำให้ ^FF4800Homunculus^000000 ของเจ้าเจ็บปวดเลย";
+			next;
+			mes "[Viorel]";
+			mes "ในทางตรงกันข้าม ^FF4800Homunculus^000000 ในปัจจุบันกำลังเจ็บปวดจากความไม่สมบูรณ์แบบ เพราะไม่สามารถใช้ศักยภาพที่ควรจะมีได้";
+			mes "ยิ่งไปกว่านั้น ^FF4800Homunculus^000000 เหล่านั้นมักถูกทอดทิ้งบ่อยครั้ง";
+			next;
+			mes "[Viorel]";
+			mes "อย่าเข้าใจข้าผิดไปนะ ข้าที่ศึกษาวิจัย ^FF4800Homunculus^000000 ก็เพราะข้ารักพวกมัน";
+			next;
+			break;
+		}
+		mes "[Viorel]";
+		mes "เอาล่ะ ยังไงก็แล้วแต่...";
+		mes "ข้าพบว่าการกลายพันธุ์รูปแบบใหม่นี้ค่อนข้างมีความเสถียรมากทีเดียว";
+		next;
+		mes "[Viorel]";
+		mes "^006400เทคโนโลยีนี้มีอยู่จริง";
+		mes "และพวกมันก็น่าจะมีสกิลใหม่ๆ";
+		mes "เมื่อเกิดการกลายพันธุ์ขึ้น...^000000";
+		next;
+		mes "[Viorel]";
+		mes "ผลข้างเคียงเล็กน้อยก็คือ...";
+		mes "^006400รูปลักษณ์ของพวกมันจะเปลี่ยนไป^000000";
+		mes "แต่ข้าคิดว่าเจ้าจะพบว่ามันน่าพึงพอใจมากเลยล่ะ";
+		next;
+		mes "[Viorel]";
+		mes "ข้าขออ้างอิงคำพูดของ ^005DFFKassibian^000000 ผู้เชี่ยวชาญด้านเทคนิคของ ^FF4800Homunculus^000000";
+		mes "^006400ความจริงไม่ได้มีเพียงรูปแบบเดียวเสมอไปนะ~!^000000";
+		mes "ฮะ ฮะ";
+		next;
+		emotion ET_SPARK;
+		mes "[Viorel]";
+		mes "ข้าอาจจะพูดปุบปับไปหน่อย แต่ว่า...";
+		mes "สนใจจะเปลี่ยน ^FF4800Homunculus^000000 ของเจ้าให้กลายเป็นสิ่งที่น่าเหลือเชื่อด้วยผลงานที่แสนอัศจรรย์ของข้าอย่าง ^006400Homunculus Mutation System^000000 ดูไหมล่ะ?";
+		next;
+		switch(select("สำรวจระบบ ^006400Homunculus Mutation System^000000:ยกเลิก")) {
+		case 1:
+			emotion ET_BEST;
+			mes "[Viorel]";
+			mes "เลือกได้ดีนี่";
+			mes "ความสำเร็จมักซ่อนอยู่นอกกรอบความคิดแบบเดิมๆ จริงไหมล่ะ?";
+			next;
+			mes "[Viorel]";
+			mes "คนแรกที่จะมาช่วยเหลืองานวิจัยนี้ก็คือ ^005DFFJeyna^000000";
+			mes "ข้าจะส่งเจ้าไปหา ^005DFFJeyna^000000";
+			mes "ที่นั่น เจ้าจะได้เรียนรู้เพิ่มเติมเกี่ยวกับ ^0000FFHomunculus^000000 ตัวใหม่";
+			close2;
+			setquest 4156;
+			erasequest 4155;
+			warp "que_house_s",63,41;
+			end;
+		case 2:
+			emotion ET_THINK;
+			mes "[Viorel]";
+			mes "ข้าไม่เห็นว่าเจ้าจะต้องลังเลเรื่องอะไรเลย";
+			mes "ข้าไม่ได้พยายามจะหลอกลวงเจ้านะ";
+			mes "บางทีเจ้าอาจต้องการเวลาคิดดูสักหน่อย?";
+			next;
+			switch(select("ขอนำกลับไปคิดดูก่อน:ข้าจะเดินจากไปเฉยๆ นี่แหละ")) {
+			case 1:
+				mes "[Viorel]";
+				mes "งั้นเดี๋ยวเราค่อยคุยกันใหม่นะ";
 				close;
-		} else {
-				for(set .@i,4154; .@i<=4160; set .@i,.@i+1) {
-						if (checkquest(.@i) > -1)
-								erasequest .@i;
-				}
-				mes "[วิโอเรล]";
-				mes "ตอนนี้งานทั้งหมดเสร็จเรียบร้อยแล้ว ฉันขอให้คุณลาไปก่อน";
-				mes "ฉันต้องการที่จะพักฟื้น";
+			case 2:
+				emotion ET_OTL;
+				mes "[Viorel]";
+				mes "ช่างน่าเสียดาย";
+				mes "อย่างไรก็ตาม ข้าเคารพการตัดสินใจของเจ้า";
+				mes "ข้าจะส่งเจ้ากลับไปที่ ^8B4513Laboratory^000000";
 				close2;
+				erasequest 4154;
+				erasequest 4155;
 				warp "job3_gen01",12,47;
 				end;
+			}
 		}
+	} else if (checkquest(4160) > -1) {
+		playbgm "33.mp3"; // Yuna Song
+		mes "[Viorel]";
+		mes "^FF4800Homunculus^000000 ที่ข้าเห็นก่อนหน้านี้ได้กลับสู่สภาวะ ^0000FFEmbryo^000000 แล้วสินะ";
+		mes "ดูแปลกไปนิดหน่อย แต่ว่า...";
+		mes "เจ้าไม่ต้องกังวลไปหรอก";
+		next;
+		mes "[Viorel]";
+		mes "จะว่าไปแล้ว...";
+		mes "ข้าลืมบอกอะไรเจ้าไปอย่างนึง";
+		mes "เพื่อที่จะทำให้กระบวนการกลายพันธุ์ (Mutation) มีความเสถียร ข้าจำเป็นต้องใช้ไอเทมบางอย่างก่อน";
+		next;
+		mes "[Viorel]";
+		mes "โชคดีที่เจ้าไม่ต้องไปหาพวกมันมาเอง เพราะข้ามีเตรียมไว้ที่นี่หมดแล้ว..";
+		mes "แต่ว่า ข้าขอรับ ^FF000050,000 Zeny^000000 เป็นค่าบริการหน่อยแล้วกัน";
+		next;
+		mes "[Viorel]";
+		mes "ข้าก็อยากจะทำให้ฟรีๆ อยู่หรอกนะ แต่ข้าเองก็ไม่ได้มีเงินถุงเงินถังขนาดนั้นน่ะ";
+		mes "แถมตอนนี้ข้าก็ยังขาดนักลงทุนที่จะมาสนับสนุนงานวิจัยของข้าอยู่ด้วย";
+		next;
+		mes "[Viorel]";
+		mes "ความจริงแล้ว ถ้าข้ามี Zeny มากพอที่จะทำการวิจัยต่อไป ข้าก็คงแก้ปัญหาของข้าได้ตั้งเยอะแล้ว...";
+		next;
+		mes "[Viorel]";
+		mes "ยังไงก็ตาม เจ้าสามารถเลือกที่จะทำกระบวนการนี้แบบมีตัวช่วยเสริมความเสถียรหรือไม่ก็ได้นะ ขึ้นอยู่กับเจ้าเลย";
+		next;
+		mes "[Viorel]";
+		mes "ถ้าเจ้าเลือกการกลายพันธุ์แบบไม่เสถียร";
+		mes "ข้าก็รับประกันไม่ได้นะว่าเจ้าจะได้ Homunculus แบบไหนไป";
+		mes "ก็นั่นแหละ สุดแล้วแต่เจ้าจะเลือก";
+		next;
+		switch(select("การกลายพันธุ์แบบเสถียร (50,000 Zeny):การกลายพันธุ์แบบไม่เสถียร")) {
+		case 1:
+			if (Zeny < 50000) {
+				mes "[Viorel]";
+				mes "ข้าไม่คิดว่าตอนนี้เจ้าจะมี ^FF000050,000 Zeny^000000 อยู่กับตัวนะ";
+				mes "กรุณานำ Zeny มาให้พอเถอะ";
+				mes "ข้าจะรออยู่ตรงนี้ล่ะ";
+				mes "อยากให้ข้าส่งกลับไปที่ ^8B4513Laboratory^000000 ก่อนไหม?";
+				next;
+				switch(select("ไม่ล่ะ ขอบคุณ:ใช่ ส่งข้ากลับไปที่ Lab ที")) {
+				case 1:
+					mes "[Viorel]";
+					mes "เอาล่ะ";
+					mes "งั้นเดี๋ยวเจอกันนะ";
+					close;
+				case 2:
+					mes "[Viorel]";
+					mes "เอาล่ะ";
+					mes "ข้าจะรออยู่ที่ ^8B4513Laboratory^000000 นะ";
+					close2;
+					warp "job3_gen01",12,47;
+					end;
+				}
+			}
+			emotion ET_BEST;
+			playbgm "19.mp3"; // Under the Ground
+			mes "[Viorel]";
+			mes "เลือกได้ดีนี่";
+			mes "จงเลือกประเภทของ ^0000FFHomunculus^000000 ที่ต้องการเลย";
+			next;
+			switch(select("Eira:Sera:Dieter:Bayeri:Eleanor")) {
+			case 1:
+				cutin "Mer_Eira_Card",3;
+				set .@Homunculus,6048; //MER_EIRA
+				break;
+			case 2:
+				cutin "Mer_Sera_Card",3;
+				set .@Homunculus,6050; //MER_SERA
+				break;
+			case 3:
+				cutin "Mer_Dieter_Card",3;
+				set .@Homunculus,6051; //MER_DIETER
+				break;
+			case 4:
+				cutin "Mer_Bayeri_Card",3;
+				set .@Homunculus,6049; //MER_BAYERI
+				break;
+			case 5:
+				cutin "Mer_Eleanor_Card",3;
+				set .@Homunculus,6052; //MER_ELEANOR
+				break;
+			}
+			mes "[Viorel]";
+			mes "เจ้าแน่ใจแล้วนะ?";
+			next;
+			if(select("ใช่:ไม่") == 2) {
+				cutin "",255;
+				playbgm "33.mp3"; // Yuna Song
+				mes "[Viorel]";
+				mes "ข้าเข้าใจละ";
+				mes "ลองใช้เวลาคิดดูอีกสักนิดเถอะ";
+				close;
+			}
+			cutin "",255;
+			mes "[Viorel]";
+			mes "ยอดเยี่ยม!";
+			mes "งั้นเรามาเริ่มกันเลย";
+			next;
+			specialeffect2 EF_BASH;
+			mes "[Viorel]";
+			mes "เพ่งสมาธิไว้~!";
+			mes "เจ้า... ต้องการ...";
+			mes "... สมาธิที่แน่วแน่";
+			next;
+			specialeffect2 EF_PROVIDENCE;
+			mes "[Viorel]";
+			mes "ดีมาก ใกล้จะเสร็จแล้ว!";
+			next;
+			specialeffect2 EF_SUI_EXPLOSION;
+			set Zeny, Zeny - 50000;
+			hommutate .@Homunculus;
+			break;
+		case 2:
+			emotion ET_SCRATCH;
+			mes "[Viorel]";
+			mes "งั้นทางเลือกของเจ้าคือ กระบวนการกลายพันธุ์แบบไม่เสถียรสินะ";
+			mes "เจ้าเชื่อในเรื่องโชคชะตาด้วยงั้นเหรอ?";
+			mes "จริงจังนะเนี่ย...";
+			mes "เจ้าต้องการจะดำเนินการต่อจริงๆ น่ะเหรอ";
+			mes "ด้วยกระบวนการที่ผลลัพธ์จะเป็นการสุ่มแบบนี้น่ะ?";
+			next;
+			if(select("ลุยเลย (สุ่มการกลายพันธุ์):ยกเลิก") == 2) {
+				playbgm "33.mp3"; // Yuna Song
+				mes "[Viorel]";
+				mes "ข้าเข้าใจละ";
+				mes "ลองใช้เวลาคิดดูอีกสักนิดเถอะ";
+				close;
+			}
+			emotion ET_THINK;
+			mes "[Viorel]";
+			mes "อืมมม...";
+			mes "การสำรวจโลกแห่งความรู้น่ะ";
+			mes "มักจะเต็มไปด้วยเรื่องประหลาดใจเสมอ";
+			mes ".......";
+			next;
+			emotion ET_SMILE;
+			mes "[Viorel]";
+			mes "ฮะ ฮะ";
+			mes "เฮ้ ข้ารู้สึกเหมือนตัวเองเป็น Blacksmith เลยแฮะ!";
+			mes "เอาล่ะ มาลุยกันเลย";
+			next;
+			specialeffect2 EF_BASH;
+			mes "[Viorel]";
+			mes "เพ่งสมาธิไว้~!";
+			mes "เจ้า... ต้องการ...";
+			mes "... สมาธิที่แน่วแน่";
+			next;
+			specialeffect2 EF_PRESSURE;
+			mes "[Viorel]";
+			mes "เพ่งสมาธิอีกนิด!";
+			next;
+			specialeffect2 EF_PROVIDENCE;
+			mes "[Viorel]";
+			mes "ดีมาก ใกล้จะเสร็จแล้ว!";
+			next;
+			specialeffect2 EF_SUI_EXPLOSION;
+			hommutate;
+			break;
+		}
+		erasequest 4160;
+		erasequest 4154;
+		emotion ET_DELIGHT;
+		playbgm "64.mp3"; // One Fine Day
+		mes "[Viorel]";
+		mes "โอเค การกลายพันธุ์เสร็จสมบูรณ์แล้ว";
+		mes "เฮ้อ... ตื่นเต้นจนหัวใจเกือบหยุดเต้นเลยใช่ไหมล่ะ?";
+		next;
+		mes "[Viorel]";
+		mes "จำสิ่งที่ ^005DFFKellasus^000000 เคยพูดได้ไหม?";
+		mes "สู่ประตูแห่งความจริง...";
+		mes "เราต้องมองเห็นด้วยตาตัวเอง";
+		mes "ถึงเส้นทางที่นำไปสู่จุดนั้น";
+		next;
+		mes "[Viorel]";
+		mes "^0000FF" + strcharinfo(0) + "^000000,";
+		mes "ข้าอาจจะยังรู้จักเจ้า";
+		mes "ได้ไม่นานเท่าไหร่นักนะ";
+		mes "แต่ข้าสัมผัสได้ว่า";
+		mes "เจ้าจะประสบความสำเร็จในสิ่งที่ยิ่งใหญ่ได้แน่นอน";
+		next;
+		mes "[Viorel]";
+		mes "ขอให้เจ้าโชคดีกับการผจญภัยนะ";
+		mes "ข้าหวังว่า ^FF4800Homunculus^000000 ตัวใหม่ของเจ้าจะเก่งกาจภายใต้การดูแลของเจ้านะ";
+		next;
+		mes "[Viorel]";
+		mes "และอย่าได้ลืมเสียล่ะ";
+		mes "งานวิจัยของพวกเราน่ะ";
+		mes "มันเพิ่งจะเริ่มต้นขึ้นเท่านั้นนะ~!";
+		close;
+	} else {
+		for(set .@i,4154; .@i<=4160; set .@i,.@i+1) {
+			if (checkquest(.@i) > -1)
+				erasequest .@i;
+		}
+		mes "[Viorel]";
+		mes "ในเมื่อทุกอย่างเสร็จสิ้นแล้ว ข้าก็ขอให้เจ้าจากไปได้แล้วล่ะ";
+		mes "ข้าต้องพักผ่อนฟื้นฟูร่างกายหน่อย";
+		close2;
+		warp "job3_gen01",12,47;
+		end;
+	}
 }
 
 que_house_s,80,42,3	script	Jeyna#homun_s	558,{
-		if (checkquest(4156) > -1) {
-				playbgm "28.mp3"; // You're in Ruins
-				emotion ET_SURPRISE;
-				mes "[เจย์น่า]";
-				mes "ยินดีต้อนรับ.";
-				mes "ฉันเพิ่งได้รับข่าวจาก ^005DFFViorel^000000 ว่าคุณจะมา";
-				next;
-				emotion ET_SCRATCH;
-				mes "[เจย์น่า]";
-				mes "อนึ่ง...";
-				mes "เขาโน้มน้าวคุณให้ทำบางอย่างได้ไหม...?";
-				mes "เขามีความสามารถในการใช้คำพูด";
-				next;
-				mes "[เจย์น่า]";
-				mes "เขาต้องการพวกเขาเพราะว่านักเล่นแร่แปรธาตุเป็นคนที่อึดอัดมาก";
-				emotion ET_OHNO;
-				next;
-				mes "[เจย์น่า]";
-				mes "ยังไงก็ตาม~";
-				mes "^0000ฟฟ"+strcharinfo(0)+"^000000 และ ^005DFFViorel^000000 ดูเหมือนถั่วสองเมล็ดในฝักเดียวกัน";
-				next;
-				emotion ET_SMILE;
-				mes "[เจย์น่า]";
-				mes "ฮ่าๆๆ~ ไม่ต้องโกรธนะ";
-				mes "ผมก็คิดว่ามันเป็นสิ่งที่ดี.";
-				mes "โอ้ใช่.";
-				mes "คุณมาที่นี่เพื่อการกลายพันธุ์ ^FF4800Homunculus^000000";
-				next;
-				mes "[เจย์น่า]";
-				mes "ขณะที่ฉันเตรียมตัวอยู่บ้าง";
-				mes "ทำไมคุณไม่ลองดูบอร์ดนั้นล่ะ?";
-				mes "ระบบกลายพันธุ์โฮมุนคูลัส ^006400^00000 มีการกลายพันธุ์ใหม่ ^0000FF5 ประเภท^000000";
-				next;
-				emotion ET_SURPRISE, getnpcid(0, "Magic Board#homun_s");
-				mes "[เจย์น่า]";
-				mes "^FF4800Homunculus^000000 ของคุณสามารถกลายพันธุ์เป็นรูปแบบใดรูปแบบหนึ่งจาก 5 รูปแบบที่แตกต่างกันได้";
-				next;
-				emotion ET_AHA;
-				mes "[เจย์น่า]";
-				mes "มาดูกันดีกว่า...";
-				mes "ระบบกลายพันธุ์โฮมุนคูลัส ^006400^00000 ประกอบไปด้วยวิวัฒนาการใหม่ของโฮมุนคูลัส ^0000FF^000000 ปกติ";
-				mes "หลังจากที่พวกมันกลายพันธุ์ ทักษะที่เรียนรู้มาก่อนหน้านี้ทั้งหมดจะยังคงอยู่เช่นกัน";
-				next;
-				mes "[เจย์น่า]";
-				mes "กล่าวอีกนัยหนึ่ง...";
-				mes "แม้ว่าคุณจะเปลี่ยนผู้ใช้เวทมนตร์ ^FF4800Vanilmirth^000000 เป็นประเภทนักสู้ก็ตาม";
-				mes "ทักษะเช่น Caprice จะเป็น";
-				mes "^006400ยังคงอยู่และใช้งานได้แม้หลังจากการกลายพันธุ์^000000";
-				next;
-				emotion ET_SURPRISE, getnpcid(0, "Magic Board#homun_s");
-				mes "[เจย์น่า]";
-				mes "ลองดูกระดานมายากลที่อยู่ข้างหลังฉันแล้วตัดสินใจด้วยตัวคุณเอง";
-				close2;
-				setquest 4157;
-				erasequest 4156;
-				end;
-		} else if (checkquest(4157) > -1) {
-				emotion ET_QUESTION;
-				mes "[เจย์น่า]";
-				mes "ลองดูกระดานข้างหลังฉันทางด้านขวาสิ";
-				close2;
-				emotion ET_SURPRISE, getnpcid(0, "Magic Board#homun_s");
-				end;
-		} else if (checkquest(4158) > -1) {
-				playbgm "28.mp3"; // You're in Ruins
-				disable_items;
-				mes "[เจย์น่า]";
-				mes "โอเค ฉันก็พร้อมแล้วเหมือนกัน";
-				mes "เพื่อที่จะย้อนกระบวนการนี้กลับไป ฉันจำเป็นต้องมีโฮมุนคูลัสในรูปแบบเอ็มบริโอ";
-				next;
-				callsub L_CheckHomunculus;
-				if (checkweight(6415,1) == 0) {
-						mes "[เจย์น่า]";
-						mes "แต่,";
-						mes "คุณไม่มีพื้นที่เพียงพอที่จะพก ^0000FFembryo^000000";
-						mes "กรุณากลับมาพร้อมพื้นที่ว่างในกระเป๋าเพียงพอ";
-						next;
-						mes "[เจย์น่า]";
-						mes "กรุณาส่งกลับไปยัง ^8B4513ห้องปฏิบัติการ^000000.";
-						mes "คุณจะพบ ^005DFFViorel^000000 ได้ที่ ^8B4513Laboratory^000000 เมื่อคุณเอาของในกระเป๋าออกแล้ว";
-						next;
-						mes "[เจย์น่า]";
-						mes "เมื่อคุณจัดการสัมภาระของคุณเสร็จแล้ว ให้ขอให้ ^005DFFViorel^000000 ให้ส่งคุณกลับมาที่นี่";
-						mes "ไปเอาของในกระเป๋าไปได้เลย~!";
-						close2;
-						warp "job3_gen01",12,47;
-						end;
-				}
-				mes "[เจย์น่า]";
-				mes "ตอนนี้ก็ถึงเวลาที่จะต้องตัดสินใจแล้ว";
-				mes "เพื่อผ่านการกลายพันธุ์ไปสู่ ??^0000FFHomunculus^000000 ใหม่ด้วยระบบ Homunculus Mutation";
-				mes "คุณต้องผ่านกระบวนการถดถอยเพื่อเปลี่ยนโฮมุนคูลัสกลับสู่สถานะ ^0000FFembryo^000000";
-				next;
-				mes "[เจย์น่า]";
-				mes "และ...";
-				mes "^006400คุณไม่สามารถใช้ความสามารถเรียกโฮมุนคูลัสได้จนกว่ากระบวนการจะเสร็จสิ้น^000000";
-				mes "มันจะไม่นานดังนั้นอย่าออกนอกเรื่องไป";
-				next;
-				mes "[เจย์น่า]";
-				mes "ก็โปรดตัดสินใจได้เลย.";
-				mes "คุณต้องการดำเนินการต่อด้วยระบบ ^0000FFHomunculus Mutation System^000000 ใหม่หรือไม่";
-				next;
-				switch(select("Yes, I do.:I need to think more.")) {
-				case 1:
-						if (checkhomcall() == 1) {
-								mes "[เจย์น่า]";
-								mes "โอ้ รอก่อนนะ";
-								mes "เพื่อดำเนินการกลายพันธุ์ต่อไป คุณต้องปลุกโฮมุนคูลัสจากสถานะของการกลายเป็นไอ";
-								next;
-								mes "[เจย์น่า]";
-								mes "กลับมาหลังจากที่คุณทำสิ่งนั้นเสร็จแล้ว";
-								close;
-						}
-						emotion ET_BEST;
-						mes "[เจย์น่า]";
-						mes "คิดดีจังเลย.";
-						mes "สำหรับนักเล่นแร่แปรธาตุอย่างพวกเรา มันเป็นเรื่องที่ยอมรับไม่ได้ที่จะกลัวการท้าทาย";
-						next;
-						playbgm "01.mp3"; // Title
-						mes "[เจย์น่า]";
-						mes "ตอนนี้ฉันต้องการให้คุณมีสมาธิ";
-						next;
-						specialeffect2 EF_ABSORBSPIRITS;
-						mes "[เจย์น่า]";
-						mes "เราจำเป็นต้อง...";
-						mes "คงความเสถียรไว้อีกนิดหน่อย";
-						mes "-";
-						next;
-						specialeffect2 EF_CURE;
-						mes "[เจย์น่า]";
-						mes "ในอีกไม่กี่นาที ^FF4800Homunculus^000000 จะกลับไปสู่สภาพตัวอ่อน";
-						next;
-						specialeffect2 EF_HOLYHIT;
-						mes "[เจย์น่า]";
-						mes "เข้าสู่ตัวอ่อนพิเศษ...";
-						next;
-						callsub L_CheckHomunculus;
-						specialeffect2 EF_BLESSING;
-						morphembryo;
-						setquest 4159;
-						erasequest 4158;
-						emotion ET_DELIGHT;
-						mes "[เจย์น่า]";
-						mes "โอ้โห~ เสร็จเรียบร้อย";
-						mes "อืม สภาพมันก็แปลกนิดหน่อย";
-						next;
-						emotion ET_SMILE;
-						mes "[เจย์น่า]";
-						mes "ฉันเดาว่ามันจะดีเอง";
-						mes "อย่าสูญเสีย ^0000FFStrange Embryo^000000 นั้นไป";
-						mes "อีกด้วย...";
-						next;
-						mes "[เจย์น่า]";
-						mes "อย่าทำอะไรก็ตาม เช่น การเปลี่ยนงาน หรืออะไรก็ตามในลักษณะนั้น ก่อนที่กระบวนการจะสิ้นสุดลง";
-						mes "หากเป็นเช่นนั้น คุณ ^0000FF"+strcharinfo(0)+"^000000 อาจสูญเสียความสามารถทั้งหมดที่คุณมีเหนือโฮมุนคูลัส";
-						next;
-						mes "[เจย์น่า]";
-						mes "การใช้สมาธิทั้งหมดทำให้ฉันเหนื่อย";
-						mes "ฉันจะแค่เอาน้ำหนึ่งแก้ว";
-						close;
-				case 2:
-						playbgm "28.mp3"; // You're in Ruins
-						emotion ET_OHNO;
-						mes "[เจย์น่า]";
-						mes "บางทีฉันอาจไม่ควรถามตั้งแต่แรก";
-						close;
-				}
-		} else if (checkquest(4159) > -1 || checkquest(4160) > -1) {
-				playbgm "28.mp3"; // You're in Ruins
-				mes "[เจย์น่า]";
-				mes "^005DFFViorel^000000 จะทำการกลายพันธุ์ให้เสร็จสิ้น";
-				mes "ตอนนี้เป็นเวลาของฉันที่จะต้องบอกลาแล้ว";
-				next;
-				mes "[เจย์น่า]";
-				mes "มันสั้นแต่ก็ดีใจที่ได้พบคุณ";
-				mes "เราคงพบกันใหม่อีกครั้งหนึ่ง.";
-				next;
-				mes "[เจย์น่า]";
-				mes "ขอให้โชคดีนะ~!";
-				close2;
-				setquest 4160;
-				erasequest 4159;
-				warp "que_house_s",19,42;
-				end;
-		} else {
-				if (checkquest(4154) > -1)
-						erasequest 4154;
-				mes "[เจย์น่า]";
-				mes "เฮ้ คุณเข้ามาที่นี่ได้ยังไง?";
-				mes "ออกไปก่อนนะ ฉันเปลี่ยนเสื้อผ้า~!";
-				close2;
-				warp "job3_gen01",12,47;
-				end;
-		}
+	if (checkquest(4156) > -1) {
+		playbgm "28.mp3"; // You're in Ruins
+		emotion ET_SURPRISE;
+		mes "[Jeyna]";
+		mes "ยินดีต้อนรับ";
+		mes "ข้าเพิ่งได้รับข่าวจาก ^005DFFViorel^000000 ว่าเจ้ากำลังมาพอดี";
+		next;
+		emotion ET_SCRATCH;
+		mes "[Jeyna]";
+		mes "จะว่าไปแล้ว...";
+		mes "เขากล่อมให้เจ้าทำเรื่องอะไรบางอย่างไปหรือเปล่าน่ะ...?";
+		mes "เขาน่ะมีวิธีพูดที่โน้มน้าวคนเก่งจะตายไป";
+		next;
+		mes "[Jeyna]";
+		mes "เขาจำเป็นต้องมีทักษะแบบนั้นแหละ เพราะพวก Alchemist น่ะมักจะเป็นคนที่น่าอึดอัดจะตาย";
+		emotion ET_OHNO;
+		next;
+		mes "[Jeyna]";
+		mes "เอาเถอะ~";
+		mes "ดูเหมือนว่า ^0000FF"+strcharinfo(0)+"^000000 กับ ^005DFFViorel^000000 จะเข้ากันได้เป็นปี่เป็นขลุ่ยเลยนะ";
+		next;
+		emotion ET_SMILE;
+		mes "[Jeyna]";
+		mes "ฮะ ฮะ ฮะ~ ไม่ได้จะว่าอะไรนะ";
+		mes "ข้าว่ามันก็เป็นเรื่องที่ดีแล้วล่ะ";
+		mes "โอ้ ใช่สิ";
+		mes "เจ้ามาที่นี่เพื่อเรื่องการกลายพันธุ์ (Mutation) ของ ^FF4800Homunculus^000000 สินะ";
+		next;
+		mes "[Jeyna]";
+		mes "ในขณะที่ข้ากำลังเตรียมตัว";
+		mes "ทำไมไม่ลองไปดูที่กระดานนั่นดูล่ะ?";
+		mes "ระบบ ^006400Homunculus Mutation System^000000 มีการกลายพันธุ์ใหม่ ^0000FF5 รูปแบบ^000000 ด้วยกันนะ";
+		next;
+		emotion ET_SURPRISE, getnpcid(0, "Magic Board#homun_s");
+		mes "[Jeyna]";
+		mes "^FF4800Homunculus^000000 ของเจ้าสามารถกลายพันธุ์ไปเป็นรูปแบบไหนก็ได้ใน 5 รูปแบบนี้";
+		next;
+		emotion ET_AHA;
+		mes "[Jeyna]";
+		mes "มาดูซิ...";
+		mes "ระบบ ^006400Homunculus Mutation System^000000 จะรวมถึงการวิวัฒนาการใหม่ๆ ของ ^0000FFHomunculus^000000 ปกติ";
+		mes "หลังจากพวกมันกลายพันธุ์แล้ว สกิลทั้งหมดที่เคยเรียนรู้มาจะยังคงอยู่เหมือนเดิมนะ";
+		next;
+		mes "[Jeyna]";
+		mes "พูดอีกอย่างก็คือ...";
+		mes "แม้ว่าเจ้าจะเปลี่ยนสายจากผู้ใช้เวทมนตร์อย่าง ^FF4800Vanilmirth^000000 ไปเป็นสายต่อสู้";
+		mes "สกิลอย่าง Caprice ก็จะยัง ^006400ถูกคงไว้และใช้งานได้แม้จะผ่านการกลายพันธุ์แล้วก็ตาม^000000";
+		next;
+		emotion ET_SURPRISE, getnpcid(0, "Magic Board#homun_s");
+		mes "[Jeyna]";
+		mes "ลองดูที่กระดานเวทมนตร์ (Magic Board) ด้านหลังข้านี่สิ แล้วก็ลองตัดสินใจดูนะ";
+		close2;
+		setquest 4157;
+		erasequest 4156;
 		end;
-L_CheckHomunculus:
-		if (gethominfo(6) < 99 || (gethominfo(1) < 6009 || gethominfo(1) > 6016)) { // Not level 99+ evolved Homunculus
-				mes "[เจย์น่า]";
-				mes "เฮ้ รอก่อน";
-				mes "สภาพของ ^FF4800Homunculus^000000 ไม่เหมาะสม";
-				mes "นั่นใกล้แล้ว";
-				next;
-				mes "[เจย์น่า]";
-				mes "การใช้ระบบ Homunculus Mutation";
-				mes "ที่จะเปลี่ยนไปเป็นใหม่";
-				mes "^FF4800โฮมุนคูลัส^000000,";
-				mes "โฮมุนคูลัส^006400จะต้องมีเลเวลมากกว่า 99 และพัฒนาแล้ว^000000";
-				next;
-				mes "[เจย์น่า]";
-				mes "กลับมาที่ ^005DFFViorel^000000 เมื่อคุณพร้อม";
-				mes "แล้วเจอกันใหม่นะคะ~!";
-				close2;
-				erasequest 4154;
-				erasequest 4158;
-				warp "job3_gen01",12,47;
-				end;
+	} else if (checkquest(4157) > -1) {
+		emotion ET_QUESTION;
+		mes "[Jeyna]";
+		mes "ลองดูที่กระดานด้านหลังข้า ทางด้านขวานะ";
+		close2;
+		emotion ET_SURPRISE, getnpcid(0, "Magic Board#homun_s");
+		end;
+	} else if (checkquest(4158) > -1) {
+		playbgm "28.mp3"; // You're in Ruins
+		disable_items;
+		mes "[Jeyna]";
+		mes "โอเค ข้าเองก็พร้อมแล้วเหมือนกัน";
+		mes "เพื่อจะเริ่มกระบวนการในตอนนี้ ข้าต้องการให้ Homunculus อยู่ในสถานะตัวอ่อน (Embryo)";
+		next;
+		callsub L_CheckHomunculus;
+		if (checkweight(6415,1) == 0) {
+			mes "[Jeyna]";
+			mes "แต่ว่า";
+			mes "เจ้าไม่มีพื้นที่ว่างพอที่จะถือไอเทม ^0000FFEmbryo^000000 เลยนะ";
+			mes "กรุณากลับมาพร้อมกับพื้นที่ว่างในกระเป๋าที่มากพอนะ";
+			next;
+			mes "[Jeyna]";
+			mes "กรุณากลับไปที่ ^8B4513Laboratory^000000 ก่อน";
+			mes "เจ้าสามารถหาตัว ^005DFFViorel^000000 ได้ที่ ^8B4513Laboratory^000000 เมื่อเจ้าจัดการเคลียร์กระเป๋าเสร็จแล้ว";
+			next;
+			mes "[Jeyna]";
+			mes "เมื่อเจ้าเคลียร์พื้นที่ในกระเป๋าเรียบร้อยแล้ว ก็ขอให้ ^005DFFViorel^000000 ส่งเจ้ากลับมาที่นี่นะ";
+			mes "ไปจัดการกระเป๋าของเจ้าซะ!";
+			close2;
+			warp "job3_gen01",12,47;
+			end;
 		}
-		return;
+		mes "[Jeyna]";
+		mes "ได้เวลาตัดสินใจแล้วล่ะ";
+		mes "ในการจะกลายพันธุ์ไปเป็น ^0000FFHomunculus^000000 ตัวใหม่ด้วยระบบ Homunculus Mutation System นั้น";
+		mes "เจ้าต้องผ่านกระบวนการย้อนกลับ (Regression) เพื่อทำให้ Homunculus กลับไปเป็นสถานะ ^0000FFEmbryo^000000 อีกครั้ง";
+		next;
+		mes "[Jeyna]";
+		mes "และ...";
+		mes "^006400เจ้าจะไม่สามารถใช้สกิล Call Homunculus ได้จนกว่ากระบวนการจะเสร็จสมบูรณ์^000000";
+		mes "มันใช้เวลาไม่นานหรอก เพราะงั้นอย่าเดินเตร็ดเตร่ไปไหนล่ะ";
+		next;
+		mes "[Jeyna]";
+		mes "ดังนั้น โปรดตัดสินใจ";
+		mes "เจ้าต้องการจะดำเนินการกับระบบ ^0000FFHomunculus Mutation System^000000 ใหม่นี้หรือไม่?";
+		next;
+		switch(select("ใช่ ข้าต้องการ:ข้าขอคิดดูอีกหน่อย")) {
+		case 1:
+			if (checkhomcall() == 1) {
+				mes "[Jeyna]";
+				mes "โอ้ เดี๋ยวรอเดี๋ยวนะ";
+				mes "ในการจะดำเนินการกลายพันธุ์ เจ้าต้องเรียก Homunculus ออกมาจากสถานะ Vaporization ก่อน";
+				next;
+				mes "[Jeyna]";
+				mes "จงกลับมาหลังจากที่เจ้าเรียกมันออกมาแล้วนะ";
+				close;
+			}
+			emotion ET_BEST;
+			mes "[Jeyna]";
+			mes "ความคิดดีนี่";
+			mes "เป็นเรื่องที่ยอมรับไม่ได้หรอกสำหรับ Alchemist อย่างพวกเราที่จะหวาดกลัวต่อความท้าทาย";
+			next;
+			playbgm "01.mp3"; // Title
+			mes "[Jeyna]";
+			mes "ตอนนี้ ข้าต้องการให้เจ้าเพ่งสมาธิ";
+			next;
+			specialeffect2 EF_ABSORBSPIRITS;
+			mes "[Jeyna]";
+			mes "พวกเราจำเป็นต้อง...";
+			mes "ทำให้มันเสถียรขึ้นอีกนิด";
+			mes ".......";
+			next;
+			specialeffect2 EF_CURE;
+			mes "[Jeyna]";
+			mes "ในอีกไม่กี่อึดใจนี้ ^FF4800Homunculus^000000 จะกลับคืนสู่สภาพ Embryo";
+			next;
+			specialeffect2 EF_HOLYHIT;
+			mes "[Jeyna]";
+			mes "เข้าสู่ Embryo แบบพิเศษ...";
+			next;
+			callsub L_CheckHomunculus;
+			specialeffect2 EF_BLESSING;
+			morphembryo;
+			setquest 4159;
+			erasequest 4158;
+			emotion ET_DELIGHT;
+			mes "[Jeyna]";
+			mes "ฟิ้วว~ เรียบร้อยแล้ว";
+			mes "หืมม สถานะของมันดูแปลกๆ นิดหน่อยนะ";
+			next;
+			emotion ET_SMILE;
+			mes "[Jeyna]";
+			mes "ข้าเดาว่ามันคงจะไม่เป็นไรหรอก";
+			mes "อย่าทำ ^0000FFStrange Embryo^000000 หายล่ะ";
+			mes "แล้วก็...";
+			next;
+			mes "[Jeyna]";
+			mes "ห้ามทำเรื่องอย่างการเปลี่ยนอาชีพหรืออะไรทำนองนั้นเด็ดขาดก่อนที่กระบวนการจะเสร็จสิ้น";
+			mes "ถ้าทำล่ะก็ เจ้า ^0000FF"+strcharinfo(0)+"^000000 อาจจะสูญเสียความสามารถทั้งหมดในการควบคุม Homunculus ไปเลยก็ได้นะ";
+			next;
+			mes "[Jeyna]";
+			mes "การใช้สมาธิพวกนั้นทำเอาข้าเหนื่อยเลยล่ะ";
+			mes "ข้าขอตัวไปดื่มน้ำสักแก้วก่อนนะ";
+			close;
+		case 2:
+			playbgm "28.mp3"; // You're in Ruins
+			emotion ET_OHNO;
+			mes "[Jeyna]";
+			mes "บางทีข้าไม่ควรถามตั้งแต่แรกเลยด้วยซ้ำนะเนี่ย";
+			close;
+		}
+	} else if (checkquest(4159) > -1 || checkquest(4160) > -1) {
+		playbgm "28.mp3"; // You're in Ruins
+		mes "[Jeyna]";
+		mes "^005DFFViorel^000000 จะเป็นคนทำกระบวนการกลายพันธุ์ให้เสร็จสิ้นเอง";
+		mes "ตอนนี้ถึงเวลาที่ข้าต้องบอกลาแล้วล่ะ";
+		next;
+		mes "[Jeyna]";
+		mes "มันเป็นช่วงเวลาสั้นๆ แต่ก็ดีใจนะที่ได้พบเจ้า";
+		mes "ไว้เราคงจะได้เจอกันอีกสักวันนะ";
+		next;
+		mes "[Jeyna]";
+		mes "โชคดีนะ~!";
+		close2;
+		setquest 4160;
+		erasequest 4159;
+		warp "que_house_s",19,42;
+		end;
+	} else {
+		if (checkquest(4154) > -1)
+			erasequest 4154;
+		mes "[Jeyna]";
+		mes "เฮ้ เจ้าเข้ามาที่นี่ได้ยังไงน่ะ?";
+		mes "กรุณาออกไปก่อนนะ ข้ากำลังเปลี่ยนเสื้อผ้าอยู่~!";
+		close2;
+		warp "job3_gen01",12,47;
+		end;
+	}
+	end;
+L_CheckHomunculus:
+	if (gethominfo(6) < 99 || (gethominfo(1) < 6009 || gethominfo(1) > 6016)) { // Not level 99+ evolved Homunculus
+		mes "[Jeyna]";
+		mes "เฮ้ เดี๋ยวสิ";
+		mes "เงื่อนไขของ ^FF4800Homunculus^000000 ยังไม่เหมาะสมนะ";
+		mes "เกือบไปแล้วเชียว";
+		next;
+		mes "[Jeyna]";
+		mes "ในการจะใช้งานระบบ Homunculus Mutation System";
+		mes "เพื่อเปลี่ยนไปเป็น";
+		mes "^FF4800Homunculus^000000 ตัวใหม่นั้น,";
+		mes "^006400Homunculus จะต้องมีเลเวลสูงกว่า 99 และต้องวิวัฒนาการ (Evolved) แล้วเท่านั้น^000000";
+		next;
+		mes "[Jeyna]";
+		mes "จงกลับไปหา ^005DFFViorel^000000 เมื่อเจ้าพร้อมแล้วนะ";
+		mes "งั้นไว้เจอกันใหม่ล่ะ~!";
+		close2;
+		erasequest 4154;
+		erasequest 4158;
+		warp "job3_gen01",12,47;
+		end;
+	}
+	return;
 }
 
 // Magic Board
 //============================================================
 que_house_s,83,47,3	script	Magic Board#homun_s	857,{
-		playbgm "26.mp3"; // Everlasting Wanderers
-		callfunc "F_HomMutateInfo","[Magic Board Posts]";
-		mes "[กระทู้กระดานเวทย์มนตร์]";
-		mes ":: ^0000FFHomunculus^000000 การวิจัยคือ";
- 	 	mes ":: สนุกมาก.";
-		mes ":: เป็นนักเล่นแร่แปรธาตุ";
-		mes ":: ผู้ที่เพลิดเพลินอยู่เสมอ";
-		mes ":: การวิจัยของตนเอง";
-		next;
-		mes "[กระทู้กระดานเวทย์มนตร์]";
-		mes ":: โอ้ และวิโอเรล...";
-		mes ":: เกี่ยวกับสิ่งที่คุณพูด";
-		mes "::  เมื่อวาน...";
-		mes "-";
-		mes "-";
-		next;
-		mes "-";
-		mes "ส่วนที่เหลือถูกปิดผนึกเพราะดูเหมือนจะเป็นข้อความส่วนตัว";
-		close2;
-		if (checkquest(4157) > -1) {
-				setquest 4158;
-				erasequest 4157;
-		}
-		end;
+	playbgm "26.mp3"; // Everlasting Wanderers
+	callfunc "F_HomMutateInfo","[Magic Board Posts]";
+	mes "[Magic Board Posts]";
+	mes ":: การวิจัย ^0000FFHomunculus^000000 นั้น";
+ 	mes ":: ช่างสนุกสนานเหลือเกิน";
+	mes ":: จงเป็น Alchemist";
+	mes ":: ผู้ซึ่งเพลิดเพลินกับ";
+	mes ":: การวิจัยของตนอยู่เสมอ";
+	next;
+	mes "[Magic Board Posts]";
+	mes ":: โอ๊ะ แล้วก็ Viorel...";
+	mes ":: เกี่ยวกับเรื่องที่เจ้าพูด";
+	mes ":: เมื่อวานนี้...";
+	mes "::";
+	mes "::";
+	next;
+	mes "--------------------------";
+	mes "เนื้อหาส่วนที่เหลือถูกปิดผนึกไว้เนื่องจากดูเหมือนจะเป็นข้อความส่วนตัว";
+	close2;
+	if (checkquest(4157) > -1) {
+		setquest 4158;
+		erasequest 4157;
+	}
+	end;
 }
 
 function	script	F_HomMutateInfo	{
-		.@npc_name$ = getarg(0);
-		mes .@npc_name$;
-		mes ":: ความสามารถของผู้กลายพันธุ์";
-		mes ":: ^0000FFHomunculus^000000 ชัดเจนเลย";
-		mes ":: เกินพ้นสภาวะเดิมไปแล้ว.";
-		mes ":: นอกจากนี้ยังมีรูปลักษณ์ภายนอก";
-		mes ":: ก็จะพัฒนาไปด้วยเช่นกัน.";
-		next;
-		mes .@npc_name$;
-		mes ":: ^0000FFโฮมุนคูลัส^000000 การปรากฏตัวของ";
-		mes ":: สามารถจำแนกประเภทใหม่ได้";
-		mes ":: ขึ้นอยู่กับสายพันธุ์ที่แตกต่างกัน";
-		mes ":: สิ่งมีชีวิตสายพันธุ์เดียวกัน";
-		mes ":: โดยทั่วไปจะมีลักษณะคล้ายกัน";
-		mes ":: รูปร่าง.";
-		next;
-		mes .@npc_name$;
-		mes ":: ประเภท รูปลักษณ์ และ";
-		mes ":: ความสามารถของ ^0000FFHomunculus^000000";
-		mes ":: ผ่านการกลายพันธุ์ของโฮมุนคูลัส";
-		mes ":: ระบบมีดังนี้:";
-		next;
-		cutin "Mer_Eira_Card",3;
-		mes .@npc_name$;
-		mes ":: อันดับแรกจากทั้งหมด 5 อันดับ";
-		mes ":: เรียกว่า ^FF4800Eira^000000";
-		mes ":: สวยงามและสง่างาม.";
-		next;
-		mes .@npc_name$;
-		mes ":: ^FF4800Eira^000000 ใช้";
-		mes ":: ^006400ธาตุลม^000000 โจมตีด้วยเวทมนตร์และ";
-		mes ":: ทักษะการสนับสนุน";
-		mes ":: มันยังมีความสามารถ";
-		mes ":: เพื่อฟื้นคืนชีพ";
-		mes ":: อาจารย์ผู้ตกต่ำ.";
-		next;
-		mes .@npc_name$;
-		mes ":: ^FF4800Eira^000000 กิน";
-		mes ":: ^0000FFดอกไม้หิมะน้อย^000000.";
-		mes ":: น่าแปลกใจว่ามันสามารถอยู่รอดมาได้อย่างไร";
-		mes ":: จำนวนเพียงเล็กน้อย";
-		mes ":: ^0000FFดอกไม้หิมะเล็ก^000000 สามารถซื้อได้";
-		mes ":: จาก ^005DFFTaming Merchants^000000";
-		next;
-		cutin "",255;
-		cutin "Mer_Sera_Card",3;
-		mes .@npc_name$;
-		mes ":: ลำดับที่สองจากทั้งหมดห้าลำดับ";
-		mes ":: เป็นที่รู้จักในชื่อ ^FF4800Sera^000000";
-		mes ":: มันดูเหมือน ^FF0000Mistress^000000 แต่ว่า";
-		mes ":: มันไม่วิ่งหนี.";
-		next;
-		mes .@npc_name$;
-		mes ":: ^FF4800เซร่า^000000";
-		mes ":: เชี่ยวชาญในด้าน ^006400การโจมตีด้วยพิษ^000000";
-		mes ":: อีกทั้งยังใช้ความแตกต่าง";
-		mes ":: ทักษะสนับสนุนด้วยการใช้พิษ";
-		next;
-		mes .@npc_name$;
-		mes ":: ^FF4800Sera^000000 กิน";
-		mes ":: ^0000FFพุดดิ้งแอปเปิล^000000.";
-		mes ":: มันชอบทานอาหารรสหวาน";
-		mes ":: ^0000FFApple Pudding^000000 สามารถซื้อได้";
-		mes ":: จาก ^005DFFTaming Merchants^000000";
-		next;
-		cutin "",255;
-		cutin "Mer_Dieter_Card",3;
-		mes .@npc_name$;
-		mes ":: ที่สามจากห้า";
-		mes ":: คือ ^FF4800Dieter^000000.";
-		mes ":: ดูแปลกๆ นะแต่ก็";
-		mes ":: มีกิริยามารยาทดี.";
-		next;
-		mes .@npc_name$;
-		mes ":: ^FF4800Dieter^000000 ใช้";
-		mes ":: ^FF0000ไฟ^000000 การโจมตีตามและ";
-		mes ":: ทักษะการสนับสนุน";
-		mes ":: มันก็เปราะบางเหมือนกันนะ...";
-		mes ":: อืม น่าเชื่อถืออย่างที่เห็น";
-		next;
-		mes .@npc_name$;
-		mes ":: ^FF4800Dieter^000000 กิน";
-		mes ":: ^0000FFเซลล์ใหญ่^000000.";
-		mes ":: ^0000FFBig Cell^000000 สามารถซื้อได้";
-		mes ":: จาก ^005DFFTaming Merchants^000000";
-		next;
-		cutin "",255;
-		cutin "Mer_Bayeri_Card",3;
-		mes .@npc_name$;
-		mes ":: ลำดับที่สี่จากห้า";
-		mes ":: คือ ^FF4800Bayeri^000000.";
-		mes ":: บาเยรี มีรูปแบบเป็น";
-		mes ":: ยูนิคอร์น.";
-		next;
-		mes .@npc_name$;
-		mes ":: มีทักษะการพุ่งที่ทรงพลัง";
-		mes ":: และใช้เวทมนตร์ ^006400ธาตุศักดิ์สิทธิ์^000000";
-		mes ":: น่าเสียดาย,";
-		mes ":: พวกเขาไม่ยอมให้คุณขี่พวกมัน";
-		mes ":: ไม่ใช่สัตว์สี่ขาทั้งหมด";
-		mes ":: สามารถขี่ได้.";
-		next;
-		mes .@npc_name$;
-		mes ":: ^FF4800Bayeri^000000 กิน";
-		mes ":: ^0000FFต้นสด^000000.";
-		mes ":: ไม่ว่าจะหิวขนาดไหน";
-		mes ":: ไม่เคยกินผักที่เน่าเสีย";
-		mes ":: ^0000FFFresh Plant^000000 สามารถซื้อได้";
-		mes ":: จาก ^005DFFTaming Merchants^000000";
-		next;
-		cutin "",255;
-		cutin "Mer_Eleanor_Card",3;
-		mes .@npc_name$;
-		mes ":: คนสุดท้ายของทั้งห้า";
-		mes ":: คือ ^FF4800Eleanor^000000";
-		mes ":: มีรูปร่างหน้าตาเป็นผู้หญิง";
-		mes ":: และทักษะทางกายภาพที่โดดเด่น";
-		next;
-		mes .@npc_name$;
-		mes ":: ^FF4800เอลีนอร์^000000";
-		mes ":: ใช้ ^006400Strike หรือ Grapple Attacks^000000";
-		mes ":: ตามลำดับในการต่อสู้";
-		mes ":: สวยงามอย่างยิ่ง";
-		next;
-		mes .@npc_name$;
-		mes ":: ^FF4800Eleanor^000000 กิน";
-		mes ":: ^0000FFKid's เกี๊ยว^000000.";
-		mes ":: อย่าสับสนกับสิ่งปกติ";
-		mes ":: เกี๊ยว.";
-		mes ":: ^0000FFKid's Dumpling^000000 สามารถซื้อได้แล้ว";
-		mes ":: จาก ^005DFFTaming Merchants^000000";
-		next;
-		cutin "",255;
-		return;
+	.@npc_name$ = getarg(0);
+	mes .@npc_name$;
+	mes ":: ความสามารถของ ^0000FFHomunculus^000000";
+	mes ":: ที่กลายพันธุ์แล้วนั้นก้าวล้ำ";
+	mes ":: ไปจากสถานะเดิมอย่างชัดเจน";
+	mes ":: นอกจากนี้ รูปลักษณ์ของมัน";
+	mes ":: ก็จะวิวัฒนาการขึ้นด้วยเช่นกัน";
+	next;
+	mes .@npc_name$;
+	mes ":: รูปลักษณ์ของ ^0000FFHomunculus^000000";
+	mes ":: สายพันธุ์ใหม่นั้นสามารถแบ่งได้";
+	mes ":: ตามสายพันธุ์ที่แตกต่างกัน";
+	mes ":: สิ่งมีชีวิตในสายพันธุ์เดียวกัน";
+	mes ":: โดยทั่วไปจะมีรูปลักษณ์";
+	mes ":: ที่คล้ายคลึงกัน";
+	next;
+	mes .@npc_name$;
+	mes ":: หมวดหมู่ รูปลักษณ์ และ";
+	mes ":: ความสามารถของ ^0000FFHomunculus^000000";
+	mes ":: ผ่านระบบการกลายพันธุ์";
+	mes ":: (Homunculus Mutation) มีดังนี้:";
+	next;
+	cutin "Mer_Eira_Card",3;
+	mes .@npc_name$;
+	mes ":: ลำดับแรกจากทั้งห้าสายพันธุ์";
+	mes ":: มีชื่อเรียกว่า ^FF4800Eira^000000";
+	mes ":: ช่างสวยงามและสง่างาม";
+	next;
+	mes .@npc_name$;
+	mes ":: ^FF4800Eira^000000 ใช้";
+	mes ":: การโจมตีเวทมนตร์ ^006400ธาตุลม^000000 และ";
+	mes ":: ทักษะสนับสนุนต่างๆ";
+	mes ":: มันยังมีความสามารถ";
+	mes ":: ในการชุบชีวิตเจ้านาย";
+	mes ":: ที่ทอดร่างไร้วิญญาณได้อีกด้วย";
+	next;
+	mes .@npc_name$;
+	mes ":: ^FF4800Eira^000000 กิน";
+	mes ":: ^0000FFSmall Snow Flower^000000";
+	mes ":: น่าประหลาดใจที่มันอยู่รอดได้ด้วย";
+	mes ":: ปริมาณที่น้อยนิดเพียงนี้";
+	mes ":: ^0000FFSmall Snow Flower^000000 หาซื้อได้";
+	mes ":: จากเหล่า ^005DFFTaming Merchants^000000";
+	next;
+	cutin "",255;
+	cutin "Mer_Sera_Card",3;
+	mes .@npc_name$;
+	mes ":: ลำดับที่สองจากทั้งห้าสายพันธุ์";
+	mes ":: เป็นที่รู้จักในชื่อ ^FF4800Sera^000000";
+	mes ":: รูปร่างเหมือนกับ ^FF0000Mistress^000000 เป๊ะเลย";
+	mes ":: แต่มันจะไม่วิ่งหนีเจ้าไปไหนหรอกนะ";
+	next;
+	mes .@npc_name$;
+	mes ":: ^FF4800Sera^000000";
+	mes ":: เชี่ยวชาญการโจมตีด้วย ^006400พิษ^000000";
+	mes ":: นอกจากนี้ ยังมีทักษะสนับสนุน";
+	mes ":: ที่โดดเด่นโดยการใช้พิษอีกด้วย";
+	next;
+	mes .@npc_name$;
+	mes ":: ^FF4800Sera^000000 กิน";
+	mes ":: ^0000FFApple Pudding^000000";
+	mes ":: มันชอบอาหารรสหวานน่ะ";
+	mes ":: ^0000FFApple Pudding^000000 หาซื้อได้";
+	mes ":: จากเหล่า ^005DFFTaming Merchants^000000";
+	next;
+	cutin "",255;
+	cutin "Mer_Dieter_Card",3;
+	mes .@npc_name$;
+	mes ":: ลำดับที่สามจากทั้งห้าสายพันธุ์";
+	mes ":: คือ ^FF4800Dieter^000000";
+	mes ":: รูปร่างอาจดูแปลกตาไปบ้างแต่";
+	mes ":: มันมีอุปนิสัยที่ดีมาก";
+	next;
+	mes .@npc_name$;
+	mes ":: ^FF4800Dieter^000000 ใช้";
+	mes ":: การโจมตี ^FF0000ธาตุไฟ^000000 และ";
+	mes ":: ทักษะสนับสนุน";
+	mes ":: มันดูเปราะบางเหมือนกับ...";
+	mes ":: อ่า... น่าเชื่อถือ เหมือนกับรูปลักษณ์ของมันนั่นล่ะ";
+	next;
+	mes .@npc_name$;
+	mes ":: ^FF4800Dieter^000000 กิน";
+	mes ":: ^0000FFBig Cell^000000";
+	mes ":: ^0000FFBig Cell^000000 หาซื้อได้";
+	mes ":: จากเหล่า ^005DFFTaming Merchants^000000";
+	next;
+	cutin "",255;
+	cutin "Mer_Bayeri_Card",3;
+	mes .@npc_name$;
+	mes ":: ลำดับที่สี่จากทั้งห้าสายพันธุ์";
+	mes ":: คือ ^FF4800Bayeri^000000";
+	mes ":: Bayeri มีรูปร่างลักษณะ";
+	mes ":: คล้ายกับยูนิคอร์น";
+	next;
+	mes .@npc_name$;
+	mes ":: มันมีทักษะการพุ่งชนที่รุนแรง";
+	mes ":: และใช้เวทมนตร์ ^006400ธาตุศักดิ์สิทธิ์^000000";
+	mes ":: แต่น่าเสียดายที่";
+	mes ":: พวกมันไม่ยอมให้เจ้าขี่หรอกนะ";
+	mes ":: ไม่ใช่สิ่งมีชีวิตสี่เท้าทุกตัว";
+	mes ":: ที่จะขี่ได้เสมอไป";
+	next;
+	mes .@npc_name$;
+	mes ":: ^FF4800Bayeri^000000 กิน";
+	mes ":: ^0000FFFresh Plant^000000";
+	mes ":: ไม่ว่าจะหิวโซเพียงใด";
+	mes ":: มันจะไม่แตะต้องผักเน่าเสียเลย";
+	mes ":: ^0000FFFresh Plant^000000 หาซื้อได้";
+	mes ":: จากเหล่า ^005DFFTaming Merchants^000000";
+	next;
+	cutin "",255;
+	cutin "Mer_Eleanor_Card",3;
+	mes .@npc_name$;
+	mes ":: ลำดับสุดท้ายจากทั้งห้าสายพันธุ์";
+	mes ":: คือ ^FF4800Eleanor^000000";
+	mes ":: มีรูปลักษณ์ที่ดูเป็นผู้หญิง";
+	mes ":: และมีทักษะทางกายภาพที่โดดเด่น";
+	next;
+	mes .@npc_name$;
+	mes ":: ^FF4800Eleanor^000000";
+	mes ":: ใช้การโจมตีแบบ ^006400คอมโบต่อเนื่องหรือการทุ่ม^000000";
+	mes ":: สลับกันไปในการต่อสู้";
+	mes ":: ช่างน่าทึ่งอย่างที่สุด";
+	next;
+	mes .@npc_name$;
+	mes ":: ^FF4800Eleanor^000000 กิน";
+	mes ":: ^0000FFKid's Dumpling^000000";
+	mes ":: อย่าจำสับสนกับเกี๊ยว";
+	mes ":: ธรรมดาทั่วไปเชียวล่ะ";
+	mes ":: ^0000FFKid's Dumpling^000000 หาซื้อได้";
+	mes ":: จากเหล่า ^005DFFTaming Merchants^000000";
+	next;
+	cutin "",255;
+	return;
 }
 
 // Books
 //============================================================
 que_house_s,13,52,3	script	Open Book#01homun_s	111,{
-		switch(rand(1,7)) {
-		case 1:
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "ความบ้าคลั่งและอัจฉริยะมีแนวคิดเดียวกันในแง่ที่ว่าทั้งสองเป็นปรากฏการณ์ที่ผิดปกติ";
-				mes "เมื่อสังเกตนักเคมี ^005DFFMorgenstein^000000 ของ ^8B4513Geffen^000000 ฉันถือว่าพวกเขาเท่ากัน";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "ครั้งหนึ่งฉันได้ไปเยือน...";
-				mes "^005DFFMorgenstein^000000 ที่แปลกประหลาดนี้เพื่อวัตถุประสงค์ในการวิจัย";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "ฉันเคยกินสตูว์เนื้อก่อนที่จะได้พบกับ ^005DFFMorgenstein^000000";
-				mes "ที่น่าแปลกใจพอสมควร เขาบ่นว่าเขาได้กลิ่นเนื้อก่อนที่ฉันจะเข้าใกล้เสียอีก";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "ฉันไม่เคยคิดว่านักเคมีจะมีประสาทรับกลิ่นที่ดี";
-				mes "ครั้งต่อไปที่ฉันให้";
-				mes "^005DFFMorgenstein^000000 เยี่ยมชม";
-				mes "ฉันจะกินมื้ออื่นบ้าง";
-				close;
-		case 2:
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "^005DFFDe Bris^000000 คิดว่าความกระตือรือร้นของนักเล่นแร่แปรธาตุลดลงอย่างมากในช่วงนี้ <อย่างมาก>...";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "เขาไม่ชอบเป็นอย่างยิ่งที่ฉันต้องผูกมัดตัวเองอย่างแน่นหนากับงานวิจัย ^FF4800Homunculus^000000";
-				mes "เขาไม่ได้พูดสิ่งดังกล่าวเลยเมื่อเราเรียนด้วยกันใน ^8B4513Rune-Midgarts^000000";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "สักวันฉันจะแสดงข้อมูลการวิจัย ^005DFFDe Bris^000000 ของฉันให้ ^FF4800Homunculus^000000 ดู";
-				mes "ฉันชอบดูเขาโดดออกมาจากผิวหนังของเขา... ฉันตั้งตารอวันนั้น";
-				close;
-		case 3:
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "ความหลงใหลในศิลปะของ ^005DFFDe Bris^000000 เป็นสิ่งที่น่าทึ่งมาก";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "เมื่อไม่นานนี้ สหภาพนักเล่นแร่แปรธาตุได้เสนอโอกาสให้ฉันเข้าร่วม ^57007FGenetic^000000 ผ่านทางจดหมาย";
-				mes "ฉันสงสัยว่า ^005DFFDe Bris^000000 พูดอะไรกับสหภาพ...";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "ก็ขอบคุณมากครับ...";
-				mes "อย่างไรก็ตามสำหรับฉันตอนนี้";
-				mes "การวิจัยของฉันถือเป็นสิ่งสำคัญที่สุด";
-				close;
-		case 4:
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "มีเรื่องตลกที่ ^005DFFDarcia^000000 พูดกับฉัน";
-				mes "มันเป็นช่วงที่ ^005DFFJeyna^000000 ได้มาเรียนรู้เกี่ยวกับการผสมยาเป็นครั้งแรก......";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "เธอทำได้ดีจนถึงขั้นเทน้ำใส่ส่วนผสม";
-				mes "เธอเพียงแค่ต้องใส่มันลงในขวดเปล่า...";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "^005DFFDarcia^000000 เฝ้าดูว่าเธอจะทำอะไรกับด่านสุดท้าย";
-				mes "และหญิงสาวที่สับสน ^005DFFJeyna^000000 ก็ดื่มส่วนผสมนั้นจากชามแล้วบอกเธอว่ามันหายดีแล้ว";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "คิดว่าแม้แต่ ^005DFFJeyna^000000";
-				mes "ตอนนี้เป็นผู้เชี่ยวชาญด้านการผสมยา";
-				mes "เธอมีข้อผิดพลาดแบบมือใหม่";
-				mes "แสดงให้เห็นว่าการจินตนาการเป็นเรื่องยากขนาดไหน";
-				mes "และพยากรณ์อดีตและอนาคตของตนเอง";
-				close;
-		case 5:
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "^005DFFVincent^000000 ฉันคิดว่าฉันทำสำเร็จแล้ว";
-				mes "ฉันจะไม่มีวันลืมคำพูดที่กล้าหาญของคุณ";
-				mes "และผมก็รู้สึกขอบคุณที่ตอนนี้ผมได้ตอบแทนคุณแล้ว";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "มันเป็นกระบวนการที่ยาวนานจริงๆ";
-				mes "เมื่อสหภาพแรงงานจำนวนมาก";
-				mes "ถือว่าการวิจัยของฉันไม่มีนัยสำคัญ";
-				mes "... แม้ว่าฉันจะไม่สูญเสียความเชื่อของฉัน";
-				mes "มันทำให้หัวใจฉันลึกๆ";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "เพื่อนไม่กี่คนที่เชื่อฉัน";
-				mes "โดยเฉพาะอย่างยิ่ง ^005DFFJeyna^000000";
-				mes "และคุณ ^005DFFVincent^000000 ...";
-				mes "ผมขอขอบพระคุณอย่างจริงใจจากใจจริง";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "พวกเขาพูดว่า,";
-				mes "จุดสิ้นสุดย่อมพิสูจน์วิธีการ";
-				mes "ตอนแรก,";
-				mes "ฉันไม่รู้ว่ามันหมายถึงอะไร..";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "ตอนนี้ฉันรู้แล้ว.";
-				mes "ฉันรู้ว่ามันสำคัญขนาดไหน";
-				mes "การทำตามหัวใจตนเอง";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "ฉันจะแวะมาเร็วๆ นี้";
-				mes "สบายดีจนถึงตอนนั้น";
-				close;
-		case 6:
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "เกมที่ชื่อว่า ^0000FFThe Epic Battle 2^000000 มีลักษณะคล้ายกับหมากรุก และเป็นเกมที่น่าสนใจมาก";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "เมื่อไม่นานมานี้ ฉันได้พบกับ ^0000FFFruit Seller^000000 ผู้ที่ประสบความสำเร็จใน The Epic Battle 2";
-				mes "เขายังสามารถเอาชนะกลยุทธ์ Grizzly Shockwave อันฉาวโฉ่และ God of Death Terror อันน่าสะพรึงกลัวได้อย่างง่ายดาย";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "เพื่อเอาชนะพวกที่อยู่ในช่วงต้นของการต่อสู้ของกลุ่ม ^0000FFPriest^000000...";
-				mes "มันเป็นเรื่องยากสำหรับฉันเนื่องจากฉันต้องรวมชิ้นส่วนต่างๆ และใช้ทักษะล่อบางอย่าง";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "ฉันสงสัยว่าเมื่อไหร่ฉันจะกลายเป็นผู้เล่นระดับ 3 กะรัตเพชร";
-				close;
-		case 7:
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "มีนักเล่นแร่แปรธาตุจำนวนมากที่ชอบ ^FF4800Vanilmirth^000000";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "แต่ฉันชอบ ^FF4800Amistr^000000 มากกว่า";
-				mes "มันน่ารักดีเมื่อมันขยับเรื่องด้วยดวงตาที่เป็นประกายนั่น";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "โจนาธาน เพื่อนของฉันเป็นคนฉลาดและอ่อนโยน ทำให้เป็นที่รักมาก";
-				mes "เราเป็นเพื่อนที่ดีต่อกันใช่มั้ยโจนาธาน?";
-				close;
-		}
+	switch(rand(1,7)) {
+	case 1:
+		mes "[Bookcase Notes]";
+		mes "ความบ้าคลั่งกับอัจฉริยภาพนั้นมีความหมายในเชิงแนวคิดที่เหมือนกันตรงที่ทั้งคู่ต่างก็เป็นปรากฏการณ์ที่ไม่ธรรมดา";
+		mes "เมื่อสังเกตนักเคมีอย่าง ^005DFFMorgenstein^000000 แห่งเมือง ^8B4513Geffen^000000 ข้าถือว่าสิ่งเหล่านั้นมีค่าเท่ากัน";
+		next;
+		mes "[Bookcase Notes]";
+		mes "ครั้งหนึ่งข้าเคยต้องไปเยือน...";
+		mes "^005DFFMorgenstein^000000 ผู้ประหลาดคนนั้นเพื่อจุดประสงค์ในการวิจัย";
+		next;
+		mes "[Bookcase Notes]";
+		mes "ข้าได้กินสตูเนื้อมาก่อนที่จะพบกับ ^005DFFMorgenstein^000000";
+		mes "ที่น่าประหลาดใจคือ เขาพึมพำออกมาว่าเขาได้กลิ่นเนื้อก่อนที่ข้าจะเดินเข้าไปใกล้เสียอีก";
+		next;
+		mes "[Bookcase Notes]";
+		mes "ข้าไม่เคยคิดเลยว่าเหล่านักเคมีจะมีประสาทสัมผัสในการดมกลิ่นที่ยอดเยี่ยมขนาดนี้";
+		mes "ครั้งต่อไปที่ข้าจะไปหา";
+		mes "^005DFFMorgenstein^000000";
+		mes "ข้าคงต้องกินเมนูอื่นเสียแล้ว";
+		close;
+	case 2:
+		mes "[Bookcase Notes]";
+		mes "^005DFFDe Bris^000000 คิดว่าความกระตือรือร้นของเหล่า Alchemist พักหลังมานี้ตกลงไป <อย่างน่าใจหาย>...";
+		next;
+		mes "[Bookcase Notes]";
+		mes "เขาไม่ชอบใจเอามากๆ ที่ข้ามัวแต่คลุกคลีอยู่กับการวิจัย ^FF4800Homunculus^000000";
+		mes "ตอนที่เราเรียนด้วยกันที่ ^8B4513Rune-Midgarts^000000 เขาไม่เห็นเคยพูดอะไรแบบนี้เลย";
+		next;
+		mes "[Bookcase Notes]";
+		mes "สักวัน ข้าจะเอาข้อมูลการวิจัย ^FF4800Homunculus^000000 ให้ ^005DFFDe Bris^000000 ดู";
+		mes "ข้าละชอบดูเวลาที่เขาตกใจจนแทบกระโดดตัวลอยจริงๆ.... ข้าตั้งตารอวันนั้นเลยล่ะ";
+		close;
+	case 3:
+		mes "[Bookcase Notes]";
+		mes "ความลุ่มหลงในศาสตร์แขนง ^57007FGenetic^000000 ของ ^005DFFDe Bris^000000 นั้นช่างน่าอัศจรรย์";
+		next;
+		mes "[Bookcase Notes]";
+		mes "เมื่อไม่นานมานี้ สมาคม Alchemist ได้ส่งจดหมายหยิบยื่นโอกาสให้ข้าเข้าร่วมเป็น ^57007FGenetic^000000";
+		mes "ข้าสงสัยจังว่า ^005DFFDe Bris^000000 ไปพูดอะไรกับสมาคมไว้หรือเปล่านะ...";
+		next;
+		mes "[Bookcase Notes]";
+		mes "ก็นะ ข้าซาบซึ้งในความหวังดีนั่น...";
+		mes "แต่อย่างไรก็ตาม สำหรับข้าในตอนนี้";
+		mes "การวิจัยของข้าคือสิ่งที่สำคัญที่สุด";
+		close;
+	case 4:
+		mes "[Bookcase Notes]";
+		mes "มีเรื่องตลกเรื่องหนึ่งที่ ^005DFFDarcia^000000 เล่าให้ข้าฟัง";
+		mes "มันเป็นเรื่องตอนที่ ^005DFFJeyna^000000 มาเรียนรู้เรื่องการผสมยาเป็นครั้งแรก......";
+		next;
+		mes "[Bookcase Notes]";
+		mes "นางทำได้ดีจนถึงขั้นตอนการเทน้ำลงไปในส่วนผสม";
+		mes "นางก็แค่ต้องบรรจุมันลงในขวดเปล่าเท่านั้น...";
+		next;
+		mes "[Bookcase Notes]";
+		mes "^005DFFDarcia^000000 เฝ้าดูว่านางจะทำอย่างไรในขั้นตอนสุดท้าย";
+		mes "และ ^005DFFJeyna^000000 ที่กำลังสับสนก็ดันดื่มส่วนผสมนั้นจากชามแล้วบอกนางว่ามันรักษาแผลได้ดีทีเดียว";
+		next;
+		mes "[Bookcase Notes]";
+		mes "เมื่อคิดว่าแม้แต่ ^005DFFJeyna^000000";
+		mes "ซึ่งตอนนี้เป็นปรมาจารย์ด้านการผสมยา";
+		mes "ก็ยังเคยทำผิดพลาดแบบมือใหม่มาก่อน";
+		mes "มันแสดงให้เห็นว่ามันยากเพียงใดที่จะจินตนาการ";
+		mes "และคาดการณ์อดีตหรืออนาคตของคนเราได้";
+		close;
+	case 5:
+		mes "[Bookcase Notes]";
+		mes "^005DFFVincent^000000 ข้าคิดว่าข้าทำสำเร็จแล้ว";
+		mes "ข้าจะไม่ลืมคำพูดที่ให้กำลังใจของท่านเลย";
+		mes "และข้าดีใจที่ตอนนี้ข้าได้มีโอกาสตอบแทนท่านเสียที";
+		next;
+		mes "[Bookcase Notes]";
+		mes "มันเป็นกระบวนการที่ยาวนานจริงๆ";
+		mes "ในตอนที่หลายคนในสมาคม";
+		mes "มองว่าการวิจัยของข้าไร้ความหมาย";
+		mes "... แม้ข้าจะไม่สั่นคลอนในความเชื่อของตน";
+		mes "แต่มันก็เจ็บปวดลึกๆ อยู่ข้างใน";
+		next;
+		mes "[Bookcase Notes]";
+		mes "เพื่อนไม่กี่คนที่เชื่อมั่นในตัวข้า";
+		mes "โดยเฉพาะ ^005DFFJeyna^000000";
+		mes "และท่าน ^005DFFVincent^000000 ...";
+		mes "ข้าขอขอบคุณจากใจจริงด้วยจิตวิญญาณทั้งหมดที่มี";
+		next;
+		mes "[Bookcase Notes]";
+		mes "พวกเขากล่าวกันว่า";
+		mes "ผลลัพธ์ย่อมพิสูจน์วิธีการ";
+		mes "ในตอนแรก";
+		mes "ข้าไม่เข้าใจความหมายของมันเลย...";
+		next;
+		mes "[Bookcase Notes]";
+		mes "ตอนนี้ข้ารู้แล้ว";
+		mes "ข้ารู้แล้วว่ามันสำคัญเพียงใด";
+		mes "ที่จะทำตามหัวใจของตนเอง";
+		next;
+		mes "[Bookcase Notes]";
+		mes "ข้าจะแวะไปหาเร็วๆ นี้";
+		mes "ขอให้ท่านรักษาสุขภาพด้วยจนกว่าจะพบกัน";
+		close;
+	case 6:
+		mes "[Bookcase Notes]";
+		mes "เกมที่ชื่อว่า ^0000FFThe Epic Battle 2^000000 ซึ่งคล้ายกับหมากรุกนั้นน่าสนใจมาก";
+		next;
+		mes "[Bookcase Notes]";
+		mes "เมื่อไม่นานมานี้ ข้าได้พบกับ ^0000FFFruit Seller^000000 ผู้หนึ่งที่เล่น The Epic Battle 2 ได้อย่างยอดเยี่ยม";
+		mes "เขาสามารถเอาชนะกลยุทธ์ ^006400Grizzly Shockwave Strategy^000000 อันเลื่องชื่อ และ ^006400God of Death Terror^000000 ได้อย่างง่ายดาย";
+		next;
+		mes "[Bookcase Notes]";
+		mes "การที่จะเอาชนะสิ่งเหล่านั้นในช่วงเริ่มต้นของการต่อสู้ฝ่าย ^0000FFPriest Faction^000000 ได้นั้น...";
+		mes "มันเป็นเรื่องยากสำหรับข้า เพราะข้าต้องผสมตัวหมากและใช้ทักษะล่อลวงบ้าง";
+		next;
+		mes "[Bookcase Notes]";
+		mes "ข้าสงสัยจังว่าเมื่อไหร่ข้าจะได้เป็นผู้เล่นระดับ 3 Carat Diamond เสียที";
+		close;
+	case 7:
+		mes "[Bookcase Notes]";
+		mes "มี Alchemist มากมายที่ชอบ ^FF4800Vanilmirth^000000";
+		next;
+		mes "[Bookcase Notes]";
+		mes "แต่ข้ากลับชอบ ^FF4800Amistr^000000 มากกว่า";
+		mes "มันดูน่ารักเวลาที่มันกระดิกหางพร้อมกับดวงตาเป็นประกายคู่นั้น";
+		next;
+		mes "[Bookcase Notes]";
+		mes "Jonathan เจ้า Amistr ของข้านั้นฉลาดและอ่อนโยน ทำให้มันน่ารักน่าเอ็นดูเหลือเกิน";
+		mes "เราเป็นเพื่อนที่ดีต่อกันใช่ไหม Jonathan?";
+		close;
+	}
 }
 
 que_house_s,16,52,3	script	Open Book#02homun_s	111,{
-		switch(rand(1,8)) {
-		case 1:
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "ฉันควรเขียนอะไรถึง ^005DFFDe Bris^000000";
-				mes ":: ถึงฉันทราบ";
-				mes ":: เพื่อนทางพันธุกรรม เดอ บรีส";
-				mes ":: Lighthalzen เป็นยังไงบ้าง?";
-				mes ":: มีพอแล้วเหรอ";
-				mes ":: คุกกี้ที่คุณชอบมากเลยเหรอ?";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes ":: ฉันจะแวะมาเร็วๆ นี้";
-				mes ":: พร้อมคุกกี้บางส่วน";
-				mes ":: เมื่อเราพบกัน";
-				mes ":: ผมจะแนะนำให้คุณรู้จักกับ";
-				mes ":: ^006400โฮมุนคูลัสใหม่^000000";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes ":: ไม่ต้องตื่นตัวครับ.";
-				mes ":: ไม่เหมือนคุณ";
-				mes ":: พวกเขาไม่สนใจ";
-				mes ":: คนอื่นเค้ากินกัน";
-				mes ":: เจอกันใหม่เร็วๆ นี้~!";
-				mes ":: กล้าปิดประตูใส่ฉันเหรอ";
-				close;
-		case 2:
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "ครั้งสุดท้ายที่ฉันไปเยี่ยมชม Alchemist Union มีการอภิปรายที่น่าสนใจบนโต๊ะ";
-				mes "ฉันคิดว่ามันมีอะไรบางอย่างที่เกี่ยวข้องกับ ^006400 การละเลยต่อโฮมุนคูลัสในสถานที่สาธารณะ^000000";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "ขณะที่อาจารย์กำลังงีบหลับ";
-				mes "หนึ่งใน ^FF4800Homunculus^000000 หลุดจากสายจูง";
-				mes "ทำให้เกิดปัญหาบางประการ";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "ฉันจะทำให้แน่ใจว่าโฮมุนคูลัสของฉัน โจนาธาน...";
-				mes "ได้รับการฝึกมาอย่างดีไม่ให้ก่อความเดือดร้อนแก่ผู้อื่น";
-				close;
-		case 3:
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "มีของเล่นใหม่ที่ฉันกับ ^005DFFJeyna^000000 ชื่นชอบมาก";
-				mes "มันค่อนข้างใหม่";
-				mes "เรียกว่า... ^0000FF'Helo'^000000 ฉันคิดว่านะ?";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "มีเพลงที่เกี่ยวข้องด้วย ร้องโดย ^57007FMinstrel^000000";
-				mes "เนื้อเพลงประมาณ ^006400'Ahhh~Ahh~Ahhhhhhhh'^000000";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "ความบันเทิงนั้นก็สนุก";
-				mes "แต่ดนตรีก็เยี่ยมยอดเช่นกัน";
-				mes "และเมื่อฉันฟังมัน";
-				mes "รู้สึกเหมือน SP ของฉันได้รับการฟื้นคืนอย่างมาก";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "ฉันต้องบอกว่า,";
-				mes "ความบันเทิงเป็นสิ่งสำคัญเมื่อพักผ่อน";
-				mes "เพื่อสร้างขวัญกำลังใจในการวิจัย";
-				mes "^006400สำหรับโฮมุนคูลัส~!^000000";
-				close;
-		case 4:
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "จากที่ได้ยินมาจากสมาชิกสหภาพฯ";
-				mes "^005DFFทหาร^000000,";
-				mes "^005DFFRaspuchin^000000 ยังคงเป็นตัวตนที่แปลกประหลาดของเขาเอง";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "มันอาจจะไม่ใช่ความคิดที่ดีนัก";
-				mes "เพื่อขับเคลื่อนจิตวิญญาณที่เต็มไปด้วยพลังเหล่านั้น";
-				mes "มาเปลี่ยนงาน";
-				mes "ด้วยความกระตือรือร้นอย่างมาก";
-				close;
-		case 5:
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "เพื่อนคนหนึ่งของฉันที่ชอบวาดรูป";
-				mes "แนะนำให้สร้าง <Graphic Novel> ชื่อว่า";
-				mes "^0000ฟฟฟัเทชั่นเนอร์^000000";
-				mes "หลังจากที่เขาได้ยินเกี่ยวกับการวิจัยของฉัน";
-				mes "และผลงานของฉัน";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "เรื่องราวเริ่มต้น...";
-				mes "กับมนุษย์ต่างดาว";
-				mes "^FF4800โฮมุนคูลัส^000000";
-				mes "เยี่ยมชมโลกของเรา";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "มนุษย์ต่างดาวที่มาเยือน";
-				mes "^FF4800โฮมุนคูลัส^000000 สามารถอยู่รอดได้";
-				mes "ไร้อาจารย์";
-				mes "และมันอาจจะเปลี่ยนเป็น";
-				mes "สิ่งมีชีวิตหลากหลายชนิดที่";
-				mes "ท่องไปในโลกของเรา";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "มนุษย์ต่างดาวพวกนี้^FF4800โฮมุนคูลัส^000000";
-				mes "มีสองฝ่ายที่ขัดแย้งกัน";
-				mes "แบ่งแยกกันด้วยความแตกแยกทางการเมือง";
-				mes "ในโลกของเรา เราเรียกพวกเขาว่า";
-				mes "^006400ออต-โฮมุน^000000 และ";
-				mes "^006400หลอกลวงโฮมุน^000000";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "^006400Aut-homun^000000 คือเพื่อนของพวกเรา";
-				mes "ผู้นำของพวกเขา";
-				mes "เรียกว่า ^005DFFOptimus Poring^000000";
-				mes "ถูกสร้างขึ้นมาและเท่มาก";
-				mes "เพื่อการริน";
-				mes "และมันก็จะเรียกรถเข็นออกมาได้ตามต้องการ!";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "ฝั่งตรงข้าม ^006400Decept-homun^000000";
-				mes "นำโดย ^005DFFMegatroll^000000";
-				mes "และพวกเขาใช้ทุกวิถีทาง";
-				mes "ที่จะทำลายโลกของเรา";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "พระเอกของเรื่องนี้";
-				mes "เป็นอันหนึ่งจาก ^8B4513Alberta^000000 ชื่อว่า ^005DFFJam Wicky^000000";
-				mes "ใครเจอ ^005DFFOptimus Poring^000000";
-				mes "ขณะกำลังเลือกซื้อรถเข็น";
-				mes "เหมือนกับว่ามันเป็นโชคชะตาของเขา";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "และก็เป็นอย่างนี้";
-				mes "เปิดเผยการต่อสู้อันยิ่งใหญ่";
-				mes "ใน ^8B4513ทะเลทรายโมร็อกโก^000000";
-				mes "ที่ชะตากรรมโลกของเรา";
-				mes "อยู่ในมือของเขา...";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "พอแค่นี้ก่อน~!";
-				mes "ส่วนที่เหลือของเรื่องก็สามารถ";
-				mes "ตรวจสอบแล้วในสำเนาที่ตีพิมพ์";
-				mes "^0000ฟฟฟัเทชั่นเนอร์^000000";
-				mes "มันจะเยี่ยมมาก~!";
-				close;
-		case 6:
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "สหภาพได้ส่งของขวัญพิเศษให้กับสมาชิก";
-				mes "เรียกว่า ^0000FFHigh Clip 4^000000";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "เดิมใช้เป็นเครื่องมือที่ช่วยให้สมาชิกสามารถกระซิบกันได้สะดวก แต่ก็มีฟังก์ชั่นที่เป็นประโยชน์อื่น ๆ อีกด้วย";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "กิลด์เป็นผู้คิดค้นสิ่งนี้ ฉันจำได้ว่าตราสัญลักษณ์ของพวกเขามีรูปแอปเปิล";
-				close;
-		case 7:
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "โฮมุนคูลัสสมควรจริงๆ";
-				mes "อย่างไรก็ตาม เช่นเดียวกับคนอื่นๆ บางครั้งฉันก็ตั้งคำถามถึงความหมายและอนาคตของมัน";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "ฉันเชื่อว่าชีวิตที่ธรรมชาติมอบให้มีไว้เพื่อใช้เพื่อตัวเราเอง";
-				mes "อย่างไรก็ตาม...";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "การวิจัยเพื่อให้โฮมุนคูลัสมีชีวิตนั้น แท้จริงแล้วเป็นไปเพื่อประโยชน์ของมนุษย์";
-				mes "บางทีมนุษย์อาจไม่พร้อมในด้านจริยธรรมที่จะสร้างชีวิต";
-				close;
-		case 8:
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "เมื่อไม่นานนี้ ^005DFFJeyna^000000 ได้แนะนำฉันให้รู้จักกับใครบางคน";
-				mes "เธอมาจาก ^8B4513Geffen^000000";
-				mes "และเธอแนะนำตัวเองว่าเป็น ^005DFFChicken Researcher^000000";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "เธอเป็นผู้เชี่ยวชาญในสิ่งที่เรียกว่า ^006400Legendary Bijofnil^000000";
-				mes "เธอรู้สึกว่าเป็นเรื่องน่ารังเกียจที่คนคิดว่าบิโจฟนิลเป็นเหยี่ยว";
-				next;
-				mes "[หมายเหตุชั้นวางหนังสือ]";
-				mes "เธอพูดอะไรบางอย่างเกี่ยวกับบางแห่งใน ^8B4513 น้ำพุ Hvergilmir^000000";
-				mes "มี ^005DFFไก่พูด^000000 และมีเรื่องอื่นๆ อีก";
-				mes "มันก็ดำเนินไปแบบนั้น";
-				mes "และมันก็น่าสนใจ";
-				close;
-		}
+	switch(rand(1,8)) {
+	case 1:
+		mes "[Bookcase Notes]";
+		mes "ข้าควรเขียนอะไรถึง ^005DFFDe Bris^000000 ดีนะ";
+		mes ":: ถึง De Bris เพื่อน Genetic ผู้มีชื่อเสียงของข้า";
+		mes ":: Lighthalzen เป็นอย่างไรบ้าง?";
+		mes ":: พวกเขามีคุกกี้ที่เจ้าชอบมากพอกินหรือเปล่า?";
+		next;
+		mes "[Bookcase Notes]";
+		mes ":: ข้าจะแวะไปหาเร็วๆ นี้";
+		mes ":: พร้อมกับคุกกี้บางส่วน";
+		mes ":: เมื่อเราพบกัน";
+		mes ":: ข้าจะแนะนำเจ้าให้รู้จักกับ";
+		mes ":: ^006400Homunculus ตัวใหม่^000000 ของข้า";
+		next;
+		mes "[Bookcase Notes]";
+		mes ":: ไม่ต้องระแวงไปหรอกนะ";
+		mes ":: พวกมันไม่เหมือนเจ้า";
+		mes ":: เพราะพวกมันไม่สนใจหรอกว่า";
+		mes ":: คนอื่นจะมีอะไรกินบ้าง";
+		mes ":: ไว้พบกันเร็วๆ นี้จ้า~!";
+		mes ":: ลองปิดประตูใส่ข้าดูสิ";
+		close;
+	case 2:
+		mes "[Bookcase Notes]";
+		mes "ครั้งล่าสุดที่ข้าไปเยือนสมาคม Alchemist มีการถกเถียงที่น่าสนใจบนโต๊ะประชุม";
+		mes "ข้าคิดว่ามันน่าจะเป็นเรื่องเกี่ยวกับ ^006400การปล่อยปละละเลย Homunculus ในที่สาธารณะ^000000";
+		next;
+		mes "[Bookcase Notes]";
+		mes "ในขณะที่เจ้านายกำลังสัปหงก";
+		mes "หนึ่งในพวก ^FF4800Homunculus^000000 ที่หลุดจากสายจูง";
+		mes "ก็ได้ไปก่อปัญหาบางอย่างเข้า";
+		next;
+		mes "[Bookcase Notes]";
+		mes "ข้าจะคอยย้ำเตือนให้มั่นใจว่า Jonathan เจ้า Homunculus ของข้า...";
+		mes "จะได้รับการฝึกฝนมาอย่างดีเพื่อไม่ให้ไปก่อความเดือดร้อนให้คนรอบข้าง";
+		close;
+	case 3:
+		mes "[Bookcase Notes]";
+		mes "มีของเล่นชิ้นใหม่ที่ข้ากับ ^005DFFJeyna^000000 เริ่มจะหลงใหล";
+		mes "มันค่อนข้างใหม่ทีเดียว";
+		mes "เห็นเรียกว่า... ^0000FF'Helo'^000000 ล่ะมั้ง?";
+		next;
+		mes "[Bookcase Notes]";
+		mes "มีเพลงที่เกี่ยวข้องกับมัน ร้องโดย ^57007FMinstrel^000000 คนหนึ่ง";
+		mes "เนื้อเพลงประมาณว่า ^006400'อาาา~อาา~อาาาาาาาา'^000000";
+		next;
+		mes "[Bookcase Notes]";
+		mes "ความบันเทิงในตัวมันเองก็สนุกดี";
+		mes "แต่ดนตรีก็ยอดเยี่ยมมากเช่นกัน";
+		mes "และเมื่อข้าได้ฟังมัน";
+		mes "ข้ารู้สึกเหมือน SP ของข้าได้รับการฟื้นฟูขึ้นมาอย่างมาก";
+		next;
+		mes "[Bookcase Notes]";
+		mes "ข้าต้องขอบอกเลยว่า";
+		mes "ความบันเทิงนั้นสำคัญอย่างยิ่งในเวลาพักผ่อน";
+		mes "เพื่อสร้างขวัญและกำลังใจในการวิจัย";
+		mes "^006400เพื่อ Homunculus~!^000000";
+		close;
+	case 4:
+		mes "[Bookcase Notes]";
+		mes "จากที่ข้าได้ยินมาจากสมาชิกสมาคมที่ชื่อ";
+		mes "^005DFFParmy^000000";
+		mes "^005DFFRaspuchin^000000 ก็ยังคงเป็นตัวของตัวเองที่ดูพิลึกอยู่เหมือนเดิม";
+		next;
+		mes "[Bookcase Notes]";
+		mes "มันอาจจะไม่ใช่ความคิดที่ดีนัก";
+		mes "ที่จะไล่บรรดาเหล่าคนผู้กระตือรือร้น";
+		mes "ที่กำลังจะมาเปลี่ยนอาชีพ";
+		mes "ด้วยความห้าวหาญเช่นนั้น";
+		close;
+	case 5:
+		mes "[Bookcase Notes]";
+		mes "เพื่อนคนหนึ่งของข้าที่ชอบการวาดรูป";
+		mes "เสนอให้ลองทำ <Graphic Novel> ที่ชื่อว่า";
+		mes "^0000FFMUTATIONER^000000";
+		mes "หลังจากที่เขาได้ฟังเรื่องการวิจัย";
+		mes "และผลงานของข้า";
+		next;
+		mes "[Bookcase Notes]";
+		mes "เรื่องราวเริ่มต้นขึ้นด้วย...";
+		mes "สิ่งมีชีวิตต่างดาว";
+		mes "^FF4800Homunculus^000000";
+		mes "ที่มาเยือนโลกของเรา";
+		next;
+		mes "[Bookcase Notes]";
+		mes "สิ่งมีชีวิตต่างดาวตัวนั้น";
+		mes "^FF4800Homunculus^000000 สามารถอยู่รอดได้";
+		mes "โดยไม่ต้องมีเจ้านาย";
+		mes "และมันสามารถเปลี่ยนร่างเป็น";
+		mes "สิ่งมีชีวิตต่างๆ ที่";
+		mes "ท่องไปในโลกของเรา";
+		next;
+		mes "[Bookcase Notes]";
+		mes "พวกต่างดาว ^FF4800Homunculus^000000 เหล่านี้";
+		mes "มีสองฝ่ายที่ขัดแย้งกัน";
+		mes "แบ่งแยกด้วยอุดมการณ์ทางการเมือง";
+		mes "ในโลกของเรา เราเรียกพวกเขาว่า";
+		mes "^006400Aut-homun^000000 และ";
+		mes "^006400Decept-homun^000000";
+		next;
+		mes "[Bookcase Notes]";
+		mes "พวก ^006400Aut-homun^000000 เป็นเพื่อนของเรา";
+		mes "ผู้นำของพวกเขา";
+		mes "ชื่อว่า ^005DFFOptimus Poring^000000";
+		mes "ช่างดูบึกบึนและเท่มาก";
+		mes "สำหรับพอร์ริ่งตัวหนึ่ง";
+		mes "และมันสามารถเรียกคาร์ทออกมาได้ตามใจนึก!";
+		next;
+		mes "[Bookcase Notes]";
+		mes "ฝ่ายตรงข้ามคือ ^006400Decept-homun^000000";
+		mes "นำโดย ^005DFFMegatroll^000000";
+		mes "และพวกมันใช้ทุกวิถีทาง";
+		mes "เพื่อทำลายโลกของเรา";
+		next;
+		mes "[Bookcase Notes]";
+		mes "วีรบุรุษของเรื่องนี้";
+		mes "คือคนจากเมือง ^8B4513Alberta^000000 ชื่อว่า ^005DFFJam Wicky^000000";
+		mes "ผู้ซึ่งได้พบกับ ^005DFFOptimus Poring^000000";
+		mes "ในขณะที่เขากำลังเลือกซื้อคาร์ทอยู่";
+		mes "ราวกับว่ามันเป็นโชคชะตาของเขา";
+		next;
+		mes "[Bookcase Notes]";
+		mes "และด้วยเหตุนี้เอง";
+		mes "มหากาพย์การต่อสู้จึงอุบัติขึ้น";
+		mes "ใน ^8B4513ทะเลทราย Moroc^000000";
+		mes "ที่ซึ่งชะตากรรมของโลกเรา";
+		mes "อยู่ในมือของเขา...";
+		next;
+		mes "[Bookcase Notes]";
+		mes "พอได้แล้วล่ะ~!";
+		mes "เนื้อเรื่องส่วนที่เหลือสามารถ";
+		mes "ติดตามได้ในฉบับที่ตีพิมพ์นะ";
+		mes "^0000FFMUTATIONER^000000";
+		mes "มันจะต้องสุดยอดมากแน่ๆ~!";
+		close;
+	case 6:
+		mes "[Bookcase Notes]";
+		mes "ทางสมาคมได้ส่งของขวัญพิเศษให้แก่สมาชิก";
+		mes "มันชื่อว่า ^0000FFHigh Clip 4^000000";
+		next;
+		mes "[Bookcase Notes]";
+		mes "เดิมทีมันถูกใช้เป็นเครื่องมือที่ช่วยให้สมาชิกซิบหากันได้ง่ายขึ้น แต่มันก็ยังมีฟังก์ชันที่มีประโยชน์อื่นๆ อีก";
+		next;
+		mes "[Bookcase Notes]";
+		mes "กิลด์หนึ่งเป็นผู้ประดิษฐ์สิ่งนี้ ข้าจำได้ว่าสัญลักษณ์กิลด์ของพวกเขามีรูปแอปเปิ้ลอยู่";
+		close;
+	case 7:
+		mes "[Bookcase Notes]";
+		mes "Homunculus นั้นมีคุณค่าอย่างแท้จริง";
+		mes "อย่างไรก็ตาม เช่นเดียวกับคนอื่นๆ บางครั้งข้าก็ตั้งคำถามถึงความหมายและอนาคตของมัน";
+		next;
+		mes "[Bookcase Notes]";
+		mes "ข้าเชื่อว่าชีวิตที่ได้รับจากธรรมชาตินั้นควรจะถูกใช้เพื่อตัวของมันเอง";
+		mes "อย่างไรก็ตาม...";
+		next;
+		mes "[Bookcase Notes]";
+		mes "การวิจัยเพื่อให้ชีวิตแก่ Homunculus ในความเป็นจริงแล้ว มันคือการทำเพื่อผลประโยชน์ของมนุษย์";
+		mes "บางทีมนุษยชาติอาจจะยังไม่พร้อมในทางจริยธรรมที่จะสร้างชีวิตขึ้นมาเอง";
+		close;
+	case 8:
+		mes "[Bookcase Notes]";
+		mes "เมื่อไม่นานมานี้ ^005DFFJeyna^000000 ได้แนะนำใครบางคนให้ข้ารู้จัก";
+		mes "นางมาจากเมือง ^8B4513Geffen^000000";
+		mes "และแนะนำตัวเองว่าเป็น ^005DFFนักวิจัยไก่^000000";
+		next;
+		mes "[Bookcase Notes]";
+		mes "นางเป็นผู้เชี่ยวชาญในสิ่งที่เรียกว่า ^006400Bijofnil ในตำนาน^000000";
+		mes "นางรู้สึกขัดใจที่คนส่วนใหญ่คิดว่า Bijofnil คือเหยี่ยว";
+		next;
+		mes "[Bookcase Notes]";
+		mes "นางพูดบางอย่างเกี่ยวกับสถานที่แถวๆ ^8B4513Hvergilmir's Fountain^000000";
+		mes "ว่ามี ^005DFFไก่พูดได้^000000 อยู่ที่นั่นและเรื่องเล่าอื่นๆ...";
+		mes "ก็นะ เรื่องมันดำเนินไปประมาณนั้น";
+		mes "แต่มันก็น่าสนใจดีนะ";
+		close;
+	}
 }
 
 // Notifiers
 //============================================================
 que_house_s,11,52,3	script	#03homun_s	111,{
-		end;
+	end;
 OnInit:
-		initnpctimer;
-		end;
+	initnpctimer;
+	end;
 OnTimer6000:
-		emotion ET_SURPRISE;
-		end;
+	emotion ET_SURPRISE;
+	end;
 OnTimer7000:
-		emotion ET_SURPRISE, getnpcid(0, "#04homun_s");
-		stopnpctimer;
-		initnpctimer;
-		end;
+	emotion ET_SURPRISE, getnpcid(0, "#04homun_s");
+	stopnpctimer;
+	initnpctimer;
+	end;
 }
 
 que_house_s,14,52,3	script	#04homun_s	111,{
-		end;
+	end;
 }
 
 // Researcher's Pet
 //============================================================
 que_house_s,24,46,3	script	Jonathan#homun_s	6002,{
-		end;
+	end;
 }
 
 que_house_s,23,46,3	script	#05homun_s	111,{
-		emotion ET_STARE_ABOUT, getnpcid(0, "Jonathan#homun_s");
-		if (gethominfo(1) < 6048 || gethominfo(1) > 6052) { // Not mutated Homunculus-S
-				mes "[โจนาธาน]";
-				mes "ฮวาง~ ฮวาง!";
-				next;
-				mes ":: น่าจะเป็นของวิโอเรลนะ";
-				mes ":: โฮมุนคูลัส";
-				mes ":: มันสวมสร้อยคอเส้นเล็กอยู่";
-				mes ":: มีชื่อโจนาธานสลักไว้";
-				mes ":: บนมัน.";
-				close;
-		} else {
-				mes "[โจนาธาน]";
-				mes "ฮวาง~?!";
-				next;
-				emotion ET_PROFUSELY_SWEAT, getnpcid(0, "Jonathan#homun_s");
-				mes "[โจนาธาน]";
-				mes "*สะอื้น* ...";
-				next;
-				mes ":: อัครมหาเสนาบดี";
-				mes ":: เรียกว่าโจนาธาน";
-				mes ":: ดูเหมือนจะแปลกใจกับฉัน";
-				mes ":: โฮมุนคูลัสใหม่";
-				close;
-		}
+	emotion ET_STARE_ABOUT, getnpcid(0, "Jonathan#homun_s");
+	if (gethominfo(1) < 6048 || gethominfo(1) > 6052) { // Not mutated Homunculus-S
+		mes "[Jonathan]";
+		mes "หงับ~ หงับ!";
+		next;
+		mes ":: ดูเหมือนจะเป็น Homunculus";
+		mes ":: ของ Viorel";
+		mes ":: มันสวมปลอกคอเล็กๆ";
+		mes ":: ที่มีชื่อ Jonathan สลักอยู่";
+		mes ":: บนนั้น";
+		close;
+	} else {
+		mes "[Jonathan]";
+		mes "หงับ~?!";
+		next;
+		emotion ET_PROFUSELY_SWEAT, getnpcid(0, "Jonathan#homun_s");
+		mes "[Jonathan]";
+		mes "*ฟุดฟิด* ...";
+		next;
+		mes ":: เจ้า Amistr ตัวนี้";
+		mes ":: ที่ชื่อว่า Jonathan";
+		mes ":: ดูเหมือนจะตกใจกับ";
+		mes ":: Homunculus ตัวใหม่ของฉัน";
+		close;
+	}
 }
