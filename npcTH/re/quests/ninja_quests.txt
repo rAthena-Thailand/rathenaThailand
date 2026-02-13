@@ -17,345 +17,345 @@
 // Armor and Weapon NPCs :: kaboro_gearmix
 //============================================================
 que_ng,21,72,6	script	Master Armor Craftsman	4_M_RASWORD,{
-		mes "[เกียว]";
-		mes "คุณจะนิยามชัยชนะว่าอย่างไร?";
-		mes "เพื่อล้มศัตรู...";
-		mes "อย่างไรก็ตามสิ่งที่สำคัญที่สุดก็คือ...";
-		mes "อย่าล้มตัวเองเด็ดขาด!";
-		next;
-		mes "[เกียว]";
-		mes "ดังนั้นคุณต้องปกป้องตัวเองให้ดีขึ้น";
-		mes "คุณไม่สามารถปกป้อง ‘ผู้อื่น’ ได้ ในขณะที่คุณขัดขวางการปกป้อง ‘ตัวคุณเอง’";
-		next;
-		if(select("Combine armor.:End conversation.") == 2) {
-				mes "[เกียว]";
-				mes "ความรอบคอบก็เป็นคุณธรรมที่สำคัญในสนามรบเช่นกัน";
-				close;
-		}
-		switch(select("Wolf Armguard[1]:Crescent Armguard[1]:Ninja Scale Armor[1]:Tenebris Latitantes[1]:Quit.")) {
-		case 1:
-				mes "[เกียว]";
-				mes "Wolf Armguard... ชุดเกราะอันโหดร้ายชิ้นหนึ่ง";
-				next;
-				callsub L_Select,2172;
-				if (countitem(2171) > 0 && countitem(6252) > 9) {  //custom translation
-						delitem 2171,1; //Fox_Armguard
-						delitem 6252,10; //Wolf_Blood
-						getitem 2172,1; //Wolf_Armguard
-						mes "[เกียว]";
-						mes "คุณรู้สึกถึงธรรมชาติของหมาป่าไหม?";
-						mes "ทั้งดุร้ายและมีเสน่ห์...";
-						close;
-				}
-				break;
-		case 2:
-				mes "[เกียว]";
-				mes "Crescent Armguard... สิ่งที่สวยงามและแข็งแกร่ง... ที่ไม่น้อยหน้าใคร";
-				next;
-				callsub L_Select,2173;
-				if (countitem(2171) > 0 && countitem(7321) > 99) {  //custom translation
-						delitem 2171,1; //Fox_Armguard
-						delitem 7321,100; //Fragment_Of_Crystal
-						getitem 2173,1; //Crescent_Armguard
-						mes "[เกียว]";
-						mes "งดงามมาก...";
-						mes "ราวกับทั้งร่างกายเต็มไปด้วยความมหัศจรรย์";
-						close;
-				}
-				break;
-		case 3:
-				mes "[เกียว]";
-				mes "เกราะเกล็ดนินจา... ว่ากันว่าครั้งหนึ่งมีนินจาในตำนานเคยสวมมันอยู่";
-				next;
-				callsub L_Select,15054;
-				if (countitem(7451) > 29 && countitem(7562) > 29 && countitem(6091) > 29) {  //custom translation
-						delitem 7451,30; //Scale_Of_Red_Dragon
-						delitem 7562,30; //Ice_Scale
-						delitem 6091,30; //Dark_Red_Scale
-						getitem 15054,1; //Ninja_Scale_Armor
-						mes "[เกียว]";
-						mes "นี่เป็นเกราะในตำนานโดยแท้จริง...";
-						mes "แม้ว่าฉันจะไม่เชื่อในเรื่องตำนานก็ตาม...";
-						close;
-				}
-				break;
-		case 4:
-				mes "[เกียว]";
-				mes "เกราะของราชาเงา... มันถูกสร้างขึ้นมาเพื่อปกป้องผู้อื่น";
-				next;
-				callsub L_Select,15055;
-				if (countitem(15056) > 0 && countitem(6089) > 9) {  //custom translation
-						delitem 15056,1; //Special_Ninja_Suit_
-						delitem 6089,10; //Piece_Of_Darkness
-						getitem 15055,1; //Tenebris_Latitantes
-						mes "[เกียว]";
-						mes "เป็นยังไงบ้าง?";
-						mes "เกราะมันไม่ดูเหมือนมีสองอันหรอ?";
-						close;
-				}
-				break;
-		case 5:
-				close;
-		}
-		mes "[เกียว]";
-		mes "คุณมีส่วนผสมไม่เพียงพอ";
-		mes "ดูอีกครั้งอีกครั้ง...";
+	mes "[Gyo]";
+	mes "เจ้าจะนิยามคำว่าชัยชนะว่าอย่างไร?";
+	mes "คือการโค่นล้มศัตรู...";
+	mes "อย่างไรก็ตาม สิ่งที่สำคัญที่สุดก็คือ...";
+	mes "การไม่ปล่อยให้ตัวเองล้มลงยังไงล่ะ!";
+	next;
+	mes "[Gyo]";
+	mes "เพื่อการนั้น เจ้าต้องป้องกันตัวเองให้ดียิ่งขึ้น";
+	mes "เจ้าไม่สามารถปกป้อง 'ผู้อื่น' ได้ หากเจ้าละเลยการป้องกันของ 'ตัวเอง'";
+	next;
+	if(select("ผสมชุดเกราะ:จบการสนทนา") == 2) {
+		mes "[Gyo]";
+		mes "ความรอบคอบก็เป็นคุณธรรมที่สำคัญในการต่อสู้เช่นกัน";
 		close;
+	}
+	switch(select("Wolf Armguard[1]:Crescent Armguard[1]:Ninja Scale Armor[1]:Tenebris Latitantes[1]:ออก")) {
+	case 1:
+		mes "[Gyo]";
+		mes "Wolf Armguard... ชุดเกราะที่มีกลิ่นอายแห่งสัตว์ป่า";
+		next;
+		callsub L_Select,2172;
+		if (countitem(2171) > 0 && countitem(6252) > 9) { //custom translation
+			delitem 2171,1; //Fox_Armguard
+			delitem 6252,10; //Wolf_Blood
+			getitem 2172,1; //Wolf_Armguard
+			mes "[Gyo]";
+			mes "เจ้าสัมผัสได้ถึงสัญชาตญาณของหมาป่าหรือไม่?";
+			mes "ทั้งดุดันและน่าหลงใหล...";
+			close;
+		}
+		break;
+	case 2:
+		mes "[Gyo]";
+		mes "Crescent Armguard... สิ่งที่รวมความงามและความแข็งแกร่งไว้ด้วยกัน... โดยไม่เป็นรองใคร";
+		next;
+		callsub L_Select,2173;
+		if (countitem(2171) > 0 && countitem(7321) > 99) { //custom translation
+			delitem 2171,1; //Fox_Armguard
+			delitem 7321,100; //Fragment_Of_Crystal
+			getitem 2173,1; //Crescent_Armguard
+			mes "[Gyo]";
+			mes "ช่างงดงามยิ่งนัก...";
+			mes "ราวกับว่าทั่วทั้งร่างกายเปี่ยมล้นไปด้วยพลังเวทมนตร์";
+			close;
+		}
+		break;
+	case 3:
+		mes "[Gyo]";
+		mes "Ninja Scale Armor... ว่ากันว่านินจาในตำนานเคยสวมใส่มัน";
+		next;
+		callsub L_Select,15054;
+		if (countitem(7451) > 29 && countitem(7562) > 29 && countitem(6091) > 29) { //custom translation
+			delitem 7451,30; //Scale_Of_Red_Dragon
+			delitem 7562,30; //Ice_Scale
+			delitem 6091,30; //Dark_Red_Scale
+			getitem 15054,1; //Ninja_Scale_Armor
+			mes "[Gyo]";
+			mes "นี่คือชุดเกราะในตำนานอย่างแท้จริง...";
+			mes "แม้ว่าข้าจะไม่ค่อยเชื่อเรื่องตำนานสักเท่าไหร่ก็เถอะ...";
+			close;
+		}
+		break;
+	case 4:
+		mes "[Gyo]";
+		mes "Shadow King's Armor... มันถูกสร้างขึ้นเพื่อปกป้องผู้อื่น";
+		next;
+		callsub L_Select,15055;
+		if (countitem(15056) > 0 && countitem(6089) > 9) { //custom translation
+			delitem 15056,1; //Special_Ninja_Suit_
+			delitem 6089,10; //Piece_Of_Darkness
+			getitem 15055,1; //Tenebris_Latitantes
+			mes "[Gyo]";
+			mes "เป็นอย่างไรบ้าง?";
+			mes "เกราะนี้ไม่ได้ดูเหมือนว่ามีสองอันซ้อนกันอยู่รึ?";
+			close;
+		}
+		break;
+	case 5:
+		close;
+	}
+	mes "[Gyo]";
+	mes "เจ้ามีวัตถุดิบไม่เพียงพอ";
+	mes "ลองตรวจสอบดูอีกครั้งนะ...";
+	close;
 
 L_Select:
-		.@string1$ = "Check Ingredients.";
-		.@string2$ = "Check Stats.";
-		while(1) {
-				switch(select(.@string1$,.@string2$,"Combine.","Quit.")) {
-				case 1:
-						.@string1$ = "";
-						callsub L_Ingredients, getarg(0);
-						break;
-				case 2:
-						.@string2$ = "";
-						callsub L_Stats, getarg(0);
-						break;
-				case 3:
-						callsub L_Combine;
-						return;
-				case 4:
-						mes "[เกียว]";
-						mes "ดูเหมือนว่าคุณจะต้องการเวลาเพิ่มเติมเพื่อการตัดสินใจ";
-						close;
-				}
+	.@string1$ = "ตรวจสอบวัตถุดิบ";
+	.@string2$ = "ตรวจสอบคุณสมบัติ";
+	while(1) {
+		switch(select(.@string1$,.@string2$,"ผสมเลย","ออก")) {
+		case 1:
+			.@string1$ = "";
+			callsub L_Ingredients, getarg(0);
+			break;
+		case 2:
+			.@string2$ = "";
+			callsub L_Stats, getarg(0);
+			break;
+		case 3:
+			callsub L_Combine;
+			return;
+		case 4:
+			mes "[Gyo]";
+			mes "ดูเหมือนว่าเจ้าจะยังต้องการเวลาในการตัดสินใจ";
+			close;
 		}
+	}
 
 L_Ingredients:
-		mes "[เกียว]";
-		switch (getarg(0)) {
-		case 2172:	//Wolf_Armguard
-				mes "ในการสร้าง ^ff0000Wolf Armguard คุณต้องมี Fox Armguard 1 ชิ้นและ Blood of Wolf 10 ชิ้น^000000";
-				mes "คุณรู้สึกได้ไหม? การเต้นระรัวของเลือดหมาป่า...";
-				break;
-		case 2173:	//Crescent_Armguard
-				mes "ในการสร้าง ^ff0000Crescent Armguard คุณต้องมี Fox Armguard 1 ชิ้นและ Crystal Fragments 100 ชิ้น^000000";
-				mes "จะมีการสลักรูปจันทร์เสี้ยวที่งดงามใสสะอาดเหมือนคริสตัลไว้";
-				break;
-		case 15054:	//Ninja_Scale_Armor
-				mes "ในการสร้างชุดเกราะเกล็ดนินจา คุณต้องมีเกล็ดมังกรไฟ 30 ชิ้น เกล็ดน้ำแข็ง 30 ชิ้น และชิ้นส่วนเกล็ดสีแดงเข้ม 30 ชิ้น^000000";
-				mes "คุณสามารถสัมผัสถึงพลังอันเป็นตำนานของมันได้";
-				break;
-		case 15055:	//Tenebris_Latitantes
-				mes "ในการสร้างชุดเกราะ Shadow King คุณจะต้องมีชุดนินจาพิเศษพร้อมช่องและชิ้น Dark Pieces จำนวน 10 ชิ้น^000000";
-				mes "ความมืดทำให้การดำรงอยู่หายไป...";
-				break;
-		}
-		next;
-		return;
+	mes "[Gyo]";
+	switch (getarg(0)) {
+	case 2172:	//Wolf_Armguard
+		mes "การจะสร้าง ^ff0000Wolf Armguard เจ้าต้องมี 1 Fox Armguard และ 10 Blood of Wolf^000000";
+		mes "สัมผัสได้ไหม? แรงสั่นสะเทือนจากเลือดหมาป่า...";
+		break;
+	case 2173:	//Crescent_Armguard
+		mes "การจะสร้าง ^ff0000Crescent Armguard เจ้าต้องมี 1 Fox Armguard และ 100 Crystal Fragments^000000";
+		mes "พระจันทร์เสี้ยวที่สวยงามและใสกระจ่างราวกับคริสตัลจะถูกสลักไว้บนนั้น";
+		break;
+	case 15054:	//Ninja_Scale_Armor
+		mes "การจะสร้าง ^ff0000Ninja Scale Armor เจ้าต้องมี 30 Fire Dragon Scales, 30 Ice Scales และ 30 Darkred Scale Pieces^000000";
+		mes "เจ้าสามารถสัมผัสได้ถึงพลังแห่งตำนานของมัน";
+		break;
+	case 15055:	//Tenebris_Latitantes
+		mes "การจะสร้าง ^ff0000Shadow King's Armor เจ้าจะต้องมี Special Ninja Suit ที่มีรู (Slot) และ 10 Dark Pieces^000000";
+		mes "ด้วยความมืดมิด มันจะลบเลือนตัวตนออกไป...";
+		break;
+	}
+	next;
+	return;
 
 L_Stats:
-		mes "-" + getitemname(getarg(0)) + "-";
-		switch (getarg(0)) {
-		case 2172:	//Wolf_Armguard
-				mes "มีโอกาสได้รับ ATK+100 เป็นเวลา 5 วินาที, FLEE -50 จากการโจมตีระยะประชิด";
-				mes "ประเภทโล่, ป้องกัน 45, ช่อง 1";
-				mes "จำเป็นต้องมีเลเวล 100 ประเภทนินจาเท่านั้น";
-				break;
-		case 2173:	//Crescent_Armguard
-				mes "ลดความล่าช้าในการโพสต์ทักษะลง 2% สำหรับทุกการปรับปรุง";
-				mes "ประเภทโล่, ป้องกัน 70, ช่อง 1";
-				mes "จำเป็นต้องมีเลเวล 100 ประเภทนินจาเท่านั้น";
-				break;
-		case 15054:	//Ninja_Scale_Armor
-				mes "แม็กซ์แรงม้า+15%, แม็กซ์แรงม้า-30%";
-				mes "ประเภทเกราะ, ป้องกัน 90, ช่อง 1";
-				mes "จำเป็นต้องมีเลเวล 100 ประเภทนินจาเท่านั้น";
-				break;
-		case 15055:	//Tenebris_Latitantes
-				mes "มีโอกาสเปิดใช้งานภาพลวงตาระดับ 1 - เงา เมื่อถูกโจมตีด้วยการโจมตีระยะประชิด";
-				mes "ประเภทเกราะ, ป้องกัน 60, ช่อง 1";
-				mes "จำเป็นต้องมีเลเวล 100 ประเภทนินจาเท่านั้น";
-				break;
-		}
-		next;
-		return;
+	mes "[" + getitemname(getarg(0)) + "]";
+	switch (getarg(0)) {
+	case 2172:	//Wolf_Armguard
+		mes "มีโอกาสได้รับ ATK+100, FLEE -50 เป็นเวลา 5 วินาที เมื่อทำการโจมตีระยะประชิด";
+		mes "ประเภทโล่, พลังป้องกัน 45, ช่องใส่การ์ด 1";
+		mes "เลเวลที่ต้องการ 100, สำหรับอาชีพนินจาเท่านั้น";
+		break;
+	case 2173:	//Crescent_Armguard
+		mes "ลดดีเลย์หลังใช้สกิลลง 2% ต่อระดับการตีบวก";
+		mes "ประเภทโล่, พลังป้องกัน 70, ช่องใส่การ์ด 1";
+		mes "เลเวลที่ต้องการ 100, สำหรับอาชีพนินจาเท่านั้น";
+		break;
+	case 15054:	//Ninja_Scale_Armor
+		mes "MHP+15%, MSP-30%";
+		mes "ประเภทเกราะ, พลังป้องกัน 90, ช่องใส่การ์ด 1";
+		mes "เลเวลที่ต้องการ 100, สำหรับอาชีพนินจาเท่านั้น";
+		break;
+	case 15055:	//Tenebris_Latitantes
+		mes "มีโอกาสเปิดใช้งาน Illusion - Shadow เลเวล 1 เมื่อถูกโจมตีระยะประชิด";
+		mes "ประเภทเกราะ, พลังป้องกัน 60, ช่องใส่การ์ด 1";
+		mes "เลเวลที่ต้องการ 100, สำหรับอาชีพนินจาเท่านั้น";
+		break;
+	}
+	next;
+	return;
 
 L_Combine:
-		mes "[เกียว]";
-		mes "ตรวจสอบให้แน่ใจว่าคุณมีส่วนผสมและอุปกรณ์ที่ถูกต้องอยู่ในมือ^000000";
-		mes "อย่ามาร้องไห้ทีหลังเลย";
-		next;
-		switch(select("Combine.:Quit.")) {
-		case 1:
-				if (checkweight(1201,1) == 0 || MaxWeight - Weight < 2000) {
-						mes "- เดี๋ยว!! -";
-						mes "- ไม่สามารถรับสินค้าได้-";
-						mes "- เพราะคุณพกมันมากเกินไป -";
-						mes "- กรุณาลองอีกครั้ง -";
-						mes "- หลังจากผ่อนภาระของคุณลงแล้ว -";
-						close;
-				}
-				return;
-		case 2:
-				mes "[เกียว]";
-				mes "ดูเหมือนว่าคุณจะต้องการเวลาเพิ่มเติมเพื่อการตัดสินใจ";
-				close;
+	mes "[Gyo]";
+	mes "ตรวจสอบให้แน่ใจว่า ^ff0000เจ้ามีวัตถุดิบและอุปกรณ์ที่ถูกต้องอยู่ในมือแล้ว^000000";
+	mes "ไม่มีประโยชน์ที่จะมาร้องไห้เสียใจภายหลังนะ";
+	next;
+	switch(select("ผสมเลย:ออก")) {
+	case 1:
+		if (checkweight(1201,1) == 0 || MaxWeight - Weight < 2000) {
+			mes "- เดี๋ยวก่อน!! -";
+			mes "- เจ้าไม่สามารถรับไอเทมได้ -";
+			mes "- เพราะน้ำหนักตัวของเจ้ามากเกินไป -";
+			mes "- โปรดลองใหม่อีกครั้ง -";
+			mes "- หลังจากที่เจ้าลดน้ำหนักลงแล้ว -";
+			close;
 		}
-		end;
+		return;
+	case 2:
+		mes "[Gyo]";
+		mes "ดูเหมือนว่าเจ้าจะยังต้องการเวลาในการตัดสินใจ";
+		close;
+	}
+	end;
 }
 
 que_ng,23,70,3	script	Master Weapon Craftsman	4_DST_SOLDIER,{
-		mes "[กี้]";
-		mes "การโจมตีเป็นวิธีการป้องกันที่ดีที่สุด";
-		mes "อาวุธทรงพลังจะทำให้คุณสมบูรณ์แบบได้อย่างแท้จริง";
-		next;
-		mes "[กี้]";
-		mes "แน่นอนว่ามันคงจะดีกว่าถ้ามีอะไรพิเศษอยู่ในมือ";
-		next;
-		if(select("Combine weapon.:End conversation.") == 2) {
-				mes "[กี้]";
-				mes "การระมัดระวังมากเกินไปบางครั้งอาจถึงแก่ชีวิตได้";
-				close;
-		}
-		switch(select("Raksasa Dagger[1]:Mikatsuki[1]:Huuma Swirling Petal[2]:Quit.")) {
-		case 1:
-				mes "[กี้]";
-				mes "Raksasa Dagger สามารถใช้ได้หลังผ่านการฝึกฝนอย่างเพียงพอเท่านั้น";
-				next;
-				callsub L_Select,13076;
-				if (countitem(13013) > 0 && countitem(718) > 0) {  //custom translation
-						delitem 13013,1; //Murasame_
-						delitem 718,1; //Dark_Red_Jewel
-						getitem 13076,1; //Raksasa_Dagger
-						mes "[กี้]";
-						mes "อ่า...";
-						mes "ช่างเป็นประกายแวววาวที่งดงามเหลือเกิน...";
-						close;
-				}
-				mes "[กี้]";
-				mes "อืม... คุณไม่มีเงินพอที่จะทำ Raksasa Dagger";
-				break;
-		case 2:
-				mes "[กี้]";
-				mes "มิคาสึกิ...ส่วนโค้งอันงดงามดุจจันทร์เสี้ยว...";
-				mes "มีน้อยคนที่สามารถทำมันได้";
-				next;
-				callsub L_Select,13078;
-				if (countitem(13015) > 0 && countitem(727) > 0) {  //custom translation
-						delitem 13015,1; //Hakujin_
-						delitem 727,1; //White_Jewel
-						getitem 13078,1; //Mikatsuki
-						mes "[กี้]";
-						mes "งดงามจริงๆครับ...";
-						mes "ฉันโชคดีมากที่มีโอกาสได้เห็นมีดที่งดงามเช่นนี้";
-						close;
-				}
-				mes "[กี้]";
-				mes "อืม...คุณไม่มีเงินพอจะทำ Mikatsuki ได้";
-				break;
-		case 3:
-				mes "[กี้]";
-				mes "กลีบดอกหมุนวน Huuma...คุณเคยเห็นกลีบดอกไม้หมุนวนบ้างไหม?";
-				next;
-				callsub L_Select,13313;
-				if (countitem(13304) > 0 && countitem(7156) > 99) {  //custom translation
-						delitem 13304,1; //Huuma_Calm_Mind
-						delitem 7156,100; //Broken_Shuriken
-						getitem 13313,1; //Huuma_Swirling_Petal
-						mes "[กี้]";
-						mes "กลีบดอกลอย...ลอย!!";
-						close;
-				}
-				mes "[กี้]";
-				mes "อืม... คุณไม่มีเงินพอที่จะทำ Huuma Swirling Petal ได้";
-				break;
-		case 4:
-				close;
-		}
-		mes "ทำไมไม่ลองตรวจสอบอีกครั้งล่ะ?";
-		mes "บางคนก็ไม่สามารถละทิ้งสิ่งที่พวกเขาถือเอาไว้ได้";
+	mes "[Ki]";
+	mes "การจู่โจมคือวิธีการป้องกันที่ดีที่สุด";
+	mes "อาวุธที่ทรงพลังจะทำให้เจ้าสมบูรณ์แบบอย่างแท้จริง";
+	next;
+	mes "[Ki]";
+	mes "แน่นอนว่ามันจะดีกว่าถ้ามีบางสิ่งที่พิเศษอยู่ในมือ";
+	next;
+	if(select("ผสมอาวุธ:จบการสนทนา") == 2) {
+		mes "[Ki]";
+		mes "การระมัดระวังตัวมากเกินไปในบางครั้งอาจส่งผลร้ายถึงชีวิต";
 		close;
+	}
+	switch(select("Raksasa Dagger[1]:Mikatsuki[1]:Huuma Swirling Petal[2]:ออก")) {
+	case 1:
+		mes "[Ki]";
+		mes "Raksasa Dagger จะใช้งานได้ก็ต่อเมื่อผ่านการฝึกฝนอย่างหนักเท่านั้น";
+		next;
+		callsub L_Select,13076;
+		if (countitem(13013) > 0 && countitem(718) > 0) { //custom translation
+			delitem 13013,1; //Murasame_
+			delitem 718,1; //Dark_Red_Jewel
+			getitem 13076,1; //Raksasa_Dagger
+			mes "[Ki]";
+			mes "อา...";
+			mes "ช่างเป็นเงาแวววาวที่งดงามเหลือเกิน...";
+			close;
+		}
+		mes "[Ki]";
+		mes "อืม... เจ้ามีของไม่เพียงพอที่จะสร้าง Raksasa Dagger";
+		break;
+	case 2:
+		mes "[Ki]";
+		mes "Mikatsuki... เส้นโค้งที่งดงามราวกับดวงจันทร์เสี้ยว...";
+		mes "มีไม่กี่คนหรอกที่สามารถสร้างมันขึ้นมาได้";
+		next;
+		callsub L_Select,13078;
+		if (countitem(13015) > 0 && countitem(727) > 0) { //custom translation
+			delitem 13015,1; //Hakujin_
+			delitem 727,1; //White_Jewel
+			getitem 13078,1; //Mikatsuki
+			mes "[Ki]";
+			mes "งดงามจริงๆ...";
+			mes "ข้าโชคดีเหลือเกินที่มีโอกาสได้เห็นมีดสั้นที่วิเศษเช่นนี้";
+			close;
+		}
+		mes "[Ki]";
+		mes "อืม... เจ้ามีของไม่เพียงพอที่จะสร้าง Mikatsuki";
+		break;
+	case 3:
+		mes "[Ki]";
+		mes "Huuma Swirling Petal... เจ้าเคยเห็นกลีบดอกไม้ที่หมุนวนหรือไม่?";
+		next;
+		callsub L_Select,13313;
+		if (countitem(13304) > 0 && countitem(7156) > 99) { //custom translation
+			delitem 13304,1; //Huuma_Calm_Mind
+			delitem 7156,100; //Broken_Shuriken
+			getitem 13313,1; //Huuma_Swirling_Petal
+			mes "[Ki]";
+			mes "กลีบดอกไม้... ที่ร่ายรำ!!";
+			close;
+		}
+		mes "[Ki]";
+		mes "อืม... เจ้ามีของไม่เพียงพอที่จะสร้าง Huuma Swirling Petal";
+		break;
+	case 4:
+		close;
+	}
+	mes "ทำไมเจ้าไม่ลองตรวจสอบดูอีกครั้งล่ะ?";
+	mes "บางคนก็ไม่สามารถตัดใจจากสิ่งที่ตนถือครองอยู่ได้";
+	close;
 
 L_Select:
-		.@string1$ = "Check Ingredients.";
-		.@string2$ = "Check Stats.";
-		while(1) {
-				switch(select(.@string1$,.@string2$,"Combine.","Quit.")) {
-				case 1:
-						.@string1$ = "";
-						callsub L_Ingredients, getarg(0);
-						break;
-				case 2:
-						.@string2$ = "";
-						callsub L_Stats, getarg(0);
-						break;
-				case 3:
-						callsub L_Combine;
-						return;
-				case 4:
-						mes "[กี้]";
-						mes "คิดให้ดีก่อน~~";
-						close;
-				}
+	.@string1$ = "ตรวจสอบวัตถุดิบ";
+	.@string2$ = "ตรวจสอบคุณสมบัติ";
+	while(1) {
+		switch(select(.@string1$,.@string2$,"ผสมเลย","ออก")) {
+		case 1:
+			.@string1$ = "";
+			callsub L_Ingredients, getarg(0);
+			break;
+		case 2:
+			.@string2$ = "";
+			callsub L_Stats, getarg(0);
+			break;
+		case 3:
+			callsub L_Combine;
+			return;
+		case 4:
+			mes "[Ki]";
+			mes "ลองคิดดูให้ดีนะ~~";
+			close;
 		}
+	}
 
 L_Ingredients:
-		mes "[กี้]";
-		switch (getarg(0)) {
-		case 13076:	//Raksasa_Dagger
-				mes "สำหรับ ^ff0000Raksasa Dagger คุณต้องมี Murasame 1 อันที่มีช่อง 2 ช่องและ Garnet 1 อัน^000000";
-				mes "ทับทิมทำให้ Raksasa Dagger มีสีที่เป็นเอกลักษณ์";
-				break;
-		case 13078:	//Mikatsuki
-				mes "สำหรับ ^ff0000Mikatsuki คุณต้องมี Hakujin ที่มีช่องและ Opal^000000";
-				mes "โอปอลเป็นส่วนที่มีประกายแสงโปร่งแสง";
-				break;
-		case 13313:	//Huuma_Swirling_Petal
-				mes "สำหรับ ^ff0000Huuma Swirling Petal คุณต้องมี Huuma Calm Mind Shuriken หนึ่งอันและ Broken Shurikens 100 อัน^000000";
-				mes "ดูเหมือนว่าจะต้องใช้ดาวกระจายมากเกินไป... แต่มันมีความจำเป็นสำหรับเอฟเฟกต์กระพือปีกอันสวยงาม";
-				break;
-		}
-		next;
-		return;
+	mes "[Ki]";
+	switch (getarg(0)) {
+	case 13076:	//Raksasa_Dagger
+		mes "สำหรับการสร้าง ^ff0000Raksasa Dagger เจ้าต้องมี 1 Murasame แบบ 2 รู และ 1 Garnet^000000";
+		mes "Garnet คือสิ่งที่ทำให้ Raksasa Dagger มีสีสันที่เป็นเอกลักษณ์";
+		break;
+	case 13078:	//Mikatsuki
+		mes "สำหรับการสร้าง ^ff0000Mikatsuki เจ้าต้องมี Hakujin แบบมีรู และ 1 Opal^000000";
+		mes "Opal คือสิ่งที่ทำให้เกิดแสงเรืองรองที่โปร่งแสง";
+		break;
+	case 13313:	//Huuma_Swirling_Petal
+		mes "สำหรับการสร้าง ^ff0000Huuma Swirling Petal เจ้าต้องมี 1 Huuma Calm Mind Shuriken และ 100 Broken Shurikens^000000";
+		mes "มันอาจดูเหมือนว่าต้องใช้ดาวกระจายมากเกินไป... แต่มันจำเป็นสำหรับผลลัพธ์ที่พลิ้วไหวอย่างสวยงามนะ";
+		break;
+	}
+	next;
+	return;
 
 L_Stats:
-		mes "-" + getitemname(getarg(0)) + "-";
-		switch (getarg(0)) {
-		case 13076:	//Raksasa_Dagger
-				mes "INT+3 MATK+100.";
-				mes "ประเภทมีดสั้น, ATK 120, ช่อง 1";
-				mes "จำเป็นต้องมีเลเวล 110 ประเภทนินจาเท่านั้น";
-				break;
-		case 13078:	//Mikatsuki
-				mes "MATK + 120, การใช้การร่ายคาถาและ SP ที่ผันผวนลดลง 5% เมื่อใช้ทักษะ";
-				mes "ประเภทมีดสั้น, ATK 50, อาวุธระดับ 4 ช่อง 1";
-				mes "จำเป็นต้องมีเลเวล 100 ประเภทนินจาเท่านั้น";
-				break;
-		case 13313:	//Huuma_Swirling_Petal
-				mes "MATK + 50, ความเสียหายจากทักษะ Huuma Swirling Petal เพิ่มขึ้น 20%";
-				mes "ประเภทชูริเคน พลังโจมตี 150";
-				mes "อาวุธระดับ 3 ช่อง 2";
-				mes "จำเป็นต้องมีเลเวล 110 ประเภทนินจาเท่านั้น";
-				break;
-		}
-		next;
-		return;
+	mes "[" + getitemname(getarg(0)) + "]";
+	switch (getarg(0)) {
+	case 13076:	//Raksasa_Dagger
+		mes "INT+3 MATK+100";
+		mes "ประเภทมีดสั้น, ATK 120, ช่องใส่การ์ด 1";
+		mes "เลเวลที่ต้องการ 110, สำหรับอาชีพนินจาเท่านั้น";
+		break;
+	case 13078:	//Mikatsuki
+		mes "MATK + 120, ลดร่ายแบบแปรผันและการใช้ MSP ลง 5% เมื่อใช้สกิล";
+		mes "ประเภทมีดสั้น, ATK 50, อาวุธเลเวล 4, ช่องใส่การ์ด 1";
+		mes "เลเวลที่ต้องการ 100, สำหรับอาชีพนินจาเท่านั้น";
+		break;
+	case 13313:	//Huuma_Swirling_Petal
+		mes "MATK + 50, เพิ่มความเสียหายของสกิล Huuma Swirling Petal ขึ้น 20%";
+		mes "ประเภทดาวกระจาย Huuma, ATK 150";
+		mes "อาวุธเลเวล 3, ช่องใส่การ์ด 2";
+		mes "เลเวลที่ต้องการ 110, สำหรับอาชีพนินจาเท่านั้น";
+		break;
+	}
+	next;
+	return;
 
 L_Combine:
-		mes "[กี้]";
-		mes "ตรวจสอบให้แน่ใจว่าคุณมีส่วนผสมและอุปกรณ์ที่ถูกต้องอยู่ในมือ^000000";
-		mes "เมื่อทำเสร็จแล้วไม่สามารถย้อนกลับได้";
-		next;
-		switch(select("Combine.:Quit.")) {
-		case 1:
-				if (checkweight(1201,1) == 0 || MaxWeight - Weight < 2000) {
-						mes "- เดี๋ยว!! -";
-						mes "- ไม่สามารถรับสินค้าได้-";
-						mes "- เพราะคุณพกมันมากเกินไป -";
-						mes "- กรุณาลองอีกครั้ง -";
-						mes "- หลังจากผ่อนภาระของคุณลงแล้ว -";
-						close;
-				}
-				return;
-		case 2:
-				mes "[กี้]";
-				mes "คิดให้ดีก่อน~~";
-				close;
+	mes "[Ki]";
+	mes "ตรวจสอบให้แน่ใจว่า ^ff0000เจ้ามีวัตถุดิบและอุปกรณ์ที่ถูกต้องอยู่ในมือแล้ว^000000";
+	mes "เมื่อทำเสร็จแล้ว จะไม่สามารถย้อนคืนกลับมาได้นะ";
+	next;
+	switch(select("ผสมเลย:ออก")) {
+	case 1:
+		if (checkweight(1201,1) == 0 || MaxWeight - Weight < 2000) {
+			mes "- เดี๋ยวก่อน!! -";
+			mes "- เจ้าไม่สามารถรับไอเทมได้ -";
+			mes "- เพราะน้ำหนักตัวของเจ้ามากเกินไป -";
+			mes "- โปรดลองใหม่อีกครั้ง -";
+			mes "- หลังจากที่เจ้าลดน้ำหนักลงแล้ว -";
+			close;
 		}
-		end;
+		return;
+	case 2:
+		mes "[Ki]";
+		mes "ลองคิดดูให้ดีนะ~~";
+		close;
+	}
+	end;
 }

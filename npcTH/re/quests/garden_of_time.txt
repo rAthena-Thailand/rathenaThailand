@@ -8,479 +8,479 @@
 //============================================================
 
 function	script	F_mesnavi	{
-		return "<NAVI>[" + getarg(0) + "]<INFO>" + getarg(1) + "," + getarg(2) + "," + getarg(3) + ",0,101,0</INFO></NAVI>";
+	return "<NAVI>[" + getarg(0) + "]<INFO>" + getarg(1) + "," + getarg(2) + "," + getarg(3) + ",0,101,0</INFO></NAVI>";
 }
 
 // Warps
 xmas_fild01,158,246,2	script	Dimensional barrier#got1	GATE_SKYBLUE,2,2,{
-		// Fallthrough
+	// Fallthrough
 OnTouch:
-		warp "t_garden",116,47;
-		end;
+	warp "t_garden",116,47;
+	end;
 
 OnInit:
-		questinfo( QTYPE_QUEST, QMARK_YELLOW, "BaseLevel >= 250 && isbegin_quest(12592) == 0" );
-		end;
+	questinfo( QTYPE_QUEST, QMARK_YELLOW, "BaseLevel >= 250 && isbegin_quest(12592) == 0" );
+	end;
 }
 
 t_garden,111,36,2	script	Dimensional Barrier#got2	GATE_SKYBLUE,2,2,{
-		// Fallthrough
+	// Fallthrough
 OnTouch:
-		warp "xmas_fild01",150,240;
-		end;
+	warp "xmas_fild01",150,240;
+	end;
 }
 
 // t_garden,118,66,0	script	#wp01	HIDDEN_WARP_NPC,3,1,{	// (NPC name is not unique)
 t_garden,118,66,0	script	#wp01_t_garden	HIDDEN_WARP_NPC,3,1,{
-		end;
+	end;
 OnTouch:
-		specialeffect2 EF_FLOWERCAST;
-		setpcblock PCBLOCK_NPC, true;
-		sleep2 500;
-		setpcblock PCBLOCK_NPC, false;
-		if (BaseLevel < 250)
-				warp "xmas_fild01",150,240;
-		else
-				warp "t_garden",118,79;
-		end;
+	specialeffect2 EF_FLOWERCAST;
+	setpcblock PCBLOCK_NPC, true;
+	sleep2 500;
+	setpcblock PCBLOCK_NPC, false;
+	if (BaseLevel < 250)
+		warp "xmas_fild01",150,240;
+	else
+		warp "t_garden",118,79;
+	end;
 }
 
 // t_garden,118,72,0	script	#wp02	HIDDEN_WARP_NPC,3,1,{	// (NPC name is not unique)
 t_garden,118,72,0	script	#wp02_t_garden	HIDDEN_WARP_NPC,3,1,{
-		end;
+	end;
 OnTouch:
-		specialeffect2 EF_FLOWERCAST;
-		setpcblock PCBLOCK_NPC, true;
-		sleep2 500;
-		setpcblock PCBLOCK_NPC, false;
-		if (BaseLevel < 250)
-				warp "xmas_fild01",150,240;
-		else
-				warp "t_garden",118,61;
-		end;
+	specialeffect2 EF_FLOWERCAST;
+	setpcblock PCBLOCK_NPC, true;
+	sleep2 500;
+	setpcblock PCBLOCK_NPC, false;
+	if (BaseLevel < 250)
+		warp "xmas_fild01",150,240;
+	else
+		warp "t_garden",118,61;
+	end;
 }
 
 
 // Quest starter
 t_garden,116,47,0	script	#life_wp11	HIDDEN_WARP_NPC,2,2,{
-		end;
+	end;
 OnTouch:
-		if (BaseLevel < 250)
-				end;
-		if (isbegin_quest(12592) == 0) {
-				removespecialeffect 1145, AREA, "Oscar#life";
-				cloakoffnpcself( "Oscar#life" );
-				cloakoffnpcself( "Leticia#life" );
-				cloakoffnpcself( "Rigel#life" );
-				specialeffect 1145, AREA, "Oscar#life";
-				end;
-		}
+	if (BaseLevel < 250)
 		end;
+	if (isbegin_quest(12592) == 0) {
+		removespecialeffect 1145, AREA, "Oscar#life";
+		cloakoffnpcself( "Oscar#life" );
+		cloakoffnpcself( "Leticia#life" );
+		cloakoffnpcself( "Rigel#life" );
+		specialeffect 1145, AREA, "Oscar#life";
+		end;
+	}
+	end;
 }
-
+	
 t_garden,114,49,6	script(CLOAKED)	Leticia#life	4_4JOB_LETICIA,{
-		mes "^0000ffเธอไม่ได้สนใจคุณเพราะเธออธิบายบางอย่างให้ออสการ์ฟัง^000007";
-		close;
+	mes "^0000ffเธอไม่สนใจคุณเลย เพราะเธอกำลังอธิบายบางอย่างให้ Oscar ฟังอยู่^000007";
+	close;
 }
 
 t_garden,118,49,3	script(CLOAKED)	Rigel#life	4_CS_RIGEL,{
-		mes "^0000ffดูเหมือนว่าพวกเขาจะเน้นไปที่เรื่องราวของออสการ์และเลติเซีย^000007";
-		close;
+	mes "^0000ffดูเหมือนว่าพวกเขากำลังจดจ่ออยู่กับเรื่องราวของ Oscar และ Leticia^000007";
+	close;
 }
 
 t_garden,119,46,2	script(CLOAKED)	Oscar#life	4_ED_OSCAR,{
-		if (BaseLevel < 250)
-				end;
-		if (isbegin_quest(12592) == 0) {
-				emotion ET_THROB;
-				mes "^0000ffออสการ์ดูเหมือนจะกำลังคุยกับใครบางคน^000000";
-				next;
-				if (select( "Quit and step away", "Eavesdrop from the side." ) == 1) {
-						mes "^0000ffแน่นอน การแอบฟังก็คล้ายๆ แบบนั้น^000000";
-						close;
-				}
-				cutin "OSCAR03.bmp",2;
-				mes "[ออสการ์]";
-				mes "ดังนั้นคุณอ้างว่าฉันบังเอิญพบรอยแยกแถวๆ ลูตี้ และเข้ามาพบสวนนี้ใช่ไหม?";
-				next;
-				cutin "4job_leticia_01.png",2;
-				mes "[เลติเซีย]";
-				mes "ถูกต้องแล้ว!";
-				next;
-				cutin "OSCAR03.bmp",2;
-				mes "[ออสการ์]";
-				mes "ทำไมคุณทำแบบนั้น เลติเซีย?";
-				next;
-				cutin "4job_leticia_04.png",2;
-				mes "[เลติเซีย]";
-				mes "ทำไมล่ะ! ที่นี่ดูไม่มีประโยชน์เลยเหรอ? สวนสวยและคฤหาสน์ที่ไม่มีใครรู้จัก! นี่มันสมบูรณ์แบบเลยนะ ออสการ์!";
-				next;
-				cutin "OSCAR03.bmp",2;
-				mes "[ออสการ์]";
-				mes "คุณไม่เข้าใจหรอก เลติเซีย คุณพบรอยร้าว แต่ฉันอยากถามว่าทำไมคุณถึงเรียกฉันมาที่นี่โดยไม่ดับมันเสียที";
-				next;
-				cutin "4job_leticia_05.png",2;
-				mes "[เลติเซีย]";
-				mes "เอ่อ...ใช่แล้ว การทำลายมันก็คงเสียของเปล่าๆ";
-				next;
-				cutin "OSCAR03.bmp",2;
-				mes "[ออสการ์]";
-				mes "คุณไม่ได้ทำลายมันเพราะว่ามันเป็นขยะ~ แล้วอะไรนะ?";
-				next;
-				cutin "4job_leticia_02.png",2;
-				mes "[เลติเซีย]";
-				mes "ออสการ์ คุณเดินเตร่ไปมาโดยไม่มีที่อยู่ที่เหมาะสม ไม่ว่าคุณจะเป็นคนดีแค่ไหน คุณไม่ควรมาทำงานอาสาสมัครแบบนี้!";
-				next;
-				cutin "OSCAR09.bmp",2;
-				mes "[ออสการ์]";
-				mes "ฮะ?";
-				next;
-				cutin "rigel_halfeyes02.png",2;
-				mes "[ริเกล]";
-				mes "เลติเซียกำลังขอร้องให้คุณเลิกทำตัวเหมือนคนไร้บ้าน ซื้อบ้านดีๆ สักหลัง และใช้ชีวิตเหมือนคนธรรมดา การไม่สนใจคำพูดของคนอื่นเป็นเรื่องไม่ดี";
-				next;
-				cutin "OSCAR07.bmp",2;
-				mes "[ออสการ์]";
-				mes "ไร้บ้าน... ฉันไม่เลวร้ายขนาดนั้นหรอกเหรอ เธอมองฉันอย่างนั้นเหรอ เลทิเซีย?";
-				next;
-				cutin "4job_leticia_02.png",2;
-				mes "[เลติเซีย]";
-				mes "แม้แต่เบเทลจุสที่มาเยือนทวีปนี้เมื่อนานมาแล้วก็มีบ้านของตัวเองแล้ว! ฉันคิดว่ามันไม่สมเหตุสมผลเลยที่ออสการ์จะเร่ร่อนไปรอบๆ แบบนี้โดยไม่มีที่อยู่อาศัย!";
-				next;
-				cutin "OSCAR04.bmp",2;
-				mes "[ออสการ์]";
-				mes "โอเค ฉันเข้าใจเจตนาของคุณแล้ว ฉันยังต้องคิดว่าจะจัดการเรื่องนี้อย่างไรให้ถูกต้อง...";
-				next;
-				cutin "rigel05.png",2;
-				mes "[ริเกล]";
-				mes "จากที่ฉันดู มีข้อความมิติที่ไม่เสถียรอยู่บ้าง แต่ดูเหมือนจะไม่อันตรายมากนัก เลติเซียพูดถูก";
-				next;
-				cutin "rigel_halfeyes02.png",2;
-				mes "[ริเกล]";
-				mes "ฉันคิดว่าฉันกับเลติเซียน่าจะหาทางที่เหมาะสมสำหรับข้อความมิติที่ไม่เสถียรได้ คุณคิดว่าไง เลติเซีย?";
-				next;
-				cutin "4job_leticia_05.png",2;
-				mes "[เลติเซีย]";
-				mes "ฉันเห็นด้วย ริเกล! ฉันคิดว่าพื้นที่ที่ไม่มั่นคงใกล้ใจกลางสวนสามารถคงสภาพได้โดยการกำหนดข้อจำกัดในรูปแบบของคุกใต้ดิน ฉันจะจัดการเรื่องนั้นเอง!";
-				next;
-				cutin "rigel_halfeyes02.png",2;
-				mes "[ริเกล]";
-				mes "สวนดอกไม้ทางทิศเหนือของสวนนั้นไม่มั่นคงและเชื่อมต่อกับอีกมิติหนึ่ง ฉันจะทำงานที่นั่นบ้าง";
-				next;
-				cutin "OSCAR05.bmp",2;
-				mes "[ออสการ์]";
-				mes "ว้าว ฉันไม่รู้เลยว่าสองคนนี้จะเข้ากันได้ดีขนาดนี้ มันไม่ใช่ว่าพวกเขาวางแผนล่วงหน้าหรืออะไรใช่ไหมล่ะ?";
-				next;
-				cutin "rigel_halfeyes01.png",2;
-				mes "[ริเกล]";
-				mes "ไม่สำคัญหรอก ออสการ์ คุณรู้สึกอะไรเกี่ยวกับคฤหาสน์กลางบ้างไหม";
-				next;
-				cutin "OSCAR01.bmp",2;
-				mes "[ออสการ์]";
-				mes "โอ้ คุณหมายถึง 'นั่น' งั้นเหรอ ฉันรู้สึกได้ดีมาก";
-				next;
-				cutin "rigel_halfeyes02.png",2;
-				mes "[ริเกล]";
-				mes "ดูเหมือนว่าจะเป็นปัญหาที่เกี่ยวข้องกับ ^0000fftime^000000 ดังนั้นฉันไม่คิดว่าเลติเซียหรือฉันจะทำอะไรได้ ออสการ์ คุณทำได้ใช่ไหม?";
-				next;
-				cutin "OSCAR07.bmp",2;
-				mes "[ออสการ์]";
-				mes "อืม... นั่นเป็นความรับผิดชอบของฉัน ดังนั้นฉันก็ควรจะไป ไม่ว่าจะได้ผลหรือไม่ก็ตาม";
-				next;
-				cutin "4job_leticia_05.png",2;
-				mes "[เลติเซีย]";
-				mes "งั้นไปดูแลสวนกันก่อนดีกว่า มีนักผจญภัยแอบฟังอยู่ใกล้ๆ ถ้าไปด้วยกันก็คงจะดี!";
-				next;
-				select( "Yes? Me too?" );
-				cutin "4job_leticia_04.png",2;
-				mes "[เลติเซีย]";
-				mes "คุณกำลังพูดสิ่งที่ชัดเจนอยู่แล้ว ถ้าคุณได้ยินเรื่องราวมาจนถึงจุดนี้ คุณคงรู้แล้วว่าเกิดอะไรขึ้น อย่าพูดไร้สาระและตามฉันเข้าไปในสวน";
-				setquest 12592;
-				completequest 12592;
-				setquest 12593;
-				setquest 12594;
-				setquest 12618;
-				close2;
-				cutin "",255;
-				cloakonnpcself( "Oscar#life" );
-				cloakonnpcself( "Leticia#life" );
-				cloakonnpcself( "Rigel#life" );
-				end;
-		}
+	if (BaseLevel < 250)
 		end;
+	if (isbegin_quest(12592) == 0) {
+		emotion ET_THROB;
+		mes "^0000ffดูเหมือน Oscar กำลังคุยกับใครบางคนอยู่^000000";
+		next;
+		if (select( "เลิกสนใจและเดินจากไป", "แอบฟังจากด้านข้าง" ) == 1) {
+			mes "^0000ffแน่นอน การแอบฟังมันก็เป็นเรื่องแบบนั้นแหละ^000000";
+			close;
+		}
+		cutin "OSCAR03.bmp",2;
+		mes "[Oscar]";
+		mes "งั้น สิ่งที่คุณพยายามจะบอกคือ คุณบังเอิญเจอรูหนอนใกล้กับ Lutie แล้วก็เข้ามาจนเจอกับสวนแห่งนี้งั้นเหรอ?";
+		next;
+		cutin "4job_leticia_01.png",2;
+		mes "[Leticia]";
+		mes "ถูกต้องแล้วล่ะ!";
+		next;
+		cutin "OSCAR03.bmp",2;
+		mes "[Oscar]";
+		mes "ทำไมคุณถึงทำแบบนั้นล่ะ Leticia?";
+		next;
+		cutin "4job_leticia_04.png",2;
+		mes "[Leticia]";
+		mes "ทำไมเหรอ! ก็ที่นี่มันดูมีประโยชน์มากไม่ใช่หรือไง? ทั้งสวนที่สวยงามและคฤหาสน์ที่ระบุที่มาไม่ได้นี่! มันสมบูรณ์แบบมากเลยนะ Oscar!";
+		next;
+		cutin "OSCAR03.bmp",2;
+		mes "[Oscar]";
+		mes "คุณไม่เข้าใจนะ Leticia คุณเจอรูหนอน แต่ที่ผมถามคือทำไมคุณถึงเรียกผมมาที่นี่โดยที่ไม่กำจัดมันทิ้งไปซะ";
+		next;
+		cutin "4job_leticia_05.png",2;
+		mes "[Leticia]";
+		mes "เอ่อ... ก็แบบว่านะ มันคงน่าเสียดายถ้าจะทำลายมันทิ้งน่ะ";
+		next;
+		cutin "OSCAR03.bmp",2;
+		mes "[Oscar]";
+		mes "คุณไม่ทำลายมันเพราะมันน่าเสียดาย~ แล้วยังไงต่อล่ะ?";
+		next;
+		cutin "4job_leticia_02.png",2;
+		mes "[Leticia]";
+		mes "Oscar คุณเร่ร่อนไปทั่วโดยไม่มีที่อยู่อาศัยเป็นหลักแหล่งมาตลอด ต่อให้คุณจะเป็นคนดีแค่ไหน แต่คุณไม่ควรเอาแต่ทำงานอาสาสมัครแบบนี้ไปเรื่อยๆ นะ!";
+		next;
+		cutin "OSCAR09.bmp",2;
+		mes "[Oscar]";
+		mes "หือ?";
+		next;
+		cutin "rigel_halfeyes02.png",2;
+		mes "[Rigel]";
+		mes "Leticia กำลังขอร้องให้คุณเลิกทำตัวเหมือนคนไร้บ้าน ซื้อบ้านดีๆ สักหลัง แล้วใช้ชีวิตให้สมกับเป็นกลุ่มดาวน่ะ การเอาแต่เมินเฉยต่อคำพูดของคนอื่นมันไม่ดีหรอกนะ";
+		next;
+		cutin "OSCAR07.bmp",2;
+		mes "[Oscar]";
+		mes "คนไร้บ้าน... ผมดูแย่ขนาดนั้นเลยเหรอ? คุณมองผมแบบนั้นเหรอ Leticia?";
+		next;
+		cutin "4job_leticia_02.png",2;
+		mes "[Leticia]";
+		mes "ขนาด Betelgeuse ที่เพิ่งมาทวีปนี้ได้ไม่นาน เขายังมีบ้านดีๆ เป็นของตัวเองเลย! ฉันคิดว่ามันไม่สมเหตุสมผลเลยที่ Oscar จะเร่ร่อนไปมาแบบนี้โดยไม่มีที่พักอาศัย!";
+		next;
+		cutin "OSCAR04.bmp",2;
+		mes "[Oscar]";
+		mes "เอาล่ะ ผมเข้าใจความตั้งใจของคุณแล้ว ผมคงต้องคิดดูอีกทีว่าจะจัดการเรื่องนี้ให้เหมาะสมได้ยังไง...";
+		next;
+		cutin "rigel05.png",2;
+		mes "[Rigel]";
+		mes "จากที่ข้าตรวจสอบดู มีเส้นทางมิติที่ไม่เสถียรอยู่ไม่กี่แห่ง แต่มันดูเหมือนจะไม่เป็นอันตรายเท่าไหร่นัก Leticia พูดก็มีเหตุผลนะ";
+		next;
+		cutin "rigel_halfeyes02.png",2;
+		mes "[Rigel]";
+		mes "ข้าคิดว่าข้ากับ Leticia น่าจะหาวิธีใช้ประโยชน์ที่เหมาะสมจากเส้นทางมิติที่ไม่เสถียรเหล่านี้ได้ คุณคิดว่าไง Leticia?";
+		next;
+		cutin "4job_leticia_05.png",2;
+		mes "[Leticia]";
+		mes "เห็นด้วยเลย Rigel! ฉันคิดว่าพื้นที่ที่ไม่เสถียรใกล้กับใจกลางสวนสามารถทำให้คงที่ได้ โดยการสร้างข้อจำกัดในรูปแบบของดันเจี้ยน เดี๋ยวฉันจัดการเรื่องนั้นเอง!";
+		next;
+		cutin "rigel_halfeyes02.png",2;
+		mes "[Rigel]";
+		mes "ส่วนสวนดอกไม้ทางเหนือของที่นี่มีความไม่เสถียรและเชื่อมต่อกับมิติอื่น เดี๋ยวข้าจะไปจัดการตรงนั้นเอง";
+		next;
+		cutin "OSCAR05.bmp",2;
+		mes "[Oscar]";
+		mes "ว้าว ผมไม่ยักษ์รู้เลยว่าสองคนนี้จะเข้าขากันได้ดีขนาดนี้ ไม่ใช่ว่าพวกคุณวางแผนกันไว้ก่อนหรอกนะ?";
+		next;
+		cutin "rigel_halfeyes01.png",2;
+		mes "[Rigel]";
+		mes "นั่นไม่ใช่ประเด็นสำคัญหรอก Oscar คุณรู้สึกอะไรเกี่ยวกับคฤหาสน์ใจกลางเมืองนั่นบ้างไหม?";
+		next;
+		cutin "OSCAR01.bmp",2;
+		mes "[Oscar]";
+		mes "โอ้ คุณหมายถึง 'สิ่งนั้น' ใช่ไหม? ผมสัมผัสมันได้ชัดเจนเลยล่ะ";
+		next;
+		cutin "rigel_halfeyes02.png",2;
+		mes "[Rigel]";
+		mes "ดูเหมือนว่ามันจะเป็นปัญหาที่เกี่ยวข้องกับ ^0000ffเวลา^000000 ดังนั้นข้าคิดว่า Leticia หรือข้าคงทำอะไรไม่ได้มากนัก Oscar คุณจัดการได้ใช่ไหม?";
+		next;
+		cutin "OSCAR07.bmp",2;
+		mes "[Oscar]";
+		mes "เฮ้อ... นั่นคือความรับผิดชอบของผม เพราะฉะนั้นมันถูกต้องแล้วที่ผมจะต้องไปจัดการ ไม่ว่ามันจะสำเร็จหรือไม่ก็ตาม";
+		next;
+		cutin "4job_leticia_05.png",2;
+		mes "[Leticia]";
+		mes "ถ้าอย่างนั้น เราไปเริ่มบำรุงรักษาสวนกันก่อนเถอะ มีนักผจญภัยมาแอบฟังอยู่แถวนี้พอดีเลย ถ้าเราไปด้วยกันก็น่าจะสมบูรณ์แบบ!";
+		next;
+		select( "เอ๊ะ? ผมด้วยเหรอ?" );
+		cutin "4job_leticia_04.png",2;
+		mes "[Leticia]";
+		mes "ก็แหงล่ะ ถ้าคุณฟังเรื่องมาถึงขนาดนี้แล้ว คุณก็คงรู้แล้วล่ะว่าเกิดอะไรขึ้น อย่าพูดไร้สาระแล้วตามฉันเข้ามาในสวนได้แล้ว";
+		setquest 12592;
+		completequest 12592;
+		setquest 12593;
+		setquest 12594;
+		setquest 12618;
+		close2;
+		cutin "",255;
+		cloakonnpcself( "Oscar#life" );
+		cloakonnpcself( "Leticia#life" );
+		cloakonnpcself( "Rigel#life" );
+		end;
+	}
+	end;
 
 OnInit:
-		questinfo( QTYPE_QUEST, QMARK_YELLOW, "BaseLevel >= 250 && isbegin_quest(12592) == 0" );
-		end;
+	questinfo( QTYPE_QUEST, QMARK_YELLOW, "BaseLevel >= 250 && isbegin_quest(12592) == 0" );
+	end;
 }
 
 
-// A. Quests to access dungeons
+// A. Quests to access dungeons (เควสต์สำหรับเข้าดันเจี้ยน)
 // t_garden,118,91,0	script	#wp01	HIDDEN_WARP_NPC,2,2,{	// (NPC name is not unique)
 t_garden,118,91,0	script	#wp01_t_garden_1	HIDDEN_WARP_NPC,2,2,{
-		end;
+	end;
 OnTouch:
-		if (isbegin_quest(12592) == 2) {
-				cloakoffnpcself( "Leticia#life2" );	// note: always uncloaked at this point
-				end;
-		}
+	if (isbegin_quest(12592) == 2) {
+		cloakoffnpcself( "Leticia#life2" );	// note: always uncloaked at this point (หมายเหตุ: มักจะยกเลิกการพรางตัวที่จุดนี้เสมอ)
 		end;
+	}
+	end;
 }
 
 t_garden,118,91,6	script(CLOAKED)	Leticia#life2	4_4JOB_LETICIA,{
-		if (isbegin_quest(12593) == 1) {
-				cutin "4job_leticia_02.png",2;
-				mes "[เลติเซีย]";
-				mes "การไหลของเวลาภายในคฤหาสน์หลังนั้นแตกต่างจากเวลาปัจจุบันของเรา ดังนั้นเราจึงไม่ทราบว่าออสการ์จะบูรณะคฤหาสน์หลังนี้ให้สมบูรณ์เมื่อใด";
-				next;
-				cutin "4job_leticia_01.png",2;
-				mes "[เลติเซีย]";
-				mes "แต่เราไม่สามารถกัดนิ้วตัวเองได้ ยิ่งกว่านั้น จากสิ่งที่วิญญาณที่มาที่นี่บอก ดูเหมือนว่ามีบางอย่างอื่นที่เราต้องทำ";
-				next;
-				cutin "4job_leticia_05.png",2;
-				mes "[เลติเซีย]";
-				mes "และข้าพเจ้าได้ยินมาว่าวิญญาณที่เฝ้ารักษาพื้นที่แห่งนี้ในตอนแรกถูกขับไล่ออกไปโดยเพื่อนร่วมชาติของพวกเขาที่กลายเป็นผู้ดุร้ายเพราะเหตุผลบางประการ";
-				next;
-				cutin "4job_leticia_04.png",2;
-				mes "[เลติเซีย]";
-				mes "บางทีอาจเป็นเพราะการไหลของพลังงานที่ไม่เสถียร คุณสมบัติของธรรมชาติจึงบิดเบี้ยวและเปลี่ยนแปลงไป และวิญญาณก็ดุร้ายขึ้น พวกเขาได้รับคำสั่งให้พักผ่อนสักพักที่ทางทิศตะวันตกเฉียงเหนือของสวน";
-				next;
-				cutin "4job_leticia_04.png",2;
-				mes "[เลติเซีย]";
-				mes "ตามคำพูดของพวกเขา ดูเหมือนว่าสาเหตุจะมาจากวิญญาณแปลกปลอมจากมิติที่เชื่อมต่อกับสถานที่แห่งนี้ ดังนั้น การลดจำนวนของสิ่งแปลกปลอมเหล่านั้นลงก็คงจะดีกว่า";
-				next;
-				cutin "4job_leticia_01.png",2;
-				mes "[เลติเซีย]";
-				mes "ฉันต้องการความช่วยเหลือจากคุณ ฉันต้องรวบรวมกระแสพลังงานไปทางทิศตะวันออกและทิศตะวันตกเพื่อสร้างประตู ดังนั้นมาเริ่มกันเลย";
-				completequest 12593;
-				setquest 12595;
-				setquest 12596;
-				close3;
-		}
-		if (isbegin_quest(12595) == 1 || isbegin_quest(12596) == 1) {
-				cutin "4job_leticia_01.png",2;
-				mes "[เลติเซีย]";
-				mes "ทางออกไม่ได้เปิดใช้งานทั้งหมด เปิดทั้งทางออกตะวันออกและตะวันตก แล้วมาหาฉัน";
-				close3;
-		}
-		if (isbegin_quest(12620) == 0) {
-				cutin "4job_leticia_01.png",2;
-				setpcblock PCBLOCK_NPC, true;
-				sleep2 500;
-				setpcblock PCBLOCK_NPC, false;
-				cutin "4job_leticia_05.png",2;
-				mes "[เลติเซีย]";
-				mes "พวกเราได้รวบรวมวิญญาณทั้งหมดที่กำลังขอความช่วยเหลือจากที่นี่ และรวมพวกมันไว้ที่บริเวณทิศตะวันตกเฉียงเหนือของจัตุรัสกลาง พวกมันส่งเสียงดังมาก";
-				next;
-				cutin "4job_leticia_03.png",2;
-				mes "[เลติเซีย]";
-				mes "พวกเขาอาจจะกำลังรอคุณอยู่ก็ได้ ขึ้นอยู่กับคุณว่าจะช่วยพวกเขาหรือไม่ แต่การช่วยวิญญาณก็คงไม่เสียหายอะไร ฉันแนะนำให้ไปอย่างน้อยสักครั้ง";
-				setquest 12620;
-				close3;
-		}
+	if (isbegin_quest(12593) == 1) {
+		cutin "4job_leticia_02.png",2;
+		mes "[Leticia]";
+		mes "กระแสเวลาภายในคฤหาสน์หลังนั้นแตกต่างจากเวลาปัจจุบันของเรา ดังนั้นเราจึงไม่รู้ว่า Oscar จะฟื้นฟูคฤหาสน์ให้เสร็จสมบูรณ์เมื่อไหร่";
+		next;
 		cutin "4job_leticia_01.png",2;
-		mes "[เลติเซีย]";
-		mes "คุณเคยลองคุยกับวิญญาณไหม? การเป็นเพื่อนกับวิญญาณก็ไม่ใช่เรื่องเสียหาย";
+		mes "[Leticia]";
+		mes "แต่เราจะมานั่งงอมืองอเท้าเฉยๆ ไม่ได้ ยิ่งไปกว่านั้น จากสิ่งที่พวกวิญญาณที่มาที่นี่บอก ดูเหมือนว่ายังมีอย่างอื่นที่เราต้องทำอีก";
+		next;
+		cutin "4job_leticia_05.png",2;
+		mes "[Leticia]";
+		mes "แล้วฉันก็ได้ยินมาว่า วิญญาณที่เดิมทีทำหน้าที่ปกป้องพื้นที่แห่งนี้ ถูกขับไล่ออกมาโดยเพื่อนร่วมเผ่าพันธุ์ของพวกเขาที่กลายเป็นดุร้ายด้วยเหตุผลบางอย่าง";
+		next;
+		cutin "4job_leticia_04.png",2;
+		mes "[Leticia]";
+		mes "อาจเป็นเพราะกระแสพลังงานที่ไม่เสถียร ทำให้คุณลักษณะของธรรมชาติบิดเบี้ยวและเปลี่ยนไป จนวิญญาณเหล่านั้นกลายเป็นดุร้าย พวกเขาได้รับคำสั่งให้มาพักผ่อนชั่วคราวทางตะวันตกเฉียงเหนือของสวน";
+		next;
+		cutin "4job_leticia_04.png",2;
+		mes "[Leticia]";
+		mes "ตามคำบอกเล่าของพวกเขา ดูเหมือนว่าสาเหตุจะมาจากวิญญาณต่างมิติที่เชื่อมต่อกับที่นี่ ดังนั้นมันจะดีกว่าถ้าเราลดจำนวนของสิ่งแปลกปลอมพวกนั้นลง";
+		next;
+		cutin "4job_leticia_01.png",2;
+		mes "[Leticia]";
+		mes "ฉันต้องการความช่วยเหลือจากคุณตรงนี้ ฉันต้องรวบรวมกระแสพลังงานจากทางตะวันออกและตะวันตกเพื่อสร้างประตูขึ้นมา งั้นเราขยับตัวกันเถอะ";
+		completequest 12593;
+		setquest 12595;
+		setquest 12596;
 		close3;
+	}
+	if (isbegin_quest(12595) == 1 || isbegin_quest(12596) == 1) {
+		cutin "4job_leticia_01.png",2;
+		mes "[Leticia]";
+		mes "ทางออกทั้งหมดยังไม่ได้เปิดใช้งาน เปิดใช้งานทั้งทางออกตะวันออกและตะวันตก แล้วค่อยกลับมาหาฉัน";
+		close3;
+	}
+	if (isbegin_quest(12620) == 0) {
+		cutin "4job_leticia_01.png",2;
+		setpcblock PCBLOCK_NPC, true;
+		sleep2 500;
+		setpcblock PCBLOCK_NPC, false;
+		cutin "4job_leticia_05.png",2;
+		mes "[Leticia]";
+		mes "เรารวบรวมวิญญาณทั้งหมดที่ขอความช่วยเหลือแถวนี้ และพาพวกเขาไปรวมตัวกันทางตะวันตกเฉียงเหนือของลานกลางเมืองแล้ว พวกเขาส่งเสียงดังกันมากเลยล่ะ";
+		next;
+		cutin "4job_leticia_03.png",2;
+		mes "[Leticia]";
+		mes "พวกเขาคงกำลังรอให้คุณไปถึงนั่นแหละ มันขึ้นอยู่กับคุณว่าจะช่วยพวกเขาหรือไม่ แต่การช่วยพวกวิญญาณก็ไม่ถือว่าเสียหายอะไรนะ ฉันแนะนำให้ไปสักครั้งนึง";
+		setquest 12620;
+		close3;
+	}
+	cutin "4job_leticia_01.png",2;
+	mes "[Leticia]";
+	mes "คุณลองไปคุยกับพวกวิญญาณหรือยัง? การได้เป็นเพื่อนกับพวกเขาไม่มีอะไรเสียหายหรอกนะ";
+	close3;
 
 OnInit:
-		questinfo( QTYPE_QUEST, QMARK_YELLOW, "isbegin_quest(12593) == 1" );
-		questinfo( QTYPE_QUEST, QMARK_YELLOW, "isbegin_quest(12620) == 0 && isbegin_quest(12595) == 2 && isbegin_quest(12596) == 2" );
-		end;
+	questinfo( QTYPE_QUEST, QMARK_YELLOW, "isbegin_quest(12593) == 1" );
+	questinfo( QTYPE_QUEST, QMARK_YELLOW, "isbegin_quest(12620) == 0 && isbegin_quest(12595) == 2 && isbegin_quest(12596) == 2" );
+	end;
 }
 
 t_garden,82,92,0	script	#life_wp2	HIDDEN_WARP_NPC,3,3,{
-		end;
+	end;
 OnTouch:
-		switch( isbegin_quest(12595) ) {
-		case 0:
-				end;
-		case 1:
-				cutin "4job_leticia_01.png",2;
-				mes "[เลติเซีย]";
-				mes "โอเค แค่นี้ก็พอแล้ว มันจะเปิดทางไปสู่สถานที่ที่พลังชั่วร้ายอยู่บนตราแห่งเวลาที่เห็นอยู่ตรงนั้น";
-				next;
-				cutin "4job_leticia_02.png",2;
-				mes "[เลติเซีย]";
-				mes "คุณพร้อมแล้วหรือยัง? ยื่นมือของคุณไปข้างหน้าและจ้องมองที่แมวน้ำราวกับว่าคุณกำลังจดจ่อกับพลังที่ฉันมอบให้คุณไปที่แมวน้ำ";
-				// close2;
-				next;
-				select( "Reach out hand and watch the seal" );
-				setpcblock PCBLOCK_NPC, true;
-				cutin "",255;
-				specialeffect2 EF_BEGINSPELL_N3;
-				sleep2 2500;
-				specialeffect EF_LORD, AREA, "Passage of Time#1";
-				sleep2 1500;
-				specialeffect EF_BAKU, AREA, "Passage of Time#1";
-				sleep2 1000;
-				specialeffect EF_THUNDERSTORM2, AREA, "Passage of Time#1";
-				cloakoffnpcself( "Passage of Time#1" );
-				sleep2 1000;
-				setpcblock PCBLOCK_NPC, false;
-				if (isbegin_quest(12596) == 1) {
-						cutin "4job_leticia_04.png",2;
-						mes "[เลติเซีย]";
-						mes "ทีนี้เรามาเปิดอีกอันหนึ่งด้วยกันเถอะ ย้ายไปที่ไซต์ตรงข้ามประตูนี้";
-						completequest 12595;
-						close3;
-				}
-				cutin "4job_leticia_04.png",2;
-				mes "[เลติเซีย]";
-				mes "มันง่ายกว่าที่คิดใช่ไหมล่ะ? ด้วยวิธีนี้ เราจะสามารถหยุดพวกคนแปลกหน้าไม่ให้เข้ามาท่วมสวนได้จนกว่าออสการ์จะสร้างคฤหาสน์เสร็จ ดังนั้นจึงโล่งใจ";
-				next;
-				cutin "4job_leticia_01.png",2;
-				mes "[เลติเซีย]";
-				mes "และเนื่องจากคุณได้ช่วยฉันแล้ว จากนี้ไปคุณจะต้องทำงานร่วมกับฉันทุกวัน ไม่ใช่เรื่องใหญ่ ลดจำนวนสิ่งที่ไม่ศักดิ์สิทธิ์ในคุกใต้ดินใต้ทางเดินที่สร้างขึ้นที่นี่";
-				next;
-				select( "I think I've heard this before" );
-				cutin "4job_leticia_03.png",2;
-				mes "[เลติเซีย]";
-				mes "ทำไมบ่นอย่างนั้น มีอะไรจะบ่นไหม?";
-				next;
-				select( "No." );
-				cutin "4job_leticia_05.png",2;
-				mes "[เลติเซีย]";
-				mes "คิดว่าเสร็จแล้ว มาที่จัตุรัสกลางกันก่อน แล้วค่อยคุยเรื่องต่อไป";
-				completequest 12595;
-				close3;
-		case 2:
-				cloakoffnpcself( "Passage of Time#1" );
-				end;
-		}
+	switch( isbegin_quest(12595) ) {
+	case 0:
 		end;
+	case 1:
+		cutin "4job_leticia_01.png",2;
+		mes "[Leticia]";
+		mes "โอเค แค่นั้นก็น่าจะพอ มันจะเปิดเส้นทางไปยังสถานที่ที่มีพลังงานชั่วร้ายสถิตอยู่บนตราประทับแห่งเวลาที่คุณเห็นนั่น";
+		next;
+		cutin "4job_leticia_02.png",2;
+		mes "[Leticia]";
+		mes "พร้อมหรือยัง? ถ้าอย่างนั้น ยื่นมือของคุณออกมาข้างหน้าและจ้องไปที่ตราประทับนั้น เหมือนกับว่าคุณกำลังเพ่งพลังที่ฉันมอบให้ลงไปในตราประทับ";
+		// close2;
+		next;
+		select( "ยื่นมือออกไปแล้วจ้องมองที่ตราประทับ" );
+		setpcblock PCBLOCK_NPC, true;
+		cutin "",255;
+		specialeffect2 EF_BEGINSPELL_N3;
+		sleep2 2500;
+		specialeffect EF_LORD, AREA, "Passage of Time#1";
+		sleep2 1500;
+		specialeffect EF_BAKU, AREA, "Passage of Time#1";
+		sleep2 1000;
+		specialeffect EF_THUNDERSTORM2, AREA, "Passage of Time#1";
+		cloakoffnpcself( "Passage of Time#1" );
+		sleep2 1000;
+		setpcblock PCBLOCK_NPC, false;
+		if (isbegin_quest(12596) == 1) {
+			cutin "4job_leticia_04.png",2;
+			mes "[Leticia]";
+			mes "เอาล่ะ ทีนี้ก็ไปเปิดอีกด้านหนึ่งด้วยเหมือนกัน ไปยังพื้นที่ฝั่งตรงข้ามของประตูบานนี้ซะ";
+			completequest 12595;
+			close3;
+		}
+		cutin "4job_leticia_04.png",2;
+		mes "[Leticia]";
+		mes "มันง่ายกว่าที่คิดใช่ไหมล่ะ ด้วยสิ่งนี้ เราจะสามารถหยุดพวกตัวประหลาดไม่ให้ทะลักเข้ามาในสวนได้ จนกว่า Oscar จะจัดการคฤหาสน์เสร็จ ค่อยยังชั่วหน่อย";
+		next;
+		cutin "4job_leticia_01.png",2;
+		mes "[Leticia]";
+		mes "และในเมื่อคุณช่วยฉันแล้ว จากนี้ไปคุณจะต้องทำงานร่วมกับฉันทุกวันนะ ไม่ใช่เรื่องใหญ่อะไรหรอก แค่ลดจำนวนของเน่าเสียในดันเจี้ยนภายใต้เส้นทางที่สร้างขึ้นที่นี่";
+		next;
+		select( "เหมือนผมจะเคยได้ยินเรื่องนี้มาก่อนนะ" );
+		cutin "4job_leticia_03.png",2;
+		mes "[Leticia]";
+		mes "บ่นอะไรพึมพำน่ะ? คุณมีปัญหาอะไรหรือเปล่า?";
+		next;
+		select( "เปล่าครับ" );
+		cutin "4job_leticia_05.png",2;
+		mes "[Leticia]";
+		mes "ฉันว่ามันเสร็จเรียบร้อยแล้วล่ะ กลับมาที่ลานกลางเมืองสักครู่ แล้วเรามาคุยเรื่องต่อไปกัน";
+		completequest 12595;
+		close3;
+	case 2:
+		cloakoffnpcself( "Passage of Time#1" );
+		end;
+	}
+	end;
 
 OnInit:
-		questinfo( QTYPE_QUEST, QMARK_YELLOW, "isbegin_quest(12595) == 1" );
-		end;
+	questinfo( QTYPE_QUEST, QMARK_YELLOW, "isbegin_quest(12595) == 1" );
+	end;
 }
 
-// t_garden,78,92,2	script(CLOAKED)	Passage of Time#1	GATE_SKYBLUE,2,2,{	// unknown OnTouch effect (NPC unreachable)
+// t_garden,78,92,2	script(CLOAKED)	Passage of Time#1	GATE_SKYBLUE,2,2,{	// unknown OnTouch effect (NPC unreachable) (ไม่ทราบผลของ OnTouch (NPC เข้าถึงไม่ได้))
 t_garden,78,92,2	script(CLOAKED)	Passage of Time#1	GATE_SKYBLUE,{
-		if (isbegin_quest(12595) != 2)
-				end;
-		if (isbegin_quest(12596) != 2) {
-				cutin "4job_leticia_01.png",2;
-				mes "[เลติเซีย]";
-				mes "ทางออกไม่ได้เปิดใช้งานทั้งหมด เปิดทั้งทางออกตะวันออกและตะวันตก แล้วมาหาฉัน";
-				close3;
-		}
-		switch( select( "Forgotten memories, Zone 1, 6 o'clock", "Forgotten memories, Zone 1, Center", "Forgotten memories, Zone 1, 10 o'clock" ) ) {
-		case 1:
-				warp "for_dun01",159,35;
-				break;
-		case 2:
-				warp "for_dun01",101,136;
-				break;
-		case 3:
-				warp "for_dun01",62,266;
-				break;
-		}
+	if (isbegin_quest(12595) != 2)
 		end;
+	if (isbegin_quest(12596) != 2) {
+		cutin "4job_leticia_01.png",2;
+		mes "[Leticia]";
+		mes "ทางออกทั้งหมดยังไม่ได้เปิดใช้งาน เปิดใช้งานทั้งทางออกตะวันออกและตะวันตก แล้วค่อยกลับมาหาฉัน";
+		close3;
+	}
+	switch( select( "ความทรงจำที่ถูกลืม, โซน 1, 6 นาฬิกา", "ความทรงจำที่ถูกลืม, โซน 1, ตรงกลาง", "ความทรงจำที่ถูกลืม, โซน 1, 10 นาฬิกา" ) ) {
+	case 1:
+		warp "for_dun01",159,35;
+		break;
+	case 2:
+		warp "for_dun01",101,136;
+		break;
+	case 3:
+		warp "for_dun01",62,266;
+		break;
+	}
+	end;
 }
 
 t_garden,151,92,0	script	#life_wp3	HIDDEN_WARP_NPC,3,3,{
-		end;
+	end;
 OnTouch:
-		switch( isbegin_quest(12596) ) {
-		case 0:
-				end;
-		case 1:
-				cutin "4job_leticia_01.png",2;
-				mes "[เลติเซีย]";
-				mes "โอเค แค่นี้ก็พอแล้ว มันจะเปิดทางไปสู่สถานที่ที่พลังชั่วร้ายอยู่บนตราแห่งเวลาที่เห็นอยู่ตรงนั้น";
-				next;
-				cutin "4job_leticia_02.png",2;
-				mes "[เลติเซีย]";
-				mes "คุณพร้อมแล้วหรือยัง? ยื่นมือของคุณไปข้างหน้าและจ้องมองที่แมวน้ำราวกับว่าคุณกำลังจดจ่อกับพลังที่ฉันมอบให้คุณไปที่แมวน้ำ";
-				// close2;
-				next;
-				select( "Reach out hand and watch the seal" );
-				setpcblock PCBLOCK_NPC, true;
-				cutin "",255;
-				specialeffect2 EF_BEGINSPELL_N3;
-				sleep2 2000;
-				specialeffect EF_LORD, AREA, "Passage of Time#2";
-				sleep2 2000;
-				specialeffect EF_BAKU, AREA, "Passage of Time#2";
-				sleep2 1000;
-				specialeffect EF_THUNDERSTORM2, AREA, "Passage of Time#2";
-				cloakoffnpcself( "Passage of Time#2" );
-				sleep2 1000;
-				setpcblock PCBLOCK_NPC, false;
-				if (isbegin_quest(12595) == 1) {
-						cutin "4job_leticia_04.png",2;
-						mes "[เลติเซีย]";
-						mes "ทีนี้เรามาเปิดอีกอันหนึ่งด้วยกันเถอะ ย้ายไปที่ไซต์ตรงข้ามประตูนี้";
-						completequest 12596;
-						close3;
-				}
-				cutin "4job_leticia_04.png",2;
-				mes "[เลติเซีย]";
-				mes "มันง่ายกว่าที่คิดใช่ไหมล่ะ? ด้วยวิธีนี้ เราจะสามารถหยุดพวกคนแปลกหน้าไม่ให้เข้ามาท่วมสวนได้จนกว่าออสการ์จะสร้างคฤหาสน์เสร็จ ดังนั้นจึงโล่งใจ";
-				next;
-				cutin "4job_leticia_01.png",2;
-				mes "[เลติเซีย]";
-				mes "และเนื่องจากคุณได้ช่วยฉันแล้ว จากนี้ไปคุณจะต้องทำงานร่วมกับฉันทุกวัน ไม่ใช่เรื่องใหญ่ ลดจำนวนสิ่งที่ไม่ศักดิ์สิทธิ์ในคุกใต้ดินใต้ทางเดินที่สร้างขึ้นที่นี่";
-				next;
-				select( "I think I've heard this before" );
-				cutin "4job_leticia_03.png",2;
-				mes "[เลติเซีย]";
-				mes "ทำไมบ่นอย่างนั้น มีอะไรจะบ่นไหม?";
-				next;
-				select( "No." );
-				cutin "4job_leticia_05.png",2;
-				mes "[เลติเซีย]";
-				mes "คิดว่าเสร็จแล้ว มาที่จัตุรัสกลางกันก่อน แล้วค่อยคุยเรื่องต่อไป";
-				completequest 12596;
-				close3;
-		case 2:
-				cloakoffnpcself( "Passage of Time#2" );
-				end;
-		}
+	switch( isbegin_quest(12596) ) {
+	case 0:
 		end;
+	case 1:
+		cutin "4job_leticia_01.png",2;
+		mes "[Leticia]";
+		mes "โอเค แค่นั้นก็น่าจะพอ มันจะเปิดเส้นทางไปยังสถานที่ที่มีพลังงานชั่วร้ายสถิตอยู่บนตราประทับแห่งเวลาที่คุณเห็นนั่น";
+		next;
+		cutin "4job_leticia_02.png",2;
+		mes "[Leticia]";
+		mes "พร้อมหรือยัง? ถ้าอย่างนั้น ยื่นมือของคุณออกมาข้างหน้าและจ้องไปที่ตราประทับนั้น เหมือนกับว่าคุณกำลังเพ่งพลังที่ฉันมอบให้ลงไปในตราประทับ";
+		// close2;
+		next;
+		select( "ยื่นมือออกไปแล้วจ้องมองที่ตราประทับ" );
+		setpcblock PCBLOCK_NPC, true;
+		cutin "",255;
+		specialeffect2 EF_BEGINSPELL_N3;
+		sleep2 2000;
+		specialeffect EF_LORD, AREA, "Passage of Time#2";
+		sleep2 2000;
+		specialeffect EF_BAKU, AREA, "Passage of Time#2";
+		sleep2 1000;
+		specialeffect EF_THUNDERSTORM2, AREA, "Passage of Time#2";
+		cloakoffnpcself( "Passage of Time#2" );
+		sleep2 1000;
+		setpcblock PCBLOCK_NPC, false;
+		if (isbegin_quest(12595) == 1) {
+			cutin "4job_leticia_04.png",2;
+			mes "[Leticia]";
+			mes "เอาล่ะ ทีนี้ก็ไปเปิดอีกด้านหนึ่งด้วยเหมือนกัน ไปยังพื้นที่ฝั่งตรงข้ามของประตูบานนี้ซะ";
+			completequest 12596;
+			close3;
+		}
+		cutin "4job_leticia_04.png",2;
+		mes "[Leticia]";
+		mes "มันง่ายกว่าที่คิดใช่ไหมล่ะ ด้วยสิ่งนี้ เราจะสามารถหยุดพวกตัวประหลาดไม่ให้ทะลักเข้ามาในสวนได้ จนกว่า Oscar จะจัดการคฤหาสน์เสร็จ ค่อยยังชั่วหน่อย";
+		next;
+		cutin "4job_leticia_01.png",2;
+		mes "[Leticia]";
+		mes "และในเมื่อคุณช่วยฉันแล้ว จากนี้ไปคุณจะต้องทำงานร่วมกับฉันทุกวันนะ ไม่ใช่เรื่องใหญ่อะไรหรอก แค่ลดจำนวนของเน่าเสียในดันเจี้ยนภายใต้เส้นทางที่สร้างขึ้นที่นี่";
+		next;
+		select( "เหมือนผมจะเคยได้ยินเรื่องนี้มาก่อนนะ" );
+		cutin "4job_leticia_03.png",2;
+		mes "[Leticia]";
+		mes "บ่นอะไรพึมพำน่ะ? คุณมีปัญหาอะไรหรือเปล่า?";
+		next;
+		select( "เปล่าครับ" );
+		cutin "4job_leticia_05.png",2;
+		mes "[Leticia]";
+		mes "ฉันว่ามันเสร็จเรียบร้อยแล้วล่ะ กลับมาที่ลานกลางเมืองสักครู่ แล้วเรามาคุยเรื่องต่อไปกัน";
+		completequest 12596;
+		close3;
+	case 2:
+		cloakoffnpcself( "Passage of Time#2" );
+		end;
+	}
+	end;
 
 OnInit:
-		questinfo( QTYPE_QUEST, QMARK_YELLOW, "isbegin_quest(12596) == 1" );
-		end;
+	questinfo( QTYPE_QUEST, QMARK_YELLOW, "isbegin_quest(12596) == 1" );
+	end;
 }
 
-// t_garden,157,92,2	script(CLOAKED)	Passage of Time#2	GATE_SKYBLUE,2,2,{	// unknown OnTouch effect (NPC unreachable)
+// t_garden,157,92,2	script(CLOAKED)	Passage of Time#2	GATE_SKYBLUE,2,2,{	// unknown OnTouch effect (NPC unreachable) (ไม่ทราบผลของ OnTouch (NPC เข้าถึงไม่ได้))
 t_garden,157,92,2	script(CLOAKED)	Passage of Time#2	GATE_SKYBLUE,{
-		if (isbegin_quest(12596) != 2)
-				end;
-		if (isbegin_quest(12595) != 2) {
-				cutin "4job_leticia_01.png",2;
-				mes "[เลติเซีย]";
-				mes "ทางออกไม่ได้เปิดใช้งานทั้งหมด เปิดทั้งทางออกตะวันออกและตะวันตก แล้วมาหาฉัน";
-				close3;
-		}
-		switch( select( "Forgotten Memories, Zone 2, 7 o'clock", "Forgotten Memories, Zone 2, 1 o'clock", "Forgotten Memories, Zone 2, 5 o'clock" ) ) {
-		case 1:
-				warp "for_dun02",33,55;
-				break;
-		case 2:
-				warp "for_dun02",211,269;
-				break;
-		case 3:
-				warp "for_dun02",271,38;
-				break;
-		}
+	if (isbegin_quest(12596) != 2)
 		end;
+	if (isbegin_quest(12595) != 2) {
+		cutin "4job_leticia_01.png",2;
+		mes "[Leticia]";
+		mes "ทางออกทั้งหมดยังไม่ได้เปิดใช้งาน เปิดใช้งานทั้งทางออกตะวันออกและตะวันตก แล้วค่อยกลับมาหาฉัน";
+		close3;
+	}
+	switch( select( "ความทรงจำที่ถูกลืม, โซน 2, 7 นาฬิกา", "ความทรงจำที่ถูกลืม, โซน 2, 1 นาฬิกา", "ความทรงจำที่ถูกลืม, โซน 2, 5 นาฬิกา" ) ) {
+	case 1:
+		warp "for_dun02",33,55;
+		break;
+	case 2:
+		warp "for_dun02",211,269;
+		break;
+	case 3:
+		warp "for_dun02",271,38;
+		break;
+	}
+	end;
 }
 
 
 for_dun01,100,146,2	script	Spatial coordinate probe#1	4_SYSTEM_BOX,{
-		mes "คุณอยากกลับไปที่สวนแห่งกาลเวลาไหม?";
-		next;
-		if (select( "Cancel", "Return" ) == 1)
-				end;
-		warp "t_garden",83,92;
+	mes "คุณต้องการที่จะกลับไปยัง Garden of Time หรือไม่?";
+	next;
+	if (select( "ยกเลิก", "กลับ" ) == 1)
 		end;
+	warp "t_garden",83,92;
+	end;
 
 OnInit:
-		questinfo( QTYPE_CLICKME, QMARK_YELLOW, "isbegin_quest(12595) == 2" );
-		end;
+	questinfo( QTYPE_CLICKME, QMARK_YELLOW, "isbegin_quest(12595) == 2" );
+	end;
 }
 for_dun01,128,282,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#2	4_SYSTEM_BOX
 for_dun01,55,142,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#3	4_SYSTEM_BOX
@@ -495,16 +495,16 @@ for_dun01,267,265,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate pro
 
 
 for_dun02,190,147,2	script	Spatial coordinate probe#12	4_SYSTEM_BOX,{
-		mes "คุณอยากกลับไปที่สวนแห่งกาลเวลาไหม?";
-		next;
-		if (select( "Cancel", "Return" ) == 1)
-				end;
-		warp "t_garden",152,92;
+	mes "คุณต้องการที่จะกลับไปยัง Garden of Time หรือไม่?";
+	next;
+	if (select( "ยกเลิก", "กลับ" ) == 1)
 		end;
+	warp "t_garden",152,92;
+	end;
 
 OnInit:
-		questinfo( QTYPE_CLICKME, QMARK_YELLOW, "isbegin_quest(12596) == 2" );
-		end;
+	questinfo( QTYPE_CLICKME, QMARK_YELLOW, "isbegin_quest(12596) == 2" );
+	end;
 }
 for_dun02,143,149,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#13	4_SYSTEM_BOX
 for_dun02,276,29,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#14	4_SYSTEM_BOX
@@ -518,783 +518,783 @@ for_dun02,276,255,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate pr
 for_dun02,283,197,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#22	4_SYSTEM_BOX
 
 
-// B. Event with Oscar
+// B. Event with Oscar (เหตุการณ์กับ Oscar)
 t_garden,118,141,0	script	#life_wp4	HIDDEN_WARP_NPC,3,3,{
-		end;
+	end;
 OnTouch:
-		if (isbegin_quest(12618) == 1) {
-				cloakoffnpcself( "Oscar#life2" );
-				end;
-		}
+	if (isbegin_quest(12618) == 1) {
+		cloakoffnpcself( "Oscar#life2" );
 		end;
+	}
+	end;
 }
 
-// t_garden,118,142,3	script(CLOAKED)	Oscar#life2	4_ED_OSCAR,2,2,{	// unknown OnTouch effect
+// t_garden,118,142,3	script(CLOAKED)	Oscar#life2	4_ED_OSCAR,2,2,{	// unknown OnTouch effect (ไม่ทราบผลของ OnTouch)
 t_garden,118,142,3	script(CLOAKED)	Oscar#life2	4_ED_OSCAR,{
-		if (isbegin_quest(12618) == 1) {
-				cutin "OSCAR01.bmp",2;
-				mes "[ออสการ์]";
-				mes "อ่า" + strcharinfo(0) + "-";
-				next;
-				cutin "OSCAR09.bmp",2;
-				mes "[ออสการ์]";
-				mes "จริงอยู่ ฉันขอโทษจริงๆ ที่ทำให้คุณเข้ามาเกี่ยวข้องกับงานของเราโดยไม่ได้ตั้งใจ";
-				next;
-				select( "Are you going into the mansion?" );
-				cutin "OSCAR01.bmp",2;
-				mes "[ออสการ์]";
-				mes "ฉันเดาว่าคงเป็นอย่างนั้น คฤหาสน์หลังนี้เป็นพื้นที่ที่มีเส้นเวลาหลายเส้นเชื่อมโยงกันอย่างซับซ้อน ฉันจึงไม่คิดว่าใครจะแตะต้องมันได้";
-				next;
-				select( "Is there anything I can do to help in the mansion?" );
-				cutin "OSCAR05.bmp",2;
-				mes "[ออสการ์]";
-				mes "" + strcharinfo(0) + "ฉันเคยร่วมงานกับคุณมาหลายครั้งแล้ว ดังนั้นฉันจึงอยากขอให้คุณมาด้วยกันกับฉัน แต่ฉันคิดว่าคราวนี้ฉันจะทำอย่างนั้นไม่ได้";
-				next;
-				cutin "OSCAR09.bmp",2;
-				mes "[ออสการ์]";
-				mes "ดูเหมือนว่าความเร็วของเวลาในคฤหาสน์หลังนี้จะแตกต่างจากโลกภายนอกอย่างมาก ฉันเดาว่าประมาณ... 1/1000 หรืออาจมากกว่านั้นก็ได้";
-				next;
-				select( "That means..." );
-				cutin "OSCAR07.bmp",2;
-				mes "[ออสการ์]";
-				mes "ซึ่งหมายความว่าแม้ว่าคุณจะใช้เวลาในคฤหาสน์เพียงไม่กี่วัน แต่โลกภายนอกอาจผ่านไปหลายปีหรือหลายทศวรรษก็ได้ ซึ่งคงเป็นเรื่องยากสำหรับมนุษย์อย่างคุณ" + strcharinfo(0) + "ที่จะทนมันได้";
-				next;
-				cutin "OSCAR01.bmp",2;
-				mes "[ออสการ์]";
-				mes "มีโอกาสสูงมากที่เวลาจะผ่านไปนานพอสมควรกว่าที่ภายในคฤหาสน์จะสะอาดหมดจด คงต้องเสร็จเร็วๆ นี้...";
-				next;
-				cloakoffnpcself( "Leticia#life3" );
-				cutin "4job_leticia_01.png",2;
-				mes "[เลติเซีย]";
-				mes "โอ้ คุณจะเข้าไปตอนนี้ไหม?";
-				next;
-				cutin "OSCAR01.bmp",2;
-				mes "[ออสการ์]";
-				mes "ใช่ ฉันต้องเข้าไป เลติเซีย ฉันหวังว่าเธอจะไม่ก่อปัญหานะ และดูแลสวนให้ดีจนกว่าฉันจะออกมาทำความสะอาดคฤหาสน์เสร็จ";
-				next;
-				cutin "4job_leticia_05.png",2;
-				mes "[เลติเซีย]";
-				mes "โอ้ ไม่ต้องกังวลเรื่องนั้น ฉันจะทำให้แน่ใจว่าคุณจะแยกตัวออกจากโลกแห่งความเป็นจริง";
-				next;
-				cutin "OSCAR01.bmp",2;
-				mes "[ออสการ์]";
-				mes "โอเค งั้นช่วยดูแลฉันด้วยนะ โอ้ แล้วก็" + strcharinfo(0) + "ถ้าคุณมีเวลา ฉันจะขอบคุณมากถ้าคุณช่วยเลติเซียได้ เธอขี้เกียจมาก...";
-				next;
-				cutin "4job_leticia_04.png",2;
-				mes "[เลติเซีย]";
-				mes "ฉันจะจัดการนักผจญภัยที่นี่ ดังนั้นปล่อยมันไว้แค่นี้แล้วเข้าไปกันเถอะ";
-				next;
-				cutin "OSCAR03.bmp",2;
-				mes "[ออสการ์]";
-				mes "โอเค ฉันจะทำงานให้เสร็จแล้วออกมาให้เร็วที่สุด เจอกันนะ";
-				close2;
-				cutin "",255;
-				specialeffect EF_BEGINSPELL_N4;
-				setpcblock PCBLOCK_NPC, true;
-				sleep2 2000;
-				cloakonnpcself( "Oscar#life2" );
-				setpcblock PCBLOCK_NPC, false;
-				cutin "4job_leticia_02.png",2;
-				mes "[เลติเซีย]";
-				mes "ฉันแน่ใจว่าออสการ์จะจัดการเรื่องนี้... อย่าแค่ยืนเฉย ๆ แล้วช่วยริเกลและงานของฉัน";
-				close2;
-				cutin "",255;
-				cloakonnpcself( "Leticia#life3" );
-				completequest 12618;
-				end;
-		}
+	if (isbegin_quest(12618) == 1) {
+		cutin "OSCAR01.bmp",2;
+		mes "[Oscar]";
+		mes "อ๊ะ " + strcharinfo(0) + ".";
+		next;
+		cutin "OSCAR09.bmp",2;
+		mes "[Oscar]";
+		mes "นี่เป็นเรื่องจริง ผมต้องขอโทษจริงๆ ที่ทำให้คุณต้องเข้ามาพัวพันกับงานของเราโดยไม่ได้ตั้งใจ";
+		next;
+		select( "คุณกำลังจะเข้าไปในคฤหาสน์เหรอ?" );
+		cutin "OSCAR01.bmp",2;
+		mes "[Oscar]";
+		mes "ผมว่ามันก็เป็นแบบนั้นแหละ คฤหาสน์หลังนี้เป็นพื้นที่ที่เส้นแบ่งเวลาหลายเส้นทับซ้อนกันอย่างซับซ้อน ดังนั้นผมไม่คิดว่าจะมีใครคนอื่นแตะต้องมันได้";
+		next;
+		select( "มีอะไรที่ผมพอจะช่วยได้ในคฤหาสน์ไหม?" );
+		cutin "OSCAR05.bmp",2;
+		mes "[Oscar]";
+		mes "" + strcharinfo(0) + " ผมร่วมงานกับคุณมาหลายครั้งแล้ว ผมก็อยากจะขอให้คุณไปด้วยกันอยู่หรอก แต่ผมคิดว่าครั้งนี้คงทำแบบนั้นไม่ได้";
+		next;
+		cutin "OSCAR09.bmp",2;
+		mes "[Oscar]";
+		mes "ดูเหมือนว่าความเร็วของเวลาภายในคฤหาสน์หลังนี้จะแตกต่างจากโลกภายนอกมาก ผมเดาว่าน่าจะประมาณ... 1/1000? หรืออาจจะมากกว่านั้น";
+		next;
+		select( "นั่นหมายความว่า..." );
+		cutin "OSCAR07.bmp",2;
+		mes "[Oscar]";
+		mes "นี่หมายความว่า ต่อให้คุณใช้เวลาเพียงไม่กี่วันในคฤหาสน์ แต่เวลาในโลกภายนอกอาจผ่านไปเป็นปีหรือเป็นทศวรรษเลยก็ได้ มันคงยากสำหรับมนุษย์อย่าง " + strcharinfo(0) + " ที่จะทนทานต่อสิ่งนั้น";
+		next;
+		cutin "OSCAR01.bmp",2;
+		mes "[Oscar]";
+		mes "มีความเป็นไปได้สูงว่าเวลาจะผ่านไปนานพอสมควร กว่าที่ภายในคฤหาสน์จะถูกจัดการจนสะอาดเรียบร้อย มันจะต้องจบลงให้เร็วที่สุด...";
+		next;
+		cloakoffnpcself( "Leticia#life3" );
+		cutin "4job_leticia_01.png",2;
+		mes "[Leticia]";
+		mes "โอ้ คุณกำลังจะเข้าไปตอนนี้เลยเหรอ?";
+		next;
+		cutin "OSCAR01.bmp",2;
+		mes "[Oscar]";
+		mes "ใช่ ผมต้องเข้าไปแล้ว Leticia ผมหวังว่าคุณจะไม่ก่อปัญหาอะไร และดูแลสวนให้ดีจนกว่าผมจะออกมาหลังจากจัดการคฤหาสน์เสร็จนะ";
+		next;
+		cutin "4job_leticia_05.png",2;
+		mes "[Leticia]";
+		mes "โอ๊ย ไม่ต้องห่วงเรื่องนั้นหรอก ฉันจะทำให้แน่ใจว่าคุณจะถูกแยกออกจากโลกความจริงอย่างสมบูรณ์";
+		next;
+		cutin "OSCAR01.bmp",2;
+		mes "[Oscar]";
+		mes "โอเค ถ้าอย่างนั้น ฝากด้วยนะ อ้อ แล้วก็ " + strcharinfo(0) + " ถ้าคุณมีเวลา ผมจะขอบคุณมากถ้าคุณช่วยงาน Leticia บ้าง เธอค่อนข้างขี้เกียจน่ะ...";
+		next;
+		cutin "4job_leticia_04.png",2;
+		mes "[Leticia]";
+		mes "ฉันจะดูแลนักผจญภัยคนนี้เอง เพราะงั้นเลิกพูดแล้วรีบเข้าไปได้แล้ว";
+		next;
+		cutin "OSCAR03.bmp",2;
+		mes "[Oscar]";
+		mes "โอเค ผมจะรีบทำงานให้เสร็จแล้วออกมาให้เร็วที่สุด แล้วเจอกัน";
+		close2;
+		cutin "",255;
+		specialeffect EF_BEGINSPELL_N4;
+		setpcblock PCBLOCK_NPC, true;
+		sleep2 2000;
+		cloakonnpcself( "Oscar#life2" );
+		setpcblock PCBLOCK_NPC, false;
+		cutin "4job_leticia_02.png",2;
+		mes "[Leticia]";
+		mes "เอาล่ะ ฉันมั่นใจว่า Oscar จะจัดการได้... อย่ามัวแต่ยืนบื้ออยู่ตรงนั้น มาช่วยงานของฉันกับ Rigel ได้แล้ว";
+		close2;
+		cutin "",255;
+		cloakonnpcself( "Leticia#life3" );
+		completequest 12618;
 		end;
+	}
+	end;
 
 OnInit:
-		questinfo( QTYPE_QUEST, QMARK_YELLOW, "isbegin_quest(12618) == 1" );
-		end;
+	questinfo( QTYPE_QUEST, QMARK_YELLOW, "isbegin_quest(12618) == 1" );
+	end;
 }
 
 t_garden,115,139,7	duplicate(dummy_cloaked_npc)	Leticia#life3	4_4JOB_LETICIA
 
 
-// C. Instances
+// C. Instances (อินสแตนซ์)
 // t_garden,166,217,0	script	#wp11	HIDDEN_WARP_NPC,2,2,{	// (NPC name is not unique)
 t_garden,166,217,0	script	#wp11_t_garden	HIDDEN_WARP_NPC,2,2,{
-		end;
+	end;
 OnTouch:
-		if (isbegin_quest(12594) == 1) {
-				cloakoffnpcself( "Rigel#life2" );
-				end;
-		}
+	if (isbegin_quest(12594) == 1) {
+		cloakoffnpcself( "Rigel#life2" );
 		end;
+	}
+	end;
 }
 
 t_garden,166,217,3	script(CLOAKED)	Rigel#life2	4_CS_RIGEL,{
-		if (isbegin_quest(12594) == 1) {
-				cutin "rigel01.png",2;
-				mes "[ริเกล]";
-				mes "คุณอยู่ที่นี่" + strcharinfo(0) + "-";
-				mes "มันคงจะเหมาะสมมากถ้าจะอยู่ห่างจากคฤหาสน์ไกลขนาดนี้โดยไม่รบกวนออสการ์ใช่ไหม?";
-				next;
-				select( "What are you going to do here?" );
-				cutin "rigel02.png",2;
-				mes "[ริเกล]";
-				mes "จากนี้ไปเราจะสร้างเรือนจำขึ้นมา เรือนจำแห่งนี้ใช้คุมขังนักโทษที่อันตรายและไม่มั่นคง";
-				next;
-				select( "You're making a prison in the flower garden?" );
-				cutin "rigel01.png",2;
-				mes "[ริเกล]";
-				mes "อย่างไรก็ตาม สถานที่แห่งนี้จะทำหน้าที่เป็นเพียงทางผ่านเท่านั้น และเรือนจำแห่งนี้ยังเชื่อมต่อกับอีกมิติหนึ่งด้วย ฉันจะทิ้งพวกเขาไป ฉันไม่มีเจตนาจะทำลายสวนดอกไม้แห่งนี้";
-				next;
-				mes "[ริเกล]";
-				mes "เราได้สร้างรายชื่อการเข้าเรือนจำทางตอนเหนือขึ้นไปอีกเล็กน้อย เฉพาะผู้ที่ลงทะเบียนในรายชื่อเท่านั้นจึงจะเข้าเรือนจำได้ ดังนั้นไปลงทะเบียนกันก่อน";
-				close2;
-				completequest 12594;
-				setquest 12597;
-				cutin "",255;
-				end;
-		}
+	if (isbegin_quest(12594) == 1) {
 		cutin "rigel01.png",2;
-		mes "[ริเกล]";
-		mes "เริ่มต้นด้วยการมองหาหินวิญญาณปิดผนึกที่ฉันติดตั้งไว้ทางตอนเหนือขึ้นไปเล็กน้อย";
-		close3;
+		mes "[Rigel]";
+		mes "คุณมาแล้ว " + strcharinfo(0) + ".";
+		mes "การอยู่ห่างจากคฤหาสน์ขนาดนี้เพื่อไม่ให้รบกวน Oscar ถือว่าเหมาะสมมากเลยใช่ไหมล่ะ?";
+		next;
+		select( "คุณกำลังจะทำอะไรที่นี่เหรอ?" );
+		cutin "rigel02.png",2;
+		mes "[Rigel]";
+		mes "จากนี้ไป เราจะสร้างคุกขึ้นมา คุกที่ใช้ขังนักโทษที่อันตรายและไม่เสถียรอย่างยิ่ง";
+		next;
+		select( "คุณจะสร้างคุกในสวนดอกไม้งั้นเหรอ?" );
+		cutin "rigel01.png",2;
+		mes "[Rigel]";
+		mes "อย่างไรก็ตาม ที่นี่จะทำหน้าที่เป็นเพียงทางผ่านเท่านั้น และตัวคุกเองจะถูกเชื่อมต่อกับมิติอื่น ข้าจะทิ้งพวกมันไว้ ข้าไม่มีเจตนาจะทำลายสวนดอกไม้นี้หรอก";
+		next;
+		mes "[Rigel]";
+		mes "เราได้สร้างรายชื่อผู้มีสิทธิ์เข้าถึงคุกไว้ทางตอนเหนืออีกเล็กน้อย เฉพาะผู้ที่ลงทะเบียนในรายชื่อเท่านั้นที่จะเข้าคุกได้ ดังนั้นเราไปลงทะเบียนกันก่อนเถอะ";
+		close2;
+		completequest 12594;
+		setquest 12597;
+		cutin "",255;
+		end;
+	}
+	cutin "rigel01.png",2;
+	mes "[Rigel]";
+	mes "เริ่มจากการตามหาหินวิญญาณสะกดที่ข้าติดตั้งไว้ทางเหนืออีกสักนิดก่อนเถอะ";
+	close3;
 
 OnInit:
-		questinfo( QTYPE_QUEST, QMARK_YELLOW, "isbegin_quest(12594) == 1" );
-		end;
+	questinfo( QTYPE_QUEST, QMARK_YELLOW, "isbegin_quest(12594) == 1" );
+	end;
 }
 
 
 // t_garden,162,222,5	script	#lank_board	4_4JOB_PHANTOMBOOK1,{
-		// mes "--- การจัดอันดับกลยุทธ์ ---";
-		// mes "อันดับที่ 1 - ไม่มี";
-		// mes "อันดับที่ 2 - ไม่มี";
-		// mes "อันดับที่ 3 - ไม่มี";
-		// mes "อันดับที่ 4 - ไม่มี";
-		// mes "อันดับที่ 5 - ไม่มี";
-		// mes "-";
-		// mes "?? บันทึกกลยุทธ์จะได้รับการอัพเดตทุกๆ 5 นาที";
-		// mes "หากการบันทึกไม่เกิดขึ้นทันที โปรดรอสักครู่แล้วตรวจสอบ";
-		// close;
+	// mes "--- อันดับกลยุทธ์ ---";
+	// mes "อันดับที่ 1 - ไม่มี";
+	// mes "อันดับที่ 2 - ไม่มี";
+	// mes "อันดับที่ 3 - ไม่มี";
+	// mes "อันดับที่ 4 - ไม่มี";
+	// mes "อันดับที่ 5 - ไม่มี";
+	// mes "-----------------";
+	// mes "บันทึกกลยุทธ์จะอัปเดตทุกๆ 5 นาที";
+	// mes "หากบันทึกไม่ปรากฏขึ้นทันที โปรดรอสักครู่แล้วตรวจสอบใหม่อีกครั้ง";
+	// close;
 // }
 
 // t_garden,166,235,0	script	#wp12	HIDDEN_WARP_NPC,3,3,{	// (NPC name is not unique)
 t_garden,166,235,0	script	#wp12_t_garden	HIDDEN_WARP_NPC,3,3,{
-		end;
+	end;
 OnTouch:
-		switch( isbegin_quest(12597) ) {
-		case 0:
-				end;
-		case 1:
-				cloakoffnpcself( "Sealing Spirit Stone#life2" );
-				end;
-		case 2:
-				cloakoffnpcself( "Sealing Spirit Stone#life2" );
-				cloakoffnpcself( "Dimensional Prison#1" );
-				cloakoffnpcself( "Dimensional Prison#2" );
-				end;
-		}
+	switch( isbegin_quest(12597) ) {
+	case 0:
 		end;
+	case 1:
+		cloakoffnpcself( "Sealing Spirit Stone#life2" );
+		end;
+	case 2:
+		cloakoffnpcself( "Sealing Spirit Stone#life2" );
+		cloakoffnpcself( "Dimensional Prison#1" );
+		cloakoffnpcself( "Dimensional Prison#2" );
+		end;
+	}
+	end;
 }
 
 t_garden,166,235,3	script(CLOAKED)	Sealing Spirit Stone#life2	HEROS_OUT_ORB,{
-		switch( isbegin_quest(12597) ) {
-		case 0:
-				end;
-		case 1:
-				mes "[หินวิญญาณปิดผนึก]";
-				mes "^ff0000ผู้ใช้ที่ไม่ได้รับการรับรอง^000000";
-				next;
-				cutin "rigel_halfeyes01.png",2;
-				mes "[ริเกล]";
-				mes "อย่าแค่จ้องมองอย่างว่างเปล่า แต่ให้ยื่นมือของคุณออกมา";
-				mes "จดจ่อจิตใจของคุณโดยวางนิ้วหัวแม่มือไว้ที่ด้านล่างขวาของหินวิญญาณที่คลี่ออกและวางนิ้วที่เหลือไว้ด้านบน";
-				next;
-				select( "Put your hand on the guide." );
-				setpcblock PCBLOCK_NPC, true;
-				cutin "",255;
-				specialeffect2 EF_BEGINSPELL_N5;
-				sleep2 2000;
-				specialeffect EF_LORD, AREA, "Dimension Prison#1";
-				sleep2 500;
-				specialeffect EF_LORD, AREA, "Dimension Prison#2";
-				sleep2 1500;
-				specialeffect EF_BAKU, AREA, "Dimension Prison#1";
-				sleep2 500;
-				specialeffect EF_BAKU, AREA, "Dimension Prison#2";
-				sleep2 500;
-				specialeffect EF_THUNDERSTORM2, AREA, "Dimension Prison#1";
-				sleep2 500;
-				setpcblock PCBLOCK_NPC, false;
-				specialeffect EF_THUNDERSTORM2, AREA, "Dimension Prison#2";
-				cloakoffnpcself( "Dimension Prison#1" );
-				cloakoffnpcself( "Dimension Prison#2" );
-				sleep2 1500;
-				cutin "rigel_halfeyes01.png",2;
-				mes "[ริเกล]";
-				mes "ดูเหมือนว่าการลงทะเบียนจะเรียบร้อยดี ตอนนี้คุณได้เตรียมการพื้นฐานเพื่อจดจำเรือนจำและเข้าและออกจากเรือนจำเรียบร้อยแล้ว หากมีคำถามเพิ่มเติม โปรดดูคู่มือนี้";
-				next;
-				select( "Who are you going to put in that prison?" );
-				cutin "rigel_annoying01.png",2;
-				mes "[ริเกล]";
-				mes "^bb0000ดอพเพิลแกงเกอร์^000000";
-				next;
-				cutin "rigel_halfeyes01.png",2;
-				mes "[ริเกล]";
-				mes "คุณอาจคิดว่ามันเป็นแค่ตัวแทนและเรื่องวุ่นวาย แต่ตัวแทนที่คุณจะต้องขังไว้ที่นี่นั้นอยู่คนละระดับกับตัวแทนที่คุณคิดถึง";
-				next;
-				mes "[ริเกล]";
-				mes "มันเป็นสิ่งมีชีวิตที่เลวร้ายที่สุดที่ไม่เพียงแต่เลียนแบบความสามารถหรือรูปลักษณ์ภายนอก แต่ยังกินวิญญาณของสิ่งมีชีวิตที่เป็นเป้าหมายและกลายเป็นสิ่งมีชีวิตนั้นเอง";
-				next;
-				select( "Whose image do it take on now?" );
-				cutin "rigel_annoying01.png",2;
-				mes "[ริเกล]";
-				mes "ฉันเองแหละ";
-				next;
-				select( "What does that mean?" );
-				cutin "rigel_halfeyes01.png",2;
-				mes "[ริเกล]";
-				mes "นักโทษคนนี้กลืนฉัน ริเกล จากมิติที่ 326 และกลายเป็นสิ่งมีชีวิตที่เรียกตัวเองว่า กลุ่มดาวแห่งชีวิต";
-				next;
-				mes "[ริเกล]";
-				mes "เมื่อฉันวิ่งไปช่วยตัวเองที่นั่นก็สายเกินไปเสียแล้ว ฉันรู้ทันทีที่เห็นคนที่หมดสติซึ่งมีลักษณะเหมือนฉันเป๊ะๆ ว่านี่ไม่ใช่ฉัน";
-				next;
-				cutin "rigel_annoying01.png",2;
-				mes "[ริเกล]";
-				mes "แม้ว่าเราจะสามารถผนึกคนที่ไม่สามารถใช้พลังของมันได้สำเร็จก็ตาม แต่สักวันหนึ่งมันอาจสามารถทำลายผนึกนั้นได้สำเร็จ";
-				next;
-				select( "Why don't you take down the criminal yourself?" );
-				cutin "rigel01.png",2;
-				mes "[ริเกล]";
-				mes "ฉันไม่รู้ว่าข้อผิดพลาดคืออะไร แต่โลกรับรู้ว่ามันเป็นกลุ่มดาวแห่งชีวิตอีกกลุ่มหนึ่ง หากกลุ่มดาวโจมตีกลุ่มดาวเดียวกัน มันจะละเมิดกฎของมิติและสูญเสียพลังทันที";
-				next;
-				mes "[ริเกล]";
-				mes "และถ้าหากมันเข้ามาครอบงำการดำรงอยู่ของฉันโดยบังเอิญ มันก็จะเป็นสถานการณ์ที่ไม่อาจย้อนคืนได้";
-				next;
-				select( "Is there any possibility that the prisoner will take over our bodies?" );
-				cutin "rigel_close02.png",2;
-				mes "[ริเกล]";
-				mes "นี่เป็นหนึ่งในเรื่องตลกที่ตลกที่สุดที่ฉันเคยได้ยินในรอบหลายร้อยปี";
-				next;
-				cutin "rigel_halfeyes02.png",2;
-				mes "[ริเกล]";
-				mes "คุณจะละทิ้งร่างอมตะที่คุณทำงานหนักเพื่อครอบครองและกลับเข้าสู่ร่างมนุษย์ของคุณหรือไม่?";
-				next;
-				select( "Maybe if your life is threatened." );
-				cutin "rigel_halfeyes01.png",2;
-				mes "[ริเกล]";
-				mes "ฉันไม่เห็นด้วยกับความคิดเห็นนั้นเลย แต่ฉันจะช่วยคลายความกังวลของคุณ มันถูกล้อมรอบด้วยชั้นของตราประทับที่ฉันติดไว้";
-				next;
-				mes "[ริเกล]";
-				mes "แม้ว่ามันจะต้องการเข้ายึดร่างกายของคุณและเพื่อนๆ ก็ตาม มันก็ไม่สามารถใช้พลังนั้นได้";
-				next;
-				cutin "rigel_close01.png",2;
-				mes "[ริเกล]";
-				mes "เป็นเรื่องยาว ข้อมูลเรือนจำจะติดไว้แยกต่างหากที่ทางเข้าเรือนจำ ดังนั้นโปรดตรวจสอบเป็นประจำ";
-				next;
-				mes "[ริเกล]";
-				mes "ฉันหวังว่าจะได้เห็นคุณและเพื่อนร่วมงานของคุณทำหน้าที่ที่ดีที่นี่";
-				close2;
-				cutin "",255;
-				completequest 12597;
-				cloakonnpcself( "Rigel#life2" );
-				end;
-		case 2:
-				break;
-		}
-		mes "[หินวิญญาณปิดผนึก]";
-		mes "แนวทางการบริหารจัดการเรือนจำที่ถูกต้อง อยากเห็นอะไรบ้าง?";
-		next;
-		while(1) {
-				switch( select( "Stop viewing", "Reissue of the Constellation's protection", "Information on imprisoned prisoners", "Information on prison entry", "Information on barriers", "Information on traps", "Information on sanctuaries ", "Information on the underworld", "Information on dangerous omens", "Information on the resilience of prisoners" ) ) {
-				case 1:
-						end;
-				case 2:
-						if (countitem(420231) - isequippedcnt(420231) < 1) {
-								mes "[หินวิญญาณปิดผนึก]";
-								mes "โปรดตรวจสอบอีกครั้งว่ามีการลงทะเบียนใน ^ff0000equipment set setting^000000 หรือไม่ และติดตั้งไปแล้วหรือไม่";
-								mes " ";
-								mes "แม้ว่าคุณจะมีพรสองอย่างหรือมากกว่านั้น แต่บันทึกที่สลักไว้ในจิตวิญญาณของนักผจญภัยจะมีความสำคัญเหนือกว่า ดังนั้นเราขอแนะนำให้คุณกำจัดพรที่เกินออกไปในร้านค้า";
-								next;
-								if (select( "Cancel", "Reissue" ) == 1)
-										continue;
-								mes "[หินวิญญาณปิดผนึก]";
-								mes "จากบันทึกที่จารึกไว้ในจิตวิญญาณนักผจญภัย";
-								mes "เราได้ออกการป้องกันใหม่โดยสลักเครื่องหมาย ^0000ffระดับ 1^000000";
-								getitem2 420231,1,1,0,0,0,0,0,312453;	// MD_Hol_Protection
-								close;
-						}
-						mes "[หินวิญญาณปิดผนึก]";
-						mes "คุณได้รับการคุ้มครองในคลังสินค้าของคุณแล้ว การออกใหม่อีกครั้งทำได้เฉพาะในกรณีที่คุณไม่มีการคุ้มครองของกลุ่มดาวในคลังสินค้าของคุณเท่านั้น";
-						close;
-				case 3:
-						mes "[คู่มือข้อมูลสำหรับนักโทษ]";
-						mes "จากหนังสือเล่มนี้ ด้านซ้ายเป็นทะเลสาบลาวาซึ่งเป็นสถานที่ที่ผู้คุมที่ควบคุมอาชญากรมิติถูกคุมขัง ด้านขวาเป็นห้องโถงแห่งชีวิตซึ่งเป็นสถานที่ที่ผู้จัดการมิติถูกคุมขัง";
-						mes " ";
-						mes "เดิมทีแล้วยามเหล่านี้มีหน้าที่คอยเฝ้าติดตามอาชญากรมิติ แต่ในบางจุด พวกเขาก็แสดงความตั้งใจที่จะปกป้องอาชญากรมิติด้วยเช่นกัน";
-						next;
-						mes "[คู่มือข้อมูลสำหรับนักโทษ]";
-						mes "ด้วยเหตุนี้ กลุ่มดาวแห่งชีวิตจึงได้จองจำนักโทษศักดิ์สิทธิ์ทั้ง 4 คนที่ทำหน้าที่เป็นยามไว้ในมิติที่แยกจากอาชญากรมิติโดยสิ้นเชิง";
-						mes " ";
-						mes "นักโทษหลักซึ่งเป็นอาชญากรมิติเป็นมอนสเตอร์ประเภทคู่ขนานที่ขโมยรูปลักษณ์และความสามารถของกลุ่มดาวแห่งชีวิตในมิติที่ 326 ในปัจจุบันยังไม่มีการวัดระดับความอันตรายของมัน ดังนั้นจึงไม่มีการบันทึกเอาไว้";
-						next;
-						mes "[คู่มือข้อมูลสำหรับนักโทษ]";
-						mes "สิ่งหนึ่งที่แน่นอน: อาชญากรมิติได้ยึดครองร่างกายและพลังของกลุ่มดาวชีวิตมิติ";
-						mes " ";
-						mes "เนื่องจากเหตุการณ์ต่างๆ ที่เกิดขึ้น ไม่เพียงแต่กลุ่มดาวแห่งชีวิตเท่านั้น แต่ยังรวมถึงสัตว์ศักดิ์สิทธิ์ทั้ง 4 ตัวด้วยที่ว่างลงในมิติที่ 326 ดังนั้น ผู้ใช้จะต้องจัดการคุกแห่งนี้โดยมีเป้าหมายหลัก 2 ประการ";
-						next;
-						mes "-อันดับแรก-";
-						mes "คุณจะต้องโจมตีอาชญากรมิติเป็นระยะๆ เพื่อป้องกันไม่ให้พวกเขากักตุนพลังไว้";
-						mes " ";
-						mes "แม้กระทั่งในเวลานี้ มันก็กำลังสะสมพลังชีวิตจำนวนมหาศาล ซึ่งอาจก่อให้เกิดอันตรายร้ายแรงต่อโลกมิติได้";
-						next;
-						mes "-ที่สอง-";
-						mes "ระดับพลังที่อาชญากรมิติใช้ต้องได้รับการวัดและบันทึกไว้";
-						mes " ";
-						mes "ในทำนองเดียวกัน เมื่อเข้าไปในเรือนจำ คุณสามารถสวมใส่อุปกรณ์ป้องกันที่ได้รับจากกลุ่มดาว และวัดและบันทึกระดับความเสี่ยงโดยพิจารณาจากระดับของสิ่งกีดขวางที่ติดอยู่กับเรือนจำนั้น";
-						next;
-						mes "-ที่สาม-";
-						mes "แม้ว่ามันอาจจะไม่สำคัญนัก แต่ก็จำเป็นที่จะต้องไปเยี่ยมเยียนเรือนจำของผู้คุมเป็นระยะๆ เพื่อทำให้พลังของพวกเขาอ่อนลง";
-						mes " ";
-						mes "ผู้คุมที่ถูกคุมขังอยู่ในขณะนี้เป็นกองกำลังอันตรายที่อาจเห็นอกเห็นใจการหลบหนีของอาชญากรมิติต่างๆ บังคับให้พวกเขาใช้กำลังเป็นระยะๆ และยึดกุญแจเรือนจำที่พวกเขากำลังจัดการ/ผลิต";
-						next;
-						mes "[คู่มือข้อมูลสำหรับนักโทษ]";
-						mes "นี่คือข้อมูลเกี่ยวกับนักโทษที่ถูกคุมขังในเรือนจำ คุณต้องการข้อมูลเพิ่มเติมหรือไม่";
-						break;
-				case 4:
-						mes "[ข้อมูลการเข้าถึงข้อมูล]";
-						mes "เรือนจำแบ่งออกเป็นบริเวณสำหรับคุมขังผู้คุม และบริเวณสำหรับคุมขังอาชญากรอาชญากรรม";
-						mes " ";
-						mes "ประการแรก คุณสามารถเข้าไปในทะเลสาบลาวาซึ่งทหารยามจะถูกคุมขังวันละครั้ง ไม่มีการปิดผนึกเพิ่มเติม ดังนั้น ตราบใดที่คุณยึดตามกำหนดเวลาวันละครั้ง ก็จะไม่มีข้อจำกัดพิเศษใดๆ ในการเข้า";
-						next;
-						mes "[ข้อมูลการเข้าถึงข้อมูล]";
-						mes "ห้องโถงแห่งชีวิตที่เหล่าอาชญากรมิติถูกจองจำ";
-						mes "เข้าถึงได้เฉพาะขณะถือเท่านั้น" + mesitemlink(1001415) + "-";
-						mes " ";
-						mes "โปรดจำไว้ว่า ยกเว้นเวลาจำกัดในดันเจี้ยนหนึ่งชั่วโมงแล้ว คุณสามารถเข้าได้มากเท่าที่คุณต้องการตราบเท่าที่คุณมีกุญแจ";
-						next;
-						mes "[ข้อมูลการเข้าถึงข้อมูล]";
-						mes "อย่างไรก็ตาม หากคุณได้รับรางวัลหนึ่งครั้ง คุณจะไม่ได้รับรางวัลอีกครั้งใน Hall of Life เป็นเวลา ^ff0000หนึ่งสัปดาห์^000000 แน่นอนว่าแม้ในกรณีนั้น ก็สามารถเข้าได้ฟรี";
-						mes " ";
-						mes "คุณต้องการข้อมูลเพิ่มเติมหรือไม่?";
-						break;
-				case 5:
-						mes "[ข้อมูลข่าวสารอุปสรรค]";
-						mes "พลังของอาชญากรมิติถูกปิดผนึกโดยกำแพงที่กั้นแน่นหนาโดย Rigel ซึ่งเป็นกลุ่มดาวแห่งชีวิต";
-						mes " ";
-						mes "ดังนั้นเมื่อคุณเข้าไปบริหารจัดการเรือนจำ อาชญากรมิติแรกที่คุณเผชิญคือเกราะป้องกันที่ปรับให้สามารถใช้กำลังได้เพียงระดับต่ำที่สุดเท่านั้น";
-						next;
-						mes "[ข้อมูลข่าวสารอุปสรรค]";
-						mes "อย่างไรก็ตาม หากคุณใช้การแก้ไขที่เหมาะสมกับอาชญากรมิติและทำให้เขายอมรับ คุณจะได้รับค่าตอบแทนที่เหมาะสม ^ff0000^000000 หรืออาจล่าช้ารางวัลและมีโอกาสปลดล็อคด่าน ^ff0000 ^000000 ถัดไป";
-						next;
-						mes "[ข้อมูลข่าวสารอุปสรรค]";
-						mes "หากคุณต้องการระดับรางวัลที่สูงขึ้น โปรดจำไว้ว่าการเลื่อนระดับอย่างรวดเร็วโดยการเคลียร์สิ่งกีดขวางนั้นได้เปรียบกว่าการเลือกรับรางวัล";
-						next;
-						mes "[ข้อมูลข่าวสารอุปสรรค]";
-						mes "อย่างไรก็ตาม การยกระดับสิ่งกีดขวางขึ้นเพียงอย่างเดียวไม่เกิดประโยชน์แต่อย่างใด";
-						mes " ";
-						mes "หากคุณล้มเหลวในการแก้ไขอาชญากรมิติ ระดับของอุปสรรคที่คุณสามารถรับมือได้จะลดลง 1 ระดับในครั้งต่อไปที่คุณเข้าคุก^000000";
-						next;
-						mes "[ข้อมูลข่าวสารอุปสรรค]";
-						mes "ฉันขอแนะนำว่าคุณไม่ควรใส่ใจกับอุปสรรคที่คุณไม่สามารถรับมือได้มากเกินไป และพยายามแก้ไขอย่างมั่นคง";
-						mes " ";
-						mes "คุณต้องการข้อมูลเพิ่มเติมหรือไม่?";
-						break;
-				case 6:
-						mes "[คู่มือข้อมูลกับดัก]";
-						mes "อาชญากรมิติใช้พลังของเขาทำให้กับดักเคลื่อนเวลาปรากฏขึ้นในพื้นที่ของเขาเพื่อป้องกันผู้บุกรุกจากภายนอก";
-						mes " ";
-						mes "ความอันตรายของกับดักนี้จะแตกต่างกันออกไปขึ้นอยู่กับระดับของสิ่งกีดขวาง และพลังทำลายล้างจะยิ่งทรงพลังมากขึ้นยิ่งอยู่ห่างจากศูนย์กลางของคุกมากขึ้น";
-						next;
-						mes "[คู่มือข้อมูลกับดัก]";
-						mes "นอกจากนี้ ^ff0000ทุกครั้งที่คุณหรือพันธมิตรได้รับความเสียหายจากกับดัก พลังโจมตีของ Warp Criminal จะทรงพลังยิ่งขึ้น^000000";
-						next;
-						mes "[คู่มือข้อมูลกับดัก]";
-						mes "หากคุกเต็มไปด้วยกับดัก คุณสามารถรีเซ็ตกับดักโดยใช้ฝั่งตรงข้ามของโลกได้ โปรดดูข้อมูลในส่วนนี้สำหรับฝั่งตรงข้ามของโลก";
-						mes " ";
-						mes "คุณต้องการข้อมูลเพิ่มเติมหรือไม่?";
-						break;
-				case 7:
-						mes "[คู่มือข้อมูลสถานที่ศักดิ์สิทธิ์]";
-						mes "อาชญากรมิติสามารถสร้างสถานที่ศักดิ์สิทธิ์รอบๆ ตัวเองเป็นระยะๆ ซึ่งจะทำให้พวกเขาไม่ได้รับการโจมตีทางกายภาพและเวทมนตร์";
-						mes " ";
-						mes "ดูเหมือนว่านี่จะเป็นความสามารถซ้ำซ้อนที่กลุ่มดาวระดับสูงสามารถใช้ได้ และไม่สามารถปลดอาวุธได้ด้วยวิธีการใดๆ ทั้งสิ้น";
-						next;
-						mes "[คู่มือข้อมูลสถานที่ศักดิ์สิทธิ์]";
-						mes "อย่างไรก็ตาม หากคุณดึงอาชญากรมิติที่ประกาศสถานที่ศักดิ์สิทธิ์ออกจากสถานที่ศักดิ์สิทธิ์ สถานที่ศักดิ์สิทธิ์นั้นจะถูกยกเลิก หากอาชญากรมิติใช้สถานที่ศักดิ์สิทธิ์เพื่ออาละวาด จงดึงเขาออกจากสถานที่ศักดิ์สิทธิ์";
-						mes " ";
-						mes "คุณต้องการข้อมูลเพิ่มเติมหรือไม่?";
-						break;
-				case 8:
-						mes "[คู่มือข้อมูลสู่โลกแห่งความลับ]";
-						mes "เมื่อจำนวนกับดักในคุกเกินจำนวนที่กำหนด ประตูสู่อีกโลกหนึ่งจะถูกสร้างขึ้นที่ด้านเหนือของคุก";
-						mes " ";
-						mes "ในยมโลก มีภาพลวงตาที่ไม่สมบูรณ์ของอาชญากรแห่งมิติ และภาพลวงตาเหล่านั้นก็เชื่อมโยงอย่างไม่สมบูรณ์กับอาชญากรแห่งมิติ";
-						next;
-						mes "[คู่มือข้อมูลสู่โลกแห่งความลับ]";
-						mes "เมื่อภาพลวงตาทั้งหมดจากอีกโลกหนึ่งถูกปราบลง อาชญากรมิติจากโลกดั้งเดิมจะได้รับการโจมตีอย่างรุนแรง และตกอยู่ในสภาวะมึนงงชั่วระยะเวลาหนึ่ง";
-						mes " ";
-						mes "ในขณะนี้ กับดักในคุกจะถูกรีเซ็ต พลังโจมตีทั้งหมดที่สร้างขึ้นโดยอาชญากรวาร์ปจะกลับไปสู่สถานะเดิม และการป้องกันทั้งหมดของอาชญากรวาร์ปจะลดลงอย่างมากในช่วงระยะเวลาสั้นๆ";
-						next;
-						mes "[คู่มือข้อมูลสู่โลกแห่งความลับ]";
-						mes "อย่างไรก็ตามประตูสู่ยมโลกไม่ควรถูกใช้โดยผู้คนจำนวนมากเกินไป";
-						mes " ";
-						mes "เนื่องจากในแต่ละครั้งที่บุคคลผ่านพอร์ทัล อัตราการฟื้นฟูต่อวินาทีของอาชญากรมิติจะเพิ่มขึ้นตามจำนวนหนึ่ง และหากจำนวนนี้ทับซ้อนกัน เขาหรือเธอจะสามารถฟื้นฟูสุขภาพได้ในทันที";
-						next;
-						mes "[คู่มือข้อมูลสู่โลกแห่งความลับ]";
-						mes "โปรดจำไว้ว่าในการที่จะฆ่าภาพลวงตาของโลกอีกใบนั้น จำเป็นต้องมีสมาชิกปาร์ตี้จำนวนเล็กน้อยที่มีพลังโจมตีและความคล่องตัวสูง";
-						mes " ";
-						mes "คุณต้องการข้อมูลเพิ่มเติมหรือไม่?";
-						break;
-				case 9:
-						mes "[คู่มือเตือนภัยอันตราย]";
-						mes "หากคุณเห็นเอฟเฟกต์ผิดปกติใดๆ บนพื้นดินขณะแก้ไขอาชญากรมิติ ให้รีบออกจากพื้นที่นั้นทันที";
-						mes " ";
-						mes "ผลกระทบนี้เป็นจุดเริ่มต้นของอิทธิพลอันแผ่กว้างและทรงพลังของผู้กระทำความผิดมิติ";
-						next;
-						mes "[คู่มือเตือนภัยอันตราย]";
-						mes "อิทธิพลของอาชญากรมิติสามารถส่งผลให้เกิดการกักขัง บาดแผลฉีกขาดและอาการบาดเจ็บจากความหนาวเย็น และบางครั้งอาจถึงขั้นเสียชีวิตได้";
-						mes " ";
-						mes "อย่าละสายตาจากพื้นดินแม้แต่นาทีเดียว และต้องระวังในทุกทิศทุกทาง";
-						mes " ";
-						mes "คุณต้องการข้อมูลเพิ่มเติมหรือไม่?";
-						break;
-				case 10:
-						mes "[ข้อมูลการกู้คืนข้อมูล]";
-						mes "อาชญากรมิติสามารถฟื้นฟูสุขภาพได้แบบเรียลไทม์ ดังนั้นการแก้ไขตามปกติจึงอาจไม่สามารถทำได้ เว้นแต่การโจมตีจะเกินความสามารถในการฟื้นฟูนี้";
-						mes " ";
-						mes "ในขณะที่โลกภายในได้รับการชำระล้าง อัตราการฟื้นตัวจะลดลงอย่างรวดเร็วในช่วงเวลาที่อาชญากรในมิติอยู่ในสภาวะมึนงง";
-						next;
-						mes "[ข้อมูลการกู้คืนข้อมูล]";
-						mes "อย่างไรก็ตาม อย่าลืมว่า ^ff0000recovery ยังเพิ่มขึ้นตามสัดส่วนของจำนวนผู้คนที่ใช้พอร์ทัล^000000 เพื่อชำระล้างยมโลกด้วย";
-						mes "หากเกิดผู้ใช้พอร์ทัลมากเกินไป การแก้ไขปกติอาจล้มเหลวเนื่องจากความยืดหยุ่นเพิ่มขึ้นอย่างรวดเร็ว";
-						mes " ";
-						mes "คุณต้องการข้อมูลเพิ่มเติมหรือไม่?";
-						break;
-				}
-				next;
-		}
+	switch( isbegin_quest(12597) ) {
+	case 0:
 		end;
+	case 1:
+		mes "[Sealing Spirit Stone]";
+		mes "^ff0000ผู้ใช้งานที่ไม่ได้รับการรับรอง^000000";
+		next;
+		cutin "rigel_halfeyes01.png",2;
+		mes "[Rigel]";
+		mes "อย่าเอาแต่จ้องตาค้างสิ ยื่นมือมา";
+		mes "รวบรวมสมาธิโดยวางนิ้วโป้งไว้ที่มุมขวาล่างของหินวิญญาณที่กางออก และวางนิ้วที่เหลือไว้ด้านบน";
+		next;
+		select( "วางมือลงบนจุดนำทาง" );
+		setpcblock PCBLOCK_NPC, true;
+		cutin "",255;
+		specialeffect2 EF_BEGINSPELL_N5;
+		sleep2 2000;
+		specialeffect EF_LORD, AREA, "Dimension Prison#1";
+		sleep2 500;
+		specialeffect EF_LORD, AREA, "Dimension Prison#2";
+		sleep2 1500;
+		specialeffect EF_BAKU, AREA, "Dimension Prison#1";
+		sleep2 500;
+		specialeffect EF_BAKU, AREA, "Dimension Prison#2";
+		sleep2 500;
+		specialeffect EF_THUNDERSTORM2, AREA, "Dimension Prison#1";
+		sleep2 500;
+		setpcblock PCBLOCK_NPC, false;
+		specialeffect EF_THUNDERSTORM2, AREA, "Dimension Prison#2";
+		cloakoffnpcself( "Dimension Prison#1" );
+		cloakoffnpcself( "Dimension Prison#2" );
+		sleep2 1500;
+		cutin "rigel_halfeyes01.png",2;
+		mes "[Rigel]";
+		mes "ดูเหมือนว่าจะลงทะเบียนได้เรียบร้อยแล้ว ตอนนี้เจ้าได้เตรียมการขั้นพื้นฐานเพื่อรับรู้ถึงคุกและเข้าออกได้แล้ว สำหรับคำถามเพิ่มเติม โปรดอ่านจากคู่มือนี้";
+		next;
+		select( "คุณจะขังใครไว้ในคุกนั้นงั้นเหรอ?" );
+		cutin "rigel_annoying01.png",2;
+		mes "[Rigel]";
+		mes "^bb0000Doppelganger^000000";
+		next;
+		cutin "rigel_halfeyes01.png",2;
+		mes "[Rigel]";
+		mes "เอาเถอะ เจ้าอาจจะคิดว่าเป็นแค่ Doppelganger แล้วจะวุ่นวายทำไม แต่ตัวที่เจ้าจะกักขังไว้ที่นี่น่ะ มันคนละระดับกับ Doppelganger ที่เจ้าคิดเลยล่ะ";
+		next;
+		mes "[Rigel]";
+		mes "มันคือสิ่งชั่วร้ายขั้นสุดที่ไม่เพียงแค่เลียนแบบความสามารถหรือรูปลักษณ์ แต่จะกลืนกินวิญญาณของเป้าหมายและกลายเป็นตัวตนนั้นเสียเอง";
+		next;
+		select( "แล้วตอนนี้มันใช้รูปลักษณ์ของใครอยู่ล่ะ?" );
+		cutin "rigel_annoying01.png",2;
+		mes "[Rigel]";
+		mes "ก็ข้าไง";
+		next;
+		select( "นั่นหมายความว่ายังไง?" );
+		cutin "rigel_halfeyes01.png",2;
+		mes "[Rigel]";
+		mes "นักโทษผู้นี้ได้กลืนกินข้า Rigel จากมิติที่ 326 และกลายเป็นตัวตนที่เรียกตัวเองว่า Constellation of Life";
+		next;
+		mes "[Rigel]";
+		mes "ตอนที่ข้ารีบไปเพื่อช่วยตัวเองที่นั่น มันก็สายไปเสียแล้ว ข้ารู้ทันทีที่เห็นคนที่ดูเหมือนข้าทุกประการนอนหมดสติอยู่... นั่นไม่ใช่ข้า";
+		next;
+		cutin "rigel_annoying01.png",2;
+		mes "[Rigel]";
+		mes "แม้ว่าพวกเราจะประสบความสำเร็จในการผนึกเจ้านั่นที่ไม่สามารถใช้พลังได้อย่างเต็มที่ แต่มันอาจจะพังทลายผนึกออกมาได้สักวัน";
+		next;
+		select( "ทำไมคุณไม่จัดการอาชญากรคนนั้นด้วยตัวเองล่ะ?" );
+		cutin "rigel01.png",2;
+		mes "[Rigel]";
+		mes "ข้าไม่รู้ว่าเกิดข้อผิดพลาดตรงไหน แต่โลกนี้จดจำเจ้านั่นในฐานะ Constellation of Life อีกคนหนึ่ง หากกลุ่มดาวโจมตีกลุ่มดาวเดียวกัน มันจะละเมิดกฎแห่งมิติและสูญเสียพลังในทันที";
+		next;
+		mes "[Rigel]";
+		mes "และถ้าหากมันยึดครองตัวตนของข้าไปได้โดยสมบูรณ์ เมื่อนั้นสถานการณ์จะเลวร้ายจนกู้กลับไม่ได้";
+		next;
+		select( "มีความเป็นไปได้ไหมที่นักโทษจะมายึดร่างพวกเราแทน?" );
+		cutin "rigel_close02.png",2;
+		mes "[Rigel]";
+		mes "นี่เป็นหนึ่งในเรื่องตลกที่ขำที่สุดที่ข้าเคยได้ยินในรอบหลายร้อยปีเลยล่ะ";
+		next;
+		cutin "rigel_halfeyes02.png",2;
+		mes "[Rigel]";
+		mes "เจ้าคิดว่าจะมีใครยอมทิ้งร่างกายที่เป็นอมตะซึ่งอุตส่าห์แย่งชิงมาได้ เพื่อกลับไปใช้ร่างกายที่ต้องดับสูญของมนุษย์งั้นเหรอ?";
+		next;
+		select( "ก็อาจจะ ถ้าชีวิตของมันถูกคุกคามน่ะ" );
+		cutin "rigel_halfeyes01.png",2;
+		mes "[Rigel]";
+		mes "เอาเถอะ ข้าไม่เห็นด้วยกับความเห็นนั้นเลยสักนิด แต่ข้าจะช่วยให้เจ้าคลายกังวล เจ้านั่นถูกล้อมรอบด้วยชั้นของผนึกที่ข้าติดตั้งไว้";
+		next;
+		mes "[Rigel]";
+		mes "ต่อให้มันอยากจะยึดร่างเจ้าหรือเพื่อนๆ ของเจ้า มันก็ไม่สามารถสำแดงพลังขนาดนั้นออกมาได้หรอก";
+		next;
+		cutin "rigel_close01.png",2;
+		mes "[Rigel]";
+		mes "เรื่องมันยาวน่ะ ข้อมูลของคุกจะถูกปิดประกาศแยกไว้ที่ทางเข้าคุก ดังนั้นหมั่นตรวจสอบเป็นระยะด้วยล่ะ";
+		next;
+		mes "[Rigel]";
+		mes "ข้ารอคอยที่จะได้เห็นเจ้าและเพื่อนๆ ทำผลงานที่ยอดเยี่ยมที่นี่นะ";
+		close2;
+		cutin "",255;
+		completequest 12597;
+		cloakonnpcself( "Rigel#life2" );
+		end;
+	case 2:
+		break;
+	}
+	mes "[Sealing Spirit Stone]";
+	mes "แนวทางปฏิบัติเพื่อการจัดการคุกที่ถูกต้อง เจ้าต้องการดูข้อมูลส่วนไหน?";
+	next;
+	while(1) {
+		switch( select( "หยุดการดูข้อมูล", "ขอรับการคุ้มครองจาก Constellation อีกครั้ง", "ข้อมูลเกี่ยวกับนักโทษที่ถูกคุมขัง", "ข้อมูลการเข้าสู่คุก", "ข้อมูลเกี่ยวกับบาเรีย", "ข้อมูลเกี่ยวกับกับดัก", "ข้อมูลเกี่ยวกับเขตศักดิ์สิทธิ์", "ข้อมูลเกี่ยวกับโลกเบื้องล่าง (Underworld)", "ข้อมูลเกี่ยวกับลางร้ายที่อันตราย", "ข้อมูลเกี่ยวกับความสามารถในการฟื้นตัวของนักโทษ" ) ) {
+		case 1:
+			end;
+		case 2:
+			if (countitem(420231) - isequippedcnt(420231) < 1) {
+				mes "[Sealing Spirit Stone]";
+				mes "โปรดตรวจสอบอีกครั้งว่าได้ลงทะเบียนไว้ใน ^ff0000การตั้งค่าชุดอุปกรณ์ (Equipment Set)^000000 หรือมีการติดตั้งไว้แล้วหรือไม่";
+				mes " ";
+				mes "แม้เจ้าจะมีคำอวยพรสองอย่างขึ้นไป แต่บันทึกที่สลักไว้ใน ^ff0000วิญญาณของนักผจญภัยจะสำคัญที่สุด^000000 ดังนั้นเราขอแนะนำให้เจ้าทิ้งคำอวยพรส่วนเกินที่ร้านค้า";
+				next;
+				if (select( "ยกเลิก", "ออกให้ใหม่" ) == 1)
+					continue;
+				mes "[Sealing Spirit Stone]";
+				mes "อ้างอิงจากบันทึกที่สลักไว้ในวิญญาณของนักผจญภัย";
+				mes "เราได้ออกการคุ้มครองที่สลักด้วยบาเรีย ^0000ffเลเวล 1^000000 ให้ใหม่เรียบร้อยแล้ว";
+				getitem2 420231,1,1,0,0,0,0,0,312453;	// MD_Hol_Protection
+				close;
+			}
+			mes "[Sealing Spirit Stone]";
+			mes "เจ้ามีการคุ้มครองอยู่ในกระเป๋าอยู่แล้ว การออกให้ใหม่จะทำได้ก็ต่อเมื่อไม่มี Constellation's Protection ในกระเป๋าเท่านั้น";
+			close;
+		case 3:
+			mes "[Prisoner Information Guide]";
+			mes "อ้างอิงจากหนังสือเล่มนี้ ทางซ้ายคือทะเลสาบลาวาที่ซึ่งผู้คุมที่จัดการอาชญากรแห่งมิติถูกจองจำอยู่ ทางขวาคือ Hall of Life ที่ซึ่งเหล่าผู้จัดการมิติถูกจองจำ";
+			mes " ";
+			mes "เดิมทีเหล่าผู้คุมมีหน้าที่เฝ้าระวังอาชญากรแห่งมิติ แต่เมื่อถึงจุดหนึ่ง พวกเขากลับแสดงเจตนาที่จะปกป้องอาชญากรเหล่านั้นเสียเอง";
+			next;
+			mes "[Prisoner Information Guide]";
+			mes "ด้วยเหตุนี้ Constellation of Life จึงได้กักขังนักโทษเทพทั้ง 4 ซึ่งเคยเป็นผู้คุมไว้ในมิติที่แยกขาดจากอาชญากรแห่งมิติอย่างสิ้นเชิง";
+			mes " ";
+			mes "นักโทษหลักซึ่งเป็นอาชญากรแห่งมิติ คือมอนสเตอร์ประเภท Doppelganger ที่ขโมยรูปลักษณ์และพลังของ Constellation of Life แห่งมิติที่ 326 ปัจจุบันระดับความอันตรายของมันยังไม่สามารถวัดได้ จึงไม่มีการบันทึกไว้";
+			next;
+			mes "[Prisoner Information Guide]";
+			mes "สิ่งหนึ่งที่แน่นอนคือ: อาชญากรแห่งมิติได้ช่วงชิงร่างกายและพลังของเหล่ากลุ่มดาวแห่งชีวิตประจำมิติไป";
+			mes " ";
+			mes "เนื่องจากเหตุการณ์ต่อเนื่องนี้ ไม่เพียงแค่ Constellation of Life เท่านั้น แต่สัตว์เทพทั้ง 4 ในมิติที่ 326 ก็ว่างเว้นลงด้วย ดังนั้นผู้ใช้งานต้องจัดการคุกนี้โดยมีเป้าหมายหลักสองประการ";
+			next;
+			mes "-ประการแรก-";
+			mes "เจ้าต้องโจมตีอาชญากรแห่งมิติเป็นระยะเพื่อป้องกันไม่ให้พวกมันสะสมพลัง";
+			mes " ";
+			mes "แม้ในตอนนี้ มันยังคงสะสมพลังงานชีวิตจำนวนมหาศาล ซึ่งอาจก่อให้เกิดอันตรายร้ายแรงต่อโลกแห่งมิติได้";
+			next;
+			mes "-ประการที่สอง-";
+			mes "ต้องทำการวัดและบันทึกระดับพลังที่อาชญากรแห่งมิติแสดงออกมา";
+			mes " ";
+			mes "ในส่วนที่เกี่ยวข้อง เมื่อเข้าสู่คุก เจ้าสามารถสวมใส่การคุ้มครองที่ได้รับสัมผัสจากกลุ่มดาว และทำการวัดรวมถึงบันทึกระดับความเสี่ยงตามระดับของบาเรียที่ติดอยู่กับมัน";
+			next;
+			mes "-ประการที่สาม-";
+			mes "อาจจะมีความสำคัญน้อยกว่า แต่จำเป็นต้องไปเยี่ยมเยียนคุกของผู้คุมเป็นระยะเพื่อลดทอนพลังของพวกมัน";
+			mes " ";
+			mes "ผู้คุมที่ถูกจองจำอยู่ในปัจจุบันเป็นกองกำลังที่อันตรายซึ่งอาจเห็นดีเห็นงามกับการหลบหนีของอาชญากรแห่งมิติ จงกดดันพวกมันด้วยกำลังเป็นระยะและยึดกุญแจคุกที่พวกมันถือครองหรือผลิตอยู่มาเสีย";
+			next;
+			mes "[Prisoner Information Guide]";
+			mes "นี่คือข้อมูลเกี่ยวกับนักโทษที่ถูกคุมขังในคุก เจ้าต้องการข้อมูลเพิ่มเติมอื่นอีกไหม?";
+			break;
+		case 4:
+			mes "[ข้อมูลการเข้าถึง]";
+			mes "คุกถูกแบ่งออกเป็นพื้นที่ที่ผู้คุมถูกกักขัง และพื้นที่ที่อาชญากรแห่งมิติถูกกักขัง";
+			mes " ";
+			mes "อย่างแรก เจ้าสามารถเข้าสู่ทะเลสาบลาวาที่ผู้คุมถูกจองจำได้วันละหนึ่งครั้ง ไม่มีการผนึกเพิ่มเติม ตราบใดที่เจ้าปฏิบัติตามเงื่อนไขวันละครั้ง ก็จะไม่มีข้อจำกัดพิเศษในการเข้า";
+			next;
+			mes "[ข้อมูลการเข้าถึง]";
+			mes "ส่วน Hall of Life ที่อาชญากรแห่งมิติถูกจองจำอยู่";
+			mes "จะเข้าถึงได้เฉพาะเมื่อถือครอง " + mesitemlink(1001415) + " เท่านั้น";
+			mes " ";
+			mes "จำไว้ว่า ยกเว้นการจำกัดเวลาดันเจี้ยนหนึ่งชั่วโมงแล้ว เจ้าสามารถเข้าได้บ่อยเท่าที่ต้องการตราบเท่าที่มีกุญแจ";
+			next;
+			mes "[ข้อมูลการเข้าถึง]";
+			mes "อย่างไรก็ตาม หากเจ้าได้รับรางวัลไปแล้วครั้งหนึ่ง เจ้าจะไม่สามารถรับรางวัลได้อีกใน Hall of Life เป็นเวลา ^ff0000หนึ่งสัปดาห์^000000 แน่นอนว่าแม้ในกรณีนั้น การเข้าชมก็ยังทำได้ฟรี";
+			mes " ";
+			mes "เจ้าต้องการข้อมูลเพิ่มเติมอื่นอีกไหม?";
+			break;
+		case 5:
+			mes "[ข้อมูลบาเรีย]";
+			mes "พลังของอาชญากรแห่งมิติถูกผนึกไว้ด้วยบาเรียที่ผูกมัดไว้อย่างแน่นหนาโดย Rigel ซึ่งเป็น Constellation of Life";
+			mes " ";
+			mes "ดังนั้น เมื่อเจ้าเข้าไปเพื่อจัดการคุก อาชญากรแห่งมิติคนแรกที่เจ้าพบคือบาเรียที่ถูกปรับแต่งไว้เพื่อให้แสดงพลังออกมาในระดับต่ำสุดเท่านั้น";
+			next;
+			mes "[ข้อมูลบาเรีย]";
+			mes "อย่างไรก็ตาม หากเจ้าทำการปรับแก้ (Correction) อาชญากรแห่งมิติอย่างเหมาะสมและทำให้มันยอมสยบ เจ้าจะได้รับ ^ff0000รางวัล^000000 ที่คู่ควร หรือเลือกที่จะชะลอรางวัลเพื่อโอกาสในการปลดล็อก ^ff0000ระดับบาเรีย^000000 ขั้นต่อไป";
+			next;
+			mes "[ข้อมูลบาเรีย]";
+			mes "หากเจ้าต้องการรางวัลระดับที่สูงขึ้น จำไว้ว่าการรีบอัปเลเวลด้วยการเคลียร์บาเรียจะได้เปรียบกว่าการเลือกรับรางวัลทันที";
+			next;
+			mes "[ข้อมูลบาเรีย]";
+			mes "แต่การเพิ่มระดับบาเรียเพียงอย่างเดียวก็ไม่ใช่เรื่องดีเสมอไป";
+			mes " ";
+			mes "หากเจ้าล้มเหลวในการปรับแก้อาชญากรแห่งมิติ ระดับของบาเรียที่เจ้าสามารถจัดการได้จะลดลง 1 ระดับในการเข้าคุกครั้งต่อไป^000000";
+			next;
+			mes "[ข้อมูลบาเรีย]";
+			mes "ข้าแนะนำว่าอย่าไปฝืนจัดการบาเรียที่เกินกำลัง และจงมุ่งมั่นเพื่อการปรับแก้ที่มั่นคงจะดีกว่า";
+			mes " ";
+			mes "เจ้าต้องการข้อมูลเพิ่มเติมอื่นอีกไหม?";
+			break;
+		case 6:
+			mes "[ข้อมูลกับดัก]";
+			mes "อาชญากรแห่งมิติใช้พลังของมันสร้างกับดักเคลื่อนย้ายเวลาให้ปรากฏขึ้นในพื้นที่ของมันเพื่อป้องกันผู้บุกรุกจากภายนอก";
+			mes " ";
+			mes "ความอันตรายของกับดักนี้จะแตกต่างกันไปตามระดับของบาเรีย และพลังทำลายล้างของมันจะรุนแรงมากขึ้นเมื่อเจ้าอยู่ห่างจากใจกลางของคุก";
+			next;
+			mes "[ข้อมูลกับดัก]";
+			mes "นอกจากนี้ ^ff0000ทุกครั้งที่เจ้าหรือพันธมิตรได้รับความเสียหายจากกับดัก พลังโจมตีของอาชญากรแห่งมิติจะยิ่งทรงพลังมากขึ้น^000000";
+			next;
+			mes "[ข้อมูลกับดัก]";
+			mes "หากคุกเต็มไปด้วยกับดัก เจ้าสามารถรีเซ็ตกับดักได้โดยใช้โลกอีกด้านหนึ่ง (The other side of the world) โปรดดูข้อมูลในส่วนของโลกอีกด้านหนึ่งสำหรับรายละเอียดนี้";
+			mes " ";
+			mes "เจ้าต้องการข้อมูลเพิ่มเติมอื่นอีกไหม?";
+			break;
+		case 7:
+			mes "[ข้อมูลเขตศักดิ์สิทธิ์]";
+			mes "อาชญากรแห่งมิติสามารถสร้างเขตศักดิ์สิทธิ์รอบตัวเองเป็นระยะ ซึ่งจะทำให้มันมีภูมิคุ้มกันต่อการโจมตีทางกายภาพและเวทมนตร์";
+			mes " ";
+			mes "นี่ดูเหมือนจะเป็นการเลียนแบบความสามารถของกลุ่มดาวระดับสูง และไม่สามารถยกเลิกได้ด้วยวิธีการใดๆ";
+			next;
+			mes "[ข้อมูลเขตศักดิ์สิทธิ์]";
+			mes "อย่างไรก็ตาม หากเจ้าลากอาชญากรแห่งมิติที่ประกาศเขตศักดิ์สิทธิ์ให้ออกมาจากเขตนั้น เขตศักดิ์สิทธิ์จะถูกยกเลิก หากอาชญากรแห่งมิติใช้เขตศักดิ์สิทธิ์เพื่ออาละวาด จงลากมันออกมาจากเขตนั้นเสีย";
+			mes " ";
+			mes "เจ้าต้องการข้อมูลเพิ่มเติมอื่นอีกไหม?";
+			break;
+		case 8:
+			mes "[ข้อมูลโลกแห่งความลับ (Secret World)]";
+			mes "เมื่อจำนวนกับดักในคุกเกินจำนวนที่กำหนด พอร์ทัลไปสู่โลกอีกใบจะถูกสร้างขึ้นทางทิศเหนือของคุก";
+			mes " ";
+			mes "ในโลกเบื้องล่างนั้น จะมีภาพหลอนที่ไม่สมบูรณ์ของอาชญากรแห่งมิติอยู่ และภาพหลอนเหล่านั้นเชื่อมต่อกับอาชญากรแห่งมิติอย่างไม่สมบูรณ์";
+			next;
+			mes "[ข้อมูลโลกแห่งความลับ (Secret World)]";
+			mes "ทันทีที่ภาพหลอนทั้งหมดในโลกอีกใบถูกพิชิต อาชญากรแห่งมิติในโลกเดิมจะได้รับความเสียหายอย่างหนักและตกอยู่ในสภาวะมึนงง (Groggy) เป็นระยะเวลาหนึ่ง";
+			mes " ";
+			mes "ในจังหวะนี้ กับดักภายในคุกจะถูกรีเซ็ต พลังโจมตีที่อาชญากรสะสมไว้จะกลับสู่สถานะเริ่มต้น และพลังป้องกันทั้งหมดของมันจะลดลงอย่างมากในช่วงเวลาสั้นๆ";
+			next;
+			mes "[ข้อมูลโลกแห่งความลับ (Secret World)]";
+			mes "อย่างไรก็ตาม พอร์ทัลสู่โลกเบื้องล่างไม่ควรถูกใช้งานโดยคนจำนวนมากเกินไป";
+			mes " ";
+			mes "นั่นเป็นเพราะทุกครั้งที่มีคนผ่านพอร์ทัล อัตราการฟื้นฟูต่อวินาทีของอาชญากรแห่งมิติจะเพิ่มขึ้นในระดับหนึ่ง และหากจำนวนนี้สะสมมากขึ้น มันจะสามารถฟื้นฟูพลังชีวิตได้ในพริบตา";
+			next;
+			mes "[ข้อมูลโลกแห่งความลับ (Secret World)]";
+			mes "จำไว้ว่าในการกำจัดภาพหลอนของโลกอีกใบนั้น ขอแนะนำให้ใช้สมาชิกปาร์ตี้จำนวนน้อยที่มีพลังโจมตีและความคล่องตัวสูง";
+			mes " ";
+			mes "เจ้าต้องการข้อมูลเพิ่มเติมอื่นอีกไหม?";
+			break;
+		case 9:
+			mes "[ข้อมูลลางร้ายที่อันตราย]";
+			mes "หากเจ้าเห็นเอฟเฟกต์ที่ผิดปกติบนพื้นในขณะที่กำลังปรับแก้อาชญากรแห่งมิติ จงรีบออกจากพื้นที่นั้นโดยเร็ว";
+			mes " ";
+			mes "เอฟเฟกต์นี้เป็นลางบอกเหตุถึงอิทธิพลที่ทรงพลังและแผ่กว้างของอาชญากรแห่งมิติ";
+			next;
+			mes "[ข้อมูลลางร้ายที่อันตราย]";
+			mes "อิทธิพลของอาชญากรแห่งมิติอาจส่งผลให้เกิดสภาวะถูกกักขัง บาดแผลฉกรรจ์ ความเย็นกัด และบางครั้งอาจถึงแก่ความตาย";
+			mes " ";
+			mes "อย่าละสายตาจากพื้นแม้เพียงชั่วครู่ และจงตื่นตัวในทุกทิศทาง";
+			mes " ";
+			mes "เจ้าต้องการข้อมูลเพิ่มเติมอื่นอีกไหม?";
+			break;
+		case 10:
+			mes "[ข้อมูลการฟื้นตัว]";
+			mes "อาชญากรแห่งมิติมีความสามารถในการฟื้นฟูพลังชีวิตแบบเรียลไทม์ ดังนั้นการปรับแก้ตามปกติอาจเป็นไปไม่ได้ เว้นแต่การโจมตีจะรุนแรงเกินกว่าความสามารถในการฟื้นตัวนี้";
+			mes " ";
+			mes "ในจังหวะที่โลกภายในได้รับการชำระล้าง อัตราการฟื้นตัวจะลดลงอย่างรวดเร็วในช่วงที่อาชญากรแห่งมิติอยู่ในสภาวะมึนงง";
+			next;
+			mes "[ข้อมูลการฟื้นตัว]";
+			mes "แต่อย่าลืมว่า ^ff0000การฟื้นตัวจะเพิ่มขึ้นตามสัดส่วนของจำนวนคนที่ใช้พอร์ทัล^000000 เพื่อไปชำระล้างโลกเบื้องล่าง";
+			mes "หากมีผู้ใช้งานพอร์ทัลมากเกินไป การปรับแก้อาจล้มเหลวเนื่องจากการฟื้นตัวที่เพิ่มขึ้นอย่างรวดเร็ว";
+			mes " ";
+			mes "เจ้าต้องการข้อมูลเพิ่มเติมอื่นอีกไหม?";
+			break;
+		}
+		next;
+	}
+	end;
 
 OnInit:
-		questinfo( QTYPE_QUEST, QMARK_YELLOW, "isbegin_quest(12597) == 1" );
-		end;
+	questinfo( QTYPE_QUEST, QMARK_YELLOW, "isbegin_quest(12597) == 1" );
+	end;
 }
 
 
-// t_garden,158,235,2	script(CLOAKED)	Dimension Prison#1	GATE_SKYBLUE,2,2,{	// unknown OnTouch effect
+// t_garden,158,235,2	script(CLOAKED)	Dimension Prison#1	GATE_SKYBLUE,2,2,{	// unknown OnTouch effect (ไม่ทราบผล OnTouch)
 t_garden,158,235,2	script(CLOAKED)	Dimension Prison#1	GATE_SKYBLUE,{
-		if (isbegin_quest(12597) != 2)
-				end;
-		if (checkweight(1201,1) == 0) {
-				mes "^ff0000ดูเหมือนว่าสินค้าจะมีประเภทและน้ำหนักมากเกินไป กรุณาจัดระเบียบสินค้าคงคลังของคุณ^000000";
-				close;
-		}
-		if (getcharid(1) < 1) {
-				mes "^0000ffกรุณาจัดปาร์ตี้ที่มีผู้เข้าร่วมอย่างน้อย 1 คน และดำเนินการต่อ^000000";
-				close;
-		}
-		// ...
-						end;
-		}
-
-// t_garden,173,235,2	script(CLOAKED)	Dimension Prison#2	GATE_SKYBLUE,2,2,{	// unknown OnTouch effect
-t_garden,173,235,2	script(CLOAKED)	Dimension Prison#2	GATE_SKYBLUE,{
-		if (isbegin_quest(12597) != 2)
-				end;
-		if (checkweight(1201,1) == 0) {
-				mes "^ff0000ดูเหมือนว่าสินค้าจะมีประเภทและน้ำหนักมากเกินไป กรุณาจัดระเบียบสินค้าคงคลังของคุณ^000000";
-				close;
-		}
-		// ...
+	if (isbegin_quest(12597) != 2)
 		end;
+	if (checkweight(1201,1) == 0) {
+		mes "^ff0000ดูเหมือนว่าจะมีไอเทมมากเกินไปทั้งประเภทและน้ำหนัก โปรดจัดการช่องเก็บของของคุณ^000000";
+		close;
+	}
+	if (getcharid(1) < 1) {
+		mes "^0000ffโปรดจัดตั้งปาร์ตี้อย่างน้อยหนึ่งคนแล้วดำเนินการต่อ^000000";
+		close;
+	}
+	// ...
+			end;
+	}
+
+// t_garden,173,235,2	script(CLOAKED)	Dimension Prison#2	GATE_SKYBLUE,2,2,{	// unknown OnTouch effect (ไม่ทราบผล OnTouch)
+t_garden,173,235,2	script(CLOAKED)	Dimension Prison#2	GATE_SKYBLUE,{
+	if (isbegin_quest(12597) != 2)
+		end;
+	if (checkweight(1201,1) == 0) {
+		mes "^ff0000ดูเหมือนว่าจะมีไอเทมมากเกินไปทั้งประเภทและน้ำหนัก โปรดจัดการช่องเก็บของของคุณ^000000";
+		close;
+	}
+	// ...
+	end;
 }
 
 
 
-// Daily Quests
+// Daily Quests (เควสต์รายวัน)
 // t_garden,105,118,0	script	#wp01	HIDDEN_WARP_NPC,6,5,{	// (NPC name is not unique)
 t_garden,105,118,0	script	#wp01_t_garden_2	HIDDEN_WARP_NPC,6,5,{
-		end;
+	end;
 OnTouch:
-		.@state = isbegin_quest(12620);
-		if (.@state == 0)
-				end;
-		cloakoffnpcself( "Ardor#life2" );
-		cloakoffnpcself( "Diluvio#life2" );
-		cloakoffnpcself( "Procella#life2" );
-		cloakoffnpcself( "Terremotus#life2" );
-		cloakoffnpcself( "Serpens#life2" );
-
-		if (.@state == 1) {
-				mes "[เทอร์เรโมตัส]";
-				mes "^777700โอ้ นักผจญภัยที่เลทิเซียส่งมาในที่สุดก็มาถึงแล้ว";
-				next;
-				mes "[ความกระตือรือร้น]";
-				mes "^aa0000นักผจญภัย! เจ้าเต็มใจที่จะต่อสู้หรือไม่? เราไม่ต้องการคนอ่อนแอ!";
-				next;
-				mes "[ดิลูวิโอ]";
-				mes "^0000ffอัธยาศัยดี! คุณลืมไปแล้วเหรอว่าเลติเซียบอกอะไรคุณไว้ว่าอย่างน้อยก็ต้องสุภาพ?";
-				next;
-				mes "[โปรเซลล่า]";
-				mes "^00cc00Diluvio พูดถูก เราควรแสดงความมีน้ำใจกับมนุษย์ที่เข้ามาช่วยเหลือเราบ้าง";
-				next;
-				select( "I'm fine, please tell me what to do" );
-				mes "[งู]";
-				mes "^aa00aaเราเป็นวิญญาณโบราณจากโลกที่เชื่อมต่อกับสวนแห่งนี้ เป็นสัญชาตญาณที่ฝังอยู่ในร่างกายวิญญาณของเราที่จะช่วยให้ธาตุต่างๆ ในธรรมชาติยังคงกลมกลืนกัน";
-				next;
-				mes "[งู]";
-				mes "^aa00aaอย่างไรก็ตาม หลังจากถูกพายุมิติที่แปลกประหลาดพัดพาไป องค์ประกอบต่างๆ ของโลกที่เชื่อมต่อกับสวนแห่งนี้ก็เริ่มแพร่กระจาย และในที่สุดก็เริ่มกลายเป็นวิญญาณ";
-				next;
-				mes "[เทอร์เรโมตัส]";
-				mes "^777700หากธาตุต่างๆ ยังคงดำรงอยู่ต่อไป ในที่สุดโลกวัตถุที่ประกอบเป็นโลกนี้ก็จะพังทลายลง จะต้องป้องกันไม่ให้เกิดขึ้น";
-				next;
-				mes "[ดิลูวิโอ]";
-				mes "^0000ffนักผจญภัย คุณต้องไม่ปล่อยให้ธาตุต่างๆ กลายเป็นวิญญาณอีกต่อไป ใช้พลังของคุณส่งพวกมันกลับคืนสู่ธรรมชาติ";
-				next;
-				mes "[เทอร์เรโมตัส]";
-				mes "^777700นี่ไม่ใช่การทำลายธรรมชาติ แต่เป็นการคืนธาตุที่หายไปซึ่งถูกแปลงเป็นวิญญาณกลับสู่ตำแหน่งเดิม คุณจะฟังคำขอของเราไหม";
-				next;
-				select( "I will." );
-				mes "[ความกระตือรือร้น]";
-				mes "^aa0000คุณเป็นนักสื่อสารที่ดี! โอเค งั้นฉันจะบอกคุณว่าต้องทำอะไรทุกวัน!^000000";
-				next;
-				mes "[ความกระตือรือร้น]";
-				mes "^aa0000มาวางสิ่งของศักดิ์สิทธิ์ที่กลุ่มดาวต่างๆ เตรียมไว้ให้ตรงข้ามกับเรากันเถอะ ภาษาคนเรียกว่าเครื่องขายของอัตโนมัติ^000000";
-				next;
-				mes "[ความกระตือรือร้น]";
-				mes "^aa0000รางวัลสำหรับการช่วยเหลือเราและการทำงานของกลุ่มดาวที่นี่จะได้รับผ่านสิ่งของศักดิ์สิทธิ์นั้น^000000";
-				next;
-				completequest 12620;
-				navigateto("t_garden",126,117);
-				end;
-		}
+	.@state = isbegin_quest(12620);
+	if (.@state == 0)
 		end;
+	cloakoffnpcself( "Ardor#life2" );
+	cloakoffnpcself( "Diluvio#life2" );
+	cloakoffnpcself( "Procella#life2" );
+	cloakoffnpcself( "Terremotus#life2" );
+	cloakoffnpcself( "Serpens#life2" );
+
+	if (.@state == 1) {
+		mes "[Terremotus]";
+		mes "^777700โอ้ นักผจญภัยที่ Leticia ส่งมามาถึงจนได้นะ";
+		next;
+		mes "[Ardor]";
+		mes "^aa0000นักผจญภัย! เจ้าเต็มใจจะสู้ไหม? พวกเราไม่ต้องการคนอ่อนแอ!";
+		next;
+		mes "[Diluvio]";
+		mes "^0000ffArdor! เจ้าลืมสิ่งที่ Leticia บอกแล้วหรือว่าอย่างน้อยก็ควรสุภาพน่ะ?";
+		next;
+		mes "[Procella]";
+		mes "^00cc00Diluvio พูดถูกนะ มันจะเป็นการดีที่จะแสดงความสุภาพต่อนุษย์ที่มาช่วยพวกเรา";
+		next;
+		select( "ฉันไม่เป็นไร ช่วยบอกทีว่าต้องทำอะไรบ้าง" );
+		mes "[Serpens]";
+		mes "^aa00aaพวกเราคือวิญญาณโบราณจากโลกที่เชื่อมต่อกับสวนแห่งนี้ มันเป็นสัญชาตญาณที่สลักอยู่ในกายวิญญาณของพวกเราที่จะช่วยให้แต่ละองค์ประกอบทางธรรมชาติคงความสมดุล";
+		next;
+		mes "[Serpens]";
+		mes "^aa00aaอย่างไรก็ตาม หลังจากถูกพัดพาโดยพายุมิติที่ประหลาด องค์ประกอบของโลกที่เชื่อมต่อกับสวนนี้ก็เริ่มบ้าคลั่ง และในที่สุดก็เริ่มกลายสภาพเป็นวิญญาณ";
+		next;
+		mes "[Terremotus]";
+		mes "^777700หากองค์ประกอบต่างๆ ยังคงกลายเป็นวิญญาณธาตุต่อไป ในที่สุดโลกทางกายภาพที่ประกอบขึ้นเป็นโลกใบนี้จะพังทลายลง นั่นคือสิ่งที่เราต้องป้องกัน";
+		next;
+		mes "[Diluvio]";
+		mes "^0000ffนักผจญภัย เจ้าต้องไม่ยอมให้องค์ประกอบต่างๆ กลายเป็นวิญญาณอีกต่อไป จงใช้พลังของเจ้าส่งพวกเขากลับคืนสู่ธรรมชาติซะ";
+		next;
+		mes "[Terremotus]";
+		mes "^777700นี่ไม่ใช่การทำลายธรรมชาติ แต่มันคือการส่งองค์ประกอบที่กำลังเลือนหายไปซึ่งถูกเปลี่ยนเป็นวิญญาณ ให้กลับคืนสู่ตำแหน่งเดิมของพวกมัน เจ้าจะรับคำขอของพวกเราไหม?";
+		next;
+		select( "ฉันจะช่วยเอง" );
+		mes "[Ardor]";
+		mes "^aa0000เจ้าคุยง่ายดีนี่! ตกลง ถ้าอย่างนั้นข้าจะบอกเองว่าต้องทำอะไรในแต่ละวัน!^000000";
+		next;
+		mes "[Ardor]";
+		mes "^aa0000เรามาวางไอเทมศักดิ์สิทธิ์ที่เตรียมโดยเหล่ากลุ่มดาวไว้ตรงข้ามพวกเรา ในภาษาของมนุษย์ มันเรียกว่า ตู้ขายของอัตโนมัติ น่ะ^000000";
+		next;
+		mes "[Ardor]";
+		mes "^aa0000รางวัลสำหรับการช่วยพวกเราและงานของกลุ่มดาวที่นี่ จะได้รับผ่านไอเทมศักดิ์สิทธิ์ชิ้นนั้นแหละ^000000";
+		next;
+		completequest 12620;
+		navigateto("t_garden",126,117);
+		end;
+	}
+	end;
 }
 
 t_garden,97,114,5	script(CLOAKED)	Diluvio#life2	4_EM_DILUVIO,{
-		if (isbegin_quest(12620) != 2)
-				end;
-		if (checkweight(1201,1) == 0) {	// Useless check ?
-				mes "ฉันไม่สามารถสื่อสารกับวิญญาณได้เพราะว่าฉันมีสิ่งของหรือน้ำหนักมากเกินไป";
-				close;
-		}
-		switch( checkquest(12598,PLAYTIME) ) {
-		case -1:
-				break;
-		case 0:
-		case 1:
-				mes "^ff0000ขณะนี้ได้รับคำขอของวันนี้แล้ว คุณไม่สามารถรับเพิ่มเติมได้อีก^000000";
-				close;
-		case 2:
-				erasequest 12598;
-				break;
-		}
-		if (F_queststatus( HAVEQUEST,12633,12634,12635,12636 ) == -1) {
-				mes "^0000ffยังมีภารกิจที่ยังไม่เสร็จสิ้น คุณไม่สามารถรับคำขอเพิ่มเติมหรือรีเซ็ตได้จนกว่าคำขอทั้งหมดจะเสร็จสิ้น" + F_mesnavi("เครื่องจำหน่ายสุรา", "สวนที",128,122) + ".^000000";
-				close;
-		}
-		mes "[ดิลูวิโอ]";
-		mes "เป้าหมายของฉันคือการคืนวิญญาณแห่งน้ำซึ่งค่อยๆ กลายเป็นรูปเป็นร่างขึ้นภายในความทรงจำที่ถูกลืมเลือนให้กลับคืนสู่ธาตุเดิม ฉันต้องการความช่วยเหลือจากคุณ";
-		next;
-		if (select( "I will help you next time.", "I will help you" ) == 1)
-				end;
-		mes "[ดิลูวิโอ]";
-		mes "นี่คือรายการคำขอของคุณ ขอบคุณมาก";
-		close2;
-		.@quest_id[0] = rand(12633,12634);
-		.@quest_id[1] = rand(12635,12636);
-		setquest .@quest_id[0];
-		setquest .@quest_id[1];
-		setquest 12598;
-		open_quest_ui(.@quest_id[0]);
+	if (isbegin_quest(12620) != 2)
 		end;
+	if (checkweight(1201,1) == 0) {	// Useless check ? (การตรวจสอบที่ไร้ประโยชน์?)
+		mes "ฉันไม่สามารถสื่อสารกับวิญญาณได้ เพราะฉันมีไอเทมหรือน้ำหนักมากเกินไป";
+		close;
+	}
+	switch( checkquest(12598,PLAYTIME) ) {
+	case -1:
+		break;
+	case 0:
+	case 1:
+		mes "^ff0000คำขอของวันนี้ได้รับไปแล้ว เจ้าไม่สามารถรับเพิ่มได้อีก^000000";
+		close;
+	case 2:
+		erasequest 12598;
+		break;
+	}
+	if (F_queststatus( HAVEQUEST,12633,12634,12635,12636 ) == -1) {
+		mes "^0000ffยังมีเควสต์ที่ยังไม่เสร็จสิ้น เจ้าไม่สามารถรับคำขอเพิ่มเติมหรือรีเซ็ตได้จนกว่าคำขอทั้งหมดจะเสร็จสิ้นที่ " + F_mesnavi("Spirit Vending Machine", "t_garden",128,122) + "^000000";
+		close;
+	}
+	mes "[Diluvio]";
+	mes "เป้าหมายของข้าคือการส่งวิญญาณแห่งน้ำที่กำลังค่อยๆ กลายเป็นรูปธรรมภายในความทรงจำที่ถูกลืม กลับคืนสู่ธาตุเดิม ข้าต้องการความช่วยเหลือจากเจ้า";
+	next;
+	if (select( "ฉันจะช่วยในครั้งหน้า", "ฉันจะช่วยคุณ" ) == 1)
+		end;
+	mes "[Diluvio]";
+	mes "นี่คือรายการคำขอสำหรับเจ้า ขอบคุณมากจริงๆ";
+	close2;
+	.@quest_id[0] = rand(12633,12634);
+	.@quest_id[1] = rand(12635,12636);
+	setquest .@quest_id[0];
+	setquest .@quest_id[1];
+	setquest 12598;
+	open_quest_ui(.@quest_id[0]);
+	end;
 
 OnInit:
-		questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "isbegin_quest(12620) == 2 && (checkquest(12598,PLAYTIME) == -1 || checkquest(12598,PLAYTIME) == 2) && F_queststatus( HAVEQUEST,12633,12634,12635,12636 ) == 0" );
-		end;
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "isbegin_quest(12620) == 2 && (checkquest(12598,PLAYTIME) == -1 || checkquest(12598,PLAYTIME) == 2) && F_queststatus( HAVEQUEST,12633,12634,12635,12636 ) == 0" );
+	end;
 }
 
 t_garden,100,117,5	script(CLOAKED)	Terremotus#life2	4_EM_TERREMOTUS,{
-		if (isbegin_quest(12620) != 2)
-				end;
-		if (checkweight(1201,1) == 0) {
-				mes "ฉันไม่สามารถสื่อสารกับวิญญาณได้เพราะว่าฉันมีสิ่งของหรือน้ำหนักมากเกินไป";
-				close;
-		}
-		switch( checkquest(12599,PLAYTIME) ) {
-		case -1:
-				break;
-		case 0:
-		case 1:
-				mes "^ff0000ขณะนี้ได้รับคำขอของวันนี้แล้ว คุณไม่สามารถรับเพิ่มเติมได้อีก^000000";
-				close;
-		case 2:
-				erasequest 12599;
-				break;
-		}
-		if (F_queststatus( HAVEQUEST,12621,12622,12623,12624 ) == -1) {
-				mes "^0000ffยังมีภารกิจที่ยังไม่เสร็จสิ้น คุณไม่สามารถรับคำขอเพิ่มเติมหรือรีเซ็ตได้จนกว่าคำขอทั้งหมดจะเสร็จสิ้น" + F_mesnavi("เครื่องจำหน่ายสุรา", "สวนที",128,122) + ".^000000";
-				close;
-		}
-		mes "[เทอร์เรโมตัส]";
-		mes "ธาตุต่างๆ ของโลกจะต้องคงอยู่ในสภาพธาตุพื้นฐาน หากธาตุเหล่านี้ยังคงดำรงอยู่ต่อไป ในที่สุดดินก็จะไม่เหลืออยู่เลยแม้แต่น้อย คุณจะช่วยฉันไหม";
-		next;
-		if (select( "I will help you next time.", "I will help you" ) == 1)
-				end;
-		mes "[เทอร์เรโมตัส]";
-		mes "นั่นคือทั้งหมดที่ฉันขอจากคุณในวันนี้ ใช้เวลาของคุณและดู";
-		close2;
-		.@quest_id[0] = rand(12621,12622);
-		.@quest_id[1] = rand(12623,12624);
-		setquest .@quest_id[0];
-		setquest .@quest_id[1];
-		setquest 12599;
-		open_quest_ui(.@quest_id[0]);
+	if (isbegin_quest(12620) != 2)
 		end;
+	if (checkweight(1201,1) == 0) {
+		mes "ฉันไม่สามารถสื่อสารกับวิญญาณได้ เพราะฉันมีไอเทมหรือน้ำหนักมากเกินไป";
+		close;
+	}
+	switch( checkquest(12599,PLAYTIME) ) {
+	case -1:
+		break;
+	case 0:
+	case 1:
+		mes "^ff0000คำขอของวันนี้ได้รับไปแล้ว เจ้าไม่สามารถรับเพิ่มได้อีก^000000";
+		close;
+	case 2:
+		erasequest 12599;
+		break;
+	}
+	if (F_queststatus( HAVEQUEST,12621,12622,12623,12624 ) == -1) {
+		mes "^0000ffยังมีเควสต์ที่ยังไม่เสร็จสิ้น เจ้าไม่สามารถรับคำขอเพิ่มเติมหรือรีเซ็ตได้จนกว่าคำขอทั้งหมดจะเสร็จสิ้นที่ " + F_mesnavi("Spirit Vending Machine", "t_garden",128,122) + "^000000";
+		close;
+	}
+	mes "[Terremotus]";
+	mes "องค์ประกอบแห่งผืนดินต้องคงอยู่ในสภาวะธาตุ หากพวกมันยังคงกลายเป็นวิญญาณธาตุต่อไป ในที่สุดจะไม่เหลือแม้แต่เศษดินสักหยิบมือ เจ้าจะช่วยข้าไหม?";
+	next;
+	if (select( "ฉันจะช่วยในครั้งหน้า", "ฉันจะช่วยคุณ" ) == 1)
+		end;
+	mes "[Terremotus]";
+	mes "นั่นคือทั้งหมดที่ข้าขอจากเจ้าในวันนี้ ค่อยๆ ใช้เวลาดูไปนะ";
+	close2;
+	.@quest_id[0] = rand(12621,12622);
+	.@quest_id[1] = rand(12623,12624);
+	setquest .@quest_id[0];
+	setquest .@quest_id[1];
+	setquest 12599;
+	open_quest_ui(.@quest_id[0]);
+	end;
 
 OnInit:
-		questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "isbegin_quest(12620) == 2 && (checkquest(12599,PLAYTIME) == -1 || checkquest(12599,PLAYTIME) == 2) && F_queststatus( HAVEQUEST,12621,12622,12623,12624 ) == 0" );
-		end;
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "isbegin_quest(12620) == 2 && (checkquest(12599,PLAYTIME) == -1 || checkquest(12599,PLAYTIME) == 2) && F_queststatus( HAVEQUEST,12621,12622,12623,12624 ) == 0" );
+	end;
 }
 
 t_garden,103,120,5	script(CLOAKED)	Serpens#life2	4_EM_SERPENS,{
-		if (isbegin_quest(12620) != 2)
-				end;
-		if (checkweight(1201,1) == 0) {
-				mes "ฉันไม่สามารถสื่อสารกับวิญญาณได้เพราะว่าฉันมีสิ่งของหรือน้ำหนักมากเกินไป";
-				close;
-		}
-		switch( checkquest(12600,PLAYTIME) ) {
-		case -1:
-				break;
-		case 0:
-		case 1:
-				mes "^ff0000ขณะนี้ได้รับคำขอของวันนี้แล้ว คุณไม่สามารถรับเพิ่มเติมได้อีก^000000";
-				close;
-		case 2:
-				erasequest 12600;
-				break;
-		}
-		if (F_queststatus( HAVEQUEST,12637,12638,12639,12640,12641,12642,12643 ) == -1) {
-				mes "^0000ffยังมีภารกิจที่ยังไม่เสร็จสิ้น คุณไม่สามารถรับคำขอเพิ่มเติมหรือรีเซ็ตได้จนกว่าคำขอทั้งหมดจะเสร็จสิ้น" + F_mesnavi("เครื่องจำหน่ายสุรา", "สวนที",128,122) + ".^000000";
-				close;
-		}
-		mes "[งู]";
-		mes "ฉันทนเห็นสิ่งที่ดีกลายเป็นสิ่งที่เสื่อมเสียไม่ได้ เพราะฉันไม่สามารถเปลี่ยนพวกมันให้กลายเป็นวิญญาณได้ ฉันต้องการพลังของคุณเพื่อป้องกันพวกมันไม่ให้โกรธและกลายเป็นมลพิษ";
-		next;
-		if (select( "I will help you next time.", "I will help you" ) == 1)
-				end;
-		mes "[งู]";
-		mes "ฉันขอโทษที่ต้องขอร้องคุณแบบนี้อีกครั้งในวันนี้ ขอบคุณมาก";
-		close2;
-		.@quest_id[0] = rand(12637,12638);
-		.@quest_id[1] = rand(12639,12643);
-		setquest .@quest_id[0];
-		setquest .@quest_id[1];
-		setquest 12600;
-		open_quest_ui(.@quest_id[0]);
+	if (isbegin_quest(12620) != 2)
 		end;
+	if (checkweight(1201,1) == 0) {
+		mes "ฉันไม่สามารถสื่อสารกับวิญญาณได้ เพราะฉันมีไอเทมหรือน้ำหนักมากเกินไป";
+		close;
+	}
+	switch( checkquest(12600,PLAYTIME) ) {
+	case -1:
+		break;
+	case 0:
+	case 1:
+		mes "^ff0000คำขอของวันนี้ได้รับไปแล้ว เจ้าไม่สามารถรับเพิ่มได้อีก^000000";
+		close;
+	case 2:
+		erasequest 12600;
+		break;
+	}
+	if (F_queststatus( HAVEQUEST,12637,12638,12639,12640,12641,12642,12643 ) == -1) {
+		mes "^0000ffยังมีเควสต์ที่ยังไม่เสร็จสิ้น เจ้าไม่สามารถรับคำขอเพิ่มเติมหรือรีเซ็ตได้จนกว่าคำขอทั้งหมดจะเสร็จสิ้นที่ " + F_mesnavi("Spirit Vending Machine", "t_garden",128,122) + "^000000";
+		close;
+	}
+	mes "[Serpens]";
+	mes "ข้าทนไม่ได้ที่เห็นองค์ประกอบที่แข็งแรงกลายเป็นสิ่งมัวหมอง เพราะข้าไม่สามารถเปลี่ยนพวกมันให้เป็นวิญญาณได้ ข้าต้องการพลังของเจ้าเพื่อป้องกันไม่ให้พวกมันตกอยู่ในความโกรธแค้นและปนเปื้อน";
+	next;
+	if (select( "ฉันจะช่วยในครั้งหน้า", "ฉันจะช่วยคุณ" ) == 1)
+		end;
+	mes "[Serpens]";
+	mes "ข้าขอโทษที่ต้องขอให้เจ้าช่วยเรื่องแบบนี้อีกในวันนี้ ขอบคุณมากจริงๆ";
+	close2;
+	.@quest_id[0] = rand(12637,12638);
+	.@quest_id[1] = rand(12639,12643);
+	setquest .@quest_id[0];
+	setquest .@quest_id[1];
+	setquest 12600;
+	open_quest_ui(.@quest_id[0]);
+	end;
 
 OnInit:
-		questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "isbegin_quest(12620) == 2 && (checkquest(12600,PLAYTIME) == -1 || checkquest(12600,PLAYTIME) == 2) && F_queststatus( HAVEQUEST,12637,12638,12639,12640,12641,12642,12643 ) == 0" );
-		end;
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "isbegin_quest(12620) == 2 && (checkquest(12600,PLAYTIME) == -1 || checkquest(12600,PLAYTIME) == 2) && F_queststatus( HAVEQUEST,12637,12638,12639,12640,12641,12642,12643 ) == 0" );
+	end;
 }
 
 t_garden,106,123,5	script(CLOAKED)	Procella#life2	4_EM_PROCELLA,{
-		if (isbegin_quest(12620) != 2)
-				end;
-		if (checkweight(1201,1) == 0) {
-				mes "ฉันไม่สามารถสื่อสารกับวิญญาณได้เพราะว่าฉันมีสิ่งของหรือน้ำหนักมากเกินไป";
-				close;
-		}
-		switch( checkquest(12601,PLAYTIME) ) {
-		case -1:
-				break;
-		case 0:
-		case 1:
-				mes "^ff0000ขณะนี้ได้รับคำขอของวันนี้แล้ว คุณไม่สามารถรับเพิ่มเติมได้อีก^000000";
-				close;
-		case 2:
-				erasequest 12601;
-				break;
-		}
-		if (F_queststatus( HAVEQUEST,12629,12630,12631,12632 ) == -1) {
-				mes "^0000ffยังมีภารกิจที่ยังไม่เสร็จสิ้น คุณไม่สามารถรับคำขอเพิ่มเติมหรือรีเซ็ตได้จนกว่าคำขอทั้งหมดจะเสร็จสิ้น" + F_mesnavi("เครื่องจำหน่ายสุรา", "สวนที",128,122) + ".^000000";
-				close;
-		}
-		mes "[โปรเซลล่า]";
-		mes "ลมเป็นแหล่งกำเนิดของชีวิต คือบรรยากาศ หากธาตุลมยังคงเปลี่ยนเป็นวิญญาณ สิ่งมีชีวิตทั้งหมดในมิติแห่งนี้จะต้องตายในที่สุด ฉันต้องการความช่วยเหลือจากใครสักคน";
-		next;
-		if (select( "I will help you next time.", "I will help you" ) == 1)
-				end;
-		mes "[โปรเซลล่า]";
-		mes "ดีใจที่ยังมีคนที่แก้ปัญหานี้ได้ โปรดช่วยแก้ปัญหาให้ฉันด้วย";
-		close2;
-		.@quest_id[0] = rand(12629,12630);
-		.@quest_id[1] = rand(12631,12632);
-		setquest .@quest_id[0];
-		setquest .@quest_id[1];
-		setquest 12601;
-		open_quest_ui(.@quest_id[0]);
+	if (isbegin_quest(12620) != 2)
 		end;
+	if (checkweight(1201,1) == 0) {
+		mes "ฉันไม่สามารถสื่อสารกับวิญญาณได้ เพราะฉันมีไอเทมหรือน้ำหนักมากเกินไป";
+		close;
+	}
+	switch( checkquest(12601,PLAYTIME) ) {
+	case -1:
+		break;
+	case 0:
+	case 1:
+		mes "^ff0000คำขอของวันนี้ได้รับไปแล้ว เจ้าไม่สามารถรับเพิ่มได้อีก^000000";
+		close;
+	case 2:
+		erasequest 12601;
+		break;
+	}
+	if (F_queststatus( HAVEQUEST,12629,12630,12631,12632 ) == -1) {
+		mes "^0000ffยังมีเควสต์ที่ยังไม่เสร็จสิ้น เจ้าไม่สามารถรับคำขอเพิ่มเติมหรือรีเซ็ตได้จนกว่าคำขอทั้งหมดจะเสร็จสิ้นที่ " + F_mesnavi("Spirit Vending Machine", "t_garden",128,122) + "^000000";
+		close;
+	}
+	mes "[Procella]";
+	mes "สายลมหมายถึงแหล่งกำเนิดแห่งชีวิต ชั้นบรรยากาศ หากองค์ประกอบของลมยังคงกลายเป็นวิญญาณต่อไป สิ่งมีชีวิตทั้งหมดในมิตินี้จะตายลงในที่สุด ข้าต้องการความช่วยเหลือจากใครสักคน";
+	next;
+	if (select( "ฉันจะช่วยในครั้งหน้า", "ฉันจะช่วยคุณ" ) == 1)
+		end;
+	mes "[Procella]";
+	mes "ข้าดีใจที่มีคนที่สามารถแก้ปัญหานี้ได้ โปรดจัดการคำขอของข้าให้ดีนะ";
+	close2;
+	.@quest_id[0] = rand(12629,12630);
+	.@quest_id[1] = rand(12631,12632);
+	setquest .@quest_id[0];
+	setquest .@quest_id[1];
+	setquest 12601;
+	open_quest_ui(.@quest_id[0]);
+	end;
 
 OnInit:
-		questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "isbegin_quest(12620) == 2 && (checkquest(12601,PLAYTIME) == -1 || checkquest(12601,PLAYTIME) == 2) && F_queststatus( HAVEQUEST,12629,12630,12631,12632 ) == 0" );
-		end;
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "isbegin_quest(12620) == 2 && (checkquest(12601,PLAYTIME) == -1 || checkquest(12601,PLAYTIME) == 2) && F_queststatus( HAVEQUEST,12629,12630,12631,12632 ) == 0" );
+	end;
 }
 
 t_garden,109,126,5	script(CLOAKED)	Ardor#life2	4_EM_ARDOR,{
-		if (isbegin_quest(12620) != 2)
-				end;
-		if (checkweight(1201,1) == 0) {
-				mes "ฉันไม่สามารถสื่อสารกับวิญญาณได้เพราะว่าฉันมีสิ่งของหรือน้ำหนักมากเกินไป";
-				close;
-		}
-		switch( checkquest(12602,PLAYTIME) ) {
-		case -1:
-				break;
-		case 0:
-		case 1:
-				mes "^ff0000ขณะนี้ได้รับคำขอของวันนี้แล้ว คุณไม่สามารถรับเพิ่มเติมได้อีก^000000";
-				close;
-		case 2:
-				erasequest 12602;
-				break;
-		}
-		if (F_queststatus( HAVEQUEST,12625,12626,12627,12628 ) == -1) {
-				mes "^0000ffยังมีภารกิจที่ยังไม่เสร็จสิ้น คุณไม่สามารถรับคำขอเพิ่มเติมหรือรีเซ็ตได้จนกว่าคำขอทั้งหมดจะเสร็จสิ้น" + F_mesnavi("เครื่องจำหน่ายสุรา", "สวนที",128,122) + ".^000000";
-				close;
-		}
-		mes "[ความกระตือรือร้น]";
-		mes "เปลวเพลิงที่กลายเป็นวิญญาณและเคลื่อนไหวและคิดไปเองนั้นอันตรายในตัวของมันเอง คุณไม่คิดเหรอว่าการนั่งอยู่เฉยๆ แบบนี้มันอันตรายเกินไป ฉันไม่ขอความช่วยเหลือจากคุณเลย ปฏิบัติตามคำสั่งของฉัน";
-		next;
-		if (select( "I will help you next time.", "I will help you" ) == 1)
-				end;
-		mes "[ความกระตือรือร้น]";
-		mes "มันเป็นสิ่งที่คุณต้องทำ คุณควรทำมันให้เร็วที่สุดเท่าที่จะเป็นไปได้";
-		close2;
-		.@quest_id[0] = rand(12625,12626);
-		.@quest_id[1] = rand(12627,12628);
-		setquest .@quest_id[0];
-		setquest .@quest_id[1];
-		setquest 12602;
-		open_quest_ui(.@quest_id[0]);
+	if (isbegin_quest(12620) != 2)
 		end;
+	if (checkweight(1201,1) == 0) {
+		mes "ฉันไม่สามารถสื่อสารกับวิญญาณได้ เพราะฉันมีไอเทมหรือน้ำหนักมากเกินไป";
+		close;
+	}
+	switch( checkquest(12602,PLAYTIME) ) {
+	case -1:
+		break;
+	case 0:
+	case 1:
+		mes "^ff0000คำขอของวันนี้ได้รับไปแล้ว เจ้าไม่สามารถรับเพิ่มได้อีก^000000";
+		close;
+	case 2:
+		erasequest 12602;
+		break;
+	}
+	if (F_queststatus( HAVEQUEST,12625,12626,12627,12628 ) == -1) {
+		mes "^0000ffยังมีเควสต์ที่ยังไม่เสร็จสิ้น เจ้าไม่สามารถรับคำขอเพิ่มเติมหรือรีเซ็ตได้จนกว่าคำขอทั้งหมดจะเสร็จสิ้นที่ " + F_mesnavi("Spirit Vending Machine", "t_garden",128,122) + "^000000";
+		close;
+	}
+	mes "[Ardor]";
+	mes "เปลวเพลิงที่กลายเป็นวิญญาณและเคลื่อนไหวรวมถึงคิดได้ด้วยตัวเองนั้นอันตรายในตัวมันเองอยู่แล้ว เจ้าไม่คิดว่ามันอันตรายเกินไปเหรอที่จะเอาแต่นั่งอยู่แบบนี้? ข้าไม่ขอร้องอะไรเจ้าหรอกนะ จงทำตามคำสั่งของข้าซะ";
+	next;
+	if (select( "ฉันจะช่วยในครั้งหน้า", "ฉันจะช่วยคุณ" ) == 1)
+		end;
+	mes "[Ardor]";
+	mes "มันเป็นสิ่งที่เจ้าต้องทำ เจ้าควรทำให้เสร็จเร็วที่สุดเท่าที่จะเป็นไปได้นะ";
+	close2;
+	.@quest_id[0] = rand(12625,12626);
+	.@quest_id[1] = rand(12627,12628);
+	setquest .@quest_id[0];
+	setquest .@quest_id[1];
+	setquest 12602;
+	open_quest_ui(.@quest_id[0]);
+	end;
 
 OnInit:
-		questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "isbegin_quest(12620) == 2 && (checkquest(12602,PLAYTIME) == -1 || checkquest(12602,PLAYTIME) == 2) && F_queststatus( HAVEQUEST,12625,12626,12627,12628 ) == 0" );
-		end;
+	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "isbegin_quest(12620) == 2 && (checkquest(12602,PLAYTIME) == -1 || checkquest(12602,PLAYTIME) == 2) && F_queststatus( HAVEQUEST,12625,12626,12627,12628 ) == 0" );
+	end;
 }
 
 
 // Uncloak quest NPC rewards and exchange/enchants NPCs
 t_garden,126,123,0	script	#v_wp01	HIDDEN_WARP_NPC,3,3,{
-		end;
+	end;
 OnTouch:
-		if (isbegin_quest(12620) != 2)
-				end;
-		cloakoffnpcself( "Subspace vending machine#1" );
-		cloakoffnpcself( "Subspace vending machine#2" );
-		cloakoffnpcself( "Subspace vending machine#3" );
-		cloakoffnpcself( "Spirit Complaint Terminal#1" );
+	if (isbegin_quest(12620) != 2)
 		end;
+	cloakoffnpcself( "Subspace vending machine#1" );
+	cloakoffnpcself( "Subspace vending machine#2" );
+	cloakoffnpcself( "Subspace vending machine#3" );
+	cloakoffnpcself( "Spirit Complaint Terminal#1" );
+	end;
 }
 t_garden,130,119,0	duplicate(#v_wp01)	#v_wp02	HIDDEN_WARP_NPC,3,3
 t_garden,134,115,0	duplicate(#v_wp01)	#v_wp03	HIDDEN_WARP_NPC,4,4
@@ -1302,293 +1302,293 @@ t_garden,134,115,0	duplicate(#v_wp01)	#v_wp03	HIDDEN_WARP_NPC,4,4
 
 // Quest rewards
 t_garden,126,126,2	script(CLOAKED)	Spirit Complaint Terminal#1	4_VENDING_MACHINE2,{
-		if (isbegin_quest(12620) != 2)
-				end;
-		if (checkweight(1201,1) == 0) {
-				mes "ฉันไม่สามารถสื่อสารกับสิ่งกีดขวางได้เพราะว่าฉันมีสินค้าหลายประเภทหรือมีน้ำหนักมากเกินไป";
-				close;
-		}
-		mes "[เครื่องรับเรื่องร้องเรียนวิญญาณ]";
-		mes "การสนทนาระหว่างวิญญาณกับมนุษย์ การสื่อสารที่ราบรื่น เราจะรับฟังเสียงของลูกค้า นี่คือ Kiosk 5000 ซึ่งเป็นเทอร์มินัลข้อมูลที่ครอบคลุมซึ่งประมวลผลข้อร้องเรียนเกี่ยวกับวิญญาณและการชดเชยในเวลาเดียวกัน เราจะช่วยคุณได้อย่างไร";
-		next;
-		if (select( "Exit menu", "Spirit complaint processing" ) == 1) {
-				mes "[เครื่องรับเรื่องร้องเรียนวิญญาณ]";
-				mes "ลาก่อน.";
-				close;
-		}
-		mes "[เครื่องรับเรื่องร้องเรียนวิญญาณ]";
-		mes "เราจะประมวลผลคำขอจิตวิญญาณที่เสร็จสมบูรณ์ทั้งหมดที่คุณมีโดยอัตโนมัติ";
-		next;
-		mes "[เครื่องรับเรื่องร้องเรียนวิญญาณ]";
-
-		.@count += callsub( S_Hunt,
-				12621,				// Quest ID
-				"Terremotus' Request 1",	// Quest name
-				1001464,			// Reward item ID
-				13890900,			// Base exp
-				0					// Job exp (unknown)
-		);
-		.@count += callsub( S_Hunt, 12622, "Terremotus' Request 2", 1001464, 13890900,0 );	// Energy_Of_Ground
-		.@count += callsub( S_Hunt, 12623, "Terremotus' Request 3", 1001464, 13890900,0 );
-		.@count += callsub( S_Hunt, 12624, "Terremotus' Request 4", 1001464, 13890900,0 );
-
-		.@count += callsub( S_Hunt, 12625, "Ardor's Request 1", 1001461, 13890900,0 );	// Energy_Of_Flame
-		.@count += callsub( S_Hunt, 12626, "Ardor's Request 2", 1001461, 13890900,0 );
-		.@count += callsub( S_Hunt, 12627, "Ardor's Request 3", 1001461, 13890900,0 );
-		.@count += callsub( S_Hunt, 12628, "Ardor's Request 4", 1001461, 13890900,0 );
-
-		.@count += callsub( S_Hunt, 12629, "Procella's Request 1", 1001463, 13890900,0 );	// Energy_Of_Wind
-		.@count += callsub( S_Hunt, 12630, "Procella's Request 2", 1001463, 13890900,0 );
-		.@count += callsub( S_Hunt, 12631, "Procella's Request 3", 1001463, 13890900,0 );
-		.@count += callsub( S_Hunt, 12632, "Procella's Request 4", 1001463, 13890900,0 );
-
-		.@count += callsub( S_Hunt, 12633, "Diluvio's Request 1", 1001462, 13890900,0 );	// Energy_Of_Water
-		.@count += callsub( S_Hunt, 12634, "Diluvio's Request 2", 1001462, 13890900,0 );
-		.@count += callsub( S_Hunt, 12635, "Diluvio's Request 3", 1001462, 13890900,0 );
-		.@count += callsub( S_Hunt, 12636, "Diluvio's Request 4", 1001462, 13890900,0 );
-
-		.@count += callsub( S_Hunt, 12637, "Serpens's Request 1", 1001465, 27176580,0 );	// Grace_Of_Spirit
-		.@count += callsub( S_Hunt, 12638, "Serpens's Request 2", 1001465, 27176580,0 );
-
-		.@count += callsub( S_Gathering,
-				12639,				// Quest ID
-				"Serpens's Request 3",	// Quest name
-				1001433,			// Required item ID
-				10,					// Required amount
-				1001461,			// Reward item ID
-				27176580,			// Base exp
-				0					// Job exp (unknown)
-		);
-		.@count += callsub( S_Gathering, 12640, "Serpens's Request 4", 1001434,10, 1001462, 27176580,0 );
-		.@count += callsub( S_Gathering, 12641, "Serpens's Request 5", 1001435,10, 1001463, 27176580,0 );
-		.@count += callsub( S_Gathering, 12642, "Serpens's Request 6", 1001436,10, 1001464, 27176580,0 );
-		.@count += callsub( S_Gathering, 12643, "Serpens's Request 7", 1001432,20, 1001465, 27176580,0 );
-
-		if (.@count == 0) {
-				mes "ดูเหมือนว่าไม่มีการจัดการเรื่องร้องเรียนพิเศษใดๆ หากคุณได้จัดการเรื่องร้องเรียนที่เกี่ยวข้องกับสุราแล้ว โปรดกลับมาอีกครั้งได้ตลอดเวลา ขอบคุณ";
-				close;
-		}
-		mes "-";
-		mes "ข้างต้น" + .@count + "ได้มีการดำเนินการเรื่องร้องเรียนเรียบร้อยแล้ว";
+	if (isbegin_quest(12620) != 2)
+		end;
+	if (checkweight(1201,1) == 0) {
+		mes "ข้าไม่สามารถสื่อสารกับบาเรียได้ เนื่องจากข้ามีไอเทมหลายประเภทเกินไปหรือน้ำหนักเกินกำหนด";
 		close;
+	}
+	mes "[Spirit Complaint Terminal]";
+	mes "การสนทนาระหว่างจิตวิญญาณและมนุษย์ การสื่อสารที่ไร้รอยต่อ พวกเราจะรับฟังเสียงของลูกค้าทุกท่าน นี่คือ Kiosk 5000 เครื่องเทอร์มินัลข้อมูลที่ครอบคลุม ซึ่งทำหน้าที่ประมวลผลการร้องเรียนของเหล่าจิตวิญญาณและมอบค่าตอบแทนไปพร้อมๆ กัน มีอะไรให้เราช่วยไหม?";
+	next;
+	if (select( "ออกจากเมนู", "ดำเนินการเรื่องร้องเรียนของจิตวิญญาณ" ) == 1) {
+		mes "[Spirit Complaint Terminal]";
+		mes "ลาก่อน";
+		close;
+	}
+	mes "[Spirit Complaint Terminal]";
+	mes "เราจะดำเนินการจัดการคำร้องขอจากจิตวิญญาณทั้งหมดที่คุณทำสำเร็จแล้วให้โดยอัตโนมัติ";
+	next;
+	mes "[Spirit Complaint Terminal]";
+
+	.@count += callsub( S_Hunt,
+		12621,				// Quest ID
+		"Terremotus' Request 1",	// Quest name
+		1001464,			// Reward item ID
+		13890900,			// Base exp
+		0					// Job exp (unknown)
+	);
+	.@count += callsub( S_Hunt, 12622, "Terremotus' Request 2", 1001464, 13890900,0 );	// Energy_Of_Ground
+	.@count += callsub( S_Hunt, 12623, "Terremotus' Request 3", 1001464, 13890900,0 );
+	.@count += callsub( S_Hunt, 12624, "Terremotus' Request 4", 1001464, 13890900,0 );
+
+	.@count += callsub( S_Hunt, 12625, "Ardor's Request 1", 1001461, 13890900,0 );	// Energy_Of_Flame
+	.@count += callsub( S_Hunt, 12626, "Ardor's Request 2", 1001461, 13890900,0 );
+	.@count += callsub( S_Hunt, 12627, "Ardor's Request 3", 1001461, 13890900,0 );
+	.@count += callsub( S_Hunt, 12628, "Ardor's Request 4", 1001461, 13890900,0 );
+
+	.@count += callsub( S_Hunt, 12629, "Procella's Request 1", 1001463, 13890900,0 );	// Energy_Of_Wind
+	.@count += callsub( S_Hunt, 12630, "Procella's Request 2", 1001463, 13890900,0 );
+	.@count += callsub( S_Hunt, 12631, "Procella's Request 3", 1001463, 13890900,0 );
+	.@count += callsub( S_Hunt, 12632, "Procella's Request 4", 1001463, 13890900,0 );
+
+	.@count += callsub( S_Hunt, 12633, "Diluvio's Request 1", 1001462, 13890900,0 );	// Energy_Of_Water
+	.@count += callsub( S_Hunt, 12634, "Diluvio's Request 2", 1001462, 13890900,0 );
+	.@count += callsub( S_Hunt, 12635, "Diluvio's Request 3", 1001462, 13890900,0 );
+	.@count += callsub( S_Hunt, 12636, "Diluvio's Request 4", 1001462, 13890900,0 );
+
+	.@count += callsub( S_Hunt, 12637, "Serpens's Request 1", 1001465, 27176580,0 );	// Grace_Of_Spirit
+	.@count += callsub( S_Hunt, 12638, "Serpens's Request 2", 1001465, 27176580,0 );
+
+	.@count += callsub( S_Gathering,
+		12639,				// Quest ID
+		"Serpens's Request 3",	// Quest name
+		1001433,			// Required item ID
+		10,					// Required amount
+		1001461,			// Reward item ID
+		27176580,			// Base exp
+		0					// Job exp (unknown)
+	);
+	.@count += callsub( S_Gathering, 12640, "Serpens's Request 4", 1001434,10, 1001462, 27176580,0 );
+	.@count += callsub( S_Gathering, 12641, "Serpens's Request 5", 1001435,10, 1001463, 27176580,0 );
+	.@count += callsub( S_Gathering, 12642, "Serpens's Request 6", 1001436,10, 1001464, 27176580,0 );
+	.@count += callsub( S_Gathering, 12643, "Serpens's Request 7", 1001432,20, 1001465, 27176580,0 );
+
+	if (.@count == 0) {
+		mes "ดูเหมือนว่าจะยังไม่มีเรื่องร้องเรียนพิเศษใดๆ ที่ได้รับการจัดการ หากคุณจัดการเรื่องร้องเรียนที่เกี่ยวข้องกับเหล่าจิตวิญญาณแล้ว โปรดกลับมาหาเราได้ทุกเมื่อ ขอบคุณ";
+		close;
+	}
+	mes "------------";
+	mes "เรื่องร้องเรียนจำนวน " + .@count + " รายการข้างต้นได้รับการดำเนินการเรียบร้อยแล้ว";
+	close;
 
 S_Hunt:
-		if (checkquest(getarg(0),HUNTING) == 2) {
-				mes "^0000ff" + getarg(1) + "เสร็จสิ้น^000000 - ชำระค่าชดเชยแล้ว";
-				erasequest getarg(0);
-				getitem getarg(2),1;
-				for ( .@i = 0; .@i < 10; ++.@i )
-						getexp getarg(3), getarg(4);
-				return 1;
-		}
-		return 0;
-
+	if (checkquest(getarg(0),HUNTING) == 2) {
+		mes "^0000ff" + getarg(1) + " เสร็จสิ้น^000000 - จ่ายค่าตอบแทนเรียบร้อย";
+		erasequest getarg(0);
+		getitem getarg(2),1;
+		for ( .@i = 0; .@i < 10; ++.@i )
+			getexp getarg(3), getarg(4);
+		return 1;
+	}
+	return 0;
+	
 S_Gathering:
-		if (countitem(getarg(2)) >= getarg(3)) {
-				mes "^0000ff" + getarg(1) + "เสร็จสิ้น^000000 - ชำระค่าชดเชยแล้ว";
-				erasequest getarg(0);
-				delitem getarg(2),getarg(3);
-				getitem getarg(4),1;
-				for ( .@i = 0; .@i < 10; ++.@i )
-						getexp getarg(5), getarg(6);
-				return 1;
-		}
-		return 0;
+	if (countitem(getarg(2)) >= getarg(3)) {
+		mes "^0000ff" + getarg(1) + " เสร็จสิ้น^000000 - จ่ายค่าตอบแทนเรียบร้อย";
+		erasequest getarg(0);
+		delitem getarg(2),getarg(3);
+		getitem getarg(4),1;
+		for ( .@i = 0; .@i < 10; ++.@i )
+			getexp getarg(5), getarg(6);
+		return 1;
+	}
+	return 0;
 
 OnInit:
-		setunittitle( getnpcid(0), "<Elemental Latest Model>" );
+	setunittitle( getnpcid(0), "<เครื่องรุ่นล่าสุดของเหล่าภูติธาตุ>" );
 
-		questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12621,HUNTING) == 2" );
-		questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12622,HUNTING) == 2" );
-		questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12623,HUNTING) == 2" );
-		questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12624,HUNTING) == 2" );
-		questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12625,HUNTING) == 2" );
-		questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12626,HUNTING) == 2" );
-		questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12627,HUNTING) == 2" );
-		questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12628,HUNTING) == 2" );
-		questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12629,HUNTING) == 2" );
-		questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12630,HUNTING) == 2" );
-		questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12631,HUNTING) == 2" );
-		questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12632,HUNTING) == 2" );
-		questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12633,HUNTING) == 2" );
-		questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12634,HUNTING) == 2" );
-		questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12635,HUNTING) == 2" );
-		questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12636,HUNTING) == 2" );
-		questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12637,HUNTING) == 2" );
-		questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12638,HUNTING) == 2" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12621,HUNTING) == 2" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12622,HUNTING) == 2" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12623,HUNTING) == 2" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12624,HUNTING) == 2" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12625,HUNTING) == 2" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12626,HUNTING) == 2" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12627,HUNTING) == 2" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12628,HUNTING) == 2" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12629,HUNTING) == 2" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12630,HUNTING) == 2" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12631,HUNTING) == 2" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12632,HUNTING) == 2" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12633,HUNTING) == 2" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12634,HUNTING) == 2" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12635,HUNTING) == 2" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12636,HUNTING) == 2" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12637,HUNTING) == 2" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(12638,HUNTING) == 2" );
 
-		questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(12639) == 1 && countitem(1001433) >= 10" );
-		questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(12640) == 1 && countitem(1001434) >= 10" );
-		questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(12641) == 1 && countitem(1001435) >= 10" );
-		questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(12642) == 1 && countitem(1001436) >= 10" );
-		questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(12643) == 1 && countitem(1001432) >= 20" );
-		end;
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(12639) == 1 && countitem(1001433) >= 10" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(12640) == 1 && countitem(1001434) >= 10" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(12641) == 1 && countitem(1001435) >= 10" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(12642) == 1 && countitem(1001436) >= 10" );
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(12643) == 1 && countitem(1001432) >= 20" );
+	end;
 }
 
 
-// Exchange and enchants
+// Exchange and enchants (การแลกเปลี่ยนและออฟชั่น)
 t_garden,129,123,2	script(CLOAKED)	Subspace vending machine#1	HEROS_IN_ORB_1,{
-		if (isbegin_quest(12620) != 2)
-				end;
-		if (checkweight(1201,1) == 0) {
-				mes "ฉันไม่สามารถสื่อสารกับสิ่งกีดขวางได้ เพราะฉันมีวัตถุประเภทหรือน้ำหนักมากเกินไป";
-				close;
-		}
-		npctalk "ทุกสิ่งที่คุณต้องการอยู่ที่นี่ คุณต้องการข้อเสนออะไร?", "", bc_self;
-		switch( select( "Cancel", "Energy transaction by attribute", "Energy transaction by season", "Various consumable transaction" ) ) {
-		case 1:
-				end;
-		case 2:
-				callshop( "barter_t_garden_1" );
-				break;
-		case 3:
-				callshop( "barter_t_garden_2" );
-				break;
-		case 4:
-				callshop( "barter_t_garden_3" );
-				break;
-		}
+	if (isbegin_quest(12620) != 2)
 		end;
+	if (checkweight(1201,1) == 0) {
+		mes "ข้าไม่สามารถสื่อสารกับบาเรียได้ เนื่องจากข้ามีไอเทมหลายประเภทเกินไปหรือน้ำหนักเกินกำหนด";
+		close;
+	}
+	npctalk "ทุกสิ่งที่คุณต้องการอยู่ที่นี่แล้ว คุณต้องการทำข้อเสนอแบบไหนล่ะ?", "", bc_self;
+	switch( select( "ยกเลิก", "ธุรกรรมพลังงานตามคุณลักษณะ", "ธุรกรรมพลังงานตามฤดูกาล", "ธุรกรรมไอเทมสิ้นเปลืองต่างๆ" ) ) {
+	case 1:
+		end;
+	case 2:
+		callshop( "barter_t_garden_1" );
+		break;
+	case 3:
+		callshop( "barter_t_garden_2" );
+		break;
+	case 4:
+		callshop( "barter_t_garden_3" );
+		break;
+	}
+	end;
 
 OnInit:
-		setunittitle( getnpcid(0), "<Welcome to various goods trading>" );
-		end;
+	setunittitle( getnpcid(0), "<ยินดีต้อนรับสู่การซื้อขายสินค้าต่างๆ>" );
+	end;
 }
 
 t_garden,132,120,2	script(CLOAKED)	Subspace vending machine#2	HEROS_IN_ORB_2,{
-		if (isbegin_quest(12620) != 2)
-				end;
-		if (checkweight(1201,1) == 0) {
-				mes "ฉันไม่สามารถสื่อสารกับสิ่งกีดขวางได้ เพราะฉันมีวัตถุประเภทหรือน้ำหนักมากเกินไป";
-				close;
-		}
-		npctalk "ร้านนี้เชี่ยวชาญเรื่องอุปกรณ์ครับ อยากได้แบบไหนสั่งได้นะครับ", "", bc_self;
-		switch( select( "Cancel", "Purchase Circulation of Life Accessories", "Purchase Divine Beast's Cloak", "Upgrade Divine Beast's Cloak" ) ) {
-		case 1:
-				end;
-		case 2:
-				callshop( "barter_t_garden_4" );
-				end;
-		case 3:
-				callshop( "barter_t_garden_5" );
-				end;
-		case 4:
-				item_reform("Season_H_Upgrade");
-				end;
-		}
+	if (isbegin_quest(12620) != 2)
 		end;
+	if (checkweight(1201,1) == 0) {
+		mes "ข้าไม่สามารถสื่อสารกับบาเรียได้ เนื่องจากข้ามีไอเทมหลายประเภทเกินไปหรือน้ำหนักเกินกำหนด";
+		close;
+	}
+	npctalk "ที่นี่เชี่ยวชาญด้านอุปกรณ์โดยเฉพาะ คุณต้องการข้อเสนอแบบไหนล่ะ?", "", bc_self;
+	switch( select( "ยกเลิก", "ซื้อเครื่องประดับ Circulation of Life", "ซื้อ Divine Beast's Cloak", "อัปเกรด Divine Beast's Cloak" ) ) {
+	case 1:
+		end;
+	case 2:
+		callshop( "barter_t_garden_4" );
+		end;
+	case 3:
+		callshop( "barter_t_garden_5" );
+		end;
+	case 4:
+		item_reform("Season_H_Upgrade");
+		end;
+	}
+	end;
 
 OnInit:
-		setunittitle( getnpcid(0), "<Clothing Upgrade Specialist>" );
-		end;
+	setunittitle( getnpcid(0), "<ผู้เชี่ยวชาญด้านการอัปเกรดเครื่องแต่งกาย>" );
+	end;
 }
 
 t_garden,135,117,2	script(CLOAKED)	Subspace vending machine#3	HEROS_IN_ORB_3,{
-		if (isbegin_quest(12620) != 2)
-				end;
-		if (checkweight(1201,1) == 0) {
-				mes "ฉันไม่สามารถสื่อสารกับสิ่งกีดขวางได้ เพราะฉันมีวัตถุประเภทหรือน้ำหนักมากเกินไป";
-				close;
-		}
-		npctalk "เราทำการร่ายมนตร์อุปกรณ์ที่ได้รับจากทะเลสาบไฟอย่างระมัดระวัง มีเมนูที่คุณต้องการไหม", "", bc_self;
-		switch( select( "Divine Beast's Cloak - Spring", "Divine Beast's Cloak - Summer", "Divine Beast's Cloak - Fall", "Divine Beast's Cloak - Winter" ) ) {
-		case 1:
-				item_enchant(117);
-				break;
-		case 2:
-				item_enchant(119);
-				break;
-		case 3:
-				item_enchant(121);
-				break;
-		case 4:
-				item_enchant(123);
-				break;
-		}
+	if (isbegin_quest(12620) != 2)
 		end;
+	if (checkweight(1201,1) == 0) {
+		mes "ข้าไม่สามารถสื่อสารกับบาเรียได้ เนื่องจากข้ามีไอเทมหลายประเภทเกินไปหรือน้ำหนักเกินกำหนด";
+		close;
+	}
+	npctalk "พวกเราออฟชั่นอุปกรณ์ที่ได้รับจาก Lake of Fire อย่างระมัดระวัง มีเมนูไหนที่คุณต้องการไหม?", "", bc_self;
+	switch( select( "Divine Beast's Cloak - Spring", "Divine Beast's Cloak - Summer", "Divine Beast's Cloak - Fall", "Divine Beast's Cloak - Winter" ) ) {
+	case 1:
+		item_enchant(117);
+		break;
+	case 2:
+		item_enchant(119);
+		break;
+	case 3:
+		item_enchant(121);
+		break;
+	case 4:
+		item_enchant(123);
+		break;
+	}
+	end;
 
 OnInit:
-		setunittitle( getnpcid(0), "<Divine Cloak Enchantment>" );
-		end;
+	setunittitle( getnpcid(0), "<การออฟชั่น Divine Cloak>" );
+	end;
 }
 
 t_garden,138,114,2	script(CLOAKED)	Subspace vending machine#4	HEROS_IN_ORB_4,{
-		if (isbegin_quest(12620) != 2)
-				end;
-		if (checkweight(1201,1) == 0) {
-				mes "ฉันไม่สามารถสื่อสารกับสิ่งกีดขวางได้ เพราะฉันมีวัตถุประเภทหรือน้ำหนักมากเกินไป";
-				close;
-		}
-		npctalk "เราทุ่มเทอย่างเต็มที่เพื่อดึงดูดใจผู้บริโภค มีเมนูอะไรน่าสนใจบ้าง?", "", bc_self;
-		switch( select( "Circle of Life Accessories", "Circle of Life-Spring", "Circle of Life-Summer", "Circle of Life-Autumn", "Circle of Life-Winter" ) ) {
-		case 1:
-				item_enchant(142);
-				break;
-		case 2:
-				item_enchant(118);
-				break;
-		case 3:
-				item_enchant(120);
-				break;
-		case 4:
-				item_enchant(122);
-				break;
-		case 5:
-				item_enchant(124);
-				break;
-		}
+	if (isbegin_quest(12620) != 2)
 		end;
+	if (checkweight(1201,1) == 0) {
+		mes "ข้าไม่สามารถสื่อสารกับบาเรียได้ เนื่องจากข้ามีไอเทมหลายประเภทเกินไปหรือน้ำหนักเกินกำหนด";
+		close;
+	}
+	npctalk "พวกเราทุ่มเทอย่างมากในการออฟชั่นอุปกรณ์หมุนเวียน มีเมนูไหนที่คุณต้องการไหม?", "", bc_self;
+	switch( select( "เครื่องประดับ Circle of Life", "Circle of Life-Spring", "Circle of Life-Summer", "Circle of Life-Autumn", "Circle of Life-Winter" ) ) {
+	case 1:
+		item_enchant(142);
+		break;
+	case 2:
+		item_enchant(118);
+		break;
+	case 3:
+		item_enchant(120);
+		break;
+	case 4:
+		item_enchant(122);
+		break;
+	case 5:
+		item_enchant(124);
+		break;
+	}
+	end;
 
 OnInit:
-		setunittitle( getnpcid(0), "<Circle of Life Ingent>" );
-		end;
+	setunittitle( getnpcid(0), "<การออฟชั่น Circle of Life>" );
+	end;
 }
 
 
-// Storages
+// Storages (คลังเก็บของ)
 -	shop	t_garden_shop	-1,501:-1
 
 t_garden,156,222,2	script	Functional Vending Machine#1	4_VENDING_MACHINE2,{
-		// switch( select( "Tool Dealer", "Storage 1 (100z)", "Storage 2 (100z)", "Storage 3 (100z)", "Use savepoint service" ) ) {
-		switch( select( "Tool Dealer", "Storage 1 (100z)", "", "", "Use savepoint service" ) ) {
-		case 1:
-				callshop( "t_garden_shop", 2 );
-				end;
-		case 2:
-				.@storage_num = 1;
-				break;
-		case 3:
-				.@storage_num = 2;
-				break;
-		case 4:
-				.@storage_num = 3;
-				break;
-		case 5:
-				npctalk "" + strcharinfo(0) + "ตำแหน่งของคุณได้รับการบันทึกอย่างปลอดภัยแล้ว", "", bc_self;
-
-				.@num = atoi( strnpcinfo(2) );
-				if (.@num == 1)
-						savepoint "t_garden",156,220;
-				else if (.@num == 2)
-						savepoint "t_garden",97,135;
-				else if (.@num == 3)
-						savepoint "t_garden",90,115;
-				else if (.@num == 4)
-						savepoint "t_garden",137,106;
-				break;
-		}
-		if (Zeny < 100) {
-				npctalk "เพื่อใช้ที่เก็บข้อมูลกรุณาใส่ 100 เซนี", "", bc_self;
-				end;
-		}
-		Zeny -= 100;
-		npctalk "ฉันจะเปิดหมายเลขเก็บข้อมูล" + .@storage_num + ". ขอบคุณที่ใช้งานครับ.", "", bc_self;
-		openstorage;
+	// switch( select( "Tool Dealer", "Storage 1 (100z)", "Storage 2 (100z)", "Storage 3 (100z)", "Use savepoint service" ) ) {
+	switch( select( "ร้านขายของจิปาถะ", "คลังเก็บของ 1 (100z)", "", "", "ใช้บริการบันทึกจุดเซฟ" ) ) {
+	case 1:
+		callshop( "t_garden_shop", 2 );
 		end;
+	case 2:
+		.@storage_num = 1;
+		break;
+	case 3:
+		.@storage_num = 2;
+		break;
+	case 4:
+		.@storage_num = 3;
+		break;
+	case 5:
+		npctalk "" + strcharinfo(0) + " ตำแหน่งของคุณได้รับการบันทึกไว้อย่างปลอดภัยแล้ว", "", bc_self;
+
+		.@num = atoi( strnpcinfo(2) );
+		if (.@num == 1)
+			savepoint "t_garden",156,220;
+		else if (.@num == 2)
+			savepoint "t_garden",97,135;
+		else if (.@num == 3)
+			savepoint "t_garden",90,115;
+		else if (.@num == 4)
+			savepoint "t_garden",137,106;
+		break;
+	}
+	if (Zeny < 100) {
+		npctalk "กรุณาใส่ 100 zeny เพื่อใช้งานคลังเก็บของ", "", bc_self;
+		end;
+	}
+	Zeny -= 100;
+	npctalk "ข้ากำลังจะเปิดคลังเก็บของหมายเลข " + .@storage_num + " ขอบคุณที่ใช้บริการ", "", bc_self;
+	openstorage;
+	end;
 
 OnInit:
-		questinfo( QTYPE_CLICKME, QMARK_YELLOW, "isbegin_quest(12592) == 2" );
-		end;
+	questinfo( QTYPE_CLICKME, QMARK_YELLOW, "isbegin_quest(12592) == 2" );
+	end;
 }
 t_garden,97,138,6	duplicate(Functional Vending Machine#1)	Functional Vending Machine#2	4_VENDING_MACHINE2
 t_garden,91,116,2	duplicate(Functional Vending Machine#1)	Functional Vending Machine#3	4_VENDING_MACHINE2
