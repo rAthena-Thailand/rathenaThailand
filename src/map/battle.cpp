@@ -4833,40 +4833,7 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, block_list *src,b
 			skillratio += 100 + 100 * skill_lv;
 #endif
 			break;
-		case NJ_HUUMA:
 #ifdef RENEWAL
-			skillratio += -150 + 250 * skill_lv;
-#else
-			skillratio += 50 + 150 * skill_lv;
-#endif
-			break;
-		case NJ_TATAMIGAESHI:
-			skillratio += 10 * skill_lv;
-#ifdef RENEWAL
-			skillratio *= 2;
-#endif
-			break;
-		case NJ_KASUMIKIRI:
-#ifdef RENEWAL
-			skillratio += 20 * skill_lv;
-#else
-			skillratio += 10 * skill_lv;
-#endif
-			break;
-		case NJ_KIRIKAGE:
-#ifdef RENEWAL
-			skillratio += -50 + 150 * skill_lv;
-#else
-			skillratio += 100 * (skill_lv - 1);
-#endif
-			break;
-#ifdef RENEWAL
-		case NJ_SYURIKEN:
-			skillratio += 5 * skill_lv;
-			break;
-		case NJ_KUNAI:
-			skillratio += -100 + 100 * skill_lv;
-			break;
 		case KN_CHARGEATK:
 			skillratio += 600;
 			break;
@@ -5562,109 +5529,6 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, block_list *src,b
 			break;
 		case ABR_INFINITY_BUSTER:// Need official formula.
 			skillratio += -100 + 50000;
-			break;
-		case NW_HASTY_FIRE_IN_THE_HOLE:
-			skillratio += -100 + 1500 + 1500 * skill_lv;
-			skillratio += pc_checkskill( sd, NW_GRENADE_MASTERY ) * 20;
-			skillratio += 5 * sstatus->con;
-			RE_LVL_DMOD(100);
-			break;
-		case NW_BASIC_GRENADE:
-			skillratio += -100 + 1500 + 2100 * skill_lv;
-			skillratio += pc_checkskill( sd, NW_GRENADE_MASTERY ) * 50;
-			skillratio += 5 * sstatus->con;
-			RE_LVL_DMOD(100);
-			break;
-		case NW_GRENADES_DROPPING:
-			skillratio += -100 + 550 + 850 * skill_lv;
-			skillratio += pc_checkskill( sd, NW_GRENADE_MASTERY ) * 30;
-			skillratio += 5 * sstatus->con;
-			RE_LVL_DMOD(100);
-			break;
-		case NW_WILD_FIRE:
-			skillratio += -100 + 1500 + 3000 * skill_lv;
-			skillratio += 5 * sstatus->con;
-			if (sc && sc->getSCE(SC_INTENSIVE_AIM_COUNT))
-				skillratio += sc->getSCE(SC_INTENSIVE_AIM_COUNT)->val1 * 500 * skill_lv;
-			if (sd && sd->weapontype1 == W_SHOTGUN)
-				skillratio += 200 * skill_lv;
-			RE_LVL_DMOD(100);
-			break;
-		case NW_MAGAZINE_FOR_ONE:
-			skillratio += -100 + 250 + 500 * skill_lv;
-			skillratio += 5 * sstatus->con;
-			if (sc && sc->getSCE(SC_INTENSIVE_AIM_COUNT))
-				skillratio += sc->getSCE(SC_INTENSIVE_AIM_COUNT)->val1 * 100 * skill_lv;
-			if (sd && sd->weapontype1 == W_REVOLVER)
-				skillratio += 50 + 300 * skill_lv;
-			RE_LVL_DMOD(100);
-			break;
-		case NW_SPIRAL_SHOOTING:
-			skillratio += -100 + 1200 + 1700 * skill_lv;
-			skillratio += 5 * sstatus->con;
-			if (sc && sc->getSCE(SC_INTENSIVE_AIM_COUNT))
-				skillratio += sc->getSCE(SC_INTENSIVE_AIM_COUNT)->val1 * 150 * skill_lv;
-			if (sd && sd->weapontype1 == W_RIFLE) 
-				skillratio += 200 + 1100 * skill_lv;
-			RE_LVL_DMOD(100);
-			break;
-		case NW_ONLY_ONE_BULLET:
-			skillratio += -100 + 1200 + 3000 * skill_lv;
-			skillratio += 5 * sstatus->con;
-			if (sc && sc->getSCE(SC_INTENSIVE_AIM_COUNT))
-				skillratio += sc->getSCE(SC_INTENSIVE_AIM_COUNT)->val1 * 350 * skill_lv;
-			if (sd && sd->weapontype1 == W_REVOLVER) {
-				skillratio += 400 * skill_lv;
-			}
-			RE_LVL_DMOD(100);
-			break;
-		case NW_THE_VIGILANTE_AT_NIGHT:
-			if (sd && sd->weapontype1 == W_GATLING) {
-				skillratio += -100 + 300 * skill_lv;
-				if (sc && sc->getSCE(SC_INTENSIVE_AIM_COUNT))
-					skillratio += sc->getSCE(SC_INTENSIVE_AIM_COUNT)->val1 * 100 * skill_lv;
-			} else {
-				skillratio += -100 + 800 + 700 * skill_lv;
-				if (sc && sc->getSCE(SC_INTENSIVE_AIM_COUNT))
-					skillratio += sc->getSCE(SC_INTENSIVE_AIM_COUNT)->val1 * 200 * skill_lv;
-			}
-			skillratio += 5 * sstatus->con;
-			RE_LVL_DMOD(100);
-			break;
-		case NW_MISSION_BOMBARD:
-			if( wd->miscflag&SKILL_ALTDMG_FLAG ){
-				skillratio += -100 + 5000 + 1800 * skill_lv;
-				skillratio += pc_checkskill( sd, NW_GRENADE_MASTERY ) * 100;
-			}else{
-				skillratio += -100 + 800 + 200 * skill_lv;
-				skillratio += pc_checkskill( sd, NW_GRENADE_MASTERY ) * 30;
-			}
-			skillratio += 5 * sstatus->con;
-			RE_LVL_DMOD(100);
-			break;
-		case NW_WILD_SHOT:
-			skillratio += -100 + 870 + 180 * skill_lv;
-			if (sd != nullptr && sc != nullptr && sc->hasSCE(SC_HIDDEN_CARD)) {
-				if (sd->weapontype1 == W_REVOLVER)
-					skillratio += 60 * skill_lv;
-				else if (sd->weapontype1 == W_RIFLE)
-					skillratio += 100 * skill_lv;
-			}
-			skillratio += 5 * sstatus->con; //!TODO: check con ratio
-			RE_LVL_DMOD(100);
-			break;
-		case NW_MIDNIGHT_FALLEN:
-			skillratio += -100 + 2400 + 800 * skill_lv;
-			if (sd != nullptr && sc != nullptr && sc->hasSCE(SC_HIDDEN_CARD)) {
-				if (sd->weapontype1 == W_GATLING)
-					skillratio += 200 * skill_lv;
-				else if (sd->weapontype1 == W_GRENADE)
-					skillratio += 340 * skill_lv;
-				else if (sd->weapontype1 == W_SHOTGUN)
-					skillratio += 400 * skill_lv;
-			}
-			skillratio += 5 * sstatus->con; //!TODO: check con ratio
-			RE_LVL_DMOD(100);
 			break;
 		case SKE_MIDNIGHT_KICK:
 			skillratio += -100 + 800 + 1500  * skill_lv;
@@ -7560,56 +7424,6 @@ struct Damage battle_calc_magic_attack(block_list *src,block_list *target,uint16
 						// TODO: Refactor
 						if (sd && ad.div_ > 0)
 							ad.div_ *= -1; //For players, damage is divided by number of hits
-						break;
-					case NJ_KOUENKA:
-						skillratio -= 10;
-						if(sd && sd->spiritcharm_type == CHARM_TYPE_FIRE && sd->spiritcharm > 0)
-							skillratio += 10 * sd->spiritcharm;
-						break;
-					case NJ_KAENSIN:
-						skillratio -= 50;
-						if(sd && sd->spiritcharm_type == CHARM_TYPE_FIRE && sd->spiritcharm > 0)
-							skillratio += 20 * sd->spiritcharm;
-						break;
-					case NJ_BAKUENRYU:
-						skillratio += 50 + 150 * skill_lv;
-						if(sd && sd->spiritcharm_type == CHARM_TYPE_FIRE && sd->spiritcharm > 0)
-							skillratio += 100 * sd->spiritcharm;
-						break;
-					case NJ_HYOUSENSOU:
-#ifdef RENEWAL
-						skillratio -= 30;
-						if (sc && sc->getSCE(SC_SUITON))
-							skillratio += 2 * skill_lv;
-#endif
-						if(sd && sd->spiritcharm_type == CHARM_TYPE_WATER && sd->spiritcharm > 0)
-							skillratio += 20 * sd->spiritcharm;
-						break;
-					case NJ_HYOUSYOURAKU:
-						skillratio += 50 * skill_lv;
-						if(sd && sd->spiritcharm_type == CHARM_TYPE_WATER && sd->spiritcharm > 0)
-							skillratio += 100 * sd->spiritcharm;
-						break;
-					case NJ_RAIGEKISAI:
-#ifdef RENEWAL
-						skillratio += 100 * skill_lv;
-#else
-						skillratio += 60 + 40 * skill_lv;
-#endif
-						if(sd && sd->spiritcharm_type == CHARM_TYPE_WIND && sd->spiritcharm > 0)
-							skillratio += 20 * sd->spiritcharm;
-						break;
-					case NJ_KAMAITACHI:
-						skillratio += 100 * skill_lv;
-						if(sd && sd->spiritcharm_type == CHARM_TYPE_WIND && sd->spiritcharm > 0)
-							skillratio += 100 * sd->spiritcharm;
-						break;
-					case NJ_HUUJIN:
-#ifdef RENEWAL
-						skillratio += 50;
-#endif
-						if(sd && sd->spiritcharm_type == CHARM_TYPE_WIND && sd->spiritcharm > 0)
-							skillratio += 10 * sd->spiritcharm;
 						break;
 					case NPC_ENERGYDRAIN:
 						skillratio += 100 * skill_lv;
