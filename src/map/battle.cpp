@@ -3322,12 +3322,6 @@ static bool is_attack_hitting(struct Damage* wd, block_list *src, block_list *ta
 				if (sd && pc_checkskill(sd, GN_REMODELING_CART))
 					hitrate += pc_checkskill(sd, GN_REMODELING_CART) * 4;
 				break;
-			case SC_FATALMENACE:
-				if (skill_lv < 6)
-					hitrate -= 35 - 5 * skill_lv;
-				else if (skill_lv > 6)
-					hitrate += 5 * skill_lv - 30;
-				break;
 			case RL_SLUGSHOT:
 				{
 					int8 dist = distance_bl(src, target);
@@ -4887,69 +4881,6 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, block_list *src,b
 			else
 				skillratio += 500 + 500 * skill_lv;	// Level 1-5 is using fire element, like RK_DRAGONBREATH
 			break;
-		case NC_BOOSTKNUCKLE:
-			skillratio += -100 + 260 * skill_lv + sstatus->dex; // !TODO: What's the DEX bonus?
-			RE_LVL_DMOD(100);
-			break;
-		case NC_PILEBUNKER:
-			skillratio += 200 + 100 * skill_lv + status_get_str(src);
-			RE_LVL_DMOD(100);
-			break;
-		case NC_VULCANARM:
-			skillratio += -100 + 230 * skill_lv + sstatus->dex; // !TODO: What's the DEX bonus?
-			RE_LVL_DMOD(100);
-			break;
-		case NC_FLAMELAUNCHER:
-		case NC_COLDSLOWER:
-			skillratio += 200 + 300 * skill_lv;
-			RE_LVL_DMOD(150);
-			break;
-		case NC_ARMSCANNON:
-			skillratio += -100 + 400 + 350 * skill_lv;
-			RE_LVL_DMOD(100);
-			break;
-		case NC_AXEBOOMERANG:
-			skillratio += 150 + 50 * skill_lv;
-			if (sd) {
-				int16 index = sd->equip_index[EQI_HAND_R];
-
-				if (index >= 0 && sd->inventory_data[index] && sd->inventory_data[index]->type == IT_WEAPON)
-					skillratio += sd->inventory_data[index]->weight / 10;// Weight is divided by 10 since 10 weight in coding make 1 whole actual weight. [Rytech]
-			}
-			RE_LVL_DMOD(100);
-			break;
-		case NC_POWERSWING: // According to current sources, only the str + dex gets modified by level [Akinari]
-			skillratio += -100 + ((sstatus->str + sstatus->dex)/ 2) + 300 + 100 * skill_lv;
-			RE_LVL_DMOD(100);
-			if (sc && sc->getSCE(SC_ABR_BATTLE_WARIOR))
-				skillratio *= 2;
-			break;
-		case NC_MAGMA_ERUPTION: // 'Slam' damage
-			skillratio += 350 + 50 * skill_lv;
-			break;
-		case NC_AXETORNADO:
-			skillratio += -100 + 200 + 180 * skill_lv + sstatus->vit * 2;
-			if (sc && sc->getSCE(SC_AXE_STOMP))
-				skillratio += 380;
-			RE_LVL_DMOD(100);
-			break;
-		case SC_FATALMENACE:
-			skillratio += 120 * skill_lv + sstatus->agi; // !TODO: What's the AGI bonus?
-
-			if( sc != nullptr && sc->getSCE( SC_ABYSS_DAGGER ) ){
-				skillratio += 30 * skill_lv;
-			}
-
-			RE_LVL_DMOD(100);
-			break;
-		case SC_TRIANGLESHOT:
-			skillratio += -100 + 230 * skill_lv + 3 * sstatus->agi;
-			RE_LVL_DMOD(100);
-			break;
-		case SC_FEINTBOMB:
-			skillratio += -100 + (skill_lv + 1) * sstatus->dex / 2 * ((sd) ? sd->status.job_level / 10 : 1);
-			RE_LVL_DMOD(120);
-			break;
 		case SR_EARTHSHAKER:
 			if (tsc && ((tsc->option&(OPTION_HIDE|OPTION_CLOAK|OPTION_CHASEWALK)) || tsc->getSCE(SC_CAMOUFLAGE) || tsc->getSCE(SC_STEALTHFIELD) || tsc->getSCE(SC__SHADOWFORM))) {
 				//[(Skill Level x 300) x (Caster Base Level / 100) + (Caster STR x 3)] %
@@ -5390,79 +5321,6 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, block_list *src,b
 			// TODO: refactor
 			if (status_get_race(target) == RC_DEMIHUMAN || status_get_race(target) == RC_DEMON)
 				wd->div_ = 3;
-			break;
-
-		case SS_SHIMIRU:
-			skillratio += -100 + 700 * skill_lv;
-			skillratio += 5 * sstatus->con;
-			RE_LVL_DMOD(100);
-			break;
-		case SS_KAGEGARI:
-			skillratio += -100 + 600 + 900 * skill_lv;
-			skillratio += pc_checkskill( sd, SS_KAGEGISSEN ) * 5 * skill_lv;
-			skillratio += 5 * sstatus->pow;
-			RE_LVL_DMOD(100);
-			break;
-		case SS_KAGEAKUMU:
-		case SS_HITOUAKUMU:
-			skillratio += -100 + 18000 + 5 * sstatus->pow;
-
-			if( tsc != nullptr && tsc->getSCE( SC_NIGHTMARE ) != nullptr ){
-				skillratio += skillratio / 2;
-			}
-
-			RE_LVL_DMOD(100);
-			break;
-		case SS_KAGENOMAI:
-			skillratio += -100 + 750 + 900 * skill_lv;
-			skillratio += pc_checkskill( sd, SS_KAGEGARI ) * 70 * skill_lv;
-			skillratio += 5 * sstatus->pow;
-			RE_LVL_DMOD(100);
-			if (wd->miscflag & SKILL_ALTDMG_FLAG)
-				skillratio = skillratio * 3 / 10;
-			break;
-		case SS_FUUMASHOUAKU:
-			skillratio += -100 + 850 + 350 * skill_lv;
-			skillratio += pc_checkskill( sd, SS_FUUMAKOUCHIKU ) * 5 * skill_lv;
-			skillratio += 5 * sstatus->pow;
-			RE_LVL_DMOD(100);
-			break;
-		case SS_FUUMAKOUCHIKU:
-			skillratio += -100 + 900 + 1750 * skill_lv;
-			if( wd->miscflag&SKILL_ALTDMG_FLAG ){
-				skillratio += 200;
-			}
-			skillratio += pc_checkskill( sd, SS_FUUMASHOUAKU ) * 100 * skill_lv;
-			skillratio += 5 * sstatus->pow;
-			RE_LVL_DMOD(100);
-			break;
-		case SS_KUNAIWAIKYOKU:
-			skillratio += -100 + 300 + 600 * skill_lv;
-			skillratio += pc_checkskill( sd, SS_KUNAIKUSSETSU ) * 10 * skill_lv;
-			skillratio += 5 * sstatus->pow;
-			RE_LVL_DMOD(100);
-			if (wd->miscflag & SKILL_ALTDMG_FLAG)
-				skillratio = skillratio * 3 / 10;
-			break;
-		case SS_KUNAIKUSSETSU:
-			skillratio += -100 + 250 + 420 * skill_lv;
-			skillratio += pc_checkskill( sd, SS_KUNAIKAITEN ) * 10 * skill_lv;
-			skillratio += 5 * sstatus->pow;
-			RE_LVL_DMOD(100);
-			break;
-		case SS_KUNAIKAITEN:
-			skillratio += -100 + 950 + 1050 * skill_lv;
-			skillratio += pc_checkskill( sd, SS_KUNAIWAIKYOKU ) * 100 * skill_lv;
-			skillratio += 5 * sstatus->pow;
-			RE_LVL_DMOD(100);
-			break;
-		case SS_KAGEGISSEN:
-			skillratio += -100 + 1500 + 950 * skill_lv;
-			skillratio += pc_checkskill( sd, SS_KAGENOMAI ) * 150 * skill_lv;
-			skillratio += 5 * sstatus->pow;
-			RE_LVL_DMOD(100);
-			if (wd->miscflag & SKILL_ALTDMG_FLAG)
-				skillratio = skillratio * 3 / 10;
 			break;
 	}
 	return skillratio;
@@ -7402,102 +7260,6 @@ struct Damage battle_calc_magic_attack(block_list *src,block_list *target,uint16
 
 						RE_LVL_DMOD(100);
 						break;
-					case EM_DIAMOND_STORM:
-						skillratio += -100 + 500 + 2400 * skill_lv;
-						skillratio += 5 * sstatus->spl;
-
-						if( sc != nullptr && sc->getSCE( SC_SUMMON_ELEMENTAL_DILUVIO ) ){
-							skillratio += 7300 + 200 * skill_lv;
-							skillratio += 5 * sstatus->spl;
-						}
-
-						RE_LVL_DMOD(100);
-						break;
-					case EM_LIGHTNING_LAND:
-						skillratio += -100 + 700 + 1100 * skill_lv;
-						skillratio += 5 * sstatus->spl;
-
-						if( sc != nullptr && sc->getSCE( SC_SUMMON_ELEMENTAL_PROCELLA ) ){
-							skillratio += 200 * skill_lv;
-							skillratio += 2 * sstatus->spl;
-						}
-
-						RE_LVL_DMOD(100);
-						break;
-					case EM_VENOM_SWAMP:
-						skillratio += -100 + 700 + 1100 * skill_lv;
-						skillratio += 5 * sstatus->spl;
-
-						if( sc && sc->getSCE( SC_SUMMON_ELEMENTAL_SERPENS ) ){
-							skillratio += 200 * skill_lv;
-							skillratio += 2 * sstatus->spl;
-						}
-
-						RE_LVL_DMOD(100);
-						break;
-					case EM_CONFLAGRATION:
-						skillratio += -100 + 700 + 1100 * skill_lv;
-						skillratio += 5 * sstatus->spl;
-
-						if( sc != nullptr && sc->getSCE( SC_SUMMON_ELEMENTAL_ARDOR ) ){
-							skillratio += 200 * skill_lv;
-							skillratio += 2 * sstatus->spl;
-						}
-
-						RE_LVL_DMOD(100);
-						break;
-					case EM_TERRA_DRIVE:
-						skillratio += -100 + 500 + 2400 * skill_lv;
-						skillratio += 5 * sstatus->spl;
-
-						if( sc != nullptr && sc->getSCE( SC_SUMMON_ELEMENTAL_TERREMOTUS ) ){
-							skillratio += 7300 + 200 * skill_lv;
-							skillratio += 5 * sstatus->spl;
-						}
-
-						RE_LVL_DMOD(100);
-						break;
-					case EM_ELEMENTAL_BUSTER_FIRE:
-					case EM_ELEMENTAL_BUSTER_WATER:
-					case EM_ELEMENTAL_BUSTER_WIND:
-					case EM_ELEMENTAL_BUSTER_GROUND:
-					case EM_ELEMENTAL_BUSTER_POISON:
-						skillratio += -100 + 550 + 2650 * skill_lv;
-						skillratio += 10 * sstatus->spl;
-						if (tstatus->race == RC_FORMLESS || tstatus->race == RC_DRAGON)
-							skillratio += 150 * skill_lv;
-						RE_LVL_DMOD(100);
-						break;
-					case EM_EL_FLAMEROCK:
-						skillratio += -100 + 2400;
-						if (ed)
-							skillratio += skillratio * status_get_lv(ed->master) / 100;
-						break;
-					case EM_EL_AGE_OF_ICE:
-						skillratio += -100 + 3700;
-						if (ed)
-							skillratio += skillratio * status_get_lv(ed->master) / 100;
-						break;
-					case EM_EL_STORM_WIND:
-						skillratio += -100 + 2600;
-						if (ed)
-							skillratio += skillratio * status_get_lv(ed->master) / 100;
-						break;
-					case EM_EL_AVALANCHE:
-						skillratio += -100 + 450;
-						if (ed)
-							skillratio += skillratio * status_get_lv(ed->master) / 100;
-						break;
-					case EM_EL_DEADLY_POISON:
-						skillratio += -100 + 700;
-						if (ed)
-							skillratio += skillratio * status_get_lv(ed->master) / 100;
-						break;
-					case EM_PSYCHIC_STREAM:
-						skillratio += -100 + 1000 + 3500 * skill_lv;
-						skillratio += 5 * sstatus->spl;
-						RE_LVL_DMOD(100);
-						break;
 					case NPC_RAINOFMETEOR:
 						skillratio += 350;	// unknown ratio
 						break;
@@ -7521,67 +7283,6 @@ struct Damage battle_calc_magic_attack(block_list *src,block_list *target,uint16
 							// TODO: refactor / move elsewhere
 							ad.div_ = -3;
 						}
-						break;
-					case SS_TOKEDASU:
-						skillratio += -100 + 700 * skill_lv;
-						skillratio += 5 * sstatus->con;
-						RE_LVL_DMOD(100);
-						break;
-					case SS_SEKIENHOU:
-						skillratio += -100 + 600 + 1100 * skill_lv;
-						skillratio += 70 * pc_checkskill( sd, SS_ANTENPOU ) * skill_lv;
-						skillratio += 5 * sstatus->spl;
-
-						if( sc != nullptr && sc->hasSCE( SC_FIRE_CHARM_POWER ) ){
-							skillratio += 8500;
-						}
-
-						RE_LVL_DMOD(100);
-						break;
-					case SS_REIKETSUHOU:
-						skillratio += -100 + 450 + 950 * skill_lv;
-						skillratio += 40 * pc_checkskill( sd, SS_ANTENPOU ) * skill_lv;
-						skillratio += 5 * sstatus->spl;
-
-						if( sc != nullptr && sc->hasSCE( SC_WATER_CHARM_POWER ) ){
-							skillratio += 7000;
-						}
-
-						RE_LVL_DMOD(100);
-						break;
-					case SS_KINRYUUHOU:
-						skillratio += -100 + 800 + 1500 * skill_lv;
-						skillratio += 15 * pc_checkskill( sd, SS_ANTENPOU ) * skill_lv;
-						skillratio += 5 * sstatus->spl;
-
-						if( sc != nullptr && sc->hasSCE( SC_GROUND_CHARM_POWER ) ){
-							skillratio += 5500;
-						}
-
-						RE_LVL_DMOD(100);
-						break;
-					case SS_ANKOKURYUUAKUMU:
-						skillratio += -100 + 15500 * skill_lv;
-						skillratio += 5 * sstatus->spl;
-						RE_LVL_DMOD(100);
-						break;
-					case SS_RAIDENPOU:
-						skillratio += -100 + 600 + 1100 * skill_lv;
-						skillratio += 70 * pc_checkskill( sd, SS_ANTENPOU ) * skill_lv;
-						skillratio += 5 * sstatus->spl;
-
-						if( sc != nullptr && sc->hasSCE( SC_WIND_CHARM_POWER ) ){
-							skillratio += 8500;
-						}
-
-						RE_LVL_DMOD(100);
-						break;
-					case SS_ANTENPOU:
-						skillratio += -100 + 450 + 950 * skill_lv;
-						skillratio += 5 * sstatus->spl;
-						RE_LVL_DMOD(100);
-						if (mflag & SKILL_ALTDMG_FLAG)
-							skillratio = skillratio * 3 / 10;
 						break;
 				}
 
