@@ -2200,7 +2200,7 @@ void clif_blown( const block_list* bl )
 /// isn't walkable, the char doesn't move at all. If the char is
 /// sitting it will stand up.
 /// 0088 <id>.L <x>.W <y>.W (ZC_STOPMOVE)
-void clif_fixpos( const block_list& bl ){
+void clif_fixpos( const block_list& bl ){	
 	PACKET_ZC_STOPMOVE packet = {};
 
 	packet.packetType = HEADER_ZC_STOPMOVE;
@@ -5708,7 +5708,7 @@ void clif_skillinfoblock( const map_session_data& sd ){
 	for ( i = 0, c = 0; i < MAX_SKILL; i++)
 	{
 		if( (id = sd.status.skill[i].id) != 0 )
-		{
+		{			
 			// skip WE_CALLPARTNER and send it in special way
 			if (id == WE_CALLPARTNER) {
 				haveCallPartnerSkill = true;
@@ -10337,8 +10337,14 @@ void clif_viewequip_ack( const map_session_data& sd, const map_session_data& tsd
 #endif
 	p->headpalette = tsd.vd.look[LOOK_HAIR_COLOR];
 	p->bodypalette = tsd.vd.look[LOOK_CLOTHES_COLOR];
-#if PACKETVER_MAIN_NUM >= 20180801 || PACKETVER_RE_NUM >= 20180801 || PACKETVER_ZERO_NUM >= 20180808
+#if PACKETVER >= 20231220 && !defined(PACKETVER_ZERO)
 	p->body2 = tsd.vd.look[LOOK_BODY2];
+#elif PACKETVER_MAIN_NUM >= 20180801 || PACKETVER_RE_NUM >= 20180801 || PACKETVER_ZERO_NUM >= 20180808
+	if( tsd.vd.look[LOOK_BODY2] > JOB_SECOND_JOB_START && tsd.vd.look[LOOK_BODY2] < JOB_SECOND_JOB_END ){
+		p->body2 = 1;
+	}else{
+		p->body2 = 0;
+	}
 #endif
 	p->sex = tsd.vd.sex;
 

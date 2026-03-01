@@ -816,7 +816,7 @@ CREATE TABLE IF NOT EXISTS `mail` (
   `zeny` int(11) unsigned NOT NULL default '0',
   `type` smallint(5) NOT NULL default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM;
+) ENGINE=InnoDB;
 
 -- ----------------------------
 -- Table structure for `mail_attachments`
@@ -852,8 +852,12 @@ CREATE TABLE IF NOT EXISTS `mail_attachments` (
   `unique_id` bigint(20) unsigned NOT NULL DEFAULT '0',
   `bound` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `enchantgrade` tinyint unsigned NOT NULL default '0',
-    PRIMARY KEY (`id`,`index`)
-) ENGINE=MyISAM;
+    PRIMARY KEY (`id`,`index`),
+    FOREIGN KEY (`id`)
+        REFERENCES `mail`(`id`)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+) ENGINE=InnoDB;
 
 --
 -- Table structure for table `mapreg`
@@ -1121,6 +1125,39 @@ CREATE TABLE IF NOT EXISTS `storage` (
 ) ENGINE=MyISAM;
 
 --
+-- Table structure for table `vending_items`
+--
+
+CREATE TABLE IF NOT EXISTS `vending_items` (
+  `vending_id` int(10) unsigned NOT NULL,
+  `index` smallint(5) unsigned NOT NULL,
+  `cartinventory_id` int(10) unsigned NOT NULL,
+  `amount` smallint(5) unsigned NOT NULL,
+  `price` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`vending_id`, `index`)
+) ENGINE=MyISAM;
+
+--
+-- Table structure for table `vendings`
+--
+
+CREATE TABLE IF NOT EXISTS `vendings` (
+  `id` int(10) unsigned NOT NULL,
+  `account_id` int(11) unsigned NOT NULL,
+  `char_id` int(10) unsigned NOT NULL,
+  `sex` enum('F','M') NOT NULL DEFAULT 'M',
+  `map` varchar(20) NOT NULL,
+  `x` smallint(5) unsigned NOT NULL,
+  `y` smallint(5) unsigned NOT NULL,
+  `title` varchar(80) NOT NULL,
+  `body_direction` CHAR( 1 ) NOT NULL DEFAULT '4',
+  `head_direction` CHAR( 1 ) NOT NULL DEFAULT '0',
+  `sit` CHAR( 1 ) NOT NULL DEFAULT '1',
+  `autotrade` tinyint(4) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM;
+
+--
 -- Table structure for table `vip_storage`
 --
 
@@ -1158,37 +1195,4 @@ CREATE TABLE IF NOT EXISTS `vip_storage` (
   `enchantgrade` tinyint unsigned NOT NULL default '0',
   PRIMARY KEY  (`id`),
   KEY `account_id` (`account_id`)
-) ENGINE=MyISAM;
-
---
--- Table structure for table `vending_items`
---
-
-CREATE TABLE IF NOT EXISTS `vending_items` (
-  `vending_id` int(10) unsigned NOT NULL,
-  `index` smallint(5) unsigned NOT NULL,
-  `cartinventory_id` int(10) unsigned NOT NULL,
-  `amount` smallint(5) unsigned NOT NULL,
-  `price` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`vending_id`, `index`)
-) ENGINE=MyISAM;
-
---
--- Table structure for table `vendings`
---
-
-CREATE TABLE IF NOT EXISTS `vendings` (
-  `id` int(10) unsigned NOT NULL,
-  `account_id` int(11) unsigned NOT NULL,
-  `char_id` int(10) unsigned NOT NULL,
-  `sex` enum('F','M') NOT NULL DEFAULT 'M',
-  `map` varchar(20) NOT NULL,
-  `x` smallint(5) unsigned NOT NULL,
-  `y` smallint(5) unsigned NOT NULL,
-  `title` varchar(80) NOT NULL,
-  `body_direction` CHAR( 1 ) NOT NULL DEFAULT '4',
-  `head_direction` CHAR( 1 ) NOT NULL DEFAULT '0',
-  `sit` CHAR( 1 ) NOT NULL DEFAULT '1',
-  `autotrade` tinyint(4) NOT NULL,
-  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM;
