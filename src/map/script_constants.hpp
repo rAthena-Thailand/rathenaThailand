@@ -7413,6 +7413,7 @@
 	export_constant(IG_SELECT_DEC_PACK3);
 	export_constant(IG_YOR_CARD);
 	export_constant(IG_TAN_BOX);
+	export_constant(IG_SPENDID_CAPE_BR);
 
 	/* unit stop walking */
 	export_constant(USW_NONE);

@@ -3225,6 +3225,7 @@ enum e_random_item_group {
 	IG_SELECT_DEC_PACK3,
 	IG_YOR_CARD,
 	IG_TAN_BOX,
+	IG_SPENDID_CAPE_BR,
 
 	IG_MAX
 };
