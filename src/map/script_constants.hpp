@@ -536,6 +536,12 @@
 	export_constant(MF_SPECIALPOPUP);
 	export_constant(MF_NOMACROCHECKER);
 	export_constant(MF_INVINCIBLE_TIME);
+	//Any Map (map_drops) [Hyroshima]
+	export_constant(MF_MAPDROPS);
+	export_constant(MF_NOMAPDROPS);
+	//EP.19
+	export_constant(MF_NOLOOTNORMALMOB);
+	export_constant(MF_NO_NPC_SELFDESTRUCTION_ON_ALL);
 
 	/* setcell types */
 	export_constant(CELL_WALKABLE);
@@ -611,6 +617,7 @@
 	export_parameter(PCDIECOUNTER_VAR, SP_PCDIECOUNTER);
 	export_parameter(COOKMASTERY_VAR, SP_COOKMASTERY);
 	export_parameter(ACHIEVEMENTLEVEL, SP_ACHIEVEMENT_LEVEL);
+	export_parameter(GOLDPC_POINT_VAR, SP_GOLDPC_POINTS);
 
 	export_constant2("bMaxHP",SP_MAXHP);
 	export_constant2("bMaxSP",SP_MAXSP);
@@ -2004,6 +2011,7 @@
 	export_constant(SC_WATER_CHARM_POWER);
 	export_constant(SC_WIND_CHARM_POWER);
 	export_constant(SC_GROUND_CHARM_POWER);
+	export_constant(SC_GROGGY_ON);
 
 /// Do not modify code below this, until the end of the API hook, since it will be automatically generated again
 /// @APIHOOK_START(EFST_CONST)
@@ -3768,6 +3776,7 @@
 	export_constant(IT_PETARMOR);
 	export_constant(IT_AMMO);
 	export_constant(IT_DELAYCONSUME);
+	export_constant(IT_CHARM);
 	export_constant(IT_SHADOWGEAR);
 	export_constant(IT_CASH);
 
@@ -3852,6 +3861,8 @@
 	export_constant(MOB_MODE);
 	export_constant(MOB_MVPEXP);
 	export_constant(MOB_ID);
+	export_constant(MOB_MAP_COUNT);
+	export_constant(MOB_MAP);
 
 	// Renamed monsterinfo types - 2025-03-11
 	export_deprecated_constant2("MOB_ATK1",MOB_ATKMIN); 
@@ -4030,6 +4041,7 @@
 	export_constant(UMOB_ATKMAX);
 	export_constant(UMOB_MATKMIN);
 	export_constant(UMOB_MATKMAX);
+	export_constant(UMOB_MATK);
 	export_constant(UMOB_DEF);
 	export_constant(UMOB_MDEF);
 	export_constant(UMOB_HIT);
@@ -4050,6 +4062,7 @@
 	export_constant(UMOB_RES);
 	export_constant(UMOB_MRES);
 	export_constant(UMOB_DAMAGETAKEN);
+	export_constant(UMOB_BODYSIZE);
 
 	/* unit control - homunculus */
 	export_constant(UHOM_SIZE);
@@ -4263,6 +4276,7 @@
 	export_constant(UNPC_BODY2);
 	export_constant(UNPC_DEADSIT);
 	export_constant(UNPC_GROUP_ID);
+	export_constant(UNPC_BODYSIZE);
 
 	export_constant(NAV_NONE);
 	export_constant(NAV_AIRSHIP_ONLY);
