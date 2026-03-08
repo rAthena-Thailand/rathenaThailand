@@ -536,9 +536,6 @@
 	export_constant(MF_SPECIALPOPUP);
 	export_constant(MF_NOMACROCHECKER);
 	export_constant(MF_INVINCIBLE_TIME);
-	//Any Map (map_drops) [Hyroshima]
-	export_constant(MF_MAPDROPS);
-	export_constant(MF_NOMAPDROPS);
 
 	/* setcell types */
 	export_constant(CELL_WALKABLE);
@@ -614,7 +611,6 @@
 	export_parameter(PCDIECOUNTER_VAR, SP_PCDIECOUNTER);
 	export_parameter(COOKMASTERY_VAR, SP_COOKMASTERY);
 	export_parameter(ACHIEVEMENTLEVEL, SP_ACHIEVEMENT_LEVEL);
-	export_parameter(GOLDPC_POINT_VAR, SP_GOLDPC_POINTS);
 
 	export_constant2("bMaxHP",SP_MAXHP);
 	export_constant2("bMaxSP",SP_MAXSP);
@@ -3772,7 +3768,6 @@
 	export_constant(IT_PETARMOR);
 	export_constant(IT_AMMO);
 	export_constant(IT_DELAYCONSUME);
-	export_constant(IT_CHARM);
 	export_constant(IT_SHADOWGEAR);
 	export_constant(IT_CASH);
 
@@ -3857,8 +3852,6 @@
 	export_constant(MOB_MODE);
 	export_constant(MOB_MVPEXP);
 	export_constant(MOB_ID);
-	export_constant(MOB_MAP_COUNT);
-	export_constant(MOB_MAP);
 
 	// Renamed monsterinfo types - 2025-03-11
 	export_deprecated_constant2("MOB_ATK1",MOB_ATKMIN); 
@@ -7404,6 +7397,7 @@
 	export_constant(IG_SELECT_DEC_PACK1);
 	export_constant(IG_SELECT_DEC_PACK2);
 	export_constant(IG_SELECT_DEC_PACK3);
+	export_constant(IG_SPENDID_CAPE_BR);
 
 	/* unit stop walking */
 	export_constant(USW_NONE);
