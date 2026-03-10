@@ -24,10 +24,10 @@ prontera,3,3,3	script	Uneasy_Check	-1,{
 
 OnHour00:
 	set $UNEASY_DL,$UNEASY_DL-1;
-	set $UNEASY_BL,$UNEASY_BL+30; //add need of HW for 30 bottles per day
-	if ($UNEASY_BL>666) set $UNEASY_BL,666; //keep needed bottles not <=666
+	set $UNEASY_BL,$UNEASY_BL+30; //add need of HW for 30 bottles per day (เพิ่มความต้องการ Holy Water 30 ขวดต่อวัน)
+	if ($UNEASY_BL>666) set $UNEASY_BL,666; //keep needed bottles not <=666 (จำกัดจำนวนขวดที่ต้องการไม่ให้เกิน 666)
 	if ($UNEASY_DL < 0) goto L_Start_Undead;
-//The Cemetery is OK yet.
+//The Cemetery is OK yet. (สุสานยังคงปกติดีอยู่)
 	disablenpc "Mother Mathana";
 	end;
 OnInit:
@@ -35,11 +35,11 @@ OnInit:
 	end;
 
 OnHour06:
-	killmonsterall "prontera";	//The Sun kills undead in the morning
+	killmonsterall "prontera";	//The Sun kills undead in the morning (แสงอาทิตย์กำจัดพวกอันเดดในตอนเช้า)
 	end;
 
 OnHour01:
-	if ($@UNEASY_MOB > 0) mapannounce "prontera","[Mother Mathana]: In the name of Odin, please finish these roaming undead leftovers!",0;
+	if ($@UNEASY_MOB > 0) mapannounce "prontera","[Mother Mathana]: ในนามของ Odin โปรดช่วยกำจัดพวกอันเดดที่ยังหลงเหลืออยู่พวกนี้ที!",0;
 	end;
 
 OnZombieDead:
@@ -47,68 +47,68 @@ OnZombieDead:
 	if ($@UNEASY_MOB>0) end;
 	set $UNEASY_DL,0;
 	set $UNEASY_H$,strcharinfo(0);
-	if (Sex==SEX_MALE) mapannounce "prontera","[Mother Mathana]: Brave "+$UNEASY_H$+" has just killed the last undead in Prontera!",0;
-	else mapannounce "prontera","[Mother Mathana]: Lady "+$UNEASY_H$+" has just killed the last undead in Prontera!",0;
+	if (Sex==SEX_MALE) mapannounce "prontera","[Mother Mathana]: "+$UNEASY_H$+" ผู้กล้าหาญ เพิ่งจะกำจัดอันเดดตัวสุดท้ายใน Prontera สำเร็จ!",0;
+	else mapannounce "prontera","[Mother Mathana]: เลดี้ "+$UNEASY_H$+" เพิ่งจะกำจัดอันเดดตัวสุดท้ายใน Prontera สำเร็จ!",0;
 	set JobExp,JobExp+100;
 	set BaseExp,BaseExp+50;
 	end;
 
 L_Start_Undead:
-	killmonsterall "prontera";	//kills any left monsters
+	killmonsterall "prontera";	//kills any left monsters (กำจัดมอนสเตอร์ที่ค้างอยู่ทั้งหมด)
 	enablenpc "Mother Mathana";
-//call some monsters in the city
+//call some monsters in the city (เรียกมอนสเตอร์บางส่วนออกมาในเมือง)
 	set $@UNEASY_MOB, 65;
 	areamonster "prontera",0,0,0,0,"Zombie",1015,30,"Uneasy_Check::OnZombieDead";
-//in the Cemetery
+//in the Cemetery (ในเขตสุสาน)
 	monster "prontera",268,349,"Zombie",1015,30,"Uneasy_Check::OnZombieDead";
 	monster "prontera",269,350,"Ghoul",1036,5,"Uneasy_Check::OnZombieDead";
-//announce
-	mapannounce "prontera","[Mother Mathana]: The cemetery has become restless!  In the name of Odin, hurry to the Sanctuary! Save the city of Prontera!",0;
+//announce (ประกาศ)
+	mapannounce "prontera","[Mother Mathana]: สุสานเริ่มเกิดความไม่สงบแล้ว! ในนามของ Odin จงรีบไปที่ศาสนสถาน! ช่วยเมือง Prontera ไว้ให้ได้!",0;
 }
 
 prontera,257,313,5	script	Mother Mathana	79,{
 	mes "[Mother Mathana]";
 	if ($UNEASY_DL <= 0) goto L_Undead_Walk;
-	mes "I'm afraid there's something wrong with our old cemetery...";
-	if ($UNEASY_H$==strcharinfo(0)) mes "But thanks to you, "+$UNEASY_H$+", we'll be able to sleep " + $UNEASY_DL + " nights!";
-	if ($UNEASY_H$!=strcharinfo(0)) mes "But thanks to "+$UNEASY_H$+"'s support, we've got " + $UNEASY_DL + " easy nights!";
+	mes "ข้าเกรงว่าจะมีบางอย่างผิดปกติเกิดขึ้นกับสุสานเก่าของเรา...";
+	if ($UNEASY_H$==strcharinfo(0)) mes "แต่ต้องขอบคุณเจ้ามากนะ "+$UNEASY_H$+" พวกเราจะสามารถหลับนอนได้อย่างสงบไปอีก " + $UNEASY_DL + " คืน!";
+	if ($UNEASY_H$!=strcharinfo(0)) mes "แต่ด้วยการสนับสนุนของ "+$UNEASY_H$+" ทำให้พวกเราผ่านพ้นคืนที่ยากลำบากมาได้ " + $UNEASY_DL + " คืนแล้ว!";
 	emotion ET_SURPRISE;
 	close;
 
 L_Undead_Walk:
-	if ($UNEASY_DL == 0) mes "THEY could return tomorrow's night again!";
-	if ($UNEASY_DL == 0 && $UNEASY_H$==strcharinfo(0)) mes "Thank you, "+$UNEASY_H$+"! Now we'll manage to rest till the next midnight!";
-	if ($UNEASY_DL == 0 && $UNEASY_H$!=strcharinfo(0)) mes "But due to "+$UNEASY_H$+"'s help we'll manage to rest till the next midnight!";
-	mes "To calm down the restless cemetery, we should pour all these graves with the Holy Water. But our sisters and brothers have run out of it.";
-	mes "Could you supply us with Holy Water?";
+	if ($UNEASY_DL == 0) mes "พวกมันอาจจะกลับมาอีกครั้งในคืนวันพรุ่งนี้!";
+	if ($UNEASY_DL == 0 && $UNEASY_H$==strcharinfo(0)) mes "ขอบคุณนะ "+$UNEASY_H$+"! ตอนนี้พวกเราสามารถพักผ่อนได้จนกว่าจะถึงเที่ยงคืนวันถัดไป!";
+	if ($UNEASY_DL == 0 && $UNEASY_H$!=strcharinfo(0)) mes "แต่ด้วยความช่วยเหลือของ "+$UNEASY_H$+" ทำให้พวกเราสามารถพักผ่อนได้จนกว่าจะถึงเที่ยงคืนวันถัดไป!";
+	mes "เพื่อทำให้สุสานที่ปั่นป่วนสงบลง เราควรจะราดหลุมศพเหล่านี้ด้วย Holy Water แต่บรรดาพี่น้องของเราตอนนี้ไม่มีเหลืออยู่เลย";
+	mes "เจ้าพอจะช่วยจัดหา Holy Water มาให้พวกเราได้หรือไม่?";
 	next;
-	menu "Yes, have all my Holy Water!",-, "Nope, I need it.",M_NO, "I don't have any.",M_DONT_HAVE;
+	menu "ได้เลย เอา Holy Water ทั้งหมดของข้าไป!",-, "ไม่ล่ะ ข้าต้องใช้มัน",M_NO, "ข้าไม่มีเลย",M_DONT_HAVE;
 
 	if ( countitem(523)<1 ) goto M_DONT_HAVE;
 	set $UNEASY_BL,$UNEASY_BL-countitem(523);
 	delitem 523,countitem(523);
 
 	if ( $UNEASY_BL > 0 ) goto L_NEED_MORE;
-//set quiet days!!! no more undead for this period!
+//set quiet days!!! no more undead for this period! (กำหนดวันแห่งความสงบ!!! จะไม่มีอันเดดในช่วงเวลานี้)
 	set $UNEASY_DL,5+((0-$UNEASY_BL)/30);
 	set $UNEASY_H$,strcharinfo(0);
 	mes "[Mother Mathana]";
-	mes "Thank you, "+$UNEASY_H$+"! Now we've got enough Holy Water!";
+	mes "ขอบคุณนะ "+$UNEASY_H$+"! ตอนนี้เรามี Holy Water เพียงพอแล้ว!";
 	next;
 	mes "[Mother Mathana]";
-	mes "Upon pouring the cemetery with that water we'll get " + $UNEASY_DL + " safe nights!";
+	mes "หลังจากราดน้ำมนต์ทั่วสุสานแล้ว พวกเราจะมีคืนที่ปลอดภัยไปอีก " + $UNEASY_DL + " คืน!";
 	next;
-	killmonsterall "prontera";	//kills any left monsters
+	killmonsterall "prontera";	//kills any left monsters (กำจัดมอนสเตอร์ที่ค้างอยู่ทั้งหมด)
 	mes "[Mother Mathana]";
-	mes "See, "+ $UNEASY_H$ +"? They all are gone now!";
+	mes "เห็นไหม "+ $UNEASY_H$ +"? พวกมันหายไปหมดแล้ว!";
 	next;
 	mes "[Mother Mathana]";
-	mes "Our Church is going to thank you personally...";
+	mes "ทางโบสถ์ของเราต้องการจะขอบคุณเจ้าเป็นการส่วนตัว...";
 	next;
-	if (Sex==SEX_MALE) mapannounce "prontera","[Mother Mathana]: In the name of Odin we declare handsome "+$UNEASY_H$+" as a Prontera savior!",0;
-	else mapannounce "prontera","[Mother Mathana]: In the name of Odin we declare beautiful "+$UNEASY_H$+" as a Prontera savior!",0;
+	if (Sex==SEX_MALE) mapannounce "prontera","[Mother Mathana]: ในนามของ Odin เราขอประกาศว่าพ่อหนุ่มรูปงาม "+$UNEASY_H$+" คือผู้ช่วยชีวิตของเมือง Prontera!",0;
+	else mapannounce "prontera","[Mother Mathana]: ในนามของ Odin เราขอประกาศว่าหญิงสาวผู้งดงาม "+$UNEASY_H$+" คือผู้ช่วยชีวิตของเมือง Prontera!",0;
 	mes "[Mother Mathana]";
-	mes "In the name of Odin we bless you and decently present a modest gift just from Mareusis' wine-cellar.";
+	mes "ในนามของ Odin พวกเราขออวยพรเจ้า และขอมอบของขวัญเล็กน้อยจากห้องเก็บไวน์ของ Mareusis ให้เป็นการตอบแทน";
 	getitem 505,1; //Blue_Potion
 	set JobExp,JobExp+100;
 	set BaseExp,BaseExp+50;
@@ -116,18 +116,18 @@ L_Undead_Walk:
 
 L_NEED_MORE:
 	mes "[Mother Mathana]";
-	mes "Thank you, good "+strcharinfo(0)+", but we still need " + $UNEASY_BL + " more Holy Water bottles.";
+	mes "ขอบคุณนะ "+strcharinfo(0)+" ผู้ใจดี แต่เรายังต้องการ Holy Water อีก " + $UNEASY_BL + " ขวด";
 	close;
 
 M_NO:
 	mes "[Mother Mathana]";
-	mes "I'm afraid the old cemetery is going out of control soon... Please, get us all the Holy Water you can get.";
+	mes "ข้าเกรงว่าสุสานเก่าแห่งนี้จะเริ่มคุมไม่อยู่ในเร็วๆ นี้... โปรดเถอะ ช่วยหา Holy Water มาให้พวกเราเท่าที่เจ้าจะหาได้ที";
 	close;
 
 M_DONT_HAVE:
 	mes "[Mother Mathana]";
-	mes "Alas! We still need " + $UNEASY_BL + " more bottles of Holy Water...  Why don't you go and ask other people for some extra Holy Water?";
-	mes "The old cemetery is going out of control soon...";
-	mes "Please, in the name of Odin, help Prontera city.";
+	mes "อนิจจา! เรายังต้องการ Holy Water อีก " + $UNEASY_BL + " ขวด... ทำไมเจ้าไม่ลองไปถามคนอื่นๆ ดูว่าพอจะมี Holy Water แบ่งมาให้บ้างไหม?";
+	mes "สุสานเก่าแห่งนี้กำลังจะเกินการควบคุมแล้ว...";
+	mes "ขอร้องล่ะ ในนามของ Odin โปรดช่วยเมือง Prontera ด้วย";
 	close;
 }

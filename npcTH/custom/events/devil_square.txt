@@ -14,68 +14,68 @@
 //============================================================
 
 prontera,156,185,5	script	Devil Square Guardian#1	406,{
-	set .@gm_level, 99; // GM level required to start/stop the event
+	set .@gm_level, 99; // GM level required to start/stop the event (ระดับ GM ที่ต้องการเพื่อเริ่ม/หยุดกิจกรรม)
 
 	mes "[Devil Square Guardian]";
-	mes "This is the entrance to ^FF0000Devil Square^000000.";
-	mes "If you fail or die, the door will close and you must wait until the event starts again to re-enter.";
+	mes "นี่คือทางเข้าสู่ ^FF0000Devil Square^000000";
+	mes "หากคุณพ่ายแพ้หรือตาย ประตูจะปิดลงและคุณจะต้องรอจนกว่ากิจกรรมจะเริ่มใหม่อีกครั้งจึงจะเข้าได้";
 	next;
-	switch(select("Enter.:Information.:" + ((getgmlevel() >= .@gm_level) ? "GM Menu." : "") + ":Cancel.")) {
+	switch(select("เข้าสู่กิจกรรม:ข้อมูลกิจกรรม:" + ((getgmlevel() >= .@gm_level) ? "เมนู GM" : "") + ":ยกเลิก")) {
 	case 1:
-		if (.start != 1) { // registration period
+		if (.start != 1) { // registration period (ช่วงเวลาลงทะเบียน)
 			mes "[Devil Square Guardian]";
-			mes "Devil Square is now closed.";
-			mes "It will open at these times:";
-			mes "00:00 , 02:00 , 04:00 , 06:00"; // display your times here
+			mes "ขณะนี้ Devil Square ปิดทำการอยู่";
+			mes "กิจกรรมจะเปิดตามเวลาดังนี้:";
+			mes "00:00 , 02:00 , 04:00 , 06:00"; // display your times here (แสดงเวลาของคุณที่นี่)
 			mes "08:00 , 10:00 , 12:00 , 14:00";
 			mes "16:00 , 18:00 , 20:00 , 22:00";
 			close;
 		}
-		if (BaseLevel < 70 || Zeny < 20000) { // requirements
+		if (BaseLevel < 70 || Zeny < 20000) { // requirements (เงื่อนไข)
 			mes "[Devil Square Guardian]";
-			mes "You do not meet the requirements to enter Devil Square.";
+			mes "คุณมีคุณสมบัติไม่เพียงพอที่จะเข้าสู่ Devil Square";
 			mes " ";
-			mes "Requirements:";
+			mes "เงื่อนไข:";
 			mes " - Base Level 70";
-			mes " - Registration fee 20,000z";
+			mes " - ค่าธรรมเนียมการลงทะเบียน 20,000z";
 			close;
 		}
 		Zeny -= 20000;
-		announce strcharinfo(0)+" has entered Devil Square.", bc_npc;
+		announce strcharinfo(0)+" ได้เข้าสู่ Devil Square แล้ว", bc_npc;
 		percentheal 100,100;
 		warp "ordeal_1-1",183,182;
 		close;
 	case 2:
 		mes "[Devil Square Guardian]";
-		mes "Inside, you will encounter 3 waves of monsters. The monsters will grow stronger with each wave.";
+		mes "ภายในนั้น คุณจะต้องเผชิญหน้ากับเหล่ามอนสเตอร์ทั้งหมด 3 เวฟ โดยมอนสเตอร์จะแข็งแกร่งขึ้นในแต่ละเวฟ";
 		next;
 		mes "[Devil Square Guardian]";
-		mes "If you defeat all the enemies, you will be given the opportunity to open 10 Treasure Chests with items, equipment, and rare cards inside!";
+		mes "หากคุณกำจัดศัตรูได้ทั้งหมด คุณจะได้รับโอกาสในการเปิดหีบสมบัติ 10 ใบ ซึ่งภายในมีไอเทม อุปกรณ์ และการ์ดหายากบรรจุอยู่!";
 		close;
 	case 3:
 		mes "[Devil Square Guardian]";
-		switch (.start) { // event states
-			case 0: mes "Devil Square has not yet started."; break;
-			case 1: mes "Devil Square is currently accepting participants."; break;
-			case 2: mes "Devil Square Event is currently running on Round "+ .round +" with "+ .mob +" monsters remaining."; break;
+		switch (.start) { // event states (สถานะกิจกรรม)
+			case 0: mes "Devil Square ยังไม่ได้เริ่มขึ้น"; break;
+			case 1: mes "Devil Square กำลังเปิดรับผู้สมัคร"; break;
+			case 2: mes "กิจกรรม Devil Square กำลังดำเนินการอยู่ในรอบที่ "+ .round +" โดยเหลือมอนสเตอร์อีก "+ .mob +" ตัว"; break;
 		}
 		next;
-		switch(select("Start event.:Stop event.:Cancel.")) {
+		switch(select("เริ่มกิจกรรม:หยุดกิจกรรม:ยกเลิก")) {
 		case 1:
 			mes "[Devil Square Guardian]";
 			if (.start)
-				mes "Devil Square has already started.";
+				mes "Devil Square ได้เริ่มขึ้นแล้ว";
 			else {
-				mes "Starting Devil Square...";
+				mes "กำลังเริ่มกิจกรรม Devil Square...";
 				donpcevent strnpcinfo(0)+"::OnStartEvent";
 			}
 			close;
 		case 2:
 			mes "[Devil Square Guardian]";
 			if (!.start)
-				mes "Devil Square has not yet started.";
+				mes "Devil Square ยังไม่ได้เริ่มขึ้น";
 			else {
-				mes "Stopping Devil Square...";
+				mes "กำลังหยุดกิจกรรม Devil Square...";
 				donpcevent strnpcinfo(0)+"::OnStopEvent";
 			}
 			close;
@@ -87,7 +87,7 @@ prontera,156,185,5	script	Devil Square Guardian#1	406,{
 		break;
 	}
 	mes "[Devil Square Guardian]";
-	mes "Farewell.";
+	mes "ลาก่อน";
 	close;
 
 OnStartEvent:
@@ -104,23 +104,23 @@ OnClock1800:
 OnClock2000:
 OnClock2200:
 	.start = 1;
-	disablenpc "ord11-12"; //from npc/warps/pvp.txt
+	disablenpc "ord11-12"; //from npc/warps/pvp.txt (จาก npc/warps/pvp.txt)
 	disablenpc "Devil Square Guardian#2";
-	mapannounce "ordeal_1-1","Devil Square is now closed.", bc_map;
+	mapannounce "ordeal_1-1","ขณะนี้ Devil Square ถูกปิดแล้ว", bc_map;
 	getmapxy .@map$, .@x, .@y, BL_NPC;
 	mapwarp "ordeal_1-1", .@map$, .@x, .@y;
 	killmonsterall "ordeal_1-1";
-	announce "Devil Square is OPEN. The event will begin in 5 minutes.", bc_all;
+	announce "Devil Square เปิดแล้ว! กิจกรรมจะเริ่มขึ้นในอีก 5 นาที", bc_all;
 	sleep 60000;
-	announce "Devil Square will begin in 4 minutes.", bc_all;
+	announce "Devil Square จะเริ่มขึ้นในอีก 4 นาที", bc_all;
 	sleep 60000;
-	announce "Devil Square will begin in 3 minutes.", bc_all;
+	announce "Devil Square จะเริ่มขึ้นในอีก 3 นาที", bc_all;
 	sleep 60000;
-	announce "Devil Square will begin in 2 minutes.", bc_all;
+	announce "Devil Square จะเริ่มขึ้นในอีก 2 นาที", bc_all;
 	sleep 60000;
-	announce "Devil Square will begin in 1 minute.", bc_all;
+	announce "Devil Square จะเริ่มขึ้นในอีก 1 นาที", bc_all;
 	sleep 60000;
-	announce "Devil Square has STARTED!", bc_all;
+	announce "Devil Square เริ่มต้นขึ้นแล้ว!", bc_all;
 	if ( !getmapusers("ordeal_1-1") )
 		goto OnStopEvent;
 	.start = 2;
@@ -137,9 +137,9 @@ OnClock2200:
 OnDevilDead:
 	.mob--;
 	if ( .mob == 25 || .mob == 5 )
-		announce "Devil Square : "+ .mob +" monsters remaining in round 1.", bc_map;
+		announce "Devil Square : เหลือมอนสเตอร์อีก "+ .mob +" ตัวในรอบที่ 1", bc_map;
 	else if ( .mob <= 0 ) {
-		announce "Devil Square is entering round 2...", bc_map;
+		announce "Devil Square กำลังเข้าสู่รอบที่ 2...", bc_map;
 		goto OnDevil2;
 	}
 	end;
@@ -158,9 +158,9 @@ OnDevil2:
 OnDevilDead2:
 	.mob--;
 	if ( .mob == 25 || .mob == 5 )
-		announce "Devil Square : "+ .mob +" monsters remaining in round 2.", bc_map;
+		announce "Devil Square : เหลือมอนสเตอร์อีก "+ .mob +" ตัวในรอบที่ 2", bc_map;
 	else if ( .mob <= 0 ) {
-		announce "Devil Square is entering round 3...", bc_map;
+		announce "Devil Square กำลังเข้าสู่รอบที่ 3...", bc_map;
 		goto OnDevil3;
 	}
 	end;
@@ -179,9 +179,9 @@ OnDevil3:
 OnDevilDead3:
 	.mob--;
 	if ( .mob == 25 || .mob == 5 )
-		announce "Devil Square : "+ .mob +" monsters remaining in the final round.", bc_map;
+		announce "Devil Square : เหลือมอนสเตอร์อีก "+ .mob +" ตัวในรอบสุดท้าย", bc_map;
 	else if ( .mob <= 0 ) {
-		announce "Devil Square : CONGRATULATIONS. These 10 Treasure Chests are yours.", bc_map;
+		announce "Devil Square : ขอแสดงความยินดีด้วย หีบสมบัติทั้ง 10 ใบนี้เป็นของคุณแล้ว", bc_map;
 		goto OnDevil4;
 	}
 	end;
@@ -203,22 +203,22 @@ OnDevil4:
 
 OnTreasureDead:
 	.mob--;
-	announce "Devil Square : "+ strcharinfo(0) +" has opened the Treasure Chest at Devil Square.", bc_all;
+	announce "Devil Square : "+ strcharinfo(0) +" ได้ทำการเปิดหีบสมบัติที่ Devil Square แล้ว", bc_all;
 	if ( .mob <= 0 )
 		goto OnStopEvent;
 	end;
 
 OnStopEvent:
 	killmonsterall "ordeal_1-1";
-	enablenpc "ord11-12"; //from npc/warps/pvp.txt
+	enablenpc "ord11-12"; //from npc/warps/pvp.txt (จาก npc/warps/pvp.txt)
 	enablenpc "Devil Square Guardian#2";
 	.start = .round = .mob = 0;
 	end;
 }
 
 ordeal_1-1,246,245,7	script	Devil Square Guardian#2	406,{
-	mes "[Exit]";
-	mes "Farewell.";
+	mes "[ทางออก]";
+	mes "ลาก่อน";
 	close2;
 	warp "SavePoint",0,0;
 	end;

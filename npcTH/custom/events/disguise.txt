@@ -18,109 +18,111 @@
 prontera,160,155,4	script	Disguise Event	795,{
 
 	// Currently set to run every two hours.
+	// ปัจจุบันตั้งค่าให้ทำงานทุกๆ สองชั่วโมง
 	// To change times, edit the OnClock labels below.
+	// หากต้องการเปลี่ยนเวลา ให้แก้ไขที่เลเบล OnClock ด้านล่าง
 
-	set .@GMLevel,60;	// GM level required to access NPC.
+	set .@GMLevel,60;	// GM level required to access NPC. (ระดับ GM ที่ต้องการเพื่อเข้าถึง NPC)
 	set .@n$,"[^0000FFDisguise NPC^000000]";
 
 	if (getgmlevel()>=.@GMLevel) {
 		mes .@n$;
-		mes "Select an option.";
+		mes "เลือกตัวเลือกที่ต้องการ";
 		next;
-		switch(select("Turn ON/OFF Event:Event Settings")) {
+		switch(select("เปิด/ปิด กิจกรรม:ตั้งค่ากิจกรรม")) {
 		case 1:
 			mes .@n$;
 			if (.EventON) {
-				mes "The Event is currently: [^0000FFON^000000]";
-				mes "Would you like to turn it OFF?";
+				mes "สถานะกิจกรรมปัจจุบัน: [^0000FFเปิด^000000]";
+				mes "คุณต้องการที่จะ ปิด มันหรือไม่?";
 			} else {
-				mes "The Event is currently: [^FF0000OFF^000000]";
-				mes "Would you like to turn it ON?";
+				mes "สถานะกิจกรรมปัจจุบัน: [^FF0000ปิด^000000]";
+				mes "คุณต้องการที่จะ เปิด มันหรือไม่?";
 			}
-			if(select("Yes:No")==2) close;
+			if(select("ใช่:ไม่")==2) close;
 			if (.EventON) {
 				set .EventON,0; set .Timer,0;
 				setnpctimer 0; stopnpctimer;
-				announce "A GM has decided to turn the Disguise Event off. As a result no further prizes will be given.",bc_map | bc_blue;
+				announce "GM ได้ตัดสินใจปิดกิจกรรม Disguise Event ดังนั้นจะไม่มีการแจกรางวัลเพิ่มเติมหลังจากนี้",bc_map | bc_blue;
 				deletepset 1;
 				setnpcdisplay "Disguise Event",795;
 				close;
 			}
 			set .EventON,1; set .Timer,1; setnpctimer 0; initnpctimer;
 			set .ResetCounter,.ResetCounter+1;
-			announce "The Disguise Event will begin in 3 minutes.",bc_all | bc_blue;
-			announce "The Event is being held in Prontera.",bc_all | bc_blue;
+			announce "กิจกรรม Disguise Event จะเริ่มขึ้นในอีก 3 นาที",bc_all | bc_blue;
+			announce "กิจกรรมจัดขึ้นที่เมือง Prontera",bc_all | bc_blue;
 			close;
 		case 2:
 			mes .@n$;
-			mes "Pick a setting to modify.";
+			mes "เลือกการตั้งค่าที่ต้องการแก้ไข";
 			next;
-			switch(select("Monster Display:Number of Rounds:Prize Settings")) {
+			switch(select("การแสดงผลมอนสเตอร์:จำนวนรอบ:ตั้งค่าของรางวัล")) {
 			case 1:
-				setarray .@r$[0],"Disguise as all monsters.","Disguise as MVPs only.";
+				setarray .@r$[0],"ปลอมตัวเป็นมอนสเตอร์ทั้งหมด","ปลอมตัวเป็นเฉพาะ MVP เท่านั้น";
 				mes .@n$;
-				mes "Choose a disguise rule.";
+				mes "เลือกกฎการปลอมตัว";
 				next;
 				set .Rule, select(implode(.@r$,":"));
 				mes .@n$;
-				mes "The Disguise Rule has been set:";
+				mes "ตั้งค่ากฎการปลอมตัวเรียบร้อยแล้ว:";
 				mes "  > ^0055FF"+.@r$[.Rule-1]+"^000000";
 				close;
 			case 2:
 				mes .@n$;
-				mes "Input the number of rounds you want the event to last.";
-				mes "Current number: [^0000FF"+.Rounds+"^000000]";
+				mes "กรอกจำนวนรอบที่ต้องการให้กิจกรรมดำเนินไป";
+				mes "จำนวนปัจจุบัน: [^0000FF"+.Rounds+"^000000]";
 				next;
 				input .@Rounds;
 				set .Rounds,.@Rounds;
 				mes .@n$;
-				mes "The number of rounds has been changed to "+.Rounds+".";
+				mes "เปลี่ยนจำนวนรอบเป็น "+.Rounds+" เรียบร้อยแล้ว";
 				close;
 			case 3:
 				mes .@n$;
-				mes "Input the Item ID of the prize given each round.";
-				mes "Current item: [^0000FF"+getitemname(.Prize)+"^000000] (ID #"+.Prize+")";
+				mes "กรอก Item ID ของรางวัลที่จะมอบให้ในแต่ละรอบ";
+				mes "ไอเทมปัจจุบัน: [^0000FF"+getitemname(.Prize)+"^000000] (ID #"+.Prize+")";
 				next;
 				input .@Prize;
 				mes .@n$;
 				if (getitemname(.@Prize)=="" || getitemname(.@Prize)=="null") {
-					mes "That item does not exist. Please try again.";
+					mes "ไอเทมนี้ไม่มีอยู่จริง กรุณาลองใหม่อีกครั้ง";
 					close;
 				}
 				set .Prize,.@Prize;
-				mes "Input the amount to be given.";
+				mes "กรอกจำนวนที่ต้องการมอบให้";
 				next;
 				input .@amount;
 				mes .@n$;
 				if (.@amount<=0 || .@amount>=10000) {
-					mes "That amount is invalid. Using default amount of 1.";
+					mes "จำนวนไม่ถูกต้อง ระบบจะใช้ค่าเริ่มต้นคือ 1";
 					set .@amount,1;
 					next;
 					mes .@n$;
 				}
 				set .PrizeAmt,.@amount;
-				mes "The Prize has been changed successfully.";
-				mes "Prize: "+.PrizeAmt+"x [^0000FF"+getitemname(.Prize)+"^000000]";
+				mes "เปลี่ยนของรางวัลสำเร็จเรียบร้อยแล้ว";
+				mes "ของรางวัล: "+.PrizeAmt+"x [^0000FF"+getitemname(.Prize)+"^000000]";
 				close;
 			}
 		}
 	}
 	if (.EventON) end;
 	mes .@n$;
-	mes "Welcome.";
-	mes "How may I be of assistance?";
-	if(select("Information:Nothing, just passing through.")==2) close;
+	mes "ยินดีต้อนรับ";
+	mes "มีอะไรให้ข้าช่วยหรือไม่?";
+	if(select("สอบถามข้อมูล:ไม่มีอะไร แค่เดินผ่านมา")==2) close;
 	next;
 	mes .@n$;
-	mes "This event is quite simple.";
-	mes "At the start of the event, I will";
-	mes "disguise myself as a random";
-	mes "monster. You have to shout";
-	mes "that monster's name out loud.";
+	mes "กิจกรรมนี้ง่ายมาก";
+	mes "เมื่อเริ่มกิจกรรม ข้าจะ";
+	mes "ปลอมตัวเป็นมอนสเตอร์";
+	mes "แบบสุ่ม คุณต้องตะโกน";
+	mes "ชื่อมอนสเตอร์ตัวนั้นออกมา";
 	next;
-	mes "If you are correct, you will receive";
-	mes "a prize. If not, keep trying!";
-	mes "That's all that there is to this event.";
+	mes "หากคุณตอบถูก คุณจะได้รับ";
+	mes "ของรางวัล หากไม่ถูก ก็พยายามต่อไป!";
+	mes "นั่นคือทั้งหมดสำหรับกิจกรรมนี้";
 	close;
 
 OnInit:
@@ -134,8 +136,8 @@ OnInit:
 	set .Rule,1;
 	setarray .MVP[0],1038,1039,1046,1059,1086,1087,1112,1115,1147,1150,1157,1159,1190,1251,1252,1272,1312,1373,
 	                  1389,1399,1418,1492,1502,1511,1583,1623,1630,1646,1647,1648,1649,1650,1651,1658,1685,1688,
-				   1708,1719,1734,1751,1768,1779,1785,1802,1832,1871,1874,1885,1917,1980,2022,2068,2087,2131,
-				   2156,2165;
+	                  1708,1719,1734,1751,1768,1779,1785,1802,1832,1871,1874,1885,1917,1980,2022,2068,2087,2131,
+	                  2156,2165;
 	set .BlackList$, "1003,1006,1017,1021,1022,1027,1043,1075,1136,1137,1168," + 
 	    "1171,1172,1173,1181,1187,1210,1217,1218,1222,1223,1224,1225,1226,1227,1228," + 
 	    "1233,1284,1407,1411,1414,1495,1501,1900,1996,2000,2001,2002,2003,2004," + 
@@ -163,8 +165,8 @@ OnClock2200:
 	set .EventON,1;
 	set .Timer,1;
 	set .Wait,1;
-	announce "The Disguise Event will begin in 3 minutes.",bc_all | bc_blue;
-	announce "The Event is being held in Prontera.",bc_all | bc_blue;
+	announce "กิจกรรม Disguise Event จะเริ่มขึ้นในอีก 3 นาที",bc_all | bc_blue;
+	announce "กิจกรรมจัดขึ้นที่เมือง Prontera",bc_all | bc_blue;
 	setnpctimer 0;
 	initnpctimer;
 	end;
@@ -177,7 +179,7 @@ OnTimer30000:
 	if (.Timer) end;
 	set .Change,0;
 	setnpcdisplay "Disguise Event",795;
-	npctalk "Disguise Event : You took too long to guess what I was. Please wait 10 seconds while I disguise again.";
+	npctalk "Disguise Event : คุณใช้เวลานานเกินไปในการทายว่าข้าคือตัวอะไร โปรดรอ 10 วินาทีเพื่อให้ข้าปลอมตัวใหม่อีกครั้ง";
 	specialeffect EF_DETECT2;
 	set $MonsterName$,"";
 	deletepset 1;
@@ -187,18 +189,18 @@ OnTimer30000:
 	end;
 OnTimer60000:
 	if (.Timer!=1) end;
-	announce "The Disguise Event will begin in 2 minutes.",bc_all | bc_blue;
-	announce "The Event is being held in Prontera.",bc_all | bc_blue;
+	announce "กิจกรรม Disguise Event จะเริ่มขึ้นในอีก 2 นาที",bc_all | bc_blue;
+	announce "กิจกรรมจัดขึ้นที่เมือง Prontera",bc_all | bc_blue;
 	end;
 OnTimer120000:
 	if (.Timer!=1) end;
-	announce "The Disguise Event will begin 1 minute.",bc_all | bc_blue;
-	announce "The Event is being held in Prontera.",bc_all | bc_blue;
+	announce "กิจกรรม Disguise Event จะเริ่มขึ้นในอีก 1 นาที",bc_all | bc_blue;
+	announce "กิจกรรมจัดขึ้นที่เมือง Prontera",bc_all | bc_blue;
 	end;
 OnTimer180000:
 	if (.Timer!=1) end;
-	announce "The Disguise Event has begun!",bc_all | bc_blue;
-	announce "The Event is being held in Prontera.",bc_all | bc_blue;
+	announce "กิจกรรม Disguise Event เริ่มต้นขึ้นแล้ว!",bc_all | bc_blue;
+	announce "กิจกรรมจัดขึ้นที่เมือง Prontera",bc_all | bc_blue;
 	set .Timer,0; stopnpctimer;
 	setnpctimer 0; initnpctimer;
 iDisguise:
@@ -225,7 +227,7 @@ iDisguise:
 	end;
 iCorrect:
 	if (.Winner) {
-		dispbottom "Someone has already won this round.";
+		dispbottom "มีคนชนะในรอบนี้ไปเรียบร้อยแล้ว";
 		end;
 	}
 	set .Winner,1;
@@ -233,12 +235,12 @@ iCorrect:
 	deletepset 1;
 	activatepset 1;
 	getitem .Prize,.PrizeAmt;
-	announce strcharinfo(0)+" is correct! I was disguised as: "+$MonsterName$+"",bc_map | bc_blue;
+	announce strcharinfo(0)+" ตอบถูกต้อง! ข้าปลอมตัวเป็น: "+$MonsterName$+"",bc_map | bc_blue;
 	if (.RoundCount>=.Rounds) {
 		setnpcdisplay "Disguise Event",795;
 		set .RoundCount,0; set .Change,0; set .EventON,0;
 		setnpctimer 0; stopnpctimer;
-		npctalk "Disguise Event : Thank you all for playing. That was the last round of the Disguise Event. Come play again later.";
+		npctalk "Disguise Event : ขอขอบคุณทุกคนที่มาร่วมสนุก นี่เป็นรอบสุดท้ายของกิจกรรม Disguise Event แล้ว ไว้มาเล่นกันใหม่โอกาสหน้านะ";
 		end;
 	}
 	setnpcdisplay "Disguise Event",795;

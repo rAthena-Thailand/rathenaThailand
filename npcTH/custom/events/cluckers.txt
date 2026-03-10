@@ -21,34 +21,34 @@
 
 prontera,156,219,4	script	Cluckers	800,{
 
-	set .@GMAccess,80;	// GM level required to access NPC
+	set .@GMAccess,80;	// GM level required to access NPC (ระดับ GM ที่ต้องการเพื่อเข้าถึง NPC)
 
 	if (.startcluck) {
 		specialeffect2 EF_HIT3;
 		switch(rand(15)) {
-			case 0: npctalk "Cluckers : CLUUUUUUCK!!!"; unitkill getcharid(3); skilleffect "NPC_SELFDESTRUCTION",1; emotion ET_HUK; break;
-			case 1: npctalk "Cluckers : Cluuuuuck!~"; break;
+			case 0: npctalk "Cluckers : กุ๊ก กุ๊ก กุ๊กกกก!!!"; unitkill getcharid(3); skilleffect "NPC_SELFDESTRUCTION",1; emotion ET_HUK; break;
+			case 1: npctalk "Cluckers : กุ๊ก กุ๊ก กุ๊กกกก!~"; break;
 			case 2: unitkill getcharid(3); skilleffect "NPC_SELFDESTRUCTION",1; break;
 			case 3: sc_start SC_Freeze,10000,0; break;
-			case 4: npctalk "Cluckers : CLUUUUUUUUUCK!!!"; unitkill getcharid(3); skilleffect "NPC_SELFDESTRUCTION",1; emotion ET_HUK; break;
+			case 4: npctalk "Cluckers : กุ๊ก กุ๊ก กุ๊ก กุ๊ก กุ๊กกกก!!!"; unitkill getcharid(3); skilleffect "NPC_SELFDESTRUCTION",1; emotion ET_HUK; break;
 			case 5: sc_start SC_Sleep,10000,0; break;
 			case 6: sc_start SC_Stone,10000,0; emotion ET_KIK; break;
-			case 7: npctalk "Cluckers : CLUUUUUUCK!!!"; unitkill getcharid(3); skilleffect "NPC_SELFDESTRUCTION",1; emotion ET_HUK; break;
-			case 8: npctalk "Cluckers : Cluck! CLUUUCK!!"; unitkill getcharid(3); skilleffect "NPC_SELFDESTRUCTION",1; emotion ET_HUK; break;
+			case 7: npctalk "Cluckers : กุ๊ก กุ๊ก กุ๊กกกก!!!"; unitkill getcharid(3); skilleffect "NPC_SELFDESTRUCTION",1; emotion ET_HUK; break;
+			case 8: npctalk "Cluckers : กุ๊ก! กุ๊ก กุ๊กกก!!"; unitkill getcharid(3); skilleffect "NPC_SELFDESTRUCTION",1; emotion ET_HUK; break;
 			case 9: sc_start SC_Stun,10000,0; break;
 			case 10: sc_start SC_Sleep,10000,0; emotion ET_KIK; break;
-			case 11: npctalk "Cluckers : Cluck! Cluck!"; break;
+			case 11: npctalk "Cluckers : กุ๊ก! กุ๊ก!"; break;
 			case 12: sc_start SC_Stun,10000,0; break;
 			case 13: unitkill getcharid(3); skilleffect "NPC_SELFDESTRUCTION",1; break;
 			default:
 				if (rand(50) < 4) {
-					npctalk "Cluckers : WOOF!...........";
+					npctalk "Cluckers : โฮ่ง!...........";
 					specialeffect2 EF_SPHERE;
-					announce "[Cluck! Cluck! Boom!] " + strcharinfo(0) + " squeezed out the prize! Well done!",0;
+					announce "[Cluck! Cluck! Boom!] " + strcharinfo(0) + " รีดเอาของรางวัลออกมาได้สำเร็จ! เยี่ยมมาก!",0;
 					getitem $cluck_item_id,$cluck_item_amount;
 					set .startcluck,0;
 				} else {
-					npctalk "Cluckers : Cluck! CLUUUCK!!";
+					npctalk "Cluckers : กุ๊ก! กุ๊ก กุ๊กกก!!";
 					unitkill getcharid(3); skilleffect "NPC_SELFDESTRUCTION",1;
 				}
 				break;
@@ -57,58 +57,58 @@ prontera,156,219,4	script	Cluckers	800,{
 	}
 	mes "[Cluckers]";
 	if (getgmlevel() >= .@GMAccess) {
-		mes "Cluck cluck! Cluuuuuck? ^FF0000~Hi GM " + strcharinfo(0) + ", Wanna play today?~^000000";
-		mes "Cluck cluck... CLUCK! ^FF0000~Just tell me what to do!~^000000";
+		mes "กุ๊ก กุ๊ก! กุ๊กกกกก? ^FF0000~สวัสดี GM " + strcharinfo(0) + " วันนี้อยากจะเล่นไหมล่ะ?~^000000";
+		mes "กุ๊ก กุ๊ก... กุ๊ก! ^FF0000~แค่บอกมาเลยว่าจะให้ข้าทำอะไร!~^000000";
 		next;
-		while(1) switch(select("Start Event:Check Prize:Set Prize:Not today Cluckers")) {
+		while(1) switch(select("เริ่มกิจกรรม:ตรวจสอบของรางวัล:ตั้งค่าของรางวัล:วันนี้ไม่ล่ะ Cluckers")) {
 			case 1:
 				mes "[Cluckers]";
-				mes "CLUCK! ^FF0000~Sure thing!~^000000";
+				mes "กุ๊ก! ^FF0000~จัดไปสิ!~^000000";
 				emotion ET_OK;
 				close2;
-				announce "[Cluck! Cluck! Boom!] is about to start in Prontera!",bc_blue;
+				announce "[Cluck! Cluck! Boom!] กำลังจะเริ่มขึ้นแล้วที่เมือง Prontera!",bc_blue;
 				initnpctimer;
 				end;
 			case 2:
 				mes "[Cluckers]";
-				mes "Cluck, cluck cluck... Cluck! ^FF0000~The current prize is^000000 ^008000"+ $cluck_item_amount +" "+ getitemname($cluck_item_id) +".^000000";
+				mes "กุ๊ก, กุ๊ก กุ๊ก... กุ๊ก! ^FF0000~ของรางวัลปัจจุบันคือ^000000 ^008000"+ $cluck_item_amount +" "+ getitemname($cluck_item_id) +".^000000";
 				next;
 				break;
 			case 3:
 				mes "[Cluckers]";
-				mes "Cluck cluck? Cluck??? ^FF0000~What should the prize for winning be? Please input the ID.~^000000";
+				mes "กุ๊ก กุ๊ก? กุ๊กกกก??? ^FF0000~ของรางวัลสำหรับผู้ชนะควรเป็นอะไรดี? โปรดกรอก ID ไอเทม~^000000";
 				input $cluck_item_id;
 				next;
 				mes "[Cluckers]";
-				mes "Cluck? cluuuck? ^FF0000~How many if this item should I give away?~^000000";
+				mes "กุ๊ก? กุ๊กกกก? ^FF0000~จะให้ข้าแจกไอเทมนี้จำนวนเท่าไหร่ดี?~^000000";
 				input $cluck_item_amount;
 				next;
 				mes "[Cluckers]";
-				mes "Cluck cluck..? Cluck. ^FF0000~So, the prize is^000000 ^008000"+ $cluck_item_amount +" "+ getitemname($cluck_item_id) +"^000000? ^FF0000Great.~^000000";
+				mes "กุ๊ก กุ๊ก..? กุ๊ก. ^FF0000~สรุปว่า ของรางวัลคือ^000000 ^008000"+ $cluck_item_amount +" "+ getitemname($cluck_item_id) +"^000000? ^FF0000เยี่ยมเลย.~^000000";
 				emotion ET_OK;
 				next;
 				break;
 			case 4:
 				mes "[Cluckers]";
-				mes "Cluck cluck cluck...";
+				mes "กุ๊ก กุ๊ก กุ๊ก...";
 				close;
 		}
 	}
-	mes "Cluck cluck! Cluuuuuck?";
-	mes "Cluck....";
+	mes "กุ๊ก กุ๊ก! กุ๊กกกกก?";
+	mes "กุ๊ก....";
 	close;
 
 OnTimer10000:
-	announce "Please hurry behind the fountain if you want to play with the crazy chicken!",bc_blue;
+	announce "ใครอยากเล่นกับเจ้าไก่บ้าตัวนี้ รีบมาที่หลังน้ำพุเร็วเข้า!",bc_blue;
 	end;
 OnTimer20000:
-	announce "Cluckers has eaten one of my items! I'm too scared to retrieve it!",bc_blue;
+	announce "Cluckers กินไอเทมของข้าเข้าไปชิ้นนึง! ข้าล่ะกลัวเกินกว่าจะไปเอามันคืนมาเอง!",bc_blue;
 	end;
 OnTimer30000:
-	announce "Click the insane chicken and try squeeze out the item, if you're lucky you'll win! Are you ready?",bc_blue;
+	announce "คลิกที่เจ้าไก่บ้าแล้วพยายามรีดเอาไอเทมออกมา ถ้าโชคดีคุณจะเป็นผู้ชนะ! พร้อมหรือยัง?",bc_blue;
 	end;
 OnTimer40000:
-	announce "GO! Click the chicken to get the prize!",bc_blue;
+	announce "เริ่มได้! คลิกที่ตัวไก่เพื่อรับของรางวัล!",bc_blue;
 	stopnpctimer;
 	if (!$cluck_item_id) set $cluck_item_id,512;
 	if (!$cluck_item_amount) set $cluck_item_amount,1;
