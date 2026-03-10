@@ -7414,6 +7414,7 @@
 	export_constant(IG_YOR_CARD);
 	export_constant(IG_TAN_BOX);
 	export_constant(IG_SPENDID_CAPE_BR);
+	export_constant(IG_CHEMICAL_GLOVE_ROC);
 
 	/* unit stop walking */
 	export_constant(USW_NONE);

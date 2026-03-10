@@ -3226,6 +3226,7 @@ enum e_random_item_group {
 	IG_YOR_CARD,
 	IG_TAN_BOX,
 	IG_SPENDID_CAPE_BR,
+	IG_CHEMICAL_GLOVE_ROC,
 
 	IG_MAX
 };
