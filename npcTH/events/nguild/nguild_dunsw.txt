@@ -18,25 +18,25 @@
 function	script	F_GldDunSw	{
 	set .@GID, GetCastleData(getarg(0),1);
 	if (.@GID == 0) {
-		mes "[ Echoing Voice ]";
-		mes " ' The one who can overcome an ordeal and show true bravery... will find the way... ' ";
+		mes "[ เสียงก้องกังวาน ]";
+		mes " ' ผู้ที่สามารถก้าวข้ามอุปสรรคและแสดงให้เห็นถึงความกล้าหาญที่แท้จริง... จะพบกับเส้นทาง... ' ";
 		close;
 	}
 	else {
-		mes "[ Echoing Voice ]";
-		mes " ' Only the one who can show true bravery can take this test. '";
+		mes "[ เสียงก้องกังวาน ]";
+		mes " ' เฉพาะผู้ที่สามารถแสดงให้เห็นถึงความกล้าหาญที่แท้จริงเท่านั้น จึงจะสามารถรับการทดสอบนี้ได้ '";
 		next;
 		mes " ";
-		mes "There's a small lever. Will you pull it?";
+		mes "มีคันโยกเล็กๆ ติดอยู่ คุณจะดึงมันหรือไม่?";
 		next;
 
-		if (select("Pull.:Do not.") == 1) {
+		if (select("ดึงคันโยก:ไม่ดึง") == 1) {
 			if (getcharid(2) == .@GID) {
 				warp "gld_dun"+getarg(1),getarg(2),getarg(3);
 				end;
 			}
 			mes " ";
-			mes " Nothing happened.";
+			mes " ไม่มีอะไรเกิดขึ้น";
 		}
 		return;
 	}

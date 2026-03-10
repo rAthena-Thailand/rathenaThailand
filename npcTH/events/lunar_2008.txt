@@ -27,108 +27,109 @@
 payon_in01,193,30,4	script	Rice Mill Grandma#rat	78,{
 	mes "[Rice Mill Grandma]";
 	if (!lunar_rat) {
-		mes "Those filthy little";
-		mes "creatures! Scurrying";
-		mes "around, snatching things";
-		mes "from me! If only they";
-		mes "weren't so blamed quick...";
+		mes "เจ้าพวกสัตว์ตัวจ้อย";
+		mes "สกปรกพวกนั้น!";
+		mes "วิ่งพล่านไปทั่ว";
+		mes "คอยแย่งชิงข้าวของ";
+		mes "ไปจากฉัน! ถ้าเพียงแต่พวกมัน";
+		mes "ไม่ว่องไวปานสายฟ้าแลบขนาดนั้นล่ะก็...";
 		next;
-		select("What's wrong?");
+		select("เกิดอะไรขึ้นเหรอครับ?");
 		mes "[Rice Mill Grandma]";
-		mes "Oh, I was just making";
-		mes "some rice cakes and";
-		mes "pastries to celebrate";
-		mes "the new year, but these";
-		mes "animals have been stealing";
-		mes "the Rice Pouches I've prepared.";
+		mes "โอ้ ยายแค่กำลังจะทำ";
+		mes "เค้กข้าวและขนมหวาน";
+		mes "เพื่อเฉลิมฉลองเทศกาล";
+		mes "วันปีใหม่น่ะ แต่เจ้าสัตว์";
+		mes "พวกนี้ดันมาขโมย";
+		mes "Rice Pouch ที่ยายเตรียมไว้ไปหมดเลย";
 		next;
-		select("Rice Pouches?");
+		select("Rice Pouch (ถุงข้าว) เหรอครับ?");
 		mes "[Rice Mill Grandma]";
-		mes "Yes, my son needs those";
-		mes "Rice Pouches to pound the";
-		mes "rice in a mortar, but I can't";
-		mes "make any pastries if I don't";
-		mes "even have the rice. Do you";
-		mes "think you can help me?";
+		mes "ใช่แล้ว ลูกชายของยายต้องใช้";
+		mes "Rice Pouch เหล่านั้นเพื่อนำไปตำ";
+		mes "ในครก แต่ยายคงไม่สามารถ";
+		mes "ทำขนมหวานออกมาได้เลยถ้า";
+		mes "ไม่มีแม้แต่ข้าว คุณพอจะ";
+		mes "ช่วยยายหน่อยได้ไหม?";
 		next;
-		if (select("Of course.:I don't even know you.") == 1) {
+		if (select("แน่นอนครับ:ผมไม่รู้จักคุณด้วยซ้ำ") == 1) {
 			set lunar_rat,1;
 			mes "[" + strcharinfo(0)+"]";
-			mes "Of course.";
-			mes "What can I do?";
+			mes "แน่นอนครับ";
+			mes "ผมต้องทำยังไงบ้าง?";
 			next;
 			mes "[Rice Mill Grandma]";
-			mes "Well, do you think you";
-			mes "can catch the animals that";
-			mes "stole my Rice Pouches?";
-			mes "They're these blue and";
-			mes "white rats and these";
-			mes "nasty little moles.";
+			mes "งั้น คุณคิดว่าคุณพอจะ";
+			mes "ไปจับเจ้าพวกสัตว์ที่";
+			mes "ขโมย Rice Pouch ของยายไปได้ไหม?";
+			mes "พวกมันคือหนูสีฟ้าขาว";
+			mes "และพวกตัวตุ่นที่";
+			mes "แสนจะน่ารำคาญพวกนั้น";
 			next;
-			select("Not a problem.");
+			select("ไม่มีปัญหาครับ");
 			mes "[" + strcharinfo(0)+"]";
-			mes "Not a problem.";
-			mes "I'll catch those animals,";
-			mes "and bring back any Rice";
-			mes "Pouches that I can find.";
+			mes "ไม่มีปัญหาครับ";
+			mes "ผมจะไปจัดการสัตว์พวกนั้น";
+			mes "และนำ Rice Pouch ทั้งหมด";
+			mes "ที่ผมหาได้กลับมาให้ครับ";
 			next;
 			mes "[Rice Mill Grandma]";
-			mes "Oh, thank you!";
-			mes "Good luck catching";
-			mes "those pests for me~";
+			mes "โอ้ ขอบใจมากจ้ะ!";
+			mes "ขอให้โชคดีกับการจับ";
+			mes "เจ้าพวกสัตว์ก่อกวนพวกนั้นนะ~";
 			close;
 		}
 		mes "[Rice Mill Grandma]";
-		mes "I... Well...";
-		mes "That's true, but I was";
-		mes "planning on giving you";
-		mes "something nice in return";
-		mes "for your help. I know you're";
-		mes "not a bad person, so...";
+		mes "ยาย... เอ่อ...";
+		mes "มันก็จริงของคนหนุ่มล่ะนะ แต่ยาย";
+		mes "กะว่าจะให้อะไรดีๆ";
+		mes "เป็นการตอบแทน";
+		mes "สำหรับความช่วยเหลือแท้ๆ ยายรู้ว่าคุณ";
+		mes "ไม่ใช่คนเลวร้ายอะไร เพราะฉะนั้น...";
 		close;
 	}
 	else if ((lunar_rat >= 1 && lunar_rat <= 2) || lunar_rat == 4) {
 		if (countitem(7770) >= 1 && lunar_rat == 2) {
-			mes "Oh, is that the";
-			mes "Sweet Rice my son made?";
-			mes "Would you let me have it?";
-			mes "Please wait here a moment,";
-			mes "and I'll make you some pastry~";
+			mes "โอ้ นั่นใช่";
+			mes "Sweet Rice ที่ลูกชายยายทำหรือเปล่า?";
+			mes "ขอยายรับมันไว้ได้ไหมจ๊ะ?";
+			mes "กรุณารอสักครู่นะ";
+			mes "แล้วยายจะทำขนมหวานให้~";
 			delitem 7770,1; //Sweet_rice
 			set lunar_rat,3;
 			close;
 		}
 		else if (lunar_rat == 4) {
 			if (countitem(7770) >= 1) {
-				mes "Oh, is that the";
-				mes "Sweet Rice my son made?";
-				mes "Would you let me have it?";
-				mes "Please wait here a moment,";
-				mes "and I'll make you some pastry~";
+				mes "โอ้ นั่นใช่";
+				mes "Sweet Rice ที่ลูกชายยายทำหรือเปล่า?";
+				mes "ขอยายรับมันไว้ได้ไหมจ๊ะ?";
+				mes "กรุณารอสักครู่นะ";
+				mes "แล้วยายจะทำขนมหวานให้~";
 				delitem 7770,1; //Sweet_rice
 				set lunar_rat,5;
 				close;
 			}
-			mes "Oh, where are all the";
-			mes "Rice Pouches? We need";
-			mes "them to make more rice cakes...";
+			mes "โอ้ Rice Pouch";
+			mes "หายไปไหนหมดนะ? เราต้องใช้";
+			mes "มันเพื่อทำเค้กข้าวเพิ่ม...";
 			close;
 		}
 		else if (countitem(7869) < 1 && lunar_rat <= 2) {
-			mes "Ooh, those white and";
-			mes "blue mouses might have";
-			mes "snatched my Rice Pouches";
-			mes "Those moles probably took";
-			mes "them too. Such nasty little";
-			mes "creatures, aren't they?";
+			mes "โอ้ เจ้าพวกหนูขาวฟ้า";
+			mes "พวกนั้นอาจจะ";
+			mes "ฉก Rice Pouch ของยายไป";
+			mes "เจ้าพวกตัวตุ่นก็น่าจะเอา";
+			mes "ไปด้วยเหมือนกัน ช่างเป็นสัตว์";
+			mes "ที่น่ารำคาญจริงๆ เลยว่าไหม?";
 			close;
 		}
-		mes "Oh, is that one of my";
-		mes "Rice Pouches? I'm sorry,";
-		mes "but the pain my hips..";
-		mes "Would you mind being";
-		mes "a dear, and delivering";
-		mes "that to my son for me?";
+		mes "โอ้ นั่นใช่หนึ่งใน";
+		mes "Rice Pouch ของยายไหม? ขอโทษทีนะ";
+		mes "แต่ยายปวดสะโพกเหลือเกิน..";
+		mes "จะรบกวนไหมจ๊ะ ถ้าจะช่วย";
+		mes "เป็นธุระนำสิ่งนี้ไปส่ง";
+		mes "ให้ลูกชายของยายแทนยายหน่อย?";
 		set lunar_rat,2;
 		close;
 	}
@@ -156,18 +157,18 @@ payon_in01,193,30,4	script	Rice Mill Grandma#rat	78,{
 		// Set the quest accordingly for repeat turn-ins.
 		if (lunar_rat == 3) set lunar_rat,2;
 		else if (lunar_rat == 5) set lunar_rat,4;
-		mes "It's not nearly enough";
-		mes "to repay you for what you've";
-		mes "done for me, but I'd like";
-		mes "you to have this pastry that";
-		mes "I just made. Please enjoy it~";
+		mes "มันอาจจะไม่เพียงพอ";
+		mes "ที่จะตอบแทนสิ่งที่คุณ";
+		mes "ทำให้ยายนะ แต่ยายอยาก";
+		mes "ให้คุณรับขนมหวานชิ้นนี้";
+		mes "ที่ยายเพิ่งทำเสร็จไป ขอให้ทานให้อร่อยนะ~";
 		next;
 		mes "[Rice Mill Grandma]";
-		mes "Thank you for the";
-		mes "Sweet Rice! I'll be";
-		mes "sure to make something";
-		mes "delicious for you if you";
-		mes "bring me more, okay?";
+		mes "ขอบคุณสำหรับ";
+		mes "Sweet Rice นะ! ยายจะ";
+		mes "ทำของอร่อยๆ ไว้ให้";
+		mes "แน่นอนถ้าคุณหามา";
+		mes "ให้ยายเพิ่มอีก โอเคไหม?";
 		close;
 	}
 }
@@ -175,50 +176,50 @@ payon_in01,193,30,4	script	Rice Mill Grandma#rat	78,{
 payon,215,127,4	script	Rice Mill Man#rat	54,{
 	mes "[Rice Mill Man]";
 	if (!lunar_rat) {
-		mes "Breaks my heart...";
-		mes "My mom spends all this";
-		mes "time preparing rice for";
-		mes "the new year, and it's all";
-		mes "stolen by rats and vermin!";
+		mes "มันน่าปวดใจจริงๆ...";
+		mes "แม่ของผมอุตส่าห์ใช้เวลา";
+		mes "ทั้งหมดเตรียมข้าวสำหรับ";
+		mes "วันปีใหม่ แต่กลับถูกพวก";
+		mes "หนูและสัตว์ก่อกวนขโมยไปหมด!";
 		close;
 	}
 	else if (lunar_rat == 1) {
-		mes "I hear from my mother";
-		mes "that you're helping her out.";
-		mes "She's a sweet old lady, huh?";
-		mes "If you find ang Rice Pouches,";
-		mes "you might want to have her";
-		mes "inspect them first.";
+		mes "ผมได้ยินจากแม่มา";
+		mes "ว่าคุณกำลังช่วยเหลือเธออยู่";
+		mes "เธอเป็นคนแก่น่ารักคนนึงเลยใช่ไหมล่ะ?";
+		mes "ถ้าคุณพบ Rice Pouch ล่ะก็";
+		mes "คุณควรจะนำไปให้เธอ";
+		mes "ตรวจสอบดูก่อนนะ";
 		close;
 	}
 	else if (lunar_rat >= 2) {
 		if (countitem(7869) < 1) {
-			mes "If you bring me some";
-			mes "Rice Pouches, then I can";
-			mes "pound into into Sweet Rice.";
-			mes "You're here to help out my";
-			mes "mother, right? Thanks,";
-			mes "I really appreciate that.";
+			mes "ถ้าคุณนำ";
+			mes "Rice Pouch มาให้ผม ผมก็จะสามารถ";
+			mes "ตำมันให้กลายเป็น Sweet Rice ได้";
+			mes "คุณมาที่นี่เพื่อช่วยแม่ของผม";
+			mes "ใช่ไหมล่ะ? ขอบคุณมากครับ";
+			mes "ผมซาบซึ้งจริงๆ";
 			close;
 		}
-		mes "Oh, you brought me some";
-		mes "Rice Pouches from my mother?";
-		mes "Give me a second, and I'll";
-		mes "get this rice pounded into";
-		mes "paste, lickety split.";
+		mes "โอ้ คุณนำ Rice Pouch";
+		mes "จากแม่มาให้ผมงั้นเหรอ?";
+		mes "รอสักครู่นะ แล้วผมจะ";
+		mes "ตำข้าวพวกนี้ให้กลายเป็น";
+		mes "แป้งเปียกในพริบตาเลย";
 		next;
 		mes "[Rice Mill Man]";
-		mes "Hoo! Haa! Hi-yah!";
-		mes "Woosha! Whoosha!";
-		mes "Ka-taaaaaaaaaa!";
-		mes "WOOOSHA!";
+		mes "ฮู่! ฮ่า! ฮิ-ย่า!";
+		mes "วู้วช่า! วู้วช่า!";
+		mes "คา-ตาาาาาาาาาา!";
+		mes "วู้ววววช่า!";
 		next;
 		mes "[Rice Mill Man]";
-		mes "All done. Here, this";
-		mes "Sweet Rice is ready to";
-		mes "be made into pastries";
-		mes "Would you please bring";
-		mes "this to my mother?";
+		mes "เสร็จเรียบร้อย นี่ครับ";
+		mes "Sweet Rice พร้อมสำหรับ";
+		mes "การนำไปทำขนมหวานแล้ว";
+		mes "รบกวนคุณช่วยนำสิ่งนี้";
+		mes "กลับไปให้แม่ของผมหน่อยได้ไหม?";
 		delitem 7869,1; //Rice_Pouch
 		getitem 7770,1; //Sweet_Rice
 		close;
@@ -229,55 +230,55 @@ payon,215,127,4	script	Rice Mill Man#rat	54,{
 payon,126,113,4	script	Miss Lunar#rat	719,{
 	mes "[Lunar]";
 	if ((MaxWeight-Weight) < 3000 || checkweight(1201,1) == 0) {
-		mes "Oh, I'm sorry, but we";
-		mes "can't do any business if";
-		mes "you're carry so much stuff.";
-		mes "Would you mind storing some of";
-		mes "your things with the Kafra Service?";
+		mes "โอ้ ขอโทษด้วยนะคะ แต่เรา";
+		mes "คงทำธุรกิจกันไม่ได้ถ้า";
+		mes "คุณแบกของหนักพะรุงพะรังขนาดนี้";
+		mes "จะรบกวนไหมถ้าจะช่วยฝากของ";
+		mes "บางส่วนไว้กับบริการ Kafra ก่อน?";
 		close;
 	}
 	if (lunar_rat < 4) {
-		mes "I want to earn enough";
-		mes "money to buy that big";
-		mes "crescent silver pin.";
-		mes "I have to sell as much";
-		mes "of this Mojji as I can!";
+		mes "ฉันต้องการหาเงิน";
+		mes "ให้มากพอที่จะซื้อ";
+		mes "ปิ่นปักผมเงินรูปพระจันทร์เสี้ยว";
+		mes "ฉันต้องขาย Mojji";
+		mes "พวกนี้ให้ได้มากที่สุดเท่าที่จะทำได้!";
 		close;
 	}
 	else if (lunar_rat >= 4) {
-		mes "Oh, hello! I'm selling";
-		mes "special rice cakes made";
-		mes "from sweet rice. You can";
-		mes "eat it yourself, or feed it";
-		mes "to your New Year Doll if";
-		mes "you have one as a pet.";
+		mes "โอ้ สวัสดีค่ะ! ฉันกำลังขาย";
+		mes "เค้กข้าวสูตรพิเศษที่ทำ";
+		mes "มาจากข้าวหวาน คุณสามารถ";
+		mes "ทานเองก็ได้ หรือจะเอาไปเลี้ยง";
+		mes "New Year Doll ของคุณก็ได้";
+		mes "ถ้าคุณเลี้ยงมันไว้เป็นสัตว์เลี้ยงน่ะนะ";
 		next;
 		mes "[Lunar]";
-		mes "Anyway, I'm selling";
-		mes "10 Mojji for 3,000 zeny";
-		mes "Would you like to try some?";
+		mes "ยังไงก็ตาม ฉันขาย";
+		mes "Mojji 10 ชิ้น ในราคา 3,000 zeny";
+		mes "สนใจอยากจะลองรับไปบ้างไหมคะ?";
 		next;
-		if (select("Yes:No") == 1) {
+		if (select("ซื้อ:ไม่ล่ะ") == 1) {
 			if (Zeny >= 3000) {
 				set Zeny,Zeny-3000;
 				getitem 554,10; // Mojji
 				mes "[Lunar]";
-				mes "Thank you, and I hope you";
-				mes "have a happy new year!";
-				mes "Please come again~";
+				mes "ขอบคุณค่ะ และฉันขอให้คุณ";
+				mes "มีความสุขในวันปีใหม่นะคะ!";
+				mes "ไว้วันหลังมาอุดหนุนใหม่นะ~";
 				close;
 			}
 			mes "[Lunar]";
-			mes "Oh, I'm sorry, but you";
-			mes "don't have enough";
-			mes "zeny right now....";
+			mes "โอ้ ขอโทษด้วยนะคะ ดูเหมือน";
+			mes "คุณจะมี zeny ไม่เพียงพอ";
+			mes "ในตอนนี้....";
 			close;
 		}
 		mes "[Lunar]";
-		mes "Oh, alright. Well, I'll";
-		mes "be here if you or your";
-		mes "friends want some Mojji";
-		mes "later, alight? Goodbye~";
+		mes "โอ้ ไม่เป็นไรค่ะ ยังไง";
+		mes "ฉันจะอยู่ตรงนี้ถ้าคุณหรือ";
+		mes "เพื่อนของคุณอยากได้ Mojji";
+		mes "ในภายหลัง โอเคไหมคะ? ลาก่อนค่ะ~";
 		close;
 	}
 }

@@ -37,7 +37,7 @@ function	script	F_GuildBreak	{
 
 	killmonsterall .@map$;
 
-	Announce "Guild Base [" + GetCastleName(.@map$) + "] has been abandoned.",0;
+	Announce "ฐานที่ตั้งกิลด์ [" + GetCastleName(.@map$) + "] ได้ถูกละทิ้งแล้ว",0;
 	disablenpc "Kafra Staff#"+.@castle$;
 
 	SetCastleData .@map$,0,0;
@@ -61,17 +61,19 @@ function	script	F_AgitBreak	{
 	SetCastleData .@map$, 3, .@Defence;
 
 	SetCastleData .@map$,1, .@GID;
-	MapAnnounce .@map$,"The emperium has been destroyed.",bc_map,0x00CCFF;
-	Announce "The [" + GetCastleName(.@map$) + "] castle has been conquered by the [" + GetGuildName(.@GID) + "] guild.",bc_all;
+	MapAnnounce .@map$,"Emperium ได้ถูกทำลายลงแล้ว",bc_map,0x00CCFF;
+	Announce "ปราสาท [" + GetCastleName(.@map$) + "] ได้ถูกยึดครองโดยกิลด์ [" + GetGuildName(.@GID) + "] แล้ว",bc_all;
 	donpcevent "::OnRecvCastle"+.@castle$;
 
 	disablenpc "Kafra Staff#"+.@castle$;
 
 	// remove investment data and kafra
+	// ลบข้อมูลการลงทุนและคาฟรา
 	for( set .@i, 4; .@i <= 9; set .@i, .@i+1 )
 		SetCastleData .@map$, .@i, 0;
 
 	// if the new guild doesn't have Guardian Research, erase guardians
+	// หากกิลด์ใหม่ไม่มีทักษะ Guardian Research ให้ลบข้อมูล Guardian ออก
 	if( getgdskilllv(.@GID,10002) == 0 )
 		for( set .@i, 10; .@i <= 17; set .@i, .@i+1 )
 			SetCastleData .@map$, .@i, 0;

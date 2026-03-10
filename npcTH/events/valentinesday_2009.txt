@@ -27,116 +27,116 @@
 //============================================================
 prontera,164,174,4	script	Trader#Val09	58,{
 	mes "[Marco Bassinio]";
-	mes "Hey, folks! Here's something you don't see everyday!";
-	mes "Something you can never find in Rune-Midgarts!";
-	mes "Something that makes you happy with just one bite!";
+	mes "เฮ้ ทุกคน! นี่คือสิ่งที่คุณไม่ได้เห็นกันทุกวันนะ!";
+	mes "บางสิ่งที่เจ้าจะไม่มีวันหาได้ใน Rune-Midgarts!";
+	mes "บางสิ่งที่ทำให้เจ้ามีความสุขได้เพียงแค่กัดคำเดียว!";
 	next;
 	mes "[Marco Bassinio]";
-	mes "It's the perfect dessert and the perfect gift for loved ones.";
-	mes "High-quality, traditional homemade chocolate only 5000z each!";
+	mes "มันคือขนมหวานที่สมบูรณ์แบบและเป็นของขวัญที่ยอดเยี่ยมสำหรับคนที่เจ้ารัก";
+	mes "ช็อกโกแลตโฮมเมดแบบดั้งเดิมคุณภาพสูง ราคาเพียงชิ้นละ 5000z เท่านั้น!";
 	next;
-	switch(select("I'll take it, please!:I want to wrap the chocolate!:End trading.")) {
+	switch(select("ตกลง ฉันขอซื้อหน่อย!:ฉันอยากห่อช็อกโกแลต!:จบการค้าขาย")) {
 		case 1:
 			mes "[Marco Bassinio]";
-			mes "Ahaha, my dear.";
-			mes "This chocolate is nothing like others.";
-			mes "Every piece bears the devotion of the person who made it!";
+			mes "อาฮะฮ่า พ่อหนุ่ม/แม่สาวน้อย";
+			mes "ช็อกโกแลตนี้ไม่เหมือนของคนอื่นหรอกนะ";
+			mes "ทุกๆ ชิ้นแฝงไปด้วยความทุ่มเทของผู้ที่ทำมันขึ้นมา!";
 			next;
 			mes "[Marco Bassinio]";
-			mes "So, that's why I can't sell more than 5 of them at a time.";
-			mes "If you really really want more, then talk to me again.";
-			mes "How many do you want anyway?";
+			mes "นั่นแหละคือเหตุผลที่ข้าขายให้ได้ไม่เกิน 5 ชิ้นต่อครั้ง";
+			mes "ถ้าเจ้าต้องการมากกว่านั้นจริงๆ ละก็ ค่อยมาคุยกับข้าใหม่";
+			mes "ว่าแต่เจ้าต้องการกี่ชิ้นล่ะ?";
 			next;
 			while(.@input <= 0 || .@input > 5) {
 				input .@input;
 				if (.@input < 1) {
 					mes "[Marco Bassinio]";
-					mes "Oh, it's such a shame!";
-					mes "I'm sure you'll miss this opportunity and regret you didn't buy it.";
+					mes "โอ้ ช่างน่าเสียดายจริงๆ!";
+					mes "ข้ามั่นใจว่าเจ้าจะพลาดโอกาสนี้และต้องเสียใจที่ไม่ได้ซื้อซื้อมันไป";
 					next;
 					mes "[Marco Bassinio]";
-					mes "Remember, you can never find this anywhere else!";
-					mes "Come back anytime, when you change your mind.";
+					mes "จำไว้นะ เจ้าจะไม่มีวันหาของแบบนี้จากที่ไหนได้อีก!";
+					mes "กลับมาได้ทุกเมื่อที่เจ้าเปลี่ยนใจนะ";
 					close;
 				}
 				if (.@input > 5) {
 					mes "[Marco Bassinio]";
-					mes "Ugh.. Didn't I tell you?";
-					mes "5 is the maximum!";
-					mes "I can't sell more than that to the same person.";
+					mes "เห้อ.. ข้าไม่ได้บอกเจ้าเหรอ?";
+					mes "สูงสุดคือ 5 ชิ้น!";
+					mes "ข้าขายให้คนเดิมมากกว่านั้นไม่ได้หรอก";
 					next;
 					mes "[Marco Bassinio]";
-					mes "And you know it's not like an everyday meal.";
-					mes "Eating too much is not really good for you.";
+					mes "และเจ้าก็รู้นี่ว่ามันไม่ใช่อาหารมื้อหลักที่กินได้ทุกวัน";
+					mes "กินมากเกินไปมันไม่ค่อยดีต่อตัวเจ้าหรอกนะ";
 					next;
 				}
 			}
 			if (!checkweight(558, .@input)) {
 				mes "[Marco Bassinio]";
-				mes "You're carrying too many items.";
-				mes "Please use the Kafra Services.";
+				mes "เจ้าน้ำหนักตัวเกิน หรือถือไอเทมมากเกินไปแล้ว";
+				mes "กรุณาไปใช้บริการฝากของที่ Kafra ก่อนนะ";
 				close;
 			}
 			set .@price, .@input * 5000;
 			if (Zeny < .@price) {
 				mes "[Marco Bassinio]";
-				mes "Looks like you don't have enough zeny with ya.";
-				mes "Maybe you should borrow some zeny from a friend.";
-				mes "Cuz, I'm not gonna be here everyday.";
+				mes "ดูเหมือนเจ้าจะมี Zeny ไม่พอนะ";
+				mes "บางทีเจ้าควรไปขอยืมเพื่อนมาสักหน่อย";
+				mes "เพราะข้าไม่ได้จะอยู่ที่นี่ทุกวันหรอกนะ";
 				close;
 			} else {
 				mes "[Marco Bassinio]";
-				mes "Good for you!";
-				mes "It's also perfect as a gift!";
-				mes "You know you can't get this kind of chocolate normally.";
+				mes "ดีมากสำหรับเจ้า!";
+				mes "มันเหมาะจะเป็นของขวัญที่สุดเลย!";
+				mes "เจ้ารู้อยู่แล้วว่าปกติจะหาช็อกโกแลตแบบนี้ไม่ได้ง่ายๆ";
 				next;
 				mes "[Marco Bassinio]";
-				mes "If you want more, you should come back.";
-				mes "Might be a good idea to buy some more while you have a chance...!";
+				mes "ถ้าต้องการเพิ่มอีก ก็กลับมาหาข้าใหม่นะ";
+				mes "มันอาจจะเป็นความคิดที่ดีนะที่จะซื้อเก็บไว้เพิ่มในขณะที่ยังมีโอกาส...!";
 				set Zeny,Zeny - .@price;
 				getitem 558,.@input;
 				close;
 			}
 		case 2:
 			mes "[Marco Bassinio]";
-			mes "If you want to gift-wrap the chocolate, of course, you need chocolate, plus, wrapping paper, wrapping strap and a box.";
+			mes "ถ้าเจ้าต้องการห่อของขวัญช็อกโกแลต แน่นอนว่าเจ้าต้องมีช็อกโกแลต และเพิ่มด้วยกระดาษห่อของขวัญ, โบว์ และกล่อง";
 			next;
 			mes "[Marco Bassinio]";
-			mes "You also need to pay 500 zeny to carve your name on the box.";
-			mes "Are you all prepared...?";
+			mes "เจ้ายังต้องจ่าย 500 zeny เพื่อสลักชื่อของเจ้าลงบนกล่องด้วยนะ";
+			mes "เจ้าเตรียมตัวพร้อมหรือยัง...?";
 			next;
 			if (countitem(7175) < 1 || countitem(7174) < 1 || countitem(7948) < 1 || Zeny < 500) {
 				mes "[Marco Bassinio]";
-				mes "Hmm.. Looks like you don't have enough materials to decorate the gift box..";
-				mes "You can't just put your gift into some plain looking box..";
-				mes "Don't you think?";
+				mes "หืม.. ดูเหมือนเจ้าจะไม่มีวัตถุดิบพอที่จะตกแต่งกล่องของขวัญนะ..";
+				mes "เจ้าจะเอาของขวัญใส่ลงในกล่องเปล่าๆ หน้าตาธรรมดาๆ ไม่ได้หรอก..";
+				mes "เจ้าไม่คิดงั้นเหรอ?";
 				next;
 				mes "[Marco Bassinio]";
-				mes "You need to bring some wrapping paper, wrapping strap, and a box.";
-				mes "Oh, also bring 500 zeny, and don't forget to bring your true loving heart with you!!";
+				mes "เจ้าต้องไปหากระดาษห่อของขวัญ, โบว์ และกล่องมา";
+				mes "อ้อ แล้วก็พกมา 500 zeny ด้วย และอย่าลืมพกหัวใจที่เปี่ยมไปด้วยความรักมาด้วยล่ะ!!";
 				close;
 			}
 			if (countitem(558) < 1) {
 				mes "[Marco Bassinio]";
-				mes "Hey, look, adventurer!";
-				mes "I can't create something right away!";
-				mes "You know I'm not an alchemist or anything.";
+				mes "เฮ้ ฟังนะนักผจญภัย!";
+				mes "ข้าเสกของขึ้นมาทันทีไม่ได้หรอกนะ!";
+				mes "เจ้ารู้นี่ว่าข้าไม่ใช่นักเล่นแร่แปรธาตุหรืออะไรทำนองนั้น";
 				next;
 				mes "[Marco Bassinio]";
-				mes "You're not saying that you want an empty chocolate box without any chocolate in it, am I right?";
+				mes "เจ้าคงไม่ได้กำลังจะบอกว่าเจ้าต้องการกล่องเปล่าที่ไม่มีช็อกโกแลตอยู่ข้างในหรอกนะ ใช่ไหม?";
 				close;
 			}
 			if (!checkweight(12744,1)) {
 				mes "[Marco Bassinio]";
-				mes "You're carrying too many items.";
-				mes "Please use the Kafra Services.";
+				mes "เจ้าน้ำหนักตัวเกิน หรือถือไอเทมมากเกินไปแล้ว";
+				mes "กรุณาไปใช้บริการฝากของที่ Kafra ก่อนนะ";
 				close;
 			}
 			mes "[Marco Bassinio]";
-			mes "Here, look!";
-			mes "It's your chocolate box with your name on it.";
-			mes "Isn't it fabulous?";
-			mes "See, your name looks great on the box!";
+			mes "นี่ ดูสิ!";
+			mes "นี่คือกล่องช็อกโกแลตที่มีชื่อของเจ้าสลักอยู่";
+			mes "มันดูวิเศษไปเลยใช่ไหมล่ะ?";
+			mes "ดูสิ ชื่อของเจ้าดูดีมากเลยบนกล่องใบนี้!";
 			next;
 			delitem 558,1;
 			delitem 7175,1;
@@ -145,17 +145,17 @@ prontera,164,174,4	script	Trader#Val09	58,{
 			set Zeny,Zeny-500;
 			getnameditem 12744,strcharinfo(0);
 			mes "[Marco Bassinio]";
-			mes "Happy Valentine's Day!";
-			mes "Valentine's the reason I came back.";
+			mes "สุขสันต์วันวาเลนไทน์!";
+			mes "วันวาเลนไทน์คือเหตุผลที่ข้ากลับมาที่นี่";
 			close;
 		case 3:
 			mes "[Marco Bassinio]";
-			mes "Oh, it's such a shame!";
-			mes "I'm sure you'll miss this opportunity and regret you didn't buy it.";
+			mes "โอ้ ช่างน่าเสียดายจริงๆ!";
+			mes "ข้ามั่นใจว่าเจ้าจะพลาดโอกาสนี้และต้องเสียใจที่ไม่ได้ซื้อซื้อมันไป";
 			next;
 			mes "[Marco Bassinio]";
-			mes "Remember, you can never find this anywhere else!";
-			mes "Come back anytime, when you change your mind.";
+			mes "จำไว้นะ เจ้าจะไม่มีวันหาของแบบนี้จากที่ไหนได้อีก!";
+			mes "กลับมาได้ทุกเมื่อที่เจ้าเปลี่ยนใจนะ";
 			close;
 	}
 }
@@ -164,50 +164,50 @@ prontera,164,174,4	script	Trader#Val09	58,{
 //============================================================
 prontera,147,171,5	script	Packs Trader#Val09	58,{
 	mes "[Packs Trader]";
-	mes "Hello.";
-	mes "I am a Packs Trader, I sell paper boxes and supplies for packing presents.";
+	mes "สวัสดี";
+	mes "ข้าคือ Packs Trader ข้าขายกล่องกระดาษและอุปกรณ์สำหรับการห่อของขวัญ";
 	next;
 	while(1) {
 		mes "[Packs Trader]";
-		mes "Do you have something to buy?";
+		mes "เจ้ามีอะไรที่ต้องการซื้อไหม?";
 		next;
-		switch(select("Packing Paper:Packing Ribbon:Box:Cancel.")) {
+		switch(select("กระดาษห่อของขวัญ:ริบบิ้นห่อของขวัญ:กล่อง:ยกเลิก")) {
 			case 1:
 				mes "[Packs Trader]";
-				mes "It's 200 zeny for 1 Packing Paper.";
-				mes "How many do you want?";
-				mes "You can't buy more than 10 items at once.";
+				mes "ราคากระดาษห่อของขวัญ 1 แผ่น คือ 200 zeny";
+				mes "เจ้าต้องการกี่แผ่นล่ะ?";
+				mes "เจ้าซื้อได้ไม่เกินครั้งละ 10 ชิ้นนะ";
 				next;
 				input .@input;
 				if (.@input <= 0) {
 					mes "[Packs Trader]";
-					mes "Nothing to buy.";
-					mes "Come back when you need something.";
+					mes "ไม่มีอะไรจะซื้อสินะ";
+					mes "กลับมาใหม่เมื่อเจ้าต้องการอะไรบางอย่างล่ะ";
 					close;
 				}
 				if (.@input > 10) {
 					mes "[Packs Trader]";
-					mes "I told you not to buy more than 10...";
+					mes "ข้าบอกแล้วไงว่าอย่าซื้อเกิน 10 ชิ้น...";
 					next;
 					break;
 				}
 				if (!checkweight(7175,.@input)) {
 					mes "[Packs Trader]";
-					mes "You're carrying too many items.";
-					mes "Please use the Kafra Services.";
+					mes "เจ้าน้ำหนักตัวเกิน หรือถือไอเทมมากเกินไปแล้ว";
+					mes "กรุณาไปใช้บริการฝากของที่ Kafra ก่อนนะ";
 					close;
 				}
 				set .@price, .@input * 200;
 				if (Zeny < .@price) {
 					mes "[Packs Trader]";
-					mes "You don't have enough money.";
-					mes "Please check your wallet.";
+					mes "เจ้ามีเงินไม่พอนะ";
+					mes "กรุณาตรวจสอบกระเป๋าสตางค์ของเจ้าด้วย";
 					next;
 					break;
 				} else {
 					mes "[Packs Trader]";
-					mes "Here they are.";
-					mes "Hope it makes your Valentine's Day more pleasing!";
+					mes "นี่คือของที่เจ้าสั่ง";
+					mes "หวังว่ามันจะทำให้วันวาเลนไทน์ของเจ้าน่าพึงพอใจยิ่งขึ้นนะ!";
 					set Zeny,Zeny-.@price;
 					getitem 7175,.@input;
 					next;
@@ -215,40 +215,40 @@ prontera,147,171,5	script	Packs Trader#Val09	58,{
 				}
 			case 2:
 				mes "[Packs Trader]";
-				mes "It's 200 zeny for 1 Packing Ribbon.";
-				mes "How many do you want?";
-				mes "You can't buy more than 10 items at once.";
+				mes "ราคาริบบิ้นห่อของขวัญ 1 เส้น คือ 200 zeny";
+				mes "เจ้าต้องการกี่เส้นล่ะ?";
+				mes "เจ้าซื้อได้ไม่เกินครั้งละ 10 ชิ้นนะ";
 				next;
 				input .@input;
 				if (.@input <= 0) {
 					mes "[Packs Trader]";
-					mes "Nothing to buy.";
-					mes "Come back when you need something.";
+					mes "ไม่มีอะไรจะซื้อสินะ";
+					mes "กลับมาใหม่เมื่อเจ้าต้องการอะไรบางอย่างล่ะ";
 					close;
 				}
 				if (.@input > 10) {
 					mes "[Packs Trader]";
-					mes "I told you not to buy more than 10...";
+					mes "ข้าบอกแล้วไงว่าอย่าซื้อเกิน 10 ชิ้น...";
 					next;
 					break;
 				}
 				if (!checkweight(7174,.@input)) {
 					mes "[Packs Trader]";
-					mes "You're carrying too many items.";
-					mes "Please use the Kafra Services.";
+					mes "เจ้าน้ำหนักตัวเกิน หรือถือไอเทมมากเกินไปแล้ว";
+					mes "กรุณาไปใช้บริการฝากของที่ Kafra ก่อนนะ";
 					close;
 				}
 				set .@price, .@input * 200;
 				if (Zeny < .@price) {
 					mes "[Packs Trader]";
-					mes "You don't have enough money.";
-					mes "Please check your wallet.";
+					mes "เจ้ามีเงินไม่พอนะ";
+					mes "กรุณาตรวจสอบกระเป๋าสตางค์ของเจ้าด้วย";
 					next;
 					break;
 				} else {
 					mes "[Packs Trader]";
-					mes "Here they are.";
-					mes "Hope it makes your Valentine's Day more pleasing!";
+					mes "นี่คือของที่เจ้าสั่ง";
+					mes "หวังว่ามันจะทำให้วันวาเลนไทน์ของเจ้าน่าพึงพอใจยิ่งขึ้นนะ!";
 					set Zeny,Zeny-.@price;
 					getitem 7174,.@input;
 					next;
@@ -256,40 +256,40 @@ prontera,147,171,5	script	Packs Trader#Val09	58,{
 				}
 			case 3:
 				mes "[Packs Trader]";
-				mes "It's 600 zeny for 1 Box.";
-				mes "How many do you want?";
-				mes "You can't buy more than 10 items at once.";
+				mes "ราคากล่อง 1 ใบ คือ 600 zeny";
+				mes "เจ้าต้องการกี่ใบดีล่ะ?";
+				mes "เจ้าซื้อได้ไม่เกินครั้งละ 10 ชิ้นนะ";
 				next;
 				input .@input;
 				if (.@input <= 0) {
 					mes "[Packs Trader]";
-					mes "Nothing to buy.";
-					mes "Come back when you need something.";
+					mes "ไม่มีอะไรจะซื้อสินะ";
+					mes "กลับมาใหม่เมื่อเจ้าต้องการอะไรบางอย่างล่ะ";
 					close;
 				}
 				if (.@input > 10) {
 					mes "[Packs Trader]";
-					mes "I told you not to buy more than 10...";
+					mes "ข้าบอกแล้วไงว่าอย่าซื้อเกิน 10 ชิ้น...";
 					next;
 					break;
 				}
 				if (!checkweight(7948,.@input)) {
 					mes "[Packs Trader]";
-					mes "You're carrying too many items.";
-					mes "Please use the Kafra Services.";
+					mes "เจ้าน้ำหนักตัวเกิน หรือถือไอเทมมากเกินไปแล้ว";
+					mes "กรุณาไปใช้บริการฝากของที่ Kafra ก่อนนะ";
 					close;
 				}
 				set .@price, .@input * 600;
 				if (Zeny < .@price) {
 					mes "[Packs Trader]";
-					mes "You don't have enough money.";
-					mes "Please check your wallet.";
+					mes "เจ้ามีเงินไม่พอนะ";
+					mes "กรุณาตรวจสอบกระเป๋าสตางค์ของเจ้าด้วย";
 					next;
 					break;
 				} else {
 					mes "[Packs Trader]";
-					mes "Here they are.";
-					mes "Hope it makes your Valentine's Day more pleasing!";
+					mes "นี่คือของที่เจ้าสั่ง";
+					mes "หวังว่ามันจะทำให้วันวาเลนไทน์ของเจ้าน่าพึงพอใจยิ่งขึ้นนะ!";
 					set Zeny,Zeny-.@price;
 					getitem 7948,.@input;
 					next;
@@ -297,8 +297,8 @@ prontera,147,171,5	script	Packs Trader#Val09	58,{
 				}
 			case 4:
 				mes "[Packs Trader]";
-				mes "Goodbye!";
-				mes "And enjoy your Valentine's Day.";
+				mes "ลาก่อน!";
+				mes "และขอให้สนุกกับวันวาเลนไทน์ของเจ้านะ";
 				close;
 		}
 	}
@@ -309,71 +309,71 @@ prontera,147,171,5	script	Packs Trader#Val09	58,{
 prontera,154,185,5	script	Event Ring Maker#Val09	721,{
 	if (BaseLevel < 75) {
 		mes "[Event Ring Maker]";
-		mes "Hello, I only make the Valentine rings to those experienced adventurer Level 75 or above.";
+		mes "สวัสดี ข้าจะทำแหวนวาเลนไทน์ให้เฉพาะนักผจญภัยที่มีประสบการณ์เลเวล 75 ขึ้นไปเท่านั้น";
 		next;
 		mes "[Event Ring Maker]";
-		mes "You're not fully experienced yet.";
-		mes "Come back when you're experienced enough to handle the quests.";
+		mes "เจ้ายังไม่มีประสบการณ์เพียงพอ";
+		mes "กลับมาใหม่เมื่อเจ้าแข็งแกร่งพอที่จะรับภารกิจนี้ได้แล้วนะ";
 		close;
 	}
 	
 	if (iROval09ring >= 1) {
 		mes "[Event Ring Maker]";
-		mes "The box with the ring, carved with your name, is for the one you love.";
+		mes "กล่องที่มีแหวนซึ่งสลักชื่อของเจ้าเอาไว้นั้น มีไว้สำหรับคนที่เจ้ารัก";
 		next;
 		mes "[Event Ring Maker]";
-		mes "As for the rings that you receive from others, they should all be registered with the Vote Manager.";
-		mes "She is standing near the Prontera Fountain.";
+		mes "ส่วนแหวนที่เจ้าได้รับจากคนอื่น ควรจะนำไปลงทะเบียนกับ Vote Manager นะ";
+		mes "นางยืนอยู่แถวๆ น้ำพุเมือง Prontera น่ะ";
 		next;
 		mes "[Event Ring Maker]";
-		mes "Only the most popular male and female are subjected to getting rewards.";
-		mes "Be aware, and always try to stay popular!";
+		mes "เฉพาะชายและหญิงที่ได้รับความนิยมสูงสุดเท่านั้นที่จะได้รับรางวัล";
+		mes "จงเตรียมตัวไว้ และพยายามรักษาความนิยมเอาไว้ให้ได้ล่ะ!";
 		close;
 	}
 	
 	mes "[Event Ring Maker]";
-	mes "Hi, there, how are ya?";
-	mes "Come to me if you're interested in the event, 'Who's Valentine's Hottest?'";
+	mes "ไง พ่อหนุ่ม/แม่สาวน้อย เป็นยังไงบ้างล่ะ?";
+	mes "มาหาข้าถ้าเจ้าสนใจในกิจกรรม 'Who's Valentine's Hottest?' นะ";
 	next;
 	mes "[Event Ring Maker]";
-	mes "I make the most precious rings that you can give to your sweethearts.";
-	mes "Those rings are very special because I carve your names on them!";
+	mes "ข้าทำแหวนที่ล้ำค่าที่สุดที่เจ้าจะสามารถมอบให้กับคนรักของเจ้าได้";
+	mes "แหวนพวกนี้พิเศษมาก เพราะข้าจะสลักชื่อของเจ้าลงไปบนนั้นด้วย!";
 	next;
 	mes "[Event Ring Maker]";
-	mes "Isn't it exciting?";
-	mes "Isn't it such a brilliant idea?";
-	mes "Give these special rings to your sweethearts!";
+	mes "มันน่าตื่นเต้นใช่ไหมล่ะ?";
+	mes "มันเป็นความคิดที่ยอดเยี่ยมไปเลยใช่ไหม?";
+	mes "จงมอบแหวนสุดพิเศษนี้ให้กับคนรักของเจ้าซะ!";
 	next;
 	mes "[Event Ring Maker]";
-	mes "You should hurry 'cuz this event will only last for two weeks.";
-	mes "Give that special someone a gift of a Valentine's ring.";
+	mes "เจ้าควรจะรีบหน่อยนะ เพราะกิจกรรมนี้จะมีแค่สองสัปดาห์เท่านั้น";
+	mes "มอบของขวัญเป็นแหวนวาเลนไทน์ให้คนพิเศษคนนั้นสิ";
 	next;
 	mes "[Event Ring Maker]";
-	mes "Remember, you can only generate the ring once.";
-	mes "You also need Wrapping Paper, Wrapping Strap and a Box to make the ring.";
+	mes "จำไว้ว่า เจ้าทำแหวนนี้ได้เพียงแค่ 'ครั้งเดียว' เท่านั้น";
+	mes "เจ้ายังต้องใช้กระดาษห่อของขวัญ, โบว์ และกล่องในการทำแหวนด้วยนะ";
 	next;
 	mes "[Event Ring Maker]";
-	mes "So you better be sure of who you give this to.";
-	mes "By the way, It costs 1,000 zeny.";
-	mes "Would you like to make one?";
+	mes "ดังนั้นเจ้าควรจะแน่ใจก่อนว่าเจ้าจะมอบสิ่งนี้ให้ใคร";
+	mes "อ้อ อีกอย่าง มันมีค่าธรรมเนียม 1,000 zeny นะ";
+	mes "เจ้าอยากจะทำสักวงไหมล่ะ?";
 	next;
-	if(select("Hmm.. I gotta give it a second thought...:Sure.") == 1) {
+	if(select("หืม.. ข้าขอคิดดูอีกทีนะ...:แน่นอน") == 1) {
 		mes "[Event Ring Maker]";
-		mes "Alrighty!";
-		mes "You can't put a rush on such a thing like this.";
-		mes "Think about what you truly want.";
-		mes "Just follow your heart!";
+		mes "ตกลง!";
+		mes "เจ้าจะไปเร่งรีบกับเรื่องแบบนี้ไม่ได้หรอกนะ";
+		mes "ลองคิดดูว่าเจ้าต้องการอะไรจริงๆ";
+		mes "แค่ทำตามหัวใจของเจ้าก็พอ!";
 		close;
 	}
 	if (countitem(7175) < 1 || countitem(7174) < 1 || countitem(7948) < 1 || Zeny < 1000) {
 		mes "[Event Ring Maker]";
-		mes "Well, you don't have enough materials to make a gift box.";
-		mes "Check what you have, and come back later with all the materials.";
+		mes "เอ่อ เจ้ามีวัตถุดิบไม่พอที่จะทำกล่องของขวัญนะ";
+		mes "ตรวจสอบของที่เจ้ามี แล้วค่อยกลับมาใหม่พร้อมวัตถุดิบให้ครบนะ";
 		close;
 	}
 	mes "[Event Ring Maker]";
-	mes "Okie Dokie!";
-	mes "I'll make it right away.";
+	mes "โอเค ได้เลย!";
+	mes "ข้าจะทำให้เดี๋ยวนี้แหละ";
 	next;
 	delitem 7175,1;
 	delitem 7174,1;
@@ -386,15 +386,15 @@ prontera,154,185,5	script	Event Ring Maker#Val09	721,{
 		getnameditem 12743,strcharinfo(0);
 	}
 	mes "[Event Ring Maker]";
-	mes "Here, the most precious ring in the world!";
-	mes "Don't forget, you can never make this ring again.";
+	mes "นี่ไง แหวนที่ล้ำค่าที่สุดในโลก!";
+	mes "อย่าลืมล่ะ เจ้าจะไม่สามารถทำแหวนนี้ได้อีกเป็นครั้งที่สอง";
 	next;
 	mes "[Event Ring Maker]";
-	mes "You must pick out the one that you really really love, and give this ring to that person.";
+	mes "เจ้าต้องเลือกคนที่เจ้ารักจริงๆ แล้วมอบแหวนวงนี้ให้เขาคนนั้นนะ";
 	next;
 	mes "[Event Ring Maker]";
-	mes "Of course, you've got to get rings from others, that's the way you can participate in the voting, right?";
-	mes "Challenge yourself to become Valentine's Hottest!";
+	mes "และแน่นอน เจ้าต้องได้รับแหวนจากคนอื่นด้วย นั่นคือวิธีที่เจ้าจะเข้าร่วมการโหวตได้ เข้าใจไหม?";
+	mes "ท้าทายตัวเองเพื่อเป็น Valentine's Hottest ให้ได้ล่ะ!";
 	close;
 }
 
@@ -402,38 +402,38 @@ prontera,154,185,5	script	Event Ring Maker#Val09	721,{
 //============================================================
 prontera,157,185,4	script	Valentine Vote Manager#v	113,{
 	mes "[Valentine Vote Manager]";
-	mes "Hello, I'm the Valentine's Vote Manager.";
-	mes "I'm in charge of collecting rings for this event!";
+	mes "สวัสดี ฉันคือผู้จัดการการโหวตวาเลนไทน์";
+	mes "ฉันมีหน้าที่รวบรวมแหวนสำหรับกิจกรรมนี้ค่ะ!";
 	next;
 	mes "[Valentine Vote Manager]";
-	mes "I register the rings you get from others and I calculate the total number of rings.";
+	mes "ฉันจะลงทะเบียนแหวนที่คุณได้รับจากคนอื่น และฉันจะคำนวณจำนวนแหวนทั้งหมดให้ค่ะ";
 	next;
 	mes "[Valentine Vote Manager]";
-	mes "You know what I do besides just counting those rings?";
-	mes "I can tell you the adventurer's name who's got the most number of votes.";
+	mes "คุณรู้ไหมว่าฉันทำอะไรได้อีกนอกจากการนับแหวนพวกนี้?";
+	mes "ฉันสามารถบอกชื่อนักผจญภัยที่ได้รับคะแนนโหวตมากที่สุดให้คุณทราบได้ด้วยนะคะ";
 	next;
 	mes "[Valentine Vote Manager]";
-	mes "Plus, you can also find out how many votes he/she got.";
+	mes "แถมคุณยังตรวจสอบได้ด้วยว่าเขาหรือเธอคนนั้นได้คะแนนโหวตไปเท่าไหร่แล้ว";
 	next;
 	while (1) {
 		mes "[Valentine Vote Manager]";
-		mes "So, what do you want?";
+		mes "เอาล่ะ คุณต้องการอะไรคะ?";
 		next;
-		switch(select("Please register my rings.:Please count my votes.:Nothing, for now.")) {
+		switch(select("ช่วยลงทะเบียนแหวนให้ฉันหน่อย:ช่วยนับคะแนนโหวตให้ฉันที:ตอนนี้ยังไม่มีอะไร")) {
 			case 1:
 				mes "[Valentine Vote Manager]";
-				mes "Please tell me how many rings you want to register.";
+				mes "โปรดบอกฉันว่าคุณต้องการลงทะเบียนกี่วงคะ";
 				next;
 				mes "[Valentine Vote Manager]";
-				mes "When you write the number of the rings, the number shouldn't be larger than the number of rings you actually have.";
-				mes "'0', cancels everything.";
+				mes "เมื่อคุณระบุจำนวนแหวน จำนวนนั้นต้องไม่มากกว่าจำนวนแหวนที่คุณมีอยู่จริงๆ นะคะ";
+				mes "ระบุ '0' เพื่อยกเลิกทุกอย่างค่ะ";
 				next;
 				input .@input;
 
 				if (.@input <= 0) {
 					mes "[Valentine Vote Manager]";
-					mes "You have entered 0.";
-					mes "Registration is cancelled.";
+					mes "คุณป้อนค่าเป็น 0";
+					mes "การลงทะเบียนถูกยกเลิกค่ะ";
 					next;
 					break;
 				}
@@ -441,23 +441,23 @@ prontera,157,185,4	script	Valentine Vote Manager#v	113,{
 				if (Sex == SEX_MALE) {
 					if (countitem(7947) > .@input) {
 						mes "[Valentine Vote Manager]";
-						mes "Seems like the value you entered is too small.";
-						mes "I know you've got more. Be honest, dear.";
+						mes "ดูเหมือนค่าที่คุณระบุจะน้อยเกินไปนะคะ";
+						mes "ฉันรู้นะว่าคุณมีมากกว่านั้น ซื่อสัตย์หน่อยสิคะพ่อหนุ่ม";
 						next;
 						break;
 					}
 					
 					if (countitem(7947) < .@input) {
 						mes "[Valentine Vote Manager]";
-						mes "Seems like the value you entered is too large.";
-						mes "I know you've got less. Be honest, dear.";
+						mes "ดูเหมือนค่าที่คุณระบุจะมากเกินไปนะคะ";
+						mes "ฉันรู้นะว่าคุณมีน้อยกว่านั้น ซื่อสัตย์หน่อยสิคะพ่อหนุ่ม";
 						next;
 						break;
 					}
 					
 					mes "[Valentine Vote Manager]";
-					mes "I'll take those silver rings, and count the votes for you.";
-					mes "Thank you for participating.";
+					mes "ฉันจะรับแหวนเงินเหล่านั้นไว้ และนับคะแนนโหวตให้คุณค่ะ";
+					mes "ขอบคุณที่เข้าร่วมกิจกรรมนะคะ";
 					delitem 7947,.@input;
 					set Val09Rings,Val09Rings+.@input;
 					if (Val09Rings > $Val09votes_M) {
@@ -469,23 +469,23 @@ prontera,157,185,4	script	Valentine Vote Manager#v	113,{
 				} else {
 					if (countitem(7946) > .@input) {
 						mes "[Valentine Vote Manager]";
-						mes "Seems like the value you entered is too small.";
-						mes "I know you've got more. Be honest, dear.";
+						mes "ดูเหมือนค่าที่คุณระบุจะน้อยเกินไปนะคะ";
+						mes "ฉันรู้นะว่าคุณมีมากกว่านั้น ซื่อสัตย์หน่อยสิคะแม่สาวน้อย";
 						next;
 						break;
 					}
 					
 					if (countitem(7946) < .@input) {
 						mes "[Valentine Vote Manager]";
-						mes "Seems like the value you entered is too large.";
-						mes "I know you've got less. Be honest, dear.";
+						mes "ดูเหมือนค่าที่คุณระบุจะมากเกินไปนะคะ";
+						mes "ฉันรู้นะว่าคุณมีน้อยกว่านั้น ซื่อสัตย์หน่อยสิคะแม่สาวน้อย";
 						next;
 						break;
 					}
 					
 					mes "[Valentine Vote Manager]";
-					mes "I'll take those gold rings, and count the votes for you.";
-					mes "Thank you for participating.";
+					mes "ฉันจะรับแหวนทองเหล่านั้นไว้ และนับคะแนนโหวตให้คุณค่ะ";
+					mes "ขอบคุณที่เข้าร่วมกิจกรรมนะคะ";
 					delitem 7946,.@input;
 					set Val09Rings,Val09Rings+.@input;
 					if (Val09Rings > $Val09votes_F) {
@@ -497,23 +497,23 @@ prontera,157,185,4	script	Valentine Vote Manager#v	113,{
 				}
 			case 2:
 				mes "[Valentine Vote Manager]";
-				mes "Let's see...";
-				mes "You have registered...."+Val09Rings+" rings so far.";
-				mes "and...";
+				mes "ไหนดูสิ...";
+				mes "คุณลงทะเบียนไปแล้ว.... "+Val09Rings+" วงค่ะ";
+				mes "และ...";
 				next;
 				mes "[Valentine Vote Manager]";
-				mes "The current record shows... "+$Val09name_M$+" is the male vote leader who's registered the total of "+$Val09votes_M+" rings.";
+				mes "บันทึกปัจจุบันแสดงให้เห็นว่า... "+$Val09name_M$+" คือผู้นำการโหวตฝ่ายชาย ซึ่งลงทะเบียนแหวนไปแล้วทั้งหมด "+$Val09votes_M+" วง";
 				next;
 				mes "[Valentine Vote Manager]";
-				mes "The current record shows... "+$Val09name_F$+" is the female vote leader who's registered the total of "+$Val09votes_F+" rings.";
+				mes "บันทึกปัจจุบันแสดงให้เห็นว่า... "+$Val09name_F$+" คือผู้นำการโหวตฝ่ายหญิง ซึ่งลงทะเบียนแหวนไปแล้วทั้งหมด "+$Val09votes_F+" วง";
 				next;
 				break;
 
 			case 3:
 				mes "[Valentine Vote Manager]";
-				mes "Hey, you can be popular too!";
-				mes "Anyone can... really!";
-				mes "Though you have to try a lot harder, but still~ Hahaha!";
+				mes "เฮ้ คุณก็เป็นคนดังได้นะ!";
+				mes "ใครๆ ก็เป็นได้... จริงๆ นะ!";
+				mes "ถึงแม้คุณจะต้องพยายามให้หนักกว่าเดิมมากก็เถอะ แต่ก็เถอะนะ~ ฮ่าฮ่าฮ่า!";
 				close;
 		}
 	}
@@ -524,111 +524,111 @@ prontera,157,185,4	script	Valentine Vote Manager#v	113,{
 prt_castle,42,35,3	script	Dessert Manager#Val09	47,{
 	if (Sex == SEX_MALE) {
 		mes "[Charles Orleans]";
-		mes "Monsieur~! What brings you to my beautiful atelier?";
-		mes "What is it that you want?";
-		mes "Well, my sparkling eyes get dried and lose their shine if not for the pretty little lady.";
+		mes "มองซิเออร์ (Monsieur)~! อะไรนำทางคุณมายังห้องทำงานอันสวยงามของผมกันล่ะ?";
+		mes "คุณต้องการอะไรจากผมล่ะครับ?";
+		mes "คือว่า ดวงตาอันเป็นประกายของผมจะแห้งเหี่ยวและสูญเสียแสงสว่างไป ถ้าคนตรงหน้าไม่ใช่สุภาพสตรีผู้น่ารัก";
 		next;
 		mes "[Charles Orleans]";
-		mes "Please leave me alone unless you have business with me.";
-		mes "Haaaa~ I'm a busy person.";
-		mes "Don't bother me....";
-		mes "Annoying, annoying, annoying~~!";
+		mes "กรุณาปล่อยให้ผมอยู่คนเดียวเถอะครับ นอกจากว่าคุณจะมีธุระจริงๆ กับผม";
+		mes "เฮ้อออ~ ผมเป็นคนที่ยุ่งมากนะ";
+		mes "อย่ามารบกวนผมเลย....";
+		mes "น่ารำคาญ น่ารำคาญ น่ารำคาญจริงๆ~~!";
 		close;
 	}
 	
 	mes "[Charles Orleans]";
-	mes "Oh, Mademoiselle!";
-	mes "This little trifling space felt like heaven the minute you walked in!";
-	mes "Can I help you with anything, if it's alright?";
+	mes "โอ้ มาดมัวแซล (Mademoiselle)!";
+	mes "พื้นที่เล็กๆ ที่แสนจะธรรมดาแห่งนี้ดูราวกับสรวงสวรรค์ขึ้นมาทันทีที่คุณเดินเข้ามา!";
+	mes "มีอะไรที่ผมพอจะรับใช้คุณได้บ้างไหมครับ ถ้าคุณไม่รังเกียจ?";
 	next;
-	if(select("Please, make me some chocolate.:Don't bother. I'm just passing by.") == 2) {
+	if(select("ช่วยทำช็อกโกแลตให้ฉันหน่อยค่ะ:อย่ามาสนใจเลย ฉันแค่เดินผ่านมาน่ะ") == 2) {
 		mes "[Charles Orleans]";
-		mes "Ahhh, this is so heartbreaking.";
-		mes "How could you say that?";
-		mes "You're just so mean.";
-		mes "Don't bother? Just passing by?";
+		mes "อาาา ช่างบีบคั้นหัวใจเหลือเกิน";
+		mes "คุณพูดแบบนั้นออกมาได้ยังไงกันครับ?";
+		mes "คุณช่างใจร้ายจริงๆ";
+		mes "อย่ามาสนใจ? แค่เดินผ่านมา?";
 		next;
 		mes "[Charles Orleans]";
-		mes "What can I do to make you";
-		mes "pay a little attention to me?";
-		mes "Please.. I feel like my soul is lost..";
+		mes "ผมต้องทำยังไงเพื่อให้คุณ";
+		mes "หันมาสนใจผมสักนิดได้บ้างครับ?";
+		mes "ได้โปรดเถอะ.. ผมรู้สึกเหมือนวิญญาณได้หลุดลอยไปแล้ว..";
 		close;
 	}
 	if (countitem(558) < 3) {
 		mes "[Charles Orleans]";
-		mes "Ahhh, Mademoiselle.";
-		mes "I'm not an alchemist, or a magician.";
-		mes "I don't just make chocolate out of anything.";
+		mes "อาาา มาดมัวแซล";
+		mes "ผมไม่ใช่นักเล่นแร่แปรธาตุ หรือพ่อมดนะครับ";
+		mes "ผมไม่ได้เสกช็อกโกแลตขึ้นมาจากความว่างเปล่าหรอกนะ";
 		next;
 		mes "[Charles Orleans]";
-		mes "I always think of making chocolate as artistic work.";
-		mes "You see, I'm no ordinary cook...";
-		mes "I make chocolate with feelings..";
-		mes "messages of loving hearts..";
+		mes "ผมคิดเสมอว่าการทำช็อกโกแลตคืองานศิลปะ";
+		mes "คุณเห็นไหม ผมไม่ใช่พ่อครัวธรรมดาๆ...";
+		mes "ผมทำช็อกโกแลตด้วยความรู้สึก..";
+		mes "ข้อความจากหัวใจที่เปี่ยมล้นไปด้วยความรัก..";
 		next;
 		mes "[Charles Orleans]";
-		mes "I make masterpieces.";
-		mes "No one can imitate the looks and the taste.";
-		mes "Yes, it's nothing like ordinary chocolate!";
+		mes "ผมสร้างสรรค์ผลงานชิ้นเอก";
+		mes "ไม่มีใครเลียนแบบรูปลักษณ์และรสชาตินี้ได้";
+		mes "ใช่ครับ มันไม่เหมือนช็อกโกแลตทั่วไปหรอก!";
 		next;
 		mes "[Charles Orleans]";
-		mes "I'm afraid I can't make it and prove it to you now.";
-		mes "This is really a shame!";
+		mes "เกรงว่าตอนนี้ผมยังทำมันออกมาพิสูจน์ให้คุณเห็นไม่ได้";
+		mes "นี่เป็นเรื่องที่น่าละอายจริงๆ!";
 		next;
 		mes "[Charles Orleans]";
-		mes "I really want to thank you for visiting me and if you only bring ^3152ff3 Chocolates^000000, I'll make you chocolate like you've never seen...";
+		mes "ผมอยากจะขอบคุณจริงๆ ที่คุณแวะมาหา และถ้าเพียงคุณนำ ^3152ffช็อกโกแลต 3 อัน^000000 มาให้ผม ผมจะทำช็อกโกแลตแบบที่คุณไม่เคยเห็นมาก่อน...";
 		next;
 		mes "[Charles Orleans]";
-		mes "never tasted before...";
-		mes "Mademoiselle, with your spirit, I'm sure you can bring 3 pieces of chocolate.";
-		mes "I have no doubt at all.";
+		mes "ไม่เคยลิ้มรสที่ไหนมาก่อน...";
+		mes "มาดมัวแซล ด้วยจิตวิญญาณของคุณ ผมมั่นใจว่าคุณสามารถหาช็อกโกแลต 3 ชิ้นมาให้ผมได้";
+		mes "ผมไม่มีข้อสงสัยเลยแม้แต่นิดเดียว";
 		next;
 		mes "[Charles Orleans]";
-		mes "So... what do you think?";
-		mes "Can you bring ^3152ff3 Chocolates^000000?";
-		mes "I could get them myself, but I'm tied up with so much work as you see right now.";
+		mes "แล้ว... คุณคิดว่ายังไงล่ะครับ?";
+		mes "คุณนำ ^3152ffช็อกโกแลต 3 อัน^000000 มาให้ผมได้ไหม?";
+		mes "ผมก็อยากจะไปหามาเองอยู่หรอก แต่ผมมีงานรัดตัวเหลือเกินอย่างที่คุณเห็นนี่แหละครับ";
 		next;
 		mes "[Charles Orleans]";
-		mes "Adios, Mademoiselle.....";
-		mes "I'll be waiting for you.";
+		mes "ออดิออส (Adios) นะครับ มาดมัวแซล.....";
+		mes "ผมจะเฝ้ารอคุณกลับมา";
 		close;
 	} else {
 		if (!checkweight(559,1)) {
 			mes "[Charles Orleans]";
-			mes "You're carrying too many items.";
-			mes "Please use the Kafra Services.";
+			mes "เจ้าน้ำหนักตัวเกิน หรือถือไอเทมมากเกินไปแล้ว";
+			mes "กรุณาไปใช้บริการฝากของที่ Kafra ก่อนนะ";
 			close;
 		}
 		mes "[Charles Orleans]";
-		mes "Oh, Mademoiselle!";
-		mes "I'll make the best chocolate with the pieces you've brought.";
-		mes "I'm going to put the light of your eyes into this chocolate that no one can resist.";
+		mes "โอ้ มาดมัวแซล!";
+		mes "ผมจะทำช็อกโกแลตที่ดีที่สุดด้วยชิ้นส่วนที่คุณนำมาให้ครับ";
+		mes "ผมกำลังจะใส่ประกายจากดวงตาของคุณลงไปในช็อกโกแลตนี้ เพื่อให้ไม่มีใครสามารถต้านทานมันได้";
 		next;
 		mes "[Charles Orleans]";
-		mes "It'll be stronger than a sweet sweet love potion.....";
+		mes "มันจะรุนแรงยิ่งกว่ายาเสน่ห์ที่แสนหวานเสียอีก.....";
 		next;
 		mes "[Charles Orleans]";
-		mes "Un, Deux, Trois, Quatre.....";
-		mes "Just like the ugly duckling that turned to a beautiful swan-";
-		mes "Ordinary chocolate pieces are becoming a piece of art!";
+		mes "อัง (Un), เดอ (Deux), ทรัว (Trois), แคท (Quatre).....";
+		mes "เฉกเช่นลูกเป็ดขี้เหร่ที่กลายเป็นหงส์ผู้สง่างาม-";
+		mes "ชิ้นช็อกโกแลตธรรมดาๆ กำลังจะกลายเป็นงานศิลปะแล้ว!";
 		next;
 		mes "[Charles Orleans]";
-		mes "They're changing!";
-		mes "They're getting warm, softly changing the shape, getting stronger again!";
-		mes "Oh, is it a master piece or";
-		mes "what...!!";
+		mes "พวกมันกำลังเปลี่ยนไป!";
+		mes "พวกมันกำลังอุ่นขึ้น ค่อยๆ เปลี่ยนรูปทรง และกลับมาแข็งแกร่งอีกครั้ง!";
+		mes "โอ้ นี่มันคือผลงานระดับปรมาจารย์หรือ";
+		mes "อะไรกันเนี่ย...!!";
 		next;
 		mes "[Charles Orleans]";
-		mes "Here you go, Mademoiselle!";
-		mes "Ahahahaha, just look at this!";
-		mes "I can't believe I made this.";
-		mes "Oh, I can't take my eyes off..!!";
+		mes "นี่ครับ มาดมัวแซล!";
+		mes "อาฮะฮะฮ่า ลองดูนี่สิครับ!";
+		mes "ผมแทบไม่อยากเชื่อว่าผมทำสิ่งนี้ขึ้นมาเอง";
+		mes "โอ้ ผมละสายตาไปไม่ได้เลย...!!";
 		delitem 558,3;
 		getitem 559,1;
 		next;
 		mes "[Charles Orleans]";
-		mes "Alright. Mademoiselle,";
-		mes "I hope this is just what you wanted, for it bears your beautiful heart inside.";
+		mes "เอาล่ะครับ มาดมัวแซล";
+		mes "ผมหวังว่านี่คือสิ่งที่คุณต้องการ เพราะมันแฝงไปด้วยหัวใจอันสวยงามของคุณอยู่ภายใน";
 		close;
 	}
 	

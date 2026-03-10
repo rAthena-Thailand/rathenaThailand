@@ -16,55 +16,55 @@
 prontera,147,61,3	script	Driller#pron	87,{
 	disable_items;
 	if (checkweight(1201,1) == 0) {
-		mes "You're carrying too many items in your inventory. Visit Kafra storage and try again.";
+		mes "คุณมีไอเทมในช่องเก็บของมากเกินไป กรุณาไปฝากของที่คลัง Kafra แล้วลองใหม่อีกครั้ง";
 		close;
 	}
 	if (MaxWeight - Weight < 10000) {
-		mes "You cannot proceed because you're overweight.";
+		mes "คุณไม่สามารถดำเนินการต่อได้เนื่องจากน้ำหนักตัวเกิน";
 		close;
 	}
 	set .@part, EQI_ACC_L;
 	if (!getequipisequiped(.@part)) {
 		mes "[Driller]";
-		mes "My job is to drill a card slot into RWC Memorial accessories.";
+		mes "หน้าที่ของฉันคือเจาะช่องใส่การ์ดให้กับเครื่องประดับ RWC Memorial";
 		next;
 		mes "[Driller]";
-		mes "I'm sorry but you don't have any item equipped on your right accessory position.";
+		mes "ฉันขอโทษด้วย แต่คุณไม่ได้สวมใส่ไอเทมใดๆ ไว้ที่ตำแหน่งเครื่องประดับด้านขวาเลย";
 		close;
 	}
 	mes "[Driller]";
-	mes "My job is to drill a card slot into RWC Memorial accessories. Moreover, I only treat ^ff0000pure items^000000, or those which have not been enchanted.";
+	mes "หน้าที่ของฉันคือเจาะช่องใส่การ์ดให้กับเครื่องประดับ RWC Memorial นอกจากนี้ ฉันจะรับทำเฉพาะ ^ff0000ไอเทมบริสุทธิ์^000000 หรือไอเทมที่ยังไม่ผ่านการ Enchant เท่านั้น";
 	next;
 	set .@equip_id, getequipid(.@part);
 	if (.@equip_id != 2966 && .@equip_id != 2968) {
 		mes "[Driller]";
-		mes "However, I can see that the accessory you are wearing on the right side cannot be treated. Please equip a RWC Memorial accessory.";
+		mes "อย่างไรก็ตาม ฉันเห็นว่าเครื่องประดับที่คุณสวมอยู่ทางด้านขวานั้นไม่สามารถเจาะช่องได้ กรุณาสวมใส่เครื่องประดับ RWC Memorial";
 		close;
 	}
 	mes "[Driller]";
-	mes "You should also know that making a card slot it extremely dangerous. ^ff0000Chances to succeed are about 50%.^000000 Do you wish to proceed?";
+	mes "คุณควรทราบไว้ด้วยว่าการเจาะช่องใส่การ์ดนั้นอันตรายมาก ^ff0000โอกาสสำเร็จอยู่ที่ประมาณ 50%^000000 คุณต้องการจะดำเนินการต่อหรือไม่?";
 	next;
-	if(select("Cancel:Let's go!") == 1) {
+	if(select("ยกเลิก:ลุยเลย!") == 1) {
 		mes "[Driller]";
-		mes "See ya then.";
+		mes "แล้วเจอกัน";
 		close;
 	}
 	if (.@equip_id == 2966) {
 		set .@slotted, 2967; //RWC_2012_Ring_
 		set .@name$,"RWC 2012 Memorial Ring";
-		set .@str$,"ring";
+		set .@str$,"แหวน";
 	} else if (.@equip_id == 2968) {
 		set .@slotted, 2969; //RWC_2012_Pendant_
 		set .@name$,"RWC 2012 Memorial Pendant";
-		set .@str$,"pendant";
+		set .@str$,"สร้อยคอ";
 	} else {
 		mes "[Driller]";
-		mes "I can't identify the accessory item you're wearing on your right hand. I can't work on it.";
+		mes "ฉันไม่สามารถระบุเครื่องประดับที่คุณสวมอยู่ที่มือขวาได้ ฉันจึงไม่สามารถทำงานนี้ให้ได้";
 		close;
 	}
 	if (getequipcardid(.@part,3) > 0) {
 		mes "[Driller]";
-		mes "This item has already been enchanted. I can't work on this as it is against the rules.";
+		mes "ไอเทมนี้ได้รับการ Enchant มาแล้ว ฉันไม่สามารถทำมันได้เนื่องจากผิดกฎ";
 		close;
 	}
 
@@ -77,12 +77,12 @@ prontera,147,61,3	script	Driller#pron	87,{
 		getitem .@slotted,1;
 		specialeffect2 EF_REPAIRWEAPON;
 		mes "[Driller]";
-		mes "Yay! Success! Your "+.@name$+" now has a card slot. Check it out!";
+		mes "เย้! สำเร็จแล้ว! ตอนนี้ "+.@name$+" ของคุณมีช่องใส่การ์ดแล้ว ลองเช็คดูสิ!";
 		close;
 	} else {
 		specialeffect2 EF_LORD;
 		mes "[Driller]";
-		mes "Awww... Damn weak "+.@str$+"... It broke during the procedure. I'm sorry.";
+		mes "โธ่... เจ้า "+.@str$+" นี่ช่างเปราะบางเหลือเกิน... มันแตกสลายไประหว่างขั้นตอนเจาะช่องเสียแล้ว ฉันเสียใจด้วยนะ";
 		close;
 	}
 }
@@ -90,32 +90,32 @@ prontera,147,61,3	script	Driller#pron	87,{
 prontera,147,59,3	script	Goldberg#pron	878,{
 	disable_items;
 	if (checkweight(1201,1) == 0) {
-		mes "You are carrying too many items. Come back after you have organized your inventory.";
+		mes "คุณกำลังถือไอเทมมากเกินไป กลับมาอีกครั้งหลังจากจัดการช่องเก็บของแล้วนะ";
 		close;
 	}
 	if (MaxWeight - Weight < 10000) {
-		mes "You cannot proceed because you're overweight.";
+		mes "คุณไม่สามารถดำเนินการต่อได้เนื่องจากน้ำหนักตัวเกิน";
 		close;
 	}
 	mes "[Goldberg]";
-	mes "Hello! I am in charge of enchanting RWC Memorial accessories with some mystic powers.";
+	mes "สวัสดี! ฉันมีหน้าที่รับผิดชอบในการมอบพลังลึกลับ (Enchant) ให้กับเครื่องประดับ RWC Memorial";
 	next;
 	set .@part, EQI_ACC_L;
 	if (!getequipisequiped(.@part)) {
 		mes "[Goldberg]";
-		mes "I'm sorry but you don't have any item equipped on your right accessory position.";
+		mes "ฉันขอโทษด้วย แต่คุณไม่ได้สวมใส่ไอเทมใดๆ ไว้ที่ตำแหน่งเครื่องประดับด้านขวาเลย";
 		close;
 	}
 	set .@equip_id, getequipid(.@part);
 	if (.@equip_id < 2966 || .@equip_id > 2969) {
 		mes "[Goldberg]";
-		mes "However, I can see that the accessory you are wearing is not something I can work on. Please equip a RWC Memorial accessory.";
+		mes "อย่างไรก็ตาม ฉันเห็นว่าเครื่องประดับที่คุณสวมอยู่นั้นไม่ใช่สิ่งที่ฉันจะทำได้ กรุณาสวมใส่เครื่องประดับ RWC Memorial";
 		close;
 	}
-	set .@select, select("Sorry, not interested.:Please, empower my accessory.:Remove the Enchant.")-1;
+	set .@select, select("ขอโทษที ฉันไม่สนใจ:ช่วยมอบพลังให้เครื่องประดับของฉันที:ลบพลัง Enchant ออก")-1;
 	if (.@select == 0) {
 		mes "[Goldberg]";
-		mes "Alright, then, see you next time...";
+		mes "ตกลง งั้นไว้เจอกันใหม่คราวหน้า...";
 		close;
 	}
 	setarray .@equip_card[0], getequipcardid(.@part,0),getequipcardid(.@part,1),getequipcardid(.@part,2),getequipcardid(.@part,3);
@@ -135,8 +135,8 @@ prontera,147,59,3	script	Goldberg#pron	878,{
 			break;
 		default:
 			mes "[Goldberg]";
-			mes "I'm sorry, but I cannot work on the accessory you are currently wearing.";
-			mes "If you have equipped your RWC Memorial accessory on the left side, try to swap it to the right side.";
+			mes "ฉันขอโทษ แต่ฉันไม่สามารถทำงานกับเครื่องประดับที่คุณสวมอยู่ในขณะนี้ได้";
+			mes "หากคุณสวมเครื่องประดับ RWC Memorial ไว้ที่ด้านซ้าย ให้ลองเปลี่ยนมาสวมที่ด้านขวาดูนะ";
 			close;
 		}
 		for(set .@i,3; .@i>=0; set .@i,.@i-1) {
@@ -149,51 +149,51 @@ prontera,147,59,3	script	Goldberg#pron	878,{
 		switch(.@op_type) {
 		case 4:
 			mes "[Goldberg]";
-			mes "Which enchantment would you like to infuse?";
+			mes "คุณต้องการเพิ่มพลัง Enchant ประเภทไหนล่ะ?";
 			next;
 			setarray .@enchant_select[0],1,2,3,4;
-			set .@i, select("Cancel:Fighting Spirit:ATK (%):Max HP:HP")-2;
+			set .@i, select("ยกเลิก:Fighting Spirit:ATK (%):Max HP:HP")-2;
 			break;
 		case 3:
 			setarray .@enchant_select[0],5,6,7;
-			set .@i, select("Cancel:Spell:MATK (%):SP")-2;
+			set .@i, select("ยกเลิก:Spell:MATK (%):SP")-2;
 			break;
 		case 2:
 			mes "[Goldberg]";
-			mes "^ff0000Be careful! There is about a 25% chance that the enchantment will fail. If this happens, the item will be destroyed.^000000 Which enchantment would you like to infuse?";
+			mes "^ff0000ระวังด้วย! มีโอกาสประมาณ 25% ที่การ Enchant จะล้มเหลว หากเกิดขึ้น ไอเทมจะถูกทำลายทันที^000000 คุณต้องการเพิ่มพลัง Enchant ประเภทไหน?";
 			next;
 			setarray .@enchant_select[0],8,9,10,11,12,13,14;
-			set .@i, select("Cancel:STR:AGI:VIT:INT:DEX:LUK:SP")-2;
+			set .@i, select("ยกเลิก:STR:AGI:VIT:INT:DEX:LUK:SP")-2;
 			break;
 		case 1:
 			mes "[Goldberg]";
-			mes "^ff0000There is about a 25% chance that the enchantment will fail. If this happens, the item will be destroyed.^000000 Which enchantment would you like to infuse?";
+			mes "^ff0000มีโอกาสประมาณ 25% ที่การ Enchant จะล้มเหลว หากเกิดขึ้น ไอเทมจะถูกทำลายทันที^000000 คุณต้องการเพิ่มพลัง Enchant ประเภทไหน?";
 			next;
 			setarray .@enchant_select[0],8,9,10,11,12,13,15,16;
-			set .@i, select("Cancel:STR:AGI:VIT:INT:DEX:LUK:MHP:HP")-2;
+			set .@i, select("ยกเลิก:STR:AGI:VIT:INT:DEX:LUK:MHP:HP")-2;
 			break;
 		case 0:
 			mes "[Goldberg]";
-			mes "Your accessory has received so many enchantments that I can hardly work on it anymore.";
+			mes "เครื่องประดับของคุณได้รับพลัง Enchant มามากพอแล้ว ฉันไม่สามารถทำเพิ่มได้มากกว่านี้";
 			close;
 		}
 		if (.@i == -1) {
 			mes "[Goldberg]";
-			mes "Alright, then, see you next time.";
+			mes "ตกลง งั้นไว้เจอกันใหม่คราวหน้า";
 			close;
 		}
 		mes "[Goldberg]";
-		mes "The power of the enchantment will be randomly chosen. ^ff0000Once infused, the enchantment cannot be removed.^000000 Shall we continue?";
+		mes "ระดับพลังของ Enchant จะถูกสุ่มเลือก ^ff0000เมื่อใส่พลังเข้าไปแล้ว จะไม่สามารถถอดออกได้^000000 เราจะดำเนินการต่อเลยไหม?";
 		next;
-		if(select("No, please stop.:Yes, please proceed.") == 1) {
+		if(select("ไม่ล่ะ หยุดก่อน:ใช่ ดำเนินการต่อเลย") == 1) {
 			mes "[Goldberg]";
-			mes "Alright, then, see you next time...";
+			mes "ตกลง งั้นไว้เจอกันใหม่คราวหน้า...";
 			close;
 		}
 		set .@enchant_type, .@enchant_select[.@i];
 		if (!getequipisequiped(.@part)) {
 			mes "[Goldberg]";
-			mes "Do not take off your equipment while I'm working, okay?";
+			mes "อย่าถอดอุปกรณ์ออกในระหว่างที่ฉันกำลังทำงานอยู่ล่ะ ตกลงไหม?";
 			close;
 		}
 		switch(.@enchant_type) {
@@ -247,7 +247,7 @@ prontera,147,59,3	script	Goldberg#pron	878,{
 			break;
 		default:
 			mes "[Goldberg]";
-			mes "We have got a problem, let me check it up.";
+			mes "เรามีปัญหาบางอย่างเกิดขึ้น ให้ฉันตรวจสอบดูหน่อย";
 			close;
 		}
 
@@ -256,14 +256,14 @@ prontera,147,59,3	script	Goldberg#pron	878,{
 		else
 			set .@i, rand(1,400); // 25% break chance.
 
-		     if (.@i < 151) set .@enchant, .@enc[0];
+		     if (.@i < 151) set .@enchant, .@enc[0];
 		else if (.@i < 251) set .@enchant, .@enc[1];
 		else if (.@i < 301) set .@enchant, .@enc[2];
 		else set .@enchant,9;
 
 		// anti-hack
 		if (callfunc("F_IsEquipIDHack", .@part, .@equip_id) ||
-		    callfunc("F_IsEquipCardHack", .@part, .@equip_card[0], .@equip_card[1], .@equip_card[2], .@equip_card[3]))
+		    callfunc("F_IsEquipCardHack", .@part, .@equip_card[0], .@equip_card[1], .@equip_card[2], .@equip_card[3]))
 			close;
 
 		set .@equip_card[.@slot], .@enchant;
@@ -282,18 +282,18 @@ prontera,147,59,3	script	Goldberg#pron	878,{
 		delequip .@part;
 		if (.@enchant == 9) {
 			mes "[Goldberg]";
-			mes "Oh gosh!";
- 			mes "The item was not strong enough to bear the enchantment and thus got destroyed. I am sorry.";
+			mes "พระเจ้าช่วย!";
+ 			mes "ไอเทมนี้ไม่แข็งแกร่งพอที่จะรองรับพลัง Enchant ได้ มันเลยถูกทำลายไปเสียแล้ว ฉันเสียใจด้วย";
 			specialeffect2 EF_LORD;
 			close;
 		}
 		if (.@enchant == 0) { // Should never happen.
 			mes "[Goldberg]";
-			mes "Oh... It looks like there was an instability of some sort between all the powers infused. This caused all the enchantments to vanish. It is a shame, but please try again!";
+			mes "โอ้... ดูเหมือนว่าจะมีความไม่เสถียรบางอย่างระหว่างพลังที่ใส่เข้าไป ทำให้พลัง Enchant ทั้งหมดหายไป ช่างน่าเสียดายจริงๆ แต่ช่วยลองใหม่อีกครั้งนะ!";
 		} else {
 			mes "[Goldberg]";
-			mes "Great!";
-			mes "The enchantment is a success! It will be applied in socket No.^990000"+(.@slot+1)+"^000000.";
+			mes "ยอดเยี่ยม!";
+			mes "การ Enchant ประสบความสำเร็จ! พลังถูกใส่ลงในช่องหมายเลข ^990000"+(.@slot+1)+"^000000";
 			specialeffect2 EF_REPAIRWEAPON;
 		}
 
@@ -303,26 +303,26 @@ prontera,147,59,3	script	Goldberg#pron	878,{
 		close;
 	} else if (.@select == 2) {
 		mes "[Goldberg]";
-		mes "I will just initialize the enchant option without doing anything to the slotted card. You wanna continue?";
+		mes "ฉันจะรีเซ็ตค่าพลัง Enchant ให้กลับเป็นค่าเริ่มต้น โดยจะไม่แตะต้องอะไรกับการ์ดในช่องเลย คุณต้องการดำเนินการต่อไหม?";
 		next;
-		if(select("I will stop.:Yep, sure, go on.") == 1) {
+		if(select("ฉันขอหยุดไว้ก่อน:แน่นอน จัดการเลย") == 1) {
 			mes "[Goldberg]";
-			mes "Come back if you change your mind.";
+			mes "กลับมาอีกครั้งถ้าคุณเปลี่ยนใจนะ";
 			close;
 		}
 		if (countitem(6665) == 0) {
 			mes "[Goldberg]";
-			mes "I'm sorry. But you don't have the RWC Initialization coupon. Can you check your inventory?";
+			mes "ฉันขอโทษ แต่คุณไม่มี RWC Initialization coupon กรุณาตรวจสอบในช่องเก็บของดูนะ";
 			close;
 		}
 		if (getiteminfo(.@equip_card[3], ITEMINFO_SUBTYPE) != CARD_ENCHANT) {
 			mes "[Goldberg]";
-			mes "Hm... this equipment is clean. I cannot initialize it if there's nothing! Check it again.";
+			mes "หืม... อุปกรณ์ชิ้นนี้ยังว่างเปล่านี่นา ฉันไม่สามารถรีเซ็ตอะไรได้ถ้ามันยังไม่มีพลังอะไรเลย! ลองเช็คดูอีกครั้งสิ";
 			close;
 		}
 		specialeffect2 EF_REPAIRWEAPON;
 		mes "[Goldberg]";
-		mes "The enchant option in your item will be initialized.";
+		mes "พลัง Enchant ในไอเทมของคุณจะถูกรีเซ็ตเป็นค่าเริ่มต้น";
 		delitem 6665,1; //RWC_Inicializer
 		delequip .@part;
 	

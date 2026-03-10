@@ -23,8 +23,8 @@ OnInit:
 
 OnTimer3600000:
 	donpcevent "Monster Controler1#sch::OnEnable";
-	mapannounce "schg_dun01", "Kublin: Aargh!",bc_map,"0x99CC00";
-	mapannounce "schg_dun01", "Morestone: Stop righ there! You thief!",bc_map,"0x99CC00";
+	mapannounce "schg_dun01", "Kublin: อ๊ากกก!",bc_map,"0x99CC00";
+	mapannounce "schg_dun01", "Morestone: หยุดอยู่ตรงนั้นนะ! เจ้าหัวขโมย!",bc_map,"0x99CC00";
 	stopnpctimer;
 	end;
 }
@@ -52,8 +52,8 @@ OnKill:
 
 OnMyMobDead:
 	if (mobcount("schg_dun01","Monster Controler1#sch::OnMyMObDead") == 0) {
-		mapannounce "schg_dun01", "Kublin: Aargh!",bc_map,"0x99CC00";
-		mapannounce "schg_dun01", "Morestone: I thought I heard Kublin screaming!! Who is there? What happened to Kublin? Hey you!",bc_map,"0x99CC00";
+		mapannounce "schg_dun01", "Kublin: อ๊ากกก!",bc_map,"0x99CC00";
+		mapannounce "schg_dun01", "Morestone: ฉันว่าฉันได้ยินเสียง Kublin ร้องนะ!! ใครอยู่ตรงนั้นน่ะ? เกิดอะไรขึ้นกับ Kublin? เฮ้ คุณตรงนั้นน่ะ!",bc_map,"0x99CC00";
 		donpcevent "Dwarf#sch_gd::OnEnable";
 	}
 	end;
@@ -62,7 +62,7 @@ OnMyMobDead:
 schg_dun01,194,148,5	script	Dwarf#sch_gd	826,{
 	if (getcharid(2) == 0) {
 		mes "[Dwarf]";
-		mes "Hey did you see an ugly Goblin come by? He stole something from me!";
+		mes "เฮ้ คุณเห็นเจ้า Goblin หน้าตาอัปลักษณ์ผ่านมาแถวนี้ไหม? มันขโมยของบางอย่างไปจากฉัน!";
 		close;
 	}
 	set .@chk_urquest,checkquest(2143,PLAYTIME);
@@ -72,87 +72,87 @@ schg_dun01,194,148,5	script	Dwarf#sch_gd	826,{
 			set $@gdeventv_s1,1;
 			set $@gdevents_s$,.@chk_yourgdname$;
 			mes "[Dwarf]";
-			mes "Help me!";
-			mes "Please, help me!";
+			mes "ช่วยฉันด้วย!";
+			mes "ได้โปรด ช่วยฉันด้วย!";
 			next;
-			switch(select("What happened?:Nevermind.")) {
+			switch(select("เกิดอะไรขึ้นเหรอ?:ช่างมันเถอะ")) {
 			case 1:
 				mes "[Dwarf]";
-				mes "I am Morestone and I collect rare gems.";
+				mes "ฉันชื่อ Morestone เป็นนักสะสมอัญมณีหายาก";
 				next;
 				mes "[Morestone]";
-				mes "In my travels, I was told that there were a lot of gems in Valfreyja and Nidhoggur, so I came down here.";
-				mes "But here, the soil is very hard to dig into. Fortunately, my ^3131FFPickaxe^000000 never lets me down!";
+				mes "ในการเดินทางของฉัน มีคนบอกว่ามีอัญมณีมากมายใน Valfreyja และ Nidhoggur ฉันก็เลยลงมาที่นี่";
+				mes "แต่ที่นี่ ดินมันขุดยากมากจริงๆ โชคดีที่ ^3131FFPickaxe^000000 ของฉันไม่เคยทำให้ผิดหวัง!";
 				next;
 				select("Pickaxe!");
 				mes "[Morestone]";
-				mes "Yes, my beloved pickaxe!";
-				mes "I always carry it with me, you know?";
+				mes "ใช่แล้ว อีเตอร์คู่ใจของฉันเอง!";
+				mes "ฉันพกมันติดตัวไปด้วยเสมอ คุณรู้ไหม?";
 				next;
 				mes "[Morestone]";
-				mes "We started working here together.";
-				mes "After a few days, we finally found something!";
+				mes "พวกเราเริ่มทำงานที่นี่ด้วยกัน";
+				mes "หลังจากผ่านไปไม่กี่วัน ในที่สุดเราก็ค้นพบบางอย่าง!";
 				next;
-				select("Something strange??");
+				select("บางอย่างที่แปลกประหลาดงั้นเหรอ??");
 				mes "[Morestone]";
-				mes "No, but it was worth quite a lot.";
-				mes "But we did not have much time to celebrate. Suddenly, a monster appeared that stole my pickaxe.";
-				mes "His name was^3131FFKublin^000000!";
+				mes "เปล่าหรอก แต่มันมีมูลค่าสูงมากเลยล่ะ";
+				mes "แต่เรายังไม่ทันจะได้ฉลองกันเลย ทันใดนั้นก็มีมอนสเตอร์ปรากฏตัวขึ้นแล้วขโมยอีเตอร์ของฉันไป";
+				mes "ชื่อของมันคือ ^3131FFKublin^000000!";
 				next;
 				mes "[Morestone]";
-				mes "He stole my Pickaxe!";
-				mes "I can't live without it...";
+				mes "มันขโมย Pickaxe ของฉันไป!";
+				mes "ฉันอยู่ไม่ได้ถ้าไม่มีมัน...";
 				next;
 				if (countitem(6010) > 0) {
 					mes "[" + strcharinfo(0) + "]";
-					mes "Is this the pickaxe that you've been looking for?";
+					mes "นี่ใช่อีเตอร์ที่คุณกำลังตามหาอยู่หรือเปล่า?";
 					next;
 					mes "[Morestone]";
-					mes "You found my Pickaxe?";
-					mes "Show me, please!";
+					mes "คุณเจอ Pickaxe ของฉันแล้วเหรอ?";
+					mes "ขอดูหน่อย ได้โปรด!";
 					next;
 					mes "[Morestone]";
-					mes "Oh, my! You've returned it to me!";
-					mes "My precious pickaxe, I thought I lost you forever.";
+					mes "โอ้ สวรรค์! คุณเอามันมาคืนให้ฉัน!";
+					mes "อีเตอร์สุดที่รักของฉัน ฉันนึกว่าจะเสียแกไปตลอดกาลแล้วนะเนี่ย";
 					next;
 					mes "[Morestone]";
-					mes "You are great! What guild are you from?";
-					mes "Could it be Gravity or Mercury?";
+					mes "คุณนี่สุดยอดจริงๆ! คุณมาจากกิลด์ไหนกันล่ะ?";
+					mes "จะเป็นกิลด์ Gravity หรือ Mercury กันนะ?";
 					next;
 					mes "[" + strcharinfo(0) + "]";
-					mes "I am a member of the ^3131FF"+.@chk_yourgdname$+"^.";
+					mes "ฉันเป็นสมาชิกของกิลด์ ^3131FF"+.@chk_yourgdname$+"^";
 					next;
 					mes "[Morestone]";
-					mes "Oh... That guild will receive my greatest respect.";
+					mes "โอ้... กิลด์นั้นจะได้รับความเคารพอย่างสูงสุดจากฉันเลย";
 					next;
 					mes "[Morestone]";
-					mes "Oh! My friend, I am very grateful for your help.";
-					mes "As a reward, I will tell you about a mysterious area I have discovered recently.";
+					mes "โอ้! เพื่อนเอ๋ย ฉันซาบซึ้งในความช่วยเหลือของคุณมาก";
+					mes "เพื่อเป็นการตอบแทน ฉันจะบอกคุณเกี่ยวกับพื้นที่ลึกลับที่ฉันเพิ่งค้นพบเมื่อเร็วๆ นี้";
 					next;
-					select("A mysterious area?");
+					select("พื้นที่ลึกลับงั้นเหรอ?");
 					mes "[Morestone]";
-					mes "That's right. I found it when I was digging around here.";
-					mes "It looks like it was made for some special purpose, but since there are no gems around there, I have no interest in it.";
-					next;
-					mes "[Morestone]";
-					mes "Instead of going there alone, I think it would be more fun to go with your friends...";
+					mes "ถูกต้องแล้ว ฉันเจอมันตอนขุดอยู่แถวๆ นี้แหละ";
+					mes "มันดูเหมือนถูกสร้างขึ้นมาเพื่อวัตถุประสงค์พิเศษบางอย่าง แต่ในเมื่อมันไม่มีอัญมณีอยู่แถวนั้น ฉันก็เลยไม่ค่อยสนใจมันเท่าไหร่";
 					next;
 					mes "[Morestone]";
-					mes "If you want, I can take ^3131FFyou and your guild members^000000 to explore that area.";
-					mes "Do you want to go there now?";
+					mes "แทนที่จะไปที่นั่นคนเดียว ฉันคิดว่ามันน่าจะสนุกกว่าถ้าได้ไปกับเพื่อนๆ ของคุณนะ...";
 					next;
-					switch(select("Wait! I'm not ready yet.:Let's go!")) {
+					mes "[Morestone]";
+					mes "ถ้าคุณต้องการ ฉันสามารถพา ^3131FFคุณและสมาชิกกิลด์ของคุณ^000000 ไปสำรวจพื้นที่นั้นได้";
+					mes "คุณอยากจะไปที่นั่นตอนนี้เลยไหม?";
+					next;
+					switch(select("เดี๋ยวก่อน! ฉันยังไม่พร้อมตอนนี้:ไปกันเลย!")) {
 					case 1:
 						set $@gdeventv_s1,0;
 						set $@gdevents_s$,"";
 						mes "[Morestone]";
-						mes "Take your time, and find a place to gather your friends.";
+						mes "ตามสบายเลย ไว้ไปหาที่รวมกลุ่มเพื่อนของคุณให้เรียบร้อยก่อนเถอะ";
 						close;
 					case 2:
 						mes "[Morestone]";
-						mes "Alright! Let's go.";
-						mes "If your friends visit me again later, I will guide them to that area again.";
-						mes "Don't forget, dwarves are grateful beings! Hahaha!";
+						mes "ตกลง! ไปกันเถอะ";
+						mes "ถ้าเพื่อนของคุณมาหาฉันในภายหลัง ฉันก็นำทางพวกเขาไปยังพื้นที่นั้นอีกครั้งได้";
+						mes "อย่าลืมล่ะว่าชาวแคระเป็นพวกที่รู้คุณคน! ฮะฮะฮ่า!";
 						delitem 6010,1; //Pickaxe
 						set $@gdeventv_s1,1;
 						set $@gdevents_s$,.@chk_yourgdname$;
@@ -166,8 +166,8 @@ schg_dun01,194,148,5	script	Dwarf#sch_gd	826,{
 					set $@gdeventv_s1,0;
 					set $@gdevents_s$,"";
 					mes "[Morestone]";
-					mes "I will tell you how to find him.";
-					mes "Kublin wears a ridiculous golden hat, It should be easy to recognise him by that.";
+					mes "ฉันจะบอกวิธีตามหาตัวมันให้";
+					mes "Kublin สวมหมวกสีทองที่ดูตลกๆ หน่อย คุณน่าจะจำมันได้ไม่ยากจากจุดนั้นนะ";
 					close;
 				}
 			case 2:
@@ -175,7 +175,7 @@ schg_dun01,194,148,5	script	Dwarf#sch_gd	826,{
 				set $@gdevents_s$,"";
 				emotion ET_CRY;
 				mes "[Dwarf]";
-				mes "Ahhh...";
+				mes "อาาา...";
 				close;
 			}
 		}
@@ -183,21 +183,21 @@ schg_dun01,194,148,5	script	Dwarf#sch_gd	826,{
 			set .@chk_urquest1,checkquest(2144);
 			if ((.@chk_urquest1 == 0) || (.@chk_urquest1 == 1)) {
 				mes "[Morestone]";
-				mes "I, Morestone, have made an alliance with the "+$@gdevents_s$+" guild.";
-				mes "Oh, you are a member.";
-				mes "Would you like to go to the mysterious area?";
+				mes "ฉัน Morestone ได้เป็นพันธมิตรกับกิลด์ "+$@gdevents_s$+" เรียบร้อยแล้ว";
+				mes "โอ้ คุณเป็นสมาชิกสินะ";
+				mes "คุณต้องการจะไปยังพื้นที่ลึกลับนั่นไหม?";
 				next;
-				switch(select("Let's go.:No, thanks.")) {
+				switch(select("ไปกันเลย:ไม่ล่ะ ขอบใจ")) {
 				case 1:
 					mes "[Morestone]";
-					mes "I hope you enjoy yourself, my friend.";
+					mes "ขอให้สนุกนะเพื่อนของฉัน";
 					close2;
 					warp "schg_que01",103,133;
 					end;
 				case 2:
 					mes "[Morestone]";
-					mes "If you need my assistance, just ask.";
-					mes "Ah! Dont forget, I hate monsters! So I don't want to see them. It will be better if you ask for another favour.";
+					mes "ถ้าคุณต้องการความช่วยเหลือจากฉัน ก็แค่บอกนะ";
+					mes "อ้อ! อย่าลืมล่ะ ฉันเกลียดมอนสเตอร์! ฉันไม่อยากเห็นพวกมันเลย ถ้าคุณอยากจะให้ช่วยเรื่องอื่นจะดีกว่ามาก";
 					close;
 				}
 			}
@@ -205,87 +205,87 @@ schg_dun01,194,148,5	script	Dwarf#sch_gd	826,{
 				set $@gdeventv_s1,1;
 				set $@gdevents_s$,.@chk_yourgdname$;
 				mes "[Dwarf]";
-				mes "Help me!";
-				mes "Please, help me!";
+				mes "ช่วยฉันด้วย!";
+				mes "ได้โปรด ช่วยฉันด้วย!";
 				next;
-				switch(select("What happened?:Nevermind.")) {
+				switch(select("เกิดอะไรขึ้นเหรอ?:ช่างมันเถอะ")) {
 				case 1:
 					mes "[Dwarf]";
-					mes "I am Morestone and I collect rare gems.";
+					mes "ฉันชื่อ Morestone เป็นนักสะสมอัญมณีหายาก";
 					next;
 					mes "[Morestone]";
-					mes "In my travels, I was told that there were a lot of gems in Valfreyja and Nidhoggur, so I came down here.";
-					mes "But here, the soil is very hard to dig into. Fortunately, my ^3131FFPickaxe^000000 never lets me down!";
+					mes "ในการเดินทางของฉัน มีคนบอกว่ามีอัญมณีมากมายใน Valfreyja และ Nidhoggur ฉันก็เลยลงมาที่นี่";
+					mes "แต่ที่นี่ ดินมันขุดยากมากจริงๆ โชคดีที่ ^3131FFPickaxe^000000 ของฉันไม่เคยทำให้ผิดหวัง!";
 					next;
 					select("Pickaxe!");
 					mes "[Morestone]";
-					mes "Yes, my beloved pickaxe!";
-					mes "I always carry it with me, you know?";
+					mes "ใช่แล้ว อีเตอร์คู่ใจของฉันเอง!";
+					mes "ฉันพกมันติดตัวไปด้วยเสมอ คุณรู้ไหม?";
 					next;
 					mes "[Morestone]";
-					mes "We started working here together.";
-					mes "After a few days, we finally found something!";
+					mes "พวกเราเริ่มทำงานที่นี่ด้วยกัน";
+					mes "หลังจากผ่านไปไม่กี่วัน ในที่สุดเราก็ค้นพบบางอย่าง!";
 					next;
-					select("Something strange??");
+					select("บางอย่างที่แปลกประหลาดงั้นเหรอ??");
 					mes "[Morestone]";
-					mes "No, but it was worth quite a lot.";
-					mes "But we did not have much time to celebrate. Suddenly, a monster appeared that stole my pickaxe.";
-					mes "His name was^3131FFKublin^000000!";
+					mes "เปล่าหรอก แต่มันมีมูลค่าสูงมากเลยล่ะ";
+					mes "แต่เรายังไม่ทันจะได้ฉลองกันเลย ทันใดนั้นก็มีมอนสเตอร์ปรากฏตัวขึ้นแล้วขโมยอีเตอร์ของฉันไป";
+					mes "ชื่อของมันคือ ^3131FFKublin^000000!";
 					next;
 					mes "[Morestone]";
-					mes "He stole my Pickaxe!";
-					mes "I can't live without it...";
+					mes "มันขโมย Pickaxe ของฉันไป!";
+					mes "ฉันอยู่ไม่ได้ถ้าไม่มีมัน...";
 					next;
 					if (countitem(6010) > 0) {
 						mes "[" + strcharinfo(0) + "]";
-						mes "Is this the pickaxe that you've been looking for?";
+						mes "นี่ใช่อีเตอร์ที่คุณกำลังตามหาอยู่หรือเปล่า?";
 						next;
 						mes "[Morestone]";
-						mes "You found my Pickaxe?";
-						mes "Show me, please!";
+						mes "คุณเจอ Pickaxe ของฉันแล้วเหรอ?";
+						mes "ขอดูหน่อย ได้โปรด!";
 						next;
 						mes "[Morestone]";
-						mes "Oh, my! You've returned it to me!";
-						mes "My precious pickaxe, I thought I lost you forever.";
+						mes "โอ้ สวรรค์! คุณเอามันมาคืนให้ฉัน!";
+						mes "อีเตอร์สุดที่รักของฉัน ฉันนึกว่าจะเสียแกไปตลอดกาลแล้วนะเนี่ย";
 						next;
 						mes "[Morestone]";
-						mes "You are great! What guild are you from?";
-						mes "Could it be Gravity or Mercury?";
+						mes "คุณนี่สุดยอดจริงๆ! คุณมาจากกิลด์ไหนกันล่ะ?";
+						mes "จะเป็นกิลด์ Gravity หรือ Mercury กันนะ?";
 						next;
 						mes "[" + strcharinfo(0) + "]";
-						mes "I am a member of the ^3131FF"+.@chk_yourgdname$+"^.";
+						mes "ฉันเป็นสมาชิกของกิลด์ ^3131FF"+.@chk_yourgdname$+"^";
 						next;
 						mes "[Morestone]";
-						mes "Oh... That guild will receive my greatest respect.";
+						mes "โอ้... กิลด์นั้นจะได้รับความเคารพอย่างสูงสุดจากฉันเลย";
 						next;
 						mes "[Morestone]";
-						mes "Oh! My friend, I am very grateful for your help.";
-						mes "As a reward, I will tell you about a mysterious area I have discovered recently.";
+						mes "โอ้! เพื่อนเอ๋ย ฉันซาบซึ้งในความช่วยเหลือของคุณมาก";
+						mes "เพื่อเป็นการตอบแทน ฉันจะบอกคุณเกี่ยวกับพื้นที่ลึกลับที่ฉันเพิ่งค้นพบเมื่อเร็วๆ นี้";
 						next;
-						select("A mysterious area?");
+						select("พื้นที่ลึกลับงั้นเหรอ?");
 						mes "[Morestone]";
-						mes "That's right. I found it when I was digging around here.";
-						mes "It looks like it was made for some special purpose, but since there are no gems around there, I have no interest in it.";
-						next;
-						mes "[Morestone]";
-						mes "Instead of going there alone, I think it would be more fun to go with your friends...";
+						mes "ถูกต้องแล้ว ฉันเจอมันตอนขุดอยู่แถวๆ นี้แหละ";
+						mes "มันดูเหมือนถูกสร้างขึ้นมาเพื่อวัตถุประสงค์พิเศษบางอย่าง แต่ในเมื่อมันไม่มีอัญมณีอยู่แถวนั้น ฉันก็เลยไม่ค่อยสนใจมันเท่าไหร่";
 						next;
 						mes "[Morestone]";
-						mes "If you want, I can take ^3131FFyou and your guild members^000000 to explore that area.";
-						mes "Do you want to go there now?";
+						mes "แทนที่จะไปที่นั่นคนเดียว ฉันคิดว่ามันน่าจะสนุกกว่าถ้าได้ไปกับเพื่อนๆ ของคุณนะ...";
 						next;
-						switch(select("Wait! I'm not ready yet.:Let's go!")) {
+						mes "[Morestone]";
+						mes "ถ้าคุณต้องการ ฉันสามารถพา ^3131FFคุณและสมาชิกกิลด์ของคุณ^000000 ไปสำรวจพื้นที่นั้นได้";
+						mes "คุณอยากจะไปที่นั่นตอนนี้เลยไหม?";
+						next;
+						switch(select("เดี๋ยวก่อน! ฉันยังไม่พร้อมตอนนี้:ไปกันเลย!")) {
 						case 1:
 							set $@gdeventv_s1,0;
 							set $@gdevents_s$,"";
 							mes "[Morestone]";
-							mes "Take your time, and find a place to gather your friends.";
+							mes "ตามสบายเลย ไว้ไปหาที่รวมกลุ่มเพื่อนของคุณให้เรียบร้อยก่อนเถอะ";
 							close;
 						case 2:
 							mes "[Morestone]";
-							mes "Alright! Let's go.";
-							mes "If your friends visit me again later, I will guide them to that area again.";
-							mes "Don't forget, dwarves are grateful beings! Hahaha!";
+							mes "ตกลง! ไปกันเถอะ";
+							mes "ถ้าเพื่อนของคุณมาหาฉันในภายหลัง ฉันก็นำทางพวกเขาไปยังพื้นที่นั้นอีกครั้งได้";
+							mes "อย่าลืมล่ะว่าชาวแคระเป็นพวกที่รู้คุณคน! ฮะฮะฮ่า!";
 							delitem 6010,1; //Pickaxe
 							set $@gdeventv_s1,1;
 							set $@gdevents_s$,.@chk_yourgdname$;
@@ -299,8 +299,8 @@ schg_dun01,194,148,5	script	Dwarf#sch_gd	826,{
 						set $@gdeventv_s1,0;
 						set $@gdevents_s$,"";
 						mes "[Morestone]";
-						mes "I will tell you how to find him.";
-						mes "Kublin wears a ridiculous golden hat, It should be easy to recognise him by that.";
+						mes "ฉันจะบอกวิธีตามหาตัวมันให้";
+						mes "Kublin สวมหมวกสีทองที่ดูตลกๆ หน่อย คุณน่าจะจำมันได้ไม่ยากจากจุดนั้นนะ";
 						close;
 					}
 				case 2:
@@ -308,16 +308,16 @@ schg_dun01,194,148,5	script	Dwarf#sch_gd	826,{
 					set $@gdevents_s$,"";
 					emotion ET_CRY;
 					mes "[Dwarf]";
-					mes "Ah....";
+					mes "อา....";
 					close;
 				}
 			}
 		}
 		else {
 			mes "[Morestone]";
-			mes "I, Morestone, have made an alliance with the "+$@gdevents_s$+" guild.";
-			mes "Hm, you're not a member.";
-			mes "Could you please give them my greetings?";
+			mes "ฉัน Morestone ได้เป็นพันธมิตรกับกิลด์ "+$@gdevents_s$+" เรียบร้อยแล้ว";
+			mes "หืม คุณไม่ใช่สมาชิกนี่นา";
+			mes "ช่วยฝากความคิดถึงไปให้พวกเขาด้วยจะได้ไหม?";
 			close;
 		}
 	}
@@ -326,21 +326,21 @@ schg_dun01,194,148,5	script	Dwarf#sch_gd	826,{
 			set .@chk_urquest1,checkquest(2144);
 			if ((.@chk_urquest1 == 0) || (.@chk_urquest1 == 1)) {
 				mes "[Morestone]";
-				mes "I, Morestone, have made an alliance with the "+$@gdevents_s$+" guild.";
-				mes "Oh, you are a member.";
-				mes "Would you like to go to the mysterious area?";
+				mes "ฉัน Morestone ได้เป็นพันธมิตรกับกิลด์ "+$@gdevents_s$+" เรียบร้อยแล้ว";
+				mes "โอ้ คุณเป็นสมาชิกสินะ";
+				mes "คุณต้องการจะไปยังพื้นที่ลึกลับนั่นไหม?";
 				next;
-				switch(select("Let's go.:No, thanks.")) {
+				switch(select("ไปกันเลย:ไม่ล่ะ ขอบใจ")) {
 				case 1:
 					mes "[Morestone]";
-					mes "I hope you enjoy yourself, my friend.";
+					mes "ขอให้สนุกนะเพื่อนของฉัน";
 					close2;
 					warp "schg_que01",103,133;
 					end;
 				case 2:
 					mes "[Morestone]";
-					mes "If you need my assistance, just ask.";
-					mes "Ah! Dont forget, I hate monsters! So I don't want to see them. It will be better if you ask for another favour.";
+					mes "ถ้าคุณต้องการความช่วยเหลือจากฉัน ก็แค่บอกนะ";
+					mes "อ้อ! อย่าลืมล่ะ ฉันเกลียดมอนสเตอร์! ฉันไม่อยากเห็นพวกมันเลย ถ้าคุณอยากจะให้ช่วยเรื่องอื่นจะดีกว่ามาก";
 					close;
 				}
 			}
@@ -348,87 +348,87 @@ schg_dun01,194,148,5	script	Dwarf#sch_gd	826,{
 				set $@gdeventv_s1,1;
 				set $@gdevents_s$,.@chk_yourgdname$;
 				mes "[Dwarf]";
-				mes "Help me!";
-				mes "Please, help me!";
+				mes "ช่วยฉันด้วย!";
+				mes "ได้โปรด ช่วยฉันด้วย!";
 				next;
-				switch(select("What happened?:Nevermind.")) {
+				switch(select("เกิดอะไรขึ้นเหรอ?:ช่างมันเถอะ")) {
 				case 1:
 					mes "[Dwarf]";
-					mes "I am Morestone and I collect rare gems.";
+					mes "ฉันชื่อ Morestone เป็นนักสะสมอัญมณีหายาก";
 					next;
 					mes "[Morestone]";
-					mes "In my travels, I was told that there were a lot of gems in Valfreyja and Nidhoggur, so I came down here.";
-					mes "But here, the soil is very hard to dig into. Fortunately, my ^3131FFPickaxe^000000 never lets me down!";
+					mes "ในการเดินทางของฉัน มีคนบอกว่ามีอัญมณีมากมายใน Valfreyja และ Nidhoggur ฉันก็เลยลงมาที่นี่";
+					mes "แต่ที่นี่ ดินมันขุดยากมากจริงๆ โชคดีที่ ^3131FFPickaxe^000000 ของฉันไม่เคยทำให้ผิดหวัง!";
 					next;
 					select("Pickaxe!");
 					mes "[Morestone]";
-					mes "Yes, my beloved pickaxe!";
-					mes "I always carry it with me, you know?";
+					mes "ใช่แล้ว อีเตอร์คู่ใจของฉันเอง!";
+					mes "ฉันพกมันติดตัวไปด้วยเสมอ คุณรู้ไหม?";
 					next;
 					mes "[Morestone]";
-					mes "We started working here together.";
-					mes "After a few days, we finally found something!";
+					mes "พวกเราเริ่มทำงานที่นี่ด้วยกัน";
+					mes "หลังจากผ่านไปไม่กี่วัน ในที่สุดเราก็ค้นพบบางอย่าง!";
 					next;
-					select("Something strange??");
+					select("บางอย่างที่แปลกประหลาดงั้นเหรอ??");
 					mes "[Morestone]";
-					mes "No, but it was worth quite a lot.";
-					mes "But we did not have much time to celebrate. Suddenly, a monster appeared that stole my pickaxe.";
-					mes "His name was^3131FFKublin^000000!";
+					mes "เปล่าหรอก แต่มันมีมูลค่าสูงมากเลยล่ะ";
+					mes "แต่เรายังไม่ทันจะได้ฉลองกันเลย ทันใดนั้นก็มีมอนสเตอร์ปรากฏตัวขึ้นแล้วขโมยอีเตอร์ของฉันไป";
+					mes "ชื่อของมันคือ ^3131FFKublin^000000!";
 					next;
 					mes "[Morestone]";
-					mes "He stole my Pickaxe!";
-					mes "I can't live without it...";
+					mes "มันขโมย Pickaxe ของฉันไป!";
+					mes "ฉันอยู่ไม่ได้ถ้าไม่มีมัน...";
 					next;
 					if (countitem(6010) > 0) {
 						mes "[" + strcharinfo(0) + "]";
-						mes "Is this the pickaxe that you've been looking for?";
+						mes "นี่ใช่อีเตอร์ที่คุณกำลังตามหาอยู่หรือเปล่า?";
 						next;
 						mes "[Morestone]";
-						mes "You found my Pickaxe?";
-						mes "Show me, please!";
+						mes "คุณเจอ Pickaxe ของฉันแล้วเหรอ?";
+						mes "ขอดูหน่อย ได้โปรด!";
 						next;
 						mes "[Morestone]";
-						mes "Oh, my! You've returned it to me!";
-						mes "My precious pickaxe, I thought I lost you forever.";
+						mes "โอ้ สวรรค์! คุณเอามันมาคืนให้ฉัน!";
+						mes "อีเตอร์สุดที่รักของฉัน ฉันนึกว่าจะเสียแกไปตลอดกาลแล้วนะเนี่ย";
 						next;
 						mes "[Morestone]";
-						mes "You are great! What guild are you from?";
-						mes "Could it be Gravity or Mercury?";
+						mes "คุณนี่สุดยอดจริงๆ! คุณมาจากกิลด์ไหนกันล่ะ?";
+						mes "จะเป็นกิลด์ Gravity หรือ Mercury กันนะ?";
 						next;
 						mes "[" + strcharinfo(0) + "]";
-						mes "I am a member of the ^3131FF"+.@chk_yourgdname$+"^.";
+						mes "ฉันเป็นสมาชิกของกิลด์ ^3131FF"+.@chk_yourgdname$+"^";
 						next;
 						mes "[Morestone]";
-						mes "Oh... That guild will receive my greatest respect.";
+						mes "โอ้... กิลด์นั้นจะได้รับความเคารพอย่างสูงสุดจากฉันเลย";
 						next;
 						mes "[Morestone]";
-						mes "Oh! My friend, I am very grateful for your help.";
-						mes "As a reward, I will tell you about a mysterious area I have discovered recently.";
+						mes "โอ้! เพื่อนเอ๋ย ฉันซาบซึ้งในความช่วยเหลือของคุณมาก";
+						mes "เพื่อเป็นการตอบแทน ฉันจะบอกคุณเกี่ยวกับพื้นที่ลึกลับที่ฉันเพิ่งค้นพบเมื่อเร็วๆ นี้";
 						next;
-						select("A mysterious area?");
+						select("พื้นที่ลึกลับงั้นเหรอ?");
 						mes "[Morestone]";
-						mes "That's right. I found it when I was digging around here.";
-						mes "It looks like it was made for some special purpose, but since there are no gems around there, I have no interest in it.";
-						next;
-						mes "[Morestone]";
-						mes "Instead of going there alone, I think it would be more fun to go with your friends...";
+						mes "ถูกต้องแล้ว ฉันเจอมันตอนขุดอยู่แถวๆ นี้แหละ";
+						mes "มันดูเหมือนถูกสร้างขึ้นมาเพื่อวัตถุประสงค์พิเศษบางอย่าง แต่ในเมื่อมันไม่มีอัญมณีอยู่แถวนั้น ฉันก็เลยไม่ค่อยสนใจมันเท่าไหร่";
 						next;
 						mes "[Morestone]";
-						mes "If you want, I can take ^3131FFyou and your guild members^000000 to explore that area.";
-						mes "Do you want to go there now?";
+						mes "แทนที่จะไปที่นั่นคนเดียว ฉันคิดว่ามันน่าจะสนุกกว่าถ้าได้ไปกับเพื่อนๆ ของคุณนะ...";
 						next;
-						switch(select("Wait! I'm not ready yet.:Let's go!")) {
+						mes "[Morestone]";
+						mes "ถ้าคุณต้องการ ฉันสามารถพา ^3131FFคุณและสมาชิกกิลด์ของคุณ^000000 ไปสำรวจพื้นที่นั้นได้";
+						mes "คุณอยากจะไปที่นั่นตอนนี้เลยไหม?";
+						next;
+						switch(select("เดี๋ยวก่อน! ฉันยังไม่พร้อมตอนนี้:ไปกันเลย!")) {
 						case 1:
 							set $@gdeventv_s1,0;
 							set $@gdevents_s$,"";
 							mes "[Morestone]";
-							mes "Take your time, and find a place to gather you friends.";
+							mes "ตามสบายเลย ไว้ไปหาที่รวมกลุ่มเพื่อนของคุณให้เรียบร้อยก่อนเถอะ";
 							close;
 						case 2:
 							mes "[Morestone]";
-							mes "Alright! Let's go.";
-							mes "If your friends visit me again later, I will guide them to that area again.";
-							mes "Don't forget, dwarves are grateful beings! Hahaha!";
+							mes "ตกลง! ไปกันเถอะ";
+							mes "ถ้าเพื่อนของคุณมาหาฉันในภายหลัง ฉันก็นำทางพวกเขาไปยังพื้นที่นั้นอีกครั้งได้";
+							mes "อย่าลืมล่ะว่าชาวแคระเป็นพวกที่รู้คุณคน! ฮะฮะฮ่า!";
 							delitem 6010,1; //Pickaxe
 							set $@gdeventv_s1,1;
 							set $@gdevents_s$,.@chk_yourgdname$;
@@ -442,8 +442,8 @@ schg_dun01,194,148,5	script	Dwarf#sch_gd	826,{
 						set $@gdeventv_s1,0;
 						set $@gdevents_s$,"";
 						mes "[Morestone]";
-						mes "I will tell you how to find him.";
-						mes "Kublin wears a ridiculous golden hat, It should be easy to recognise him by that.";
+						mes "ฉันจะบอกวิธีตามหาตัวมันให้";
+						mes "Kublin สวมหมวกสีทองที่ดูตลกๆ หน่อย คุณน่าจะจำมันได้ไม่ยากจากจุดนั้นนะ";
 						close;
 					}
 				case 2:
@@ -451,16 +451,16 @@ schg_dun01,194,148,5	script	Dwarf#sch_gd	826,{
 					set $@gdevents_s$,"";
 					emotion ET_CRY;
 					mes "[Dwarf]";
-					mes "Ah....";
+					mes "อา....";
 					close;
 				}
 			}
 		}
 		else {
 			mes "[Morestone]";
-			mes "I, Morestone, have made an alliance with the "+$@gdevents_s$+" guild.";
-			mes "Hm, you're not a member.";
-			mes "Could you please give them my greetings?";
+			mes "ฉัน Morestone ได้เป็นพันธมิตรกับกิลด์ "+$@gdevents_s$+" เรียบร้อยแล้ว";
+			mes "หืม คุณไม่ใช่สมาชิกนี่นา";
+			mes "ช่วยฝากความคิดถึงไปให้พวกเขาด้วยจะได้ไหม?";
 			close;
 		}
 	}
@@ -496,11 +496,11 @@ schg_que01,100,81,3	script	Pierrot Pier#sch_gd	715,{
 		setnpcdisplay "Pierrot Pier#sch_gd",876;
 	}
 	if (checkweight(1201,1) == 0) {
-		mes "- Wait!! -";
-		mes "- You're carrying too many items, -";
-		mes "- you can't receive the materials. -";
-		mes "- Please use the Kafra Services, -";
-		mes "- and come back later. -";
+		mes "- เดี๋ยวก่อน!! -";
+		mes "- คุณแบกไอเทมมากเกินไป -";
+		mes "- คุณไม่สามารถรับวัตถุดิบได้ -";
+		mes "- กรุณาไปใช้บริการ Kafra -";
+		mes "- แล้วค่อยกลับมาใหม่ในภายหลังนะ -";
 		close;
 	}
 	if (is_guild_leader() == true) {
@@ -508,120 +508,120 @@ schg_que01,100,81,3	script	Pierrot Pier#sch_gd	715,{
 			set .@que_2143,checkquest(2143,PLAYTIME);
 			if (.@que_2143 == -1) {
 				setnpcdisplay "Pierrot Pier#sch_gd",715;
-				mes "A lonely clown is juggling.";
+				mes "ตัวตลกที่โดดเดี่ยวเขากำลังเล่นกลสลับบอลอยู่";
 				next;
-				mes "When looked at closely, the clown is just a puppet that looks like a human.";
+				mes "เมื่อมองดูใกล้ๆ ตัวตลกตัวนี้เป็นเพียงหุ่นเชิดที่มีลักษณะคล้ายมนุษย์เท่านั้น";
 				next;
-				mes "The clown stops, then starts moving in accordance to your movements, noises start to emit from it's mouth.";
-				next;
-				mes "[Pierrot Pier]";
-				mes "Beep beep beep.";
-				mes "Hello, my friends!";
-				mapannounce "schg_que01", "Pierrot Pier: Beep beep beep! Hello, my friends!",bc_map,"0x99CC00";
+				mes "ตัวตลกหยุดนิ่ง แล้วเริ่มเคลื่อนไหวตามการขยับตัวของคุณ และมีเสียงเริ่มดังออกมาจากปากของมัน";
 				next;
 				mes "[Pierrot Pier]";
-				mes "I am the loyal servant of Gergath, and I have finally received my orders.";
-				mes "I am happy to hear all the laughter, but without my master's permission, I can't do anything.";
-				mapannounce "schg_que01", "Pierrot Pier: I am happy to hear all the laughter, but without my master's permission, I can't do anything.",bc_map,"0x99CC00";
+				mes "ปี๊บ ปี๊บ ปี๊บ";
+				mes "สวัสดีเพื่อนๆ ของฉัน!";
+				mapannounce "schg_que01", "Pierrot Pier: ปี๊บ ปี๊บ ปี๊บ! สวัสดีเพื่อนๆ ของฉัน!",bc_map,"0x99CC00";
 				next;
 				mes "[Pierrot Pier]";
-				mes "Did you get permission from Gergath?";
-				mapannounce "schg_que01", "Pierrot Pier: Did you get permission from Gergath?",bc_map,"0x99CC00";
+				mes "ฉันคือผู้รับใช้ที่ซื่อสัตย์ของ Gergath และในที่สุดฉันก็ได้รับคำสั่งมาแล้ว";
+				mes "ฉันดีใจที่ได้ยินเสียงหัวเราะ แต่ถ้าไม่มีการอนุญาตจากเจ้านาย ฉันก็ทำอะไรไม่ได้เลย";
+				mapannounce "schg_que01", "Pierrot Pier: ฉันดีใจที่ได้ยินเสียงหัวเราะ แต่ถ้าไม่มีการอนุญาตจากเจ้านาย ฉันก็ทำอะไรไม่ได้เลย",bc_map,"0x99CC00";
 				next;
-				switch(select("I need to check that.:No.")) {
+				mes "[Pierrot Pier]";
+				mes "คุณได้รับอนุญาตจาก Gergath หรือยัง?";
+				mapannounce "schg_que01", "Pierrot Pier: คุณได้รับอนุญาตจาก Gergath หรือยัง?",bc_map,"0x99CC00";
+				next;
+				switch(select("ฉันขอตรวจสอบดูก่อนนะ:ยังเลย")) {
 				case 1:
 					mes "[Pierrot Pier]";
-					mes "Please give me the palm of your hand.";
-					mapannounce "schg_que01", "Pierrot Pier: Please give me the palm of your hand.",bc_map,"0x99CC00";
+					mes "กรุณาส่งฝ่ามือของคุณมาให้ฉันหน่อย";
+					mapannounce "schg_que01", "Pierrot Pier: กรุณาส่งฝ่ามือของคุณมาให้ฉันหน่อย",bc_map,"0x99CC00";
 					next;
 					mes "[Pierrot Pier]";
-					mes "Let me see...";
-					mapannounce "schg_que01", "Pierrot Pier: Let me see...",bc_map,"0x99CC00";
-					next;
-					emotion ET_THINK;
-					mes "[Pierrot Pier]";
-					mes "Hm...";
-					mapannounce "schg_que01", "Pierrot Pier: Hm...",bc_map,"0x99CC00";
+					mes "ไหนขอดูหน่อยซิ...";
+					mapannounce "schg_que01", "Pierrot Pier: ไหนขอดูหน่อยซิ...",bc_map,"0x99CC00";
 					next;
 					emotion ET_THINK;
 					mes "[Pierrot Pier]";
-					mes "Okay, I see...";
-					mapannounce "schg_que01", "Pierrot Pier: Okay, I see...",bc_map,"0x99CC00";
+					mes "หืม...";
+					mapannounce "schg_que01", "Pierrot Pier: หืม...",bc_map,"0x99CC00";
 					next;
 					emotion ET_THINK;
 					mes "[Pierrot Pier]";
-					mes "Indeed...";
-					mapannounce "schg_que01", "Pierrot Pier: Indeed...",bc_map,"0x99CC00";
+					mes "โอเค ฉันเข้าใจละ...";
+					mapannounce "schg_que01", "Pierrot Pier: โอเค ฉันเข้าใจละ...",bc_map,"0x99CC00";
+					next;
+					emotion ET_THINK;
+					mes "[Pierrot Pier]";
+					mes "อย่างนี้นี่เอง...";
+					mapannounce "schg_que01", "Pierrot Pier: อย่างนี้นี่เอง...",bc_map,"0x99CC00";
 					next;
 					emotion ET_STARE;
 					mes "[Pierrot Pier]";
-					mes "Verification completed!";
-					mapannounce "schg_que01", "Pierrot Pier: Verification completed!",bc_map,"0x99CC00";
+					mes "การตรวจสอบเสร็จสิ้น!";
+					mapannounce "schg_que01", "Pierrot Pier: การตรวจสอบเสร็จสิ้น!",bc_map,"0x99CC00";
 					next;
 					break;
 				case 2:
 					mes "[Pierrot Pier]";
-					mes "Hm? that's right.";
-					mes "When is that person coming? I am very bored~!";
+					mes "หืม? ก็นั่นสินะ";
+					mes "เมื่อไหร่คนคนนั้นจะมากันนะ? ฉันเบื่อจะแย่อยู่แล้ว~!";
 					close;
 				}
 				mes "[Pierrot Pier]";
-				mes "^3131FF<You're someone who can only think about nonsense everyday, you have no focus at all.>^000000";
-				mapannounce "schg_que01", "Pierrot Pier: <You're someone who can only think about nonsense everyday, you have no focus at all.>",bc_map,"0x99CC00";
+				mes "^3131FF<คุณคือคนที่เอาแต่คิดเรื่องไร้สาระไปวันๆ ไม่มีความจดจ่อเอาเสียเลย>^000000";
+				mapannounce "schg_que01", "Pierrot Pier: <คุณคือคนที่เอาแต่คิดเรื่องไร้สาระไปวันๆ ไม่มีความจดจ่อเอาเสียเลย>",bc_map,"0x99CC00";
 				next;
 				emotion ET_DELIGHT;
 				mes "[Pierrot Pier]";
-				mes "Hm? You don't think so?";
-				mapannounce "schg_que01", "Pierrot Pier: Hm? You don't think so?",bc_map,"0x99CC00";
+				mes "หืม? คุณไม่คิดอย่างนั้นเหรอ?";
+				mapannounce "schg_que01", "Pierrot Pier: หืม? คุณไม่คิดอย่างนั้นเหรอ?",bc_map,"0x99CC00";
 				next;
 				emotion ET_SMILE;
 				mes "[Pierrot Pier]";
-				mes "Haha, I'm just kidding. Beep beep.";
-				mes "Ah, you are the one my master speaks of.";
-				mapannounce "schg_que01", "Pierrot Pier: Haha, I'm just kidding. Beep beep. You are the one my master speaks of.",bc_map,"0x99CC00";
+				mes "ฮะฮะ ฉันแค่ล้อเล่นน่ะ ปี๊บ ปี๊บ";
+				mes "อ่า คุณคือคนที่เจ้านายของฉันพูดถึงนั่นเอง";
+				mapannounce "schg_que01", "Pierrot Pier: ฮะฮะ ฉันแค่ล้อเล่นน่ะ ปี๊บ ปี๊บ คุณคือคนที่เจ้านายของฉันพูดถึงนั่นเอง",bc_map,"0x99CC00";
 				next;
 				mes "[Pierrot Pier]";
-				mes "Come, the Gergath has left a message for you.";
-				mes "It's a bit old, but it should still be legible.";
+				mes "มาเถอะ Gergath ได้ทิ้งข้อความไว้ให้คุณ";
+				mes "มันอาจจะเก่าไปนิด แต่ก็น่าจะยังอ่านออกอยู่นะ";
 				next;
 				mes "[Pierrot Pier]";
-				mes "Alright, let's begin!";
+				mes "เอาล่ะ เริ่มกันเลย!";
 				setquest 2143;
 				donpcevent "Gergath#sch_gd::OnEnable";
 				close;
 			}
 			else if ((.@que_2143 == 0) || (.@que_2143 == 1)) {
 				mes "[Pierrot Pier]";
-				mes "Let's talk after I finished reading my master's message. Beep beep.";
+				mes "เอาไว้คุยกันหลังจากฉันอ่านข้อความของเจ้านายจบก่อนนะ ปี๊บ ปี๊บ";
 				close;
 			}
 			else {
 				mes "[Pierrot Pier]";
-				mes "My master Gergath sincerely wishes you joy for you and your family everyday.";
+				mes "เจ้านาย Gergath ของฉันขออวยพรให้คุณและครอบครัวมีความสุขในทุกๆ วันจากใจจริง";
 				next;
 				mes "[Pierrot Pier]";
-				mes "Alright, would you like to play the game Gergath has prepared for you?";
+				mes "เอาล่ะ คุณอยากจะเล่นเกมที่ Gergath เตรียมไว้ให้คุณไหม?";
 				next;
-				switch(select("Game instructions.:Skip instructions.:Refuse game.")) {
+				switch(select("คำอธิบายเกม:ข้ามคำอธิบาย:ปฏิเสธการเล่นเกม")) {
 				case 1:
 					mes "[Pierrot Pier]";
-					mes "The game prepared by my master is very unique, yet simple and fun!";
-					mapannounce "schg_que01", "Pierrot Pier: The game prepared by my lord is very unique, yet simple and fun!",bc_map,"0x99CC00";
+					mes "เกมที่เจ้านายของฉันเตรียมไว้นั้นไม่เหมือนใคร แต่มันง่ายและสนุกมาก!";
+					mapannounce "schg_que01", "Pierrot Pier: เกมที่เจ้านายของฉันเตรียมไว้นั้นไม่เหมือนใคร แต่มันง่ายและสนุกมาก!",bc_map,"0x99CC00";
 					next;
 					mes "[Pierrot Pier]";
-					mes "It's called \"Find the Treasure Map\"!!";
-					mapannounce "schg_que01", "Pierrot Pier: It's called \"Find the Treasure Map\"!!",bc_map,"0x99CC00";
+					mes "มันถูกเรียกว่า \"ตามหาแผนที่สมบัติ\"!!";
+					mapannounce "schg_que01", "Pierrot Pier: มันถูกเรียกว่า \"ตามหาแผนที่สมบัติ\"!!",bc_map,"0x99CC00";
 					next;
 					mes "[Pierrot Pier]";
-					mes "Do you see this large and green field? Beep, beep?";
-					mes "I will show you the most incredible magic here.";
-					mes "I will turn this place very white. Veeery white!";
-					mapannounce "schg_que01", "Pierrot Pier: I will turn this place very white. Veeery white!",bc_map,"0x99CC00";
+					mes "คุณเห็นทุ่งหญ้ากว้างใหญ่สีเขียวขจีนี่ไหม? ปี๊บ ปี๊บ?";
+					mes "ฉันจะแสดงเวทมนตร์ที่น่าทึ่งที่สุดให้คุณดูที่นี่";
+					mes "ฉันจะเปลี่ยนที่นี่ให้กลายเป็นสีขาวโพลน ขาววววววสุดๆ ไปเลย!";
+					mapannounce "schg_que01", "Pierrot Pier: ฉันจะเปลี่ยนที่นี่ให้กลายเป็นสีขาวโพลน ขาววววววสุดๆ ไปเลย!",bc_map,"0x99CC00";
 					next;
 					mes "[Pierrot Pier]";
-					mes "The game instruction is just to find the treasure map within the time limit.";
-					mes "Sounds easy, right?";
-					mapannounce "schg_que01", "Pierrot Pier: The game instruction is just to find the treasure map within the time limit. ounds easy, right?",bc_map,"0x99CC00";
+					mes "กติกาของเกมก็แค่ตามหาแผนที่สมบัติให้พบภายในเวลาที่กำหนด";
+					mes "ฟังดูง่ายใช่ไหมล่ะ?";
+					mapannounce "schg_que01", "Pierrot Pier: กติกาของเกมก็แค่ตามหาแผนที่สมบัติให้พบภายในเวลาที่กำหนด ฟังดูง่ายใช่ไหมล่ะ?",bc_map,"0x99CC00";
 					next;
 					break;
 				case 2:
@@ -629,37 +629,37 @@ schg_que01,100,81,3	script	Pierrot Pier#sch_gd	715,{
 				case 3:
 					emotion ET_CRY;
 					mes "[Pierrot Pier]";
-					mes "Oh, you don't want to play?";
+					mes "โอ้ คุณไม่อยากเล่นงั้นเหรอ?";
 					close;
 				}
 				mes "[Pierrot Pier]";
-				mes "Okay, I'm ready to begin.";
-				mes "Shall we start? Beep, beep?";
+				mes "โอเค ฉันพร้อมที่จะเริ่มแล้ว";
+				mes "เรามาเริ่มกันเลยดีไหม? ปี๊บ ปี๊บ?";
 				next;
-				switch(select("No.:Start.")) {
+				switch(select("ยังก่อน:เริ่มเลย")) {
 				case 1:
 					mes "[Pierrot Pier]";
-					mes "Let me know when you are ready.";
+					mes "บอกฉันละกันเมื่อคุณพร้อม";
 					close;
 				case 2:
 					mes "[Pierrot Pier]";
-					mes "Alright! Let us begin!";
+					mes "เอาล่ะ! มาเริ่มกันเลย!";
 					next;
 					mes "[Pierrot Pier]";
-					mes "Ladies, and gentlemen.";
-					mapannounce "schg_que01", "Pierrot Pier: Ladies, and gentlemen.",bc_map,"0x99CC00";
+					mes "สุภาพบุรุษ และสุภาพสตรีทั้งหลาย";
+					mapannounce "schg_que01", "Pierrot Pier: สุภาพบุรุษ และสุภาพสตรีทั้งหลาย",bc_map,"0x99CC00";
 					next;
 					mes "[Pierrot Pier]";
-					mes "Who will find the treasure map in this white world?";
-					mapannounce "schg_que01", "Pierrot Pier: Who will find the treasure map in this white world?",bc_map,"0x99CC00";
+					mes "ใครจะเป็นผู้ค้นพบแผนที่สมบัติในโลกสีขาวโพลนใบนี้กันนะ?";
+					mapannounce "schg_que01", "Pierrot Pier: ใครจะเป็นผู้ค้นพบแผนที่สมบัติในโลกสีขาวโพลนใบนี้กันนะ?",bc_map,"0x99CC00";
 					next;
 					mes "[Pierrot Pier]";
-					mes "Amongst all of you, who shall be the lucky one?";
-					mapannounce "schg_que01", "Pierrot Pier: Amongst all of you, who shall be the lucky one?",bc_map,"0x99CC00";
+					mes "ในบรรดาพวกคุณทุกคน ใครจะเป็นผู้โชคดีคนนั้น?";
+					mapannounce "schg_que01", "Pierrot Pier: ในบรรดาพวกคุณทุกคน ใครจะเป็นผู้โชคดีคนนั้น?",bc_map,"0x99CC00";
 					next;
 					mes "[Pierrot Pier]";
-					mes "Let the game.. Begin!";
-					mapannounce "schg_que01", "Pierrot Pier: Let the game.. Begin!",bc_map,"0x99CC00";
+					mes "ขอให้เกม.. เริ่มต้นขึ้น ณ บัดนี้!";
+					mapannounce "schg_que01", "Pierrot Pier: ขอให้เกม.. เริ่มต้นขึ้น ณ บัดนี้!",bc_map,"0x99CC00";
 					set $@gdeventv_s2,1;
 					donpcevent "Controller#gdevent_s::Ongame_start";
 					erasequest 2143;
@@ -669,99 +669,99 @@ schg_que01,100,81,3	script	Pierrot Pier#sch_gd	715,{
 		}
 		else if ($@gdeventv_s2 == 1) {
 			mes "[Pierrot Pier]";
-			mes "Did you find the treasure map?";
-			mes "Show me what you have in your hands! Beep, beep!";
+			mes "คุณหาแผนที่สมบัติเจอหรือยัง?";
+			mes "แสดงสิ่งที่อยู่ในมือคุณให้ฉันดูหน่อย! ปี๊บ ปี๊บ!";
 			next;
 			mes "[Pierrot Pier]";
-			mes "Let me see...";
+			mes "ไหนขอดูหน่อยซิ...";
 			next;
 			if (countitem(6031) > 0) {
 				donpcevent "Controller#gdevent_s::OnStop";
 				set $@gdeventv_s2,3;
 				donpcevent "eff_mvp#sch_gd::Onmvp";
 				mes "[Pierrot Pier]";
-				mes "Wow~~!!";
-				mes "Success~!!";
-				mes "What a success~!!";
-				mapannounce "schg_que01", "Pierrot Pier: Wow~~!! Success~!! What a success~!!",bc_map,"0x99CC00";
+				mes "ว้าว~~!!";
+				mes "สำเร็จแล้ว~!!";
+				mes "ช่างเป็นความสำเร็จที่ยอดเยี่ยมจริงๆ~!!";
+				mapannounce "schg_que01", "Pierrot Pier: ว้าว~~!! สำเร็จแล้ว~!! ช่างเป็นความสำเร็จที่ยอดเยี่ยมจริงๆ~!!",bc_map,"0x99CC00";
 				delitem 6031,1; //Glitering_PaperB
 				close;
 			}
 			else {
 				if (countitem(6030) > 0) {
 					mes "[Pierrot Pier]";
-					mes "Ahh, what a shame, it seems like you haven't found the treasure map yet.";
-					mes "Quickly! Your time is running out! Hurry up!";
+					mes "อา น่าเสียดายจัง ดูเหมือนว่าคุณจะยังหาแผนที่สมบัติไม่เจอนะ";
+					mes "เร็วเข้า! เวลาของคุณกำลังจะหมดลงแล้ว! รีบหน่อย!";
 					close;
 				}
 				else {
 					mes "[Pierrot Pier]";
-					mes "I don't see anything. Have you even started yet? Beep?";
-					mes "Hehe, while you're talking to me, the time is slowly ticking away~";
+					mes "ฉันไม่เห็นอะไรเลย คุณเริ่มเล่นหรือยังเนี่ย? ปี๊บ?";
+					mes "อิอิ ในขณะที่คุณกำลังคุยกับฉัน เวลาเข็มนาฬิกาก็เดินต่อไปเรื่อยๆ นะ~";
 					close;
 				}
 			}
 		}
 		else if ($@gdeventv_s2 == 2) {
 			mes "[Pierrot Pier]";
-			mes "Wah, why is it like this~!!";
-			mes "Not enough? But this makes the game fun, no? Hahaha!";
+			mes "ว้า ทำไมมันเป็นอย่างนี้ไปได้นะ~!!";
+			mes "ยังไม่พอเหรอ? แต่นี่แหละที่ทำให้เกมมันสนุก จริงไหมล่ะ? ฮะฮะฮ่า!";
 			next;
 			mes "[Pierrot Pier]";
-			mes "What did you think?";
+			mes "คุณคิดว่ายังไงล่ะ?";
 			next;
-			switch(select("It was pretty hard.:I should've been successful...")) {
+			switch(select("มันค่อนข้างยากนะ:ฉันควรจะทำสำเร็จสิ...")) {
 			case 1:
 				mes "[Pierrot Pier]";
-				mes "It's like trying to find a needle in a haystack!";
-				mes "It's hard, but if you find it, it's worth ten times the effort. Beep, beep.";
+				mes "มันเหมือนกับการงมเข็มในมหาสมุทรเลยใช่ไหมล่ะ!";
+				mes "มันยากนะ แต่ถ้าคุณหามันเจอ มันก็คุ้มค่ากับความพยายามเป็นสิบเท่าเลย ปี๊บ ปี๊บ";
 				next;
 				break;
 			case 2:
 				mes "[Pierrot Pier]";
-				mes "Aaah~! Time is gold.";
-				mes "Precious time goes by so fast.";
+				mes "อา~! เวลาเป็นเงินเป็นทอง";
+				mes "เวลาอันมีค่ามักจะผ่านไปเร็วเสมอ";
 				next;
 				break;
 			}
 			mes "[Pierrot Pier]";
-			mes "I, Pierrot Piere, am not a heartless clown! Beep beep.";
-			mapannounce "schg_que01", "Pierrot Pier: I, Pierrot Piere, am not a heartless clown! Beep beep.",bc_map,"0x99CC00";
+			mes "ฉัน Pierrot Piere ไม่ใช่ตัวตลกที่ใจร้ายหรอกนะ! ปี๊บ ปี๊บ";
+			mapannounce "schg_que01", "Pierrot Pier: ฉัน Pierrot Piere ไม่ใช่ตัวตลกที่ใจร้ายหรอกนะ! ปี๊บ ปี๊บ",bc_map,"0x99CC00";
 			next;
 			mes "[Pierrot Pier]";
-			mes "Your success is my happiness!";
-			mes "I'll give you one more chance. How's that? Beep?";
-			mapannounce "schg_que01", "Pierrot Pier: I'll give you one more chance. How's that? Beep?",bc_map,"0x99CC00";
+			mes "ความสำเร็จของคุณคือความสุขของฉัน!";
+			mes "ฉันจะให้โอกาสคุณอีกครั้ง เป็นไงล่ะ? ปี๊บ?";
+			mapannounce "schg_que01", "Pierrot Pier: ฉันจะให้โอกาสคุณอีกครั้ง เป็นไงล่ะ? ปี๊บ?",bc_map,"0x99CC00";
 			next;
 			mes "[Pierrot Pier]";
-			mes "Okay, I'm ready to begin.";
-			mes "Shall we start? Beep, beep?";
-			mapannounce "schg_que01", "Pierrot Pier: Okay, I'm ready to begin. Shall we start? Beep, beep?",bc_map,"0x99CC00";
+			mes "โอเค ฉันพร้อมที่จะเริ่มแล้ว";
+			mes "เรามาเริ่มกันเลยดีไหม? ปี๊บ ปี๊บ?";
+			mapannounce "schg_que01", "Pierrot Pier: โอเค ฉันพร้อมที่จะเริ่มแล้ว เรามาเริ่มกันเลยดีไหม? ปี๊บ ปี๊บ?",bc_map,"0x99CC00";
 			next;
-			switch(select("No.:Start.")) {
+			switch(select("ยังก่อน:เริ่มเลย")) {
 			case 1:
 				mes "[Pierrot Pier]";
-				mes "Let me know when you are ready.";
+				mes "บอกฉันละกันเมื่อคุณพร้อม";
 				close;
 			case 2:
 				mes "[Pierrot Pier]";
-				mes "Alright! Let us begin!";
+				mes "เอาล่ะ! มาเริ่มกันเลย!";
 				next;
 				mes "[Pierrot Pier]";
-				mes "Ladies, and gentlemen.";
-				mapannounce "schg_que01", "Pierrot Pier: Ladies, and gentlemen.",bc_map,"0x99CC00";
+				mes "สุภาพบุรุษ และสุภาพสตรีทั้งหลาย";
+				mapannounce "schg_que01", "Pierrot Pier: สุภาพบุรุษ และสุภาพสตรีทั้งหลาย",bc_map,"0x99CC00";
 				next;
 				mes "[Pierrot Pier]";
-				mes "Who will find the treasure map in this white world?";
-				mapannounce "schg_que01", "Pierrot Pier: Who will find the treasure map in this white world?",bc_map,"0x99CC00";
+				mes "ใครจะเป็นผู้ค้นพบแผนที่สมบัติในโลกสีขาวโพลนใบนี้กันนะ?";
+				mapannounce "schg_que01", "Pierrot Pier: ใครจะเป็นผู้ค้นพบแผนที่สมบัติในโลกสีขาวโพลนใบนี้กันนะ?",bc_map,"0x99CC00";
 				next;
 				mes "[Pierrot Pier]";
-				mes "Amongst all of you, who shall be the lucky one?";
-				mapannounce "schg_que01", "Pierrot Pier: Amongst all of you, who shall be the lucky one?",bc_map,"0x99CC00";
+				mes "ในบรรดาพวกคุณทุกคน ใครจะเป็นผู้โชคดีคนนั้น?";
+				mapannounce "schg_que01", "Pierrot Pier: ในบรรดาพวกคุณทุกคน ใครจะเป็นผู้โชคดีคนนั้น?",bc_map,"0x99CC00";
 				next;
 				mes "[Pierrot Pier]";
-				mes "Let the game.. Begin!";
-				mapannounce "schg_que01", "Pierrot Pier: Let the game.. Begin!",bc_map,"0x99CC00";
+				mes "ขอให้เกม.. เริ่มต้นขึ้น ณ บัดนี้!";
+				mapannounce "schg_que01", "Pierrot Pier: ขอให้เกม.. เริ่มต้นขึ้น ณ บัดนี้!",bc_map,"0x99CC00";
 				set $@gdeventv_s2,10;
 				donpcevent "Controller#gdevent_s::Ongame_start";
 				close;
@@ -773,18 +773,18 @@ schg_que01,100,81,3	script	Pierrot Pier#sch_gd	715,{
 				erasequest 2143;
 			}
 			mes "[Pierrot Pier]";
-			mes "How did you do it?";
-			mapannounce "schg_que01", "Pierrot Pier: How did you do it?",bc_map,"0x99CC00";
+			mes "คุณทำได้อย่างไรกันน่ะ?";
+			mapannounce "schg_que01", "Pierrot Pier: คุณทำได้อย่างไรกันน่ะ?",bc_map,"0x99CC00";
 			next;
 			mes "[Pierrot Pier]";
-			mes "You managed to find a needle in a haystack!";
-			mes "Amazing!";
-			mapannounce "schg_que01", "Pierrot Pier: You managed to find a needle in a haystack! Amazing!!",bc_map,"0x99CC00";
+			mes "คุณจัดการงมเข็มในมหาสมุทรจนเจอจนได้!";
+			mes "น่าทึ่งมาก!";
+			mapannounce "schg_que01", "Pierrot Pier: คุณจัดการงมเข็มในมหาสมุทรจนเจอจนได้! น่าทึ่งมาก!!",bc_map,"0x99CC00";
 			next;
 			mes "[Pierrot Pier]";
-			mes "You've completeled an unbelievable task, I will give you the wonderful gift master has prepared!! Ha!";
-			mapannounce "schg_que01", "Pierrot Pier: You've completeled an unbelievable task, I will give you the wonderful gift my master has prepared!! Ha!",bc_map,"0x99CC00";
-			mapannounce "schg_que01", "Pierrot Pier: Here, take Pierre's Treasure Boxes.",bc_map,"0x99CC00";
+			mes "คุณได้ทำภารกิจที่ไม่น่าเชื่อสำเร็จแล้ว ฉันจะมอบของขวัญสุดพิเศษที่เจ้านายเตรียมไว้ให้!! ฮ่า!";
+			mapannounce "schg_que01", "Pierrot Pier: คุณได้ทำภารกิจที่ไม่น่าเชื่อสำเร็จแล้ว ฉันจะมอบของขวัญสุดพิเศษที่เจ้านายเตรียมไว้ให้!! ฮ่า!",bc_map,"0x99CC00";
+			mapannounce "schg_que01", "Pierrot Pier: เอ้านี่ รับ Pierre's Treasure Boxes ไปซะ",bc_map,"0x99CC00";
 			donpcevent "eff_mvp#sch_gd::Onmvp";
 			set $@gdeventv_s2,5;
 			getitem 14596,10; //Pierre_Treasurebox
@@ -792,53 +792,53 @@ schg_que01,100,81,3	script	Pierrot Pier#sch_gd	715,{
 		}
 		else if ($@gdeventv_s2 == 4) {
 			mes "[Pierrot Pier]";
-			mes "Incredible! Unbelievable! Beep beep!";
+			mes "เหลือเชื่อ! ไม่น่าเชื่อจริงๆ! ปี๊บ ปี๊บ!";
 			close;
 		}
 		else if ($@gdeventv_s2 == 5) {
-			mapannounce "schg_que01", "Pierrot Pier: Seeing your smiles, makes Pierrot feel very happy~ See you next time!",bc_map,"0x99CC00";
+			mapannounce "schg_que01", "Pierrot Pier: เมื่อเห็นรอยยิ้มของคุณ ทำให้ Pierrot รู้สึกมีความสุขมากเลยล่ะ~ ไว้เจอกันใหม่นะ!",bc_map,"0x99CC00";
 			mes "[Pierrot Pier]";
-			mes "Did you have fun?";
+			mes "คุณสนุกไหม?";
 			next;
 			mes "[Pierrot Pier]";
-			mes "Seeing your smiles, makes Pierrot feel very happy~";
+			mes "เมื่อเห็นรอยยิ้มของคุณ ทำให้ Pierrot รู้สึกมีความสุขมากเลยล่ะ~";
 			next;
 			mes "[Pierrot Pier]";
-			mes "I hope to see you again very soon, I must go back to being a doll now.";
-			mes "See you next time!";
+			mes "ฉันหวังว่าจะได้พบคุณอีกในเร็วๆ นี้ ตอนนี้ฉันต้องกลับไปเป็นหุ่นกระบอกแล้ว";
+			mes "ไว้เจอกันใหม่นะ!";
 			erasequest 2144;
 			close;
 		}
 		else {
 			mes "[Pierrot Pier]";
-			mes "Did you find the treasure map?";
-			mes "Show me what you have in your hands! Beep, beep!";
+			mes "คุณหาแผนที่สมบัติเจอหรือยัง?";
+			mes "แสดงสิ่งที่อยู่ในมือคุณให้ฉันดูหน่อย! ปี๊บ ปี๊บ!";
 			next;
 			mes "[Pierrot Pier]";
-			mes "Let me see.";
+			mes "ไหนขอดูหน่อยซิ";
 			next;
 			if (countitem(6031) > 0) {
 				donpcevent "Controller#gdevent_s::OnStop";
 				set $@gdeventv_s2,3;
 				donpcevent "eff_mvp#sch_gd::Onmvp";
 				mes "[Pierrot Pier]";
-				mes "Wow~~!!";
-				mes "Success~!!";
-				mes "What a success~!!";
+				mes "ว้าว~~!!";
+				mes "สำเร็จแล้ว~!!";
+				mes "ช่างเป็นความสำเร็จที่ยอดเยี่ยมจริงๆ~!!";
 				delitem 6031,1; //Glitering_PaperB
 				close;
 			}
 			else {
 				if (countitem(6030) > 0) {
 					mes "[Pierrot Pier]";
-					mes "Ahh, what a shame, it seems like you haven't found the treasure map yet.";
-					mes "Quickly! Your time is running out! Hurry up!";
+					mes "อา น่าเสียดายจัง ดูเหมือนว่าคุณจะยังหาแผนที่สมบัติไม่เจอนะ";
+					mes "เร็วเข้า! เวลาของคุณกำลังจะหมดลงแล้ว! รีบหน่อย!";
 					close;
 				}
 				else {
 					mes "[Pierrot Pier]";
-					mes "I don't see anything. Have you even started yet? Beep?";
-					mes "Hehe, while you're talking to me, the time is slowly ticking away~";
+					mes "ฉันไม่เห็นอะไรเลย คุณเริ่มเล่นหรือยังเนี่ย? ปี๊บ?";
+					mes "อิอิ ในขณะที่คุณกำลังคุยกับฉัน เวลาเข็มนาฬิกาก็เดินต่อไปเรื่อยๆ นะ~";
 					close;
 				}
 			}
@@ -847,172 +847,172 @@ schg_que01,100,81,3	script	Pierrot Pier#sch_gd	715,{
 	else {
 		if ($@gdeventv_s2 == 0) {
 			setnpcdisplay "Pierrot Pier#sch_gd",715;
-			mes "A lonely clown is juggling.";
+			mes "ตัวตลกที่โดดเดี่ยวเขากำลังเล่นกลสลับบอลอยู่";
 			next;
-			mes "When looked at closely, the clown is just a puppet that looks like a human.";
+			mes "เมื่อมองดูใกล้ๆ ตัวตลกตัวนี้เป็นเพียงหุ่นเชิดที่มีลักษณะคล้ายมนุษย์เท่านั้น";
 			next;
-			mes "The clown stops, then starts moving in accordance to your movements, noises start to emit from it's mouth.";
-			next;
-			mes "[Pierrot Pier]";
-			mes "Beep beep beep.";
-			mes "Hello, my friends!";
-			mapannounce "schg_que01", "Pierrot Pier: Beep beep beep! Hello, my friends!",bc_map,"0x99CC00";
+			mes "ตัวตลกหยุดนิ่ง แล้วเริ่มเคลื่อนไหวตามการขยับตัวของคุณ และมีเสียงเริ่มดังออกมาจากปากของมัน";
 			next;
 			mes "[Pierrot Pier]";
-			mes "I am the loyal servant of Gergath, and I have finally received my orders.";
-			mes "I am happy to hear all the laughter, but without my master's permission, I can't do anything.";
-			mapannounce "schg_que01", "Pierrot Pier: I am happy to hear all the laughter, but without my master's permission, I can't do anything.",bc_map,"0x99CC00";
+			mes "ปี๊บ ปี๊บ ปี๊บ";
+			mes "สวัสดีเพื่อนๆ ของฉัน!";
+			mapannounce "schg_que01", "Pierrot Pier: ปี๊บ ปี๊บ ปี๊บ! สวัสดีเพื่อนๆ ของฉัน!",bc_map,"0x99CC00";
 			next;
 			mes "[Pierrot Pier]";
-			mes "Did you get permission from the Gergath?";
-			mapannounce "schg_que01", "Pierrot Pier: Did you get permission from Gergath?",bc_map,"0x99CC00";
+			mes "ฉันคือผู้รับใช้ที่ซื่อสัตย์ของ Gergath และในที่สุดฉันก็ได้รับคำสั่งมาแล้ว";
+			mes "ฉันดีใจที่ได้ยินเสียงหัวเราะ แต่ถ้าไม่มีการอนุญาตจากเจ้านาย ฉันก็ทำอะไรไม่ได้เลย";
+			mapannounce "schg_que01", "Pierrot Pier: ฉันดีใจที่ได้ยินเสียงหัวเราะ แต่ถ้าไม่มีการอนุญาตจากเจ้านาย ฉันก็ทำอะไรไม่ได้เลย",bc_map,"0x99CC00";
 			next;
-			switch(select("I need to check that.:No.")) {
+			mes "[Pierrot Pier]";
+			mes "คุณได้รับอนุญาตจาก Gergath หรือยัง?";
+			mapannounce "schg_que01", "Pierrot Pier: คุณได้รับอนุญาตจาก Gergath หรือยัง?",bc_map,"0x99CC00";
+			next;
+			switch(select("ฉันขอตรวจสอบดูก่อนนะ:ยังเลย")) {
 			case 1:
 				mes "[Pierrot Pier]";
-				mes "Please give me the palm of your hand.";
-				mapannounce "schg_que01", "Pierrot Pier: Please give me the palm of your hand.",bc_map,"0x99CC00";
+				mes "กรุณาส่งฝ่ามือของคุณมาให้ฉันหน่อย";
+				mapannounce "schg_que01", "Pierrot Pier: กรุณาส่งฝ่ามือของคุณมาให้ฉันหน่อย",bc_map,"0x99CC00";
 				next;
 				mes "[Pierrot Pier]";
-				mes "Let me see...";
-				mapannounce "schg_que01", "Pierrot Pier: Let me see...",bc_map,"0x99CC00";
-				next;
-				emotion ET_THINK;
-				mes "[Pierrot Pier]";
-				mes "Hm...";
-				mapannounce "schg_que01", "Pierrot Pier: Hm...",bc_map,"0x99CC00";
+				mes "ไหนขอดูหน่อยซิ...";
+				mapannounce "schg_que01", "Pierrot Pier: ไหนขอดูหน่อยซิ...",bc_map,"0x99CC00";
 				next;
 				emotion ET_THINK;
 				mes "[Pierrot Pier]";
-				mes "Okay, I see...";
-				mapannounce "schg_que01", "Pierrot Pier: Okay, I see...",bc_map,"0x99CC00";
+				mes "หืม...";
+				mapannounce "schg_que01", "Pierrot Pier: หืม...",bc_map,"0x99CC00";
 				next;
 				emotion ET_THINK;
 				mes "[Pierrot Pier]";
-				mes "Indeed...";
-				mapannounce "schg_que01", "Pierrot Pier: Indeed...",bc_map,"0x99CC00";
+				mes "โอเค ฉันเข้าใจละ...";
+				mapannounce "schg_que01", "Pierrot Pier: โอเค ฉันเข้าใจละ...",bc_map,"0x99CC00";
+				next;
+				emotion ET_THINK;
+				mes "[Pierrot Pier]";
+				mes "อย่างนี้นี่เอง...";
+				mapannounce "schg_que01", "Pierrot Pier: อย่างนี้นี่เอง...",bc_map,"0x99CC00";
 				next;
 				emotion ET_STARE;
 				mes "[Pierrot Pier]";
-				mes "Verification completed!";
-				mapannounce "schg_que01", "Pierrot Pier: Verification completed!",bc_map,"0x99CC00";
+				mes "การตรวจสอบเสร็จสิ้น!";
+				mapannounce "schg_que01", "Pierrot Pier: การตรวจสอบเสร็จสิ้น!",bc_map,"0x99CC00";
 				next;
 				break;
 			case 2:
 				mes "[Pierrot Pier]";
-				mes "Hm? that's right.";
-				mes "When is that person coming? I am very bored~!";
+				mes "หืม? ก็นั่นสินะ";
+				mes "เมื่อไหร่คนคนนั้นจะมากันนะ? ฉันเบื่อจะแย่อยู่แล้ว~!";
 				close;
 			}
 			emotion ET_SMILE;
 			mes "[Pierrot Pier]";
-			mes "^3131FF<Although you're a weirdo, you seem to be very dedicated>^000000. Beep beep.";
+			mes "^3131FF<ถึงคุณจะเป็นคนประหลาด แต่คุณดูจะมีความมุ่งมั่นมากเลยนะ>^000000. ปี๊บ ปี๊บ";
 			next;
 			emotion ET_PROFUSELY_SWEAT;
 			mes "[Pierrot Pier]";
-			mes "Hm? You don't think so?";
+			mes "หืม? คุณไม่คิดอย่างนั้นเหรอ?";
 			next;
 			mes "[Pierrot Pier]";
-			mes "The one my lord appointed is ^3131FF< someone who leads many people >^000000. Beep.";
+			mes "คนที่เจ้านายของฉันมอบหมายมาให้นั้นคือ ^3131FF< ใครบางคนที่สามารถนำผู้คนจำนวนมากได้ >^000000. ปี๊บ";
 			next;
 			mes "[Pierrot Pier]";
-			mes "Pierrot wants to be someone like that, too. Beep.";
+			mes "Pierrot เองก็อยากจะเป็นคนแบบนั้นเหมือนกันนะ ปี๊บ";
 			close;
 		}
 		else if ($@gdeventv_s2 == 1) {
 			mes "[Pierrot Pier]";
-			mes "Did you find the treasure map?";
-			mes "Show me what you have in your hands! Beep, beep!";
+			mes "คุณหาแผนที่สมบัติเจอหรือยัง?";
+			mes "แสดงสิ่งที่อยู่ในมือคุณให้ฉันดูหน่อย! ปี๊บ ปี๊บ!";
 			next;
 			mes "[Pierrot Pier]";
-			mes "Let me see...";
+			mes "ไหนขอดูหน่อยซิ...";
 			next;
 			if (countitem(6031) > 0) {
 				donpcevent "Controller#gdevent_s::OnStop";
 				set $@gdeventv_s2,3;
 				donpcevent "eff_mvp#sch_gd::Onmvp";
 				mes "[Pierrot Pier]";
-				mes "Wow~~!!";
-				mes "Success~!!";
-				mes "What a success~!!";
-				mapannounce "schg_que01", "Pierrot Pier: Wow~~!! Success~!! What a success~!!",bc_map,"0x99CC00";
+				mes "ว้าว~~!!";
+				mes "สำเร็จแล้ว~!!";
+				mes "ช่างเป็นความสำเร็จที่ยอดเยี่ยมจริงๆ~!!";
+				mapannounce "schg_que01", "Pierrot Pier: ว้าว~~!! สำเร็จแล้ว~!! ช่างเป็นความสำเร็จที่ยอดเยี่ยมจริงๆ~!!",bc_map,"0x99CC00";
 				delitem 6031,1; //Glitering_PaperB
 				close;
 			}
 			else {
 				if (countitem(6030) > 0) {
 					mes "[Pierrot Pier]";
-					mes "Ahh, what a shame, it seems like you haven't found the treasure map yet.";
-					mes "Quickly! Your time is running out! Hurry up!";
+					mes "อา น่าเสียดายจัง ดูเหมือนว่าคุณจะยังหาแผนที่สมบัติไม่เจอนะ";
+					mes "เร็วเข้า! เวลาของคุณกำลังจะหมดลงแล้ว! รีบหน่อย!";
 					close;
 				}
 				else {
 					mes "[Pierrot Pier]";
-					mes "I don't see anything. Have you even started yet? Beep?";
-					mes "Hehe, while you're talking to me, the time is slowly ticking away~";
+					mes "ฉันไม่เห็นอะไรเลย คุณเริ่มเล่นหรือยังเนี่ย? ปี๊บ?";
+					mes "อิอิ ในขณะที่คุณกำลังคุยกับฉัน เวลาเข็มนาฬิกาก็เดินต่อไปเรื่อยๆ นะ~";
 					close;
 				}
 			}
 		}
 		else if ($@gdeventv_s2 == 2) {
 			mes "[Pierrot Pier]";
-			mes "Wah, why is it like this~!!";
-			mes "Not enough? But this makes the game fun, no? Hahaha!";
+			mes "ว้า ทำไมมันเป็นอย่างนี้ไปได้นะ~!!";
+			mes "ยังไม่พอเหรอ? แต่นี่แหละที่ทำให้เกมมันสนุก จริงไหมล่ะ? ฮะฮะฮ่า!";
 			close;
 		}
 		else if ($@gdeventv_s2 == 3) {
 			mes "[Pierrot Pier]";
-			mes "Congratulations, you have succeeded!";
-			mes "I will talk to your leader about other details.";
+			mes "ยินดีด้วย คุณทำสำเร็จแล้ว!";
+			mes "ฉันจะคุยกับหัวหน้าของคุณเกี่ยวกับรายละเอียดอื่นๆ นะ";
 			close;
 		}
 		else if ($@gdeventv_s2 == 4) {
 			mes "[Pierrot Pier]";
-			mes "Incredible! Unbelievable! Beep beep!";
+			mes "เหลือเชื่อ! ไม่น่าเชื่อจริงๆ! ปี๊บ ปี๊บ!";
 			close;
 		}
 		else if ($@gdeventv_s2 == 5) {
 			mes "[Pierrot Pier]";
-			mes "Did you have fun?";
+			mes "คุณสนุกไหม?";
 			next;
 			mes "[Pierrot Pier]";
-			mes "Seeing your smiles, makes Pierrot feel very happy~";
+			mes "เมื่อเห็นรอยยิ้มของคุณ ทำให้ Pierrot รู้สึกมีความสุขมากเลยล่ะ~";
 			next;
 			mes "[Pierrot Pier]";
-			mes "I hope to see you again very soon, I must go back to being a doll now.";
-			mes "See you next time!";
+			mes "ฉันหวังว่าจะได้พบคุณอีกในเร็วๆ นี้ ตอนนี้ฉันต้องกลับไปเป็นหุ่นกระบอกแล้ว";
+			mes "ไว้เจอกันใหม่นะ!";
 			close;
 		}
 		else {
 			mes "[Pierrot Pier]";
-			mes "Did you find the treasure?";
-			mes "Show me that thing you are holding, now!";
+			mes "คุณหาแผนที่สมบัติเจอหรือยัง?";
+			mes "แสดงสิ่งที่อยู่ในมือคุณให้ฉันดูหน่อย เดี๋ยวนี้เลย!";
 			next;
 			mes "[Pierrot Pier]";
-			mes "Let me see...";
+			mes "ไหนขอดูหน่อยซิ...";
 			next;
 			if (countitem(6031) > 0) {
 				donpcevent "Controller#gdevent_s::OnStop";
 				set $@gdeventv_s2,3;
 				donpcevent "eff_mvp#sch_gd::Onmvp";
 				mes "[Pierrot Pier]";
-				mes "Wow~~!!";
-				mes "Success~!!";
-				mes "What a success~!!";
+				mes "ว้าว~~!!";
+				mes "สำเร็จแล้ว~!!";
+				mes "ช่างเป็นความสำเร็จที่ยอดเยี่ยมจริงๆ~!!";
 				delitem 6031,1; //Glitering_PaperB
 				close;
 			}
 			else {
 				if (countitem(6030) > 0) {
 					mes "[Pierrot Pier]";
-					mes "Ahh, what a shame, it seems like you haven't found the treasure map yet.";
-					mes "Quickly! Your time is running out! Hurry up!";
+					mes "อา น่าเสียดายจัง ดูเหมือนว่าคุณจะยังหาแผนที่สมบัติไม่เจอนะ";
+					mes "เร็วเข้า! เวลาของคุณกำลังจะหมดลงแล้ว! รีบหน่อย!";
 					close;
 				}
 				else {
 					mes "[Pierrot Pier]";
-					mes "I don't see anything. Have you even started yet? Beep?";
-					mes "Hehe, while you're talking to me, the time is slowly ticking away~";
+					mes "ฉันไม่เห็นอะไรเลย คุณเริ่มเล่นหรือยังเนี่ย? ปี๊บ?";
+					mes "อิอิ ในขณะที่คุณกำลังคุยกับฉัน เวลาเข็มนาฬิกาก็เดินต่อไปเรื่อยๆ นะ~";
 					close;
 				}
 			}
@@ -1075,11 +1075,11 @@ OnStop:
 	end;
 
 OnTimer40000:
-	mapannounce "schg_que01", "Pierrot Pier: Time is running out, hurry up!",bc_map,"0x99CC00";
+	mapannounce "schg_que01", "Pierrot Pier: เวลาใกล้จะหมดแล้ว รีบหน่อย!",bc_map,"0x99CC00";
 	end;
 
 OnTimer60000:
-	mapannounce "schg_que01", "Pierrot Pier: Time is up!",bc_map,"0x99CC00";
+	mapannounce "schg_que01", "Pierrot Pier: หมดเวลาแล้ว!",bc_map,"0x99CC00";
 	mapwarp "schg_que01","schg_que01",100,79;
 	enablenpc "removepp_sch_gd";
 	set $@gdeventv_s2,2;
@@ -1385,43 +1385,43 @@ OnEnable:
 	end;
 
 OnTimer5000:
-	mapannounce "schg_que01", "Gergath : My dear friend, how have you been? This is something I prepared for you.",bc_map,"0xFFFF00";
+	mapannounce "schg_que01", "Gergath : เพื่อนรักของฉัน สบายดีไหม? นี่คือบางสิ่งที่ฉันเตรียมไว้ให้คุณ",bc_map,"0xFFFF00";
 	end;
 
 OnTimer10000:
-	mapannounce "schg_que01", "Gergath : Do you still remember when we were young? We fought everyday like we were sworn enemies.",bc_map,"0xFFFF00";
+	mapannounce "schg_que01", "Gergath : คุณยังจำตอนที่เรายังเป็นเด็กได้ไหม? เราทะเลาะกันทุกวันอย่างกับเป็นศัตรูคู่อาฆาตกันแน่ะ",bc_map,"0xFFFF00";
 	end;
 
 OnTimer15000:
-	mapannounce "schg_que01", "Gergath : No matter how hard the adults tried, we had no intentions to change. Haha.",bc_map,"0xFFFF00";
+	mapannounce "schg_que01", "Gergath : ไม่ว่าผู้ใหญ่จะพยายามแค่ไหน เราก็ไม่มีความคิดที่จะเปลี่ยนเลยเนอะ ฮ่าฮ่า",bc_map,"0xFFFF00";
 	end;
 
 OnTimer20000:
-	mapannounce "schg_que01", "Gergath : But I believe that deep inside, we valued our friendship with each other.",bc_map,"0xFFFF00";
+	mapannounce "schg_que01", "Gergath : แต่ฉันเชื่อว่าลึกๆ ในใจแล้ว เราต่างก็เห็นคุณค่าในมิตรภาพที่มีให้กันเสมอ",bc_map,"0xFFFF00";
 	end;
 
 OnTimer25000:
-	mapannounce "schg_que01", "Gergath : After I lost my mother's remnants in Mt. Mjolnir, you came to find me.",bc_map,"0xFFFF00";
+	mapannounce "schg_que01", "Gergath : หลังจากที่ฉันทำของดูต่างหน้าของแม่หายไปใน Mt. Mjolnir คุณก็เป็นคนที่มาช่วยตามหาจนเจอ",bc_map,"0xFFFF00";
 	end;
 
 OnTimer30000:
-	mapannounce "schg_que01", "Gergath : When you, handed me my mother's remnants, I couldn't even say thank you.",bc_map,"0xFFFF00";
+	mapannounce "schg_que01", "Gergath : ตอนที่คุณยื่นของดูต่างหน้าของแม่คืนให้ฉัน ฉันกลับไม่สามารถพูดแม้แต่คำว่าขอบคุณออกมาได้",bc_map,"0xFFFF00";
 	end;
 
 OnTimer35000:
-	mapannounce "schg_que01", "Gergath : I couldn't say it even as I became an old man.",bc_map,"0xFFFF00";
+	mapannounce "schg_que01", "Gergath : ฉันไม่กล้าพูดมันออกมา จนกระทั่งฉันกลายเป็นคนแก่แบบนี้",bc_map,"0xFFFF00";
 	end;
 
 OnTimer40000:
-	mapannounce "schg_que01", "Gergath : I found out about your whereabouts not long ago. I heard you were taking care of orphaned children?",bc_map,"0xFFFF00";
+	mapannounce "schg_que01", "Gergath : ฉันเพิ่งรู้ข่าวคราวที่อยู่ของคุณเมื่อไม่นานมานี้ ได้ยินว่าคุณกำลังดูแลเด็กกำพร้าอยู่เหรอ?",bc_map,"0xFFFF00";
 	end;
 
 OnTimer45000:
-	mapannounce "schg_que01", "Gergath : Please accept this as a gift from a useless friend to you and your beloved children. I hope you will like it, haha.",bc_map,"0xFFFF00";
+	mapannounce "schg_que01", "Gergath : โปรดรับสิ่งนี้ไว้เป็นของขวัญจากเพื่อนที่ไร้ประโยชน์คนนี้ มอบให้แด่คุณและเด็กๆ ที่คุณรัก หวังว่าคุณจะชอบมันนะ ฮ่าฮ่า",bc_map,"0xFFFF00";
 	end;
 
 OnTimer50000:
-	mapannounce "schg_que01", "Gergath : Pierrot Pier will help you. I hope you can use this chance to return to the past and enjoy yourself with your children.",bc_map,"0xFFFF00";
+	mapannounce "schg_que01", "Gergath : Pierrot Pier จะคอยช่วยเหลือคุณ ฉันหวังว่าคุณจะใช้โอกาสนี้หวนกลับไปสู่อดีตและสนุกไปกับเด็กๆ ของคุณนะ",bc_map,"0xFFFF00";
 	disablenpc "Gergath#sch_gd";
 	stopnpctimer;
 	end;
@@ -1447,7 +1447,7 @@ OnEnable:
 
 OnMyMobDead:
 	if (mobcount("schg_que01","treg#sch_gd::OnMyMobDead") == 0) {
-		mapannounce "schg_que01", "Pierrot Pier: Beep! Oh, you already opened the gift? You sure are fast now, beep!",bc_map,"0x99CC00";
+		mapannounce "schg_que01", "Pierrot Pier: ปี๊บ! โอ้ คุณเปิดของขวัญเรียบร้อยแล้วเหรอ? คุณนี่รวดเร็วทันใจจริงๆ ปี๊บ!",bc_map,"0x99CC00";
 		set $@gdeventv_s2,5;
 	}
 	end;
@@ -1515,14 +1515,14 @@ schg_que01,104,105,3	duplicate(GD_Ev_Flower2)	#sch_flower_55	976
 
 schg_dun01,5,5,1	script	Event controller#sch_gd	81,{
 	if (callfunc("F_GM_NPC",1854,0) < 1) {
-		mes "Incorrect password.";
+		mes "รหัสผ่านไม่ถูกต้อง";
 		close;
 	} else {
-		mes "How can I help you?";
+		mes "มีอะไรให้ฉันช่วยไหม?";
 		next;
-		switch(select("Reset.:No, thanks.")) {
+		switch(select("รีเซ็ต (Reset):ไม่มีอะไร ขอบคุณ")) {
 		case 1:
-			mes "Completed.";
+			mes "ดำเนินการเสร็จสิ้น";
 			donpcevent "Monster Controler1#sch::OnControler1#sch_gd";
 			donpcevent "Monster Controler1#sch::OnControler1#sch_gd";
 			disablenpc "Dwarf#sch_gd";
@@ -1531,7 +1531,7 @@ schg_dun01,5,5,1	script	Event controller#sch_gd	81,{
 			set $@gdevents_s$,"";
 			close;
 		case 2:
-			mes "Good bye~";
+			mes "ลาก่อน~";
 			close;
 		}
 	}
