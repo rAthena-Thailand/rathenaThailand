@@ -18,88 +18,89 @@
 // Tine - Valentine Event Chocolate Even Guide ------------------
 prontera,156,172,4	script	Tine	58,{
 //  Debug info for item effects and tricky conditions 8)
+//  ข้อมูลสำหรับดีบั๊กเอฟเฟกต์ไอเทมและเงื่อนไขต่างๆ
 //	mes "@dsv: "+@dsv;
 //	mes "ispartneron()=="+ispartneron();
 //	mes "Sex == "+Sex;
 //	if(@dsv == gettime(DT_HOUR)+1) mes "@dsv == gettime(DT_HOUR)+1";
 
 	mes "[Tine]";
-	mes "The legend says that on 14th February... on the Day of Saint Valentine...";
-	mes "Only in Run-Midgard kingdom...";
+	mes "ตำนานกล่าวไว้ว่าในวันที่ 14 กุมภาพันธ์... วันแห่งนักบุญเซนต์วาเลนไทน์...";
+	mes "เฉพาะในอาณาจักร Run-Midgard เท่านั้น...";
 	next;
 	specialeffect EF_HITBODY;
 	mes "[Tine]";
-	mes "Some married chocolate lovers almost double their experience at trainings!";
-	mes "But everything isn't so simply...";
+	mes "เหล่าคนมีคู่ที่รักช็อกโกแลตบางคน จะได้รับประสบการณ์จากการฝึกฝนเพิ่มขึ้นเกือบสองเท่า!";
+	mes "แต่ทุกอย่างมันไม่ได้ง่ายดายขนาดนั้นหรอกนะ...";
 	next;
-	menu "Wow! Tell me more!",M_INFO,"Marri... what?",-;
+	menu "ว้าว! บอกฉันเพิ่มที!",M_INFO,"แต่งงาน... อะไรนะ?",-;
 
 	mes "[Tine]";
-	mes "Are you a single?";
-	mes "Today is a great date to ask your beloved half for marriage!";
+	mes "คุณยังโสดอยู่เหรอ?";
+	mes "วันนี้เป็นวันที่ดีมากที่จะไปขอครึ่งชีวิตที่คุณรักแต่งงานนะ!";
 	next;
 	mes "[Tine]";
-	mes "The Marriage fee is ridiculous low these days!";
+	mes "ช่วงนี้ค่าธรรมเนียมการแต่งงานถูกจนน่าเหลือเชื่อเลยล่ะ!";
 	close;
 
 M_INFO:
 	mes "[Tine]";
-	mes "The magic effect possesses only handmade chocolate from grand-grand-grand-whoever recipes!";
+	mes "เอฟเฟกต์มนตรานี้จะมีอยู่ในช็อกโกแลตทำมือที่สืบทอดสูตรมาจากคุณทวดของทวด... หรือใครสักคนนี่แหละ!";
 	next;
 	mes "[Tine]";
-	mes "It being known that Black Handmade Chocolate works on married guys... And the White one on the married girls!";
-	mes "If you lose your wedding ring... then alas, it won't work on you.";
+	mes "เป็นที่รู้กันว่า Black Handmade Chocolate จะส่งผลกับผู้ชายที่แต่งงานแล้ว... และ White Handmade Chocolate จะส่งผลกับผู้หญิงที่แต่งงานแล้ว!";
+	mes "ถ้าคุณทำแหวนแต่งงานหาย... ก็น่าเสียดายนะ มนตรานี้จะไม่ส่งผลกับคุณ";
 	next;
 	mes "[Tine]";
-	mes "On having a Chocolate, you should put off your ring then... put it back... And if your partner is online, then magic would last till the next hour!";
+	mes "เมื่อมีช็อกโกแลตแล้ว คุณควรถอดแหวนออกก่อน... แล้วสวมกลับเข้าไปใหม่... และถ้าคู่รักของคุณออนไลน์อยู่ มนตราจะคงอยู่จนถึงชั่วโมงถัดไป!";
 	next;
 	mes "[Tine]";
-	mes "Rumors bark that guys and gals have +50% EXP bonuses on FIVE different races of the monsters... Excluding bloody bosses, of course.";
+	mes "มีข่าวลือว่าหนุ่มๆ สาวๆ จะได้รับโบนัส EXP +50% จากมอนสเตอร์ 5 เผ่าที่แตกต่างกัน... แน่นอนว่าไม่รวมพวกบอสเลือดสาดล่ะนะ";
 	next;
 	mes "[Tine]";
-	mes "There's a famous confectioner in the Castle of Prontera! He's the one you need.";
+	mes "มีนักทำขนมที่มีชื่อเสียงอยู่ในปราสาท Prontera! เขาคือคนที่คุณต้องไปพบ";
 	close;
 
 OnInit:
-	//559,Hand-made_Chocolate
+	//559,Hand-made_Chocolate (ช็อกโกแลตทำมือ)
 	setitemscript 559,"{ itemheal 50,50; if(Sex==SEX_FEMALE || @dsv == gettime(DT_HOUR)+1 || ispartneron()==0)end; set @dsv,gettime(DT_HOUR)+1; misceffect EF_MAGNUS; }";
-	//560,Hand-made_White_Chocolate
+	//560,Hand-made_White_Chocolate (ไวท์ช็อกโกแลตทำมือ)
 	setitemscript 560,"{ itemheal 50,50; if(Sex==SEX_MALE || @dsv == gettime(DT_HOUR)+1 || ispartneron()==0)end; set @dsv,gettime(DT_HOUR)+1; misceffect EF_MAGNUS; }";
 
-	//2634,Wedding_Ring_M,Wedding Ring,5,,10,0,,0,,0,127918079,7,1,136,,0,0,0,{ skill 334,1; skill 335,1; skill 336,1; }
+	//2634,Wedding_Ring_M (แหวนแต่งงานชาย)
 	setitemscript 2634,"{ skill 334,1; skill 335,1; skill 336,1; if(@dsv == gettime(DT_HOUR)+1 && ispartneron()){ bonus2 bExpAddRace,5,50; bonus2 bExpAddRace,6,50; bonus2 bExpAddRace,7,50; bonus2 bExpAddRace,8,50; bonus2 bExpAddRace,1,50; } }";
-	//2635,Wedding_Ring_F,Wedding Ring,5,,10,0,,0,,0,127918079,7,0,136,,0,0,0,{ skill 334,1; skill 335,1; skill 336,1; }
+	//2635,Wedding_Ring_F (แหวนแต่งงานหญิง)
 	setitemscript 2635,"{ skill 334,1; skill 335,1; skill 336,1; if(@dsv == gettime(DT_HOUR)+1 && ispartneron()){ bonus2 bExpAddRace,0,50; bonus2 bExpAddRace,9,50; bonus2 bExpAddRace,2,50; bonus2 bExpAddRace,3,50; bonus2 bExpAddRace,4,50; } }";
 	end;
 }
 
-// Stephen - Valentine Event Chocolate seller ------------------
+// Stephen - Valentine Event Chocolate seller (คนขายช็อกโกแลต) ------------------
 alberta,26,243,4	script	Stephen#val1	58,{
 	mes "[Stephen]";
-	mes "Guess what I've got?";
-	mes "A tasty treat not easily found in Midgard....";
+	mes "ทายซิว่าฉันมีอะไร?";
+	mes "ของอร่อยที่หาไม่ได้ง่ายๆ ใน Midgard....";
 	next;
 	mes "[Stephen]";
-	mes "Chocolate!";
-	mes "That's right, don't you love chocolate.... I do.";
-	mes "And you are in luck, because I'm selling them for only 5,000 zeny a piece!";
+	mes "ช็อกโกแลตไงล่ะ!";
+	mes "ใช่แล้ว ใครล่ะจะไม่ชอบช็อกโกแลต.... ฉันน่ะชอบมากเลย";
+	mes "และคุณก็โชคดีนะ เพราะฉันขายมันแค่ชิ้นละ 5,000 zeny เท่านั้น!";
 	next;
-	menu "I want some chocolate!",M_CHOCO,"No thanks.",-;
+	menu "ฉันอยากได้ช็อกโกแลต!",M_CHOCO,"ไม่ล่ะ ขอบคุณ",-;
 
 	mes "[Stephen]";
-	mes "You don't want any chocolate?";
-	mes "I'm telling you! You'll regret it!";
-	mes "You better get some now... you won't come across Chocolate like this ever again!";
-	mes "Think it over and visit me again sometime.";
+	mes "คุณไม่ต้องการช็อกโกแลตจริงๆ เหรอ?";
+	mes "ฉันบอกเลยนะ! คุณจะต้องเสียใจ!";
+	mes "คุณควรจะซื้อไปตอนนี้... คุณจะไม่ได้เจอช็อกโกแลตแบบนี้อีกเลยนะ!";
+	mes "ลองคิดดูให้ดีแล้วกลับมาหาฉันใหม่ล่ะ";
 	close;
 
 M_CHOCO:
 	mes "[Stephen]";
-	mes "Hah!";
-	mes "I knew it!";
-	mes "But I can't sell you more than 5 at once....but, if you really need more....";
-	mes "you can come back again.";
-	mes "So how many do you want?";
+	mes "ฮ่า!";
+	mes "ฉันรู้อยู่แล้ว!";
+	mes "แต่ฉันขายให้คุณได้ไม่เกินครั้งละ 5 ชิ้นนะ.... แต่ถ้าคุณต้องการเพิ่มจริงๆ....";
+	mes "คุณก็กลับมาหาฉันใหม่ได้";
+	mes "สรุปแล้วคุณต้องการกี่ชิ้นล่ะ?";
 	next;
 	set @needmon,0;
 	input @flag_num;
@@ -110,57 +111,57 @@ M_CHOCO:
 	set Zeny,Zeny - @needmon;
 	getitem 558,@flag_num;
 	mes "[Stephen]";
-	mes "There you go!";
-	mes "You can give that to someone as a gift, or enjoy it yourself!";
-	mes "Mmm....sweet chocolate...";
-	mes "Visit me anytime...!";
+	mes "นี่ไง ได้แล้ว!";
+	mes "คุณจะเอาไปให้ใครเป็นของขวัญ หรือจะเก็บไว้กินเองก็ได้นะ!";
+	mes "อื้ม.... ช็อกโกแลตแสนหวาน...";
+	mes "มาหาฉันได้ตลอดเวลานะ...!";
 	close;
 
 L_ERR:
 	mes "[Stephen]";
-	mes "I'm sorry but I can't give you that many.";
+	mes "ขอโทษทีนะ แต่ฉันให้คุณมากขนาดนั้นไม่ได้";
 L_NONE:
 	close;
 
 L_NOTENO:
 	mes "[Stephen]";
-	mes "I'm sorry but it seems you can't afford to buy these of me.";
+	mes "ขอโทษนะ ดูเหมือนคุณจะมีเงินไม่พอซื้อของจากฉัน";
 	close;
 }
 
-// Jainie -- Gives information about Valentine Event ------------------------
+// Jainie -- Gives information about Valentine Event (คนขายไวท์ช็อกโกแลต) ------------------------
 alberta,29,243,4	script	Jainie#val1	53,{
 	mes "[Jainie]";
-	mes "You know what? The chocolate that my boyfriend sells are from me!";
-	mes "I made them by myself. Now I need some Milk for my special White Chocolate.";
+	mes "คุณรู้อะไรไหม? ช็อกโกแลตที่แฟนฉันขายอยู่น่ะ ฉันเป็นคนทำให้เองแหละ!";
+	mes "ฉันทำมันด้วยตัวเองเลยนะ ตอนนี้ฉันต้องการนม (Milk) สำหรับทำไวท์ช็อกโกแลตสูตรพิเศษของฉัน";
 	next;
 	mes "[Jainie]";
-	mes "You know ... In certain countries, there's a tradition of presenting chocolates to a person that you love...";
-	mes "They call it ^3355FFValentine's Day^000000.";
+	mes "คุณรู้ไหม ... ในบางประเทศ มีธรรมเนียมการมอบช็อกโกแลตให้กับคนที่คุณรักด้วยนะ...";
+	mes "พวกเขาเรียกมันว่า ^3355FFวันวาเลนไทน์^000000";
 	next;
 	mes "[Jainie]";
-	mes "So I gave him my delicious chocolate...";
-	mes "And then he made me cook a lot more...";
-	mes "And now he is selling them to everyone.";
-	mes "I guess he really enjoyed it.";
-	mes "But, I do feel good when people buy something I have made.";
+	mes "ฉันก็เลยมอบช็อกโกแลตแสนอร่อยของฉันให้เขา...";
+	mes "แล้วเขาก็ให้ฉันทำเพิ่มอีกเยอะเลย...";
+	mes "และตอนนี้เขาก็เอามันไปขายให้ทุกคน";
+	mes "ฉันเดาว่าเขาคงจะชอบมันมากจริงๆ";
+	mes "แต่ฉันก็รู้สึกดีนะเวลาที่มีคนมาซื้อของที่ฉันทำ";
 	next;
 	mes "[Jainie]";
-	mes "It would be great if you bought some too...";
-	mes "I will be making white chocolates for a while so...";
+	mes "มันจะดีมากเลยถ้าคุณซื้อไปด้วยเหมือนกัน...";
+	mes "ฉันจะทำไวท์ช็อกโกแลตสักพักหนึ่งนะ...";
 	next;
-	menu "I want some white chocolate!",M_CHOCO,"No thanks.",-;
+	menu "ฉันอยากได้ไวท์ช็อกโกแลต!",M_CHOCO,"ไม่ล่ะ ขอบคุณ",-;
 
 	mes "[Jainie]";
-	mes "You don't like white chocolate?";
-	mes "Then buy some Stephen's black one!";
+	mes "คุณไม่ชอบไวท์ช็อกโกแลตเหรอ?";
+	mes "งั้นก็ไปซื้อช็อกโกแลตธรรมดาของ Stephen แทนสิ!";
 	close;
 
 M_CHOCO:
 	mes "[Jainie]";
-	mes "I can't sell you more than 5 at once....but, if you really need more....";
-	mes "you can come back again.";
-	mes "So how many do you want? 1 portion is 4500z + 1 Milk.";
+	mes "ฉันขายให้คุณได้ไม่เกินครั้งละ 5 ชิ้นนะ.... แต่ถ้าคุณต้องการเพิ่มจริงๆ....";
+	mes "คุณก็กลับมาหาฉันใหม่ได้";
+	mes "สรุปแล้วคุณต้องการกี่ชิ้นล่ะ? 1 ชุดราคา 4500z + 1 Milk นะ";
 	next;
 	set @needmon,0;
 	input @flag_num;
@@ -173,113 +174,113 @@ M_CHOCO:
 	delitem 519,@flag_num;
 	getitem 561,@flag_num;
 	mes "[Jainie]";
-	mes "There you go!";
-	mes "You can give that to someone as a gift, or enjoy it yourself!";
-	mes "Mmm... sweet chocolate...";
-	mes "Visit me anytime...!";
+	mes "นี่ไง ได้แล้ว!";
+	mes "คุณจะเอาไปให้ใครเป็นของขวัญ หรือจะเก็บไว้กินเองก็ได้นะ!";
+	mes "อื้ม... ช็อกโกแลตแสนหวาน...";
+	mes "มาหาฉันได้ตลอดเวลานะ...!";
 	close;
 
 L_ERR:
 	mes "[Jainie]";
-	mes "I'm sorry but I can't give you that many.";
+	mes "ขอโทษทีนะ แต่ฉันให้คุณมากขนาดนั้นไม่ได้";
 L_NONE:
 	close;
 
 L_NOTENO:
 	mes "[Jainie]";
-	mes "I'm sorry but it seems you can't afford to buy these of me.";
+	mes "ขอโทษนะ ดูเหมือนคุณจะมีเงินไม่พอซื้อของจากฉัน";
 	close;
 
 L_NOMILK:
 	mes "[Jainie]";
-	mes "You need "+@flag_num+" Milk for "+@flag_num+" portions of my special White Chocolate...";
+	mes "คุณต้องใช้ Milk "+@flag_num+" ขวด สำหรับไวท์ช็อกโกแลตสูตรพิเศษ "+@flag_num+" ชุดนะ...";
 	close;
 }
 
-// Carl Orleans -- Valentine Event Chocolate maker ------------------
+// Carl Orleans -- Valentine Event Chocolate maker (คนปรุงช็อกโกแลต) ------------------
 prt_castle,54,34,4	script	Carl Orleans#val1	47,{
 	mes "[Carl Orleans]";
-	mes "Yes? What can I cook for you?";
+	mes "ครับ? มีอะไรให้ผมปรุงให้ไหม?";
 	next;
-	menu "Black handmade Chocolate, please",-,"I want a White handmade Chocolate...",M_WHITE,"I'm lost, sorry to bother you.",M_END;
-     
+	menu "Black handmade Chocolate ครับ/ค่ะ",-,"ฉันต้องการ White handmade Chocolate...",M_WHITE,"ฉันหลงทางน่ะ ขอโทษที่รบกวนนะ",M_END;
+      
 	mes "[Carl Orleans]";
-	mes "Well, I just might be able to fulfill your needs...";
+	mes "อืม ผมน่าจะช่วยเติมเต็มความต้องการของคุณได้นะ...";
 	next;
 	if (countitem(558)<3) {
 		mes "[Carl Orleans]";
-		mes "I'm sorry you do not have enough Chocolate Bars to do this.";
-		if(rand(2))mes "They say Stephen from Alberta used to sell good Chocolate.";
+		mes "ขอโทษนะ คุณมี Chocolate Bar ไม่เพียงพอที่จะทำสิ่งนี้";
+		if(rand(2))mes "เขาว่ากันว่า Stephen ที่ Alberta ขายช็อกโกแลตดีๆ อยู่นะ";
 		close;
 	}
 	delitem 558,3;
 	mes "[Carl Orleans]";
-	mes "You got 3 pieces of pure chocolate I see.";
-	mes "Give them to me...";
+	mes "ผมเห็นว่าคุณมีช็อกโกแลตบริสุทธิ์ 3 ชิ้น";
+	mes "ส่งพวกมันมาให้ผมสิ...";
 	next;
 	mes "[Carl Orleans]";
-	mes "Ok, now I will only create my special handmade chocolates if you promise to use it wisely.";
+	mes "ตกลง ตอนนี้ผมจะสร้างช็อกโกแลตทำมือสูตรพิเศษให้ แต่คุณต้องสัญญาก่อนนะว่าจะใช้มันอย่างคุ้มค่า";
 	next;
 	mes "[Carl Orleans]";
-	mes "....Hmmmmmm.....";
-	mes "Well...";
+	mes "....หืมมมมมมม.....";
+	mes "เอาล่ะ...";
 	next;
 	getitem 559,1;
 	mes "[Carl Orleans]";
-	mes "Here.";
+	mes "นี่ครับ";
 	if(rand(2))close;
-	mes "I hope you give it to someone special, because its a special chocolate.";
-	mes "As you know... only I can create this.";
+	mes "ผมหวังว่าคุณจะมอบมันให้กับคนพิเศษนะ เพราะมันคือช็อกโกแลตที่พิเศษมาก";
+	mes "อย่างที่คุณรู้... มีแค่ผมเท่านั้นที่ทำสิ่งนี้ได้";
 	next;
 	mes "[Carl Orleans]";
-	mes "Enjoy.";
+	mes "ขอให้สนุกครับ";
 	close;
 
 M_WHITE:
 	mes "[Carl Orleans]";
-	mes "Well, I just might be able to fulfill your needs...";
+	mes "อืม ผมน่าจะช่วยเติมเต็มความต้องการของคุณได้นะ...";
 	next;
 	if (countitem(561)<3) {
 		mes "[Carl Orleans]";
-		mes "I'm sorry you do not have enough White Chocolate Bars to do this.";
-		if(rand(2))mes "They say Jainie from Alberta used to sell good White Chocolate.";
+		mes "ขอโทษนะ คุณมี White Chocolate Bar ไม่เพียงพอที่จะทำสิ่งนี้";
+		if(rand(2))mes "เขาว่ากันว่า Jainie ที่ Alberta ขายไวท์ช็อกโกแลตดีๆ อยู่นะ";
 		close;
 	}
 	delitem 561,3;
 	mes "[Carl Orleans]";
-	mes "You got 3 pieces of pure white chocolate I see.";
-	mes "Give them to me...";
+	mes "ผมเห็นว่าคุณมีไวท์ช็อกโกแลตบริสุทธิ์ 3 ชิ้น";
+	mes "ส่งพวกมันมาให้ผมสิ...";
 	next;
 	mes "[Carl Orleans]";
-	mes "Ok, now I will only create my special handmade chocolates if you promise to use it wisely.";
+	mes "ตกลง ตอนนี้ผมจะสร้างช็อกโกแลตทำมือสูตรพิเศษให้ แต่คุณต้องสัญญาก่อนนะว่าจะใช้มันอย่างคุ้มค่า";
 	next;
 	mes "[Carl Orleans]";
-	mes "....Hmmmmmm.....";
-	mes "Well...";
+	mes "....หืมมมมมมม.....";
+	mes "เอาล่ะ...";
 	next;
 	getitem 560,1;
 	mes "[Carl Orleans]";
-	mes "Here.";
+	mes "นี่ครับ";
 	if(rand(2))close;
-	mes "I hope you give it to someone special, because its a special chocolate.";
-	mes "As you know... only I can create this.";
+	mes "ผมหวังว่าคุณจะมอบมันให้กับคนพิเศษนะ เพราะมันคือช็อกโกแลตที่พิเศษมาก";
+	mes "อย่างที่คุณรู้... มีแค่ผมเท่านั้นที่ทำสิ่งนี้ได้";
 	next;
 	mes "[Carl Orleans]";
-	mes "Enjoy.";
+	mes "ขอให้สนุกครับ";
 	close;
 
 M_END:
 	mes "[Carl Orleans]";
-	mes "Oh.. well, if you want me to make some of my special handmade Chocolate....";
-	mes "You will need to give me at least ^0000FF 3 Chocolates^000000 or ^0000FF 3 White Chocolates^000000.";
+	mes "โอ้.. ถ้าคุณต้องการให้ผมทำช็อกโกแลตทำมือสูตรพิเศษละก็....";
+	mes "คุณต้องนำ ^0000FF Chocolate 3 ชิ้น^000000 หรือ ^0000FF White Chocolate 3 ชิ้น^000000 มาให้ผมนะ";
 	if(rand(2))close;
 	next;
 	mes "[Carl Orleans]";
-	mes "That's right, only ^0000FF 3 Chocolates^000000 or ^0000FF 3 White Chocolates^000000.";
-	mes "Bring them to me and you'll get what you came for.";
+	mes "ใช่แล้วครับ แค่ ^0000FF Chocolate 3 ชิ้น^000000 หรือ ^0000FF White Chocolate 3 ชิ้น^000000";
+	mes "นำมาให้ผม แล้วคุณจะได้ในสิ่งที่ต้องการ";
 	if(rand(2))close;
 	next;
 	mes "[Carl Orleans]";
-	mes "See You.";
+	mes "แล้วเจอกันครับ";
 	close;
 }

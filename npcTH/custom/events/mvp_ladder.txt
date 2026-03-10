@@ -14,58 +14,58 @@
 
 prontera,164,171,3	script	MvP Ladder Warper	56,{
 	mes "[MvP Ladder Warper]";
-	mes "Say... do you want to play the MvP Ladder game?";
+	mes "นี่... คุณอยากจะลองเล่นเกม MvP Ladder ดูไหมล่ะ?";
 	next;
-	switch(select("Yes, let's get it on!:Information.:Show me the best record.:No.")) {
+	switch(select("ตกลง มาเริ่มกันเลย!:ข้อมูลกิจกรรม:ขอดูสถิติที่ดีที่สุดหน่อย:ไม่ล่ะ")) {
 	case 1:
 		break;
 	case 2:
 		mes "[MvP Ladder Warper]";
-		mes "In this game, your party has to kill every single MvP monster in ascending order, from the weakest to strongest.";
+		mes "ในเกมนี้ ปาร์ตี้ของคุณจะต้องกำจัดมอนสเตอร์ MvP ทุกตัวตามลำดับ โดยเริ่มจากตัวที่อ่อนที่สุดไปจนถึงตัวที่แข็งแกร่งที่สุด";
 		if ( .finish_item_amount )
-			mes "If your party can finish the MVP ladder game, each member will earn "+ callfunc("F_InsertPlural", .finish_item_amount, getitemname( .finish_item_id )) +".";
+			mes "หากปาร์ตี้ของคุณสามารถพิชิตเกม MVP ladder ได้ สมาชิกแต่ละคนจะได้รับ "+ callfunc("F_InsertPlural", .finish_item_amount, getitemname( .finish_item_id )) +" เป็นรางวัล";
 		if ( .register_cost )
-			mes "But the entrance fee is "+ callfunc( "F_InsertComma", .register_cost ) +" zeny.";
+			mes "แต่ว่ามีค่าธรรมเนียมในการเข้าเล่น "+ callfunc( "F_InsertComma", .register_cost ) +" zeny นะ";
 		next;
 		mes "[MvP Ladder Warper]";
-		mes "You lose the game if you can't finish in "+ .timeout +" minutes, or if your entire party is killed.";
-		mes "Good luck!";
+		mes "คุณจะแพ้ทันทีหากไม่สามารถเล่นให้จบภายใน "+ .timeout +" นาที หรือหากสมาชิกในปาร์ตี้ตายทั้งหมด";
+		mes "โชคดีนะ!";
 		close;
 	case 3:
 		mes "[MvP Ladder Warper]";
 		if ( !$mvpladdderparty_time ) {
-			mes "Nobody has finished this game yet.";
+			mes "ยังไม่มีใครพิชิตเกมนี้ได้เลยในขณะนี้";
 			close;
 		}
-		mes "The best record is";
-		mes "[ "+( $mvpladdderparty_time / 60 )+" min "+( $mvpladdderparty_time % 60 )+" sec ]";
-		mes "By the party ^FF0000"+ $mvpladdderparty_name$ +"^000000.";
+		mes "สถิติที่ดีที่สุดคือ";
+		mes "[ "+( $mvpladdderparty_time / 60 )+" นาที "+( $mvpladdderparty_time % 60 )+" วินาที ]";
+		mes "โดยปาร์ตี้ ^FF0000"+ $mvpladdderparty_name$ +"^000000";
 		.@size = getarraysize( $mvpladderparty_member$ );
 		for ( .@i = 0; .@i < .@size; .@i++ )
 			mes "^000000"+ ( .@i +1 ) +". ^0000FF"+ $mvpladderparty_member$[.@i];
 		if ( getgmlevel() < .gmlvlreset ) close;
 		next;
-		if ( select( "Close.", "Reset the record." ) == 1 ) close;
-		if ( select( "Never mind.", "I really want to reset it." ) == 1 ) close;
+		if ( select( "ปิดหน้าต่าง", "รีเซ็ตสถิติ" ) == 1 ) close;
+		if ( select( "ยกเลิก", "ฉันต้องการรีเซ็ตสถิติจริงๆ" ) == 1 ) close;
 		$mvpladdderparty_time = 0;
 		$mvpladdderparty_name$ = "";
 		deletearray $mvpladderparty_member$[.@i];
 		mes "[MvP Ladder Warper]";
-		mes "Record reset successfully.";
+		mes "รีเซ็ตสถิติเรียบร้อยแล้ว";
 		close;
 	case 4:
 		mes "[MvP Ladder Warper]";
-		mes "When you are strong enough to complete the game, please come back.";
+		mes "เมื่อคุณแข็งแกร่งพอที่จะพิชิตเกมนี้ได้แล้ว ค่อยกลับมาใหม่นะ";
 		close;
 	}
 	if ( !getcharid(1) ) {
 		mes "[MvP Ladder Warper]";
-		mes "You have to form a party to play.";
+		mes "คุณต้องมีปาร์ตี้ก่อนถึงจะเข้าร่วมเล่นได้";
 		close;
 	}
 	if ( is_party_leader() == false ) {
 		mes "[MvP Ladder Warper]";
-		mes "Only the party leader can register.";
+		mes "เฉพาะหัวหน้าปาร์ตี้เท่านั้นที่สามารถลงทะเบียนได้";
 		close;
 	}
 	.@origin = getcharid(3);
@@ -81,34 +81,34 @@ prontera,164,171,3	script	MvP Ladder Warper	56,{
 	attachrid .@origin;
 	if ( $@partymembercount != .register_min ) {
 		mes "[MvP Ladder Warper]";
-		mes "You have to form a party with exactly "+ .register_min +" members to play.";
+		mes "คุณต้องมีสมาชิกในปาร์ตี้ครบ "+ .register_min +" คนพอดีถึงจะเริ่มเกมได้";
 		close;
 	}
 	else if ( .@online != .register_min )  {
 		mes "[MvP Ladder Warper]";
-		mes "Your party must have "+ .register_min +" members online on map '"+ strnpcinfo(4) +"'.";
+		mes "สมาชิกในปาร์ตี้ของคุณทั้ง "+ .register_min +" คนต้องออนไลน์อยู่ที่แผนที่ '"+ strnpcinfo(4) +"'";
 		close;
 	}
 	else if ( .register_cost && Zeny < .register_cost ) {
 		mes "[MvP Ladder Warper]";
-		mes "You don't have enough zeny. Please come back when you do.";
+		mes "คุณมี Zeny ไม่เพียงพอ ไว้มีเงินครบแล้วค่อยกลับมาใหม่นะ";
 		close;
 	}
 	else if ( .party_id ) {
 		mes "[MvP Ladder Warper]";
-		mes "I'm sorry, but a party is currently playing the game. Please standby until the party is finished.";
-		mes "Thank you.";
+		mes "ขออภัยด้วย ขณะนี้มีปาร์ตี้อื่นกำลังเล่นเกมอยู่ โปรดรอจนกว่าปาร์ตี้นั้นจะเล่นจบ";
+		mes "ขอบคุณครับ";
 		close;
 	}
 	Zeny -= .register_cost;
-	announce "The party ["+ strcharinfo(1) +"] has started the MvP ladder game.", bc_all;
+	announce "ปาร์ตี้ ["+ strcharinfo(1) +"] ได้เริ่มท้าทาย MvP ladder game แล้ว!", bc_all;
 	set .party_id, getcharid(1);
 	set .@time_enter, gettimetick(2);
 	for ( .@i = 0; .@i < $@partymembercount; .@i++ ) {
 		if ( isloggedin( $@partymemberaid[.@i], $@partymembercid[.@i] ) ) {
 			attachrid $@partymemberaid[.@i];
 			if ( strcharinfo(3) == strnpcinfo(4) ) {
-				announce "You have "+ .timeout +" minutes to complete "+ .totalround +" rounds.", bc_self;
+				announce "คุณมีเวลา "+ .timeout +" นาที ในการพิชิตมอนสเตอร์ทั้งหมด "+ .totalround +" รอบ", bc_self;
 				.@name$[.@c] = strcharinfo(0);
 				.@c++;
 			}
@@ -121,7 +121,7 @@ prontera,164,171,3	script	MvP Ladder Warper	56,{
 	if ( .round == .totalround +1 ) {
 		getpartymember .party_id, 1;
 		getpartymember .party_id, 2;
-		mapannounce .eventmap$, "Congratulations... You were able to defeat all the MVPs!", bc_map;
+		mapannounce .eventmap$, "ยินดีด้วย... พวกคุณสามารถกำจัดเหล่า MVP ได้ทั้งหมด!", bc_map;
 		for ( .@i = 0; .@i < $@partymembercount; .@i++ ) {
 			if ( isloggedin( $@partymemberaid[.@i], $@partymembercid[.@i] ) ) {
 				attachrid $@partymemberaid[.@i];
@@ -131,7 +131,7 @@ prontera,164,171,3	script	MvP Ladder Warper	56,{
 		}
 		set .@timeused, gettimetick(2) - .@time_enter;
 		if ( .bonus_item_amount && .@timeused < .bonus_time * 60 ) {
-			mapannounce .eventmap$, "You are rewarded a bonus item for completing the ladder within "+ .bonus_time +" minutes.", bc_map;
+			mapannounce .eventmap$, "คุณได้รับไอเทมโบนัสพิเศษเนื่องจากสามารถจบเกมได้ภายใน "+ .bonus_time +" นาที", bc_map;
 			for ( .@i = 0; .@i < $@partymembercount; .@i++ ) {
 				if ( isloggedin( $@partymemberaid[.@i], $@partymembercid[.@i] ) ) {
 					attachrid $@partymemberaid[.@i];
@@ -142,18 +142,18 @@ prontera,164,171,3	script	MvP Ladder Warper	56,{
 		}
 
 		if ( !$mvpladdderparty_time || .@timeused < $mvpladdderparty_time ) {
-			mapannounce .eventmap$, "And you broke the record! [ "+( .@timeused / 60 )+" min "+( .@timeused % 60 )+" sec ]", bc_map;
+			mapannounce .eventmap$, "และคุณทำลายสถิติใหม่สำเร็จ! [ "+( .@timeused / 60 )+" นาที "+( .@timeused % 60 )+" วินาที ]", bc_map;
 			set $mvpladdderparty_time, .@timeused;
 			set $mvpladdderparty_name$, getpartyname( .party_id );
 			copyarray $mvpladderparty_member$, .@name$, .register_min;
 		}
 		else
-			mapannounce .eventmap$, "Time used [ "+( .@timeused / 60 )+" min "+( .@timeused % 60 )+" sec ]", bc_map;
+			mapannounce .eventmap$, "เวลาที่ใช้ไป [ "+( .@timeused / 60 )+" นาที "+( .@timeused % 60 )+" วินาที ]", bc_map;
 		sleep 10000;
-		announce "The party ["+ getpartyname( .party_id ) +"] has finished the MvP ladder game!", bc_all;
+		announce "ปาร์ตี้ ["+ getpartyname( .party_id ) +"] พิชิตเกม MvP ladder ได้สำเร็จ!", bc_all;
 	}
 	else
-		announce "The party ["+ getpartyname( .party_id ) +"] has failed to finish the MvP ladder game.", bc_all;
+		announce "ปาร์ตี้ ["+ getpartyname( .party_id ) +"] ล้มเหลวในการพิชิตเกม MvP ladder", bc_all;
 	mapwarp .eventmap$, .map$, .x, .y;
 	killmonsterall .eventmap$;
 	.party_id = .round = 0;
@@ -177,14 +177,14 @@ OnMvpDead:
 		end;
 	}
 	else if ( .round == .totalround )
-		mapannounce .eventmap$, "The final Round will begin in "+ .delay +" seconds...", bc_map;
+		mapannounce .eventmap$, "รอบสุดท้าย (Final Round) จะเริ่มขึ้นในอีก "+ .delay +" วินาที...", bc_map;
 	else
-		mapannounce .eventmap$, "Starting round "+ .round +" in "+ .delay +" seconds...", bc_map;
+		mapannounce .eventmap$, "กำลังเริ่มรอบที่ "+ .round +" ในอีก "+ .delay +" วินาที...", bc_map;
 	sleep .delay * 1000;
-	if ( .mvpid[.round] == 1646 )  // pick random Bio3 MVP
+	if ( .mvpid[.round] == 1646 )  // pick random Bio3 MVP (สุ่มเลือก Bio3 MVP)
 		.mvpid[.round] = rand(1646,1651);
 	monster .eventmap$,0,0, "--ja--", .mvpid[.round], 1, strnpcinfo(0)+"::OnMvpDead";
-	mapannounce .eventmap$, getmonsterinfo( .mvpid[.round], MOB_NAME ) +" has spawned!", bc_map|bc_blue;
+	mapannounce .eventmap$, getmonsterinfo( .mvpid[.round], MOB_NAME ) +" ปรากฏตัวออกมาแล้ว!", bc_map|bc_blue;
 	end;
 
 OnPCLogoutEvent:
@@ -207,7 +207,7 @@ OnPCDieEvent:
 	if ( .@less_one )
 		.@alive--;
 	if ( !.@alive ) {
-		mapannounce .eventmap$, "Party wiped!", bc_map;
+		mapannounce .eventmap$, "สมาชิกในปาร์ตี้ตายหมดทุกคนแล้ว!", bc_map;
 		sleep 10000;
 		awake strnpcinfo(0);
 	}
@@ -215,19 +215,21 @@ OnPCDieEvent:
 
 OnInit:
 //	Configurations -----------------------------------------------------
+//  ตั้งค่าต่างๆ ----------------------------------------------------------
 
-	// Time limit (in minutes)
+	// Time limit (in minutes) (จำกัดเวลา เป็นนาที)
 	// When time runs out, all players inside the room will be kicked out.
-	// Do NOT set this to zero!
+	// เมื่อหมดเวลา ผู้เล่นทั้งหมดที่อยู่ในห้องจะถูกส่งออกมาข้างนอก
+	// Do NOT set this to zero! (ห้ามตั้งค่าเป็นศูนย์!)
 	set .timeout, 60;
 
-	// entrance fee (in Zeny)
+	// entrance fee (in Zeny) (ค่าธรรมเนียมเข้าเล่น)
 	set .register_cost, 100000;
 
-	// exact amount of party members needed to start the game
+	// exact amount of party members needed to start the game (จำนวนสมาชิกปาร์ตี้ที่แน่นอนเพื่อเริ่มเกม)
 	set .register_min, 2;
 
-	// id of each mvp. you can add more
+	// id of each mvp. you can add more (ID ของ MVP แต่ละตัว คุณสามารถเพิ่มได้อีก)
 	setarray .mvpid[1],
 		1086,//	Golden Thief Bug	64
 		1115,//	Eddga				65
@@ -269,48 +271,49 @@ OnInit:
 		1751,//	Valkyrie Randgris	99
 		1832;//	Ifrit				99
 
-	// number of rounds (default: 39)
+	// number of rounds (default: 39) (จำนวนรอบ)
 	set .totalround, getarraysize(.mvpid) -1;
 
-	// item reward for completing each round
+	// item reward for completing each round (ไอเทมรางวัลสำหรับการผ่านแต่ละรอบ)
 	set .round_item_id, 512;
 	set .round_item_amount, 1;
 
-	// item reward for completing the entire ladder
+	// item reward for completing the entire ladder (ไอเทมรางวัลสำหรับการพิชิตทั้งหมด)
 	set .finish_item_id, 501;
 	set .finish_item_amount, 10;
 
-	// bonus reward if ladder completed within a certain time (in minutes)
-	set .bonus_time, 45; // if completed within 45 minutes, this reward is given
+	// bonus reward if ladder completed within a certain time (in minutes) (รางวัลโบนัสหากจบเกมได้ภายในเวลาที่กำหนด)
+	set .bonus_time, 45; // if completed within 45 minutes, this reward is given (ถ้าจบภายใน 45 นาที จะได้รับรางวัลนี้)
 	set .bonus_item_id, 504;
 	set .bonus_item_amount, 10;
 
-	// time delay between rounds, in seconds (default: 3)
+	// time delay between rounds, in seconds (default: 3) (ระยะเวลาพักระหว่างรอบ เป็นวินาที)
 	set .delay, 5;
 
-	// minimum GM level to reset the best record
+	// minimum GM level to reset the best record (ระดับ GM ขั้นต่ำที่สามารถรีเซ็ตสถิติได้)
 	set .gmlvlreset, 99;
 
-	// event map
+	// event map (แผนที่กิจกรรม)
 	set .eventmap$, "guild_vs2-2";
 
-	// mapflag configuration
+	// mapflag configuration (การตั้งค่า Mapflag)
 	setarray .@mapflag,
 		mf_nowarp,
 		mf_nowarpto,
 		mf_nosave,
 		mf_nomemo,
 		mf_noteleport,
-//		mf_nopenalty, // disable exp loss
+//		mf_nopenalty, // disable exp loss (ยกเลิกการเสีย Exp เมื่อตาย)
 		mf_noreturn,
 //		mf_nobranch,
-//		mf_nomobloot, // disable monster drop loots,
-//		mf_nomvploot, // 2 of these
+//		mf_nomobloot, // disable monster drop loots, (ปิดการดรอปไอเทมจากมอนสเตอร์)
+//		mf_nomvploot, // 2 of these (มี 2 คำสั่ง)
 		mf_partylock;
 
 //	Config Ends --------------------------------------------------------------
+//  สิ้นสุดการตั้งค่า -------------------------------------------------------------
 
-	mapannounce .eventmap$, "An administrator has refreshed the server. Please re-register. We apologize for the inconvenience.", bc_map;
+	mapannounce .eventmap$, "ผู้ดูแลระบบได้ทำการรีเฟรชเซิร์ฟเวอร์ กรุณาลงทะเบียนใหม่อีกครั้ง ขออภัยในความไม่สะดวก", bc_map;
 	getmapxy .map$, .x, .y, BL_NPC;
 	mapwarp .eventmap$, .map$, .x, .y;
 	killmonsterall .eventmap$;
