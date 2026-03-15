@@ -786,7 +786,7 @@ struct Battle_Config
 	int32 trade_count_stackable;
 	int32 enable_bonus_map_drops;
 	int32 hide_cloaked_units;
-
+	int32 oridecon_research_fix;
 	int32 feature_goldpc_active;
 	int32 feature_goldpc_time;
 	int32 feature_goldpc_max_points;
