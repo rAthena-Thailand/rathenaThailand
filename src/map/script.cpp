@@ -18793,7 +18793,7 @@ BUILDIN_FUNC(getmonsterinfo)
 				script_pushint(st, spawns[index].qty); 
 			}
 			break;
-		}	
+		}
 		default:
 			ShowError( "buildin_getmonsterinfo: Invalid getmonsterinfo type '%d'.\n", type );
 			st->state = END;
@@ -27824,6 +27824,24 @@ BUILDIN_FUNC(mesitemicon){
 	return SCRIPT_CMD_SUCCESS;
 }
 
+/**
+ * Creates a clickable hyperlink string for NPC dialogue.
+ * meshyperlink(<display_text>", "<url>)
+ **/
+BUILDIN_FUNC(meshyperlink) {  
+    const char* display = script_getstr(st, 2);  
+    const char* url = script_getstr(st, 3);  
+  
+    std::string result = "<URL>";  
+    result += display;  
+    result += "<INFO>";  
+    result += url;  
+    result += "</INFO></URL>";  
+  
+    script_pushstrcopy(st, result.c_str());  
+    return SCRIPT_CMD_SUCCESS;  
+}
+
 #include <custom/script.inc>
 
 // declarations that were supposed to be exported from npc_chat.cpp
@@ -28599,6 +28617,7 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF2(permission_add, "permission_remove", "i?"),
 
 	BUILDIN_DEF( mesitemicon, "v??" ),
+	BUILDIN_DEF(meshyperlink, "ss"),
 
 #include <custom/script_def.inc>
 
