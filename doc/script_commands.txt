@@ -8626,6 +8626,15 @@ This command requires packet version 2020-07-24 or newer.
 
 ---------------------------------------
 
+*reputationui({<group>{,<type>{,<char id>}}})
+
+Opens the reputation UI for the attached character or the player given by the char ID parameter.
+If <group> is passed reputation UI will open in selected group table, 0 = All (Default).
+<type> is the client side index as stored in the Id field of the reputation.yml database files.
+If <type> is above 0 the specified reputation will be highlighted in red (Default: 0).
+
+---------------------------------------
+
 *set_reputation_points(<type>,<points>{,<char id>})
 
 Sets the reputation points via <points> for reputation group <type> for the attached player or the given character ID.
@@ -11429,6 +11438,23 @@ Notes:
 
 	- The protocol (http:// or https://) is optional.
 	- This command returns a string and must be used together with mes.
+
+---------------------------------------
+
+*mesemotion(<emotion_id>);
+
+Generates an emotion type string that can be used with an NPCs mes command.
+This allows NPC dialogue to display a client-side emotion icon inline with the message.
+The emotion can be specified either by its numeric ID or by using a valid emotion
+constant name. Invalid emotion IDs or unknown emotion names will return an empty string.
+
+This command requires packet version 2023-03-02 or newer.
+
+Examples:
+
+	mes mesemotion(ET_SMILE) + " Hello there!"; // Displays an NPC message with a smile emotion icon before the text.
+
+---------------------------------------
 
 ========================
 |14.- Channel commands.|
