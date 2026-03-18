@@ -22,55 +22,55 @@ morocc,156,70,3	script	Girl#sc00	93,3,3,{
 	if (BaseJob == Job_Rogue) {
 		if (job_sha == 0) {
 			if (BaseLevel < 99 || JobLevel < 50) {
-				mes "You're not ready.";
+				mes "เจ้ายังไม่พร้อม";
 				close;
 			}
-			mes "Hey? Stop!";
-			mes "Aren't you interested in hearing a funny story?";
+			mes "นี่! หยุดก่อน!";
+			mes "เจ้าไม่สนใจฟังเรื่องตลกๆ หน่อยเหรอ?";
 			next;
-			select("What story?");
+			select("เรื่องอะไรเหรอ?");
 			mes "[Girl]";
-			mes "Have you been to the guild recently?";
-			mes "Some interesting things have happened lately.";
-			mes "Maybe new guests...";
-			next;
-			mes "[Girl]";
-			mes "I heard it has to do with something called a Shadow Chaser.";
-			mes "You should go and check it out.";
+			mes "ช่วงนี้เจ้าได้แวะไปที่สมาคมบ้างหรือเปล่า?";
+			mes "มีเรื่องน่าสนใจเกิดขึ้นที่นั่นเมื่อไม่นานมานี้เอง";
+			mes "อาจจะมีแขกใหม่ๆ...";
 			next;
 			mes "[Girl]";
-			mes "Every time they visit us, they are on new missions.";
-			mes "What missions are they doing I wonder?";
+			mes "ข้าได้ยินมาว่ามันเกี่ยวข้องกับสิ่งที่เรียกว่า Shadow Chaser";
+			mes "เจ้าน่าจะลองไปตรวจสอบดูนะ";
+			next;
+			mes "[Girl]";
+			mes "ทุกครั้งที่พวกเขามาหาพวกเรา พวกเขามักจะมีภารกิจใหม่ๆ เสมอ";
+			mes "ข้าละสงสัยจริงๆ ว่าพวกเขากำลังทำภารกิจอะไรกันอยู่?";
 			set job_sha,1;
 			close;
 		} else if (job_sha == 1) {
-			mes "If you have any interest... just go!";
-			mes "Do you know where the guild is?";
+			mes "ถ้าเจ้าสนใจ... ก็แค่ไปที่นั่น!";
+			mes "เจ้ารู้ใช่ไหมว่าสมาคมอยู่ที่ไหน?";
 			next;
 			mes "[Girl]";
-			mes "It is in a fortress under Pharos lighthouse.";
-			mes "Sigh....";
-			mes "You must visit there!";
+			mes "มันอยู่ในป้อมปราการใต้ประภาคาร Pharos";
+			mes "เฮ้อ....";
+			mes "เจ้าต้องไปที่นั่นให้ได้นะ!";
 			close;
 		} else {
-			mes "Wow, you look busy.";
-			mes "Have you heard that there are visiters?";
-			mes "They're on a treasure hunt!";
+			mes "ว้าว ดูเจ้าท่าทางยุ่งๆ นะ";
+			mes "ได้ยินหรือเปล่าว่ามีผู้มาเยือนน่ะ?";
+			mes "พวกเขากำลังออกตามล่าสมบัติกันอยู่!";
 			next;
 			mes "[Girl]";
-			mes "It must be fun.";
-			mes "I wanna try!";
+			mes "มันต้องสนุกแน่ๆ";
+			mes "ข้าอยากลองบ้างจัง!";
 			close;
 		}
 	}
-	mes "Eh?";
-	mes "I don't have anything for you...";
+	mes "เอ๊ะ?";
+	mes "ข้าไม่มีอะไรจะคุยกับเจ้าหรอกนะ...";
 	close;
 OnTouch_:
 	if (BaseJob == Job_Rogue && BaseLevel > 98 && JobLevel > 49 && job_sha == 0) {
 		mes "[Girl]";
-		mes "Hey? Stop!";
-		mes "Aren't you interested in hearing a funny story?";
+		mes "นี่! หยุดก่อน!";
+		mes "เจ้าไม่สนใจฟังเรื่องตลกๆ หน่อยเหรอ?";
 		close;
 	}
 	end;
@@ -82,30 +82,30 @@ in_rogue,376,100,5	script	Guild Member#sc01	828,{
 			set @job_sha,0;
 		OnDialogue:
 			mes "[Vin]";
-			mes "Ah? What's this?";
-			mes "Lotte, you know what this means?";
+			mes "อ๊ะ? นี่มันอะไรกัน?";
+			mes "Lotte เจ้ารู้ไหมว่านี่หมายความว่ายังไง?";
 			next;
 			mes "[Lotte]";
-			mes "Hmm '3847147298' this is the only thing I've used on...";
-			mes "Then, why'd they use numbers to name the villages?";
+			mes "หืม '3847147298' นี่เป็นอย่างเดียวที่ข้าเคยใช้กับ...";
+			mes "แล้วทำไมพวกเขาถึงใช้ตัวเลขมาตั้งชื่อหมู่บ้านล่ะ?";
 			next;
 			mes "[Lotte]";
-			mes "Vin! This is crap!";
+			mes "Vin! นี่มันไร้สาระชะมัด!";
 			next;
 			mes "[Vin]";
-			mes "What?";
+			mes "อะไรนะ?";
 			next;
 			if (BaseLevel > 98) {
 				mes "[Scary man]";
-				mes "Hey there?";
+				mes "เฮ้ ตรงนั้นน่ะ?";
 				next;
-				switch(select("Me?:Sorry, I am busy...")) {
+				switch(select("ข้าเหรอ?:ขอโทษที ข้ายุ่งอยู่...")) {
 				case 1:
 					mes "[Scary man]";
-					mes "Yes! You there!";
-					mes "Let me introduce myself to you.";
-					mes "My name is Urupa.";
-					mes "If you are interested, could you come over here?";
+					mes "ใช่! เจ้านั่นแหละ!";
+					mes "ให้ข้าแนะนำตัวหน่อยนะ";
+					mes "ข้าชื่อ Urupa";
+					mes "ถ้าเจ้าสนใจ ช่วยมาทางนี้หน่อยได้ไหม?";
 					if (@job_sha == 1) {
 						set job_sha,1;
 						set @job_sha,0;
@@ -113,36 +113,36 @@ in_rogue,376,100,5	script	Guild Member#sc01	828,{
 					close;
 				case 2:
 					mes "[Scary man]";
-					mes "What? You're just going to give up like that?";
-					mes "So disappointing...";
+					mes "อะไรกัน? เจ้าจะยอมแพ้ง่ายๆ แบบนั้นเลยเหรอ?";
+					mes "น่าผิดหวังจริงๆ...";
 					close;
 				}
 			}
 			mes "[Scary man]";
-			mes "You are supposed to figure this one out!";
-			mes "But you are still so... weak.";
+			mes "เจ้าควรจะเป็นคนไขปริศนานี้ได้สิ!";
+			mes "แต่เจ้ายัง... อ่อนแอเกินไป";
 			close;
 		} else {
 			mes "[Vin]";
-			mes "Yes...";
-			mes "Sooner or later I'll solve it myself if I dare to get the map...!";
+			mes "ใช่...";
+			mes "ไม่ช้าก็เร็วข้าจะไขมันด้วยตัวเอง ถ้าข้ากล้าพอที่จะไปเอาแผนที่มา...!";
 			close;
 		}
 	} else if (Class == Job_Shadow_Chaser || Class == Job_Shadow_Chaser_T || Class == Job_Baby_Shadow_Chaser) {
 		mes "[Vin]";
-		mes "Huh! This is a Shadow Chaser!";
-		mes "How unbelievable!";
-		mes "But it seems familiar doesn't it?";
+		mes "หือ! นี่มัน Shadow Chaser นี่นา!";
+		mes "ไม่อยากจะเชื่อเลย!";
+		mes "แต่มันดูคุ้นๆ เหมือนกันนะ ว่าไหม?";
 		next;
 		mes "[Vin]";
-		mes "Hmm......";
+		mes "หืม......";
 		mes "..........";
-		mes "Oh my! I can't remember...!";
+		mes "โอ้สวรรค์! ข้านึกไม่ออก...!";
 		close;
 	}
 	mes "[Vin]";
-	mes "Ah? Who's there?";
-	mes "We are flooded with guests today...";
+	mes "อ๊ะ? ใครอยู่ตรงนั้นน่ะ?";
+	mes "วันนี้แขกเยอะจนล้นไปหมดเลย...";
 	close;
 }
 
@@ -154,25 +154,25 @@ in_rogue,379,99,1	script	Guild Member#sc02	747,{
 			end;
 		}
 		mes "[Lotte]";
-		mes "What?";
-		mes "Damn...";
+		mes "อะไรนะ?";
+		mes "บ้าจริง...";
 		next;
 		mes "[Lotte]";
-		mes "I just hate numbers!";
+		mes "ข้าเกลียดตัวเลขที่สุดเลย!";
 		close;
 	} else if (Class == Job_Shadow_Chaser || Class == Job_Shadow_Chaser_T || Class == Job_Baby_Shadow_Chaser) {
 		mes "[Lotte]";
-		mes "Wow!";
-		mes "You are the one!";
-		mes "Just extraordinary smart and emotionally advanced...";
+		mes "ว้าว!";
+		mes "เจ้าคือคนๆ นั้น!";
+		mes "ช่างฉลาดหลักแหลมและมีความก้าวหน้าทางอารมณ์ที่ยอดเยี่ยมจริงๆ...";
 		next;
 		mes "[Lotte]";
 		mes "SHADOW CHASER!";
-		mes "Wow when could I become one.";
+		mes "ว้าว เมื่อไหร่ข้าจะได้เป็นแบบนั้นบ้างนะ";
 		close;
 	}
 	mes "[Lotte]";
-	mes "I don't need anything.";
+	mes "ข้าไม่ต้องการอะไรทั้งนั้น";
 	close;
 }
 
@@ -180,19 +180,19 @@ in_rogue,379,101,3	script	Scary Man#sc03	810,{
 	if (job_sha == 0) {
 		if (BaseJob == Job_Rogue && BaseLevel > 98 && JobLevel > 49) {
 			mes "[Scary man]";
-			mes "Oh you are so talented?";
-			mes "Now I have one interesting quetion! Do you want it solved?";
+			mes "โอ้ เจ้ามีความสามารถขนาดนั้นเลยเหรอ?";
+			mes "ตอนนี้ข้ามีคำถามที่น่าสนใจข้อหนึ่ง! เจ้าอยากจะไขมันไหมล่ะ?";
 			next;
 			mes "[Urupa]";
-			mes "My name is Urupa.";
-			mes "If you have anything interesting just challenge it.";
+			mes "ข้าชื่อ Urupa";
+			mes "ถ้าเจ้ามีอะไรที่น่าสนใจ ก็ลองท้าทายมันดูสิ";
 			set job_sha,1;
 			close;
 		}
 		mes "[Scary man]";
-		mes "What's your business?";
-		mes "I don't have anything to do with you.";
-		mes "I don't care for people like you. I just deal with the extraordinary.";
+		mes "เจ้ามีธุระอะไร?";
+		mes "ข้าไม่มีอะไรจะทำร่วมกับเจ้า";
+		mes "ข้าไม่สนพวกคนทั่วไป ข้าจะคุยกับคนที่เหนือธรรมดาเท่านั้น";
 		close;
 	} else if (job_sha == 1) {
 		if (VIP_SCRIPT) {
@@ -202,90 +202,90 @@ in_rogue,379,101,3	script	Scary Man#sc03	810,{
 			next;
 		}
 		mes "[Urupa]";
-		mes "We give a quiz and nobody has yet to solve it.";
-		mes "You want it to be solved?";
-		mes "This is a code.";
-		mes "Look at it.";
+		mes "พวกเรามีบททดสอบ และยังไม่มีใครไขมันได้เลย";
+		mes "เจ้าอยากจะเป็นคนไขมันไหม?";
+		mes "นี่คือรหัสลับ";
+		mes "ดูนี่สิ";
 		next;
-		mes "- The message is -";
-		mes "- written in a cipher. -";
-		mes "The mission seems to be to break the code...";
+		mes "- ข้อความคือ -";
+		mes "- เขียนด้วยรหัสลับ -";
+		mes "ภารกิจดูเหมือนจะเป็นการถอดรหัส...";
 		next;
 		mes "[Urupa]";
-		mes "This is the code.";
-		mes "It is just numbering a cipher to make the message make sense.";
-		mes "For example...";
+		mes "นี่คือรหัส";
+		mes "มันคือการกำหนดตัวเลขให้กับรหัสเพื่อให้ข้อความดูสมเหตุสมผล";
+		mes "ยกตัวอย่างเช่น...";
 		next;
 		callsub L_Code,1;
 		mes "[Urupa]";
-		mes "Now here's what needs to be to solved.";
-		mes "Decipher the code and go where it tells you...";
+		mes "ทีนี้มาถึงสิ่งที่ต้องไขให้ได้";
+		mes "ถอดรหัสนี้ซะ แล้วไปยังที่ที่มันบอกเจ้า...";
 		next;
 		callsub L_Code,2;
 		next;
 		mes "[Urupa]";
-		mes "So write this down!";
-		mes "I expected that you would take this adventure!";
+		mes "จดนี่ไว้ซะ!";
+		mes "ข้าคาดหวังว่าเจ้าจะยอมรับการผจญภัยครั้งนี้!";
 		set job_sha,2;
 		setquest 7160;
 		close;
 	} else if (job_sha == 2) {
 		mes "[Urupa]";
-		mes "You want one more explanation?";
-		mes "Or do you just want the code?";
+		mes "เจ้าต้องการคำอธิบายเพิ่มไหม?";
+		mes "หรือแค่อยากดูรหัสอีรอบ?";
 		next;
-		switch(select("More explanation.:Get the code.")) {
+		switch(select("ขอคำอธิบายเพิ่ม:ขอดูรหัสอีกครั้ง")) {
 		case 1:
 			callsub L_Code,1;
 			mes "[Urupa]";
-			mes "Now it's up to you!";
-			mes "So go! Go!";
+			mes "ทีนี้ก็ขึ้นอยู่กับเจ้าแล้ว!";
+			mes "ไปซะ! ไปได้แล้ว!";
 			close;
 		case 2:
 			mes "[Urupa]";
-			mes "Let me show you the code again...";
+			mes "เดี๋ยวข้าจะให้เจ้าดูรหัสอีกครั้ง...";
 			next;
 			callsub L_Code,2;
 			close;
 		}
 	} else if (job_sha > 2 && job_sha < 31) {
 		mes "[Urupa]";
-		mes "Ok, have you solved it yet?";
-		mes "Good luck!";
+		mes "ตกลง เจ้าไขมันได้หรือยัง?";
+		mes "โชคดีนะ!";
 		close;
 	} else if (job_sha == 31) {
 		mes "[Urupa]";
-		mes "You have just become a Shadow Chaser.";
-		mes "The quizzes are for collecting the right people...";
+		mes "เจ้าเพิ่งจะได้เป็น Shadow Chaser";
+		mes "บททดสอบพวกนี้มีไว้เพื่อคัดเลือกคนที่เหมาะสมเท่านั้น...";
 		close;
 	}
 	mes "[Urupa]";
-	mes "Nothing special?";
-	mes "As you see... I am ok here!";
+	mes "ไม่มีอะไรพิเศษเหรอ?";
+	mes "อย่างที่เจ้าเห็น... ข้าสบายดีอยู่ที่นี่!";
 	close;
 L_Code:
 	if (getarg(0) == 1) {
 		mes "[Urupa]";
 		mes "3511543433";
-		mes "This means PAYON.";
+		mes "นี่หมายถึง PAYON";
 		next;
 		mes "[Urupa]";
-		mes "The numbers have to be paired.";
+		mes "ตัวเลขจะต้องถูกจับเป็นคู่";
 		mes "3511543433";
-		mes "35 11 54 34 33 breaks down into 5 pairs!";
+		mes "35 11 54 34 33 แบ่งออกได้เป็น 5 คู่!";
 		next;
 		mes "[Urupa]";
-		mes "So the pairs mean:";
+		mes "ดังนั้นแต่ละคู่หมายถึง:";
 		mes "35 - P, 11 - A,";
-		mes "54 - Y, 34 - O, 33 - N.";
+		mes "54 - Y, 34 - O, 33 - N";
 		next;
 		mes "[Urupa]";
-		mes "Here are the numbers all in a row.";
+		mes "นี่คือตัวเลขเรียงกันตามลำดับ";
 		mes "33, 34, 35!";
 		mes "N , O , P ?";
 		next;
 	} else {
-		mes "Here we go!";
+		mes "เริ่มกันเลย!";
 		next;
 		mes "^4d4dff";
 		mes "43231114345243";
@@ -295,8 +295,8 @@ L_Code:
 		mes "^000000";
 		next;
 		mes "[Urupa]";
-		mes "Could you do that?";
-		mes "If you visit there, you might be surprised...";
+		mes "เจ้าทำได้ไหม?";
+		mes "ถ้าเจ้าไปที่นั่น เจ้าอาจจะต้องประหลาดใจแน่ๆ...";
 	}
 	return;
 }
@@ -304,279 +304,279 @@ L_Code:
 s_atelier,65,123,5	script	Manager#sc04_prt	903,{
 	if (job_sha == 2) {
 		mes "[Manager]";
-		mes "Where's Max!?";
-		mes "Damn, there're so many strangers around.";
-		mes "Hey...";
+		mes "Max หายไปไหนน่ะ!?";
+		mes "บ้าจริง มีคนแปลกหน้าอยู่แถวนี้เต็มไปหมด";
+		mes "เฮ้...";
 		next;
-		switch(select("Show the deciphered code!:...")) {
+		switch(select("แสดงรหัสที่ถอดได้!:...")) {
 		case 1:
 			mes "[Manager]";
-			mes "Wow, you deciphered it?";
-			mes "So, what's the right answer?";
+			mes "ว้าว เจ้าถอดรหัสได้แล้วเหรอ?";
+			mes "แล้ว คำตอบที่ถูกต้องคืออะไรล่ะ?";
 			next;
 			input .@inputstr$;
 			if (.@inputstr$ == "shadows atelier in prontera" || .@inputstr$ == "SHADOWS ATELIER IN PRONTERA") {
 				mes "[Manager]";
-				mes "Good.";
-				mes "You just got it.";
-				mes "Then why have you come over here?";
+				mes "ดีมาก";
+				mes "เจ้าทำได้แล้ว";
+				mes "แล้วทำไมเจ้าถึงมาที่นี่ล่ะ?";
 				next;
-				select("The code says here's the one...");
+				select("รหัสบอกว่าที่นี่คือจุดหมาย...");
 				mes "[Manager]";
-				mes "So you are the one.";
-				mes "Could you wait for a sec'?";
+				mes "งั้นเจ้าก็คือคนๆ นั้น";
+				mes "ช่วยรอสักครู่ได้ไหม?";
 				set job_sha,3;
 				close;
 			}
 			mes "[Manager]";
-			mes "Remember to put the code exactly as it should be deciphered.";
-			mes "Maybe you should try again...";
+			mes "จำไว้ว่าต้องใส่รหัสให้ตรงตามที่ควรจะถอดออกมาได้";
+			mes "บางทีเจ้าควรจะลองดูใหม่อีกครั้งนะ...";
 			close;
 		case 2:
 			mes "[Manager]";
-			mes "Only allowed for people involved....";
-			mes "Could you ask the clerk at the shop?";
+			mes "อนุญาตเฉพาะผู้ที่เกี่ยวข้องเท่านั้น....";
+			mes "เจ้าช่วยไปถามเสมียนที่ร้านดูได้ไหม?";
 			close;
 		}
 	} else if (job_sha == 3) {
 		mes "[Manager]";
-		mes "Now let me introduce myself to you!";
-		mes "I am Graham, the manager of this shadow gallery...";
+		mes "เอาละ ให้ข้าแนะนำตัวกับเจ้าหน่อย!";
+		mes "ข้าชื่อ Graham เป็นผู้จัดการของหอศิลป์เงามืดแห่งนี้...";
 		next;
 		mes "[Graham]";
-		mes "You may have already guessed.";
-		mes "This is an additional facility for rogues.";
-		mes "We adopt things like art and other historical stuff.";
+		mes "เจ้าคงจะเดาได้อยู่แล้ว";
+		mes "ที่นี่เป็นสถานอำนวยความสะดวกเพิ่มเติมสำหรับเหล่า Rogue";
+		mes "พวกเรารวบรวมสิ่งของต่างๆ อย่างเช่น งานศิลปะ และวัตถุโบราณอื่นๆ";
 		next;
 		mes "[Graham]";
-		mes "These things are illegal.";
-		mes "Such things you guys bring us from historical places...";
-		mes "Ok.";
+		mes "ของพวกนี้มันผิดกฎหมาย";
+		mes "สิ่งที่พวกเจ้าไปนำมาจากสถานที่ทางประวัติศาสตร์นั่นแหละ...";
+		mes "โอเค";
 		next;
 		mes "[Graham]";
-		mes "So we've got to know things like...";
-		mes "special codes and information where the treasures are.";
+		mes "ดังนั้นพวกเราจึงต้องรู้เรื่องต่างๆ เช่น...";
+		mes "รหัสพิเศษและข้อมูลว่าสมบัติอยู่ที่ไหน";
 		next;
 		mes "[Graham]";
-		mes "We need you guys...";
-		mes "So we've asked assistance from the Rogue guild.";
+		mes "พวกเราต้องการพวกเจ้า...";
+		mes "เราเลยขอความช่วยเหลือไปยังสมาคม Rogue";
 		next;
-		select("Any other places you guys work?");
+		select("มีที่อื่นที่พวกท่านทำงานอยู่อีกไหม?");
 		mes "[Graham]";
-		mes "Ah, yes...";
-		mes "We are in Prontera, Juno, Rachel, and Lighthalzen.";
-		mes "Ok?";
-		next;
-		mes "[Graham]";
-		mes "Anyway....";
-		mes "We all really want to know where the treasures are.";
-		mes "So the code is to break into each of those places.";
+		mes "อ๋อ ใช่...";
+		mes "พวกเราอยู่ใน Prontera, Juno, Rachel, และ Lighthalzen";
+		mes "โอเคไหม?";
 		next;
 		mes "[Graham]";
-		mes "You seem like the right one.";
-		mes "So I will give you the code.";
-		mes "Please find the treasure!";
+		mes "เอาเถอะ....";
+		mes "พวกเราทุกคนอยากรู้จริงๆ ว่าสมบัติอยู่ที่ไหน";
+		mes "ดังนั้นรหัสนี้ก็เพื่อบุกเข้าไปในแต่ละสถานที่เหล่านั้น";
 		next;
-		switch(select("No way!:I'll give it a try!")) {
+		mes "[Graham]";
+		mes "เจ้าดูเหมือนจะเป็นคนที่ใช่เลย";
+		mes "ข้าจะให้รหัสกับเจ้า";
+		mes "ช่วยไปตามหาสมบัติให้ที!";
+		next;
+		switch(select("ไม่มีทาง!:ข้าจะลองดู!")) {
 		case 1:
 			mes "[Graham]";
-			mes "What the hell?";
-			mes "If you are not going to help then I'll just find someone else.";
+			mes "นี่มันอะไรกัน?";
+			mes "ถ้าเจ้าไม่คิดจะช่วย งั้นข้าจะไปหาคนอื่นแทน";
 			set job_sha,4;
 			close;
 		case 2:
 			mes "[Graham]";
-			mes "You are so powerful!";
-			mes "So here...";
+			mes "เจ้านี่ไฟแรงจริงๆ!";
+			mes "งั้นนี่...";
 			next;
 			callsub L_Code,0;
 			close;
 		}
 	} else if (job_sha == 4) {
 		mes "[Graham]";
-		mes "Are you interested in it now?";
+		mes "ตอนนี้เจ้าสนใจมันแล้วหรือยัง?";
 		next;
-		switch(select("Not at all.:Hmm, I'll take it.")) {
+		switch(select("ไม่เลยแม้แต่นิดเดียว:หืม ข้าตกลง")) {
 		case 1:
 			mes "[Graham]";
-			mes "Damn it.";
+			mes "บ้าชะมัด";
 			close;
 		case 2:
 			mes "[Graham]";
-			mes "You are just so picky...";
-			mes "Here...";
+			mes "เจ้านี่ช่างเลือกจริงๆ...";
+			mes "นี่...";
 			next;
 			callsub L_Code,0;
 			close;
 		}
 	} else if (job_sha == 5) {
 		mes "[Graham]";
-		mes "Did you find something?";
+		mes "เจ้าพบอะไรบ้างไหม?";
 		next;
-		switch(select("I need an explanation.:What's the code again?")) {
+		switch(select("ข้าต้องการคำอธิบาย:รหัสคืออะไรนะ?")) {
 		case 1:
 			mes "[Graham]";
-			mes "You are so powerful!";
+			mes "เจ้ามีพลังมากจริงๆ!";
 			next;
 			callsub L_Code,1;
 			mes "[Graham]";
-			mes "Got it?";
+			mes "เข้าใจแล้วใช่ไหม?";
 			close;
 		case 2:
 			mes "[Graham]";
-			mes "I've given you the code.";
-			mes "So crazy...";
-			mes "Don't you have a memo of it?";
+			mes "ข้าก็ให้รหัสเจ้าไปแล้วนี่";
+			mes "บ้าจริงๆ...";
+			mes "เจ้าไม่ได้จดไว้หรือไง?";
 			close;
 		}
 	} else if (job_sha == 6 || job_sha == 7) {
 		mes "[Graham]";
-		mes "Nothing special...?";
-		mes "You've been to places...?";
-		mes "There's definetely something.";
+		mes "ไม่มีอะไรพิเศษเลยเหรอ...?";
+		mes "เจ้าไปตามที่ต่างๆ มาแล้วใช่ไหม...?";
+		mes "มันต้องมีอะไรบางอย่างแน่นอน";
 		next;
-		mes "Graham seems to know something.";
-		mes "I'd better go there again.";
+		mes "ดูเหมือน Graham จะรู้อะไรบางอย่าง";
+		mes "ข้าควรจะลองไปที่นั่นดูอีกครั้ง";
 		close;
 	} else if (job_sha == 8) {
 		mes "[Graham]";
-		mes "So, any improvements?";
+		mes "เอาล่ะ มีอะไรคืบหน้าไหม?";
 		next;
-		select("Show him the key.");
+		select("แสดงกุญแจให้เขาดู");
 		mes "[Graham]";
-		mes "Deception!";
-		mes "You are deceiving me!";
-		next;
-		mes "[Graham]";
-		mes "This is all?";
-		mes "Only one key.";
-		mes "How deceptive!";
-		mes "Just as I thought, it's a kind of treasure.";
+		mes "หลอกลวง!";
+		mes "เจ้ากำลังหลอกข้า!";
 		next;
 		mes "[Graham]";
-		mes "You just gave me a shock.";
-		mes "Ok...";
-		mes "The code is kept in galleries.";
+		mes "นี่คือทั้งหมดเหรอ?";
+		mes "กุญแจเพียงดอกเดียว";
+		mes "ช่างหลอกลวงสิ้นดี!";
+		mes "อย่างที่ข้าคิดไว้ มันคือสมบัติชนิดหนึ่ง";
 		next;
 		mes "[Graham]";
-		mes "Ok there's more galleries than this one...";
-		mes "Juno and Rachel have the codes...";
+		mes "เจ้าเพิ่งจะทำให้ข้าตกใจนะเนี่ย";
+		mes "โอเค...";
+		mes "รหัสถูกเก็บไว้ในหอศิลป์";
 		next;
 		mes "[Graham]";
-		mes "This is just what I was guessing.";
-		mes "The codes kept by other galleries aren't treasures at all...";
+		mes "โอเค มีหอศิลป์มากกว่าแค่ที่นี่...";
+		mes "Juno และ Rachel ก็มีรหัสเก็บไว้...";
 		next;
 		mes "[Graham]";
-		mes "Go to Rachel...";
+		mes "นี่เป็นเพียงสิ่งที่ข้าคาดเดา";
+		mes "รหัสที่หอศิลป์อื่นๆ เก็บไว้อาจจะไม่ใช่สมบัติเลยก็ได้...";
 		next;
 		mes "[Graham]";
-		mes "Find the gallery in Rachel...";
-		mes "Tell 'em that you just came from Graham and ask for the code.";
+		mes "ไปที่ Rachel...";
 		next;
 		mes "[Graham]";
-		mes "Ok?";
-		mes "Then go there!";
+		mes "หาหอศิลป์ใน Rachel ให้เจอ...";
+		mes "บอกพวกเขาว่าเจ้ามาจาก Graham แล้วขอรหัสซะ";
+		next;
+		mes "[Graham]";
+		mes "โอเคไหม?";
+		mes "ถ้างั้นก็ไปที่นั่นได้แล้ว!";
 		set job_sha,9;
 		changequest 7165,7166;
 		close;
 	} else if (job_sha == 9) {
 		mes "[Graham]";
-		mes "There're four galleries...";
-		mes "Prontera, Rachel, Juno, and Lighthalzen.";
+		mes "มีหอศิลป์อยู่สี่แห่ง...";
+		mes "Prontera, Rachel, Juno, และ Lighthalzen";
 		next;
 		mes "[Graham]";
-		mes "One of the codes kept by the galleries is already deciphered.";
-		mes "It's just one key....";
+		mes "หนึ่งในรหัสที่หอศิลป์เหล่านั้นเก็บไว้ถูกถอดรหัสออกมาแล้ว";
+		mes "มันคือกุญแจดอกหนึ่ง....";
 		next;
 		mes "[Graham]";
-		mes "But here's what I am guessing.";
-		mes "The codes are linked to each other.";
-		mes "And the purpose is different for each one.";
+		mes "แต่สิ่งที่ข้าสันนิษฐานไว้ก็คือ";
+		mes "รหัสพวกนี้เชื่อมโยงถึงกัน";
+		mes "และจุดประสงค์ของแต่ละอย่างก็แตกต่างกันไป";
 		next;
 		mes "[Graham]";
-		mes "For example...";
-		mes "If one is just a key then the others are things requiring the key.";
+		mes "ตัวอย่างเช่น...";
+		mes "ถ้าสิ่งหนึ่งเป็นแค่กุญแจ สิ่งอื่นๆ ก็จะเป็นสิ่งที่ต้องใช้กุญแจนั้น";
 		next;
 		mes "[Graham]";
-		mes "The key must be for opening the box.";
-		mes "Can you guess what's inside?";
+		mes "กุญแจนั้นจะต้องมีไว้เพื่อเปิดกล่อง";
+		mes "เจ้าพอจะเดาได้ไหมว่าข้างในมีอะไร?";
 		next;
-		select("Umm, treasure?");
+		select("เอ่อ... สมบัติเหรอ?");
 		mes "[Graham]";
-		mes "YES.";
-		mes "That's why we're here!";
-		next;
-		mes "[Graham]";
-		mes "People think that we are just trading the stuff...";
-		mes "But we are here for very special things.";
+		mes "ใช่เลย";
+		mes "นั่นคือเหตุผลที่เรามาอยู่ที่นี่!";
 		next;
 		mes "[Graham]";
-		mes "Go to ^4d4dffRachel Gallery^000000 and get the code...";
-		mes "They will support you if you explain everything.";
-		mes "Ok?";
+		mes "คนทั่วไปคิดว่าเราแค่ซื้อขายสิ่งของพวกนี้...";
+		mes "แต่พวกเราอยู่ที่นี่เพื่อสิ่งพิเศษสุดๆ ต่างหาก";
+		next;
+		mes "[Graham]";
+		mes "ไปที่ ^4d4dffRachel Gallery^000000 แล้วไปเอารหัสมา...";
+		mes "พวกเขาจะสนับสนุนเจ้าถ้าเจ้าอธิบายทุกอย่างให้ฟัง";
+		mes "ตกลงไหม?";
 		close;
 	} else if (job_sha > 9 && job_sha < 30) {
 		mes "[Graham]";
-		mes "How about everything?";
-		mes "We are dying to know about the key.";
-		mes "So you got support from the other galleries.";
+		mes "ทุกอย่างเป็นยังไงบ้าง?";
+		mes "พวกเราอยากรู้เรื่องกุญแจใจจะขาดแล้ว";
+		mes "เจ้าได้รับการสนับสนุนจากหอศิลป์อื่นๆ แล้วใช่ไหม";
 		close;
 	} else if (job_sha > 29) {
 		mes "[Graham]";
 		mes "Shadow Chaser!!";
-		mes "Ah!";
+		mes "อา!";
 		next;
 		mes "[Graham]";
-		mes "It's not intentionally decieving...";
-		mes "Hahaha!!";
+		mes "มันไม่ใช่การตั้งใจหลอกลวงหรอกนะ...";
+		mes "ฮ่าฮ่าฮ่า!!";
 		next;
 		mes "[Graham]";
-		mes "Isn't it interesting?";
-		mes "It's more than just taking exams.";
-		mes "We got to know about you and figured out who you are.";
+		mes "มันน่าสนใจไหมล่ะ?";
+		mes "มันเป็นมากกว่าการแค่มาสอบนะ";
+		mes "พวกเราได้รู้จักเจ้า และได้รู้ว่าเจ้าเป็นใคร";
 		next;
 		mes "[Graham]";
-		mes "How's my acting?";
-		mes "It worked?";
+		mes "การแสดงของข้าเป็นยังไงบ้าง?";
+		mes "ได้ผลใช่ไหมล่ะ?";
 		next;
 		mes "[Graham]";
-		mes "If you need anything just ask them what you want.";
+		mes "ถ้าเจ้าต้องการอะไร ก็แค่ขอกับพวกเขาได้เลย";
 		close;
 	}
 	mes "[Manager]";
-	mes "Only allowed for people involved...";
-	mes "Could you ask the clerk at the shop?";
+	mes "อนุญาตเฉพาะผู้ที่เกี่ยวข้องเท่านั้น...";
+	mes "เจ้าช่วยไปถามเสมียนที่ร้านดูได้ไหม?";
 	close;
 L_Code:
-	mes "-note.";
+	mes "- บันทึก -";
 	mes "^4d4dff 13 15 18 15 3 3 18 21 9 14^000000";
 	mes "key : 0 -";
 	next;
-	select("These are just numbers...");
+	select("พวกนี้มันก็แค่ตัวเลข...");
 	mes "[Graham]";
-	mes "The only difference from the one from the Rogue Guild is that you don't need to match them in pairs.";
+	mes "ความแตกต่างเพียงอย่างเดียวจากรหัสที่ได้จากสมาคม Rogue คือเจ้าไม่จำเป็นต้องจับคู่พวกมัน";
 	next;
 	mes "[Graham]";
-	mes "Also here's the keyword...";
-	mes "This case is key 0.";
+	mes "แล้วก็นี่คือคำสำคัญ (Keyword)...";
+	mes "กรณีนี้คือ key 0";
 	next;
 	mes "[Graham]";
-	mes "Let's see. For example.";
+	mes "มาลองดู ตัวอย่างเช่น";
 	mes "13 15 18 15 3 3 18 21 9 14 =";
 	mes "M O R O C C R U I N";
 	next;
 	mes "[Graham]";
-	mes "Look at this... C = 3.";
-	mes "C is the third letter right?";
+	mes "ดูนี่สิ... C = 3";
+	mes "C คือตัวอักษรลำดับที่ 3 ใช่ไหมล่ะ?";
 	next;
 	mes "[Graham]";
-	mes "Do you get it?";
-	mes "But this won't be given with keyword 0. When I give you the keyword you can figure it out for yourself.";
+	mes "เจ้าเข้าใจหรือยัง?";
+	mes "แต่นี่จะไม่ได้ให้มาด้วย keyword 0 หรอกนะ เมื่อข้าให้ keyword กับเจ้า เจ้าต้องไขมันด้วยตัวเอง";
 	next;
 	if (getarg(0)) return;
 	mes "[Graham]";
-	mes "Now let's move on to the mission.";
-	mes "Here's the cipher...";
+	mes "ทีนี้มาเริ่มภารกิจกันต่อ";
+	mes "นี่คือรหัสลับ...";
 	next;
 	set .@key01, rand(3,5);
 	set .@a, 1 + .@key01;
@@ -608,113 +608,113 @@ L_Code:
 	else if (.@key01 == 5) setquest 7163;
 	next;
 	mes "[Graham]";
-	mes "Just take it.";
-	mes "I have a bad memory.";
-	mes "You have all the information so you are on your own now.";
+	mes "เอาไปเถอะ";
+	mes "ข้าความจำไม่ค่อยดีเท่าไหร่";
+	mes "เจ้ามีข้อมูลครบแล้ว ต่อจากนี้ก็ขึ้นอยู่กับตัวเจ้าเองนะ";
 	next;
 	mes "[Graham]";
-	mes "Once you get something come over here.";
+	mes "เมื่อเจ้าได้อะไรบางอย่างมาแล้ว ก็กลับมาที่นี่";
 	next;
-	mes "- You take the memo from Graham.";
-	mes "Don't forget it! -";
+	mes "- เจ้าได้รับบันทึกจาก Graham -";
+	mes "อย่าทำหายล่ะ! -";
 	close;
 }
 
 s_atelier,168,65,5	script	Manager#sc08_ra	923,{
 	if (job_sha < 10) {
 		mes "[Manager]";
-		mes "Who are you?";
-		mes "This place isn't for you.";
+		mes "เจ้าเป็นใคร?";
+		mes "ที่นี่ไม่ใช่ที่สำหรับเจ้า";
 		next;
 		if (job_sha < 9) {
 			mes "[Manager]";
-			mes "What are they doing up there?";
-			mes "Bleh...";
+			mes "พวกนั้นกำลังทำอะไรกันอยู่ข้างบนน่ะ?";
+			mes "เหอะ...";
 			close;
 		}
-		switch(select("Give me your password!:I was sent by Graham.")) {
+		switch(select("ส่งรหัสผ่านของเจ้ามา!:ข้าถูกส่งมาจาก Graham")) {
 		case 1:
 			mes "[Manager]";
-			mes "You need my password?";
-			mes "How much would you pay me?";
+			mes "เจ้าต้องการรหัสผ่านของข้าเหรอ?";
+			mes "เจ้าจะจ่ายข้าเท่าไหร่ล่ะ?";
 			next;
 			mes "[Manager]";
-			mes "10 million zeny?";
-			mes "Ok I'll take that then!";
+			mes "10 ล้าน zeny เป็นไง?";
+			mes "ตกลง งั้นข้าจะรับไว้ละกัน!";
 			next;
 			mes "[Manager]";
-			mes "Yeah right!";
-			mes "Who the hell are you?";
-			mes "How dare you just ask for my password?";
+			mes "ใช่ที่ไหนกันล่ะ!";
+			mes "เจ้าเป็นใครวะ?";
+			mes "เจ้ากล้าดียังไงมาขอรหัสผ่านของข้าหน้าตาเฉยแบบนี้?";
 			close;
 		case 2:
 			mes "[Manager]";
-			mes "Graham?";
-			mes "Why?";
+			mes "Graham น่ะเหรอ?";
+			mes "ทำไมล่ะ?";
 			next;
 			if (countitem(6266) == 0) {
-				mes "You don't seem to have brought it here.";
+				mes "ดูเหมือนเจ้าจะไม่ได้นำมันมาที่นี่นะ";
 				next;
 				mes "[Manager]";
-				mes "Are you mute?";
-				mes "I don't know why Graham sent you here.";
-				mes "Just go if you don't have any business here!";
+				mes "เจ้าเป็นใบ้หรือไง?";
+				mes "ข้าไม่รู้ว่าทำไม Graham ถึงส่งเจ้ามาที่นี่";
+				mes "ถ้าไม่มีธุระอะไรก็ไปซะ!";
 				close;
 			}
 			mes "[Manager]";
-			mes "So this key was sent by him.";
+			mes "อ้อ กุญแจดอกนี้เขาเป็นคนส่งมาสินะ";
 			next;
-			select("No, I found it as the clue.");
+			select("เปล่า ข้าพบมันตอนหาเบาะแส");
 			mes "[Manager]";
-			mes "Ah?";
-			mes "So doesn't that mean that one code could be exchanged as a treasure...?";
+			mes "อา?";
+			mes "งั้นนั่นไม่ได้หมายความว่ารหัสหนึ่งสามารถแลกเปลี่ยนเป็นสมบัติได้หรอกเหรอ...?";
 			next;
-			select("Maybe.");
+			select("อาจจะ");
 			mes "[Manager]";
 			mes "...........";
-			mes "Hmm....";
+			mes "หืม....";
 			next;
 			mes "[Manager]";
-			mes "Hmm...";
+			mes "หืม...";
 			next;
-			mes "- The manager seems -";
-			mes "- to be thinking about -";
-			mes "- something. Then he-";
-			mes "- hands over a paper. -";
-			next;
-			mes "[Manager]";
-			mes "No way.";
-			mes "Here's the clue.";
-			mes "Try to find it.";
+			mes "- ผู้จัดการดูเหมือนจะ -";
+			mes "- กำลังครุ่นคิดอะไร -";
+			mes "- บางอย่าง จากนั้นเขาก็ -";
+			mes "- ส่งกระดาษแผ่นหนึ่งให้ -";
 			next;
 			mes "[Manager]";
-			mes "Anyway my name is Paul.";
+			mes "ไม่มีทาง";
+			mes "นี่คือเบาะแส";
+			mes "ลองไปหามันดู";
+			next;
+			mes "[Manager]";
+			mes "ยังไงก็ตาม ข้าชื่อ Paul";
 			mes "...........";
 			next;
 			mes "[Paul]";
-			mes "Naturally...";
-			mes "I've already solved the clue.";
+			mes "ก็นะ...";
+			mes "ข้าไขเบาะแสนั้นออกเรียบร้อยแล้วล่ะ";
 			next;
-			mes "- Here's the paper that -";
-			mes "- Paul handed over. -";
+			mes "- นี่คือกระดาษที่ -";
+			mes "- Paul ส่งให้ -";
 			next;
 			mes "R-E-N-N-N-D";
 			mes "L-N-N-W-W-N-D";
 			next;
 			mes "[Paul]";
-			mes "Isn't it so simple?";
-			mes "What do you think?";
-			mes "RENNND / LNNWWND means one thing.";
+			mes "มันง่ายมากเลยไม่ใช่เหรอ?";
+			mes "เจ้าคิดว่ายังไงล่ะ?";
+			mes "RENNND / LNNWWND หมายถึงสิ่งเดียว";
 			next;
-			switch(select("I think I got it.:I have no clue.")) {
+			switch(select("ข้าคิดว่าข้าเข้าใจแล้ว:ข้าไม่มีเบาะแสเลย")) {
 			case 1:
 				callsub L_Code,7166;
 				close;
 			case 2:
 				mes "[Paul]";
-				mes "What? You don't know it?";
-				mes "Then you'd better think about it more.";
-				mes "It's so easy.";
+				mes "อะไรนะ? เจ้าไม่รู้เหรอ?";
+				mes "งั้นเจ้าก็ควรจะกลับไปคิดให้มากกว่านี้";
+				mes "มันง่ายจะตายไป";
 				set job_sha,10;
 				changequest 7166,7167;
 				close;
@@ -722,150 +722,150 @@ s_atelier,168,65,5	script	Manager#sc08_ra	923,{
 		}
 	} else if (job_sha == 10) {
 		mes "[Paul]";
-		mes "So did you get what it means?";
+		mes "ตกลงเจ้าเข้าใจหรือยังว่ามันหมายความว่าไง?";
 		next;
-		switch(select("Yes!:No, I don't think so.")) {
+		switch(select("ใช่!:ไม่ ข้าไม่คิดแบบนั้นนะ")) {
 		case 1:
 			callsub L_Code,7167;
 			close;
 		case 2:
 			mes "[Paul]";
-			mes "Is it that hard?";
+			mes "มันยากขนาดนั้นเลยเหรอ?";
 			next;
-			select("I can't do it...");
+			select("ข้าทำไม่ได้...");
 			mes "[Paul]";
-			mes "No way.";
-			mes "Can I give you a hint?";
-			mes "Compass!";
+			mes "บ้าน่า";
+			mes "ให้ข้าช่วยบอกใบ้อีกหน่อยไหม?";
+			mes "เข็มทิศไงล่ะ!";
 			close;
 		}
 	} else if (job_sha > 10 && job_sha < 14) {
 		mes "[Paul]";
-		mes "I've already given you all the info you need.";
+		mes "ข้าได้ให้ข้อมูลทั้งหมดที่เจ้าจำเป็นต้องรู้ไปแล้วนะ";
 		next;
 		mes "[Paul]";
-		mes "I've given you one more clue.";
-		mes "Isn't it enough?";
+		mes "ข้าให้เบาะแสเจ้าไปอีกข้อแล้วด้วย";
+		mes "มันยังไม่พออีกเหรอ?";
 		next;
 		mes "[Paul]";
-		mes "As you and Graham mentioned.";
-		mes "Go and find it out.";
+		mes "อย่างที่เจ้าและ Graham บอกไว้";
+		mes "ไปหาคำตอบเอาเองเถอะ";
 		next;
 		mes "[Paul]";
-		mes "If you find real things like treasure,";
-		mes "come back here.";
+		mes "ถ้าเจ้าเจอของจริงอย่างเช่นสมบัติล่ะก็";
+		mes "ค่อยกลับมาที่นี่";
 		close;
 	} else if (job_sha > 13 && job_sha < 17) {
 		mes "[Paul]";
-		mes "You must find the right place.";
-		mes "The word is RENNND";
-		mes "It's refering the cave East - North - North - North from this Rachel.";
+		mes "เจ้าต้องหาที่ที่ถูกต้องให้เจอ";
+		mes "คำนั้นคือ RENNND";
+		mes "มันหมายถึงถ้ำทางตะวันออก - เหนือ - เหนือ - เหนือ จาก Rachel แห่งนี้";
 		next;
 		mes "[Paul]";
-		mes "L-N-N-W-W-N-D is also same.";
-		mes "L is for Lighthalzen.";
-		mes "Lighthalzen - North- North - West - West.";
-		mes "That's the ice cave.";
+		mes "L-N-N-W-W-N-D ก็เหมือนกัน";
+		mes "L คือ Lighthalzen";
+		mes "Lighthalzen - เหนือ - เหนือ - ตะวันตก - ตะวันตก";
+		mes "นั่นก็คือถ้ำน้ำแข็ง (ice cave)";
 		next;
 		mes "[Paul]";
-		mes "Is there any improvement!?";
+		mes "มีความคืบหน้าอะไรไหม!?";
 		next;
-		select("You need to investigate more?");
+		select("ท่านต้องตรวจสอบให้มากกว่านี้หรือเปล่า?");
 		mes "[Paul]";
-		mes "Really? Ok...";
-		mes "No way....";
-		mes "We will expect a good result.";
+		mes "จริงเหรอ? โอเค...";
+		mes "ไม่มีทาง....";
+		mes "พวกเราจะคาดหวังผลลัพธ์ที่ดีนะ";
 		close;
 	} else if (job_sha == 17) {
 		mes "[Paul]";
-		mes "I am dying to wait for you.";
-		mes "So what did you find out?";
+		mes "ข้าแทบจะรอเจ้าไม่ไหวแล้ว";
+		mes "แล้วเจ้าไปเจออะไรมาล่ะ?";
 		next;
-		select("I found the key.:Hmm...");
-		mes "- You hand over the 'Illusion Key' that you found in the ice cave. -";
-		next;
-		mes "[Paul]";
-		mes "Illusion! Haha!";
-		mes "After deception is illusion!";
-		mes "So are you lying to me?";
+		select("ข้าเจอกุญแจแล้ว:หืม...");
+		mes "- เจ้าส่ง 'Illusion Key' ที่พบในถ้ำน้ำแข็งให้เขา -";
 		next;
 		mes "[Paul]";
-		mes "I can feel how Graham felt it...";
-		mes "We don't dare to get that tiny key...";
+		mes "ภาพลวงตา! ฮ่าฮ่า!";
+		mes "หลังจากการหลอกลวง ก็คือภาพลวงตาอย่างนั้นเหรอ!";
+		mes "นี่เจ้ากำลังโกหกข้าอยู่หรือเปล่า?";
 		next;
 		mes "[Paul]";
-		mes "The young guy in Lighthalzen is quite challenging to deal with...";
-		mes "So we'd better request assistance from Haled...";
+		mes "ข้าเข้าใจความรู้สึกของ Graham เลยจริงๆ...";
+		mes "พวกเราไม่คิดจะอยากได้กุญแจดอกเล็กจิ๋วนั่นหรอก...";
 		next;
 		mes "[Paul]";
-		mes "Hey...";
-		mes "If you go to Juno...";
-		mes "There's a gallery...";
+		mes "ไอ้หนุ่มที่ Lighthalzen ท่าทางจะรับมือยากพอดู...";
+		mes "งั้นพวกเราควรจะขอความช่วยเหลือจาก Haled ดีกว่า...";
 		next;
 		mes "[Paul]";
-		mes "So could you ask him to get the password?";
-		mes "Hmm...";
+		mes "นี่...";
+		mes "ถ้าเจ้าไปที่ Juno...";
+		mes "จะมีหอศิลป์อยู่ที่นั่น...";
 		next;
 		mes "[Paul]";
-		mes "I feel like the red hair guy in the main gallery is teasing me...";
-		mes "Anyway...";
-		mes "So I really like to know the password and the identity of the key...";
+		mes "เจ้าช่วยไปบอกให้เขาเอารหัสผ่านมาให้หน่อยได้ไหม?";
+		mes "หืม...";
 		next;
 		mes "[Paul]";
-		mes "If Haled isn't supportive...";
-		mes "Tell him ^4d4dffI know what you did last summer!^000000";
-		mes "You shouldn't be wrong...!?";
+		mes "ข้าสัมผัสได้ว่าไอ้หนุ่มผมแดงในหอศิลป์หลักกำลังแกล้งข้าอยู่...";
+		mes "ยังไงก็ตาม...";
+		mes "ข้าอยากรู้รหัสผ่านและตัวตนที่แท้จริงของกุญแจนี่จริงๆ...";
+		next;
+		mes "[Paul]";
+		mes "ถ้า Haled ไม่ค่อยจะร่วมมือล่ะก็...";
+		mes "บอกเขาไปว่า ^4d4dffข้ารู้ว่าเจ้าทำอะไรไว้เมื่อฤดูร้อนที่แล้ว! (I know what you did last summer!)^000000";
+		mes "เจ้าต้องจำไม่ผิดแน่ใช่ไหม...!?";
 		set job_sha,18;
 		changequest 7172,7173;
 		close;
 	} else if (job_sha == 18) {
 		mes "[Paul]";
-		mes "You could ask him to get the key...";
-		mes "He will help you if you tell him something...";
+		mes "เจ้าอาจจะขอให้เขาเอากุญแจมาให้ได้...";
+		mes "เขาจะช่วยเจ้าถ้าเจ้าบอกอะไรบางอย่างกับเขา...";
 		next;
 		mes "[Paul]";
-		mes "If Haled isn't supportive...";
-		mes "Tell him ^4d4dffI know what you did last summer!^000000";
+		mes "ถ้า Haled ไม่ร่วมมือล่ะก็...";
+		mes "บอกเขาไปว่า ^4d4dffข้ารู้ว่าเจ้าทำอะไรไว้เมื่อฤดูร้อนที่แล้ว! (I know what you did last summer!)^000000";
 		close;
 	} else if (job_sha > 18 && job_sha < 30) {
 		mes "[Paul]";
-		mes "So you are still looking for the treasure... right?";
-		mes "I would look for it...";
+		mes "ตกลงเจ้ายังคงตามหาสมบัติอยู่... ใช่ไหม?";
+		mes "ถ้าเป็นข้า ข้าคงหามันต่อไปล่ะ...";
 		close;
 	} else if (job_sha == 30) {
 		mes "[Paul]";
-		mes "Now I almost guessed what would happen later...";
-		mes "It can't have happened!";
+		mes "ตอนนี้ข้าเกือบจะเดาได้แล้วว่าจะเกิดอะไรขึ้นต่อจากนี้...";
+		mes "มันไม่น่าจะเกิดขึ้นได้เลย!";
 		next;
 		mes "[Paul]";
-		mes "Are you shocked?";
-		mes "Don't think worse.";
-		mes "You could get a good person.";
-		mes "Hahaha...";
+		mes "เจ้าช็อกไปเลยเหรอ?";
+		mes "อย่าคิดในแง่ร้ายไปเลย";
+		mes "เจ้าอาจจะได้พบคนที่ดีก็ได้";
+		mes "ฮ่าฮ่าฮ่า...";
 		close;
 	}
 	mes "[Paul]";
-	mes "Do you need a painting tool?";
-	mes "Then you can request that to the assistant.";
-	mes "We always have it just in case.";
+	mes "เจ้าต้องการอุปกรณ์วาดภาพไหม?";
+	mes "ถ้าอย่างนั้นเจ้าไปขอกับผู้ช่วยได้เลย";
+	mes "เรามีเตรียมไว้เสมอในกรณีที่จำเป็น";
 	close;
 L_Code:
 	mes "[Paul]";
-	mes "Really? Then I don't need to give you the answer.";
-	mes "Could you interpret the meaning of each letter.";
+	mes "จริงเหรอ? งั้นข้าก็ไม่ต้องให้คำตอบกับเจ้าแล้วสินะ";
+	mes "เจ้าช่วยตีความความหมายของตัวอักษรแต่ละตัวหน่อยได้ไหม";
 	next;
-	select("It's kinda the combination of places.");
+	select("มันเป็นการรวมกันของชื่อสถานที่น่ะ");
 	mes "[Paul]";
-	mes "So?";
+	mes "แล้ว?";
 	next;
-	select("E-N meaning East - North");
+	select("E-N หมายถึง ตะวันออก - เหนือ");
 	mes "[Paul]";
-	mes "Ok that's good enough.";
-	mes "Then go and find out.";
+	mes "โอเค ดีมากพอแล้ว";
+	mes "งั้นก็ออกไปหาคำตอบซะ";
 	next;
 	mes "[Paul]";
-	mes "Memorize this.";
-	mes "You might need it. It could be a clue for you.";
+	mes "จำนี่ไว้ให้ดี";
+	mes "เจ้าอาจจะต้องการมัน มันอาจจะเป็นเบาะแสให้เจ้าได้";
 	next;
 	mes "[Paul]";
 	switch(rand(3)) {
@@ -888,239 +888,239 @@ L_Code:
 		changequest getarg(0),7170;
 		break;
 	}
-	mes "I don't know what it really means, but it would be helpful to you to figure it out.";
+	mes "ข้าไม่รู้ว่ามันหมายความว่าไงกันแน่ แต่มันน่าจะเป็นประโยชน์กับเจ้าในการไขปริศนาล่ะนะ";
 	close;
 }
 
 s_atelier,167,129,3	script	Manager#sc06_yuno	806,{
 	if (job_sha < 19) {
 		mes "[Manager]";
-		mes "What?";
-		mes "If you've come here for some money, you are wrong.";
-		mes "This isn't a pawnshop.";
+		mes "อะไรนะ?";
+		mes "ถ้าเจ้ามาที่นี่เพื่อขอกู้เงินล่ะก็ เจ้าคิดผิดแล้ว";
+		mes "ที่นี่ไม่ใช่โรงรับจำนำนะ";
 		if (job_sha < 18) close;
 		next;
-		select("You are... Haled?");
+		select("คุณคือ... Haled ใช่ไหม?");
 		mes "[Haled]";
-		mes "Hmm? I'm the manager of this workplace in Juno. What's the matter?";
-		next;
-		mes "[Haled]";
-		mes "Hmm. You were sent by Graham and Paul?";
-		mes "I thought that you just came here to beg for money with fossil pieces.";
+		mes "หืม? ข้าคือผู้จัดการของสถานที่ทำงานแห่งนี้ใน Juno มีธุระอะไรล่ะ?";
 		next;
 		mes "[Haled]";
-		mes "It's a classic way that poor scholars use.";
-		mes "Sometimes I buy good stuff so some people know that this is a pawnshop.";
+		mes "อืมม เจ้าถูกส่งมาจาก Graham และ Paul งั้นเหรอ?";
+		mes "ข้านึกว่าเจ้าแค่จะเอาเศษซากฟอสซิลมาเร่ขายขอเงินซะอีก";
 		next;
 		mes "[Haled]";
-		mes "Let me hear your story.";
-		next;
-		mes "- You explain everything so far and show the key of arrogance. -";
-		next;
-		mes "[Haled]";
-		mes "So...";
-		mes "I totally understand.";
-		mes "It's this key's location that";
-		mes "shared the informaton!";
+		mes "มันเป็นวิธีโบราณที่พวกนักวิชาการจนๆ ชอบใช้กันน่ะ";
+		mes "บางทีข้าก็รับซื้อของดีๆ ไว้บ้าง บางคนเลยเข้าใจผิดว่าที่นี่เป็นโรงรับจำนำ";
 		next;
 		mes "[Haled]";
-		mes "Anyway. Two are keys and the treasure that I have to open with this key, what can I do?";
+		mes "ไหนลองเล่าเรื่องของเจ้ามาซิ";
+		next;
+		mes "- คุณอธิบายทุกอย่างที่เกิดขึ้นจนถึงตอนนี้ และแสดงกุญแจแห่งความโอหัง (Key of Arrogance) ให้เขาดู -";
 		next;
 		mes "[Haled]";
-		mes "We will investigate Juno's workplace, so give it to me?";
+		mes "งั้นเหรอ...";
+		mes "ข้าเข้าใจอย่างถ่องแท้แล้ว";
+		mes "ตำแหน่งของกุญแจนี้นี่เองที่";
+		mes "เป็นข้อมูลที่ถูกแบ่งปันกัน!";
 		next;
-		mes "- Haled doesn't want to cooperate with you.";
-		mes "Remember what Paul said. -";
+		mes "[Haled]";
+		mes "อย่างไรก็ตาม ตอนนี้มีกุญแจอยู่สองดอก แล้วสมบัติที่ข้าต้องเปิดด้วยกุญแจนี้น่ะ ข้าจะทำยังไงได้บ้าง?";
+		next;
+		mes "[Haled]";
+		mes "พวกเราจะตรวจสอบสถานที่ทำงานใน Juno เอง เพราะงั้นส่งมันมาให้ข้าสิ?";
+		next;
+		mes "- Haled ดูเหมือนจะไม่ต้องการร่วมมือกับคุณ -";
+		mes "- จงจำสิ่งที่ Paul บอกไว้ -";
 		next;
 		callsub L_Code;
 		mes "[Haled]";
-		mes "So what?";
-		mes "He's a wild-eyed person.";
-		mes "Did you just speak to me in a threatening tone?";
+		mes "แล้วไงล่ะ?";
+		mes "เขามันก็แค่คนบ้าบอคนหนึ่ง";
+		mes "นี่เจ้ากำลังพูดข่มขู่ข้าอยู่เหรอ?";
 		set job_sha,19;
 		close;
 	} else if (job_sha == 19) {
 		mes "[Haled]";
-		mes "What?";
-		mes "You want to talk with me?";
-		mes "How about you just hand over that key to me?";
+		mes "อะไรอีกล่ะ?";
+		mes "เจ้าอยากคุยกับข้าเหรอ?";
+		mes "ทำไมเจ้าไม่ส่งกุญแจนั่นมาให้ข้าเฉยๆ ล่ะ?";
 		next;
 		callsub L_Code;
 		mes "[Haled]";
-		mes "What's wrong with you?";
-		mes "Are you ok?";
-		mes "Paul? What do you want to say?";
+		mes "เจ้าเป็นอะไรไปน่ะ?";
+		mes "เจ้ายังโอเคอยู่ไหม?";
+		mes "Paul เหรอ? เจ้าต้องการจะสื่ออะไรกันแน่?";
 		set job_sha,19;
 		close;
 	} else if (job_sha == 20) {
 		mes "[Haled]";
-		mes "Got it.";
-		mes "Ok.";
-		mes "You need to know where the place with the code is?";
+		mes "เข้าใจแล้ว";
+		mes "โอเค";
+		mes "เจ้าต้องการรู้ใช่ไหมว่าสถานที่ที่มีรหัสลับนั้นอยู่ที่ไหน?";
 		next;
 		mes "[Haled]";
-		mes "I don't have a choice.";
-		mes "Listen carefully to this poem.";
+		mes "ข้าไม่มีทางเลือกอื่นแล้วสินะ";
+		mes "ฟังบทกวีนี้ให้ดีๆ ล่ะ";
 		next;
 		mes "[Haled]";
-		mes "^4d4dffThe end of thin root of life-giving water.";
-		mes "It's all of tears and signs of living people.";
-		mes "They are us but also not us.";
-		mes "Residents of forgotten night";
-		mes "play the waltz of despair^000000.";
+		mes "^4d4dffปลายสุดของรากฝอยแห่งวารีผู้ให้ชีวิต";
+		mes "มันคือมวลน้ำตาและร่องรอยของผู้คนที่ยังมีลมหายใจ";
+		mes "พวกเขาคือพวกเรา แต่ก็ไม่ใช่พวกเรา";
+		mes "ผู้อยู่อาศัยในรัตติกาลที่ถูกลืม";
+		mes "ร่ายรำในท่วงทำนองวอลซ์แห่งความสิ้นหวัง^000000";
 		next;
 		mes "[Haled]";
-		mes "Do you know where it is?";
-		mes "You know where it is right?";
-		mes "It's only my opinion, but...";
-		mes "It can't be possible...";
+		mes "เจ้ารู้ไหมว่ามันคือที่ไหน?";
+		mes "เจ้ารู้ใช่ไหมว่ามันอยู่ที่ไหน?";
+		mes "มันเป็นเพียงความคิดเห็นของข้าคนเดียวนะ แต่ว่า...";
+		mes "มันไม่น่าจะเป็นไปได้เลย...";
 		next;
 		mes "[Haled]";
-		mes "Anyway, if you want to do it, go ahead.";
-		mes "If you know what this poem means.";
+		mes "เอาเถอะ ถ้าเจ้าอยากจะลองดู ก็เชิญเลย";
+		mes "ถ้าเจ้าเข้าใจว่าบทกวีนี้หมายถึงอะไร";
 		next;
 		mes "[Haled]";
-		mes "Of course, if you find something, you have to come back.";
-		mes "Got it?";
-		mes "I'm going to write it down so that you won't forget.";
+		mes "แน่นอนว่าถ้าเจ้าพบอะไรบางอย่าง เจ้าต้องกลับมาที่นี่";
+		mes "เข้าใจไหม?";
+		mes "ข้าจะจดมันไว้ให้เพื่อที่เจ้าจะได้ไม่ลืม";
 		set job_sha,21;
 		changequest 7173,7174;
 		close;
 	} else if (job_sha == 21) {
 		mes "[Haled]";
-		mes "I won't be surprised with whatever you find.";
-		mes "You have to find the place that the poem speaks of.";
+		mes "ข้าจะไม่แปลกใจเลยไม่ว่าเจ้าจะไปพบอะไรมาก็ตาม";
+		mes "เจ้าต้องตามหาสถานที่ที่บทกวีกล่าวถึงให้เจอ";
 		next;
 		mes "[Haled]";
-		mes "^4d4dffThe end of thin root of life-giving water.";
-		mes "It's all of tears and signs of living people.";
-		mes "They are us but also not us.";
-		mes "Residents of forgotten night";
-		mes "play the waltz of despair^000000.";
+		mes "^4d4dffปลายสุดของรากฝอยแห่งวารีผู้ให้ชีวิต";
+		mes "มันคือมวลน้ำตาและร่องรอยของผู้คนที่ยังมีลมหายใจ";
+		mes "พวกเขาคือพวกเรา แต่ก็ไม่ใช่พวกเรา";
+		mes "ผู้อยู่อาศัยในรัตติกาลที่ถูกลืม";
+		mes "ร่ายรำในท่วงทำนองวอลซ์แห่งความสิ้นหวัง^000000";
 		next;
 		mes "[Haled]";
-		mes "Of course, if you find something, you have to come back.";
-		mes "Got it?";
+		mes "แน่นอนว่าถ้าเจ้าพบอะไรบางอย่าง เจ้าต้องกลับมาที่นี่";
+		mes "เข้าใจไหม?";
 		close;
 	} else if (job_sha > 21 && job_sha < 25) {
 		mes "[Haled]";
-		mes "How's it going?";
-		mes "If you find something, you have to come back.";
-		mes "Don't go to Graham or Paul.";
+		mes "เป็นยังไงบ้าง?";
+		mes "ถ้าเจ้าพบอะไรบางอย่าง เจ้าต้องกลับมาที่นี่นะ";
+		mes "อย่าเพิ่งไปหา Graham หรือ Paul ล่ะ";
 		close;
 	} else if (job_sha == 25) {
 		mes "[Haled]";
-		mes "Did you find something?";
+		mes "เจ้าพบอะไรบางอย่างแล้วเหรอ?";
 		next;
-		select("Show the key of pleasure.");
+		select("แสดงกุญแจแห่งความสำราญ (Key of Pleasure) ให้ดู");
 		if (countitem(6268)) {
 			mes "[Haled]";
-			mes "Ha..........akkk.";
-			mes "Another key?";
-			mes "Is it the only key?!";
+			mes "หึย..........อึกก";
+			mes "กุญแจอีกดอกงั้นเหรอ?";
+			mes "นี่มันมีแต่กุญแจหรือไงกัน?!";
 			next;
 			mes "[Haled]";
-			mes "Then... do I have to ask help from the young man from Lighthalzen?";
+			mes "ถ้าอย่างนั้น... ข้าต้องขอความช่วยเหลือจากเจ้าหนุ่มใน Lighthalzen แล้วสินะ?";
 			mes "...........";
-			mes "Ah...";
+			mes "อา...";
 			next;
 			mes "[Haled]";
-			mes "I have no choice.";
-			mes "Go to Lighthalzen with the three keys.";
-			mes "Meet Vicente who is master of the store in Lighthalzen and tell him everything.";
+			mes "ข้าไม่มีทางเลือกแล้ว";
+			mes "จงไปที่ Lighthalzen พร้อมกับกุญแจทั้งสามดอก";
+			mes "ไปพบ Vicente ซึ่งเป็นเจ้าของร้านใน Lighthalzen แล้วเล่าทุกอย่างให้เขาฟังซะ";
 			next;
 			mes "[Haled]";
-			mes "I told you that the old man is persistant and he ruins everything.";
+			mes "ข้าบอกเจ้าแล้วว่าคนแก่น่ะหัวรั้นและชอบทำเรื่องพังไปหมด";
 			next;
 			mes "[Haled]";
-			mes "You have to have all your facts straight to send information to the guild.";
-			mes "First you have to work together in one accord.";
+			mes "เจ้าต้องมีข้อมูลที่ถูกต้องทั้งหมดก่อนจะส่งข่าวไปยังสมาคม";
+			mes "อย่างแรก พวกเจ้าต้องทำงานร่วมกันเป็นหนึ่งเดียวก่อน";
 			next;
 			mes "[Haled]";
-			mes "The thing you find can belong to the workplace.";
-			mes "It can be shared.";
+			mes "สิ่งที่เจ้าค้นพบอาจเป็นสมบัติของสถานที่ทำงานแห่งนี้";
+			mes "มันสามารถแบ่งปันกันได้";
 			next;
 			mes "[Haled]";
-			mes "I thought that it was a very simple thing.";
-			mes "We couldn't share that stuff together.";
+			mes "ข้านึกว่ามันจะเป็นเรื่องง่ายๆ ซะอีก";
+			mes "พวกเราไม่สามารถแบ่งของพวกนั้นร่วมกันได้";
 			next;
 			mes "[Haled]";
-			mes "All of the information that I got from workplace are key.";
-			mes "There must be something to use three key with.";
+			mes "ข้อมูลทั้งหมดที่ข้าได้รับมาจากสถานที่ทำงานล้วนเป็นกุญแจ";
+			mes "มันต้องมีอะไรบางอย่างที่ต้องใช้กุญแจทั้งสามดอกนี้เปิดแน่ๆ";
 			next;
 			mes "[Haled]";
-			mes "Anyway it has to do with deceit and pleasure...";
-			mes "Is it teasing me...";
+			mes "อย่างไรก็ตาม มันเกี่ยวข้องกับความหลอกลวงและความสำราญ...";
+			mes "นี่มันกำลังปั่นหัวข้าอยู่หรือเปล่านะ...";
 			next;
 			mes "[Haled]";
-			mes "Ok. Let me finish.";
-			mes "Go to Vicente in Lighthalzen.";
+			mes "เอาล่ะ ข้าพูดจบแล้ว";
+			mes "ไปหา Vicente ใน Lighthalzen ซะ";
 			set job_sha,26;
 			changequest 7176,7177;
 			close;
 		}
 		mes "["+strcharinfo(0)+"]";
-		mes "I'm sorry.";
-		mes "I found one more key but I didn't bring it.";
-		mes "I'll bring it soon.";
+		mes "ข้าขอโทษ";
+		mes "ข้าเจอกุญแจอีกดอกหนึ่งแล้วแต่ไม่ได้นำมันติดตัวมาด้วย";
+		mes "เดี๋ยวข้าจะรีบนำมาให้ดูนะ";
 		close;
 	} else if (job_sha == 26) {
 		mes "[Haled]";
-		mes "Shadow workplace in Lighthalzen.";
-		mes "The manager's name is Vicente.";
-		mes "Tell him everything and get one last information.";
+		mes "สถานที่ทำงานเงา (Shadow workplace) ใน Lighthalzen";
+		mes "ผู้จัดการชื่อ Vicente";
+		mes "เล่าทุกอย่างให้เขาฟังแล้วเอาข้อมูลสุดท้ายมาให้ได้";
 		close;
 	} else if (job_sha > 26 && job_sha < 30) {
 		mes "[Haled]";
-		mes "Hey, you!";
-		mes "Was Vicente helpful to you?";
-		mes "You have something important...";
-		mes "So you have to find out what is it.";
+		mes "เฮ้ เจ้าน่ะ!";
+		mes "Vicente ช่วยอะไรเจ้าได้บ้างไหม?";
+		mes "เจ้ามีสิ่งที่สำคัญติดตัวอยู่นะ...";
+		mes "เพราะงั้นเจ้าต้องหาให้ได้ว่ามันคืออะไร";
 		next;
 		mes "[Haled]";
-		mes "Keep trying.";
+		mes "พยายามเข้าล่ะ";
 		close;
 	} else if (job_sha == 30) {
 		mes "[Haled]";
-		mes "Hey, you!";
-		mes "What's going on?";
-		mes "What? Shadow Chaser?";
+		mes "เฮ้ เจ้าน่ะ!";
+		mes "เกิดอะไรขึ้น?";
+		mes "อะไรนะ? Shadow Chaser เหรอ?";
 		next;
 		mes "[Haled]";
-		mes "Did I know that fact?";
-		mes "Sure. I heard a little bit before";
-		mes "I used to do work like this.";
+		mes "ข้ารู้เรื่องนั้นหรือเปล่าน่ะเหรอ?";
+		mes "แน่นอน ข้าเคยได้ยินมาบ้างนิดหน่อยเมื่อก่อน";
+		mes "ข้าก็เคยทำงานแบบนี้มาก่อนเหมือนกัน";
 		next;
 		mes "[Haled]";
-		mes "It's an honor for me to pick a person who belongs to us.";
-		mes "Just accept that. You are going to be a good Shadow Chaser.";
+		mes "มันเป็นเกียรติของข้าเลยนะที่ได้คัดเลือกคนที่เหมาะสมกับพวกเรา";
+		mes "ยอมรับมันเถอะ เจ้าจะเป็น Shadow Chaser ที่ยอดเยี่ยมแน่นอน";
 		close;
 	}
 	mes "[Haled]";
-	mes "I like your face.";
-	mes "We don't have any special thing.";
-	mes "An assistant sells some paint and tool.";
+	mes "ข้าชอบสีหน้าของเจ้านะ";
+	mes "พวกเราไม่มีอะไรพิเศษหรอก";
+	mes "มีผู้ช่วยขายสีและเครื่องมืออยู่ตรงนั้น";
 	close;
 L_Code:
 	mes "["+strcharinfo(0)+"]";
-	mes "Paul said...";
+	mes "Paul บอกว่า...";
 	next;
 	input .@inputstr$;
 	mes "["+strcharinfo(0)+"]";
-	mes "Paul said...";
+	mes "Paul บอกว่า...";
 	mes "'"+.@inputstr$+"' .";
 	next;
 	if (.@inputstr$ == "I know what you did last summer!") {
 		mes "[Haled]";
-		mes "Ekk... He...";
-		mes "Knew everything...";
-		mes "Hmm...";
-		mes "I can help.";
-		mes "I will cooperate.";
+		mes "เอื๊อก... เขา...";
+		mes "รู้ทุกอย่างเลยงั้นเหรอ...";
+		mes "หืม...";
+		mes "ข้าช่วยก็ได้";
+		mes "ข้าจะร่วมมือด้วย";
 		next;
 		mes "[Haled]";
-		mes "I need some time to collect my thoughts.";
-		mes "Wait for me a bit.";
+		mes "ข้าขอเวลาเรียบเรียงความคิดสักครู่";
+		mes "รอข้าเดี๋ยวหนึ่ง";
 		set job_sha,20;
 		close;
 	}
@@ -1130,476 +1130,476 @@ L_Code:
 s_atelier,25,75,3	script	Manager#sc10_lgt	899,{
 	if (job_sha < 26) {
 		mes "[Manager]";
-		mes "You are?";
-		mes "Sorry, but we don't trade old art goods.";
-		mes "If you neeed something, then ask an assistant.";
+		mes "เจ้าคือ?";
+		mes "ขอโทษด้วยนะ แต่เราไม่รับซื้อขายงานศิลปะเก่าๆ";
+		mes "ถ้าเจ้าต้องการอะไร ก็ไปถามผู้ช่วยเอาเถอะ";
 		close;
 	} else if (job_sha == 26) {
 		mes "[Vicente]";
-		mes "Welcome.";
-		mes "I've been waiting for you.";
+		mes "ยินดีต้อนรับ";
+		mes "ข้ากำลังรอเจ้าอยู่เลย";
 		next;
-		select("For me?");
+		select("รอข้าเหรอ?");
 		mes "[Vicente]";
-		mes "I wondered when you would visit.";
-		mes "I've been waiting a long time for you.";
-		mes "Huhu...";
-		next;
-		mes "[Vicente]";
-		mes "How were Graham,Paul and Haled?";
-		mes "They are not easy people to deal with huh?";
-		next;
-		select("You know everything?");
-		mes "[Vicente]";
-		mes "Sure.";
-		mes "They ignore me because they think that I'm too young.";
-		mes "As if they were all perfect. HahahaHah...";
+		mes "ข้าสงสัยอยู่ว่าเจ้าจะมาเยี่ยมเมื่อไหร่";
+		mes "ข้าคอยเจ้ามานานแสนนานแล้ว";
+		mes "หุหุ...";
 		next;
 		mes "[Vicente]";
-		mes "Did you bring all of the keys?";
-		mes "There should be three.";
-		mes "You came here to find out how to use them I assume, right?";
+		mes "Graham, Paul และ Haled เป็นยังไงบ้างล่ะ?";
+		mes "พวกเขาไม่ใช่คนที่รับมือได้ง่ายๆ เลยใช่ไหมล่ะ?";
 		next;
-		select("Yeah, you're right!");
+		select("ท่านรู้ทุกอย่างเลยเหรอ?");
 		mes "[Vicente]";
-		mes "You don't have to be surprised.";
-		mes "I can't find how long it took for those three men to investigate before.";
-		mes "I already finished my work.";
-		next;
-		mes "[Vicente]";
-		mes "When I went to the final location I found a stone statue.";
-		mes "But it needs to have key.";
+		mes "แน่นอน";
+		mes "พวกเขามักจะเมินข้าเพราะคิดว่าข้ายังเด็กเกินไป";
+		mes "ทำเหมือนกับว่าพวกเขาสมบูรณ์แบบนักแหละ ฮ่าฮ่าฮ่าฮ่า...";
 		next;
 		mes "[Vicente]";
-		mes "Even Three.";
+		mes "เจ้าเอากุญแจทั้งหมดมาด้วยไหม?";
+		mes "มันควรจะมีสามดอกนะ";
+		mes "เจ้ามาที่นี่เพื่อหาคำตอบว่าจะใช้พวกมันยังไงสินะ ข้าเดาถูกใช่ไหม?";
+		next;
+		select("ใช่แล้ว ท่านเดาถูก!");
+		mes "[Vicente]";
+		mes "เจ้าไม่ต้องแปลกใจไปหรอก";
+		mes "ข้านึกภาพไม่ออกเลยว่าพวกชายสามคนนั้นใช้เวลาตรวจสอบไปนานแค่ไหน";
+		mes "แต่ข้าน่ะทำงานของข้าเสร็จเรียบร้อยแล้ว";
+		next;
+		mes "[Vicente]";
+		mes "เมื่อข้าไปยังสถานที่สุดท้าย ข้าได้พบกับรูปปั้นหิน";
+		mes "แต่มันจำเป็นต้องใช้กุญแจเปิด";
+		next;
+		mes "[Vicente]";
+		mes "ตั้งสามดอกแน่ะ";
 		mes " ";
-		mes "(Vicente smiles)";
+		mes "(Vicente ยิ้ม)";
 		next;
 		mes "[Vicente]";
-		mes "At first, the information that was given from the guild means only one thing.";
-		mes "Because of the saying that they respect the right of our possessions,";
-		mes "we shared our information.";
+		mes "ในตอนแรก ข้อมูลที่ได้รับจากทางสมาคมหมายถึงสิ่งเดียวเท่านั้น";
+		mes "เพราะคำกล่าวที่ว่าพวกเขาเคารพในสิทธิการครอบครองของพวกเรา";
+		mes "พวกเราจึงแบ่งปันข้อมูลกัน";
 		next;
 		mes "[Vicente]";
-		mes "So we had to wait for it.";
-		mes "I thought the last man would never give it to me...";
+		mes "ดังนั้นพวกเราจึงต้องเฝ้ารอมัน";
+		mes "ข้านึกว่าชายคนสุดท้ายจะไม่มีวันส่งมันมาให้ข้าซะแล้ว...";
 		next;
 		mes "[Vicente]";
-		mes "They thought I wanted to have the treasure for myself.";
-		mes "So that's why I've just been waiting for you.";
+		mes "พวกเขานึกว่าข้าอยากจะฮุบสมบัติไว้คนเดียว";
+		mes "นั่นแหละคือสาเหตุที่ข้าทำได้แค่เฝ้ารอเจ้าอยู่ที่นี่";
 		next;
 		mes "[Vicente]";
-		mes "Then let's make a point!";
-		mes "Do you know thanatos tower?";
+		mes "งั้นเรามาเข้าเรื่องกันเลย!";
+		mes "เจ้ารู้จักหอคอย Thanatos ไหม?";
 		next;
-		switch(select("Sure.:The tower of death?")) {
+		switch(select("รู้จักสิ:หอคอยแห่งความตายเหรอ?")) {
 		case 1:
 			mes "[Vicente]";
-			mes "You know that.";
-			mes "Then you can understand easily.";
+			mes "เจ้ารู้จักมันสินะ";
+			mes "งั้นเจ้าคงจะเข้าใจได้ง่ายขึ้น";
 			next;
 			break;
 		case 2:
 			mes "[Vicente]";
-			mes "Yes, that tower in northen Juno.";
-			mes "There are huge monsters there.";
+			mes "ใช่แล้ว หอคอยที่อยู่ทางตอนเหนือของ Juno น่ะ";
+			mes "ที่นั่นมีมอนสเตอร์ตัวใหญ่ยักษ์เต็มไปหมด";
 			next;
 			break;
 		}
 		mes "[Vicente]";
-		mes "You told me that you went to the final place with the information?";
-		mes "That's the Thanatos Tower.";
+		mes "เจ้าบอกข้าว่าเจ้าไปยังสถานที่สุดท้ายด้วยข้อมูลที่มีงั้นเหรอ?";
+		mes "นั่นก็คือหอคอย Thanatos ไงล่ะ";
 		next;
 		mes "[Vicente]";
-		mes "Fortunately, the location is the 1st floor of that tower.";
-		mes "So I'm going to tell what you have to do.";
+		mes "โชคดีที่ตำแหน่งนั้นอยู่ที่ชั้น 1 ของหอคอย";
+		mes "ดังนั้นข้าจะบอกสิ่งที่เจ้าต้องทำ";
 		next;
 		mes "[Vicente]";
-		mes "At the 1st floor of thanatos tower, there are members from the Rekenber Corporation.";
-		mes "Go north from their desk...";
+		mes "ที่ชั้น 1 ของหอคอย Thanatos จะมีสมาชิกจากบริษัท Rekenber อยู่";
+		mes "ให้เดินไปทางทิศเหนือจากโต๊ะทำงานของพวกเขา...";
 		next;
 		mes "[Vicente]";
-		mes "And you can find stairs and a location where light comes out of.";
-		mes "That's the location of the information that I have.";
+		mes "แล้วเจ้าจะพบกับบันไดและจุดที่มีแสงลอดออกมา";
+		mes "นั่นแหละคือตำแหน่งของข้อมูลที่ข้ามี";
 		next;
 		mes "[Vicente]";
-		mes "Now you know the location you have to go to with the three keys.";
-		mes "Find out the secret of the stone statue.";
+		mes "ตอนนี้เจ้ารู้จักสถานที่ที่ต้องไปพร้อมกับกุญแจทั้งสามดอกแล้ว";
+		mes "จงไปค้นหาความลับของรูปปั้นหินนั้นซะ";
 		next;
 		mes "[Vicente]";
-		mes "You can't imagine what kind of things you might find.";
-		mes "That's the final destination of all of the keys.";
+		mes "เจ้าจินตนาการไม่ออกหรอกว่าเจ้าจะได้พบกับอะไร";
+		mes "นั่นคือจุดหมายสุดท้ายของกุญแจทั้งหมด";
 		set job_sha,27;
 		changequest 7177,7178;
 		next;
 		mes "[Vicente]";
-		mes "Good luck.";
+		mes "โชคดีนะ";
 		close;
 	} else if (job_sha == 27) {
 		mes "[Vicente]";
-		mes "Listen carefully.";
-		mes "The location you need to find is";
-		mes "north from middle of thanatos 1st floor.";
-		mes "You can find stairs and a location where light comes out.";
+		mes "ฟังให้ดีๆ นะ";
+		mes "สถานที่ที่เจ้าต้องตามหาคือ";
+		mes "ทิศเหนือจากกึ่งกลางของหอคอย Thanatos ชั้น 1";
+		mes "เจ้าจะพบกับบันไดและจุดที่มีแสงส่องออกมา";
 		next;
 		mes "[Vicente]";
-		mes "If you find something, come back here.";
-		mes "Actually, I want to get the key from you, but...";
+		mes "ถ้าเจ้าพบอะไรบางอย่าง ให้กลับมาที่นี่";
+		mes "ที่จริงข้าก็อยากจะได้กุญแจจากเจ้านะ แต่ว่า...";
 		next;
 		mes "[Vicente]";
-		mes "I just respect your opinion.";
-		mes "If you find something, come back here. Got it?";
+		mes "ข้าเคารพการตัดสินใจของเจ้า";
+		mes "ถ้าพบอะไรแล้ว กลับมาที่นี่ด้วยล่ะ เข้าใจไหม?";
 		close;
 	} else if (job_sha == 28) {
 		mes "[Vicente]";
-		mes "You are back?";
-		mes "Find anything?";
+		mes "กลับมาแล้วเหรอ?";
+		mes "เจออะไรบ้างไหม?";
 		next;
-		switch(select("Throw the brush.:Grab him by the collar.:Drop the brush.")) {
+		switch(select("ขว้างพู่กันใส่:กระชากคอเสื้อเขา:วางพู่กันลง")) {
 		case 1:
 			mes "[Vicente]";
-			mes "Hey, what are you doing?";
-			mes "This brush...";
-			mes "Is this the treasure hidden in the Thanatos Tower?";
+			mes "เฮ้ เจ้าทำอะไรน่ะ?";
+			mes "พู่กันนี่...";
+			mes "นี่คือสมบัติที่ซ่อนอยู่ในหอคอย Thanatos งั้นเหรอ?";
 			next;
-			mes "Vicente looks surprised after taking a look at it.";
+			mes "Vicente ดูประหลาดใจหลังจากได้พิจารณามัน";
 			next;
 			break;
 		case 2:
 			mes "[Vicente]";
-			mes "What's wrong with you?";
-			mes "You can tell me more details?";
+			mes "เจ้าเป็นอะไรไป?";
+			mes "ช่วยเล่ารายละเอียดให้ข้าฟังมากกว่านี้หน่อยได้ไหม?";
 			next;
-			mes "Vincente looks surpised after taking a look at it.";
+			mes "Vicente ดูประหลาดใจหลังจากได้พิจารณามัน";
 			next;
 			mes "[Vicente]";
-			mes "Is this the treasure hidden in the Thanatos Tower?";
+			mes "นี่คือสมบัติที่ซ่อนอยู่ในหอคอย Thanatos งั้นเหรอ?";
 			next;
 			break;
 		case 3:
 			mes "[Vicente]";
-			mes "What the matter?";
-			mes "Are you ok?";
+			mes "เกิดอะไรขึ้น?";
+			mes "เจ้ายังโอเคไหม?";
 			next;
-			mes "Vicente looks at me with a surprised face.";
+			mes "Vicente มองมาที่ฉันด้วยสีหน้าที่ประหลาดใจ";
 			next;
-			select("Point at the brush.");
+			select("ชี้ไปที่พู่กัน");
 			mes "[Vicente]";
-			mes "Is this the treasure hidden in the Thanatos Tower?";
+			mes "นี่คือสมบัติที่ซ่อนอยู่ในหอคอย Thanatos งั้นเหรอ?";
 			next;
-			mes "Vincente looks surpised after taking a look at it.";
+			mes "Vicente ดูประหลาดใจหลังจากได้พิจารณามัน";
 			next;
 			break;
 		}
 		mes "[Vicente]";
-		mes "Haha!!";
-		mes "Ahahahaha!!!!!";
-		mes "I got it now!";
-		mes "Congratulations.";
+		mes "ฮ่าฮ่า!!";
+		mes "อาฮ่าฮ่าฮ่าฮ่า!!!!!";
+		mes "ข้าเข้าใจแล้ว!";
+		mes "ยินดีด้วยนะ";
 		next;
 		mes "[Vicente]";
-		mes "It's treasure.";
-		mes "You found a big treasure!";
-		mes "Talk to me for bit, won't you?";
+		mes "มันคือสมบัติ";
+		mes "เจ้าได้พบสมบัติชิ้นใหญ่เข้าแล้ว!";
+		mes "คุยกับข้าสักครู่ได้ไหม?";
 		next;
 		mes "[Vicente]";
-		mes "There is someone who has been waiting for you.";
-		mes "He's been waiting for someone to bring this brush back.";
-		mes "Let's go inside.";
+		mes "มีใครบางคนกำลังรอเจ้าอยู่";
+		mes "เขารอให้ใครสักคนนำพู่กันนี้กลับมานานแล้ว";
+		mes "เข้าไปข้างในกันเถอะ";
 		set job_sha,29;
 		erasequest 7179;
 		close;
 	} else if (job_sha == 29 || job_sha == 30) {
 		mes "[Vicente]";
-		mes "I'm going to listen to your story.";
+		mes "ข้ากำลังจะฟังเรื่องราวของเจ้า";
 		close;
 	}
 	mes "[Vicente]";
-	mes "I'm expecting your work from now on.";
-	mes "You must be a good Shadow Chaser.";
-	mes "I'm sure of it.";
+	mes "ข้าจะคอยเฝ้าดูผลงานของเจ้าต่อจากนี้ไปนะ";
+	mes "เจ้าจะต้องเป็น Shadow Chaser ที่ยอดเยี่ยมแน่ๆ";
+	mes "ข้ามั่นใจ";
 	close;
 }
 
 s_atelier,73,65,3	script	Vicente#sc12_lgt	899,{
 	mes "[Vicente]";
 	if (job_sha < 29) {
-		mes "If you don't have anything special to do here, you'd better leave.";
-		mes "No trespassing.";
+		mes "ถ้าเจ้าไม่มีธุระอะไรพิเศษที่นี่ ข้าว่าเจ้าออกไปจะดีกว่านะ";
+		mes "ห้ามบุกรุก";
 		close;
 	} else if (job_sha == 29) {
-		mes "This way.";
-		mes "He's been waiting for you a while.";
-		mes "Not me, Dumk.";
+		mes "ทางนี้";
+		mes "เขารอเจ้ามาพักใหญ่แล้ว";
+		mes "ไม่ใช่ข้านะ แต่เป็น Dumk";
 		close;
 	} else if (job_sha == 30) {
-		mes "Dumk wants to have you as a Shadow Chaser.";
-		mes "Big news right?";
+		mes "Dumk ต้องการให้เจ้าเป็น Shadow Chaser";
+		mes "เป็นข่าวใหญ่เลยใช่ไหมล่ะ?";
 		close;
 	} else if (job_sha == 31) {
-		mes "I'm expecting your work from now on.";
-		mes "You must be a good Shadow Chaser.";
-		mes "I'm sure of it.";
+		mes "ข้าจะคอยเฝ้าดูผลงานของเจ้าต่อจากนี้ไปนะ";
+		mes "เจ้าจะต้องเป็น Shadow Chaser ที่ยอดเยี่ยมแน่ๆ";
+		mes "ข้ามั่นใจ";
 		close;
 	}
-	mes "I don't have any special reason to visit here.";
-	mes "An assistant sells tools and paint.";
+	mes "ข้าไม่มีเหตุผลพิเศษอะไรที่จะมาที่นี่";
+	mes "ผู้ช่วยขายอุปกรณ์และสีอยู่ตรงนั้น";
 	close;
 }
 
 s_atelier,70,66,4	script	Dumk#sc13_lgh	481,{
 	if (Class == Job_Shadow_Chaser || Class == Job_Shadow_Chaser_T || Class == Job_Baby_Shadow_Chaser) {
 		mes "[Dumk]";
-		mes "What is it?";
-		mes "Have you been enjoying your new skills?";
+		mes "มีอะไรเหรอ?";
+		mes "เจ้ากำลังสนุกกับทักษะใหม่ของเจ้าอยู่หรือเปล่า?";
 		next;
 		mes "[Dumk]";
-		mes "If you want to improve your skills, you have to seek out new uses for paint.";
+		mes "ถ้าเจ้าต้องการพัฒนาทักษะของเจ้า เจ้าต้องออกไปค้นหาการใช้งานใหม่ๆ สำหรับสีวาดเขียนนะ";
 		next;
 		mes "[Dumk]";
-		mes "Don't forget.";
-		mes "We are Shadow Chasers.";
-		mes "Huhu...";
-		mes "HuhuHuhu...";
+		mes "อย่าลืมล่ะ";
+		mes "พวกเราคือ Shadow Chaser";
+		mes "หุหุ...";
+		mes "หุหุหุหุ...";
 		close;
 	}
 	if (checkweight(1201,4) == 0) {
-		mes "- You can't continue on in this quest because you are overweight. -";
+		mes "- เจ้าไม่สามารถดำเนินเควสต์นี้ต่อไปได้ เนื่องจากน้ำหนักตัวเกิน -";
 		close;
 	}
 	if (ismounting()) {
 		mes "[Dumk]";
-		mes "Who is this guy? Why should he sit in front of me so high?";
-		mes "Although I do not know why you riding on it, but here is in door,";
-		mes "That is no danger to rely on animals to escape, so you please get down!";
+		mes "ไอ้หมอนี่มันใครกัน? ทำไมมันถึงนั่งอยู่ต่อหน้าข้าสูงจัง?";
+		mes "แม้ข้าจะไม่รู้ว่าทำไมเจ้าถึงขี่ไอ้ตัวนั้นอยู่ แต่นี่มันข้างในอาคารนะ";
+		mes "ที่นี่ไม่มีอันตรายอะไรให้ต้องพึ่งพาสัตว์เพื่อหลบหนีหรอก เพราะงั้นกรุณาลงมาเดี๋ยวนี้!";
 		close;
 	}
 	if (BaseJob == Job_Rogue) {
 		if (job_sha < 29) {
 			mes "[Dumk]";
-			mes "Vicente. No Soliciting.";
+			mes "Vicente อย่ามาเร่ขายของแถวนี้";
 			next;
 			mes "[Vicente]";
-			mes "A solicitor?";
-			mes "I don't think so. He's our colleage.";
+			mes "คนเร่ขายของเหรอ?";
+			mes "ข้าไม่คิดอย่างนั้นนะ เขาคือเพื่อนร่วมงานของเรา";
 			next;
 			mes "[Dumk]";
-			mes "...Ah?";
+			mes "...อา?";
 			close;
 		}
 		if (BaseLevel < 99 || JobLevel < 50 || SkillPoint != 0) {
 			mes "[Dumk]";
-			mes "You are still green!";
-			mes "Did you expect that you can learn the dark arts with your ability?";
-			mes "You are wrong!";
+			mes "เจ้ายังอ่อนหัดนัก!";
+			mes "เจ้านึกว่าเจ้าจะสามารถเรียนรู้ศาสตร์มืดด้วยความสามารถแค่นี้ของเจ้างั้นเหรอ?";
+			mes "เจ้าคิดผิดแล้ว!";
 			next;
 			mes "[Vicente]";
-			mes "Haha...";
-			mes "Please, understand. Dumk has very bad communication skills.";
-			mes "Even doesn't talk to anyone who isn't a high enough level.";
+			mes "ฮ่าฮ่า...";
+			mes "โปรดเข้าใจด้วย Dumk มีทักษะการสื่อสารที่แย่มากน่ะ";
+			mes "เขาจะไม่ยอมคุยกับใครก็ตามที่มีระดับเลเวลไม่สูงพอ";
 			next;
 			mes "[Vicente]";
-			mes "And as person who isn't not ready.";
-			mes "^4d4dffYou maybe are not ready for him^000000.";
+			mes "และสำหรับคนที่ไม่พร้อมน่ะ";
+			mes "^4d4dffเจ้าอาจจะยังไม่พร้อมสำหรับเขาในตอนนี้^000000";
 			next;
 			mes "[Dumk]";
-			mes "You talk too much.";
-			mes "Heh.";
+			mes "เจ้าพูดมากเกินไปแล้ว";
+			mes "เหอะ";
 			next;
 			mes "[Vicente]";
-			mes "- He is pleased. -";
-			mes "Hey.";
-			mes "He could be ashamed.";
+			mes "- เขากำลังดีใจอยู่ล่ะ -";
+			mes "เฮ้";
+			mes "เขาอาจจะกำลังเขินอายอยู่ก็ได้นะ";
 			close;
 		}
 		if (job_sha == 29) {
 			mes "[Dumk]";
-			mes "It's you? You are the one who found the brush?";
+			mes "เจ้าเองเหรอ? เจ้าคือคนที่พบพู่กันนั่นใช่ไหม?";
 			next;
-			select("Show the brush to him.");
+			select("แสดงพู่กันให้เขาดู");
 			if (countitem(6269)) {
 				mes "[Dumk]";
-				mes "That's it.";
-				mes "Did you find it by yourself?";
+				mes "นั่นแหละ";
+				mes "เจ้าหามันเจอด้วยตัวคนเดียวงั้นเหรอ?";
 				next;
-				switch(select("Yes.:With my friends")) {
+				switch(select("ใช่ครับ:ไปกับเพื่อนๆ มาครับ")) {
 				case 1:
 					mes "[Dumk]";
-					mes "Hmm...";
-					mes "You have a high ability.";
-					mes "Breaking the codes should have been tough.";
-					mes "But it wasn't for you.";
+					mes "อืม...";
+					mes "เจ้ามีความสามารถสูงทีเดียว";
+					mes "การถอดรหัสลับพวกนั้นมันควรจะยากมาก";
+					mes "แต่สำหรับเจ้าแล้วมันดูไม่เป็นปัญหาเลยนะ";
 					next;
 					break;
 				case 2:
 					mes "[Dumk]";
-					mes "Hmm...";
-					mes "That's your other skill.";
-					mes "People who have no friends must be lonely.";
+					mes "อืม...";
+					mes "นั่นก็เป็นอีกทักษะหนึ่งของเจ้า";
+					mes "คนที่ไม่มีเพื่อนฝูงมักจะโดดเดี่ยว";
 					next;
 					mes "[Dumk]";
-					mes "To us, relationships are very important.";
-					mes "You get more people, you get more help.";
+					mes "สำหรับพวกเรา มิตรภาพเป็นสิ่งสำคัญมาก";
+					mes "ยิ่งเจ้ามีพรรคพวกมาก เจ้าก็จะได้รับความช่วยเหลือมากขึ้น";
 					next;
 					break;
 				}
 				mes "[Dumk]";
-				mes "It's time to introduce myself.";
-				mes "I'm Dumk.";
+				mes "ได้เวลาแนะนำตัวเสียที";
+				mes "ข้าชื่อ Dumk";
 				next;
-				select("You are...");
+				select("ท่านคือ...");
 				mes "[Vicente]";
-				mes "Chicken! How about the chicken for this supper?";
+				mes "ไก่! มื้อเย็นนี้เป็นเมนูไก่ดีไหม?";
 				next;
 				mes "[Dumk]";
-				mes "Why chicken?";
-				mes "Why are you interrupting?";
-				mes "You wanna be fired?";
+				mes "ทำไมต้องไก่?";
+				mes "เจ้าจะมาขัดจังหวะทำไมกัน?";
+				mes "อยากโดนไล่ออกหรือไง?";
 				next;
 				mes "[Vicente]";
-				mes "Sorry...";
+				mes "ขอโทษครับ...";
 				mes " ";
-				mes "(He turns to you and says it's taboo to talk about chicken.)";
+				mes "(เขาหันมาหาคุณและบอกว่าเรื่องไก่เป็นเรื่องต้องห้ามสำหรับที่นี่)";
 				next;
 				mes "[Dumk]";
-				mes "Anyway, let's make a point.";
-				mes "You.";
-				mes "Will you yield to the will of the brush?";
+				mes "เอาเถอะ มาเข้าเรื่องกันดีกว่า";
+				mes "เจ้า";
+				mes "เจ้าจะยอมสยบต่อเจตจำนงแห่งพู่กันนี้หรือไม่?";
 				next;
-				select("Yield to? What?");
+				select("ยอมสยบ? ต่ออะไรครับ?");
 				mes "[Dumk]";
-				mes "This brush was used by the master.";
-				mes "Paintings by him have mysterious power.";
-				next;
-				mes "[Dumk]";
-				mes "I can't tell you the root of the power.";
-				mes "Someday you will find out.";
-				mes "He sublimates power through the medium of his paintings.";
-				next;
-				select("I don't get it...?");
-				mes "[Dumk]";
-				mes "We walk in darkness without moonlight.";
-				mes "And find out our shining days are over.";
+				mes "พู่กันนี้เคยถูกใช้งานโดยปรมาจารย์";
+				mes "ภาพวาดโดยฝีมือของเขามีพลังอันลึกลับ";
 				next;
 				mes "[Dumk]";
-				mes "We follow to other shadows";
-				mes "and we can be real";
+				mes "ข้าไม่สามารถบอกที่มาของพลังนั้นได้";
+				mes "สักวันเจ้าจะค้นพบมันเอง";
+				mes "เขากลั่นกรองพลังผ่านสื่อกลางทางภาพวาดของเขา";
+				next;
+				select("ข้าไม่ค่อยเข้าใจเท่าไหร่ครับ...?");
+				mes "[Dumk]";
+				mes "พวกเราก้าวเดินในความมืดมิดที่ไร้แสงจันทร์";
+				mes "และพบว่าวันเวลาอันรุ่งโรจน์ของเราได้จบสิ้นลงแล้ว";
+				next;
+				mes "[Dumk]";
+				mes "พวกเราติดตามเงาอื่นๆ";
+				mes "และเราสามารถกลายเป็นตัวจริงได้";
 				mes "Shadow Chasers!";
 				next;
-				select("What are you talking about?");
+				select("ท่านกำลังพูดเรื่องอะไรครับ?");
 				mes "[Vicente]";
-				mes "He suggests that you become a Shadow Chaser.";
+				mes "เขาแนะนำให้เจ้าเปลี่ยนอาชีพเป็น Shadow Chaser น่ะ";
 				next;
 				mes "[Vicente]";
-				mes "In our guild, there is a special group that have unique skills.";
-				mes "They are Shadow Chasers.";
-				mes "They usually hide ther figure and they think they are different from others.";
+				mes "ในกิลด์ของเรา มีกลุ่มพิเศษที่มีทักษะอันเป็นเอกลักษณ์";
+				mes "พวกเขาคือ Shadow Chasers";
+				mes "พวกเขามักจะซ่อนตัวตนและคิดว่าตัวเองแตกต่างจากคนอื่น";
 				next;
 				mes "[Dumk]";
-				mes "Don't be so sarcastic, Vicente!";
-				mes "I told you.";
-				mes "You are qualified to be a Shadow Chaser!";
+				mes "อย่าประชดประชันนักเลย Vicente!";
+				mes "ข้าบอกเจ้าแล้ว";
+				mes "เจ้ามีคุณสมบัติเพียงพอที่จะเป็น Shadow Chaser!";
 				next;
 				mes "[Dumk]";
-				mes "Give that brush to me.";
-				mes "I need it again.";
-				mes "I'm so thirsty.";
-				mes "Wait a minute.";
+				mes "ส่งพู่กันนั่นมาให้ข้า";
+				mes "ข้าต้องการมันอีกครั้ง";
+				mes "ข้ากระหายเหลือเกิน";
+				mes "รอสักครู่";
 				delitem 6269,1; //Master_Brush
 				set job_sha,30;
 				close;
 			}
 			mes "[Dumk]";
-			mes "Let me see...";
-			mes "Did you bring the brush?";
+			mes "ไหนขอดูหน่อย...";
+			mes "เจ้าเอาพู่กันมาด้วยหรือเปล่า?";
 			next;
 			mes "[Dumk]";
-			mes "What are you doing?";
-			mes "Show me the brush?";
-			mes "You didn't bring it?";
-			mes "You are not very careful...";
+			mes "เจ้ากำลังทำอะไรน่ะ?";
+			mes "แสดงพู่กันให้ข้าดูสิ?";
+			mes "เจ้าไม่ได้เอามันมางั้นเหรอ?";
+			mes "เจ้าช่างไม่รอบคอบเอาเสียเลย...";
 			close;
 		} else if (job_sha == 30) {
 			mes "[Dumk]";
-			mes "So, do you want me to keep talking about Shadow Chasers?";
+			mes "เอาล่ะ เจ้าอยากให้ข้าเล่าเรื่องเกี่ยวกับ Shadow Chaser ต่อไหม?";
 			next;
-			switch(select("What is a Shadow Chaser?:Change me to Shadow Chaser.:I'll come back later.")) {
+			switch(select("Shadow Chaser คืออะไร?:เปลี่ยนอาชีพให้ข้าเป็น Shadow Chaser:เดี๋ยวข้าจะกลับมาใหม่")) {
 			case 1:
 				mes "[Dumk]";
-				mes "Most spells are exclusively for Wizards and their kind.";
-				mes "But Knight has since been able to use a kind of magic with things called Runes.";
+				mes "คาถาส่วนใหญ่นั้นมีไว้สำหรับพวก Wizard และพวกพ้องของเขาเท่านั้น";
+				mes "แต่พวก Knight ก็สามารถใช้เวทมนตร์ประเภทหนึ่งผ่านสิ่งที่เรียกว่า Rune ได้";
 				next;
 				mes "[Dumk]";
-				mes "So we tried finding a medium for spells that suit our characteristics.";
+				mes "ดังนั้นพวกเราจึงพยายามค้นหาสื่อกลางสำหรับคาถาที่เหมาะสมกับคุณลักษณะของเรา";
 				next;
 				mes "[Dumk]";
-				mes "So finally...";
-				mes "We found paint!";
+				mes "และในที่สุด...";
+				mes "พวกเราก็ได้พบกับ 'สี'!";
 				next;
 				mes "[Dumk]";
-				mes "Paint gives us lots of feelings.";
-				mes "We can feel peaceful and happy or it can give us feelings of sorrow and fear.";
+				mes "สีวาดเขียนมอบความรู้สึกมากมายให้กับเรา";
+				mes "เราสามารถรู้สึกสงบและมีความสุข หรือมันอาจมอบความรู้สึกเศร้าโศกและหวาดกลัวให้แก่เรา";
 				next;
 				mes "[Dumk]";
-				mes "We use that to harness the different emotions of people and exploit them when they're most vulnerable.";
+				mes "พวกเราใช้สิ่งนั้นเพื่อควบคุมอารมณ์ที่แตกต่างกันของผู้คน และใช้ประโยชน์จากมันเมื่อพวกเขาอ่อนแอที่สุด";
 				next;
 				mes "[Dumk]";
-				mes "The effects on our enemies are similar to that of magic spells.";
+				mes "ผลที่เกิดกับศัตรูของเรานั้นคล้ายคลึงกับผลของเวทมนตร์";
 				next;
 				mes "[Dumk]";
-				mes "For instance, this power could be used to create blackholes to make your enemies vanish.";
+				mes "ยกตัวอย่างเช่น พลังนี้สามารถใช้สร้างหลุมดำเพื่อทำให้ศัตรูของเจ้าหายไปได้";
 				next;
 				mes "[Dumk]";
-				mes "So if you want to have that power then you must have artistry.";
+				mes "ดังนั้นถ้าเจ้าต้องการจะมีพลังนั้น เจ้าต้องมีความเป็นศิลปิน";
 				next;
 				mes "[Dumk]";
-				mes "You have to be a trendsetter when it comes to fashion!";
-				mes "The ability to understand art!";
-				mes "You should have everything.";
+				mes "เจ้าต้องเป็นผู้นำเทรนด์ในเรื่องของแฟชั่น!";
+				mes "มีความสามารถในการทำความเข้าใจศิลปะ!";
+				mes "เจ้าควรจะมีทุกอย่างที่กล่าวมา";
 				next;
-				select("Then what is the Master Brush?");
+				select("แล้วพู่กันปรมาจารย์ (Master Brush) คืออะไร?");
 				mes "[Dumk]";
-				mes "Ah?";
-				mes "That was a brush who was a master of dark arts.";
-				mes "Now we are looking for someone who can be a Shadow Chaser.";
-				next;
-				mes "[Dumk]";
-				mes "This is a kind of game.";
-				mes "If there is someone who wants to become a Shadow Chaser,";
-				mes "we just start the process to find this brush.";
+				mes "อา?";
+				mes "นั่นคือพู่กันของผู้ที่เป็นปรมาจารย์ด้านศาสตร์มืด";
+				mes "ตอนนี้พวกเรากำลังมองหาใครสักคนที่สามารถเป็น Shadow Chaser ได้";
 				next;
 				mes "[Dumk]";
-				mes "We put the codes to make sure that you can think outside of the box.";
-				mes "Did you have fun?";
+				mes "นี่เป็นเหมือนเกมชนิดหนึ่ง";
+				mes "ถ้ามีใครที่ต้องการจะเป็น Shadow Chaser";
+				mes "พวกเราก็จะเริ่มกระบวนการตามหาพู่กันนี้";
+				next;
+				mes "[Dumk]";
+				mes "พวกเราวางรหัสลับเอาไว้เพื่อให้แน่ใจว่าเจ้าสามารถคิดนอกกรอบได้";
+				mes "เจ้าสนุกไหมล่ะ?";
 				close;
 			case 2:
 				mes "[Dumk]";
-				mes "You decided!";
-				mes "As your case, you can master the art of psychological warfare using paint!";
-				mes "The art created is beautiful but dangerous.";
+				mes "เจ้าตัดสินใจแล้วสินะ!";
+				mes "ในกรณีของเจ้า เจ้าสามารถเชี่ยวชาญศาสตร์แห่งสงครามจิตวิทยาโดยใช้สีวาดเขียนได้!";
+				mes "ศิลปะที่ถูกสร้างขึ้นนั้นช่างงดงามแต่ก็แฝงไปด้วยอันตราย";
 				next;
 				mes "[Dumk]";
-				mes "We use paint as a medium for spells.";
-				mes "We use that to harness the different emotions of people and exploit them when they're most vulnerable.";
+				mes "พวกเราใช้สีเป็นสื่อกลางสำหรับคาถา";
+				mes "พวกเราใช้สิ่งนั้นเพื่อควบคุมอารมณ์ที่แตกต่างกันของผู้คน และใช้ประโยชน์จากมันเมื่อพวกเขาอ่อนแอที่สุด";
 				next;
 				mes "[Dumk]";
-				mes "For instance, this power could be used to create black holes to make your enemies vanish.";
+				mes "ยกตัวอย่างเช่น พลังนี้สามารถใช้สร้างหลุมดำเพื่อทำให้ศัตรูของเจ้าหายไปได้";
 				next;
 				mes "[Dumk]";
-				mes "So if you want to have that power then you must have artistry.";
+				mes "ดังนั้นถ้าเจ้าต้องการจะมีพลังนั้น เจ้าต้องมีความเป็นศิลปิน";
 				next;
 				mes "[Dumk]";
-				mes "You have to be a trendsetter when it comes to fashion!";
-				mes "The ability to understand art!";
-				mes "You should have everything.";
+				mes "เจ้าต้องเป็นผู้นำเทรนด์ในเรื่องของแฟชั่น!";
+				mes "มีความสามารถในการทำความเข้าใจศิลปะ!";
+				mes "เจ้าควรจะมีทุกอย่างที่กล่าวมา";
 				next;
 				mes "[Dumk]";
-				mes "You performed your duties diligently and found the brush.";
-				mes "So you are qualified to be a Shadow Chaser.";
+				mes "เจ้าได้ปฏิบัติหน้าที่อย่างขยันขันแข็งและค้นพบพู่กันนั้น";
+				mes "ดังนั้นเจ้าจึงมีคุณสมบัติครบถ้วนที่จะเป็น Shadow Chaser";
 				next;
 				mes "[Dumk]";
-				mes "Congratulations.";
-				mes "Welcome to your new life.";
+				mes "ยินดีด้วย";
+				mes "ยินดีต้อนรับสู่ชีวิตใหม่ของเจ้า";
 				jobchange roclass(eaclass()|EAJL_THIRD);
 				getitem 6121,1; //Makeover_Brush
 				getitem 6122,1; //Paint_Brush
@@ -1608,70 +1608,70 @@ s_atelier,70,66,4	script	Dumk#sc13_lgh	481,{
 				getitem 5750,1; //Shadow_Handicraft
 				next;
 				mes "[Dumk]";
-				mes "It's a fashionable uniform.";
-				mes "It uses patterns of leopard and feathers";
-				mes "The fashion world will be shocked.";
+				mes "นี่คือเครื่องแบบที่ทันสมัย";
+				mes "มันใช้ลวดลายของเสือดาวและขนนก";
+				mes "โลกแห่งแฟชั่นจะต้องตกตะลึง";
 				next;
 				mes "[Dumk]";
-				mes "This shadow peacock I designed myself.";
-				mes "It's too hard to create something that absorbs my art sense.";
-				mes "Then about this part...";
+				mes "นกยูงเงานี้ข้าออกแบบด้วยตัวเองเลยนะ";
+				mes "มันยากมากที่จะสร้างบางสิ่งที่ซึมซับรสนิยมทางศิลปะของข้าลงไปได้";
+				mes "แล้วก็เกี่ยวกับส่วนนี้...";
 				next;
-				mes "Dumk keeps talking about fashion, art sense, paint and feeling.";
-				mes "He's obviously in his own world.";
+				mes "Dumk ยังคงพูดพล่ามต่อไปเรื่องแฟชั่น รสนิยมศิลปะ สี และความรู้สึก";
+				mes "เห็นได้ชัดว่าเขาหลุดเข้าไปอยู่ในโลกของตัวเองเสียแล้ว";
 				next;
-				select("About this brush...");
+				select("เกี่ยวกับพู่กันพวกนี้...");
 				mes "[Vicente]";
-				mes "Ah, I'll expain.";
-				mes "We need tools for painting.";
-				next;
-				mes "[Vicente]";
-				mes "The make-up brush is used for face painting.";
-				mes "You can get paint from the workplace.";
+				mes "อา ข้าจะอธิบายเอง";
+				mes "พวกเราต้องการอุปกรณ์สำหรับการวาดภาพ";
 				next;
 				mes "[Vicente]";
-				mes "The paint brush is used for painting big spaces.";
-				mes "You can get paint from the workplace too.";
+				mes "Make-up brush (แปรงแต่งหน้า) ใช้สำหรับการวาดภาพบนใบหน้า";
+				mes "เจ้าสามารถหาซื้อสีได้จากสถานที่ทำงาน";
 				next;
 				mes "[Vicente]";
-				mes "Don't you remember the location of the workplace?";
-				mes "Juno, Prontera, Rachel and Lighthalzen.";
+				mes "Paint brush (แปรงทาสี) ใช้สำหรับการวาดภาพในพื้นที่กว้าง";
+				mes "เจ้าสามารถหาซื้อสีได้จากสถานที่ทำงานเช่นกัน";
 				next;
 				mes "[Vicente]";
-				mes "If you need paint, go to an assistant.";
-				mes "^4d4dffIf you don't have any tools, you can use skill needed paints.^000000";
+				mes "เจ้าจำตำแหน่งของสถานที่ทำงานได้ใช่ไหม?";
+				mes "Juno, Prontera, Rachel และ Lighthalzen";
 				next;
 				mes "[Vicente]";
-				mes "Congratulations to be our person.";
+				mes "ถ้าเจ้าต้องการสี ให้ไปหาผู้ช่วยนะ";
+				mes "^4d4dffถ้าเจ้าไม่มีอุปกรณ์ เจ้าก็สามารถใช้ทักษะที่จำเป็นต้องใช้สีได้^000000";
+				next;
+				mes "[Vicente]";
+				mes "ยินดีด้วยที่ได้มาเป็นพวกเดียวกับเรา";
 				close;
 			case 3:
 				mes "[Dumk]";
-				mes "What?";
-				mes "Why not?";
-				mes "You don't want to be a Shadow Chaser?";
-				mes "I can teach you so much about painting.";
+				mes "อะไรนะ?";
+				mes "ทำไมล่ะ?";
+				mes "เจ้าไม่อยากเป็น Shadow Chaser งั้นเหรอ?";
+				mes "ข้าสามารถสอนเจ้าเรื่องการวาดภาพได้ตั้งมากมายนะ";
 				next;
 				mes "[Dumk]";
-				mes "You really won't understand until you become one.";
+				mes "เจ้าจะไม่มีวันเข้าใจจริงๆ หรอกจนกว่าจะได้เป็นหนึ่งในพวกเรา";
 				next;
 				mes "[Dumk]";
-				mes "Don't you want to learn how to harness a power stronger than what you know?";
+				mes "เจ้าไม่อยากเรียนรู้วิธีการควบคุมพลังที่แข็งแกร่งกว่าสิ่งที่เจ้ารู้อยู่ตอนนี้งั้นเหรอ?";
 				mes "....";
 				next;
-				mes "Dumk seemed to be dissapointed because I didn't answer him.";
+				mes "Dumk ดูเหมือนจะผิดหวังเพราะข้าไม่ได้ตอบคำถามเขา";
 				close;
 			}
 		}
 	}
 	mes "[Dumk]";
 	mes "..........";
-	mes "Heh.";
+	mes "เหอะ";
 	next;
 	mes "[Vicente]";
-	mes "I'm sorry.";
-	mes "He is not interested in other people.";
-	mes "But you can't enter this space.";
-	mes "You can get tools at the store.";
+	mes "ข้าขอโทษทีนะ";
+	mes "เขาไม่ค่อยสนใจคนอื่นเท่าไหร่น่ะ";
+	mes "แต่เจ้าไม่สามารถเข้าไปในพื้นที่ส่วนนี้ได้";
+	mes "เจ้าสามารถหาซื้ออุปกรณ์ได้ที่ร้านค้านะ";
 	close;
 }
 
@@ -1679,53 +1679,53 @@ s_atelier,70,66,4	script	Dumk#sc13_lgh	481,{
 //============================================================
 tur_dun03,38,209,1	script	Blue Flame#sc_f01	802,{
 	if (job_sha == 5) {
-		mes "A blue flame is roaring.";
-		mes "The deciphered code means...";
+		mes "เปลวเพลิงสีน้ำเงินกำลังโชติช่วง";
+		mes "รหัสที่ถอดออกมาได้หมายถึง...";
 		next;
 		input .@inputstr$;
 		set .@dap01$, "blue fire in turtle island third floor";
 		set .@dap02$, "BLUE FIRE IN TURTLE ISLAND THIRD FLOOR";
 		if (.@inputstr$ != .@dap01$ && .@inputstr$ != .@dap02$) {
 			mes "["+strcharinfo(0)+"]";
-			mes "What was it?";
-			mes "I guess I have to make sure I don't use any capital letters.";
+			mes "มันคืออะไรนะ?";
+			mes "ข้าเดาว่าข้าต้องแน่ใจก่อนว่าจะไม่ใช้ตัวพิมพ์ใหญ่เลย";
 			close;
 		}
 		mes "["+strcharinfo(0)+"]";
 		mes "^4d4dff"+.@inputstr$+"^000000";
-		mes "It's clearly pointing to this.";
+		mes "มันชี้มาที่นี่อย่างชัดเจน";
 		next;
-		mes "You just murmur the sentence when the flame begins growing.";
+		mes "เจ้าพึมพำประโยคนั้นออกมาในขณะที่เปลวไฟเริ่มขยายใหญ่ขึ้น";
 		next;
-		mes "[Unknown voice]";
-		mes "Hm? Someone is coming?";
-		mes "You are the one who wants to have my treasure?";
-		mes "But your limitation is over.";
+		mes "[เสียงปริศนา]";
+		mes "หืม? มีใครบางคนมางั้นเหรอ?";
+		mes "เจ้าคือคนที่ต้องการจะครอบครองสมบัติของข้าใช่ไหม?";
+		mes "แต่ขีดจำกัดของเจ้ามันจบสิ้นลงแล้ว";
 		next;
-		mes "The flame is talking.";
-		mes "The voice is snake-like.";
-		mes "In the middle of blue flame, there are two marble eyes.";
+		mes "เปลวไฟกำลังพูด";
+		mes "น้ำเสียงนั่นฟังดูเหมือนงู";
+		mes "ท่ามกลางเปลวเพลิงสีน้ำเงิน มีดวงตาสีลูกหินสองดวงอยู่";
 		next;
-		select("Pick it up.");
-		mes "[Unknown voice]";
-		mes "You are in a hurry.";
-		mes "Hahaha, humans usually do things like that.";
-		mes "They can't see the truth.";
+		select("หยิบมันขึ้นมา");
+		mes "[เสียงปริศนา]";
+		mes "เจ้าช่างรีบร้อนนัก";
+		mes "ฮ่าฮ่าฮ่า มนุษย์มักจะทำเรื่องแบบนั้นเสมอ";
+		mes "พวกเขามองไม่เห็นความจริง";
 		next;
-		mes "[Unknown voice]";
-		mes "How about you?";
-		mes "I don't expect that you will do harm to this blue flame.";
-		mes "It's the only one with two...";
+		mes "[เสียงปริศนา]";
+		mes "แล้วเจ้าล่ะเป็นยังไง?";
+		mes "ข้าไม่คาดคิดว่าเจ้าจะทำอันตรายต่อเปลวเพลิงสีน้ำเงินนี้";
+		mes "มันคือสิ่งเดียวที่มีสอง...";
 		next;
-		select("Who are you?");
+		select("เจ้าเป็นใคร?");
 		mes "[Shadow of Deception]";
-		mes "Me? I'm a deception.";
-		mes "I sneer at people who are stupid.";
-		mes "I laugh behind their backs.";
-		mes "HahaHaha...";
+		mes "ข้าน่ะเหรอ? ข้าคือความหลอกลวง";
+		mes "ข้าเยาะเย้ยพวกคนที่โง่เขลา";
+		mes "ข้าหัวเราะเยาะลับหลังพวกเขา";
+		mes "ฮ่าฮ่าฮ่าฮ่า...";
 		next;
-		mes "The Blue Flame is growning and rolling.";
-		mes "They seem to be related.";
+		mes "เปลวเพลิงสีน้ำเงินกำลังขยายตัวและม้วนตัวไปมา";
+		mes "ดูเหมือนพวกมันจะมีความเกี่ยวข้องกัน";
 		set job_sha,6;
 		setquest 7164;
 		if (checkquest(7161) >= 0) erasequest 7161;
@@ -1734,196 +1734,196 @@ tur_dun03,38,209,1	script	Blue Flame#sc_f01	802,{
 		close;
 	} else if (job_sha == 6) {
 		if (checkquest(7164,HUNTING) == 2) {
-			mes "It looks like the blue flame is under the limitation.";
-			mes "You can't feel that rolling effect of a spell like before.";
+			mes "ดูเหมือนว่าเปลวเพลิงสีน้ำเงินจะอยู่ภายใต้ข้อจำกัด";
+			mes "เจ้าไม่รู้สึกถึงพลังที่ม้วนตัวของคาถาเหมือนก่อนหน้านี้แล้ว";
 			next;
-			select("Pick up the marbles.");
-			mes "When you pick them up, you can feel that your weight is lightened.";
+			select("หยิบดวงตาสีลูกหินขึ้นมา");
+			mes "เมื่อเจ้าหยิบพวกมันขึ้นมา เจ้าจะรู้สึกว่าน้ำหนักตัวเบาลง";
 			set job_sha,7;
 			erasequest 7164;
 			close2;
 			warp "job3_sha01",22,82;
 			end;
 		}
-		mes "The flame is still rolling with a strong spell.";
-		mes "You have to cut the relation with it.";
+		mes "เปลวไฟยังคงม้วนตัวด้วยคาถาอันทรงพลัง";
+		mes "เจ้าต้องตัดความสัมพันธ์กับมันเสียก่อน";
 		close;
 	} else if (job_sha == 7) {
-		mes "It looks like the blue flame is under the limitation.";
-		mes "You can't feel that rolling effect of a spell like before.";
+		mes "ดูเหมือนว่าเปลวเพลิงสีน้ำเงินจะอยู่ภายใต้ข้อจำกัด";
+		mes "เจ้าไม่รู้สึกถึงพลังที่ม้วนตัวของคาถาเหมือนก่อนหน้านี้แล้ว";
 		next;
-		select("Pick up the marbles.");
-		mes "When you pick it up, you can feel that your weight is lightened.";
+		select("หยิบดวงตาสีลูกหินขึ้นมา");
+		mes "เมื่อเจ้าหยิบมันขึ้นมา เจ้าจะรู้สึกว่าน้ำหนักตัวเบาลง";
 		close2;
 		warp "job3_sha01",22,82;
 		end;
 	}
-	mes "The flame is rolling.";
+	mes "เปลวไฟกำลังม้วนตัวไปมา";
 	close;
 }
 
 ice_dun02,206,223,1	script	Red Flame#sc_f02	802,{
 	if (job_sha < 11) {
-		mes "An unknown red flame is roaring.";
+		mes "เปลวเพลิงสีแดงปริศนากำลังโชติช่วง";
 		close;
 	} else if (job_sha > 10 && job_sha < 14) {
-		mes "The red flame is roaring.";
-		mes "It changed to a woman in black.";
+		mes "เปลวเพลิงสีแดงกำลังโชติช่วง";
+		mes "มันเปลี่ยนรูปร่างเป็นหญิงสาวในชุดดำ";
 		next;
-		mes "[Woman in black]";
-		mes "Can you hear me?";
-		mes "Huhu.";
-		mes "Can you see me?";
+		mes "[หญิงสาวในชุดดำ]";
+		mes "ได้ยินข้าไหม?";
+		mes "หุหุ";
+		mes "เห็นข้าไหม?";
 		next;
-		mes "[Woman in black]";
-		mes "You are the chosen one?";
-		mes "You can know that.";
-		mes "There is a soul that is the same as me.";
+		mes "[หญิงสาวในชุดดำ]";
+		mes "เจ้าคือผู้ที่ถูกเลือกงั้นเหรอ?";
+		mes "เจ้าสามารถรับรู้เรื่องนั้นได้";
+		mes "มีวิญญาณดวงหนึ่งที่เป็นเหมือนกับข้า";
 		next;
-		mes "[Woman in black]";
-		mes "I'm a shadow.";
-		mes "A wandering shadow.";
-		mes "Sad soul.";
-		mes "A shadow of illusion without truth.";
+		mes "[หญิงสาวในชุดดำ]";
+		mes "ข้าคือเงา";
+		mes "เงาที่ร่อนเร่";
+		mes "วิญญาณที่แสนเศร้า";
+		mes "เงาแห่งภาพลวงตาที่ปราศจากความจริง";
 		next;
 		mes "[Shadow of Illusion]";
-		mes "What do you want?";
-		mes "Do you want treasure?";
-		mes "Then pick it up.";
-		mes "Tear my soul and";
-		mes "show the truth.";
+		mes "เจ้าต้องการอะไร?";
+		mes "เจ้าต้องการสมบัติงั้นเหรอ?";
+		mes "งั้นก็หยิบมันไปสิ";
+		mes "จงฉีกกระชากวิญญาณของข้าและ";
+		mes "แสดงความจริงออกมา";
 		set job_sha, job_sha+3;
 		setquest 7171;
 		close;
 	} else if (job_sha == 14 || job_sha == 15 || job_sha == 16) {
 		if (checkquest(7171,HUNTING) == 2) {
-			mes "You can't feel the soul from the flame.";
-			mes "When you go closer, you can't see well because of darkness.";
+			mes "เจ้าไม่สามารถสัมผัสถึงวิญญาณจากเปลวไฟได้อีกแล้ว";
+			mes "เมื่อเจ้าเข้าไปใกล้ เจ้าจะมองเห็นได้ไม่ชัดเจนนักเพราะความมืด";
 			close2;
 			warp "job3_sha01",22,33;
 			end;
 		}
 		mes "[Shadow of Illusion]";
-		mes "Huhu.";
-		mes "What's wrong?";
-		mes "You couldn't find the half of my soul?";
-		mes "Huhu...";
+		mes "หุหุ";
+		mes "มีอะไรผิดปกติงั้นเหรอ?";
+		mes "เจ้าไม่สามารถหาอีกครึ่งหนึ่งของวิญญาณข้าเจอสินะ?";
+		mes "หุหุ...";
 		next;
 		mes "[Shadow of Illusion]";
-		mes "Ah, hurry and give me rest.";
-		mes "I want to die softly.";
-		mes "I want to give up the phony life.";
+		mes "อา รีบหน่อยและมอบการพักผ่อนให้ข้าที";
+		mes "ข้าอยากจะตายจากไปอย่างสงบ";
+		mes "ข้าอยากจะละทิ้งชีวิตที่จอมปลอมนี้";
 		next;
 		mes "[Shadow of Illusion]";
-		mes "Huhu...";
-		mes "When the false shadow is gone, you can see the truth.";
-		mes "Please, tear the false to dazzle who are blind...";
-		mes "Without any trace...";
+		mes "หุหุ...";
+		mes "เมื่อเงาที่หลอกลวงหายไป เจ้าจะมองเห็นความจริง";
+		mes "โปรดเถิด ฉีกกระชากความจอมปลอมเพื่อทำให้ผู้ที่มืดบอดต้องตระหนก...";
+		mes "โดยไม่เหลือร่องรอยใดๆ...";
 		close;
 	}
-	mes "The flame is rolling.";
-	mes "You can't see well because of the light of ice.";
+	mes "เปลวไฟกำลังม้วนตัวไปมา";
+	mes "เจ้ามองเห็นได้ไม่ชัดเจนนักเพราะแสงสะท้อนจากน้ำแข็ง";
 	close;
 }
 
 niflheim,230,276,1	script	Red Flame#sc_f03	802,{
 	if (job_sha < 21) {
-		mes "That's a mysterious flame.";
-		mes "It looks like cursing.";
-		mes "Go away form that.";
+		mes "นั่นคือเปลวเพลิงที่ลึกลับ";
+		mes "มันดูเหมือนกำลังสาปแช่งอยู่";
+		mes "ไปให้ห่างจากมันเถอะ";
 		close;
 	}
 	else if (job_sha == 21) {
 		mes "["+strcharinfo(0)+"]";
-		mes "The poem that Haled told me was pointing to Niflheim.";
-		mes "There is a flame that looks like the one from turtle island and ice dungeon.";
+		mes "บทกวีที่ Haled บอกข้ามันชี้มาที่ Niflheim";
+		mes "มีเปลวไฟที่ดูเหมือนกับดวงที่อยู่ใน Turtle Island และ Ice Dungeon เลย";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "The end of living tree's roots.";
-		mes "Tears of all living people.";
-		mes "Sign of all dead people.";
+		mes "ปลายสุดของรากไม้ที่มีชีวิต";
+		mes "น้ำตาของเหล่าผู้คนที่ยังมีลมหายใจ";
+		mes "สัญลักษณ์ของเหล่าผู้ล่วงลับ";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "They are us but also not us.";
+		mes "พวกเขาคือพวกเรา แต่ก็ไม่ใช่พวกเรา";
 		next;
-		mes "[Someone's voice]";
-		mes "They are us but also not us.";
+		mes "[เสียงของใครบางคน]";
+		mes "พวกเขาคือพวกเรา แต่ก็ไม่ใช่พวกเรา";
 		next;
-		mes "[Someone's voice]";
-		mes "Residents of the night forgotten...";
+		mes "[เสียงของใครบางคน]";
+		mes "ผู้อยู่อาศัยในรัตติกาลที่ถูกลืมเลือน...";
 		next;
-		select("Who is playing that?");
-		mes "[Someone's voice]";
-		mes "Who is playing the waltz of desperation?";
+		select("ใครเป็นคนเล่นเพลงนั้นน่ะ?");
+		mes "[เสียงของใครบางคน]";
+		mes "ใครกันที่กำลังบรรเลงท่วงทำนองวอลซ์แห่งความสิ้นหวัง?";
 		mes ".....";
 		next;
-		mes "[Someone's voice]";
-		mes "Ha...";
-		mes "You came here to dig the secret of death.";
-		mes "Can you play the waltz of death for me?";
+		mes "[เสียงของใครบางคน]";
+		mes "หึ...";
+		mes "เจ้ามาที่นี่เพื่อขุดคุ้ยความลับแห่งความตายงั้นเหรอ";
+		mes "เจ้าจะช่วยบรรเลงท่วงทำนองวอลซ์แห่งความตายให้ข้าได้ไหม?";
 		next;
-		mes "[Someone's voice]";
-		mes "I don't to be subject to restraint";
-		mes "and be with sign of dead people.";
-		next;
-		mes "[Shadow of Pleasure]";
-		mes "I'm a shadow.";
-		mes "I show that best of the pleasure in this world.";
-		mes "Illusions such that you don't want to be awaken from the dream.";
+		mes "[เสียงของใครบางคน]";
+		mes "ข้าไม่ต้องการถูกกักขัง";
+		mes "และอยู่กับสัญลักษณ์ของผู้ล่วงลับอีกต่อไป";
 		next;
 		mes "[Shadow of Pleasure]";
-		mes "The soul got tangled by cold chains";
-		mes "I can't see the dream";
-		mes "and the shadow lost the pleasure that will be lasting forever.";
+		mes "ข้าคือเงา";
+		mes "ข้าจะแสดงให้เห็นถึงความสำราญที่สุดในโลกใบนี้";
+		mes "ภาพลวงตาที่เจ้าจะไม่อยากตื่นขึ้นมาจากความฝันเลยล่ะ";
 		next;
 		mes "[Shadow of Pleasure]";
-		mes "Please, help me.";
-		mes "Give me two hands to";
-		mes "escape from here!";
+		mes "ดวงวิญญาณถูกพันธนาการด้วยโซ่ตรวนที่เหน็บหนาว";
+		mes "ข้าไม่สามารถมองเห็นความฝันได้";
+		mes "และเงาก็สูญเสียความสำราญที่จะคงอยู่ชั่วนิรันดร์ไป";
 		next;
 		mes "[Shadow of Pleasure]";
-		mes "Can you stifle me with two hands?";
-		mes "The other side of my senses";
-		mes "gas for breath.";
+		mes "โปรดเถิด ช่วยข้าด้วย";
+		mes "ขอมือทั้งสองข้างของเจ้า";
+		mes "เพื่อพาข้าหนีออกไปจากที่นี่!";
 		next;
 		mes "[Shadow of Pleasure]";
-		mes "That's the evidence that I live.";
-		mes "That's the evidence that I cross over the line.";
-		mes "With start of life";
-		mes "the last pleasure.";
+		mes "เจ้าช่วยบีบคั้นข้าด้วยมือทั้งสองข้างได้ไหม?";
+		mes "อีกด้านหนึ่งของประสาทสัมผัสของข้า";
+		mes "กำลังหอบหายใจโรยริน";
 		next;
 		mes "[Shadow of Pleasure]";
-		mes "Show me the";
-		mes "sweet death.";
+		mes "นั่นคือหลักฐานว่าข้ามีชีวิตอยู่";
+		mes "นั่นคือหลักฐานว่าข้าได้ข้ามเส้นแบ่งนั้นมาแล้ว";
+		mes "ด้วยจุดเริ่มต้นแห่งชีวิต";
+		mes "และความสำราญสุดท้าย";
 		next;
-		mes "The flame is dying.";
-		mes "You should handle the shadow of pleasure.";
+		mes "[Shadow of Pleasure]";
+		mes "จงแสดงให้ข้าเห็น";
+		mes "ความตายอันแสนหวาน";
+		next;
+		mes "เปลวไฟกำลังมอดดับลง";
+		mes "เจ้าควรจะจัดการกับ Shadow of Pleasure";
 		set job_sha,22;
 		erasequest 7174;
 		setquest 7175;
 		close;
 	} else if (job_sha == 22) {
 		if (checkquest(7175,HUNTING) == 2) {
-			mes "You can't feel the soul from the flame.";
-			mes "When you go closer, you can't see well because of darkness.";
+			mes "เจ้าไม่สามารถสัมผัสถึงวิญญาณจากเปลวไฟได้อีกแล้ว";
+			mes "เมื่อเจ้าเข้าไปใกล้ เจ้าจะมองเห็นได้ไม่ชัดเจนนักเพราะความมืด";
 			set job_sha,23;
 			erasequest 7175;
 			close2;
 			warp "job3_sha01",73,87;
 			end;
 		}
-		mes "You can feel a strong soul in the flame.";
-		mes "You should handle the shadow of pleasure.";
+		mes "เจ้าสัมผัสได้ถึงวิญญาณที่แข็งแกร่งในเปลวไฟ";
+		mes "เจ้าควรจะจัดการกับ Shadow of Pleasure";
 		close;
 	} else if (job_sha == 23 || job_sha == 24) {
-		mes "You can't feel the soul from the flame.";
-		mes "When you go closer, you can't see well because of darkness.";
+		mes "เจ้าไม่สามารถสัมผัสถึงวิญญาณจากเปลวไฟได้อีกแล้ว";
+		mes "เมื่อเจ้าเข้าไปใกล้ เจ้าจะมองเห็นได้ไม่ชัดเจนนักเพราะความมืด";
 		close2;
 		warp "job3_sha01",73,87;
 		end;
 	}
-	mes "There is a flame.";
-	mes "You can't feel anything from it.";
+	mes "มีเปลวไฟอยู่ดวงหนึ่ง";
+	mes "เจ้าไม่สามารถสัมผัสสิ่งใดได้จากมันเลย";
 	close;
 }
 
@@ -1931,15 +1931,15 @@ niflheim,230,276,1	script	Red Flame#sc_f03	802,{
 //============================================================
 job3_sha01,22,78,0	script	????#keybox01	844,{
 	if (checkweight(1201,1) == 0) {
-		mes "- You can't continue on in this quest because you are overweight. -";
+		mes "- เจ้าไม่สามารถดำเนินเควสต์นี้ต่อไปได้ เนื่องจากน้ำหนักตัวเกิน -";
 		close;
 	}
 	if (job_sha == 7) {
-		mes "It's a small box made of a hard turtle's shell.";
-		mes "The middle of it...";
+		mes "มันคือกล่องใบเล็กๆ ที่ทำจากกระดองเต่าที่แข็งแรง";
+		mes "ตรงกลางของมัน...";
 		next;
-		select("Touch the middle.:Push the middle.");
-		mes "When you touch it, something comes out!";
+		select("สัมผัสตรงกลาง:กดตรงกลาง");
+		mes "เมื่อเจ้าสัมผัสมัน มีบางอย่างปรากฏออกมา!";
 		next;
 		setarray .@Codes1$[1],"EFDFJWF","FGEGKXG","GHFHLYH","HIGIMZI","IJHJNAJ","JKIKOBK","KLJLPCL","LMKMQDM";
 		setarray .@Codes2$[1],"IPOFTUZ","JQPGUVA","KRQHVWB","LSRIWXC","MTSJXYD","NUTKYZE","OVULZAF","PWVMABG";
@@ -1954,123 +1954,123 @@ job3_sha01,22,78,0	script	????#keybox01	844,{
 		next;
 		mes " "+.@Codes1$[.@i];
 		next;
-		mes "It shows some letters and numbers.";
+		mes "มันแสดงตัวอักษรและตัวเลขบางอย่าง";
 		mes " ";
-		mes "Deceive.";
-		mes "Then "+.@i+".";
-		mes "And "+.@Codes1$[.@i]+".";
+		mes "Deceive (หลอกลวง)";
+		mes "ตามด้วย "+.@i;
+		mes "และ "+.@Codes1$[.@i];
 		next;
-		select("What does it mean?");
+		select("มันหมายความว่าอะไร?");
 		mes "["+strcharinfo(0)+"]";
-		mes "Is it also code.";
-		mes "It must be!";
-		mes "Ah, something is showing up again...?";
+		mes "มันเป็นรหัสลับอีกแล้วงั้นเหรอ";
+		mes "ต้องใช่แน่ๆ!";
+		mes "อา มีบางอย่างแสดงขึ้นมาอีกแล้ว...?";
 		next;
-		mes "- You can see some letters on the turtle's shell. -";
+		mes "- เจ้ามองเห็นตัวอักษรบางอย่างบนกระดองเต่า -";
 		next;
 		mes " ";
-		mes "HONESTY";
+		mes "HONESTY (ความซื่อสัตย์)";
 		mes " ";
-		mes "And also letters. They are blinking as if waiting for a code to be input.";
+		mes "และยังมีตัวอักษรอื่นๆ พวกมันกำลังกะพริบเหมือนกำลังรอกดรหัสผ่าน";
 		next;
 		input .@inputstr$;
 		if (.@inputstr$ == .@Codes2$[.@i] || .@inputstr$ == strtolower(.@Codes2$[.@i])) {
-			mes "When you put the correct answer in there,";
-			mes "the box is opened.";
-			mes "There is a small and fabulous key.";
+			mes "เมื่อเจ้าใส่คำตอบที่ถูกต้องลงไป";
+			mes "กล่องก็ถูกเปิดออก";
+			mes "มีกุญแจดอกเล็กๆ ที่ดูงดงามอยู่ข้างใน";
 			next;
-			mes "- You get the Key of Deception. -";
+			mes "- เจ้าได้รับ Key of Deception -";
 			set job_sha,8;
 			getitem 6266,1; //Cheat_Key
 			setquest 7165;
 			close;
 		}
-		mes "- You put the answer -";
-		mes "- but it doesn't work. -";
-		mes "- You have failed. -";
+		mes "- เจ้าใส่คำตอบลงไป -";
+		mes "- แต่มันไม่ทำงาน -";
+		mes "- เจ้าล้มเหลว -";
 		close;
 	}
-	mes "You don't have to stay in here.";
+	mes "เจ้าไม่จำเป็นต้องอยู่ที่นี่";
 	next;
-	if(select("Go outside.:Stay here.") == 1)
+	if(select("ออกไปข้างนอก:อยู่ที่นี่ต่อ") == 1)
 		warp "tur_dun03",40,201;
 	close;
 }
 
 job3_sha01,25,28,0	script	????#keybox02	844,{
 	if (checkweight(1201,1) == 0) {
-		mes "- You can't continue on in this quest because you are overweight. -";
+		mes "- เจ้าไม่สามารถดำเนินเควสต์นี้ต่อไปได้ เนื่องจากน้ำหนักตัวเกิน -";
 		close;
 	}
 	setarray .@Words$[0],"SEED","FOOT","COLD";
 	setarray .@Numbers[0],24,25,20;
 	set .@i,job_sha-14;
 	if (job_sha > 13 && job_sha < 17) {
-		mes "There are lots of boxes.";
-		mes "with sort of numbers.";
+		mes "มีกล่องอยู่มากมาย";
+		mes "พร้อมกับตัวเลขเรียงรายอยู่";
 		next;
 		mes " 1 2 3 4 5";
 		mes " 6 7 8 9 0";
 		mes " ";
 		mes " [ ][ ] ";
 		next;
-		mes "When you touched that number, then it moved.";
-		mes "You find the empty space.";
+		mes "เมื่อเจ้าสัมผัสตัวเลขเหล่านั้น มันก็ขยับ";
+		mes "เจ้าพบช่องว่าง";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "I guess I have to put the number in the empty space...";
-		mes "I have two empty squares to put two numbers.";
-		mes "What will it be good for?";
+		mes "ข้าเดาว่าข้าต้องใส่ตัวเลขลงในช่องว่างนั้น...";
+		mes "มีช่องสี่เหลี่ยมว่างสองช่องสำหรับใส่ตัวเลขสองตัว";
+		mes "มันจะใช้ทำอะไรได้นะ?";
 		next;
-		select("I think it's related with the word given by Paul.");
+		select("ข้าคิดว่ามันเกี่ยวข้องกับคำที่ Paul ให้ไว้");
 		mes "["+strcharinfo(0)+"]";
-		mes "I got "+.@Words$[.@i]+".";
-		mes "Now I have to convert it into a number...";
+		mes "ข้าได้คำว่า "+.@Words$[.@i]+" มา";
+		mes "ตอนนี้ข้าต้องแปลงมันให้กลายเป็นตัวเลข...";
 		next;
-		switch(select("Input the answer.:I can't get it.")) {
+		switch(select("ใส่คำตอบ:ข้าไม่เข้าใจเลย")) {
 		case 1:
 			input .@input;
 			if (.@input == .@Numbers[.@i]) {
-				mes "You put 2 and "+(.@Numbers[.@i]-20)+".";
-				mes "The box opens and you get one key.";
+				mes "เจ้าใส่เลข 2 และ "+(.@Numbers[.@i]-20);
+				mes "กล่องเปิดออกและเจ้าได้รับกุญแจหนึ่งดอก";
 				next;
-				mes "You got the Key of Illusion.";
-				next;
-				mes "["+strcharinfo(0)+"]";
-				mes "It's not a treasure.";
-				mes "The Key of Illusion? Is it related with the Shadow of Illusion?";
-				mes "I got the Key of Deception after I handled Deception...";
+				mes "เจ้าได้รับ Key of Illusion";
 				next;
 				mes "["+strcharinfo(0)+"]";
-				mes "Anyway, Paul will be disappointed.";
-				mes "Key again...";
-				mes "How can I escape from here...?";
+				mes "มันไม่ใช่สมบัติงั้นเหรอ";
+				mes "Key of Illusion? มันเกี่ยวข้องกับ Shadow of Illusion หรือเปล่านะ?";
+				mes "ข้าได้ Key of Deception หลังจากที่ข้าจัดการกับ Deception...";
+				next;
+				mes "["+strcharinfo(0)+"]";
+				mes "อย่างไรก็ตาม Paul คงจะผิดหวังแน่ๆ";
+				mes "กุญแจอีกแล้วเหรอ...";
+				mes "ข้าจะออกไปจากที่นี่ได้ยังไงกันนะ...?";
 				set job_sha,17;
 				getitem 6267,1; //Virtual_Key
 				erasequest 7171;
 				changequest 7168+.@i,7172;
 				next;
-				mes "When I push the box, it shows the door to go outside.";
+				mes "เมื่อข้าผลักกล่อง มันก็แสดงประตูทางออกไปข้างนอก";
 				close2;
 				warp "ice_dun02",209,219;
 				end;
 			}
-			mes "When you enter the number, it goes back to the first.";
+			mes "เมื่อเจ้าใส่ตัวเลขลงไป มันก็กลับไปที่จุดเริ่มต้นใหม่";
 			close;
 		case 2:
 			mes "["+strcharinfo(0)+"]";
-			mes "Hmm.";
-			mes "I can't get it...";
-			mes "Is it the same code as the Prontera workplace...?";
+			mes "อืมม";
+			mes "ข้าไม่เข้าใจเลย...";
+			mes "มันเป็นรหัสเดียวกับที่สถานที่ทำงานใน Prontera หรือเปล่านะ...?";
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "According to that method...";
-			mes "A means 11 and B means 12.";
+			mes "ตามวิธีนั้น...";
+			mes "A หมายถึง 11 และ B หมายถึง 12";
 			close;
 		}
 	}
-	mes "It's a myterious box.";
-	mes "When I push the box, it shows the door to go outside.";
+	mes "มันคือกล่องที่แสนลึกลับ";
+	mes "เมื่อข้าผลักกล่อง มันก็แสดงประตูทางออกไปข้างนอก";
 	close2;
 	warp "ice_dun02",209,219;
 	end;
@@ -2078,15 +2078,15 @@ job3_sha01,25,28,0	script	????#keybox02	844,{
 
 job3_sha01,73,80,0	script	????#keybox03	844,{
 	if (checkweight(1201,1) == 0) {
-		mes "- You can't continue on in this quest because you are overweight. -";
+		mes "- เจ้าไม่สามารถดำเนินเควสต์นี้ต่อไปได้ เนื่องจากน้ำหนักตัวเกิน -";
 		close;
 	}
 	if (job_sha == 23 || job_sha == 24) {
 		if (job_sha == 23) {
-			mes "There is a box that looks like a house.";
-			mes "There's a small paper in the chimney.";
+			mes "มีกล่องที่ดูเหมือนบ้านตั้งอยู่";
+			mes "มีกระดาษแผ่นเล็กๆ อยู่ในปล่องไฟ";
 			next;
-			mes "It says...";
+			mes "มันเขียนว่า...";
 			mes "-----------------";
 			mes " 20 21 18 14";
 			mes " 1 14 4";
@@ -2094,10 +2094,10 @@ job3_sha01,73,80,0	script	????#keybox03	844,{
 			mes "-----------------";
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "I think it's another code.";
+			mes "ข้าคิดว่ามันเป็นรหัสลับอีกอันหนึ่ง";
 		} else {
 			mes "["+strcharinfo(0)+"]";
-			mes "Let me think again...";
+			mes "ขอข้าคิดอีกทีนะ...";
 			mes "20 21 18 14";
 			mes "1 14 4 ";
 			mes "19 8 1 11 5";
@@ -2105,81 +2105,81 @@ job3_sha01,73,80,0	script	????#keybox03	844,{
 		}
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "It's the same as before.";
-		mes "There's no code, so 1 should be A.";
-		mes "And the answer is...";
+		mes "มันเหมือนกับก่อนหน้านี้เลย";
+		mes "ไม่มีการตั้งรหัสเพิ่ม เพราะงั้น 1 ควรจะเป็น A";
+		mes "และคำตอบก็คือ...";
 		next;
 		input .@inputstr$;
 		if (.@inputstr$ == "turn and shake" || .@inputstr$ == "TURN AND SHAKE") {
 			mes "["+strcharinfo(0)+"]";
-			mes "Turn... Turn... and";
-			mes "Shake? Shake?";
-			mes "For what?";
+			mes "Turn (หมุน)... Turn... และ";
+			mes "Shake (เขย่า)? Shake?";
+			mes "เพื่ออะไรกันนะ?";
 			next;
 			while(1) {
-				switch(select("Turn the roof.:Turn the house.:Turn the handle.")) {
+				switch(select("หมุนหลังคา:หมุนตัวบ้าน:หมุนที่จับ")) {
 				case 1:
-					mes "You turn the roof.";
+					mes "เจ้าหมุนที่หลังคา";
 					next;
-					switch(select("Shake the roof.:Shake the house.")) {
+					switch(select("เขย่าหลังคา:เขย่าตัวบ้าน")) {
 					case 1:
-						mes "Even though you shake the roof but";
-						mes "nothing happens.";
+						mes "ถึงแม้เจ้าจะเขย่าที่หลังคาแต่";
+						mes "ก็ไม่มีอะไรเกิดขึ้น";
 						next;
 						mes "["+strcharinfo(0)+"]";
-						mes "That's not it.";
-						mes "Hmm...";
+						mes "มันไม่ใช่แบบนี้แฮะ";
+						mes "อืมม...";
 						next;
 						break;
 					case 2:
-						mes "You tried to shake the house but";
-						mes "it doesn't do anything.";
+						mes "เจ้าพยายามเขย่าตัวบ้านแต่";
+						mes "มันไม่ขยับเลย";
 						next;
 						mes "["+strcharinfo(0)+"]";
-						mes "It's wrong.";
-						mes "Put it back";
-						mes "and try it again.";
+						mes "มันผิดแฮะ";
+						mes "วางมันลงที่เดิม";
+						mes "แล้วลองใหม่อีกครั้ง";
 						next;
 						break;
 					}
 					break;
 				case 2:
-					mes "You grab the whole house and turn it.";
+					mes "เจ้าคว้าบ้านทั้งหลังแล้วหมุนมัน";
 					next;
-					switch(select("Shake up and down.:Shake back and forth.:Turn 'round and 'round and shake.:Roll it upside down.")) {
+					switch(select("เขย่าขึ้นและลง:เขย่าไปข้างหน้าและข้างหลัง:หมุนวนไปรอบๆ แล้วเขย่า:พลิกมันกลับหัว")) {
 					case 1:
 					case 2:
-						mes "Nothing happens.";
-						mes "You think there is something inside, but it won't come out.";
+						mes "ไม่มีอะไรเกิดขึ้น";
+						mes "เจ้าคิดว่ามีบางอย่างอยู่ข้างใน แต่มันไม่ออกมา";
 						next;
 						mes "["+strcharinfo(0)+"]";
-						mes "That's not it.";
-						mes "Hmm...";
+						mes "มันไม่ใช่แบบนี้แฮะ";
+						mes "อืมม...";
 						next;
 						break;
 					case 3:
-						mes "You shake it slowly.";
-						mes "You can hear a noise,";
-						mes "but nothing's coming out.";
+						mes "เจ้าเขย่ามันช้าๆ";
+						mes "เจ้าได้ยินเสียงบางอย่าง";
+						mes "แต่ไม่มีอะไรหลุดออกมาเลย";
 						next;
 						mes "["+strcharinfo(0)+"]";
-						mes "That's not it.";
-						mes "Hmm...";
+						mes "มันไม่ใช่แบบนี้แฮะ";
+						mes "อืมม...";
 						next;
 						break;
 					case 4:
-						mes "Rolling it upside down causes something inside to move.";
+						mes "การพลิกมันกลับหัวทำให้บางอย่างข้างในเคลื่อนที่";
 						next;
-						mes "You shake it slowly.";
-						mes "You can hear some noise.";
-						mes "Something's coming out.";
+						mes "เจ้าเขย่ามันช้าๆ";
+						mes "เจ้าได้ยินเสียงบางอย่าง";
+						mes "มีบางอย่างหลุดออกมา";
 						next;
-						mes "- You got the Key of Pleasure. -";
+						mes "- เจ้าได้รับ Key of Pleasure -";
 						next;
 						mes "["+strcharinfo(0)+"]";
-						mes "What? A key again!";
-						mes "Haled will be disappointed.";
-						mes "I better go back.";
+						mes "อะไรนะ? กุญแจอีกแล้วเหรอ!";
+						mes "Haled คงจะผิดหวังน่าดู";
+						mes "ข้าควรจะกลับไปได้แล้ว";
 						set job_sha,25;
 						setquest 7176;
 						getitem 6268,1; //Mirth_Key
@@ -2187,11 +2187,11 @@ job3_sha01,73,80,0	script	????#keybox03	844,{
 					}
 					break;
 				case 3:
-					mes "You tried to turn the small handle";
-					mes "but it doesn't work.";
+					mes "เจ้าพยายามหมุนที่จับเล็กๆ";
+					mes "แต่มันไม่ทำงาน";
 					next;
 					mes "["+strcharinfo(0)+"]";
-					mes "What should I do now?";
+					mes "ข้าควรทำยังไงต่อดีนะ?";
 					next;
 					break;
 				}
@@ -2200,14 +2200,14 @@ job3_sha01,73,80,0	script	????#keybox03	844,{
 		mes "["+strcharinfo(0)+"]";
 		mes "..."+.@inputstr$+"...?";
 		if (job_sha == 23) {
-			mes "What does that mean?";
+			mes "มันหมายความว่าอะไรกันแน่?";
 			set job_sha,24;
 		} else
-			mes "Again? I don't get it.";
+			mes "อีกแล้วเหรอ? ข้าไม่เข้าใจเลย";
 		close;
 	}
-	mes "You don't have to stay in here.";
-	mes "You put the box down and see that there is a door to go outside.";
+	mes "เจ้าไม่จำเป็นต้องอยู่ที่นี่";
+	mes "เจ้าวางกล่องลงและเห็นว่ามีประตูสำหรับออกไปข้างนอก";
 	close2;
 	warp "niflheim",230,270;
 	end;
@@ -2215,31 +2215,31 @@ job3_sha01,73,80,0	script	????#keybox03	844,{
 
 job3_sha01,71,27,0	script	????#keybox04	844,{
 	if (checkweight(1201,1) == 0) {
-		mes "- You can't continue on in this quest because you are overweight. -";
+		mes "- เจ้าไม่สามารถดำเนินเควสต์นี้ต่อไปได้ เนื่องจากน้ำหนักตัวเกิน -";
 		close;
 	}
 	if (job_sha == 27) {
-		mes "There is a stone statue that looks";
-		mes "like a small casket with a fabulous pattern around it.";
+		mes "มีรูปปั้นหินที่ดูเหมือน";
+		mes "โลงศพขนาดเล็กที่มีลวดลายงดงามล้อมรอบมัน";
 		next;
-		mes "But you can't feel any power from it.";
-		mes "You find three holes in there.";
+		mes "แต่เจ้าไม่สัมผัสถึงพลังใดๆ จากมันเลย";
+		mes "เจ้าพบรูสามรูอยู่ที่นั่น";
 		next;
-		mes "Inscribed next to the holes is written";
-		mes "deception, illusion and pleasure.";
+		mes "มีการสลักคำไว้ข้างๆ รูเหล่านั้นว่า";
+		mes "deception (ความหลอกลวง), illusion (ภาพลวงตา) และ pleasure (ความสำราญ)";
 		next;
-		select("Place the key in the holes.");
+		select("วางกุญแจลงในรู");
 		if (countitem(6266) && countitem(6267) && countitem(6268)) {
 			mes "["+strcharinfo(0)+"]";
-			mes "At first, Deception...";
-			mes "then Illusion...";
-			mes "and Pleasure...";
-			mes "Let me see.";
+			mes "อย่างแรก Deception...";
+			mes "ตามด้วย Illusion...";
+			mes "และ Pleasure...";
+			mes "ไหนดูซิ";
 			next;
-			mes "When you put the keys in";
-			mes "something comes out.";
+			mes "เมื่อเจ้าใส่กุญแจลงไป";
+			mes "มีบางอย่างปรากฏออกมา";
 			next;
-			mes "- You got a brush with a fabulous pattern on it. -";
+			mes "- เจ้าได้รับพู่กันที่มีลวดลายงดงามอยู่บนนั้น -";
 			delitem 6266,1; //Cheat_Key
 			delitem 6267,1; //Virtual_Key
 			delitem 6268,1; //Mirth_Key
@@ -2248,27 +2248,27 @@ job3_sha01,71,27,0	script	????#keybox04	844,{
 			changequest 7178,7179;
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "What???";
-			mes "A brush!!!!";
-			mes "This isn't treasure!!!";
+			mes "อะไรนะ???";
+			mes "พู่กันเนี่ยนะ!!!!";
+			mes "นี่มันไม่ใช่สมบัตินี่นา!!!";
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "Ahahhah!!!!";
-			mes "*sniff*";
-			mes "It's not treasure!";
+			mes "อาฮ่าฮ่า!!!!";
+			mes "*ซื้ดด*";
+			mes "มันไม่ใช่สมบัติ!";
 			next;
-			select("Now I'm pissed off.");
+			select("ตอนนี้ข้าชักจะโมโหแล้วนะ");
 			mes "["+strcharinfo(0)+"]";
-			mes "*Sigh*";
-			mes "Guess I should bring this to ^4d4dffVicente^000000!";
+			mes "*เฮ้ออ*";
+			mes "เดาว่าข้าควรจะเอาสิ่งนี้ไปให้ ^4d4dffVicente^000000 นะ!";
 			close;
 		}
 		mes "["+strcharinfo(0)+"]";
-		mes "I didn't bring all of the keys.";
-		mes "How could I be so stupid?";
+		mes "ข้าไม่ได้เอากุญแจมาครบทุกดอก";
+		mes "ทำไมข้าถึงโง่แบบนี้นะ?";
 		close;
 	}
-	mes "It's an empty stone statue.";
+	mes "มันคือรูปปั้นหินที่ว่างเปล่า";
 	close;
 }
 
@@ -2276,214 +2276,214 @@ job3_sha01,71,27,0	script	????#keybox04	844,{
 //============================================================
 s_atelier,29,119,3	script	Max#sc05_prt	97,{
 	mes "[Max]";
-	mes "Welcome~";
+	mes "ยินดีต้อนรับจ้า~";
 	if (Class == Job_Shadow_Chaser || Class == Job_Shadow_Chaser_T || Class == Job_Baby_Shadow_Chaser) {
-		mes "You are a member of the Rogue guild!";
-		mes "What can I help you with?";
+		mes "เจ้าเป็นสมาชิกของกิลด์ Rogue นี่นา!";
+		mes "มีอะไรให้ข้าช่วยไหมล่ะ?";
 		next;
-		set .@i, select("I need a make-up brush.:I need a paint brush.:Nothing.");
+		set .@i, select("ข้าต้องการแปรงแต่งหน้า:ข้าต้องการแปรงทาสี:ไม่มีอะไร");
 		mes "[Max]";
 		if (.@i == 1) setarray .@i[1],6121,1,10,100000;
 		else if (.@i == 2) setarray .@i[1],6122,2,30,200000;
 		else {
-			mes "If you need more";
-			mes "just visit me!";
+			mes "ถ้าเจ้าต้องการอะไรเพิ่ม";
+			mes "ก็แวะมาหาข้าได้นะ!";
 			close;
 		}
 		if (countitem(.@i[1])) {
-			mes "Are you kidding me?";
-			mes "You already have it?";
-			mes "You don't need anything else.";
+			mes "ล้อข้าเล่นหรือเปล่าเนี่ย?";
+			mes "เจ้ามีมันอยู่แล้วไม่ใช่เหรอ?";
+			mes "เจ้าไม่จำเป็นต้องใช้อันใหม่หรอก";
 			next;
 			mes "[Max]";
-			mes "Visit later and use what you have!";
+			mes "ไว้ค่อยแวะมาใหม่นะ แล้วก็ใช้อันที่มีอยู่ให้คุ้มล่ะ!";
 			close;
 		}
 		if (countitem(7150) >= .@i[2] && countitem(949) >= .@i[3] && Zeny >= .@i[4]) {
-			mes "Oh you brought all the things required.";
-			mes "Hold on a bit.";
+			mes "โอ้ เจ้าเตรียมของที่จำเป็นมาครบเลยนี่";
+			mes "รอเดี๋ยวหนึ่งนะ";
 			next;
 			mes "[Max]";
-			mes "Here's what you need.";
+			mes "นี่คือสิ่งที่เจ้าต้องการ";
 			next;
 			mes "[Max]";
-			mes "Take it.";
-			mes "Good luck!";
+			mes "รับไปสิ";
+			mes "โชคดีนะ!";
 			delitem 7150,.@i[2]; //Bamboo_Cut
 			delitem 949,.@i[3]; //Feather
 			set Zeny, Zeny - .@i[4];
 			getitem .@i[1],1; //Makeover_Brush,Paint_Brush
 			close;
 		}
-		mes "Here's what you need to get a make-up brush.";
+		mes "นี่คือสิ่งที่เจ้าต้องใช้เพื่อแลกแปรงแต่งหน้านะ";
 		mes .@i[2]+" Bamboo Cut,";
 		mes .@i[3]+" Feather,";
-		mes "and "+.@i[0]+"00,000 zeny.";
+		mes "และเงินอีก "+.@i[0]+"00,000 zeny";
 		close;
 	}
-	mes "We sell all art related things here~";
+	mes "พวกเราขายทุกอย่างที่เกี่ยวกับศิลปะที่นี่จ้า~";
 	next;
-	switch(select("Paint!?:Where's the manager?")) {
+	switch(select("สีวาดเขียน!?:ผู้จัดการอยู่ที่ไหนเหรอ?")) {
 	case 1:
 		mes "[Max]";
-		mes "You are asking for paint?";
-		mes "Could you just ask them to get the paint?~";
+		mes "เจ้ามาถามหาเรื่องสีวาดเขียนงั้นเหรอ?";
+		mes "เจ้าช่วยไปถามพวกเขาทีได้ไหมเรื่องจะเอาสีน่ะ~";
 		close;
 	case 2:
 		mes "[Max]";
-		mes "There's our manager.";
-		mes "Right over there.";
-		mes "**points**";
-		mes "Are you blind?";
+		mes "นั่นไงผู้จัดการของเรา";
+		mes "อยู่ตรงนั้นไง";
+		mes "**ชี้ไป**";
+		mes "เจ้าตาบอดหรือเปล่าเนี่ย?";
 		close;
 	}
 }
 
 s_atelier,136,70,3	script	Titika#sc09_ra	914,{
 	mes "[Titika]";
-	mes "Welcome.";
+	mes "ยินดีต้อนรับ";
 	if (Class == Job_Shadow_Chaser || Class == Job_Shadow_Chaser_T || Class == Job_Baby_Shadow_Chaser) {
-		mes "You are in a guild.";
-		mes "What can I help you with?";
+		mes "เจ้าเป็นสมาชิกกิลด์สินะ";
+		mes "มีอะไรให้ข้าช่วยไหม?";
 		next;
-		set .@i, select("Make a new make-up brush.:Make a new paint brush.:Nothing.");
+		set .@i, select("ทำแปรงแต่งหน้าอันใหม่:ทำแปรงทาสีอันใหม่:ไม่มีอะไร");
 		mes "[Titika]";
 		if (.@i == 1) setarray .@i[1],6121,1,10,100000;
 		else if (.@i == 2) setarray .@i[1],6122,2,30,200000;
 		else {
-			mes "Visit me again.";
+			mes "แล้วแวะมาหาข้าใหม่นะ";
 			close;
 		}
 		if (countitem(.@i[1])) {
-			mes "You already have a paint brush?";
-			mes "I think it's enough...";
+			mes "เจ้ามีแปรงทาสีอยู่แล้วไม่ใช่เหรอ?";
+			mes "ข้าว่ามันก็เพียงพอแล้วนะ...";
 			close;
 		}
 		if (countitem(7150) >= .@i[2] && countitem(949) >= .@i[3] && Zeny >= .@i[4]) {
-			mes "You brought all the materials.";
-			mes "I'll exchange it with the goods that I made.";
+			mes "เจ้าเอาวัตถุดิบมาครบแล้ว";
+			mes "ข้าจะแลกมันกับของที่ข้าทำไว้นะ";
 			delitem 7150,.@i[2]; //Bamboo_Cut
 			delitem 949,.@i[3]; //Feather
 			set Zeny, Zeny - .@i[4];
 			getitem .@i[1],1; //Makeover_Brush,Paint_Brush
 			close;
 		}
-		mes "To make a paint brush,";
-		mes "you need "+.@i[2]+" Bamboo Cut,";
+		mes "การจะทำแปรงทาสี";
+		mes "เจ้าต้องใช้ "+.@i[2]+" Bamboo Cut,";
 		mes .@i[3]+" Feathers,";
-		mes "and "+.@i[0]+"00,000 zeny.";
+		mes "และเงินอีก "+.@i[0]+"00,000 zeny";
 		close;
 	}
-	mes "This is the Shadow Chaser workplace~";
+	mes "นี่คือสถานที่ทำงานของ Shadow Chaser จ้า~";
 	next;
-	switch(select("Where is the paint?:Where is the manager?")) {
+	switch(select("สีวาดเขียนอยู่ที่ไหนเหรอ?:ผู้จัดการอยู่ที่ไหนเหรอ?")) {
 	case 1:
 		mes "[Titika]";
-		mes "You mean paint?";
-		mes "Talk to the assistant and ask about the paint tool.";
+		mes "เจ้าหมายถึงสีวาดเขียนงั้นเหรอ?";
+		mes "ไปคุยกับผู้ช่วยแล้วถามเรื่องอุปกรณ์ลงสีนะ";
 		close;
 	case 2:
 		mes "[Titika]";
-		mes "My manager is inside of the workplace.";
-		mes "If you visit him without a special reason, he will ignore you.";
+		mes "ผู้จัดการของข้าอยู่ข้างในสถานที่ทำงานน่ะ";
+		mes "ถ้าเจ้าเข้าไปหาเขาโดยไม่มีธุระสำคัญ เขาจะไม่สนใจเจ้าหรอก";
 		close;
 	}
 }
 
 s_atelier,124,128,3	script	RimiGX#sc07_yuno	862,{
 	mes "[RimiGX]";
-	mes "Welcome.";
+	mes "ยินดีต้อนรับ";
 	if (Class == Job_Shadow_Chaser || Class == Job_Shadow_Chaser_T || Class == Job_Baby_Shadow_Chaser) {
-		mes "What are you looking for?";
+		mes "เจ้ากำลังมองหาอะไรอยู่เหรอ?";
 		next;
-		set .@i, select("Make a new blush for make-up.:Make a new blush for painting.:Nothing.");
+		set .@i, select("ทำพู่กันสำหรับแต่งหน้าอันใหม่:ทำพู่กันสำหรับวาดรูปอันใหม่:ไม่มีอะไร");
 		mes "[RimiGX]";
 		if (.@i == 1) setarray .@i[1],6121,1,10,100000;
 		else if (.@i == 2) setarray .@i[1],6122,2,30,200000;
 		else {
-			mes "Visit me again.";
+			mes "แล้วมาหาข้าใหม่นะ";
 			close;
 		}
 		if (countitem(.@i[1])) {
-			mes "I can't offer extra stuff.";
-			mes "Visit here when you lost stuff.";
+			mes "ข้าไม่สามารถให้ของเพิ่มได้หรอกนะ";
+			mes "แวะมาที่นี่เมื่อเจ้าทำของหายแล้วกัน";
 			close;
 		}
 		if (countitem(7150) >= .@i[2] && countitem(949) >= .@i[3] && Zeny >= .@i[4]) {
-			mes "You brought stuff you need.";
-			mes "It will be fast when I exchange the stuff made?";
+			mes "เจ้าเอาของที่จำเป็นมาครบแล้ว";
+			mes "มันคงจะเร็วขึ้นถ้าข้าแลกของที่ทำสำเร็จรูปไว้ให้เลยใช่ไหม?";
 			delitem 7150,.@i[2]; //Bamboo_Cut
 			delitem 949,.@i[3]; //Feather
 			set Zeny, Zeny - .@i[4];
 			getitem .@i[1],1; //Makeover_Brush,Paint_Brush
 			close;
 		}
-		mes "For blush to "+((.@i[0] == 1)?"make up":"paint");
-		mes "you need "+.@i[2]+" Bamboo Cut,";
-		mes .@i[3]+" Feather, and "+.@i[0]+"00,000 zeny.";
+		mes "สำหรับพู่กันที่จะเอาไป "+((.@i[0] == 1)?"แต่งหน้า":"วาดรูป");
+		mes "เจ้าต้องใช้ "+.@i[2]+" Bamboo Cut,";
+		mes .@i[3]+" Feather และเงินอีก "+.@i[0]+"00,000 zeny";
 		close;
 	}
-	mes "It's the shadow workplace~";
+	mes "นี่คือสถานที่ทำงานเงา (Shadow Workplace) จ้า~";
 	next;
-	switch(select("Where is the paint?:Where is the manager?")) {
+	switch(select("สีวาดเขียนอยู่ที่ไหนเหรอ?:ผู้จัดการอยู่ที่ไหนเหรอ?")) {
 	case 1:
 		mes "[RimiGX]";
-		mes "Paint?";
-		mes "Ask an assistant who works over there.";
+		mes "สีวาดเขียนเหรอ?";
+		mes "ไปถามผู้ช่วยคนที่ทำงานอยู่ตรงโน้นสิ";
 		close;
 	case 2:
 		mes "[RimiGX]";
-		mes "Manager? He's in inside of the workplace.";
-		mes "But when you visit him, you should have something to tell him....";
+		mes "ผู้จัดการเหรอ? เขาอยู่ข้างในสถานที่ทำงานน่ะ";
+		mes "แต่ถ้าเจ้าจะไปหาเขา เจ้าควรจะมีเรื่องที่จะบอกเขาด้วยนะ....";
 		close;
 	}
 }
 
 s_atelier,26,68,3	script	Vito#sc11_lgt	904,{
 	mes "[Vito]";
-	mes "Welcome.";
+	mes "ยินดีต้อนรับ";
 	if (Class == Job_Shadow_Chaser || Class == Job_Shadow_Chaser_T || Class == Job_Baby_Shadow_Chaser) {
-		mes "What are you looking for?";
+		mes "เจ้ากำลังมองหาอะไรอยู่เหรอ?";
 		next;
-		set .@i, select("Make a new blush for make-up.:Make a new blush for painting.:Nothing.");
+		set .@i, select("ทำพู่กันสำหรับแต่งหน้าอันใหม่:ทำพู่กันสำหรับวาดรูปอันใหม่:ไม่มีอะไร");
 		mes "[Vito]";
 		if (.@i == 1) setarray .@i[1],6121,1,10,100000;
 		else if (.@i == 2) setarray .@i[1],6122,2,30,200000;
 		else {
-			mes "Whenever you need a blush, visit me.";
-			mes "See you!";
+			mes "เมื่อไหร่ก็ตามที่เจ้าต้องการพู่กัน แวะมาหาข้าได้นะ";
+			mes "แล้วเจอกัน!";
 			close;
 		}
 		if (countitem(.@i[1])) {
-			mes "We offer only one blush to each person.";
-			mes "We can't offer extra blushes.";
+			mes "เราให้พู่กันได้แค่คนละหนึ่งอันเท่านั้น";
+			mes "เราไม่สามารถให้พู่กันเพิ่มได้หรอก";
 			close;
 		}
 		if (countitem(7150) >= .@i[2] && countitem(949) >= .@i[3] && Zeny >= .@i[4]) {
-			mes "You brought all what you need.";
-			mes "I'm going to exchange the blush I made before.";
+			mes "เจ้าเอาของที่จำเป็นมาครบแล้ว";
+			mes "ข้าจะแลกพู่กันที่ข้าเคยทำไว้ให้เจ้าละกัน";
 			delitem 7150,.@i[2]; //Bamboo_Cut
 			delitem 949,.@i[3]; //Feather
 			set Zeny, Zeny - .@i[4];
 			getitem .@i[1],1; //Makeover_Brush,Paint_Brush
 			close;
 		}
-		mes "For blush to "+((.@i[0] == 1)?"make up":"paint");
-		mes "you need "+.@i[2]+" Bamboo Cut,";
-		mes .@i[3]+" Feather, and "+.@i[0]+"00,000 zeny.";
+		mes "สำหรับพู่กันที่จะเอาไป "+((.@i[0] == 1)?"แต่งหน้า":"วาดรูป");
+		mes "เจ้าต้องใช้ "+.@i[2]+" Bamboo Cut,";
+		mes .@i[3]+" Feather และเงินอีก "+.@i[0]+"00,000 zeny";
 		close;
 	}
-	mes "It's the shadow workplace.";
+	mes "นี่คือสถานที่ทำงานเงา (Shadow Workplace)";
 	next;
-	switch(select("Where is the paint?:Where is the manager?")) {
+	switch(select("สีวาดเขียนอยู่ที่ไหนเหรอ?:ผู้จัดการอยู่ที่ไหนเหรอ?")) {
 	case 1:
 		mes "[Vito]";
-		mes "Paint?";
-		mes "Ask the assistant standing over there.";
+		mes "สีวาดเขียนเหรอ?";
+		mes "ลองถามผู้ช่วยคนที่ยืนอยู่ตรงโน้นดูสิ";
 		close;
 	case 2:
 		mes "[Vito]";
-		mes "The man standing in front of the counter is the manager.";
+		mes "ชายคนที่ยืนอยู่หน้าเคาน์เตอร์นั่นแหละคือผู้จัดการ";
 		close;
 	}
 }
@@ -2493,14 +2493,14 @@ s_atelier,26,68,3	script	Vito#sc11_lgt	904,{
 tha_t01,149,228,0	script	#shadowc02	45,2,2,{
 	end;
 OnTouch:
-	mes "You can feel weird power.";
+	mes "เจ้าสัมผัสได้ถึงพลังที่แปลกประหลาด";
 	if (BaseJob == Job_Rogue && job_sha == 27) {
-		mes "You are getting dizzy.";
+		mes "เจ้าเริ่มรู้สึกเวียนหัว...";
 		close2;
 		warp "job3_sha01",71,36;
 		end;
 	}
-	mes "You don't know what it is.";
+	mes "เจ้าไม่รู้ว่ามันคืออะไร";
 	close;
 }
 
