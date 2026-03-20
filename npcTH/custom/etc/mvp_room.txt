@@ -13,17 +13,32 @@
 //= 1.0 First version, edited. [Euphy]
 //============================================================
 
+//===== rAthena Script =======================================
+//= Private MVP & Branch Room
+//===== By: ==================================================
+//= AnnieRuru
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: =====================================
+//= rAthena Project
+//===== Description: =========================================
+//= อนุญาตให้ผู้เล่นเช่าห้อง MVP ส่วนตัวเพื่อใช้งานคนเดียว,
+//= หรือสำหรับปาร์ตี้ หรือกิลด์.
+//===== Additional Comments: =================================
+//= 1.0 เวอร์ชั่นแรก, แก้ไขโดย. [Euphy]
+//============================================================
+
 prontera,148,174,5	script	Private MVP Room	100,{
 	mes "[Private MVP Room]";
-	mes "Please select a private MVP room.";
+	mes "กรุณาเลือกห้อง MVP ส่วนตัวครับ";
 	if ( getvariableofnpc( .rentcost, "MVP Summoner" ) )
-		mes "The cost to rent a room for "+ getvariableofnpc( .timeout, "MVP Summoner" ) +" minutes is "+ callfunc("F_InsertComma", getvariableofnpc( .rentcost, "MVP Summoner" ) ) +" zeny.";
+		mes "ค่าเช่าห้องสำหรับ "+ getvariableofnpc( .timeout, "MVP Summoner" ) +" นาที คือ "+ callfunc("F_InsertComma", getvariableofnpc( .rentcost, "MVP Summoner" ) ) +" zeny.";
 	else
-		mes "You can only use the room for only "+ getvariableofnpc( .timeout, "MVP Summoner" ) +" minutes.";
+		mes "คุณสามารถใช้งานห้องได้เพียง "+ getvariableofnpc( .timeout, "MVP Summoner" ) +" นาทีเท่านั้น.";
 	mes " ";
 	for ( .@i = 1; .@i <= 8; .@i++ )
 		if ( getvariableofnpc( .renttime[.@i], "MVP Summoner" ) )
-			mes "Room #"+ .@i +" = "+ .color$[ .type[.@i] ] + .whoinuse$[.@i] +"^000000";
+			mes "ห้อง #"+ .@i +" = "+ .color$[ .type[.@i] ] + .whoinuse$[.@i] +"^000000";
 	next;
 	.@room = select(
 		"MVP Room 1 ["+ getmapusers("06guild_01") +"]",
@@ -40,34 +55,34 @@ prontera,148,174,5	script	Private MVP Room	100,{
 			close;
 		} else {
 			mes "[Private MVP Room]";
-			mes "This room is reserved for ";
+			mes "ห้องนี้ถูกจองไว้สำหรับ ";
 			mes .color$[ .type[.@room] ] + .whoinuse$[.@room] +"^000000.";
-			mes "Please select another.";
+			mes "กรุณาเลือกห้องอื่นครับ";
 			close;
 		}
 	}
 	mes "[Private MVP Room]";
-	mes "Reserve this room for...";
+	mes "ต้องการจองห้องนี้สำหรับ...";
 	next;
-	set .@type, select( "For my party members", "For my guild members", "For personal account use" );
+	set .@type, select( "สำหรับสมาชิกปาร์ตี้ของฉัน", "สำหรับสมาชิกกิลด์ของฉัน", "สำหรับใช้งานส่วนตัว (บัญชีนี้)" );
 	if ( !getcharid(.@type) ) {
 		mes "[Private MVP Room]";
-		mes "You do not own a "+( ( .@type == 1 )? "Party" : "Guild" )+".";
+		mes "คุณไม่ได้เป็นเจ้าของ "+( ( .@type == 1 )? "ปาร์ตี้" : "กิลด์" )+" ครับ";
 		close;
 	}
 	else if ( Zeny < getvariableofnpc( .rentcost, "MVP Summoner" ) ) {
-		mes "You don't have enough zeny to rent a room.";
+		mes "คุณมี Zeny ไม่เพียงพอสำหรับเช่าห้องครับ";
 		close;
 	}
 	else if ( getvariableofnpc( .renttime[.@room], "MVP Summoner" ) ) {
 		mes "[Private MVP Room]";
-		mes "I'm sorry, somebody else has already registered this room faster than you.";
+		mes "ขออภัยด้วยครับ มีคนอื่นจองห้องนี้ตัดหน้าคุณไปเสียแล้ว";
 		close;
 	}
 	for ( .@i = 1; .@i <= 8; .@i++ ) {
 		if ( ( getvariableofnpc( .renttime[.@i], "MVP Summoner" ) ) && .@type == .type[.@i] && getcharid(.@type) == .inuseid[.@i] ) {
 			mes "[Private MVP Room]";
-			mes "You already rented Room#"+ .@i +". Use that room instead.";
+			mes "คุณได้เช่าห้อง #"+ .@i +" ไว้แล้ว กรุณาไปใช้งานห้องนั้นแทนครับ";
 			close;
 		}
 	}
@@ -80,22 +95,22 @@ prontera,148,174,5	script	Private MVP Room	100,{
 	donpcevent "MVP Summoner#"+ .@room +"::OnEnterMap";
 	close;
 OnInit:
-	.color$[1] =  "^EE8800"; // party color
-	.color$[2] =  "^70CC11"; // guild color
-	.color$[3] =  "^0000FF"; // account color
+	.color$[1] =  "^EE8800"; // สีปาร์ตี้
+	.color$[2] =  "^70CC11"; // สีกิลด์
+	.color$[3] =  "^0000FF"; // สีบัญชีส่วนตัว
 	end;
 }
 
 -	script	MVP Summoner	-1,{
 	mes "[MVP Summoner]";
-	mes "Time left: " + callfunc( "Time2Str", .renttime[ atoi( strnpcinfo(2) ) ] + .timeout * 60 );
-	mes "Hi, what can I do for you?";
+	mes "เวลาที่เหลือ: " + callfunc( "Time2Str", .renttime[ atoi( strnpcinfo(2) ) ] + .timeout * 60 );
+	mes "สวัสดีครับ มีอะไรให้ผมช่วยไหม?";
 	next;
 	switch ( select(.menu$) ) {
 	case 1:
 		mes "[MVP Summoner]";
 		if ( mobcount( "this", strnpcinfo(3)+"::OnMobDead" ) ) {
-			mes "I cannot offer heal service when there are monsters around.";
+			mes "ผมไม่สามารถให้บริการรักษาได้ในขณะที่มีมอนสเตอร์อยู่รอบๆ ครับ";
 			close;
 		}
 		sc_end SC_STONE;
@@ -122,28 +137,28 @@ OnInit:
 		sc_end SC_SKA;
 		percentheal 100,100;
 		specialeffect2 EF_HEAL;
-		mes "You are completely healed.";
+		mes "รักษาบาดแผลทั้งหมดให้คุณเรียบร้อยแล้วครับ";
 		close;
 	case 2:
 		if ( mobcount( "this", strnpcinfo(3)+"::OnMobDead" ) ) {
 			mes "[MVP Summoner]";
-			mes "I cannot summon another MVP when there are monsters around.";
+			mes "ผมไม่สามารถอัญเชิญ MVP ตัวอื่นได้ในขณะที่มีมอนสเตอร์อยู่รอบๆ ครับ";
 			close;
 		} else if ( .mvpcost ) {
 			mes "[MVP Summoner]";
-			mes "The cost to summon an MVP is "+ callfunc( "F_InsertComma", .mvpcost ) +" zeny.";
+			mes "ค่าธรรมเนียมในการอัญเชิญ MVP คือ "+ callfunc( "F_InsertComma", .mvpcost ) +" zeny.";
 			next;
 			set .@menu, select(.mvpid_menu$) -1;
 			mes "[MVP Summoner]";
 			if ( Zeny < .mvpcost ) {
-				mes "You don't have enough zeny to summon an MVP.";
+				mes "คุณมี Zeny ไม่เพียงพอสำหรับอัญเชิญ MVP ครับ";
 				close;
 			}
 		} else {
 			set .@menu, select(.mvpid_menu$) -1;
 			mes "[MVP Summoner]";
 		}
-		mes "Please get ready.";
+		mes "กรุณาเตรียมตัวให้พร้อมครับ";
 		close2;
 		if ( Zeny < .mvpcost ) end;
 		Zeny -= .mvpcost;
@@ -152,23 +167,23 @@ OnInit:
 	case 3:
 		if ( mobcount( "this", strnpcinfo(3)+"::OnMobDead" ) ) {
 			mes "[MVP Summoner]";
-			mes "I cannot summon another mini-boss when there are monsters around.";
+			mes "ผมไม่สามารถอัญเชิญ Mini-boss ตัวอื่นได้ในขณะที่มีมอนสเตอร์อยู่รอบๆ ครับ";
 			close;
 		} else if ( .bosscost ) {
 			mes "[MVP Summoner]";
-			mes "The cost to summon a mini-boss is "+ callfunc( "F_InsertComma", .bosscost ) +" zeny.";
+			mes "ค่าธรรมเนียมในการอัญเชิญ Mini-boss คือ "+ callfunc( "F_InsertComma", .bosscost ) +" zeny.";
 			next;
 			set .@menu, select(.bossid_menu$) -1;
 			mes "[MVP Summoner]";
 			if ( Zeny < .bosscost ) {
-				mes "You doesn't have enough zeny to summon a mini-boss.";
+				mes "คุณมี Zeny ไม่เพียงพอสำหรับอัญเชิญ Mini-boss ครับ";
 				close;
 			}
 		} else {
 			set .@menu, select(.bossid_menu$) -1;
 			mes "[MVP Summoner]";
 		}
-		mes "Please get ready.";
+		mes "กรุณาเตรียมตัวให้พร้อมครับ";
 		close2;
 		if ( Zeny < .bosscost ) end;
 		Zeny -= .bosscost;
@@ -177,7 +192,7 @@ OnInit:
 	case 4:
 		if ( mobcount( "this", strnpcinfo(3)+"::OnMobDead" ) > 0 ) {
 			mes "[MVP Summoner]";
-			mes "I cannot offer this service when there are monsters around.";
+			mes "ผมไม่สามารถให้บริการนี้ได้ในขณะที่มีมอนสเตอร์อยู่รอบๆ ครับ";
 			close;
 		}
 		close2;
@@ -185,22 +200,22 @@ OnInit:
 		end;
 	case 5:
 		mes "[MVP Summoner]";
-		mes "Are you sure you want to leave this room?";
+		mes "คุณแน่ใจหรือไม่ว่าต้องการออกจากห้องนี้?";
 		next;
-		if ( select( "Yes:No") == 1 )
+		if ( select( "ใช่:ไม่ใช่") == 1 )
 			warp .respawnmap$, .respawnx, .respawny;
 		close;
 	case 6:
 		mes "[MVP Summoner]";
 		if ( getmapusers( strcharinfo(3) ) > 1 ) {
-			mes "There are still some players in this room. Make sure you are the last member in this room to use this option.";
+			mes "ยังมีผู้เล่นคนอื่นอยู่ในห้องนี้ กรุณาตรวจสอบให้แน่ใจว่าคุณเป็นสมาชิกคนสุดท้ายในห้องก่อนจะใช้ตัวเลือกนี้ครับ";
 			close;
 		}
-		mes "Are you sure you want to give up this room?";
+		mes "คุณแน่ใจหรือไม่ว่าต้องการสละสิทธิ์ห้องนี้?";
 		if ( .rentcost )
-			mes "You will need to pay again to enter this room.";
+			mes "คุณจะต้องจ่ายเงินอีกครั้งหากต้องการกลับเข้ามาในห้องนี้";
 		next;
-		if ( select( "Yes", "No" ) == 2 ) close;
+		if ( select( "ใช่", "ไม่ใช่" ) == 2 ) close;
 		awake strnpcinfo(0);
 		end;
 	}
@@ -223,22 +238,22 @@ OnInit:
 
 //	Config ---------------------------------------------------------------------------------------
 
-	// Room rental time, in minutes.
-	// When time runs out, all players inside the room will be kicked out.
-	// Do NOT set this to zero!
+	// ระยะเวลาเช่าห้อง (นาที).
+	// เมื่อหมดเวลา ผู้เล่นทุกคนในห้องจะถูกวาร์ปออก.
+	// ห้ามตั้งค่าเป็นศูนย์!
 	set .timeout, 60;
 
-	set .rentcost, 100000;	// Zeny cost for renting a room (0 = free)
-	set .mvpcost, 100000;	// Zeny cost to summon an MVP (0 = free)
-	set .bosscost, 50000;	// Zeny cost to summon a boss monster (0 = free)
+	set .rentcost, 100000;	// ค่าเช่าห้อง (0 = ฟรี)
+	set .mvpcost, 100000;	// ค่าอัญเชิญ MVP (0 = ฟรี)
+	set .bosscost, 50000;	// ค่าอัญเชิญมอนสเตอร์ระดับบอส/Mini-boss (0 = ฟรี)
 
-	//	Options setting inside MVP room
-	set .@menu[1], 1;	// Turn Heal option On/Off
-	set .@menu[2], 1;	// Turn MVP Summoning On/Off
-	set .@menu[3], 1;	// Turn Mini boss Summoning On/Off
-	set .@menu[4], 0;	// Sell items (branches) On/Off (see shop below, before the mapflags)
+	//	ตั้งค่าตัวเลือกภายในห้อง MVP
+	set .@menu[1], 1;	// เปิด/ปิด ตัวเลือกรักษา (Heal)
+	set .@menu[2], 1;	// เปิด/ปิด การอัญเชิญ MVP
+	set .@menu[3], 1;	// เปิด/ปิด การอัญเชิญ Mini-boss
+	set .@menu[4], 0;	// เปิด/ปิด การขายไอเทม (กิ่งไม้เสกมอนสเตอร์) (ดูที่ shop ด้านล่าง ก่อน mapflags)
 
-	// Respawn point when players leave the room
+	// จุดเกิดเมื่อผู้เล่นออกจากห้อง
 	set .respawnmap$, "prontera";
 	set .respawnx, 150;
 	set .respawny, 174;
@@ -325,11 +340,11 @@ OnInit:
 //	Config Ends ------------------------------------------------------------------------
 
 		if ( !.timeout ) set .timeout, 60;
-		.menu$ = ( .@menu[1] ? "Heal" : "" ) +":" ;
-		.menu$ = .menu$ + ( .@menu[2] ? "Summon MVP" : "" ) +":";
-		.menu$ = .menu$ + ( .@menu[3] ? "Summon Mini-boss" : "" ) +":";
-		.menu$ = .menu$ + ( .@menu[4] ? "Buy branches" : "" ) +":";
-		.menu$ = .menu$ + "Leave this room:Give up this room";
+		.menu$ = ( .@menu[1] ? "รักษาอาการบาดเจ็บ (Heal)" : "" ) +":" ;
+		.menu$ = .menu$ + ( .@menu[2] ? "อัญเชิญ MVP" : "" ) +":";
+		.menu$ = .menu$ + ( .@menu[3] ? "อัญเชิญ Mini-boss" : "" ) +":";
+		.menu$ = .menu$ + ( .@menu[4] ? "ซื้อไม้เสกมอนสเตอร์ (Branches)" : "" ) +":";
+		.menu$ = .menu$ + "ออกจากห้องนี้:สละสิทธิ์การใช้ห้องนี้";
 		if ( .@menu[2] ) {
 			.@size = getarraysize( .mvpid );
 			for ( .@i = 0; .@i < .@size; .@i++ )
@@ -342,7 +357,7 @@ OnInit:
 		}
 	}
 	else {
-		mapannounce strnpcinfo(4), "An administrator has refreshed the server. Please re-register this room.", bc_map;
+		mapannounce strnpcinfo(4), "ผู้ดูแลระบบได้ทำการรีเฟรชเซิร์ฟเวอร์ กรุณาลงทะเบียนจองห้องนี้ใหม่อีกครั้งครับ", bc_map;
 		mapwarp strnpcinfo(4), .respawnmap$, .respawnx, .respawny;
 	}
 	end;
