@@ -102,10 +102,10 @@ jor_tail,233,41,3	script	Shufapa#ep21ex01	4_EP19_IWIN_DIVER,{
 		cloaknpc("Nillem#ep21nlm01",true,getcharid(0));
 		cloaknpc("Aurelie#ep21orl01",true,getcharid(0));
 		cloaknpc("Lehar#ep21rhr01",true,getcharid(0));
-        npctalk "Shufapa : แล้วท่านล่ะ?","",bc_self;
+		npctalk "Shufapa : แล้วท่านล่ะ?","",bc_self;
 		pcblock(false);
-        if(select("ข้าจะไปตอนนี้เลย","ข้าจะไปทีหลัง") == 2)
-        	npctalk "ข้าจะอยู่ที่นี่อีกสักพัก บอกข้าได้เลยเมื่อท่านต้องการจะไปที่เกาะ Scale Island","",bc_self;
+		if(select("ข้าจะไปตอนนี้เลย","ข้าจะไปทีหลัง") == 2)
+			npctalk "ข้าจะอยู่ที่นี่อีกสักพัก บอกข้าได้เลยเมื่อท่านต้องการจะไปที่เกาะ Scale Island","",bc_self;
 		else {
 			npctalk "Shufapa : ไปกันเถอะ","",bc_self;
 			warp "jor_crk",137,137;
@@ -114,13 +114,13 @@ jor_tail,233,41,3	script	Shufapa#ep21ex01	4_EP19_IWIN_DIVER,{
 	}
 	cutin "ep19_iwin_diver02.png",2;
 	mes "[Shufapa]";
-    mes "ท่านกำลังจะไปที่เกาะ Scale Island ใช่ไหม?";
+	mes "ท่านกำลังจะไปที่เกาะ Scale Island ใช่ไหม?";
 	next;
 	if(select("ไปที่เกาะ Scale Island","ไม่") == 2){
-	    mes "[Shufapa]";
-	    mes "ข้าจะอยู่ที่นี่อีกสักพัก บอกข้าได้เลยเมื่อท่านต้องการจะไปที่เกาะ Scale Island";
-	    close3;
-    } else {
+		mes "[Shufapa]";
+		mes "ข้าจะอยู่ที่นี่อีกสักพัก บอกข้าได้เลยเมื่อท่านต้องการจะไปที่เกาะ Scale Island";
+		close3;
+	} else {
 		cutin "",255;
 		npctalk "Shufapa : ไปกันเถอะ","",bc_self;
 		warp "jor_crk",137,137;
@@ -128,7 +128,7 @@ jor_tail,233,41,3	script	Shufapa#ep21ex01	4_EP19_IWIN_DIVER,{
 	end;
 
 OnInit:
-    questinfo QTYPE_QUEST,QMARK_YELLOW,"BaseLevel >= 230 && isbegin_quest(18233) == 2 && isbegin_quest(18334) == 0";
+	questinfo QTYPE_QUEST,QMARK_YELLOW,"BaseLevel >= 230 && isbegin_quest(18233) == 2 && isbegin_quest(18334) == 0";
 end;
 }
 
@@ -168,7 +168,7 @@ jor_crk,139,141,3	script	Shufapa#ep21ex02	4_EP19_IWIN_DIVER,{
 }
 
 jor_crk,137,138,0	script	#ep21pt1evt01	HIDDEN_WARP_NPC,3,3,{
-    end;
+	end;
 
 OnTouch:
 	if(isbegin_quest(18334) == 1){
@@ -1954,7 +1954,7 @@ OnTouch:
 		mes "[Lehar]";
 		mes "?";
 		next;
-		cutin "Balanced genius wizard Nillem has solved another mystery!";
+		next;
 		cutin "ep172_nillem03.png",0;
 		mes "[Nillem]";
 		mes "เดี๋ยวนะ... มีบางอย่างรู้สึกผิดปกติกับพื้นที่ตรงนี้...";
@@ -2126,7 +2126,6 @@ OnTouch:
 		mes "[Lehar]";
 		mes "^4e4e4e(เขาดูตัวเล็กกว่าคำอธิบายในหนังสือที่ฉันเคยเห็นในห้องสมุดนะ... ประวัติศาสตร์ก็ชอบเขียนเกินจริงไปบ้างบางครั้งแหละ... เราไม่แน่ใจ เพราะงั้นลองถามดูไหม? อย่างน้อยเขาก็ไม่ได้ทำท่าจะโจมตีเรานะ...)^000000";
 		next;
-		cutin "Condition Check for Richard Mercenary Group";
 		cutin "ep19_lehar03.png",2;
 		mes "[Lehar]";
 		mes "^4e4e4e(" + strcharinfo(0) + ".";
@@ -2790,25 +2789,25 @@ mbase_in,302,123,3	script	Valdaris#ep21_mercgroup	4_EP21_VALDARIS,{
 				mes "คุณไม่รู้หรือไงว่าหลักการพื้นฐานของทหารรับจ้างคือ การจะได้เงินมาต้องทำงานน่ะ?";
 				close3;
 			}
-            mes "[Laura Valdaris]";
-            mes "ฝากด้วยนะ";
-            setarray .@qid,24024,24031,24033,24035,24037,24039;
-            setarray .@cid,24030,24032,24034,24036,24038,24040;
-            for(.@i = 0; .@i < getarraysize(.@qid); .@i++){
-                switch(checkquest(.@cid[.@i],PLAYTIME)){
-                    case -1:
-                        break;
-                    case 0:
-                    case 1:
-                        continue;
-                    case 2:
-                        erasequest .@cid[.@i];
-                        break;
-                }
-                if ( !isbegin_quest(.@qid[.@i]) )
-                    setquest .@qid[.@i];
-            }
-            close3;
+			mes "[Laura Valdaris]";
+			mes "ฝากด้วยนะ";
+			setarray .@qid,24024,24031,24033,24035,24037,24039;
+			setarray .@cid,24030,24032,24034,24036,24038,24040;
+			for(.@i = 0; .@i < getarraysize(.@qid); .@i++){
+				switch(checkquest(.@cid[.@i],PLAYTIME)){
+					case -1:
+						break;
+					case 0:
+					case 1:
+						continue;
+					case 2:
+						erasequest .@cid[.@i];
+						break;
+				}
+				if ( !isbegin_quest(.@qid[.@i]) )
+					setquest .@qid[.@i];
+			}
+			close3;
 
 		case 8:
 			cutin "ep21_valdaris02.png",2;
@@ -3179,22 +3178,22 @@ mbase_in,298,121,3	script	Lee#ep21_addquest	4_EP21_LEE,{
 		close3;
 	}
 	if (!.@qid) {
-        setarray .@qid,24042,24044,24046,24048;
-        setarray .@cid,24043,24045,24047,24049;
-        for(.@i = 0; .@i < getarraysize(.@qid); .@i++){
-            switch(checkquest(.@cid[.@i],PLAYTIME)){
-                case -1:
-                    break;
-                case 0:
-                case 1:
-                    continue;
-                case 2:
-                    erasequest .@cid[.@i];
-                    break;
-            }
-            if ( !isbegin_quest(.@qid[.@i]) )
-                setquest .@qid[.@i];
-        }
+		setarray .@qid,24042,24044,24046,24048;
+		setarray .@cid,24043,24045,24047,24049;
+		for(.@i = 0; .@i < getarraysize(.@qid); .@i++){
+			switch(checkquest(.@cid[.@i],PLAYTIME)){
+				case -1:
+					break;
+				case 0:
+				case 1:
+					continue;
+				case 2:
+					erasequest .@cid[.@i];
+					break;
+			}
+			if ( !isbegin_quest(.@qid[.@i]) )
+				setquest .@qid[.@i];
+		}
 	} else {
 		if(isbegin_quest(.@qid) == 0 ) {
 			cutin "ep21_lee02.png",2;
@@ -3254,8 +3253,8 @@ OnCheckCD:
 end;
 	
 OnCheckComplete:
-    setarray .@qid,24042,24044,24046,24048;
-    setarray .@cid,24043,24045,24047,24049;
+	setarray .@qid,24042,24044,24046,24048;
+	setarray .@cid,24043,24045,24047,24049;
 	setarray .@reputation,5,25,5,25;
 	setarray .@exp,393000000,1655000000,448000000,1968000000;
 	setarray .@amount,10,50,10,50;
@@ -8293,7 +8292,7 @@ jalbe_in,56,138,5	script	Lalaila Wigner#ep21p60	4_EP21_LALAILA,{
 		cloaknpc("Lalaila Wigner#ep21p60-3", false, getcharid(0));
 		end;
 	}
-	cutin  "ep21_lalaila02.png",1;
+	cutin "ep21_lalaila02.png",1;
 	mes "[Lalaila Wigner]";
 	mes "ฉันจะรอฟังข่าวแห่งชัยชนะนะ";
 	close3;
@@ -8389,7 +8388,7 @@ jalbe_in,64,136,0	script	#ep21extra01	HIDDEN_WARP_NPC,1,1,{
 		end;
 	}
 	if ( isbegin_quest(8916) > 0 ) {
-		cutin  "ep21_lalaila02.png",1;
+		cutin "ep21_lalaila02.png",1;
 		mes "[Lalaila Wigner]";
 		mes "ฉันจะรอฟังข่าวแห่งชัยชนะนะ";
 		close3;
@@ -9113,7 +9112,7 @@ jor_tmple1,186,72,0	script	#21ms10	HIDDEN_WARP_NPC,2,2,{
 	end;
 	
 OnTouch:
-	if(isbegin_quest(17752) == 1  || isbegin_quest(17756) == 1){
+	if(isbegin_quest(17752) == 1 || isbegin_quest(17756) == 1){
 		pcblock(true);
 		cloaknpc("Ivan#21ms10",false,getcharid(0));
 		npctalk "มาสิ! ทางนี้!","Ivan#21ms10",bc_self;
@@ -9133,7 +9132,7 @@ end;
 jor_tmple1,186,72,3	duplicate(dummynpc)	Ivan#21ms10	4_EP21_IVAN
 
 luna_sf2,109,253,0	script	#21ms11	HIDDEN_WARP_NPC,2,2,{
-	if(isbegin_quest(17752) == 1  || isbegin_quest(17756) == 1){
+	if(isbegin_quest(17752) == 1 || isbegin_quest(17756) == 1){
 		cloaknpc("Ivan#21ms11",false,getcharid(0));
 		cloaknpc("Tan#21ms10",false,getcharid(0));
 		cloaknpc("Yohan#21ms10",false,getcharid(0));
@@ -9907,7 +9906,7 @@ luna_sf2,198,263,5	script	Guard#21ms10	EP21_YORDOS_A,{
 			case 1:
 				mes "[Guard]";
 				mes "ใกล้จะเสร็จแล้วล่ะครับ รออีกนิดเดียวนะ";
-				if(instance_create(.@md_name$) == -3) 
+				if(instance_create(.@md_name$) == -3)
 					instance_warning(2,.@md_name$);
 				close3;
 			
@@ -14696,7 +14695,7 @@ luna_sf2,255,257,3	script	Suspicious Book#ep21_md2_evt0	4_POINT_BLUE,{
 		.@md_name$ = "Secret Altar";
 		cutin "",255;
 		mes "ขณะที่เจ้ากดลงบนหนังสือด้วยมือทั้งสองข้าง เจ้าได้ยินเสียงคลิกบางอย่าง และชั้นวางหนังสือก็ลดระดับลง";
-		if(instance_create(.@md_name$) == -3) 
+		if(instance_create(.@md_name$) == -3)
 			instance_warning(2,.@md_name$);
 		close3;
 	}
@@ -14716,7 +14715,7 @@ luna_sf2,255,257,3	script	Suspicious Book#ep21_md2_evt0	4_POINT_BLUE,{
 		cutin "ep20_nyar02.png",1;
 		mes "[Nyar]";
 		mes "เมี๊ยว! แง๊วว!";
-		if(instance_create(.@md_name$) == -3) 
+		if(instance_create(.@md_name$) == -3)
 			instance_warning(2,.@md_name$);
 		close3;
 	}
@@ -15025,7 +15024,7 @@ jor_twig,122,164,3	script	Nyar Clone#ep21	4_EP20_NYAR,5,5,{
 				mes "[Aurelie]";
 				mes "ตกลง ไม่ต้องรีบร้อนไป";
 				mes "บอกข้าเมื่อเจ้าพร้อมนะ";
-				if(instance_create(.@md_name$) == -3) 
+				if(instance_create(.@md_name$) == -3)
 					instance_warning(2,.@md_name$);
 				next;
 				mes "[Aurelie]";
@@ -15513,7 +15512,7 @@ jor_mbase,133,128,5	script	Mercenary Member#ep21_serv3	4_EP21_SOLDIER_A,{
 		navigateto("jor_mbase",248,103);
 		end;
 	}
-    cutin "ep21_soldier_a.png",2;
+	cutin "ep21_soldier_a.png",2;
 	mes "[Mercenary Member]";
 	mes "ถ้าข้ารู้ว่าสถานการณ์จะเป็นแบบนี้ ข้าคงไปหางานทำที่สมาคมแทนแล้ว";
 	close3;
@@ -15560,7 +15559,7 @@ jor_mbase,248,103,3	script	Mercenary Member#ep21_serv4	4_EP21_SOLDIER_B,{
 		navigateto("mbase_in",302,123);
 		end;
 	}
-    cutin "ep21_soldier_b.png",2;
+	cutin "ep21_soldier_b.png",2;
 	mes "[Mercenary Member]";
 	mes "แคก…. แคก….";
 	close3;
@@ -15801,14 +15800,14 @@ jor_mbase,185,125,3	duplicate(Mercenary Recruit#ep21_1)	Mercenary Recruit#ep21_1
 jor_mbase,137,258,5	duplicate(Mercenary Recruit#ep21_1)	Mercenary Recruit#ep21_20	1_F_GYPSY
 
 jor_mbase,213,280,2	script	Volunteer Vallen Wok#ep21	4_M_RUSBALD,{
-    if(isbegin_quest(23247) < 2){
-	    mes "[Volunteer Vallen Wok]";
-	    mes "กู้ ฮ่าฮ่าฮ่าฮ่า-";
-	    mes "นักผจญภัยดวงกุดอีกคนแล้วเหรอ? เฮ้ ยังไม่ถึงเวลาแจกจ่ายอาหารหรอกนะ!";
-	    next;
-	    mes "- เควสนี้ยังไม่สามารถดำเนินการได้ในขณะนี้ -";
-	    close;
-    }
+	if(isbegin_quest(23247) < 2){
+		mes "[Volunteer Vallen Wok]";
+		mes "กู้ ฮ่าฮ่าฮ่าฮ่า-";
+		mes "นักผจญภัยดวงกุดอีกคนแล้วเหรอ? เฮ้ ยังไม่ถึงเวลาแจกจ่ายอาหารหรอกนะ!";
+		next;
+		mes "- เควสนี้ยังไม่สามารถดำเนินการได้ในขณะนี้ -";
+		close;
+	}
 	if(isbegin_quest(19198) == 0){
 		emotion ET_BLABLA,getnpcid(0,"Volunteer Vallen Wok#ep21");
 		mes "[Vallen Wok]";
@@ -15997,7 +15996,7 @@ jor_mbase,339,194,4	script	#f01_ep21	4_POINT_BLUE,{
 	cutin "2013_summer_fish_2.bmp",2;
 	while(rand(1,10) <= 5){
 		switch(rand(1,5)){
-			case 1: mes "- ^82B3EDไม่มีการเคลื่อนไหวเลย^000000  -"; break;
+			case 1: mes "- ^82B3EDไม่มีการเคลื่อนไหวเลย^000000 -"; break;
 			case 2: mes "- ^82B3EDริมฝั่งน้ำนิ่งสนิท..^000000 -"; break;
 			case 3: mes "- ^82B3EDมีนกบินอยู่เหนือท้องทะเล^000000 -"; break;
 			case 4: mes "- ^82B3EDคุณเริ่มตกอยู่ในภวังค์ความนึกคิด^000000 -"; break;
@@ -16123,16 +16122,16 @@ jor_mbase,300,133,4	duplicate(#p01_ep21)	#p19_ep21	4_POINT_YELLOW
 jor_mbase,317,94,4	duplicate(#p01_ep21)	#p20_ep21	4_POINT_YELLOW
 
 jor_albe,160,137,4	script	Counselor Wool#ep21	4_M_01,{
-    if(isbegin_quest(23247) < 2){
-	    mes "- เขาดูยุ่งมาก -";
-	    next;
-	    mes "[Counselor Wool]";
-	    mes "เฮ้อ.. ข้าขอโทษด้วยนะ";
-	    mes "ช่วงนี้มีคนที่มีปัญหาด้านจิตใจเยอะเหลือเกิน มันเป็นช่วงเวลาที่ยากลำบากสำหรับทุกคน ข้าเข้าใจดี.. ข้าหวังว่าความวุ่นวายนี้จะจบลงในเร็ววัน";
-	    next;
-	    mes "- เควสนี้ยังไม่สามารถดำเนินการได้ในขณะนี้ -";
-	    close;
-    }
+	if(isbegin_quest(23247) < 2){
+		mes "- เขาดูยุ่งมาก -";
+		next;
+		mes "[Counselor Wool]";
+		mes "เฮ้อ.. ข้าขอโทษด้วยนะ";
+		mes "ช่วงนี้มีคนที่มีปัญหาด้านจิตใจเยอะเหลือเกิน มันเป็นช่วงเวลาที่ยากลำบากสำหรับทุกคน ข้าเข้าใจดี.. ข้าหวังว่าความวุ่นวายนี้จะจบลงในเร็ววัน";
+		next;
+		mes "- เควสนี้ยังไม่สามารถดำเนินการได้ในขณะนี้ -";
+		close;
+	}
 	if(isbegin_quest(19184) == 0){
 		mes "- เขาดูยุ่งมาก -";
 		next;
@@ -16269,7 +16268,7 @@ jor_albe,160,137,4	script	Counselor Wool#ep21	4_M_01,{
 			}
 			if(isbegin_quest(19190) == 0 && .@active_qid){
 				mes "[Counselor Wool]";
-				mes  .@name$ + " ก็เหมือนกับคนอื่นๆ นั่นแหละ พวกเขาถูกพวกลัทธิจับตัวไปและต้องทนทุกข์ทรมาน จากการสนทนาที่ผ่านมาของเรา.. โอ้.. ข้าไม่อยากให้เจ้ามีความคิดอคติไปก่อนน่ะ";
+				mes .@name$ + " ก็เหมือนกับคนอื่นๆ นั่นแหละ พวกเขาถูกพวกลัทธิจับตัวไปและต้องทนทุกข์ทรมาน จากการสนทนาที่ผ่านมาของเรา.. โอ้.. ข้าไม่อยากให้เจ้ามีความคิดอคติไปก่อนน่ะ";
 				next;
 				mes "[Counselor Wool]";
 				mes "โปรดดูแลการให้คำปรึกษาของวันนี้ด้วยนะ";
@@ -17306,7 +17305,7 @@ jor_mbase,217,172,3	script	Mandel#21ms00	4_M_HUOLDARMY,{
 			.@menu$ += (isbegin_quest(17782 + .@i) ? "^0000CD" : "") + "จัดส่งเสบียงของ " + .@name$[.@i] + (isbegin_quest(17782 + .@i) ? " - กำลังดำเนินงาน^000000" : "") + ":";
 	} else {
 		for(.@i = 0; .@i < getarraysize(.@name$); .@i++)
-			.@menu$ +=  "^999999" + "จัดส่งเสบียงของ " + .@name$[.@i] + " - กรุณารอ^000000" + ":";
+			.@menu$ += "^999999" + "จัดส่งเสบียงของ " + .@name$[.@i] + " - กรุณารอ^000000" + ":";
 	}
 	for(.@i = 13; .@i <= 19; .@i++){
 		if(get_reputation_points(.@i) >= 1000){
@@ -17433,7 +17432,7 @@ jor_mbase,121,26,3	script	Small Boat#ep21_luna_to_cr	4_POINT_BLUE,{
 	mes "จะนั่งเรือไปที่ Scale Island ไหม?";
 	next;
 	if(select("ไปที่ Scale Island","ออกไป") == 1)
-	    warp "jor_crk_p",77,66;
+		warp "jor_crk_p",77,66;
 	end;
 }
 
@@ -17442,7 +17441,7 @@ jor_crk_p,75,57,3	script	Small Boat#ep21_crkp_to_lu	4_POINT_BLUE,{
 	mes "จะนั่งเรือไปที่ Lunaforma ไหม?";
 	next;
 	select("ไปที่ Lunaforma","ออกไป");
-	    warp "jor_mbase",124,28;
+		warp "jor_mbase",124,28;
 	end;
 }
 
@@ -17451,10 +17450,10 @@ jor_mbase,343,148,3	script	Walter Sailor#ep21luna_to_a	1_M_03,{
 	mes "เรือลำนี้จะไป Alberta เจ้าจะขึ้นไปด้วยไหม?";
 	next;
 	if(select("ไปที่ Alberta","ออกไป") == 2){
-	    mes "[Walter Sailor]";
-        mes "หากเจ้าต้องการขึ้นเรือ มาหาข้าได้ทุกเมื่อนะ";
-	    close;
-    }
+		mes "[Walter Sailor]";
+		mes "หากเจ้าต้องการขึ้นเรือ มาหาข้าได้ทุกเมื่อนะ";
+		close;
+	}
 	mes "[Walter Sailor]";
 	mes "เรากำลังจะออกเรือแล้ว ขึ้นมาเลย~";
 	close2;
@@ -17955,7 +17954,7 @@ jor_mbase,60,105,7	script	Lunaforma Worker#21ms08	4_F_04,{
 
 jor_mbase,141,125,3	script	Lunaforma Worker#21ms09	1_M_ORIENT01,{
 	npctalk "ที่นี่เหรอ? มันคือที่ที่เราปลูกสมุนไพรน่ะ กลิ่นหอมดีใช่ไหมล่ะ?","",bc_self;
-    sleep2 100;
+	sleep2 100;
 	npctalk "มันคือยาล้ำค่าที่ใช้รักษาผู้บาดเจ็บที่เดินทางมาที่นี่น่ะ","Lunaforma Worker#21ms10",bc_self;
 	end;
 	
@@ -17963,7 +17962,7 @@ jor_mbase,141,125,3	script	Lunaforma Worker#21ms09	1_M_ORIENT01,{
 
 jor_mbase,138,125,5	script	Lunaforma Worker#21ms10	2_M_PHARMACIST,{
 	npctalk "ลองนี่ดูสิ ข้าเพิ่มมิ้นต์ลงไปอีกนิดนึง","",bc_self;
-    sleep2 100;
+	sleep2 100;
 	npctalk "หืม... เจ้าใส่เยอะไปหน่อยหรือเปล่า? รู้สึกเหมือนมี Ice Cave ทั้งถ้ำอยู่ในปากข้าเลย!","Lunaforma Worker#21ms09",bc_self;
 	end;
 }
