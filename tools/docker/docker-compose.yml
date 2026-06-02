@@ -1,95 +1,133 @@
 version: "3.7"
 
 services:
-    db:
-        image: "mariadb:noble"
-        container_name: "rathena-db"
-        ports:
-            - "3306:3306" # allow DB connections from host
-        volumes:
-            - "rathenadb:/var/lib/mysql" # save database to local disk
-            - "../../sql-files/:/docker-entrypoint-initdb.d" # initialize db with ./sql-files
-        environment:
-            MYSQL_ROOT_PASSWORD: ragnarok
-            MYSQL_DATABASE: ragnarok
-            MYSQL_USER: ragnarok
-            MYSQL_PASSWORD: ragnarok
+  db:
+    image: "mariadb:noble"
+    container_name: "rathena-db"
+    ports:
+      - "3306:3306" # เปิดให้ Host ต่อเข้าฐานข้อมูลได้
+    volumes:
+      - "rathenadb:/var/lib/mysql"
+      - "../../sql-files/:/docker-entrypoint-initdb.d" # Init database จาก sql-files
+    environment:
+      MYSQL_ROOT_PASSWORD: ragnarok
+      MYSQL_DATABASE: ragnarok
+      MYSQL_USER: ragnarok
+      MYSQL_PASSWORD: ragnarok
 
-    builder:
-        image: "rathena:local"
-        container_name: "rathena-builder"
-        command: "/rathena/tools/docker/builder.sh"
-        volumes:
-            - "../..:/rathena" # mount git repo directory inside container
-            - "./asset/inter_conf.txt:/rathena/conf/import/inter_conf.txt" # load db connection
-            - "./asset/char_conf.txt:/rathena/conf/import/char_conf.txt"   #localdev login-char relation
-            - "./asset/map_conf.txt:/rathena/conf/import/map_conf.txt"     #localdev char-map relation
-        init: true # helps with signal forwarding and process reaping
-        tty: true
-        stdin_open: true
-        build:
-            context: .
-            dockerfile: Dockerfile
-        environment:
-            BUILDER_CONFIGURE: "--enable-packetver=20211103"
+  builder:
+    image: "rathena:local"
+    container_name: "rathena-builder"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # เปลี่ยนมาใช้ bash รันสคริปต์ตรงๆ เพื่อหลีกเลี่ยงปัญหา Permission ของ Windows Mount
+    command: ["/bin/bash", "-c", "sed -i 's/\\r$//' /rathena/tools/docker/builder.sh && chmod +x /rathena/tools/docker/builder.sh && /rathena/tools/docker/builder.sh"]
+    volumes:
+      - "../..:/rathena"
+      - "./asset/inter_conf.txt:/rathena/conf/import/inter_conf.txt"
+      - "./asset/char_conf.txt:/rathena/conf/import/char_conf.txt"
+      - "./asset/map_conf.txt:/rathena/conf/import/map_conf.txt"
+      - "./asset/web_conf.txt:/rathena/conf/import/web_conf.txt"
+    environment:
+      BUILDER_CONFIGURE: "--enable-prere=no --enable-buildbot=yes --enable-vip=yes"
 
-    login:
-        image: "rathena:local"
-        container_name: "rathena-login"
-        command: sh -c "/bin/wait-for db:3306 -- /rathena/login-server"
-        ports:
-            - "6900:6900" # login server
-        volumes:
-            - "../..:/rathena" # mount git repo directory inside container
-            - "./asset/inter_conf.txt:/rathena/conf/import/inter_conf.txt" # load db connection
-            - "./asset/char_conf.txt:/rathena/conf/import/char_conf.txt"   #localdev login-char relation
-            - "./asset/map_conf.txt:/rathena/conf/import/map_conf.txt"     #localdev char-map relation
-        init: true # helps with signal forwarding and process reaping
-        tty: true
-        stdin_open: true
-        build:
-            context: .
-            dockerfile: Dockerfile
-        depends_on:
-            - db
-    char:
-        image: "rathena:local"
-        container_name: "rathena-char"
-        command: sh -c "/bin/wait-for db:3306 -- /rathena/char-server"
-        ports:
-            - "6121:6121" # char server
-        volumes:
-            - "../..:/rathena" # mount git repo directory inside container
-            - "./asset/inter_conf.txt:/rathena/conf/import/inter_conf.txt" # load db connection
-            - "./asset/char_conf.txt:/rathena/conf/import/char_conf.txt"   #localdev login-char relation
-            - "./asset/map_conf.txt:/rathena/conf/import/map_conf.txt"     #localdev char-map relation
-        init: true # helps with signal forwarding and process reaping
-        tty: true
-        stdin_open: true
-        build:
-            context: .
-            dockerfile: Dockerfile
-        depends_on:
-            - login
-    map:
-        image: "rathena:local"
-        container_name: "rathena-map"
-        command: sh -c "/bin/wait-for db:3306 -- /rathena/map-server"
-        ports:
-            - "5121:5121" # map server
-        volumes:
-            - "../..:/rathena" # mount git repo directory inside container
-            - "./asset/inter_conf.txt:/rathena/conf/import/inter_conf.txt" # load db connection
-            - "./asset/char_conf.txt:/rathena/conf/import/char_conf.txt"   #localdev login-char relation
-            - "./asset/map_conf.txt:/rathena/conf/import/map_conf.txt"     #localdev char-map relation
-        init: true # helps with signal forwarding and process reaping
-        tty: true
-        stdin_open: true
-        build:
-            context: .
-            dockerfile: Dockerfile
-        depends_on:
-            - char
+  login:
+    image: "rathena:local"
+    container_name: "rathena-login"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # รัน wait-for รอ DB เปิดก่อน จากนั้นค่อยรัน login-server
+    command: ["/bin/wait-for", "db:3306", "--", "/rathena/login-server"]
+    ports:
+      - "6900:6900"
+    volumes:
+      - "../..:/rathena"
+      - "./asset/inter_conf.txt:/rathena/conf/import/inter_conf.txt"
+      - "./asset/char_conf.txt:/rathena/conf/import/char_conf.txt"
+      - "./asset/map_conf.txt:/rathena/conf/import/map_conf.txt"
+      - "./asset/web_conf.txt:/rathena/conf/import/web_conf.txt"
+    init: true
+    tty: true
+    stdin_open: true
+    depends_on:
+      db:
+        condition: service_started
+      builder:
+        condition: service_completed_successfully # รอให้ builder คอมไพล์เสร็จก่อนถึงจะทำงาน
+
+  web:
+    image: "rathena:local"
+    container_name: "rathena-web"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["/bin/wait-for", "db:3306", "--", "/rathena/web-server"]
+    ports:
+      - "8888:8888"
+    volumes:
+      - "../..:/rathena"
+      - "./asset/inter_conf.txt:/rathena/conf/import/inter_conf.txt"
+      - "./asset/char_conf.txt:/rathena/conf/import/char_conf.txt"
+      - "./asset/map_conf.txt:/rathena/conf/import/map_conf.txt"
+      - "./asset/web_conf.txt:/rathena/conf/import/web_conf.txt"
+    init: true
+    tty: true
+    stdin_open: true
+    depends_on:
+      db:
+        condition: service_started
+      builder:
+        condition: service_completed_successfully
+
+  char:
+    image: "rathena:local"
+    container_name: "rathena-char"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["/bin/wait-for", "db:3306", "--", "/rathena/char-server"]
+    ports:
+      - "6121:6121"
+    volumes:
+      - "../..:/rathena"
+      - "./asset/inter_conf.txt:/rathena/conf/import/inter_conf.txt"
+      - "./asset/char_conf.txt:/rathena/conf/import/char_conf.txt"
+      - "./asset/map_conf.txt:/rathena/conf/import/map_conf.txt"
+      - "./asset/web_conf.txt:/rathena/conf/import/web_conf.txt"
+    init: true
+    tty: true
+    stdin_open: true
+    depends_on:
+      login:
+        condition: service_started
+      builder:
+        condition: service_completed_successfully
+
+  map:
+    image: "rathena:local"
+    container_name: "rathena-map"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["/bin/wait-for", "db:3306", "--", "/rathena/map-server"]
+    ports:
+      - "5121:5121"
+    volumes:
+      - "../..:/rathena"
+      - "./asset/inter_conf.txt:/rathena/conf/import/inter_conf.txt"
+      - "./asset/char_conf.txt:/rathena/conf/import/char_conf.txt"
+      - "./asset/map_conf.txt:/rathena/conf/import/map_conf.txt"
+      - "./asset/web_conf.txt:/rathena/conf/import/web_conf.txt"
+    init: true
+    tty: true
+    stdin_open: true
+    depends_on:
+      char:
+        condition: service_started
+      builder:
+        condition: service_completed_successfully
 
 volumes:
-    rathenadb:
+  rathenadb:

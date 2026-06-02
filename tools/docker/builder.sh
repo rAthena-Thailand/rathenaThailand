@@ -4,6 +4,8 @@ elif [ ! -f /rathena/char-server ]; then
   export runBuild=1;
 elif [ ! -f /rathena/map-server ]; then
   export runBuild=1;
+elif [ ! -f /rathena/web-server ]; then
+  export runBuild=1;
 else
   export runBuild=0;
 fi
