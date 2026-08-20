@@ -46,9 +46,9 @@
 #include "status.hpp"
 #include "unit.hpp"
 
-// Include .cpp files into the TU to optimize compile time
-// For reference see unity builds or amalgamated builds
-#include "skills/skill_factory.cpp"
+// Skill factory is compiled as separate translation units per job category
+// to reduce peak memory usage during compilation
+#include "skills/skill_factory.hpp"
 
 using namespace rathena;
 
@@ -6268,7 +6268,7 @@ std::shared_ptr<s_skill_unit_group> skill_unitsetting(block_list *src, uint16 sk
 	case NW_GRENADES_DROPPING:
 		limit = skill_get_time2(skill_id,skill_lv);
 		break;
-	
+
 	case AT_GLACIER_MONOLITH:
 		skill_clear_group(src, 1); // Delete previous monolith
 		break;
@@ -12685,7 +12685,7 @@ static int32 skill_unit_timer_sub(DBKey key, DBData *data, va_list ap)
 			else
 				map_foreachinallrange(skill_unit_timer_sub_onplace, bl, unit->range, group->bl_flag, bl, tick);
 
-		if(unit->range == -1) //Unit disabled, but it should not be deleted yet.
+			if(unit->range == -1) //Unit disabled, but it should not be deleted yet.
 				group->unit_id = UNT_USED_TRAPS;
 			else if( group->unit_id == UNT_TATAMIGAESHI ) {
 				unit->range = -1; //Disable processed cell.
